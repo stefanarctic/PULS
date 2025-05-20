@@ -1,10 +1,10 @@
-import About from "./About";
-import Achievements from "./Achievements";
-import ContactUs from "./ContactUs";
-import Home from "./Home";
-import OurWork from "./OurWork";
-import Services from "./Services";
-import Testimonials from "./Testimonials";
+import About from "@/components/About";
+import Achievements from "@/components/Achievements";
+import ContactUs from "@/components/ContactUs";
+import Home from "@/components/Home";
+import OurWork from "@/components/OurWork";
+import Services from "@/components/Services";
+import Testimonials from "@/components/Testimonials";
 
 import $ from 'jquery';
 
