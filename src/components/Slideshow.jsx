@@ -27,6 +27,7 @@ const Slideshow = () => {
   // Start at 1 for seamless looping
   const [current, setCurrent] = useState(1);
   const slideshowRef = useRef(null);
+  const currentInterval = useRef(null);
 
   // Clone first and last images for seamless looping
   const extendedImages = [
@@ -37,12 +38,12 @@ const Slideshow = () => {
 
   // Auto-advance
   useEffect(() => {
-    const interval = setInterval(() => {
+    currentInterval.current = setInterval(() => {
       setCurrent((prev) => prev + 1);
     }, 5000);
 
-    return () => clearInterval(interval);
-  }, []);
+    return () => clearInterval(currentInterval.current);
+  }, [currentInterval.current]);
 
   // Scroll to current slide
   useEffect(() => {
@@ -76,12 +77,18 @@ const Slideshow = () => {
     };
 
     // Listen for scroll end (using setTimeout as a simple fallback)
-    const timeout = setTimeout(handleTransition, 520); // match your scroll duration
+    const timeout = setTimeout(handleTransition, 250); // match your scroll duration
 
     return () => clearTimeout(timeout);
   }, [current, extendedImages.length, images.length]);
 
   const handleDotClick = (index) => {
+    // Reset the interval on dot click
+    clearInterval(currentInterval.current);
+    // currentInterval.current = setInterval(() => {
+    //   setCurrent((prev) => prev + 1);
+    // }, 5000);
+    // Set the current slide to the clicked dot
     setCurrent(index + 1); // Offset by 1 due to cloned first slide
   };
 
