@@ -24,17 +24,27 @@ const images = [
 ];
 
 const Slideshow = () => {
-  const [current, setCurrent] = useState(0);
+  // Start at 1 for seamless looping
+  const [current, setCurrent] = useState(1);
   const slideshowRef = useRef(null);
 
+  // Clone first and last images for seamless looping
+  const extendedImages = [
+    images[images.length - 1],
+    ...images,
+    images[0],
+  ];
+
+  // Auto-advance
   useEffect(() => {
     const interval = setInterval(() => {
-      setCurrent((prev) => (prev + 1) % images.length);
+      setCurrent((prev) => prev + 1);
     }, 5000);
 
     return () => clearInterval(interval);
   }, []);
 
+  // Scroll to current slide
   useEffect(() => {
     if (slideshowRef.current) {
       slideshowRef.current.scrollTo({
@@ -44,21 +54,48 @@ const Slideshow = () => {
     }
   }, [current]);
 
+  // Seamless looping logic
+  useEffect(() => {
+    if (!slideshowRef.current) return;
+    const handleTransition = () => {
+      if (current === extendedImages.length - 1) {
+        // If at the (cloned) last slide, jump to the real first slide
+        slideshowRef.current.scrollTo({
+          left: slideshowRef.current.clientWidth,
+          behavior: "auto",
+        });
+        setCurrent(1);
+      } else if (current === 0) {
+        // If at the (cloned) first slide, jump to the real last slide
+        slideshowRef.current.scrollTo({
+          left: slideshowRef.current.clientWidth * (images.length),
+          behavior: "auto",
+        });
+        setCurrent(images.length);
+      }
+    };
+
+    // Listen for scroll end (using setTimeout as a simple fallback)
+    const timeout = setTimeout(handleTransition, 520); // match your scroll duration
+
+    return () => clearTimeout(timeout);
+  }, [current, extendedImages.length, images.length]);
+
   const handleDotClick = (index) => {
-    setCurrent(index);
+    setCurrent(index + 1); // Offset by 1 due to cloned first slide
   };
 
   return (
     <div className="slideshow-container">
       <div className="slideshow" ref={slideshowRef}>
-        {images.map((image, index) => (
+        {extendedImages.map((image, index) => (
           <div className="slide" key={index}>
             <div className="image-wrapper">
               <div className="gradient-overlay"></div>
               <img
                 src={image.url}
                 alt={image.alt}
-                loading={index === 0 ? "eager" : "lazy"}
+                loading={index === 1 ? "eager" : "lazy"}
                 onError={(e) => {
                   e.target.src =
                     "https://images.unsplash.com/photo-1614728894747-a83421e2b9c9?ixlib=rb-4.0.3&auto=format&fit=crop&w=1170&q=80";
@@ -75,7 +112,7 @@ const Slideshow = () => {
         {images.map((_, index) => (
           <button
             key={index}
-            className={`dot ${index === current ? "active" : ""}`}
+            className={`dot ${index + 1 === current ? "active" : ""}`}
             onClick={() => handleDotClick(index)}
             aria-label={`Go to slide ${index + 1}`}
           ></button>
