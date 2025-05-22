@@ -1,9 +1,13 @@
+import { Link } from "react-router-dom";
 
 const Navbar = () => {
     return (
         <nav>
             <div id="logo-container">
-                <a href=".">P.U.L.S</a>
+                {/* <a href=".">P.U.L.S</a> */}
+                <Link to="/" id="logo-link">
+                    <img src="/res/puls-logo-new2.png" alt="P.U.L.S" />
+                </Link>
             </div>
             <div id="nav-container">
                 <ul id="nav-list">

@@ -21,8 +21,29 @@ nav {
     #logo-container {
         flex: 1;
         padding-left: 20px;
+            
+        // #logo-link {
+        //     display: flex;
+        //     align-items: center;
+        //     justify-content: center;
+        //     gap: 20px;
 
-        a {
+        //     img {
+        //         width: 100px;
+        //         height: auto;
+        //         margin-bottom: 50px;
+        //     }
+        // }
+
+        // #logo-link {
+        //     all: unset;
+        //     display: inline-block;
+
+        // }
+
+        #logo-link {
+            all: unset;
+            display: flex;
             text-decoration: none;
             color: white !important;
             cursor: pointer;
@@ -31,9 +52,6 @@ nav {
             font-weight: bold;
 
             img {
-                position: absolute;
-                border: 1px solid black;
-                margin-bottom: 50px;
                 width: 150px;
                 height: auto;
             }
