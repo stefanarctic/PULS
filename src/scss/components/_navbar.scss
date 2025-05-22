@@ -59,28 +59,49 @@ nav {
     }
 
     #nav-container {
-        flex: 2.5;
+        flex: 3;
 
         ul {
             li {
                 display: flex;
-                gap: 40px;
+                gap: 10px;
 
                 list-style-type: none;
                 text-align: center;
 
-                a {
+                .nav-link {
                     font-family: 'Open Sans', sans-serif;
                     color: white;
                     font-style: 'Helvetica', sans-serif;
-                    font-size: large;
+                    font-size: larger;
                     cursor: pointer;
 
                     text-decoration: none;
                     text-transform: uppercase;
-
+                    padding: 20px;
+                    border-radius: 10px;
+                    
                     &:hover {
-                        color: rgb(95, 95, 95);
+                        background-color: rgba(0, 0, 0, 0.171) !important;
+                        // color: rgb(95, 95, 95);
+                    }
+
+                    display: flex;
+                    align-items: center;
+                    gap: 0.5rem; // spațiu între icon și text
+
+                    .nav-icon {
+                        width: 1.5rem;
+                        height: 1.5rem;
+                        // margin-right: 0.5rem; // sau folosește gap pe .nav-link
+                        display: inline-flex;
+                        align-items: center;
+                        justify-content: center;
+                    }
+
+                    &.active {
+                        color: var(--primary-color);
+                        font-weight: bold;
                     }
                 }
             }
