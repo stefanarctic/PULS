@@ -1,0 +1,183 @@
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+    font-feature-settings: "rlig" 1, "calt" 1;
+    background-color: #121212;
+    margin: 0px !important;
+}
+
+@media all and (max-width: 1600px) {
+    header {
+        main {
+            #hero-container {
+                h1 {
+                    font-size: 2.85em;
+                }
+            }
+
+            #hero-img-container {
+                img {
+                    width: 300px;
+                }
+            }
+        }
+    }
+}
+
+@media all and (max-width: 1500px) {
+    header {
+        main {
+            #hero-container {
+                h1 {
+                    font-size: 2.5em;
+                }
+
+                p {
+                    min-width: 560px;
+                }
+            }
+
+            #hero-img-container {
+                img {
+                    width: 300px;
+                }
+            }
+        }
+    }
+}
+
+@media all and (max-width: 1350px) {
+    header {
+        main {
+            #hero-container {
+                h1 {
+                    font-size: 2.3em;
+                }
+
+                p {
+                    min-width: 500px;
+                    font-size: 22px;
+                }
+            }
+
+            #hero-img-container {
+                img {
+                    width: 300px;
+                }
+            }
+        }
+    }
+}
+
+@media all and (max-width: 1400px) {
+    header {
+        main {
+            #hero-container {
+                margin-left: 5%;
+
+                h1 {
+                    font-size: 2em;
+                }
+
+                p {
+                    min-width: 400px;
+                }
+            }
+
+            #hero-img-container {
+                img {
+                    width: 300px;
+                }
+            }
+        }
+    }
+}
+
+@media all and (max-width: 1150px) {
+    header {
+        main {
+            #hero-container {
+                margin-left: 2%;
+
+                h1 {
+                    font-size: 1.8em;
+                }
+
+                p {
+                    min-width: 300px;
+                }
+            }
+
+            #hero-img-container {
+                img {
+                    width: 300px;
+                }
+            }
+        }
+    }
+}
+
+@media all and (max-width: 1050px) {
+    header {
+        margin-bottom: 500px;
+
+        main {
+            display: block;
+            padding: 50px;
+            flex-direction: column;
+            align-items: center !important;
+
+            #hero-container {
+                transform: translate(5%, 0);
+                margin-bottom: 150px;
+                opacity: 0;
+                filter: blur(5px);
+                transform: translate(5%, 25%);
+                transition: all 1s;
+
+                &.show {
+                    opacity: 1;
+                    filter: blur(0);
+                    transform: translate(5%, 0);
+                    transition: all 1s;
+                }
+
+                h1 {
+                    min-width: fit-content;
+                    max-width: 80%;
+                    font-size: calc(11vw);
+                }
+
+                p {
+                    min-width: 700px;
+                    font-size: calc(3vw);
+                }
+            }
+
+            #hero-img-container {
+                transform: translate(25%, 0);
+                opacity: 0;
+                filter: blur(5px);
+                transform: translate(25%, 25%);
+                transition: all 1s;
+
+                &.show {
+                    opacity: 1;
+                    filter: blur(0);
+                    transform: translate(25%, 0);
+                    transition: all 1s;
+                }
+
+                img {
+                    width: 380px;
+                }
+
+                .image-stack {
+                    .image-stack-item--bottom {
+                        width: 120%;
+                    }
+                }
+            }
+        }
+    }
+}

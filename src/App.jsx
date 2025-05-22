@@ -5,10 +5,12 @@ import Home from "@/components/Home";
 import OurWork from "@/components/OurWork";
 import Services from "@/components/Services";
 import Testimonials from "@/components/Testimonials";
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 
 import $ from 'jquery';
 
 import './scss/style.scss';
+import Index from "./components/pages/Index";
 
 const App = () => {
 
@@ -105,15 +107,13 @@ const App = () => {
   }, 1000);
 
   return (
-    <div className="App">
-      <Home />
-      <About />
-      <Achievements />
-      <OurWork />
-      <Testimonials />
-      <Services />
-      <ContactUs />
-    </div>
+    <Router>
+      <div className="App">
+        <Routes>
+          <Route path="/" element={<Index />} />
+        </Routes>
+      </div>
+    </Router>
   )
 }
 

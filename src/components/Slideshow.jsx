@@ -77,7 +77,7 @@ const Slideshow = () => {
     };
 
     // Listen for scroll end (using setTimeout as a simple fallback)
-    const timeout = setTimeout(handleTransition, 250); // match your scroll duration
+    const timeout = setTimeout(handleTransition, 350); // match your scroll duration
 
     return () => clearTimeout(timeout);
   }, [current, extendedImages.length, images.length]);

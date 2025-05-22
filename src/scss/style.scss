@@ -2,6 +2,8 @@
 @import "common/vars";
 @import "common/mixins";
 
+@import "components/general";
 @import "components/navbar";
-@import "components/header";
-@import "pc"
+@import "components/hero";
+@import "components/index";
+@import "components/footer";

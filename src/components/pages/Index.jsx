@@ -1,0 +1,76 @@
+import { Link } from "react-router-dom";
+import Layout from "../Layout";
+import Slideshow from "../Slideshow";
+import { Waves, Atom, Circle, Activity } from "lucide-react";
+
+const Index = () => {
+    return (
+        <Layout>
+            {/* Hero Section */}
+            <header id="hero">
+                <main>
+                    <div id="hero-text-container" className="hidden hidden-left">
+                        <h1>Descoperă fizica prin exerciții și simulări interactive</h1>
+                        <p>
+                            PULS - Platforma educațională pentru studiul conceptelor de Pendul, Unde, Lissajous și Seism prin probleme și simulări interactive.
+                        </p>
+                        <div className="buttons">
+                            <button className="filled">Exploreaza problemele</button>
+                            <button>Incearca simularile</button>
+                        </div>
+                    </div>
+                    <div className="hero-slideshow-wrapper">
+                        <div className="slideshow-parent hidden hidden-bottom">
+                            <Slideshow />
+                        </div>
+                    </div>
+                </main>
+            </header>
+
+            {/* Features Section */}
+            <section id="features" className="features-section">
+                <h2 className="section-title">Ce îți oferă PULS?</h2>
+                <div className="features-grid">
+                    <div className="feature-card">
+                        <Link to="/probleme" className="feature-link">
+                            <div className="feature-icon">
+                                <Atom size={48} strokeWidth={1.5} />
+                            </div>
+                            <h3>Probleme interactive</h3>
+                            <p>Exerciții de fizică organizate pe nivel de dificultate, clasă și tematică pentru a-ți testa cunoștințele.</p>
+                        </Link>
+                    </div>
+                    <div className="feature-card">
+                        <Link to="/simulari" className="feature-link">
+                            <div className="feature-icon">
+                                <Waves size={48} strokeWidth={1.5} />
+                            </div>
+                            <h3>Simulări vizuale</h3>
+                            <p>Experimentează vizual concepte fizice complexe precum pendulul simplu, undele sinusoidale și figurile Lissajous.</p>
+                        </Link>
+                    </div>
+                    <div className="feature-card">
+                        <Link to="/resurse" className="feature-link">
+                            <div className="feature-icon">
+                                <Circle size={48} strokeWidth={1.5} />
+                            </div>
+                            <h3>Resurse didactice</h3>
+                            <p>Lecții teoretice și materiale educaționale care explică în detaliu conceptele fizice studiate.</p>
+                        </Link>
+                    </div>
+                    <div className="feature-card">
+                        <Link to="/profil" className="feature-link">
+                            <div className="feature-icon">
+                                <Activity size={48} strokeWidth={1.5} />
+                            </div>
+                            <h3>Progres monitorizat</h3>
+                            <p>Urmărește-ți evoluția și vizualizează statistici personalizate pe măsură ce rezolvi probleme.</p>
+                        </Link>
+                    </div>
+                </div>
+            </section>
+        </Layout>
+    );
+}
+
+export default Index;
