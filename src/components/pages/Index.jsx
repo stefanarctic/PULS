@@ -69,6 +69,49 @@ const Index = () => {
                     </div>
                 </div>
             </section>
+
+            {/* Topics Section */}
+            <section id="probleme" className="topics-section">
+                <h2 className="section-title">Categorii de resurse</h2>
+                <div className="topics-grid">
+                    <div className="topic-card pendul">
+                        {/* <Link to="/resurse/pendul" className="topic-content">
+                            <div className="topic-content">
+                                <h3>Pendul</h3>
+                                <p>Mișcare oscilantă, forțe, energie cinetică și potențială, conservarea energiei</p>
+                                <button className="topic-button">Explorează</button>
+                            </div>
+                        </Link> */}
+                        <div className="topic-content">
+                            <h3>Pendul</h3>
+                            <p>Mișcare oscilantă, forțe, energie cinetică și potențială, conservarea energiei</p>
+                            {/* <button className="topic-button">Explorează</button> */}
+                            <Link to="/resurse/pendul" className="topic-button">Explorează</Link>
+                        </div>
+                    </div>
+                    <div className="topic-card unde">
+                        <div className="topic-content">
+                            <h3>Unde</h3>
+                            <p>Unde mecanice, unde electromagnetice, interferență, difracție și propagare</p>
+                            <Link to="/resurse/unde" className="topic-button">Explorează</Link>
+                        </div>
+                    </div>
+                    <div className="topic-card lissajous">
+                        <div className="topic-content">
+                            <h3>Lissajous</h3>
+                            <p>Figuri parametrice, oscilații perpendiculare, frecvențe și faze</p>
+                            <Link to="/resurse/lissajous" className="topic-button">Explorează</Link>
+                        </div>
+                    </div>
+                    <div className="topic-card seism">
+                        <div className="topic-content">
+                            <h3>Seism</h3>
+                            <p>Unde seismice, propagare, reflexie, refracție și principii de seismologie</p>
+                            <Link to="/resurse/seism" className="topic-button">Explorează</Link>
+                        </div>
+                    </div>
+                </div>
+            </section>
         </Layout>
     );
 }

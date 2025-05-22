@@ -77,7 +77,7 @@
 .topics-section {
     padding: 5rem 2rem;
     background-color: #121212;
-
+    
     .section-title {
         text-align: center;
         font-size: 2.5rem;
@@ -85,10 +85,11 @@
         margin-bottom: 3rem;
         color: white;
     }
-
+    
     .topics-grid {
         display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        // grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        grid-template-columns: repeat(2, 1fr);
         gap: 2rem;
         max-width: 1200px;
         margin: 0 auto;
@@ -111,22 +112,22 @@
             }
 
             &.pendul {
-                background: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), url('/res/pendulum.jpg') no-repeat center center;
+                background: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), url('/res/screenshots/Pendul_Screenshot.png') no-repeat center center;
                 background-size: cover;
             }
 
             &.unde {
-                background: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), url('/res/waves.jpg') no-repeat center center;
+                background: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), url('/res/screenshots/Unde_Screenshot.png') no-repeat center center;
                 background-size: cover;
             }
 
             &.lissajous {
-                background: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), url('/res/lissajous.jpg') no-repeat center center;
+                background: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), url('/res/screenshots/Lissajous_Screenshot.png') no-repeat center center;
                 background-size: cover;
             }
 
             &.seism {
-                background: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), url('/res/seismic.jpg') no-repeat center center;
+                background: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), url('/res/screenshots/Seism_Screenshot.png') no-repeat center center;
                 background-size: cover;
             }
 
@@ -149,9 +150,12 @@
                     color: rgba(255, 255, 255, 0.8);
                     margin-bottom: 1.5rem;
                     font-size: 1rem;
+                    max-width: 85%;
                 }
 
                 .topic-button {
+                    all: unset;
+                    display: inline-block;
                     background-color: rgba(255, 255, 255, 0.2);
                     color: white;
                     border: 1px solid rgba(255, 255, 255, 0.5);
