@@ -5,14 +5,14 @@
 // Features section
 .features-section {
     padding: 5rem 2rem;
-    background-color: #1a1a1a;
+    background-color: var(--secondary-background-current-mode);
 
     .section-title {
         text-align: center;
         font-size: 2.5rem;
         font-weight: 700;
         margin-bottom: 3rem;
-        color: white;
+        color: var(--primary-color-current-mode);
     }
 
     .features-grid {
@@ -23,7 +23,10 @@
         margin: 0 auto;
 
         .feature-card {
-            background-color: #252525;
+            background-color: var(--tertiary-background-current-mode);
+            // border: 2px solid if(var(--primary-background-current-mode) == var(--primary-background-dark-mode), transparent, rgba(0, 0, 0, 0.1));
+            border: 2px solid rgba(0, 0, 0, 0.1);
+            // border-color: var(--primary-background-current-mode) == var(--primary-background-dark-mode) ? transparent : rgba(0, 0, 0, 0.1);
             border-radius: 1rem;
             padding: 2rem;
             transition: transform 0.3s ease, box-shadow 0.3s ease;
@@ -32,6 +35,10 @@
             align-items: center;
             text-align: center;
             cursor: pointer;
+
+            &.dark-mode {
+                border-color: transparent;
+            }
 
             &:hover {
                 transform: translateY(-5px);
@@ -61,11 +68,11 @@
                     font-size: 1.5rem;
                     font-weight: 600;
                     margin-bottom: 1rem;
-                    color: white;
+                    color: var(--primary-color-current-mode);
                 }
 
                 p {
-                    color: #a0aec0;
+                    color: rgb(160, 174, 192);
                     line-height: 1.6;
                 }
             }
@@ -76,14 +83,14 @@
 // Topics section
 .topics-section {
     padding: 5rem 2rem;
-    background-color: #121212;
+    background-color: var(--primary-background-current-mode);
     
     .section-title {
         text-align: center;
         font-size: 2.5rem;
         font-weight: 700;
         margin-bottom: 3rem;
-        color: white;
+        color: var(--primary-color-current-mode);
     }
     
     .topics-grid {
@@ -394,8 +401,14 @@
 
 // Footer
 .footer {
-    background-color: #121212;
+    background-color: var(--primary-background-current-mode) !important;
     padding: 4rem 2rem 2rem;
+    border-top: 2px solid rgba(0, 0, 0, 0.1);
+    // background-color: red;
+
+    &.dark-mode {
+        border-top-color: transparent;
+    }
 
     .footer-content {
         display: flex;
@@ -415,7 +428,7 @@
                 font-size: 2rem;
                 font-weight: 700;
                 margin-bottom: 0.5rem;
-                color: white;
+                color: var(--primary-color-current-mode) !important;
             }
 
             p {
@@ -437,7 +450,7 @@
                     font-size: 1.2rem;
                     font-weight: 600;
                     margin-bottom: 1.5rem;
-                    color: white;
+                    color: var(--primary-color-current-mode) !important;
                 }
 
                 ul {

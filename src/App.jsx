@@ -11,6 +11,7 @@ import $ from 'jquery';
 
 import './scss/style.scss';
 import Index from "./components/pages/Index";
+import Simulari from "./components/pages/Simulari";
 
 const App = () => {
 
@@ -111,6 +112,7 @@ const App = () => {
       <div className="App">
         <Routes>
           <Route path="/" element={<Index />} />
+          <Route path="/simulari" element={<Simulari />} />
         </Routes>
       </div>
     </Router>

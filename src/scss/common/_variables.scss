@@ -1,0 +1,37 @@
+
+// $primary-background-dark-mode: rgb(18, 18, 18);
+// $secondary-background-dark-mode: rgb(26, 26, 26);
+// $primary-color-dark-mode: white;
+
+// $primary-background-white-mode: white;
+// $secondary-background-white-mode: rgb(247, 247, 247);
+// $primary-color-white-mode: rgb(18, 18, 18);
+
+// $hero-background: $primary-background-dark-mode;
+// $features-background: $secondary-background-dark-mode;
+// $topics-background: $primary-background-dark-mode;
+// $footer-background: $primary-background-dark-mode;
+
+:root {
+    // Universal vars
+    --primary-background-dark-mode: rgb(18, 18, 18);
+    --secondary-background-dark-mode: rgb(26, 26, 26);
+    --tertiary-background-dark-mode: rgb(37, 37, 37);
+    --primary-color-dark-mode: white;
+
+    --primary-background-white-mode: white;
+    --secondary-background-white-mode: rgb(247, 247, 247);
+    --tertiary-background-white-mode: transparent;
+    --primary-color-white-mode: rgb(18, 18, 18);
+
+    // --hero-background: var(--primary-background-dark-mode);
+    // --features-background: var(--secondary-background-dark-mode);
+    // --topics-background: var(--primary-background-dark-mode);
+    // --footer-background: var(--primary-background-dark-mode);
+
+    // Current vars
+    --primary-background-current-mode: var(--primary-background-white-mode);
+    --secondary-background-current-mode: var(--secondary-background-white-mode);
+    --tertiary-background-current-mode: var(--tertiary-background-white-mode);
+    --primary-color-current-mode: var(--primary-color-white-mode);
+}

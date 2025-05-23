@@ -5,16 +5,69 @@ const DarkModeToggle = () => {
 
     const [darkModeOn, setDarkModeOn] = useState(false);
 
-    // useEffect(() => {
-    //     const localStorageDarkMode = localStorage.getItem("darkMode");
-    //     if(!localStorageDarkMode)
-    //     {
-    //         setDarkModeOn(true);
-    //         return;
-    //     }
+    const toggleDarkMode = () => {
+        setDarkModeOn(value => !value);
+    }
 
-    //     setDarkModeOn(localStorageDarkMode === "enabled");
-    // }, []);
+    useEffect(() => {
+        const localStorageDarkMode = localStorage.getItem("darkMode");
+        if(!localStorageDarkMode)
+        {
+            setDarkModeOn(false);
+            return;
+        }
+
+        setDarkModeOn(localStorageDarkMode === "enabled");
+    }, []);
+
+    useEffect(() => {
+        // Save preference
+        localStorage.setItem("darkMode", darkModeOn ? "enabled" : "disabled");
+
+        const documentStyle = document.documentElement.style;
+        if(darkModeOn)
+        {
+            // Turn on dark mode
+            const darkPrimaryBackground = getComputedStyle(document.documentElement).getPropertyValue('--primary-background-dark-mode').trim();
+            const darkSecondaryBackground = getComputedStyle(document.documentElement).getPropertyValue('--secondary-background-dark-mode').trim();
+            const darkTertiaryBackground = getComputedStyle(document.documentElement).getPropertyValue('--tertiary-background-dark-mode').trim();
+            const darkPrimaryColor = getComputedStyle(document.documentElement).getPropertyValue('--primary-color-dark-mode').trim();
+            
+            documentStyle.setProperty('--primary-background-current-mode', darkPrimaryBackground);
+            documentStyle.setProperty('--secondary-background-current-mode', darkSecondaryBackground);
+            documentStyle.setProperty('--tertiary-background-current-mode', darkTertiaryBackground);
+            documentStyle.setProperty('--primary-color-current-mode', darkPrimaryColor);
+
+            // BONUS
+            for(const card of document.getElementsByClassName('feature-card'))
+            {
+                card.classList.toggle('dark-mode');
+            }
+
+            document.querySelector('.footer').classList.toggle('dark-mode');
+        }
+        else
+        {
+            // Turn on white mode
+            const whitePrimaryBackground = getComputedStyle(document.documentElement).getPropertyValue('--primary-background-white-mode').trim();
+            const whiteSecondaryBackground = getComputedStyle(document.documentElement).getPropertyValue('--secondary-background-white-mode').trim();
+            const whiteTertiaryBackground = getComputedStyle(document.documentElement).getPropertyValue('--tertiary-background-white-mode').trim();
+            const whitePrimaryColor = getComputedStyle(document.documentElement).getPropertyValue('--primary-color-white-mode').trim();
+            
+            documentStyle.setProperty('--primary-background-current-mode', whitePrimaryBackground);
+            documentStyle.setProperty('--secondary-background-current-mode', whiteSecondaryBackground);
+            documentStyle.setProperty('--tertiary-background-current-mode', whiteTertiaryBackground);
+            documentStyle.setProperty('--primary-color-current-mode', whitePrimaryColor);
+
+            // BONUS
+            for(const card of document.getElementsByClassName('feature-card'))
+            {
+                card.classList.toggle('dark-mode');
+            }
+
+            document.querySelector('.footer').classList.toggle('dark-mode');
+        }
+    }, [darkModeOn]);
 
     // useEffect(() => {
     //     localStorage.setItem("darkMode", darkModeOn ? "enabled" : "disabled");
@@ -38,9 +91,7 @@ const DarkModeToggle = () => {
     //     });
     // }, [darkModeOn]);
 
-    const toggleDarkMode = () => {
-        setDarkModeOn(value => !value);
-    }
+
 
     // const darkenColor = (color, factor) => {
     //     const [r, g, b] = color.match(/\d+/g).map(Number);
@@ -55,9 +106,9 @@ const DarkModeToggle = () => {
     return (
         <div className="toggle-parent" onClick={toggleDarkMode}>
             { darkModeOn ?
-                <Sun size={25} color="white" strokeWidth={2.25} className="dark-mode-toggle"></Sun>
+                <Sun size={25} strokeWidth={2.25} className="dark-mode-toggle"></Sun>
                 :
-                <Moon size={25} color="white" strokeWidth={2.25} className="dark-mode-toggle"></Moon>
+                <Moon size={25} strokeWidth={2.25} className="dark-mode-toggle"></Moon>
             }
         </div>
     );
