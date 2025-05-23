@@ -1,15 +1,18 @@
 import { Book, FileQuestion, HelpCircle, Home, Layout, ListCheck, ListChecks, Settings, User, Search } from "lucide-react";
 import { Link } from "react-router-dom";
+import DarkModeToggle from "./DarkModeToggle";
 
 const Navbar = () => {
+
     return (
         <nav>
+            {/* Logo */}
             <div id="logo-container">
                 <Link to="/" id="logo-link">
                     <img src="/res/puls-logo-new2.png" alt="P.U.L.S" />
                 </Link>
             </div>
-            {/* Search bar start */}
+            {/* Search Bar */}
             <div id="navbar-search">
                 <Search className="search-icon" strokeWidth={3} />
                 <input
@@ -18,7 +21,7 @@ const Navbar = () => {
                     className="search-input"
                 />
             </div>
-            {/* Search bar end */}
+            {/* Links */}
             <div id="nav-container">
                 <ul id="nav-list">
                     <li>
@@ -49,6 +52,10 @@ const Navbar = () => {
                         <span />
                     </a>
                 </div>
+            </div>
+            {/* Dark Mode Toggle */}
+            <div id="dark-mode-toggle-container">
+                <DarkModeToggle />
             </div>
         </nav>
     );

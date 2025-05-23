@@ -100,13 +100,13 @@ nav {
         border-radius: 5px;
         // background-color: red;
         border: 1px solid white;
-        
+
         .search-icon {
             color: white;
             width: 1.5rem;
             height: 1.5rem;
         }
-        
+
         .search-input {
             all: unset;
             width: 200px;
@@ -135,7 +135,12 @@ nav {
 
     #nav-container {
         // background-color: red;
+        // background-color: red;
         flex: 50;
+        // max-width: 50%;
+        // display: flex;
+        // flex-direction: row;
+        // gap: 20px;
 
         ul {
             li {
@@ -237,7 +242,7 @@ nav {
         }
 
         position: relative;
-        background-color: red;
+        // background-color: red;
         margin-top: 0;
         padding-top: 0;
         margin-right: 0;
@@ -268,6 +273,62 @@ nav {
                 &:nth-child(3) {
                     top: 75%;
                 }
+            }
+        }
+    }
+
+    // #dark-mode-toggle-container {
+    //     display: flex;
+    //     align-items: center;
+    //     justify-content: center;
+    //     gap: 10px;
+    //     margin-right: 20px;
+
+    //     .dark-mode-toggle {
+    //         cursor: pointer;
+    //         width: 2rem;
+    //         height: 2rem;
+    //         color: white;
+    //         transition: all 0.3s ease-in-out;
+
+    //         &:hover {
+    //             transform: scale(1.1);
+    //         }
+    //     }
+    // }
+
+    #dark-mode-toggle-container {
+        flex: 35;
+        // background-color: blue;
+        display: flex;
+        align-items: center;
+        // padding: 20px;
+        // justify-content: center;
+
+        .toggle-parent {
+            // background-color: red;
+            padding: 20px;
+            border-radius: 10px;
+            padding-top: 22.5px;
+            cursor: pointer;
+
+            &:hover {
+                background-color: rgba(0, 0, 0, 0.171) !important;
+                // color: rgb(95, 95, 95);
+            }
+
+            .dark-mode-toggle {
+                width: 1.5rem;
+                height: 1.5rem;
+                // margin-right: 0.5rem; // sau folosește gap pe .nav-link
+                display: inline-flex;
+                align-items: center;
+                justify-content: center;
+                // cursor: pointer;
+                // width: 2rem;
+                // height: 2rem;
+                // color: white;
+                // transition: all 0.3s ease-in-out;
             }
         }
     }
