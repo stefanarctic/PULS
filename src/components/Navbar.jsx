@@ -1,15 +1,24 @@
-import { Book, FileQuestion, HelpCircle, Home, Layout, ListCheck, ListChecks, Settings, User } from "lucide-react";
+import { Book, FileQuestion, HelpCircle, Home, Layout, ListCheck, ListChecks, Settings, User, Search } from "lucide-react";
 import { Link } from "react-router-dom";
 
 const Navbar = () => {
     return (
         <nav>
             <div id="logo-container">
-                {/* <a href=".">P.U.L.S</a> */}
                 <Link to="/" id="logo-link">
                     <img src="/res/puls-logo-new2.png" alt="P.U.L.S" />
                 </Link>
             </div>
+            {/* Search bar start */}
+            <div id="navbar-search">
+                <Search className="search-icon" strokeWidth={3} />
+                <input
+                    type="text"
+                    // placeholder="Cauta..."
+                    className="search-input"
+                />
+            </div>
+            {/* Search bar end */}
             <div id="nav-container">
                 <ul id="nav-list">
                     <li>
@@ -33,11 +42,6 @@ const Navbar = () => {
                             <User className="nav-icon" />
                             <span>Profil</span>
                         </Link>
-                        {/* <a data-href="#home">Acasa</a>
-                        <a data-href="#achievements">Probleme</a>
-                        <a data-href="#our-work">Simulari</a>
-                        <a data-href="#testimonials">Resurse</a>
-                        <a data-href="#services">Profil</a> */}
                     </li>
                 </ul>
                 <div id="nav-mobile">
