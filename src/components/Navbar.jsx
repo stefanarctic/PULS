@@ -1,13 +1,49 @@
-import { Book, FileQuestion, HelpCircle, Home, Layout, ListCheck, ListChecks, Settings, User, Search } from "lucide-react";
+import { Book, FileQuestion, HelpCircle, Home, Layout, ListCheck, ListChecks, Settings, User, Search, ChevronDown } from "lucide-react";
 import { Link } from "react-router-dom";
+import { useState, useRef, useEffect } from "react";
 import DarkModeToggle from "./DarkModeToggle";
 import PulsLogoWhite from '/res/puls-logo-new2.png';
 import PulsLogoBlack from '/res/puls-logo-new3.png';
 import useDarkMode from "../hooks/useDarkMode";
 
 const Navbar = () => {
-
+    const [pulsOpen, setPulsOpen] = useState(false);
+    const [hoveringDropdown, setHoveringDropdown] = useState(false);
+    const dropdownRef = useRef(null);
+    let closeTimeout = useRef();
     const darkModeOn = useDarkMode();
+
+    // Close dropdown when clicking outside
+    useEffect(() => {
+        const handleClickOutside = (event) => {
+            if (
+                dropdownRef.current &&
+                !dropdownRef.current.contains(event.target)
+            ) {
+                setPulsOpen(false);
+            }
+        };
+        document.addEventListener("mousedown", handleClickOutside);
+        return () => {
+            document.removeEventListener("mousedown", handleClickOutside);
+        };
+    }, []);
+
+    // Delay closing when mouse leaves
+    const handleMouseEnter = () => {
+        clearTimeout(closeTimeout.current);
+        setHoveringDropdown(true);
+        setPulsOpen(true);
+    };
+
+    const handleMouseLeave = () => {
+        setHoveringDropdown(false);
+        setPulsOpen(false); // Close instantly on mouse leave
+    };
+
+    const handleDropdownClick = () => {
+        setPulsOpen((prev) => !prev);
+    };
 
     return (
         <nav>
@@ -34,6 +70,27 @@ const Navbar = () => {
                             <Home className="nav-icon" />
                             <span>Acasa</span>
                         </Link>
+                        <div
+                            className="nav-link dropdown-toggle"
+                            ref={dropdownRef}
+                            onMouseEnter={handleMouseEnter}
+                            onMouseLeave={handleMouseLeave}
+                            onClick={handleDropdownClick}
+                            style={{ position: "relative", display: "inline-block", cursor: "pointer" }}
+                        >
+                            <span style={{ display: "flex", alignItems: "center" }}>
+                                <span>P.U.L.S.</span>
+                                <ChevronDown className="nav-icon" style={{ marginLeft: 4 }} />
+                            </span>
+                            {pulsOpen && (
+                                <div className="dropdown-menu">
+                                    <Link to="/Simulari/pendule" className="dropdown-item">Pendule</Link>
+                                    <Link to="/Simulari/unde" className="dropdown-item">Unde</Link>
+                                    <Link to="/Simulari/lissajous" className="dropdown-item">Lissajous</Link>
+                                    <Link to="/Simulari/seism" className="dropdown-item">Seisme</Link>
+                                </div>
+                            )}
+                        </div>
                         <Link to="/probleme" className="nav-link">
                             <ListCheck className="nav-icon" />
                             <span>Probleme</span>
