@@ -11,7 +11,12 @@ import $ from 'jquery';
 
 import './scss/style.scss';
 import Index from "./components/pages/Index";
-import Simulari from "./components/pages/Simulari";
+import SimulariPage from "./Simulari"; 
+import PendulePage from "./components/pages/pendule"; 
+import UndePage from "./components/pages/unde";
+import LissajousPage from "./components/pages/lissajous"; 
+import SeismePage from "./components/pages/seism"; 
+import ScrollToTop from "./components/ScrollToTop";
 
 const App = () => {
 
@@ -101,10 +106,15 @@ const App = () => {
 
   return (
     <Router>
+      <ScrollToTop />
       <div className="App">
         <Routes>
           <Route path="/" element={<Index />} />
-          <Route path="/simulari" element={<Simulari />} />
+          <Route path="/Simulari" element={<SimulariPage />} />
+          <Route path="/Simulari/pendule" element={<PendulePage />} />
+          <Route path="/Simulari/unde" element={<UndePage />} />
+          <Route path="/Simulari/lissajous" element={<LissajousPage />} />
+          <Route path="/Simulari/seism" element={<SeismePage />} />
         </Routes>
       </div>
     </Router>
