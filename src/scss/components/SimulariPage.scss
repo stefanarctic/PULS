@@ -2,41 +2,41 @@
   min-height: 100vh;
   display: flex;
   flex-direction: column;
-  
+
   .main-content {
     flex-grow: 1;
     padding: 2rem;
     max-width: 1200px;
     margin: 0 auto;
     width: 100%;
-    
+
     h1 {
       font-size: 2.5rem;
       margin-bottom: 0.5rem;
       text-align: center;
       font-weight: bold;
-      color:white;
+      color: white;
       padding-top: 100px;
     }
-    
+
     p {
       text-align: center;
       margin-bottom: 2rem;
       color: var(--muted-foreground);
       font-size: 1.125rem;
-      color:white;
+      color: white;
     }
-    
+
     .simulations-grid {
       display: grid;
       grid-template-columns: 1fr;
       gap: 2rem;
-      
+
       @media (min-width: 768px) {
         grid-template-columns: repeat(2, 1fr);
       }
     }
-    
+
     .simulation-card {
       background-color: var(--card);
       border: 1px solid var(--border);
@@ -44,31 +44,31 @@
       overflow: hidden;
       box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
       transition: transform 0.3s ease, box-shadow 0.3s ease;
-      color:white;
-      
+      color: white;
+
       &:hover {
         transform: translateY(-5px);
         box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
       }
-      
+
       .card-content {
         padding: 1.5rem;
       }
-      
+
       h2 {
         font-size: 1.5rem;
         margin-bottom: 0.75rem;
         font-weight: 600;
         text-align: center;
-        color:white;
+        color: white;
       }
-      
+
       .description {
         color: var(--muted-foreground);
         margin-bottom: 1.5rem;
         font-size: 0.95rem;
         line-height: 1.5;
-        color:white;
+        color: white;
       }
     }
   }
@@ -79,15 +79,15 @@
   border-radius: 1rem;
   overflow: hidden;
   margin-bottom: 1.5rem;
-  
+
   .slider-container {
     position: relative;
     height: 240px;
-    
+
     @media (min-width: 768px) {
       height: 320px;
     }
-    
+
     .slide {
       position: absolute;
       top: 0;
@@ -96,18 +96,18 @@
       height: 100%;
       opacity: 0;
       transition: opacity 0.5s ease-in-out;
-      
+
       &.active {
         opacity: 1;
       }
-      
+
       img {
         width: 100%;
         height: 100%;
         object-fit: cover;
       }
     }
-    
+
     .caption {
       position: absolute;
       bottom: 0;
@@ -119,15 +119,16 @@
       font-size: 0.95rem;
     }
   }
-  
+
   .arrow {
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
-    width: 40px;
-    height: 40px;
+    width: 30px;
+    height: 70px;
+    aspect-ratio: 1 / 1; // ensures perfect circle
     background-color: rgba(0, 0, 0, 0.5);
-    color: white;
+    color: white !important;
     border: none;
     border-radius: 50%;
     cursor: pointer;
@@ -136,25 +137,32 @@
     justify-content: center;
     z-index: 2;
     transition: background-color 0.3s ease;
-    
+
+    svg {
+      color: white !important;
+      width: 30px;
+      height: 30px;
+      display: block;
+    }
+
     &:hover {
       background-color: rgba(0, 0, 0, 0.7);
     }
-    
+
     &.left {
       left: 10px;
     }
-    
+
     &.right {
       right: 10px;
     }
   }
-  
+
   .indicators {
     display: flex;
     justify-content: center;
     margin-top: 1rem;
-    
+
     .dot {
       width: 8px;
       height: 8px;
@@ -163,7 +171,7 @@
       margin: 0 5px;
       cursor: pointer;
       transition: background-color 0.3s ease;
-      
+
       &.active {
         background-color: var(--primary);
         width: 16px;
@@ -179,14 +187,14 @@
   padding: 0.75rem;
   border: none;
   border-radius: 0.5rem;
-  background-color: #fff;           // White background
-  color: #111;                      // Black text
+  background-color: #fff; // White background
+  color: #111; // Black text
   font-weight: 500;
   cursor: pointer;
   transition: background-color 0.3s ease;
-  
+
   &:hover {
     opacity: 0.9;
-    background-color: #f0f0f0;      // Slightly gray on hover
+    background-color: #f0f0f0; // Slightly gray on hover
   }
 }

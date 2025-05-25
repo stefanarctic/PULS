@@ -248,14 +248,14 @@ const SimulariPage = () => {
                   onClick={() => handlePrev(simulation.id)}
                   aria-label="Slide anterior"
                 >
-                  <ChevronLeft size={20} />
+                 <ChevronLeft size={18} color="white" />
                 </button>
                 <button 
                   className="arrow right" 
                   onClick={() => handleNext(simulation.id)}
                   aria-label="Slide următor"
                 >
-                  <ChevronRight size={20} />
+                 <ChevronRight size={18} color="white" />
                 </button>
                 <div className="indicators">
                   {simulation.slides.map((_, index) => (
