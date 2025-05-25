@@ -15,8 +15,12 @@ const Index = () => {
                             PULS - Platforma educațională pentru studiul conceptelor de Pendul, Unde, Lissajous și Seism prin probleme și simulări interactive.
                         </p>
                         <div className="buttons">
-                            <button className="filled">Exploreaza problemele</button>
-                            <button>Incearca simularile</button>
+                            <button className="filled">
+                                <Link to="/probleme" style={{'all': 'unset'}}>Exploreaza problemele</Link>
+                            </button>
+                            <button>
+                                <Link to="/simulari" style={{'all': 'unset'}}>Incearca simularile</Link>
+                            </button>
                         </div>
                     </div>
                     <div className="hero-slideshow-wrapper">

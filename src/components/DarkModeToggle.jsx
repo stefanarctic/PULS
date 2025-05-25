@@ -11,18 +11,22 @@ const DarkModeToggle = () => {
 
     useEffect(() => {
         const localStorageDarkMode = localStorage.getItem("darkMode");
+        console.log(`Dark mode preference from localStorage: ${localStorageDarkMode}`);
         if(!localStorageDarkMode)
         {
+            console.log("No dark mode preference found in localStorage, setting to default (disabled).");
             setDarkModeOn(false);
             return;
         }
 
+        console.log(`Setting dark mode based on localStorage: ${localStorageDarkMode}`);
         setDarkModeOn(localStorageDarkMode === "enabled");
     }, []);
 
     useEffect(() => {
         // Save preference
         localStorage.setItem("darkMode", darkModeOn ? "enabled" : "disabled");
+        console.log(`Dark mode preference saved: ${darkModeOn ? "enabled" : "disabled"}`);
 
         const documentStyle = document.documentElement.style;
         if(darkModeOn)
@@ -44,7 +48,7 @@ const DarkModeToggle = () => {
                 card.classList.toggle('dark-mode');
             }
 
-            document.querySelector('.footer').classList.toggle('dark-mode');
+            document.querySelector('.footer').classList.add('dark-mode');
         }
         else
         {
@@ -65,7 +69,7 @@ const DarkModeToggle = () => {
                 card.classList.toggle('dark-mode');
             }
 
-            document.querySelector('.footer').classList.toggle('dark-mode');
+            document.querySelector('.footer').classList.remove('dark-mode');
         }
     }, [darkModeOn]);
 
