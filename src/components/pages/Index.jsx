@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import Layout from "../Layout";
 import Slideshow from "../Slideshow";
-import { Waves, Atom, Circle, Activity } from "lucide-react";
+import { Waves, Atom, Circle, Activity, Calculator, BookOpen, Lightbulb, Target } from "lucide-react";
 
 const Index = () => {
     return (
@@ -16,10 +16,10 @@ const Index = () => {
                         </p>
                         <div className="buttons">
                             <button className="filled">
-                                <Link to="/probleme" style={{'all': 'unset'}}>Exploreaza problemele</Link>
+                                <Link to="/probleme" style={{ 'all': 'unset' }}>Exploreaza problemele</Link>
                             </button>
                             <button>
-                                <Link to="/simulari" style={{'all': 'unset'}}>Incearca simularile</Link>
+                                <Link to="/simulari" style={{ 'all': 'unset' }}>Incearca simularile</Link>
                             </button>
                         </div>
                     </div>
@@ -74,7 +74,7 @@ const Index = () => {
                 </div>
             </section>
 
-            {/* Topics Section */}
+            {/* Simulations Section */}
             <section id="probleme" className="topics-section">
                 <h2 className="section-title">Explorează simulările noastre</h2>
                 <div className="topics-grid">
@@ -114,6 +114,72 @@ const Index = () => {
                             <Link to="/resurse/seism" className="topic-button">Explorează</Link>
                         </div>
                     </div>
+                </div>
+            </section>
+
+            {/* Problems Section */}
+            <section id="problems" className="problems-section">
+                <h2 className="section-title">Probleme interactive</h2>
+                <div className="problems-grid">
+                    <Link to="/problems/beginners" className="problem-card-link">
+                        <div className="problem-card">
+                            <div className="problem-icon">
+                                <Calculator size={32} strokeWidth={1.5} />
+                            </div>
+                            <h3>Începători</h3>
+                            <p>Probleme simple pentru a înțelege conceptele de bază ale fizicii</p>
+                            <div className="problem-stats">
+                                <span>120+ probleme</span>
+                                <span className="difficulty easy">Ușor</span>
+                            </div>
+                            <button className="problem-button">Începe acum</button>
+                        </div>
+                    </Link>
+
+                    <Link to="/problems/intermediate" className="problem-card-link">
+                        <div className="problem-card">
+                            <div className="problem-icon">
+                                <BookOpen size={32} strokeWidth={1.5} />
+                            </div>
+                            <h3>Intermediar</h3>
+                            <p>Exerciții care combină mai multe concepte și necesită raționament</p>
+                            <div className="problem-stats">
+                                <span>85+ probleme</span>
+                                <span className="difficulty medium">Mediu</span>
+                            </div>
+                            <button className="problem-button">Explorează</button>
+                        </div>
+                    </Link>
+
+                    <Link to="/problems/advanced" className="problem-card-link">
+                        <div className="problem-card">
+                            <div className="problem-icon">
+                                <Lightbulb size={32} strokeWidth={1.5} />
+                            </div>
+                            <h3>Avansat</h3>
+                            <p>Probleme complexe pentru pregătirea la olimpiade și examene</p>
+                            <div className="problem-stats">
+                                <span>50+ probleme</span>
+                                <span className="difficulty hard">Dificil</span>
+                            </div>
+                            <button className="problem-button">Provocarea</button>
+                        </div>
+                    </Link>
+
+                    <Link to="/problems/specialized" className="problem-card-link">
+                        <div className="problem-card">
+                            <div className="problem-icon">
+                                <Target size={32} strokeWidth={1.5} />
+                            </div>
+                            <h3>Specializat</h3>
+                            <p>Probleme focusate pe teme specifice: pendul, unde, Lissajous, seism</p>
+                            <div className="problem-stats">
+                                <span>40+ probleme</span>
+                                <span className="difficulty expert">Expert</span>
+                            </div>
+                            <button className="problem-button">Specializează-te</button>
+                        </div>
+                    </Link>
                 </div>
             </section>
         </Layout>
