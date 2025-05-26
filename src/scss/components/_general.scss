@@ -5,6 +5,7 @@ body {
     background-color: var(--primary-background-current-mode);
     color: var(--primary-color-current-mode);
     margin: 0px !important;
+    // min-height: 500px !important;
 }
 
 @media all and (max-width: 1600px) {

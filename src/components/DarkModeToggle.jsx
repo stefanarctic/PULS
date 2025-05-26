@@ -45,7 +45,7 @@ const DarkModeToggle = () => {
             // BONUS
             for(const card of document.getElementsByClassName('feature-card'))
             {
-                card.classList.toggle('dark-mode');
+                card.classList.add('dark-mode');
             }
 
             document.querySelector('.footer').classList.add('dark-mode');
@@ -66,7 +66,7 @@ const DarkModeToggle = () => {
             // BONUS
             for(const card of document.getElementsByClassName('feature-card'))
             {
-                card.classList.toggle('dark-mode');
+                card.classList.remove('dark-mode');
             }
 
             document.querySelector('.footer').classList.remove('dark-mode');

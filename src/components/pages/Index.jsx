@@ -76,7 +76,7 @@ const Index = () => {
 
             {/* Topics Section */}
             <section id="probleme" className="topics-section">
-                <h2 className="section-title">Categorii de resurse</h2>
+                <h2 className="section-title">Explorează simulările noastre</h2>
                 <div className="topics-grid">
                     <div className="topic-card pendul">
                         {/* <Link to="/resurse/pendul" className="topic-content">

@@ -7,8 +7,6 @@ import Services from "@/components/Services";
 import Testimonials from "@/components/Testimonials";
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 
-import $ from 'jquery';
-
 import './scss/style.scss';
 import Index from "./components/pages/Index";
 import Simulari from "./components/pages/Simulari";
@@ -65,18 +63,6 @@ const App = () => {
 
   //   console.log(`Scrolled to ${openedSection.id}`);
   // }
-
-  // Change header on scroll
-  // $(document).on("scroll", () => {
-  //   if ($(document).scrollTop() <= 100) {
-  //     $('nav').css('backdrop-filter', `blur(${0.2 * ($(document).scrollTop() / 10)}px)`);
-  //     $('nav').css('background', `linear-gradient(to bottom, rgba(0, 0, 0, ${$(document).scrollTop() / 100 * 0.74}), rgba(0, 0, 0, 0))`);
-  //   }
-  //   else {
-  //     $('nav').css('backdrop-filter', 'blur(2px)');
-  //     $('nav').css('background', 'linear-gradient(to bottom, rgba(0, 0, 0, 0.74), rgba(0, 0, 0, 0))');
-  //   }
-  // });
 
 
   function getRootElementFontSize() {

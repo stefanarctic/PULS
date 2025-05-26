@@ -1,45 +1,18 @@
 $show-bg-color: false;
 
-// header {
-//     max-width: 100%;
-//     position: relative;
-//     color: white;
-// }
-
 nav {
     z-index: 999;
     width: 100%;
-    // @include bg-color($color: red, $show: $show-bg-color);
     position: fixed;
 
     display: flex;
     align-items: center;
     padding: 20px;
-    // background-color: red !important
     margin: 0 !important;
 
     #logo-container {
         flex: 1;
         padding-left: 20px;
-
-        // #logo-link {
-        //     display: flex;
-        //     align-items: center;
-        //     justify-content: center;
-        //     gap: 20px;
-
-        //     img {
-        //         width: 100px;
-        //         height: auto;
-        //         margin-bottom: 50px;
-        //     }
-        // }
-
-        // #logo-link {
-        //     all: unset;
-        //     display: inline-block;
-
-        // }
 
         #logo-link {
             all: unset;
@@ -55,33 +28,7 @@ nav {
                 height: auto;
             }
         }
-
-        // background-color: blue;
     }
-
-    // #navbar-search {
-    //     display: flex;
-    //     align-items: center;
-    //     margin: 0 2rem;
-    //     border-radius: 20px;
-    //     padding: 0.25rem 0.75rem;
-    //     box-shadow: 0 1px 4px rgba(0, 0, 0, 0.03);
-
-    //     .search-icon {
-    //         color: #888;
-    //         margin-right: 0.5rem;
-    //     }
-
-    //     .search-input {
-    //         border: none;
-    //         background: transparent;
-    //         outline: none;
-    //         font-size: 1rem;
-    //         padding: 0.4rem 0;
-    //         width: 160px;
-    //         color: #222;
-    //     }
-    // }
 
     #navbar-search {
         flex: 1;
@@ -92,11 +39,9 @@ nav {
         font-family: 'Open Sans', sans-serif;
         font-style: 'Helvetica', sans-serif;
         font-size: larger;
-        // max-width: 200px;
         margin-left: 20px;
         padding: 6px;
         border-radius: 5px;
-        // background-color: red;
         border: 1px solid var(--primary-color-current-mode);
 
         .search-icon {
@@ -116,26 +61,10 @@ nav {
                 transition: width 0.3s ease-in-out;
             }
         }
-
-        // .search-input {
-        //     border: none;
-        //     background: transparent;
-        //     outline: none;
-        //     font-size: 1rem;
-        //     padding: 0.4rem 0;
-        //     width: 160px;
-        //     color: #222;
-        // }
     }
 
     #nav-container {
-        // background-color: red;
-        // background-color: red;
         flex: 50;
-        // max-width: 50%;
-        // display: flex;
-        // flex-direction: row;
-        // gap: 20px;
 
         ul {
             li {
@@ -159,17 +88,15 @@ nav {
 
                     &:hover {
                         background-color: rgba(0, 0, 0, 0.171) !important;
-                        // color: rgb(95, 95, 95);
                     }
 
                     display: flex;
                     align-items: center;
-                    gap: 0.5rem; // spațiu între icon și text
+                    gap: 0.5rem;
 
                     .nav-icon {
                         width: 1.5rem;
                         height: 1.5rem;
-                        // margin-right: 0.5rem; // sau folosește gap pe .nav-link
                         display: inline-flex;
                         align-items: center;
                         justify-content: center;
@@ -236,7 +163,6 @@ nav {
         }
 
         position: relative;
-        // background-color: red;
         margin-top: 0;
         padding-top: 0;
         margin-right: 0;
@@ -271,36 +197,12 @@ nav {
         }
     }
 
-    // #dark-mode-toggle-container {
-    //     display: flex;
-    //     align-items: center;
-    //     justify-content: center;
-    //     gap: 10px;
-    //     margin-right: 20px;
-
-    //     .dark-mode-toggle {
-    //         cursor: pointer;
-    //         width: 2rem;
-    //         height: 2rem;
-    //         color: white;
-    //         transition: all 0.3s ease-in-out;
-
-    //         &:hover {
-    //             transform: scale(1.1);
-    //         }
-    //     }
-    // }
-
     #dark-mode-toggle-container {
         flex: 35;
-        // background-color: blue;
         display: flex;
         align-items: center;
-        // padding: 20px;
-        // justify-content: center;
 
         .toggle-parent {
-            // background-color: red;
             padding: 20px;
             border-radius: 10px;
             padding-top: 22.5px;
@@ -308,22 +210,15 @@ nav {
 
             &:hover {
                 background-color: rgba(0, 0, 0, 0.171);
-                // color: rgb(95, 95, 95);
             }
 
             .dark-mode-toggle {
                 width: 1.5rem;
                 height: 1.5rem;
-                // margin-right: 0.5rem; // sau folosește gap pe .nav-link
                 display: inline-flex;
                 align-items: center;
                 justify-content: center;
                 color: var(--primary-color-current-mode);
-                // cursor: pointer;
-                // width: 2rem;
-                // height: 2rem;
-                // color: white;
-                // transition: all 0.3s ease-in-out;
             }
         }
     }
@@ -353,7 +248,6 @@ nav {
     color: var(--primary-color) !important;
 }
 
-// Responsive: hide or shrink search bar on mobile if needed
 @media (max-width: 600px) {
     #navbar-search {
         margin: 0 0.5rem;
