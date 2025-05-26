@@ -75,43 +75,43 @@ const Index = () => {
             </section>
 
             {/* Simulations Section */}
-            <section id="probleme" className="topics-section">
+            <section id="simulations" className="simulations-section">
                 <h2 className="section-title">Explorează simulările noastre</h2>
-                <div className="topics-grid">
-                    <div className="topic-card pendul">
-                        {/* <Link to="/resurse/pendul" className="topic-content">
-                            <div className="topic-content">
+                <div className="simulations-grid">
+                    <div className="simulation-card pendul">
+                        {/* <Link to="/resurse/pendul" className="simulation-content">
+                            <div className="simulation-content">
                                 <h3>Pendul</h3>
                                 <p>Mișcare oscilantă, forțe, energie cinetică și potențială, conservarea energiei</p>
-                                <button className="topic-button">Explorează</button>
+                                <button className="simulation-button">Explorează</button>
                             </div>
                         </Link> */}
-                        <div className="topic-content">
+                        <div className="simulation-content">
                             <h3>Pendul</h3>
                             <p>Mișcare oscilantă, forțe, energie cinetică și potențială, conservarea energiei</p>
-                            {/* <button className="topic-button">Explorează</button> */}
-                            <Link to="/resurse/pendul" className="topic-button">Explorează</Link>
+                            {/* <button className="simulation-button">Explorează</button> */}
+                            <Link to="/resurse/pendul" className="simulation-button">Explorează</Link>
                         </div>
                     </div>
-                    <div className="topic-card unde">
-                        <div className="topic-content">
+                    <div className="simulation-card unde">
+                        <div className="simulation-content">
                             <h3>Unde</h3>
                             <p>Unde mecanice, unde electromagnetice, interferență, difracție și propagare</p>
-                            <Link to="/resurse/unde" className="topic-button">Explorează</Link>
+                            <Link to="/resurse/unde" className="simulation-button">Explorează</Link>
                         </div>
                     </div>
-                    <div className="topic-card lissajous">
-                        <div className="topic-content">
+                    <div className="simulation-card lissajous">
+                        <div className="simulation-content">
                             <h3>Lissajous</h3>
                             <p>Figuri parametrice, oscilații perpendiculare, frecvențe și faze</p>
-                            <Link to="/resurse/lissajous" className="topic-button">Explorează</Link>
+                            <Link to="/resurse/lissajous" className="simulation-button">Explorează</Link>
                         </div>
                     </div>
-                    <div className="topic-card seism">
-                        <div className="topic-content">
+                    <div className="simulation-card seism">
+                        <div className="simulation-content">
                             <h3>Seism</h3>
                             <p>Unde seismice, propagare, reflexie, refracție și principii de seismologie</p>
-                            <Link to="/resurse/seism" className="topic-button">Explorează</Link>
+                            <Link to="/resurse/seism" className="simulation-button">Explorează</Link>
                         </div>
                     </div>
                 </div>

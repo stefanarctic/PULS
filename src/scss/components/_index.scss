@@ -81,8 +81,8 @@
     }
 }
 
-// Topics section
-.topics-section {
+// Simulations section
+.simulations-section {
     padding: 5rem 2rem;
     background-color: var(--primary-background-current-mode);
 
@@ -94,7 +94,7 @@
         color: var(--primary-color-current-mode);
     }
 
-    .topics-grid {
+    .simulations-grid {
         display: grid;
         // grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
         grid-template-columns: repeat(2, 1fr);
@@ -102,7 +102,7 @@
         max-width: 1200px;
         margin: 0 auto;
 
-        .topic-card {
+        .simulation-card {
             height: 320px;
             border-radius: 1rem;
             overflow: hidden;
@@ -139,7 +139,7 @@
                 background-size: cover;
             }
 
-            .topic-content {
+            .simulation-content {
                 position: absolute;
                 bottom: 0;
                 left: 0;
@@ -161,7 +161,7 @@
                     max-width: 85%;
                 }
 
-                .topic-button {
+                .simulation-button {
                     all: unset;
                     display: inline-block;
                     background-color: rgba(255, 255, 255, 0.2);
@@ -400,87 +400,6 @@
                 }
 
 
-            }
-        }
-    }
-}
-
-// Simulations section
-.simulations-section {
-    padding: 5rem 2rem;
-    background-color: #1a1a1a;
-
-    .section-title {
-        text-align: center;
-        font-size: 2.5rem;
-        font-weight: 700;
-        margin-bottom: 3rem;
-        color: white;
-    }
-
-    .simulation-preview {
-        display: flex;
-        flex-direction: column;
-        gap: 2rem;
-        max-width: 1200px;
-        margin: 0 auto;
-        background-color: #252525;
-        border-radius: 1rem;
-        overflow: hidden;
-
-        @media (min-width: 768px) {
-            flex-direction: row;
-        }
-
-        .simulation-image {
-            flex: 1;
-            min-height: 300px;
-
-            .image-placeholder {
-                width: 100%;
-                height: 100%;
-
-                &.pendulum-sim {
-                    background: linear-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.1)), url('/res/pendulum-sim.jpg') no-repeat center center;
-                    background-size: cover;
-                }
-            }
-        }
-
-        .simulation-description {
-            flex: 1;
-            padding: 2rem;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-
-            h3 {
-                font-size: 1.8rem;
-                font-weight: 700;
-                margin-bottom: 1rem;
-                color: white;
-            }
-
-            p {
-                color: #a0aec0;
-                line-height: 1.7;
-                margin-bottom: 2rem;
-            }
-
-            .simulation-button {
-                align-self: flex-start;
-                background-color: #3b82f6;
-                color: white;
-                padding: 0.75rem 1.5rem;
-                border-radius: 0.5rem;
-                font-weight: 600;
-                cursor: pointer;
-                border: none;
-                transition: background-color 0.3s ease;
-
-                &:hover {
-                    background-color: #2563eb;
-                }
             }
         }
     }
@@ -726,13 +645,9 @@
     }
 
     .features-grid,
-    .topics-grid,
+    .simulations-grid,
     .resources-grid {
         grid-template-columns: 1fr !important;
-    }
-
-    .simulation-preview {
-        flex-direction: column !important;
     }
 
     .footer-content {
