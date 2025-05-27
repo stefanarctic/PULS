@@ -186,14 +186,16 @@
 // Problems section
 .problems-section {
     padding: 4rem 2rem;
-    background-color: #0f0f0f;
+    background: var(--secondary-background-current-mode);
+    color: var(--primary-color-current-mode);
+    transition: background-color 0.3s ease, color 0.3s ease;
 
     .section-title {
         text-align: center;
         font-size: 2.5rem;
         font-weight: 700;
         margin-bottom: 3rem;
-        color: white;
+        color: var(--primary-color-current-mode);
     }
 
     .problems-grid {
@@ -223,7 +225,7 @@
             text-decoration: none;
             color: inherit;
             display: block;
-            
+
             &:hover,
             &:focus,
             &:visited,
@@ -261,7 +263,9 @@
         }
 
         .problem-card {
-            background: linear-gradient(135deg, #1a1a1a 0%, #252525 100%);
+            background: var(--quaternary-background-current-mode);
+            color: var(--primary-color-current-mode) !important;
+            transition: background-color 0.3s ease, color 0.3s ease;
             border: 1px solid rgba(255, 255, 255, 0.1);
             border-radius: 0.8rem;
             padding: 1.25rem;
@@ -273,6 +277,7 @@
             text-align: center;
             position: relative;
             overflow: hidden;
+            border: 2px solid rgba(0, 0, 0, 0.1);
 
             &::before {
                 content: '';
@@ -300,18 +305,16 @@
                 flex-shrink: 0;
             }
 
-
-
             h3 {
                 font-size: 1.15rem;
                 font-weight: 700;
                 margin-bottom: 0.5rem;
-                color: white;
+                color: var(--primary-color-current-mode);
                 flex-shrink: 0;
             }
 
             p {
-                color: #a0aec0;
+                color: #6b7280;
                 line-height: 1.4;
                 margin-bottom: 0.75rem;
                 flex-grow: 1;
@@ -329,12 +332,13 @@
                 width: 100%;
                 margin-bottom: 0.75rem;
                 padding: 0.4rem 0.6rem;
-                background: rgba(255, 255, 255, 0.05);
+                // background: rgba(255, 255, 255, 0.05);
+                background: rgba(85, 85, 85, 0.05);
                 border-radius: 0.4rem;
                 flex-shrink: 0;
 
                 span:first-child {
-                    color: #cbd5e0;
+                    color: #6b7280;
                     font-size: 0.75rem;
                     font-weight: 500;
                 }
@@ -366,9 +370,26 @@
                     }
 
                     &.expert {
-                        background-color: rgba(168, 85, 247, 0.2);
-                        color: #a78bfa;
-                        border: 1px solid rgba(168, 85, 247, 0.3);
+                        background-color: rgba(147, 51, 234, 0.2);
+                        color: #a855f7;
+                        border: 1px solid rgba(147, 51, 234, 0.3);
+                    }
+                }
+            }
+
+            &.dark-mode {
+                // border-color: transparent;
+
+                p {
+                    color: #a0aec0;
+                }
+                
+                .problem-stats {
+                    background: rgba(255, 255, 255, 0.05);
+
+
+                    span:first-child {
+                        color: #cbd5e0;
                     }
                 }
             }
@@ -398,8 +419,6 @@
                     background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
                     transition: left 0.5s ease;
                 }
-
-
             }
         }
     }

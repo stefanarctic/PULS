@@ -8,6 +8,19 @@ body {
     // min-height: 500px !important;
 }
 
+.App {
+    // background-color: red;
+    // margin-top: 500px;
+}
+
+#main {
+    min-height: 750px;
+    // padding-top: 150px;
+    // display: flex;
+    // justify-content: center;
+    // background-color: red;
+}
+
 @media all and (max-width: 1600px) {
     header {
         main {

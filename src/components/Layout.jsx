@@ -5,7 +5,9 @@ const Layout = ({ children }) => {
     return (
         <>
             <Navbar />
-            {children}
+            <div id="main">
+                {children}
+            </div>
             {/* <header id="home">
                 <main>
                     {children}
