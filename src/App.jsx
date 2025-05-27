@@ -9,8 +9,13 @@ import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 
 import './scss/style.scss';
 import Index from "./components/pages/Index";
-import Simulari from "./components/pages/Simulari";
 import Probleme from "./components/pages/Probleme";
+import Simulari from "./components/pages/Simulari";
+import Resurse from "./components/pages/Resurse";
+import Pendule from "./components/pages/resurse/pendule";
+import Unde from "./components/pages/resurse/unde";
+import Lissajous from "./components/pages/resurse/lissajous";
+import Seism from "./components/pages/resurse/seism";
 
 const App = () => {
 
@@ -91,8 +96,13 @@ const App = () => {
       <div className="App">
         <Routes>
           <Route path="/" element={<Index />} />
-          <Route path="/simulari" element={<Simulari />} />
           <Route path="/probleme" element={<Probleme />} />
+          <Route path="/simulari" element={<Simulari />} />
+          <Route path="/resurse" element={<Resurse />} />
+          <Route path="/resurse/pendule" element={<Pendule />} />
+          <Route path="/resurse/unde" element={<Unde />} />
+          <Route path="/resurse/lissajous" element={<Lissajous />} />
+          <Route path="/resurse/seism" element={<Seism />} />
         </Routes>
       </div>
     </Router>
