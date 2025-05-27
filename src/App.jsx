@@ -10,6 +10,7 @@ import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import './scss/style.scss';
 import Index from "./components/pages/Index";
 import Simulari from "./components/pages/Simulari";
+import Probleme from "./components/pages/Probleme";
 
 const App = () => {
 
@@ -91,6 +92,7 @@ const App = () => {
         <Routes>
           <Route path="/" element={<Index />} />
           <Route path="/simulari" element={<Simulari />} />
+          <Route path="/probleme" element={<Probleme />} />
         </Routes>
       </div>
     </Router>

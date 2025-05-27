@@ -13,10 +13,31 @@
     --quaternary-background-white-mode: rgb(240, 240, 240);
     --primary-color-white-mode: rgb(18, 18, 18);
 
+    // New universal vars for both modes
+    --muted-color-dark-mode: #a1a1aa;
+    --muted-color-white-mode: #6b7280;
+    --border-color-dark-mode: #374151;
+    --border-color-white-mode: #e5e7eb;
+    --card-background-dark-mode: #111827;
+    --card-background-white-mode: #fff;
+    --input-background-dark-mode: #1e293b;
+    --input-background-white-mode: #f3f4f6;
+    --pill-background-dark-mode: #1e293b;
+    --pill-background-white-mode: #f3f4f6;
+    --pill-hover-background-dark-mode: #374151;
+    --pill-hover-background-white-mode: #e5e7eb;
+
     // Current vars
     --primary-background-current-mode: var(--primary-background-white-mode);
     --secondary-background-current-mode: var(--secondary-background-white-mode);
     --tertiary-background-current-mode: var(--tertiary-background-white-mode);
     --quaternary-background-current-mode: var(--quaternary-background-white-mode);
     --primary-color-current-mode: var(--primary-color-white-mode);
+
+    --muted-color-current-mode: var(--muted-color-white-mode);
+    --border-color-current-mode: var(--border-color-white-mode);
+    --card-background-current-mode: var(--card-background-white-mode);
+    --input-background-current-mode: var(--input-background-white-mode);
+    --pill-background-current-mode: var(--pill-background-white-mode);
+    --pill-hover-background-current-mode: var(--pill-hover-background-white-mode);
 }
