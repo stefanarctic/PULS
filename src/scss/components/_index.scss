@@ -24,10 +24,8 @@
 
         .feature-card {
             background-color: var(--tertiary-background-current-mode);
-            // border: 2px solid if(var(--primary-background-current-mode) == var(--primary-background-dark-mode), transparent, rgba(0, 0, 0, 0.1));
             border: 2px solid rgba(0, 0, 0, 0.1);
             border-color: rgba(0, 0, 0, 0.1);
-            // border-color: var(--primary-background-current-mode) == var(--primary-background-dark-mode) ? transparent : rgba(0, 0, 0, 0.1);
             border-radius: 1rem;
             padding: 2rem;
             transition: transform 0.3s ease, box-shadow 0.3s ease;

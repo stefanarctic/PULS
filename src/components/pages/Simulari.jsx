@@ -1,174 +1,238 @@
-import React, { useState } from "react";
+import { useState } from "react";
+import simulatorPendulSimpluImg from "/res/screenshots/Simplu_Screenshot.png";
+import simulatorPendulAmortizatImg from "/res/screenshots/Amortizat_Screenshot.png";
+import simulatorPendulTrasnitImg from "/res/screenshots/Trasnit_Screenshot.png";
+import simulatorUndeImg from "/res/screenshots/Unde_Screenshot.png";
+import simulatorLissajousImg from "/res/screenshots/Lissajous_Screenshot.png";
+import simulatorSeismImg from "/res/screenshots/Seism_Screenshot.png";
+import simulatorPrismaImg from "/res/screenshots/Prisma_Screenshot.png";
+import simulatorFunctiiImg from "/res/screenshots/Functii_Screenshot.png";
+import simulatorGraficePendulImg from "/res/screenshots/Grafice_Pendule_Screenshot.png";
+import simulatorGraficeBasicImg from "/res/screenshots/Grafice_Basic_Screenshot.png";
 import Layout from "../Layout";
 
-// Mock data
-const simulationsMock = [
+// Data for simulations
+const simulationsData = [
   {
     id: 1,
-    title: "Pendulul simplu",
-    description: "Simulare interactivă a mișcării unui pendul simplu cu posibilitatea de a ajusta lungimea și unghiul inițial.",
-    imageUrl: "https://placehold.co/600x400/3b82f6/FFFFFF?text=Pendul+Simplu",
-    category: "Mecanică"
+    title: "Pendulul Oscilator Simplu",
+    description: "Simularea mișcării oscilatorii armonice simple.",
+    image: simulatorPendulSimpluImg,
+    caption: "Oscilație armonică simplă",
   },
   {
     id: 2,
-    title: "Unde transversale",
-    description: "Vizualizează propagarea undelor transversale și modifică parametrii pentru a observa efectele.",
-    imageUrl: "https://placehold.co/600x400/3b82f6/FFFFFF?text=Unde+Transversale",
-    category: "Unde"
+    title: "Pendulul Oscilator Amortizat",
+    description: "Simularea mișcării oscilatorii amortizate.",
+    image: simulatorPendulAmortizatImg,
+    caption: "Oscilație amortizată",
   },
   {
     id: 3,
-    title: "Figuri Lissajous",
-    description: "Generează figuri Lissajous prin modificarea frecvențelor și fazelor oscilațiilor perpendiculare.",
-    imageUrl: "https://placehold.co/600x400/3b82f6/FFFFFF?text=Figuri+Lissajous",
-    category: "Oscilații"
+    title: "Pendul simplu neliniar",
+    description: "Simularea mișcării oscilatorii neliniare a unui pendul.",
+    image: simulatorPendulTrasnitImg,
+    caption: "Oscilație mecanică",
   },
   {
     id: 4,
-    title: "Unde seismice",
-    description: "Simularea propagării undelor seismice în diferite medii și structuri geologice.",
-    imageUrl: "https://placehold.co/600x400/3b82f6/FFFFFF?text=Unde+Seismice",
-    category: "Seismologie"
+    title: "Undele produse in apa",
+    description: "Simulează propagarea undelor în apă.",
+    image: simulatorUndeImg,
+    caption: "Unde în apă",
   },
   {
     id: 5,
-    title: "Pendulul elastic",
-    description: "Studiază oscilațiile unui corp suspendat de un resort elastic.",
-    imageUrl: "https://placehold.co/600x400/3b82f6/FFFFFF?text=Pendul+Elastic",
-    category: "Mecanică"
+    title: "Figuri Lissajous",
+    description: "Simulează figuri Lissajous în funcție de frecvențele oscilatorilor.",
+    image: simulatorLissajousImg,
+    caption: "Figuri Lissajous",
   },
   {
     id: 6,
-    title: "Interferența undelor",
-    description: "Observă fenomenul de interferență constructivă și distructivă între două surse de unde.",
-    imageUrl: "https://placehold.co/600x400/3b82f6/FFFFFF?text=Interferență+Unde",
-    category: "Unde"
-  }
+    title: "Grafice Pendule",
+    description: "Simulează graficele pentru diferite tipuri de pendule.",
+    image: simulatorGraficePendulImg,
+    caption: "Grafice Pendule",
+  },
+  {
+    id: 7,
+    title: "Grafice Funcții",
+    description: "Simulează graficele pentru diferite funcții.",
+    image: simulatorFunctiiImg,
+    caption: "Grafice Funcții",
+  },
+  {
+    id: 8,
+    title: "Grafice Simple",
+    description: "Simulează graficele pentru diferite funcții simple.",
+    image: simulatorGraficeBasicImg,
+    caption: "Grafice Simple",
+  },
+  {
+    id: 9,
+    title: "Seism",
+    description: "Simulează un cutremur și efectele sale.",
+    image: simulatorSeismImg,
+    caption: "Cutremur",
+  },
+  {
+    id: 10,
+    title: "Prisma",
+    description: "Simulează dispersia luminii printr-o prismă.",
+    image: simulatorPrismaImg,
+    caption: "Prisma",
+  },
 ];
 
-const categories = ["Toate", "Mecanică", "Unde", "Oscilații", "Seismologie"];
-
-// SimulationCard component
-const SimulationCard = ({ id, title, description, imageUrl, category }) => {
-  return (
-    <div className="simulation-card">
-      <img src={imageUrl} alt={title} className="simulation-card__image" />
-      <div className="simulation-card__content">
-        <div className="simulation-card__category">{category}</div>
-        <h3 className="simulation-card__title">{title}</h3>
-        <p className="simulation-card__description">{description}</p>
-        <button className="simulation-card__button">
-          Deschide simularea
-        </button>
-      </div>
-    </div>
+const SimulariPage = () => {
+  // State for each slider
+  const [currentSlides, setCurrentSlides] = useState(
+    simulationsData.reduce((acc, simulation) => {
+      acc[simulation.id] = 0;
+      return acc;
+    }, {})
   );
-};
 
-const Simulari = () => {
-  const [selectedCategory, setSelectedCategory] = useState(null);
-  const [searchQuery, setSearchQuery] = useState("");
+  const handlePrev = (simulationId) => {
+    setCurrentSlides((prev) => {
+      const simulation = simulationsData.find((s) => s.id === simulationId);
+      if (!simulation) return prev;
 
-  const filteredSimulations = simulationsMock.filter((sim) => {
-    // Filter by search
-    if (
-      searchQuery &&
-      !sim.title.toLowerCase().includes(searchQuery.toLowerCase()) &&
-      !sim.description.toLowerCase().includes(searchQuery.toLowerCase())
-    ) {
-      return false;
-    }
+      const currentIndex = prev[simulationId];
+      const newIndex =
+        currentIndex === 0
+          ? simulation.slides.length - 1
+          : currentIndex - 1;
 
-    // Filter by category
-    if (selectedCategory && selectedCategory !== "Toate" && sim.category !== selectedCategory) {
-      return false;
-    }
+      return { ...prev, [simulationId]: newIndex };
+    });
+  };
 
-    return true;
-  });
+  const handleNext = (simulationId) => {
+    setCurrentSlides((prev) => {
+      const simulation = simulationsData.find((s) => s.id === simulationId);
+      if (!simulation) return prev;
+
+      const currentIndex = prev[simulationId];
+      const newIndex =
+        currentIndex === simulation.slides.length - 1 ? 0 : currentIndex + 1;
+
+      return { ...prev, [simulationId]: newIndex };
+    });
+  };
+
+  const goToSlide = (simulationId, index) => {
+    setCurrentSlides((prev) => ({ ...prev, [simulationId]: index }));
+  };
 
   return (
     <Layout>
-      <div className="simulations">
-        <h1 className="simulations__title">Simulări interactive</h1>
-        
-        <div className="simulations__intro">
-          <p>
-            Explorează concepte de fizică prin intermediul simulărilor interactive. 
-            Modifică parametrii și observă efectele în timp real.
-          </p>
-        </div>
+      <div className="simulari-page">
+        <main className="main-content">
+          <h1>Simulări</h1>
+          <p>Explorează concepte fizice prin intermediul simulărilor interactive.</p>
 
-        {/* Search */}
-        <div className="simulations__search">
-          <div className="search-input">
-            <input
-              type="text"
-              placeholder="Caută simulări..."
-              className="search-input__field"
-              value={searchQuery}
-              onChange={(e) => setSearchQuery(e.target.value)}
-            />
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              className="search-input__icon"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth={2}
-                d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
-              />
-            </svg>
+          <div className="simulations-grid">
+            {simulationsData.map((simulation) => (
+              <div key={simulation.id} className="simulation-card">
+                <div className="card-content">
+                  <h2>{simulation.title}</h2>
+                  <p className="description">{simulation.description}</p>
+                </div>
+                <div className="image-container">
+                  <div className="card-image active">
+                    <img
+                      src={simulation.image}
+                      alt={simulation.caption}
+                    />
+                    <div className="caption">
+                      {simulation.caption}
+                    </div>
+                  </div>
+                </div>
+                <button
+                  className="start-simulation-btn"
+                  onClick={() => {
+                    // Deschide fiecare simulare în funcție de id
+                    switch (simulation.id) {
+                      case 1:
+                        window.open(
+                          "/Simulations/Mix/Reprezentari3d.html",
+                          "_blank"
+                        );
+                        break;
+                      case 2:
+                        window.open(
+                          "/Simulations/Mix/Oscilatie-amortizata.html",
+                          "_blank"
+                        );
+                        break;
+                      case 3:
+                        window.open(
+                          "/Simulations/Mix/Pendul-amplitudine.html",
+                          "_blank"
+                        );
+                        break;
+                      case 4:
+                        window.open(
+                          "/Simulations/Unde/simulator-unde.html",
+                          "_blank"
+                        );
+                        break;
+                      case 5:
+                        window.open(
+                          "/Simulations/Figuri LIssajous/grafice.html",
+                          "_blank"
+                        );
+                        break;
+                      case 6:
+                        window.open(
+                          "/Simulations/Grafice-Armonice/grafice-armonice.html",
+                          "_blank"
+                        );
+                        break;
+                      case 7:
+                        window.open(
+                          "/Simulations/Functii/functii1.html",
+                          "_blank"
+                        );
+                        break;
+                      case 8:
+                        window.open(
+                          "/Simulations/Mix/grafice.html",
+                          "_blank"
+                        );
+                        break;
+                      case 9:
+                        window.open(
+                          "/Simulations/Mix/Cutremur.html",
+                          "_blank"
+                        );
+                        break;
+                      case 10:
+                        window.open(
+                          "/Simulations/prisma/prisma-simulator.html",
+                          "_blank"
+                        );
+                        break;
+                      default:
+                        window.open(
+                          "/Simulations/prisma/prisma-simulator.html",
+                          "_blank"
+                        );
+                    }
+                  }}
+                >
+                  Începe simularea
+                </button>
+              </div>
+            ))}
           </div>
-        </div>
-
-        {/* Category Pills */}
-        <div className="simulations__categories">
-          {categories.map((category) => (
-            <button
-              key={category}
-              className={`category-pill ${
-                selectedCategory === category || (category === "Toate" && !selectedCategory)
-                  ? "category-pill--active"
-                  : ""
-              }`}
-              onClick={() => setSelectedCategory(category === "Toate" ? null : category)}
-            >
-              {category}
-            </button>
-          ))}
-        </div>
-
-        {/* Simulation Cards */}
-        <div className="simulations__grid">
-          {filteredSimulations.map((simulation) => (
-            <SimulationCard
-              key={simulation.id}
-              id={simulation.id}
-              title={simulation.title}
-              description={simulation.description}
-              imageUrl={simulation.imageUrl}
-              category={simulation.category}
-            />
-          ))}
-        </div>
-
-        {filteredSimulations.length === 0 && (
-          <div className="simulations__empty">
-            <h3>Nicio simulare găsită</h3>
-            <p>
-              Încearcă să folosești alte cuvinte cheie sau să schimbi categoria selectată.
-            </p>
-          </div>
-        )}
+        </main>
       </div>
     </Layout>
   );
 };
 
-export default Simulari;
+export default SimulariPage;
