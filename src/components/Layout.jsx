@@ -1,5 +1,6 @@
 import Footer from "./Footer";
 import Navbar from "./Navbar";
+import ScrollToTop from "./ScrollToTop";
 
 const Layout = ({ children }) => {
     return (
@@ -14,6 +15,7 @@ const Layout = ({ children }) => {
                 </main>
             </header> */}
             <Footer />
+            <ScrollToTop />
         </>
     );
 }

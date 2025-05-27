@@ -1,0 +1,251 @@
+body {
+    margin: 0;
+    font-family: sans-serif;
+    background: #f3f3f3;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.container {
+    display: flex;
+    gap: 20px;
+}
+
+.controls {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding-top: 20px;
+    border-radius: 5px;
+    border: none;
+}
+.controls label {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    margin-bottom: 10px;
+}
+
+.controls input[type="checkbox"] {
+    width: auto;
+}
+
+
+#toggleBtn {
+    padding: 10px 20px;
+    font-size: 16px;
+}
+
+.scene {
+    position: relative;
+    width: 400px;
+    height: 400px;
+    background: #b2ebf2;
+    border: 3px solid #00796b;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.faucet {
+    position: absolute;
+    top: -3px;
+    left: 190px;
+    width: 20px;
+    height: 40px;
+    background: #555;
+    border-radius: 5px;
+}
+
+.faucet#faucet2 {
+    position: absolute;
+    top: -3px;
+    left: 120px;
+    width: 20px;
+    height: 40px;
+    background: #555;
+    border-radius: 5px;
+    display: none;
+}
+
+
+
+.drop {
+    position: absolute;
+    top: 50px;
+    left: 195px;
+    width: 10px;
+    height: 10px;
+    background: #0288d1;
+    border-radius: 50%;
+    animation: fall 1s linear forwards;
+}
+
+@keyframes fall {
+    0% {
+        top: 50px;
+    }
+
+    100% {
+        top: 350px;
+        opacity: 0;
+    }
+}
+
+.ripple {
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  border: 2px solid rgba(0, 0, 255, 0.3); /* albastru semitransparent */
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  animation: ripple 2s linear forwards;
+  pointer-events: none;
+}
+
+.ripple.from-second {
+  border-color: rgba(0, 35, 88, 0.3); /* roșu semitransparent */
+}
+
+@keyframes ripple {
+  to {
+    width: 300px;
+    height: 300px;
+    opacity: 0;
+  }
+}
+
+@keyframes rippleEffect {
+    0% {
+        width: 10px;
+        height: 10px;
+        opacity: 0.5;
+    }
+
+    100% {
+        width: 100px;
+        height: 100px;
+        margin-left: -45px;
+        margin-top: -45px;
+        opacity: 0;
+    }
+}
+
+
+
+#toggleSidebar {
+    position: fixed;
+    top: 10px;
+    right: 10px;
+    background: #134cc7;
+    border: none;
+    padding: 10px 15px;
+    font-size: 24px;
+    cursor: pointer;
+    color: white;
+    border-radius: 5px;
+    z-index: 1100;
+}
+
+.sidebar {
+    width: 300px;
+    padding: 20px;
+    background: #134cc7;
+    height: 100vh;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    scrollbar-gutter: stable;
+    gap: 15px;
+    position: fixed;
+    overflow-y: auto;
+    right: -300px;
+    top: 0;
+    -webkit-transition: right 0.3s ease-in-out;
+    transition: right 0.3s ease-in-out;
+    z-index: 1000;
+    -webkit-box-shadow: -5px 0 10px rgba(0, 0, 0, 0.3);
+    box-shadow: -5px 0 10px rgba(0, 0, 0, 0.3);
+}
+
+.sidebar h2 {
+    color: white;
+    text-align: center;
+}
+
+.sidebar label {
+    color: black;
+    font-size: 18px;
+}
+
+.sidebar input {
+    width: 95%;
+    padding: 5px;
+    margin-top: 5px;
+    border: none;
+    border-radius: 3px;
+}
+
+.sidebar.visible {
+    right: 0;
+}
+
+.measurement-values {
+    margin-top: 10px;
+    padding: 5px;
+    background: #FAEDCD;
+    border: 1px solid black;
+}
+
+
+.titlemain {
+  position: fixed;
+  top: 10px;
+  left: 50%;
+  -webkit-transform: translateX(-50%);
+          transform: translateX(-50%);
+  font-size: 25px;
+  color: black;
+  text-align: center;
+  white-space: nowrap;
+}
+
+.graph-section {
+  margin-top: 20px;
+  padding: 10px;
+  border-radius: 8px;
+}
+
+.graph-section h3 {
+  margin-top: 0;
+  font-size: 16px;
+  text-align: center;
+  color: #333;
+}
+
+.graph-legend {
+  font-size: 12px;
+  margin-bottom: 5px;
+  text-align: center;
+}
+
+#amplitudeChart {
+    height: 300px !important;
+    width: 100% !important;
+    display: block;
+}
+
+.spacer-bottom {
+  height: 80px; 
+}
+
+
+.measure-point {
+    box-shadow: 0 0 4px rgba(0, 0, 0, 0.5);
+}

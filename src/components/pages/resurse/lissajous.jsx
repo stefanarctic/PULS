@@ -97,7 +97,7 @@ const LissajousPage = () => {
 										</p>
 									</div>
 									<a
-										href="/Simulations/Figuri LIssajous/grafice.html"
+										href="/simulari/Figuri-Lissajous/grafice.html"
 										target="_blank"
 										rel="noopener noreferrer"
 										style={{ textDecoration: "none" }}
@@ -143,7 +143,7 @@ const LissajousPage = () => {
 										</p>
 									</div>
 									<a
-										href="/Simulations/Mix/grafice.html"
+										href="/simulari/Mix/grafice.html"
 										target="_blank"
 										rel="noopener noreferrer"
 										style={{ textDecoration: "none" }}

@@ -182,6 +182,22 @@ const Index = () => {
                     </Link>
                 </div>
             </section>
+
+            {/* About Us Preview Section */}
+            <section className="about-preview-section">
+                <div className="about-preview-text">
+                    <h2 className="about-title" style={{ marginBottom: "1.5rem" }}>Despre noi</h2>
+                    <p className="about-description" style={{ marginBottom: "1.5rem" }}>
+                        Suntem dedicați educației moderne și inovării în predarea fizicii. Platforma noastră oferă simulări interactive și exerciții pentru a transforma învățarea într-o experiență captivantă și practică.
+                    </p>
+                    <p className="about-story" style={{ marginBottom: "1.5rem" }}>
+                        Povestea noastră a început cu o simplă întrebare: cum putem face ca fenomenele oscilatorii să prindă viață și să devină mai ușor de înțeles pentru toți cei care le studiază? Noi, o echipă de elevi pasionați de știință, am simțit mereu că, dincolo de formule și definiții, există o lume fascinantă, plină de ritm, mișcare și conexiuni surprinzătoare cu natura și tehnologia.
+                    </p>
+                    <Link to="/about-us" className="about-preview-button">
+                        Vezi mai mult
+                    </Link>
+                </div>
+            </section>
         </Layout>
     );
 }

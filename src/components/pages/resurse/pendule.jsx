@@ -73,7 +73,7 @@ const PendulePage = () => {
                     </p>
                   </div>
                   <a
-                    href="/Simulations/Grafice-Armonice/grafice-armonice.html"
+                    href="/simulari/Grafice-Armonice/grafice-armonice.html"
                     target="_blank"
                     rel="noopener noreferrer"
                     style={{ textDecoration: "none" }}
@@ -121,7 +121,7 @@ const PendulePage = () => {
                     </p>
                   </div>
                   <a
-                    href="/Simulations/Mix/Reprezentari3d.html"
+                    href="/simulari/Mix/Reprezentari3d.html"
                     target="_blank"
                     rel="noopener noreferrer"
                     style={{ textDecoration: "none" }}
@@ -163,7 +163,7 @@ const PendulePage = () => {
                     </ul>
                   </div>
                   <a
-                    href="/Simulations/Mix/Oscilatie-amortizata.html"
+                    href="/simulari/Mix/Oscilatie-amortizata.html"
                     target="_blank"
                     rel="noopener noreferrer"
                     style={{ textDecoration: "none" }}
@@ -201,7 +201,7 @@ const PendulePage = () => {
                     </p>
                   </div>
                   <a
-                    href="/Simulations/Mix/Pendul-amplitudine.html"
+                    href="/simulari/Mix/Pendul-amplitudine.html"
                     target="_blank"
                     rel="noopener noreferrer"
                     style={{ textDecoration: "none" }}

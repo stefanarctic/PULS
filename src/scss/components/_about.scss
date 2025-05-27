@@ -1,0 +1,88 @@
+.about-page {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background: var(--primary-background-current-mode);
+  color: var(--primary-color-current-mode);
+}
+
+.about-main {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 4rem 1rem;
+}
+
+.about-text {
+  max-width: 100%;
+  margin-top: 6rem;
+}
+
+.about-title {
+  font-size: 2.5rem;
+  font-weight: bold;
+  margin-bottom: 2.5rem;
+  margin-top: 2.5rem;
+  text-align: center;
+}
+
+.about-description {
+  font-size: 1.125rem;
+  max-width: 90rem;
+  font-weight: bold;
+  margin-bottom: 2.5rem;
+  text-align: center;
+}
+
+.about-story {
+  font-size: 1.125rem;
+  margin-bottom: 2.5rem;
+  text-align: center;
+  max-width: 90rem;
+  margin-left: auto;
+  margin-right: auto;
+  line-height: 1.7;
+  letter-spacing: 0.01em;
+}
+
+.about-motto {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: #60a5fa;
+  margin-bottom: 0.5rem;
+  text-align: center;
+}
+
+.about-preview-section {
+  border-top: 1px solid var(--border-color-current-mode);
+  background: var(--secondary-background-current-mode);
+  color: var(--primary-color-current-mode);
+  padding: 3rem 1rem 2rem 1rem;
+  display: flex;
+  justify-content: center;
+  padding-bottom: 4rem;
+}
+
+.about-preview-text {
+  max-width: 1200px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.about-preview-button {
+  display: inline-block;
+  margin-top: 1rem;
+  padding: 0.6rem 2rem;
+  background: var(--accent-color-current-mode);
+  color: #fff;
+  border-radius: 0.5rem;
+  font-weight: 600;
+  text-decoration: none;
+  transition: background 0.2s;
+}
+
+.about-preview-button:hover {
+  background: #2563eb;
+}

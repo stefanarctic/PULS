@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Figuri Lissajous</title>
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="css/logs.css" />
+  <link rel="stylesheet" href="css/zoom.css" />
+  <link rel="stylesheet" href="css/createpoint.css" />
+  <link rel="stylesheet" href="css/snowflakes.css" />
+  <link rel="stylesheet" href="css/clock.css" />
+  <link rel="icon" href="res/G.png" type="x-icon" />
+</head>
+
+<body>
+
+  <div id="log-container">
+    <!-- Păstrăm doar acest textarea pentru log-uri -->
+    <textarea id="log" readonly></textarea>
+  </div>
+  <button class="show-popup-button" id="show-popup-button"><span>+</span></button>
+  <div class="create-point">
+    <div class="overlay" id="overlay"></div>
+    <div class="create-point-popup" id="create-point-popup">
+      <!-- Am eliminat partea cu Litera -->
+      <div class="popup-content">
+        <h1>Creeaza o figura Lissajous</h1>
+        <div class="data-input">
+          <div class="section">
+            <label for="timeInput">Functii armonice:</label>
+            <div class="time">
+              <label for="amplitudineInput">x =
+                <input type="text" id="amplitudineInput" placeholder="A" />
+                <label for="omega1Input">* sin(
+                  <input type="text" id="omega1Input" placeholder="𝛚1" />
+                  <label for="timeInput"> *</label>
+                  <input type="text" id="timeInput" placeholder="t1" />
+                  <label for="time2Input"></label>
+                  <input type="text" id="time2Input" placeholder="t2" />
+                  <label>)</label>
+                </label>
+              </label>
+            </div>
+
+            <div class="time2">
+              <label for="omega2Input">y = A * sin(
+                <input type="text" id="omega2Input" placeholder="𝛚2" />
+                <label> * </label>
+                <!-- Eliminăm input separat pentru timp aici -->
+                <span>t1-t2 + </span>
+                <label for="unghiulinitialInput">
+                  <input type="text" id="unghiulinitialInput" placeholder="φ0" />
+                </label>
+                <label>)</label>
+              </label>
+            </div>
+
+            <label for="colorInput">Culoare:</label>
+            <input type="color" id="colorInput" value="#ff0000" />
+          </div>
+        </div>
+        <button id="create-point-btn">Creeaza figura</button>
+        <button class="close-popup-btn" id="close-popup-btn">x</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- <div class="snowlfkaes" id="snowflakes"></div> -->
+
+  <script src="https://d3js.org/d3.v7.min.js"></script>
+  <script src="script.js"></script>
+  <script src="melodie.js"></script>
+  <script src="zoom.js"></script>
+  <script src="createPoint.js"></script>
+  <script src="math.js"></script>
+  <script src="logs.js"></script>
+  <!-- <script src="snowflakes.js"></script> -->
+  <script src="clock.js"></script>
+</body>
+
+</html>

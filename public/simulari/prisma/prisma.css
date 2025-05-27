@@ -1,0 +1,116 @@
+body {
+    background: #111;
+    color: white;
+    text-align: center;
+    font-family: sans-serif;
+  }
+  canvas {
+    background: #222;
+    border: 1px solid #444;
+    margin-top: 100px;
+    margin-left:10px;
+    height: 600px;
+    width: 800px;
+  }
+  .controls {
+    margin-top: 10px;
+  }
+  input[type="range"] {
+    width: 300px;
+  }
+
+
+  #toggleSidebar {
+    position: fixed;
+    top: 10px;
+    right: 10px;
+    background: #444;
+    border: none;
+    padding: 10px 15px;
+    font-size: 24px;
+    cursor: pointer;
+    color: white;
+    border-radius: 5px;
+    z-index: 1100;
+  }
+  
+  .sidebar {
+    width: 300px;
+    padding: 20px;
+    background: #444;
+    height: 100vh;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+    gap: 15px;
+    position: fixed;
+    overflow-y: auto;
+    right: -300px;
+    top: 0;
+    -webkit-transition: right 0.3s ease-in-out;
+    transition: right 0.3s ease-in-out;
+    z-index: 1000;
+    -webkit-box-shadow: -5px 0 10px rgba(0, 0, 0, 0.3);
+            box-shadow: -5px 0 10px rgba(0, 0, 0, 0.3);
+  }
+  .sidebar h2 {
+    color: white;
+    text-align: center;
+  }
+  .sidebar label {
+    color: black;
+    font-size: 18px;
+  }
+  .sidebar input {
+    width: 95%;
+    padding: 5px;
+    margin-top: 5px;
+    border: none;
+    border-radius: 3px;
+  }
+  .sidebar output {
+    width: 95%;
+    padding: 5px;
+    margin-top: 5px;
+    border: none;
+    border-radius: 3px;
+  }
+  .sidebar button {
+    padding: 10px;
+    background: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .sidebar.visible {
+    right: 0;
+  }
+  .sidebar .p{
+    color: black;
+  }
+
+  .measurement-values {
+    margin-top: 10px;
+    padding: 5px;
+    background: #FAEDCD;
+    border: 1px solid black;
+    color: black;
+    justify-content: left;
+  }
+  
+  .measurement-values span {
+    display: block;
+    margin-bottom: 10px;
+  }
+@media (max-width: 2000px)
+{
+ canvas {
+    height: 400px;
+    width: 600px;
+  }
+ }

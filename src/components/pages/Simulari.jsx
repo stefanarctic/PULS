@@ -158,67 +158,67 @@ const SimulariPage = () => {
                     switch (simulation.id) {
                       case 1:
                         window.open(
-                          "/Simulations/Mix/Reprezentari3d.html",
+                          "/simulari/Mix/Reprezentari3d.html",
                           "_blank"
                         );
                         break;
                       case 2:
                         window.open(
-                          "/Simulations/Mix/Oscilatie-amortizata.html",
+                          "/simulari/Mix/Oscilatie-amortizata.html",
                           "_blank"
                         );
                         break;
                       case 3:
                         window.open(
-                          "/Simulations/Mix/Pendul-amplitudine.html",
+                          "/simulari/Mix/Pendul-amplitudine.html",
                           "_blank"
                         );
                         break;
                       case 4:
                         window.open(
-                          "/Simulations/Unde/simulator-unde.html",
+                          "/simulari/Unde/simulator-unde.html",
                           "_blank"
                         );
                         break;
                       case 5:
                         window.open(
-                          "/Simulations/Figuri LIssajous/grafice.html",
+                          "/simulari/Figuri-Lissajous/grafice.html",
                           "_blank"
                         );
                         break;
                       case 6:
                         window.open(
-                          "/Simulations/Grafice-Armonice/grafice-armonice.html",
+                          "/simulari/Grafice-Armonice/index.html",
                           "_blank"
                         );
                         break;
                       case 7:
                         window.open(
-                          "/Simulations/Functii/functii1.html",
+                          "/simulari/Functii/functii1.html",
                           "_blank"
                         );
                         break;
                       case 8:
                         window.open(
-                          "/Simulations/Mix/grafice.html",
+                          "/simulari/Mix/grafice.html",
                           "_blank"
                         );
                         break;
                       case 9:
                         window.open(
-                          "/Simulations/Mix/Cutremur.html",
+                          "/simulari/Mix/Cutremur.html",
                           "_blank"
                         );
                         break;
                       case 10:
                         window.open(
-                          "/Simulations/prisma/prisma-simulator.html",
+                          "/simulari/prisma/prisma-simulator.html",
                           "_blank"
                         );
                         break;
                       default:
                         window.open(
-                          "/Simulations/prisma/prisma-simulator.html",
+                          "/simulari/prisma/prisma-simulator.html",
                           "_blank"
                         );
                     }

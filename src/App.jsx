@@ -16,6 +16,7 @@ import Pendule from "./components/pages/resurse/pendule";
 import Unde from "./components/pages/resurse/unde";
 import Lissajous from "./components/pages/resurse/lissajous";
 import Seism from "./components/pages/resurse/seism";
+import ScrollToTop from "./components/ScrollToTop";
 
 const App = () => {
 
@@ -103,6 +104,7 @@ const App = () => {
           <Route path="/resurse/unde" element={<Unde />} />
           <Route path="/resurse/lissajous" element={<Lissajous />} />
           <Route path="/resurse/seism" element={<Seism />} />
+          <Route path="/about-us" element={<About />} />
         </Routes>
       </div>
     </Router>

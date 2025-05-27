@@ -122,7 +122,7 @@ const UndePage = () => {
                     </div>
                   </div>
                   <a
-                    href="/Simulations/Unde/simulator-unde.html"
+                    href="/simulari/Unde/simulator-unde.html"
                     target="_blank"
                     rel="noopener noreferrer"
                     style={{ textDecoration: "none" }}
@@ -192,7 +192,7 @@ const UndePage = () => {
                     </div>
                   </div>
                   <a
-                    href="/Simulations/prisma/prisma-simulator.html"
+                    href="/simulari/prisma/prisma-simulator.html"
                     target="_blank"
                     rel="noopener noreferrer"
                     style={{ textDecoration: "none" }}
