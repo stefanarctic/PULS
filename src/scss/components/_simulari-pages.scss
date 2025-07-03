@@ -1,0 +1,322 @@
+.resurse-pagina {
+
+  .simulari-page,
+  .min-h-screen.flex.flex-col {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    background: #18181b; // dark background, adjust as needed
+    color: #fff;
+  }
+
+  .container {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 1.5rem;
+  }
+
+  .main-content,
+  .container.mx-auto.px-4.py-10 {
+    flex-grow: 1;
+    padding: 2rem 0;
+  }
+
+  h1,
+  .font-bold {
+    font-weight: bold;
+    color: var(--primary-color-current-mode); // was #fff
+  }
+
+  h1 {
+    font-size: 2.5rem;
+    margin-bottom: 1.5rem;
+  }
+
+  h2 {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+    font-weight: 600;
+    color: var(--primary-color-current-mode); // was #fff
+  }
+
+  h3 {
+    font-size: 1.15rem;
+    font-weight: 500;
+    margin-bottom: 0.5rem;
+  }
+
+  .text-lg {
+    font-size: 1.125rem;
+  }
+
+  .text-muted-foreground {
+    color: var(--primary-color-current-mode); // or use a muted variable if you have one
+  }
+
+  .rounded-container {
+    // background: #23232a;
+    border-radius: 1rem;
+    padding: 2rem;
+    box-shadow: 0 4px 24px 0 rgba(0, 0, 0, 0.10);
+    margin-bottom: 2rem;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+
+    .flex-col {
+      display: flex;
+      flex-direction: column !important;
+      gap: 0.5rem;
+      align-items: flex-start; // add this line
+    }
+  }
+
+  .list-disc {
+    list-style-type: disc;
+  }
+
+  .font-mono {
+    font-family: 'Fira Mono', 'Consolas', 'Menlo', monospace;
+    background: #18181b;
+    padding: 0.25rem 0.5rem;
+    border-radius: 0.3rem;
+    display: inline-block;
+    width: auto;
+    max-width: 100%;
+    white-space: pre-line;
+  }
+
+  .rounded-container .font-mono {
+    color: var(--primary-color-current-mode);
+  }
+
+  a.text-primary {
+    color: #60a5fa;
+    text-decoration: none;
+    transition: color 0.2s;
+
+    &:hover {
+      text-decoration: underline;
+      color: #3b82f6;
+    }
+  }
+
+  .button,
+  button,
+  .Button,
+  .start-simulation-btn {
+    display: inline-block;
+    background: var(--primary-color-current-mode); // Invert: use text color as background
+    color: var(--primary-background-current-mode); // Invert: use background as text color
+    border: none;
+    border-radius: 0.5rem;
+    padding: 0.75rem 1.5rem;
+    font-weight: 600;
+    font-size: 1rem;
+    cursor: pointer;
+    margin-top: 1rem;
+    transition: background 0.2s, color 0.2s;
+
+    &:hover {
+      background: var(--accent-color-current-mode);
+      color: var(--primary-background-current-mode);
+    }
+  }
+
+  .space-y-12>*+* {
+    margin-top: 3rem;
+  }
+
+  .image-slider {
+    position: relative;
+    width: 100%;
+    height: 16rem; // h-64
+    border-radius: 1rem;
+    overflow: hidden;
+    background: #18181b;
+    margin-bottom: 2rem;
+    box-shadow: 0 4px 24px 0 rgba(0, 0, 0, 0.10);
+
+    @media (min-width: 768px) {
+      height: 20rem; // md:h-80
+    }
+
+    .flex {
+      height: 100%;
+    }
+
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border-radius: 1rem;
+      background: #23232a;
+      display: block;
+    }
+
+    // Navigation arrows
+    button {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      background: rgba(24, 24, 27, 0.8);
+      color: #fff;
+      border: none;
+      padding: 0.5rem;
+      border-radius: 50%;
+      z-index: 2;
+      cursor: pointer;
+      transition: background 0.2s, color 0.2s;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      &:hover {
+        background: #23232a;
+        color: #60a5fa;
+      }
+
+      &.left {
+        left: 1rem;
+      }
+
+      &.right {
+        right: 1rem;
+      }
+    }
+
+    // Indicators (dots)
+    .absolute.bottom-4 {
+      left: 0;
+      right: 0;
+      display: flex;
+      justify-content: center;
+      gap: 0.5rem;
+      position: absolute;
+      bottom: 1rem;
+      z-index: 2;
+
+      button {
+        width: 8px;
+        height: 8px;
+        border-radius: 50%;
+        background: #fff;
+        opacity: 0.5;
+        border: none;
+        padding: 0;
+        transition: width 0.2s, background 0.2s, opacity 0.2s;
+
+        &.w-4 {
+          width: 16px;
+          background: #fff;
+          opacity: 1;
+          border-radius: 4px;
+        }
+      }
+    }
+  }
+
+  //seisme joc si unde reprezentare
+  .top-1 {
+    margin-top: 37px;
+  }
+
+  .p3 {
+    padding-bottom: 12px;
+  }
+
+  .row {
+    margin-bottom: 20px;
+    margin-right: 20px;
+  }
+
+  .model-container {
+    position: relative;
+    width: 100%;
+    max-width: 1400px;
+    margin-bottom: 40px;
+  }
+
+  .sketchfab-info {
+    position: absolute;
+    top: 10px;
+    right: -380px;
+    font-size: 16px;
+    color: #000;
+    background: rgba(255, 255, 255, 0.85);
+    padding: 10px 14px;
+    border-radius: 8px;
+    max-width: 90%;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+  }
+
+  .sketchfab-info1 {
+    position: absolute;
+    top: 30px;
+    right: 80px;
+    font-size: 16px;
+    color: #000;
+    background: rgba(255, 255, 255, 0.85);
+    padding: 10px 14px;
+    border-radius: 8px;
+    max-width: 90%;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+  }
+
+  .model-buttons {
+    margin-top: 30px;
+    margin-bottom: 20px;
+    display: flex;
+    gap: -200px;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    /* aliniere la stânga */
+    margin-left: 10px;
+    /* mai mult spațiu pe stânga */
+    width: 50%;
+    max-width: 100%;
+    /* eliminăm limita maximă de lățime */
+  }
+
+  .model-buttons button {
+    padding: 10px 24px;
+    border: none;
+    background-color: #4A90E2 !important;
+    color: #fff !important;
+    font-size: 16px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    margin-right: -70px;
+    margin-bottom: -20px;
+  }
+
+  .model-buttons button:hover {
+    background-color: #357ABD !important;
+  }
+
+  .model-container {
+    position: relative;
+    width: 100%;
+    max-width: 1400px;
+    margin-bottom: 40px;
+  }
+
+  iframe {
+    width: 100%;
+    width: 1000px;
+    height: 650px;
+    border: none;
+    border-radius: 8px;
+  }
+
+  .text-lg {
+    // font-size: 1.125rem;
+    // line-height: 1.75rem;
+    // color: var(--primary-color-current-mode); // was #fff
+  }
+
+  .formula-resurse {
+    // style={{ backgroundColor: 'var(--primary-background-current-mode)', color: 'var(--primary-color-current-mode)' }}
+    background-color: var(--primary-background-current-mode);
+    color: var(--primary-color-current-mode);
+  }
+}

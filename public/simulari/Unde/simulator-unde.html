@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="ro">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Simulator de Unde</title>
+    <link rel="stylesheet" href="simulator-unde.css">
+</head>
+
+<body>
+    <div class="titlemain">
+        <h1>Simulator de Unde</h1>
+    </div>
+    <div class="container">
+
+        <div class="scene">
+            <div class="faucet"></div>
+            <div class="faucet" id="faucet2"></div>
+
+            <div class="water" id="water"></div>
+        </div>
+
+    </div>
+    <button id="toggleSidebar">☰</button>
+    <div id="sidebar" class="sidebar hidden">
+        <h2>Meniu</h2>
+        <div class="measurement-values">
+
+            <div class="controls">
+                <label>
+                    Viteză curgere:
+                    <span id="speedValue">5</span></label>
+                <input type="range" id="speedSlider" min="1" max="10" step="1" value="5">
+                </label>
+
+                <label>
+                    Mărime picătură:
+                    <span id="sizeValue">10</span></label>
+                <input type="range" id="sizeSlider" min="5" max="30" step="1" value="10">
+                </label>
+                <label>Al doilea robinet:<input type="checkbox" id="secondFaucetToggle">
+                </label>
+                <label>Culoare picatura:</label>
+                <input type="color" id="colorPicker" value="#00aaff">
+                <label>Culoare unda:</label>
+                <input type="color" id="colorPick" value="#b2ebf2">
+                <label>Picături: <span id="dropCount">0</span></label>
+                <div class="graph-section">
+                    <h3>Grafic timp → amplitudine</h3>
+                    <div class="graph-legend">
+                        <div><strong>OY</strong>: amplitudine (număr de unde)</div>
+                        <div><strong>OX</strong>: timp</div>
+                    </div>
+                    <canvas id="amplitudeChart" width="250" height="150"></canvas>
+                    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+                </div>
+                <button id="toggleBtn">Start</button>
+                <div class="spacer-bottom"></div>
+                <label>Măsuratori:</label>
+                <ul id="physicsDisplay"></ul>
+
+                <p> </p>
+                <div id="formulas" style="margin-top: 20px; font-size: 18px;"></div>
+
+                <div class="spacer-bottom"></div>
+            </div>
+        </div>
+
+        <script src="simulator-unde.js"></script>
+        <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+        <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+        </script>
+        
+</body>
+
+</html>

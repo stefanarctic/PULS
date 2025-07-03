@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="prisma.css">
+  <title>Prisma cu Dispersie</title>
+
+</head>
+<body>
+  <h1>Dispersia luminii prin prismă</h1>
+  <canvas id="canvas" width="800" height="600"></canvas>
+  <button id="toggleSidebar">☰</button>
+    <div id="sidebar" class="sidebar hidden">
+    <h2>Calculator timp</h2>
+    <div>
+    <p>Unghiul de incidenta al luminii albe:</p>
+        <label for="angleSlider">Ajustați unghiul:</label>
+        <input type="range" id="angleSlider" min="-26" max="3" value="0" title="Ajustați unghiul de incidență">
+        <span id="angleValue">0</span>°
+    </div>
+    <button id="toggleButton">Activeaza Dispersia</button>
+    <div class="measurement-values" id="measurement-values">
+        <p>Legea lui Snell:</p>
+        <p>\( n_1 \sin(i) = n_2 \sin(r) \)</p>
+        <p>Unde  \(n_1\)  si \(n_2\) sunt indicele de refracție al mediului (ex: aer, sticlă).</p>
+        <p>, iar i este unghiul de incidență si r, unghiul de refracție.</p>
+        <p>Indicele de refracție în funcție de lungimea de undă (Cauchy):</p>
+        <p>\[n(\lambda) = A + \frac{B}{\lambda^2}\]</p>
+        <p>Lumina roșie (λ mare) = mai puțin deviată.</p>
+        <p>Lumina violet (λ mică) = mai mult deviată.</p>
+        <p>Dispersia este motivul pentru care vedem curcubeul, fiecare culoare din lumină se refractă diferit.</p>
+        <p>Prisma separă lumina albă deoarece fiecare culoare călătorește cu o viteză diferită prin material. </p>
+        <p>Isaac Newton a fost primul care a demonstrat că lumina albă este compusă din mai multe culori.</p>
+        <p>În sticlă, indicele de refracție pentru roșu e ≈ 1.514, iar pentru violet ≈ 1.532, o diferență mică, dar suficientă pentru dispersie.</p>
+    </div>
+    </div>
+
+  <script src="prisma.js"> </script>
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+</body>
+</html>
