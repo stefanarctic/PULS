@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState, Fragment } from 'react';
 import Layout from '../Layout';
 import { useLocation } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
@@ -36,6 +36,9 @@ const ProblemCard = ({ problem, onResolveClick }) => {
             case 'dificil':
             case 'dificile':
                 return 'difficulty--dificil';
+            case 'concurs':
+            case 'concursuri':
+                return 'difficulty--concurs';
             default:
                 return '';
         }
@@ -80,6 +83,10 @@ const PhysicsProblems = () => {
     );
     const [sortBy, setSortBy] = useState("newest");
     const [selectedProblem, setSelectedProblem] = useState(null);
+    
+    // Paginare
+    const [currentPage, setCurrentPage] = useState(1);
+    const problemsPerPage = 8; // Numărul de probleme per pagină
 
     const navigate = useNavigate();
 
@@ -96,6 +103,11 @@ const PhysicsProblems = () => {
         });
     }, [selectedDifficulty, navigate, location.pathname]);
 
+    // Reset la pagina 1 când se schimbă filtrele
+    useEffect(() => {
+        setCurrentPage(1);
+    }, [searchQuery, selectedDifficulty, selectedCategory, sortBy]);
+
     const categories = [
         "Toate",
         "Mecanică",
@@ -105,7 +117,7 @@ const PhysicsProblems = () => {
         "Seismologie",
     ];
 
-    const difficulties = ["Toate", "ușor", "mediu", "dificil"];
+    const difficulties = ["Toate", "ușor", "mediu", "dificil", "concurs"];
 
     const isSpecializedPage = location.pathname.includes("/specialized");
     const specializedTopics = ["pendul", "unde", "lissajous", "seism"];
@@ -142,14 +154,120 @@ const PhysicsProblems = () => {
     });
 
     // Funcție pentru sortarea după dificultate
-    const difficultyOrder = { "ușor": 1, "mediu": 2, "dificil": 3 };
+    const difficultyOrder = { "ușor": 1, "mediu": 2, "dificil": 3, "concurs": 4 };
 
-    const sortedProblems = [...filteredProblems].sort((a, b) => a.index - b.index);
+    // Funcție pentru sortarea problemelor
+    const sortProblems = (problems) => {
+        switch (sortBy) {
+            case "newest":
+                // Cele mai noi - sortare descrescătoare după index
+                return [...problems].sort((a, b) => b.index - a.index);
+            case "oldest":
+                // Cele mai vechi - sortare crescătoare după index
+                return [...problems].sort((a, b) => a.index - b.index);
+            case "difficulty-asc":
+                // Dificultate crescătoare (ușor -> mediu -> dificil)
+                return [...problems].sort((a, b) => {
+                    const orderA = difficultyOrder[a.dificultate] || 0;
+                    const orderB = difficultyOrder[b.dificultate] || 0;
+                    if (orderA === orderB) {
+                        // Dacă dificultatea este aceeași, sortăm după index
+                        return a.index - b.index;
+                    }
+                    return orderA - orderB;
+                });
+            case "difficulty-desc":
+                // Dificultate descrescătoare (dificil -> mediu -> ușor)
+                return [...problems].sort((a, b) => {
+                    const orderA = difficultyOrder[a.dificultate] || 0;
+                    const orderB = difficultyOrder[b.dificultate] || 0;
+                    if (orderA === orderB) {
+                        // Dacă dificultatea este aceeași, sortăm după index
+                        return a.index - b.index;
+                    }
+                    return orderB - orderA;
+                });
+            default:
+                // Implicit - sortare după index crescător
+                return [...problems].sort((a, b) => a.index - b.index);
+        }
+    };
+
+    const sortedProblems = sortProblems(filteredProblems);
+
+    // Calculul paginării
+    const totalPages = Math.ceil(sortedProblems.length / problemsPerPage);
+    const startIndex = (currentPage - 1) * problemsPerPage;
+    const endIndex = startIndex + problemsPerPage;
+    const currentProblems = sortedProblems.slice(startIndex, endIndex);
+
+    // Funcție pentru generarea numerelor de pagină
+    const getPageNumbers = () => {
+        const pages = [];
+        const maxVisiblePages = 5; // Numărul maxim de pagini vizibile
+
+        if (totalPages <= maxVisiblePages) {
+            // Dacă avem puține pagini, le afișăm pe toate
+            for (let i = 1; i <= totalPages; i++) {
+                pages.push(i);
+            }
+        } else {
+            // Dacă avem multe pagini, afișăm o selecție inteligentă
+            if (currentPage <= 3) {
+                // Începutul listei
+                for (let i = 1; i <= 4; i++) {
+                    pages.push(i);
+                }
+                pages.push('...');
+                pages.push(totalPages);
+            } else if (currentPage >= totalPages - 2) {
+                // Sfârșitul listei
+                pages.push(1);
+                pages.push('...');
+                for (let i = totalPages - 3; i <= totalPages; i++) {
+                    pages.push(i);
+                }
+            } else {
+                // Mijlocul listei
+                pages.push(1);
+                pages.push('...');
+                for (let i = currentPage - 1; i <= currentPage + 1; i++) {
+                    pages.push(i);
+                }
+                pages.push('...');
+                pages.push(totalPages);
+            }
+        }
+
+        return pages;
+    };
+
+    // Funcții pentru navigarea paginării
+    const goToPage = (page) => {
+        if (page >= 1 && page <= totalPages) {
+            setCurrentPage(page);
+        }
+    };
+
+    const goToPreviousPage = () => {
+        if (currentPage > 1) {
+            setCurrentPage(currentPage - 1);
+        }
+    };
+
+    const goToNextPage = () => {
+        if (currentPage < totalPages) {
+            setCurrentPage(currentPage + 1);
+        }
+    };
 
     if (selectedProblem) {
         return (
             <Layout>
-                <ProblemaDetaliata problema={selectedProblem} />
+                <ProblemaDetaliata 
+                    problema={selectedProblem} 
+                    onBack={() => setSelectedProblem(null)}
+                />
             </Layout>
         );
     }
@@ -218,6 +336,7 @@ const PhysicsProblems = () => {
                     <div className="results-header">
                         <p className="results-count">
                             {sortedProblems.length} probleme găsite
+                            {totalPages > 1 && ` (pagina ${currentPage} din ${totalPages})`}
                         </p>
                         <select
                             className="sort-select"
@@ -233,7 +352,7 @@ const PhysicsProblems = () => {
 
                     {/* Problem Cards Grid */}
                     <div className="problems-grid">
-                        {sortedProblems.map((problem) => (
+                        {currentProblems.map((problem) => (
                             <ProblemCard
                                 key={problem.id}
                                 problem={problem}
@@ -251,21 +370,39 @@ const PhysicsProblems = () => {
                     )}
 
                     {/* Pagination */}
-                    {/* Pentru moment nu e logică funcțională pentru paginare, dar e afișat */}
-                    {sortedProblems.length > 0 && (
+                    {totalPages > 1 && (
                         <div className="pagination">
                             <div className="pagination-navbar">
-                                <button className="pagination-btn" disabled>
+                                <button 
+                                    className="pagination-btn" 
+                                    disabled={currentPage === 1}
+                                    onClick={goToPreviousPage}
+                                >
                                     Anterior
                                 </button>
-                                <button className="pagination-btn pagination-btn--active">
-                                    1
+                                
+                                {getPageNumbers().map((page, index) => (
+                                    <Fragment key={index}>
+                                        {page === '...' ? (
+                                            <span className="pagination-dots">...</span>
+                                        ) : (
+                                            <button 
+                                                className={`pagination-btn${currentPage === page ? ' pagination-btn--active' : ''}`}
+                                                onClick={() => goToPage(page)}
+                                            >
+                                                {page}
+                                            </button>
+                                        )}
+                                    </Fragment>
+                                ))}
+                                
+                                <button 
+                                    className="pagination-btn" 
+                                    disabled={currentPage === totalPages}
+                                    onClick={goToNextPage}
+                                >
+                                    Următor
                                 </button>
-                                <button className="pagination-btn">2</button>
-                                <button className="pagination-btn">3</button>
-                                <span className="pagination-dots">...</span>
-                                <button className="pagination-btn">10</button>
-                                <button className="pagination-btn">Următor</button>
                             </div>
                         </div>
                     )}

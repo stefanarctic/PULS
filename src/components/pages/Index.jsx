@@ -207,16 +207,16 @@ const Index = () => {
                         </div>
                     </Link>
 
-                    <Link to="/probleme/specialized" className="problem-card-link">
+                    <Link to="/probleme?difficulty=concurs" className="problem-card-link">
                         <div className="problem-card">
                             <div className="problem-icon">
                                 <Target size={32} strokeWidth={1.5} />
                             </div>
-                            <h3>Specializat</h3>
+                            <h3>Concurs</h3>
                             <p>Probleme focusate pe teme specifice: pendul, unde, Lissajous, seism</p>
                             <div className="problem-stats">
-                                <span>Nu exista probleme inca</span>
-                                <span className="difficulty expert">Expert</span>
+                                <span>2 probleme</span>
+                                <span className="difficulty expert">Concurs</span>
                             </div>
                             <button className="problem-button">Specializează-te</button>
                         </div>
