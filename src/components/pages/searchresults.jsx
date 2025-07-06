@@ -2,7 +2,7 @@ import { useLocation } from "react-router-dom";
 import { useMemo } from "react";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
-import "@/scss/components/searchresul.scss";
+import "@/scss/components/_searchresults.scss";
 
 function useQuery() {
     return new URLSearchParams(useLocation().search);
@@ -75,17 +75,6 @@ const SearchResults = () => {
                 "simulări fizica", "simulări experiment", "simulări sim", "simulări simulare", "simulati", "simulati", "simular", "simulr"
             ]
         },
-         {
-            title: "Muie Ţie",
-            keywords: [
-               "muie", "muie ţie", "muie tie", "muie ție", "muie ţie", "muie tie", "muie", "muie muie", "muie muie ţie", "muie muie tie", "muie muie ție", "muie muie ţie",
-                "muie muie muie", "muie muie muie ţie", "muie muie muie tie", "muie muie muie ție", "muie muie muie ţie", "muie muie muie tie",
-                "muie muie muie muie", "muie muie muie muie ţie", "muie muie muie muie tie", "muie muie muie muie ție", "muie muie muie muie ţie", "muie muie muie muie tie",
-                "pula", "pula mea", "pula ta", "pula lui", "pula lor", "pula noastra", "pula voastra", "pula voastra mea",
-                "pula mea muie", "pula ta muie", "pula lui muie", "pula lor muie", "pula noastra muie", "pula voastra muie", "pula voastra mea muie",
-                "suge pula", "suge pula mea", "suge pula ta", "suge pula lui", "suge pula lor", "suge pula noastra", "suge pula voastra", "suge pula voastra mea",
-            ]
-        }
     ];
 
     const results = useMemo(
@@ -108,8 +97,8 @@ const SearchResults = () => {
                     <p className="search-results-empty">Niciun rezultat găsit.</p>
                 ) : (
                     <ul className="search-results-list">
-                        {results.map(item => (
-                            <li key={item.path} className="search-results-item">
+                        {results.map((item, index) => (
+                            <li key={index} className="search-results-item">
                                 <a href={item.path} className="search-results-link">{item.title}</a>
                             </li>
                         ))}

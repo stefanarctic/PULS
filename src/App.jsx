@@ -6,7 +6,7 @@ import OurWork from "@/components/OurWork";
 import Services from "@/components/Services";
 import Testimonials from "@/components/Testimonials";
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
-import SearchResults from "./components/pages/searchresults";
+import SearchResults from "./components/pages/SearchResults";
 import './scss/style.scss';
 import Index from "./components/pages/Index";
 import Probleme from "./components/pages/Probleme";
@@ -22,18 +22,18 @@ import ProblemSubmit from "./components/ProblemSubmit";
 
 const App = () => {
 
-  // const toggleOverflow = () => {
-  //   if (document.body.style.overflow === 'hidden')
-  //     document.body.style.overflow = '';
-  //   else
-  //     document.body.style.overflow = 'hidden';
-  // }
+  const toggleOverflow = () => {
+    if (document.body.style.overflow === 'hidden')
+      document.body.style.overflow = '';
+    else
+      document.body.style.overflow = 'hidden';
+  }
 
-  // document.addEventListener('keydown', e => {
-  //   if (e.ctrlKey && e.key === 'k') {
-  //     toggleOverflow();
-  //   }
-  // })
+  document.addEventListener('keydown', e => {
+    if (e.ctrlKey && e.key === 'k') {
+      toggleOverflow();
+    }
+  })
 
   const observer = new IntersectionObserver(entries => {
     entries.forEach(entry => {
@@ -45,33 +45,6 @@ const App = () => {
       // }
     })
   })
-
-  // $((() => {
-  //   // For scroll animation
-  //   const hiddenElements = document.querySelectorAll('.hidden');
-  //   hiddenElements.forEach(el => observer.observe(el));
-
-  //   // Sets up the navbar links for proper scrolling on click
-  //   const navLinks = document.querySelectorAll("#nav-list li a");
-  //   navLinks.forEach(a => {
-  //     a.addEventListener('click', e => {
-  //       openURL(e.target);
-  //     })
-  //   })
-  //   navLinks[0].addEventListener('click', e => {
-  //     const header = document.querySelector('header');
-  //     header.scrollIntoView(true);
-  //   })
-  // }));
-
-  // const openURL = linkElement => {
-  //   const linkId = linkElement.dataset.href.split('#').join('');
-
-  //   const openedSection = document.getElementById(linkId);
-  //   openedSection.scrollIntoView(false);
-
-  //   console.log(`Scrolled to ${openedSection.id}`);
-  // }
 
 
   function getRootElementFontSize() {

@@ -1,7 +1,7 @@
 import { useState } from "react";
 import simulatorPendulSimpluImg from "/res/screenshots/Simplu_Screenshot.png";
 import simulatorPendulAmortizatImg from "/res/screenshots/Amortizat_Screenshot.png";
-import simulatorPendulTrasnitImg from "/res/screenshots/Trasnit_Screenshot.png";
+import simulatorPendulTrasnitImg from "/res/screenshots/Trasnit_Screenshot1.png";
 import simulatorUndeImg from "/res/screenshots/Unde_Screenshot.png";
 import simulatorLissajousImg from "/res/screenshots/Lissajous_Screenshot.png";
 import simulatorSeismImg from "/res/screenshots/Seism_Screenshot.png";
@@ -194,7 +194,7 @@ const SimulariPage = () => {
                         break;
                       case 7:
                         window.open(
-                          "/simulari/Functii/functii1.html",
+                          "/simulari/Functii/Functii/index.html",
                           "_blank"
                         );
                         break;

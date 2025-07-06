@@ -20,12 +20,13 @@ const Index = () => {
     const getProblemsCountByDifficulty = (difficulty) => {
         return problemeData.filter(problem => problem.dificultate === difficulty).length;
     };
-
-    // Funcție pentru a calcula numărul total de probleme
+  
+      // Funcție pentru a calcula numărul total de probleme
     const getTotalProblemsCount = () => {
         return problemeData.length;
     };
-
+  
+  
     const observer = new IntersectionObserver(entries => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
@@ -216,21 +217,19 @@ const Index = () => {
                         </div>
                     </Link>
 
-                    <Link to="/probleme/specialized" className="problem-card-link">
+                    <Link to="/probleme?difficulty=concurs" className="problem-card-link">
                         <div className="problem-card">
                             <div className="problem-icon">
                                 <Target size={32} strokeWidth={1.5} />
                             </div>
-                            <h3>Specializat</h3>
+                            <h3>Concurs</h3>
                             <p>Probleme focusate pe teme specifice: pendul, unde, Lissajous, seism</p>
                             <div className="problem-stats">
-<<<<<<< Updated upstream
                                 <span>Nu exista probleme inca</span>
                                 <span className="difficulty expert">Expert</span>
-=======
+
                                 <span>{getProblemsCountByDifficulty('concurs')} probleme</span>
                                 <span className="difficulty expert">Concurs</span>
->>>>>>> Stashed changes
                             </div>
                             <button className="problem-button">Specializează-te</button>
                         </div>
