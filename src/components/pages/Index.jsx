@@ -225,9 +225,6 @@ const Index = () => {
                             <h3>Concurs</h3>
                             <p>Probleme focusate pe teme specifice: pendul, unde, Lissajous, seism</p>
                             <div className="problem-stats">
-                                <span>Nu exista probleme inca</span>
-                                <span className="difficulty expert">Expert</span>
-
                                 <span>{getProblemsCountByDifficulty('concurs')} probleme</span>
                                 <span className="difficulty expert">Concurs</span>
                             </div>
