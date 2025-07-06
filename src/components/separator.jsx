@@ -1,5 +1,5 @@
 import React from "react";
-import "../scss/components/ProblemaDetaliata.scss";
+import "../scss/components/_problema-detaliata.scss";
 
 function Separator({ className = "", orientation = "horizontal", decorative = true, ...props }, ref) {
   const isHorizontal = orientation === "horizontal";

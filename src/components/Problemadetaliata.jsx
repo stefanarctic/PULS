@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import '../scss/components/ProblemaDetaliata.scss';
+import '../scss/components/_problema-detaliata.scss';
 import { ArrowLeft, Bot, Calculator, BookOpen, Copy, Check } from 'lucide-react';
 import { Button } from './Buttondet';
 import { Card, CardContent, CardHeader, CardTitle } from './card';

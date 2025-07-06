@@ -172,6 +172,7 @@ const Navbar = () => {
                             {pulsOpen && (
                                 <div
                                     className="dropdown-menu"
+                                    // onClick={() => setPulsOpen(true)}
                                     style={{
                                         position: "absolute",
                                         top: "100%",

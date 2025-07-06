@@ -16,7 +16,6 @@ translate = () => {
 
 const Index = () => {
 
-
     const observer = new IntersectionObserver(entries => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {

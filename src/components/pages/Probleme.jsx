@@ -2,7 +2,7 @@ import { useEffect, useState, Fragment } from 'react';
 import Layout from '../Layout';
 import { useLocation } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
-import ProblemaDetaliata from "../Problemadetaliata";
+import ProblemaDetaliata from "../ProblemaDetaliata";
 import { problemeData } from '../problemedata';
 
 // Icon components
