@@ -4,6 +4,7 @@ import Slideshow from "../Slideshow";
 import { Waves, Atom, Circle, Activity, Calculator, BookOpen, Lightbulb, Target } from "lucide-react";
 import { useEffect } from "react";
 import useTranslate, { getTextNodes, useTranslateObject } from "../../hooks/useTranslate";
+import { problemeData } from "../problemedata";
 
 translate = () => {
     const texts = getTextNodes(document.body);
@@ -15,7 +16,17 @@ translate = () => {
 }
 
 const Index = () => {
-
+    // Funcție pentru a calcula numărul de probleme după dificultate
+    const getProblemsCountByDifficulty = (difficulty) => {
+        return problemeData.filter(problem => problem.dificultate === difficulty).length;
+    };
+  
+      // Funcție pentru a calcula numărul total de probleme
+    const getTotalProblemsCount = () => {
+        return problemeData.length;
+    };
+  
+  
     const observer = new IntersectionObserver(entries => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
@@ -169,7 +180,7 @@ const Index = () => {
                             <h3>Începători</h3>
                             <p>Probleme simple pentru a înțelege conceptele de bază ale fizicii</p>
                             <div className="problem-stats">
-                                <span>6 probleme</span>
+                                <span>{getProblemsCountByDifficulty('ușor')} probleme</span>
                                 <span className="difficulty easy">Ușor</span>
                             </div>
                             <button className="problem-button">Începe acum</button>
@@ -184,7 +195,7 @@ const Index = () => {
                             <h3>Intermediar</h3>
                             <p>Exerciții care combină mai multe concepte și necesită raționament</p>
                             <div className="problem-stats">
-                                <span>2 probleme</span>
+                                <span>{getProblemsCountByDifficulty('mediu')} probleme</span>
                                 <span className="difficulty medium">Mediu</span>
                             </div>
                             <button className="problem-button">Explorează</button>
@@ -199,7 +210,7 @@ const Index = () => {
                             <h3>Avansat</h3>
                             <p>Probleme complexe pentru pregătirea la olimpiade și examene</p>
                             <div className="problem-stats">
-                                <span>2 probleme</span>
+                                <span>{getProblemsCountByDifficulty('dificil')} probleme</span>
                                 <span className="difficulty hard">Dificil</span>
                             </div>
                             <button className="problem-button">Provocacă-te</button>
@@ -214,7 +225,10 @@ const Index = () => {
                             <h3>Concurs</h3>
                             <p>Probleme focusate pe teme specifice: pendul, unde, Lissajous, seism</p>
                             <div className="problem-stats">
-                                <span>2 probleme</span>
+                                <span>Nu exista probleme inca</span>
+                                <span className="difficulty expert">Expert</span>
+
+                                <span>{getProblemsCountByDifficulty('concurs')} probleme</span>
                                 <span className="difficulty expert">Concurs</span>
                             </div>
                             <button className="problem-button">Specializează-te</button>
