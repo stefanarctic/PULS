@@ -3,6 +3,7 @@ import Layout from './Layout';
 import { Card, CardHeader, CardTitle, CardContent } from './card';
 import { Badge } from './badge';
 import { Button } from './Buttondet';
+import useDarkMode from '../hooks/useDarkMode';
 
 const ProblemSubmit = () => {
     const [problemText, setProblemText] = useState('');
@@ -11,6 +12,7 @@ const ProblemSubmit = () => {
     const [apiResponse, setApiResponse] = useState(null);
     const [isLoading, setIsLoading] = useState(false);
     const [error, setError] = useState(null);
+    const isDarkMode = useDarkMode();
 
     const problemInputRef = useRef(null);
     const solutionInputRef = useRef(null);
@@ -149,44 +151,8 @@ const ProblemSubmit = () => {
                 display: 'flex',
                 flexDirection: 'column',
             }}>
-                {/* Header Section */}
-                {/* <div style={{ 
-                    textAlign: 'center', 
-                    marginBottom: '3rem',
-                    padding: '2rem',
-                    backgroundColor: 'white',
-                    borderRadius: '12px',
-                    boxShadow: '0 4px 6px rgba(0, 0, 0, 0.05)'
-                }}>
-                    <h1 style={{ 
-                        fontSize: '2.5rem', 
-                        fontWeight: 'bold', 
-                        color: '#1e293b',
-                        marginBottom: '1rem'
-                    }}>
-                        Client API Fizică
-                    </h1>
-                    <p style={{ 
-                        fontSize: '1.1rem', 
-                        color: '#64748b',
-                        maxWidth: '600px',
-                        margin: '0 auto',
-                        lineHeight: '1.6'
-                    }}>
-                        Demonstrează apelarea endpoint-ului <code style={{ 
-                            backgroundColor: '#e2e8f0', 
-                            padding: '0.25rem 0.5rem', 
-                            borderRadius: '4px',
-                            fontFamily: 'monospace'
-                        }}>/api/analyze</code> din client-side React
-                    </p>
-                </div> */}
-
                 <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '2rem', alignItems: 'start', width: '100%' }}>
-                {/* <div> */}
-                    {/* Left Column - Input Section */}
                     <div>
-                        {/* Problem Section */}
                         <Card style={{ 
                             marginBottom: '2rem', 
                             border: '1px solid var(--border-color-current-mode)',
@@ -205,7 +171,7 @@ const ProblemSubmit = () => {
                                     📝 Problemă
                                 </CardTitle>
                             </CardHeader>
-                            <CardContent style={{ padding: '1.5rem', paddingRight: '3rem' }}>
+                            <CardContent style={{ padding: '1.5rem', paddingRight: '1rem'}}>
                                 <div style={{ marginBottom: '1.5rem' }}>
                                     <label style={{ 
                                         display: 'block', 
@@ -222,11 +188,11 @@ const ProblemSubmit = () => {
                                         disabled={!!problemImageFile}
                                         ref={problemInputRef}
                                         style={{
-                                            width: '100%',
+                                            width: '92%',
                                             minHeight: '120px',
                                             padding: '0.75rem',
                                             paddingLeft: '1rem',
-                                            border: '2px solid var(--border-color-current-mode)',
+                                            border: `2px solid ${isDarkMode ? '#6b7280' : 'var(--border-color-current-mode)'}`,
                                             borderRadius: '8px',
                                             fontSize: '1rem',
                                             fontFamily: 'inherit',
@@ -236,15 +202,12 @@ const ProblemSubmit = () => {
                                             color: 'var(--primary-color-current-mode)'
                                         }}
                                         onFocus={(e) => e.target.style.borderColor = '#3b82f6'}
-                                        onBlur={(e) => e.target.style.borderColor = '#e2e8f0'}
+                                        onBlur={(e) => {
+                                            e.target.style.borderColor = isDarkMode ? '#6b7280' : 'var(--border-color-current-mode)';
+                                        }}
                                     />
                                 </div>
-
-                                <div style={{ 
-                                    textAlign: 'center', 
-                                    margin: '1.5rem 0',
-                                    position: 'relative'
-                                }}>
+                                <div style={{ textAlign: 'center', margin: '1.5rem 0', position: 'relative' }}>
                                     <div style={{
                                         position: 'absolute',
                                         top: '50%',
@@ -263,7 +226,6 @@ const ProblemSubmit = () => {
                                         SAU
                                     </span>
                                 </div>
-
                                 <div>
                                     <label style={{ 
                                         display: 'block', 
@@ -288,7 +250,9 @@ const ProblemSubmit = () => {
                                         style={{
                                             width: '100%',
                                             padding: '0.75rem',
+                                            marginRight: '0',
                                             backgroundColor: problemText.trim() ? 'var(--border-color-current-mode)' : '#3b82f6',
+                                            
                                             color: problemText.trim() ? 'var(--muted-color-current-mode)' : 'var(--secondary-background-current-mode)',
                                             border: 'none',
                                             borderRadius: '8px',
@@ -299,7 +263,6 @@ const ProblemSubmit = () => {
                                     >
                                         📸 Încarcă Imagine Problemă
                                     </Button>
-                                    
                                     {problemImageFile && (
                                         <div style={{ 
                                             marginTop: '1rem', 
@@ -347,8 +310,6 @@ const ProblemSubmit = () => {
                                 </div>
                             </CardContent>
                         </Card>
-
-                        {/* Solution Section */}
                         <Card style={{ 
                             border: '1px solid var(--border-color-current-mode)',
                             borderRadius: '12px',
@@ -409,7 +370,6 @@ const ProblemSubmit = () => {
                                 >
                                     ➕ Adaugă Imagini Soluție
                                 </Button>
-                                
                                 {solutionImageFiles.length > 0 ? (
                                     <div style={{ 
                                         marginTop: '1rem',
@@ -477,8 +437,6 @@ const ProblemSubmit = () => {
                                 )}
                             </CardContent>
                         </Card>
-
-                        {/* Error Display */}
                         {error && (
                             <div style={{ 
                                 marginTop: '1.5rem',
@@ -491,8 +449,6 @@ const ProblemSubmit = () => {
                                 <strong>⚠️ Eroare:</strong> {error}
                             </div>
                         )}
-
-                        {/* Submit Button */}
                         <Button
                             type="button"
                             onClick={handleSubmit}
@@ -521,7 +477,6 @@ const ProblemSubmit = () => {
                         >
                             {isLoading ? '⏳ Se trimite la API...' : '🚀 Trimite la API'}
                         </Button>
-
                         {isLoading && (
                             <div style={{ 
                                 textAlign: 'center', 
@@ -533,8 +488,6 @@ const ProblemSubmit = () => {
                             </div>
                         )}
                     </div>
-
-                    {/* Right Column - Results Section */}
                     <div>
                         {apiResponse && (
                             <div>
@@ -566,7 +519,6 @@ const ProblemSubmit = () => {
                                         </pre>
                                     </CardContent>
                                 </Card>
-
                                 <Card style={{ 
                                     marginBottom: '1.5rem',
                                     border: '1px solid var(--border-color-current-mode)',
@@ -595,7 +547,6 @@ const ProblemSubmit = () => {
                                         </pre>
                                     </CardContent>
                                 </Card>
-
                                 <Card style={{ 
                                     border: '1px solid var(--border-color-current-mode)',
                                     borderRadius: '12px',
@@ -625,7 +576,6 @@ const ProblemSubmit = () => {
                                 </Card>
                             </div>
                         )}
-
                         {!apiResponse && (
                             <div style={{
                                 padding: '3rem',

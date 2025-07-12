@@ -219,7 +219,7 @@ const Profile = () => {
                                                     <span>70%</span>
                                                 </div>
                                                 <div className="progress-bar">
-                                                    <div className="progress-fill" style={{ width: '70%' }}></div>
+                                                    <div className="progress-fill profile-progress-fill progress-70"></div>
                                                 </div>
                                             </div>
                                             <div className="progress-item">
@@ -228,7 +228,7 @@ const Profile = () => {
                                                     <span>45%</span>
                                                 </div>
                                                 <div className="progress-bar">
-                                                    <div className="progress-fill" style={{ width: '45%' }}></div>
+                                                    <div className="progress-fill profile-progress-fill progress-45"></div>
                                                 </div>
                                             </div>
                                             <div className="progress-item">
@@ -237,7 +237,7 @@ const Profile = () => {
                                                     <span>30%</span>
                                                 </div>
                                                 <div className="progress-bar">
-                                                    <div className="progress-fill" style={{ width: '30%' }}></div>
+                                                    <div className="progress-fill profile-progress-fill progress-30"></div>
                                                 </div>
                                             </div>
                                             <div className="progress-item">
@@ -246,7 +246,7 @@ const Profile = () => {
                                                     <span>15%</span>
                                                 </div>
                                                 <div className="progress-bar">
-                                                    <div className="progress-fill" style={{ width: '15%' }}></div>
+                                                    <div className="progress-fill profile-progress-fill progress-15"></div>
                                                 </div>
                                             </div>
                                         </div>

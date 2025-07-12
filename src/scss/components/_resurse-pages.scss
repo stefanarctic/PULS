@@ -1,0 +1,29 @@
+// Resurse Pages Styles
+.resurse-page-container {
+  padding-top: 110px;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.resurse-video {
+  width: 50%;
+  height: 20%;
+  object-fit: cover;
+  border-radius: 12px;
+  background: #23232a;
+}
+
+.resurse-link {
+  text-decoration: none;
+}
+
+.resurse-iframe {
+  width: 100%;
+  height: 480px;
+  border: none;
+}
+
+.resurse-seism-iframe {
+  border: none;
+} 

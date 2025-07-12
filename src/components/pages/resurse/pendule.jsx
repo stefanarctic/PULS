@@ -24,7 +24,7 @@ const PendulePage = () => {
   return (
     <Layout>
       <div className="resurse-pagina min-h-screen flex flex-col">
-        <div style={{ paddingTop: "110px", flex: 1, display: "flex", flexDirection: "column" }}>
+        <div className="resurse-page-container">
           <main className="flex-grow container mx-auto px-4 py-10">
             <h1 className="text-4xl md:text-5xl font-bold mb-6">Mișcărea oscilatorie armonică. </h1>
             <div className="max-w-3xl mb-10 mx-auto">
@@ -76,7 +76,7 @@ const PendulePage = () => {
                     href="/simulari/Grafice-Armonice/index.html"
                     target="_blank"
                     rel="noopener noreferrer"
-                    style={{ textDecoration: "none" }}
+                    className="resurse-link"
                   >
                     <Button size="lg">
                       Vezi simularea
@@ -124,7 +124,7 @@ const PendulePage = () => {
                     href="/simulari/Mix/Reprezentari3d.html"
                     target="_blank"
                     rel="noopener noreferrer"
-                    style={{ textDecoration: "none" }}
+                    className="resurse-link"
                   >
                     <Button size="lg">
                       Vezi simularea
@@ -166,7 +166,7 @@ const PendulePage = () => {
                     href="/simulari/Mix/Oscilatie-amortizata.html"
                     target="_blank"
                     rel="noopener noreferrer"
-                    style={{ textDecoration: "none" }}
+                    className="resurse-link"
                   >
                     <Button size="lg">
                       Vezi simularea
@@ -204,7 +204,7 @@ const PendulePage = () => {
                     href="/simulari/Mix/Pendul-amplitudine.html"
                     target="_blank"
                     rel="noopener noreferrer"
-                    style={{ textDecoration: "none" }}
+                    className="resurse-link"
                   >
                     <Button size="lg">
                       Vezi simularea

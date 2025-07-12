@@ -51,7 +51,7 @@ const UndePage = () => {
   return (
     <Layout>
       <div className="resurse-pagina min-h-screen flex flex-col">
-        <div style={{ paddingTop: "110px", flex: 1, display: "flex", flexDirection: "column" }}>
+        <div className="resurse-page-container">
           <main className="flex-grow container mx-auto px-4 py-10">
             <h1 className="text-4xl md:text-5xl font-bold mb-6">Unde</h1>
             <div className="max-w-3xl mb-10">
@@ -80,14 +80,14 @@ const UndePage = () => {
                   src={undeVideos[0].src}
                   alt={undeVideos[0].alt}
                   controls
-                  style={{ width: "50%", height: "20%", objectFit: "cover", borderRadius: "12px", background: "#23232a" }}
+                  className="resurse-video"
                   title="Cum se formeaza undele stationare într-o coardă vibrată? (exemplu video)"
                 />
                 <video
                   src={undeVideos[1].src}
                   alt={undeVideos[1].alt}
                   controls
-                  style={{ width: "50%", height: "20%", objectFit: "cover", borderRadius: "12px", background: "#23232a" }}
+                  className="resurse-video"
                   title="Cum se cum se formează undele sonore într-un tub și cum se determină frecvența fundamentală? (exemplu video)"
                 />
               </div>
@@ -125,7 +125,7 @@ const UndePage = () => {
                     href="/simulari/Unde/simulator-unde.html"
                     target="_blank"
                     rel="noopener noreferrer"
-                    style={{ textDecoration: "none" }}
+                    className="resurse-link"
                   >
                     <Button size="lg">
                       Vezi simularea
@@ -195,7 +195,7 @@ const UndePage = () => {
                     href="/simulari/prisma/prisma-simulator.html"
                     target="_blank"
                     rel="noopener noreferrer"
-                    style={{ textDecoration: "none" }}
+                    className="resurse-link"
                   >
                     <Button size="lg">
                       Vezi simularea
@@ -219,7 +219,7 @@ const UndePage = () => {
                 execution-while-out-of-viewport="true"
                 execution-while-not-rendered="true"
                 web-share="true"
-                style={{ width: "100%", height: "480px", border: "none" }}
+                className="resurse-iframe"
                 title="Undă electromagnetică 3D"
               ></iframe>
               <div

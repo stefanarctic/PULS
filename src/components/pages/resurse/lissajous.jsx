@@ -16,14 +16,7 @@ const LissajousPage = () => {
 	return (
 		<Layout>
 			<div className="resurse-pagina min-h-screen flex flex-col">
-				<div
-					style={{
-						paddingTop: "110px",
-						flex: 1,
-						display: "flex",
-						flexDirection: "column",
-					}}
-				>
+				<div className="resurse-page-container">
 					<main className="flex-grow container mx-auto px-4 py-10">
 						<h1 className="text-4xl md:text-5xl font-bold mb-6">
 							Figuri Lissajous
@@ -100,7 +93,7 @@ const LissajousPage = () => {
 										href="/simulari/Figuri-Lissajous/grafice.html"
 										target="_blank"
 										rel="noopener noreferrer"
-										style={{ textDecoration: "none" }}
+										className="resurse-link"
 									>
 										<Button size="lg">
 											Vezi simularea
@@ -146,7 +139,7 @@ const LissajousPage = () => {
 										href="/simulari/Mix/grafice.html"
 										target="_blank"
 										rel="noopener noreferrer"
-										style={{ textDecoration: "none" }}
+										className="resurse-link"
 									>
 										<Button size="lg">
 											Vezi simularea

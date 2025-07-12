@@ -14,7 +14,7 @@ const SeismePage = () => {
   return (
     <Layout>
       <div className="resurse-pagina min-h-screen flex flex-col">
-        <div style={{ paddingTop: "110px", flex: 1, display: "flex", flexDirection: "column" }}>
+        <div className="resurse-page-container">
           <main className="flex-grow container mx-auto px-4 py-10">
             <h1 className="text-4xl md:text-5xl font-bold mb-6">Seisme</h1>
             <div className="max-w-3xl mb-10">
@@ -76,7 +76,7 @@ const SeismePage = () => {
                     href="/simulari/Mix/Cutremur.html"
                     target="_blank"
                     rel="noopener noreferrer"
-                    style={{ textDecoration: "none" }}
+                    className="resurse-link"
                   >
                     <Button size="lg">
                       Vezi simularea
@@ -89,7 +89,7 @@ const SeismePage = () => {
             <p className="row"><span>&#9734;<b>Apasa sageata dreapta, sageata stanga pentru a te misca in jurul obiectului 3d.</b></span></p>
             <p className="row"><span>&#9734;<b>Apasa Enter pentru a te duce la urmatorul eveniment.</b></span></p>
             <div className="model-container">
-              <iframe id="modelFrame" src="https://stefanarctic.github.io/Cutremure-Unity/" width="960" height="700" style={{ border: 'none' }} allowFullScreen={true}></iframe>
+              <iframe id="modelFrame" src="https://stefanarctic.github.io/Cutremure-Unity/" width="960" height="700" className="resurse-seism-iframe" allowFullScreen={true}></iframe>
               <div id="modelDescription" className="sketchfab-info1">
                 🌀🌏〰Reprezentare Seism<br />🔁 Poți apasa stanga drepta pentru a te misca<br />🔁Poti apasa Enter pentru a vedea urmatoarea figura
               </div>

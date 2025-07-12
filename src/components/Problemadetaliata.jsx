@@ -187,14 +187,14 @@ export const ProblemaDetaliata = ({ problema, onBack }) => {
             </CardHeader>
             <CardContent>
               {problema.imagine && (
-                <div className="problema-imagine-container" style={{ textAlign: 'center', marginBottom: '1rem' }}>
-                  <img src={problema.imagine} alt="Ilustrație problemă" style={{ maxWidth: '100%', height: 'auto', borderRadius: '8px', boxShadow: '0 2px 8px rgba(0,0,0,0.08)' }} />
+                <div className="problema-imagine-container">
+                  <img src={problema.imagine} alt="Ilustrație problemă" className="problema-imagine" />
                 </div>
               )}
               {problema.imagine1 && (
-                <div className="problema-imagine-container" style={{ textAlign: 'center', marginBottom: '1rem', display: 'flex', justifyContent: 'space-between', gap: '1rem' }}>
-                  <img src={problema.imagine1} alt="Ilustrație problemă" style={{ maxWidth: '50%', height: 'auto', borderRadius: '8px', boxShadow: '0 2px 8px rgba(0,0,0,0.08)' }} />
-                  <img src={problema.imagine2} alt="Ilustrație problemă" style={{ maxWidth: '50%', height: 'auto', borderRadius: '8px', boxShadow: '0 2px 8px rgba(0,0,0,0.08)' }} />
+                <div className="problema-imagine-container dual-images">
+                  <img src={problema.imagine1} alt="Ilustrație problemă" className="problema-imagine dual-image" />
+                  <img src={problema.imagine2} alt="Ilustrație problemă" className="problema-imagine dual-image" />
                 </div>
               )}
               {/* ENUNT PROBLEMA CU MATHJAX */}
@@ -266,7 +266,7 @@ export const ProblemaDetaliata = ({ problema, onBack }) => {
 
         </div>
 
-        <div style={{ width: '300px' }} className="sidebar">
+                    <div className="problema-sidebar sidebar">
           <Card className="mb-6 sticky top-4">
             <CardHeader>
               <CardTitle className="text-lg">Punctaje</CardTitle>

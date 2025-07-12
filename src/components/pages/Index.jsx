@@ -67,10 +67,10 @@ const Index = () => {
                         </p>
                         <div className="buttons">
                             <button className="filled">
-                                <Link to="/probleme" style={{ 'all': 'unset' }}>Exploreaza problemele</Link>
+                                <Link to="/probleme" className="index-link">Exploreaza problemele</Link>
                             </button>
                             <button>
-                                <Link to="/simulari" style={{ 'all': 'unset' }}>Incearca simularile</Link>
+                                <Link to="/simulari" className="index-link">Incearca simularile</Link>
                             </button>
                         </div>
                     </div>
@@ -237,11 +237,11 @@ const Index = () => {
             {/* About Us Preview Section */}
             <section className="about-preview-section hidden hidden-bottom">
                 <div className="about-preview-text hidden hidden-bottom">
-                    <h2 className="about-title" style={{ marginBottom: "1.5rem" }}>Despre noi</h2>
-                    <p className="about-description hidden hidden-bottom" style={{ marginBottom: "1.5rem" }}>
+                    <h2 className="about-title index-about-title">Despre noi</h2>
+                    <p className="about-description hidden hidden-bottom index-about-description">
                         Suntem dedicați educației moderne și inovării în predarea fizicii. Platforma noastră oferă simulări interactive și exerciții pentru a transforma învățarea într-o experiență captivantă și practică.
                     </p>
-                    <p className="about-story hidden hidden-bottom" style={{ marginBottom: "1.5rem" }}>
+                    <p className="about-story hidden hidden-bottom index-about-story">
                         Povestea noastră a început cu o simplă întrebare: cum putem face ca fenomenele oscilatorii să prindă viață și să devină mai ușor de înțeles pentru toți cei care le studiază? Noi, o echipă de elevi pasionați de știință, am simțit mereu că, dincolo de formule și definiții, există o lume fascinantă, plină de ritm, mișcare și conexiuni surprinzătoare cu natura și tehnologia.
                     </p>
                     <Link to="/about-us" className="about-preview-button hidden hidden-bottom">
