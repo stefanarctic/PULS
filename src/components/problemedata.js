@@ -1,7 +1,7 @@
 export const problemeData = [
   // Seismologie
   {
-    id: '1',
+    id: 1,
     index: 1,
     titlu: 'Viteza undei P (Seism)',
     descriere: 'Calculul vitezei undelor primare în timpul unui seism',
@@ -29,7 +29,7 @@ export const problemeData = [
     }
   },
   {
-    id: '2',
+    id: 2,
     index: 2,
     titlu: 'Viteza undei S (Seism)',
     descriere: 'Calculul vitezei undelor secundare în timpul unui seism',
@@ -58,7 +58,7 @@ export const problemeData = [
   },
   // Mecanică
   {
-    id: '3',
+    id: 3,
     index: 3,
     titlu: 'Căderea liberă a unui corp',
     descriere: 'Determinarea timpului de cădere și a vitezei finale.',
@@ -74,7 +74,7 @@ export const problemeData = [
     date: { h: 20, g: 9.8 }
   },
   {
-    id: '4',
+    id: 4,
     index: 4,
     titlu: 'Plan înclinat fără frecare',
     descriere: 'Determinarea accelerației și a timpului de coborâre.',
@@ -91,7 +91,7 @@ export const problemeData = [
   },
   // Oscilații
   {
-    id: '5',
+    id: 5,
     index: 5,
     titlu: 'Perioada pendulului simplu',
     descriere: 'Calculul perioadei de oscilație pentru un pendul.',
@@ -107,7 +107,7 @@ export const problemeData = [
     date: { l: 1, g: 9.8 }
   },
   {
-    id: '6',
+    id: 6,
     index: 6,
     titlu: 'Oscilații amortizate',
     descriere: 'Analiza oscilațiilor cu amortizare.',
@@ -124,7 +124,7 @@ export const problemeData = [
   },
   // Unde
   {
-    id: '7',
+    id: 7,
     index: 7,
     titlu: 'Lungimea de undă',
     descriere: 'Determinarea lungimii de undă pentru o undă sonoră.',
@@ -140,7 +140,7 @@ export const problemeData = [
     date: { f: 440, v: 340 }
   },
   {
-    id: '8',
+    id: 8,
     index: 8,
     titlu: 'Interferența undelor',
     descriere: 'Analiza interferenței constructive și distructive.',
@@ -157,7 +157,7 @@ export const problemeData = [
   },
   // Lissajous
   {
-    id: '9',
+    id: 9,
     index: 9,
     titlu: 'Figuri Lissajous simple',
     descriere: 'Descrierea figurilor Lissajous pentru frecvențe egale.',
@@ -173,7 +173,7 @@ export const problemeData = [
     date: { fx: 1, fy: 1 }
   },
   {
-    id: '10',
+    id: 10,
     index: 10,
     titlu: 'Figuri Lissajous complexe',
     descriere: 'Analiza figurilor pentru frecvențe diferite.',
@@ -190,7 +190,7 @@ export const problemeData = [
   },
   // Concurs
   {
-    id: '11',
+    id: 11,
     index: 11,
     titlu: 'Unde mecanice si figura Lissajous',
     descriere: 'Analiza undelor mecanice și a figurii Lissajous pentru două unde perpendiculare.',
@@ -234,7 +234,7 @@ y = A_t \\sin(2\\pi v t + \\varphi_{0t})
     },
   },
   {
-    id: '12',
+    id: 12,
     index: 12,
     titlu: 'Unde seismice',
     descriere: 'Analiza undelor seismice și aplicarea modelului fizic la situații concrete.',
@@ -296,7 +296,7 @@ Folosind acest model care are la bază fizica undelor mecanice, rezolvă următo
     ]
   },
   {
-    id: '13',
+    id: 13,
     index: 13,
     titlu: 'Oscilatori liniari armonici',
     descriere: '',

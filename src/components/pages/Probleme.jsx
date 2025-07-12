@@ -2,7 +2,6 @@ import { useEffect, useState, Fragment } from 'react';
 import Layout from '../Layout';
 import { useLocation } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
-import ProblemaDetaliata from "../ProblemaDetaliata";
 import { problemeData } from '../problemedata';
 
 // Icon components
@@ -22,8 +21,9 @@ const ExternalLinkIcon = () => (
 );
 
 // Problem Card Component
-const ProblemCard = ({ problem, onResolveClick }) => {
+const ProblemCard = ({ problem }) => {
     const { index, titlu, dificultate, categorie, descriere, solved } = problem;
+    const navigate = useNavigate();
 
     const getDifficultyColorClass = (diff) => {
         switch (diff) {
@@ -60,7 +60,7 @@ const ProblemCard = ({ problem, onResolveClick }) => {
                 </div>
                 <button
                     className="problem-card-link"
-                    onClick={() => onResolveClick(problem)}
+                    onClick={() => navigate(`/probleme/${problem.id}`)}
                 >
                     <span>Rezolvă</span>
                     <ExternalLinkIcon />
@@ -82,13 +82,29 @@ const PhysicsProblems = () => {
         params.get("category") || "Toate"
     );
     const [sortBy, setSortBy] = useState("newest");
-    const [selectedProblem, setSelectedProblem] = useState(null);
     
     // Paginare
     const [currentPage, setCurrentPage] = useState(1);
     const problemsPerPage = 8; // Numărul de probleme per pagină
 
     const navigate = useNavigate();
+
+    // Funcție pentru a verifica dacă query-ul este un ID valid și naviga direct
+    const handleSearchSubmit = (e) => {
+        e.preventDefault();
+        if (searchQuery.trim()) {
+            const query = searchQuery.trim();
+            // Verifică dacă query-ul este un număr și dacă există o problemă cu acel ID
+            const problemId = parseInt(query);
+            if (!isNaN(problemId)) {
+                const problem = problemeData.find(p => p.id === problemId);
+                if (problem) {
+                    navigate(`/probleme/${problemId}`);
+                    return;
+                }
+            }
+        }
+    };
 
     useEffect(() => {
         const params = new URLSearchParams();
@@ -131,12 +147,16 @@ const PhysicsProblems = () => {
         : problemeData;
 
     const filteredProblems = relevantProblems.filter((problem) => {
-        if (
-            searchQuery &&
-            !problem.titlu.toLowerCase().includes(searchQuery.toLowerCase()) &&
-            !problem.categorie.toLowerCase().includes(searchQuery.toLowerCase())
-        ) {
-            return false;
+        if (searchQuery) {
+            const query = searchQuery.toLowerCase();
+            const matchesTitle = problem.titlu.toLowerCase().includes(query);
+            const matchesCategory = problem.categorie.toLowerCase().includes(query);
+            const matchesId = problem.id.toString().includes(query);
+            const matchesIndex = problem.index.toString().includes(query);
+            
+            if (!matchesTitle && !matchesCategory && !matchesId && !matchesIndex) {
+                return false;
+            }
         }
 
         if (selectedDifficulty !== "Toate" && problem.dificultate !== selectedDifficulty) {
@@ -261,16 +281,7 @@ const PhysicsProblems = () => {
         }
     };
 
-    if (selectedProblem) {
-        return (
-            <Layout>
-                <ProblemaDetaliata 
-                    problema={selectedProblem} 
-                    onBack={() => setSelectedProblem(null)}
-                />
-            </Layout>
-        );
-    }
+
 
     return (
         <Layout>
@@ -282,16 +293,16 @@ const PhysicsProblems = () => {
                     {/* Search and Filters */}
                     <div className="problems-page-filters">
                         <div className="filters-row">
-                            <div className="search-container">
+                            <form onSubmit={handleSearchSubmit} className="search-container">
                                 <span className="search-icon"><SearchIcon /></span>
                                 <input
                                     type="text"
-                                    placeholder="Caută probleme..."
+                                    placeholder="Caută după titlu, categorie, ID sau număr..."
                                     className="search-input"
                                     value={searchQuery}
                                     onChange={(e) => setSearchQuery(e.target.value)}
                                 />
-                            </div>
+                            </form>
                             <div className="select-container">
                                 <select
                                     className="filter-select"
@@ -356,7 +367,6 @@ const PhysicsProblems = () => {
                             <ProblemCard
                                 key={problem.id}
                                 problem={problem}
-                                onResolveClick={setSelectedProblem}
                             />
                         ))}
                     </div>
@@ -365,7 +375,14 @@ const PhysicsProblems = () => {
                     {sortedProblems.length === 0 && (
                         <div className="no-results">
                             <h3>Nicio problemă găsită</h3>
-                            <p>Încearcă să modifici filtrele sau să folosești alte cuvinte cheie.</p>
+                            {searchQuery && !isNaN(parseInt(searchQuery.trim())) ? (
+                                <p>
+                                    Nu există o problemă cu ID-ul <strong>{searchQuery.trim()}</strong>. 
+                                    Încearcă un alt ID sau folosește alte cuvinte cheie pentru căutare.
+                                </p>
+                            ) : (
+                                <p>Încearcă să modifici filtrele sau să folosești alte cuvinte cheie.</p>
+                            )}
                         </div>
                     )}
 

@@ -10,6 +10,7 @@ import SearchResults from "./components/pages/SearchResults";
 import './scss/style.scss';
 import Index from "./components/pages/Index";
 import Probleme from "./components/pages/Probleme";
+import ProblemaIndividuala from "./components/pages/ProblemaIndividuala";
 import Simulari from "./components/pages/Simulari";
 import Resurse from "./components/pages/Resurse";
 import Pendule from "./components/pages/resurse/pendule";
@@ -73,6 +74,7 @@ const App = () => {
         <Routes>
           <Route path="/" element={<Index />} />
           <Route path="/probleme" element={<Probleme />} />
+          <Route path="/probleme/:id" element={<ProblemaIndividuala />} />
           <Route path="/simulari" element={<Simulari />} />
           <Route path="/resurse" element={<Resurse />} />
           <Route path="/resurse/pendule" element={<Pendule />} />
