@@ -14,7 +14,7 @@ const SearchResults = () => {
     const allData = [
         {
             title: "Pendule",
-            path: "/Simulari/pendule",
+            path: "/resurse/pendule",
             keywords: [
                 "pendul", "pendule", "pendulum", "pendulare", "pendulare simpla", "pendulare simplă", "pendul simplu", "pendul matematic", "pendul fizic",
                 "pend", "pen", "pndul", "pendu", "pendl", "penduul", "pendull", "pendlum", "pendulm", "pendulum", "pendulum simplu",
@@ -24,7 +24,7 @@ const SearchResults = () => {
         },
         {
             title: "Unde",
-            path: "/Simulari/unde",
+            path: "/resurse/unde",
             keywords: [
                 "unda", "unde", "wave", "waves", "unda mecanica", "unda mecanică", "unda transversala", "unda transversală", "unda longitudinala", "unda longitudinală",
                 "oscilație", "oscilatii", "oscilatie", "oscillation", "oscillations", "vibrație", "vibratie", "vibratii", "vibrations", "vibra", "vibrat",
@@ -33,7 +33,7 @@ const SearchResults = () => {
         },
         {
             title: "Lissajous",
-            path: "/Simulari/lissajous",
+            path: "/resurse/lissajous",
             keywords: [
                 "lissajous", "figuri lissajous", "figura lissajous", "lissajou", "lisa", "liss", "figuri", "figura", "oscilloscope", "oscilloscop",
                 "lissajous figures", "lissajous figure", "lissajous sim", "lissajous simulation", "lissajous experimente", "lissajous physics",
@@ -42,7 +42,7 @@ const SearchResults = () => {
         },
         {
             title: "Seisme",
-            path: "/Simulari/seism",
+            path: "/resurse/seism",
             keywords: [
                 "seism", "seisme", "cutremur", "cutremure", "earthquake", "earthquakes", "seismic", "seismograf", "seismologie", "sei", "seis",
                 "seismology", "seismology", "seismology", "seismology", "seism experiment", "seism sim", "seism simulation", "seism fizica",
@@ -68,7 +68,7 @@ const SearchResults = () => {
         },
         {
             title: "Simulari",
-            path: "/Simulari",
+            path: "/simulari",
             keywords: [
                 "simulare", "simulari", "simulări", "simulare fizica", "simulare unda", "simulare pendul", "sim", "simul", "simulatie", "simulație",
                 "simulations", "simulation", "simulare experiment", "simulare physics", "simulare experimente", "simulare sim", "simulare simulare",
