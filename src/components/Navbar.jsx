@@ -10,6 +10,7 @@ import { useEffect, useRef, useState } from "react";
 
 const Navbar = () => {
     const [pulsOpen, setPulsOpen] = useState(false);
+    const [pulsForceOpen, setPulsForceOpen] = useState(false);
     const [searchValue, setSearchValue] = useState("");
     const dropdownRef = useRef(null);
     const dropdownMenuRef = useRef(null);
@@ -27,6 +28,7 @@ const Navbar = () => {
                 !dropdownMenuRef.current.contains(event.target)
             ) {
                 setPulsOpen(false);
+                setPulsForceOpen(false);
             }
         };
         document.addEventListener("mousedown", handleClickOutside);
@@ -40,13 +42,15 @@ const Navbar = () => {
         if (closeTimeoutRef.current) {
             clearTimeout(closeTimeoutRef.current);
         }
-        setPulsOpen(true);
+        if (!pulsForceOpen) setPulsOpen(true);
     };
 
     const handleMouseLeave = () => {
-        closeTimeoutRef.current = setTimeout(() => {
-            setPulsOpen(false);
-        }, 150); // Small delay to allow moving to dropdown menu
+        if (!pulsForceOpen) {
+            closeTimeoutRef.current = setTimeout(() => {
+                setPulsOpen(false);
+            }, 150); // Small delay to allow moving to dropdown menu
+        }
     };
 
     const handleDropdownMenuMouseEnter = () => {
@@ -56,14 +60,25 @@ const Navbar = () => {
     };
 
     const handleDropdownMenuMouseLeave = () => {
-        closeTimeoutRef.current = setTimeout(() => {
-            setPulsOpen(false);
-        }, 150);
+        if (!pulsForceOpen) {
+            closeTimeoutRef.current = setTimeout(() => {
+                setPulsOpen(false);
+            }, 150);
+        }
     };
 
     const handleDropdownClick = (e) => {
         e.preventDefault();
-        setPulsOpen((prev) => !prev);
+        setPulsForceOpen((prev) => {
+            const newState = !prev;
+            setPulsOpen(newState);
+            return newState;
+        });
+    };
+
+    const handleDropdownItemClick = () => {
+        setPulsForceOpen(false);
+        setPulsOpen(false);
     };
 
     const handleSearchChange = (e) => {
@@ -157,7 +172,7 @@ const Navbar = () => {
                             <span>Acasa</span>
                         </Link>
                         <div
-                            className="nav-link dropdown-toggle navbar-dropdown-toggle"
+                            className={`nav-link dropdown-toggle navbar-dropdown-toggle${(pulsOpen || pulsForceOpen) ? ' active' : ''}`}
                             ref={dropdownRef}
                             onMouseEnter={handleMouseEnter}
                             onMouseLeave={handleMouseLeave}
@@ -167,17 +182,17 @@ const Navbar = () => {
                                 <span>P.U.L.S.</span>
                                 <ChevronDown className="nav-icon navbar-dropdown-icon" />
                             </span>
-                            {pulsOpen && (
+                            {(pulsOpen || pulsForceOpen) && (
                                 <div
                                     ref={dropdownMenuRef}
                                     className="dropdown-menu navbar-dropdown-menu"
                                     onMouseEnter={handleDropdownMenuMouseEnter}
                                     onMouseLeave={handleDropdownMenuMouseLeave}
                                 >
-                                    <Link to="/resurse/pendule" className="dropdown-item navbar-dropdown-item">Pendule</Link>
-                                    <Link to="/resurse/unde" className="dropdown-item navbar-dropdown-item">Unde</Link>
-                                    <Link to="/resurse/lissajous" className="dropdown-item navbar-dropdown-item">Lissajous</Link>
-                                    <Link to="/resurse/seism" className="dropdown-item navbar-dropdown-item">Seisme</Link>
+                                    <Link to="/resurse/pendule" className="dropdown-item navbar-dropdown-item" onClick={handleDropdownItemClick}>Pendule</Link>
+                                    <Link to="/resurse/unde" className="dropdown-item navbar-dropdown-item" onClick={handleDropdownItemClick}>Unde</Link>
+                                    <Link to="/resurse/lissajous" className="dropdown-item navbar-dropdown-item" onClick={handleDropdownItemClick}>Lissajous</Link>
+                                    <Link to="/resurse/seism" className="dropdown-item navbar-dropdown-item" onClick={handleDropdownItemClick}>Seisme</Link>
                                 </div>
                             )}
                         </div>

@@ -8,18 +8,26 @@ import Video3 from "/res/Videos/Unde Videoclip.mp4";
 import Video4 from "/res/Videos/Front Unda 1.mp4";
 import Video5 from "/res/Videos/Front Unda 2.mp4";
 import Video6 from "/res/Videos/Lissajous-Video-1.mp4";
+import Thumbnail1 from "/res/Thumbnails/Pendul Video.png";
+import Thumbnail2 from "/res/Thumbnails/Frecventa Undelor Video.png";
+import Thumbnail3 from "/res/Thumbnails/Unde Videoclip.png";
+import Thumbnail4 from "/res/Thumbnails/Front Unda 1.png";
+import Thumbnail5 from "/res/Thumbnails/Front Unda 2.png";
+import Thumbnail6 from "/res/Thumbnails/Lissajous-Video-1.png";
 import Layout from "../Layout";
 import { useEffect } from "react";
+import VideoPopup from "../VideoPopup";
+
 
 const ResursePage = () => {
 
   const ResurseVideos = [
-    { src: Video1, alt: "Video Pendul" },
-    { src: Video2, alt: "Video Frecvența Undelor" },
-    { src: Video3, alt: "Video Unde" },
-    { src: Video4, alt: "Video Front Undă 1" },
-    { src: Video5, alt: "Video Front Undă 2" },
-    { src: Video6, alt: "Video Lissajous" },
+    { src: Video1, alt: "Video Pendul", thumbnail: Thumbnail1 },
+    { src: Video2, alt: "Video Frecvența Undelor", thumbnail: Thumbnail2 },
+    { src: Video3, alt: "Video Unde", thumbnail: Thumbnail3 },
+    { src: Video4, alt: "Video Front Undă 1", thumbnail: Thumbnail4 },
+    { src: Video5, alt: "Video Front Undă 2", thumbnail: Thumbnail5 },
+    { src: Video6, alt: "Video Lissajous", thumbnail: Thumbnail6 },
   ];
 
   useEffect(() => {
@@ -227,78 +235,114 @@ const ResursePage = () => {
                     <p className="experiment-desc">
                       Observă cum se comportă un pendul simplu în mișcare oscilatorie.
                     </p>
-                    <video
+                    <VideoPopup
+                      src={ResurseVideos[0].src}
+                      alt={ResurseVideos[0].alt}
+                      thumbnail={ResurseVideos[0].thumbnail}
+                      title="Pendulul simplu (experiment video)"
+                    />
+                    {/* <video
                       src={ResurseVideos[0].src}
                       alt={ResurseVideos[0].alt}
                       controls
                       className="experiment-video"
                       title="Pendulul simplu (experiment video)"
-                    />
+                    /> */}
                   </div>
                   <div className="experiment-card">
                     <h3 className="experiment-title">Unde Stationare in coarda vibranta</h3>
                     <p className="experiment-desc">
                       Explorează formarea undelor stationare într-o coardă vibrată.
                     </p>
-                    <video
+                    <VideoPopup
+                      src={ResurseVideos[1].src}
+                      alt={ResurseVideos[1].alt}
+                      thumbnail={ResurseVideos[1].thumbnail}
+                      title="Unde Stationare in coarda vibranta (experiment video)"
+                    />
+                    {/* <video
                       src={ResurseVideos[1].src}
                       alt={ResurseVideos[1].alt}
                       controls
                       className="experiment-video"
                       title="Legea lui Ohm (experiment video)"
-                    />
+                    /> */}
                   </div>
                   <div className="experiment-card">
                     <h3 className="experiment-title">Tub sonor - frecvenţa fundamentală</h3>
                     <p className="experiment-desc">
                       Demonstrează cum se formează undele sonore într-un tub și cum se determină frecvența fundamentală.
                     </p>
-                    <video
+                    <VideoPopup
+                      src={ResurseVideos[2].src}
+                      alt={ResurseVideos[2].alt}
+                      thumbnail={ResurseVideos[2].thumbnail}
+                      title="Tub sonor - frecvenţa fundamentală (experiment video)"
+                    />
+                    {/* <video
                       src={ResurseVideos[2].src}
                       alt={ResurseVideos[2].alt}
                       controls
                       className="experiment-video"
                       title="Spectre de lumină (experiment video)"
-                    />
+                    /> */}
                   </div>
                   <div className="experiment-card">
                     <h3 className="experiment-title">Frontul de Unda</h3>
                     <p className="experiment-desc">
                       Observă cum se propagă frontul de undă în apa.
                     </p>
-                    <video
+                    <VideoPopup
+                      src={ResurseVideos[3].src}
+                      alt={ResurseVideos[3].alt}
+                      thumbnail={ResurseVideos[3].thumbnail}
+                      title="Frontul de Unda (experiment video)"
+                    />
+                    {/* <video
                       src={ResurseVideos[3].src}
                       alt={ResurseVideos[3].alt}
                       controls
                       className="experiment-video"
                       title="Experiment suplimentar"
-                    />
+                    /> */}
                   </div>
                   <div className="experiment-card">
                     <h3 className="experiment-title">Frontul de Unda</h3>
                     <p className="experiment-desc">
                       Observă cum se propagă frontul de undă în apa.
                     </p>
-                    <video
+                    <VideoPopup
+                      src={ResurseVideos[4].src}
+                      alt={ResurseVideos[4].alt}
+                      thumbnail={ResurseVideos[4].thumbnail}
+                      title="Frontul de Unda (experiment video)"
+                    />
+                    {/* <video
                       src={ResurseVideos[4].src}
                       alt={ResurseVideos[4].alt}
                       controls
                       className="experiment-video"
                       title="Experiment suplimentar"
-                    />
+                    /> */}
                   </div>
                   <div className="experiment-card">
                     <h3 className="experiment-title">Figuri Lissajous</h3>
                     <p className="experiment-desc">
                       Explorează cum se formează figurile Lissajous prin oscilații perpendiculare.
                     </p>
-                    <video
+                    <VideoPopup
+                      src={ResurseVideos[5].src}
+                      alt={ResurseVideos[5].alt}
+                      thumbnail={ResurseVideos[5].thumbnail}
+                      title="Figuri Lissajous (experiment video)"
+                    />
+                    {/* <video
                       src={ResurseVideos[5].src}
                       alt={ResurseVideos[5].alt}
                       controls
                       className="experiment-video"
                       title="Experiment suplimentar"
-                    />
+                    /> */}
                   </div>
                 </div>
               </div>
