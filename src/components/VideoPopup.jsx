@@ -40,7 +40,7 @@ const VideoPopup = ({ src, alt, thumbnail, title }) => {
     return (
         <div className="video-popup">
             { popupOpen ? (
-                <video src={src} alt={alt} controls title={title} ref={videoRef} onLoadedData={handleOnLoadedData} className="experiment-video"></video>
+                <video src={src} alt={alt} controls title={title} ref={videoRef} onLoadedData={handleOnLoadedData}></video>
             ) : (
                 <img src={thumbnailData} alt={alt} ref={thumbnailRef} className="experiment-video"/>
             ) }

@@ -205,12 +205,23 @@
                         text-align: center;
                     }
 
-                    .experiment-video {
-                        width: 100%;
-                        max-width: 400px;
-                        border-radius: 12px;
-                        background: #23232a;
-                        margin-top: auto;
+                    .video-popup {
+                        img.experiment-video {
+                            width: 100%;
+                            max-width: 400px;
+                            border-radius: 12px;
+                            background: #23232a;
+                            margin-top: auto;
+                            cursor: pointer;
+    
+                            box-shadow: 0 2px 8px rgba(0,0,0,0.12);
+                            transition: box-shadow 0.2s, transform 0.2s;
+                            &:hover, &:focus {
+                              box-shadow: 0 8px 32px rgba(0,0,0,0.25);
+                              transform: scale(1.04);
+                              z-index: 2;
+                            }
+                        }
                     }
                 }
             }
