@@ -1,7 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 
 const VideoPopup = ({ src, alt, thumbnail, title }) => {
-
     const [popupOpen, setPopupOpen] = useState(false);
     const [thumbnailData, setThumbnailData] = useState(null);
     const thumbnailRef = useRef(null);
@@ -11,8 +10,10 @@ const VideoPopup = ({ src, alt, thumbnail, title }) => {
         setPopupOpen(true);
     };
 
-    const handleClosePopup = () => {
-        setPopupOpen(false);
+    const handleClosePopup = (e) => {
+        if (e.target.classList.contains('resurse-modal-overlay') || e.target.classList.contains('video-popup-close')) {
+            setPopupOpen(false);
+        }
     };
 
     const getThumbnail = videoRef => {
@@ -40,9 +41,14 @@ const VideoPopup = ({ src, alt, thumbnail, title }) => {
     return (
         <div className="video-popup">
             { popupOpen ? (
-                <video src={src} alt={alt} controls title={title} ref={videoRef} onLoadedData={handleOnLoadedData}></video>
+                <div className="resurse-modal-overlay animate-fadein" onClick={handleClosePopup}>
+                    <div className="resurse-modal-container">
+                        <button className="video-popup-close" onClick={handleClosePopup} aria-label="Închide video">&times;</button>
+                        <video src={src} alt={alt} controls title={title} ref={videoRef} onLoadedData={handleOnLoadedData} className="video-popup-player" autoPlay />
+                    </div>
+                </div>
             ) : (
-                <img src={thumbnailData} alt={alt} ref={thumbnailRef} className="experiment-video"/>
+                <img src={thumbnailData} alt={alt} ref={thumbnailRef} className="experiment-video" style={{cursor: 'pointer'}} onClick={handleOpenPopup}/>
             ) }
         </div>
     )
