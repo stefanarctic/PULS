@@ -2,7 +2,7 @@
 
 ## Descriere generală
 
-PULS este o platformă web educațională dedicată studierii fizicii, cu accent pe fenomene precum oscilațiile, undele, pendulele, figurile Lissajous și seismele. Platforma oferă atât simulări interactive, cât și probleme teoretice și practice, resurse educaționale și un sistem de autoevaluare. Utilizatorii pot explora concepte fizice prin vizualizări dinamice și pot primi feedback personalizat.
+**PULS** este o platformă web educațională dedicată studierii fizicii, cu accent pe fenomene precum oscilațiile, undele, pendulele, figurile Lissajous și seismele. Platforma oferă atât simulări interactive, cât și probleme teoretice și practice, resurse educaționale și un sistem de autoevaluare. Utilizatorii pot explora concepte fizice prin vizualizări dinamice și pot primi feedback personalizat.
 
 ---
 
@@ -20,7 +20,6 @@ PULS este o platformă web educațională dedicată studierii fizicii, cu accent
 
 3. **Resurse educaționale**
    - Lecții teoretice, formule, experimente virtuale și bibliografie.
-   - Materiale structurate pe teme și niveluri de studiu.
 
 4. **Profil utilizator**
    - Monitorizarea progresului: probleme rezolvate, nivel, activitate recentă, realizări (achievements).
@@ -41,7 +40,7 @@ PULS este o platformă web educațională dedicată studierii fizicii, cu accent
 - **Frontend:** React (JSX), Vite, SASS pentru stilizare.
 - **Componente principale:**
   - Navbar, Footer, Layout (structură pagină)
-  - Pagini: Acasă, Probleme, Simulări, Resurse, Profil, Despre noi, Căutare
+  - Pagini: Acasă, Probleme, Simulări, Resurse, Profil, Despre noi, Căutare, Contactează-ne
   - Componente pentru slideshow, carduri de funcționalitate, popup video, etc.
 - **Date și resurse:**
   - Problemele sunt definite într-un fișier JavaScript (`problemedata.js`).

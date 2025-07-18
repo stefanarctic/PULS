@@ -30,18 +30,17 @@
 - ⚛️ **Frontend:** React cu Vite, SASS
 - 🗂️ **Hosting cod:** Vercel
 - 📦 **Librării externe:** chart.js, d3.jx, math.jax
-- 📈 **D3.JS API:** pentru animații fizice
+- 📈 **D3.JS API:** pentru grafice fizice
 - 🤖 **OpenAI API (AI assistant)** – pentru interpretarea problemelor
 - 🎨 **Iconițe:** [Lucide React]
 
 ## 📦 Instalare locală
 
 ```bash
-git clone https://github.com/Stefanarctic/New-Puls.git
-cd puls
+git clone https://github.com/Stefanarctic/PULS.git
+cd PULS
 npm install
 npm run dev
 ---
 
 > Făcut cu ❤️ pentru elevii dornici de a învăţa şi profesori.
-"# PULS" 
