@@ -177,6 +177,7 @@ header#hero {
     header#hero {
         height: auto;
         overflow-x: hidden;
+        margin-bottom: 0px !important;
 
         main {
             flex-direction: column-reverse;
