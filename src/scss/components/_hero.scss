@@ -176,12 +176,19 @@ header#hero {
 @media (max-width: 900px) {
     header#hero {
         height: auto;
+        overflow-x: hidden;
 
         main {
             flex-direction: column-reverse;
+            display: flex;
             // align-items: stretch;
-            justify-content: flex-start;
+            // justify-content: flex-start;
+            justify-content: center !important;
+            align-items: center !important;
             padding: 2rem 2rem 1.5rem 1rem;
+            // padding-left: 0px;
+            // padding-right: 0px !important;
+            margin: 0px !important;
             // gap: 2rem;
             font-size: large;
             // background-color: red;
@@ -224,6 +231,7 @@ header#hero {
 
             #hero-text-container {
                 margin-left: 0;
+                margin-right: 1.5%;
                 // margin-bottom: 1.5rem !important;
                 max-width: 100%;
                 width: 100%;
@@ -242,9 +250,9 @@ header#hero {
                 }
 
                 &>p {
-                    font-size: 1.1rem;
+                    font-size: 1.2rem;
                     min-width: unset;
-                    max-width: 100%;
+                    max-width: 120%;
                     // margin-bottom: 2rem;
                 }
 
@@ -304,6 +312,25 @@ header#hero {
 
             button {
                 // height: 1.8rem !important;
+            }
+        }
+    }
+}
+
+@media (max-width: 400px) {
+    header#hero {
+        main {
+
+            .hero-slideshow-wrapper {
+                .slideshow-container {
+                    // max-width: 65vw !important;
+
+                    .slideshow {
+                        // width: 100px;
+                        // width: 1rem;
+                        height: 230px !important;
+                    }
+                }
             }
         }
     }
