@@ -1,7 +1,7 @@
 import React from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import Layout from '../Layout';
-import ProblemaDetaliata from '../ProblemaDetaliata';
+import ProblemaDetaliata from '../Problemadetaliata';
 import { problemeData } from '../problemedata';
 
 const ProblemaIndividuala = () => {
