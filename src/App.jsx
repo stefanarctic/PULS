@@ -6,7 +6,7 @@ import OurWork from "@/components/OurWork";
 import Services from "@/components/Services";
 import Testimonials from "@/components/Testimonials";
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
-import SearchResults from "./components/pages/SearchResults";
+import SearchResults from "./components/pages/searchresults";
 import './scss/style.scss';
 import Index from "./components/pages/Index";
 import Probleme from "./components/pages/Probleme";
