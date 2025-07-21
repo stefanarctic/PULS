@@ -1,4 +1,4 @@
-import { Book, FileQuestion, HelpCircle, Home, Layout, ListCheck, ListChecks, Settings, User, Search, ChevronDown } from "lucide-react";
+import { Book, FileQuestion, HelpCircle, Home, Layout, ListCheck, ListChecks, Settings, User, Search, ChevronDown, Menu, X } from "lucide-react";
 import { Link, useNavigate } from "react-router-dom";
 import DarkModeToggle from "./DarkModeToggle";
 import PulsLogoWhite from '/res/puls-logo-new2.png';
@@ -12,6 +12,8 @@ const Navbar = () => {
     const [pulsOpen, setPulsOpen] = useState(false);
     const [pulsForceOpen, setPulsForceOpen] = useState(false);
     const [searchValue, setSearchValue] = useState("");
+    const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+    const [mobileDropdownOpen, setMobileDropdownOpen] = useState(false);
     const dropdownRef = useRef(null);
     const dropdownMenuRef = useRef(null);
     const closeTimeoutRef = useRef(null);
@@ -36,6 +38,36 @@ const Navbar = () => {
             document.removeEventListener("mousedown", handleClickOutside);
         };
     }, []);
+
+    // Close mobile menu when clicking outside
+    useEffect(() => {
+        const handleClickOutside = (event) => {
+            if (!event.target.closest('#nav-mobile') && !event.target.closest('#burger-menu')) {
+                setMobileMenuOpen(false);
+            }
+        };
+        document.addEventListener("mousedown", handleClickOutside);
+        return () => {
+            document.removeEventListener("mousedown", handleClickOutside);
+        };
+    }, []);
+
+    // Închide dropdown-ul mobil când se închide meniul mobil
+    useEffect(() => {
+        if (!mobileMenuOpen) setMobileDropdownOpen(false);
+    }, [mobileMenuOpen]);
+
+    // Blochează scrollbarul body-ului când meniul mobil e deschis
+    useEffect(() => {
+        if (mobileMenuOpen) {
+            document.body.style.overflow = 'hidden';
+        } else {
+            document.body.style.overflow = '';
+        }
+        return () => {
+            document.body.style.overflow = '';
+        };
+    }, [mobileMenuOpen]);
 
     // Improved hover behavior with delay
     const handleMouseEnter = () => {
@@ -94,11 +126,19 @@ const Navbar = () => {
         }
     };
 
+    const handleMobileMenuToggle = () => {
+        setMobileMenuOpen(!mobileMenuOpen);
+    };
+
+    const handleMobileNavClick = () => {
+        setMobileMenuOpen(false);
+    };
+
     // Consolidated scroll logic
     useEffect(() => {
         const handleScroll = () => {
             const scrollTop = $(document).scrollTop();
-            
+
             // Background and blur effects
             if (scrollTop <= 100) {
                 $('nav').css('backdrop-filter', `blur(${0.2 * (scrollTop / 10)}px)`);
@@ -214,12 +254,78 @@ const Navbar = () => {
                         </Link>
                     </li>
                 </ul>
-                <div id="nav-mobile">
-                    <a id="burger-menu" data-href="#">
-                        <span />
-                    </a>
-                </div>
             </div>
+
+            {/* Mobile Menu Button */}
+            <div id="nav-mobile">
+                <button
+                    id="burger-menu"
+                    onClick={handleMobileMenuToggle}
+                    className={mobileMenuOpen ? 'active' : ''}
+                >
+                    {mobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
+                </button>
+
+                {/* Mobile Menu Overlay */}
+                {mobileMenuOpen && (
+                    <div id="mobile-menu" className={`active${darkModeOn ? ' dark-mode' : ''}`}>
+                        {/* Buton de close */}
+                        <button
+                            className="mobile-menu-close"
+                            onClick={() => setMobileMenuOpen(false)}
+                            aria-label="Închide meniul"
+                            style={{ position: 'absolute', top: 20, right: 20, background: 'none', border: 'none', cursor: 'pointer', zIndex: 1100 }}
+                        >
+                            <X size={32} color={darkModeOn ? '#fff' : '#222'} />
+                        </button>
+                        <div className="nav-list">
+                            <Link to="/" className="nav-link" onClick={handleMobileNavClick}>
+                                <Home className="nav-icon" />
+                                <span>Acasa</span>
+                            </Link>
+
+                            <div className="mobile-dropdown">
+                                <div className="mobile-dropdown-header" onClick={() => setMobileDropdownOpen(v => !v)}>
+                                    <span>P.U.L.S.</span>
+                                    <ChevronDown className="nav-icon" style={{ transform: mobileDropdownOpen ? 'rotate(180deg)' : 'none', transition: 'transform 0.3s' }} />
+                                </div>
+                                <div className={`mobile-dropdown-content${mobileDropdownOpen ? ' open' : ''}`}>
+                                    <Link to="/resurse/pendule" className="nav-link" onClick={handleMobileNavClick}>
+                                        Pendule
+                                    </Link>
+                                    <Link to="/resurse/unde" className="nav-link" onClick={handleMobileNavClick}>
+                                        Unde
+                                    </Link>
+                                    <Link to="/resurse/lissajous" className="nav-link" onClick={handleMobileNavClick}>
+                                        Lissajous
+                                    </Link>
+                                    <Link to="/resurse/seism" className="nav-link" onClick={handleMobileNavClick}>
+                                        Seisme
+                                    </Link>
+                                </div>
+                            </div>
+
+                            <Link to="/probleme" className="nav-link" onClick={handleMobileNavClick}>
+                                <ListCheck className="nav-icon" />
+                                <span>Probleme</span>
+                            </Link>
+                            <Link to="/simulari" className="nav-link" onClick={handleMobileNavClick}>
+                                <Settings className="nav-icon" />
+                                <span>Simulari</span>
+                            </Link>
+                            <Link to="/resurse" className="nav-link" onClick={handleMobileNavClick}>
+                                <Book className="nav-icon" />
+                                <span>Resurse</span>
+                            </Link>
+                            <Link to="/profil" className="nav-link" onClick={handleMobileNavClick}>
+                                <User className="nav-icon" />
+                                <span>Profil</span>
+                            </Link>
+                        </div>
+                    </div>
+                )}
+            </div>
+
             {/* Dark Mode Toggle */}
             <div id="dark-mode-toggle-container">
                 <DarkModeToggle />
