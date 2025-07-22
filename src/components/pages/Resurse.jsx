@@ -241,13 +241,6 @@ const ResursePage = () => {
                       thumbnail={ResurseVideos[0].thumbnail}
                       title="Pendulul simplu (experiment video)"
                     />
-                    {/* <video
-                      src={ResurseVideos[0].src}
-                      alt={ResurseVideos[0].alt}
-                      controls
-                      className="experiment-video"
-                      title="Pendulul simplu (experiment video)"
-                    /> */}
                   </div>
                   <div className="experiment-card">
                     <h3 className="experiment-title">Unde Stationare in coarda vibranta</h3>
@@ -260,13 +253,6 @@ const ResursePage = () => {
                       thumbnail={ResurseVideos[1].thumbnail}
                       title="Unde Stationare in coarda vibranta (experiment video)"
                     />
-                    {/* <video
-                      src={ResurseVideos[1].src}
-                      alt={ResurseVideos[1].alt}
-                      controls
-                      className="experiment-video"
-                      title="Legea lui Ohm (experiment video)"
-                    /> */}
                   </div>
                   <div className="experiment-card">
                     <h3 className="experiment-title">Tub sonor - frecvenţa fundamentală</h3>
@@ -279,13 +265,6 @@ const ResursePage = () => {
                       thumbnail={ResurseVideos[2].thumbnail}
                       title="Tub sonor - frecvenţa fundamentală (experiment video)"
                     />
-                    {/* <video
-                      src={ResurseVideos[2].src}
-                      alt={ResurseVideos[2].alt}
-                      controls
-                      className="experiment-video"
-                      title="Spectre de lumină (experiment video)"
-                    /> */}
                   </div>
                   <div className="experiment-card">
                     <h3 className="experiment-title">Frontul de Unda</h3>
@@ -298,13 +277,6 @@ const ResursePage = () => {
                       thumbnail={ResurseVideos[3].thumbnail}
                       title="Frontul de Unda (experiment video)"
                     />
-                    {/* <video
-                      src={ResurseVideos[3].src}
-                      alt={ResurseVideos[3].alt}
-                      controls
-                      className="experiment-video"
-                      title="Experiment suplimentar"
-                    /> */}
                   </div>
                   <div className="experiment-card">
                     <h3 className="experiment-title">Frontul de Unda</h3>
@@ -317,13 +289,6 @@ const ResursePage = () => {
                       thumbnail={ResurseVideos[4].thumbnail}
                       title="Frontul de Unda (experiment video)"
                     />
-                    {/* <video
-                      src={ResurseVideos[4].src}
-                      alt={ResurseVideos[4].alt}
-                      controls
-                      className="experiment-video"
-                      title="Experiment suplimentar"
-                    /> */}
                   </div>
                   <div className="experiment-card">
                     <h3 className="experiment-title">Figuri Lissajous</h3>
@@ -336,13 +301,6 @@ const ResursePage = () => {
                       thumbnail={ResurseVideos[5].thumbnail}
                       title="Figuri Lissajous (experiment video)"
                     />
-                    {/* <video
-                      src={ResurseVideos[5].src}
-                      alt={ResurseVideos[5].alt}
-                      controls
-                      className="experiment-video"
-                      title="Experiment suplimentar"
-                    /> */}
                   </div>
                 </div>
               </div>

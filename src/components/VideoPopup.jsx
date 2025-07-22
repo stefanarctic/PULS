@@ -20,7 +20,7 @@ const VideoPopup = ({ src, alt, thumbnail, title }) => {
         const canvas = document.createElement('canvas');
         canvas.width = videoRef.width;
         canvas.height = videoRef.height;
-        canvas.getContext('2d').drawImage(video, 0, 0, canvas.width, canvas.height);
+        canvas.getContext('2d').drawImage(videoRef, 0, 0, canvas.width, canvas.height);
 
         const img = document.createElement('img');
         img.src = canvas.toDataURL();
@@ -29,13 +29,22 @@ const VideoPopup = ({ src, alt, thumbnail, title }) => {
     }
 
     const handleOnLoadedData = () => {
+        console.log('Loading thumbnail')
         if(!thumbnailData)
             setThumbnailData(getThumbnail(videoRef.current));
     }
 
     useEffect(() => {
+        console.log('Loaded video')
+        if(videoRef.current)
+            handleOnLoadedData();
+    }, [videoRef.current]);
+
+    useEffect(() => {
         if(thumbnail)
             setThumbnailData(thumbnail);
+
+        console.log(thumbnail);
     }, [thumbnail]);
 
     return (
