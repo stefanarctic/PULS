@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url><loc>https://puls-fizica.vercel.app/</loc></url>
+  <url><loc>https://puls-fizica.vercel.app/probleme</loc></url>
+  <url><loc>https://puls-fizica.vercel.app/probleme?difficulty=ușor</loc></url>
+  <url><loc>https://puls-fizica.vercel.app/probleme?difficulty=mediu</loc></url>
+  <url><loc>https://puls-fizica.vercel.app/probleme?difficulty=dificil</loc></url>
+  <url><loc>https://puls-fizica.vercel.app/probleme?difficulty=concurs</loc></url>
+  <url><loc>https://puls-fizica.vercel.app/probleme?category=Mecanică</loc></url>
+  <url><loc>https://puls-fizica.vercel.app/probleme?category=Oscilații</loc></url>
+  <url><loc>https://puls-fizica.vercel.app/probleme?category=Unde</loc></url>
+  <url><loc>https://puls-fizica.vercel.app/probleme?category=Lissajous</loc></url>
+  <url><loc>https://puls-fizica.vercel.app/probleme?category=Seismologie</loc></url>
+  <url><loc>https://puls-fizica.vercel.app/simulari</loc></url>
+  <url><loc>https://puls-fizica.vercel.app/resurse</loc></url>
+  <url><loc>https://puls-fizica.vercel.app/resurse/pendule</loc></url>
+  <url><loc>https://puls-fizica.vercel.app/resurse/unde</loc></url>
+  <url><loc>https://puls-fizica.vercel.app/resurse/lissajous</loc></url>
+  <url><loc>https://puls-fizica.vercel.app/resurse/seism</loc></url>
+  <url><loc>https://puls-fizica.vercel.app/about-us</loc></url>
+  <url><loc>https://puls-fizica.vercel.app/search</loc></url>
+  <url><loc>https://puls-fizica.vercel.app/profil</loc></url>
+  <url><loc>https://puls-fizica.vercel.app/api-test</loc></url>
+  <url><loc>https://puls-fizica.vercel.app/simulari/Mix/Reprezentari3d.html</loc></url>
+  <url><loc>https://puls-fizica.vercel.app/simulari/Mix/Oscilatie-amortizata.html</loc></url>
+  <url><loc>https://puls-fizica.vercel.app/simulari/Mix/Pendul-amplitudine.html</loc></url>
+  <url><loc>https://puls-fizica.vercel.app/simulari/Unde/simulator-unde.html</loc></url>
+  <url><loc>https://puls-fizica.vercel.app/simulari/Figuri-Lissajous/grafice.html</loc></url>
+  <url><loc>https://puls-fizica.vercel.app/simulari/Grafice-Armonice/index.html</loc></url>
+  <url><loc>https://puls-fizica.vercel.app/simulari/Functii/Functii/index.html</loc></url>
+  <url><loc>https://puls-fizica.vercel.app/simulari/Mix/grafice.html</loc></url>
+  <url><loc>https://puls-fizica.vercel.app/simulari/Mix/Cutremur.html</loc></url>
+  <url><loc>https://puls-fizica.vercel.app/simulari/prisma/prisma-simulator.html</loc></url>
+  <!-- Dynamic problem pages -->
+  <url><loc>https://puls-fizica.vercel.app/probleme/1</loc></url>
+  <url><loc>https://puls-fizica.vercel.app/probleme/2</loc></url>
+  <url><loc>https://puls-fizica.vercel.app/probleme/3</loc></url>
+  <url><loc>https://puls-fizica.vercel.app/probleme/4</loc></url>
+  <url><loc>https://puls-fizica.vercel.app/probleme/5</loc></url>
+</urlset>

@@ -74,7 +74,7 @@ nav {
                 list-style-type: none;
                 text-align: center;
 
-                .nav-link {
+                .nav-link, .dark-mode-toggle-link {
                     font-family: 'Open Sans', sans-serif;
                     color: var(--primary-color-current-mode);
                     font-style: 'Helvetica', sans-serif;
@@ -268,7 +268,7 @@ nav {
                 max-width: 400px;
                 padding: 2rem;
 
-                .nav-link {
+                .nav-link, .dark-mode-toggle-link {
                     font-family: 'Open Sans', sans-serif;
                     color: var(--navbar-mobile-color);
                     font-size: 1.2rem;
@@ -379,29 +379,7 @@ nav {
     }
 
     #dark-mode-toggle-container {
-        flex: 35;
-        display: flex;
-        align-items: center;
-
-        .toggle-parent {
-            padding: 20px;
-            border-radius: 10px;
-            padding-top: 22.5px;
-            cursor: pointer;
-
-            &:hover {
-                background-color: rgba(0, 0, 0, 0.171);
-            }
-
-            .dark-mode-toggle {
-                width: 1.5rem;
-                height: 1.5rem;
-                display: inline-flex;
-                align-items: center;
-                justify-content: center;
-                color: var(--primary-color-current-mode);
-            }
-        }
+        display: none;
     }
 
     @keyframes show-blur {
@@ -440,9 +418,6 @@ nav {
     }
 }
 
-@media all and (max-width: 1600px) {
-    header {}
-}
 
 .dropdown-menu {
     position: absolute;
@@ -488,20 +463,53 @@ nav {
     }
 }
 
+@media (max-width: 1480px) {
+    nav {
+        #logo-container {
+            padding-left: 0px;
+        }
 
+        #navbar-search {
+            margin-left: 10px;
+        }
 
+        #nav-container {
+            ul {
+                li {
+                    gap: 5px;
+                }
+            }
+        }
+    }
+}
 
+@media (max-width: 1430px) {
+    nav {
+        #nav-container {
+            ul {
+                padding-left: 15px;
+                li {
+                }
+            }
+        }
+    }
+}
 
-// Mobile responsive design for navbar
-@media (max-width: 768px) {
+@media (max-width: 1400px) {
     nav {
         padding: 15px 10px;
-
+        align-items: center !important;
+        
         #logo-container {
+            // background-color: red !important;
+            padding-right: 0px !important;
+            margin-right: 0px !important;
             padding-left: 10px;
+            max-width: fit-content;
 
             #logo-link {
                 font-size: 1.5rem;
+                
 
                 img {
                     width: 120px;
@@ -510,9 +518,13 @@ nav {
         }
 
         #navbar-search {
+            // background-color: red;
             margin-left: 10px;
             padding: 4px;
             gap: 8px;
+            // max-width: calc(fit-content * 2);
+            // max-width: fit-content;
+            max-width: 20%;
 
             .search-input {
                 width: 120px;
@@ -542,6 +554,14 @@ nav {
                 padding: 15px;
                 padding-top: 17.5px;
             }
+        }
+    }
+}
+
+@media (max-width: 900px) {
+    nav {
+        #navbar-search {
+            max-width: 35%;
         }
     }
 }
@@ -705,9 +725,6 @@ nav {
     }
 }
 
-@media all and (max-width: 1600px) {
-    header {}
-}
 
 .dropdown-menu {
     position: absolute;

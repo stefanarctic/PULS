@@ -252,6 +252,9 @@ const Navbar = () => {
                             <User className="nav-icon" />
                             <span>Profil</span>
                         </Link>
+                        <div className="nav-link dark-mode-toggle-link">
+                            <DarkModeToggle />
+                        </div>
                     </li>
                 </ul>
             </div>
@@ -321,14 +324,12 @@ const Navbar = () => {
                                 <User className="nav-icon" />
                                 <span>Profil</span>
                             </Link>
+                            <div className="nav-link dark-mode-toggle-link">
+                                <DarkModeToggle />
+                            </div>
                         </div>
                     </div>
                 )}
-            </div>
-
-            {/* Dark Mode Toggle */}
-            <div id="dark-mode-toggle-container">
-                <DarkModeToggle />
             </div>
         </nav>
     );
