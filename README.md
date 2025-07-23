@@ -49,5 +49,6 @@ npm install
 npm run dev
 ```
 
+sdsds
 ---
 <p align="center" style="margin-top: 15px"><b>Făcut cu ❤️ pentru elevii dornici de a învăţa şi profesori.</b></p>
