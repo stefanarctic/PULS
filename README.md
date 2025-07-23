@@ -49,5 +49,5 @@ npm install
 npm run dev
 ```
 
-<hr>
+---
 <p align="center" style="margin-top: 15px"><b>Făcut cu ❤️ pentru elevii dornici de a învăţa şi profesori.</b></p>
