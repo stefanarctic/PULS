@@ -24,6 +24,12 @@
 - Sugestii pas cu pas pentru înțelegerea conceptelor
 - Feedback personalizat pentru fiecare utilizator
 
+## 👨‍💻 Autori
+
+- Drosu Ștefan, Bajean Mateo — dezvoltatori
+- prof. Bebu Bianka Ioana - coordonator fizica
+- prof. Bebu Ion - colaborator experimente
+- prof. Ovidiu Dumitrescu - indrumator
 
 ## 🛠️ Tehnologii folosite
 
@@ -41,6 +47,7 @@ git clone https://github.com/Stefanarctic/PULS.git
 cd PULS
 npm install
 npm run dev
----
+```
 
-> Făcut cu ❤️ pentru elevii dornici de a învăţa şi profesori.
+<hr>
+<p align="center" style="margin-top: 15px"><b>Făcut cu ❤️ pentru elevii dornici de a învăţa şi profesori.</b></p>
