@@ -460,3 +460,193 @@
         }
     }
 }
+
+/* TELEFOANE: max-width 768px */
+@media (max-width: 768px) {
+    .resurse-page {
+        padding-top: 30px;
+
+        main {
+            padding: 1.5rem 1rem;
+
+            .resurse-title {
+                font-size: 1.75rem;
+                margin-top: 2rem;
+
+                &::after {
+                    width: 60px;
+                    height: 3px;
+                }
+            }
+
+            .resurse-description {
+                font-size: 1rem;
+                margin-bottom: 2rem;
+            }
+
+            .tabs-list {
+                flex-direction: column;
+                align-items: stretch;
+            }
+
+            .tabs-trigger {
+                font-size: 1rem;
+                padding: 0.5rem 1rem;
+                width: 100%;
+            }
+
+            .rounded-container {
+                padding: 1.5rem;
+
+                .resurse-section-title {
+                    font-size: 1.5rem;
+                }
+
+                .resurse-section-subtitle {
+                    font-size: 1rem;
+                }
+
+                .formula-grid {
+                    grid-template-columns: 1fr;
+                }
+
+                .formula-card {
+                    padding: 1rem;
+                }
+
+                .font-semibold,
+                .font-mono {
+                    font-size: 1rem;
+                }
+
+                .experimente-video-grid {
+                    grid-template-columns: 1fr;
+                    gap: 1.25rem;
+
+                    .experiment-card {
+                        padding: 1.25rem 1rem;
+
+                        .experiment-title {
+                            font-size: 1.1rem;
+                        }
+
+                        .experiment-desc {
+                            font-size: 1rem;
+                        }
+
+                        .experiment-video {
+                            max-width: 100%;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+/* TABLETE: între 769px și 1024px */
+@media (min-width: 769px) and (max-width: 1024px) {
+    .resurse-page {
+        padding-top: 40px;
+
+        main {
+            padding: 2rem 1.5rem;
+
+            .resurse-title {
+                font-size: 2.2rem;
+                margin-top: 3rem;
+
+                &::after {
+                    width: 70px;
+                }
+            }
+
+            .resurse-description {
+                font-size: 1.05rem;
+            }
+
+            .tabs-trigger {
+                font-size: 1.05rem;
+                padding: 0.5rem 2rem;
+            }
+
+            .rounded-container {
+                padding: 2rem;
+
+                .resurse-section-title {
+                    font-size: 1.75rem;
+                }
+
+                .resurse-section-subtitle {
+                    font-size: 1.1rem;
+                }
+
+                .formula-grid {
+                    grid-template-columns: 1fr 1fr;
+                }
+
+                .experimente-video-grid {
+                    grid-template-columns: 1fr;
+                }
+
+                .formula-card,
+                .experiment-card {
+                    padding: 1.25rem;
+                }
+
+                .font-semibold,
+                .font-mono {
+                    font-size: 1.1rem;
+                }
+            }
+        }
+    }
+}
+
+/* LAPTOPURI MICI / DESKTOPURI MEDII: între 1025px și 1366px */
+@media (min-width: 1025px) and (max-width: 1366px) {
+    .resurse-page {
+        main {
+            padding: 2rem 2rem;
+
+            .resurse-title {
+                font-size: 2.4rem;
+            }
+
+            .resurse-description {
+                font-size: 1.1rem;
+            }
+
+            .tabs-trigger {
+                font-size: 1.1rem;
+                padding: 0.5rem 2.2rem;
+            }
+
+            .rounded-container {
+                padding: 2rem;
+
+                .resurse-section-title {
+                    font-size: 1.85rem;
+                }
+
+                .resurse-section-subtitle {
+                    font-size: 1.125rem;
+                }
+
+                .formula-card,
+                .experiment-card {
+                    padding: 1.4rem;
+                }
+
+                .font-semibold,
+                .font-mono {
+                    font-size: 1.125rem;
+                }
+
+                .experimente-video-grid {
+                    grid-template-columns: 1fr 1fr;
+                }
+            }
+        }
+    }
+}

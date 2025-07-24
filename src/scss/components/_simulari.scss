@@ -46,7 +46,7 @@
       // transition: transform 0.3s ease, box-shadow 0.3s ease;
       // color: var(--primary-color-current-mode);
 
-      
+
       background: var(--quaternary-background-current-mode);
       color: var(--primary-color-current-mode) !important;
       transition: background-color 0.3s ease, color 0.3s ease;
@@ -156,5 +156,19 @@
     opacity: 0.9;
     background-color: var(--accent-color-current-mode);
     color: var(--primary-background-current-mode);
+  }
+}
+
+@media (max-width: 768px) {
+  .simulari-page .main-content {
+    padding: 0.7rem 0.3rem !important;
+    max-width: 100vw !important;
+    width: 100vw !important;
+    box-sizing: border-box;
+  }
+
+  .simulari-page {
+    width: 100vw !important;
+    overflow-x: hidden;
   }
 }
