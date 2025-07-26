@@ -1,5 +1,5 @@
 import React from "react";
-import "../scss/components/_problema-detaliata.scss";
+import "../scss/components/ProblemaDetaliata.scss";
 
 export const Card = React.forwardRef(({ className = "", ...props }, ref) => (
   <div ref={ref} className={`card ${className}`} {...props} />

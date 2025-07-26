@@ -659,15 +659,60 @@
 @media (max-width: 768px) {
     .section-title {
         font-size: 2rem !important;
+        margin-top: 7rem !important;
+        margin-bottom: -7rem !important;
     }
 
     .features-grid,
     .simulations-grid,
     .resources-grid {
         grid-template-columns: 1fr !important;
+        margin-bottom: 0.5rem !important;
     }
 
     .footer-content {
         flex-direction: column !important;
+        margin-top: 5rem !important;
     }
+    .about-section {
+        margin-top: 5rem !important;
+        margin-bottom: 5rem !important;
+    }
+
+    .features-section {
+        background: var(--primary-background-current-mode); // sau var(--secondary-background-current-mode)
+        padding-bottom: 17rem !important;
+        padding-top: 0.1rem !important;
+        // border-radius: 0 0 2rem 2rem;
+    }
+    .simulations-section {
+        background: var(--primary-background-current-mode); // sau var(--primary-background-current-mode)
+        padding-bottom: 17rem !important;
+        padding-top: 0.1rem !important;
+    }
+    .problems-section {
+        background: var(--primary-background-current-mode);
+        padding-bottom: 15rem !important;
+        padding-top: 0.1rem !important;
+        // border-radius: 2rem 2rem 0 0;
+    }
+    .about-preview-section {
+        background: var(--primary-background-current-mode);
+        padding-bottom: 12rem !important;
+        padding-top: 1rem !important;
+    }
+    .resources-section {
+        background: var(--primary-background-current-mode);
+        padding: 2.5rem 0.5rem;
+    }
+    .cta-section {
+        background: var(--primary-background-current-mode);
+        padding: 2.5rem 0.5rem;
+    }
+    header#hero {
+        background: var(--primary-background-current-mode); // sau var(--primary-background-current-mode)
+        padding-bottom: 2.5rem !important;
+        padding-top: 3rem !important;
+        border-radius: 0 0 2rem 2rem;
+      }
 }

@@ -24,29 +24,23 @@
 - Sugestii pas cu pas pentru înțelegerea conceptelor
 - Feedback personalizat pentru fiecare utilizator
 
-## 👨‍💻 Autori
-
-- Drosu Ștefan, Bajean Mateo — dezvoltatori
-- prof. Bebu Bianka Ioana - coordonator fizica
-- prof. Bebu Ion - colaborator experimente
-- prof. Ovidiu Dumitrescu - indrumator
 
 ## 🛠️ Tehnologii folosite
 
 - ⚛️ **Frontend:** React cu Vite, SASS
 - 🗂️ **Hosting cod:** Vercel
 - 📦 **Librării externe:** chart.js, d3.jx, math.jax
-- 📈 **D3.JS API:** pentru grafice fizice
+- 📈 **D3.JS API:** pentru animații fizice
 - 🤖 **OpenAI API (AI assistant)** – pentru interpretarea problemelor
 - 🎨 **Iconițe:** [Lucide React]
 
 ## 📦 Instalare locală
 
 ```bash
-git clone https://github.com/Stefanarctic/PULS.git
-cd PULS
+git clone https://github.com/Stefanarctic/New-Puls.git
+cd puls
 npm install
 npm run dev
-```
+---
 
-<p align="center" style="margin-top: 20px"><b>Făcut cu ❤️ pentru elevii dornici de a învăţa şi profesori.</b></p>
+> Făcut cu ❤️ pentru elevii dornici de a învăţa şi profesori.

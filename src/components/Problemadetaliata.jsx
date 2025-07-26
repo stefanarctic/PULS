@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import '../scss/components/_problema-detaliata.scss';
+import '../scss/components/ProblemaDetaliata.scss';
 import { ArrowLeft, Bot, Calculator, BookOpen, Copy, Check } from 'lucide-react';
 import { Button } from './Buttondet';
 import { Card, CardContent, CardHeader, CardTitle } from './card';
@@ -8,10 +8,67 @@ import { Badge } from './badge';
 import { Separator } from './separator';
 import MathJaxRender from './MathJaxRender';
 import ProblemSubmit from './ProblemSubmit';
+import { useDispatch, useSelector } from 'react-redux';
+import { addFavorite, removeFavorite, setFavorites } from '../problemeSlice';
+import { db } from '../lib/firebase';
+import { doc, updateDoc, arrayUnion, arrayRemove, getDoc, deleteDoc } from 'firebase/firestore';
+import { auth } from '../lib/firebase';
 
 export const ProblemaDetaliata = ({ problema, onBack }) => {
+  if (!problema || !problema.id) {
+    return <div style={{ padding: 32, color: '#c00', fontWeight: 600 }}>Eroare: problema nu este disponibilă sau nu are date valide.</div>;
+  }
   const navigate = useNavigate();
   const [copied, setCopied] = useState(false);
+  const dispatch = useDispatch();
+  const favorites = useSelector(state => state.problems.favorites);
+  const [user, setUser] = useState(null);
+  const [isAdmin, setIsAdmin] = useState(false);
+
+  useEffect(() => {
+    const unsubscribe = auth.onAuthStateChanged(async (firebaseUser) => {
+      if (firebaseUser) {
+        setUser(firebaseUser);
+        // Sync favorite din Firestore la Redux
+        const userRef = doc(db, 'users', firebaseUser.uid);
+        const snap = await getDoc(userRef);
+        if (snap.exists() && snap.data().favorites) {
+          dispatch({ type: 'problems/setFavorites', payload: snap.data().favorites });
+        }
+        setIsAdmin(snap.exists() && (snap.data().isAdmin || [
+          'matbajean@gmail.com',
+          'aleluianu09@gmail.com',
+          'pulsphysics@gmail.com',
+        ].includes(firebaseUser.email)));
+      } else {
+        setUser(null);
+        setIsAdmin(false);
+      }
+    });
+    return () => unsubscribe();
+  }, [dispatch]);
+
+  const isFavorite = favorites.includes(problema.id);
+  const handleToggleFavorite = async () => {
+    if (!user) return;
+    const userRef = doc(db, 'users', user.uid);
+    const snap = await getDoc(userRef);
+    let currentFavorites = [];
+    if (snap.exists() && Array.isArray(snap.data().favorites)) {
+      currentFavorites = snap.data().favorites;
+    }
+    if (isFavorite) {
+      // Șterge problema după id
+      const newFavorites = currentFavorites.filter(fid => fid !== problema.id);
+      await updateDoc(userRef, { favorites: newFavorites });
+      dispatch(setFavorites(newFavorites));
+    } else {
+      // Adaugă doar id-ul problemei
+      const newFavorites = [...currentFavorites, problema.id];
+      await updateDoc(userRef, { favorites: newFavorites });
+      dispatch(setFavorites(newFavorites));
+    }
+  };
 
   const getDifficultyClass = (dificultate) => {
     return `badge-difficulty ${dificultate || 'default'}`;
@@ -132,6 +189,28 @@ export const ProblemaDetaliata = ({ problema, onBack }) => {
     }
   };
 
+  // Funcție utilitară pentru reindexarea problemelor după ștergere
+  const reindexProblemsAfterDelete = async (ownerUid) => {
+    const { getDocs, collection, setDoc, doc } = await import('firebase/firestore');
+    const userProblemsRef = collection(db, 'users', ownerUid, 'userProblems');
+    const problemsSnap = await getDocs(userProblemsRef);
+    const remainingProblems = problemsSnap.docs.map(doc => doc.data());
+    
+    // Sortează după index vechi și reindexează
+    const sorted = [...remainingProblems].sort((a, b) => (a.index || 0) - (b.index || 0));
+    
+    // Găsește ultimul index din problemele existente (din problemeData)
+    const { problemeData } = await import('./problemedata');
+    const maxExistingIndex = problemeData.length > 0 ? Math.max(...problemeData.map(p => Number(p.index) || 0)) : 0;
+    
+    // Reindexează începând de la ultimul index existent + 1 (care ar trebui să fie 14)
+    for (let i = 0; i < sorted.length; i++) {
+      const p = { ...sorted[i], index: maxExistingIndex + i + 1 };
+      const userProblemRef = doc(db, 'users', ownerUid, 'userProblems', p.id);
+      await setDoc(userProblemRef, p, { merge: true });
+    }
+  };
+
   // Adaugă funcția de conversie pentru delimitatori MathJax
   function convertDollarToInlineMathJax(str) {
     if (!str) return str;
@@ -172,29 +251,50 @@ export const ProblemaDetaliata = ({ problema, onBack }) => {
                     <span className="total-points">Total: {problema.punctajTotal} puncte</span>
                   </div>
                 </div>
-                <button
-                  onClick={copyToClipboard}
-                  className="copy-button"
-                  title="Copiază problema completă"
-                >
-                  {copied ? (
-                    <Check className="w-5 h-5 text-green-600" />
-                  ) : (
-                    <Copy className="w-5 h-5 text-gray-600 hover:text-blue-600" />
-                  )}
-                </button>
+                <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
+                  <button
+                    className="copy-btn"
+                    onClick={copyToClipboard}
+                    title={copied ? 'Copiat!' : 'Copiază enunțul'}
+                    style={{ background: 'none', border: 'none', cursor: 'pointer' }}
+                  >
+                    <Copy size={20} />
+                  </button>
+                  <button
+                    className="favorite-btn"
+                    onClick={handleToggleFavorite}
+                    title={isFavorite ? 'Șterge de la favorite' : 'Adaugă la favorite'}
+                    style={{ background: 'none', border: 'none', cursor: 'pointer' }}
+                    disabled={!problema.id}
+                  >
+                    {isFavorite ? (
+                      <svg width="24" height="24" fill="#FFD700" viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+                    ) : (
+                      <svg width="24" height="24" fill="none" stroke="#FFD700" strokeWidth="2" viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+                    )}
+                  </button>
+                </div>
               </div>
             </CardHeader>
             <CardContent>
-              {problema.imagine && (
-                <div className="problema-imagine-container">
-                  <img src={problema.imagine} alt="Ilustrație problemă" className="problema-imagine" />
+              {/* Afișează toate imaginile din array-ul images dacă există */}
+              {Array.isArray(problema.images) && problema.images.length > 0 && (
+                <div className="problema-imagini-grid" style={{ display: 'flex', gap: 12, flexWrap: 'wrap', justifyContent: 'center', marginBottom: 16 }}>
+                  {problema.images.map((url, i) => (
+                    <img key={i} src={url} alt={`Ilustrație problemă ${i+1}`} style={{ maxWidth: 180, maxHeight: 180, borderRadius: 8, boxShadow: '0 2px 8px rgba(0,0,0,0.08)', objectFit: 'cover' }} />
+                  ))}
                 </div>
               )}
-              {problema.imagine1 && (
-                <div className="problema-imagine-container dual-images">
-                  <img src={problema.imagine1} alt="Ilustrație problemă" className="problema-imagine dual-image" />
-                  <img src={problema.imagine2} alt="Ilustrație problemă" className="problema-imagine dual-image" />
+              {/* Fallback pentru imagine/imagine1/imagine2 */}
+              {problema.imagine && !problema.images && (
+                <div className="problema-imagine-container" style={{ textAlign: 'center', marginBottom: '1rem' }}>
+                  <img src={problema.imagine} alt="Ilustrație problemă" style={{ maxWidth: '100%', height: 'auto', borderRadius: '8px', boxShadow: '0 2px 8px rgba(0,0,0,0.08)' }} />
+                </div>
+              )}
+              {problema.imagine1 && !problema.images && (
+                <div className="problema-imagine-container" style={{ textAlign: 'center', marginBottom: '1rem', display: 'flex', justifyContent: 'space-between', gap: '1rem' }}>
+                  <img src={problema.imagine1} alt="Ilustrație problemă" style={{ maxWidth: '50%', height: 'auto', borderRadius: '8px', boxShadow: '0 2px 8px rgba(0,0,0,0.08)' }} />
+                  <img src={problema.imagine2} alt="Ilustrație problemă" style={{ maxWidth: '50%', height: 'auto', borderRadius: '8px', boxShadow: '0 2px 8px rgba(0,0,0,0.08)' }} />
                 </div>
               )}
               {/* ENUNT PROBLEMA CU MATHJAX */}
@@ -266,7 +366,7 @@ export const ProblemaDetaliata = ({ problema, onBack }) => {
 
         </div>
 
-                    <div className="problema-sidebar sidebar">
+        <div className="sidebar">
           <Card className="mb-6 sticky top-4">
             <CardHeader>
               <CardTitle className="text-lg">Punctaje</CardTitle>
@@ -290,6 +390,7 @@ export const ProblemaDetaliata = ({ problema, onBack }) => {
             </CardContent>
           </Card>
 
+          {/* Card Ajutor AI */}
           <Card>
             <CardHeader>
               <CardTitle className="text-lg">Ajutor AI</CardTitle>
@@ -304,6 +405,50 @@ export const ProblemaDetaliata = ({ problema, onBack }) => {
               </p>
             </CardContent>
           </Card>
+
+          {/* Buton de ștergere problemă pentru autor sau admin */}
+          {user && (
+            isAdmin ||
+            (problema.createdByUid && problema.createdByUid === user.uid) ||
+            (problema.createdByAlias && (problema.createdByAlias === user.displayName || problema.createdByAlias === user.alias))
+          ) && (
+            <div style={{ marginTop: 24, textAlign: 'center' }}>
+              <button
+                style={{
+                  background: '#c00',
+                  color: 'white',
+                  border: 'none',
+                  borderRadius: 6,
+                  padding: '10px 24px',
+                  fontWeight: 600,
+                  fontSize: 16,
+                  cursor: 'pointer',
+                  marginBottom: 24
+                }}
+                onClick={async () => {
+                  if (window.confirm('Ești sigur că vrei să ștergi această problemă? Această acțiune este ireversibilă.')) {
+                    try {
+                      const ownerUid = problema.createdByUid || user.uid;
+                      const problemId = problema.id;
+                      await import('firebase/firestore').then(async ({ deleteDoc, doc }) => {
+                        await deleteDoc(doc(db, 'users', ownerUid, 'userProblems', problemId));
+                        
+                        // Reindexare automată după ștergere
+                        await reindexProblemsAfterDelete(ownerUid);
+                      });
+                      if (onBack) onBack();
+                      else navigate('/probleme');
+                    } catch (err) {
+                      alert('Eroare la ștergere: ' + err.message);
+                    }
+                  }
+                }}
+              >
+                Șterge problema
+              </button>
+            </div>
+          )}
+
         </div>
 
       {/* Mutat aici: Card Trimite o problemă */}

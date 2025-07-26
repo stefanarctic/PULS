@@ -1,17 +1,14 @@
 let isPaused = false;
 let isStopped = true;
-let amplitude = parseFloat(document.getElementById("amplitude").value);
+let amplitude = parseFloat(document.getElementById("amplitude").value); // în grade
 let speed = parseFloat(document.getElementById("speed").value);
 let angle = 0;
 let direction = 1;
-// let length = parseFloat(document.getElementById("lengthSlider").value) || 1.5;
-// const length = 1.5;
 let length = parseFloat(document.getElementById("lengthSlider").value) || 1.5; 
 const mass = 1.5;
 let pendulumInterval;
 let measuringActive = false;
 const gravity = 9.81;
-// const omega = Math.sqrt(gravity / length);
 let time = 0;
 const timeStep = 0.02;
 const ctx = document.getElementById("pendulumChart").getContext("2d");
@@ -21,19 +18,19 @@ const pendulumChart = new Chart(ctx, {
     data: {
         labels: Array.from({ length: 50 }, (_, i) => i),
         datasets: [{
-            label: 'Deplasare (m)',
+            label: 'Unghi θ (rad)',
             data: [], 
             borderColor: 'blue',
             borderWidth: 2,
             pointRadius: 0,
         }, {
-            label: 'Viteză (m/s)',
+            label: 'Viteză unghiulară ωθ (rad/s)',
             data: [],
             borderColor: 'red',
             borderWidth: 2,
             pointRadius: 0,
         }, {
-            label: 'Accelerație (m/s²)',
+            label: 'Energia mecanică Em (J)',
             data: [],
             borderColor: 'green',
             borderWidth: 2,
@@ -46,11 +43,11 @@ const pendulumChart = new Chart(ctx, {
         maintainAspectRatio: false,
         plugins: {
             legend: {
-                position: 'bottom', // Mută legenda sub grafic
+                position: 'bottom',
                 labels: {
-                    boxWidth: 10, // Face pătratele mai mici
+                    boxWidth: 10,
                     font: {
-                        size: 10 // Text mai mic
+                        size: 10
                     }
                 }
             }
@@ -68,48 +65,58 @@ const pendulumChart = new Chart(ctx, {
     }
 });
 
-
-
 function updatePendulum() {
-    let omega = Math.sqrt(gravity / length);
-    let displacement = amplitude * Math.sin(omega * time) / 100; // x(t)
-    let velocity = (amplitude * omega * Math.cos(omega * time)) / 100; // v(t)
-    let acceleration = (-amplitude * omega ** 2 * Math.sin(omega * time)) / 100; // a(t)
-   
+    // θ_max în radiani
+    const thetaMax = amplitude * Math.PI / 180;
+    const l = length / 100; // metri
+    const omega0 = Math.sqrt(gravity / l); // rad/s
+    // θ(t) = θ_max * sin(ω t)
+    const theta = thetaMax * Math.sin(omega0 * time);
+    // viteză unghiulară: dθ/dt = θ_max * ω * cos(ω t)
+    const omega = thetaMax * omega0 * Math.cos(omega0 * time);
+    // viteză liniară: v = l * dθ/dt
+    const velocity = l * omega;
+    // accelerație unghiulară: α = -ω0^2 * θ_max * sin(ω t) = -ω0^2 * θ(t)
+    const alpha = -omega0 * omega0 * theta;
+    // accelerație liniară: a = l * α
+    const acceleration = l * alpha;
+    // energii
+    const kineticEnergy = 0.5 * mass * velocity * velocity;
+    const potentialEnergy = mass * gravity * l * (1 - Math.cos(theta));
+    const mechanicalEnergy = kineticEnergy + potentialEnergy;
 
+    // Actualizăm graficul
     pendulumChart.data.labels.push(time.toFixed(2));
-    pendulumChart.data.datasets[0].data.push(displacement);
-    pendulumChart.data.datasets[1].data.push(velocity);
-    pendulumChart.data.datasets[2].data.push(acceleration);
+    pendulumChart.data.datasets[0].data.push(theta);
+    pendulumChart.data.datasets[1].data.push(omega);
+    pendulumChart.data.datasets[2].data.push(mechanicalEnergy);
 
- if (pendulumChart.data.labels.length > 300) {
-    pendulumChart.data.labels.shift();
-    pendulumChart.data.datasets.forEach(dataset => dataset.data.shift());
-   }
+    if (pendulumChart.data.labels.length > 300) {
+        pendulumChart.data.labels.shift();
+        pendulumChart.data.datasets.forEach(dataset => dataset.data.shift());
+    }
     pendulumChart.update();
-    let pendulum = document.getElementById("string");
-    // let shadow = document.getElementById("shadow");
-    // let theta = 5 * Math.sin(omega * time);
-    //pentru un pendul care nu are aceleasi formule
-    let theta = 80 * Math.sin(omega * time);
-    // theta = Math.max(-5, Math.min(5, theta));
-    pendulum.style.transform = `rotate(${theta}deg)`;
 
-    //  let shadowOffset = Math.sin(theta * Math.PI / 180) * 50; 
-    // shadow.style.transform = translateX(${shadowOffset}px);
-    
+    // Actualizăm poziția pendulului vizual
+    let pendulum = document.getElementById("string");
+    let thetaDegrees = theta * 180 / Math.PI; // pentru afișare vizuală
+    pendulum.style.transform = `rotate(${thetaDegrees}deg)`;
+
     time += timeStep;
 
     if (measuringActive) {
-        document.getElementById("measured-amplitude").textContent = amplitude.toFixed(2) + "cm";
+        document.getElementById("measured-length").textContent = l.toFixed(2) + "m";
+        document.getElementById("measured-angle").textContent = (theta * 180 / Math.PI).toFixed(1) + "°";
         document.getElementById("measured-time").textContent = time.toFixed(2) + "s";
-        document.getElementById("measured-speed").textContent = speed.toFixed(2) + "x";
-        document.getElementById("measured-angle").textContent = theta.toFixed(2) + "°";
-        document.getElementById("measured-angular-velocity").textContent = omega.toFixed(2) + "rad/s";
-        document.getElementById("measured-x").textContent = (amplitude * Math.sin(omega * time + theta)/ 100).toFixed(2) + "m";
-        document.getElementById("measured-velocity").textContent = (amplitude * omega * Math.cos(omega * time + theta)/ 100).toFixed(2) + "m/s";
-        document.getElementById("measured-acceleration").textContent = (-amplitude * omega ** 2 * Math.sin(omega * time + theta)/ 100).toFixed(2) + "m/s²";
-        document.getElementById("measured-kineticenergy").textContent = (mass * velocity * velocity * 0.5).toFixed(2) + "J";
+        document.getElementById("measured-angular-velocity").textContent = omega.toFixed(3) + "rad/s";
+        document.getElementById("measured-velocity").textContent = velocity.toFixed(3) + "m/s";
+        document.getElementById("measured-acceleration").textContent = acceleration.toFixed(3) + "m/s²";
+        document.getElementById("measured-kineticenergy").textContent = kineticEnergy.toFixed(3) + "J";
+        document.getElementById("measured-potentialenergy").textContent = potentialEnergy.toFixed(3) + "J";
+        document.getElementById("measured-mechanicalenergy").textContent = mechanicalEnergy.toFixed(3) + "J";
+        // Calculăm și afișăm perioada
+        const period = calculateNonlinearPeriod(amplitude, length);
+        document.getElementById("measured-period").textContent = period.toFixed(3) + "s";
     }
 }
 
@@ -119,23 +126,22 @@ function startOscillation() {
     isPaused = false;
     time = 0;
     speed = parseFloat(document.getElementById("speed").value);
-    length = parseFloat(document.getElementById("lengthSlider").value) / 100;
-    let omega = Math.sqrt(gravity / length);
+    length = parseFloat(document.getElementById("lengthSlider").value);
     pendulumChart.data.labels = [];
     pendulumChart.data.datasets.forEach(dataset => dataset.data = []);
     pendulumChart.update();
     pendulumInterval = setInterval(updatePendulum, 100 / speed);
     resetMeasuringData();
-    pendulumInterval = setInterval(updatePendulum, 100 / speed);
-    document.getElementById("measured-amplitude").textContent = "0";
-    document.getElementById("measured-speed").textContent = "0";
-    document.getElementById("measured-time").textContent = "0";
-    document.getElementById("measured-x").textContent = "0";
+    document.getElementById("measured-length").textContent = "0";
     document.getElementById("measured-angle").textContent = "0°";
-    document.getElementById("measured-angular-velocity").textContent = "0";
-    document.getElementById("measured-velocity").textContent = "0";
-    document.getElementById("measured-acceleration").textContent = "0";
-    document.getElementById("measured-kineticenergy").textContent = "0";
+    document.getElementById("measured-time").textContent = "0s";
+    document.getElementById("measured-angular-velocity").textContent = "0rad/s";
+    document.getElementById("measured-velocity").textContent = "0m/s";
+    document.getElementById("measured-acceleration").textContent = "0m/s²";
+    document.getElementById("measured-kineticenergy").textContent = "0J";
+    document.getElementById("measured-potentialenergy").textContent = "0J";
+    document.getElementById("measured-mechanicalenergy").textContent = "0J";
+    document.getElementById("measured-period").textContent = "0s";
     document.getElementById("pauseResumeBtn").textContent = "Pauză";
 }
 
@@ -160,22 +166,37 @@ function stopOscillation() {
     angle = 0;
     time = 0;
     document.getElementById("string").style.transform = `rotate(0deg)`;
-    document.getElementById("measured-amplitude").textContent = "0";
-    document.getElementById("measured-speed").textContent = "0";
-    document.getElementById("measured-time").textContent = "0";
-    document.getElementById("measured-x").textContent = "0";
+    document.getElementById("measured-length").textContent = "0";
     document.getElementById("measured-angle").textContent = "0°";
-    document.getElementById("measured-angular-velocity").textContent = "0";
-    document.getElementById("measured-velocity").textContent = "0";
-    document.getElementById("measured-acceleration").textContent = "0";
-    document.getElementById("measured-kineticenergy").textContent = "0";
-
-    document.getElementById("string").style.transform = `rotate(0deg)`;
+    document.getElementById("measured-time").textContent = "0s";
+    document.getElementById("measured-angular-velocity").textContent = "0rad/s";
+    document.getElementById("measured-velocity").textContent = "0m/s";
+    document.getElementById("measured-acceleration").textContent = "0m/s²";
+    document.getElementById("measured-kineticenergy").textContent = "0J";
+    document.getElementById("measured-potentialenergy").textContent = "0J";
+    document.getElementById("measured-mechanicalenergy").textContent = "0J";
+    document.getElementById("measured-period").textContent = "0s";
     document.getElementById("pauseResumeBtn").textContent = "Pauză";
 }
+
+function resetMeasuringData() {
+    // Funcție pentru resetarea datelor de măsurare
+}
+
+// Perioada pendulului (aproximare pentru unghiuri mari)
+function calculateNonlinearPeriod(amplitude, length) {
+    const l = length / 100; // metri
+    const theta0 = amplitude * Math.PI / 180; // radiani
+    const g = gravity;
+    // Aproximare cu seria Taylor
+    const T0 = 2 * Math.PI * Math.sqrt(l / g);
+    const correction = 1 + (1/16) * Math.pow(theta0, 2) + (11/3072) * Math.pow(theta0, 4);
+    return T0 * correction;
+}
+
 document.getElementById("amplitude").addEventListener("input", function () {
     amplitude = parseFloat(this.value);
-    document.getElementById("amplitude-value").textContent = amplitude + "cm";
+    document.getElementById("amplitude-value").textContent = amplitude + "° (cm)";
 });
 
 document.getElementById("speed").addEventListener("input", function () {
@@ -189,10 +210,11 @@ document.getElementById("speed").addEventListener("input", function () {
         }
     }
 });
+
 document.getElementById("lengthSlider").addEventListener("input", function () {
-    length = parseFloat(this.value) / 100;
-    document.getElementById("lengthValue").textContent = length.toFixed(2);
-    document.getElementById("measured-length").textContent = length.toFixed(2) + "m";
+    length = parseFloat(this.value);
+    document.getElementById("lengthValue").textContent = length;
+    document.getElementById("measured-length").textContent = (length / 100).toFixed(2) + "m";
     time = 0; // Resetăm timpul pentru a evita erori de fază
     if (!isStopped) {
         clearInterval(pendulumInterval);
@@ -205,16 +227,6 @@ function toggleMeasuringTool() {
     document.body.style.cursor = measuringActive ? "crosshair" : "default";
 }
 
-// document.getElementById("ball").addEventListener("mousemove", function() {
-//     if (!measuringActive) return;
-//     document.getElementById("measured-amplitude").textContent = amplitude + "cm";
-//     document.getElementById("measured-speed").textContent = speed + "m/s";
-//     document.getElementById("measured-angle").textContent = angle.toFixed(2) + "°";
-//     document.getElementById("measured-angular-velocity").textContent = (angle * 0.1).toFixed(2) + "rad/s";
-//     document.getElementById("measured-velocity").textContent = (speed * 0.1 * amplitude).toFixed(2) + "m/s";
-//     document.getElementById("measured-acceleration").textContent = (-gravity * Math.sin(angle * Math.PI / 180)).toFixed(2) + "m/s²";
-// });
-
 document.getElementById("toggleSidebar").addEventListener("click", function() {
     let sidebar = document.querySelector(".sidebar");
     let screenWidth = window.innerWidth;
@@ -222,20 +234,20 @@ document.getElementById("toggleSidebar").addEventListener("click", function() {
     if(screenWidth < 2350)
     {
     if (sidebar.classList.contains("hidden")) {
-        this.style.right = "-6px";  // Butonul se lipește de marginea paginii
-        this.textContent = "<";    // Simbol săgeată dreapta
+        this.style.right = "-6px";
+        this.textContent = "<";
     } else {
-        this.style.right = "313px"; // Butonul revine lângă meniu
-        this.textContent = ">";    // Simbol meniului
+        this.style.right = "313px";
+        this.textContent = ">";
     }
     }
     else {
             if (sidebar.classList.contains("hidden")) {
-                this.style.right = "-6px";  // Butonul se lipește de marginea paginii
-                this.textContent = "<";    // Simbol săgeată dreapta
+                this.style.right = "-6px";
+                this.textContent = "<";
             } else {
-                this.style.right = "510px"; // Butonul revine lângă meniu
-                this.textContent = ">";    // Simbol meniului
+                this.style.right = "510px";
+                this.textContent = ">";
             }
     }
 });
@@ -247,25 +259,26 @@ document.getElementById("toggleUniformbar").addEventListener("click", function()
     if(screenWidth < 2350)
     {
     if (uniformbar.classList.contains("hidden")) {
-        this.style.left = "-6px";  // Butonul se lipește de marginea paginii
-        this.textContent = ">";    // Simbol săgeată dreapta
+        this.style.left = "-6px";
+        this.textContent = ">";
     } else {
-        this.style.left = "333px"; // Butonul revine lângă meniu
-        this.textContent = "<";    // Simbol meniului
+        this.style.left = "333px";
+        this.textContent = "<";
     }
     }
     else 
     {
         if (uniformbar.classList.contains("hidden")) {
-            this.style.left = "-6px";  // Butonul se lipește de marginea paginii
-            this.textContent = ">";    // Simbol săgeată dreapta
+            this.style.left = "-6px";
+            this.textContent = ">";
         } else {
-            this.style.left = "520px"; // Butonul revine lângă meniu
-            this.textContent = "<";    // Simbol meniului
+            this.style.left = "520px";
+            this.textContent = "<";
         }
     }
     
 });
+
 document.addEventListener("DOMContentLoaded", function () {
     const lengthSlider = document.getElementById("lengthSlider");
     const lengthValue = document.getElementById("lengthValue");
@@ -276,18 +289,23 @@ document.addEventListener("DOMContentLoaded", function () {
         return;
     }
 
-    let length = parseFloat(lengthSlider.value) / 100 || 1.5;
+    let length = parseFloat(lengthSlider.value) || 450;
     
-    lengthValue.textContent = length.toFixed(2) + "m";
-    measuredLength.textContent = length.toFixed(2) + "m";
+    lengthValue.textContent = length;
+    measuredLength.textContent = (length / 100).toFixed(2) + "m";
 
     function updatePendulumLength() {
-        let newLength = parseFloat(lengthSlider.value) / 100 || 1.5;
-        lengthValue.textContent = newLength.toFixed(2) + "m";
-        measuredLength.textContent = newLength.toFixed(2) + "m";
-        string.style.height = `${newLength * 100}px`;
-
-        ball.style.top = `${newLength * 100}px`;
+        let newLength = parseFloat(lengthSlider.value) || 450;
+        lengthValue.textContent = newLength;
+        measuredLength.textContent = (newLength / 100).toFixed(2) + "m";
+        
+        // Actualizăm lungimea firului vizual
+        const string = document.getElementById("string");
+        const ball = document.getElementById("ball");
+        if (string && ball) {
+            string.style.height = `${newLength}px`;
+            ball.style.top = `${newLength}px`;
+        }
     }
 
     lengthSlider.addEventListener("input", updatePendulumLength);

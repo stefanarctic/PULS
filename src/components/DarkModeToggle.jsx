@@ -53,6 +53,12 @@ const DarkModeToggle = () => {
                 card.classList.add('dark-mode');
             }
             document.querySelector('.footer').classList.add('dark-mode');
+
+            // Set navbar mobile variables
+            documentStyle.setProperty('--navbar-mobile-bg', 'rgba(20,20,20,0.98)');
+            documentStyle.setProperty('--navbar-mobile-color', '#fff');
+            documentStyle.setProperty('--navbar-mobile-dropdown-bg', 'rgba(255,255,255,0.05)');
+
         } else {
             // Turn on white mode
             const getVar = (name) => getComputedStyle(document.documentElement).getPropertyValue(name).trim();
@@ -77,6 +83,11 @@ const DarkModeToggle = () => {
                 card.classList.remove('dark-mode');
             }
             document.querySelector('.footer').classList.remove('dark-mode');
+
+            // Set navbar mobile variables
+            documentStyle.setProperty('--navbar-mobile-bg', 'rgba(255,255,255,0.95)');
+            documentStyle.setProperty('--navbar-mobile-color', '#222');
+            documentStyle.setProperty('--navbar-mobile-dropdown-bg', 'rgba(0,0,0,0.05)');
         }
     }, [darkModeOn]);
 

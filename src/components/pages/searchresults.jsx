@@ -1,8 +1,9 @@
 import { useLocation } from "react-router-dom";
 import { useMemo } from "react";
+import { Link } from "react-router-dom";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
-import "@/scss/components/_searchresults.scss";
+import "@/scss/components/searchresul.scss";
 
 function useQuery() {
     return new URLSearchParams(useLocation().search);
@@ -97,9 +98,9 @@ const SearchResults = () => {
                     <p className="search-results-empty">Niciun rezultat găsit.</p>
                 ) : (
                     <ul className="search-results-list">
-                        {results.map((item, index) => (
-                            <li key={index} className="search-results-item">
-                                <a href={item.path} className="search-results-link">{item.title}</a>
+                        {results.map(item => (
+                            <li key={item.path} className="search-results-item">
+                                <Link to={item.path} className="search-results-link">{item.title}</Link>
                             </li>
                         ))}
                     </ul>

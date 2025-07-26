@@ -477,4 +477,10 @@ body {
 canvas {
   width: 100%;
   height: 100%;
+}
+
+/* Ascunde sliderul pentru amplitudine */
+.slider-container:first-child {
+  display: none;
 }/*# sourceMappingURL=mainreprezentari.css.map */
+

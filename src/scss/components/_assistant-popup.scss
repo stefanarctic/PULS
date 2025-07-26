@@ -1,0 +1,308 @@
+.assistant-popup-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.45);
+  z-index: 2000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.assistant-popup-modal {
+  background: var(--secondary-background-current-mode);
+  color: var(--primary-color-current-mode);
+  border-radius: 1.5rem;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.25);
+  padding: 2.5rem 2.5rem 2rem 2.5rem;
+  min-width: 700px;
+  max-width: 98vw;
+  width: 900px;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  position: relative;
+}
+.assistant-popup-modal--wide {
+  min-width: 900px;
+  width: 1100px;
+  max-width: 98vw;
+}
+
+.assistant-popup-close {
+  position: absolute;
+  top: 1.5rem;
+  right: 1.5rem;
+  background: none;
+  border: none;
+  font-size: 2.5rem;
+  color: var(--primary-color-current-mode);
+  cursor: pointer;
+  transition: color 0.2s;
+  z-index: 10;
+}
+.assistant-popup-close--large {
+  font-size: 3.2rem;
+  top: 0.1rem;
+  right: 0.5rem;
+}
+
+.assistant-popup-content {
+  display: flex;
+  flex-direction: row;
+  gap: 2.5rem;
+  align-items: stretch;
+  min-height: 420px;
+}
+
+.assistant-popup-3d {
+  width: 260px;
+  height: 340px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.assistant-popup-3d--large {
+  width: 340px;
+  height: 420px;
+}
+
+.assistant-popup-interact {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.assistant-popup-prompts {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.8rem;
+  margin-bottom: 2rem;
+  justify-content: flex-start;
+}
+
+.assistant-popup-prompt-btn {
+  background: var(--quaternary-background-current-mode);
+  color: var(--primary-color-current-mode);
+  border: 1.5px solid var(--border-color-current-mode);
+  border-radius: 999px;
+  padding: 1rem 1.5rem;
+  font-size: 1.1rem;
+  cursor: pointer;
+  transition: all 0.2s;
+
+  &:hover {
+    background: var(--pill-hover-background-current-mode);
+    color: var(--accent-color-current-mode);
+  }
+
+  &.selected {
+    background: var(--accent-color-current-mode);
+    color: #fff;
+  }
+}
+
+.assistant-popup-chat-window {
+  flex: 1 1 auto;
+  min-height: 220px;
+  max-height: 340px;
+  background: var(--quaternary-background-current-mode);
+  border-radius: 18px;
+  padding: 1.2rem 1rem 1.2rem 1rem;
+  margin-bottom: 0.7rem;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 0.7rem;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+}
+
+.assistant-popup-chat-bubble {
+  max-width: 75%;
+  padding: 0.7rem 1.1rem;
+  border-radius: 18px;
+  font-size: 1.08rem;
+  line-height: 1.5;
+  word-break: break-word;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.04);
+  position: relative;
+  display: inline-block;
+}
+
+.assistant-popup-chat-bubble.user {
+  align-self: flex-end;
+  background: linear-gradient(90deg, #60a5fa 0%, #2563eb 100%);
+  color: #fff;
+  border-bottom-right-radius: 6px;
+}
+
+.assistant-popup-chat-bubble.ai {
+  align-self: flex-start;
+  background: var(--secondary-background-current-mode);
+  color: var(--secondary-color-current-mode);
+  border-bottom-left-radius: 6px;
+}
+
+
+.assistant-popup-form {
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+  gap: 0.8rem;
+  margin-top: 0.5rem;
+}
+
+.assistant-popup-selected-prompt {
+  display: inline-flex;
+  align-items: center;
+  background: var(--accent-color-current-mode);
+  color: #fff;
+  border-radius: 999px;
+  padding: 0.7rem 1rem;
+  font-size: 1.1rem;
+  margin-bottom: 0.5rem;
+  align-self: flex-start;
+
+  span {
+    margin-right: 0.5rem;
+  }
+}
+
+.assistant-popup-clear-prompt {
+  background: none;
+  border: none;
+  padding: 0.2rem;
+  cursor: pointer;
+  color: #fff;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s;
+
+  &:hover {
+    background: rgba(255, 255, 255, 0.2);
+  }
+}
+
+.assistant-popup-input-row {
+  display: flex;
+  gap: 0.5rem;
+  align-items: flex-end;
+  position: relative;
+}
+
+.assistant-popup-input {
+  flex: 1;
+  border-radius: 20px;
+  border: 1.5px solid var(--border-color-current-mode);
+  padding: 0.8rem 1.3rem;
+  padding-right: 3.5rem;
+  font-size: 1.15rem;
+  background: var(--quaternary-background-current-mode);
+  color: var(--primary-color-current-mode);
+  outline: none;
+  transition: border-color 0.2s;
+  resize: none;
+  overflow-y: auto;
+  height: 44px;
+  min-height: 44px;
+  line-height: 1;
+  display: block;
+  word-wrap: break-word;
+  white-space: pre-wrap;
+
+  /* Scrollbar styling */
+  &::-webkit-scrollbar {
+    width: 8px;
+  }
+
+  &::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background: var(--border-color-current-mode);
+    border-radius: 4px;
+  }
+
+  &::-webkit-scrollbar-thumb:hover {
+    background: var(--accent-color-current-mode);
+  }
+
+  &:focus {
+    border-color: var(--accent-color-current-mode);
+  }
+}
+
+.assistant-popup-send-btn {
+  position: absolute;
+  right: 0.5rem;
+  bottom: 0.5rem;
+  background: var(--accent-color-current-mode);
+  color: #fff;
+  border: none;
+  border-radius: 50%;
+  width: 32px;
+  height: 32px;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  transform-origin: center;
+
+  svg {
+    width: 18px;
+    height: 18px;
+  }
+
+  &:hover {
+    background: #2563eb;
+    transform: scale(1.1);
+  }
+}
+
+@media (max-width: 1100px) {
+  .assistant-popup-modal--wide {
+    min-width: 0;
+    width: 98vw;
+    padding: 1.2rem 0.5rem 1rem 0.5rem;
+  }
+  .assistant-popup-content {
+    flex-direction: column;
+    gap: 1.2rem;
+    min-height: 0;
+  }
+  .assistant-popup-3d--large {
+    width: 100%;
+    height: 260px;
+    margin-bottom: 1.2rem;
+  }
+}
+
+@media (max-width: 700px) {
+  .assistant-popup-modal {
+    min-width: 0;
+    width: 99vw;
+    padding: 0.5rem 0.2rem 0.5rem 0.2rem;
+  }
+  .assistant-popup-content {
+    flex-direction: column;
+    gap: 0.7rem;
+  }
+  .assistant-popup-3d--large {
+    width: 100%;
+    height: 180px;
+  }
+}
+
+.assistant-link {
+  color: #2563eb;
+  text-decoration: underline;
+
+  &:hover {
+    text-decoration: none;
+  }
+} 

@@ -13,10 +13,7 @@ import PrismaImage1 from "/res/screenshots/Prisma_Screenshot1.png";
 
 import UndeVideo from "/res/Videos/Unde Videoclip.mp4";
 import UndeVideo1 from "/res/Videos/Frecventa Undelor Video.mp4";
-import UndeThumbnail1 from "/res/Thumbnails/Unde Videoclip.png";
-import UndeThumbnail2 from "/res/Thumbnails/Frecventa Undelor Video.png";
 import Layout from "../../Layout";
-import VideoPopup from "../../VideoPopup";
 
 // import PrismaSImulation from "/Simulations/prisma/prisma-simulator.html";
 
@@ -32,8 +29,8 @@ const UndePage = () => {
   ];
 
   const undeVideos = [
-    { src: UndeVideo, alt: "Unde", thumbnail: UndeThumbnail1 },
-    { src: UndeVideo1, alt: "Unde", thumbnail: UndeThumbnail2 }
+    { src: UndeVideo, alt: "Unde" },
+    { src: UndeVideo1, alt: "Unde" }
   ];
   // const HtmlPages = [
   //   { src: PrismaSImulation, alt: "Prisma Simulation" }
@@ -54,7 +51,7 @@ const UndePage = () => {
   return (
     <Layout>
       <div className="resurse-pagina min-h-screen flex flex-col">
-        <div className="resurse-page-container">
+        <div style={{ paddingTop: "110px", flex: 1, display: "flex", flexDirection: "column" }}>
           <main className="flex-grow container mx-auto px-4 py-10">
             <h1 className="text-4xl md:text-5xl font-bold mb-6">Unde</h1>
             <div className="max-w-3xl mb-10">
@@ -78,62 +75,22 @@ const UndePage = () => {
               </ul>
 
               {/* Videos about waves */}
-              <div className="experimente-video-grid">
-                {/* <div className="experiment-card">
-                  <VideoPopup
-                    src={undeVideos[0].src}
-                    alt={undeVideos[0].alt}
-                    thumbnail={undeVideos[0].thumbnail}
-                    title="Cum se formeaza undele stationare într-o coardă vibrată? (exemplu video)"
-                  />
-                </div>
-                <div className="experiment-card">
-                  <VideoPopup
-                    src={undeVideos[1].src}
-                    alt={undeVideos[1].alt}
-                    thumbnail={undeVideos[1].thumbnail}
-                    title="Cum se cum se formează undele sonore într-un tub și cum se determină frecvența fundamentală? (exemplu video)"
-                  />
-                </div> */}
-                <div className="experiment-card">
-                  <h3 className="experiment-title">Tub sonor - frecvenţa fundamentală</h3>
-                  <p className="experiment-desc">
-                    Demonstrează cum se formează undele sonore într-un tub și cum se determină frecvența fundamentală.
-                  </p>
-                  <VideoPopup
-                    src={undeVideos[0].src}
-                    alt={undeVideos[0].alt}
-                    thumbnail={undeVideos[0].thumbnail}
-                    title="Tub sonor - frecvenţa fundamentală (experiment video)"
-                  />
-                </div>
-                <div className="experiment-card">
-                <h3 className="experiment-title">Unde Stationare in coarda vibranta</h3>
-                    <p className="experiment-desc">
-                      Explorează formarea undelor stationare într-o coardă vibrată.
-                    </p>
-                  <VideoPopup
-                    src={undeVideos[1].src}
-                    alt={undeVideos[1].alt}
-                    thumbnail={undeVideos[1].thumbnail}
-                    title="Unde Stationare in coarda vibranta (experiment video)"
-                  />
-                </div>
-              </div>
-              {/* <div className="flex flex-row gap-4 my-8 justify-center items-center">
-                <VideoPopup
+              <div className="flex flex-row gap-4 my-8 justify-center items-center">
+                <video
                   src={undeVideos[0].src}
                   alt={undeVideos[0].alt}
-                  thumbnail={undeVideos[0].thumbnail}
+                  controls
+                  style={{ width: "50%", height: "20%", objectFit: "cover", borderRadius: "12px", background: "#23232a" }}
                   title="Cum se formeaza undele stationare într-o coardă vibrată? (exemplu video)"
                 />
-                <VideoPopup
+                <video
                   src={undeVideos[1].src}
                   alt={undeVideos[1].alt}
-                  thumbnail={undeVideos[1].thumbnail}
+                  controls
+                  style={{ width: "50%", height: "20%", objectFit: "cover", borderRadius: "12px", background: "#23232a" }}
                   title="Cum se cum se formează undele sonore într-un tub și cum se determină frecvența fundamentală? (exemplu video)"
                 />
-              </div> */}
+              </div>
             </div>
             {/* Image slider for wave simulation */}
             <div className="space-y-12">
@@ -168,7 +125,7 @@ const UndePage = () => {
                     href="/simulari/Unde/simulator-unde.html"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="resurse-link"
+                    style={{ textDecoration: "none" }}
                   >
                     <Button size="lg">
                       Vezi simularea
@@ -238,7 +195,7 @@ const UndePage = () => {
                     href="/simulari/prisma/prisma-simulator.html"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="resurse-link"
+                    style={{ textDecoration: "none" }}
                   >
                     <Button size="lg">
                       Vezi simularea
@@ -262,7 +219,7 @@ const UndePage = () => {
                 execution-while-out-of-viewport="true"
                 execution-while-not-rendered="true"
                 web-share="true"
-                className="resurse-iframe"
+                style={{ width: "100%", height: "480px", border: "none" }}
                 title="Undă electromagnetică 3D"
               ></iframe>
               <div
@@ -285,7 +242,8 @@ const UndePage = () => {
                 }
                 variant="outline"
               >
-                Undă electromagnetică&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1
+                <span className="d-desktop">Undă electromagnetică&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                <span className="d-mobile">Undă electromagnetică</span>
               </Button>
               <Button
                 onClick={() =>

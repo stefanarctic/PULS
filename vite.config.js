@@ -5,11 +5,7 @@ import path from "path";
 export default defineConfig({
   plugins: [react()],
   server: {
-    port: 8000,
-    allowedHosts: [
-      'localhost',
-      '277e55960558.ngrok-free.app',
-    ]
+    port: 8000
   },
   resolve: {
     alias: {

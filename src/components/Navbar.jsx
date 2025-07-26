@@ -10,12 +10,10 @@ import { useEffect, useRef, useState } from "react";
 
 const Navbar = () => {
     const [pulsOpen, setPulsOpen] = useState(false);
-    const [pulsForceOpen, setPulsForceOpen] = useState(false);
-    const [searchValue, setSearchValue] = useState("");
     const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-    const [mobileDropdownOpen, setMobileDropdownOpen] = useState(false);
+    const [mobileDropdownOpen, setMobileDropdownOpen] = useState(false); // NEW
+    const [searchValue, setSearchValue] = useState("");
     const dropdownRef = useRef(null);
-    const dropdownMenuRef = useRef(null);
     const closeTimeoutRef = useRef(null);
     const navigate = useNavigate();
     const darkModeOn = useDarkMode();
@@ -25,12 +23,9 @@ const Navbar = () => {
         const handleClickOutside = (event) => {
             if (
                 dropdownRef.current &&
-                !dropdownRef.current.contains(event.target) &&
-                dropdownMenuRef.current &&
-                !dropdownMenuRef.current.contains(event.target)
+                !dropdownRef.current.contains(event.target)
             ) {
                 setPulsOpen(false);
-                setPulsForceOpen(false);
             }
         };
         document.addEventListener("mousedown", handleClickOutside);
@@ -69,48 +64,38 @@ const Navbar = () => {
         };
     }, [mobileMenuOpen]);
 
-    // Improved hover behavior with delay
+    // Improved hover handlers with delay
     const handleMouseEnter = () => {
         if (closeTimeoutRef.current) {
             clearTimeout(closeTimeoutRef.current);
+            closeTimeoutRef.current = null;
         }
-        if (!pulsForceOpen) setPulsOpen(true);
+        setPulsOpen(true);
     };
 
     const handleMouseLeave = () => {
-        if (!pulsForceOpen) {
-            closeTimeoutRef.current = setTimeout(() => {
-                setPulsOpen(false);
-            }, 150); // Small delay to allow moving to dropdown menu
-        }
-    };
-
-    const handleDropdownMenuMouseEnter = () => {
-        if (closeTimeoutRef.current) {
-            clearTimeout(closeTimeoutRef.current);
-        }
-    };
-
-    const handleDropdownMenuMouseLeave = () => {
-        if (!pulsForceOpen) {
-            closeTimeoutRef.current = setTimeout(() => {
-                setPulsOpen(false);
-            }, 150);
-        }
+        closeTimeoutRef.current = setTimeout(() => {
+            setPulsOpen(false);
+        }, 150); // 150ms delay before closing
     };
 
     const handleDropdownClick = (e) => {
         e.preventDefault();
-        setPulsForceOpen((prev) => {
-            const newState = !prev;
-            setPulsOpen(newState);
-            return newState;
-        });
+        e.stopPropagation();
+        setPulsOpen((prev) => !prev);
     };
 
     const handleDropdownItemClick = () => {
-        setPulsForceOpen(false);
         setPulsOpen(false);
+        setMobileMenuOpen(false);
+    };
+
+    const handleMobileMenuToggle = () => {
+        setMobileMenuOpen(!mobileMenuOpen);
+    };
+
+    const handleMobileNavClick = () => {
+        setMobileMenuOpen(false);
     };
 
     const handleSearchChange = (e) => {
@@ -126,63 +111,74 @@ const Navbar = () => {
         }
     };
 
-    const handleMobileMenuToggle = () => {
-        setMobileMenuOpen(!mobileMenuOpen);
-    };
+    // Keep the original scroll logic untouched!
+    $(document).on("scroll", () => {
+        if ($(document).scrollTop() <= 100)
+        {
+            $('nav').css('backdrop-filter', `blur(${0.2 * ($(document).scrollTop() / 10)}px)`);
+            $('nav').css('background', `linear-gradient(to bottom, rgba(0, 0, 0, ${$(document).scrollTop() / 100 * 0.74}), rgba(0, 0, 0, 0))`);
+        }
+        else
+        {
+            $('nav').css('backdrop-filter', 'blur(2px)');
+            $('nav').css('background', 'linear-gradient(to bottom, rgba(0, 0, 0, 0.78), rgba(0, 0, 0, 0))');
+        }
+    });
 
-    const handleMobileNavClick = () => {
-        setMobileMenuOpen(false);
-    };
-
-    // Consolidated scroll logic
     useEffect(() => {
-        const handleScroll = () => {
-            const scrollTop = $(document).scrollTop();
-
-            // Background and blur effects
-            if (scrollTop <= 100) {
-                $('nav').css('backdrop-filter', `blur(${0.2 * (scrollTop / 10)}px)`);
-                $('nav').css('background', `linear-gradient(to bottom, rgba(0, 0, 0, ${scrollTop / 100 * 0.74}), rgba(0, 0, 0, 0))`);
+        if (!darkModeOn)
+        {            
+            if ($(document).scrollTop() <= 100) {
+                $('nav > #nav-container > ul > li > .nav-link').css({ color: 'black' });
+                $('nav #navbar-search .search-icon, nav #navbar-search .search-input').css({ color: 'black' });
+                $('nav #navbar-search').css({ borderColor: 'black' });
+                $('nav #dark-mode-toggle-container .toggle-parent .dark-mode-toggle').css({ color: 'black' });
+                $('#logo-link img').attr('src', PulsLogoBlack);
+                $('#burger-menu svg').css({ color: 'black' });
             } else {
-                $('nav').css('backdrop-filter', 'blur(2px)');
-                $('nav').css('background', 'linear-gradient(to bottom, rgba(0, 0, 0, 0.78), rgba(0, 0, 0, 0))');
+                $('nav > #nav-container > ul > li > .nav-link').css({ color: 'white' });
+                $('nav #navbar-search .search-icon, nav #navbar-search .search-input').css({ color: 'white' });
+                $('nav #navbar-search').css({ borderColor: 'white' });
+                $('nav #dark-mode-toggle-container .toggle-parent .dark-mode-toggle').css({ color: 'white' });
+                $('#logo-link img').attr('src', PulsLogoWhite);
+                $('#burger-menu svg').css({ color: 'white' });
             }
 
-            // Color changes based on dark mode and scroll position
-            if (!darkModeOn) {
-                if (scrollTop <= 100) {
+            console.log('Current mode: white mode');
+            $(document).off("scroll.white-mode-scroll"); // To be sure
+            $(document).on("scroll.white-mode-scroll", () => {
+                if ($(document).scrollTop() <= 100) {
                     $('nav > #nav-container > ul > li > .nav-link').css({ color: 'black' });
                     $('nav #navbar-search .search-icon, nav #navbar-search .search-input').css({ color: 'black' });
                     $('nav #navbar-search').css({ borderColor: 'black' });
                     $('nav #dark-mode-toggle-container .toggle-parent .dark-mode-toggle').css({ color: 'black' });
                     $('#logo-link img').attr('src', PulsLogoBlack);
+                    $('#burger-menu svg').css({ color: 'black' });
                 } else {
                     $('nav > #nav-container > ul > li > .nav-link').css({ color: 'white' });
                     $('nav #navbar-search .search-icon, nav #navbar-search .search-input').css({ color: 'white' });
                     $('nav #navbar-search').css({ borderColor: 'white' });
                     $('nav #dark-mode-toggle-container .toggle-parent .dark-mode-toggle').css({ color: 'white' });
                     $('#logo-link img').attr('src', PulsLogoWhite);
+                    $('#burger-menu svg').css({ color: 'white' });
                 }
-            } else {
-                // Dark mode - always white text
-                $('nav > #nav-container > ul > li > .nav-link').css({ color: 'white' });
-                $('nav #navbar-search .search-icon, nav #navbar-search .search-input').css({ color: 'white' });
-                $('nav #navbar-search').css({ borderColor: 'white' });
-                $('nav #dark-mode-toggle-container .toggle-parent .dark-mode-toggle').css({ color: 'white' });
-                $('#logo-link img').attr('src', PulsLogoWhite);
-            }
-        };
+            });
+        }
+        else
+        {
+            $(document).off("scroll.white-mode-scroll");
+            console.log('Current mode: dark mode');
+            $('nav > #nav-container > ul > li > .nav-link').css({ color: 'white' });
+            $('nav #navbar-search .search-icon, nav #navbar-search .search-input').css({ color: 'white' });
+            $('nav #navbar-search').css({ borderColor: 'white' });
+            $('nav #dark-mode-toggle-container .toggle-parent .dark-mode-toggle').css({ color: 'white' });
+            $('#logo-link img').attr('src', PulsLogoWhite);
+            $('#burger-menu svg').css({ color: 'white' });
+        }
 
-        // Initial call to set correct colors
-        handleScroll();
-
-        // Add scroll event listener
-        $(document).on("scroll.navbar-scroll", handleScroll);
-
-        // Cleanup
         return () => {
-            $(document).off("scroll.navbar-scroll");
-        };
+            $(document).off("scroll.white-mode-scroll");
+        }
     }, [darkModeOn]);
 
     return (
@@ -193,6 +189,7 @@ const Navbar = () => {
                     <img src={darkModeOn ? PulsLogoWhite : PulsLogoBlack} alt="P.U.L.S" />
                 </Link>
             </div>
+            
             {/* Search Bar */}
             <form id="navbar-search" onSubmit={handleSearchSubmit}>
                 <Search className="search-icon" strokeWidth={3} />
@@ -201,9 +198,11 @@ const Navbar = () => {
                     className="search-input"
                     value={searchValue}
                     onChange={handleSearchChange}
+                    // placeholder="Caută..."
                 />
             </form>
-            {/* Links */}
+            
+            {/* Desktop Navigation */}
             <div id="nav-container">
                 <ul id="nav-list">
                     <li>
@@ -212,27 +211,34 @@ const Navbar = () => {
                             <span>Acasa</span>
                         </Link>
                         <div
-                            className={`nav-link dropdown-toggle navbar-dropdown-toggle${(pulsOpen || pulsForceOpen) ? ' active' : ''}`}
+                            className="nav-link dropdown-toggle"
                             ref={dropdownRef}
                             onMouseEnter={handleMouseEnter}
                             onMouseLeave={handleMouseLeave}
                             onClick={handleDropdownClick}
                         >
-                            <span className="navbar-dropdown-span">
+                            <span className="dropdown-toggle-content">
                                 <span>P.U.L.S.</span>
-                                <ChevronDown className="nav-icon navbar-dropdown-icon" />
+                                <ChevronDown className="nav-icon" />
                             </span>
-                            {(pulsOpen || pulsForceOpen) && (
-                                <div
-                                    ref={dropdownMenuRef}
-                                    className="dropdown-menu navbar-dropdown-menu"
-                                    onMouseEnter={handleDropdownMenuMouseEnter}
-                                    onMouseLeave={handleDropdownMenuMouseLeave}
+                            {pulsOpen && (
+                                <div 
+                                    className="dropdown-menu"
+                                    onMouseEnter={handleMouseEnter}
+                                    onMouseLeave={handleMouseLeave}
                                 >
-                                    <Link to="/resurse/pendule" className="dropdown-item navbar-dropdown-item" onClick={handleDropdownItemClick}>Pendule</Link>
-                                    <Link to="/resurse/unde" className="dropdown-item navbar-dropdown-item" onClick={handleDropdownItemClick}>Unde</Link>
-                                    <Link to="/resurse/lissajous" className="dropdown-item navbar-dropdown-item" onClick={handleDropdownItemClick}>Lissajous</Link>
-                                    <Link to="/resurse/seism" className="dropdown-item navbar-dropdown-item" onClick={handleDropdownItemClick}>Seisme</Link>
+                                    <Link to="/resurse/pendule" className="dropdown-item" onClick={handleDropdownItemClick}>
+                                        Pendule
+                                    </Link>
+                                    <Link to="/resurse/unde" className="dropdown-item" onClick={handleDropdownItemClick}>
+                                        Unde
+                                    </Link>
+                                    <Link to="/resurse/lissajous" className="dropdown-item" onClick={handleDropdownItemClick}>
+                                        Lissajous
+                                    </Link>
+                                    <Link to="/resurse/seism" className="dropdown-item" onClick={handleDropdownItemClick}>
+                                        Seisme
+                                    </Link>
                                 </div>
                             )}
                         </div>
@@ -252,26 +258,23 @@ const Navbar = () => {
                             <User className="nav-icon" />
                             <span>Profil</span>
                         </Link>
-                        <div className="nav-link dark-mode-toggle-link">
-                            <DarkModeToggle />
-                        </div>
                     </li>
                 </ul>
             </div>
 
             {/* Mobile Menu Button */}
             <div id="nav-mobile">
-                <button
-                    id="burger-menu"
+                <button 
+                    id="burger-menu" 
                     onClick={handleMobileMenuToggle}
                     className={mobileMenuOpen ? 'active' : ''}
                 >
                     {mobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
                 </button>
-
+                
                 {/* Mobile Menu Overlay */}
                 {mobileMenuOpen && (
-                    <div id="mobile-menu" className={`active${darkModeOn ? ' dark-mode' : ''}`}>
+                    <div id="mobile-menu" className="active">
                         {/* Buton de close */}
                         <button
                             className="mobile-menu-close"
@@ -286,7 +289,7 @@ const Navbar = () => {
                                 <Home className="nav-icon" />
                                 <span>Acasa</span>
                             </Link>
-
+                            
                             <div className="mobile-dropdown">
                                 <div className="mobile-dropdown-header" onClick={() => setMobileDropdownOpen(v => !v)}>
                                     <span>P.U.L.S.</span>
@@ -307,7 +310,7 @@ const Navbar = () => {
                                     </Link>
                                 </div>
                             </div>
-
+                            
                             <Link to="/probleme" className="nav-link" onClick={handleMobileNavClick}>
                                 <ListCheck className="nav-icon" />
                                 <span>Probleme</span>
@@ -324,12 +327,14 @@ const Navbar = () => {
                                 <User className="nav-icon" />
                                 <span>Profil</span>
                             </Link>
-                            <div className="nav-link dark-mode-toggle-link">
-                                <DarkModeToggle />
-                            </div>
                         </div>
                     </div>
                 )}
+            </div>
+            
+            {/* Dark Mode Toggle */}
+            <div id="dark-mode-toggle-container">
+                <DarkModeToggle />
             </div>
         </nav>
     );

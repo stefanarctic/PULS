@@ -27,7 +27,7 @@
       font-size: 1.125rem;
     }
 
-    .simulations-grid {
+    .simulari-grid {
       display: grid;
       grid-template-columns: 1fr;
       gap: 2rem;
@@ -37,7 +37,7 @@
       }
     }
 
-    .simulation-card {
+    .simulari-card {
       // background-color: var(--secondary-background-current-mode);
       // border: 1px solid var(--border-color-current-mode);
       // border-radius: 1rem;
@@ -46,7 +46,7 @@
       // transition: transform 0.3s ease, box-shadow 0.3s ease;
       // color: var(--primary-color-current-mode);
 
-
+      
       background: var(--quaternary-background-current-mode);
       color: var(--primary-color-current-mode) !important;
       transition: background-color 0.3s ease, color 0.3s ease;
@@ -158,7 +158,6 @@
     color: var(--primary-background-current-mode);
   }
 }
-
 @media (max-width: 768px) {
   .simulari-page .main-content {
     padding: 0.7rem 0.3rem !important;
@@ -166,7 +165,6 @@
     width: 100vw !important;
     box-sizing: border-box;
   }
-
   .simulari-page {
     width: 100vw !important;
     overflow-x: hidden;

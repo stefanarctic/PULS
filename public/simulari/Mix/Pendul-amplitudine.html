@@ -4,19 +4,19 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <link rel="stylesheet" href="css/mainreprezentari.css">
-    <title>Pendulul Oscilator</title>
+    <link rel="stylesheet" href="css/reprezentari-trasnit.css">
+    <title>Oscilator Neliniar</title>
 </head>
 <body>
-    <b class="titlemain">Pendulul Oscilator</b>
+    <b class="titlemain">Oscilator Neliniar</b>
     <button id="toggleSidebar">></button>
    <div class="sidebar">
         <div class="slider-container">
             <div class="slider-label">
                 <span class="text1">Amplitudine:</span>
-                <span id="amplitude-value" class="text1">30cm</span>
+                <span id="amplitude-value" class="text1">80° (cm)</span>
             </div>
-            <input type="range" id="amplitude" min="10" max="60" value="30">
+            <input type="range" id="amplitude" min="10" max="80" value="80">
         </div>
         <div class="slider-container">
             <div class="slider-label">
@@ -37,16 +37,16 @@
         <button onclick="stopOscillation()" class="button1">Stop</button>
         <button onclick="toggleMeasuringTool()" class="button1">Măsoară</button>
         <div class="measurement-values" id="measurement-values">
-            <p>L(lungimea): <span id="measured-length">-</span></p>
-            <p>A (Amplitudine): <span id="measured-amplitude">-</span></p>
+            <p>L (lungimea): <span id="measured-length">-</span></p>
+            <p>θ (unghiul): <span id="measured-angle">-</span></p>
             <p>t (timpul): <span id="measured-time">-</span></p>
-            <p>x (Vector deplasare):<span id="measured-x">-</span></p>
-            <p>v (Viteză-setare):<span id="measured-speed">-</span></p>
-            <p>φ0 (Unghi): <span id="measured-angle">-</span></p>
-            <p>𝛚 (Pulsatia): <span id="measured-angular-velocity">-</span></p>
-            <p>v (Viteză oscilatorie): <span id="measured-velocity">-</span></p>
-            <p>a (Accelerație): <span id="measured-acceleration">-</span></p>
-            <p>Ec (Energia cinetica): <span id="measured-kineticenergy">-</span></p>
+            <p>ω (viteza unghiulară): <span id="measured-angular-velocity">-</span></p>
+            <p>v (viteza liniară): <span id="measured-velocity">-</span></p>
+            <p>a (accelerația): <span id="measured-acceleration">-</span></p>
+            <p>Ec (energia cinetică): <span id="measured-kineticenergy">-</span></p>
+            <p>Ep (energia potențială): <span id="measured-potentialenergy">-</span></p>
+            <p>Em (energia mecanică): <span id="measured-mechanicalenergy">-</span></p>
+            <p>T (perioada): <span id="measured-period">-</span></p>
             <div id="chart-container">
                 <canvas id="pendulumChart"></canvas>
             </div>
@@ -56,28 +56,35 @@
         <button id="toggleUniformbar"><</button>
         <div class="unitform-container">
     <div class="unitbar">
-        <span class="text1">Unitati de masura:</span>
+        <span class="text1">Unități de măsură:</span>
         <div class="measurement-values" id="measurement-values">
-            <p>L(lungimea) - m (metru)</p>
-            <p>A (Amplitudine) - m(metru) </p>
-            <p>t (timpul) - s(secunda) </p>
-            <p>x (Vector deplasare) - m(metru)</p>
-            <p>v (Viteză-setare) - x (viteza de redare)</p>
-            <p>φ0 (Unghi) - ° (grade)</p>
-            <p>𝛚 (Pulsatia)  - rad/ s (radian pe secunda) </p>
-            <p>v (Viteză oscilatorie) - m/s (metru pe secunda)</p>
-            <p>a (Accelerație) - m/s²(metru pe secunda la a doua) </p>
-            <p>Ec(Energia cinetica) - J(joule)</p>
+            <p>L (lungimea) - m (metru)</p>
+            <p>θ (unghiul) - ° (grade)</p>
+            <p>t (timpul) - s (secunda)</p>
+            <p>ω (viteza unghiulară) - rad/s (radian pe secundă)</p>
+            <p>v (viteza liniară) - m/s (metru pe secundă)</p>
+            <p>a (accelerația) - m/s² (metru pe secundă la pătrat)</p>
+            <p>Ec (energia cinetică) - J (joule)</p>
+            <p>Ep (energia potențială) - J (joule)</p>
+            <p>Em (energia mecanică) - J (joule)</p>
+            <p>T (perioada) - s (secunda)</p>
         </div>
     </div>
-    <div class="formulabar">
-        <span class="text1">Formule:</span>
+            <div class="formulabar">
+        <span class="text1">Formule pendul neliniar:</span>
         <div class="measurement-values" id="measurement-values">
-            <p>x = A sin (ωt + φo)</p>
-            <p>v = ωA cos( ωt + φo) </p>
-            <p>a = -ω²A sin( ωt + φo)  </p>
-            <p>\( \omega = \sqrt{\frac{g}{L}} \)</p>
-            <p>\(E_c = \frac{ m v^2}{2}\)</p>
+            <p>Ecuația de mișcare:</p>
+            <p>$$\frac{d^2\theta}{dt^2} + \frac{g}{l} \sin\theta = 0$$</p>
+            <p>Viteza unghiulară:</p>
+            <p>$$\omega = \frac{d\theta}{dt}$$</p>
+            <p>Viteza liniară:</p>
+            <p>$$v = l \cdot \omega$$</p>
+            <p>Energia cinetică:</p>
+            <p>$$E_c = \frac{1}{2} m v^2$$</p>
+            <p>Energia potențială:</p>
+            <p>$$E_p = m g l (1 - \cos\theta)$$</p>
+            <p>Energia mecanică:</p>
+            <p>$$E_m = E_c + E_p$$</p>
         </div>
         <button id="themeToggle" class="button2">🌙 Schimbă tema</button>
         </div>

@@ -80,3 +80,137 @@
         }
     }
 }
+/* TELEFOANE: max-width 768px */
+@media (max-width: 768px) {
+  .footer {
+    padding: 3rem 1rem 1.5rem;
+
+    .footer-content {
+      gap: 2rem;
+
+      .footer-logo {
+        h3 {
+          font-size: 1.5rem;
+        }
+
+        p {
+          font-size: 0.95rem;
+        }
+      }
+
+      .footer-links {
+        flex-direction: column;
+        gap: 1.5rem;
+
+        .footer-column {
+          h4 {
+            font-size: 1rem;
+            margin-bottom: 1rem;
+          }
+
+          ul li a {
+            font-size: 0.95rem;
+          }
+        }
+      }
+    }
+
+    .footer-bottom {
+      padding-top: 1.5rem;
+      margin-top: 1.5rem;
+
+      p {
+        font-size: 0.85rem;
+      }
+    }
+  }
+}
+
+/* TABLETE: între 769px și 1024px */
+@media (min-width: 769px) and (max-width: 1024px) {
+  .footer {
+    padding: 3.5rem 2rem 2rem;
+
+    .footer-content {
+      flex-direction: row;
+      gap: 2.5rem;
+
+      .footer-logo {
+        h3 {
+          font-size: 1.75rem;
+        }
+
+        p {
+          font-size: 1rem;
+        }
+      }
+
+      .footer-links {
+        gap: 2rem;
+
+        .footer-column {
+          h4 {
+            font-size: 1.1rem;
+          }
+
+          ul li a {
+            font-size: 1rem;
+          }
+        }
+      }
+    }
+
+    .footer-bottom {
+      padding-top: 2rem;
+      margin-top: 2rem;
+
+      p {
+        font-size: 0.9rem;
+      }
+    }
+  }
+}
+
+/* LAPTOPURI MICI / DESKTOPURI MEDII: între 1025px și 1366px */
+@media (min-width: 1025px) and (max-width: 1366px) {
+  .footer {
+    padding: 4rem 3rem 2rem;
+
+    .footer-content {
+      gap: 3rem;
+
+      .footer-logo {
+        h3 {
+          font-size: 1.9rem;
+        }
+
+        p {
+          font-size: 1.05rem;
+        }
+      }
+
+      .footer-links {
+        gap: 2rem;
+
+        .footer-column {
+          h4 {
+            font-size: 1.15rem;
+          }
+
+          ul li a {
+            font-size: 1rem;
+          }
+        }
+      }
+    }
+
+    .footer-bottom {
+      padding-top: 2rem;
+      margin-top: 2rem;
+
+      p {
+        font-size: 0.9rem;
+      }
+    }
+  }
+}
