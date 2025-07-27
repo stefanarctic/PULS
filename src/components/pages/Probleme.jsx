@@ -2,7 +2,15 @@ import { useEffect, useState, Fragment } from 'react';
 import Layout from '../Layout';
 import { useLocation } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
+import ProblemaDetaliata from "../Problemadetaliata";
 import { problemeData } from '../problemedata';
+import { useDispatch, useSelector } from 'react-redux';
+import { addProblem, removeProblem, setUserProblems } from '../../problemeSlice';
+import { db } from '../../lib/firebase';
+import { doc, setDoc, getDocs, collection, getDoc, deleteDoc } from 'firebase/firestore';
+import { auth } from '../../lib/firebase';
+import useDarkMode from '../../hooks/useDarkMode';
+import React from 'react';
 
 // Icon components
 const SearchIcon = () => (
@@ -21,9 +29,8 @@ const ExternalLinkIcon = () => (
 );
 
 // Problem Card Component
-const ProblemCard = ({ problem }) => {
-    const { index, titlu, dificultate, categorie, descriere, solved } = problem;
-    const navigate = useNavigate();
+const ProblemCard = ({ problem, onResolveClick }) => {
+    const { index, titlu, dificultate, categorie, descriere, solved, createdByAlias } = problem;
 
     const getDifficultyColorClass = (diff) => {
         switch (diff) {
@@ -45,7 +52,10 @@ const ProblemCard = ({ problem }) => {
     };
 
     return (
-        <div className={`problem-card${solved ? ' solved' : ''}`}>
+        <div className={`problem-card${solved ? ' solved' : ''}`} style={{ position: 'relative' }}>
+            {createdByAlias && (
+                <span style={{ position: 'absolute', top: 8, right: 12, fontSize: 12, fontStyle: 'italic', color: '#888', zIndex: 2 }} title="Autor problemă">{createdByAlias}</span>
+            )}
             <div className="problem-card-header">
                 <div className="problem-card-info">
                     <span className="problem-card-id">#{index}</span>
@@ -60,7 +70,7 @@ const ProblemCard = ({ problem }) => {
                 </div>
                 <button
                     className="problem-card-link"
-                    onClick={() => navigate(`/probleme/${problem.id}`)}
+                    onClick={() => onResolveClick(problem)}
                 >
                     <span>Rezolvă</span>
                     <ExternalLinkIcon />
@@ -69,6 +79,8 @@ const ProblemCard = ({ problem }) => {
         </div>
     );
 };
+
+export { ProblemCard };
 
 const PhysicsProblems = () => {
     const [searchQuery, setSearchQuery] = useState("");
@@ -82,6 +94,7 @@ const PhysicsProblems = () => {
         params.get("category") || "Toate"
     );
     const [sortBy, setSortBy] = useState("newest");
+    const [selectedProblem, setSelectedProblem] = useState(null);
     
     // Paginare
     const [currentPage, setCurrentPage] = useState(1);
@@ -89,6 +102,7 @@ const PhysicsProblems = () => {
 
     const navigate = useNavigate();
 
+    
     // Funcție pentru a verifica dacă query-ul este un ID valid și naviga direct
     const handleSearchSubmit = (e) => {
         e.preventDefault();
@@ -281,14 +295,347 @@ const PhysicsProblems = () => {
         }
     };
 
+    const [showAddModal, setShowAddModal] = useState(false);
+    const [newTitle, setNewTitle] = useState('');
+    const [newCategory, setNewCategory] = useState(categories[1] || '');
+    const [newDifficulty, setNewDifficulty] = useState(difficulties[1] || '');
+    const [newEnunt, setNewEnunt] = useState('');
+    const [newImages, setNewImages] = useState([]); // array de url-uri
+    const [uploading, setUploading] = useState(false);
+    const [newPunctajTotal, setNewPunctajTotal] = useState('');
+    const [newSubpuncte, setNewSubpuncte] = useState([{ cerinta: '', punctaj: '' }]);
+    const dispatch = useDispatch();
 
+    const IMAGEKIT_PUBLIC_KEY = 'public_6rkxL+q+51xT8d2+GHpJeNSzOTE=';
+    const IMAGEKIT_UPLOAD_URL = 'https://upload.imagekit.io/api/v1/files/upload';
+
+    const handleImageUpload = async (file) => {
+      if (!file) return;
+      if (file.size > 2 * 1024 * 1024) {
+        alert('Imaginea trebuie să fie sub 2MB!');
+        return;
+      }
+      setUploading(true);
+
+      // Ia semnătura de la backend
+      const authRes = await fetch('/api/assistant/imagekit-auth');
+      const { signature, expire, token } = await authRes.json();
+
+      const formData = new FormData();
+      formData.append('file', file);
+      formData.append('fileName', file.name);
+      formData.append('publicKey', IMAGEKIT_PUBLIC_KEY);
+      formData.append('signature', signature);
+      formData.append('expire', expire);
+      formData.append('token', token);
+
+      try {
+        const res = await fetch(IMAGEKIT_UPLOAD_URL, { method: 'POST', body: formData });
+        const data = await res.json();
+        if (data && data.url) {
+          setNewImages((imgs) => [...imgs, data.url]);
+        } else {
+          alert('Eroare la upload poză!');
+        }
+      } catch (err) {
+        alert('Eroare la upload poză!');
+      }
+      setUploading(false);
+    };
+
+    const fetchAllUserProblems = async () => {
+      const usersSnap = await getDocs(collection(db, 'users'));
+      let allUserProblems = [];
+      for (const userDoc of usersSnap.docs) {
+        const userProblemsRef = collection(db, 'users', userDoc.id, 'userProblems');
+        const problemsSnap = await getDocs(userProblemsRef);
+        allUserProblems = allUserProblems.concat(problemsSnap.docs.map(doc => doc.data()));
+      }
+      console.log('Probleme actualizate din Firestore:', allUserProblems);
+      dispatch(setUserProblems(allUserProblems));
+    };
+
+    const handleAddProblem = async () => {
+      if (!newTitle.trim() || !newCategory || !newDifficulty || !newEnunt.trim()) {
+        alert('Completează toate câmpurile!');
+        return;
+      }
+      const user = auth.currentUser;
+      let createdByAlias = '';
+      if (user) {
+        const userRef = doc(db, 'users', user.uid);
+        const snap = await getDoc(userRef);
+        if (snap.exists() && snap.data().alias) {
+          createdByAlias = snap.data().alias;
+        }
+      }
+      const newProblem = {
+        id: Date.now().toString(),
+        index: nextIndex,
+        titlu: newTitle,
+        categorie: newCategory,
+        dificultate: newDifficulty,
+        descriere: newEnunt,
+        images: newImages,
+        punctajTotal: newPunctajTotal,
+        subpuncte: newSubpuncte.filter(sp => sp.cerinta && sp.punctaj),
+        createdByAlias,
+        createdByUid: user ? user.uid : undefined,
+      };
+      if (user) {
+        const userProblemRef = doc(db, 'users', user.uid, 'userProblems', newProblem.id);
+        await setDoc(userProblemRef, newProblem);
+        await fetchAllUserProblems();
+      }
+      dispatch(addProblem(newProblem));
+      setShowAddModal(false);
+      setNewTitle(''); setNewCategory(categories[1] || ''); setNewDifficulty(difficulties[1] || ''); setNewEnunt(''); setNewImages([]); setNewPunctajTotal(''); setNewSubpuncte([{ cerinta: '', punctaj: '' }]);
+    };
+
+    const [selectedUserProblem, setSelectedUserProblem] = useState(null);
+    const [user, setUser] = useState(null);
+    const [isAdmin, setIsAdmin] = useState(false);
+
+    useEffect(() => {
+      const unsubscribe = auth.onAuthStateChanged(async (firebaseUser) => {
+        if (firebaseUser) {
+          setUser(firebaseUser);
+          const userRef = doc(db, 'users', firebaseUser.uid);
+          const snap = await getDoc(userRef);
+          setIsAdmin(snap.exists() && (snap.data().isAdmin || [
+            'matbajean@gmail.com',
+            'aleluianu09@gmail.com',
+            'pulsphysics@gmail.com',
+          ].includes(firebaseUser.email)));
+        } else {
+          setUser(null);
+          setIsAdmin(false);
+        }
+      });
+      return () => unsubscribe();
+    }, []);
+
+    useEffect(() => {
+      const fetchAllUserProblems = async () => {
+        const usersSnap = await getDocs(collection(db, 'users'));
+        let allUserProblems = [];
+        for (const userDoc of usersSnap.docs) {
+          const userProblemsRef = collection(db, 'users', userDoc.id, 'userProblems');
+          const problemsSnap = await getDocs(userProblemsRef);
+          allUserProblems = allUserProblems.concat(problemsSnap.docs.map(doc => doc.data()));
+        }
+        dispatch(setUserProblems(allUserProblems));
+      };
+      fetchAllUserProblems();
+    }, [dispatch]);
+
+    const darkMode = useDarkMode();
+
+    // Pentru upload poze cu drag&drop, click și Ctrl+V
+    const fileInputRef = React.useRef();
+    const handleDrop = (e) => {
+      e.preventDefault();
+      const file = e.dataTransfer.files[0];
+      if (file) handleImageUpload(file);
+    };
+    const handlePaste = (e) => {
+      const items = e.clipboardData.items;
+      for (let i = 0; i < items.length; i++) {
+        if (items[i].type.indexOf('image') !== -1) {
+          const file = items[i].getAsFile();
+          handleImageUpload(file);
+          break;
+        }
+      }
+    };
+    const handleFileChange = (e) => {
+      const file = e.target.files[0];
+      if (file) handleImageUpload(file);
+    };
+
+    React.useEffect(() => {
+      if (showAddModal) {
+        document.body.style.overflow = 'hidden';
+      } else {
+        document.body.style.overflow = '';
+      }
+      return () => { document.body.style.overflow = ''; };
+    }, [showAddModal]);
+
+    if (selectedProblem) {
+        return (
+            <Layout>
+                <ProblemaDetaliata 
+                    problema={selectedProblem} 
+                    onBack={() => setSelectedProblem(null)}
+                />
+            </Layout>
+        );
+    }
+
+    if (selectedUserProblem) {
+      return (
+        <Layout>
+          <ProblemaDetaliata
+            problema={selectedUserProblem}
+            onBack={() => setSelectedUserProblem(null)}
+          />
+        </Layout>
+      );
+    }
+
+    // Funcție utilitară pentru reindexarea problemelor după ștergere
+    const reindexProblemsAfterDelete = async (ownerUid) => {
+      const userProblemsRef = collection(db, 'users', ownerUid, 'userProblems');
+      const problemsSnap = await getDocs(userProblemsRef);
+      const remainingProblems = problemsSnap.docs.map(doc => doc.data());
+      
+      // Sortează după index vechi și reindexează
+      const sorted = [...remainingProblems].sort((a, b) => (a.index || 0) - (b.index || 0));
+      
+      // Găsește ultimul index din problemele existente (din problemeData)
+      const maxExistingIndex = problemeData.length > 0 ? Math.max(...problemeData.map(p => Number(p.index) || 0)) : 0;
+      
+      // Reindexează începând de la ultimul index existent + 1 (care ar trebui să fie 14)
+      for (let i = 0; i < sorted.length; i++) {
+        const p = { ...sorted[i], index: maxExistingIndex + i + 1 };
+        const userProblemRef = doc(db, 'users', ownerUid, 'userProblems', p.id);
+        await setDoc(userProblemRef, p, { merge: true });
+      }
+    };
+
+    const handleRemoveUserProblem = async (id) => {
+      const user = auth.currentUser;
+      if (!user) return;
+      const problem = userProblems.find(p => p.id === id);
+      const isAdmin = [
+        'matbajean@gmail.com',
+        'aleluianu09@gmail.com',
+        'pulsphysics@gmail.com',
+      ].includes(user.email);
+      let ownerUid = user.uid;
+      if (isAdmin && problem && problem.createdByUid && problem.createdByUid !== user.uid) {
+        ownerUid = problem.createdByUid;
+      }
+      try {
+        await deleteDoc(doc(db, 'users', ownerUid, 'userProblems', id));
+        
+        // Reindexare automată după ștergere
+        await reindexProblemsAfterDelete(ownerUid);
+        
+        await fetchAllUserProblems();
+      } catch (err) {
+        alert('Eroare la ștergere: ' + err.message);
+      }
+    };
+
+    // Debug: loghează userProblems la fiecare randare
+    // console.log('Probleme din store:', userProblems);
 
     return (
         <Layout>
-            <div className="problems-page">
+            <div className={`problems-page${darkMode ? ' dark-mode' : ''}`}> {/* asigură dark mode pe pagină */}
                 <div className="problems-page-inner">
                     {/* Title */}
-                    <h1 className="problems-page-title">Probleme de fizică</h1>
+                    <div className="problems-page-title-row" style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
+                        <h1 className="problems-page-title">Probleme de fizică</h1>
+                        {/* Butonul de add, fixat în colțul dreapta jos */}
+                        <button className="add-problem-btn" onClick={() => setShowAddModal(true)} title="Adaugă problemă">
+                            <span style={{ fontSize: 38, fontWeight: 'bold', lineHeight: 1 }}>+</span>
+                        </button>
+                    </div>
+
+                    {showAddModal && (
+                        <div className="add-problem-modal-bg">
+                            <div
+                                className="add-problem-modal"
+                                tabIndex={-1}
+                                onDrop={handleDrop}
+                                onDragOver={e => e.preventDefault()}
+                                onPaste={handlePaste}
+                            >
+                                <button
+                                    onClick={() => setShowAddModal(false)}
+                                    style={{
+                                        position: 'absolute',
+                                        top: 12,
+                                        right: 16,
+                                        background: 'transparent',
+                                        border: 'none',
+                                        fontSize: 28,
+                                        color: 'var(--muted-color-current-mode)',
+                                        cursor: 'pointer',
+                                        zIndex: 2,
+                                    }}
+                                    title="Închide"
+                                    aria-label="Închide"
+                                >
+                                    ×
+                                </button>
+                                <h2>Adaugă problemă</h2>
+                                <label>Titlu:</label>
+                                <input type="text" value={newTitle} onChange={e => setNewTitle(e.target.value)} />
+                                <label>Categorie:</label>
+                                <select value={newCategory} onChange={e => setNewCategory(e.target.value)}>
+                                    {categories.filter(c => c !== 'Toate').map(c => <option key={c} value={c}>{c}</option>)}
+                                </select>
+                                <label>Dificultate:</label>
+                                <select value={newDifficulty} onChange={e => setNewDifficulty(e.target.value)}>
+                                    {difficulties.filter(d => d !== 'Toate').map(d => <option key={d} value={d}>{d}</option>)}
+                                </select>
+                                <label>Enunț:</label>
+                                <textarea value={newEnunt} onChange={e => setNewEnunt(e.target.value)} />
+                                <label>Poze:</label>
+                                <div
+                                    style={{
+                                        border: '1.5px dashed var(--border-color-current-mode-2)',
+                                        borderRadius: 8,
+                                        padding: 12,
+                                        minHeight: 60,
+                                        marginBottom: 8,
+                                        background: 'var(--secondary-background-current-mode)',
+                                        display: 'flex',
+                                        alignItems: 'center',
+                                        gap: 8,
+                                        flexWrap: 'wrap',
+                                        cursor: uploading ? 'not-allowed' : 'pointer',
+                                    }}
+                                    onClick={() => !uploading && fileInputRef.current.click()}
+                                    title="Click, trage sau folosește Ctrl+V pentru a adăuga poze"
+                                >
+                                    <input
+                                        type="file"
+                                        accept="image/*"
+                                        disabled={uploading}
+                                        ref={fileInputRef}
+                                        style={{ display: 'none' }}
+                                        onChange={handleFileChange}
+                                    />
+                                    {newImages.map((url, i) => (
+                                        <img key={i} src={url} alt="preview" style={{ width: 60, height: 60, objectFit: 'cover', borderRadius: 6 }} />
+                                    ))}
+                                    <span style={{ color: 'var(--muted-color-current-mode)', fontSize: 14 }}>
+                                        {uploading ? 'Se încarcă imaginea...' : (newImages.length === 0 ? 'Click, trage sau folosește Ctrl+V pentru a adăuga poze' : '')}
+                                    </span>
+                                </div>
+                                <label>Punctaj total:</label>
+                                <input type="number" value={newPunctajTotal} onChange={e => setNewPunctajTotal(e.target.value)} />
+                                <label>Cerințe (subpuncte):</label>
+                                {newSubpuncte.map((sp, i) => (
+                                    <div key={i} style={{ display: 'flex', gap: 8, marginBottom: 4 }}>
+                                        <input type="text" placeholder="Cerință" value={sp.cerinta} onChange={e => setNewSubpuncte(subpuncte => subpuncte.map((s, j) => j === i ? { ...s, cerinta: e.target.value } : s))} style={{ flex: 2 }} />
+                                        <input type="number" placeholder="Punctaj" value={sp.punctaj} onChange={e => setNewSubpuncte(subpuncte => subpuncte.map((s, j) => j === i ? { ...s, punctaj: e.target.value } : s))} style={{ flex: 1 }} />
+                                        <button onClick={() => setNewSubpuncte(subpuncte => subpuncte.filter((_, j) => j !== i))} disabled={newSubpuncte.length === 1}>✕</button>
+                                    </div>
+                                ))}
+                                <button className="add-subpunct-btn" onClick={() => setNewSubpuncte([...newSubpuncte, { cerinta: '', punctaj: '' }])}>Adaugă subpunct</button>
+                                <div style={{ display: 'flex', gap: 8, marginTop: 12 }}>
+                                    <button onClick={handleAddProblem} disabled={uploading} style={{ background: 'var(--accent-color-current-mode)', color: '#fff', fontWeight: 600, borderRadius: 8, padding: '0.7rem 1.5rem', border: 'none', fontSize: 16, cursor: uploading ? 'not-allowed' : 'pointer' }}>Salvează</button>
+                                    <button onClick={() => setShowAddModal(false)} disabled={uploading} style={{ borderRadius: 8, padding: '0.7rem 1.5rem', border: '1.5px solid var(--border-color-current-mode-2)', fontSize: 16, background: 'transparent', color: 'var(--primary-color-current-mode)', cursor: uploading ? 'not-allowed' : 'pointer' }}>Anulează</button>
+                                </div>
+                            </div>
+                        </div>
+                    )}
 
                     {/* Search and Filters */}
                     <div className="problems-page-filters">
@@ -367,6 +714,7 @@ const PhysicsProblems = () => {
                             <ProblemCard
                                 key={problem.id}
                                 problem={problem}
+                                onResolveClick={setSelectedProblem}
                             />
                         ))}
                     </div>
