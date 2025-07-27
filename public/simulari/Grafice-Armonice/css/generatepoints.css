@@ -145,3 +145,65 @@
   height: 24px;
   font-weight: 800;
 }
+@media screen and (max-width: 768px) {
+  .show-popup-button {
+    bottom: 1em;
+    right: 20px;
+    width: 60px;
+    height: 60px;
+    font-size: 35px;
+  }
+
+  .generate-points-popup {
+    width: 75%;
+    height: 50%;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+
+  .generate-points-popup .popup-content h1 {
+    margin: 15px;
+    font-size: 1.2em;
+    text-align: center;
+  }
+
+  .generate-points-popup .popup-content .data-input {
+    flex-direction: column;
+    padding: 0 20px;
+    overflow-y: auto;
+  }
+
+  .generate-points-popup .popup-content .data-input .section {
+    align-items: stretch;
+    gap: 20px;
+  }
+
+  .generate-points-popup .popup-content .data-input .section label {
+    font-size: 18px;
+  }
+
+  .generate-points-popup .popup-content .data-input .section input[type=text],
+  .generate-points-popup .popup-content .data-input .section input[type=date],
+  .generate-points-popup .popup-content .data-input .section input[type=number] {
+    width: 10%;
+    padding: 6px;
+    font-size: 18px;
+  }
+
+  .generate-points-popup .popup-content .data-input .section input[type=checkbox] {
+    width: 30px;
+    height: 30px;
+  }
+
+  .generate-points-popup .popup-content button#generate-points-btn {
+    width: 80%;
+    font-size: 1em;
+  }
+
+  .generate-points-popup .popup-content button.close-popup-btn {
+    font-size: 24px;
+    width: 28px;
+    height: 28px;
+  }
+}

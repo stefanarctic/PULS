@@ -3,6 +3,7 @@ body {
     color: white;
     text-align: center;
     font-family: sans-serif;
+    
   }
   canvas {
     background: #222;
@@ -114,3 +115,52 @@ body {
     width: 600px;
   }
  }
+ @media (max-width: 768px) {
+  body {
+    font-size: 18px;
+    padding: 10px;
+  }
+
+  canvas {
+    width: 100%;
+    height: auto;
+    max-width: 100%;
+    margin: 20px auto 0 auto;
+    display: block;
+  }
+
+  .controls {
+    margin-top: 20px;
+  }
+
+  input[type="range"] {
+    width: 90%;
+  }
+
+  #toggleSidebar {
+    font-size: 20px;
+    padding: 8px 12px;
+    top: 5px;
+    right: 5px;
+  }
+
+  .sidebar {
+    width: 70%;
+    right: -100%;
+  }
+
+  .sidebar.visible {
+    right: 0;
+  }
+
+  .sidebar label,
+  .sidebar input,
+  .sidebar output {
+    font-size: 16px;
+  }
+
+  .measurement-values {
+    font-size: 16px;
+    padding: 10px;
+  }
+}

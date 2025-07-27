@@ -27,6 +27,21 @@ body, html {
     z-index: 99;
     padding: 0 10px;
 }
+@media(max-width:768px)
+{
+    .insert-function-div, .insert-derivative-div {
+        height:30px;
+    }
+    .insert-function-div{
+        top: 8% !important;
+    }
+    .insert-derivative-div {
+        top: 13% !important;
+    }
+    .darkmode-button{
+        font-size: 1.5rem !important;
+    }
+}
 
 .insert-function-div {
     top: 10%;

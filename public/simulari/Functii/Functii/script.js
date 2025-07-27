@@ -73,7 +73,7 @@ const symbolicDerivatives = {
     'arcctg(x)': '-1/(1+x^2)',
     'acot(x)': '-1/(1+x^2)',
     'e^x': 'e^x',
-    'exp(x)': 'e^x'
+    'exp(x)': 'e^x',
 };
 
 const getSymbolicDerivative = (expr) => {
@@ -288,7 +288,7 @@ const graph = {
         graph.centerY = screenHeight / 2;
         graph.endX = graph.centerX + graph.size;
         graph.endY = graph.centerY - graph.size;
-        graph.lineSize = Math.min(screenWidth - 80, screenHeight - 80);
+        graph.lineSize = Math.min(screenWidth - 20, screenHeight - 80);
         graph.amp = 8;
         graph.lineThickness = 3;
         graph.graphThickness = 3;

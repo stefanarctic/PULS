@@ -1,10 +1,14 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Layout from "../Layout";
 import Slideshow from "../Slideshow";
 import { Waves, Atom, Circle, Activity, Calculator, BookOpen, Lightbulb, Target } from "lucide-react";
 import { useEffect } from "react";
 import useTranslate, { getTextNodes, useTranslateObject } from "../../hooks/useTranslate";
 import { problemeData } from "../problemedata";
+import { auth, provider } from '../../lib/firebase';
+import { signInWithPopup } from 'firebase/auth';
+import { onAuthStateChanged } from 'firebase/auth';
+import React from "react";
 
 translate = () => {
     const texts = getTextNodes(document.body);
@@ -20,13 +24,18 @@ const Index = () => {
     const getProblemsCountByDifficulty = (difficulty) => {
         return problemeData.filter(problem => problem.dificultate === difficulty).length;
     };
-  
-      // Funcție pentru a calcula numărul total de probleme
+    const handleGoogleLogin = async () => {
+        try {
+            await signInWithPopup(auth, provider);
+        } catch (error) {
+            setAliasError('Eroare la autentificare.');
+        }
+    };
+    // Funcție pentru a calcula numărul total de probleme
     const getTotalProblemsCount = () => {
         return problemeData.length;
     };
-  
-  
+
     const observer = new IntersectionObserver(entries => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
@@ -40,7 +49,15 @@ const Index = () => {
 
     // const texts = useTranslate().map(text => text);
     const translations = useTranslateObject();
-    
+    const [user, setUser] = React.useState(null);
+    const navigate = useNavigate();
+
+    React.useEffect(() => {
+        const unsubscribe = onAuthStateChanged(auth, (firebaseUser) => {
+            setUser(firebaseUser);
+        });
+        return () => unsubscribe();
+    }, []);
 
     useEffect(() => {
         const hiddenElements = document.querySelectorAll('.hidden');
@@ -54,7 +71,7 @@ const Index = () => {
     useEffect(() => {
         console.log(JSON.stringify(translations, null, 2));
     }, [translations]);
-    
+
     return (
         <Layout>
             {/* Hero Section */}
@@ -66,12 +83,25 @@ const Index = () => {
                             PULS - Platforma educațională pentru studiul conceptelor de Pendul, Unde, Lissajous și Seism prin probleme și simulări interactive.
                         </p>
                         <div className="buttons">
-                            <button className="filled">
-                                <Link to="/probleme" className="index-link">Exploreaza problemele</Link>
-                            </button>
-                            <button>
-                                <Link to="/simulari" className="index-link">Incearca simularile</Link>
-                            </button>
+                            {user ? (
+                                <>
+                                    <button className="filled">
+                                        <Link to="/probleme" style={{ 'all': 'unset' }}>Exploreaza problemele</Link>
+                                    </button>
+                                    <button>
+                                        <Link to="/simulari" style={{ 'all': 'unset' }}>Incearca simularile</Link>
+                                    </button>
+                                </>
+                            ) : (
+                                <>
+                                    <button className="filled" onClick={handleGoogleLogin}>
+                                        Înregistrează-te
+                                    </button>
+                                    <button onClick={handleGoogleLogin}>
+                                        Autentifică-te
+                                    </button>
+                                </>
+                            )}
                         </div>
                     </div>
                     <div className="hero-slideshow-wrapper">
@@ -202,7 +232,7 @@ const Index = () => {
                         </div>
                     </Link>
 
-                   <Link to="/probleme?difficulty=dificil" className="problem-card-link">
+                    <Link to="/probleme?difficulty=dificil" className="problem-card-link">
                         <div className="problem-card">
                             <div className="problem-icon">
                                 <Lightbulb size={32} strokeWidth={1.5} />
@@ -237,11 +267,11 @@ const Index = () => {
             {/* About Us Preview Section */}
             <section className="about-preview-section hidden hidden-bottom">
                 <div className="about-preview-text hidden hidden-bottom">
-                    <h2 className="about-title index-about-title">Despre noi</h2>
-                    <p className="about-description hidden hidden-bottom index-about-description">
+                    <h2 className="about-title" style={{ marginBottom: "1.5rem" }}>Despre noi</h2>
+                    <p className="about-description hidden hidden-bottom" style={{ marginBottom: "1.5rem" }}>
                         Suntem dedicați educației moderne și inovării în predarea fizicii. Platforma noastră oferă simulări interactive și exerciții pentru a transforma învățarea într-o experiență captivantă și practică.
                     </p>
-                    <p className="about-story hidden hidden-bottom index-about-story">
+                    <p className="about-story hidden hidden-bottom" style={{ marginBottom: "1.5rem" }}>
                         Povestea noastră a început cu o simplă întrebare: cum putem face ca fenomenele oscilatorii să prindă viață și să devină mai ușor de înțeles pentru toți cei care le studiază? Noi, o echipă de elevi pasionați de știință, am simțit mereu că, dincolo de formule și definiții, există o lume fascinantă, plină de ritm, mișcare și conexiuni surprinzătoare cu natura și tehnologia.
                     </p>
                     <Link to="/about-us" className="about-preview-button hidden hidden-bottom">

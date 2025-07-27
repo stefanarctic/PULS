@@ -6,7 +6,7 @@ import simulatorUndeImg from "/res/screenshots/Unde_Screenshot.png";
 import simulatorLissajousImg from "/res/screenshots/Lissajous_Screenshot.png";
 import simulatorSeismImg from "/res/screenshots/Seism_Screenshot.png";
 import simulatorPrismaImg from "/res/screenshots/Prisma_Screenshot.png";
-import simulatorFunctiiImg from "/res/screenshots/Functii_Screenshot.png";
+import simulatorFunctiiImg from "/res/screenshots/Functii-nou_Screenshot.png";
 import simulatorGraficePendulImg from "/res/screenshots/Grafice_Pendule_Screenshot.png";
 import simulatorGraficeBasicImg from "/res/screenshots/Grafice_Basic_Screenshot.png";
 import Layout from "../Layout";
@@ -133,9 +133,9 @@ const SimulariPage = () => {
           <h1>Simulări</h1>
           <p>Explorează concepte fizice prin intermediul simulărilor interactive.</p>
 
-          <div className="simulations-grid">
+          <div className="simulari-grid">
             {simulationsData.map((simulation) => (
-              <div key={simulation.id} className="simulation-card">
+              <div key={simulation.id} className="simulari-card">
                 <div className="card-content">
                   <h2>{simulation.title}</h2>
                   <p className="description">{simulation.description}</p>

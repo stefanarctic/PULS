@@ -215,7 +215,16 @@ body {
   text-align: center;
   white-space: nowrap;
 }
-
+@media(max-width:768px)
+{
+    .sidebar{
+        right:-325px;
+    }
+    .titlemain{
+        font-size: 20px;
+        left:48%;
+    }
+}
 .graph-section {
   margin-top: 20px;
   padding: 10px;

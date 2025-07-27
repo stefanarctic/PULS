@@ -437,3 +437,72 @@ button#create-triangle-btn:hover {
   background-color: #333333;
   border: 1px solid white;
 }/*# sourceMappingURL=createpoint.css.map */
+
+@media screen and (max-width: 768px) {
+  .show-popup-button,
+  .delete-popup-button {
+    bottom: 15% !important;
+    width: 70px;
+    height: 70px;
+    font-size: 45px;
+    box-shadow: rgb(29, 44, 59) 3px 12px 20px -8px;
+  }
+
+  .show-popup-button {
+    right: 30px;
+  }
+
+  .delete-popup-button {
+    right: 30px;
+  }
+
+  .delete-point-line-popup,
+  .create-point-popup {
+    width: 90%;
+    height: auto;
+    max-height: 80%;
+    padding: 15px;
+    border-width: 2.5px;
+  }
+
+  .create-point-popup .popup-content h1,
+  .delete-point-line-popup .popup-content h1 {
+    font-size: 1.2em;
+  }
+
+  .create-point-popup .popup-content .section label,
+  .delete-point-line-popup .popup-content .section label {
+    font-size: 16px;
+  }
+
+  .create-point-popup .popup-content .section input,
+  .delete-point-line-popup .popup-content .section input {
+    font-size: 14px;
+    padding: 4px;
+  }
+
+  .create-point-popup .popup-content .section input[type=checkbox] {
+    width: 25px;
+    height: 25px;
+  }
+
+  .create-point-popup .popup-content button,
+  .delete-point-line-popup .popup-content button {
+    font-size: 14px;
+    padding: 8px 16px;
+  }
+
+  button#create-point-btn,
+  button#create-line-btn {
+    width: 80%;
+    margin-left: auto;
+    margin-right: auto;
+    font-size: 14px;
+  }
+
+  .create-point-popup .popup-content button.close-popup-btn {
+    font-size: 16px;
+    width: 20px;
+    height: 20px;
+  }
+}
