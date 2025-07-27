@@ -70,7 +70,30 @@ document.getElementById('dist').addEventListener('input', updateDistance);
 // Inițializare scenă
 
 const scene = new THREE.Scene();
-const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+let fov;
+
+// Inițializare camera în funcție de dimensiune
+function getFOV() {
+    return window.innerWidth <= 768 ? 120 : 75;
+  }
+  
+  const camera = new THREE.PerspectiveCamera(getFOV(), window.innerWidth / window.innerHeight, 0.1, 1000);
+  
+  // Funcție de actualizare FOV și aspect
+  function updateCameraOnResize() {
+    const newFOV = getFOV();
+    if (camera.fov !== newFOV) {
+      camera.fov = newFOV;
+      console.log(`Camera FOV actualizat la ${newFOV}`);
+    }
+  
+    camera.aspect = window.innerWidth / window.innerHeight;
+    camera.updateProjectionMatrix();
+  }
+  
+  // Adaugă evenimentul de redimensionare
+  window.addEventListener('resize', updateCameraOnResize);
+  
 const renderer = new THREE.WebGLRenderer({ antialias: true });
 
 
