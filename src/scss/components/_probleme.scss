@@ -246,6 +246,40 @@
             color: var(--muted-color-current-mode);
             margin: 0;
         }
+
+        .loading-spinner {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 1rem;
+
+            .spinner {
+                width: 40px;
+                height: 40px;
+                border: 3px solid var(--border-color-current-mode);
+                border-top: 3px solid var(--accent-color-current-mode);
+                border-radius: 50%;
+                animation: spin 1s linear infinite;
+            }
+
+            h3 {
+                font-size: 1.125rem;
+                font-weight: 500;
+                margin: 0;
+                color: var(--primary-color-current-mode);
+            }
+
+            p {
+                color: var(--muted-color-current-mode);
+                margin: 0;
+                font-size: 0.875rem;
+            }
+        }
+    }
+
+    @keyframes spin {
+        0% { transform: rotate(0deg); }
+        100% { transform: rotate(360deg); }
     }
 
     .pagination {

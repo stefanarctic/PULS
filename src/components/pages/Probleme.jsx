@@ -826,18 +826,14 @@ const PhysicsProblems = () => {
                         ))}
                     </div>
 
-                    {/* No Results */}
+                    {/* Loading Component for No Results */}
                     {sortedProblems.length === 0 && (
                         <div className="no-results">
-                            <h3>Nicio problemă găsită</h3>
-                            {searchQuery && !isNaN(parseInt(searchQuery.trim())) ? (
-                                <p>
-                                    Nu există o problemă cu ID-ul <strong>{searchQuery.trim()}</strong>. 
-                                    Încearcă un alt ID sau folosește alte cuvinte cheie pentru căutare.
-                                </p>
-                            ) : (
-                                <p>Încearcă să modifici filtrele sau să folosești alte cuvinte cheie.</p>
-                            )}
+                            <div className="loading-spinner">
+                                <div className="spinner"></div>
+                                <h3>Se caută probleme...</h3>
+                                <p>Te rugăm să aștepți în timp ce se procesează căutarea.</p>
+                            </div>
                         </div>
                     )}
 

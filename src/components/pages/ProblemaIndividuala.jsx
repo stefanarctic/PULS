@@ -20,7 +20,11 @@ const ProblemaIndividuala = () => {
         <div className="loading-container">
           <div className="container">
             <div className="main">
-              <p>Se încarcă problema...</p>
+              <div className="loading-spinner">
+                <div className="spinner"></div>
+                <h3>Se încarcă problema...</h3>
+                <p>Te rugăm să aștepți în timp ce se procesează datele.</p>
+              </div>
             </div>
           </div>
         </div>
