@@ -896,3 +896,4 @@ const PhysicsProblems = () => {
 };
 
 export default PhysicsProblems;
+export { ProblemCard };
