@@ -98,6 +98,9 @@ const Profile = () => {
     const [alias, setAlias] = useState('');
     const [aliasInput, setAliasInput] = useState('');
     const [aliasError, setAliasError] = useState('');
+    const [name, setName] = useState('');
+    const [nameInput, setNameInput] = useState('');
+    const [nameError, setNameError] = useState('');
     const [loading, setLoading] = useState(true);
     const [editingAlias, setEditingAlias] = useState(false);
     const [activeTab, setActiveTab] = useState('activitate');
@@ -140,11 +143,13 @@ const Profile = () => {
                         isAdmin: ADMIN_EMAILS.includes(firebaseUser.email),
                     });
                     setAlias('');
+                    setName(firebaseUser.displayName || '');
                     setProfilePic(firebaseUser.photoURL || '');
                     setDescription('');
                     setIsAdmin(ADMIN_EMAILS.includes(firebaseUser.email));
                 } else {
                     setAlias(userSnap.data().alias || '');
+                    setName(userSnap.data().name || firebaseUser.displayName || '');
                     setProfilePic(userSnap.data().profilePic || '');
                     setDescription(userSnap.data().description || '');
                     setIsAdmin(userSnap.data().isAdmin || ADMIN_EMAILS.includes(firebaseUser.email));
@@ -159,6 +164,7 @@ const Profile = () => {
             } else {
                 setUser(null);
                 setAlias('');
+                setName('');
                 setProfilePic('');
                 setDescription('');
                 setIsAdmin(false);
@@ -189,6 +195,20 @@ const Profile = () => {
         }
     }, [user]);
 
+    // Prevent body scroll when modal is open
+    useEffect(() => {
+        if (showEditModal) {
+            document.body.style.overflow = 'hidden';
+        } else {
+            document.body.style.overflow = 'unset';
+        }
+
+        // Cleanup function to restore scroll when component unmounts
+        return () => {
+            document.body.style.overflow = 'unset';
+        };
+    }, [showEditModal]);
+
     // Get problems from Redux store
     const problemsFromStore = useSelector(state => state.problems.value);
     const allProblems = [...problemeData, ...userProblems, ...problemsFromStore];
@@ -215,16 +235,35 @@ const Profile = () => {
     const handleProfileSave = async () => {
         console.log("user in handleProfileSave", user);
         console.log("user.uid", user?.uid);
+        console.log("nameInput", nameInput);
         console.log("aliasInput", aliasInput);
         console.log("profilePicInput", profilePicInput);
         console.log("descriptionInput", descriptionInput);
         setAliasError('');
+        setNameError('');
         setDescriptionError('');
         setProfileSaveLoading(true);
         
         try {
+            const trimmedName = nameInput.trim();
             const trimmedAlias = aliasInput.trim();
             const trimmedDescription = descriptionInput.trim();
+            
+            // Validate name
+            if (!trimmedName) {
+                setNameError('Numele nu poate fi gol.');
+                return;
+            }
+            if (trimmedName.length < 2) {
+                setNameError('Numele trebuie să aibă cel puțin 2 caractere.');
+                return;
+            }
+            if (trimmedName.length > 50) {
+                setNameError('Numele nu poate avea mai mult de 50 de caractere.');
+                return;
+            }
+            
+            // Validate alias
             if (!trimmedAlias) {
                 setAliasError('Aliasul nu poate fi gol.');
                 return;
@@ -238,12 +277,22 @@ const Profile = () => {
                 setAliasError('Aliasul este deja folosit.');
                 return;
             }
+            
+            // Validate description
             if (trimmedDescription.length > 200) {
                 setDescriptionError('Descrierea nu poate avea mai mult de 200 de caractere.');
                 return;
             }
+            
             const userRef = doc(db, 'users', user.uid);
-            await setDoc(userRef, { alias: trimmedAlias, profilePic: profilePicInput || profilePic, description: trimmedDescription }, { merge: true });
+            await setDoc(userRef, { 
+                name: trimmedName,
+                alias: trimmedAlias, 
+                profilePic: profilePicInput || profilePic, 
+                description: trimmedDescription 
+            }, { merge: true });
+            
+            setName(trimmedName);
             setAlias(trimmedAlias);
             setProfilePic(profilePicInput || profilePic);
             setDescription(trimmedDescription);
@@ -449,7 +498,7 @@ const Profile = () => {
                             )}
                         </div>
                         <div className="profile-info">
-                            <h1 className="profile-name">{user.name}</h1>
+                            <h1 className="profile-name">{name || user.name}</h1>
                             <p className="profile-email">{user.email}</p>
                             <div className="profile-alias">
                                 <span>Alias: </span>
@@ -474,6 +523,7 @@ const Profile = () => {
                         </div>
                         <div className="profile-actions">
                             <button className="edit-profile-btn" onClick={() => {
+                                setNameInput(name || user.name);
                                 setAliasInput(alias);
                                 setProfilePicInput(profilePic);
                                 setDescriptionInput(description);
@@ -492,6 +542,14 @@ const Profile = () => {
                     <div className="profile-edit-modal">
                         <div className="profile-edit-content">
                             <h2>Editează profilul</h2>
+                            <label>Nume:</label>
+                            <input
+                                type="text"
+                                value={nameInput}
+                                onChange={e => setNameInput(e.target.value)}
+                                placeholder="Introdu numele tău"
+                            />
+                            {nameError && <div className="name-error">{nameError}</div>}
                             <label>Alias:</label>
                             <input
                                 type="text"

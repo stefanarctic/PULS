@@ -363,6 +363,46 @@ T = t_2 - t_1
      'Pentru a raspunde la cerinte ':'consulta figura intr-o fereastra noua.',
     },
   },
+  {
+    id: 14,
+    index: 14,
+    titlu: 'Rezonanța în oscilațiile forțate',
+    descriere: 'Analiza rezonanței într-un sistem oscilator forțat.',
+    categorie: 'oscilații',
+    dificultate: 'mediu',
+    creator: '',
+    subpuncte: [
+      {
+        id: '14a',
+        cerinta: 'Calculează frecvența naturală a sistemului pentru m = 0.5 kg și k = 200 N/m.',
+        punctaj: 3
+      },
+      {
+        id: '14b', 
+        cerinta: 'Determină amplitudinea la rezonanță pentru o forță motoare de 10 N.',
+        punctaj: 4
+      },
+      {
+        id: '14c',
+        cerinta: 'Calculează factorul de calitate Q al sistemului pentru β = 2 s⁻¹.',
+        punctaj: 3
+      }
+    ],
+    punctajTotal: 10,
+    continut: "Un sistem oscilator forțat cu masa m = 0.5 kg și constanta elastică k = 200 N/m este supus unei forțe motoare F = F₀ cos(ωt), unde F₀ = 10 N.\n\nLa rezonanță, amplitudinea oscilațiilor atinge valoarea maximă. Frecvența naturală: $\\omega_0 = \\sqrt{\\frac{k}{m}}$. Amplitudinea la rezonanță: $A_{rez} = \\frac{F_0}{2\\beta m\\omega_0}$. Factorul de calitate: $Q = \\frac{\\omega_0}{2\\beta}$.\n\nPentru oscilații forțate cu amortizare, ecuația mișcării este:\n$m\\frac{d^2x}{dt^2} + 2\\beta m\\frac{dx}{dt} + kx = F_0\\cos(\\omega t)$",
+    formule: [
+      "ω₀ = √(k/m)",
+      "A_rez = F₀/(2βmω₀)", 
+      "Q = ω₀/(2β)",
+      "md²x/dt² + 2βmdx/dt + kx = F₀cos(ωt)"
+    ],
+    date: {
+      "m": "0.5 kg",
+      "k": "200 N/m",
+      "F0": "10 N",
+      "beta": "2 s⁻¹"
+    }
+  }
 ];
 // Date cunoscute:
 
