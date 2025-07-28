@@ -11,6 +11,7 @@ import '../../scss/components/_probleme.scss';
 import RecentActivity from '../RecentActivity';
 import Achievements from '../Achievements';
 import Statistics from '../Statistics';
+import { useSolvedProblems } from '../../hooks/useSolvedProblems';
 
 // FavoriteProblemCard definit aici
 const ExternalLinkIcon = () => (
@@ -120,6 +121,7 @@ const Profile = () => {
     const [statistics, setStatistics] = useState({});
     const [favorites, setFavorites] = useState([]);
     const [userProblems, setUserProblems] = useState([]);
+    const { solvedProblems, saveSolvedProblem, clearTestProblems, clearAllSolvedProblems } = useSolvedProblems();
     
     // Loading states for different operations
     const [userProblemsLoading, setUserProblemsLoading] = useState(false);
@@ -225,6 +227,53 @@ const Profile = () => {
     const handleLogout = async () => {
         await signOut(auth);
     };
+
+    // Funcția saveSolvedProblem este acum din hook-ul useSolvedProblems
+
+    // Expune funcțiile de test pentru dezvoltare
+    useEffect(() => {
+        if (typeof window !== 'undefined') {
+            // Funcție de test pentru a adăuga probleme rezolvate (doar pentru dezvoltare)
+            window.addTestSolvedProblems = async () => {
+                const testProblems = [
+                    { problemId: 1, scoreObtained: 8, maxScore: 10 },
+                    { problemId: 2, scoreObtained: 7, maxScore: 10 },
+                    { problemId: 3, scoreObtained: 9, maxScore: 10 },
+                ];
+                
+                for (const problem of testProblems) {
+                    await saveSolvedProblem(problem.problemId, problem.scoreObtained, problem.maxScore);
+                }
+                
+                alert('Probleme de test adăugate!');
+            };
+
+            // Funcție pentru a șterge problemele de test din database
+            window.clearTestSolvedProblems = async () => {
+                try {
+                    const deletedCount = await clearTestProblems();
+                    alert(`Șterse ${deletedCount} probleme de test!`);
+                } catch (error) {
+                    console.error('Error clearing test problems:', error);
+                    alert('Eroare la ștergerea problemelor de test!');
+                }
+            };
+
+            // Funcție pentru a șterge toate problemele rezolvate
+            window.clearAllSolvedProblems = async () => {
+                const confirmed = confirm('Ești sigur că vrei să ștergi TOATE problemele rezolvate? Această acțiune nu poate fi anulată!');
+                if (!confirmed) return;
+
+                try {
+                    await clearAllSolvedProblems();
+                    alert('Toate problemele rezolvate au fost șterse!');
+                } catch (error) {
+                    console.error('Error clearing all solved problems:', error);
+                    alert('Eroare la ștergerea problemelor!');
+                }
+            };
+        }
+    }, [saveSolvedProblem, clearTestProblems, clearAllSolvedProblems]);
 
     const checkAliasUnique = async (aliasToCheck) => {
         const q = query(collection(db, 'users'), where('alias', '==', aliasToCheck));
@@ -400,8 +449,7 @@ const Profile = () => {
         
         // Probleme adăugate de utilizator
         const addedProblems = userProblems.filter(p => p.createdByAlias === alias);
-        // Probleme rezolvate
-        const solvedProblems = allProblems.filter(p => p.solved && p.solvedBy === user.uid);
+        
         // Simulări accesate (din Firestore, dacă există)
         let simulationsVisited = [];
         const fetchSimulations = async () => {
@@ -415,33 +463,75 @@ const Profile = () => {
             
             // Construim activityLog - filtrează problemele care nu există
             const allAvailableProblems = allProblems;
-            const solvedProblemsFiltered = solvedProblems.filter(p => 
-                allAvailableProblems.some(ap => String(ap.id) === String(p.id))
-            );
             const addedProblemsFiltered = addedProblems.filter(p => 
                 allAvailableProblems.some(ap => String(ap.id) === String(p.id))
             );
             
+            // Procesăm problemele rezolvate cu scorurile lor (din hook)
+            console.log('📊 Profile processing solvedProblems:', solvedProblems);
+            
+            const solvedActivities = solvedProblems.map(solvedProblem => {
+                const originalProblem = allAvailableProblems.find(p => String(p.id) === String(solvedProblem.problemId));
+                
+                // Folosește titlul personalizat dacă există, altfel caută în problemele existente
+                let problemTitle = solvedProblem.customTitle;
+                if (!problemTitle) {
+                    problemTitle = originalProblem ? originalProblem.titlu : `Problema ${solvedProblem.problemId}`;
+                }
+                
+                console.log('🎯 Processing problem:', {
+                    problemId: solvedProblem.problemId,
+                    scoreObtained: solvedProblem.scoreObtained,
+                    maxScore: solvedProblem.maxScore,
+                    title: problemTitle
+                });
+                
+                return {
+                    type: 'problem_solved',
+                    title: problemTitle,
+                    date: solvedProblem.solvedAt,
+                    link: solvedProblem.problemId.startsWith('submitted_') ? null : `/probleme/${solvedProblem.problemId}`,
+                    score: {
+                        scoreObtained: solvedProblem.scoreObtained,
+                        maxScore: solvedProblem.maxScore
+                    }
+                };
+            });
+            
             const activity = [
-                ...solvedProblemsFiltered.map(p => ({ type: 'problem_solved', title: p.titlu, date: p.solvedAt || '', link: p.id ? `/probleme/${p.id}` : undefined })),
+                ...solvedActivities,
                 ...addedProblemsFiltered.map(p => ({ type: 'problem_added', title: p.titlu, date: p.createdAt || '', link: p.id ? `/probleme/${p.id}` : undefined })),
                 ...simulationsVisited.map(s => ({ type: 'simulation_visited', title: s.title, date: s.date, link: s.id ? `/simulari/${s.id}` : undefined })),
             ].sort((a, b) => new Date(b.date) - new Date(a.date));
             setActivityLog(activity);
             
-            // Achievements cumulative pentru probleme adăugate
+            // Achievements cumulative pentru probleme rezolvate și adăugate
             const ach = [];
+            
+            // Achievements pentru probleme rezolvate
+            if (solvedActivities.length >= 1) ach.push({ type: 'milestone', title: 'Prima problemă rezolvată', description: 'Ai rezolvat prima ta problemă!', color: '#10b981' });
+            if (solvedActivities.length >= 5) ach.push({ type: 'milestone', title: 'Rezolvător dedicat', description: 'Ai rezolvat 5 probleme!', color: '#3b82f6' });
+            if (solvedActivities.length >= 10) ach.push({ type: 'milestone', title: 'Maestru al rezolvării', description: 'Ai rezolvat 10 probleme!', color: '#ffd700' });
+            
+            // Achievements pentru probleme adăugate
             if (addedProblems.length >= 1) ach.push({ type: 'milestone', title: 'Începător în fizică', description: 'Ai adăugat prima ta problemă!', color: '#b0b0b0' });
             if (addedProblems.length >= 5) ach.push({ type: 'milestone', title: 'Avansat', description: 'Ai adăugat 5 probleme!', color: '#4a90e2' });
             if (addedProblems.length >= 10) ach.push({ type: 'milestone', title: 'Maestru', description: 'Ai adăugat 10 probleme!', color: '#ffd700' });
-            // Realizări pentru simulări accesate și probleme rezolvate
-            solvedProblems.forEach(p => ach.push({ type: 'problem_solved', title: p.titlu, date: p.solvedAt || '' }));
-            addedProblems.forEach(p => ach.push({ type: 'problem_added', title: p.titlu, date: p.createdAt || '' }));
+            
+            // Realizări pentru simulări accesate
             simulationsVisited.forEach(s => ach.push({ type: 'simulation_visited', title: s.title, date: s.date }));
             setAchievements(ach);
             
-            // Statistici pe dificultate și categorie DOAR pentru probleme adăugate
-            const stats = { dificultate: {}, categorie: {} };
+            // Statistici pentru probleme rezolvate și adăugate
+            const stats = { 
+                dificultate: {}, 
+                categorie: {},
+                solvedProblems: solvedActivities.length,
+                totalScore: solvedActivities.reduce((total, activity) => total + activity.score.scoreObtained, 0),
+                maxPossibleScore: solvedActivities.reduce((total, activity) => total + activity.score.maxScore, 0)
+            };
+            
+            // Statistici pentru probleme adăugate
             addedProblems.forEach(p => {
                 if (p.dificultate) stats.dificultate[p.dificultate] = (stats.dificultate[p.dificultate] || 0) + 1;
                 if (p.categorie) stats.categorie[p.categorie] = (stats.categorie[p.categorie] || 0) + 1;

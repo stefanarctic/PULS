@@ -4,6 +4,7 @@ import { Card, CardHeader, CardTitle, CardContent } from './card';
 import { Badge } from './badge';
 import { Button } from './Buttondet';
 import useDarkMode from '../hooks/useDarkMode';
+import { useSolvedProblems } from '../hooks/useSolvedProblems';
 
 const ProblemSubmit = () => {
     const [problemText, setProblemText] = useState('');
@@ -13,6 +14,7 @@ const ProblemSubmit = () => {
     const [isLoading, setIsLoading] = useState(false);
     const [error, setError] = useState(null);
     const isDarkMode = useDarkMode();
+    const { saveSolvedProblem } = useSolvedProblems();
 
     const problemInputRef = useRef(null);
     const solutionInputRef = useRef(null);
@@ -117,6 +119,111 @@ const ProblemSubmit = () => {
 
             setApiResponse(result);
             console.log("Analiza a fost primită.");
+
+            // Salvează automat problema rezolvată în Firebase
+            try {
+                // Generează un ID unic pentru problema trimisă
+                const problemId = `submitted_${Date.now()}`;
+                
+                // Extrage un titlu din textul problemei
+                let problemTitle = 'Problema trimisă';
+                if (problemText.trim()) {
+                    const firstLine = problemText.trim().split('\n')[0];
+                    if (firstLine.length > 0) {
+                        problemTitle = firstLine.length > 50 ? firstLine.substring(0, 50) + '...' : firstLine;
+                    }
+                } else if (problemImageFile) {
+                    problemTitle = 'Problema din imagine';
+                }
+                
+                // Calculează scorul bazat pe răspunsul API-ului
+                let scoreObtained = 0;
+                let maxScore = 10;
+                
+                // Logica pentru calcularea scorului bazat pe răspunsul API-ului
+                console.log('API Response:', result);
+                console.log('Analysis:', result?.analysis);
+                console.log('Rating:', result?.rating);
+                
+                if (result && (result.analysis || result.rating)) {
+                    // Dacă API-ul returnează un scor direct, îl folosim
+                    if (result.score !== undefined) {
+                        scoreObtained = result.score;
+                        console.log('Using API score:', scoreObtained);
+                    } else if (result.rating) {
+                        // Verifică rating-ul (ex: "10/10 puncte")
+                        const rating = result.rating.toLowerCase();
+                        console.log('Analyzing rating:', rating);
+                        
+                        // Extrage scorul din rating (ex: "10/10 puncte" -> 10)
+                        const ratingMatch = rating.match(/(\d+)\/(\d+)/);
+                        if (ratingMatch) {
+                            scoreObtained = parseInt(ratingMatch[1]);
+                            maxScore = parseInt(ratingMatch[2]);
+                            console.log(`Extracted score from rating: ${scoreObtained}/${maxScore}`);
+                        } else {
+                            // Fallback pentru rating fără format standard
+                            if (rating.includes('10/10') || rating.includes('punctaj maxim') || rating.includes('perfect')) {
+                                scoreObtained = 10;
+                                console.log('Perfect score from rating: 10/10');
+                            } else if (rating.includes('9/10') || rating.includes('foarte bun')) {
+                                scoreObtained = 9;
+                                console.log('Very good score from rating: 9/10');
+                            } else if (rating.includes('8/10') || rating.includes('bun')) {
+                                scoreObtained = 8;
+                                console.log('Good score from rating: 8/10');
+                            } else if (rating.includes('7/10')) {
+                                scoreObtained = 7;
+                                console.log('Decent score from rating: 7/10');
+                            } else {
+                                scoreObtained = 6;
+                                console.log('Default score from rating: 6/10');
+                            }
+                        }
+                    } else if (result.analysis) {
+                        // Scor bazat pe analiza textului (fallback)
+                        const analysis = result.analysis.toLowerCase();
+                        console.log('Analyzing text:', analysis);
+                        
+                        // Verifică pentru răspuns perfect/maxim
+                        if (analysis.includes('punctaj maxim') || 
+                            analysis.includes('perfect') || 
+                            analysis.includes('excelent') || 
+                            analysis.includes('foarte bun') ||
+                            (analysis.includes('corect') && analysis.includes('toate')) ||
+                            analysis.includes('rezolvare completă')) {
+                            scoreObtained = 10;
+                            console.log('Perfect score detected: 10/10');
+                        } else if (analysis.includes('foarte bun') || analysis.includes('excelent')) {
+                            scoreObtained = 9;
+                            console.log('Very good score: 9/10');
+                        } else if (analysis.includes('bun') || analysis.includes('corect')) {
+                            scoreObtained = 7;
+                            console.log('Good score: 7/10');
+                        } else if (analysis.includes('parțial') || analysis.includes('aproape')) {
+                            scoreObtained = 5;
+                            console.log('Partial score: 5/10');
+                        } else if (analysis.includes('greșit') || analysis.includes('incorect')) {
+                            scoreObtained = 2;
+                            console.log('Wrong answer: 2/10');
+                        } else {
+                            scoreObtained = 6;
+                            console.log('Default score: 6/10');
+                        }
+                    }
+                } else {
+                    // Scor default pentru probleme trimise fără analiză
+                    scoreObtained = 6;
+                    console.log('No analysis or rating, default score: 6/10');
+                }
+                
+                // Salvează problema rezolvată cu titlul personalizat
+                console.log(`Saving problem with score: ${scoreObtained}/${maxScore}`);
+                await saveSolvedProblem(problemId, scoreObtained, maxScore, problemTitle);
+                console.log('Problema rezolvată salvată automat în profil!');
+            } catch (error) {
+                console.error('Eroare la salvarea automată a problemei:', error);
+            }
 
         } catch (err) {
             console.error('Error calling API:', err);
