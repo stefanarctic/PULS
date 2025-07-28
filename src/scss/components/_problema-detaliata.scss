@@ -88,10 +88,14 @@
 }
 
 .date-section {
-  background-color: var(--secondary-background-current-mode);
+  background-color: var(--tertiary-background-current-mode);
   padding: 1rem;
   border-radius: 0.5rem;
   margin-bottom: 1.5rem;
+}
+
+.requirements-section {
+  background-color: var(--tertiary-background-current-mode);
 }
 
 .subpunct {
@@ -99,6 +103,7 @@
   padding-left: 1rem;
   padding-top: 0.5rem;
   padding-bottom: 0.5rem;
+  // background-color: var(--secondary-background-current-mode);
 }
 
 .punctaj-item {
@@ -225,7 +230,7 @@
 .card {
   border-radius: 0.5rem;
   border: 1px solid var(--border-color-current-mode);
-  background-color: var(--card-background-current-mode);
+  background-color: var(--secondary-background-current-mode) !important;
   color: var(--primary-color-current-mode);
   box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
 }
@@ -262,8 +267,8 @@
   gap: 0.5rem;
   padding: 0.5rem 1rem;
   border-radius: 0.5rem;
-  border: 1px solid var(--border-color-current-mode);
-  background-color: var(--card-background-current-mode);
+  border: 1px solid var(--primary-color-current-mode);
+  background-color: var(--secondary-background-current-mode);
   color: var(--primary-color-current-mode);
   cursor: pointer;
   transition: all 0.2s ease;
@@ -395,7 +400,8 @@
   height: 2.5rem;
   border-radius: 0.5rem;
   border: 1px solid var(--border-color-current-mode);
-  background-color: var(--card-background-current-mode);
+  background-color: var(--secondary-background-current-mode);
+  color: var(--primary-color-current-mode);
   cursor: pointer;
   transition: all 0.2s ease;
   flex-shrink: 0;

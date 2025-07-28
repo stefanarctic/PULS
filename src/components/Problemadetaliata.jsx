@@ -250,7 +250,7 @@ export const ProblemaDetaliata = ({ problema, onBack }) => {
             </CardHeader>
             <CardContent>
               {problema.subpuncte && problema.subpuncte.length > 0 && (
-                <div className="space-y-4">
+                <div className="space-y-4 requirements-section">
                   {problema.subpuncte.map((subpunct, index) => (
                     <div key={subpunct.id} className="subpunct">
                       <span className="font-semibold text-blue-600">{String.fromCharCode(97 + index)}) </span>

@@ -18,7 +18,11 @@ const ProblemaIndividuala = () => {
     return (
       <Layout>
         <div className="loading-container">
-          <p>Se încarcă problema...</p>
+          <div className="container">
+            <div className="main">
+              <p>Se încarcă problema...</p>
+            </div>
+          </div>
         </div>
       </Layout>
     );
