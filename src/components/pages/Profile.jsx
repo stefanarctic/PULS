@@ -104,9 +104,9 @@ const Profile = () => {
     const [showEditModal, setShowEditModal] = useState(false);
     const [profilePic, setProfilePic] = useState('');
     const [profilePicInput, setProfilePicInput] = useState('');
-    const [desc, setDesc] = useState('');
-    const [descInput, setDescInput] = useState('');
-    const [descError, setDescError] = useState('');
+    const [description, setDescription] = useState('');
+    const [descriptionInput, setDescriptionInput] = useState('');
+    const [descriptionError, setDescriptionError] = useState('');
     const [isAdmin, setIsAdmin] = useState(false);
     const [profilePicPreview, setProfilePicPreview] = useState('');
     const fileInputRef = React.useRef();
@@ -131,17 +131,17 @@ const Profile = () => {
                         alias: '',
                         joinedDate: new Date().toISOString(),
                         profilePic: firebaseUser.photoURL || '',
-                        desc: '',
+                        description: '',
                         isAdmin: ADMIN_EMAILS.includes(firebaseUser.email),
                     });
                     setAlias('');
                     setProfilePic(firebaseUser.photoURL || '');
-                    setDesc('');
+                    setDescription('');
                     setIsAdmin(ADMIN_EMAILS.includes(firebaseUser.email));
                 } else {
                     setAlias(userSnap.data().alias || '');
                     setProfilePic(userSnap.data().profilePic || '');
-                    setDesc(userSnap.data().desc || '');
+                    setDescription(userSnap.data().description || '');
                     setIsAdmin(userSnap.data().isAdmin || ADMIN_EMAILS.includes(firebaseUser.email));
                     setFavorites(userSnap.data().favorites || []);
                 }
@@ -155,7 +155,7 @@ const Profile = () => {
                 setUser(null);
                 setAlias('');
                 setProfilePic('');
-                setDesc('');
+                setDescription('');
                 setIsAdmin(false);
                 setFavorites([]);
             }
@@ -209,11 +209,11 @@ const Profile = () => {
         console.log("user.uid", user?.uid);
         console.log("aliasInput", aliasInput);
         console.log("profilePicInput", profilePicInput);
-        console.log("descInput", descInput);
+        console.log("descriptionInput", descriptionInput);
         setAliasError('');
-        setDescError('');
+        setDescriptionError('');
         const trimmedAlias = aliasInput.trim();
-        const trimmedDesc = descInput.trim();
+        const trimmedDescription = descriptionInput.trim();
         if (!trimmedAlias) {
             setAliasError('Aliasul nu poate fi gol.');
             return;
@@ -227,15 +227,15 @@ const Profile = () => {
             setAliasError('Aliasul este deja folosit.');
             return;
         }
-        if (trimmedDesc.length > 200) {
-            setDescError('Descrierea nu poate avea mai mult de 200 de caractere.');
+        if (trimmedDescription.length > 200) {
+            setDescriptionError('Descrierea nu poate avea mai mult de 200 de caractere.');
             return;
         }
         const userRef = doc(db, 'users', user.uid);
-        await setDoc(userRef, { alias: trimmedAlias, profilePic: profilePicInput || profilePic, desc: trimmedDesc }, { merge: true });
+        await setDoc(userRef, { alias: trimmedAlias, profilePic: profilePicInput || profilePic, description: trimmedDescription }, { merge: true });
         setAlias(trimmedAlias);
         setProfilePic(profilePicInput || profilePic);
-        setDesc(trimmedDesc);
+        setDescription(trimmedDescription);
         setShowEditModal(false);
     };
 
@@ -423,9 +423,9 @@ const Profile = () => {
                                 <span>Alias: </span>
                                 <b>{alias || <span style={{ color: '#aaa' }}>[nesetat]</span>}</b>
                             </div>
-                            <div className="profile-desc">
+                            <div className="profile-description">
                                 <span>Descriere: </span>
-                                <span>{desc || <span style={{ color: '#aaa' }}>[nesetată]</span>}</span>
+                                <span>{description || <span style={{ color: '#aaa' }}>[nesetată]</span>}</span>
                             </div>
                             <div className="profile-stats">
                                 <div className="stat-item">
@@ -444,7 +444,7 @@ const Profile = () => {
                             <button className="edit-profile-btn" onClick={() => {
                                 setAliasInput(alias);
                                 setProfilePicInput(profilePic);
-                                setDescInput(desc);
+                                setDescriptionInput(description);
                                 setProfilePicPreview(profilePic); // Set preview on modal open
                                 setShowEditModal(true);
                             }}>
@@ -492,12 +492,12 @@ const Profile = () => {
                             </div>
                             <label>Descriere:</label>
                             <textarea
-                                value={descInput}
-                                onChange={e => setDescInput(e.target.value)}
+                                value={descriptionInput}
+                                onChange={e => setDescriptionInput(e.target.value)}
                                 placeholder="Scrie câteva cuvinte despre tine (max 200 caractere)"
                                 maxLength={200}
                             />
-                            {descError && <div className="desc-error">{descError}</div>}
+                            {descriptionError && <div className="description-error">{descriptionError}</div>}
                             <div className="profile-edit-actions">
                                 <button className="profile-btn profile-btn-blue" onClick={handleProfileSave}>Salvează</button>
                                 <button className="profile-btn profile-btn-red" onClick={() => setShowEditModal(false)}>Anulează</button>
