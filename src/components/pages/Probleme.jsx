@@ -6,6 +6,7 @@ import { useNavigate } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { fetchProblems, addProblem, clearAddStatus } from '../../features/problems/problemsSlice';
 import { Plus } from 'lucide-react';
+import { normalizeString } from '../../lib/normalizeString';
 
 // Icon components
 const SearchIcon = () => (
@@ -156,9 +157,9 @@ const PhysicsProblems = () => {
 
     const filteredProblems = relevantProblems.filter((problem) => {
         if (searchQuery) {
-            const query = searchQuery.toLowerCase();
-            const matchesTitle = problem.titlu.toLowerCase().includes(query);
-            const matchesCategory = problem.categorie.toLowerCase().includes(query);
+            const query = normalizeString(searchQuery);
+            const matchesTitle = normalizeString(problem.titlu).includes(query);
+            const matchesCategory = normalizeString(problem.categorie).includes(query);
             const matchesId = problem.id.toString().includes(query);
             const matchesIndex = problem.index.toString().includes(query);
             
@@ -167,13 +168,13 @@ const PhysicsProblems = () => {
             }
         }
 
-        if (selectedDifficulty !== "Toate" && problem.dificultate !== selectedDifficulty) {
+        if (selectedDifficulty !== "Toate" && normalizeString(problem.dificultate) !== normalizeString(selectedDifficulty)) {
             return false;
         }
 
         if (
             selectedCategory !== "Toate" &&
-            !problem.categorie.toLowerCase().includes(selectedCategory.toLowerCase())
+            !normalizeString(problem.categorie).includes(normalizeString(selectedCategory))
         ) {
             return false;
         }

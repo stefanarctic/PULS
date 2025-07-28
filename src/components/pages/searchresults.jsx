@@ -3,6 +3,7 @@ import { useMemo } from "react";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import "@/scss/components/_searchresults.scss";
+import { normalizeString } from '../../lib/normalizeString';
 
 function useQuery() {
     return new URLSearchParams(useLocation().search);
@@ -80,8 +81,8 @@ const SearchResults = () => {
     const results = useMemo(
         () =>
             allData.filter(item =>
-                item.title.toLowerCase().includes(query) ||
-                (item.keywords && item.keywords.some(kw => kw.includes(query)))
+                normalizeString(item.title).includes(normalizeString(query)) ||
+                (item.keywords && item.keywords.some(kw => normalizeString(kw).includes(normalizeString(query))))
             ),
         [query]
     );
