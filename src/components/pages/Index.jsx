@@ -4,7 +4,8 @@ import Slideshow from "../Slideshow";
 import { Waves, Atom, Circle, Activity, Calculator, BookOpen, Lightbulb, Target } from "lucide-react";
 import { useEffect } from "react";
 import useTranslate, { getTextNodes, useTranslateObject } from "../../hooks/useTranslate";
-import { problemeData } from "../problemedata";
+// import { problemeData } from "../problemedata";
+import { useSelector } from 'react-redux';
 
 translate = () => {
     const texts = getTextNodes(document.body);
@@ -16,13 +17,17 @@ translate = () => {
 }
 
 const Index = () => {
+    const { value: problemeData, status } = useSelector(state => state.problems);
+
     // Funcție pentru a calcula numărul de probleme după dificultate
     const getProblemsCountByDifficulty = (difficulty) => {
+        if (status !== 'succeeded') return 0;
         return problemeData.filter(problem => problem.dificultate === difficulty).length;
     };
   
       // Funcție pentru a calcula numărul total de probleme
     const getTotalProblemsCount = () => {
+        if (status !== 'succeeded') return 0;
         return problemeData.length;
     };
   

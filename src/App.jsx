@@ -20,8 +20,18 @@ import Seism from "./components/pages/resurse/seism";
 import ScrollToTop from "./components/ScrollToTop";
 import Profile from "./components/pages/Profile";
 import ProblemSubmit from "./components/ProblemSubmit";
+import { useEffect } from "react";
+import uploadProblems from "./components/uploadProblems";
+import { useDispatch } from 'react-redux';
+import { fetchProblems } from './features/problems/problemsSlice';
 
 const App = () => {
+  const dispatch = useDispatch();
+
+  // Fetch problems when app initializes
+  useEffect(() => {
+    dispatch(fetchProblems());
+  }, [dispatch]);
 
   const toggleOverflow = () => {
     if (document.body.style.overflow === 'hidden')
@@ -62,6 +72,10 @@ const App = () => {
   function convertRem(value) {
     return value * getRootElementFontSize();
   }
+
+  useEffect(() => {
+    console.log('Website loaded...');
+  }, []);
 
   // setTimeout(() => {
   //   // convertRem(2); // 32 (px)

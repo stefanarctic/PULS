@@ -7,6 +7,7 @@ export const problemeData = [
     descriere: 'Calculul vitezei undelor primare în timpul unui seism',
     categorie: 'Seismologie',
     dificultate: 'ușor',
+    creator: '',
     subpuncte: [
       {
         id: '1a',
@@ -35,6 +36,7 @@ export const problemeData = [
     descriere: 'Calculul vitezei undelor secundare în timpul unui seism',
     categorie: 'Seismologie',
     dificultate: 'ușor',
+    creator: '',
     subpuncte: [
       {
         id: '2a',
@@ -64,6 +66,7 @@ export const problemeData = [
     descriere: 'Determinarea timpului de cădere și a vitezei finale.',
     categorie: 'mecanică',
     dificultate: 'ușor',
+    creator: '',
     subpuncte: [
       { id: '3a', cerinta: 'Calculează timpul de cădere de la 20 m.', punctaj: 3 },
       { id: '3b', cerinta: 'Determină viteza la impact.', punctaj: 2 }
@@ -80,6 +83,7 @@ export const problemeData = [
     descriere: 'Determinarea accelerației și a timpului de coborâre.',
     categorie: 'mecanică',
     dificultate: 'mediu',
+    creator: '',
     subpuncte: [
       { id: '4a', cerinta: 'Calculează accelerația pe planul înclinat de 30°.', punctaj: 3 },
       { id: '4b', cerinta: 'Determină timpul de coborâre pe o distanță de 10 m.', punctaj: 3 }
@@ -97,6 +101,7 @@ export const problemeData = [
     descriere: 'Calculul perioadei de oscilație pentru un pendul.',
     categorie: 'oscilații',
     dificultate: 'ușor',
+    creator: '',
     subpuncte: [
       { id: '5a', cerinta: 'Calculează perioada pentru l = 1 m.', punctaj: 3 },
       { id: '5b', cerinta: 'Determină frecvența.', punctaj: 2 }
@@ -113,6 +118,7 @@ export const problemeData = [
     descriere: 'Analiza oscilațiilor cu amortizare.',
     categorie: 'oscilații',
     dificultate: 'dificil',
+    creator: '',
     subpuncte: [
       { id: '6a', cerinta: 'Scrie ecuația mișcării pentru amortizare slabă.', punctaj: 4 },
       { id: '6b', cerinta: 'Determină energia după 5 perioade.', punctaj: 4 }
@@ -130,6 +136,7 @@ export const problemeData = [
     descriere: 'Determinarea lungimii de undă pentru o undă sonoră.',
     categorie: 'unde',
     dificultate: 'ușor',
+    creator: '',
     subpuncte: [
       { id: '7a', cerinta: 'Calculează lungimea de undă pentru f = 440 Hz, v = 340 m/s.', punctaj: 3 },
       { id: '7b', cerinta: 'Determină perioada.', punctaj: 2 }
@@ -146,6 +153,7 @@ export const problemeData = [
     descriere: 'Analiza interferenței constructive și distructive.',
     categorie: 'unde',
     dificultate: 'mediu',
+    creator: '',
     subpuncte: [
       { id: '8a', cerinta: 'Explică condiția pentru interferență constructivă.', punctaj: 3 },
       { id: '8b', cerinta: 'Calculează distanța între două maxime.', punctaj: 3 }
@@ -163,6 +171,7 @@ export const problemeData = [
     descriere: 'Descrierea figurilor Lissajous pentru frecvențe egale.',
     categorie: 'lissajous',
     dificultate: 'ușor',
+    creator: '',
     subpuncte: [
       { id: '9a', cerinta: 'Desenează figura pentru fₓ = fy.', punctaj: 3 },
       { id: '9b', cerinta: 'Explică forma obținută.', punctaj: 2 }
@@ -179,6 +188,7 @@ export const problemeData = [
     descriere: 'Analiza figurilor pentru frecvențe diferite.',
     categorie: 'lissajous',
     dificultate: 'dificil',
+    creator: '',
     subpuncte: [
       { id: '10a', cerinta: 'Desenează figura pentru fₓ = 2fy.', punctaj: 4 },
       { id: '10b', cerinta: 'Explică simetria figurii.', punctaj: 4 }
@@ -196,6 +206,7 @@ export const problemeData = [
     descriere: 'Analiza undelor mecanice și a figurii Lissajous pentru două unde perpendiculare.',
     categorie: 'lissajous',
     dificultate: 'concurs',
+    creator: '',
     imagine: '/public/res/Probleme-poze/concurs1.PNG',
     continut: `
 Printr-un mediu material se propagă două unde elastice, o undă longitudinală și o undă transversală, în sensul pozitiv al axei $O_1X$, ca în FIGURA 1. Undele au aceeași frecvență $v$ și viteze de propagare $v_l$ și $v_t$. Sursele celor două unde se găsesc în planul $O_1YZ$ și au elongațiile, amplitudinile și fazele inițiale notate cu $x$, $A_1$, $\\varphi_{01}$ pentru unda longitudinală și, respectiv, cu $y$, $A_t$, $\\varphi_{0t}$ pentru unda transversală.
@@ -240,6 +251,7 @@ y = A_t \\sin(2\\pi v t + \\varphi_{0t})
     descriere: 'Analiza undelor seismice și aplicarea modelului fizic la situații concrete.',
     categorie: 'Seismologie',
     dificultate: 'concurs',
+    creator: '',
     imagine1: '/public/res/Probleme-poze/concurs2-1.PNG',
     imagine2: '/public/res/Probleme-poze/concurs2-2.PNG',
     continut: `1. Seismologie — Analiza undelor seismice este una dintre modalitățile de investigare a structurii interne a Pământului. Modelul undelor seismice este următorul:
@@ -302,6 +314,7 @@ Folosind acest model care are la bază fizica undelor mecanice, rezolvă următo
     descriere: '',
     categorie: 'oscilații',
     dificultate: 'concurs',
+    creator: '',
     imagine: '/public/res/Probleme-poze/concurs3.PNG',
     continut: `
 În graficele de mai jos sunt reprezentate dependenţele de timp ale elongaţiilor unor oscilatori liniari

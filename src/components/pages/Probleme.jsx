@@ -2,7 +2,10 @@ import { useEffect, useState, Fragment } from 'react';
 import Layout from '../Layout';
 import { useLocation } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
-import { problemeData } from '../problemedata';
+// import { problemeData } from '../problemedata';
+import { useSelector, useDispatch } from 'react-redux';
+import { fetchProblems, addProblem, clearAddStatus } from '../../features/problems/problemsSlice';
+import { Plus } from 'lucide-react';
 
 // Icon components
 const SearchIcon = () => (
@@ -60,7 +63,7 @@ const ProblemCard = ({ problem }) => {
                 </div>
                 <button
                     className="problem-card-link"
-                    onClick={() => navigate(`/probleme/${problem.id}`)}
+                    onClick={() => navigate(`/probleme/${index}`)}
                 >
                     <span>Rezolvă</span>
                     <ExternalLinkIcon />
@@ -87,19 +90,24 @@ const PhysicsProblems = () => {
     const [currentPage, setCurrentPage] = useState(1);
     const problemsPerPage = 8; // Numărul de probleme per pagină
 
+    // Modal state
+    const [showAddModal, setShowAddModal] = useState(false);
+
     const navigate = useNavigate();
+    const dispatch = useDispatch();
+    const { value: problemeData, status, error } = useSelector(state => state.problems);
 
     // Funcție pentru a verifica dacă query-ul este un ID valid și naviga direct
     const handleSearchSubmit = (e) => {
         e.preventDefault();
         if (searchQuery.trim()) {
             const query = searchQuery.trim();
-            // Verifică dacă query-ul este un număr și dacă există o problemă cu acel ID
-            const problemId = parseInt(query);
-            if (!isNaN(problemId)) {
-                const problem = problemeData.find(p => p.id === problemId);
+            // Verifică dacă query-ul este un număr și dacă există o problemă cu acel index
+            const problemIndex = parseInt(query);
+            if (!isNaN(problemIndex)) {
+                const problem = problemeData.find(p => p.index === problemIndex);
                 if (problem) {
-                    navigate(`/probleme/${problemId}`);
+                    navigate(`/probleme/${problemIndex}`);
                     return;
                 }
             }
@@ -281,7 +289,447 @@ const PhysicsProblems = () => {
         }
     };
 
+    // AddProblemModal Component
+    const AddProblemModal = ({ isOpen, onClose }) => {
+        const [formData, setFormData] = useState({
+            titlu: '',
+            descriere: '',
+            categorie: 'Mecanică',
+            dificultate: 'ușor',
+            continut: '',
+            formule: [''],
+            date: {},
+            poze: [],
+            punctajTotal: 0,
+            subpuncte: [
+                {
+                    cerinta: '',
+                    punctaj: 1
+                }
+            ]
+        });
 
+        const [datePairs, setDatePairs] = useState([
+            { key: '', value: '' }
+        ]);
+        
+        const dispatch = useDispatch();
+        const { addStatus, addError } = useSelector(state => state.problems);
+
+        const handleInputChange = (field, value) => {
+            setFormData(prev => ({
+                ...prev,
+                [field]: value
+            }));
+        };
+
+        const handleSubpunctChange = (index, field, value) => {
+            setFormData(prev => ({
+                ...prev,
+                subpuncte: prev.subpuncte.map((subpunct, i) => 
+                    i === index ? { ...subpunct, [field]: value } : subpunct
+                )
+            }));
+        };
+
+        const addSubpunct = () => {
+            setFormData(prev => ({
+                ...prev,
+                subpuncte: [...prev.subpuncte, {
+                    cerinta: '',
+                    punctaj: 1
+                }]
+            }));
+        };
+
+        const removeSubpunct = (index) => {
+            if (formData.subpuncte.length > 1) {
+                setFormData(prev => ({
+                    ...prev,
+                    subpuncte: prev.subpuncte.filter((_, i) => i !== index)
+                }));
+            }
+        };
+
+        const handleImageUpload = (e) => {
+            const files = Array.from(e.target.files);
+            const imagePromises = files.map(file => {
+                return new Promise((resolve) => {
+                    const reader = new FileReader();
+                    reader.onloadend = () => resolve(reader.result);
+                    reader.readAsDataURL(file);
+                });
+            });
+
+            Promise.all(imagePromises).then(images => {
+                setFormData(prev => ({
+                    ...prev,
+                    poze: [...prev.poze, ...images]
+                }));
+            });
+        };
+
+        const removeImage = (index) => {
+            setFormData(prev => ({
+                ...prev,
+                poze: prev.poze.filter((_, i) => i !== index)
+            }));
+        };
+
+        // Date pairs handlers
+        const handleDatePairChange = (index, field, value) => {
+            setDatePairs(prev => 
+                prev.map((pair, i) => 
+                    i === index ? { ...pair, [field]: value } : pair
+                )
+            );
+        };
+
+        const addDatePair = () => {
+            setDatePairs(prev => [...prev, { key: '', value: '' }]);
+        };
+
+        const removeDatePair = (index) => {
+            if (datePairs.length > 1) {
+                setDatePairs(prev => prev.filter((_, i) => i !== index));
+            }
+        };
+
+        const handleSubmit = async (e) => {
+            e.preventDefault();
+            
+            // Convert date pairs to object
+            const dateObject = {};
+            datePairs.forEach(pair => {
+                if (pair.key.trim() && pair.value.trim()) {
+                    dateObject[pair.key.trim()] = pair.value.trim();
+                }
+            });
+            
+            // Prepare the problem data
+            const problemData = {
+                titlu: formData.titlu,
+                descriere: formData.descriere,
+                categorie: formData.categorie,
+                dificultate: formData.dificultate,
+                continut: formData.continut,
+                formule: formData.formule,
+                date: dateObject,
+                subpuncte: formData.subpuncte.map((subpunct, index) => ({
+                    id: `${index + 1}${String.fromCharCode(97 + index)}`,
+                    cerinta: subpunct.cerinta,
+                    punctaj: subpunct.punctaj
+                })),
+                index: problemeData.length + 1,
+                creator: '',
+                punctajTotal: formData.punctajTotal,
+                createdAt: new Date().toISOString(),
+            };
+            
+            try {
+                await dispatch(addProblem(problemData)).unwrap();
+                
+                // Reset form and close modal
+                setFormData({
+                    titlu: '',
+                    descriere: '',
+                    categorie: 'Mecanică',
+                    dificultate: 'ușor',
+                    continut: '',
+                    formule: [''],
+                    date: {},
+                    poze: [],
+                    punctajTotal: 0,
+                    subpuncte: [{ cerinta: '', punctaj: 1 }]
+                });
+                setDatePairs([{ key: '', value: '' }]);
+                onClose();
+                
+                // Clear add status after a delay
+                setTimeout(() => {
+                    dispatch(clearAddStatus());
+                }, 2000);
+                
+            } catch (error) {
+                console.error('Error saving problem:', error);
+            }
+        };
+
+        // Reset form when modal opens/closes
+        useEffect(() => {
+            if (!isOpen) {
+                setFormData({
+                    titlu: '',
+                    descriere: '',
+                    categorie: 'Mecanică',
+                    dificultate: 'ușor',
+                    continut: '',
+                    formule: [''],
+                    date: {},
+                    poze: [],
+                    punctajTotal: 0,
+                    subpuncte: [{ cerinta: '', punctaj: 1 }]
+                });
+                setDatePairs([{ key: '', value: '' }]);
+                dispatch(clearAddStatus());
+            }
+        }, [isOpen, dispatch]);
+
+        if (!isOpen) return null;
+
+        return (
+            <div className="modal-overlay" onClick={onClose}>
+                <div className="modal-content" onClick={e => e.stopPropagation()}>
+                    <div className="modal-header">
+                        <h2>Adaugă problemă</h2>
+                        <button className="modal-close" onClick={onClose}>×</button>
+                    </div>
+                    
+                    {addError && (
+                        <div className="error-message">
+                            Eroare la salvarea problemei: {addError}
+                        </div>
+                    )}
+                    
+                    <form onSubmit={handleSubmit} className="modal-form">
+                        <div className="form-grid">
+                            <div className="form-group">
+                                <label>Titlu *</label>
+                                <input
+                                    type="text"
+                                    value={formData.titlu}
+                                    onChange={(e) => handleInputChange('titlu', e.target.value)}
+                                    required
+                                    placeholder="Titlul problemei"
+                                    disabled={addStatus === 'loading'}
+                                />
+                            </div>
+
+                            <div className="form-group">
+                                <label>Descriere</label>
+                                <textarea
+                                    value={formData.descriere}
+                                    onChange={(e) => handleInputChange('descriere', e.target.value)}
+                                    placeholder="O scurtă descriere a problemei"
+                                    rows={3}
+                                    disabled={addStatus === 'loading'}
+                                />
+                            </div>
+
+                            <div className="form-row">
+                                <div className="form-group">
+                                    <label>Categorie *</label>
+                                    <select
+                                        value={formData.categorie}
+                                        onChange={(e) => handleInputChange('categorie', e.target.value)}
+                                        required
+                                        disabled={addStatus === 'loading'}
+                                    >
+                                        <option value="Mecanică">Mecanică</option>
+                                        <option value="Oscilații">Oscilații</option>
+                                        <option value="Unde">Unde</option>
+                                        <option value="Lissajous">Lissajous</option>
+                                        <option value="Seismologie">Seismologie</option>
+                                    </select>
+                                </div>
+
+                                <div className="form-group">
+                                    <label>Dificultate *</label>
+                                    <select
+                                        value={formData.dificultate}
+                                        onChange={(e) => handleInputChange('dificultate', e.target.value)}
+                                        required
+                                        disabled={addStatus === 'loading'}
+                                    >
+                                        <option value="ușor">Ușor</option>
+                                        <option value="mediu">Mediu</option>
+                                        <option value="dificil">Dificil</option>
+                                        <option value="concurs">Concurs</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div className="form-group full-width">
+                                <label>Conținut/Enunț *</label>
+                                <textarea
+                                    value={formData.continut}
+                                    onChange={(e) => handleInputChange('continut', e.target.value)}
+                                    required
+                                    placeholder="Enunțul problemei cu formule LaTeX (folosește $...$ pentru formule)"
+                                    rows={6}
+                                    disabled={addStatus === 'loading'}
+                                />
+                            </div>
+
+                            <div className="form-group full-width">
+                                <label>Formule</label>
+                                <textarea
+                                    value={formData.formule.join('\n')}
+                                    onChange={(e) => handleInputChange('formule', e.target.value.split('\n').filter(f => f.trim()))}
+                                    placeholder="Formulele necesare (câte una pe rând)"
+                                    rows={3}
+                                    disabled={addStatus === 'loading'}
+                                />
+                            </div>
+
+                            <div className="form-group full-width">
+                                <label>Date/Variabile</label>
+                                <div className="date-pairs-container">
+                                    {datePairs.map((pair, index) => (
+                                        <div key={index} className="date-pair-row">
+                                            <input
+                                                type="text"
+                                                value={pair.key}
+                                                onChange={(e) => handleDatePairChange(index, 'key', e.target.value)}
+                                                placeholder="Nume variabilă (ex: m, v, t)"
+                                                disabled={addStatus === 'loading'}
+                                            />
+                                            <span className="date-pair-separator">=</span>
+                                            <input
+                                                type="text"
+                                                value={pair.value}
+                                                onChange={(e) => handleDatePairChange(index, 'value', e.target.value)}
+                                                placeholder="Valoare (ex: 5 kg, 10 m/s)"
+                                                disabled={addStatus === 'loading'}
+                                            />
+                                            <button
+                                                type="button"
+                                                className="remove-date-pair-btn"
+                                                onClick={() => removeDatePair(index)}
+                                                disabled={datePairs.length === 1 || addStatus === 'loading'}
+                                            >
+                                                ×
+                                            </button>
+                                        </div>
+                                    ))}
+                                    <button
+                                        type="button"
+                                        className="add-date-pair-btn"
+                                        onClick={addDatePair}
+                                        disabled={addStatus === 'loading'}
+                                    >
+                                        Adaugă variabilă
+                                    </button>
+                                </div>
+                            </div>
+
+                            <div className="form-group full-width">
+                                <label>Poze</label>
+                                <div className="image-upload-area">
+                                    <input
+                                        type="file"
+                                        multiple
+                                        accept="image/*"
+                                        onChange={handleImageUpload}
+                                        id="image-upload"
+                                        style={{ display: 'none' }}
+                                        disabled={addStatus === 'loading'}
+                                    />
+                                    <label htmlFor="image-upload" className="image-upload-label">
+                                        <div className="upload-placeholder">
+                                            <span>Click, trage sau folosește Ctrl+V pentru a adăuga poze</span>
+                                        </div>
+                                    </label>
+                                    
+                                    {formData.poze.length > 0 && (
+                                        <div className="uploaded-images">
+                                            {formData.poze.map((image, index) => (
+                                                <div key={index} className="image-preview">
+                                                    <img src={image} alt={`Preview ${index + 1}`} />
+                                                    <button
+                                                        type="button"
+                                                        className="remove-image"
+                                                        onClick={() => removeImage(index)}
+                                                        disabled={addStatus === 'loading'}
+                                                    >
+                                                        ×
+                                                    </button>
+                                                </div>
+                                            ))}
+                                        </div>
+                                    )}
+                                </div>
+                            </div>
+
+                            <div className="form-group">
+                                <label>Punctaj total</label>
+                                <input
+                                    type="number"
+                                    value={formData.punctajTotal}
+                                    onChange={(e) => handleInputChange('punctajTotal', parseInt(e.target.value) || 0)}
+                                    min="0"
+                                    placeholder="Punctaj total"
+                                    disabled={addStatus === 'loading'}
+                                />
+                            </div>
+
+                            <div className="form-group full-width">
+                                <label>Cerințe (subpuncte)</label>
+                                <div className="subpuncte-container">
+                                    {formData.subpuncte.map((subpunct, index) => (
+                                        <div key={index} className="subpunct-row">
+                                            <div className="subpunct-inputs">
+                                                <input
+                                                    type="text"
+                                                    value={subpunct.cerinta}
+                                                    onChange={(e) => handleSubpunctChange(index, 'cerinta', e.target.value)}
+                                                    placeholder="Cerință"
+                                                    disabled={addStatus === 'loading'}
+                                                />
+                                                <input
+                                                    type="number"
+                                                    value={subpunct.punctaj}
+                                                    onChange={(e) => handleSubpunctChange(index, 'punctaj', parseInt(e.target.value) || 0)}
+                                                    min="1"
+                                                    max="10"
+                                                    placeholder="Punctaj"
+                                                    disabled={addStatus === 'loading'}
+                                                />
+                                            </div>
+                                            <button
+                                                type="button"
+                                                className="remove-subpunct-btn"
+                                                onClick={() => removeSubpunct(index)}
+                                                disabled={formData.subpuncte.length === 1 || addStatus === 'loading'}
+                                            >
+                                                ×
+                                            </button>
+                                        </div>
+                                    ))}
+                                    <button
+                                        type="button"
+                                        className="add-subpunct-btn"
+                                        onClick={addSubpunct}
+                                        disabled={addStatus === 'loading'}
+                                    >
+                                        Adaugă subpunct
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div className="modal-actions">
+                            <button
+                                type="submit"
+                                className="btn-primary"
+                                disabled={addStatus === 'loading'}
+                            >
+                                {addStatus === 'loading' ? 'Se salvează...' : 'Salvează'}
+                            </button>
+                            <button
+                                type="button"
+                                className="btn-secondary"
+                                onClick={onClose}
+                                disabled={addStatus === 'loading'}
+                            >
+                                Anulează
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        );
+    };
 
     return (
         <Layout>
@@ -362,6 +810,12 @@ const PhysicsProblems = () => {
                     </div>
 
                     {/* Problem Cards Grid */}
+                    {status === 'loading' && (
+                        <div className="problems-loading">Se încarcă problemele...</div>
+                    )}
+                    {status === 'failed' && (
+                        <div className="problems-error">Eroare la încărcarea problemelor: {error}</div>
+                    )}
                     <div className="problems-grid">
                         {currentProblems.map((problem) => (
                             <ProblemCard
@@ -423,6 +877,21 @@ const PhysicsProblems = () => {
                             </div>
                         </div>
                     )}
+
+                    {/* Floating Action Button */}
+                    <button 
+                        className="fab-add-problem"
+                        onClick={() => setShowAddModal(true)}
+                        title="Adaugă o problemă nouă"
+                    >
+                        <Plus size={24} />
+                    </button>
+
+                    {/* Add Problem Modal */}
+                    <AddProblemModal 
+                        isOpen={showAddModal}
+                        onClose={() => setShowAddModal(false)}
+                    />
                 </div>
             </div>
         </Layout>

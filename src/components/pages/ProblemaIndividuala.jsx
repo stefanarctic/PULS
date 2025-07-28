@@ -2,14 +2,27 @@ import React from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import Layout from '../Layout';
 import ProblemaDetaliata from '../Problemadetaliata';
-import { problemeData } from '../problemedata';
+// import { problemeData } from '../problemedata';
+import { useSelector } from 'react-redux';
 
 const ProblemaIndividuala = () => {
   const { id } = useParams();
   const navigate = useNavigate();
+  const { value: problemeData, status } = useSelector(state => state.problems);
   
-  // Find the problem by ID
-  const problema = problemeData.find(problem => problem.id === parseInt(id));
+  // Find the problem by index (the id parameter is actually the index)
+  const problema = problemeData.find(problem => problem.index === parseInt(id));
+  
+  // If problems are still loading, show loading state
+  if (status === 'loading') {
+    return (
+      <Layout>
+        <div className="loading-container">
+          <p>Se încarcă problema...</p>
+        </div>
+      </Layout>
+    );
+  }
   
   // If problem not found, redirect to problems page
   if (!problema) {
