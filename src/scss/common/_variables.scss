@@ -44,8 +44,11 @@
     --input-background-current-mode: var(--input-background-white-mode);
     --pill-background-current-mode: var(--pill-background-white-mode);
     --pill-hover-background-current-mode: var(--pill-hover-background-white-mode);
-    --border-color-current-mode: var(--border-color-white-mode);
     --accent-color-current-mode: #60a5fa;
+    --accent-color-with-opacity-current-mode: #e0f2fe;
+    --profile-header-background-light-mode: #f7f7f7;
+    --profile-header-background-dark-mode: #202020;
+    --profile-header-background-current-mode: var(--profile-header-background-light-mode);
 
     --navbar-mobile-bg: rgba(255,255,255,0.95);
     --navbar-mobile-color: #222;
@@ -67,6 +70,8 @@
     --pill-background-current-mode: var(--pill-background-dark-mode);
     --pill-hover-background-current-mode: var(--pill-hover-background-dark-mode);
     --accent-color-current-mode: #60a5fa;
+    --accent-color-with-opacity-current-mode: #1e3a8a;
+    --profile-header-background-current-mode: var(--profile-header-background-dark-mode);
 
     --navbar-mobile-bg: rgba(20,20,20,0.98);
     --navbar-mobile-color: #fff;

@@ -566,10 +566,16 @@ const PhysicsProblems = () => {
                                 <label>Formule</label>
                                 <textarea
                                     value={formData.formule.join('\n')}
-                                    onChange={(e) => handleInputChange('formule', e.target.value.split('\n').filter(f => f.trim()))}
+                                    onChange={(e) => handleInputChange('formule', e.target.value.split('\n'))}
+                                    onKeyDown={(e) => {
+                                        if (e.key === 'Enter') {
+                                            e.stopPropagation();
+                                        }
+                                    }}
                                     placeholder="Formulele necesare (câte una pe rând)"
                                     rows={3}
                                     disabled={addStatus === 'loading'}
+                                    style={{ whiteSpace: 'pre-wrap' }}
                                 />
                             </div>
 

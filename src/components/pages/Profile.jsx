@@ -592,7 +592,7 @@ const Profile = () => {
                     </div>
                     <div className="tab-content">
                         {activeTab === 'activitate' && (
-                            <div className="activity-content">
+                            <div className="activity-tab-content">
                                 {userProblemsLoading ? (
                                     <div className="loading-container" style={{ minHeight: '200px' }}>
                                         <div className="loading-spinner">
@@ -638,7 +638,7 @@ const Profile = () => {
                             </div>
                         )}
                         {activeTab === 'realizari' && (
-                            <div className="achievements-content">
+                            <div className="achievements-tab-content">
                                 {userProblemsLoading ? (
                                     <div className="loading-container" style={{ minHeight: '200px' }}>
                                         <div className="loading-spinner">
@@ -653,7 +653,7 @@ const Profile = () => {
                             </div>
                         )}
                         {activeTab === 'statistici' && (
-                            <div className="statistics-content">
+                            <div className="statistics-tab-content">
                                 {userProblemsLoading ? (
                                     <div className="loading-container" style={{ minHeight: '200px' }}>
                                         <div className="loading-spinner">
