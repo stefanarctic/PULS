@@ -17,12 +17,12 @@
     --muted-color-white-mode: #6b7280;
     --border-color-dark-mode: #374151;
     --border-color-white-mode: #e5e7eb;
-    // --card-background-dark-mode: #111827;
-    // --card-background-white-mode: #fff;
-    // --input-background-dark-mode: #1e293b;
-    // --input-background-white-mode: #f3f4f6;
-    // --pill-background-dark-mode: #1e293b;
-    // --pill-background-white-mode: #f3f4f6;
+    --card-background-dark-mode: #111827;
+    --card-background-white-mode: #fff;
+    --input-background-dark-mode: #1e293b;
+    --input-background-white-mode: #f3f4f6;
+    --pill-background-dark-mode: #1e293b;
+    --pill-background-white-mode: #f3f4f6;
     --pill-hover-background-dark-mode: #374151;
     --pill-hover-background-white-mode: #e5e7eb;
     --border-color-white-mode: rgba(0, 0, 0, 0.1);
@@ -40,9 +40,9 @@
     --muted-color-current-mode: var(--muted-color-white-mode);
     --border-color-current-mode: var(--border-color-white-mode);
     --border-color-current-mode-2: var(--border-color-white-mode-2);
-    // --card-background-current-mode: var(--card-background-white-mode);
-    // --input-background-current-mode: var(--input-background-white-mode);
-    // --pill-background-current-mode: var(--pill-background-white-mode);
+    --card-background-current-mode: var(--card-background-white-mode);
+    --input-background-current-mode: var(--input-background-white-mode);
+    --pill-background-current-mode: var(--pill-background-white-mode);
     --pill-hover-background-current-mode: var(--pill-hover-background-white-mode);
     --border-color-current-mode: var(--border-color-white-mode);
     --accent-color-current-mode: #60a5fa;
@@ -62,9 +62,9 @@
     --muted-color-current-mode: var(--muted-color-dark-mode);
     --border-color-current-mode: var(--border-color-dark-mode);
     --border-color-current-mode-2: var(--border-color-dark-mode-2);
-    // --card-background-current-mode: var(--card-background-dark-mode);
-    // --input-background-current-mode: var(--input-background-dark-mode);
-    // --pill-background-current-mode: var(--pill-background-dark-mode);
+    --card-background-current-mode: var(--card-background-dark-mode);
+    --input-background-current-mode: var(--input-background-dark-mode);
+    --pill-background-current-mode: var(--pill-background-dark-mode);
     --pill-hover-background-current-mode: var(--pill-hover-background-dark-mode);
     --accent-color-current-mode: #60a5fa;
 

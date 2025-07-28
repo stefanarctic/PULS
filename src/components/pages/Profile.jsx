@@ -117,6 +117,11 @@ const Profile = () => {
     const [statistics, setStatistics] = useState({});
     const [favorites, setFavorites] = useState([]);
     const [userProblems, setUserProblems] = useState([]);
+    
+    // Loading states for different operations
+    const [userProblemsLoading, setUserProblemsLoading] = useState(false);
+    const [profileSaveLoading, setProfileSaveLoading] = useState(false);
+    const [profilePicUploadLoading, setProfilePicUploadLoading] = useState(false);
 
     useEffect(() => {
         const unsubscribe = onAuthStateChanged(auth, async (firebaseUser) => {
@@ -167,6 +172,7 @@ const Profile = () => {
     useEffect(() => {
         if (user && user.uid) {
             const fetchUserProblems = async () => {
+                setUserProblemsLoading(true);
                 try {
                     const userProblemsRef = collection(db, 'users', user.uid, 'userProblems');
                     const querySnapshot = await getDocs(userProblemsRef);
@@ -175,6 +181,8 @@ const Profile = () => {
                 } catch (error) {
                     console.error('Error fetching user problems:', error);
                     setUserProblems([]);
+                } finally {
+                    setUserProblemsLoading(false);
                 }
             };
             fetchUserProblems();
@@ -212,31 +220,40 @@ const Profile = () => {
         console.log("descriptionInput", descriptionInput);
         setAliasError('');
         setDescriptionError('');
-        const trimmedAlias = aliasInput.trim();
-        const trimmedDescription = descriptionInput.trim();
-        if (!trimmedAlias) {
-            setAliasError('Aliasul nu poate fi gol.');
-            return;
+        setProfileSaveLoading(true);
+        
+        try {
+            const trimmedAlias = aliasInput.trim();
+            const trimmedDescription = descriptionInput.trim();
+            if (!trimmedAlias) {
+                setAliasError('Aliasul nu poate fi gol.');
+                return;
+            }
+            if (trimmedAlias.length < 3) {
+                setAliasError('Aliasul trebuie să aibă cel puțin 3 caractere.');
+                return;
+            }
+            const isUnique = await checkAliasUnique(trimmedAlias);
+            if (!isUnique) {
+                setAliasError('Aliasul este deja folosit.');
+                return;
+            }
+            if (trimmedDescription.length > 200) {
+                setDescriptionError('Descrierea nu poate avea mai mult de 200 de caractere.');
+                return;
+            }
+            const userRef = doc(db, 'users', user.uid);
+            await setDoc(userRef, { alias: trimmedAlias, profilePic: profilePicInput || profilePic, description: trimmedDescription }, { merge: true });
+            setAlias(trimmedAlias);
+            setProfilePic(profilePicInput || profilePic);
+            setDescription(trimmedDescription);
+            setShowEditModal(false);
+        } catch (error) {
+            console.error('Error saving profile:', error);
+            setAliasError('Eroare la salvarea profilului.');
+        } finally {
+            setProfileSaveLoading(false);
         }
-        if (trimmedAlias.length < 3) {
-            setAliasError('Aliasul trebuie să aibă cel puțin 3 caractere.');
-            return;
-        }
-        const isUnique = await checkAliasUnique(trimmedAlias);
-        if (!isUnique) {
-            setAliasError('Aliasul este deja folosit.');
-            return;
-        }
-        if (trimmedDescription.length > 200) {
-            setDescriptionError('Descrierea nu poate avea mai mult de 200 de caractere.');
-            return;
-        }
-        const userRef = doc(db, 'users', user.uid);
-        await setDoc(userRef, { alias: trimmedAlias, profilePic: profilePicInput || profilePic, description: trimmedDescription }, { merge: true });
-        setAlias(trimmedAlias);
-        setProfilePic(profilePicInput || profilePic);
-        setDescription(trimmedDescription);
-        setShowEditModal(false);
     };
 
     const IMAGEKIT_PUBLIC_KEY = 'public_6rkxL+q+51xT8d2+GHpJeNSzOTE=';
@@ -245,20 +262,21 @@ const Profile = () => {
     const handleProfilePicUpload = async (file) => {
         if (!file) return;
 
-        // 1. Ia semnătura de la backend
-        const authRes = await fetch('/api/assistant/imagekit-auth');
-        const { signature, expire, token } = await authRes.json();
-
-        // 2. Upload la ImageKit cu semnătură
-        const formData = new FormData();
-        formData.append('file', file);
-        formData.append('fileName', file.name);
-        formData.append('publicKey', IMAGEKIT_PUBLIC_KEY);
-        formData.append('signature', signature);
-        formData.append('expire', expire);
-        formData.append('token', token);
-
+        setProfilePicUploadLoading(true);
         try {
+            // 1. Ia semnătura de la backend
+            const authRes = await fetch('/api/assistant/imagekit-auth');
+            const { signature, expire, token } = await authRes.json();
+
+            // 2. Upload la ImageKit cu semnătură
+            const formData = new FormData();
+            formData.append('file', file);
+            formData.append('fileName', file.name);
+            formData.append('publicKey', IMAGEKIT_PUBLIC_KEY);
+            formData.append('signature', signature);
+            formData.append('expire', expire);
+            formData.append('token', token);
+
             const res = await fetch(IMAGEKIT_UPLOAD_URL, {
                 method: 'POST',
                 body: formData
@@ -272,6 +290,8 @@ const Profile = () => {
             }
         } catch (err) {
             alert('Eroare la upload poză!');
+        } finally {
+            setProfilePicUploadLoading(false);
         }
     };
 
@@ -383,7 +403,19 @@ const Profile = () => {
     }, [user, userProblems, alias, allProblems]);
 
     if (loading) {
-        return <Layout><div className="profile-container"><p>Se încarcă...</p></div></Layout>;
+        return (
+            <Layout>
+                <div className="profile-container">
+                    <div className="loading-container">
+                        <div className="loading-spinner">
+                            <div className="spinner"></div>
+                            <h3>Se încarcă profilul...</h3>
+                            <p>Te rugăm să aștepți în timp ce se procesează datele.</p>
+                        </div>
+                    </div>
+                </div>
+            </Layout>
+        );
     }
 
     if (!user) {
@@ -475,9 +507,22 @@ const Profile = () => {
                                 onDragOver={e => e.preventDefault()}
                                 onPaste={handlePaste}
                                 onClick={handleDropzoneClick}
-                                style={{ border: '2px dashed #aaa', borderRadius: 8, padding: 16, textAlign: 'center', cursor: 'pointer', marginBottom: 12 }}
+                                style={{ 
+                                    border: '2px dashed #aaa', 
+                                    borderRadius: 8, 
+                                    padding: 16, 
+                                    textAlign: 'center', 
+                                    cursor: profilePicUploadLoading ? 'not-allowed' : 'pointer', 
+                                    marginBottom: 12,
+                                    opacity: profilePicUploadLoading ? 0.6 : 1
+                                }}
                             >
-                                {profilePicPreview || profilePicInput ? (
+                                {profilePicUploadLoading ? (
+                                    <div className="loading-spinner" style={{ margin: '1rem 0' }}>
+                                        <div className="spinner" style={{ width: '30px', height: '30px' }}></div>
+                                        <span>Se încarcă poza...</span>
+                                    </div>
+                                ) : profilePicPreview || profilePicInput ? (
                                     <img src={profilePicPreview || profilePicInput} alt="preview" style={{ maxWidth: 120, maxHeight: 120, borderRadius: '50%', marginBottom: 8 }} />
                                 ) : (
                                     <span>Trage o poză aici, dă click sau folosește Ctrl+V</span>
@@ -488,6 +533,7 @@ const Profile = () => {
                                     style={{ display: 'none' }}
                                     ref={fileInputRef}
                                     onChange={handleFileChange}
+                                    disabled={profilePicUploadLoading}
                                 />
                             </div>
                             <label>Descriere:</label>
@@ -499,8 +545,20 @@ const Profile = () => {
                             />
                             {descriptionError && <div className="description-error">{descriptionError}</div>}
                             <div className="profile-edit-actions">
-                                <button className="profile-btn profile-btn-blue" onClick={handleProfileSave}>Salvează</button>
-                                <button className="profile-btn profile-btn-red" onClick={() => setShowEditModal(false)}>Anulează</button>
+                                <button 
+                                    className="profile-btn profile-btn-blue" 
+                                    onClick={handleProfileSave}
+                                    disabled={profileSaveLoading}
+                                >
+                                    {profileSaveLoading ? 'Se salvează...' : 'Salvează'}
+                                </button>
+                                <button 
+                                    className="profile-btn profile-btn-red" 
+                                    onClick={() => setShowEditModal(false)}
+                                    disabled={profileSaveLoading}
+                                >
+                                    Anulează
+                                </button>
                             </div>
                         </div>
                     </div>
@@ -535,7 +593,17 @@ const Profile = () => {
                     <div className="tab-content">
                         {activeTab === 'activitate' && (
                             <div className="activity-content">
-                                <RecentActivity activityLog={activityLog} />
+                                {userProblemsLoading ? (
+                                    <div className="loading-container" style={{ minHeight: '200px' }}>
+                                        <div className="loading-spinner">
+                                            <div className="spinner"></div>
+                                            <h3>Se încarcă activitatea...</h3>
+                                            <p>Te rugăm să aștepți în timp ce se procesează datele.</p>
+                                        </div>
+                                    </div>
+                                ) : (
+                                    <RecentActivity activityLog={activityLog} />
+                                )}
                             </div>
                         )}
                         {activeTab === 'probleme' && (
@@ -571,12 +639,32 @@ const Profile = () => {
                         )}
                         {activeTab === 'realizari' && (
                             <div className="achievements-content">
-                                <Achievements achievements={achievements} />
+                                {userProblemsLoading ? (
+                                    <div className="loading-container" style={{ minHeight: '200px' }}>
+                                        <div className="loading-spinner">
+                                            <div className="spinner"></div>
+                                            <h3>Se încarcă realizările...</h3>
+                                            <p>Te rugăm să aștepți în timp ce se procesează datele.</p>
+                                        </div>
+                                    </div>
+                                ) : (
+                                    <Achievements achievements={achievements} />
+                                )}
                             </div>
                         )}
                         {activeTab === 'statistici' && (
                             <div className="statistics-content">
-                                <Statistics statistics={statistics} />
+                                {userProblemsLoading ? (
+                                    <div className="loading-container" style={{ minHeight: '200px' }}>
+                                        <div className="loading-spinner">
+                                            <div className="spinner"></div>
+                                            <h3>Se încarcă statisticile...</h3>
+                                            <p>Te rugăm să aștepți în timp ce se procesează datele.</p>
+                                        </div>
+                                    </div>
+                                ) : (
+                                    <Statistics statistics={statistics} />
+                                )}
                             </div>
                         )}
                     </div>

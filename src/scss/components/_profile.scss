@@ -735,6 +735,12 @@
   max-width: 90vw;
   transition: background 0.2s, color 0.2s, box-shadow 0.2s;
   box-shadow: 0 2px 16px 0 rgba(0,0,0,0.08);
+
+  &:disabled {
+    cursor: not-allowed;
+    opacity: 0.6;
+    box-shadow: none;
+  }
 }
 .profile-btn-big{
     font-size: 1.3rem;
@@ -1008,4 +1014,47 @@
   .statistics .stat-summary {
     grid-template-columns: 1fr;
   }
+}
+
+/* Loading Spinner Styles */
+.loading-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 50vh;
+
+  .loading-spinner {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+    text-align: center;
+
+    .spinner {
+      width: 40px;
+      height: 40px;
+      border: 3px solid var(--border-color-current-mode);
+      border-top: 3px solid var(--accent-color-current-mode);
+      border-radius: 50%;
+      animation: spin 1s linear infinite;
+    }
+
+    h3 {
+      font-size: 1.125rem;
+      font-weight: 500;
+      margin: 0;
+      color: var(--primary-color-current-mode);
+    }
+
+    p {
+      color: var(--muted-color-current-mode);
+      margin: 0;
+      font-size: 0.875rem;
+    }
+  }
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
 }
