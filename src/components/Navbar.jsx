@@ -1,4 +1,4 @@
-import { Book, FileQuestion, HelpCircle, Home, Layout, ListCheck, ListChecks, Settings, User, Search, ChevronDown, Menu, X } from "lucide-react";
+import { Book, FileQuestion, HelpCircle, Home, Layout, ListCheck, ListChecks, Settings, User, Search, ChevronDown, Menu, X, ChevronRight } from "lucide-react";
 import { Link, useNavigate } from "react-router-dom";
 import DarkModeToggle from "./DarkModeToggle";
 import PulsLogoWhite from '/res/puls-logo-new2.png';
@@ -237,6 +237,9 @@ const Navbar = () => {
                                     <Link to="/resurse/unde" className="dropdown-item navbar-dropdown-item" onClick={handleDropdownItemClick}>Unde</Link>
                                     <Link to="/resurse/lissajous" className="dropdown-item navbar-dropdown-item" onClick={handleDropdownItemClick}>Lissajous</Link>
                                     <Link to="/resurse/seism" className="dropdown-item navbar-dropdown-item" onClick={handleDropdownItemClick}>Seisme</Link>
+                                    <Link to="/resurse" className="dropdown-item navbar-dropdown-item" onClick={handleDropdownItemClick} style={{ display: 'flex', alignItems: 'center', gap: 4 }}>
+                                        Mai multe <ChevronRight className="nav-icon" style={{ marginLeft: 4, width: 16, height: 16 }} />
+                                    </Link>
                                 </div>
                             )}
                         </div>

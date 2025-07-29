@@ -218,6 +218,20 @@ const ResursePage = () => {
                     </p>
                     <a href="/resurse/seism" className="resurse-link">Citește lecția</a>
                   </div>
+                  <div className="formula-card">
+                    <h3 className="text-xl font-semibold mb-2">Termodinamică</h3>
+                    <p className="text-muted-foreground mb-2">
+                      Învață despre termodinamică, principiile și aplicațiile ei în fizică.
+                    </p>
+                    <a href="/resurse/termodinamica" className="resurse-link">Citește lecția</a>
+                  </div>
+                  <div className="formula-card">
+                    <h3 className="text-xl font-semibold mb-2">Mecanică</h3>
+                    <p className="text-muted-foreground mb-2">
+                      Învață despre mecanică, principiile și aplicațiile ei în fizică.
+                    </p>
+                    <a href="/resurse/mecanica" className="resurse-link">Citește lecția</a>
+                  </div>
                 </div>
               </div>
             </TabsContent>

@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simulator Legea lui Hooke OY</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+</head>
+<body class="dark-theme">
+    <div class="sidebar left" id="sidebar-left">
+        <div class="sidebar-content">
+            <div class="unitati-box">
+                <h3>Unități de măsură:</h3>
+                <div class="unitati-list">
+                    <ul>
+                        <li>L (lungimea) - m (metru)</li>
+                        <li>A (Amplitudine) - m (metru)</li>
+                        <li>t (timpul) - s (secundă)</li>
+                        <li>y (Deplasare) - m (metru)</li>
+                        <li>v (Viteză) - m/s (metru pe secundă)</li>
+                        <li>k (Constanta elastică) - N/m</li>
+                        <li>F (Forța) - N (Newton)</li>
+                        <li>Ep (Energia potentiala elastica) - J (Joule)</li>
+                        <li>Ec (Energia cinetica) - J (Joule)</li>
+                        <li>E (Energia totala) - J (Joule)</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="formule-box">
+                <h3>Formule:</h3>
+                <div class="formule-list">
+                    <ul>
+                        <li>\[F = k \cdot y\]</li>
+                        <li>\[y = \frac{F}{k}\]</li>
+                        <li>\[E_p = \frac{k \cdot y^2}{2}\]</li>
+                        <li>\[E_c = \frac{m \cdot v^2}{2}\]</li>
+                        <li>\[E_t = E_c + E_p\]</li>
+                        <li>\[y(t) = A \cdot e^{-bt} \cdot \sin(\omega t)\]</li>
+                    </ul>
+                </div>
+            </div>
+            <button id="themeSwitcher">☀️ Schimbă tema</button>
+        </div>
+    </div>
+    <div class="main-sim-area">
+        <h1>Oscilator Armonic pe OY</h1>
+        
+        <div class="spring-visual" id="spring-visual">
+            <!-- Spring SVG will be rendered here -->
+            <svg id="springSVG" width="400" height="400"></svg>
+        </div>
+    </div>
+    <div class="sidebar right" id="sidebar-right">
+        <div class="sidebar-content">
+            <div class="controls-box">
+                <label for="amplitudine">Amplitudine(A): <span id="amplitudineValue">1.50m</span></label>
+                <input type="range" id="amplitudine" min="10" max="300" value="150">
+                
+                <label for="viteza">Viteză(v): <span id="vitezaValue">10x</span></label>
+                <input type="range" id="viteza" min="1" max="20" value="10">
+                
+                <label for="masa">Masa(m): <span id="masaValue">5.0kg</span></label>
+                <input type="range" id="masa" min="1" max="10" value="5">
+                
+                <div class="slider-container">
+                    <label for="k">Constanta elastică(k): <span id="kValue">20.0N/m</span></label>
+                    <input type="range" id="k" min="1" max="40" value="20" step="0.1">
+                </div>
+                
+                <div class="slider-container">
+                    <label for="frecare">Coeficient de frecare(b): <span id="frecareValue">0.1</span></label>
+                    <input type="range" id="frecare" min="0" max="1" value="0.1" step="0.01">
+                    <button id="zeroFrictionBtn" class="friction-btn">Setează frecarea la 0</button>
+                </div>
+                
+                <button id="startBtn">Start</button>
+                <button id="pauseResumeBtn">Pauză</button>
+                <button id="stopBtn">Stop</button>
+                <button id="masoaraBtn">Măsoară</button>
+            </div>
+            <div class="masuratori-container">
+                <div class="masuratori-box">
+                    <ul>
+                        <li>m (masa): <span id="masaDisplay"></span></li>
+                        <li>A (amplitudine): <span id="amplitudineDisplay">-</span></li>
+                        <li>t (timpul): <span id="timpDisplay">-</span></li>
+                        <li>y (deplasare): <span id="deplasareDisplay">-</span></li>
+                        <li>v (viteză): <span id="vitezaDisplay">-</span></li>
+                        <li>Ec (energia cinetică): <span id="ecDisplay">-</span></li>
+                        <li>Ep (energia potențială): <span id="epDisplay">-</span></li>
+                        <li>E (energia totală): <span id="etDisplay">-</span></li>
+                    </ul>
+                </div>
+                <div class="chart-box">
+                    <canvas id="chartHooke" width="300" height="150"></canvas>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html> 

@@ -1,0 +1,312 @@
+body {
+  font-family: Arial, sans-serif;
+  text-align: center;
+  background: #f0f0f0;
+  overflow-y:hidden;
+}
+
+#simulator {
+  width: 800px;
+  height: 400px;
+  border: 2px solid #333;
+  position: relative;
+  margin: 20px auto;
+  background-color: #f0f0f0;
+}
+
+.ball {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  position: absolute;
+  top: 160px;
+  color: white;
+  font-size: 24px;
+  text-align: center;
+  line-height: 80px; /* Centrează vertical textul */
+}
+
+#ball1 {
+  background:red;
+  background-position: center; /* Adaugă această linie */
+  left: 0;
+}
+
+#ball2 {
+  background:blue;
+  background-position: center; /* Adaugă această linie */
+  right: 0;
+}
+
+button {
+  padding: 10px 20px;
+  font-size: 16px;
+  margin-top: 10px;
+}
+
+#info {
+  margin-top: 20px;
+  /* font-weight: bold; */
+}
+
+
+#toggleSidebar {
+    position: fixed;
+    top: 10px;
+    right: 10px;
+    background: #13c79a;
+    border: none;
+    padding: 10px 15px;
+    font-size: 24px;
+    cursor: pointer;
+    color: white;
+    border-radius: 5px;
+    z-index: 1100;
+}
+#toggleSidebarleft {
+    position: fixed;
+    top: 10px;
+    left: 10px;
+    background: #c75513;
+    border: none;
+    padding: 10px 15px;
+    font-size: 24px;
+    cursor: pointer;
+    color: white;
+    border-radius: 5px;
+    z-index: 1100;
+}
+.sidebar {
+    width: 300px;
+    padding: 20px;
+    background: #13c79a;
+    height: auto; /* Schimbă height: 100vh; în height: auto; */
+    max-height: 95vh; /* Adaugă o înălțime maximă pentru a nu depăși ecranul */
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    gap: 15px;
+    overflow-y: auto; 
+    position: fixed;
+    right: -300px;
+    top: 0;
+    -webkit-transition: right 0.3s ease-in-out;
+    transition: right 0.3s ease-in-out;
+    z-index: 1000;
+    -webkit-box-shadow: -5px 0 10px rgba(0, 0, 0, 0.3);
+    box-shadow: -5px 0 10px rgba(0, 0, 0, 0.3);
+}
+
+.sidebar h2 {
+    color: white;
+    text-align: center;
+}
+
+.sidebar label {
+    color: black;
+    font-size: 18px;
+}
+
+.sidebar input {
+    width: 95%;
+    padding: 5px;
+    margin-top: 5px;
+    border: none;
+    border-radius: 3px;
+}
+
+.sidebar.visible {
+    right: 0;
+}
+.sidebar button{
+    background-color: #FAEDCD;
+}
+.sidebarleft {
+  width: 300px;
+  padding: 20px;
+  background: #c75513;
+  height: auto; /* Schimbă height: 100vh; în height: auto; */
+  max-height: 95vh; /* Adaugă o înălțime maximă pentru a nu depăși ecranul */
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  gap: 15px;
+  overflow-y: auto; 
+  position: fixed;
+  left: -300px;
+  top: 0;
+  -webkit-transition: right 0.3s ease-in-out;
+  transition: right 0.3s ease-in-out;
+  z-index: 1000;
+  -webkit-box-shadow: -5px 0 10px rgba(0, 0, 0, 0.3);
+  box-shadow: -5px 0 10px rgba(0, 0, 0, 0.3);
+}
+
+.sidebarleft h2 {
+  color: white;
+  text-align: center;
+}
+
+.sidebarleft label {
+  color: black;
+  font-size: 18px;
+}
+
+.sidebarleft input {
+  width: 95%;
+  padding: 5px;
+  margin-top: 5px;
+  border: none;
+  border-radius: 3px;
+}
+
+.sidebarleft.visible {
+  left: 0;
+}
+.sidebarleft button{
+  background-color: #FAEDCD;
+}
+.measurement-values {
+    margin-top: 10px;
+    padding: 5px;
+    background: #FAEDCD;
+    border: 1px solid black;
+}
+
+
+.titlemain {
+  position: fixed;
+  top: 10px;
+  left: 50%;
+  -webkit-transform: translateX(-50%);
+          transform: translateX(-50%);
+  font-size: 25px;
+  color: black;
+  text-align: center;
+  white-space: nowrap;
+}
+#chenare-info {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin: 32px auto 24px auto;
+    max-width: 900px;
+    position: relative;
+    z-index: 1;
+}
+
+.chenar-mic {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    width: 400px;
+    min-height: 60px;
+    padding: 0;
+    background: #fffbe9;
+    box-shadow: 0 4px 18px 0 rgba(160, 132, 202, 0.13), 0 1.5px 4px 0 rgba(160, 132, 202, 0.10);
+    border: 2.5px solid #a084ca;
+    border-radius: 18px;
+    transition: box-shadow 0.2s, transform 0.2s;
+}
+.chenar-mic-1{
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    width: 400px;
+    min-height: 60px;
+    padding: 0;
+    background: #fffbe9;
+    box-shadow: 0 4px 18px 0 rgba(160, 132, 202, 0.13), 0 1.5px 4px 0 rgba(160, 132, 202, 0.10);
+    border: 2.5px solid orange;
+    border-radius: 18px;
+    transition: box-shadow 0.2s, transform 0.2s;
+}
+.chenar-mic:hover {
+    box-shadow: 0 8px 32px 0 rgba(160, 132, 202, 0.22), 0 3px 8px 0 rgba(160, 132, 202, 0.18);
+    transform: translateY(-3px) scale(1.025);
+}
+.chenar-titlu {
+    font-size: 1.25em;
+    font-weight: bold;
+    text-align: center;
+    padding: 16px 0 12px 0;
+    border-top-left-radius: 15px;
+    border-top-right-radius: 15px;
+    letter-spacing: 0.5px;
+    margin-bottom: 0;
+    box-shadow: 0 2px 8px rgba(160, 132, 202, 0.07);
+}
+.chenar-titlu-bej {
+    background: orange;
+    color: #333;
+}
+.chenar-titlu-mov {
+    background: #a084ca;
+    color: #fff;
+}
+.chenar-continut {
+    border-bottom-left-radius: 15px;
+    border-bottom-right-radius: 15px;
+    padding: 10px 10px 6px 10px;
+    background: #FAEDCD;
+    box-shadow: 0 2px 8px rgba(160,132,202,0.06);
+    border: none;
+    font-size: 1.08em;
+    color: #444;
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    min-height: 0;
+    justify-content: center;
+    align-items: flex-start;
+    word-break: break-word;
+    height: 100%;
+}
+
+.chenar-continut p {
+    margin: 0;
+    padding: 2px 0;
+}
+
+/* Media queries for 1600px screens */
+@media screen and (max-width: 1600px) {
+    #chenare-info {
+        max-width: 800px;
+        gap: 8px;
+    }
+
+    .chenar-mic,
+    .chenar-mic-1 {
+        width: 400px;
+    }
+
+    .chenar-titlu {
+        font-size: 1.1em;
+        padding: 12px 0 8px 0;
+    }
+
+    .chenar-continut {
+        font-size: 0.95em;
+        padding: 8px 8px 4px 8px;
+    }
+
+    #simulator {
+        width: 800px;
+        height: 400px;
+    }
+
+    .ball {
+        width: 70px;
+        height: 70px;
+        line-height: 70px;
+        font-size: 20px;
+    }
+}
