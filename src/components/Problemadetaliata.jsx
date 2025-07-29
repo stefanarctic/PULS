@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 import '../scss/components/_problema-detaliata.scss';
 import { ArrowLeft, Bot, Calculator, BookOpen, Copy, Check } from 'lucide-react';
@@ -13,12 +13,14 @@ import { deleteProblem } from '../features/problems/problemsSlice';
 import { auth, db } from '../lib/firebase';
 import { onAuthStateChanged } from 'firebase/auth';
 import { doc, getDoc } from 'firebase/firestore';
+import { useAssistant } from '../hooks/useAssistant';
 
 export const ProblemaDetaliata = ({ problema, onBack }) => {
   const navigate = useNavigate();
   const [copied, setCopied] = useState(false);
   const [isAdmin, setIsAdmin] = useState(false);
   const dispatch = useDispatch();
+  const assistant = useAssistant();
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, async (firebaseUser) => {
@@ -150,8 +152,10 @@ export const ProblemaDetaliata = ({ problema, onBack }) => {
 
   // Funcție pentru navigarea la secțiunea AI
   const navigateToAI = () => {
-    // Navighează direct la pagina AI
-    navigate('/api-test');
+    if (assistant && assistant.openWithMessage) {
+      const msg = `Rezolva aceasta problema:\n\n${generateProblemText()}`;
+      assistant.openWithMessage(msg);
+    }
   };
 
   // Funcție pentru revenirea la lista de probleme

@@ -1,4 +1,5 @@
 import React, { useState, useRef } from "react";
+import ReactMarkdown from "react-markdown";
 import "../scss/components/_assistant-popup.scss";
 import Assistant3DViewer from "./Assistant3DViewer";
 import { X, Send } from "lucide-react";
@@ -15,7 +16,7 @@ const PROMPTS = [
   "Cum te cheamă?"
 ];
 
-const AssistantPopup = ({ onClose }) => {
+const AssistantPopup = ({ onClose, initialMessage }) => {
   const [selectedPrompt, setSelectedPrompt] = useState("");
   const [inputValue, setInputValue] = useState("");
   const [chatMode, setChatMode] = useState(false);
@@ -23,6 +24,24 @@ const AssistantPopup = ({ onClose }) => {
   const textareaRef = useRef(null);
   const chatRef = useRef(null);
   const [loading, setLoading] = useState(false);
+  const [sessionId] = useState(() => {
+    // Generate a simple session ID for the chat session
+    return (
+      Date.now().toString(36) + Math.random().toString(36).substring(2, 10)
+    );
+  });
+
+  // Auto-send initialMessage if provided
+  React.useEffect(() => {
+    if (initialMessage) {
+      setInputValue(initialMessage);
+      setTimeout(() => {
+        // Send the message automatically
+        handleSend(null, initialMessage);
+      }, 300);
+    }
+    // eslint-disable-next-line
+  }, []);
 
   const handlePromptClick = (prompt) => {
     setSelectedPrompt(prompt);
@@ -45,9 +64,23 @@ const AssistantPopup = ({ onClose }) => {
     setInputValue("");
     setLoading(true);
 
-    // Fallback doar la knowledge base static
-    const aiText = searchKnowledgeBase(text);
-    setMessages((msgs) => [...msgs, { role: "ai", text: aiText }]);
+    try {
+      const response = await fetch("https://puls-ai-chatbot.fly.dev/webhook/chat", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ message: text, sessionId }),
+      });
+      if (!response.ok) throw new Error("Network response was not ok");
+      const data = await response.json();
+      // Assume the response message is in data.message, data.reply, or data.output
+      const aiText = data.message || data.reply || data.output || "(Răspunsul nu a putut fi preluat)";
+      setMessages((msgs) => [...msgs, { role: "ai", text: aiText }]);
+    } catch (err) {
+      setMessages((msgs) => [
+        ...msgs,
+        { role: "ai", text: "A apărut o eroare la conectarea cu serverul. Încearcă din nou mai târziu." },
+      ]);
+    }
     setLoading(false);
     setTimeout(() => {
       if (chatRef.current) chatRef.current.scrollTop = chatRef.current.scrollHeight;
@@ -148,7 +181,7 @@ const AssistantPopup = ({ onClose }) => {
                   {messages.map((msg, idx) => (
                     <div key={idx} className={`assistant-popup-chat-bubble ${msg.role === 'user' ? 'user' : 'ai'}`}>
                       {msg.role === 'ai' ? (
-                        <span dangerouslySetInnerHTML={{ __html: msg.text }} />
+                        <ReactMarkdown>{msg.text}</ReactMarkdown>
                       ) : (
                         <span>{msg.text}</span>
                       )}
