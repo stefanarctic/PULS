@@ -26,7 +26,7 @@ const PendulePage = () => {
       <div className="resurse-pagina min-h-screen flex flex-col">
         <div className="resurse-page-container">
           <main className="flex-grow container mx-auto px-4 py-10">
-            <h1 className="text-4xl md:text-5xl font-bold mb-6">Mișcărea oscilatorie armonică. </h1>
+            <h1 className="text-4xl md:text-5xl font-bold mb-6">Mișcarea oscilatorie armonică. </h1>
             <div className="max-w-3xl mb-10 mx-auto">
               <h1 className="text-4xl md:text-5xl font-bold mb-6">Proprietățile mișcării oscilatorii armonice. </h1>
               <p className="text-lg text-muted-foreground mb-4">
