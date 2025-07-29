@@ -6,6 +6,9 @@ import { useEffect } from "react";
 import useTranslate, { getTextNodes, useTranslateObject } from "../../hooks/useTranslate";
 // import { problemeData } from "../problemedata";
 import { useSelector } from 'react-redux';
+import { auth, provider } from '../../lib/firebase';
+import { onAuthStateChanged, signInWithPopup } from 'firebase/auth';
+import { useState } from 'react';
 
 translate = () => {
     const texts = getTextNodes(document.body);
@@ -18,6 +21,8 @@ translate = () => {
 
 const Index = () => {
     const { value: problemeData, status } = useSelector(state => state.problems);
+    const [user, setUser] = useState(null);
+    const [loading, setLoading] = useState(true);
 
     // Funcție pentru a calcula numărul de probleme după dificultate
     const getProblemsCountByDifficulty = (difficulty) => {
@@ -52,6 +57,22 @@ const Index = () => {
         hiddenElements.forEach(el => observer.observe(el));
     }, []);
 
+    useEffect(() => {
+        const unsubscribe = onAuthStateChanged(auth, (firebaseUser) => {
+            setUser(firebaseUser);
+            setLoading(false);
+        });
+        return () => unsubscribe();
+    }, []);
+
+    const handleGoogleLogin = async () => {
+        try {
+            await signInWithPopup(auth, provider);
+        } catch (error) {
+            alert('Eroare la autentificare!');
+        }
+    };
+
     // useEffect(() => {
     //     console.log(texts);
     // }, [texts]);
@@ -71,12 +92,25 @@ const Index = () => {
                             PULS - Platforma educațională pentru studiul conceptelor de Pendul, Unde, Lissajous și Seism prin probleme și simulări interactive.
                         </p>
                         <div className="buttons">
-                            <button className="filled">
-                                <Link to="/probleme" className="index-link">Exploreaza problemele</Link>
-                            </button>
-                            <button>
-                                <Link to="/simulari" className="index-link">Incearca simularile</Link>
-                            </button>
+                            {loading ? null : user ? (
+                                <>
+                                    <button className="filled">
+                                        <Link to="/probleme" className="index-link">Exploreaza problemele</Link>
+                                    </button>
+                                    <button>
+                                        <Link to="/simulari" className="index-link">Incearca simularile</Link>
+                                    </button>
+                                </>
+                            ) : (
+                                <>
+                                    <button className="profile-btn-big profile-btn-red filled" onClick={handleGoogleLogin}>
+                                        Înregistrează-te
+                                    </button>
+                                    <button className="profile-btn-big profile-btn-blue" onClick={handleGoogleLogin}>
+                                        Loghează-te
+                                    </button>
+                                </>
+                            )}
                         </div>
                     </div>
                     <div className="hero-slideshow-wrapper">
