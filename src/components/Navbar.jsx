@@ -19,6 +19,7 @@ const Navbar = () => {
     const closeTimeoutRef = useRef(null);
     const navigate = useNavigate();
     const darkModeOn = useDarkMode();
+    const [burgerColor, setBurgerColor] = useState(darkModeOn ? 'white' : 'black');
 
     // Close dropdown when clicking outside
     useEffect(() => {
@@ -156,12 +157,14 @@ const Navbar = () => {
                     $('nav #navbar-search').css({ borderColor: 'black' });
                     $('nav #dark-mode-toggle-container .toggle-parent .dark-mode-toggle').css({ color: 'black' });
                     $('#logo-link img').attr('src', PulsLogoBlack);
+                    setBurgerColor('black');
                 } else {
                     $('nav > #nav-container > ul > li > .nav-link').css({ color: 'white' });
                     $('nav #navbar-search .search-icon, nav #navbar-search .search-input').css({ color: 'white' });
                     $('nav #navbar-search').css({ borderColor: 'white' });
                     $('nav #dark-mode-toggle-container .toggle-parent .dark-mode-toggle').css({ color: 'white' });
                     $('#logo-link img').attr('src', PulsLogoWhite);
+                    setBurgerColor('white');
                 }
             } else {
                 // Dark mode - always white text
@@ -170,6 +173,7 @@ const Navbar = () => {
                 $('nav #navbar-search').css({ borderColor: 'white' });
                 $('nav #dark-mode-toggle-container .toggle-parent .dark-mode-toggle').css({ color: 'white' });
                 $('#logo-link img').attr('src', PulsLogoWhite);
+                setBurgerColor('white');
             }
         };
 
@@ -266,7 +270,7 @@ const Navbar = () => {
                     onClick={handleMobileMenuToggle}
                     className={mobileMenuOpen ? 'active' : ''}
                 >
-                    {mobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
+                    {mobileMenuOpen ? <X size={24} color={burgerColor} /> : <Menu size={24} color={burgerColor} />}
                 </button>
 
                 {/* Mobile Menu Overlay */}
