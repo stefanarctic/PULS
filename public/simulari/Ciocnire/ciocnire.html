@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="ro">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simulator Coliziuni Inelastice</title>
+    <link rel="stylesheet" href="ciocnire.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+
+<body>
+    <h1>Coliziune Inelastică</h1>
+    <div id="simulator">
+        <div class="ball" id="ball1">1</div>
+        <div class="ball" id="ball2">2</div>
+    </div>
+    <div id="chenare-info">
+        <div class="chenar-mic-1" id="unitatiMasura">
+            <div class="chenar-titlu chenar-titlu-bej">Unități de Măsură</div>
+            <div class="chenar-continut chenar-continut-bej">
+                <p>Viteză: px/frame</p>
+                <p>Masă: kg</p>
+                <p>Impuls: kg·px/frame</p>
+                <p>Energie: J</p>
+                <p>Forță: N</p>
+            </div>
+        </div>
+        <div class="chenar-mic" id="formuleFolosite">
+            <div class="chenar-titlu chenar-titlu-mov">Formule Folosite</div>
+            <div class="chenar-continut chenar-continut-bej">
+                <p>Impuls: p = m * v</p>
+                <p>Energie Cinetică: E = 0.5 * m * v<sup>2</sup></p>
+                <p>Forță: F = m * a</p>
+            </div>
+        </div>
+    </div>
+    <button id="toggleSidebar">☰</button>
+    <div id="sidebar" class="sidebar hidden">
+        <h2>Meniu</h2>
+
+        <label for="v1">Viteza Bilei 1: <span id="v1Value"></span> m/s</label>
+        <input type="range" id="v1" min="0" max="5" value="3" step="0.1">
+
+        <label for="v2">Viteza Bilei 2: <span id="v2Value"></span> m/s</label>
+        <input type="range" id="v2" min="-5" max="0" value="-2" step="0.1">
+
+        <label for="m1">Masa Bilei 1: <span id="m1Value"></span> kg</label>
+        <input type="range" id="m1" min="1" max="10" value="2">
+
+        <label for="m2">Masa Bilei 2: <span id="m2Value"></span> kg</label>
+        <input type="range" id="m2" min="1" max="10" value="2">
+
+        <label for="size">Dimensiune Bile: <span id="sizeValue"> px</span></label>
+        <input type="range" id="size" min="50" max="150" value="80">
+
+        <label for="speed">Viteza Simulare: <span id="speedValue"> x</span></label>
+        <input type="range" id="speed" min="0.1" max="2" step="0.1" value="1">
+
+        <label for="color1">Culoare Bila 1:</label>
+        <input type="color" id="color1" value="#ff0000">
+
+        <label for="color2">Culoare Bila 2:</label>
+        <input type="color" id="color2" value="#0000ff">
+    </div>
+    <button id="toggleSidebarleft">☰</button>
+    <div id="sidebarleft" class="sidebarleft hidden">
+        <h2>Meniu de butoane</h2>
+        <button onclick="startSimulation()">Start</button>
+        <button onclick="stopSimulation()">Stop</button>
+        <button id="pauseResumeButton" onclick="pauseResumeSimulation()">Pauză/Resume</button>
+        <button id="measurementsButton" onclick="toggleMeasurements()">Arată Măsurători</button>
+        <div id="info"></div>
+        <div style="margin-top: 20px; background-color: #FAEDCD; padding-bottom:50px;  border-radius: 5px; height: 500px;">
+            <h3 style="text-align: center; margin-bottom: 10px;">Grafic Impuls și Energie</h3>
+            <canvas id="physicsChart" style="width: 100%; height: 400px;"></canvas>
+        </div>
+    </div>
+    <script src="ciocnire.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,350 @@
+body, html {
+    height: 100vh;
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    background: #333;
+    color: #fff;
+}
+
+body.light-theme {
+    background: #f0f4f8;
+    color: #222;
+}
+
+.sidebar {
+    position: fixed;
+    top: 0;
+    height: 100vh;
+    overflow-y: auto;
+    z-index: 10;
+    display: flex;
+    flex-direction: column;
+    padding: 0;
+    color: #222;
+}
+
+.toggle-btn {
+    display: none;
+}
+
+.sidebar.left .toggle-btn,
+.sidebar.right .toggle-btn {
+    display: none;
+}
+
+.sidebar.left {
+    left: 0;
+    width: 400px;
+    background: rgb(111, 53, 247);
+    border-right: none;
+    display: flex;
+    flex-direction: column;
+}
+.sidebar.right {
+    right: 0;
+    width: 400px;
+    background: #7ed9d9;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+}
+.sidebar-content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+.unitati-box {
+    background: rgb(241, 145, 66);
+    padding: 10px 10px 0 10px;
+    flex: 1;
+}
+.unitati-list {
+    background: #fff9d6;
+    color: #222;
+    border: none;
+    border-radius: 4px;
+    padding: 10px;
+    margin-bottom: 10px;
+    height: calc(100% - 50px);
+    overflow-y: auto;
+}
+.formule-box {
+    background: rgb(124, 88, 209);
+    padding: 10px 10px 0 10px;
+    flex: 1;
+}
+.formule-list {
+    background: #fff9d6;
+    color: #222;
+    border: none;
+    border-radius: 4px;
+    height: calc(100% - 30px);
+    overflow-y: auto;
+}
+#themeSwitcher {
+    margin: 0;
+    padding: 8px 16px;
+    background: #fff;
+    color: #333;
+    border: 1px solid #bbb;
+    border-radius: 0;
+    cursor: pointer;
+    font-size: 1em;
+    transition: background 0.2s;
+    width: 100%;
+}
+#themeSwitcher:hover {
+    background: #eee;
+}
+
+.main-sim-area {
+    margin-left: 320px;
+    margin-right: 340px;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    background: transparent;
+}
+
+h1 {
+    color: #fff;
+    font-size: 2.7em;
+    margin-top: 30px;
+    margin-bottom: 10px;
+    text-align: center;
+    font-family: 'Georgia', serif;
+    letter-spacing: 2px;
+}
+body.light-theme h1 {
+    color: #222;
+}
+
+.spring-visual {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    background: transparent;
+    min-height: 400px;
+    height: 400px;
+    margin-top: 10px;
+    overflow: visible;
+    position: relative;
+}
+#springSVG {
+    width: 400px;
+    height: 400px;
+    background: transparent;
+    overflow: visible;
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.controls-box {
+    background: #7ed9d9;
+    padding: 12px 18px 10px 18px;
+    font-size: 1.1em;
+}
+.controls-box label {
+    display: block;
+    width: 100%;
+    color: #222;
+    margin-bottom: 5px;
+    font-weight: normal;
+}
+.controls-box label span {
+    float: right;
+    color: #000000;
+}
+.controls-box input[type="range"] {
+    width: 100%;
+    margin: 0 0 15px 0;
+    height: 20px;
+}
+.controls-box button {
+    display: block;
+    width: 100%;
+    margin: 8px 0;
+    padding: 8px 0;
+    font-size: 1em;
+    background: #fff9d6;
+    color: #222;
+    border: 1px solid #222;
+    border-radius: 6px;
+    cursor: pointer;
+}
+.controls-box button:hover {
+    background: #fff9d6;
+}
+#pauseResumeBtn.paused {
+    background: #fff9d6;
+    color: #222;
+}
+#pauseResumeBtn.paused:hover {
+    background: #fff9d6;
+}
+
+.masuratori-container {
+    background: #fff9d6;
+    border: 1px solid #000000;
+    border-radius: 4px;
+    margin: 10px;
+}
+
+.masuratori-box {
+    background: #fff9d6;
+    color: #222;
+    border: none;
+    border-radius: 0;
+    padding: 10px 14px;
+    margin: 0;
+    font-size: 1em;
+}
+
+.chart-box {
+    background: #fff9d6;
+    border: none;
+    border-radius: 0;
+    margin: 0;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    flex-grow: 1;
+    min-height: 300px;
+}
+
+#chartHooke {
+    background: #fff9d6;
+    border-radius: 0;
+    width: 100% !important;
+    height: 100% !important;
+    min-height: 300px;
+}
+
+.unitati-list ul,
+.formule-list ul,
+.masuratori-box ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.unitati-list li,
+.formule-list li,
+.masuratori-box li {
+    padding: 10px 0;
+}
+
+.formule-list li {
+    padding: 0.3px 0;
+    margin: 0;
+    line-height: 1;
+    text-align: left;
+}
+
+.formule-list ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    text-align: left;
+}
+
+.MathJax {
+    text-align: left !important;
+}
+
+.slider-container {
+    margin-bottom: 15px;
+}
+
+.friction-btn {
+    display: block;
+    width: 100%;
+    margin: 5px 0;
+    padding: 6px 0;
+    font-size: 0.9em;
+    background: #fff9d6;
+    color: #222;
+    border: 1px solid #222;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.friction-btn:hover {
+    background: #fff0b3;
+}
+
+.friction-btn.active {
+    background: #ffe066;
+    font-weight: bold;
+}
+
+@media (max-width: 1200px) {
+    .sidebar.left {
+        width: 300px;
+    }
+    .sidebar.right {
+        width: 300px;
+    }
+    .main-sim-area {
+        margin-left: 320px;
+        margin-right: 320px;
+    }
+    #springSVG {
+        width: 350px;
+    }
+    h1 {
+        font-size: 2.3em;
+        margin-top: 20px;
+        padding: 0 15px;
+        line-height: 1.3;
+    }
+}
+@media (max-width: 1600px) {
+    .sidebar.left {
+        width: 370px;
+    }
+    .sidebar.right {
+        width: 370px;
+    }
+    .main-sim-area {
+        margin-left: 370px;
+        margin-right: 370px;
+    }
+    #springSVG {
+        width: 400px;
+    }
+    h1 {
+        font-size: 2em;
+        margin-top: 25px;
+        padding: 0 20px;
+        line-height: 1.3;
+    }
+}
+@media (max-width: 900px) {
+    .sidebar.left, .sidebar.right {
+        position: static;
+        width: 250px;
+        height: auto;
+        border: none;
+    }
+    .main-sim-area {
+        margin-left: 260px;
+        margin-right: 260px;
+    }
+    #springSVG {
+        width: 300px;
+    }
+    h1 {
+        font-size: 1.8em;
+        margin-top: 15px;
+        padding: 0 10px;
+        letter-spacing: 1px;
+    }
+} 

@@ -215,6 +215,7 @@ const SimulariPage = () => {
                           "/simulari/prisma/prisma-simulator.html",
                           "_blank"
                         );
+                        break;  
                         break;
                       default:
                         window.open(

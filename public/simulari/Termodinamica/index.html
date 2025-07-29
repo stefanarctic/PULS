@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+    <meta charset="UTF-8">
+    <title>Simulator Gaze Ideale - Un Vas</title>
+    <style>
+        body { font-family: Arial, sans-serif; background: #f0f2f5; margin: 0; padding: 0; }
+        .container { max-width: 900px; margin: 30px auto; background: #fff; border-radius: 12px; box-shadow: 0 0 12px #bbb; padding: 24px; }
+        h1 { text-align: center; margin-bottom: 20px; }
+        .flex { display: flex; gap: 32px; }
+        .sliders { flex: 1; }
+        .sliders h3 { text-align: center; }
+        .slider-group { margin-bottom: 18px; }
+        .slider-group label { display: flex; justify-content: space-between; }
+        .sim-area { flex: 2; display: flex; flex-direction: column; align-items: center; }
+        #mainCanvas { background: #eaf2fb; border: 2px solid #444; border-radius: 16px; display: block; margin-bottom: 12px; }
+        #divider { position: absolute; left: 50%; top: 0; width: 4px; height: 100%; background: rgba(100,100,100,0.18); z-index: 3; pointer-events: none; transition: height 0.2s; }
+        .controls { text-align: center; margin: 18px 0; }
+        button { padding: 10px 24px; font-size: 18px; border-radius: 6px; border: none; background: #705dbb; color: #fff; cursor: pointer; }
+        button:hover { background: #624bbd; }
+        table { width: 100%; border-collapse: collapse; margin-top: 10px; }
+        th, td { border: 1px solid #aaa; padding: 6px 10px; text-align: center; }
+        th { background: #f5f5f5; }
+    </style>
+</head>
+<body>
+<div class="container">
+    <h1>Simulator Gaze Ideale - Un Vas</h1>
+    <div class="flex">
+        <div class="sliders">
+            <h3>Stânga</h3>
+            <div class="slider-group">
+                <label>Temperatură (K): <span id="temp1Value">300</span></label>
+                <input type="range" id="temp1" min="100" max="1000" step="1" value="300">
+            </div>
+            <div class="slider-group">
+                <label>Număr de molecule: <span id="numMolecules1Value">10</span></label>
+                <input type="range" id="numMolecules1" min="1" max="100" step="1" value="10">
+            </div>
+            <div class="slider-group">
+                <label>Masă molară (g/mol): <span id="molarMass1Value">10</span></label>
+                <input type="range" id="molarMass1" min="2" max="40" step="1" value="10">
+            </div>
+        </div>
+        <div class="sim-area">
+            <div style="position:relative;">
+                <canvas id="mainCanvas" width="400" height="300"></canvas>
+                <div id="divider"></div>
+            </div>
+            <div class="controls">
+                <button id="toggleValveButton">Deschide Valvă</button>
+                <button id="restartButton">Restart</button>
+            </div>
+            <div class="slider-group" style="margin-bottom: 10px;">
+                <label>Masă molară globală (g/mol): <span id="molarMassGlobalValue">10</span></label>
+                <input type="range" id="molarMassGlobal" min="2" max="40" step="1" value="10">
+            </div>
+            <table>
+                <thead>
+                    <tr><th>Parametru</th><th>Stânga</th><th>Dreapta</th></tr>
+                </thead>
+                <tbody>
+                    <tr><td>Număr molecule</td><td id="tableNumLeft">10</td><td id="tableNumRight">10</td></tr>
+                    <tr><td>Temperatură medie (K)</td><td id="tableTempLeft">300</td><td id="tableTempRight">300</td></tr>
+                    <tr><td>Masă molară (g/mol)</td><td colspan="2" id="tableMasaGlobal">10</td></tr>
+                    <tr><td>Presiune (simulată)</td><td colspan="2" id="tablePresiune">0</td></tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="sliders">
+            <h3>Dreapta</h3>
+            <div class="slider-group">
+                <label>Temperatură (K): <span id="temp2Value">300</span></label>
+                <input type="range" id="temp2" min="100" max="1000" step="1" value="300">
+            </div>
+            <div class="slider-group">
+                <label>Număr de molecule: <span id="numMolecules2Value">10</span></label>
+                <input type="range" id="numMolecules2" min="1" max="100" step="1" value="10">
+            </div>
+            <div class="slider-group">
+                <label>Masă molară (g/mol): <span id="molarMass2Value">10</span></label>
+                <input type="range" id="molarMass2" min="2" max="40" step="1" value="10">
+            </div>
+        </div>
+    </div>
+</div>
+<script src="script.js"></script>
+</body>
+</html> 
