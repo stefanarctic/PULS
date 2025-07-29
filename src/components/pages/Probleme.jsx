@@ -4,9 +4,12 @@ import { useLocation } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
 // import { problemeData } from '../problemedata';
 import { useSelector, useDispatch } from 'react-redux';
-import { fetchProblems, addProblem, clearAddStatus } from '../../features/problems/problemsSlice';
+import { fetchProblems, addProblem, clearAddStatus, deleteProblem } from '../../features/problems/problemsSlice';
 import { Plus } from 'lucide-react';
 import { normalizeString } from '../../lib/normalizeString';
+import { auth, db } from '../../lib/firebase';
+import { onAuthStateChanged, getAuth } from 'firebase/auth';
+import { doc, getDoc } from 'firebase/firestore';
 
 // Icon components
 const SearchIcon = () => (
@@ -97,6 +100,29 @@ const PhysicsProblems = () => {
     const navigate = useNavigate();
     const dispatch = useDispatch();
     const { value: problemeData, status, error } = useSelector(state => state.problems);
+    const [isAdmin, setIsAdmin] = useState(false);
+    const [user, setUser] = useState(null);
+
+    useEffect(() => {
+      const unsubscribe = onAuthStateChanged(auth, async (firebaseUser) => {
+        if (firebaseUser) {
+          setUser(firebaseUser);
+          // Check admin status from DB or fallback to email list
+          const userRef = doc(db, 'users', firebaseUser.uid);
+          const userSnap = await getDoc(userRef);
+          const ADMIN_EMAILS = [
+            'matbajean@gmail.com',
+            'aleluianu09@gmail.com',
+            'pulsphysics@gmail.com',
+          ];
+          setIsAdmin(userSnap.exists() ? (userSnap.data().isAdmin || ADMIN_EMAILS.includes(firebaseUser.email)) : ADMIN_EMAILS.includes(firebaseUser.email));
+        } else {
+          setUser(null);
+          setIsAdmin(false);
+        }
+      });
+      return () => unsubscribe();
+    }, []);
 
     // Funcție pentru a verifica dacă query-ul este un ID valid și naviga direct
     const handleSearchSubmit = (e) => {

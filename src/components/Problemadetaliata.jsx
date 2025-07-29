@@ -8,10 +8,43 @@ import { Badge } from './badge';
 import { Separator } from './separator';
 import MathJaxRender from './MathJaxRender';
 import ProblemSubmit from './ProblemSubmit';
+import { useDispatch } from 'react-redux';
+import { deleteProblem } from '../features/problems/problemsSlice';
+import { auth, db } from '../lib/firebase';
+import { onAuthStateChanged } from 'firebase/auth';
+import { doc, getDoc } from 'firebase/firestore';
 
 export const ProblemaDetaliata = ({ problema, onBack }) => {
   const navigate = useNavigate();
   const [copied, setCopied] = useState(false);
+  const [isAdmin, setIsAdmin] = useState(false);
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    const unsubscribe = onAuthStateChanged(auth, async (firebaseUser) => {
+      if (firebaseUser) {
+        const userRef = doc(db, 'users', firebaseUser.uid);
+        const userSnap = await getDoc(userRef);
+        const ADMIN_EMAILS = [
+          'matbajean@gmail.com',
+          'aleluianu09@gmail.com',
+          'pulsphysics@gmail.com',
+        ];
+        setIsAdmin(userSnap.exists() ? (userSnap.data().isAdmin || ADMIN_EMAILS.includes(firebaseUser.email)) : ADMIN_EMAILS.includes(firebaseUser.email));
+      } else {
+        setIsAdmin(false);
+      }
+    });
+    return () => unsubscribe();
+  }, []);
+
+  const handleDelete = () => {
+    if (window.confirm('Sigur vrei să ștergi această problemă?')) {
+      dispatch(deleteProblem(problema.id));
+      if (onBack) onBack();
+      else navigate('/probleme');
+    }
+  };
 
   const getDifficultyClass = (dificultate) => {
     return `badge-difficulty ${dificultate || 'default'}`;
@@ -304,6 +337,13 @@ export const ProblemaDetaliata = ({ problema, onBack }) => {
               </p>
             </CardContent>
           </Card>
+          {isAdmin && (
+            <div style={{ marginTop: 16, textAlign: 'center' }}>
+              <button className="problem-card-delete-btn" onClick={handleDelete} title="Șterge problema">
+                🗑️ Șterge problema
+              </button>
+            </div>
+          )}
         </div>
 
       {/* Mutat aici: Card Trimite o problemă */}

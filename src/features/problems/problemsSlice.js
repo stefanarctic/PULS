@@ -1,5 +1,5 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
-import { collection, getDocs, addDoc } from 'firebase/firestore';
+import { collection, getDocs, addDoc, deleteDoc, doc } from 'firebase/firestore';
 import { db } from '../../lib/firebase';
 
 // Async thunk to fetch problems from Firestore
@@ -12,6 +12,13 @@ export const fetchProblems = createAsyncThunk('problems/fetchProblems', async ()
 export const addProblem = createAsyncThunk('problems/addProblem', async (problemData) => {
   const docRef = await addDoc(collection(db, 'problems'), problemData);
   return { id: docRef.id, ...problemData };
+});
+
+// Async thunk to delete a problem from Firestore
+export const deleteProblem = createAsyncThunk('problems/deleteProblem', async (problemId) => {
+  const problemRef = doc(db, 'problems', problemId);
+  await deleteDoc(problemRef);
+  return problemId;
 });
 
 const problemsSlice = createSlice({
@@ -56,6 +63,10 @@ const problemsSlice = createSlice({
       .addCase(addProblem.rejected, (state, action) => {
         state.addStatus = 'failed';
         state.addError = action.error.message;
+      })
+      // Delete problem
+      .addCase(deleteProblem.fulfilled, (state, action) => {
+        state.value = state.value.filter(p => p.id !== action.payload);
       });
   },
 });
