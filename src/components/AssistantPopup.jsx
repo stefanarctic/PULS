@@ -24,6 +24,7 @@ const AssistantPopup = ({ onClose, initialMessage }) => {
   const textareaRef = useRef(null);
   const chatRef = useRef(null);
   const [loading, setLoading] = useState(false);
+  const [typing, setTyping] = useState(false);
   const [sessionId] = useState(() => {
     // Generate a simple session ID for the chat session
     return (
@@ -43,6 +44,33 @@ const AssistantPopup = ({ onClose, initialMessage }) => {
     // eslint-disable-next-line
   }, []);
 
+  // Block body scroll when popup is open
+  React.useEffect(() => {
+    if (open) {
+      // Save current scroll position
+      // const scrollY = window.scrollY;
+      
+      // Add styles to prevent scrolling
+      // document.body.style.position = 'fixed';
+      // document.body.style.top = `-${scrollY}px`;
+      // document.body.style.width = '100%';
+      document.body.style.overflow = 'hidden';
+      
+      // Restore scroll position when popup closes
+      // return () => {
+      //   document.body.style.position = '';
+      //   document.body.style.top = '';
+      //   document.body.style.width = '';
+      //   document.body.style.overflow = '';
+      //   window.scrollTo(0, scrollY);
+      // };
+
+      return () => {
+        document.body.style.overflow = '';
+      }
+    }
+  }, [open]);
+
   const handlePromptClick = (prompt) => {
     setSelectedPrompt(prompt);
     setInputValue(prompt);
@@ -52,6 +80,31 @@ const AssistantPopup = ({ onClose, initialMessage }) => {
   const handleClearPrompt = () => {
     setSelectedPrompt("");
     setInputValue("");
+  };
+
+  const simulateTyping = (text, callback) => {
+    setTyping(true);
+    let currentText = "";
+    let index = 0;
+    
+    const typeInterval = setInterval(() => {
+      if (index < text.length) {
+        currentText += text[index];
+        setMessages(prev => {
+          const newMessages = [...prev];
+          const lastMessage = newMessages[newMessages.length - 1];
+          if (lastMessage && lastMessage.role === 'ai') {
+            lastMessage.text = currentText;
+          }
+          return newMessages;
+        });
+        index++;
+      } else {
+        clearInterval(typeInterval);
+        setTyping(false);
+        if (callback) callback();
+      }
+    }, 7); // Speed of typing - much faster now
   };
 
   const handleSend = async (e, prompt = null) => {
@@ -74,14 +127,24 @@ const AssistantPopup = ({ onClose, initialMessage }) => {
       const data = await response.json();
       // Assume the response message is in data.message, data.reply, or data.output
       const aiText = data.message || data.reply || data.output || "(Răspunsul nu a putut fi preluat)";
-      setMessages((msgs) => [...msgs, { role: "ai", text: aiText }]);
+      
+      // Add AI message with empty text first
+      setMessages((msgs) => [...msgs, { role: "ai", text: "" }]);
+      setLoading(false);
+      
+      // Simulate typing effect
+      setTimeout(() => {
+        simulateTyping(aiText);
+      }, 500);
+      
     } catch (err) {
       setMessages((msgs) => [
         ...msgs,
         { role: "ai", text: "A apărut o eroare la conectarea cu serverul. Încearcă din nou mai târziu." },
       ]);
+      setLoading(false);
     }
-    setLoading(false);
+    
     setTimeout(() => {
       if (chatRef.current) chatRef.current.scrollTop = chatRef.current.scrollHeight;
     }, 100);
@@ -120,6 +183,55 @@ const AssistantPopup = ({ onClose, initialMessage }) => {
       chatRef.current.scrollTop = chatRef.current.scrollHeight;
     }
   }, [messages, chatMode]);
+
+  const [loadingDots, setLoadingDots] = useState("");
+
+  // Animate loading dots
+  React.useEffect(() => {
+    if (loading) {
+      const dotsInterval = setInterval(() => {
+        setLoadingDots(prev => {
+          if (prev === "...") return "";
+          if (prev === "..") return "...";
+          if (prev === ".") return "..";
+          return ".";
+        });
+      }, 275);
+      
+      return () => clearInterval(dotsInterval);
+    } else {
+      setLoadingDots("");
+    }
+  }, [loading]);
+
+  // Function to process text and make URLs clickable while preserving Markdown
+  const processTextWithLinks = (text) => {
+    // Regex to find URLs - more precise to avoid including trailing punctuation
+    const urlRegex = /(https?:\/\/[^\s.,!?;:]+)/g;
+    
+    // Split text by URLs and process each part
+    const parts = text.split(urlRegex);
+    
+    return parts.map((part, index) => {
+      if (urlRegex.test(part)) {
+        // This is a URL, make it a link
+        return (
+          <a 
+            key={index}
+            href={part} 
+            className="assistant-link" 
+            target="_blank" 
+            rel="noopener noreferrer"
+          >
+            {part}
+          </a>
+        );
+      } else {
+        // This is regular text, preserve Markdown formatting
+        return part;
+      }
+    });
+  };
 
   return (
     <div className="assistant-popup-overlay">
@@ -179,16 +291,24 @@ const AssistantPopup = ({ onClose, initialMessage }) => {
               <>
                 <div className="assistant-popup-chat-window" ref={chatRef}>
                   {messages.map((msg, idx) => (
-                    <div key={idx} className={`assistant-popup-chat-bubble ${msg.role === 'user' ? 'user' : 'ai'}`}>
+                    <div key={idx} className={`assistant-popup-chat-bubble ${msg.role === 'user' ? 'user' : 'ai'} ${typing && idx === messages.length - 1 && msg.role === 'ai' ? 'typing' : ''}`}>
                       {msg.role === 'ai' ? (
-                        <ReactMarkdown>{msg.text}</ReactMarkdown>
+                        <ReactMarkdown
+                          components={{
+                            a: ({node, ...props}) => (
+                              <a {...props} className="assistant-link" target="_blank" rel="noopener noreferrer" />
+                            )
+                          }}
+                        >
+                          {msg.text}
+                        </ReactMarkdown>
                       ) : (
                         <span>{msg.text}</span>
                       )}
                     </div>
                   ))}
                   {loading && (
-                    <div className="assistant-popup-chat-bubble ai loading">Profesorul Whiz scrie...</div>
+                    <div className="assistant-popup-chat-bubble ai loading">Profesorul Whiz scrie{loadingDots}</div>
                   )}
                 </div>
                 <form className="assistant-popup-form" onSubmit={handleSend}>

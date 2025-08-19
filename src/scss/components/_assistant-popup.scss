@@ -141,6 +141,52 @@
   background: var(--secondary-background-current-mode);
   color: var(--secondary-color-current-mode);
   border-bottom-left-radius: 6px;
+  
+  // Styling for links inside AI messages
+  a {
+    color: #60a5fa;
+    text-decoration: underline;
+    transition: color 0.2s;
+    font-weight: 500;
+    cursor: pointer;
+    
+    &:hover {
+      color: #3b82f6;
+      text-decoration: none;
+      background-color: rgba(96, 165, 250, 0.1);
+      padding: 2px 4px;
+      border-radius: 4px;
+      margin: -2px -4px;
+    }
+  }
+}
+
+// Loading animation with dots - simplified, dots are now handled by JavaScript
+.assistant-popup-chat-bubble.ai.loading {
+  // No more CSS animations, dots are handled by JavaScript
+}
+
+// Typing animation for AI responses
+.assistant-popup-chat-bubble.ai.typing {
+  position: relative;
+  
+  &::after {
+    content: '▋';
+    display: inline-block;
+    color: var(--accent-color-current-mode);
+    animation: blink 1s infinite;
+    margin-left: 2px;
+  }
+}
+
+// Keyframes for animations
+@keyframes blink {
+  0%, 50% {
+    opacity: 1;
+  }
+  51%, 100% {
+    opacity: 0;
+  }
 }
 
 
@@ -299,10 +345,18 @@
 }
 
 .assistant-link {
-  color: #2563eb;
+  color: #60a5fa;
   text-decoration: underline;
+  transition: color 0.2s;
+  font-weight: 500;
+  cursor: pointer;
 
   &:hover {
+    color: #3b82f6;
     text-decoration: none;
+    background-color: rgba(96, 165, 250, 0.1);
+    padding: 2px 4px;
+    border-radius: 4px;
+    margin: -2px -4px;
   }
 } 
