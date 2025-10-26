@@ -468,6 +468,43 @@
     padding: 1.5rem;
 }
 
+// Statistics summary cards
+.stat-summary-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1rem;
+    margin-bottom: 1rem;
+}
+
+.stat-value-card {
+    // background: #f8f9fa;
+    background: var(--secondary-background-current-mode);
+    padding: 1rem;
+    border-radius: 0.5rem;
+    // border: 1px solid #e9ecef;
+    text-align: center;
+}
+
+.stat-value-number {
+    font-size: 2rem;
+    font-weight: bold;
+    color: #3b82f6;
+}
+
+.stat-value-label {
+    font-size: 0.875rem;
+    color: #6c757d;
+}
+
+// Override colors for different stat cards
+.stat-value-card:nth-child(2) .stat-value-number {
+    color: #10b981;
+}
+
+.stat-value-card:nth-child(3) .stat-value-number {
+    color: #f59e0b;
+}
+
 .statistics-content {
     padding: 0;
 

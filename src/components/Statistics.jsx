@@ -28,53 +28,30 @@ const Statistics = ({ statistics = {} }) => {
       {/* Statistici pentru probleme rezolvate */}
       <div style={{ marginBottom: '2rem' }}>
         <h4>Probleme rezolvate</h4>
-        <div style={{ 
-          display: 'grid', 
-          gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', 
-          gap: '1rem', 
-          marginBottom: '1rem' 
-        }}>
-          <div style={{
-            background: '#f8f9fa',
-            padding: '1rem',
-            borderRadius: '0.5rem',
-            border: '1px solid #e9ecef',
-            textAlign: 'center'
-          }}>
-            <div style={{ fontSize: '2rem', fontWeight: 'bold', color: '#3b82f6' }}>
+        <div className="stat-summary-grid">
+          <div className="stat-value-card">
+            <div className="stat-value-number">
               {solvedProblems}
             </div>
-            <div style={{ fontSize: '0.875rem', color: '#6c757d' }}>
+            <div className="stat-value-label">
               Probleme rezolvate
             </div>
           </div>
           
-          <div style={{
-            background: '#f8f9fa',
-            padding: '1rem',
-            borderRadius: '0.5rem',
-            border: '1px solid #e9ecef',
-            textAlign: 'center'
-          }}>
-            <div style={{ fontSize: '2rem', fontWeight: 'bold', color: '#10b981' }}>
+          <div className="stat-value-card">
+            <div className="stat-value-number">
               {totalScore}/{maxPossibleScore}
             </div>
-            <div style={{ fontSize: '0.875rem', color: '#6c757d' }}>
+            <div className="stat-value-label">
               Scor total
             </div>
           </div>
           
-          <div style={{
-            background: '#f8f9fa',
-            padding: '1rem',
-            borderRadius: '0.5rem',
-            border: '1px solid #e9ecef',
-            textAlign: 'center'
-          }}>
-            <div style={{ fontSize: '2rem', fontWeight: 'bold', color: '#f59e0b' }}>
+          <div className="stat-value-card">
+            <div className="stat-value-number">
               {averageScore}%
             </div>
-            <div style={{ fontSize: '0.875rem', color: '#6c757d' }}>
+            <div className="stat-value-label">
               Scor mediu
             </div>
           </div>
