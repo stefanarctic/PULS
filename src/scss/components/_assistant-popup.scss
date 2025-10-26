@@ -159,12 +159,21 @@
       margin: -2px -4px;
     }
   }
+
+  // MathJax display improvements
+  .mjx-chtml {
+    line-height: 1.6;
+  }
+  .mjx-block {
+    margin: 0.5rem 0; // spacing for display equations
+  }
+  p {
+    margin: 0.4rem 0;
+  }
 }
 
 // Loading animation with dots - simplified, dots are now handled by JavaScript
-.assistant-popup-chat-bubble.ai.loading {
-  // No more CSS animations, dots are handled by JavaScript
-}
+// (Handled by JS; no CSS rules needed)
 
 // Typing animation for AI responses
 .assistant-popup-chat-bubble.ai.typing {

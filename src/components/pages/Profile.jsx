@@ -12,6 +12,7 @@ import RecentActivity from '../RecentActivity';
 import Achievements from '../Achievements';
 import Statistics from '../Statistics';
 import { useSolvedProblems } from '../../hooks/useSolvedProblems';
+import { uploadToCloudinary } from '../../lib/cloudinary';
 
 // FavoriteProblemCard definit aici
 const ExternalLinkIcon = () => (
@@ -94,6 +95,53 @@ const ADMIN_EMAILS = [
   'pulsphysics@gmail.com',
 ];
 
+// Function to fix Google profile image URLs
+const fixGoogleProfileImageUrl = (url) => {
+    if (!url || !url.includes('googleusercontent.com')) {
+        return url;
+    }
+    
+    // For Google images, try the original URL first, then clean it up if needed
+    // Remove any query parameters that might cause issues
+    let cleanUrl = url.split('?')[0];
+    
+    // Remove existing size parameters
+    cleanUrl = cleanUrl.replace(/=s\d+-c$/, '');
+    
+    // Add a reliable size parameter
+    cleanUrl = cleanUrl + '=s96-c';
+    
+    return cleanUrl;
+};
+
+// Function to create a data URL fallback for Google images
+const createFallbackAvatar = (name) => {
+    const canvas = document.createElement('canvas');
+    canvas.width = 96;
+    canvas.height = 96;
+    const ctx = canvas.getContext('2d');
+    
+    // Create gradient background
+    const gradient = ctx.createLinearGradient(0, 0, 96, 96);
+    gradient.addColorStop(0, '#667eea');
+    gradient.addColorStop(1, '#764ba2');
+    
+    // Draw circle background
+    ctx.fillStyle = gradient;
+    ctx.beginPath();
+    ctx.arc(48, 48, 48, 0, 2 * Math.PI);
+    ctx.fill();
+    
+    // Draw text
+    ctx.fillStyle = 'white';
+    ctx.font = 'bold 36px Arial';
+    ctx.textAlign = 'center';
+    ctx.textBaseline = 'middle';
+    ctx.fillText(name.charAt(0).toUpperCase(), 48, 48);
+    
+    return canvas.toDataURL();
+};
+
 const Profile = () => {
     const [user, setUser] = useState(null);
     const [alias, setAlias] = useState('');
@@ -112,7 +160,7 @@ const Profile = () => {
     const [descriptionInput, setDescriptionInput] = useState('');
     const [descriptionError, setDescriptionError] = useState('');
     const [isAdmin, setIsAdmin] = useState(false);
-    const [profilePicPreview, setProfilePicPreview] = useState('');
+
     const fileInputRef = React.useRef();
     const dispatch = useDispatch();
     const [selectedFavorite, setSelectedFavorite] = useState(null);
@@ -127,6 +175,9 @@ const Profile = () => {
     const [userProblemsLoading, setUserProblemsLoading] = useState(false);
     const [profileSaveLoading, setProfileSaveLoading] = useState(false);
     const [profilePicUploadLoading, setProfilePicUploadLoading] = useState(false);
+    const [uploadSuccess, setUploadSuccess] = useState(false);
+    const [selectedImageFile, setSelectedImageFile] = useState(null);
+    const [selectedImagePreview, setSelectedImagePreview] = useState(null);
 
     useEffect(() => {
         const unsubscribe = onAuthStateChanged(auth, async (firebaseUser) => {
@@ -146,16 +197,20 @@ const Profile = () => {
                     });
                     setAlias('');
                     setName(firebaseUser.displayName || '');
-                    setProfilePic(firebaseUser.photoURL || '');
+                    const profilePicUrl = firebaseUser.photoURL || '';
+                    setProfilePic(fixGoogleProfileImageUrl(profilePicUrl));
                     setDescription('');
                     setIsAdmin(ADMIN_EMAILS.includes(firebaseUser.email));
                 } else {
-                    setAlias(userSnap.data().alias || '');
-                    setName(userSnap.data().name || firebaseUser.displayName || '');
-                    setProfilePic(userSnap.data().profilePic || '');
-                    setDescription(userSnap.data().description || '');
-                    setIsAdmin(userSnap.data().isAdmin || ADMIN_EMAILS.includes(firebaseUser.email));
-                    setFavorites(userSnap.data().favorites || []);
+                    const userData = userSnap.data();
+                    
+                    setAlias(userData.alias || '');
+                    setName(userData.name || firebaseUser.displayName || '');
+                    const profilePicUrl = userData.profilePic || firebaseUser.photoURL || '';
+                    setProfilePic(fixGoogleProfileImageUrl(profilePicUrl));
+                    setDescription(userData.description || '');
+                    setIsAdmin(userData.isAdmin || ADMIN_EMAILS.includes(firebaseUser.email));
+                    setFavorites(userData.favorites || []);
                 }
                 setUser({
                     uid: firebaseUser.uid,
@@ -203,13 +258,24 @@ const Profile = () => {
             document.body.style.overflow = 'hidden';
         } else {
             document.body.style.overflow = 'unset';
+            
+            // Cleanup selected image when modal closes
+            if (selectedImagePreview) {
+                URL.revokeObjectURL(selectedImagePreview);
+                setSelectedImagePreview(null);
+            }
+            setSelectedImageFile(null);
+            setProfilePicInput('');
         }
 
         // Cleanup function to restore scroll when component unmounts
         return () => {
             document.body.style.overflow = 'unset';
+            if (selectedImagePreview) {
+                URL.revokeObjectURL(selectedImagePreview);
+            }
         };
-    }, [showEditModal]);
+    }, [showEditModal, selectedImagePreview]);
 
     // Get problems from Redux store
     const problemsFromStore = useSelector(state => state.problems.value);
@@ -333,19 +399,53 @@ const Profile = () => {
                 return;
             }
             
+            let finalProfilePicUrl = profilePic; // Folosește imaginea existentă implicit
+            
+            // Dacă există o imagine nouă selectată, uploadează-o la Cloudinary
+            if (selectedImageFile) {
+                console.log('Uploading image to Cloudinary...');
+                setProfilePicUploadLoading(true);
+                
+                try {
+                    // Upload la Cloudinary
+                    const cloudinaryUrl = await uploadToCloudinary(selectedImageFile);
+                    finalProfilePicUrl = cloudinaryUrl;
+                    console.log('Imagine încărcată cu succes la Cloudinary:', cloudinaryUrl);
+                } catch (uploadError) {
+                    console.error('Eroare la upload imagine:', uploadError);
+                    alert('Eroare la încărcarea imaginii. Profilul va fi salvat fără imaginea nouă.');
+                    // Continuă cu salvarea profilului fără imaginea nouă
+                } finally {
+                    setProfilePicUploadLoading(false);
+                }
+            }
+            
+            // Salvează profilul în Firebase
             const userRef = doc(db, 'users', user.uid);
             await setDoc(userRef, { 
                 name: trimmedName,
                 alias: trimmedAlias, 
-                profilePic: profilePicInput || profilePic, 
+                profilePic: finalProfilePicUrl, 
                 description: trimmedDescription 
             }, { merge: true });
             
+            // Actualizează state-ul local
             setName(trimmedName);
             setAlias(trimmedAlias);
-            setProfilePic(profilePicInput || profilePic);
+            setProfilePic(finalProfilePicUrl);
             setDescription(trimmedDescription);
+            
+            // Curăță state-urile pentru imagine
+            if (selectedImageFile) {
+                setSelectedImageFile(null);
+                setSelectedImagePreview(null);
+                setProfilePicInput('');
+            }
+            
             setShowEditModal(false);
+            setUploadSuccess(true);
+            setTimeout(() => setUploadSuccess(false), 3000);
+            
         } catch (error) {
             console.error('Error saving profile:', error);
             setAliasError('Eroare la salvarea profilului.');
@@ -354,42 +454,40 @@ const Profile = () => {
         }
     };
 
-    const IMAGEKIT_PUBLIC_KEY = 'public_6rkxL+q+51xT8d2+GHpJeNSzOTE=';
-    const IMAGEKIT_UPLOAD_URL = 'https://upload.imagekit.io/api/v1/files/upload';
+
 
     const handleProfilePicUpload = async (file) => {
         if (!file) return;
 
-        setProfilePicUploadLoading(true);
+        // Validate file size (max 5MB)
+        const maxSize = 5 * 1024 * 1024; // 5MB
+        if (file.size > maxSize) {
+            alert('Fișierul este prea mare! Dimensiunea maximă permisă este 5MB.');
+            return;
+        }
+
+        // Validate file type
+        if (!file.type.startsWith('image/')) {
+            alert('Te rog selectează doar fișiere de tip imagine (JPG, PNG, GIF, etc.).');
+            return;
+        }
+
         try {
-            // 1. Ia semnătura de la backend
-            const authRes = await fetch('/api/assistant/imagekit-auth');
-            const { signature, expire, token } = await authRes.json();
-
-            // 2. Upload la ImageKit cu semnătură
-            const formData = new FormData();
-            formData.append('file', file);
-            formData.append('fileName', file.name);
-            formData.append('publicKey', IMAGEKIT_PUBLIC_KEY);
-            formData.append('signature', signature);
-            formData.append('expire', expire);
-            formData.append('token', token);
-
-            const res = await fetch(IMAGEKIT_UPLOAD_URL, {
-                method: 'POST',
-                body: formData
-            });
-            const data = await res.json();
-            if (data && data.url) {
-                setProfilePicInput(data.url);
-                setProfilePicPreview(data.url);
-            } else {
-                alert('Eroare la upload poză!');
-            }
+            // Salvează imaginea local și creează preview
+            setSelectedImageFile(file);
+            
+            // Creează URL pentru preview
+            const previewUrl = URL.createObjectURL(file);
+            setSelectedImagePreview(previewUrl);
+            
+            // Actualizează input-ul cu numele fișierului (pentru referință)
+            setProfilePicInput(file.name);
+            
+            console.log('Imagine selectată local:', file.name, 'Size:', file.size);
+            
         } catch (err) {
-            alert('Eroare la upload poză!');
-        } finally {
-            setProfilePicUploadLoading(false);
+            console.error('Eroare la procesarea imaginii:', err);
+            alert('Eroare la procesarea imaginii. Te rog încearcă din nou.');
         }
     };
 
@@ -468,7 +566,7 @@ const Profile = () => {
             );
             
             // Procesăm problemele rezolvate cu scorurile lor (din hook)
-            console.log('📊 Profile processing solvedProblems:', solvedProblems);
+            // console.log('📊 Profile processing solvedProblems:', solvedProblems);
             
             const solvedActivities = solvedProblems.map(solvedProblem => {
                 const originalProblem = allAvailableProblems.find(p => String(p.id) === String(solvedProblem.problemId));
@@ -479,12 +577,12 @@ const Profile = () => {
                     problemTitle = originalProblem ? originalProblem.titlu : `Problema ${solvedProblem.problemId}`;
                 }
                 
-                console.log('🎯 Processing problem:', {
-                    problemId: solvedProblem.problemId,
-                    scoreObtained: solvedProblem.scoreObtained,
-                    maxScore: solvedProblem.maxScore,
-                    title: problemTitle
-                });
+                // console.log('🎯 Processing problem:', {
+                //     problemId: solvedProblem.problemId,
+                //     scoreObtained: solvedProblem.scoreObtained,
+                //     maxScore: solvedProblem.maxScore,
+                //     title: problemTitle
+                // });
                 
                 return {
                     type: 'problem_solved',
@@ -575,16 +673,34 @@ const Profile = () => {
         );
     }
 
+
     return (
         <Layout>
             <div className="page-section profile-container">
                 <div className="profile-header">
                     <div className="profile-header-content">
                         <div className="profile-avatar">
-                            {profilePic ? (
-                                <img src={profilePic} alt="avatar" className="profile-avatar-img" />
+                            {profilePic && profilePic.trim() !== '' ? (
+                                <img 
+                                    src={profilePic} 
+                                    alt="avatar" 
+                                    className="profile-avatar-img"
+                                    onError={(e) => {
+                                        console.error('Avatar image failed to load:', profilePic);
+                                        
+                                        // Create fallback avatar immediately
+                                        const fallbackDataUrl = createFallbackAvatar(user?.name || 'User');
+                                        e.target.src = fallbackDataUrl;
+                                        e.target.style.display = 'block';
+                                    }}
+                                    onLoad={() => {
+                                        console.log('Avatar image loaded successfully');
+                                    }}
+                                />
                             ) : (
-                                user.name.charAt(0)
+                                <div style={{ fontSize: '2.5rem', fontWeight: 'bold' }}>
+                                    {user?.name?.charAt(0) || 'A'}
+                                </div>
                             )}
                         </div>
                         <div className="profile-info">
@@ -617,7 +733,9 @@ const Profile = () => {
                                 setAliasInput(alias);
                                 setProfilePicInput(profilePic);
                                 setDescriptionInput(description);
-                                setProfilePicPreview(profilePic); // Set preview on modal open
+                                // Reset selected image when opening modal
+                                setSelectedImageFile(null);
+                                setSelectedImagePreview(null);
                                 setShowEditModal(true);
                             }}>
                                 Editează profilul
@@ -649,6 +767,9 @@ const Profile = () => {
                             />
                             {aliasError && <div className="alias-error">{aliasError}</div>}
                             <label>Poza de profil (URL):</label>
+                            <div style={{ fontSize: '0.875rem', color: '#6b7280', marginBottom: '8px' }}>
+                                Formate acceptate: JPG, PNG, GIF. Dimensiune maximă: 5MB
+                            </div>
                             <div
                                 className="profile-pic-dropzone"
                                 onDrop={handleDrop}
@@ -665,15 +786,46 @@ const Profile = () => {
                                     opacity: profilePicUploadLoading ? 0.6 : 1
                                 }}
                             >
-                                {profilePicUploadLoading ? (
-                                    <div className="loading-spinner" style={{ margin: '1rem 0' }}>
-                                        <div className="spinner" style={{ width: '30px', height: '30px' }}></div>
-                                        <span>Se încarcă poza...</span>
+                                {selectedImagePreview ? (
+                                    <div>
+                                        <img src={selectedImagePreview} alt="preview" style={{ maxWidth: 120, maxHeight: 120, borderRadius: '50%', marginBottom: 8 }} />
+                                        <div style={{ fontSize: '0.75rem', color: '#6b7280', marginBottom: '8px' }}>
+                                            {selectedImageFile?.name}
+                                        </div>
+                                        <button 
+                                            type="button"
+                                            onClick={() => {
+                                                setSelectedImageFile(null);
+                                                setSelectedImagePreview(null);
+                                                setProfilePicInput('');
+                                                if (selectedImagePreview) {
+                                                    URL.revokeObjectURL(selectedImagePreview);
+                                                }
+                                            }}
+                                            style={{
+                                                background: '#ef4444',
+                                                color: 'white',
+                                                border: 'none',
+                                                padding: '4px 8px',
+                                                borderRadius: '4px',
+                                                fontSize: '0.75rem',
+                                                cursor: 'pointer'
+                                            }}
+                                        >
+                                            Șterge
+                                        </button>
                                     </div>
-                                ) : profilePicPreview || profilePicInput ? (
-                                    <img src={profilePicPreview || profilePicInput} alt="preview" style={{ maxWidth: 120, maxHeight: 120, borderRadius: '50%', marginBottom: 8 }} />
+                                ) : profilePic && (profilePic.startsWith('http') || profilePic.startsWith('data:image')) ? (
+                                    <img src={profilePic} alt="current profile" style={{ maxWidth: 120, maxHeight: 120, borderRadius: '50%', marginBottom: 8 }} />
+                                ) : profilePic ? (
+                                    <div style={{ fontSize: '0.75rem', color: '#6b7280', marginBottom: '8px' }}>
+                                        Imagine salvată
+                                    </div>
                                 ) : (
-                                    <span>Trage o poză aici, dă click sau folosește Ctrl+V</span>
+                                    <div>
+                                        <div style={{ marginBottom: '8px' }}>📷</div>
+                                        <span>Trage o poză aici, dă click sau folosește Ctrl+V</span>
+                                    </div>
                                 )}
                                 <input
                                     type="file"
@@ -684,6 +836,17 @@ const Profile = () => {
                                     disabled={profilePicUploadLoading}
                                 />
                             </div>
+                            {uploadSuccess && (
+                                <div style={{ 
+                                    color: '#10b981', 
+                                    fontSize: '0.875rem', 
+                                    marginTop: '8px',
+                                    textAlign: 'center',
+                                    fontWeight: '500'
+                                }}>
+                                    ✅ Profil salvat cu succes! {selectedImageFile ? 'Imaginea a fost încărcată la Cloudinary.' : ''}
+                                </div>
+                            )}
                             <label>Descriere:</label>
                             <textarea
                                 value={descriptionInput}

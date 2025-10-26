@@ -8,8 +8,8 @@ import { Badge } from './badge';
 import { Separator } from './separator';
 import MathJaxRender from './MathJaxRender';
 import ProblemSubmit from './ProblemSubmit';
-import { useDispatch } from 'react-redux';
-import { deleteProblem } from '../features/problems/problemsSlice';
+import { useDispatch, useSelector } from 'react-redux';
+import { deleteProblem, clearDeleteStatus } from '../features/problems/problemsSlice';
 import { auth, db } from '../lib/firebase';
 import { onAuthStateChanged } from 'firebase/auth';
 import { doc, getDoc } from 'firebase/firestore';
@@ -19,12 +19,15 @@ export const ProblemaDetaliata = ({ problema, onBack }) => {
   const navigate = useNavigate();
   const [copied, setCopied] = useState(false);
   const [isAdmin, setIsAdmin] = useState(false);
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
   const dispatch = useDispatch();
   const assistant = useAssistant();
+  const { deleteStatus, deleteError } = useSelector(state => state.problems);
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, async (firebaseUser) => {
       if (firebaseUser) {
+        setIsAuthenticated(true);
         const userRef = doc(db, 'users', firebaseUser.uid);
         const userSnap = await getDoc(userRef);
         const ADMIN_EMAILS = [
@@ -34,6 +37,7 @@ export const ProblemaDetaliata = ({ problema, onBack }) => {
         ];
         setIsAdmin(userSnap.exists() ? (userSnap.data().isAdmin || ADMIN_EMAILS.includes(firebaseUser.email)) : ADMIN_EMAILS.includes(firebaseUser.email));
       } else {
+        setIsAuthenticated(false);
         setIsAdmin(false);
       }
     });
@@ -41,12 +45,29 @@ export const ProblemaDetaliata = ({ problema, onBack }) => {
   }, []);
 
   const handleDelete = () => {
+    // Check if user is authenticated before showing confirmation
+    if (!auth.currentUser) {
+      alert('Trebuie să te conectezi pentru a șterge probleme. Te rugăm să te autentifici mai întâi.');
+      return;
+    }
+
     if (window.confirm('Sigur vrei să ștergi această problemă?')) {
       dispatch(deleteProblem(problema.id));
-      if (onBack) onBack();
-      else navigate('/probleme');
     }
   };
+
+  // Handle delete status changes
+  useEffect(() => {
+    if (deleteStatus === 'succeeded') {
+      if (onBack) onBack();
+      else navigate('/probleme');
+    } else if (deleteStatus === 'failed') {
+      // Show more user-friendly error message
+      const errorMessage = deleteError || 'A apărut o eroare necunoscută';
+      alert(`Eroare la ștergerea problemei:\n\n${errorMessage}\n\nTe rugăm să încerci din nou sau să contactezi administratorul.`);
+      dispatch(clearDeleteStatus());
+    }
+  }, [deleteStatus, deleteError, onBack, navigate, dispatch]);
 
   const getDifficultyClass = (dificultate) => {
     return `badge-difficulty ${dificultate || 'default'}`;
@@ -343,9 +364,31 @@ export const ProblemaDetaliata = ({ problema, onBack }) => {
           </Card>
           {isAdmin && (
             <div style={{ marginTop: 16, textAlign: 'center' }}>
-              <button className="problem-card-delete-btn" onClick={handleDelete} title="Șterge problema">
-                🗑️ Șterge problema
-              </button>
+              {!isAuthenticated ? (
+                <div style={{ 
+                  padding: '12px', 
+                  backgroundColor: '#fff3cd', 
+                  border: '1px solid #ffeaa7', 
+                  borderRadius: '8px',
+                  color: '#856404',
+                  fontSize: '14px'
+                }}>
+                  ⚠️ Trebuie să te conectezi pentru a șterge probleme
+                </div>
+              ) : (
+                <button 
+                  className="problem-card-delete-btn" 
+                  onClick={handleDelete} 
+                  disabled={deleteStatus === 'loading'}
+                  title={deleteStatus === 'loading' ? 'Se șterge...' : 'Șterge problema'}
+                  style={{ 
+                    opacity: deleteStatus === 'loading' ? 0.6 : 1,
+                    cursor: deleteStatus === 'loading' ? 'not-allowed' : 'pointer'
+                  }}
+                >
+                  {deleteStatus === 'loading' ? '⏳ Se șterge...' : '🗑️ Șterge problema'}
+                </button>
+              )}
             </div>
           )}
         </div>

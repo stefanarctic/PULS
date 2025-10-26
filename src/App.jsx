@@ -26,6 +26,7 @@ import { useEffect } from "react";
 import uploadProblems from "./components/uploadProblems";
 import { useDispatch } from 'react-redux';
 import { fetchProblems } from './features/problems/problemsSlice';
+import AssistantAvatar from "./components/AssistantAvatar";
 
 const App = () => {
   const dispatch = useDispatch();
@@ -105,6 +106,7 @@ const App = () => {
           <Route path="/api-test" element={<ProblemSubmit />} />
         </Routes>
       </div>
+      <AssistantAvatar />
     </Router>
   )
 }

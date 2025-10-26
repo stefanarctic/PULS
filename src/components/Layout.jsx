@@ -1,7 +1,6 @@
 import Footer from "./Footer";
 import Navbar from "./Navbar";
 import ScrollToTop from "./ScrollToTop";
-import AssistantAvatar from "./AssistantAvatar";
 
 const Layout = ({ children }) => {
     return (
@@ -17,7 +16,6 @@ const Layout = ({ children }) => {
             </header> */}
             <Footer />
             <ScrollToTop />
-            <AssistantAvatar />
         </>
     );
 }

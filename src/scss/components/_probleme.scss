@@ -919,12 +919,23 @@
   transition: background 0.2s, color 0.2s, box-shadow 0.2s, border 0.2s;
   vertical-align: middle;
   outline: none;
-  &:hover, &:focus {
+  
+  &:hover:not(:disabled), &:focus:not(:disabled) {
     background: #e74c3c;
     color: #fff;
     border-color: #c0392b;
     box-shadow: 0 2px 8px rgba(231,76,60,0.18);
   }
+  
+  &:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+    background: #f5f5f5;
+    color: #999;
+    border-color: #ddd;
+    box-shadow: none;
+  }
+  
   svg {
     font-size: 1.2em;
     margin-right: 0.3em;

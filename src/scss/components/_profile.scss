@@ -734,6 +734,43 @@
     font-weight: 700;
     overflow: hidden;
     margin-right: 2rem;
+    position: relative;
+    
+    // Fallback for when image fails to load
+    &::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        border-radius: 50%;
+        z-index: 1;
+    }
+    
+    // Text fallback
+    > div {
+        position: relative;
+        z-index: 2;
+        color: white;
+    }
+    
+    // Dynamic fallback
+    .avatar-fallback {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 2.5rem;
+        font-weight: bold;
+        color: white;
+        z-index: 2;
+    }
 }
 
 .profile-avatar-img {
@@ -741,6 +778,8 @@
     height: 100%;
     object-fit: cover;
     border-radius: 50%;
+    position: relative;
+    z-index: 3;
 }
 
 .logout-btn {

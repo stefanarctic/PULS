@@ -1,9 +1,10 @@
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import ReactMarkdown from "react-markdown";
 import "../scss/components/_assistant-popup.scss";
 import Assistant3DViewer from "./Assistant3DViewer";
 import { X, Send } from "lucide-react";
 import { searchKnowledgeBase } from "../lib/assistant-knowledge-base.js";
+import MathJaxRender from "./MathJaxRender.jsx";
 
 const PROMPTS = [
   "Raportează o problemă",
@@ -82,6 +83,21 @@ const AssistantPopup = ({ onClose, initialMessage }) => {
     setInputValue("");
   };
 
+  // Typeset MathJax only for the most recent AI message bubble
+  const typesetLastAIBubble = () => {
+    try {
+      if (!chatRef.current) return;
+      const bubbles = chatRef.current.querySelectorAll('.assistant-popup-chat-bubble.ai');
+      const last = bubbles[bubbles.length - 1];
+      if (!last) return;
+      if (window.MathJax && window.MathJax.typesetPromise) {
+        window.MathJax.typesetPromise([last]);
+      } else if (window.MathJax && window.MathJax.typeset) {
+        window.MathJax.typeset([last]);
+      }
+    } catch (_) {}
+  };
+
   const simulateTyping = (text, callback) => {
     setTyping(true);
     let currentText = "";
@@ -132,9 +148,9 @@ const AssistantPopup = ({ onClose, initialMessage }) => {
       setMessages((msgs) => [...msgs, { role: "ai", text: "" }]);
       setLoading(false);
       
-      // Simulate typing effect
+      // Simulate typing effect, then typeset MathJax only for the finished AI message
       setTimeout(() => {
-        simulateTyping(aiText);
+        simulateTyping(aiText, typesetLastAIBubble);
       }, 500);
       
     } catch (err) {
@@ -178,7 +194,7 @@ const AssistantPopup = ({ onClose, initialMessage }) => {
     }
   };
 
-  React.useEffect(() => {
+  useEffect(() => {
     if (chatMode && chatRef.current) {
       chatRef.current.scrollTop = chatRef.current.scrollHeight;
     }
@@ -187,7 +203,7 @@ const AssistantPopup = ({ onClose, initialMessage }) => {
   const [loadingDots, setLoadingDots] = useState("");
 
   // Animate loading dots
-  React.useEffect(() => {
+  useEffect(() => {
     if (loading) {
       const dotsInterval = setInterval(() => {
         setLoadingDots(prev => {
@@ -220,7 +236,7 @@ const AssistantPopup = ({ onClose, initialMessage }) => {
             key={index}
             href={part} 
             className="assistant-link" 
-            target="_blank" 
+            target="_self" 
             rel="noopener noreferrer"
           >
             {part}
@@ -232,6 +248,12 @@ const AssistantPopup = ({ onClose, initialMessage }) => {
       }
     });
   };
+
+  // useEffect(() => {
+  //   if (typeof window?.MathJax !== "undefined") {
+  //     window.MathJax.typeset()
+  //   }
+  // });
 
   return (
     <div className="assistant-popup-overlay">
@@ -296,7 +318,7 @@ const AssistantPopup = ({ onClose, initialMessage }) => {
                         <ReactMarkdown
                           components={{
                             a: ({node, ...props}) => (
-                              <a {...props} className="assistant-link" target="_blank" rel="noopener noreferrer" />
+                              <a {...props} className="assistant-link" target="_self" rel="noopener noreferrer" />
                             )
                           }}
                         >
@@ -332,6 +354,7 @@ const AssistantPopup = ({ onClose, initialMessage }) => {
             )}
           </div>
         </div>
+        {/* <MathJaxRender /> */}
       </div>
     </div>
   );

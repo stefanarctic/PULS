@@ -48,7 +48,7 @@ const RecentActivity = ({ activityLog = [] }) => {
       const { scoreObtained, maxScore } = activity.score;
       const percentage = Math.round((scoreObtained / maxScore) * 100);
       
-      console.log('🎯 RecentActivity displaying score:', { scoreObtained, maxScore, percentage });
+      // console.log('🎯 RecentActivity displaying score:', { scoreObtained, maxScore, percentage });
       
       let scoreColor = '#ef4444'; // roșu pentru scor mic
       if (percentage >= 80) scoreColor = '#10b981'; // verde pentru scor mare
