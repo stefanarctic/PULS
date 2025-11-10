@@ -31,7 +31,7 @@
   align-items: flex-start;
   margin-top: 4px;
   border: 1px solid #444;
-  overflow: hidden;
+  overflow: visible;
 }
 
 .navbar-dropdown-item {
@@ -39,10 +39,15 @@
   padding: 0.5rem 1rem;
   text-decoration: none;
   font-size: 1rem;
-  transition: background 0.2s;
+  transition: background 0.1s ease;
   cursor: pointer;
   width: 100%;
   text-align: left;
+  display: block;
+  box-sizing: border-box;
+  margin: 0;
+  border: none;
+  outline: none;
 
   &:hover {
     background-color: rgba(255, 255, 255, 0.1);

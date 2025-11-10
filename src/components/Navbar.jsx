@@ -14,8 +14,10 @@ const Navbar = () => {
     const [searchValue, setSearchValue] = useState("");
     const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
     const [mobileDropdownOpen, setMobileDropdownOpen] = useState(false);
+    const [submenuOpen, setSubmenuOpen] = useState(false);
     const dropdownRef = useRef(null);
     const dropdownMenuRef = useRef(null);
+    const submenuRef = useRef(null);
     const closeTimeoutRef = useRef(null);
     const navigate = useNavigate();
     const darkModeOn = useDarkMode();
@@ -28,10 +30,13 @@ const Navbar = () => {
                 dropdownRef.current &&
                 !dropdownRef.current.contains(event.target) &&
                 dropdownMenuRef.current &&
-                !dropdownMenuRef.current.contains(event.target)
+                !dropdownMenuRef.current.contains(event.target) &&
+                submenuRef.current &&
+                !submenuRef.current.contains(event.target)
             ) {
                 setPulsOpen(false);
                 setPulsForceOpen(false);
+                setSubmenuOpen(false);
             }
         };
         document.addEventListener("mousedown", handleClickOutside);
@@ -92,12 +97,61 @@ const Navbar = () => {
         }
     };
 
-    const handleDropdownMenuMouseLeave = () => {
+    const handleDropdownMenuMouseLeave = (e) => {
+        // Nu închide dacă mouse-ul se mută către submeniu
+        if (submenuRef.current && submenuRef.current.contains(e.relatedTarget)) {
+            return;
+        }
         if (!pulsForceOpen) {
             closeTimeoutRef.current = setTimeout(() => {
                 setPulsOpen(false);
-            }, 150);
+                setSubmenuOpen(false);
+            }, 200);
         }
+    };
+
+    const handleMaiMulteMouseEnter = () => {
+        if (closeTimeoutRef.current) {
+            clearTimeout(closeTimeoutRef.current);
+        }
+        setSubmenuOpen(true);
+    };
+
+    const handleMaiMulteMouseLeave = (e) => {
+        // Verifică dacă mouse-ul se mută către submeniu sau dacă submeniul este vizibil
+        const relatedTarget = e.relatedTarget;
+        if (
+            (submenuRef.current && submenuRef.current.contains(relatedTarget)) ||
+            (relatedTarget && relatedTarget.closest('.submenu'))
+        ) {
+            return;
+        }
+        // Delay mai mare pentru a permite mutarea mouse-ului către submeniu
+        closeTimeoutRef.current = setTimeout(() => {
+            setSubmenuOpen(false);
+        }, 200);
+    };
+
+    const handleSubmenuMouseEnter = () => {
+        if (closeTimeoutRef.current) {
+            clearTimeout(closeTimeoutRef.current);
+        }
+        setSubmenuOpen(true);
+        // Asigură-te că dropdown-ul principal rămâne deschis
+        if (!pulsForceOpen) {
+            setPulsOpen(true);
+        }
+    };
+
+    const handleSubmenuMouseLeave = (e) => {
+        // Verifică dacă mouse-ul se mută înapoi la "Mai multe"
+        const relatedTarget = e.relatedTarget;
+        if (relatedTarget && relatedTarget.closest('.mai-multe-item')) {
+            return;
+        }
+        closeTimeoutRef.current = setTimeout(() => {
+            setSubmenuOpen(false);
+        }, 150);
     };
 
     const handleDropdownClick = (e) => {
@@ -112,6 +166,7 @@ const Navbar = () => {
     const handleDropdownItemClick = () => {
         setPulsForceOpen(false);
         setPulsOpen(false);
+        setSubmenuOpen(false);
     };
 
     const handleSearchChange = (e) => {
@@ -237,9 +292,26 @@ const Navbar = () => {
                                     <Link to="/resurse/unde" className="dropdown-item navbar-dropdown-item" onClick={handleDropdownItemClick}>Unde</Link>
                                     <Link to="/resurse/lissajous" className="dropdown-item navbar-dropdown-item" onClick={handleDropdownItemClick}>Lissajous</Link>
                                     <Link to="/resurse/seism" className="dropdown-item navbar-dropdown-item" onClick={handleDropdownItemClick}>Seisme</Link>
-                                    <Link to="/resurse" className="dropdown-item navbar-dropdown-item" onClick={handleDropdownItemClick} style={{ display: 'flex', alignItems: 'center', gap: 4 }}>
-                                        Mai multe <ChevronRight className="nav-icon" style={{ marginLeft: 4, width: 16, height: 16 }} />
-                                    </Link>
+                                    <div 
+                                        className="dropdown-item mai-multe-item"
+                                        onMouseEnter={handleMaiMulteMouseEnter}
+                                        onMouseLeave={handleMaiMulteMouseLeave}
+                                    >
+                                        <span style={{ display: 'flex', alignItems: 'center', gap: 4 }}>
+                                            Mai multe <ChevronRight className="nav-icon" style={{ marginLeft: 4, width: 16, height: 16 }} />
+                                        </span>
+                                        {(submenuOpen || pulsForceOpen) && (
+                                            <div 
+                                                className="submenu"
+                                                ref={submenuRef}
+                                                onMouseEnter={handleSubmenuMouseEnter}
+                                                onMouseLeave={handleSubmenuMouseLeave}
+                                            >
+                                                <Link to="/resurse/mecanica" className="dropdown-item navbar-dropdown-item" onClick={handleDropdownItemClick}>Mecanică</Link>
+                                                <Link to="/resurse/termodinamica" className="dropdown-item navbar-dropdown-item" onClick={handleDropdownItemClick}>Termodinamică</Link>
+                                            </div>
+                                        )}
+                                    </div>
                                 </div>
                             )}
                         </div>
