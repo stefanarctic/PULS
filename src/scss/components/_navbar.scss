@@ -85,9 +85,21 @@ nav {
                     text-transform: uppercase;
                     padding: 20px;
                     border-radius: 10px;
+                    position: relative;
 
-                    &:hover {
-                        background-color: rgba(0, 0, 0, 0.171) !important;
+                    &::after {
+                        content: '';
+                        position: absolute;
+                        bottom: 0;
+                        left: 0;
+                        width: 0;
+                        height: 2px;
+                        background-color: var(--primary-color-current-mode);
+                        // transition: width 0.3s ease;
+                    }
+
+                    &:hover::after {
+                        width: 100%;
                     }
 
                     display: flex;
@@ -213,9 +225,21 @@ nav {
             border-radius: 8px;
             transition: all 0.3s ease;
             color: var(--primary-color-current-mode);
+            position: relative;
 
-            &:hover {
-                background-color: rgba(0, 0, 0, 0.171);
+            &::after {
+                content: '';
+                position: absolute;
+                bottom: 0;
+                left: 0;
+                width: 0;
+                height: 2px;
+                background-color: var(--primary-color-current-mode);
+                transition: width 0.3s ease;
+            }
+
+            &:hover::after {
+                width: 100%;
             }
 
             &.active {
@@ -424,7 +448,7 @@ nav {
     top: 100%;
     left: 50%;
     transform: translateX(-50%);
-    background: #222;
+    background: var(--card-background-current-mode);
     border-radius: 0.5rem;
     box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
     min-width: 120px;
@@ -435,13 +459,13 @@ nav {
     flex-direction: column;
     align-items: flex-start;
     margin-top: 4px;
-    border: 1px solid #444;
+    border: 1px solid var(--border-color-current-mode);
     overflow: visible;
     pointer-events: auto;
 }
 
 .dropdown-item {
-    color: white;
+    color: var(--primary-color-current-mode);
     padding: 0.5rem 1rem;
     text-decoration: none;
     font-size: 1rem;
@@ -456,15 +480,26 @@ nav {
     outline: none;
 
     &:hover {
-        background: #444;
+        background: var(--pill-hover-background-current-mode);
     }
 }
 
 .dropdown-toggle {
     position: relative;
 
-    &:hover {
-        background-color: rgba(0, 0, 0, 0.171) !important;
+    &::after {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 0;
+        height: 2px;
+        background-color: var(--primary-color-current-mode);
+        transition: width 0.3s ease;
+    }
+
+    &:hover::after {
+        width: 100%;
     }
 }
 
@@ -472,7 +507,7 @@ nav {
   position: relative;
   
   &:hover {
-    background: #444 !important;
+    background: var(--pill-hover-background-current-mode) !important;
   }
   
   .submenu {
@@ -480,7 +515,7 @@ nav {
     left: 100%;
     top: 0;
     min-width: 160px;
-    background: #222;
+    background: var(--card-background-current-mode);
     border-radius: 0.5rem;
     box-shadow: 0 4px 16px rgba(0,0,0,0.15);
     z-index: 10000;
@@ -488,7 +523,7 @@ nav {
     display: flex;
     flex-direction: column;
     align-items: stretch;
-    border: 1px solid #444;
+    border: 1px solid var(--border-color-current-mode);
     margin-left: 2px;
     gap: 0;
     
@@ -498,7 +533,7 @@ nav {
       width: 100%;
       white-space: nowrap;
       display: block;
-      color: white;
+      color: var(--primary-color-current-mode);
       text-decoration: none;
       box-sizing: border-box;
       transition: background 0.1s ease;
@@ -506,7 +541,7 @@ nav {
       outline: none;
       
       &:hover {
-        background: #444;
+        background: var(--pill-hover-background-current-mode);
       }
     }
   }
@@ -780,7 +815,7 @@ nav {
     top: 100%;
     left: 50%;
     transform: translateX(-50%);
-    background: #222;
+    background: var(--card-background-current-mode);
     border-radius: 0.5rem;
     box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
     min-width: 140px;
@@ -791,7 +826,7 @@ nav {
     flex-direction: column;
     align-items: flex-start;
     margin-top: 8px;
-    border: 1px solid #444;
+    border: 1px solid var(--border-color-current-mode);
     overflow: hidden;
     opacity: 1;
     visibility: visible;
@@ -822,7 +857,7 @@ nav {
 }
 
 .dropdown-item {
-    color: white;
+    color: var(--primary-color-current-mode);
     padding: 0.75rem 1rem;
     text-decoration: none;
     font-size: 1rem;
@@ -839,20 +874,31 @@ nav {
     z-index: 1;
 
     &:hover {
-        background: #444;
-        color: white;
+        background: var(--pill-hover-background-current-mode);
+        color: var(--primary-color-current-mode);
     }
 
     &:active {
-        background: #555;
+        background: var(--pill-background-current-mode);
     }
 }
 
 .dropdown-toggle {
     position: relative;
 
-    &:hover {
-        background-color: rgba(0, 0, 0, 0.171) !important;
+    &::after {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 0;
+        height: 2px;
+        background-color: var(--primary-color-current-mode);
+        transition: width 0.3s ease;
+    }
+
+    &:hover::after {
+        width: 100%;
     }
 
     &:hover .dropdown-menu {
