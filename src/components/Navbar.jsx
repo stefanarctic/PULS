@@ -207,6 +207,7 @@ const Navbar = () => {
             // Color changes based on dark mode and scroll position
             if (!darkModeOn) {
                 if (scrollTop <= 100) {
+                    $('nav').removeClass('scrolled-white');
                     $('nav > #nav-container > ul > li > .nav-link').css({ color: 'black' });
                     $('nav #navbar-search .search-icon, nav #navbar-search .search-input').css({ color: 'black' });
                     $('nav #navbar-search').css({ borderColor: 'black' });
@@ -214,6 +215,7 @@ const Navbar = () => {
                     $('#logo-link img').attr('src', PulsLogoBlack);
                     setBurgerColor('black');
                 } else {
+                    $('nav').addClass('scrolled-white');
                     $('nav > #nav-container > ul > li > .nav-link').css({ color: 'white' });
                     $('nav #navbar-search .search-icon, nav #navbar-search .search-input').css({ color: 'white' });
                     $('nav #navbar-search').css({ borderColor: 'white' });
@@ -223,6 +225,7 @@ const Navbar = () => {
                 }
             } else {
                 // Dark mode - always white text
+                $('nav').removeClass('scrolled-white');
                 $('nav > #nav-container > ul > li > .nav-link').css({ color: 'white' });
                 $('nav #navbar-search .search-icon, nav #navbar-search .search-input').css({ color: 'white' });
                 $('nav #navbar-search').css({ borderColor: 'white' });

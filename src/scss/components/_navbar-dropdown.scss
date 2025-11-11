@@ -19,7 +19,7 @@
   top: 100%;
   left: 50%;
   transform: translateX(-50%);
-  background: var(--card-background-current-mode);
+  background: var(--secondary-background-current-mode);
   border-radius: 0.5rem;
   box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
   min-width: 140px;
@@ -50,6 +50,6 @@
   outline: none;
 
   &:hover {
-    background-color: var(--pill-hover-background-current-mode);
+    background-color: var(--navbar-hover);
   }
 } 

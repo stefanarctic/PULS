@@ -94,7 +94,7 @@ nav {
                         left: 0;
                         width: 0;
                         height: 2px;
-                        background-color: var(--primary-color-current-mode);
+                        background-color: currentColor;
                         // transition: width 0.3s ease;
                     }
 
@@ -122,6 +122,55 @@ nav {
         }
     }
 
+    // Remove underline effect specifically for the dark mode toggle in navbar
+    #nav-container {
+        ul {
+            li {
+                .dark-mode-toggle-link {
+                    transition: transform 0.15s ease-in-out;
+                    transform-origin: center;
+
+                    &:hover {
+                        transform: scale(1.08);
+                    }
+
+                    &::after {
+                        content: none !important;
+                    }
+                    &:hover::after {
+                        content: none !important;
+                    }
+                }
+            }
+        }
+    }
+
+// When in light theme and scrolled, force navbar underlines to be white
+nav.scrolled-white {
+    #nav-container {
+        ul {
+            li {
+                .nav-link {
+                    &::after {
+                        background-color: white !important;
+                    }
+                }
+                .dropdown-toggle {
+                    &::after {
+                        background-color: white !important;
+                    }
+                }
+            }
+        }
+    }
+    #nav-mobile {
+        #burger-menu {
+            &::after {
+                background-color: white !important;
+            }
+        }
+    }
+}
     // #nav-mobile {
     //     flex: 1;
 
@@ -448,7 +497,7 @@ nav {
     top: 100%;
     left: 50%;
     transform: translateX(-50%);
-    background: var(--card-background-current-mode);
+    background: var(--secondary-background-current-mode);
     border-radius: 0.5rem;
     box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
     min-width: 120px;
@@ -480,7 +529,7 @@ nav {
     outline: none;
 
     &:hover {
-        background: var(--pill-hover-background-current-mode);
+        background: var(--navbar-hover);
     }
 }
 
@@ -494,7 +543,7 @@ nav {
         left: 0;
         width: 0;
         height: 2px;
-        background-color: var(--primary-color-current-mode);
+        background-color: currentColor;
         transition: width 0.3s ease;
     }
 
@@ -507,7 +556,7 @@ nav {
   position: relative;
   
   &:hover {
-    background: var(--pill-hover-background-current-mode) !important;
+    background: var(--navbar-hover) !important;
   }
   
   .submenu {
@@ -515,7 +564,7 @@ nav {
     left: 100%;
     top: 0;
     min-width: 160px;
-    background: var(--card-background-current-mode);
+    background: var(--secondary-background-current-mode);
     border-radius: 0.5rem;
     box-shadow: 0 4px 16px rgba(0,0,0,0.15);
     z-index: 10000;
@@ -541,7 +590,7 @@ nav {
       outline: none;
       
       &:hover {
-        background: var(--pill-hover-background-current-mode);
+        background: var(--navbar-hover);
       }
     }
   }
@@ -815,7 +864,7 @@ nav {
     top: 100%;
     left: 50%;
     transform: translateX(-50%);
-    background: var(--card-background-current-mode);
+    background: var(--secondary-background-current-mode);
     border-radius: 0.5rem;
     box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
     min-width: 140px;
@@ -874,7 +923,7 @@ nav {
     z-index: 1;
 
     &:hover {
-        background: var(--pill-hover-background-current-mode);
+        background: var(--navbar-hover);
         color: var(--primary-color-current-mode);
     }
 
@@ -893,7 +942,7 @@ nav {
         left: 0;
         width: 0;
         height: 2px;
-        background-color: var(--primary-color-current-mode);
+        background-color: currentColor;
         transition: width 0.3s ease;
     }
 

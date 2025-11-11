@@ -53,6 +53,7 @@
     --navbar-mobile-bg: rgba(255,255,255,0.95);
     --navbar-mobile-color: #222;
     --navbar-mobile-dropdown-bg: rgba(0,0,0,0.05);
+    --navbar-hover:  rgba(158, 157, 157, 0.438);
 }
 
 .dark-mode {
@@ -77,5 +78,6 @@
     --navbar-mobile-color: #fff;
     --navbar-mobile-dropdown-bg: rgba(255,255,255,0.05);
 
+    --navbar-hover:  rgba(255, 255, 255, 0.164);
 
 }
