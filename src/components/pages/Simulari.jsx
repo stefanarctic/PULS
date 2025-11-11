@@ -9,6 +9,10 @@ import simulatorPrismaImg from "/res/screenshots/Prisma_Screenshot.png";
 import simulatorFunctiiImg from "/res/screenshots/Functii_Screenshot.png";
 import simulatorGraficePendulImg from "/res/screenshots/Grafice_Pendule_Screenshot.png";
 import simulatorGraficeBasicImg from "/res/screenshots/Grafice_Basic_Screenshot.png";
+import termodinamicaImg from "/res/screenshots/Termodinamica_Screenshot.png";
+import simulatorOscilatieOYImg from "/res/screenshots/Oscilatieoy_Screenshot.png";
+import simulatorOscilatieOXImg from "/res/screenshots/Oscilatieox_Screenshot.png";
+import simulatorCiocnireImg from "/res/screenshots/Ciocnire_Screenshot.png";
 import Layout from "../Layout";
 
 // Data for simulations
@@ -82,6 +86,34 @@ const simulationsData = [
     description: "Simulează dispersia luminii printr-o prismă.",
     image: simulatorPrismaImg,
     caption: "Prisma",
+  },
+  {
+    id: 11,
+    title: "Termodinamica",
+    description: "Simulează termodinamica.",
+    image: termodinamicaImg,
+    caption: "Termodinamica",
+  },
+  {
+    id: 12,
+    title: "Mișcări Oscilatorii pe OX",
+    description: "Simulează mișcările oscilatorii pe OX.",
+    image: simulatorOscilatieOXImg,
+    caption: "Mișcări Oscilatorii pe OX",
+  },
+  {
+    id: 13,
+    title: "Mișcări Oscilatorii pe OY",
+    description: "Simulează mișcările oscilatorii pe OY.",
+    image: simulatorOscilatieOYImg,
+    caption: "Mișcări Oscilatorii pe OY",
+  },
+  {
+    id: 14,
+    title: "Coliziuni Inelastice",
+    description: "Simulează coliziunile inelastice.",
+    image: simulatorCiocnireImg,
+    caption: "Coliziuni Inelastice",
   },
 ];
 
