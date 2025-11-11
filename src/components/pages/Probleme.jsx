@@ -9,7 +9,7 @@ import { Plus } from 'lucide-react';
 import { normalizeString } from '../../lib/normalizeString';
 import { auth, db } from '../../lib/firebase';
 import { onAuthStateChanged, getAuth } from 'firebase/auth';
-import { doc, getDoc } from 'firebase/firestore';
+import { doc, getDoc, setDoc } from 'firebase/firestore';
 
 // Icon components
 const SearchIcon = () => (
@@ -28,7 +28,7 @@ const ExternalLinkIcon = () => (
 );
 
 // Problem Card Component
-const ProblemCard = ({ problem }) => {
+const ProblemCard = ({ problem, isFavorite, onToggleFavorite }) => {
     const { index, titlu, dificultate, categorie, descriere, solved } = problem;
     const navigate = useNavigate();
 
@@ -52,8 +52,30 @@ const ProblemCard = ({ problem }) => {
     };
 
     return (
-        <div className={`problem-card${solved ? ' solved' : ''}`}>
-            <div className="problem-card-header">
+        <div className={`problem-card${solved ? ' solved' : ''}`} style={{ position: 'relative' }}>
+            <div className="problem-card-header" style={{ position: 'relative' }}>
+                <button
+                    title={isFavorite ? 'Elimină din favorite' : 'Adaugă la favorite'}
+                    aria-label={isFavorite ? 'Elimină din favorite' : 'Adaugă la favorite'}
+                    onClick={(e) => {
+                        e.stopPropagation();
+                        e.preventDefault();
+                        onToggleFavorite(problem);
+                    }}
+                    style={{
+                        position: 'absolute',
+                        right: 12,
+                        top: 12,
+                        background: 'none',
+                        border: 'none',
+                        cursor: 'pointer',
+                        fontSize: 22,
+                        color: isFavorite ? '#f5b301' : '#bbb',
+                        zIndex: 3
+                    }}
+                >
+                    ★
+                </button>
                 <div className="problem-card-info">
                     <span className="problem-card-id">#{index}</span>
                     <h3 className="problem-card-title">{titlu}</h3>
@@ -102,6 +124,7 @@ const PhysicsProblems = () => {
     const { value: problemeData, status, error } = useSelector(state => state.problems);
     const [isAdmin, setIsAdmin] = useState(false);
     const [user, setUser] = useState(null);
+    const [favorites, setFavorites] = useState([]);
 
     useEffect(() => {
       const unsubscribe = onAuthStateChanged(auth, async (firebaseUser) => {
@@ -115,14 +138,44 @@ const PhysicsProblems = () => {
             'aleluianu09@gmail.com',
             'pulsphysics@gmail.com',
           ];
-          setIsAdmin(userSnap.exists() ? (userSnap.data().isAdmin || ADMIN_EMAILS.includes(firebaseUser.email)) : ADMIN_EMAILS.includes(firebaseUser.email));
+          if (userSnap.exists()) {
+            setIsAdmin(userSnap.data().isAdmin || ADMIN_EMAILS.includes(firebaseUser.email));
+            setFavorites(userSnap.data().favorites || []);
+          } else {
+            setIsAdmin(ADMIN_EMAILS.includes(firebaseUser.email));
+            setFavorites([]);
+          }
         } else {
           setUser(null);
           setIsAdmin(false);
+          setFavorites([]);
         }
       });
       return () => unsubscribe();
     }, []);
+
+    const toggleFavorite = async (problem) => {
+        if (!user?.uid) {
+            alert('Autentifică-te pentru a salva probleme la favorite.');
+            return;
+        }
+        try {
+            const userRef = doc(db, 'users', user.uid);
+            const snap = await getDoc(userRef);
+            const currentFavs = (snap.exists() && snap.data().favorites) ? snap.data().favorites : [];
+            const problemId = problem.id;
+            let newFavs;
+            if (currentFavs.includes(problemId)) {
+                newFavs = currentFavs.filter(id => id !== problemId);
+            } else {
+                newFavs = [...currentFavs, problemId];
+            }
+            await setDoc(userRef, { favorites: newFavs }, { merge: true });
+            setFavorites(newFavs);
+        } catch (e) {
+            console.error('Favorite toggle failed:', e);
+        }
+    };
 
     // Funcție pentru a verifica dacă query-ul este un ID valid și naviga direct
     const handleSearchSubmit = (e) => {
@@ -854,6 +907,8 @@ const PhysicsProblems = () => {
                             <ProblemCard
                                 key={problem.id}
                                 problem={problem}
+                                isFavorite={favorites.includes(problem.id)}
+                                onToggleFavorite={toggleFavorite}
                             />
                         ))}
                     </div>

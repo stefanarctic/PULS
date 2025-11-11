@@ -7,6 +7,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { problemeData } from '../problemedata';
 import { ProblemCard } from './Probleme.jsx';
 import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import '../../scss/components/_probleme.scss';
 import RecentActivity from '../RecentActivity';
 import Achievements from '../Achievements';
@@ -143,6 +144,7 @@ const createFallbackAvatar = (name) => {
 };
 
 const Profile = () => {
+    const navigate = useNavigate();
     const [user, setUser] = useState(null);
     const [alias, setAlias] = useState('');
     const [aliasInput, setAliasInput] = useState('');
@@ -940,7 +942,10 @@ const Profile = () => {
                                                             setFavorites(newFavs);
                                                         }
                                                     }}
-                                                    onResolveClick={() => window.location.href = `/probleme/${problem.id}`}
+                                                    onResolveClick={(p) => {
+                                                        // Navigare client-side (fără reload) folosind indexul problemei
+                                                        navigate(`/probleme/${p.index}`);
+                                                    }}
                                                 />
                                             ))}
                                         </div>

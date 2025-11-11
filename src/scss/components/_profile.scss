@@ -5,7 +5,7 @@
     padding-left: 1rem;
     padding-right: 1rem;
     padding-top: 150px;
-    padding-bottom: 15rem; // Adaugă spațiu pentru footer
+    padding-bottom: 5rem; // Adaugă spațiu pentru footer
 }
 
 // Stiluri pentru cardurile favorite
@@ -32,12 +32,14 @@
         border: 1px solid var(--border-color-current-mode);
         border-radius: 8px;
         padding: 1rem;
+        padding-top: 1rem;
         transition: all 0.2s ease;
         position: relative;
 
         &:hover {
             transform: translateY(-2px);
             box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            cursor: pointer;
         }
 
         &.solved {
@@ -300,7 +302,7 @@
     }
 
     .tab-content {
-        border: 1px solid #e5e7eb;
+        // border: 1px solid #e5e7eb;
         border-radius: 0.5rem;
         overflow: hidden;
     }
@@ -1069,14 +1071,16 @@
         align-items: center;
         gap: 1rem;
         padding: 1rem;
-        background: var(--secondary-background-current-mode);
+        background: none;
         border: 1px solid var(--border-color-current-mode);
         border-radius: 8px;
+        border: none;
         transition: all 0.2s ease;
 
         &:hover {
-            transform: translateY(-1px);
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            transform: translateY(-3px);
+            // box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            cursor: pointer;
         }
 
         .activity-icon {
@@ -1165,7 +1169,7 @@
 .achievements-content,
 .statistics-content {
     padding: 1.5rem;
-    background: var(--primary-background-current-mode);
+    background: var(--secondary-background-current-mode);
     border: 1px solid var(--border-color-current-mode);
     border-radius: 8px;
     margin-top: 1rem;
