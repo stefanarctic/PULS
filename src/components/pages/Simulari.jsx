@@ -248,7 +248,30 @@ const SimulariPage = () => {
                           "_blank"
                         );
                         break;  
+                      case 11:
+                        window.open(
+                          "/simulari/Termodinamica/index.html",
+                          "_blank"
+                        );
                         break;
+                      case 12:
+                        window.open(
+                          "/simulari/Oscilatii elastice  pe OX/index.html",
+                          "_blank"
+                        );
+                        break;
+                        case 13:
+                          window.open(
+                            "/simulari/Legea Hooke-oscilatii oy/index.html",
+                            "_blank"
+                          );
+                          break;
+                          case 14:
+                            window.open(
+                              "/simulari/Ciocnire/ciocnire.html",
+                              "_blank"
+                            );
+                            break;
                       default:
                         window.open(
                           "/simulari/prisma/prisma-simulator.html",
