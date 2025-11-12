@@ -56,7 +56,8 @@ const DarkModeToggle = () => {
             documentStyle.setProperty('--pill-hover-background-current-mode', getVar('--pill-hover-background-dark-mode'));
             documentStyle.setProperty('--border-color-current-mode', getVar('--border-color-dark-mode'));
             documentStyle.setProperty('--profile-header-background-current-mode', getVar('--profile-header-background-dark-mode'));
-
+            documentStyle.setProperty('--simulari-button-bg', getVar('--button-bg-dark-mode'));
+            documentStyle.setProperty('--simulari-button-color', getVar('--button-color-dark-mode'));
             // BONUS
             for (const card of document.getElementsByClassName('feature-card')) {
                 card.classList.add('dark-mode');
@@ -81,7 +82,8 @@ const DarkModeToggle = () => {
             documentStyle.setProperty('--pill-hover-background-current-mode', getVar('--pill-hover-background-white-mode'));
             documentStyle.setProperty('--border-color-current-mode', getVar('--border-color-white-mode'));
             documentStyle.setProperty('--profile-header-background-current-mode', getVar('--profile-header-background-light-mode'));
-
+            documentStyle.setProperty('--simulari-button-bg', getVar('--button-bg-white-mode'));
+            documentStyle.setProperty('--simulari-button-color', getVar('--button-color-white-mode'));
             // BONUS
             for (const card of document.getElementsByClassName('feature-card')) {
                 card.classList.remove('dark-mode');

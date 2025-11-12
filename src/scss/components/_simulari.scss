@@ -146,9 +146,10 @@
   padding: 0.75rem;
   border: none;
   border-radius: 0.5rem;
-  background-color: var(--primary-color-current-mode);
-  color: var(--primary-background-current-mode);
+  background: var(--simulari-button-bg);
+  color: var(--simulari-button-color);
   font-weight: 500;
+  font-size: 16px;
   cursor: pointer;
   transition: background-color 0.3s ease;
 

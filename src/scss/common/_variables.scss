@@ -29,6 +29,10 @@
     --border-color-dark-mode: transparent;
     --border-color-dark-mode-2: #ffffff84;
     --border-color-white-mode-2: #000000;
+    --button-bg-white-mode: #c6c6c6;
+    --button-color-white-mode: #000000;
+    --button-bg-dark-mode: #1f1f1f;
+    --button-color-dark-mode: #ffffff;
 
     // Current vars
     --primary-background-current-mode: var(--primary-background-white-mode);
@@ -36,7 +40,7 @@
     --tertiary-background-current-mode: var(--tertiary-background-white-mode);
     --quaternary-background-current-mode: var(--quaternary-background-white-mode);
     --primary-color-current-mode: var(--primary-color-white-mode);
-
+     
     --muted-color-current-mode: var(--muted-color-white-mode);
     --border-color-current-mode: var(--border-color-white-mode);
     --border-color-current-mode-2: var(--border-color-white-mode-2);
@@ -54,6 +58,9 @@
     --navbar-mobile-color: #222;
     --navbar-mobile-dropdown-bg: rgba(0,0,0,0.05);
     --navbar-hover:  rgba(158, 157, 157, 0.438);
+
+    --simulari-button-bg:var(--button-bg-white-mode);
+    --simulari-button-color:var(--button-color-white-mode);
 }
 
 .dark-mode {
@@ -77,7 +84,8 @@
     --navbar-mobile-bg: rgba(20,20,20,0.98);
     --navbar-mobile-color: #fff;
     --navbar-mobile-dropdown-bg: rgba(255,255,255,0.05);
-
     --navbar-hover:  rgba(255, 255, 255, 0.164);
 
+    --simulari-button-bg:var(--button-bg-dark-mode);
+    --simulari-button-color:var(--button-color-dark-mode);
 }
