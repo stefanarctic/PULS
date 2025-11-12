@@ -48,10 +48,10 @@ const ResursePage = () => {
             </p>
           </div>
 
-          <Tabs defaultValue="formule">
+          <Tabs defaultValue="lectii">
             <TabsList>
-              <TabsTrigger key="formule" value="formule">Formule</TabsTrigger>
               <TabsTrigger key="lectii" value="lectii">Lecții</TabsTrigger>
+              <TabsTrigger key="formule" value="formule">Formule</TabsTrigger>
               <TabsTrigger key="experimente" value="experimente">Experimente</TabsTrigger>
               <TabsTrigger key="bibliografie" value="bibliografie">Bibliografie</TabsTrigger>
             </TabsList>
