@@ -8,6 +8,11 @@
     padding-bottom: 5rem; // Adaugă spațiu pentru footer
 }
 
+.page-section.profile-container {
+    height: auto;
+    min-height: 100vh;
+}
+
 // Stiluri pentru cardurile favorite
 .profile-favorites-section {
     h2 {

@@ -96,11 +96,11 @@ const RecentActivity = ({ activityLog = [] }) => {
                 </div>
                 {getScoreDisplay(activity)}
               </div>
-              {activity.link && (
+              {/* {activity.link && (
                 <a href={activity.link} className="activity-link" title="Vezi problema">
                   →
                 </a>
-              )}
+              )} */}
             </div>
           ))}
         </div>

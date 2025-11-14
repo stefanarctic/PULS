@@ -1,15 +1,16 @@
-import { useEffect, useState, Fragment } from 'react';
+import { useEffect, useState, Fragment, useMemo } from 'react';
 import Layout from '../Layout';
 import { useLocation } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
 // import { problemeData } from '../problemedata';
 import { useSelector, useDispatch } from 'react-redux';
 import { fetchProblems, addProblem, clearAddStatus, deleteProblem } from '../../features/problems/problemsSlice';
-import { Plus } from 'lucide-react';
+import { Plus, Check } from 'lucide-react';
 import { normalizeString } from '../../lib/normalizeString';
 import { auth, db } from '../../lib/firebase';
 import { onAuthStateChanged, getAuth } from 'firebase/auth';
 import { doc, getDoc, setDoc } from 'firebase/firestore';
+import { useSolvedProblems } from '../../hooks/useSolvedProblems';
 
 // Icon components
 const SearchIcon = () => (
@@ -28,9 +29,11 @@ const ExternalLinkIcon = () => (
 );
 
 // Problem Card Component
-const ProblemCard = ({ problem, isFavorite, onToggleFavorite }) => {
+const ProblemCard = ({ problem, isFavorite, onToggleFavorite, completionPercent }) => {
     const { index, titlu, dificultate, categorie, descriere, solved } = problem;
     const navigate = useNavigate();
+    const isPerfectScore = completionPercent === 100;
+    const isSolved = solved || isPerfectScore;
 
     const getDifficultyColorClass = (diff) => {
         switch (diff) {
@@ -52,30 +55,33 @@ const ProblemCard = ({ problem, isFavorite, onToggleFavorite }) => {
     };
 
     return (
-        <div className={`problem-card${solved ? ' solved' : ''}`} style={{ position: 'relative' }}>
+        <div className={`problem-card${isSolved ? ' solved' : ''}`} style={{ position: 'relative' }}>
             <div className="problem-card-header" style={{ position: 'relative' }}>
-                <button
-                    title={isFavorite ? 'Elimină din favorite' : 'Adaugă la favorite'}
-                    aria-label={isFavorite ? 'Elimină din favorite' : 'Adaugă la favorite'}
-                    onClick={(e) => {
-                        e.stopPropagation();
-                        e.preventDefault();
-                        onToggleFavorite(problem);
-                    }}
-                    style={{
-                        position: 'absolute',
-                        right: 12,
-                        top: 12,
-                        background: 'none',
-                        border: 'none',
-                        cursor: 'pointer',
-                        fontSize: 22,
-                        color: isFavorite ? '#f5b301' : '#bbb',
-                        zIndex: 3
-                    }}
-                >
-                    ★
-                </button>
+                <div className="problem-card-actions">
+                    <button
+                        title={isFavorite ? 'Elimină din favorite' : 'Adaugă la favorite'}
+                        aria-label={isFavorite ? 'Elimină din favorite' : 'Adaugă la favorite'}
+                        onClick={(e) => {
+                            e.stopPropagation();
+                            e.preventDefault();
+                            onToggleFavorite(problem);
+                        }}
+                        className={`problem-card-favorite-btn${isFavorite ? ' is-active' : ''}`}
+                    >
+                        ★
+                    </button>
+                    {isPerfectScore && (
+                        <div
+                            className="problem-card-perfect-badge"
+                            title="Ai obținut scorul maxim la această problemă"
+                        >
+                            <span className="problem-card-perfect-icon" aria-hidden="true">
+                                <Check size={14} strokeWidth={3} />
+                            </span>
+                            <span className="problem-card-perfect-text">100%</span>
+                        </div>
+                    )}
+                </div>
                 <div className="problem-card-info">
                     <span className="problem-card-id">#{index}</span>
                     <h3 className="problem-card-title">{titlu}</h3>
@@ -125,6 +131,43 @@ const PhysicsProblems = () => {
     const [isAdmin, setIsAdmin] = useState(false);
     const [user, setUser] = useState(null);
     const [favorites, setFavorites] = useState([]);
+    const { solvedProblems } = useSolvedProblems();
+
+    const solvedProblemsMap = useMemo(() => {
+        return solvedProblems.reduce((acc, entry) => {
+            if (!entry) return acc;
+            const { problemId, scoreObtained, maxScore } = entry;
+            if (!problemId || maxScore === 0 || maxScore === undefined || maxScore === null) {
+                return acc;
+            }
+            const numericScore = Number(scoreObtained);
+            const numericMax = Number(maxScore);
+            if (!Number.isFinite(numericScore) || !Number.isFinite(numericMax) || numericMax <= 0) {
+                return acc;
+            }
+            const percent = Math.min(100, Math.round((numericScore / numericMax) * 100));
+            if (!Number.isFinite(percent)) {
+                return acc;
+            }
+            const key = String(problemId);
+            const current = acc[key] ?? 0;
+            acc[key] = percent > current ? percent : current;
+            return acc;
+        }, {});
+    }, [solvedProblems]);
+
+    const getProblemCompletion = (problem) => {
+        if (!problem) return null;
+        const keysToCheck = [problem.id, problem.index];
+        for (const key of keysToCheck) {
+            if (key === undefined || key === null) continue;
+            const percent = solvedProblemsMap[String(key)];
+            if (typeof percent === 'number') {
+                return percent;
+            }
+        }
+        return null;
+    };
 
     useEffect(() => {
       const unsubscribe = onAuthStateChanged(auth, async (firebaseUser) => {
@@ -909,6 +952,7 @@ const PhysicsProblems = () => {
                                 problem={problem}
                                 isFavorite={favorites.includes(problem.id)}
                                 onToggleFavorite={toggleFavorite}
+                                completionPercent={getProblemCompletion(problem)}
                             />
                         ))}
                     </div>

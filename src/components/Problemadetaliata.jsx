@@ -21,6 +21,8 @@ export const ProblemaDetaliata = ({ problema, onBack }) => {
   const [isAdmin, setIsAdmin] = useState(false);
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const dispatch = useDispatch();
+  const resolvedProblemId = problema?.index ?? problema?.id ?? null;
+  const resolvedProblemTitle = problema?.titlu ?? null;
   const assistant = useAssistant();
   const { deleteStatus, deleteError } = useSelector(state => state.problems);
 
@@ -399,7 +401,10 @@ export const ProblemaDetaliata = ({ problema, onBack }) => {
           <CardTitle className="text-lg">Trimite o problemă</CardTitle>
         </CardHeader>
         <CardContent>
-          <ProblemSubmit />
+          <ProblemSubmit 
+            defaultProblemId={resolvedProblemId}
+            defaultProblemTitle={resolvedProblemTitle}
+          />
         </CardContent>
       </Card>
 

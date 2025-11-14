@@ -6,7 +6,196 @@ import { Button } from './Buttondet';
 import useDarkMode from '../hooks/useDarkMode';
 import { useSolvedProblems } from '../hooks/useSolvedProblems';
 
-const ProblemSubmit = () => {
+const DEFAULT_MAX_SCORE = 10;
+
+const stripCodeFences = (text) => {
+    if (!text || typeof text !== 'string') return '';
+    const fenceMatch = text.trim().match(/^```[a-zA-Z0-9]*\s*([\s\S]+?)```$/m);
+    if (fenceMatch) {
+        return fenceMatch[1].trim();
+    }
+    return text.trim();
+};
+
+const valueToPlainText = (value) => {
+    if (value === null || typeof value === 'undefined') return '';
+    if (typeof value === 'string') return stripCodeFences(value);
+    if (typeof value === 'number') return value.toString();
+    if (Array.isArray(value)) {
+        return value
+            .map((item, index) => `${index + 1}. ${valueToPlainText(item)}`)
+            .join('\n');
+    }
+    if (typeof value === 'object') {
+        return Object.entries(value)
+            .map(([key, val]) => `${key}: ${valueToPlainText(val)}`)
+            .join('\n');
+    }
+    return String(value);
+};
+
+const buildSections = (content, fallbackLabel) => {
+    if (!content) return [];
+
+    if (typeof content === 'string' || typeof content === 'number') {
+        return [{
+            title: null,
+            text: valueToPlainText(content)
+        }];
+    }
+
+    if (Array.isArray(content)) {
+        return content.map((item, index) => {
+            if (typeof item === 'object' && item !== null) {
+                return {
+                    title: item.title || item.heading || `${fallbackLabel} ${index + 1}`,
+                    text: valueToPlainText(item.text ?? item.content ?? item.value ?? item)
+                };
+            }
+            return {
+                title: `${fallbackLabel} ${index + 1}`,
+                text: valueToPlainText(item)
+            };
+        });
+    }
+
+    if (typeof content === 'object') {
+        return Object.entries(content).map(([key, val]) => ({
+            title: key.replace(/[_-]/g, ' '),
+            text: valueToPlainText(val)
+        }));
+    }
+
+    return [];
+};
+
+const extractJsonFromText = (text) => {
+    if (!text || typeof text !== 'string') return null;
+    const possibleJson = stripCodeFences(text);
+    if (!possibleJson) return null;
+    const trimmed = possibleJson.trim();
+    if (!trimmed.startsWith('{') || !trimmed.endsWith('}')) return null;
+    try {
+        return JSON.parse(trimmed);
+    } catch (_) {
+        return null;
+    }
+};
+
+const mergeStructuredResult = (result) => {
+    if (!result || typeof result !== 'object') return {};
+    let merged = { ...result };
+
+    const absorbJson = (value, parentKey) => {
+        const parsed = extractJsonFromText(value);
+        if (!parsed || typeof parsed !== 'object') return;
+        merged = { ...merged, ...parsed };
+        if (parentKey) {
+            const replacement = typeof parsed[parentKey] !== 'undefined' ? parsed[parentKey] : parsed;
+            merged[parentKey] = replacement;
+        }
+    };
+
+    ['solution', 'errorAnalysis', 'analysis', 'feedback', 'details'].forEach((key) => {
+        absorbJson(merged[key], key);
+    });
+
+    return merged;
+};
+
+const deriveScoreDetails = (result) => {
+    let scoreObtained = 0;
+    let maxScore = DEFAULT_MAX_SCORE;
+    const ratingLabelFromApi = typeof result.rating === 'string' ? result.rating.trim() : '';
+    let ratingLabel = ratingLabelFromApi;
+
+    const assignScoreFromRatingMatch = (match) => {
+        scoreObtained = parseFloat(match[1]);
+        maxScore = parseFloat(match[2]) || DEFAULT_MAX_SCORE;
+    };
+
+    if (typeof result.score === 'number' && Number.isFinite(result.score)) {
+        scoreObtained = result.score;
+    }
+
+    if (!scoreObtained && typeof result.score === 'string') {
+        const numeric = parseFloat(result.score);
+        if (!Number.isNaN(numeric)) {
+            scoreObtained = numeric;
+        }
+    }
+
+    if (!scoreObtained && ratingLabelFromApi) {
+        const ratingMatch = ratingLabelFromApi.toLowerCase().match(/(\d+(?:\.\d+)?)\s*\/\s*(\d+)/);
+        if (ratingMatch) {
+            assignScoreFromRatingMatch(ratingMatch);
+        } else {
+            const lowered = ratingLabelFromApi.toLowerCase();
+            if (lowered.includes('punctaj maxim') || lowered.includes('perfect') || lowered.includes('10/10') || lowered.includes('excelent')) {
+                scoreObtained = 10;
+            } else if (lowered.includes('9/10') || lowered.includes('foarte bun')) {
+                scoreObtained = 9;
+            } else if (lowered.includes('8/10') || lowered.includes('bun')) {
+                scoreObtained = 8;
+            } else if (lowered.includes('7/10')) {
+                scoreObtained = 7;
+            } else if (lowered.includes('parțial') || lowered.includes('aproape')) {
+                scoreObtained = 5;
+            } else if (lowered.includes('greșit') || lowered.includes('incorect')) {
+                scoreObtained = 2;
+            } else if (lowered.includes('6/10')) {
+                scoreObtained = 6;
+            }
+        }
+    }
+
+    const analysisSource = typeof result.analysis === 'string'
+        ? result.analysis
+        : typeof result.errorAnalysis === 'string'
+            ? result.errorAnalysis
+            : '';
+
+    if (!scoreObtained && analysisSource) {
+        const lowered = analysisSource.toLowerCase();
+        if (lowered.includes('punctaj maxim') || lowered.includes('perfect') || lowered.includes('excelent')) {
+            scoreObtained = 10;
+        } else if (lowered.includes('foarte bun')) {
+            scoreObtained = 9;
+        } else if (lowered.includes('bun') || lowered.includes('corect')) {
+            scoreObtained = 7;
+        } else if (lowered.includes('parțial') || lowered.includes('aproape')) {
+            scoreObtained = 5;
+        } else if (lowered.includes('greșit') || lowered.includes('incorect')) {
+            scoreObtained = 2;
+        }
+    }
+
+    if (!scoreObtained) {
+        scoreObtained = 6;
+    }
+
+    if (!ratingLabel) {
+        ratingLabel = `${scoreObtained}/${maxScore} puncte`;
+    }
+
+    return { scoreObtained, maxScore, ratingLabel };
+};
+
+const normalizeApiResult = (result) => {
+    const structuredResult = mergeStructuredResult(result);
+    const { scoreObtained, maxScore, ratingLabel } = deriveScoreDetails(structuredResult);
+
+    return {
+        raw: structuredResult,
+        score: scoreObtained,
+        maxScore,
+        ratingLabel,
+        solutionSections: buildSections(structuredResult.solution || structuredResult.correctSolution || structuredResult.answer, 'Pas'),
+        errorSections: buildSections(structuredResult.errorAnalysis || structuredResult.feedback || structuredResult.analysis, 'Observație'),
+    };
+};
+
+const ProblemSubmit = ({ defaultProblemId = null, defaultProblemTitle = null }) => {
     const [problemText, setProblemText] = useState('');
     const [problemImageFile, setProblemImageFile] = useState(null);
     const [solutionImageFiles, setSolutionImageFiles] = useState([]);
@@ -117,109 +306,36 @@ const ProblemSubmit = () => {
                 throw new Error(result.error || `Request failed with status ${response.status}`);
             }
 
-            setApiResponse(result);
-            console.log("Analiza a fost primită.");
+            const normalizedResult = normalizeApiResult(result);
+            setApiResponse(normalizedResult);
+            console.log("Analiza a fost primită.", normalizedResult);
 
             // Salvează automat problema rezolvată în Firebase
             try {
-                // Generează un ID unic pentru problema trimisă
-                const problemId = `submitted_${Date.now()}`;
+                // Determină ID-ul sub care salvăm problema rezolvată
+                const generatedProblemId = defaultProblemId !== null && defaultProblemId !== undefined
+                    ? String(defaultProblemId)
+                    : `submitted_${Date.now()}`;
                 
-                // Extrage un titlu din textul problemei
-                let problemTitle = 'Problema trimisă';
-                if (problemText.trim()) {
-                    const firstLine = problemText.trim().split('\n')[0];
-                    if (firstLine.length > 0) {
-                        problemTitle = firstLine.length > 50 ? firstLine.substring(0, 50) + '...' : firstLine;
+                // Extrage un titlu din contextul problemei sau din textul introdus
+                let problemTitle = defaultProblemTitle || 'Problema trimisă';
+                if (!defaultProblemTitle) {
+                    if (problemText.trim()) {
+                        const firstLine = problemText.trim().split('\n')[0];
+                        if (firstLine.length > 0) {
+                            problemTitle = firstLine.length > 50 ? firstLine.substring(0, 50) + '...' : firstLine;
+                        }
+                    } else if (problemImageFile) {
+                        problemTitle = 'Problema din imagine';
                     }
-                } else if (problemImageFile) {
-                    problemTitle = 'Problema din imagine';
                 }
                 
-                // Calculează scorul bazat pe răspunsul API-ului
-                let scoreObtained = 0;
-                let maxScore = 10;
-                
-                // Logica pentru calcularea scorului bazat pe răspunsul API-ului
                 console.log('API Response:', result);
-                console.log('Analysis:', result?.analysis);
-                console.log('Rating:', result?.rating);
-                
-                if (result && (result.analysis || result.rating)) {
-                    // Dacă API-ul returnează un scor direct, îl folosim
-                    if (result.score !== undefined) {
-                        scoreObtained = result.score;
-                        console.log('Using API score:', scoreObtained);
-                    } else if (result.rating) {
-                        // Verifică rating-ul (ex: "10/10 puncte")
-                        const rating = result.rating.toLowerCase();
-                        console.log('Analyzing rating:', rating);
-                        
-                        // Extrage scorul din rating (ex: "10/10 puncte" -> 10)
-                        const ratingMatch = rating.match(/(\d+)\/(\d+)/);
-                        if (ratingMatch) {
-                            scoreObtained = parseInt(ratingMatch[1]);
-                            maxScore = parseInt(ratingMatch[2]);
-                            console.log(`Extracted score from rating: ${scoreObtained}/${maxScore}`);
-                        } else {
-                            // Fallback pentru rating fără format standard
-                            if (rating.includes('10/10') || rating.includes('punctaj maxim') || rating.includes('perfect')) {
-                                scoreObtained = 10;
-                                console.log('Perfect score from rating: 10/10');
-                            } else if (rating.includes('9/10') || rating.includes('foarte bun')) {
-                                scoreObtained = 9;
-                                console.log('Very good score from rating: 9/10');
-                            } else if (rating.includes('8/10') || rating.includes('bun')) {
-                                scoreObtained = 8;
-                                console.log('Good score from rating: 8/10');
-                            } else if (rating.includes('7/10')) {
-                                scoreObtained = 7;
-                                console.log('Decent score from rating: 7/10');
-                            } else {
-                                scoreObtained = 6;
-                                console.log('Default score from rating: 6/10');
-                            }
-                        }
-                    } else if (result.analysis) {
-                        // Scor bazat pe analiza textului (fallback)
-                        const analysis = result.analysis.toLowerCase();
-                        console.log('Analyzing text:', analysis);
-                        
-                        // Verifică pentru răspuns perfect/maxim
-                        if (analysis.includes('punctaj maxim') || 
-                            analysis.includes('perfect') || 
-                            analysis.includes('excelent') || 
-                            analysis.includes('foarte bun') ||
-                            (analysis.includes('corect') && analysis.includes('toate')) ||
-                            analysis.includes('rezolvare completă')) {
-                            scoreObtained = 10;
-                            console.log('Perfect score detected: 10/10');
-                        } else if (analysis.includes('foarte bun') || analysis.includes('excelent')) {
-                            scoreObtained = 9;
-                            console.log('Very good score: 9/10');
-                        } else if (analysis.includes('bun') || analysis.includes('corect')) {
-                            scoreObtained = 7;
-                            console.log('Good score: 7/10');
-                        } else if (analysis.includes('parțial') || analysis.includes('aproape')) {
-                            scoreObtained = 5;
-                            console.log('Partial score: 5/10');
-                        } else if (analysis.includes('greșit') || analysis.includes('incorect')) {
-                            scoreObtained = 2;
-                            console.log('Wrong answer: 2/10');
-                        } else {
-                            scoreObtained = 6;
-                            console.log('Default score: 6/10');
-                        }
-                    }
-                } else {
-                    // Scor default pentru probleme trimise fără analiză
-                    scoreObtained = 6;
-                    console.log('No analysis or rating, default score: 6/10');
-                }
+                console.log('Analiza normalizată:', normalizedResult);
                 
                 // Salvează problema rezolvată cu titlul personalizat
-                console.log(`Saving problem with score: ${scoreObtained}/${maxScore}`);
-                await saveSolvedProblem(problemId, scoreObtained, maxScore, problemTitle);
+                console.log(`Saving problem with score: ${normalizedResult.score}/${normalizedResult.maxScore}`);
+                await saveSolvedProblem(generatedProblemId, normalizedResult.score, normalizedResult.maxScore, problemTitle);
                 console.log('Problema rezolvată salvată automat în profil!');
             } catch (error) {
                 console.error('Eroare la salvarea automată a problemei:', error);
@@ -244,6 +360,45 @@ const ProblemSubmit = () => {
             problemInputRef.current.style.borderColor = '#3b82f6';
         }
     }, []);
+
+    const renderSections = (sections, emptyMessage) => {
+        if (!sections || sections.length === 0) {
+            return (
+                <p style={{ 
+                    margin: 0, 
+                    color: 'var(--muted-color-current-mode)',
+                    whiteSpace: 'pre-wrap'
+                }}>
+                    {emptyMessage}
+                </p>
+            );
+        }
+
+        return sections.map((section, index) => (
+            <div 
+                key={`${section.title || 'section'}-${index}`} 
+                style={{ marginBottom: index === sections.length - 1 ? 0 : '1rem' }}
+            >
+                {section.title && (
+                    <p style={{ 
+                        margin: 0, 
+                        marginBottom: '0.35rem', 
+                        fontWeight: 600,
+                        color: 'var(--primary-color-current-mode)'
+                    }}>
+                        {section.title}
+                    </p>
+                )}
+                <p style={{ 
+                    margin: 0, 
+                    whiteSpace: 'pre-wrap',
+                    color: 'var(--primary-color-current-mode)'
+                }}>
+                    {section.text}
+                </p>
+            </div>
+        ));
+    };
 
     return (
             <div style={{ 
@@ -611,19 +766,20 @@ const ProblemSubmit = () => {
                                         </CardTitle>
                                     </CardHeader>
                                     <CardContent style={{ padding: '1.5rem' }}>
-                                        <pre style={{ 
-                                            whiteSpace: 'pre-wrap', 
-                                            fontFamily: 'monospace',
-                                            backgroundColor: '#fef3c7',
-                                            padding: '1rem',
-                                            borderRadius: '8px',
-                                            fontSize: '0.95rem',
-                                            lineHeight: '1.5',
-                                            margin: '0',
-                                            color: '#18181b' // always black for score
+                                        <div style={{
+                                            display: 'flex',
+                                            flexDirection: 'column',
+                                            gap: '1rem'
                                         }}>
-                                            {apiResponse.rating}
-                                        </pre>
+                                            <div style={{ display: 'flex', alignItems: 'baseline', gap: '0.5rem' }}>
+                                                <span style={{ fontSize: '2.75rem', fontWeight: 700, color: '#b45309' }}>
+                                                    {apiResponse.score}
+                                                </span>
+                                                <span style={{ fontSize: '1.25rem', color: '#92400e', fontWeight: 600 }}>
+                                                    / {apiResponse.maxScore}
+                                                </span>
+                                            </div>
+                                        </div>
                                     </CardContent>
                                 </Card>
                                 <Card style={{ 
@@ -639,19 +795,13 @@ const ProblemSubmit = () => {
                                         </CardTitle>
                                     </CardHeader>
                                     <CardContent style={{ padding: '1.5rem' }}>
-                                        <pre style={{ 
-                                            whiteSpace: 'pre-wrap', 
-                                            fontFamily: 'monospace',
+                                        <div style={{ 
                                             backgroundColor: 'var(--secondary-background-current-mode)',
                                             padding: '1rem',
-                                            borderRadius: '8px',
-                                            fontSize: '0.95rem',
-                                            lineHeight: '1.5',
-                                            margin: '0',
-                                            color: 'var(--primary-color-current-mode)'
+                                            borderRadius: '8px'
                                         }}>
-                                            {apiResponse.solution}
-                                        </pre>
+                                            {renderSections(apiResponse.solutionSections, 'Nu am primit încă o soluție text.')}
+                                        </div>
                                     </CardContent>
                                 </Card>
                                 <Card style={{ 
@@ -666,19 +816,13 @@ const ProblemSubmit = () => {
                                         </CardTitle>
                                     </CardHeader>
                                     <CardContent style={{ padding: '1.5rem' }}>
-                                        <pre style={{ 
-                                            whiteSpace: 'pre-wrap', 
-                                            fontFamily: 'monospace',
+                                        <div style={{ 
                                             backgroundColor: 'var(--primary-background-current-mode)',
                                             padding: '1rem',
-                                            borderRadius: '8px',
-                                            fontSize: '0.95rem',
-                                            lineHeight: '1.5',
-                                            margin: '0',
-                                            color: 'var(--primary-color-current-mode)'
+                                            borderRadius: '8px'
                                         }}>
-                                            {apiResponse.errorAnalysis}
-                                        </pre>
+                                            {renderSections(apiResponse.errorSections, 'Nu au fost găsite erori sau feedback suplimentar.')}
+                                        </div>
                                     </CardContent>
                                 </Card>
                             </div>

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useMemo } from 'react';
 import Layout from '../Layout';
 import { auth, provider, db, storage } from '../../lib/firebase';
 import { signInWithPopup, signOut, onAuthStateChanged } from 'firebase/auth';
@@ -9,6 +9,7 @@ import { ProblemCard } from './Probleme.jsx';
 import { Link } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
 import '../../scss/components/_probleme.scss';
+import { Check } from 'lucide-react';
 import RecentActivity from '../RecentActivity';
 import Achievements from '../Achievements';
 import Statistics from '../Statistics';
@@ -25,8 +26,9 @@ const ExternalLinkIcon = () => (
 );
 
 // FavoriteProblemCard cu stiluri îmbunătățite
-const FavoriteProblemCard = ({ problem, onUnstar, onResolveClick }) => {
+const FavoriteProblemCard = ({ problem, onUnstar, onResolveClick, completionPercent }) => {
   const { index, titlu, dificultate, categorie, solved, createdByAlias } = problem;
+  const isPerfectScore = completionPercent === 100;
   const getDifficultyColorClass = (diff) => {
     switch (diff) {
       case 'ușor':
@@ -46,16 +48,25 @@ const FavoriteProblemCard = ({ problem, onUnstar, onResolveClick }) => {
     }
   };
   return (
-    <div className={`problem-card favorite-problem-card${solved ? ' solved' : ''}`} style={{ position: 'relative' }}>
-      {/* Steaua pentru favorite, poziționată absolut, nu afectează layout-ul */}
-      <button
-        onClick={onUnstar}
-        title="Elimină din favorite"
-        style={{ position: 'absolute', right: 12, top: 12, background: 'none', border: 'none', cursor: 'pointer', fontSize: 22, color: '#f5b301', zIndex: 3 }}
-        aria-label="Elimină din favorite"
-      >
-        ★
-      </button>
+    <div className={`problem-card favorite-problem-card${(solved || isPerfectScore) ? ' solved' : ''}`} style={{ position: 'relative' }}>
+      <div className="problem-card-actions">
+        <button
+          onClick={onUnstar}
+          title="Elimină din favorite"
+          className="problem-card-favorite-btn is-active"
+          aria-label="Elimină din favorite"
+        >
+          ★
+        </button>
+        {isPerfectScore && (
+          <div className="problem-card-perfect-badge" title="Ai obținut scorul maxim la această problemă">
+            <span className="problem-card-perfect-icon" aria-hidden="true">
+              <Check size={14} strokeWidth={3} />
+            </span>
+            <span className="problem-card-perfect-text">100%</span>
+          </div>
+        )}
+      </div>
       {/* Autorul, ca la ProblemCard */}
       {createdByAlias && (
         <span style={{ 
@@ -143,6 +154,8 @@ const createFallbackAvatar = (name) => {
     return canvas.toDataURL();
 };
 
+const normalizeFavoriteIds = (ids = []) => Array.from(new Set((ids || []).filter(id => id !== null && id !== undefined)));
+
 const Profile = () => {
     const navigate = useNavigate();
     const [user, setUser] = useState(null);
@@ -172,6 +185,36 @@ const Profile = () => {
     const [favorites, setFavorites] = useState([]);
     const [userProblems, setUserProblems] = useState([]);
     const { solvedProblems, saveSolvedProblem, clearTestProblems, clearAllSolvedProblems } = useSolvedProblems();
+
+    const solvedProblemsMap = useMemo(() => {
+        return solvedProblems.reduce((acc, entry) => {
+            if (!entry) return acc;
+            const { problemId, scoreObtained, maxScore } = entry;
+            if (!problemId || maxScore === 0 || maxScore === undefined || maxScore === null) return acc;
+            const numericScore = Number(scoreObtained);
+            const numericMax = Number(maxScore);
+            if (!Number.isFinite(numericScore) || !Number.isFinite(numericMax) || numericMax <= 0) return acc;
+            const percent = Math.min(100, Math.round((numericScore / numericMax) * 100));
+            if (!Number.isFinite(percent)) return acc;
+            const key = String(problemId);
+            const current = acc[key] ?? 0;
+            acc[key] = percent > current ? percent : current;
+            return acc;
+        }, {});
+    }, [solvedProblems]);
+
+    const getProblemCompletion = (problem) => {
+        if (!problem) return null;
+        const keys = [problem.id, problem.index];
+        for (const key of keys) {
+            if (key === undefined || key === null) continue;
+            const percent = solvedProblemsMap[String(key)];
+            if (typeof percent === 'number') {
+                return percent;
+            }
+        }
+        return null;
+    };
     
     // Loading states for different operations
     const [userProblemsLoading, setUserProblemsLoading] = useState(false);
@@ -212,7 +255,7 @@ const Profile = () => {
                     setProfilePic(fixGoogleProfileImageUrl(profilePicUrl));
                     setDescription(userData.description || '');
                     setIsAdmin(userData.isAdmin || ADMIN_EMAILS.includes(firebaseUser.email));
-                    setFavorites(userData.favorites || []);
+                    setFavorites(normalizeFavoriteIds(userData.favorites || []));
                 }
                 setUser({
                     uid: firebaseUser.uid,
@@ -281,8 +324,31 @@ const Profile = () => {
 
     // Get problems from Redux store
     const problemsFromStore = useSelector(state => state.problems.value);
-    const allProblems = [...problemeData, ...userProblems, ...problemsFromStore];
-    const favoriteProblems = allProblems.filter(p => favorites.includes(p.id));
+
+    const combinedProblemsMap = useMemo(() => {
+        const map = new Map();
+        const addProblems = (list = []) => {
+            list.forEach(problem => {
+                if (!problem || !problem.id) return;
+                const existing = map.get(problem.id) || {};
+                map.set(problem.id, { ...existing, ...problem });
+            });
+        };
+        addProblems(problemeData);
+        addProblems(problemsFromStore);
+        addProblems(userProblems);
+        return map;
+    }, [problemsFromStore, userProblems]);
+
+    const allProblems = useMemo(() => Array.from(combinedProblemsMap.values()), [combinedProblemsMap]);
+
+    const favoriteIds = useMemo(() => normalizeFavoriteIds(favorites || []), [favorites]);
+
+    const favoriteProblems = useMemo(() => (
+        favoriteIds
+            .map(id => combinedProblemsMap.get(id))
+            .filter(problem => Boolean(problem && problem.id))
+    ), [favoriteIds, combinedProblemsMap]);
 
     const handleGoogleLogin = async () => {
         try {
@@ -931,6 +997,7 @@ const Profile = () => {
                                                 <FavoriteProblemCard
                                                     key={problem.id}
                                                     problem={problem}
+                                                    completionPercent={getProblemCompletion(problem)}
                                                     onUnstar={async (e) => {
                                                         e.preventDefault();
                                                         // elimină din favorite
@@ -939,7 +1006,7 @@ const Profile = () => {
                                                         if (snap.exists() && snap.data().favorites) {
                                                             const newFavs = snap.data().favorites.filter(fid => fid !== problem.id);
                                                             await setDoc(userRef, { favorites: newFavs }, { merge: true });
-                                                            setFavorites(newFavs);
+                                                            setFavorites(normalizeFavoriteIds(newFavs));
                                                         }
                                                     }}
                                                     onResolveClick={(p) => {
