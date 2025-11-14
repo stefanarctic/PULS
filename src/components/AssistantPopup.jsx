@@ -83,6 +83,21 @@ const AssistantPopup = ({ onClose, initialMessage }) => {
     setInputValue("");
   };
 
+  // Typeset MathJax for all AI message bubbles
+  const typesetAllAIBubbles = () => {
+    try {
+      if (!chatRef.current) return;
+      const bubbles = chatRef.current.querySelectorAll('.assistant-popup-chat-bubble.ai');
+      if (bubbles.length === 0) return;
+      
+      if (window.MathJax && window.MathJax.typesetPromise) {
+        window.MathJax.typesetPromise(Array.from(bubbles));
+      } else if (window.MathJax && window.MathJax.typeset) {
+        window.MathJax.typeset(Array.from(bubbles));
+      }
+    } catch (_) {}
+  };
+
   // Typeset MathJax only for the most recent AI message bubble
   const typesetLastAIBubble = () => {
     try {
@@ -150,7 +165,12 @@ const AssistantPopup = ({ onClose, initialMessage }) => {
       
       // Simulate typing effect, then typeset MathJax only for the finished AI message
       setTimeout(() => {
-        simulateTyping(aiText, typesetLastAIBubble);
+        simulateTyping(aiText, () => {
+          // Wait a bit for React to render, then typeset MathJax
+          setTimeout(() => {
+            typesetLastAIBubble();
+          }, 200);
+        });
       }, 500);
       
     } catch (err) {
@@ -198,7 +218,13 @@ const AssistantPopup = ({ onClose, initialMessage }) => {
     if (chatMode && chatRef.current) {
       chatRef.current.scrollTop = chatRef.current.scrollHeight;
     }
-  }, [messages, chatMode]);
+    // Typeset MathJax when messages change (but not while typing)
+    if (!typing && messages.length > 0) {
+      setTimeout(() => {
+        typesetAllAIBubbles();
+      }, 100);
+    }
+  }, [messages, chatMode, typing]);
 
   const [loadingDots, setLoadingDots] = useState("");
 
@@ -315,15 +341,19 @@ const AssistantPopup = ({ onClose, initialMessage }) => {
                   {messages.map((msg, idx) => (
                     <div key={idx} className={`assistant-popup-chat-bubble ${msg.role === 'user' ? 'user' : 'ai'} ${typing && idx === messages.length - 1 && msg.role === 'ai' ? 'typing' : ''}`}>
                       {msg.role === 'ai' ? (
-                        <ReactMarkdown
-                          components={{
-                            a: ({node, ...props}) => (
-                              <a {...props} className="assistant-link" target="_self" rel="noopener noreferrer" />
-                            )
-                          }}
-                        >
-                          {msg.text}
-                        </ReactMarkdown>
+                        <>
+                          <ReactMarkdown
+                            components={{
+                              a: ({node, ...props}) => (
+                                <a {...props} className="assistant-link" target="_self" rel="noopener noreferrer" />
+                              )
+                            }}
+                          >
+                            {msg.text}
+                          </ReactMarkdown>
+                          {/* Only render MathJax for messages that are not currently being typed */}
+                          {!(typing && idx === messages.length - 1) ? <MathJaxRender /> : null}
+                        </>
                       ) : (
                         <span>{msg.text}</span>
                       )}
