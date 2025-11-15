@@ -4,6 +4,9 @@ import DarkModeToggle from "./DarkModeToggle";
 import PulsLogoWhite from '/res/puls-logo-new2.png';
 import PulsLogoBlack from '/res/puls-logo-new3.png';
 import useDarkMode from "../hooks/useDarkMode";
+import { auth, db } from "../lib/firebase";
+import { onAuthStateChanged } from "firebase/auth";
+import { doc, getDoc } from "firebase/firestore";
 
 import $ from 'jquery';
 import { useEffect, useRef, useState } from "react";
@@ -22,6 +25,10 @@ const Navbar = () => {
     const navigate = useNavigate();
     const darkModeOn = useDarkMode();
     const [burgerColor, setBurgerColor] = useState(darkModeOn ? 'white' : 'black');
+    const [user, setUser] = useState(null);
+    const [profilePic, setProfilePic] = useState('');
+    const [profilePicError, setProfilePicError] = useState(false);
+    const [alias, setAlias] = useState('');
 
     // Close dropdown when clicking outside
     useEffect(() => {
@@ -190,6 +197,55 @@ const Navbar = () => {
         setMobileMenuOpen(false);
     };
 
+    // Function to fix Google profile image URLs
+    const fixGoogleProfileImageUrl = (url) => {
+        if (!url || !url.includes('googleusercontent.com')) {
+            return url;
+        }
+        
+        // For Google images, try the original URL first, then clean it up if needed
+        // Remove any query parameters that might cause issues
+        let cleanUrl = url.split('?')[0];
+        
+        // Remove existing size parameters
+        cleanUrl = cleanUrl.replace(/=s\d+-c$/, '');
+        
+        // Add a reliable size parameter
+        cleanUrl = cleanUrl + '=s96-c';
+        
+        return cleanUrl;
+    };
+
+    // Load user profile data
+    useEffect(() => {
+        const unsubscribe = onAuthStateChanged(auth, async (firebaseUser) => {
+            if (firebaseUser) {
+                setUser(firebaseUser);
+                // Get profile picture and alias from Firestore
+                const userRef = doc(db, 'users', firebaseUser.uid);
+                const userSnap = await getDoc(userRef);
+                if (userSnap.exists()) {
+                    const userData = userSnap.data();
+                    const profilePicUrl = userData.profilePic || firebaseUser.photoURL || '';
+                    setProfilePic(fixGoogleProfileImageUrl(profilePicUrl));
+                    setAlias(userData.alias || '');
+                } else {
+                    // If user document doesn't exist, use Firebase photoURL
+                    const profilePicUrl = firebaseUser.photoURL || '';
+                    setProfilePic(fixGoogleProfileImageUrl(profilePicUrl));
+                    setAlias('');
+                }
+                setProfilePicError(false);
+            } else {
+                setUser(null);
+                setProfilePic('');
+                setAlias('');
+                setProfilePicError(false);
+            }
+        });
+        return () => unsubscribe();
+    }, []);
+
     // Consolidated scroll logic
     useEffect(() => {
         const handleScroll = () => {
@@ -331,8 +387,20 @@ const Navbar = () => {
                             <span>Resurse</span>
                         </Link>
                         <Link to="/profil" className="nav-link">
-                            <User className="nav-icon" />
-                            <span>Profil</span>
+                            {user && profilePic && profilePic.trim() !== '' && !profilePicError ? (
+                                <img 
+                                    src={profilePic} 
+                                    alt="Profile" 
+                                    className="nav-profile-picture"
+                                    onError={() => {
+                                        // Fallback to icon if image fails to load
+                                        setProfilePicError(true);
+                                    }}
+                                />
+                            ) : (
+                                <User className="nav-icon" />
+                            )}
+                            <span>{alias || 'Profil'}</span>
                         </Link>
                         <div className="nav-link dark-mode-toggle-link">
                             <DarkModeToggle />
@@ -403,7 +471,19 @@ const Navbar = () => {
                                 <span>Resurse</span>
                             </Link>
                             <Link to="/profil" className="nav-link" onClick={handleMobileNavClick}>
-                                <User className="nav-icon" />
+                                {user && profilePic && profilePic.trim() !== '' && !profilePicError ? (
+                                    <img 
+                                        src={profilePic} 
+                                        alt="Profile" 
+                                        className="nav-profile-picture"
+                                        onError={() => {
+                                            // Fallback to icon if image fails to load
+                                            setProfilePicError(true);
+                                        }}
+                                    />
+                                ) : (
+                                    <User className="nav-icon" />
+                                )}
                                 <span>Profil</span>
                             </Link>
                             <div className="nav-link dark-mode-toggle-link">
