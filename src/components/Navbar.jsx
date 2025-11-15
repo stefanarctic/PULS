@@ -484,7 +484,7 @@ const Navbar = () => {
                                 ) : (
                                     <User className="nav-icon" />
                                 )}
-                                <span>Profil</span>
+                                <span>{alias || 'Profil'}</span>
                             </Link>
                             <div className="nav-link dark-mode-toggle-link">
                                 <DarkModeToggle />
