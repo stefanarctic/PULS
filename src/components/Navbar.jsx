@@ -392,6 +392,7 @@ const Navbar = () => {
                                     src={profilePic} 
                                     alt="Profile" 
                                     className="nav-profile-picture"
+                                    {...(profilePic.includes('googleusercontent.com') && { crossOrigin: 'anonymous', referrerPolicy: 'no-referrer' })}
                                     onError={() => {
                                         // Fallback to icon if image fails to load
                                         setProfilePicError(true);
@@ -476,6 +477,7 @@ const Navbar = () => {
                                         src={profilePic} 
                                         alt="Profile" 
                                         className="nav-profile-picture"
+                                        {...(profilePic.includes('googleusercontent.com') && { crossOrigin: 'anonymous', referrerPolicy: 'no-referrer' })}
                                         onError={() => {
                                             // Fallback to icon if image fails to load
                                             setProfilePicError(true);

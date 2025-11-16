@@ -753,6 +753,7 @@ const Profile = () => {
                                     src={profilePic} 
                                     alt="avatar" 
                                     className="profile-avatar-img"
+                                    {...(profilePic.includes('googleusercontent.com') && { crossOrigin: 'anonymous', referrerPolicy: 'no-referrer' })}
                                     onError={(e) => {
                                         console.error('Avatar image failed to load:', profilePic);
                                         
@@ -760,6 +761,9 @@ const Profile = () => {
                                         const fallbackDataUrl = createFallbackAvatar(user?.name || 'User');
                                         e.target.src = fallbackDataUrl;
                                         e.target.style.display = 'block';
+                                        // Remove crossOrigin after setting fallback to avoid CORS issues with data URLs
+                                        e.target.removeAttribute('crossOrigin');
+                                        e.target.removeAttribute('referrerPolicy');
                                     }}
                                     onLoad={() => {
                                         console.log('Avatar image loaded successfully');
@@ -884,7 +888,12 @@ const Profile = () => {
                                         </button>
                                     </div>
                                 ) : profilePic && (profilePic.startsWith('http') || profilePic.startsWith('data:image')) ? (
-                                    <img src={profilePic} alt="current profile" style={{ maxWidth: 120, maxHeight: 120, borderRadius: '50%', marginBottom: 8 }} />
+                                    <img 
+                                        src={profilePic} 
+                                        alt="current profile" 
+                                        style={{ maxWidth: 120, maxHeight: 120, borderRadius: '50%', marginBottom: 8 }}
+                                        {...(profilePic.includes('googleusercontent.com') && { crossOrigin: 'anonymous', referrerPolicy: 'no-referrer' })}
+                                    />
                                 ) : profilePic ? (
                                     <div style={{ fontSize: '0.75rem', color: '#6b7280', marginBottom: '8px' }}>
                                         Imagine salvată
