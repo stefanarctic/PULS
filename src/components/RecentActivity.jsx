@@ -1,6 +1,10 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 
 const RecentActivity = ({ activityLog = [] }) => {
+
+  const navigate = useNavigate();
+
   const getActivityIcon = (type) => {
     switch (type) {
       case 'problem_solved': return '🏅';
@@ -64,6 +68,20 @@ const RecentActivity = ({ activityLog = [] }) => {
     return null;
   };
 
+  const extractProblemId = (title) => {
+    if (!title) return null;
+    // Extrage ID-ul din titlu (ex: "PROBLEMA #14: Plan înclinat cu frecare" -> 14)
+    const match = title.match(/#(\d+)/);
+    return match ? parseInt(match[1], 10) : null;
+  };
+
+  const handleActivityClick = (activity) => {
+    const problemId = extractProblemId(activity.title);
+    if (problemId !== null) {
+      navigate(`/probleme/${problemId}`);
+    }
+  };
+
   return (
     <div className="recent-activity">
       <h3>Probleme recent rezolvate</h3>
@@ -76,7 +94,12 @@ const RecentActivity = ({ activityLog = [] }) => {
       ) : (
         <div className="activity-list">
           {activityLog.map((activity, index) => (
-            <div key={`${activity.type}-${activity.date}-${index}`} className="activity-item">
+            <div
+              key={`${activity.type}-${activity.date}-${index}`}
+              className="activity-item"
+              onClick={() => handleActivityClick(activity)}
+              style={{ cursor: 'pointer' }}
+            >
               <div className="activity-icon">
                 {getActivityIcon(activity.type)}
               </div>

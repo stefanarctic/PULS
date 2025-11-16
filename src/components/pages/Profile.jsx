@@ -645,6 +645,9 @@ const Profile = () => {
                     problemTitle = originalProblem ? originalProblem.titlu : `Problema ${solvedProblem.problemId}`;
                 }
                 
+                // Extragem index-ul problemei pentru navigare (ruta folosește index-ul)
+                const problemIndex = originalProblem ? originalProblem.index : null;
+                
                 // console.log('🎯 Processing problem:', {
                 //     problemId: solvedProblem.problemId,
                 //     scoreObtained: solvedProblem.scoreObtained,
@@ -656,7 +659,8 @@ const Profile = () => {
                     type: 'problem_solved',
                     title: problemTitle,
                     date: solvedProblem.solvedAt,
-                    link: solvedProblem.problemId.startsWith('submitted_') ? null : `/probleme/${solvedProblem.problemId}`,
+                    link: solvedProblem.problemId.startsWith('submitted_') ? null : `/probleme/${problemIndex || solvedProblem.problemId}`,
+                    problemIndex: problemIndex,
                     score: {
                         scoreObtained: solvedProblem.scoreObtained,
                         maxScore: solvedProblem.maxScore
@@ -666,7 +670,17 @@ const Profile = () => {
             
             const activity = [
                 ...solvedActivities,
-                ...addedProblemsFiltered.map(p => ({ type: 'problem_added', title: p.titlu, date: p.createdAt || '', link: p.id ? `/probleme/${p.id}` : undefined })),
+                ...addedProblemsFiltered.map(p => {
+                    const originalProblem = allAvailableProblems.find(ap => String(ap.id) === String(p.id));
+                    const problemIndex = originalProblem ? originalProblem.index : null;
+                    return { 
+                        type: 'problem_added', 
+                        title: p.titlu, 
+                        date: p.createdAt || '', 
+                        link: p.id ? `/probleme/${problemIndex || p.id}` : undefined,
+                        problemIndex: problemIndex
+                    };
+                }),
                 ...simulationsVisited.map(s => ({ type: 'simulation_visited', title: s.title, date: s.date, link: s.id ? `/simulari/${s.id}` : undefined })),
             ].sort((a, b) => new Date(b.date) - new Date(a.date));
             setActivityLog(activity);

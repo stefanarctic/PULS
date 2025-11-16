@@ -280,7 +280,7 @@
 
     .tabs-list {
         display: flex;
-        margin-bottom: 1.5rem;
+        // margin-bottom: 1.5rem;
         border-bottom: 1px solid #e5e7eb;
         gap: 0;
 
@@ -315,6 +315,7 @@
 
 // Activity Tab
 .activity-tab-content {
+    // background-color: red;
     padding: 1.5rem;
     padding-top: 0;
 }
@@ -344,7 +345,7 @@
             align-items: center;
             gap: 1rem;
             padding: 1rem 0;
-            border-bottom: 1px solid var(--border-color-current-mode);
+            // border-bottom: 1px solid var(--border-color-current-mode);
 
             &:last-child {
                 border-bottom: none;
@@ -1053,10 +1054,12 @@
 .recent-activity {
     // background-color: red;
 
+    // &:parent
+
     h3 {
         font-size: 1.5rem;
         font-weight: 600;
-        margin-bottom: 1.5rem;
+        // margin-bottom: 1.5rem;
         color: var(--primary-color-current-mode);
     }
 
@@ -1074,7 +1077,7 @@
     .activity-list {
         display: flex;
         flex-direction: column;
-        gap: 1rem;
+        // gap: 1rem;
         margin-bottom: 2rem; // Adaugă spațiu pentru footer
     }
 
@@ -1088,6 +1091,7 @@
         border-radius: 8px;
         border: none;
         transition: all 0.2s ease;
+        margin-bottom: 0px !important;
 
         &:hover {
             transform: translateY(-3px);
@@ -1110,6 +1114,8 @@
         .activity-content {
             flex: 1;
             min-width: 0;
+            margin-bottom: 0px !important;
+            margin-top: 0px !important;
             // border: 1px solid transparent;
             // border: none;
 
@@ -1117,7 +1123,7 @@
                 font-weight: 500;
                 color: var(--text-primary-current-mode);
                 margin-bottom: 0.25rem;
-                font-size: 0.95rem;
+                font-size: 1rem;
             }
 
             .activity-details {
