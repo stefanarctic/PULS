@@ -34,6 +34,15 @@ const ProblemCard = ({ problem, isFavorite, onToggleFavorite, completionPercent 
     const navigate = useNavigate();
     const isPerfectScore = completionPercent === 100;
     const isSolved = solved || isPerfectScore;
+    const handleNavigate = () => {
+        navigate(`/probleme/${index}`);
+    };
+    const handleKeyDown = (event) => {
+        if (event.key === 'Enter' || event.key === ' ') {
+            event.preventDefault();
+            handleNavigate();
+        }
+    };
 
     const getDifficultyColorClass = (diff) => {
         switch (diff) {
@@ -55,8 +64,15 @@ const ProblemCard = ({ problem, isFavorite, onToggleFavorite, completionPercent 
     };
 
     return (
-        <div className={`problem-card${isSolved ? ' solved' : ''}`} style={{ position: 'relative' }}>
-            <div className="problem-card-header" style={{ position: 'relative' }}>
+        <div
+            className={`problem-card${isSolved ? ' solved' : ''}`}
+            onClick={handleNavigate}
+            onKeyDown={handleKeyDown}
+            role="button"
+            tabIndex={0}
+            aria-label={`Deschide problema ${titlu}`}
+        >
+            <div className="problem-card-header">
                 <div className="problem-card-actions">
                     {isFavorite && (
                         <button
@@ -95,13 +111,10 @@ const ProblemCard = ({ problem, isFavorite, onToggleFavorite, completionPercent 
                 <div className={`problem-card-difficulty ${getDifficultyColorClass(dificultate)}`}>
                     {dificultate}
                 </div>
-                <button
-                    className="problem-card-link"
-                    onClick={() => navigate(`/probleme/${index}`)}
-                >
+                <div className="problem-card-link">
                     <span>Rezolvă</span>
                     <ExternalLinkIcon />
-                </button>
+                </div>
             </div>
         </div>
     );

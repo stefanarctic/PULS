@@ -133,7 +133,23 @@
         border: 1px solid var(--border-color-current-mode);
         border-radius: 8px;
         padding: 1rem;
-        transition: all 0.2s ease;
+        transition: border-color 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease;
+        cursor: pointer;
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        outline: none;
+
+        &:hover {
+            border-color: var(--accent-color-current-mode);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+            transform: translateY(-4px);
+        }
+
+        &:focus-visible {
+            border-color: var(--accent-color-current-mode);
+            box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.25);
+        }
 
         &.solved {
             border-left: 4px solid #10b981;
@@ -265,15 +281,12 @@
                 color: var(--accent-color-current-mode);
                 background: transparent;
                 border: none;
-                cursor: pointer;
                 text-decoration: none;
                 display: flex;
                 align-items: center;
                 gap: 0.25rem;
-
-                &:hover {
-                    text-decoration: underline;
-                }
+                font-weight: 600;
+                letter-spacing: 0.01em;
 
                 svg {
                     flex-shrink: 0;
