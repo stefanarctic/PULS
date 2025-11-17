@@ -58,18 +58,20 @@ const ProblemCard = ({ problem, isFavorite, onToggleFavorite, completionPercent 
         <div className={`problem-card${isSolved ? ' solved' : ''}`} style={{ position: 'relative' }}>
             <div className="problem-card-header" style={{ position: 'relative' }}>
                 <div className="problem-card-actions">
-                    <button
-                        title={isFavorite ? 'Elimină din favorite' : 'Adaugă la favorite'}
-                        aria-label={isFavorite ? 'Elimină din favorite' : 'Adaugă la favorite'}
-                        onClick={(e) => {
-                            e.stopPropagation();
-                            e.preventDefault();
-                            onToggleFavorite(problem);
-                        }}
-                        className={`problem-card-favorite-btn${isFavorite ? ' is-active' : ''}`}
-                    >
-                        ★
-                    </button>
+                    {isFavorite && (
+                        <button
+                            title="Elimină din favorite"
+                            aria-label="Elimină din favorite"
+                            onClick={(e) => {
+                                e.stopPropagation();
+                                e.preventDefault();
+                                onToggleFavorite(problem);
+                            }}
+                            className="problem-card-favorite-btn is-active"
+                        >
+                            ★
+                        </button>
+                    )}
                     {isPerfectScore && (
                         <div
                             className="problem-card-perfect-badge"

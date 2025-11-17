@@ -1,7 +1,7 @@
-import React, { useEffect, useState, useContext } from 'react';
+import React, { useEffect, useState, useContext, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 import '../scss/components/_problema-detaliata.scss';
-import { ArrowLeft, Bot, Calculator, BookOpen, Copy, Check } from 'lucide-react';
+import { ArrowLeft, Bot, Calculator, BookOpen, Copy, Check, Star } from 'lucide-react';
 import { Button } from './Buttondet';
 import { Card, CardContent, CardHeader, CardTitle } from './card';
 import { Badge } from './badge';
@@ -12,17 +12,22 @@ import { useDispatch, useSelector } from 'react-redux';
 import { deleteProblem, clearDeleteStatus } from '../features/problems/problemsSlice';
 import { auth, db } from '../lib/firebase';
 import { onAuthStateChanged } from 'firebase/auth';
-import { doc, getDoc } from 'firebase/firestore';
+import { doc, getDoc, setDoc } from 'firebase/firestore';
 import { useAssistant } from '../hooks/useAssistant';
+import useDarkMode from '../hooks/useDarkMode';
 
 export const ProblemaDetaliata = ({ problema, onBack }) => {
   const navigate = useNavigate();
   const [copied, setCopied] = useState(false);
   const [isAdmin, setIsAdmin] = useState(false);
   const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const [favorites, setFavorites] = useState([]);
+  const [isUpdatingFavorite, setIsUpdatingFavorite] = useState(false);
   const dispatch = useDispatch();
   const resolvedProblemId = problema?.index ?? problema?.id ?? null;
   const resolvedProblemTitle = problema?.titlu ?? null;
+  const darkModeOn = useDarkMode();
+  const starRef = useRef(null);
   const assistant = useAssistant();
   const { deleteStatus, deleteError } = useSelector(state => state.problems);
 
@@ -37,10 +42,18 @@ export const ProblemaDetaliata = ({ problema, onBack }) => {
           'aleluianu09@gmail.com',
           'pulsphysics@gmail.com',
         ];
-        setIsAdmin(userSnap.exists() ? (userSnap.data().isAdmin || ADMIN_EMAILS.includes(firebaseUser.email)) : ADMIN_EMAILS.includes(firebaseUser.email));
+        if (userSnap.exists()) {
+          const userData = userSnap.data();
+          setIsAdmin(userData.isAdmin || ADMIN_EMAILS.includes(firebaseUser.email));
+          setFavorites(Array.isArray(userData.favorites) ? userData.favorites : []);
+        } else {
+          setIsAdmin(ADMIN_EMAILS.includes(firebaseUser.email));
+          setFavorites([]);
+        }
       } else {
         setIsAuthenticated(false);
         setIsAdmin(false);
+        setFavorites([]);
       }
     });
     return () => unsubscribe();
@@ -192,6 +205,11 @@ export const ProblemaDetaliata = ({ problema, onBack }) => {
     }
   };
 
+  const getPrimaryColor = () =>
+    getComputedStyle(document.documentElement)
+      .getPropertyValue('--primary-color-current-mode')
+      .trim();
+
   // Adaugă funcția de conversie pentru delimitatori MathJax
   function convertDollarToInlineMathJax(str) {
     if (!str) return str;
@@ -203,7 +221,49 @@ export const ProblemaDetaliata = ({ problema, onBack }) => {
     if (typeof window?.MathJax !== "undefined") {
       window.MathJax.typeset()
     }
+
+    // console.log(getPrimaryColor());
   });
+
+  useEffect(() => {
+    // starRef.current.color = 'green';
+  }, [darkModeOn]);
+
+  const problemId = problema?.id;
+  const isFavorite = Boolean(problemId && favorites.includes(problemId));
+
+  const toggleFavorite = async () => {
+    if (!problemId) return;
+    if (!auth.currentUser) {
+      alert('Autentifică-te pentru a salva probleme la favorite.');
+      return;
+    }
+    const previousFavorites = favorites;
+    const alreadyFavorite = previousFavorites.includes(problemId);
+    const updatedFavorites = alreadyFavorite
+      ? previousFavorites.filter(id => id !== problemId)
+      : [...previousFavorites, problemId];
+
+    // Optimistic update for instant UI feedback
+    setFavorites(updatedFavorites);
+    setIsUpdatingFavorite(true);
+    try {
+      const userRef = doc(db, 'users', auth.currentUser.uid);
+      await setDoc(userRef, { favorites: updatedFavorites }, { merge: true });
+      console.log(
+        `[ProblemaDetaliata] Favorite ${alreadyFavorite ? 'removed' : 'added'} for problem`,
+        problemId,
+        'New favorites:',
+        updatedFavorites
+      );
+    } catch (error) {
+      console.error('Favorite toggle failed:', error);
+      setFavorites(previousFavorites);
+      alert('A apărut o problemă la actualizarea favoritei. Încearcă din nou.');
+    } finally {
+      setIsUpdatingFavorite(false);
+    }
+  };
   
 
   return (
@@ -225,7 +285,21 @@ export const ProblemaDetaliata = ({ problema, onBack }) => {
                       <span>Înapoi la probleme</span>
                     </button>
                   </div>
-                  <CardTitle className="card-title">{problema.titlu}</CardTitle>
+                  <div className="card-title-row">
+                    <CardTitle className="card-title">{problema.titlu}</CardTitle>
+                    {problemId && (
+                      <button
+                        type="button"
+                        className={`problema-favorite-btn${isFavorite ? ' is-active' : ''}`}
+                        title={isFavorite ? 'Elimină din favorite' : 'Adaugă la favorite'}
+                        aria-label={isFavorite ? 'Elimină din favorite' : 'Adaugă la favorite'}
+                        onClick={toggleFavorite}
+                        disabled={isUpdatingFavorite}
+                      >
+                        <Star strokeWidth={1.5} fill={isFavorite ? 'currentColor' : 'none'} color={darkModeOn && darkModeOn ? 'white' : 'black'} />
+                      </button>
+                    )}
+                  </div>
                   <p className="card-description">{problema.descriere}</p>
                   <div className="flex items-center space-x-4">
                     <Badge className="category">{getCategoryName(problema.categorie)}</Badge>
