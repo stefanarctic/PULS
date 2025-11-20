@@ -8,6 +8,19 @@ body {
     // min-height: 500px !important;
 }
 
+#root {
+    // zoom: 0.9;
+    * {
+        // zoom: 0.9;
+    }
+}
+
+@media (max-width: 1500px) {
+    #root {
+        zoom: 0.9;
+    }
+}
+
 .App {
     // background-color: red;
     // margin-top: 500px;

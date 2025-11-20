@@ -173,9 +173,39 @@ header#hero {
     }
 }
 
-@media (max-width: 1480px) {
+@media (max-width: 1500px) {
     header#hero {
+        // height: 110vh;
+        zoom: 1.1;
+        * {
+            // zoom: 1.1;
+        }
 
+        .hero-slideshow-wrapper:not(.dots) {
+            zoom: 1.4;
+
+            .hero-slideshow-container {
+                // zoom: 5.2 !important;
+
+                .slideshow {
+                    // zoom: 0.2 !important;
+                    max-height: 500px;
+                }
+            }
+
+            .dots {
+                zoom: 1;
+                max-height: 20px;
+
+                .dot {
+                    // max-height: 10px;
+                    // width: 10px !important;
+                    // width: 0.5rem !important;
+                    // height: 0.5rem !important;
+                    // background-color: red !important;
+                }
+            }
+        }
     }
 }
 

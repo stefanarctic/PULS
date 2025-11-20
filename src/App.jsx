@@ -80,6 +80,10 @@ const App = () => {
     console.log('Website loaded...');
   }, []);
 
+  // useEffect(() => {
+  //   console.log(`Width: ${window.innerWidth}, Height: ${window.innerHeight}`)
+  // });
+
   // setTimeout(() => {
   //   // convertRem(2); // 32 (px)
   //   console.log(convertRem(3.3));
