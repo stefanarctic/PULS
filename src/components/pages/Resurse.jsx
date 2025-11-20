@@ -17,9 +17,50 @@ import Thumbnail6 from "/res/Thumbnails/Lissajous-Video-1.png";
 import Layout from "../Layout";
 import { useEffect } from "react";
 import VideoPopup from "../VideoPopup";
+import { useNavigate } from "react-router-dom";
 
+
+const lessonCards = [
+  {
+    title: "Pendule",
+    description:
+      "Descoperă mișcarea oscilatorie, formulele și simulări pentru pendulul simplu, amortizat și neliniar.",
+    path: "/resurse/pendule",
+  },
+  {
+    title: "Unde",
+    description:
+      "Află despre propagarea undelor mecanice și electromagnetice, tipuri de unde și simulări interactive.",
+    path: "/resurse/unde",
+  },
+  {
+    title: "Figuri Lissajous",
+    description:
+      "Explorează curbele Lissajous, ecuațiile parametrice și aplicațiile lor în fizică.",
+    path: "/resurse/lissajous",
+  },
+  {
+    title: "Seisme",
+    description:
+      "Învață despre cutremure, unde seismice, propagare și vizualizări interactive.",
+    path: "/resurse/seism",
+  },
+  {
+    title: "Termodinamică",
+    description:
+      "Învață despre termodinamică, principiile și aplicațiile ei în fizică.",
+    path: "/resurse/termodinamica",
+  },
+  {
+    title: "Mecanică",
+    description:
+      "Învață despre mecanică, principiile și aplicațiile ei în fizică.",
+    path: "/resurse/mecanica",
+  },
+];
 
 const ResursePage = () => {
+  const navigate = useNavigate();
 
   const ResurseVideos = [
     { src: Video1, alt: "Video Pendul", thumbnail: Thumbnail1 },
@@ -190,48 +231,29 @@ const ResursePage = () => {
               <div className="rounded-container">
                 <h2 className="resurse-section-title">Lecții de fizică</h2>
                 <div className="formula-grid">
-                  <div className="formula-card">
-                    <h3 className="text-xl font-semibold mb-2">Pendule</h3>
-                    <p className="text-muted-foreground mb-2">
-                      Descoperă mișcarea oscilatorie, formulele și simulări pentru pendulul simplu, amortizat și neliniar.
-                    </p>
-                    <a href="/resurse/pendule" className="resurse-link">Citește lecția</a>
-                  </div>
-                  <div className="formula-card">
-                    <h3 className="text-xl font-semibold mb-2">Unde</h3>
-                    <p className="text-muted-foreground mb-2">
-                      Află despre propagarea undelor mecanice și electromagnetice, tipuri de unde și simulări interactive.
-                    </p>
-                    <a href="/resurse/unde" className="resurse-link">Citește lecția</a>
-                  </div>
-                  <div className="formula-card">
-                    <h3 className="text-xl font-semibold mb-2">Figuri Lissajous</h3>
-                    <p className="text-muted-foreground mb-2">
-                      Explorează curbele Lissajous, ecuațiile parametrice și aplicațiile lor în fizică.
-                    </p>
-                    <a href="/resurse/lissajous" className="resurse-link">Citește lecția</a>
-                  </div>
-                  <div className="formula-card">
-                    <h3 className="text-xl font-semibold mb-2">Seisme</h3>
-                    <p className="text-muted-foreground mb-2">
-                      Învață despre cutremure, unde seismice, propagare și vizualizări interactive.
-                    </p>
-                    <a href="/resurse/seism" className="resurse-link">Citește lecția</a>
-                  </div>
-                  <div className="formula-card">
-                    <h3 className="text-xl font-semibold mb-2">Termodinamică</h3>
-                    <p className="text-muted-foreground mb-2">
-                      Învață despre termodinamică, principiile și aplicațiile ei în fizică.
-                    </p>
-                    <a href="/resurse/termodinamica" className="resurse-link">Citește lecția</a>
-                  </div>
-                  <div className="formula-card">
-                    <h3 className="text-xl font-semibold mb-2">Mecanică</h3>
-                    <p className="text-muted-foreground mb-2">
-                      Învață despre mecanică, principiile și aplicațiile ei în fizică.
-                    </p>
-                    <a href="/resurse/mecanica" className="resurse-link">Citește lecția</a>
-                  </div>
+                  {lessonCards.map(({ title, description, path }) => (
+                    <div
+                      key={path}
+                      className="formula-card resurse-lesson-card"
+                      role="button"
+                      tabIndex={0}
+                      aria-label={`Deschide lecția ${title}`}
+                      onClick={() => navigate(path)}
+                      onKeyDown={(event) => {
+                        if (event.key === "Enter" || event.key === " ") {
+                          event.preventDefault();
+                          navigate(path);
+                        }
+                      }}
+                    >
+                      <h3 className="text-xl font-semibold mb-2">{title}</h3>
+                      <p className="text-muted-foreground mb-2">{description}</p>
+                      <span className="resurse-link resurse-lesson-link">
+                        Citește lecția
+                        <span aria-hidden="true">→</span>
+                      </span>
+                    </div>
+                  ))}
                 </div>
               </div>
             </TabsContent>
