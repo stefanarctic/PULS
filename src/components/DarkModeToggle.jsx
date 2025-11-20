@@ -48,6 +48,8 @@ const DarkModeToggle = () => {
             documentStyle.setProperty('--tertiary-background-current-mode', getVar('--tertiary-background-dark-mode'));
             documentStyle.setProperty('--quaternary-background-current-mode', getVar('--quaternary-background-dark-mode'));
             documentStyle.setProperty('--primary-color-current-mode', getVar('--primary-color-dark-mode'));
+            documentStyle.setProperty('--primary-background-inverse-mode', getVar('--primary-background-white-mode'));
+            documentStyle.setProperty('--primary-color-inverse-mode', getVar('--primary-color-white-mode'));
             documentStyle.setProperty('--muted-color-current-mode', getVar('--muted-color-dark-mode'));
             documentStyle.setProperty('--border-color-current-mode', getVar('--border-color-dark-mode'));
             documentStyle.setProperty('--card-background-current-mode', getVar('--card-background-dark-mode'));
@@ -74,6 +76,8 @@ const DarkModeToggle = () => {
             documentStyle.setProperty('--tertiary-background-current-mode', getVar('--tertiary-background-white-mode'));
             documentStyle.setProperty('--quaternary-background-current-mode', getVar('--quaternary-background-white-mode'));
             documentStyle.setProperty('--primary-color-current-mode', getVar('--primary-color-white-mode'));
+            documentStyle.setProperty('--primary-background-inverse-mode', getVar('--primary-background-dark-mode'));
+            documentStyle.setProperty('--primary-color-inverse-mode', getVar('--primary-color-dark-mode'));
             documentStyle.setProperty('--muted-color-current-mode', getVar('--muted-color-white-mode'));
             documentStyle.setProperty('--border-color-current-mode', getVar('--border-color-white-mode'));
             documentStyle.setProperty('--card-background-current-mode', getVar('--card-background-white-mode'));

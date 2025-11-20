@@ -12,6 +12,9 @@
     --quaternary-background-white-mode: rgb(240, 240, 240);
     --primary-color-white-mode: rgb(18, 18, 18);
 
+    --primary-background-inverse-mode: var(--primary-background-dark-mode);
+    --primary-color-inverse-mode: var(--primary-color-dark-mode);
+
     // New universal vars for both modes
     --muted-color-dark-mode: #a1a1aa;
     --muted-color-white-mode: #6b7280;
@@ -88,4 +91,7 @@
 
     --simulari-button-bg:var(--button-bg-dark-mode);
     --simulari-button-color:var(--button-color-dark-mode);
+
+    --primary-background-inverse-mode: var(--primary-background-white-mode);
+    --primary-color-inverse-mode: var(--primary-color-white-mode);
 }

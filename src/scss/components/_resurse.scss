@@ -13,6 +13,7 @@
         max-width: 1200px;
         margin: 0 auto;
         padding: 2rem 1rem;
+        // background-color: red;
 
         .resurse-title {
             font-size: 2.5rem;
@@ -51,7 +52,9 @@
             border-radius: 1.25rem;
             padding-top: 0px;
             padding: 0.5rem;
-            color: var(--primary-color-current-mode);
+            // color: var(--primary-color-current-mode);
+            // color: red !important;
+            // background-color: red !important;
             margin-bottom: 2rem;
             box-sizing: border-box;
             gap: 0.5rem;
@@ -68,13 +71,14 @@
             font-weight: 500;
             background: transparent;
             color: #b3b3b3;
+            // background-color: red;
             border: none;
             cursor: pointer;
 
             &[aria-selected="true"],
             &.active {
-                background: #18181b;
-                color: #fff;
+                background-color: var(--primary-background-inverse-mode, var(--primary-background-dark-mode));
+                color: var(--primary-color-inverse-mode, var(--primary-color-white-mode));
                 box-shadow: 0 2px 8px 0 rgba(0, 0, 0, 0.10);
             }
         }
