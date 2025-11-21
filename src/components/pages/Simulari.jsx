@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import simulatorPendulSimpluImg from "/res/screenshots/Simplu_Screenshot.png";
 import simulatorPendulAmortizatImg from "/res/screenshots/Amortizat_Screenshot.png";
 import simulatorPendulTrasnitImg from "/res/screenshots/Trasnit_Screenshot1.png";
@@ -118,6 +119,7 @@ const simulationsData = [
 ];
 
 const SimulariPage = () => {
+  const navigate = useNavigate();
   // State for each slider
   const [currentSlides, setCurrentSlides] = useState(
     simulationsData.reduce((acc, simulation) => {
@@ -249,10 +251,7 @@ const SimulariPage = () => {
                         );
                         break;  
                       case 11:
-                        window.open(
-                          "/simulari/Termodinamica/index.html",
-                          "_blank"
-                        );
+                        navigate("/simulare/termodinamica");
                         break;
                       case 12:
                         window.open(

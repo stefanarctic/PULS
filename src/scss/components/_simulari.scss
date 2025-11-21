@@ -173,3 +173,106 @@
     overflow-x: hidden;
   }
 }
+
+.simulare-termodinamica-page {
+  min-height: 100vh;
+  background: var(--primary-background-current-mode);
+  padding: 140px 1.5rem 3rem;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+
+  .simulare-termodinamica-content {
+    width: 100%;
+    max-width: 1200px;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+  }
+
+  .simulare-termodinamica-header {
+    text-align: center;
+    color: var(--primary-color-current-mode);
+
+    .eyebrow {
+      text-transform: uppercase;
+      letter-spacing: 0.2em;
+      font-size: 0.85rem;
+      opacity: 0.7;
+      margin-bottom: 0.75rem;
+    }
+
+    h1 {
+      font-size: clamp(2rem, 4vw, 3rem);
+      margin-bottom: 0.75rem;
+    }
+
+    p {
+      max-width: 720px;
+      margin: 0 auto;
+      font-size: 1.05rem;
+      color: var(--secondary-color-current-mode);
+    }
+  }
+
+  .simulare-termodinamica-frame {
+    background: var(--quaternary-background-current-mode);
+    border-radius: 1.25rem;
+    padding: 1rem;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
+    width: 100%;
+    min-height: 60vh;
+    position: relative;
+
+    iframe {
+      width: 100%;
+      min-height: clamp(420px, 70vh, 860px);
+      border: none;
+      border-radius: 0.75rem;
+      background: #f8fafc;
+    }
+
+    .simulare-termodinamica-fullscreen-btn {
+      position: absolute;
+      bottom: 1.25rem;
+      right: 1.25rem;
+      width: 50px;
+      height: 50px;
+      border-radius: 12px;
+      border: none;
+      // background: rgba(15, 23, 42, 0.85);
+      // color: #fff;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: transform 0.2s ease, opacity 0.2s ease, background 0.2s ease;
+      backdrop-filter: blur(6px);
+
+      &:hover {
+        transform: translate(-1px);
+        opacity: 0.9;
+        background-color: rgba(0, 0, 0, 0.278);
+        // background: rgba(15, 23, 42, 1);
+      }
+
+      svg {
+        width: 22px;
+        height: 22px;
+        fill: currentColor;
+      }
+    }
+  }
+
+  @media (max-width: 768px) {
+    padding: 100px 0.75rem 2rem;
+
+    .simulare-termodinamica-frame {
+      padding: 0.5rem;
+
+      iframe {
+        min-height: 70vh;
+      }
+    }
+  }
+}
