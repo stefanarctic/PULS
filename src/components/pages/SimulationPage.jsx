@@ -1,11 +1,17 @@
 import { useEffect, useRef, useState } from "react";
 import Layout from "../Layout";
 
-const SimulareTermodinamica = () => {
+const SimulationPage = ({
+  title,
+  description,
+  iframeSrc,
+  eyebrow = "Simulare interactivă",
+  maxHeight
+}) => {
   const iframeRef = useRef(null);
   const [isFullscreen, setIsFullscreen] = useState(false);
 
-  const handleFullscreen = () => {
+  const handleToggleFullscreen = () => {
     const iframe = iframeRef.current;
     if (!iframe) return;
 
@@ -19,7 +25,7 @@ const SimulareTermodinamica = () => {
       if (requestFullscreen) {
         requestFullscreen.call(iframe);
       } else {
-        window.open("/simulari/Termodinamica/index.html", "_blank");
+        window.open(iframeSrc, "_blank");
       }
     } else {
       const exitFullscreen =
@@ -32,29 +38,8 @@ const SimulareTermodinamica = () => {
   };
 
   useEffect(() => {
-    const handleFullscreenChange = () => {
-      const fullscreenElement =
-        document.fullscreenElement ||
-        document.webkitFullscreenElement ||
-        document.mozFullScreenElement ||
-        document.msFullscreenElement;
-      setIsFullscreen(Boolean(fullscreenElement));
-    };
-
-    document.addEventListener("fullscreenchange", handleFullscreenChange);
-    document.addEventListener("webkitfullscreenchange", handleFullscreenChange);
-    document.addEventListener("mozfullscreenchange", handleFullscreenChange);
-    document.addEventListener("MSFullscreenChange", handleFullscreenChange);
-
     const iframe = iframeRef.current;
-    if (!iframe) {
-      return () => {
-        document.removeEventListener("fullscreenchange", handleFullscreenChange);
-        document.removeEventListener("webkitfullscreenchange", handleFullscreenChange);
-        document.removeEventListener("mozfullscreenchange", handleFullscreenChange);
-        document.removeEventListener("MSFullscreenChange", handleFullscreenChange);
-      };
-    }
+    if (!iframe) return;
 
     let mutationObserver;
     let resizeObserver;
@@ -106,6 +91,20 @@ const SimulareTermodinamica = () => {
 
     iframe.addEventListener("load", handleLoad);
 
+    const handleFullscreenChange = () => {
+      const fullscreenElement =
+        document.fullscreenElement ||
+        document.webkitFullscreenElement ||
+        document.mozFullScreenElement ||
+        document.msFullscreenElement;
+      setIsFullscreen(Boolean(fullscreenElement));
+    };
+
+    document.addEventListener("fullscreenchange", handleFullscreenChange);
+    document.addEventListener("webkitfullscreenchange", handleFullscreenChange);
+    document.addEventListener("mozfullscreenchange", handleFullscreenChange);
+    document.addEventListener("MSFullscreenChange", handleFullscreenChange);
+
     return () => {
       iframe.removeEventListener("load", handleLoad);
       iframe.contentWindow?.removeEventListener("resize", resizeIframe);
@@ -116,35 +115,33 @@ const SimulareTermodinamica = () => {
       document.removeEventListener("mozfullscreenchange", handleFullscreenChange);
       document.removeEventListener("MSFullscreenChange", handleFullscreenChange);
     };
-  }, []);
+  }, [iframeSrc]);
 
   return (
     <Layout>
-      <section className="simulare-termodinamica-page">
-        <div className="simulare-termodinamica-content">
-          <header className="simulare-termodinamica-header">
-            <p className="eyebrow">Simulare interactivă</p>
-            <h1>Termodinamică – Gaz ideal într-un vas</h1>
-            <p>
-              Ajustează parametrii și urmărește în timp real comportamentul unui gaz ideal
-              în interiorul simulatorului integrat.
-            </p>
+      <section className="simulation-page">
+        <div className="simulation-content">
+          <header className="simulation-header">
+            {eyebrow && <p className="eyebrow">{eyebrow}</p>}
+            <h1>{title}</h1>
+            {description && <p>{description}</p>}
           </header>
 
-          <div className="simulare-termodinamica-frame">
+          <div className="simulation-frame">
             <iframe
               ref={iframeRef}
-              src="/simulari/Termodinamica/index.html"
-              title="Simulare Termodinamică"
+              src={iframeSrc}
+              title={title}
               loading="lazy"
               allow="fullscreen"
               scrolling="no"
+              style={{maxHeight: maxHeight ? maxHeight : '150vh'}}
             />
             <button
               type="button"
-              className="simulare-termodinamica-fullscreen-btn"
-              onClick={handleFullscreen}
-              aria-label="Deschide simularea pe tot ecranul"
+              className="simulation-fullscreen-btn"
+              onClick={handleToggleFullscreen}
+              aria-label="Comută modul fullscreen"
               data-active={isFullscreen}
             >
               <svg viewBox="0 0 60 60" role="img" aria-hidden="true">
@@ -162,5 +159,5 @@ const SimulareTermodinamica = () => {
   );
 };
 
-export default SimulareTermodinamica;
+export default SimulationPage;
 

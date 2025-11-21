@@ -19,7 +19,7 @@ import Lissajous from "./components/pages/resurse/lissajous";
 import Seism from "./components/pages/resurse/seism";
 import TermodinamicaPage from "./components/pages/resurse/termodinamica";
 import MecanicaPage from "./components/pages/resurse/mecanica";
-import SimulareTermodinamica from "./components/pages/SimulareTermodinamica";
+import SimulationPage from "./components/pages/SimulationPage";
 import ScrollToTop from "./components/ScrollToTop";
 import Profile from "./components/pages/Profile";
 import ProblemSubmit from "./components/ProblemSubmit";
@@ -28,6 +28,7 @@ import uploadProblems from "./components/uploadProblems";
 import { useDispatch } from 'react-redux';
 import { fetchProblems } from './features/problems/problemsSlice';
 import AssistantAvatar from "./components/AssistantAvatar";
+import { simulationsConfig } from "@/data/simulations";
 
 const App = () => {
   const dispatch = useDispatch();
@@ -105,7 +106,13 @@ const App = () => {
           <Route path="/resurse/seism" element={<Seism />} />
           <Route path='/resurse/termodinamica' element={<TermodinamicaPage />} />
           <Route path='/resurse/mecanica' element={<MecanicaPage />} />
-          <Route path="/simulare/termodinamica" element={<SimulareTermodinamica />} />
+          {simulationsConfig.map((simulation) => (
+            <Route
+              key={simulation.route}
+              path={simulation.route}
+              element={<SimulationPage {...simulation} />}
+            />
+          ))}
           <Route path="/about-us" element={<About />} />
           <Route path="/search" element={<SearchResults />} />
           <Route path="/profil" element={<Profile />} />
