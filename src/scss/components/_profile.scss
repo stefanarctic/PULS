@@ -658,6 +658,23 @@
         border-color: #ef4444;
         box-shadow: 0 2px 8px 0 rgba(248, 113, 113, 0.4);
     }
+
+    .profile-email-auth-form {
+        background: var(--secondary-background-current-mode);
+        border-color: var(--border-color-current-mode);
+    }
+
+    .profile-email-auth-field {
+        input {
+            background: var(--primary-background-current-mode);
+            color: var(--text-primary-current-mode);
+            border-color: var(--border-color-current-mode);
+            
+            &:focus {
+                border-color: var(--accent-color-current-mode);
+            }
+        }
+    }
 }
 
 // Responsive design
@@ -697,13 +714,36 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    min-height: 60vh;
+    min-height: 100vh;
+    // padding-top: calc(-10px);
+    padding-top: 0px;
+    // margin-bottom: 500px !important;
+    // background-color: red;
+
+    .profile-title {
+        margin-top: 50px;
+    }
+    
+    // When signup form is shown, increase margin-top for title
+    &.profile-login-center-signup {
+        .profile-title {
+            margin-top: 130px;
+        }
+    }
 }
 
 .profile-title {
     font-size: 3rem;
     margin-bottom: 3rem;
     color: var(--primary-color-current-mode);
+    // margin-top: 500px;
+    margin-top: 0px;
+}
+
+.profile-auth-container {
+    width: 100%;
+    max-width: 480px;
+    margin: 0 auto;
 }
 
 .profile-login-btns {
@@ -711,7 +751,158 @@
     flex-direction: column;
     gap: 1.5rem;
     width: 100%;
+    align-items: stretch;
+}
+
+.profile-auth-divider {
+    display: flex;
     align-items: center;
+    width: 100%;
+    margin: 1rem 0;
+    
+    &::before,
+    &::after {
+        content: '';
+        flex: 1;
+        height: 1px;
+        background: var(--border-color-current-mode);
+    }
+    
+    span {
+        padding: 0 1.25rem;
+        color: var(--muted-color-current-mode);
+        font-size: 0.875rem;
+        font-weight: 500;
+    }
+}
+
+.profile-email-auth-form {
+    width: 100%;
+    max-width: 480px;
+    margin: 0 auto;
+    background: var(--secondary-background-current-mode);
+    border: 1px solid var(--border-color-current-mode);
+    border-radius: 1.25rem;
+    padding: 2.5rem 2rem;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12), 0 2px 8px rgba(0, 0, 0, 0.08);
+    
+    &.profile-email-auth-form--signup {
+        // padding: 2.5rem 2rem;
+        // padding-top: 200px;
+    }
+}
+
+.profile-email-auth-title {
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin-bottom: 1.5rem;
+    text-align: center;
+    color: var(--primary-color-current-mode);
+}
+
+.profile-email-auth-field {
+    margin-bottom: 1.25rem;
+    
+    label {
+        display: block;
+        font-weight: 600;
+        margin-bottom: 0.5rem;
+        color: var(--primary-color-current-mode);
+        font-size: 0.875rem;
+    }
+    
+    input {
+        width: 100%;
+        padding: 0.875rem 1.125rem;
+        border: 2px solid var(--border-color-current-mode);
+        border-radius: 0.75rem;
+        font-size: 1rem;
+        background: var(--primary-background-current-mode);
+        color: var(--text-primary-current-mode);
+        transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+        box-sizing: border-box;
+        
+        &::placeholder {
+            color: var(--muted-color-current-mode);
+            opacity: 0.6;
+        }
+        
+        &:hover:not(:disabled) {
+            border-color: rgba(59, 130, 246, 0.4);
+        }
+        
+        &:focus {
+            outline: none;
+            border-color: var(--accent-color-current-mode);
+            box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.15);
+        }
+        
+        &:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+            background: rgba(0, 0, 0, 0.02);
+        }
+    }
+}
+
+.profile-auth-error {
+    background: rgba(239, 68, 68, 0.1);
+    border: 1px solid #ef4444;
+    color: #ef4444;
+    padding: 0.75rem 1rem;
+    border-radius: 0.5rem;
+    margin-bottom: 1rem;
+    font-size: 0.875rem;
+    text-align: center;
+}
+
+.profile-email-auth-actions {
+    display: flex;
+    gap: 1.5rem;
+    margin-top: 2rem;
+    flex-direction: column;
+    
+    button {
+        width: 100%;
+        padding: 0.875rem 1.5rem;
+        font-size: 1rem;
+        font-weight: 600;
+        border-radius: 0.75rem;
+        transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+        
+        &:hover:not(:disabled) {
+            transform: translateY(-1px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+        }
+        
+        &:active:not(:disabled) {
+            transform: translateY(0);
+        }
+    }
+}
+
+.profile-email-auth-switch {
+    text-align: center;
+    margin-top: 1.5rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--border-color-current-mode);
+    color: var(--muted-color-current-mode);
+    font-size: 0.875rem;
+    
+    .profile-auth-link {
+        background: none;
+        border: none;
+        color: var(--accent-color-current-mode);
+        cursor: pointer;
+        text-decoration: underline;
+        font-size: inherit;
+        padding: 0;
+        margin: 0;
+        
+        &:hover {
+            color: var(--primary-color-current-mode);
+        }
+    }
 }
 
 .profile-btn {
@@ -734,15 +925,39 @@
 }
 
 .profile-btn-big {
-    font-size: 1.3rem;
-    padding: 1.1rem 2.5rem;
-    border-radius: 2.5rem;
-    font-weight: 700;
+    font-size: 1.1rem;
+    padding: 1rem 2rem;
+    border-radius: 0.75rem;
+    font-weight: 600;
     cursor: pointer;
-    width: 450px;
-    max-width: 90vw;
-    transition: background 0.2s, color 0.2s, box-shadow 0.2s, border-color 0.2s;
-    box-shadow: 0 2px 8px 0 rgba(0, 0, 0, 0.04);
+    width: 100%;
+    transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 2px solid transparent;
+    
+    &:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
+    }
+    
+    &:active {
+        transform: translateY(0);
+    }
+}
+
+.profile-btn-google {
+    background: #fff;
+    color: #3c4043;
+    border: 1px solid #dadce0;
+    
+    &:hover {
+        background: #f8f9fa;
+        border-color: #dadce0;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    }
 }
 
 .profile-btn-red {
@@ -758,15 +973,34 @@
 }
 
 .profile-btn-blue {
+    background: #3b82f6;
+    color: #fff;
+    border: 2px solid #3b82f6;
+    
+    &:hover {
+        background: #2563eb;
+        border-color: #2563eb;
+        box-shadow: 0 4px 12px 0 rgba(59, 130, 246, 0.4);
+    }
+}
+
+.profile-btn-outline {
     background: transparent;
     color: #60a5fa;
     border: 2px solid #60a5fa;
+    
+    &:hover {
+        background: rgba(96, 165, 250, 0.1);
+        border-color: #3b82f6;
+        box-shadow: 0 4px 12px 0 rgba(96, 165, 250, 0.25);
+    }
 }
 
-.profile-btn-blue:hover {
-    background: rgba(96, 165, 250, 0.1);
-    border-color: #3b82f6;
-    box-shadow: 0 4px 12px 0 rgba(96, 165, 250, 0.25);
+.profile-email-options {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    width: 100%;
 }
 
 // Dark mode (media query)
@@ -792,12 +1026,30 @@
     }
 
     .profile-btn-blue {
+        background: #3b82f6;
+        color: #fff;
+        border: 2px solid #3b82f6;
+    }
+
+    .profile-btn-blue:hover {
+        background: #2563eb;
+        border-color: #2563eb;
+        box-shadow: 0 4px 12px 0 rgba(59, 130, 246, 0.4);
+    }
+    
+    .profile-btn-google {
+        background: #fff;
+        color: #3c4043;
+        border: 1px solid #dadce0;
+    }
+    
+    .profile-btn-outline {
         background: transparent;
         color: #60a5fa;
         border: 2px solid #60a5fa;
     }
-
-    .profile-btn-blue:hover {
+    
+    .profile-btn-outline:hover {
         background: rgba(96, 165, 250, 0.15);
         border-color: #3b82f6;
         box-shadow: 0 4px 12px 0 rgba(96, 165, 250, 0.3);
@@ -827,12 +1079,30 @@
     }
 
     .profile-btn-blue {
+        background: #3b82f6;
+        color: #fff;
+        border: 2px solid #3b82f6;
+    }
+
+    .profile-btn-blue:hover {
+        background: #2563eb;
+        border-color: #2563eb;
+        box-shadow: 0 4px 12px 0 rgba(59, 130, 246, 0.4);
+    }
+    
+    .profile-btn-google {
+        background: #fff;
+        color: #3c4043;
+        border: 1px solid #dadce0;
+    }
+    
+    .profile-btn-outline {
         background: transparent;
         color: #60a5fa;
         border: 2px solid #60a5fa;
     }
-
-    .profile-btn-blue:hover {
+    
+    .profile-btn-outline:hover {
         background: rgba(96, 165, 250, 0.15);
         border-color: #3b82f6;
         box-shadow: 0 4px 12px 0 rgba(96, 165, 250, 0.3);
@@ -861,6 +1131,23 @@
         color: #fff;
         border-color: #ef4444;
         box-shadow: 0 2px 8px 0 rgba(248, 113, 113, 0.4);
+    }
+
+    .profile-email-auth-form {
+        background: var(--secondary-background-current-mode);
+        border-color: var(--border-color-current-mode);
+    }
+
+    .profile-email-auth-field {
+        input {
+            background: var(--primary-background-current-mode);
+            color: var(--text-primary-current-mode);
+            border-color: var(--border-color-current-mode);
+            
+            &:focus {
+                border-color: var(--accent-color-current-mode);
+            }
+        }
     }
 }
 
@@ -1023,10 +1310,20 @@
 
 .alias-error,
 .name-error,
-.description-error {
+.description-error,
+.profile-save-error {
     color: #e53935;
     font-size: 1rem;
     margin-bottom: 0.5rem;
+    padding: 0.75rem 1rem;
+    background: rgba(239, 68, 68, 0.1);
+    border: 1px solid #ef4444;
+    border-radius: 0.5rem;
+}
+
+.profile-save-error {
+    margin-top: 0.5rem;
+    text-align: center;
 }
 
 @media (prefers-color-scheme: dark) {

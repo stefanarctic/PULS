@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useMemo } from 'react';
 import Layout from '../Layout';
-import { auth, provider, db, storage } from '../../lib/firebase';
+import { auth, provider, db, storage, createUserWithEmailAndPassword, signInWithEmailAndPassword } from '../../lib/firebase';
 import { signInWithPopup, signOut, onAuthStateChanged } from 'firebase/auth';
 import { doc, setDoc, getDoc, updateDoc, collection, query, where, getDocs } from 'firebase/firestore';
 import { useDispatch, useSelector } from 'react-redux';
@@ -158,6 +158,12 @@ const normalizeFavoriteIds = (ids = []) => Array.from(new Set((ids || []).filter
 
 const Profile = () => {
     const navigate = useNavigate();
+    
+    // Helper function to scroll to top
+    const scrollToTop = () => {
+        window.scrollTo({ top: 0 });
+    };
+    
     const [user, setUser] = useState(null);
     const [alias, setAlias] = useState('');
     const [aliasInput, setAliasInput] = useState('');
@@ -169,6 +175,7 @@ const Profile = () => {
     const [editingAlias, setEditingAlias] = useState(false);
     const [activeTab, setActiveTab] = useState('activitate');
     const [showEditModal, setShowEditModal] = useState(false);
+    const [saveError, setSaveError] = useState('');
     const [profilePic, setProfilePic] = useState('');
     const [profilePicInput, setProfilePicInput] = useState('');
     const [description, setDescription] = useState('');
@@ -223,6 +230,17 @@ const Profile = () => {
     const [uploadSuccess, setUploadSuccess] = useState(false);
     const [selectedImageFile, setSelectedImageFile] = useState(null);
     const [selectedImagePreview, setSelectedImagePreview] = useState(null);
+    
+    // Email/Password authentication states
+    const [showEmailAuth, setShowEmailAuth] = useState(false);
+    const [isSignUp, setIsSignUp] = useState(true);
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
+    const [confirmPassword, setConfirmPassword] = useState('');
+    const [nameSignUp, setNameSignUp] = useState('');
+    const [aliasSignUp, setAliasSignUp] = useState('');
+    const [authError, setAuthError] = useState('');
+    const [authLoading, setAuthLoading] = useState(false);
 
     useEffect(() => {
         const unsubscribe = onAuthStateChanged(auth, async (firebaseUser) => {
@@ -231,8 +249,12 @@ const Profile = () => {
                 const userRef = doc(db, 'users', firebaseUser.uid);
                 const userSnap = await getDoc(userRef);
                 if (!userSnap.exists()) {
+                    // Extract name from email if displayName is not available
+                    const defaultName = firebaseUser.displayName || 
+                        (firebaseUser.email ? firebaseUser.email.split('@')[0] : 'Utilizator');
+                    
                     await setDoc(userRef, {
-                        name: firebaseUser.displayName,
+                        name: defaultName,
                         email: firebaseUser.email,
                         alias: '',
                         joinedDate: new Date().toISOString(),
@@ -241,7 +263,7 @@ const Profile = () => {
                         isAdmin: ADMIN_EMAILS.includes(firebaseUser.email),
                     });
                     setAlias('');
-                    setName(firebaseUser.displayName || '');
+                    setName(defaultName);
                     const profilePicUrl = firebaseUser.photoURL || '';
                     setProfilePic(fixGoogleProfileImageUrl(profilePicUrl));
                     setDescription('');
@@ -259,7 +281,7 @@ const Profile = () => {
                 }
                 setUser({
                     uid: firebaseUser.uid,
-                    name: firebaseUser.displayName,
+                    name: firebaseUser.displayName || (firebaseUser.email ? firebaseUser.email.split('@')[0] : 'Utilizator'),
                     email: firebaseUser.email,
                     joinedDate: userSnap.exists() ? userSnap.data().joinedDate : new Date().toISOString(),
                 });
@@ -354,7 +376,133 @@ const Profile = () => {
         try {
             await signInWithPopup(auth, provider);
         } catch (error) {
-            setAliasError('Eroare la autentificare.');
+            console.error('Error signing in with Google:', error);
+            // Nu setăm aliasError aici pentru că nu are legătură cu formularul de editare profil
+            alert('Eroare la autentificare cu Google. Te rugăm să încerci din nou.');
+        }
+    };
+
+    const handleEmailSignUp = async (e) => {
+        e?.preventDefault();
+        setAuthError('');
+        setAuthLoading(true);
+
+        // Validation
+        if (isSignUp) {
+            if (!email || !password || !nameSignUp || !aliasSignUp) {
+                setAuthError('Te rog completează toate câmpurile.');
+                setAuthLoading(false);
+                return;
+            }
+
+            // Validate name
+            const trimmedName = nameSignUp.trim();
+            if (trimmedName.length < 2) {
+                setAuthError('Numele trebuie să aibă cel puțin 2 caractere.');
+                setAuthLoading(false);
+                return;
+            }
+            if (trimmedName.length > 50) {
+                setAuthError('Numele nu poate avea mai mult de 50 de caractere.');
+                setAuthLoading(false);
+                return;
+            }
+
+            // Validate alias
+            const trimmedAlias = aliasSignUp.trim();
+            if (trimmedAlias.length < 3) {
+                setAuthError('Aliasul trebuie să aibă cel puțin 3 caractere.');
+                setAuthLoading(false);
+                return;
+            }
+
+            // Check if alias is unique
+            try {
+                const q = query(collection(db, 'users'), where('alias', '==', trimmedAlias));
+                const querySnapshot = await getDocs(q);
+                if (!querySnapshot.empty) {
+                    setAuthError('Aliasul este deja folosit. Te rog alege altul.');
+                    setAuthLoading(false);
+                    return;
+                }
+            } catch (error) {
+                console.error('Error checking alias uniqueness:', error);
+                // Continue with signup even if check fails
+            }
+        } else {
+            if (!email || !password) {
+                setAuthError('Te rog completează toate câmpurile.');
+                setAuthLoading(false);
+                return;
+            }
+        }
+
+        if (password.length < 6) {
+            setAuthError('Parola trebuie să aibă cel puțin 6 caractere.');
+            setAuthLoading(false);
+            return;
+        }
+
+        if (isSignUp && password !== confirmPassword) {
+            setAuthError('Parolele nu se potrivesc.');
+            setAuthLoading(false);
+            return;
+        }
+
+        try {
+            if (isSignUp) {
+                // Sign up
+                const userCredential = await createUserWithEmailAndPassword(auth, email, password);
+                // Create user document with name and alias
+                const userRef = doc(db, 'users', userCredential.user.uid);
+                await setDoc(userRef, {
+                    name: nameSignUp.trim(),
+                    email: userCredential.user.email,
+                    alias: aliasSignUp.trim(),
+                    joinedDate: new Date().toISOString(),
+                    profilePic: '',
+                    description: '',
+                    isAdmin: ADMIN_EMAILS.includes(userCredential.user.email),
+                });
+            } else {
+                // Sign in
+                await signInWithEmailAndPassword(auth, email, password);
+            }
+            // Reset form
+            setEmail('');
+            setPassword('');
+            setConfirmPassword('');
+            setNameSignUp('');
+            setAliasSignUp('');
+            setShowEmailAuth(false);
+            scrollToTop();
+        } catch (error) {
+            let errorMessage = 'Eroare la autentificare.';
+            switch (error.code) {
+                case 'auth/email-already-in-use':
+                    errorMessage = 'Acest email este deja înregistrat.';
+                    break;
+                case 'auth/invalid-email':
+                    errorMessage = 'Adresa de email nu este validă.';
+                    break;
+                case 'auth/weak-password':
+                    errorMessage = 'Parola este prea slabă.';
+                    break;
+                case 'auth/user-not-found':
+                    errorMessage = 'Nu există un cont cu acest email.';
+                    break;
+                case 'auth/wrong-password':
+                    errorMessage = 'Parolă incorectă.';
+                    break;
+                case 'auth/invalid-credential':
+                    errorMessage = 'Email sau parolă incorectă.';
+                    break;
+                default:
+                    errorMessage = error.message || 'Eroare la autentificare.';
+            }
+            setAuthError(errorMessage);
+        } finally {
+            setAuthLoading(false);
         }
     };
 
@@ -425,6 +573,7 @@ const Profile = () => {
         setAliasError('');
         setNameError('');
         setDescriptionError('');
+        setSaveError('');
         setProfileSaveLoading(true);
         
         try {
@@ -516,7 +665,7 @@ const Profile = () => {
             
         } catch (error) {
             console.error('Error saving profile:', error);
-            setAliasError('Eroare la salvarea profilului.');
+            setSaveError('Eroare la salvarea profilului. Te rugăm să încerci din nou.');
         } finally {
             setProfileSaveLoading(false);
         }
@@ -740,16 +889,228 @@ const Profile = () => {
     if (!user) {
         return (
             <Layout>
-                <div className="profile-container profile-login-center">
+                <div className={`profile-container profile-login-center ${showEmailAuth && isSignUp ? 'profile-login-center-signup' : ''}`}>
                     <h2 className="profile-title">Profil</h2>
-                    <div className="profile-login-btns">
-                        <button className="profile-btn-big profile-btn-red" onClick={handleGoogleLogin}>
-                            Înregistrează-te cu Google
-                        </button>
-                        <button className="profile-btn-big profile-btn-blue" onClick={handleGoogleLogin}>
-                            Autentifică-te cu Google
-                        </button>
-                    </div>
+                    
+                    {!showEmailAuth ? (
+                        <div className="profile-auth-container">
+                            <div className="profile-login-btns">
+                                <button className="profile-btn-big profile-btn-google" onClick={handleGoogleLogin}>
+                                    <svg width="20" height="20" viewBox="0 0 24 24" style={{ marginRight: '10px' }}>
+                                        <path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/>
+                                        <path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/>
+                                        <path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"/>
+                                        <path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"/>
+                                    </svg>
+                                    Autentifică-te cu Google
+                                </button>
+                                <div className="profile-auth-divider">
+                                    <span>sau</span>
+                                </div>
+                                <div className="profile-email-options">
+                                    <button 
+                                        className="profile-btn-big profile-btn-blue" 
+                                        onClick={() => {
+                                            setShowEmailAuth(true);
+                                            setIsSignUp(true);
+                                            setAuthError('');
+                                            setEmail('');
+                                            setPassword('');
+                                            setConfirmPassword('');
+                                            setNameSignUp('');
+                                            setAliasSignUp('');
+                                            scrollToTop();
+                                        }}
+                                    >
+                                        Creează cont cu email
+                                    </button>
+                                    <button 
+                                        className="profile-btn-big profile-btn-outline" 
+                                        onClick={() => {
+                                            setShowEmailAuth(true);
+                                            setIsSignUp(false);
+                                            setAuthError('');
+                                            setEmail('');
+                                            setPassword('');
+                                            setConfirmPassword('');
+                                            setNameSignUp('');
+                                            setAliasSignUp('');
+                                            scrollToTop();
+                                        }}
+                                    >
+                                        Autentifică-te cu email
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    ) : (
+                        <div className={`profile-email-auth-form ${isSignUp ? 'profile-email-auth-form--signup' : ''}`}>
+                            <h3 className="profile-email-auth-title">
+                                {isSignUp ? 'Creează un cont nou' : 'Autentifică-te'}
+                            </h3>
+                            
+                            <form onSubmit={handleEmailSignUp}>
+                                <div className="profile-email-auth-field">
+                                    <label htmlFor="email">Email:</label>
+                                    <input
+                                        id="email"
+                                        type="email"
+                                        value={email}
+                                        onChange={(e) => {
+                                            setEmail(e.target.value);
+                                            setAuthError('');
+                                        }}
+                                        placeholder="introdu@email.com"
+                                        required
+                                        disabled={authLoading}
+                                    />
+                                </div>
+                                
+                                {isSignUp && (
+                                    <>
+                                        <div className="profile-email-auth-field">
+                                            <label htmlFor="nameSignUp">Nume:</label>
+                                            <input
+                                                id="nameSignUp"
+                                                type="text"
+                                                value={nameSignUp}
+                                                onChange={(e) => {
+                                                    setNameSignUp(e.target.value);
+                                                    setAuthError('');
+                                                }}
+                                                placeholder="Introdu numele tău"
+                                                required
+                                                disabled={authLoading}
+                                                minLength={2}
+                                                maxLength={50}
+                                            />
+                                        </div>
+                                        
+                                        <div className="profile-email-auth-field">
+                                            <label htmlFor="aliasSignUp">Alias:</label>
+                                            <input
+                                                id="aliasSignUp"
+                                                type="text"
+                                                value={aliasSignUp}
+                                                onChange={(e) => {
+                                                    setAliasSignUp(e.target.value);
+                                                    setAuthError('');
+                                                }}
+                                                placeholder="Alege un alias unic"
+                                                required
+                                                disabled={authLoading}
+                                                minLength={3}
+                                            />
+                                        </div>
+                                    </>
+                                )}
+                                
+                                <div className="profile-email-auth-field">
+                                    <label htmlFor="password">Parolă:</label>
+                                    <input
+                                        id="password"
+                                        type="password"
+                                        value={password}
+                                        onChange={(e) => {
+                                            setPassword(e.target.value);
+                                            setAuthError('');
+                                        }}
+                                        placeholder="Minim 6 caractere"
+                                        required
+                                        disabled={authLoading}
+                                        minLength={6}
+                                    />
+                                </div>
+                                
+                                {isSignUp && (
+                                    <div className="profile-email-auth-field">
+                                        <label htmlFor="confirmPassword">Confirmă parola:</label>
+                                        <input
+                                            id="confirmPassword"
+                                            type="password"
+                                            value={confirmPassword}
+                                            onChange={(e) => {
+                                                setConfirmPassword(e.target.value);
+                                                setAuthError('');
+                                            }}
+                                            placeholder="Repetă parola"
+                                            required
+                                            disabled={authLoading}
+                                            minLength={6}
+                                        />
+                                    </div>
+                                )}
+                                
+                                {authError && (
+                                    <div className="profile-auth-error">
+                                        {authError}
+                                    </div>
+                                )}
+                                
+                                <div className="profile-email-auth-actions">
+                                    <button 
+                                        type="submit" 
+                                        className="profile-btn profile-btn-blue"
+                                        disabled={authLoading}
+                                    >
+                                        {authLoading ? 'Se procesează...' : (isSignUp ? 'Creează cont' : 'Autentifică-te')}
+                                    </button>
+                                    <button 
+                                        type="button" 
+                                        className="profile-btn profile-btn-red"
+                                        onClick={() => {
+                                            setShowEmailAuth(false);
+                                            setEmail('');
+                                            setPassword('');
+                                            setConfirmPassword('');
+                                            setAuthError('');
+                                            scrollToTop();
+                                        }}
+                                        disabled={authLoading}
+                                    >
+                                        Anulează
+                                    </button>
+                                </div>
+                                
+                                <div className="profile-email-auth-switch">
+                                    {isSignUp ? (
+                                        <span>
+                                            Ai deja cont?{' '}
+                                            <button 
+                                                type="button"
+                                                className="profile-auth-link"
+                                                onClick={() => {
+                                                    setIsSignUp(false);
+                                                    setAuthError('');
+                                                    setNameSignUp('');
+                                                    setAliasSignUp('');
+                                                    setConfirmPassword('');
+                                                    scrollToTop();
+                                                }}
+                                            >
+                                                Autentifică-te
+                                            </button>
+                                        </span>
+                                    ) : (
+                                        <span>
+                                            Nu ai cont?{' '}
+                                            <button 
+                                                type="button"
+                                                className="profile-auth-link"
+                                                onClick={() => {
+                                                    setIsSignUp(true);
+                                                    setAuthError('');
+                                                    scrollToTop();
+                                                }}
+                                            >
+                                                Creează unul
+                                            </button>
+                                        </span>
+                                    )}
+                                </div>
+                            </form>
+                        </div>
+                    )}
                 </div>
             </Layout>
         );
@@ -822,6 +1183,11 @@ const Profile = () => {
                                 // Reset selected image when opening modal
                                 setSelectedImageFile(null);
                                 setSelectedImagePreview(null);
+                                // Reset errors
+                                setAliasError('');
+                                setNameError('');
+                                setDescriptionError('');
+                                setSaveError('');
                                 setShowEditModal(true);
                             }}>
                                 Editează profilul
@@ -946,6 +1312,7 @@ const Profile = () => {
                                 maxLength={200}
                             />
                             {descriptionError && <div className="description-error">{descriptionError}</div>}
+                            {saveError && <div className="profile-save-error">{saveError}</div>}
                             <div className="profile-edit-actions">
                                 <button 
                                     className="profile-btn profile-btn-blue" 

@@ -1,6 +1,6 @@
 // src/lib/firebase.js
 import { initializeApp } from "firebase/app";
-import { getAuth, GoogleAuthProvider } from "firebase/auth";
+import { getAuth, GoogleAuthProvider, createUserWithEmailAndPassword, signInWithEmailAndPassword } from "firebase/auth";
 import { collection, getFirestore } from "firebase/firestore";
 import { getStorage } from "firebase/storage";
 
@@ -23,4 +23,4 @@ const storage = getStorage(app);
 const usersCollection = collection(db, 'users');
 const problemsCollection = collection(db, 'problems');
 
-export { auth, provider, db, storage };
+export { auth, provider, db, storage, createUserWithEmailAndPassword, signInWithEmailAndPassword };
