@@ -171,11 +171,11 @@ service cloud.firestore {
     
     // Problems collection rules
     match /problems/{problemId} {
-      // All authenticated users can read problems
-      allow read: if isAuthenticated();
+      // All users can read problems
+      allow read: if true;
       
-      // Only admins can create problems
-      allow create: if isAdmin();
+      // Only authenticated users can create problems
+      allow create: if isAuthenticated();
       
       // Only admins can update problems
       allow update: if isAdmin();
