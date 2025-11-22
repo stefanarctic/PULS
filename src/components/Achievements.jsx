@@ -7,6 +7,8 @@ const Achievements = ({ achievements = [] }) => (
       {achievements.length === 0 && <li>Nu există realizări încă.</li>}
       {achievements.map((ach, idx) => {
         if (ach.type === 'milestone') {
+          // Folosește iconița personalizată dacă există, altfel folosește trofeul
+          const icon = ach.icon || '🏆';
           return (
             <li key={idx} style={{marginBottom: '1em', display: 'flex', alignItems: 'center'}}>
               <span style={{
@@ -21,7 +23,7 @@ const Achievements = ({ achievements = [] }) => (
                 alignItems: 'center',
                 justifyContent: 'center',
                 boxShadow: '0 2px 8px rgba(0,0,0,0.08)'
-              }}>🏆</span>
+              }}>{icon}</span>
               <div>
                 <strong>{ach.title}</strong>
                 <div>{ach.description}</div>

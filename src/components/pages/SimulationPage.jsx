@@ -1,7 +1,12 @@
 import { useEffect, useRef, useState } from "react";
 import Layout from "../Layout";
+import { doc, getDoc, updateDoc } from "firebase/firestore";
+import { db } from "../../lib/firebase";
+import { auth } from "../../lib/firebase";
+import { onAuthStateChanged } from "firebase/auth";
 
 const SimulationPage = ({
+  id,
   title,
   description,
   iframeSrc,
@@ -10,6 +15,60 @@ const SimulationPage = ({
 }) => {
   const iframeRef = useRef(null);
   const [isFullscreen, setIsFullscreen] = useState(false);
+  const [user, setUser] = useState(null);
+
+  // Monitorizează starea de autentificare
+  useEffect(() => {
+    const unsubscribe = onAuthStateChanged(auth, (firebaseUser) => {
+      setUser(firebaseUser);
+    });
+
+    return () => unsubscribe();
+  }, []);
+
+  // Salvează simularea accesată în Firebase
+  useEffect(() => {
+    if (!user?.uid || !id || !title) return;
+
+    const saveSimulationVisited = async () => {
+      try {
+        const userRef = doc(db, 'users', user.uid);
+        const snap = await getDoc(userRef);
+        
+        let currentSimulationsVisited = [];
+        if (snap.exists() && snap.data().simulationsVisited) {
+          currentSimulationsVisited = snap.data().simulationsVisited;
+        }
+
+        // Verifică dacă simularea a fost deja accesată
+        const existingIndex = currentSimulationsVisited.findIndex(
+          s => s.id === id || (s.title === title && s.id === id)
+        );
+
+        const simulationVisited = {
+          id: id,
+          title: title,
+          date: new Date().toISOString()
+        };
+
+        if (existingIndex >= 0) {
+          // Actualizează data dacă există deja (pentru a marca ultima accesare)
+          currentSimulationsVisited[existingIndex] = simulationVisited;
+        } else {
+          // Adaugă simularea nouă accesată
+          currentSimulationsVisited.push(simulationVisited);
+        }
+
+        // Salvează în Firebase
+        await updateDoc(userRef, { simulationsVisited: currentSimulationsVisited });
+        console.log('✅ Simulation visited saved to Firebase');
+      } catch (error) {
+        console.error('❌ Error saving simulation visited:', error);
+      }
+    };
+
+    saveSimulationVisited();
+  }, [user?.uid, id, title]);
 
   const handleToggleFullscreen = () => {
     const iframe = iframeRef.current;
