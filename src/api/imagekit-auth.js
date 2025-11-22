@@ -1,9 +1,11 @@
 import ImageKit from "imagekit";
 
+// Note: Private key should NEVER be in client-side code
+// This client-side instance only uses public key for generating auth params
+// For operations requiring private key, use the server-side API endpoint
 const imagekit = new ImageKit({
-  publicKey: "public_6rkxL+q+51xT8d2+GHpJeNSzOTE=",
-  privateKey: "private_oJjrNiZncRmpFuzBumLFxAk1NWg=",
-  urlEndpoint: "https://ik.imagekit.io/v0wqjmdfc"
+  publicKey: import.meta.env.VITE_IMAGEKIT_PUBLIC_KEY,
+  urlEndpoint: import.meta.env.VITE_IMAGEKIT_URL_ENDPOINT
 });
 
 // Funcție pentru a obține parametrii de autentificare ImageKit

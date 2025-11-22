@@ -1,9 +1,9 @@
 // Cloudinary configuration pentru upload direct din browser
 export const CLOUDINARY_CONFIG = {
-  cloudName: 'dirbxggjk', // Înlocuiește cu numele tău de cloud
-  uploadPreset: 'puls-profiles', // Trebuie să fie UNPUBLISHED/UNSIGNED (unsigned) în Cloudinary
+  cloudName: import.meta.env.VITE_CLOUDINARY_CLOUD_NAME,
+  uploadPreset: import.meta.env.VITE_CLOUDINARY_UPLOAD_PRESET,
   // Opțional: setează folder implicit din preset; dacă presetul are deja folder, nu mai trimitem din client
-  folder: 'puls-profiles'
+  folder: import.meta.env.VITE_CLOUDINARY_FOLDER
 };
 
 // Funcție pentru a obține URL-ul de upload Cloudinary
