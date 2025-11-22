@@ -69,7 +69,32 @@ const Index = () => {
         try {
             await signInWithPopup(auth, provider);
         } catch (error) {
-            alert('Eroare la autentificare!');
+            console.error('Error signing in with Google:', error);
+            
+            // Gestionăm erorile specifice Firebase
+            switch (error.code) {
+                case 'auth/account-exists-with-different-credential':
+                    // Există deja un cont cu acest email creat cu email/password
+                    // Nu afișăm alertă pentru utilizatorii care au deja conturi email/password
+                    // Acest caz este gestionat automat de Firebase
+                    return;
+                case 'auth/popup-closed-by-user':
+                case 'auth/cancelled-popup-request':
+                    // Utilizatorul a închis popup-ul - nu afișăm eroare
+                    return;
+                case 'auth/popup-blocked':
+                    alert('Popup-ul a fost blocat de browser. Te rugăm să permiți popup-urile pentru acest site.');
+                    return;
+                case 'auth/network-request-failed':
+                    alert('Eroare de rețea. Te rugăm să verifici conexiunea la internet.');
+                    return;
+                default:
+                    // Pentru alte erori, afișăm mesajul generic doar dacă nu este o eroare de anulare
+                    if (error.code && !error.code.includes('cancelled') && !error.code.includes('popup-closed')) {
+                        alert('Eroare la autentificare!');
+                    }
+                    return;
+            }
         }
     };
 

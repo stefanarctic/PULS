@@ -377,8 +377,41 @@ const Profile = () => {
             await signInWithPopup(auth, provider);
         } catch (error) {
             console.error('Error signing in with Google:', error);
-            // Nu setăm aliasError aici pentru că nu are legătură cu formularul de editare profil
-            alert('Eroare la autentificare cu Google. Te rugăm să încerci din nou.');
+            
+            // Verifică dacă utilizatorul este deja autentificat cu email/password
+            if (user && user.providerData && user.providerData.length > 0) {
+                const hasEmailProvider = user.providerData.some(provider => provider.providerId === 'password');
+                if (hasEmailProvider) {
+                    // Utilizatorul are deja un cont cu email/password
+                    // Nu afișăm alertă pentru că utilizatorul este deja autentificat
+                    return;
+                }
+            }
+            
+            // Gestionăm erorile specifice Firebase
+            switch (error.code) {
+                case 'auth/account-exists-with-different-credential':
+                    // Există deja un cont cu acest email creat cu email/password
+                    // Nu afișăm alertă pentru utilizatorii care au deja conturi email/password
+                    // Acest caz este gestionat automat de Firebase
+                    return;
+                case 'auth/popup-closed-by-user':
+                case 'auth/cancelled-popup-request':
+                    // Utilizatorul a închis popup-ul - nu afișăm eroare
+                    return;
+                case 'auth/popup-blocked':
+                    alert('Popup-ul a fost blocat de browser. Te rugăm să permiți popup-urile pentru acest site.');
+                    return;
+                case 'auth/network-request-failed':
+                    alert('Eroare de rețea. Te rugăm să verifici conexiunea la internet.');
+                    return;
+                default:
+                    // Pentru alte erori, afișăm mesajul generic doar dacă nu este o eroare de anulare
+                    if (error.code && !error.code.includes('cancelled') && !error.code.includes('popup-closed')) {
+                        alert('Eroare la autentificare cu Google. Te rugăm să încerci din nou.');
+                    }
+                    return;
+            }
         }
     };
 
