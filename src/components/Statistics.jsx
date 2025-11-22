@@ -22,7 +22,7 @@ const Statistics = ({ statistics = {} }) => {
   const averageScore = maxPossibleScore > 0 ? Math.round((totalScore / maxPossibleScore) * 100) : 0;
   
   return (
-    <div>
+    <div className="statistics">
       <h3>Statistici generale</h3>
       
       {/* Statistici pentru probleme rezolvate */}

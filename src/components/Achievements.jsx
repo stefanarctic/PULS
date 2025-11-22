@@ -1,7 +1,7 @@
 import React from "react";
 
 const Achievements = ({ achievements = [] }) => (
-  <div>
+  <div className="achievements">
     <h3>Realizări</h3>
     <ul style={{listStyle: 'none', padding: 0}}>
       {achievements.length === 0 && <li>Nu există realizări încă.</li>}
