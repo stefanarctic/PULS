@@ -4,6 +4,7 @@ import { doc, getDoc, updateDoc } from "firebase/firestore";
 import { db } from "../../lib/firebase";
 import { auth } from "../../lib/firebase";
 import { onAuthStateChanged } from "firebase/auth";
+import { useAchievements } from "../../hooks/useAchievements";
 
 const SimulationPage = ({
   id,
@@ -16,6 +17,7 @@ const SimulationPage = ({
   const iframeRef = useRef(null);
   const [isFullscreen, setIsFullscreen] = useState(false);
   const [user, setUser] = useState(null);
+  const { checkAchievements } = useAchievements();
 
   // Monitorizează starea de autentificare
   useEffect(() => {
@@ -62,13 +64,21 @@ const SimulationPage = ({
         // Salvează în Firebase
         await updateDoc(userRef, { simulationsVisited: currentSimulationsVisited });
         console.log('✅ Simulation visited saved to Firebase');
+        
+        // Verifică achievements după ce s-a salvat simularea
+        try {
+          await checkAchievements({ simulationsVisited: currentSimulationsVisited });
+        } catch (error) {
+          console.error('Error checking achievements:', error);
+          // Nu aruncăm eroarea pentru a nu afecta salvarea simulării
+        }
       } catch (error) {
         console.error('❌ Error saving simulation visited:', error);
       }
     };
 
     saveSimulationVisited();
-  }, [user?.uid, id, title]);
+  }, [user?.uid, id, title, checkAchievements]);
 
   const handleToggleFullscreen = () => {
     const iframe = iframeRef.current;

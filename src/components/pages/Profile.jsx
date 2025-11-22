@@ -193,7 +193,7 @@ const Profile = () => {
     const [favorites, setFavorites] = useState([]);
     const [userProblems, setUserProblems] = useState([]);
     const { solvedProblems, saveSolvedProblem, clearTestProblems, clearAllSolvedProblems } = useSolvedProblems();
-    const { achievements, updateAchievements, newAchievements, clearNewAchievements } = useAchievements();
+    const { achievements, checkAchievements, loadAchievements, newAchievements, clearNewAchievements } = useAchievements();
 
     const solvedProblemsMap = useMemo(() => {
         return solvedProblems.reduce((acc, entry) => {
@@ -794,196 +794,84 @@ const Profile = () => {
         }
     };
 
+    // Construiește activityLog și statisticile (fără achievements)
     useEffect(() => {
         if (!user || !user.uid) return;
         
         // Probleme adăugate de utilizator
         const addedProblems = userProblems.filter(p => p.createdByAlias === alias);
-        const userRef = doc(db, 'users', user.uid);
         
-        // Funcție pentru calcularea și actualizarea achievement-urilor
-        const calculateAndUpdateAchievements = (simulationsVisited = []) => {
-            
-            // Construim activityLog - filtrează problemele care nu există
-            const allAvailableProblems = allProblems;
-            const addedProblemsFiltered = addedProblems.filter(p => 
-                allAvailableProblems.some(ap => String(ap.id) === String(p.id))
-            );
-            
-            // Procesăm problemele rezolvate cu scorurile lor (din hook)
-            // console.log('📊 Profile processing solvedProblems:', solvedProblems);
-            
-            const solvedActivities = solvedProblems.map(solvedProblem => {
-                const originalProblem = allAvailableProblems.find(p => String(p.id) === String(solvedProblem.problemId));
-                
-                // Folosește titlul personalizat dacă există, altfel caută în problemele existente
-                let problemTitle = solvedProblem.customTitle;
-                if (!problemTitle) {
-                    problemTitle = originalProblem ? originalProblem.titlu : `Problema ${solvedProblem.problemId}`;
-                }
-                
-                // Extragem index-ul problemei pentru navigare (ruta folosește index-ul)
-                const problemIndex = originalProblem ? originalProblem.index : null;
-                
-                // console.log('🎯 Processing problem:', {
-                //     problemId: solvedProblem.problemId,
-                //     scoreObtained: solvedProblem.scoreObtained,
-                //     maxScore: solvedProblem.maxScore,
-                //     title: problemTitle
-                // });
-                
-                return {
-                    type: 'problem_solved',
-                    title: problemTitle,
-                    date: solvedProblem.solvedAt,
-                    link: solvedProblem.problemId.startsWith('submitted_') ? null : `/probleme/${problemIndex || solvedProblem.problemId}`,
-                    problemIndex: problemIndex,
-                    score: {
-                        scoreObtained: solvedProblem.scoreObtained,
-                        maxScore: solvedProblem.maxScore
-                    }
-                };
-            });
-            
-            const activity = [
-                ...solvedActivities,
-                ...addedProblemsFiltered.map(p => {
-                    const originalProblem = allAvailableProblems.find(ap => String(ap.id) === String(p.id));
-                    const problemIndex = originalProblem ? originalProblem.index : null;
-                    return { 
-                        type: 'problem_added', 
-                        title: p.titlu, 
-                        date: p.createdAt || '', 
-                        link: p.id ? `/probleme/${problemIndex || p.id}` : undefined,
-                        problemIndex: problemIndex
-                    };
-                }),
-                // Nu mai includem simulările în activitatea recentă
-            ].sort((a, b) => new Date(b.date) - new Date(a.date));
-            setActivityLog(activity);
-            
-            // Achievements cumulative pentru probleme rezolvate și adăugate
-            const ach = [];
-            
-            // Calculează statistici pentru achievements
-            const totalScore = solvedActivities.reduce((total, activity) => total + activity.score.scoreObtained, 0);
-            const maxPossibleScore = solvedActivities.reduce((total, activity) => total + activity.score.maxScore, 0);
-            const averageScore = maxPossibleScore > 0 ? (totalScore / maxPossibleScore) * 100 : 0;
-            const perfectScores = solvedActivities.filter(a => a.score.scoreObtained === a.score.maxScore && a.score.maxScore > 0).length;
-            
-            // Analizează dificultățile și categoriile problemelor rezolvate
-            const solvedDifficulties = {};
-            const solvedCategories = {};
-            solvedProblems.forEach(solvedProblem => {
-                const originalProblem = allAvailableProblems.find(p => String(p.id) === String(solvedProblem.problemId));
-                if (originalProblem) {
-                    if (originalProblem.dificultate) {
-                        solvedDifficulties[originalProblem.dificultate] = (solvedDifficulties[originalProblem.dificultate] || 0) + 1;
-                    }
-                    if (originalProblem.categorie) {
-                        solvedCategories[originalProblem.categorie] = (solvedCategories[originalProblem.categorie] || 0) + 1;
-                    }
-                }
-            });
-            
-            // Achievements pentru probleme rezolvate - Milestones
-            if (solvedActivities.length >= 1) ach.push({ type: 'milestone', title: 'Prima problemă rezolvată', description: 'Ai rezolvat prima ta problemă!', color: '#10b981' });
-            if (solvedActivities.length >= 5) ach.push({ type: 'milestone', title: 'Rezolvător dedicat', description: 'Ai rezolvat 5 probleme!', color: '#3b82f6' });
-            if (solvedActivities.length >= 10) ach.push({ type: 'milestone', title: 'Maestru al rezolvării', description: 'Ai rezolvat 10 probleme!', color: '#ffd700' });
-            if (solvedActivities.length >= 25) ach.push({ type: 'milestone', title: 'Expert în rezolvări', description: 'Ai rezolvat 25 de probleme!', color: '#8b5cf6' });
-            if (solvedActivities.length >= 50) ach.push({ type: 'milestone', title: 'Legenda rezolvărilor', description: 'Ai rezolvat 50 de probleme!', color: '#ec4899' });
-            if (solvedActivities.length >= 100) ach.push({ type: 'milestone', title: 'Maestru suprem', description: 'Ai rezolvat 100 de probleme!', color: '#f59e0b' });
-            
-            // Achievements pentru probleme adăugate - Milestones
-            if (addedProblems.length >= 1) ach.push({ type: 'milestone', title: 'Începător în fizică', description: 'Ai adăugat prima ta problemă!', color: '#b0b0b0' });
-            if (addedProblems.length >= 5) ach.push({ type: 'milestone', title: 'Avansat', description: 'Ai adăugat 5 probleme!', color: '#4a90e2' });
-            if (addedProblems.length >= 10) ach.push({ type: 'milestone', title: 'Maestru', description: 'Ai adăugat 10 probleme!', color: '#ffd700' });
-            if (addedProblems.length >= 25) ach.push({ type: 'milestone', title: 'Creator prolific', description: 'Ai adăugat 25 de probleme!', color: '#8b5cf6' });
-            if (addedProblems.length >= 50) ach.push({ type: 'milestone', title: 'Arhitect al problemelor', description: 'Ai adăugat 50 de probleme!', color: '#ec4899' });
-            
-            // Achievements bazate pe scor
-            if (perfectScores >= 1) ach.push({ type: 'milestone', title: 'Scor perfect', description: 'Ai obținut scor maxim la o problemă!', color: '#10b981' });
-            if (perfectScores >= 5) ach.push({ type: 'milestone', title: 'Perfecționist', description: 'Ai obținut scor maxim la 5 probleme!', color: '#3b82f6' });
-            if (perfectScores >= 10) ach.push({ type: 'milestone', title: 'Maestru al perfecțiunii', description: 'Ai obținut scor maxim la 10 probleme!', color: '#ffd700' });
-            if (averageScore >= 90 && solvedActivities.length >= 5) ach.push({ type: 'milestone', title: 'Excelență academică', description: 'Ai un scor mediu de peste 90%!', color: '#8b5cf6' });
-            if (averageScore >= 95 && solvedActivities.length >= 10) ach.push({ type: 'milestone', title: 'Geniu al fizicii', description: 'Ai un scor mediu de peste 95%!', color: '#ec4899' });
-            if (averageScore === 100 && solvedActivities.length >= 5) ach.push({ type: 'milestone', title: 'Perfecțiune absolută', description: 'Ai un scor mediu de 100%!', color: '#f59e0b' });
-            
-            // Achievements bazate pe dificultate
-            if (solvedDifficulties['dificil'] >= 1) ach.push({ type: 'milestone', title: 'Provocare acceptată', description: 'Ai rezolvat o problemă dificilă!', color: '#ef4444' });
-            if (solvedDifficulties['dificil'] >= 5) ach.push({ type: 'milestone', title: 'Maestru al provocărilor', description: 'Ai rezolvat 5 probleme dificile!', color: '#dc2626' });
-            if (solvedDifficulties['concurs'] >= 1) ach.push({ type: 'milestone', title: 'Nivel de concurs', description: 'Ai rezolvat o problemă de nivel concurs!', color: '#7c3aed' });
-            if (solvedDifficulties['concurs'] >= 3) ach.push({ type: 'milestone', title: 'Campion la concursuri', description: 'Ai rezolvat 3 probleme de nivel concurs!', color: '#5b21b6' });
-            
-            // Achievements bazate pe categorii
-            const uniqueCategories = Object.keys(solvedCategories).length;
-            if (uniqueCategories >= 3) ach.push({ type: 'milestone', title: 'Explorator', description: 'Ai rezolvat probleme din 3 categorii diferite!', color: '#06b6d4' });
-            if (uniqueCategories >= 5) ach.push({ type: 'milestone', title: 'Polimat', description: 'Ai rezolvat probleme din 5 categorii diferite!', color: '#0891b2' });
-            if (uniqueCategories >= 7) ach.push({ type: 'milestone', title: 'Om de știință complet', description: 'Ai rezolvat probleme din 7 categorii diferite!', color: '#0e7490' });
-            
-            // Achievements pentru simulări
-            if (simulationsVisited.length >= 1) ach.push({ type: 'milestone', title: 'Prima simulare', description: 'Ai accesat prima simulare!', color: '#14b8a6', icon: '🧪' });
-            if (simulationsVisited.length >= 5) ach.push({ type: 'milestone', title: 'Explorator de simulări', description: 'Ai accesat 5 simulări!', color: '#0d9488' });
-            if (simulationsVisited.length >= 10) ach.push({ type: 'milestone', title: 'Maestru al simulărilor', description: 'Ai accesat 10 simulări!', color: '#0f766e' });
-            
-            // Salvează achievement-urile în Firebase
-            updateAchievements(ach).then(result => {
-                if (result.new && result.new.length > 0) {
-                    console.log('🎉 New achievements unlocked:', result.new);
-                }
-            }).catch(error => {
-                console.error('Error updating achievements:', error);
-            });
-            
-            // Statistici pentru probleme rezolvate și adăugate
-            const stats = { 
-                dificultate: {}, 
-                categorie: {},
-                solvedProblems: solvedActivities.length,
-                totalScore: solvedActivities.reduce((total, activity) => total + activity.score.scoreObtained, 0),
-                maxPossibleScore: solvedActivities.reduce((total, activity) => total + activity.score.maxScore, 0)
-            };
-            
-            // Statistici pentru probleme adăugate
-            addedProblems.forEach(p => {
-                if (p.dificultate) stats.dificultate[p.dificultate] = (stats.dificultate[p.dificultate] || 0) + 1;
-                if (p.categorie) stats.categorie[p.categorie] = (stats.categorie[p.categorie] || 0) + 1;
-            });
-            setStatistics(stats);
-        };
+        // Construim activityLog - filtrează problemele care nu există
+        const allAvailableProblems = allProblems;
+        const addedProblemsFiltered = addedProblems.filter(p => 
+            allAvailableProblems.some(ap => String(ap.id) === String(p.id))
+        );
         
-        // Folosește onSnapshot pentru a asculta schimbările în timp real
-        const unsubscribe = onSnapshot(userRef, (snap) => {
-            let simulationsVisited = [];
-            if (snap.exists() && snap.data().simulationsVisited) {
-                simulationsVisited = snap.data().simulationsVisited;
+        // Procesăm problemele rezolvate cu scorurile lor (din hook)
+        const solvedActivities = solvedProblems.map(solvedProblem => {
+            const originalProblem = allAvailableProblems.find(p => String(p.id) === String(solvedProblem.problemId));
+            
+            // Folosește titlul personalizat dacă există, altfel caută în problemele existente
+            let problemTitle = solvedProblem.customTitle;
+            if (!problemTitle) {
+                problemTitle = originalProblem ? originalProblem.titlu : `Problema ${solvedProblem.problemId}`;
             }
             
-            // Recalculează achievement-urile când se schimbă simulările
-            calculateAndUpdateAchievements(simulationsVisited);
-        }, (error) => {
-            console.error('Error listening to user document:', error);
-            // Fallback la getDoc dacă onSnapshot eșuează
-            const fetchSimulations = async () => {
-                try {
-                    const snap = await getDoc(userRef);
-                    let simulationsVisited = [];
-                    if (snap.exists() && snap.data().simulationsVisited) {
-                        simulationsVisited = snap.data().simulationsVisited;
-                    }
-                    calculateAndUpdateAchievements(simulationsVisited);
-                } catch (e) {
-                    calculateAndUpdateAchievements([]);
+            // Extragem index-ul problemei pentru navigare (ruta folosește index-ul)
+            const problemIndex = originalProblem ? originalProblem.index : null;
+            
+            return {
+                type: 'problem_solved',
+                title: problemTitle,
+                date: solvedProblem.solvedAt,
+                link: solvedProblem.problemId.startsWith('submitted_') ? null : `/probleme/${problemIndex || solvedProblem.problemId}`,
+                problemIndex: problemIndex,
+                score: {
+                    scoreObtained: solvedProblem.scoreObtained,
+                    maxScore: solvedProblem.maxScore
                 }
             };
-            fetchSimulations();
         });
         
-        // Cleanup listener când componenta se demonta sau când se schimbă user-ul
-        return () => {
-            unsubscribe();
+        const activity = [
+            ...solvedActivities,
+            ...addedProblemsFiltered.map(p => {
+                const originalProblem = allAvailableProblems.find(ap => String(ap.id) === String(p.id));
+                const problemIndex = originalProblem ? originalProblem.index : null;
+                return { 
+                    type: 'problem_added', 
+                    title: p.titlu, 
+                    date: p.createdAt || '', 
+                    link: p.id ? `/probleme/${problemIndex || p.id}` : undefined,
+                    problemIndex: problemIndex
+                };
+            }),
+        ].sort((a, b) => new Date(b.date) - new Date(a.date));
+        setActivityLog(activity);
+        
+        // Statistici pentru probleme rezolvate și adăugate
+        const stats = { 
+            dificultate: {}, 
+            categorie: {},
+            solvedProblems: solvedActivities.length,
+            totalScore: solvedActivities.reduce((total, activity) => total + activity.score.scoreObtained, 0),
+            maxPossibleScore: solvedActivities.reduce((total, activity) => total + activity.score.maxScore, 0)
         };
-    }, [user, userProblems, alias, allProblems, solvedProblems, updateAchievements]);
+        
+        // Statistici pentru probleme adăugate
+        addedProblems.forEach(p => {
+            if (p.dificultate) stats.dificultate[p.dificultate] = (stats.dificultate[p.dificultate] || 0) + 1;
+            if (p.categorie) stats.categorie[p.categorie] = (stats.categorie[p.categorie] || 0) + 1;
+        });
+        setStatistics(stats);
+    }, [user, userProblems, alias, allProblems, solvedProblems]);
+
+    // Încarcă achievements când se deschide tab-ul de realizări
+    useEffect(() => {
+        if (activeTab === 'realizari' && user?.uid) {
+            loadAchievements();
+        }
+    }, [activeTab, user?.uid, loadAchievements]);
 
     if (loading) {
         return (

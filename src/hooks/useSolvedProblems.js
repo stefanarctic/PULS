@@ -3,11 +3,13 @@ import { doc, getDoc, updateDoc } from 'firebase/firestore';
 import { db } from '../lib/firebase';
 import { auth } from '../lib/firebase';
 import { onAuthStateChanged } from 'firebase/auth';
+import { useAchievements } from './useAchievements';
 
 export const useSolvedProblems = () => {
   const [solvedProblems, setSolvedProblems] = useState([]);
   const [loading, setLoading] = useState(false);
   const [user, setUser] = useState(null);
+  const { checkAchievements } = useAchievements();
 
   // Monitorizează starea de autentificare
   useEffect(() => {
@@ -89,6 +91,14 @@ export const useSolvedProblems = () => {
       
       // Actualizează state-ul local
       setSolvedProblems(currentSolvedProblems);
+      
+      // Verifică achievements după ce s-a salvat problema
+      try {
+        await checkAchievements({ solvedProblems: currentSolvedProblems });
+      } catch (error) {
+        console.error('Error checking achievements:', error);
+        // Nu aruncăm eroarea pentru a nu afecta salvarea problemei
+      }
       
       return true;
     } catch (error) {

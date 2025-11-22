@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { doc, getDoc, updateDoc } from 'firebase/firestore';
+import { doc, getDoc, updateDoc, collection, getDocs } from 'firebase/firestore';
 import { db } from '../lib/firebase';
 import { auth } from '../lib/firebase';
 import { onAuthStateChanged } from 'firebase/auth';
@@ -41,86 +41,46 @@ export const useAchievements = () => {
     }
   };
 
-  // Verifică dacă un achievement există deja
-  const achievementExists = (newAchievement, existingAchievements) => {
-    return existingAchievements.some(
-      existing => existing.title === newAchievement.title && existing.type === newAchievement.type
-    );
-  };
-
-  // Salvează achievement-uri noi în Firebase
-  const saveAchievements = async (newAchievementsList) => {
-    if (!user?.uid || !newAchievementsList || newAchievementsList.length === 0) {
-      return { saved: [], new: [] };
-    }
-
-    try {
-      const userRef = doc(db, 'users', user.uid);
-      const snap = await getDoc(userRef);
-      
-      let existingAchievements = [];
-      if (snap.exists() && snap.data().achievements) {
-        existingAchievements = snap.data().achievements;
-      }
-
-      // Filtrează achievement-urile noi (care nu există deja)
-      const trulyNewAchievements = newAchievementsList.filter(
-        newAch => !achievementExists(newAch, existingAchievements)
-      );
-
-      if (trulyNewAchievements.length === 0) {
-        // Nu sunt achievement-uri noi, dar actualizează lista completă
-        const allAchievements = [...existingAchievements];
-        // Adaugă achievement-urile care nu sunt încă în listă (pentru sincronizare)
-        newAchievementsList.forEach(newAch => {
-          if (!achievementExists(newAch, allAchievements)) {
-            allAchievements.push(newAch);
-          }
-        });
-        
-        if (allAchievements.length !== existingAchievements.length) {
-          await updateDoc(userRef, { achievements: allAchievements });
-          setAchievements(allAchievements);
-        }
-        return { saved: allAchievements, new: [] };
-      }
-
-      // Adaugă achievement-urile noi
-      const updatedAchievements = [...existingAchievements, ...trulyNewAchievements];
-      
-      // Salvează în Firebase
-      await updateDoc(userRef, { achievements: updatedAchievements });
-      
-      // Actualizează state-ul local
-      setAchievements(updatedAchievements);
-      
-      // Setează achievement-urile noi pentru notificare
-      setNewAchievements(trulyNewAchievements);
-      
-      // Șterge notificările după 5 secunde
-      setTimeout(() => {
-        setNewAchievements([]);
-      }, 5000);
-
-      return { saved: updatedAchievements, new: trulyNewAchievements };
-    } catch (error) {
-      console.error('Error saving achievements:', error);
-      throw error;
-    }
-  };
-
-  // Actualizează achievement-urile (recalculează și salvează)
-  const updateAchievements = async (calculatedAchievements) => {
+  // Verifică și adaugă achievements noi bazate pe datele utilizatorului
+  const checkAchievements = async (userData = {}) => {
     if (!user?.uid) return { saved: [], new: [] };
 
     try {
       const userRef = doc(db, 'users', user.uid);
       const snap = await getDoc(userRef);
       
-      let existingAchievements = [];
-      if (snap.exists() && snap.data().achievements) {
-        existingAchievements = snap.data().achievements;
+      if (!snap.exists()) {
+        return { saved: [], new: [] };
       }
+
+      const userDoc = snap.data();
+      const existingAchievements = userDoc.achievements || [];
+      
+      // Extrage datele necesare pentru calcularea achievements
+      const solvedProblems = userData.solvedProblems || userDoc.solvedProblems || [];
+      const simulationsVisited = userData.simulationsVisited || userDoc.simulationsVisited || [];
+      const alias = userData.alias || userDoc.alias || '';
+      
+      // Citește userProblems din subcollection dacă nu sunt pasate
+      let userProblems = userData.userProblems;
+      if (!userProblems) {
+        try {
+          const userProblemsRef = collection(db, 'users', user.uid, 'userProblems');
+          const querySnapshot = await getDocs(userProblemsRef);
+          userProblems = querySnapshot.docs.map(doc => doc.data());
+        } catch (error) {
+          console.error('Error loading user problems:', error);
+          userProblems = [];
+        }
+      }
+      
+      // Calculează achievements noi
+      const calculatedAchievements = calculateAchievements(
+        solvedProblems,
+        simulationsVisited,
+        userProblems,
+        alias
+      );
 
       // Identifică achievement-urile noi
       const newAchievementsList = calculatedAchievements.filter(
@@ -128,7 +88,6 @@ export const useAchievements = () => {
       );
 
       // Creează lista finală (păstrează achievement-urile existente și adaugă pe cele noi)
-      // Pentru milestone-uri, înlocuim pe cele vechi cu cele noi (pentru a actualiza descrierile)
       const milestoneTitles = new Set(
         calculatedAchievements
           .filter(a => a.type === 'milestone')
@@ -155,14 +114,10 @@ export const useAchievements = () => {
         }
       }
 
-      // Salvează în Firebase
-      await updateDoc(userRef, { achievements: uniqueAchievements });
-      
-      // Actualizează state-ul local
-      setAchievements(uniqueAchievements);
-      
-      // Setează achievement-urile noi pentru notificare
+      // Salvează în Firebase doar dacă există achievements noi
       if (newAchievementsList.length > 0) {
+        await updateDoc(userRef, { achievements: uniqueAchievements });
+        setAchievements(uniqueAchievements);
         setNewAchievements(newAchievementsList);
         
         // Șterge notificările după 5 secunde
@@ -173,9 +128,68 @@ export const useAchievements = () => {
 
       return { saved: uniqueAchievements, new: newAchievementsList };
     } catch (error) {
-      console.error('Error updating achievements:', error);
+      console.error('Error checking achievements:', error);
       throw error;
     }
+  };
+
+  // Calculează achievements bazate pe datele utilizatorului
+  const calculateAchievements = (solvedProblems, simulationsVisited, userProblems, alias) => {
+    const ach = [];
+    
+    // Calculează statistici pentru achievements
+    const solvedCount = solvedProblems.length;
+    const perfectScores = solvedProblems.filter(
+      p => p.scoreObtained === p.maxScore && p.maxScore > 0
+    ).length;
+    
+    const totalScore = solvedProblems.reduce((total, p) => total + (p.scoreObtained || 0), 0);
+    const maxPossibleScore = solvedProblems.reduce((total, p) => total + (p.maxScore || 0), 0);
+    const averageScore = maxPossibleScore > 0 ? (totalScore / maxPossibleScore) * 100 : 0;
+    
+    // Analizează dificultățile și categoriile problemelor rezolvate
+    const solvedDifficulties = {};
+    const solvedCategories = {};
+    // Notă: Pentru a analiza dificultățile și categoriile, ar trebui să avem acces la problemele originale
+    // Pentru moment, le omitem
+    
+    // Achievements pentru probleme rezolvate - Milestones
+    if (solvedCount >= 1) ach.push({ type: 'milestone', title: 'Prima problemă rezolvată', description: 'Ai rezolvat prima ta problemă!', color: '#10b981' });
+    if (solvedCount >= 5) ach.push({ type: 'milestone', title: 'Rezolvător dedicat', description: 'Ai rezolvat 5 probleme!', color: '#3b82f6' });
+    if (solvedCount >= 10) ach.push({ type: 'milestone', title: 'Maestru al rezolvării', description: 'Ai rezolvat 10 probleme!', color: '#ffd700' });
+    if (solvedCount >= 25) ach.push({ type: 'milestone', title: 'Expert în rezolvări', description: 'Ai rezolvat 25 de probleme!', color: '#8b5cf6' });
+    if (solvedCount >= 50) ach.push({ type: 'milestone', title: 'Legenda rezolvărilor', description: 'Ai rezolvat 50 de probleme!', color: '#ec4899' });
+    if (solvedCount >= 100) ach.push({ type: 'milestone', title: 'Maestru suprem', description: 'Ai rezolvat 100 de probleme!', color: '#f59e0b' });
+    
+    // Achievements pentru probleme adăugate - Milestones
+    const addedCount = userProblems.filter(p => p.createdByAlias === alias).length;
+    if (addedCount >= 1) ach.push({ type: 'milestone', title: 'Începător în fizică', description: 'Ai adăugat prima ta problemă!', color: '#b0b0b0' });
+    if (addedCount >= 5) ach.push({ type: 'milestone', title: 'Avansat', description: 'Ai adăugat 5 probleme!', color: '#4a90e2' });
+    if (addedCount >= 10) ach.push({ type: 'milestone', title: 'Maestru', description: 'Ai adăugat 10 probleme!', color: '#ffd700' });
+    if (addedCount >= 25) ach.push({ type: 'milestone', title: 'Creator prolific', description: 'Ai adăugat 25 de probleme!', color: '#8b5cf6' });
+    if (addedCount >= 50) ach.push({ type: 'milestone', title: 'Arhitect al problemelor', description: 'Ai adăugat 50 de probleme!', color: '#ec4899' });
+    
+    // Achievements bazate pe scor
+    if (perfectScores >= 1) ach.push({ type: 'milestone', title: 'Scor perfect', description: 'Ai obținut scor maxim la o problemă!', color: '#10b981' });
+    if (perfectScores >= 5) ach.push({ type: 'milestone', title: 'Perfecționist', description: 'Ai obținut scor maxim la 5 probleme!', color: '#3b82f6' });
+    if (perfectScores >= 10) ach.push({ type: 'milestone', title: 'Maestru al perfecțiunii', description: 'Ai obținut scor maxim la 10 probleme!', color: '#ffd700' });
+    if (averageScore >= 90 && solvedCount >= 5) ach.push({ type: 'milestone', title: 'Excelență academică', description: 'Ai un scor mediu de peste 90%!', color: '#8b5cf6' });
+    if (averageScore >= 95 && solvedCount >= 10) ach.push({ type: 'milestone', title: 'Geniu al fizicii', description: 'Ai un scor mediu de peste 95%!', color: '#ec4899' });
+    if (averageScore === 100 && solvedCount >= 5) ach.push({ type: 'milestone', title: 'Perfecțiune absolută', description: 'Ai un scor mediu de 100%!', color: '#f59e0b' });
+    
+    // Achievements pentru simulări
+    if (simulationsVisited.length >= 1) ach.push({ type: 'milestone', title: 'Prima simulare', description: 'Ai accesat prima simulare!', color: '#14b8a6', icon: '🧪' });
+    if (simulationsVisited.length >= 5) ach.push({ type: 'milestone', title: 'Explorator de simulări', description: 'Ai accesat 5 simulări!', color: '#0d9488' });
+    if (simulationsVisited.length >= 10) ach.push({ type: 'milestone', title: 'Maestru al simulărilor', description: 'Ai accesat 10 simulări!', color: '#0f766e' });
+    
+    return ach;
+  };
+
+  // Verifică dacă un achievement există deja
+  const achievementExists = (newAchievement, existingAchievements) => {
+    return existingAchievements.some(
+      existing => existing.title === newAchievement.title && existing.type === newAchievement.type
+    );
   };
 
   // Șterge toate achievement-urile
@@ -198,16 +212,6 @@ export const useAchievements = () => {
     }
   };
 
-  // Încarcă achievement-urile când se schimbă utilizatorul
-  useEffect(() => {
-    if (user?.uid) {
-      loadAchievements();
-    } else {
-      setAchievements([]);
-      setNewAchievements([]);
-    }
-  }, [user?.uid]);
-
   // Șterge notificările de achievement-uri noi
   const clearNewAchievements = () => {
     setNewAchievements([]);
@@ -219,8 +223,7 @@ export const useAchievements = () => {
     user,
     isAuthenticated: !!user,
     newAchievements,
-    saveAchievements,
-    updateAchievements,
+    checkAchievements,
     loadAchievements,
     clearAllAchievements,
     clearNewAchievements
