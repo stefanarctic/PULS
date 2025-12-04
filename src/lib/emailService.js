@@ -50,6 +50,41 @@ const initializeEmailJS = () => {
 };
 
 /**
+ * Generate URL with problem data encoded as query parameters
+ * @param {Object} problemData - The problem data to encode
+ * @returns {string} URL with encoded problem data
+ */
+const generateAddProblemURL = (problemData) => {
+  const baseUrl = typeof window !== 'undefined' 
+    ? window.location.origin 
+    : import.meta.env.VITE_APP_URL; // Fallback pentru server-side
+  
+  const params = new URLSearchParams();
+  params.set('addProblem', '1');
+  params.set('titlu', problemData.titlu || '');
+  params.set('descriere', problemData.descriere || '');
+  params.set('categorie', problemData.categorie || '');
+  params.set('dificultate', problemData.dificultate || '');
+  params.set('continut', problemData.continut || '');
+  params.set('punctajTotal', problemData.punctajTotal || 0);
+  
+  // Encode complex data as base64 JSON
+  if (problemData.formule && problemData.formule.length > 0) {
+    params.set('formule', btoa(JSON.stringify(problemData.formule)));
+  }
+  
+  if (problemData.date && Object.keys(problemData.date).length > 0) {
+    params.set('date', btoa(JSON.stringify(problemData.date)));
+  }
+  
+  if (problemData.subpuncte && problemData.subpuncte.length > 0) {
+    params.set('subpuncte', btoa(JSON.stringify(problemData.subpuncte)));
+  }
+  
+  return `${baseUrl}/probleme?${params.toString()}`;
+};
+
+/**
  * Fetch user profile data from Firestore
  * @param {Object} user - The Firebase auth user object
  * @returns {Promise<Object>} User profile data
@@ -168,6 +203,9 @@ export const sendProblemSuggestion = async (problemData, user) => {
         hour: '2-digit',
         minute: '2-digit'
       }),
+      
+      // URL for adding problem directly in PULS
+      add_problem_url: generateAddProblemURL(problemData),
     };
     console.log('✅ [Problem Suggestion] Email data prepared', {
       subject: emailParams.subject,

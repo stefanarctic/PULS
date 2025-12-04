@@ -140,6 +140,7 @@ const PhysicsProblems = () => {
 
     // Modal state
     const [showAddModal, setShowAddModal] = useState(false);
+    const [pendingUrlData, setPendingUrlData] = useState(null);
 
     const navigate = useNavigate();
     const dispatch = useDispatch();
@@ -255,6 +256,12 @@ const PhysicsProblems = () => {
     };
 
     useEffect(() => {
+        // Don't modify URL if we have addProblem parameter
+        const urlParams = new URLSearchParams(location.search);
+        if (urlParams.get('addProblem') === '1') {
+            return; // Keep the addProblem parameters
+        }
+
         const params = new URLSearchParams();
 
         if (selectedDifficulty && selectedDifficulty !== "Toate") {
@@ -265,12 +272,102 @@ const PhysicsProblems = () => {
             pathname: location.pathname,
             search: params.toString(),
         });
-    }, [selectedDifficulty, navigate, location.pathname]);
+    }, [selectedDifficulty, navigate, location.pathname, location.search]);
 
     // Reset la pagina 1 când se schimbă filtrele
     useEffect(() => {
         setCurrentPage(1);
     }, [searchQuery, selectedDifficulty, selectedCategory, sortBy]);
+
+    // Check for addProblem parameter in URL and populate form
+    useEffect(() => {
+        const urlParams = new URLSearchParams(location.search);
+        const addProblem = urlParams.get('addProblem');
+        
+        if (addProblem === '1') {
+            console.log('📝 [URL] Detected addProblem parameter in URL');
+            
+            // Parse problem data from URL immediately
+            const problemData = {
+                titlu: decodeURIComponent(urlParams.get('titlu') || ''),
+                descriere: decodeURIComponent(urlParams.get('descriere') || ''),
+                categorie: decodeURIComponent(urlParams.get('categorie') || 'Mecanică'),
+                dificultate: decodeURIComponent(urlParams.get('dificultate') || 'ușor'),
+                continut: decodeURIComponent(urlParams.get('continut') || ''),
+                punctajTotal: parseInt(urlParams.get('punctajTotal')) || 0,
+            };
+            
+            // Decode base64 JSON data
+            try {
+                const formuleParam = urlParams.get('formule');
+                if (formuleParam) {
+                    problemData.formule = JSON.parse(atob(formuleParam));
+                }
+                
+                const dateParam = urlParams.get('date');
+                if (dateParam) {
+                    problemData.date = JSON.parse(atob(dateParam));
+                }
+                
+                const subpuncteParam = urlParams.get('subpuncte');
+                if (subpuncteParam) {
+                    problemData.subpuncte = JSON.parse(atob(subpuncteParam));
+                }
+            } catch (error) {
+                console.error('Error decoding URL parameters:', error);
+            }
+            
+            console.log('📝 [URL] Parsed problem data:', problemData);
+            
+            // Store data for later use
+            setPendingUrlData(problemData);
+        }
+    }, [location.search]);
+
+    // Handle opening modal when user and admin status are ready
+    useEffect(() => {
+        if (pendingUrlData) {
+            console.log('📝 [URL] Checking user status:', { 
+                hasUser: !!user, 
+                isAdmin, 
+                userEmail: user?.email,
+                hasPendingData: !!pendingUrlData 
+            });
+            
+            if (user && isAdmin) {
+                console.log('📝 [URL] User is admin, opening modal with URL data...');
+                
+                // Store problem data to populate form when modal opens
+                window.__prefillProblemData = pendingUrlData;
+                
+                // Open modal
+                setShowAddModal(true);
+                
+                // Clear pending data
+                setPendingUrlData(null);
+            } else if (user && !isAdmin) {
+                console.log('📝 [URL] User is not admin, clearing pending data', {
+                    userEmail: user?.email,
+                    isAdmin
+                });
+                setPendingUrlData(null);
+            } else if (!user) {
+                console.log('📝 [URL] User not logged in yet, waiting...');
+            }
+        }
+    }, [pendingUrlData, user, isAdmin]);
+
+    // Open modal when user and admin status are ready and we have prefill data
+    useEffect(() => {
+        if (window.__prefillProblemData && isAdmin && user) {
+            console.log('📝 [URL] User and admin status ready, opening modal with prefill data');
+            setShowAddModal(true);
+        } else if (window.__prefillProblemData && user && !isAdmin) {
+            console.log('⚠️ [URL] User is not admin, cannot open modal');
+            // Clear prefill data if user is not admin
+            delete window.__prefillProblemData;
+        }
+    }, [isAdmin, user]);
 
     const categories = [
         "Toate",
@@ -706,9 +803,68 @@ const PhysicsProblems = () => {
             }
         };
 
-        // Reset form when modal opens/closes
+        // Reset form when modal opens/closes or populate from URL
         useEffect(() => {
-            if (!isOpen) {
+            if (isOpen) {
+                // Check if there's prefill data from URL
+                if (window.__prefillProblemData) {
+                    const prefillData = window.__prefillProblemData;
+                    console.log('📝 [Modal] Populating form with URL data:', prefillData);
+                    
+                    // Set form data
+                    setFormData({
+                        titlu: prefillData.titlu || '',
+                        descriere: prefillData.descriere || '',
+                        categorie: prefillData.categorie || 'Mecanică',
+                        dificultate: prefillData.dificultate || 'ușor',
+                        continut: prefillData.continut || '',
+                        formule: prefillData.formule && prefillData.formule.length > 0 
+                            ? prefillData.formule 
+                            : [''],
+                        date: {},
+                        poze: [],
+                        punctajTotal: prefillData.punctajTotal || 0,
+                        subpuncte: prefillData.subpuncte && prefillData.subpuncte.length > 0 
+                            ? prefillData.subpuncte.map(sub => ({
+                                cerinta: sub.cerinta || '',
+                                punctaj: sub.punctaj || 1
+                            }))
+                            : [{ cerinta: '', punctaj: 1 }]
+                    });
+                    
+                    // Set date pairs
+                    if (prefillData.date && Object.keys(prefillData.date).length > 0) {
+                        const pairs = Object.entries(prefillData.date).map(([key, value]) => ({ 
+                            key: String(key), 
+                            value: String(value) 
+                        }));
+                        setDatePairs(pairs.length > 0 ? pairs : [{ key: '', value: '' }]);
+                    } else {
+                        setDatePairs([{ key: '', value: '' }]);
+                    }
+                    
+                    // Clear prefill data after a short delay to ensure state is set
+                    setTimeout(() => {
+                        delete window.__prefillProblemData;
+                    }, 100);
+                } else {
+                    // Reset form if no prefill data
+                    setFormData({
+                        titlu: '',
+                        descriere: '',
+                        categorie: 'Mecanică',
+                        dificultate: 'ușor',
+                        continut: '',
+                        formule: [''],
+                        date: {},
+                        poze: [],
+                        punctajTotal: 0,
+                        subpuncte: [{ cerinta: '', punctaj: 1 }]
+                    });
+                    setDatePairs([{ key: '', value: '' }]);
+                }
+            } else {
+                // Reset form when modal closes
                 setFormData({
                     titlu: '',
                     descriere: '',
