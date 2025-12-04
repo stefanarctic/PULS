@@ -11,6 +11,7 @@ import { auth, db } from '../../lib/firebase';
 import { onAuthStateChanged, getAuth } from 'firebase/auth';
 import { doc, getDoc, setDoc } from 'firebase/firestore';
 import { useSolvedProblems } from '../../hooks/useSolvedProblems';
+import { sendProblemSuggestion } from '../../lib/emailService';
 
 // Icon components
 const SearchIcon = () => (
@@ -146,6 +147,7 @@ const PhysicsProblems = () => {
     const [isAdmin, setIsAdmin] = useState(false);
     const [user, setUser] = useState(null);
     const [favorites, setFavorites] = useState([]);
+    const [showSuccessNotification, setShowSuccessNotification] = useState(false);
     const { solvedProblems } = useSolvedProblems();
 
     const solvedProblemsMap = useMemo(() => {
@@ -428,7 +430,7 @@ const PhysicsProblems = () => {
     };
 
     // AddProblemModal Component
-    const AddProblemModal = ({ isOpen, onClose }) => {
+    const AddProblemModal = ({ isOpen, onClose, isAdmin, user, onSuccess }) => {
         const [formData, setFormData] = useState({
             titlu: '',
             descriere: '',
@@ -453,6 +455,9 @@ const PhysicsProblems = () => {
         
         const dispatch = useDispatch();
         const { addStatus, addError } = useSelector(state => state.problems);
+        const [emailStatus, setEmailStatus] = useState('idle'); // 'idle' | 'loading' | 'success' | 'error'
+        const [emailError, setEmailError] = useState(null);
+        const [emailLogs, setEmailLogs] = useState([]); // Array of log messages for UI display
 
         const handleInputChange = (field, value) => {
             setFormData(prev => ({
@@ -536,6 +541,13 @@ const PhysicsProblems = () => {
         const handleSubmit = async (e) => {
             e.preventDefault();
             
+            console.log('📝 [UI] Problem submission started', {
+                isAdmin,
+                userId: user?.uid,
+                userEmail: user?.email,
+                timestamp: new Date().toISOString()
+            });
+            
             // Convert date pairs to object
             const dateObject = {};
             datePairs.forEach(pair => {
@@ -562,34 +574,135 @@ const PhysicsProblems = () => {
                 creator: '',
                 punctajTotal: formData.punctajTotal,
                 createdAt: new Date().toISOString(),
+                poze: formData.poze, // Include images in problem data
             };
             
-            try {
-                await dispatch(addProblem(problemData)).unwrap();
-                
-                // Reset form and close modal
-                setFormData({
-                    titlu: '',
-                    descriere: '',
-                    categorie: 'Mecanică',
-                    dificultate: 'ușor',
-                    continut: '',
-                    formule: [''],
-                    date: {},
-                    poze: [],
-                    punctajTotal: 0,
-                    subpuncte: [{ cerinta: '', punctaj: 1 }]
+            // Check if user is admin
+            if (isAdmin) {
+                // Admin: Upload directly to database
+                console.log('📝 [UI] User is admin, uploading problem directly to database...', {
+                    problemTitle: problemData.titlu,
+                    problemCategory: problemData.categorie,
+                    problemDifficulty: problemData.dificultate,
+                    subpuncteCount: problemData.subpuncte.length,
+                    hasImages: problemData.poze?.length > 0
                 });
-                setDatePairs([{ key: '', value: '' }]);
-                onClose();
                 
-                // Clear add status after a delay
-                setTimeout(() => {
-                    dispatch(clearAddStatus());
-                }, 2000);
+                try {
+                    console.log('📝 [UI] Dispatching addProblem action...');
+                    const result = await dispatch(addProblem(problemData)).unwrap();
+                    
+                    console.log('✅ [UI] Problem uploaded successfully to database!', {
+                        problemTitle: problemData.titlu,
+                        problemIndex: problemData.index,
+                        problemId: result?.id,
+                        timestamp: new Date().toISOString(),
+                        result
+                    });
+                    
+                    // Reset form and close modal
+                    setFormData({
+                        titlu: '',
+                        descriere: '',
+                        categorie: 'Mecanică',
+                        dificultate: 'ușor',
+                        continut: '',
+                        formule: [''],
+                        date: {},
+                        poze: [],
+                        punctajTotal: 0,
+                        subpuncte: [{ cerinta: '', punctaj: 1 }]
+                    });
+                    setDatePairs([{ key: '', value: '' }]);
+                    onClose();
+                    
+                    // Clear add status after a delay
+                    setTimeout(() => {
+                        dispatch(clearAddStatus());
+                    }, 2000);
+                    
+                } catch (error) {
+                    console.error('❌ [UI] Error saving problem to database:', {
+                        error: error.message,
+                        errorName: error.name,
+                        problemTitle: problemData.titlu,
+                        timestamp: new Date().toISOString(),
+                        stack: error.stack
+                    });
+                }
+            } else {
+                // Non-admin: Send email suggestion
+                console.log('📝 [UI] User is not admin, sending problem suggestion via email...', {
+                    userId: user?.uid,
+                    userEmail: user?.email,
+                    problemTitle: problemData.titlu,
+                    problemCategory: problemData.categorie,
+                    problemDifficulty: problemData.dificultate
+                });
                 
-            } catch (error) {
-                console.error('Error saving problem:', error);
+                setEmailStatus('loading');
+                setEmailError(null);
+                setEmailLogs([{ type: 'info', message: 'Pregătire sugestie problemă...', timestamp: new Date() }]);
+                
+                try {
+                    setEmailLogs(prev => [...prev, { type: 'info', message: 'Se inițializează serviciul de email...', timestamp: new Date() }]);
+                    console.log('📝 [UI] Calling sendProblemSuggestion...');
+                    
+                    setEmailLogs(prev => [...prev, { type: 'info', message: 'Se încarcă datele profilului utilizator...', timestamp: new Date() }]);
+                    const result = await sendProblemSuggestion(problemData, user);
+                    
+                    console.log('✅ [UI] Problem suggestion sent successfully!', {
+                        result,
+                        problemTitle: problemData.titlu,
+                        timestamp: new Date().toISOString()
+                    });
+                    
+                    setEmailLogs(prev => [...prev, { 
+                        type: 'success', 
+                        message: `Sugestia a fost trimisă cu succes! Durata: ${result.duration || 'N/A'}ms`, 
+                        timestamp: new Date() 
+                    }]);
+                    
+                    // Reset form immediately
+                    setFormData({
+                        titlu: '',
+                        descriere: '',
+                        categorie: 'Mecanică',
+                        dificultate: 'ușor',
+                        continut: '',
+                        formule: [''],
+                        date: {},
+                        poze: [],
+                        punctajTotal: 0,
+                        subpuncte: [{ cerinta: '', punctaj: 1 }]
+                    });
+                    setDatePairs([{ key: '', value: '' }]);
+                    setEmailStatus('idle');
+                    setEmailLogs([]);
+                    
+                    // Close modal and trigger success notification
+                    onClose();
+                    if (onSuccess) {
+                        onSuccess();
+                    }
+                    
+                } catch (error) {
+                    console.error('❌ [UI] Error sending problem suggestion:', {
+                        error: error.message,
+                        errorName: error.name,
+                        problemTitle: problemData.titlu,
+                        userId: user?.uid,
+                        timestamp: new Date().toISOString()
+                    });
+                    
+                    setEmailLogs(prev => [...prev, { 
+                        type: 'error', 
+                        message: `Eroare: ${error.message}`, 
+                        timestamp: new Date() 
+                    }]);
+                    setEmailStatus('error');
+                    setEmailError(error.message || 'A apărut o eroare la trimiterea sugestiei. Te rugăm să încerci din nou.');
+                }
             }
         };
 
@@ -610,22 +723,112 @@ const PhysicsProblems = () => {
                 });
                 setDatePairs([{ key: '', value: '' }]);
                 dispatch(clearAddStatus());
+                setEmailStatus('idle');
+                setEmailError(null);
+                setEmailLogs([]);
             }
         }, [isOpen, dispatch]);
 
         if (!isOpen) return null;
+        
+        // Safety check: Don't show modal if user is not logged in
+        if (!user) {
+            return null;
+        }
 
         return (
             <div className="modal-overlay" onClick={onClose}>
                 <div className="modal-content" onClick={e => e.stopPropagation()}>
                     <div className="modal-header">
-                        <h2>Adaugă problemă</h2>
+                        <h2>{isAdmin ? 'Adaugă problemă' : 'Sugerează o problemă'}</h2>
                         <button className="modal-close" onClick={onClose}>×</button>
                     </div>
+                    
+                    {!isAdmin && (
+                        <div className="info-message" style={{ 
+                            padding: '12px', 
+                            marginBottom: '16px', 
+                            backgroundColor: '#e3f2fd', 
+                            borderRadius: '4px',
+                            color: '#1976d2',
+                            fontSize: '14px'
+                        }}>
+                            <strong>Notă:</strong> Ca utilizator non-admin, poți doar să sugerezi probleme. Sugestiile tale vor fi trimise prin email administratorilor pentru revizuire și adăugare în baza de date.
+                        </div>
+                    )}
                     
                     {addError && (
                         <div className="error-message">
                             Eroare la salvarea problemei: {addError}
+                        </div>
+                    )}
+                    
+                    {/* Email Status Logs */}
+                    {emailLogs.length > 0 && (
+                        <div style={{ 
+                            marginBottom: '16px',
+                            maxHeight: '200px',
+                            overflowY: 'auto',
+                            border: '1px solid #e0e0e0',
+                            borderRadius: '4px',
+                            backgroundColor: '#fafafa'
+                        }}>
+                            {emailLogs.map((log, index) => (
+                                <div 
+                                    key={index}
+                                    style={{ 
+                                        padding: '8px 12px',
+                                        borderBottom: index < emailLogs.length - 1 ? '1px solid #e0e0e0' : 'none',
+                                        fontSize: '12px',
+                                        color: log.type === 'success' ? '#2e7d32' : 
+                                               log.type === 'error' ? '#c62828' : '#424242',
+                                        display: 'flex',
+                                        alignItems: 'center',
+                                        gap: '8px'
+                                    }}
+                                >
+                                    <span style={{ 
+                                        fontWeight: 'bold',
+                                        fontSize: '14px'
+                                    }}>
+                                        {log.type === 'success' ? '✓' : log.type === 'error' ? '✗' : '⟳'}
+                                    </span>
+                                    <span>{log.message}</span>
+                                    <span style={{ 
+                                        marginLeft: 'auto',
+                                        color: '#9e9e9e',
+                                        fontSize: '11px'
+                                    }}>
+                                        {log.timestamp.toLocaleTimeString('ro-RO')}
+                                    </span>
+                                </div>
+                            ))}
+                        </div>
+                    )}
+                    
+                    {emailStatus === 'success' && (
+                        <div className="success-message" style={{ 
+                            padding: '12px', 
+                            marginBottom: '16px', 
+                            backgroundColor: '#e8f5e9', 
+                            borderRadius: '4px',
+                            color: '#2e7d32',
+                            fontSize: '14px'
+                        }}>
+                            ✓ Sugestia ta a fost trimisă cu succes! Administratorii vor revizui problema și o vor adăuga în baza de date dacă este aprobată.
+                        </div>
+                    )}
+                    
+                    {emailStatus === 'error' && emailError && (
+                        <div className="error-message" style={{ 
+                            padding: '12px', 
+                            marginBottom: '16px', 
+                            backgroundColor: '#ffebee', 
+                            borderRadius: '4px',
+                            color: '#c62828',
+                            fontSize: '14px'
+                        }}>
+                            Eroare la trimiterea sugestiei: {emailError}
                         </div>
                     )}
                     
@@ -856,15 +1059,18 @@ const PhysicsProblems = () => {
                             <button
                                 type="submit"
                                 className="btn-primary"
-                                disabled={addStatus === 'loading'}
+                                disabled={addStatus === 'loading' || emailStatus === 'loading'}
                             >
-                                {addStatus === 'loading' ? 'Se salvează...' : 'Salvează'}
+                                {isAdmin 
+                                    ? (addStatus === 'loading' ? 'Se salvează...' : 'Salvează')
+                                    : (emailStatus === 'loading' ? 'Se trimite...' : 'Trimite sugestie')
+                                }
                             </button>
                             <button
                                 type="button"
                                 className="btn-secondary"
                                 onClick={onClose}
-                                disabled={addStatus === 'loading'}
+                                disabled={addStatus === 'loading' || emailStatus === 'loading'}
                             >
                                 Anulează
                             </button>
@@ -1021,20 +1227,97 @@ const PhysicsProblems = () => {
                         </div>
                     )}
 
-                    {/* Floating Action Button */}
-                    <button 
-                        className="fab-add-problem"
-                        onClick={() => setShowAddModal(true)}
-                        title="Adaugă o problemă nouă"
-                    >
-                        <Plus size={24} />
-                    </button>
+                    {/* Floating Action Button - Only show if user is logged in */}
+                    {user && (
+                        <button 
+                            className="fab-add-problem"
+                            onClick={() => setShowAddModal(true)}
+                            title={isAdmin ? "Adaugă o problemă nouă" : "Sugerează o problemă"}
+                        >
+                            <Plus size={24} />
+                        </button>
+                    )}
 
                     {/* Add Problem Modal */}
                     <AddProblemModal 
                         isOpen={showAddModal}
                         onClose={() => setShowAddModal(false)}
+                        isAdmin={isAdmin}
+                        user={user}
+                        onSuccess={() => {
+                            setShowSuccessNotification(true);
+                            setTimeout(() => {
+                                setShowSuccessNotification(false);
+                            }, 5000);
+                        }}
                     />
+                    
+                    {/* Success Notification */}
+                    {showSuccessNotification && (
+                        <div 
+                            className="success-notification-overlay"
+                            onClick={() => setShowSuccessNotification(false)}
+                            style={{
+                                position: 'fixed',
+                                top: 0,
+                                left: 0,
+                                right: 0,
+                                bottom: 0,
+                                backgroundColor: 'rgba(0, 0, 0, 0.5)',
+                                display: 'flex',
+                                alignItems: 'center',
+                                justifyContent: 'center',
+                                zIndex: 10000,
+                                animation: 'fadeIn 0.3s ease-in'
+                            }}
+                        >
+                            <div 
+                                className="success-notification"
+                                onClick={(e) => e.stopPropagation()}
+                                style={{
+                                    background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
+                                    padding: '30px 40px',
+                                    borderRadius: '12px',
+                                    boxShadow: '0 8px 32px rgba(0, 0, 0, 0.3)',
+                                    color: '#ffffff',
+                                    textAlign: 'center',
+                                    maxWidth: '400px',
+                                    animation: 'slideUp 0.3s ease-out'
+                                }}
+                            >
+                                <div style={{ fontSize: '48px', marginBottom: '15px' }}>✓</div>
+                                <h3 style={{ margin: '0 0 10px', fontSize: '24px', fontWeight: 600 }}>
+                                    Sugestie Trimisă!
+                                </h3>
+                                <p style={{ margin: 0, fontSize: '16px', opacity: 0.9 }}>
+                                    Sugestia ta a fost trimisă cu succes administratorilor. Ei vor revizui problema și o vor adăuga în baza de date dacă este aprobată.
+                                </p>
+                                <button
+                                    onClick={() => setShowSuccessNotification(false)}
+                                    style={{
+                                        marginTop: '20px',
+                                        padding: '10px 24px',
+                                        backgroundColor: 'rgba(255, 255, 255, 0.2)',
+                                        border: '2px solid rgba(255, 255, 255, 0.3)',
+                                        borderRadius: '6px',
+                                        color: '#ffffff',
+                                        fontSize: '14px',
+                                        fontWeight: 600,
+                                        cursor: 'pointer',
+                                        transition: 'all 0.2s'
+                                    }}
+                                    onMouseOver={(e) => {
+                                        e.target.style.backgroundColor = 'rgba(255, 255, 255, 0.3)';
+                                    }}
+                                    onMouseOut={(e) => {
+                                        e.target.style.backgroundColor = 'rgba(255, 255, 255, 0.2)';
+                                    }}
+                                >
+                                    OK
+                                </button>
+                            </div>
+                        </div>
+                    )}
                 </div>
             </div>
         </Layout>
