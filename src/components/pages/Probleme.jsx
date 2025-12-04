@@ -191,19 +191,14 @@ const PhysicsProblems = () => {
       const unsubscribe = onAuthStateChanged(auth, async (firebaseUser) => {
         if (firebaseUser) {
           setUser(firebaseUser);
-          // Check admin status from DB or fallback to email list
+          // Check admin status from DB
           const userRef = doc(db, 'users', firebaseUser.uid);
           const userSnap = await getDoc(userRef);
-          const ADMIN_EMAILS = [
-            'matbajean@gmail.com',
-            'aleluianu09@gmail.com',
-            'pulsphysics@gmail.com',
-          ];
           if (userSnap.exists()) {
-            setIsAdmin(userSnap.data().isAdmin || ADMIN_EMAILS.includes(firebaseUser.email));
+            setIsAdmin(userSnap.data().isAdmin === true);
             setFavorites(userSnap.data().favorites || []);
           } else {
-            setIsAdmin(ADMIN_EMAILS.includes(firebaseUser.email));
+            setIsAdmin(false);
             setFavorites([]);
           }
         } else {
@@ -326,36 +321,64 @@ const PhysicsProblems = () => {
 
     // Handle opening modal when user and admin status are ready
     useEffect(() => {
-        if (pendingUrlData) {
-            console.log('📝 [URL] Checking user status:', { 
-                hasUser: !!user, 
-                isAdmin, 
-                userEmail: user?.email,
-                hasPendingData: !!pendingUrlData 
-            });
-            
-            if (user && isAdmin) {
-                console.log('📝 [URL] User is admin, opening modal with URL data...');
-                
-                // Store problem data to populate form when modal opens
-                window.__prefillProblemData = pendingUrlData;
-                
-                // Open modal
-                setShowAddModal(true);
-                
-                // Clear pending data
-                setPendingUrlData(null);
-            } else if (user && !isAdmin) {
-                console.log('📝 [URL] User is not admin, clearing pending data', {
-                    userEmail: user?.email,
-                    isAdmin
-                });
-                setPendingUrlData(null);
-            } else if (!user) {
-                console.log('📝 [URL] User not logged in yet, waiting...');
-            }
+        if (!pendingUrlData) return;
+        
+        console.log('📝 [URL] Checking user status:', { 
+            hasUser: !!user, 
+            isAdmin, 
+            userEmail: user?.email,
+            hasPendingData: !!pendingUrlData,
+            userId: user?.uid
+        });
+        
+        // Wait for user to be loaded
+        if (!user) {
+            console.log('📝 [URL] User not logged in yet, waiting...');
+            return;
         }
-    }, [pendingUrlData, user, isAdmin]);
+        
+        // Wait a bit for isAdmin to be set (it's async)
+        // Check if user document exists and has isAdmin field
+        const checkAdminStatus = async () => {
+            try {
+                const userRef = doc(db, 'users', user.uid);
+                const userSnap = await getDoc(userRef);
+                const userIsAdmin = userSnap.exists() && userSnap.data().isAdmin === true;
+                
+                console.log('📝 [URL] Admin check result:', {
+                    userExists: userSnap.exists(),
+                    isAdmin: userIsAdmin,
+                    userData: userSnap.exists() ? userSnap.data() : null
+                });
+                
+                if (userIsAdmin) {
+                    console.log('📝 [URL] User is admin, opening modal with URL data...');
+                    
+                    // Store problem data to populate form when modal opens
+                    window.__prefillProblemData = pendingUrlData;
+                    
+                    // Open modal
+                    setShowAddModal(true);
+                    
+                    // Clear pending data
+                    setPendingUrlData(null);
+                } else {
+                    console.log('📝 [URL] User is not admin, clearing pending data');
+                    setPendingUrlData(null);
+                }
+            } catch (error) {
+                console.error('📝 [URL] Error checking admin status:', error);
+                setPendingUrlData(null);
+            }
+        };
+        
+        // Small delay to ensure isAdmin state is updated
+        const timer = setTimeout(() => {
+            checkAdminStatus();
+        }, 100);
+        
+        return () => clearTimeout(timer);
+    }, [pendingUrlData, user]);
 
     // Open modal when user and admin status are ready and we have prefill data
     useEffect(() => {
@@ -884,6 +907,29 @@ const PhysicsProblems = () => {
                 setEmailLogs([]);
             }
         }, [isOpen, dispatch]);
+
+        // Prevent body scroll when modal is open
+        useEffect(() => {
+            if (isOpen) {
+                // Save current scroll position
+                const scrollY = window.scrollY;
+                // Disable scroll
+                document.body.style.position = 'fixed';
+                document.body.style.top = `-${scrollY}px`;
+                document.body.style.width = '100%';
+                document.body.style.overflow = 'hidden';
+                
+                return () => {
+                    // Re-enable scroll
+                    document.body.style.position = '';
+                    document.body.style.top = '';
+                    document.body.style.width = '';
+                    document.body.style.overflow = '';
+                    // Restore scroll position
+                    window.scrollTo(0, scrollY);
+                };
+            }
+        }, [isOpen]);
 
         if (!isOpen) return null;
         
