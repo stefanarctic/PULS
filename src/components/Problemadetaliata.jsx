@@ -320,15 +320,32 @@ export const ProblemaDetaliata = ({ problema, onBack }) => {
               </div>
             </CardHeader>
             <CardContent>
-              {problema.imagine && (
+              {/* Suport pentru array-ul poze (format nou) */}
+              {problema.poze && Array.isArray(problema.poze) && problema.poze.length > 0 && (
+                <div className={`problema-imagine-container ${problema.poze.length === 2 ? 'dual-images' : ''}`}>
+                  {problema.poze.map((imagine, index) => (
+                    <img 
+                      key={index} 
+                      src={imagine} 
+                      alt={`Ilustrație problemă ${index + 1}`} 
+                      className={`problema-imagine ${problema.poze.length === 2 ? 'dual-image' : ''}`} 
+                    />
+                  ))}
+                </div>
+              )}
+              {/* Suport pentru imagine (format vechi - o singură imagine) */}
+              {!problema.poze && problema.imagine && (
                 <div className="problema-imagine-container">
                   <img src={problema.imagine} alt="Ilustrație problemă" className="problema-imagine" />
                 </div>
               )}
-              {problema.imagine1 && (
+              {/* Suport pentru imagine1 și imagine2 (format vechi - două imagini) */}
+              {!problema.poze && problema.imagine1 && (
                 <div className="problema-imagine-container dual-images">
                   <img src={problema.imagine1} alt="Ilustrație problemă" className="problema-imagine dual-image" />
-                  <img src={problema.imagine2} alt="Ilustrație problemă" className="problema-imagine dual-image" />
+                  {problema.imagine2 && (
+                    <img src={problema.imagine2} alt="Ilustrație problemă" className="problema-imagine dual-image" />
+                  )}
                 </div>
               )}
               {/* ENUNT PROBLEMA CU MATHJAX */}
