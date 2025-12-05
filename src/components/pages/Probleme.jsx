@@ -399,6 +399,7 @@ const PhysicsProblems = () => {
         "Unde",
         "Lissajous",
         "Seismologie",
+        "Bac",
     ];
 
     const difficulties = ["Toate", "ușor", "mediu", "dificil", "concurs"];
@@ -1073,6 +1074,7 @@ const PhysicsProblems = () => {
                                         <option value="Unde">Unde</option>
                                         <option value="Lissajous">Lissajous</option>
                                         <option value="Seismologie">Seismologie</option>
+                                        <option value="Bac">Bac</option>
                                     </select>
                                 </div>
 
