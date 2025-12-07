@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import Layout from "../Layout";
 import Slideshow from "../Slideshow";
-import { Waves, Atom, Circle, Activity, Calculator, BookOpen, Lightbulb, Target } from "lucide-react";
+import { Waves, Atom, Circle, Activity, Calculator, BookOpen, Lightbulb, Target, GraduationCap, FileText } from "lucide-react";
 import { useEffect } from "react";
 import useTranslate, { getTextNodes, useTranslateObject } from "../../hooks/useTranslate";
 // import { problemeData } from "../problemedata";
@@ -294,6 +294,99 @@ const Index = () => {
                             </div>
                             <button className="problem-button">Specializează-te</button>
                         </div>
+                    </Link>
+                </div>
+            </section>
+
+            {/* Resources Section */}
+            <section id="resources" className="resources-section">
+                <h2 className="section-title hidden hidden-bottom">Resurse didactice</h2>
+                <p className="resources-description hidden hidden-bottom">
+                    Explorează lecții teoretice, formule esențiale, experimente practice și bibliografie recomandată pentru a-ți aprofunda cunoștințele de fizică.
+                </p>
+                <div className="resources-grid hidden hidden-bottom">
+                    <Link to="/resurse/pendule" className="resource-card-link">
+                        <div className="resource-card pendule-resource">
+                            <div className="resource-image-overlay"></div>
+                            <div className="resource-content">
+                                <div className="resource-icon-wrapper">
+                                    <Circle size={40} strokeWidth={2} />
+                                </div>
+                                <h3>Pendule</h3>
+                                <p>Descoperă mișcarea oscilatorie, formulele și simulări pentru pendulul simplu, amortizat și neliniar.</p>
+                                <span className="resource-button">Explorează →</span>
+                            </div>
+                        </div>
+                    </Link>
+                    <Link to="/resurse/unde" className="resource-card-link">
+                        <div className="resource-card unde-resource">
+                            <div className="resource-image-overlay"></div>
+                            <div className="resource-content">
+                                <div className="resource-icon-wrapper">
+                                    <Waves size={40} strokeWidth={2} />
+                                </div>
+                                <h3>Unde</h3>
+                                <p>Află despre propagarea undelor mecanice și electromagnetice, tipuri de unde și simulări interactive.</p>
+                                <span className="resource-button">Explorează →</span>
+                            </div>
+                        </div>
+                    </Link>
+                    <Link to="/resurse/lissajous" className="resource-card-link">
+                        <div className="resource-card lissajous-resource">
+                            <div className="resource-image-overlay"></div>
+                            <div className="resource-content">
+                                <div className="resource-icon-wrapper">
+                                    <Atom size={40} strokeWidth={2} />
+                                </div>
+                                <h3>Figuri Lissajous</h3>
+                                <p>Explorează curbele Lissajous, ecuațiile parametrice și aplicațiile lor în fizică.</p>
+                                <span className="resource-button">Explorează →</span>
+                            </div>
+                        </div>
+                    </Link>
+                    <Link to="/resurse/seism" className="resource-card-link">
+                        <div className="resource-card seism-resource">
+                            <div className="resource-image-overlay"></div>
+                            <div className="resource-content">
+                                <div className="resource-icon-wrapper">
+                                    <Activity size={40} strokeWidth={2} />
+                                </div>
+                                <h3>Seisme</h3>
+                                <p>Învață despre cutremure, unde seismice, propagare și vizualizări interactive.</p>
+                                <span className="resource-button">Explorează →</span>
+                            </div>
+                        </div>
+                    </Link>
+                    <Link to="/resurse/termodinamica" className="resource-card-link">
+                        <div className="resource-card termodinamica-resource">
+                            <div className="resource-image-overlay"></div>
+                            <div className="resource-content">
+                                <div className="resource-icon-wrapper">
+                                    <FileText size={40} strokeWidth={2} />
+                                </div>
+                                <h3>Termodinamică</h3>
+                                <p>Învață despre termodinamică, principiile și aplicațiile ei în fizică.</p>
+                                <span className="resource-button">Explorează →</span>
+                            </div>
+                        </div>
+                    </Link>
+                    <Link to="/resurse/mecanica" className="resource-card-link">
+                        <div className="resource-card mecanica-resource">
+                            <div className="resource-image-overlay"></div>
+                            <div className="resource-content">
+                                <div className="resource-icon-wrapper">
+                                    <GraduationCap size={40} strokeWidth={2} />
+                                </div>
+                                <h3>Mecanică</h3>
+                                <p>Învață despre mecanică, principiile și aplicațiile ei în fizică.</p>
+                                <span className="resource-button">Explorează →</span>
+                            </div>
+                        </div>
+                    </Link>
+                </div>
+                <div className="resources-cta hidden hidden-bottom" style={{ textAlign: 'center', marginTop: '3rem' }}>
+                    <Link to="/resurse" className="resources-view-all-button">
+                        Vezi toate resursele
                     </Link>
                 </div>
             </section>

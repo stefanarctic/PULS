@@ -425,73 +425,241 @@
 // Resources section
 .resources-section {
     padding: 5rem 2rem;
-    background-color: #121212;
+    background-color: var(--primary-background-current-mode);
+    transition: background-color 0.3s ease;
 
     .section-title {
         text-align: center;
         font-size: 2.5rem;
         font-weight: 700;
+        margin-bottom: 1rem;
+        color: var(--primary-color-current-mode);
+    }
+
+    .resources-description {
+        text-align: center;
+        color: var(--secondary-color-current-mode);
         margin-bottom: 3rem;
-        color: white;
+        max-width: 800px;
+        margin: 0 auto 3rem;
+        font-size: 1.1rem;
+        line-height: 1.6;
     }
 
     .resources-grid {
         display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        grid-template-columns: repeat(3, 1fr);
         gap: 2rem;
-        max-width: 1200px;
+        max-width: 1400px;
         margin: 0 auto;
 
+        @media (max-width: 1200px) {
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1.5rem;
+        }
+
+        @media (max-width: 768px) {
+            grid-template-columns: 1fr;
+            gap: 1.5rem;
+        }
+
+        .resource-card-link {
+            text-decoration: none;
+            color: inherit;
+            display: block;
+            height: 100%;
+
+            &:hover,
+            &:focus,
+            &:visited,
+            &:active {
+                text-decoration: none;
+                color: inherit;
+            }
+
+            &:hover .resource-card {
+                transform: translateY(-8px);
+                box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+
+                .resource-image-overlay {
+                    opacity: 0.85;
+                }
+
+                .resource-content {
+                    transform: translateY(-5px);
+                }
+
+                .resource-button {
+                    background: rgba(255, 255, 255, 0.95);
+                    color: #121212;
+                    transform: translateX(5px);
+                }
+            }
+        }
+
         .resource-card {
-            background-color: #252525;
-            border-radius: 1rem;
-            padding: 2rem;
-            transition: transform 0.3s ease;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            text-align: center;
+            height: 380px;
+            border-radius: 1.2rem;
+            overflow: hidden;
+            position: relative;
+            cursor: pointer;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+
+            // Background gradients pentru fiecare resursă (simulând imagini de cărți)
+            &.pendule-resource {
+                background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+                background-image: 
+                    radial-gradient(circle at 20% 50%, rgba(255, 255, 255, 0.1) 0%, transparent 50%),
+                    radial-gradient(circle at 80% 80%, rgba(255, 255, 255, 0.1) 0%, transparent 50%),
+                    linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            }
+
+            &.unde-resource {
+                background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+                background-image: 
+                    radial-gradient(circle at 30% 40%, rgba(255, 255, 255, 0.1) 0%, transparent 50%),
+                    radial-gradient(circle at 70% 70%, rgba(255, 255, 255, 0.1) 0%, transparent 50%),
+                    linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            }
+
+            &.lissajous-resource {
+                background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+                background-image: 
+                    radial-gradient(circle at 25% 60%, rgba(255, 255, 255, 0.1) 0%, transparent 50%),
+                    radial-gradient(circle at 75% 30%, rgba(255, 255, 255, 0.1) 0%, transparent 50%),
+                    linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+            }
+
+            &.seism-resource {
+                background: linear-gradient(135deg, #fa709a 0%, #fee140 100%);
+                background-image: 
+                    radial-gradient(circle at 40% 50%, rgba(255, 255, 255, 0.1) 0%, transparent 50%),
+                    radial-gradient(circle at 60% 80%, rgba(255, 255, 255, 0.1) 0%, transparent 50%),
+                    linear-gradient(135deg, #fa709a 0%, #fee140 100%);
+            }
+
+            &.termodinamica-resource {
+                background: linear-gradient(135deg, #30cfd0 0%, #330867 100%);
+                background-image: 
+                    radial-gradient(circle at 20% 30%, rgba(255, 255, 255, 0.1) 0%, transparent 50%),
+                    radial-gradient(circle at 80% 70%, rgba(255, 255, 255, 0.1) 0%, transparent 50%),
+                    linear-gradient(135deg, #30cfd0 0%, #330867 100%);
+            }
+
+            &.mecanica-resource {
+                background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%);
+                background-image: 
+                    radial-gradient(circle at 35% 45%, rgba(255, 255, 255, 0.15) 0%, transparent 50%),
+                    radial-gradient(circle at 65% 55%, rgba(255, 255, 255, 0.15) 0%, transparent 50%),
+                    linear-gradient(135deg, #a8edea 0%, #fed6e3 100%);
+            }
+
+            .resource-image-overlay {
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background: linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.7) 100%);
+                opacity: 0.9;
+                transition: opacity 0.4s ease;
+                z-index: 1;
+            }
+
+            .resource-content {
+                position: absolute;
+                bottom: 0;
+                left: 0;
+                width: 100%;
+                padding: 2rem;
+                z-index: 2;
+                transition: transform 0.4s ease;
+                display: flex;
+                flex-direction: column;
+                gap: 0.75rem;
+
+                .resource-icon-wrapper {
+                    background: rgba(255, 255, 255, 0.2);
+                    backdrop-filter: blur(10px);
+                    border-radius: 50%;
+                    width: 70px;
+                    height: 70px;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    margin-bottom: 0.5rem;
+                    color: white;
+                    border: 2px solid rgba(255, 255, 255, 0.3);
+                    transition: all 0.3s ease;
+                    align-self: flex-start;
+
+                    svg {
+                        filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.2));
+                    }
+                }
+
+                h3 {
+                    font-size: 1.8rem;
+                    font-weight: 700;
+                    margin-bottom: 0.5rem;
+                    color: white;
+                    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+                    line-height: 1.2;
+                }
+
+                p {
+                    color: rgba(255, 255, 255, 0.9);
+                    line-height: 1.5;
+                    margin-bottom: 1rem;
+                    font-size: 0.95rem;
+                    text-shadow: 0 1px 4px rgba(0, 0, 0, 0.2);
+                    display: -webkit-box;
+                    -webkit-line-clamp: 2;
+                    -webkit-box-orient: vertical;
+                    overflow: hidden;
+                }
+
+                .resource-button {
+                    display: inline-block;
+                    background-color: rgba(255, 255, 255, 0.2);
+                    backdrop-filter: blur(10px);
+                    color: white;
+                    border: 1px solid rgba(255, 255, 255, 0.5);
+                    padding: 0.75rem 1.5rem;
+                    border-radius: 0.5rem;
+                    font-weight: 600;
+                    font-size: 0.95rem;
+                    cursor: pointer;
+                    transition: all 0.3s ease;
+                    align-self: flex-start;
+                    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+                }
+            }
+        }
+    }
+
+    .resources-cta {
+        text-align: center;
+        margin-top: 3rem;
+
+        .resources-view-all-button {
+            display: inline-block;
+            padding: 0.75rem 2rem;
+            background-color: transparent;
+            color: var(--primary-color-current-mode);
+            border: 2px solid rgba(59, 130, 246, 0.5);
+            border-radius: 0.5rem;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            font-size: 1rem;
 
             &:hover {
-                transform: translateY(-5px);
-            }
-
-            .resource-icon {
-                width: 64px;
-                height: 64px;
-                margin-bottom: 1.5rem;
-
-                &.document {
-                    background: url('/res/doc-icon.png') no-repeat center center;
-                    background-size: contain;
-                }
-
-                &.video {
-                    background: url('/res/video-icon.png') no-repeat center center;
-                    background-size: contain;
-                }
-
-                &.formula {
-                    background: url('/res/formula-icon.png') no-repeat center center;
-                    background-size: contain;
-                }
-
-                &.quiz {
-                    background: url('/res/quiz-icon.png') no-repeat center center;
-                    background-size: contain;
-                }
-            }
-
-            h3 {
-                font-size: 1.5rem;
-                font-weight: 600;
-                margin-bottom: 1rem;
-                color: white;
-            }
-
-            p {
-                color: #a0aec0;
-                line-height: 1.6;
+                background-color: rgba(59, 130, 246, 0.1);
+                border-color: rgba(59, 130, 246, 0.8);
+                transform: translateY(-2px);
+                box-shadow: 0 4px 12px rgba(59, 130, 246, 0.2);
             }
         }
     }
