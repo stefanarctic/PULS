@@ -139,6 +139,8 @@
         display: flex;
         flex-direction: column;
         outline: none;
+        // height: 136px;
+        overflow: hidden;
 
         &:hover {
             border-color: var(--accent-color-current-mode);
@@ -161,6 +163,8 @@
             align-items: flex-start;
             margin-bottom: 0.5rem;
             position: relative;
+            flex: 1;
+            min-height: 0;
 
             .problem-card-actions {
                 position: absolute;
@@ -189,6 +193,8 @@
 
             .problem-card-info {
                 flex: 1;
+                min-width: 0;
+                overflow: hidden;
 
                 .problem-card-id {
                     font-size: 0.875rem;
@@ -202,6 +208,9 @@
                     font-weight: 600;
                     margin: 0 0 0.25rem 0;
                     color: var(--primary-color-current-mode);
+                    overflow: hidden;
+                    text-overflow: ellipsis;
+                    white-space: nowrap;
                 }
 
                 .problem-card-topic {
@@ -252,6 +261,8 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
+            margin-top: auto;
+            flex-shrink: 0;
 
             .problem-card-difficulty {
                 font-size: 0.75rem;
