@@ -9,6 +9,7 @@ import { useSelector } from 'react-redux';
 import { auth, provider } from '../../lib/firebase';
 import { onAuthStateChanged, signInWithPopup } from 'firebase/auth';
 import { useState } from 'react';
+import ResourcesSection from "./ResourcesSection";
 
 translate = () => {
     const texts = getTextNodes(document.body);
@@ -300,7 +301,8 @@ const Index = () => {
 
             {/* Resources Section */}
             <section id="resources" className="resources-section">
-                <h2 className="section-title hidden hidden-bottom">Resurse didactice</h2>
+                <ResourcesSection />
+                {/* <h2 className="section-title hidden hidden-bottom">Resurse didactice</h2>
                 <p className="resources-description hidden hidden-bottom">
                     Explorează lecții teoretice, formule esențiale, experimente practice și bibliografie recomandată pentru a-ți aprofunda cunoștințele de fizică.
                 </p>
@@ -388,7 +390,7 @@ const Index = () => {
                     <Link to="/resurse" className="resources-view-all-button">
                         Vezi toate resursele
                     </Link>
-                </div>
+                </div> */}
             </section>
 
             {/* About Us Preview Section */}

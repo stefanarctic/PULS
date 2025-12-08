@@ -1,0 +1,304 @@
+// ResourcesSection.jsx
+
+// Variables (customize as per your design system)
+$primary: #3b82f6;
+$primary-foreground: #1e293b;
+$primary10: rgba(59, 130, 246, 0.1);
+$primary20: rgba(59, 130, 246, 0.2);
+$primary50: rgba(59, 130, 246, 0.5);
+$secondary: #f1f5f9;
+$border: #e5e7eb;
+$foreground: #111827;
+$muted-foreground: #6b7280;
+
+// Keyframes for animation
+@keyframes float {
+  0%   { transform: translateY(0); }
+  50%  { transform: translateY(-8px);}
+  100% { transform: translateY(0);}
+}
+
+// Container spacing
+.resources-section {
+  padding: 5rem 1rem;
+
+  .container {
+    max-width: 72rem;
+    margin: 0 auto;
+  }
+}
+
+// Header styles
+.resources-header {
+  text-align: center;
+  margin-bottom: 4rem;
+  position: relative;
+
+  .book-icon-wrapper {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 4rem;
+    height: 4rem;
+    border-radius: 1rem;
+    background: $primary10;
+    border: 1px solid $primary20;
+    margin-bottom: 1.5rem;
+    animation: float 2.4s infinite ease-in-out;
+
+    .book-icon {
+      width: 2rem;
+      height: 2rem;
+      color: $primary;
+    }
+  }
+
+  .resources-title {
+    font-family: var(--font-display, 'Inter', sans-serif);
+    font-size: 1.875rem; // text-3xl
+    line-height: 2.25rem;
+    font-weight: bold;
+    color: $foreground;
+    margin-bottom: 1rem;
+
+    @media (min-width: 768px) {
+      font-size: 2.25rem; // text-4xl
+      line-height: 2.5rem;
+    }
+  }
+
+  .resources-description {
+    color: $muted-foreground;
+    max-width: 42rem; // max-w-2xl
+    margin: 0 auto 0; 
+    font-size: 1.125rem; // text-lg
+    line-height: 1.75rem;
+  }
+
+  .resources-decorative-line {
+    margin-top: 2rem; // mt-8
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+
+    .line-left,
+    .line-right {
+      height: 1px;
+      width: 3rem;
+      background: linear-gradient(
+        to right, 
+        transparent 0%,
+        $primary50 100%
+      );
+      &.line-right {
+        background: linear-gradient(
+          to left,
+          transparent 0%,
+          $primary50 100%
+        );
+      }
+    }
+
+    .line-dot {
+      width: 0.5rem;
+      height: 0.5rem;
+      border-radius: 50%;
+      background: $primary50;
+    }
+  }
+}
+
+// Resources grid
+.resources-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.5rem;
+
+  @media (min-width: 768px) { // md
+    grid-template-columns: repeat(2, 1fr);
+  }
+  @media (min-width: 1024px) { // lg
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+// Footer button
+.resources-footer {
+  margin-top: 3rem;
+  text-align: center;
+
+  .view-all-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.75rem 1.5rem;
+    border-radius: 0.5rem;
+    background: $secondary;
+    border: 1px solid $border;
+    color: $foreground;
+    font-weight: 500;
+    transition: 
+      border-color 0.3s, 
+      box-shadow 0.3s;
+    font-size: 1rem;
+
+    .view-all-icon {
+      width: 1.25rem;
+      height: 1.25rem;
+    }
+
+    &:hover,
+    &:focus {
+      border-color: $primary50;
+      box-shadow: 0 0 16px 0 $primary50;
+    }
+  }
+}
+
+// General icon styles for lucide-react icons in cards
+.resource-icon {
+  width: 1.25rem;
+  height: 1.25rem;
+}
+
+
+// ResourceCard.jsx
+
+// Define color variables that reflect your Tailwind theme customization
+$color-card: #111827; // Example: bg-card
+$color-border: #2d3748; // Example: border
+$color-primary: #5b21b6; // primary
+$color-primary-faint: rgba(91, 33, 182, 0.2);
+$color-accent: #f59e42;
+$color-foreground: #f9fafb;
+$color-muted-foreground: #9ca3af;
+
+.resource-card {
+  position: relative;
+  overflow: hidden;
+  border-radius: 1rem;
+  background: $color-card;
+  border: 1px solid rgba($color-border, 0.5);
+  transition: border-color 0.5s, box-shadow 0.5s;
+  // Custom: subtle glowing border on hover
+  &:hover {
+    border-color: rgba($color-primary, 0.5);
+    box-shadow: 0 0 15px 0 rgba($color-primary, 0.25);
+    .resource-card__glow-overlay {
+      opacity: 1;
+    }
+    .resource-card__title {
+      color: $color-primary;
+    }
+    .resource-card__image {
+      transform: scale(1.10);
+    }
+    .resource-card__button {
+      color: $color-accent;
+    }
+  }
+}
+
+.resource-card__image-container {
+  position: relative;
+  height: 10rem; // h-40
+  overflow: hidden;
+}
+
+.resource-card__image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.7s;
+}
+
+.resource-card__gradient-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to top,
+    $color-card 0%,
+    rgba($color-card, 0.5) 60%,
+    transparent 100%
+  );
+  pointer-events: none;
+}
+
+.resource-card__floating-icon {
+  position: absolute;
+  left: 1rem;
+  bottom: 0.75rem;
+  padding: 0.625rem;
+  border-radius: 0.5rem;
+  background: $color-primary-faint;
+  backdrop-filter: blur(6px);
+  border: 1px solid rgba($color-primary, 0.3);
+  color: $color-primary;
+  z-index: 1;
+}
+
+.resource-card__content {
+  padding: 1.25rem;
+}
+
+.resource-card__title {
+  font-family: inherit; // If you have a display font, set it here
+  font-size: 1.125rem;
+  font-weight: 600;
+  color: $color-foreground;
+  margin-bottom: 0.5rem;
+  transition: color 0.3s;
+}
+
+.resource-card__description {
+  font-size: 0.875rem;
+  color: $color-muted-foreground;
+  line-height: 1.6;
+}
+
+.resource-card__button {
+  margin-top: 1rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 1rem;
+  font-weight: 500;
+  color: $color-primary;
+  background: none;
+  border: none;
+  padding: 0;
+  transition: color 0.3s;
+  cursor: pointer;
+
+  &:hover {
+    color: $color-accent;
+    text-decoration: underline;
+  }
+
+  .resource-card__button-icon {
+    width: 1rem;
+    height: 1rem;
+  }
+}
+
+.resource-card__glow-overlay {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  transition: opacity 0.5s;
+  pointer-events: none;
+  z-index: 2;
+}
+
+.resource-card__glow-bg {
+  position: absolute;
+  top: -1px; left: -1px; right: -1px; bottom: -1px;
+  border-radius: 1rem;
+  background: linear-gradient(
+    to right,
+    rgba($color-primary, 0.1),
+    transparent 50%,
+    rgba($color-accent, 0.1)
+  );
+}
