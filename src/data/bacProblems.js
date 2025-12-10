@@ -8,6 +8,7 @@ export const bacProblems = [
     titlu: 'Mișcare rectilinie uniformă - Bac 2023',
     descriere: 'Problema tipică de bacalaureat despre mișcarea rectilinie uniformă',
     categorie: 'Bac',
+    varianta: 'vara 2023',
     dificultate: 'mediu',
     creator: '',
     subpuncte: [
@@ -54,6 +55,7 @@ unde:
     titlu: 'Căderea liberă - Bac 2022',
     descriere: 'Problema de bacalaureat despre căderea liberă a unui corp',
     categorie: 'Bac',
+    varianta: 'sesiune toamna 2022',
     dificultate: 'mediu',
     creator: '',
     subpuncte: [
@@ -96,6 +98,7 @@ Pentru căderea liberă:
     titlu: 'Legea conservării energiei mecanice - Bac 2023',
     descriere: 'Aplicarea legii conservării energiei mecanice',
     categorie: 'Bac',
+    varianta: 'vara 2023',
     dificultate: 'mediu',
     creator: '',
     subpuncte: [
@@ -142,6 +145,7 @@ unde:
     titlu: 'Oscilații armonice - Pendul simplu - Bac 2022',
     descriere: 'Problema de bacalaureat despre oscilațiile pendulului simplu',
     categorie: 'Bac',
+    varianta: 'sesiune toamna 2022',
     dificultate: 'mediu',
     creator: '',
     subpuncte: [
@@ -188,6 +192,7 @@ unde $g = 9,8$ m/s² este accelerația gravitațională.`,
     titlu: 'Unde mecanice - Lungime de undă și frecvență - Bac 2023',
     descriere: 'Problema de bacalaureat despre undele mecanice',
     categorie: 'Bac',
+    varianta: 'simulare 2024',
     dificultate: 'mediu',
     creator: '',
     subpuncte: [
@@ -232,6 +237,7 @@ Relațiile fundamentale pentru unde:
     titlu: 'Legea lui Hooke și oscilații elastice - Bac 2022',
     descriere: 'Problema de bacalaureat despre oscilațiile unui sistem masă-resort',
     categorie: 'Bac',
+    varianta: 'simulare 2024',
     dificultate: 'dificil',
     creator: '',
     subpuncte: [

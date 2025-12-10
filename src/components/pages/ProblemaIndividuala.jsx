@@ -39,7 +39,12 @@ const ProblemaIndividuala = () => {
   }
 
   const handleBack = () => {
-    navigate('/probleme');
+    // If it's a bac problem, go back to bac page, otherwise to general problems page
+    if (problema.categorie === 'Bac' || (problema.categorie && problema.categorie.toLowerCase().includes('bac'))) {
+      navigate('/probleme/bac');
+    } else {
+      navigate('/probleme');
+    }
   };
 
   return (

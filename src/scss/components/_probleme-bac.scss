@@ -1,0 +1,462 @@
+// Import problem card styles from probleme page
+.problems-bac-page {
+    min-height: 100vh;
+    background-color: transparent;
+    color: var(--primary-color-current-mode);
+    padding: 2rem;
+    padding-top: 120px !important;
+
+    .problems-bac-page-inner {
+        background-color: transparent;
+        min-height: 90vh !important;
+        max-width: 92rem;
+        margin: 0 auto;
+    }
+
+    // Use same styles as problems-page for cards
+    .problem-card {
+        background-color: var(--secondary-background-current-mode);
+        border: 1px solid var(--border-color-current-mode);
+        border-radius: 8px;
+        padding: 1rem;
+        transition: border-color 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease;
+        cursor: pointer;
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        outline: none;
+        overflow: hidden;
+
+        &:hover {
+            border-color: var(--accent-color-current-mode);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+            transform: translateY(-4px);
+        }
+
+        &:focus-visible {
+            border-color: var(--accent-color-current-mode);
+            box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.25);
+        }
+
+        &.solved {
+            border-left: 4px solid #10b981;
+        }
+
+        .problem-card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 0.5rem;
+            position: relative;
+            flex: 1;
+            min-height: 0;
+
+            .problem-card-actions {
+                position: absolute;
+                top: 12px;
+                right: 12px;
+                display: inline-flex;
+                align-items: center;
+                gap: 0.5rem;
+                z-index: 3;
+            }
+
+            .problem-card-favorite-btn {
+                background: none;
+                border: none;
+                cursor: pointer;
+                font-size: 22px;
+                color: #bbb;
+                padding: 0;
+                line-height: 1;
+                transition: color 0.2s ease;
+
+                &.is-active {
+                    color: #f5b301;
+                }
+            }
+
+            .problem-card-info {
+                flex: 1;
+                min-width: 0;
+                overflow: hidden;
+
+                .problem-card-id {
+                    font-size: 0.875rem;
+                    color: var(--muted-color-current-mode);
+                    display: block;
+                    margin-bottom: 0.5rem;
+                }
+
+                .problem-card-title {
+                    font-size: 1.125rem;
+                    font-weight: 600;
+                    margin: 0 0 0.25rem 0;
+                    color: var(--primary-color-current-mode);
+                    overflow: hidden;
+                    text-overflow: ellipsis;
+                    white-space: nowrap;
+                }
+
+                .problem-card-topic {
+                    font-size: 0.875rem;
+                    color: var(--muted-color-current-mode);
+                    margin: 0 0 0.75rem 0;
+                }
+            }
+
+            .problem-card-solved-badge {
+                background: #10b981;
+                color: #fff;
+                font-size: 0.75rem;
+                padding: 0.25rem 0.5rem;
+                border-radius: 9999px;
+                white-space: nowrap;
+            }
+        }
+
+        .problem-card-perfect-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.35rem;
+            padding: 0.2rem 0.7rem 0.2rem 0.25rem;
+            border-radius: 9999px;
+            background: rgba(16, 185, 129, 0.15);
+            border: 1px solid rgba(16, 185, 129, 0.4);
+            color: #047857;
+            font-size: 0.75rem;
+            font-weight: 600;
+            z-index: 2;
+        }
+
+        .problem-card-perfect-icon {
+            width: 20px;
+            height: 20px;
+            border-radius: 9999px;
+            background: #10b981;
+            color: #fff;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .problem-card-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: auto;
+            flex-shrink: 0;
+
+            .problem-card-difficulty {
+                font-size: 0.75rem;
+                padding: 0.25rem 0.5rem;
+                border-radius: 9999px;
+                color: #fff;
+
+                &.difficulty--usor {
+                    background-color: #10b981;
+                }
+
+                &.difficulty--mediu {
+                    background-color: #f59e0b;
+                }
+
+                &.difficulty--dificil {
+                    background-color: #ef4444;
+                }
+
+                &.difficulty--concurs {
+                    background-color: rgb(119, 6, 248);
+                }
+            }
+
+            .problem-card-link {
+                font-size: 0.875rem;
+                color: var(--accent-color-current-mode);
+                background: transparent;
+                border: none;
+                text-decoration: none;
+                display: flex;
+                align-items: center;
+                gap: 0.25rem;
+                font-weight: 600;
+                letter-spacing: 0.01em;
+
+                svg {
+                    flex-shrink: 0;
+                }
+            }
+        }
+    }
+
+    .problems-bac-page-title {
+        font-size: 2rem;
+        font-weight: 700;
+        margin-bottom: 2rem;
+        color: var(--primary-color-current-mode);
+    }
+
+    .problems-bac-page-subtitle {
+        font-size: 1rem;
+        color: var(--muted-color-current-mode);
+        margin-bottom: 2rem;
+    }
+
+    // Import styles from probleme page
+    .problems-page-filters {
+        margin-bottom: 2rem;
+
+        .filters-row {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            margin-bottom: 1rem;
+
+            @media (min-width: 768px) {
+                flex-direction: row;
+            }
+
+            .search-container {
+                position: relative;
+                flex: 1;
+                min-width: 300px;
+
+                .search-icon {
+                    position: absolute;
+                    left: 0.75rem;
+                    top: 50%;
+                    transform: translateY(-50%);
+                    color: var(--muted-color-current-mode);
+                }
+
+                .search-input {
+                    width: 95%;
+                    padding: 0.75rem 1rem 0.75rem 2.5rem;
+                    border: 1px solid var(--border-color-current-mode);
+                    border-radius: 8px;
+                    font-size: 1rem;
+                    background-color: var(--secondary-background-current-mode);
+                    color: var(--primary-color-current-mode);
+                    outline: none;
+                }
+            }
+
+            .select-container {
+                display: flex;
+                gap: 0.5rem;
+
+                .filter-select {
+                    padding: 0.75rem 1rem;
+                    border: 1px solid var(--border-color-current-mode);
+                    border-radius: 8px;
+                    background-color: var(--secondary-background-current-mode);
+                    font-size: 1rem;
+                    color: var(--primary-color-current-mode);
+                    outline: none;
+                    min-width: 120px;
+                }
+            }
+        }
+    }
+
+    .results-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 1.5rem;
+
+        .results-count {
+            color: var(--muted-color-current-mode);
+            margin: 0;
+        }
+
+        .sort-select {
+            padding: 0.5rem 0.75rem;
+            border: 1px solid var(--border-color-current-mode);
+            border-radius: 6px;
+            background-color: var(--secondary-background-current-mode);
+            font-size: 0.875rem;
+            color: var(--primary-color-current-mode);
+            outline: none;
+        }
+    }
+
+    .problems-grid {
+        display: grid;
+        gap: 1.5rem;
+        grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+        margin-bottom: 2rem;
+
+        @media (max-width: 768px) {
+            grid-template-columns: 1fr;
+        }
+    }
+
+    .variants-container {
+        display: flex;
+        flex-direction: column;
+        gap: 1.5rem;
+    }
+
+    .variant-section {
+        background-color: var(--secondary-background-current-mode);
+        border: 1px solid var(--border-color-current-mode);
+        border-radius: 12px;
+        overflow: hidden;
+        transition: box-shadow 0.3s ease;
+
+        &:hover {
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+    }
+
+    .variant-header {
+        width: 100%;
+        padding: 1.5rem 2rem;
+        background-color: var(--secondary-background-current-mode);
+        border: none;
+        cursor: pointer;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        transition: background-color 0.2s ease;
+        text-align: left;
+
+        &:hover {
+            background-color: var(--quaternary-background-current-mode);
+        }
+
+        &:focus {
+            outline: 2px solid var(--accent-color-current-mode);
+            outline-offset: -2px;
+        }
+
+        .variant-header-content {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+            flex: 1;
+
+            @media (min-width: 768px) {
+                flex-direction: row;
+                align-items: center;
+                gap: 1rem;
+            }
+        }
+
+        .variant-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: var(--primary-color-current-mode);
+            margin: 0;
+        }
+
+        .variant-count {
+            font-size: 0.875rem;
+            color: var(--muted-color-current-mode);
+            padding: 0.25rem 0.75rem;
+            background-color: var(--tertiary-background-current-mode);
+            border-radius: 9999px;
+            display: inline-block;
+        }
+
+        .variant-toggle {
+            color: var(--muted-color-current-mode);
+            transition: transform 0.2s ease;
+            flex-shrink: 0;
+            margin-left: 1rem;
+        }
+    }
+
+    .variant-problems {
+        padding: 1.5rem 2rem;
+        border-top: 1px solid var(--border-color-current-mode);
+        background-color: var(--primary-background-current-mode);
+        animation: slideDown 0.3s ease-out;
+    }
+
+    .problems-loading {
+        text-align: center;
+        padding: 3rem;
+        color: var(--muted-color-current-mode);
+        font-size: 1.125rem;
+    }
+
+    .no-results {
+        text-align: center;
+        padding: 3rem 0;
+        color: var(--muted-color-current-mode);
+
+        h3 {
+            font-size: 1.125rem;
+            font-weight: 500;
+            margin-bottom: 0.5rem;
+            color: var(--primary-color-current-mode);
+        }
+
+        p {
+            font-size: 0.875rem;
+            margin: 0;
+            color: var(--muted-color-current-mode);
+        }
+    }
+
+    .problems-loading {
+        text-align: center;
+        padding: 3rem;
+        color: var(--muted-color-current-mode);
+        font-size: 1.125rem;
+    }
+
+    // FAB Button
+    .fab-add-problem {
+        position: fixed;
+        bottom: 2rem;
+        right: 2rem;
+        width: 56px;
+        height: 56px;
+        border-radius: 50%;
+        background-color: var(--accent-color-current-mode);
+        color: white;
+        border: none;
+        cursor: pointer;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        z-index: 1000;
+        transition: transform 0.2s ease, box-shadow 0.2s ease;
+
+        &:hover {
+            transform: scale(1.1);
+            box-shadow: 0 6px 16px rgba(0, 0, 0, 0.2);
+        }
+
+        &:active {
+            transform: scale(0.95);
+        }
+    }
+}
+
+@keyframes slideDown {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+// Dark mode adjustments
+[data-theme="dark"] {
+    .problems-bac-page {
+        .variant-section {
+            &:hover {
+                box-shadow: 0 4px 12px rgba(255, 255, 255, 0.05);
+            }
+        }
+    }
+}
+

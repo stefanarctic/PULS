@@ -1,17 +1,17 @@
-import { useEffect, useState, Fragment, useMemo } from 'react';
+import { useEffect, useState, useMemo, Fragment } from 'react';
 import Layout from '../Layout';
-import { useLocation, Link } from 'react-router-dom';
-import { useNavigate } from 'react-router-dom';
-// import { problemeData } from '../problemedata';
+import { useNavigate, useLocation } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
-import { fetchProblems, addProblem, clearAddStatus, deleteProblem } from '../../features/problems/problemsSlice';
-import { Plus, Check, GraduationCap, ExternalLink } from 'lucide-react';
+import { ProblemCard } from './Probleme';
+import { useSolvedProblems } from '../../hooks/useSolvedProblems';
 import { normalizeString } from '../../lib/normalizeString';
 import { auth, db } from '../../lib/firebase';
-import { onAuthStateChanged, getAuth } from 'firebase/auth';
+import { onAuthStateChanged } from 'firebase/auth';
 import { doc, getDoc, setDoc } from 'firebase/firestore';
-import { useSolvedProblems } from '../../hooks/useSolvedProblems';
+import { ChevronDown, ChevronUp, Plus } from 'lucide-react';
+import { addProblem, clearAddStatus } from '../../features/problems/problemsSlice';
 import { sendProblemSuggestion } from '../../lib/emailService';
+import '../../scss/components/_probleme-bac.scss';
 
 // Icon components
 const SearchIcon = () => (
@@ -21,135 +21,124 @@ const SearchIcon = () => (
     </svg>
 );
 
-const ExternalLinkIcon = () => (
-    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-        <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" />
-        <polyline points="15,3 21,3 21,9" />
-        <line x1="10" y1="14" x2="21" y2="3" />
-    </svg>
-);
-
-// Problem Card Component
-const ProblemCard = ({ problem, isFavorite, onToggleFavorite, completionPercent }) => {
-    const { index, titlu, dificultate, categorie, descriere, solved } = problem;
+const ProblemeBac = () => {
     const navigate = useNavigate();
-    const isPerfectScore = completionPercent === 100;
-    const isSolved = solved || isPerfectScore;
-    const handleNavigate = () => {
-        navigate(`/probleme/${index}`);
-    };
-    const handleKeyDown = (event) => {
-        if (event.key === 'Enter' || event.key === ' ') {
-            event.preventDefault();
-            handleNavigate();
-        }
-    };
-
-    const getDifficultyColorClass = (diff) => {
-        switch (diff) {
-            case 'ușor':
-            case 'usoare':
-                return 'difficulty--usor';
-            case 'mediu':
-            case 'medii':
-                return 'difficulty--mediu';
-            case 'dificil':
-            case 'dificile':
-                return 'difficulty--dificil';
-            case 'concurs':
-            case 'concursuri':
-                return 'difficulty--concurs';
-            default:
-                return '';
-        }
-    };
-
-    return (
-        <div
-            className={`problem-card${isSolved ? ' solved' : ''}`}
-            onClick={handleNavigate}
-            onKeyDown={handleKeyDown}
-            role="button"
-            tabIndex={0}
-            aria-label={`Deschide problema ${titlu}`}
-        >
-            <div className="problem-card-header">
-                <div className="problem-card-actions">
-                    {isFavorite && (
-                        <button
-                            title="Elimină din favorite"
-                            aria-label="Elimină din favorite"
-                            onClick={(e) => {
-                                e.stopPropagation();
-                                e.preventDefault();
-                                onToggleFavorite(problem);
-                            }}
-                            className="problem-card-favorite-btn is-active"
-                        >
-                            ★
-                        </button>
-                    )}
-                    {isPerfectScore && (
-                        <div
-                            className="problem-card-perfect-badge"
-                            title="Ai obținut scorul maxim la această problemă"
-                        >
-                            <span className="problem-card-perfect-icon" aria-hidden="true">
-                                <Check size={14} strokeWidth={3} />
-                            </span>
-                            <span className="problem-card-perfect-text">100%</span>
-                        </div>
-                    )}
-                </div>
-                <div className="problem-card-info">
-                    <span className="problem-card-id">#{index}</span>
-                    <h3 className="problem-card-title">{titlu}</h3>
-                    <p className="problem-card-topic">{categorie}</p>
-                </div>
-                {solved && <div className="problem-card-solved-badge">Rezolvată</div>}
-            </div>
-            <div className="problem-card-footer">
-                <div className={`problem-card-difficulty ${getDifficultyColorClass(dificultate)}`}>
-                    {dificultate}
-                </div>
-                <div className="problem-card-link">
-                    <span>Rezolvă</span>
-                    <ExternalLinkIcon />
-                </div>
-            </div>
-        </div>
-    );
-};
-
-const PhysicsProblems = () => {
-    const [searchQuery, setSearchQuery] = useState("");
     const location = useLocation();
-    const params = new URLSearchParams(location.search);
-
-    const [selectedDifficulty, setSelectedDifficulty] = useState(
-        params.get("difficulty") || "Toate"
-    );
-    const [selectedCategory, setSelectedCategory] = useState(
-        params.get("category") || "Toate"
-    );
+    const dispatch = useDispatch();
+    const { value: problemeData, status } = useSelector(state => state.problems);
+    const { addStatus, addError } = useSelector(state => state.problems);
+    const [user, setUser] = useState(null);
+    const [isAdmin, setIsAdmin] = useState(false);
+    const [favorites, setFavorites] = useState([]);
+    const [expandedVariants, setExpandedVariants] = useState({});
+    const [searchQuery, setSearchQuery] = useState("");
+    const [selectedDifficulty, setSelectedDifficulty] = useState("Toate");
     const [sortBy, setSortBy] = useState("newest");
-    
-    // Paginare
-    const [currentPage, setCurrentPage] = useState(1);
-    const problemsPerPage = 8; // Numărul de probleme per pagină
-
-    // Modal state
     const [showAddModal, setShowAddModal] = useState(false);
     const [pendingUrlData, setPendingUrlData] = useState(null);
-
-    const navigate = useNavigate();
-    const dispatch = useDispatch();
-    const { value: problemeData, status, error } = useSelector(state => state.problems);
-    const [isAdmin, setIsAdmin] = useState(false);
-    const [user, setUser] = useState(null);
-    const [favorites, setFavorites] = useState([]);
-    const [showSuccessNotification, setShowSuccessNotification] = useState(false);
     const { solvedProblems } = useSolvedProblems();
+
+    // Filter only Bac problems
+    const bacProblems = useMemo(() => {
+        return problemeData.filter(problem => 
+            problem.categorie === 'Bac' || 
+            (problem.categorie && normalizeString(problem.categorie).includes('bac'))
+        );
+    }, [problemeData]);
+
+    // Filter problems by search and difficulty
+    const filteredBacProblems = useMemo(() => {
+        return bacProblems.filter((problem) => {
+            if (searchQuery) {
+                const query = normalizeString(searchQuery);
+                const matchesTitle = normalizeString(problem.titlu).includes(query);
+                const matchesId = problem.id?.toString().includes(query);
+                const matchesIndex = problem.index?.toString().includes(query);
+                
+                if (!matchesTitle && !matchesId && !matchesIndex) {
+                    return false;
+                }
+            }
+
+            if (selectedDifficulty !== "Toate" && normalizeString(problem.dificultate) !== normalizeString(selectedDifficulty)) {
+                return false;
+            }
+
+            return true;
+        });
+    }, [bacProblems, searchQuery, selectedDifficulty]);
+
+    // Helper functions for variant sorting
+    const extractYear = (variant) => {
+        const match = variant.match(/(\d{4})/);
+        return match ? parseInt(match[1]) : 0;
+    };
+
+    const getVariantType = (variant) => {
+        const lower = variant.toLowerCase();
+        if (lower.includes('simulare')) return 'simulare';
+        if (lower.includes('vara')) return 'vara';
+        if (lower.includes('toamna')) return 'toamna';
+        return 'other';
+    };
+
+    // Sort problems
+    const difficultyOrder = { "ușor": 1, "mediu": 2, "dificil": 3, "concurs": 4 };
+    const sortedProblems = useMemo(() => {
+        const problems = [...filteredBacProblems];
+        switch (sortBy) {
+            case "newest":
+                return problems.sort((a, b) => b.index - a.index);
+            case "oldest":
+                return problems.sort((a, b) => a.index - b.index);
+            case "difficulty-asc":
+                return problems.sort((a, b) => {
+                    const orderA = difficultyOrder[a.dificultate] || 0;
+                    const orderB = difficultyOrder[b.dificultate] || 0;
+                    return orderA === orderB ? a.index - b.index : orderA - orderB;
+                });
+            case "difficulty-desc":
+                return problems.sort((a, b) => {
+                    const orderA = difficultyOrder[a.dificultate] || 0;
+                    const orderB = difficultyOrder[b.dificultate] || 0;
+                    return orderA === orderB ? a.index - b.index : orderB - orderA;
+                });
+            default:
+                return problems.sort((a, b) => a.index - b.index);
+        }
+    }, [filteredBacProblems, sortBy]);
+
+    // Group problems by variant
+    const problemsByVariant = useMemo(() => {
+        const grouped = {};
+        sortedProblems.forEach(problem => {
+            const variant = problem.varianta || 'Altele';
+            if (!grouped[variant]) {
+                grouped[variant] = [];
+            }
+            grouped[variant].push(problem);
+        });
+        
+        // Sort variants by year (newest first)
+        const sortedVariants = Object.keys(grouped).sort((a, b) => {
+            const yearA = extractYear(a);
+            const yearB = extractYear(b);
+            if (yearA !== yearB) {
+                return yearB - yearA;
+            }
+            const typeOrder = { 'simulare': 0, 'vara': 1, 'toamna': 2 };
+            const typeA = getVariantType(a);
+            const typeB = getVariantType(b);
+            return (typeOrder[typeA] || 99) - (typeOrder[typeB] || 99);
+        });
+        
+        const sorted = {};
+        sortedVariants.forEach(variant => {
+            sorted[variant] = grouped[variant];
+        });
+        
+        return sorted;
+    }, [sortedProblems]);
 
     const solvedProblemsMap = useMemo(() => {
         return solvedProblems.reduce((acc, entry) => {
@@ -188,26 +177,25 @@ const PhysicsProblems = () => {
     };
 
     useEffect(() => {
-      const unsubscribe = onAuthStateChanged(auth, async (firebaseUser) => {
-        if (firebaseUser) {
-          setUser(firebaseUser);
-          // Check admin status from DB
-          const userRef = doc(db, 'users', firebaseUser.uid);
-          const userSnap = await getDoc(userRef);
-          if (userSnap.exists()) {
-            setIsAdmin(userSnap.data().isAdmin === true);
-            setFavorites(userSnap.data().favorites || []);
-          } else {
-            setIsAdmin(false);
-            setFavorites([]);
-          }
-        } else {
-          setUser(null);
-          setIsAdmin(false);
-          setFavorites([]);
-        }
-      });
-      return () => unsubscribe();
+        const unsubscribe = onAuthStateChanged(auth, async (firebaseUser) => {
+            if (firebaseUser) {
+                setUser(firebaseUser);
+                const userRef = doc(db, 'users', firebaseUser.uid);
+                const userSnap = await getDoc(userRef);
+                if (userSnap.exists()) {
+                    setIsAdmin(userSnap.data().isAdmin === true);
+                    setFavorites(userSnap.data().favorites || []);
+                } else {
+                    setIsAdmin(false);
+                    setFavorites([]);
+                }
+            } else {
+                setUser(null);
+                setIsAdmin(false);
+                setFavorites([]);
+            }
+        });
+        return () => unsubscribe();
     }, []);
 
     const toggleFavorite = async (problem) => {
@@ -233,15 +221,27 @@ const PhysicsProblems = () => {
         }
     };
 
-    // Funcție pentru a verifica dacă query-ul este un ID valid și naviga direct
+    const toggleVariant = (variant) => {
+        setExpandedVariants(prev => ({
+            ...prev,
+            [variant]: !prev[variant]
+        }));
+    };
+
+    const formatVariantName = (variant) => {
+        return variant
+            .split(' ')
+            .map(word => word.charAt(0).toUpperCase() + word.slice(1))
+            .join(' ');
+    };
+
     const handleSearchSubmit = (e) => {
         e.preventDefault();
         if (searchQuery.trim()) {
             const query = searchQuery.trim();
-            // Verifică dacă query-ul este un număr și dacă există o problemă cu acel index
             const problemIndex = parseInt(query);
             if (!isNaN(problemIndex)) {
-                const problem = problemeData.find(p => p.index === problemIndex);
+                const problem = bacProblems.find(p => p.index === problemIndex);
                 if (problem) {
                     navigate(`/probleme/${problemIndex}`);
                     return;
@@ -250,44 +250,21 @@ const PhysicsProblems = () => {
         }
     };
 
-    useEffect(() => {
-        // Don't modify URL if we have addProblem parameter
-        const urlParams = new URLSearchParams(location.search);
-        if (urlParams.get('addProblem') === '1') {
-            return; // Keep the addProblem parameters
-        }
-
-        const params = new URLSearchParams();
-
-        if (selectedDifficulty && selectedDifficulty !== "Toate") {
-            params.set("difficulty", selectedDifficulty);
-        }
-
-        navigate({
-            pathname: location.pathname,
-            search: params.toString(),
-        });
-    }, [selectedDifficulty, navigate, location.pathname, location.search]);
-
-    // Reset la pagina 1 când se schimbă filtrele
-    useEffect(() => {
-        setCurrentPage(1);
-    }, [searchQuery, selectedDifficulty, selectedCategory, sortBy]);
-
     // Check for addProblem parameter in URL and populate form
     useEffect(() => {
         const urlParams = new URLSearchParams(location.search);
         const addProblem = urlParams.get('addProblem');
         
         if (addProblem === '1') {
-            console.log('📝 [URL] Detected addProblem parameter in URL');
+            console.log('📝 [URL] Detected addProblem parameter in URL for Bac page');
             
             // Parse problem data from URL immediately
             const problemData = {
                 titlu: decodeURIComponent(urlParams.get('titlu') || ''),
                 descriere: decodeURIComponent(urlParams.get('descriere') || ''),
-                categorie: decodeURIComponent(urlParams.get('categorie') || 'Mecanică'),
-                dificultate: decodeURIComponent(urlParams.get('dificultate') || 'ușor'),
+                varianta: decodeURIComponent(urlParams.get('varianta') || ''),
+                categorie: 'Bac',
+                dificultate: decodeURIComponent(urlParams.get('dificultate') || 'mediu'),
                 continut: decodeURIComponent(urlParams.get('continut') || ''),
                 punctajTotal: parseInt(urlParams.get('punctajTotal')) || 0,
             };
@@ -392,206 +369,31 @@ const PhysicsProblems = () => {
         }
     }, [isAdmin, user]);
 
-    const categories = [
-        "Toate",
-        "Mecanică",
-        "Oscilații",
-        "Unde",
-        "Lissajous",
-        "Seismologie",
-        // Bac problems are only available on /probleme/bac page
-    ];
-
     const difficulties = ["Toate", "ușor", "mediu", "dificil", "concurs"];
 
-    const isSpecializedPage = location.pathname.includes("/specialized");
-    const specializedTopics = ["pendul", "unde", "lissajous", "seism"];
-
-    const relevantProblems = isSpecializedPage
-        ? problemeData.filter((problem) =>
-            specializedTopics.some(topic =>
-                problem.topic.toLowerCase().includes(topic)
-            )
-        )
-        : problemeData;
-
-    // Filter out Bac problems from main problems page (they're only on /probleme/bac)
-    const problemsWithoutBac = relevantProblems.filter((problem) => {
-        const isBac = problem.categorie === 'Bac' || 
-                     (problem.categorie && normalizeString(problem.categorie).includes('bac'));
-        return !isBac;
-    });
-
-    const filteredProblems = problemsWithoutBac.filter((problem) => {
-        if (searchQuery) {
-            const query = normalizeString(searchQuery);
-            const matchesTitle = normalizeString(problem.titlu).includes(query);
-            const matchesCategory = normalizeString(problem.categorie).includes(query);
-            const matchesId = problem.id.toString().includes(query);
-            const matchesIndex = problem.index.toString().includes(query);
-            
-            if (!matchesTitle && !matchesCategory && !matchesId && !matchesIndex) {
-                return false;
-            }
-        }
-
-        if (selectedDifficulty !== "Toate" && normalizeString(problem.dificultate) !== normalizeString(selectedDifficulty)) {
-            return false;
-        }
-
-        if (
-            selectedCategory !== "Toate" &&
-            !normalizeString(problem.categorie).includes(normalizeString(selectedCategory))
-        ) {
-            return false;
-        }
-
-        return true;
-    });
-
-    // Funcție pentru sortarea după dificultate
-    const difficultyOrder = { "ușor": 1, "mediu": 2, "dificil": 3, "concurs": 4 };
-
-    // Funcție pentru sortarea problemelor
-    const sortProblems = (problems) => {
-        switch (sortBy) {
-            case "newest":
-                // Cele mai noi - sortare descrescătoare după index
-                return [...problems].sort((a, b) => b.index - a.index);
-            case "oldest":
-                // Cele mai vechi - sortare crescătoare după index
-                return [...problems].sort((a, b) => a.index - b.index);
-            case "difficulty-asc":
-                // Dificultate crescătoare (ușor -> mediu -> dificil)
-                return [...problems].sort((a, b) => {
-                    const orderA = difficultyOrder[a.dificultate] || 0;
-                    const orderB = difficultyOrder[b.dificultate] || 0;
-                    if (orderA === orderB) {
-                        // Dacă dificultatea este aceeași, sortăm după index
-                        return a.index - b.index;
-                    }
-                    return orderA - orderB;
-                });
-            case "difficulty-desc":
-                // Dificultate descrescătoare (dificil -> mediu -> ușor)
-                return [...problems].sort((a, b) => {
-                    const orderA = difficultyOrder[a.dificultate] || 0;
-                    const orderB = difficultyOrder[b.dificultate] || 0;
-                    if (orderA === orderB) {
-                        // Dacă dificultatea este aceeași, sortăm după index
-                        return a.index - b.index;
-                    }
-                    return orderB - orderA;
-                });
-            default:
-                // Implicit - sortare după index crescător
-                return [...problems].sort((a, b) => a.index - b.index);
-        }
-    };
-
-    const sortedProblems = sortProblems(filteredProblems);
-
-    // Calculul paginării
-    const totalPages = Math.ceil(sortedProblems.length / problemsPerPage);
-    const startIndex = (currentPage - 1) * problemsPerPage;
-    const endIndex = startIndex + problemsPerPage;
-    const currentProblems = sortedProblems.slice(startIndex, endIndex);
-
-    // Funcție pentru generarea numerelor de pagină
-    const getPageNumbers = () => {
-        const pages = [];
-        const maxVisiblePages = 5; // Numărul maxim de pagini vizibile
-
-        if (totalPages <= maxVisiblePages) {
-            // Dacă avem puține pagini, le afișăm pe toate
-            for (let i = 1; i <= totalPages; i++) {
-                pages.push(i);
-            }
-        } else {
-            // Dacă avem multe pagini, afișăm o selecție inteligentă
-            if (currentPage <= 3) {
-                // Începutul listei
-                for (let i = 1; i <= 4; i++) {
-                    pages.push(i);
-                }
-                pages.push('...');
-                pages.push(totalPages);
-            } else if (currentPage >= totalPages - 2) {
-                // Sfârșitul listei
-                pages.push(1);
-                pages.push('...');
-                for (let i = totalPages - 3; i <= totalPages; i++) {
-                    pages.push(i);
-                }
-            } else {
-                // Mijlocul listei
-                pages.push(1);
-                pages.push('...');
-                for (let i = currentPage - 1; i <= currentPage + 1; i++) {
-                    pages.push(i);
-                }
-                pages.push('...');
-                pages.push(totalPages);
-            }
-        }
-
-        return pages;
-    };
-
-    // Funcții pentru navigarea paginării
-    const goToPage = (page) => {
-        if (page >= 1 && page <= totalPages) {
-            setCurrentPage(page);
-        }
-    };
-
-    const goToPreviousPage = () => {
-        if (currentPage > 1) {
-            setCurrentPage(currentPage - 1);
-        }
-    };
-
-    const goToNextPage = () => {
-        if (currentPage < totalPages) {
-            setCurrentPage(currentPage + 1);
-        }
-    };
-
-    // AddProblemModal Component
-    const AddProblemModal = ({ isOpen, onClose, isAdmin, user, onSuccess }) => {
+    // AddProblemModal for Bac page
+    const AddProblemModal = ({ isOpen, onClose }) => {
         const [formData, setFormData] = useState({
             titlu: '',
             descriere: '',
-            categorie: 'Mecanică',
-            dificultate: 'ușor',
+            categorie: 'Bac',
+            varianta: '',
+            dificultate: 'mediu',
             continut: '',
             formule: [''],
             date: {},
             poze: [],
             punctajTotal: 0,
-            subpuncte: [
-                {
-                    cerinta: '',
-                    punctaj: 1
-                }
-            ]
+            subpuncte: [{ cerinta: '', punctaj: 1 }]
         });
 
-        const [datePairs, setDatePairs] = useState([
-            { key: '', value: '' }
-        ]);
-        
-        const dispatch = useDispatch();
-        const { addStatus, addError } = useSelector(state => state.problems);
-        const [emailStatus, setEmailStatus] = useState('idle'); // 'idle' | 'loading' | 'success' | 'error'
+        const [datePairs, setDatePairs] = useState([{ key: '', value: '' }]);
+        const [emailStatus, setEmailStatus] = useState('idle');
         const [emailError, setEmailError] = useState(null);
-        const [emailLogs, setEmailLogs] = useState([]); // Array of log messages for UI display
+        const [emailLogs, setEmailLogs] = useState([]);
 
         const handleInputChange = (field, value) => {
-            setFormData(prev => ({
-                ...prev,
-                [field]: value
-            }));
+            setFormData(prev => ({ ...prev, [field]: value }));
         };
 
         const handleSubpunctChange = (index, field, value) => {
@@ -606,10 +408,7 @@ const PhysicsProblems = () => {
         const addSubpunct = () => {
             setFormData(prev => ({
                 ...prev,
-                subpuncte: [...prev.subpuncte, {
-                    cerinta: '',
-                    punctaj: 1
-                }]
+                subpuncte: [...prev.subpuncte, { cerinta: '', punctaj: 1 }]
             }));
         };
 
@@ -640,6 +439,60 @@ const PhysicsProblems = () => {
             });
         };
 
+        const handlePaste = (e) => {
+            const items = e.clipboardData?.items;
+            if (!items) return;
+
+            const imagePromises = [];
+            for (let i = 0; i < items.length; i++) {
+                if (items[i].type.indexOf('image') !== -1) {
+                    const file = items[i].getAsFile();
+                    const promise = new Promise((resolve) => {
+                        const reader = new FileReader();
+                        reader.onloadend = () => resolve(reader.result);
+                        reader.readAsDataURL(file);
+                    });
+                    imagePromises.push(promise);
+                }
+            }
+
+            if (imagePromises.length > 0) {
+                Promise.all(imagePromises).then(images => {
+                    setFormData(prev => ({
+                        ...prev,
+                        poze: [...prev.poze, ...images]
+                    }));
+                });
+            }
+        };
+
+        const handleDragOver = (e) => {
+            e.preventDefault();
+            e.stopPropagation();
+        };
+
+        const handleDrop = (e) => {
+            e.preventDefault();
+            e.stopPropagation();
+            const files = Array.from(e.dataTransfer.files).filter(file => file.type.startsWith('image/'));
+            if (files.length > 0) {
+                const imagePromises = files.map(file => {
+                    return new Promise((resolve) => {
+                        const reader = new FileReader();
+                        reader.onloadend = () => resolve(reader.result);
+                        reader.readAsDataURL(file);
+                    });
+                });
+
+                Promise.all(imagePromises).then(images => {
+                    setFormData(prev => ({
+                        ...prev,
+                        poze: [...prev.poze, ...images]
+                    }));
+                });
+            }
+        };
+
         const removeImage = (index) => {
             setFormData(prev => ({
                 ...prev,
@@ -647,7 +500,6 @@ const PhysicsProblems = () => {
             }));
         };
 
-        // Date pairs handlers
         const handleDatePairChange = (index, field, value) => {
             setDatePairs(prev => 
                 prev.map((pair, i) => 
@@ -669,14 +521,6 @@ const PhysicsProblems = () => {
         const handleSubmit = async (e) => {
             e.preventDefault();
             
-            console.log('📝 [UI] Problem submission started', {
-                isAdmin,
-                userId: user?.uid,
-                userEmail: user?.email,
-                timestamp: new Date().toISOString()
-            });
-            
-            // Convert date pairs to object
             const dateObject = {};
             datePairs.forEach(pair => {
                 if (pair.key.trim() && pair.value.trim()) {
@@ -684,11 +528,11 @@ const PhysicsProblems = () => {
                 }
             });
             
-            // Prepare the problem data
             const problemData = {
                 titlu: formData.titlu,
                 descriere: formData.descriere,
-                categorie: formData.categorie,
+                categorie: 'Bac',
+                varianta: formData.varianta,
                 dificultate: formData.dificultate,
                 continut: formData.continut,
                 formule: formData.formule,
@@ -702,38 +546,18 @@ const PhysicsProblems = () => {
                 creator: '',
                 punctajTotal: formData.punctajTotal,
                 createdAt: new Date().toISOString(),
-                poze: formData.poze, // Include images in problem data
+                poze: formData.poze,
             };
             
-            // Check if user is admin
             if (isAdmin) {
-                // Admin: Upload directly to database
-                console.log('📝 [UI] User is admin, uploading problem directly to database...', {
-                    problemTitle: problemData.titlu,
-                    problemCategory: problemData.categorie,
-                    problemDifficulty: problemData.dificultate,
-                    subpuncteCount: problemData.subpuncte.length,
-                    hasImages: problemData.poze?.length > 0
-                });
-                
                 try {
-                    console.log('📝 [UI] Dispatching addProblem action...');
-                    const result = await dispatch(addProblem(problemData)).unwrap();
-                    
-                    console.log('✅ [UI] Problem uploaded successfully to database!', {
-                        problemTitle: problemData.titlu,
-                        problemIndex: problemData.index,
-                        problemId: result?.id,
-                        timestamp: new Date().toISOString(),
-                        result
-                    });
-                    
-                    // Reset form and close modal
+                    await dispatch(addProblem(problemData)).unwrap();
                     setFormData({
                         titlu: '',
                         descriere: '',
-                        categorie: 'Mecanică',
-                        dificultate: 'ușor',
+                        categorie: 'Bac',
+                        varianta: '',
+                        dificultate: 'mediu',
                         continut: '',
                         formule: [''],
                         date: {},
@@ -743,60 +567,29 @@ const PhysicsProblems = () => {
                     });
                     setDatePairs([{ key: '', value: '' }]);
                     onClose();
-                    
-                    // Clear add status after a delay
-                    setTimeout(() => {
-                        dispatch(clearAddStatus());
-                    }, 2000);
-                    
+                    setTimeout(() => dispatch(clearAddStatus()), 2000);
                 } catch (error) {
-                    console.error('❌ [UI] Error saving problem to database:', {
-                        error: error.message,
-                        errorName: error.name,
-                        problemTitle: problemData.titlu,
-                        timestamp: new Date().toISOString(),
-                        stack: error.stack
-                    });
+                    console.error('Error saving problem:', error);
                 }
             } else {
-                // Non-admin: Send email suggestion
-                console.log('📝 [UI] User is not admin, sending problem suggestion via email...', {
-                    userId: user?.uid,
-                    userEmail: user?.email,
-                    problemTitle: problemData.titlu,
-                    problemCategory: problemData.categorie,
-                    problemDifficulty: problemData.dificultate
-                });
-                
                 setEmailStatus('loading');
                 setEmailError(null);
                 setEmailLogs([{ type: 'info', message: 'Pregătire sugestie problemă...', timestamp: new Date() }]);
-                
                 try {
                     setEmailLogs(prev => [...prev, { type: 'info', message: 'Se inițializează serviciul de email...', timestamp: new Date() }]);
-                    console.log('📝 [UI] Calling sendProblemSuggestion...');
-                    
-                    setEmailLogs(prev => [...prev, { type: 'info', message: 'Se încarcă datele profilului utilizator...', timestamp: new Date() }]);
                     const result = await sendProblemSuggestion(problemData, user);
-                    
-                    console.log('✅ [UI] Problem suggestion sent successfully!', {
-                        result,
-                        problemTitle: problemData.titlu,
-                        timestamp: new Date().toISOString()
-                    });
-                    
                     setEmailLogs(prev => [...prev, { 
                         type: 'success', 
                         message: `Sugestia a fost trimisă cu succes! Durata: ${result.duration || 'N/A'}ms`, 
                         timestamp: new Date() 
                     }]);
-                    
-                    // Reset form immediately
+                    setEmailStatus('success');
                     setFormData({
                         titlu: '',
                         descriere: '',
-                        categorie: 'Mecanică',
-                        dificultate: 'ușor',
+                        categorie: 'Bac',
+                        varianta: '',
+                        dificultate: 'mediu',
                         continut: '',
                         formule: [''],
                         date: {},
@@ -805,24 +598,12 @@ const PhysicsProblems = () => {
                         subpuncte: [{ cerinta: '', punctaj: 1 }]
                     });
                     setDatePairs([{ key: '', value: '' }]);
-                    setEmailStatus('idle');
-                    setEmailLogs([]);
-                    
-                    // Close modal and trigger success notification
-                    onClose();
-                    if (onSuccess) {
-                        onSuccess();
-                    }
-                    
+                    setTimeout(() => {
+                        onClose();
+                        setEmailStatus('idle');
+                        setEmailLogs([]);
+                    }, 2000);
                 } catch (error) {
-                    console.error('❌ [UI] Error sending problem suggestion:', {
-                        error: error.message,
-                        errorName: error.name,
-                        problemTitle: problemData.titlu,
-                        userId: user?.uid,
-                        timestamp: new Date().toISOString()
-                    });
-                    
                     setEmailLogs(prev => [...prev, { 
                         type: 'error', 
                         message: `Eroare: ${error.message}`, 
@@ -834,7 +615,6 @@ const PhysicsProblems = () => {
             }
         };
 
-        // Reset form when modal opens/closes or populate from URL
         useEffect(() => {
             if (isOpen) {
                 // Check if there's prefill data from URL
@@ -846,8 +626,9 @@ const PhysicsProblems = () => {
                     setFormData({
                         titlu: prefillData.titlu || '',
                         descriere: prefillData.descriere || '',
-                        categorie: prefillData.categorie || 'Mecanică',
-                        dificultate: prefillData.dificultate || 'ușor',
+                        categorie: 'Bac',
+                        varianta: prefillData.varianta || '',
+                        dificultate: prefillData.dificultate || 'mediu',
                         continut: prefillData.continut || '',
                         formule: prefillData.formule && prefillData.formule.length > 0 
                             ? prefillData.formule 
@@ -883,8 +664,9 @@ const PhysicsProblems = () => {
                     setFormData({
                         titlu: '',
                         descriere: '',
-                        categorie: 'Mecanică',
-                        dificultate: 'ușor',
+                        categorie: 'Bac',
+                        varianta: '',
+                        dificultate: 'mediu',
                         continut: '',
                         formule: [''],
                         date: {},
@@ -899,8 +681,9 @@ const PhysicsProblems = () => {
                 setFormData({
                     titlu: '',
                     descriere: '',
-                    categorie: 'Mecanică',
-                    dificultate: 'ușor',
+                    categorie: 'Bac',
+                    varianta: '',
+                    dificultate: 'mediu',
                     continut: '',
                     formule: [''],
                     date: {},
@@ -919,40 +702,37 @@ const PhysicsProblems = () => {
         // Prevent body scroll when modal is open
         useEffect(() => {
             if (isOpen) {
-                // Save current scroll position
                 const scrollY = window.scrollY;
-                // Disable scroll
                 document.body.style.position = 'fixed';
                 document.body.style.top = `-${scrollY}px`;
                 document.body.style.width = '100%';
                 document.body.style.overflow = 'hidden';
                 
                 return () => {
-                    // Re-enable scroll
                     document.body.style.position = '';
                     document.body.style.top = '';
                     document.body.style.width = '';
                     document.body.style.overflow = '';
-                    // Restore scroll position
                     window.scrollTo(0, scrollY);
                 };
             }
         }, [isOpen]);
 
-        if (!isOpen) return null;
-        
-        // Safety check: Don't show modal if user is not logged in
-        if (!user) {
-            return null;
-        }
+        if (!isOpen || !user) return null;
 
         return (
             <div className="modal-overlay" onClick={onClose}>
                 <div className="modal-content" onClick={e => e.stopPropagation()}>
                     <div className="modal-header">
-                        <h2>{isAdmin ? 'Adaugă problemă' : 'Sugerează o problemă'}</h2>
+                        <h2>{isAdmin ? 'Adaugă problemă de bac' : 'Sugerează o problemă de bac'}</h2>
                         <button className="modal-close" onClick={onClose}>×</button>
                     </div>
+                    
+                    {!isAdmin && (
+                        <div className="info-message" style={{ padding: '12px', marginBottom: '16px', backgroundColor: '#e3f2fd', borderRadius: '4px', color: '#1976d2', fontSize: '14px' }}>
+                            <strong>Notă:</strong> Ca utilizator non-admin, poți doar să sugerezi probleme. Sugestiile tale vor fi trimise prin email administratorilor.
+                        </div>
+                    )}
                     
                     {!isAdmin && (
                         <div className="info-message" style={{ 
@@ -1057,6 +837,18 @@ const PhysicsProblems = () => {
                             </div>
 
                             <div className="form-group">
+                                <label>Varianta *</label>
+                                <input
+                                    type="text"
+                                    value={formData.varianta}
+                                    onChange={(e) => handleInputChange('varianta', e.target.value)}
+                                    placeholder="ex: simulare 2024, vara 2023, sesiune toamna 2022"
+                                    required
+                                    disabled={addStatus === 'loading'}
+                                />
+                            </div>
+
+                            <div className="form-group">
                                 <label>Descriere</label>
                                 <textarea
                                     value={formData.descriere}
@@ -1068,23 +860,6 @@ const PhysicsProblems = () => {
                             </div>
 
                             <div className="form-row">
-                                <div className="form-group">
-                                    <label>Categorie *</label>
-                                    <select
-                                        value={formData.categorie}
-                                        onChange={(e) => handleInputChange('categorie', e.target.value)}
-                                        required
-                                        disabled={addStatus === 'loading'}
-                                    >
-                                        <option value="Mecanică">Mecanică</option>
-                                        <option value="Oscilații">Oscilații</option>
-                                        <option value="Unde">Unde</option>
-                                        <option value="Lissajous">Lissajous</option>
-                                        <option value="Seismologie">Seismologie</option>
-                                        <option value="Bac">Bac</option>
-                                    </select>
-                                </div>
-
                                 <div className="form-group">
                                     <label>Dificultate *</label>
                                     <select
@@ -1098,6 +873,18 @@ const PhysicsProblems = () => {
                                         <option value="dificil">Dificil</option>
                                         <option value="concurs">Concurs</option>
                                     </select>
+                                </div>
+
+                                <div className="form-group">
+                                    <label>Punctaj total</label>
+                                    <input
+                                        type="number"
+                                        value={formData.punctajTotal}
+                                        onChange={(e) => handleInputChange('punctajTotal', parseInt(e.target.value) || 0)}
+                                        min="0"
+                                        placeholder="Punctaj total"
+                                        disabled={addStatus === 'loading'}
+                                    />
                                 </div>
                             </div>
 
@@ -1173,17 +960,22 @@ const PhysicsProblems = () => {
 
                             <div className="form-group full-width">
                                 <label>Poze</label>
-                                <div className="image-upload-area">
+                                <div 
+                                    className="image-upload-area"
+                                    onPaste={handlePaste}
+                                    onDragOver={handleDragOver}
+                                    onDrop={handleDrop}
+                                >
                                     <input
                                         type="file"
                                         multiple
                                         accept="image/*"
                                         onChange={handleImageUpload}
-                                        id="image-upload"
+                                        id="image-upload-bac"
                                         style={{ display: 'none' }}
                                         disabled={addStatus === 'loading'}
                                     />
-                                    <label htmlFor="image-upload" className="image-upload-label">
+                                    <label htmlFor="image-upload-bac" className="image-upload-label">
                                         <div className="upload-placeholder">
                                             <span>Click, trage sau folosește Ctrl+V pentru a adăuga poze</span>
                                         </div>
@@ -1207,18 +999,6 @@ const PhysicsProblems = () => {
                                         </div>
                                     )}
                                 </div>
-                            </div>
-
-                            <div className="form-group">
-                                <label>Punctaj total</label>
-                                <input
-                                    type="number"
-                                    value={formData.punctajTotal}
-                                    onChange={(e) => handleInputChange('punctajTotal', parseInt(e.target.value) || 0)}
-                                    min="0"
-                                    placeholder="Punctaj total"
-                                    disabled={addStatus === 'loading'}
-                                />
                             </div>
 
                             <div className="form-group full-width">
@@ -1265,26 +1045,11 @@ const PhysicsProblems = () => {
                                 </div>
                             </div>
                         </div>
-
                         <div className="modal-actions">
-                            <button
-                                type="submit"
-                                className="btn-primary"
-                                disabled={addStatus === 'loading' || emailStatus === 'loading'}
-                            >
-                                {isAdmin 
-                                    ? (addStatus === 'loading' ? 'Se salvează...' : 'Salvează')
-                                    : (emailStatus === 'loading' ? 'Se trimite...' : 'Trimite sugestie')
-                                }
+                            <button type="submit" className="btn-primary" disabled={addStatus === 'loading' || emailStatus === 'loading'}>
+                                {isAdmin ? (addStatus === 'loading' ? 'Se salvează...' : 'Salvează') : (emailStatus === 'loading' ? 'Se trimite...' : 'Trimite sugestie')}
                             </button>
-                            <button
-                                type="button"
-                                className="btn-secondary"
-                                onClick={onClose}
-                                disabled={addStatus === 'loading' || emailStatus === 'loading'}
-                            >
-                                Anulează
-                            </button>
+                            <button type="button" className="btn-secondary" onClick={onClose} disabled={addStatus === 'loading' || emailStatus === 'loading'}>Anulează</button>
                         </div>
                     </form>
                 </div>
@@ -1294,10 +1059,12 @@ const PhysicsProblems = () => {
 
     return (
         <Layout>
-            <div className="problems-page">
-                <div className="problems-page-inner">
-                    {/* Title */}
-                    <h1 className="problems-page-title">Probleme de fizică</h1>
+            <div className="problems-bac-page">
+                <div className="problems-bac-page-inner">
+                    <h1 className="problems-bac-page-title">Probleme de Bacalaureat</h1>
+                    <p className="problems-bac-page-subtitle">
+                        Probleme organizate pe variante de examen din diferiți ani
+                    </p>
 
                     {/* Search and Filters */}
                     <div className="problems-page-filters">
@@ -1306,7 +1073,7 @@ const PhysicsProblems = () => {
                                 <span className="search-icon"><SearchIcon /></span>
                                 <input
                                     type="text"
-                                    placeholder="Caută după titlu, categorie, ID sau număr..."
+                                    placeholder="Caută după titlu, ID sau număr..."
                                     className="search-input"
                                     value={searchQuery}
                                     onChange={(e) => setSearchQuery(e.target.value)}
@@ -1324,44 +1091,14 @@ const PhysicsProblems = () => {
                                         </option>
                                     ))}
                                 </select>
-                                <select
-                                    className="filter-select"
-                                    value={selectedCategory}
-                                    onChange={(e) => setSelectedCategory(e.target.value)}
-                                >
-                                    {categories.map((category) => (
-                                        <option key={category} value={category}>
-                                            {category === "Toate" ? "Toate categoriile" : `Categorie: ${category}`}
-                                        </option>
-                                    ))}
-                                </select>
                             </div>
                         </div>
-                    </div>
-
-                    {/* Category Pills */}
-                    <div className="category-pills">
-                        {categories.map((category) => (
-                            <button
-                                key={category}
-                                className={`category-pill${selectedCategory === category ? ' active' : ''}`}
-                                onClick={() => setSelectedCategory(category)}
-                            >
-                                {category}
-                            </button>
-                        ))}
-                        <Link to="/probleme/bac" className="bac-category-button">
-                            <GraduationCap size={16} />
-                            <span>Bacalaureat</span>
-                            <ExternalLink size={12} />
-                        </Link>
                     </div>
 
                     {/* Results Header */}
                     <div className="results-header">
                         <p className="results-count">
-                            {sortedProblems.length} probleme găsite
-                            {totalPages > 1 && ` (pagina ${currentPage} din ${totalPages})`}
+                            {sortedProblems.length} {sortedProblems.length === 1 ? 'problemă găsită' : 'probleme găsite'}
                         </p>
                         <select
                             className="sort-select"
@@ -1375,75 +1112,60 @@ const PhysicsProblems = () => {
                         </select>
                     </div>
 
-                    {/* Problem Cards Grid */}
                     {status === 'loading' && (
                         <div className="problems-loading">Se încarcă problemele...</div>
                     )}
-                    {status === 'failed' && (
-                        <div className="problems-error">Eroare la încărcarea problemelor: {error}</div>
-                    )}
-                    <div className="problems-grid">
-                        {currentProblems.map((problem) => (
-                            <ProblemCard
-                                key={problem.id}
-                                problem={problem}
-                                isFavorite={favorites.includes(problem.id)}
-                                onToggleFavorite={toggleFavorite}
-                                completionPercent={getProblemCompletion(problem)}
-                            />
-                        ))}
-                    </div>
 
-                    {/* Loading Component for No Results */}
-                    {sortedProblems.length === 0 && (
+                    {status === 'succeeded' && Object.keys(problemsByVariant).length === 0 && (
                         <div className="no-results">
-                            <div className="loading-spinner">
-                                <div className="spinner"></div>
-                                <h3>Se caută probleme...</h3>
-                                <p>Te rugăm să aștepți în timp ce se procesează căutarea.</p>
-                            </div>
+                            <h3>Nu există probleme de bac disponibile</h3>
+                            <p>Problemele vor fi adăugate în curând.</p>
                         </div>
                     )}
 
-                    {/* Pagination */}
-                    {totalPages > 1 && (
-                        <div className="pagination">
-                            <div className="pagination-navbar">
-                                <button 
-                                    className="pagination-btn" 
-                                    disabled={currentPage === 1}
-                                    onClick={goToPreviousPage}
-                                >
-                                    Anterior
-                                </button>
-                                
-                                {getPageNumbers().map((page, index) => (
-                                    <Fragment key={index}>
-                                        {page === '...' ? (
-                                            <span className="pagination-dots">...</span>
-                                        ) : (
-                                            <button 
-                                                className={`pagination-btn${currentPage === page ? ' pagination-btn--active' : ''}`}
-                                                onClick={() => goToPage(page)}
-                                            >
-                                                {page}
-                                            </button>
+                    {status === 'succeeded' && Object.keys(problemsByVariant).length > 0 && (
+                        <div className="variants-container">
+                            {Object.entries(problemsByVariant).map(([variant, problems]) => {
+                                const isExpanded = expandedVariants[variant] !== false;
+                                return (
+                                    <div key={variant} className="variant-section">
+                                        <button
+                                            className="variant-header"
+                                            onClick={() => toggleVariant(variant)}
+                                            aria-expanded={isExpanded}
+                                        >
+                                            <div className="variant-header-content">
+                                                <h2 className="variant-title">{formatVariantName(variant)}</h2>
+                                                <span className="variant-count">
+                                                    {problems.length} {problems.length === 1 ? 'problemă' : 'probleme'}
+                                                </span>
+                                            </div>
+                                            <div className="variant-toggle">
+                                                {isExpanded ? <ChevronUp size={20} /> : <ChevronDown size={20} />}
+                                            </div>
+                                        </button>
+                                        
+                                        {isExpanded && (
+                                            <div className="variant-problems">
+                                                <div className="problems-grid">
+                                                    {problems.map((problem) => (
+                                                        <ProblemCard
+                                                            key={problem.id}
+                                                            problem={problem}
+                                                            isFavorite={favorites.includes(problem.id)}
+                                                            onToggleFavorite={toggleFavorite}
+                                                            completionPercent={getProblemCompletion(problem)}
+                                                        />
+                                                    ))}
+                                                </div>
+                                            </div>
                                         )}
-                                    </Fragment>
-                                ))}
-                                
-                                <button 
-                                    className="pagination-btn" 
-                                    disabled={currentPage === totalPages}
-                                    onClick={goToNextPage}
-                                >
-                                    Următor
-                                </button>
-                            </div>
+                                    </div>
+                                );
+                            })}
                         </div>
                     )}
 
-                    {/* Floating Action Button - Only show if user is logged in */}
                     {user && (
                         <button 
                             className="fab-add-problem"
@@ -1454,91 +1176,14 @@ const PhysicsProblems = () => {
                         </button>
                     )}
 
-                    {/* Add Problem Modal */}
                     <AddProblemModal 
                         isOpen={showAddModal}
                         onClose={() => setShowAddModal(false)}
-                        isAdmin={isAdmin}
-                        user={user}
-                        onSuccess={() => {
-                            setShowSuccessNotification(true);
-                            setTimeout(() => {
-                                setShowSuccessNotification(false);
-                            }, 5000);
-                        }}
                     />
-                    
-                    {/* Success Notification */}
-                    {showSuccessNotification && (
-                        <div 
-                            className="success-notification-overlay"
-                            onClick={() => setShowSuccessNotification(false)}
-                            style={{
-                                position: 'fixed',
-                                top: 0,
-                                left: 0,
-                                right: 0,
-                                bottom: 0,
-                                backgroundColor: 'rgba(0, 0, 0, 0.5)',
-                                display: 'flex',
-                                alignItems: 'center',
-                                justifyContent: 'center',
-                                zIndex: 10000,
-                                animation: 'fadeIn 0.3s ease-in'
-                            }}
-                        >
-                            <div 
-                                className="success-notification"
-                                onClick={(e) => e.stopPropagation()}
-                                style={{
-                                    background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
-                                    padding: '30px 40px',
-                                    borderRadius: '12px',
-                                    boxShadow: '0 8px 32px rgba(0, 0, 0, 0.3)',
-                                    color: '#ffffff',
-                                    textAlign: 'center',
-                                    maxWidth: '400px',
-                                    animation: 'slideUp 0.3s ease-out'
-                                }}
-                            >
-                                <div style={{ fontSize: '48px', marginBottom: '15px' }}>✓</div>
-                                <h3 style={{ margin: '0 0 10px', fontSize: '24px', fontWeight: 600 }}>
-                                    Sugestie Trimisă!
-                                </h3>
-                                <p style={{ margin: 0, fontSize: '16px', opacity: 0.9 }}>
-                                    Sugestia ta a fost trimisă cu succes administratorilor. Ei vor revizui problema și o vor adăuga în baza de date dacă este aprobată.
-                                </p>
-                                <button
-                                    onClick={() => setShowSuccessNotification(false)}
-                                    style={{
-                                        marginTop: '20px',
-                                        padding: '10px 24px',
-                                        backgroundColor: 'rgba(255, 255, 255, 0.2)',
-                                        border: '2px solid rgba(255, 255, 255, 0.3)',
-                                        borderRadius: '6px',
-                                        color: '#ffffff',
-                                        fontSize: '14px',
-                                        fontWeight: 600,
-                                        cursor: 'pointer',
-                                        transition: 'all 0.2s'
-                                    }}
-                                    onMouseOver={(e) => {
-                                        e.target.style.backgroundColor = 'rgba(255, 255, 255, 0.3)';
-                                    }}
-                                    onMouseOut={(e) => {
-                                        e.target.style.backgroundColor = 'rgba(255, 255, 255, 0.2)';
-                                    }}
-                                >
-                                    OK
-                                </button>
-                            </div>
-                        </div>
-                    )}
                 </div>
             </div>
         </Layout>
     );
 };
 
-export default PhysicsProblems;
-export { ProblemCard };
+export default ProblemeBac;
