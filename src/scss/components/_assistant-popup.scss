@@ -163,6 +163,7 @@
   // MathJax display improvements
   .mjx-chtml {
     line-height: 1.6;
+    word-wrap: break-word;
   }
   .mjx-block {
     margin: 0.5rem 0; // spacing for display equations

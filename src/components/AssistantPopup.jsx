@@ -456,7 +456,7 @@ const AssistantPopup = ({ onClose, initialMessage }) => {
             )}
           </div>
         </div>
-        {/* <MathJaxRender /> */}
+        <MathJaxRender />
       </div>
     </div>
   );
