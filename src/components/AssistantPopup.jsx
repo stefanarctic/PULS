@@ -149,15 +149,94 @@ const AssistantPopup = ({ onClose, initialMessage }) => {
     setLoading(true);
 
     try {
-      const response = await fetch("https://puls-ai-chatbot.fly.dev/webhook/chat", {
+      const response = await fetch("/api/webhook/chat", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ message: text, sessionId }),
       });
-      if (!response.ok) throw new Error("Network response was not ok");
-      const data = await response.json();
-      // Assume the response message is in data.message, data.reply, or data.output
-      const aiText = data.message || data.reply || data.output || "(Răspunsul nu a putut fi preluat)";
+      
+      // Check content type and get response text first
+      const contentType = response.headers.get("content-type");
+      const responseText = await response.text();
+      
+      console.log("Response status:", response.status);
+      console.log("Content-Type:", contentType);
+      console.log("Response text length:", responseText.length);
+      console.log("Response preview:", responseText.substring(0, 200));
+      
+      if (!response.ok) {
+        // Try to parse error response if it's JSON
+        let errorMessage = `Eroare ${response.status}: ${response.statusText}`;
+        if (contentType && contentType.includes("application/json") && responseText) {
+          try {
+            const errorData = JSON.parse(responseText);
+            errorMessage = errorData.message || errorData.error || errorMessage;
+            console.error("Backend error:", errorData);
+          } catch (e) {
+            console.error("Failed to parse error response:", e);
+            errorMessage = responseText || errorMessage;
+          }
+        } else if (responseText) {
+          errorMessage = responseText.substring(0, 200);
+        }
+        throw new Error(errorMessage);
+      }
+      
+      // Parse JSON response
+      let data;
+      if (!responseText || responseText.trim().length === 0) {
+        throw new Error("Serverul a returnat un răspuns gol. Verifică în n8n: 1) Nodul 'Respond to Webhook' este conectat la finalul workflow-ului, 2) Nodul 'Respond to Webhook' trimite datele corecte (verifică parametrul 'Respond With'), 3) Workflow-ul este activat.");
+      }
+      
+      let aiText;
+      
+      // Try to parse as JSON first
+      if (contentType && contentType.includes("application/json")) {
+        try {
+          data = JSON.parse(responseText);
+          
+          // If parsed result is a string, use it directly
+          if (typeof data === 'string') {
+            aiText = data;
+          } 
+          // If it's an array, extract the first element
+          else if (Array.isArray(data)) {
+            console.log("Received data structure: Array with", data.length, "items");
+            if (data.length > 0) {
+              const firstItem = data[0];
+              // Try to find message in the first item
+              aiText = firstItem.message || firstItem.reply || firstItem.output || firstItem.text || 
+                       firstItem.response || firstItem.answer || 
+                       (typeof firstItem === 'string' ? firstItem : String(firstItem));
+            } else {
+              aiText = "(Răspunsul nu a putut fi preluat - array gol)";
+            }
+          }
+          // If it's an object, try to find the message in various fields
+          else if (typeof data === 'object' && data !== null) {
+            console.log("Received data structure:", data);
+            console.log("Available keys:", Object.keys(data));
+            
+            // Try multiple possible field names that n8n might use
+            aiText = data.message || data.reply || data.output || data.text || data.response || data.answer || 
+                     (data.json && (data.json.message || data.json.output)) ||
+                     "(Răspunsul nu a putut fi preluat)";
+            
+            if (aiText === "(Răspunsul nu a putut fi preluat)") {
+              console.warn("Could not find message in response. Full data:", JSON.stringify(data, null, 2));
+            }
+          } else {
+            aiText = String(data);
+          }
+        } catch (e) {
+          console.error("Failed to parse JSON:", e, "Response:", responseText);
+          // If JSON parsing fails but content-type says JSON, try as plain text
+          aiText = responseText;
+        }
+      } else {
+        // If not JSON, treat as plain text message
+        aiText = responseText;
+      }
       
       // Add AI message with empty text first
       setMessages((msgs) => [...msgs, { role: "ai", text: "" }]);
@@ -174,9 +253,11 @@ const AssistantPopup = ({ onClose, initialMessage }) => {
       }, 500);
       
     } catch (err) {
+      console.error("Chat error:", err);
+      const errorText = err.message || "A apărut o eroare la conectarea cu serverul. Încearcă din nou mai târziu.";
       setMessages((msgs) => [
         ...msgs,
-        { role: "ai", text: "A apărut o eroare la conectarea cu serverul. Încearcă din nou mai târziu." },
+        { role: "ai", text: errorText },
       ]);
       setLoading(false);
     }
