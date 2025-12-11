@@ -327,32 +327,23 @@ const AssistantPopup = ({ onClose, initialMessage }) => {
     }
   }, [loading]);
 
-  // Function to process text and make URLs clickable while preserving Markdown
-  const processTextWithLinks = (text) => {
-    // Regex to find URLs - more precise to avoid including trailing punctuation
-    const urlRegex = /(https?:\/\/[^\s.,!?;:]+)/g;
+  // Function to preprocess text: convert plain URLs to markdown links if no markdown links exist
+  const preprocessTextForMarkdown = (text) => {
+    // Check if text already contains markdown links
+    const markdownLinkRegex = /\[([^\]]+)\]\(([^)]+)\)/;
+    if (markdownLinkRegex.test(text)) {
+      // Text already has markdown links, return as-is
+      return text;
+    }
     
-    // Split text by URLs and process each part
-    const parts = text.split(urlRegex);
+    // No markdown links found, check for plain URLs and convert them
+    // Regex to find URLs - capture everything until space or end of text
+    const urlRegex = /(https?:\/\/[^\s]+)/g;
     
-    return parts.map((part, index) => {
-      if (urlRegex.test(part)) {
-        // This is a URL, make it a link
-        return (
-          <a 
-            key={index}
-            href={part} 
-            className="assistant-link" 
-            target="_self" 
-            rel="noopener noreferrer"
-          >
-            {part}
-          </a>
-        );
-      } else {
-        // This is regular text, preserve Markdown formatting
-        return part;
-      }
+    // Replace plain URLs with markdown links
+    return text.replace(urlRegex, (url) => {
+      // Return as markdown link format: [url](url)
+      return `[${url}](${url})`;
     });
   };
 
@@ -430,7 +421,7 @@ const AssistantPopup = ({ onClose, initialMessage }) => {
                               )
                             }}
                           >
-                            {msg.text}
+                            {preprocessTextForMarkdown(msg.text)}
                           </ReactMarkdown>
                           {/* Only render MathJax for messages that are not currently being typed */}
                           {!(typing && idx === messages.length - 1) ? <MathJaxRender /> : null}
