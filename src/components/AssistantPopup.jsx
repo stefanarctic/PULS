@@ -117,6 +117,10 @@ const AssistantPopup = ({ onClose, initialMessage }) => {
     setTyping(true);
     let currentText = "";
     let index = 0;
+    let lastTypesetTime = Date.now();
+    let lastScrollTime = Date.now();
+    const typesetInterval = 300; // Typeset MathJax every 300ms during typing
+    const scrollInterval = 100; // Scroll every 100ms during typing
     
     const typeInterval = setInterval(() => {
       if (index < text.length) {
@@ -130,10 +134,32 @@ const AssistantPopup = ({ onClose, initialMessage }) => {
           return newMessages;
         });
         index++;
+        
+        // Scroll to bottom periodically during typing
+        const now = Date.now();
+        if (now - lastScrollTime >= scrollInterval && chatRef.current) {
+          chatRef.current.scrollTop = chatRef.current.scrollHeight;
+          lastScrollTime = now;
+        }
+        
+        // Typeset MathJax periodically during typing (every 300ms)
+        if (now - lastTypesetTime >= typesetInterval) {
+          setTimeout(() => {
+            typesetLastAIBubble();
+          }, 50);
+          lastTypesetTime = now;
+        }
       } else {
         clearInterval(typeInterval);
         setTyping(false);
-        if (callback) callback();
+        // Final scroll and typeset after typing is complete
+        setTimeout(() => {
+          if (chatRef.current) {
+            chatRef.current.scrollTop = chatRef.current.scrollHeight;
+          }
+          typesetLastAIBubble();
+          if (callback) callback();
+        }, 200);
       }
     }, 7); // Speed of typing - much faster now
   };
@@ -423,8 +449,8 @@ const AssistantPopup = ({ onClose, initialMessage }) => {
                           >
                             {preprocessTextForMarkdown(msg.text)}
                           </ReactMarkdown>
-                          {/* Only render MathJax for messages that are not currently being typed */}
-                          {!(typing && idx === messages.length - 1) ? <MathJaxRender /> : null}
+                          {/* Render MathJax even during typing for real-time formatting */}
+                          <MathJaxRender />
                         </>
                       ) : (
                         <span>{msg.text}</span>
