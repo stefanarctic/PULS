@@ -1,16 +1,5 @@
 // ResourcesSection.jsx
 
-// Variables (customize as per your design system)
-$primary: #3b82f6;
-$primary-foreground: #1e293b;
-$primary10: rgba(59, 130, 246, 0.1);
-$primary20: rgba(59, 130, 246, 0.2);
-$primary50: rgba(59, 130, 246, 0.5);
-$secondary: #f1f5f9;
-$border: #e5e7eb;
-$foreground: #111827;
-$muted-foreground: #6b7280;
-
 // Keyframes for animation
 @keyframes float {
   0%   { transform: translateY(0); }
@@ -20,7 +9,7 @@ $muted-foreground: #6b7280;
 
 // Container spacing
 .resources-section {
-  padding: 5rem 1rem;
+  padding: 2rem 1rem;
 
   .container {
     max-width: 72rem;
@@ -41,15 +30,15 @@ $muted-foreground: #6b7280;
     width: 4rem;
     height: 4rem;
     border-radius: 1rem;
-    background: $primary10;
-    border: 1px solid $primary20;
+    background: var(--secondary-background-current-mode);
+    border: 1px solid var(--accent-color-current-mode);
     margin-bottom: 1.5rem;
     animation: float 2.4s infinite ease-in-out;
 
     .book-icon {
       width: 2rem;
       height: 2rem;
-      color: $primary;
+      color: var(--accent-color-current-mode);
     }
   }
 
@@ -58,7 +47,7 @@ $muted-foreground: #6b7280;
     font-size: 1.875rem; // text-3xl
     line-height: 2.25rem;
     font-weight: bold;
-    color: $foreground;
+    color: var(--primary-color-current-mode);
     margin-bottom: 1rem;
 
     @media (min-width: 768px) {
@@ -68,7 +57,7 @@ $muted-foreground: #6b7280;
   }
 
   .resources-description {
-    color: $muted-foreground;
+    color: var(--muted-color-current-mode);
     max-width: 42rem; // max-w-2xl
     margin: 0 auto 0; 
     font-size: 1.125rem; // text-lg
@@ -89,13 +78,13 @@ $muted-foreground: #6b7280;
       background: linear-gradient(
         to right, 
         transparent 0%,
-        $primary50 100%
+        var(--accent-color-current-mode) 100%
       );
       &.line-right {
         background: linear-gradient(
           to left,
           transparent 0%,
-          $primary50 100%
+          var(--accent-color-current-mode) 100%
         );
       }
     }
@@ -104,7 +93,7 @@ $muted-foreground: #6b7280;
       width: 0.5rem;
       height: 0.5rem;
       border-radius: 50%;
-      background: $primary50;
+      background: var(--accent-color-current-mode);
     }
   }
 }
@@ -126,6 +115,7 @@ $muted-foreground: #6b7280;
 // Footer button
 .resources-footer {
   margin-top: 3rem;
+  margin-bottom: 1rem;
   text-align: center;
 
   .view-all-btn {
@@ -133,15 +123,17 @@ $muted-foreground: #6b7280;
     align-items: center;
     gap: 0.5rem;
     padding: 0.75rem 1.5rem;
+    margin-top: 2rem;
     border-radius: 0.5rem;
-    background: $secondary;
-    border: 1px solid $border;
-    color: $foreground;
+    background: var(--accent-color-view-all-button-current-mode);
+    border: 1px solid var(--border-color-current-mode);
+    color: #ffffff;
     font-weight: 500;
     transition: 
-      border-color 0.3s, 
-      box-shadow 0.3s;
+    border-color 0.3s, 
+    box-shadow 0.3s;
     font-size: 1rem;
+    cursor: pointer;
 
     .view-all-icon {
       width: 1.25rem;
@@ -150,8 +142,8 @@ $muted-foreground: #6b7280;
 
     &:hover,
     &:focus {
-      border-color: $primary50;
-      box-shadow: 0 0 16px 0 $primary50;
+      border-color: var(--accent-color-current-mode);
+      box-shadow: 0 0 16px 0 var(--accent-color-current-mode);
     }
   }
 }
@@ -163,39 +155,29 @@ $muted-foreground: #6b7280;
 }
 
 
-// ResourceCard.jsx
-
-// Define color variables that reflect your Tailwind theme customization
-$color-card: #111827; // Example: bg-card
-$color-border: #2d3748; // Example: border
-$color-primary: #5b21b6; // primary
-$color-primary-faint: rgba(91, 33, 182, 0.2);
-$color-accent: #f59e42;
-$color-foreground: #f9fafb;
-$color-muted-foreground: #9ca3af;
-
 .resource-card {
   position: relative;
   overflow: hidden;
   border-radius: 1rem;
-  background: $color-card;
-  border: 1px solid rgba($color-border, 0.5);
+  background: var(--secondary-background-current-mode);
+  border: 1px solid var(--border-color-current-mode);
   transition: border-color 0.5s, box-shadow 0.5s;
   // Custom: subtle glowing border on hover
   &:hover {
-    border-color: rgba($color-primary, 0.5);
-    box-shadow: 0 0 15px 0 rgba($color-primary, 0.25);
+    border-color: var(--accent-color-current-mode);
+    box-shadow: 0 18px 45px rgba(15, 23, 42, 0.18);
+    transform: scale(1.05);
     .resource-card__glow-overlay {
-      opacity: 1;
+      opacity: 0.2;
     }
     .resource-card__title {
-      color: $color-primary;
+      color: var(--accent-color-current-mode);
     }
     .resource-card__image {
       transform: scale(1.10);
     }
     .resource-card__button {
-      color: $color-accent;
+      color: var(--accent-color-current-mode);
     }
   }
 }
@@ -218,8 +200,8 @@ $color-muted-foreground: #9ca3af;
   inset: 0;
   background: linear-gradient(
     to top,
-    $color-card 0%,
-    rgba($color-card, 0.5) 60%,
+    rgba(15, 23, 42, 0.85) 0%,
+    rgba(15, 23, 42, 0.6) 55%,
     transparent 100%
   );
   pointer-events: none;
@@ -231,10 +213,10 @@ $color-muted-foreground: #9ca3af;
   bottom: 0.75rem;
   padding: 0.625rem;
   border-radius: 0.5rem;
-  background: $color-primary-faint;
+  background: var(--secondary-background-current-mode);
   backdrop-filter: blur(6px);
-  border: 1px solid rgba($color-primary, 0.3);
-  color: $color-primary;
+  border: 1px solid var(--border-color-current-mode-2, var(--border-color-current-mode));
+  color: var(--accent-color-current-mode);
   z-index: 1;
 }
 
@@ -246,14 +228,14 @@ $color-muted-foreground: #9ca3af;
   font-family: inherit; // If you have a display font, set it here
   font-size: 1.125rem;
   font-weight: 600;
-  color: $color-foreground;
+  color: var(--primary-color-current-mode);
   margin-bottom: 0.5rem;
   transition: color 0.3s;
 }
 
 .resource-card__description {
   font-size: 0.875rem;
-  color: $color-muted-foreground;
+  color: var(--muted-color-current-mode);
   line-height: 1.6;
 }
 
@@ -264,7 +246,7 @@ $color-muted-foreground: #9ca3af;
   gap: 0.5rem;
   font-size: 1rem;
   font-weight: 500;
-  color: $color-primary;
+  color: var(--accent-color-current-mode);
   background: none;
   border: none;
   padding: 0;
@@ -272,8 +254,9 @@ $color-muted-foreground: #9ca3af;
   cursor: pointer;
 
   &:hover {
-    color: $color-accent;
-    text-decoration: underline;
+    color: var(--accent-color-current-mode);
+    // text-decoration: underline;
+    transform: scale(1.05);
   }
 
   .resource-card__button-icon {
@@ -297,8 +280,8 @@ $color-muted-foreground: #9ca3af;
   border-radius: 1rem;
   background: linear-gradient(
     to right,
-    rgba($color-primary, 0.1),
+    rgba(96, 165, 250, 0.16),
     transparent 50%,
-    rgba($color-accent, 0.1)
+    rgba(129, 140, 248, 0.18)
   );
 }
