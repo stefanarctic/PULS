@@ -48,6 +48,22 @@ const AssistantPopup = ({ onClose, initialMessage }) => {
     user
   } = useChats();
 
+  // Funcție pentru a fixa URL-urile Google Profile Images
+  const fixGoogleProfileImageUrl = (url) => {
+    if (!url || !url.includes('googleusercontent.com')) {
+      return url;
+    }
+    
+    let cleanUrl = url.split('?')[0];
+    cleanUrl = cleanUrl.replace(/=s\d+-c$/, '');
+    cleanUrl = cleanUrl + '=s96-c';
+    
+    return cleanUrl;
+  };
+
+  // Obține poza de profil direct din Firebase Auth user object (fără request la Firestore)
+  const userProfilePic = user?.photoURL ? fixGoogleProfileImageUrl(user.photoURL) : null;
+
   const currentChat = getCurrentChat();
   const messages = currentChat?.messages || [];
 
@@ -265,7 +281,6 @@ const AssistantPopup = ({ onClose, initialMessage }) => {
       try {
         const newTitle = text.length > 30 ? text.substring(0, 30) + '...' : text;
         activeChatId = await createChat(newTitle);
-        console.log('✅ New chat created with title:', newTitle);
       } catch (error) {
         console.error('Error creating chat:', error);
         alert('Eroare la crearea chat-ului. Te rugăm să încerci din nou.');
@@ -649,8 +664,31 @@ const AssistantPopup = ({ onClose, initialMessage }) => {
                             <div className="assistant-message-avatar">
                               {msg.role === 'ai' ? (
                                 <Bot size={20} />
-                              ) : (
-                                <User size={20} />
+                              ) : userProfilePic ? (
+                                <img 
+                                  src={userProfilePic} 
+                                  alt="User avatar" 
+                                  className="assistant-message-avatar-img"
+                                  {...(userProfilePic.includes('googleusercontent.com') && { 
+                                    crossOrigin: 'anonymous', 
+                                    referrerPolicy: 'no-referrer' 
+                                  })}
+                                  onError={(e) => {
+                                    // Dacă imaginea nu se încarcă, afișează iconița User
+                                    e.target.style.display = 'none';
+                                    const userIcon = e.target.parentElement.querySelector('.assistant-message-avatar-fallback');
+                                    if (userIcon) {
+                                      userIcon.style.display = 'flex';
+                                    }
+                                  }}
+                                />
+                              ) : null}
+                              {msg.role === 'user' && (
+                                <User 
+                                  size={20} 
+                                  className="assistant-message-avatar-fallback"
+                                  style={{ display: userProfilePic ? 'none' : 'flex' }}
+                                />
                               )}
                             </div>
                             <div className="assistant-message-content-wrapper">
