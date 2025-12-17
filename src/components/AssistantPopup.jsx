@@ -98,6 +98,20 @@ const AssistantPopup = ({ onClose, initialMessage }) => {
     }
   }, []);
 
+  // Handle Escape key to close popup
+  useEffect(() => {
+    const handleEscape = (e) => {
+      if (e.key === 'Escape') {
+        onClose();
+      }
+    };
+    
+    document.addEventListener('keydown', handleEscape);
+    return () => {
+      document.removeEventListener('keydown', handleEscape);
+    };
+  }, [onClose]);
+
   // Scroll to bottom when messages change
   useEffect(() => {
     scrollToBottom();
@@ -460,6 +474,11 @@ const AssistantPopup = ({ onClose, initialMessage }) => {
     <div 
       className={`assistant-popup-overlay ${isFullscreen ? 'fullscreen' : ''}`} 
       onClick={(e) => {
+        // Close popup when clicking outside the modal
+        if (e.target === e.currentTarget) {
+          onClose();
+        }
+        // On mobile, also handle sidebar toggle
         if (window.innerWidth <= 1100 && e.target === e.currentTarget && sidebarOpen) {
           setSidebarOpen(false);
         }
