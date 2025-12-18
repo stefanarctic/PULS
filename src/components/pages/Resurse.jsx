@@ -15,9 +15,9 @@ import Thumbnail4 from "/res/Thumbnails/Front Unda 1.png";
 import Thumbnail5 from "/res/Thumbnails/Front Unda 2.png";
 import Thumbnail6 from "/res/Thumbnails/Lissajous-Video-1.png";
 import Layout from "../Layout";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import VideoPopup from "../VideoPopup";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useSearchParams } from "react-router-dom";
 
 
 const lessonCards = [
@@ -62,6 +62,11 @@ const lessonCards = [
 const ResursePage = () => {
   const navigate = useNavigate();
 
+  const [activeTab, setActiveTab] = useState("lectii");
+  const [activeFormulaTab, setActiveFormulaTab] = useState("mecanica");
+
+  const [searchParams] = useSearchParams();
+
   const ResurseVideos = [
     { src: Video1, alt: "Video Pendul", thumbnail: Thumbnail1 },
     { src: Video2, alt: "Video Frecvența Undelor", thumbnail: Thumbnail2 },
@@ -70,6 +75,108 @@ const ResursePage = () => {
     { src: Video5, alt: "Video Front Undă 2", thumbnail: Thumbnail5 },
     { src: Video6, alt: "Video Lissajous", thumbnail: Thumbnail6 },
   ];
+
+  const mecanicaFormulas = [
+    { title: "Legea mișcării oscilatorii pe OX", formula: "\\( x(t) = A \\sin(\\omega t + \\phi) \\)" },
+    { title: "Legea vitezei oscilatorii", formula: "\\( v(t) = \\omega A \\cos(\\omega t + \\phi) \\)" },
+    { title: "Legea accelerației oscilatorii", formula: "\\( a(t) = -\\omega^2 A \\sin(\\omega t + \\phi) \\)" },
+    { title: "Viteza unghiulară", formula: "\\( \\omega = \\sqrt{\\frac{k}{m}} \\)" },
+    { title: "Perioada oscilației", formula: "\\( T = 2\\pi \\sqrt{\\frac{m}{k}} \\)" },
+    { title: "Conservarea impulsului", formula: "\\( m_1 v_{1i} + m_2 v_{2i} = m_1 v_{1f} + m_2 v_{2f} \\)" },
+    { title: "Coeficientul de restituire", formula: "\\( e = \\frac{v_{2f} - v_{1f}}{v_{1i} - v_{2i}} \\)" },
+    { title: "Forța pe plan înclinat", formula: "\\( F_{||} = mg \\sin(\\alpha) \\)" },
+    { title: "Accelerația pe plan înclinat", formula: "\\( a = g(\\sin(\\alpha) - \\mu \\cos(\\alpha)) \\)" },
+  ];
+
+  const termodinamicaFormulas = [
+    { title: "Prima lege a termodinamicii", formula: "\\( \\Delta U = Q - L \\)" },
+    { title: "Ecuația de stare pentru gazul ideal", formula: "\\( pV = nRT \\)" },
+    { title: "Entropia (Boltzmann)", formula: "\\( S = k_B \\ln \\Omega \\)" },
+    { title: "A doua lege a termodinamicii", formula: "\\( \\Delta S \\geq \\frac{Q}{T} \\)" },
+    { title: "Energia internă pentru gazul ideal", formula: "\\( U = \\frac{f}{2}nRT \\)" },
+    { title: "Lucrul mecanic în procese reversibile", formula: "\\( L = \\int_{V_1}^{V_2} p \\, dV \\)" },
+    { title: "Căldura specifică la volum constant", formula: "\\( C_V = \\left(\\frac{\\partial U}{\\partial T}\\right)_V \\)" },
+    { title: "Entalpia", formula: "\\( H = U + pV \\)" },
+    { title: "Energia liberă Helmholtz", formula: "\\( F = U - TS \\)" },
+    { title: "Energia liberă Gibbs", formula: "\\( G = H - TS \\)" },
+    { title: "Eficiența motorului Carnot", formula: "\\( \\eta = 1 - \\frac{T_C}{T_H} \\)" },
+  ];
+
+  const seismFormulas = [
+    { title: "Viteza undei P (Seism)", formula: "\\( v_P = \\sqrt{\\frac{K + \\frac{4}{3}G}{\\rho}} \\)" },
+    { title: "Viteza undei S (Seism)", formula: "\\( v_S = \\sqrt{\\frac{G}{\\rho}} \\)" },
+    { title: "Magnitudinea Richter", formula: "\\( M_L = \\log_{10} A - \\log_{10} A_0 \\)" },
+    { title: "Magnitudinea moment seismic", formula: "\\( M_w = \\frac{2}{3} \\log_{10} M_0 - 10.7 \\)" },
+    { title: "Momentul seismic", formula: "\\( M_0 = \\mu A D \\)" },
+    { title: "Energia seismică eliberată", formula: "\\( E = 10^{1.5M + 4.8} \\)" },
+  ];
+
+  const undeFormulas = [
+    { title: "Formula generală a undelor", formula: "\\( v = \\lambda \\cdot f \\)" },
+    { title: "Viteza de propagare", formula: "\\( v = \\sqrt{\\frac{T}{\\mu}} \\)" },
+    { title: "Ecuația undei progresive", formula: "\\( y(x,t) = A \\sin(kx - \\omega t + \\phi) \\)" },
+    { title: "Numărul de undă", formula: "\\( k = \\frac{2\\pi}{\\lambda} \\)" },
+    { title: "Energia undei", formula: "\\( E = \\frac{1}{2}\\mu A^2\\omega^2 \\)" },
+    { title: "Intensitatea undei", formula: "\\( I = \\frac{P}{A} = \\frac{1}{2}\\rho v A^2\\omega^2 \\)" },
+  ];
+
+  const prismaFormulas = [
+    { title: "Legea refracției (Snell)", formula: "\\( n_1 \\sin(\\theta_1) = n_2 \\sin(\\theta_2) \\)" },
+    { title: "Unghiul de deviație în prismă", formula: "\\( \\delta = (\\theta_1 + \\theta_2') - A \\)" },
+    { title: "Indicele de refracție", formula: "\\( n = n(\\lambda) \\)" },
+    { title: "Formula Cauchy pentru dispersie", formula: "\\( n(\\lambda) = A + \\frac{B}{\\lambda^2} + \\frac{C}{\\lambda^4} \\)" },
+    { title: "Unghiul de deviație minimă", formula: "\\( \\delta_{min} = 2\\arcsin(n\\sin\\frac{A}{2}) - A \\)" },
+    { title: "Puterea de dispersie", formula: "\\( P = \\frac{n_F - n_C}{n_D - 1} \\)" },
+  ];
+
+  const penduleFormulas = [
+    { title: "Legea mișcării oscilatorii", formula: "\\( y(t) = A \\sin(\\omega t + \\phi) \\)" },
+    { title: "Legea vitezei", formula: "\\( v(t) = \\omega A \\cos(\\omega t + \\phi) \\)" },
+    { title: "Legea accelerației", formula: "\\( a(t) = -\\omega^2 A \\sin(\\omega t + \\phi) \\)" },
+    { title: "Perioada pendulului gravitațional", formula: "\\( T = 2\\pi \\sqrt{\\frac{l}{g}} \\)" },
+    { title: "Ecuația pendulului amortizat", formula: "\\( m\\frac{d^2x}{dt^2} + b\\frac{dx}{dt} + kx = 0 \\)" },
+    { title: "Coeficientul de amortizare", formula: "\\( \\gamma = \\frac{b}{2m} \\)" },
+    { title: "Frecvența amortizată", formula: "\\( \\omega_d = \\sqrt{\\omega_0^2 - \\gamma^2} \\)" },
+    { title: "Decrementul logaritmic", formula: "\\( \\delta = \\ln\\frac{A_n}{A_{n+1}} = \\gamma T_d \\)" },
+    { title: "Factorul de calitate", formula: "\\( Q = \\frac{\\omega_0}{2\\gamma} = \\frac{\\pi}{\\delta} \\)" },
+    { title: "Ecuația pendulului simplu neliniar", formula: "\\( \\frac{d^2\\phi}{dt^2} + \\frac{g}{l} \\sin\\phi = 0 \\)" },
+    { title: "Perioada pentru oscilații mari", formula: "\\( T = 4\\sqrt{\\frac{l}{g}}K(k) \\)" },
+  ];
+
+  const lissajousFormulas = [
+    { title: "Ecuația parametrică x", formula: "\\( x(t) = A_1 \\sin(\\omega_1 t + \\phi_1) \\)" },
+    { title: "Ecuația parametrică y", formula: "\\( y(t) = A_2 \\sin(\\omega_2 t + \\phi_2) \\)" },
+    { title: "Raportul frecvențelor", formula: "\\( r = \\frac{\\omega_1}{\\omega_2} = \\frac{f_1}{f_2} \\)" },
+    { title: "Diferența de fază", formula: "\\( \\Delta\\phi = \\phi_1 - \\phi_2 \\)" },
+    { title: "Ecuația implicită (r = 1)", formula: "\\( \\frac{x^2}{A_1^2} + \\frac{y^2}{A_2^2} - \\frac{2xy}{A_1A_2}\\cos(\\Delta\\phi) = \\sin^2(\\Delta\\phi) \\)" },
+    { title: "Perioada figurii", formula: "\\( T = \\frac{2\\pi}{\\gcd(\\omega_1, \\omega_2)} \\)" },
+    { title: "Energia totală", formula: "\\( E = \\frac{1}{2}m(A_1^2\\omega_1^2 + A_2^2\\omega_2^2) \\)" },
+    { title: "Aria figurii (r = 1)", formula: "\\( A = \\pi A_1A_2|\\sin(\\Delta\\phi)| \\)" },
+  ];
+
+  useEffect(() => {
+    const tabParam = searchParams.get("tab");
+    const formulaParam = searchParams.get("formula");
+
+    if (tabParam) {
+      setActiveTab(tabParam);
+    }
+
+    if (formulaParam) {
+      const allowed = [
+        "mecanica",
+        "termodinamica",
+        "seism",
+        "unde",
+        "prisma",
+        "pendule",
+        "lissajous",
+      ];
+      if (allowed.includes(formulaParam)) {
+        setActiveFormulaTab(formulaParam);
+      }
+    }
+  }, [searchParams]);
 
   useEffect(() => {
     if (typeof window?.MathJax !== "undefined") {
@@ -89,7 +196,7 @@ const ResursePage = () => {
             </p>
           </div>
 
-          <Tabs defaultValue="lectii">
+          <Tabs defaultValue="lectii" value={activeTab} onValueChange={setActiveTab}>
             <TabsList>
               <TabsTrigger key="lectii" value="lectii">Lecții</TabsTrigger>
               <TabsTrigger key="formule" value="formule">Formule</TabsTrigger>
@@ -100,129 +207,119 @@ const ResursePage = () => {
             <TabsContent key="formule" value="formule">
               <div className="rounded-container">
                 <h2 className="resurse-section-title">Formule esențiale în fizică</h2>
+                <p className="text-muted-foreground mb-4">
+                  Alege o categorie pentru a vedea formulele corespunzătoare.
+                </p>
 
-                {/* Seism */}
-                <h3 className="resurse-section-subtitle mt-6 mb-3">Seism</h3>
-                <div className="formula-grid mb-4">
-                  <div className="formula-card">
-                    <div className="font-semibold mb-2">Viteza undei P (Seism)</div>
-                    <div className="text-lg font-mono">
-                      {"\\( v_P = \\frac{d}{t_P} \\)"}
-                      <MathJaxRender />
-                    </div>
-                  </div>
-                  <div className="formula-card">
-                    <div className="font-semibold mb-2">Viteza undei S (Seism)</div>
-                    <div className="text-lg font-mono">
-                      {"\\( v_S = \\frac{d}{t_S} \\)"}
-                      <MathJaxRender />
-                    </div>
-                  </div>
-                </div>
+                <Tabs defaultValue="mecanica" value={activeFormulaTab} onValueChange={setActiveFormulaTab}>
+                  <TabsList className="mb-4 flex flex-wrap">
+                    <TabsTrigger value="mecanica">Mecanică</TabsTrigger>
+                    <TabsTrigger value="termodinamica">Termodinamică</TabsTrigger>
+                    <TabsTrigger value="seism">Seism</TabsTrigger>
+                    <TabsTrigger value="unde">Unde</TabsTrigger>
+                    <TabsTrigger value="prisma">Prismă</TabsTrigger>
+                    <TabsTrigger value="pendule">Pendule</TabsTrigger>
+                    <TabsTrigger value="lissajous">Lissajous</TabsTrigger>
+                  </TabsList>
 
-                {/* Unde */}
-                <h3 className="resurse-section-subtitle mt-6 mb-3">Unde</h3>
-                <div className="formula-grid mb-4">
-                  <div className="formula-card">
-                    <div className="font-semibold mb-2">Formula generală a undelor</div>
-                    <div className="text-lg font-mono">
-                      {"\\( v = \\lambda \\cdot f \\)"}
-                      <MathJaxRender />
+                  <TabsContent value="mecanica">
+                    <div className="formula-grid mb-4">
+                      {mecanicaFormulas.map((formula, index) => (
+                        <div key={index} className="formula-card">
+                          <div className="font-semibold mb-2">{formula.title}</div>
+                          <div className="text-lg font-mono">
+                            {formula.formula}
+                            <MathJaxRender />
+                          </div>
+                        </div>
+                      ))}
                     </div>
-                  </div>
-                </div>
+                  </TabsContent>
 
-                {/* Prisma */}
-                <h3 className="resurse-section-subtitle mt-6 mb-3">Prisma</h3>
-                <div className="formula-grid mb-4">
-                  <div className="formula-card">
-                    <div className="font-semibold mb-2">Legea refracției (Snell)</div>
-                    <div className="text-lg font-mono">
-                      {"\\( n_1 \\cdot \\sin(\\theta_1) = n_2 \\cdot \\sin(\\theta_2) \\)"}
-                      <MathJaxRender />
+                  <TabsContent value="termodinamica">
+                    <div className="formula-grid mb-4">
+                      {termodinamicaFormulas.map((formula, index) => (
+                        <div key={index} className="formula-card">
+                          <div className="font-semibold mb-2">{formula.title}</div>
+                          <div className="text-lg font-mono">
+                            {formula.formula}
+                            <MathJaxRender />
+                          </div>
+                        </div>
+                      ))}
                     </div>
-                  </div>
-                  <div className="formula-card">
-                    <div className="font-semibold mb-2">Unghiul de deviație în prismă</div>
-                    <div className="text-lg font-mono">
-                      {"\\( \\delta = (\\theta_1 + \\theta_2') - A \\)"}
-                      <MathJaxRender />
-                    </div>
-                  </div>
-                  <div className="formula-card">
-                    <div className="font-semibold mb-2">Indicele de refracție</div>
-                    <div className="text-lg font-mono">
-                      {"\\( n = n(\\lambda) \\)"}
-                      <MathJaxRender />
-                    </div>
-                  </div>
-                </div>
+                  </TabsContent>
 
-                {/* Pendule */}
-                <h3 className="resurse-section-subtitle mt-6 mb-3">Pendule</h3>
-                <div className="formula-grid mb-4">
-                  <div className="formula-card">
-                    <div className="font-semibold mb-2">Legea mișcării oscilatorii</div>
-                    <div className="text-lg font-mono">
-                      {"\\( y(t) = A \\cdot \\sin(\\omega t + \\varphi) \\)"}
-                      <MathJaxRender />
+                  <TabsContent value="seism">
+                    <div className="formula-grid mb-4">
+                      {seismFormulas.map((formula, index) => (
+                        <div key={index} className="formula-card">
+                          <div className="font-semibold mb-2">{formula.title}</div>
+                          <div className="text-lg font-mono">
+                            {formula.formula}
+                            <MathJaxRender />
+                          </div>
+                        </div>
+                      ))}
                     </div>
-                  </div>
-                  <div className="formula-card">
-                    <div className="font-semibold mb-2">Legea vitezei</div>
-                    <div className="text-lg font-mono">
-                      {"\\( v(t) = \\omega A \\cdot \\cos(\\omega t + \\varphi) \\)"}
-                      <MathJaxRender />
-                    </div>
-                  </div>
-                  <div className="formula-card">
-                    <div className="font-semibold mb-2">Legea accelerației</div>
-                    <div className="text-lg font-mono">
-                      {"\\( a(t) = -\\omega^2 A \\cdot \\sin(\\omega t + \\varphi) \\)"}
-                      <MathJaxRender />
-                    </div>
-                  </div>
-                  <div className="formula-card">
-                    <div className="font-semibold mb-2">Perioada pendulului gravitațional</div>
-                    <div className="text-lg font-mono">
-                      {"\\( T = 2\\pi \\cdot \\sqrt{\\frac{l}{g}} \\)"}
-                      <MathJaxRender />
-                    </div>
-                  </div>
-                  <div className="formula-card">
-                    <div className="font-semibold mb-2">Ecuația pendulului amortizat</div>
-                    <div className="text-lg font-mono">
-                      {"\\( m\\frac{d^2x}{dt^2} + b\\frac{dx}{dt} + kx = 0 \\)"}
-                      <MathJaxRender />
-                    </div>
-                  </div>
-                  <div className="formula-card">
-                    <div className="font-semibold mb-2">Ecuația pendulului simplu neliniar</div>
-                    <div className="text-lg font-mono">
-                      {"\\( \\frac{d^2\\theta}{dt^2} + \\frac{g}{l}\\sin\\theta = 0 \\)"}
-                      <MathJaxRender />
-                    </div>
-                  </div>
-                </div>
+                  </TabsContent>
 
-                {/* Lissajous */}
-                <h3 className="resurse-section-subtitle mt-6 mb-3">Lissajous</h3>
-                <div className="formula-grid">
-                  <div className="formula-card">
-                    <div className="font-semibold mb-2">Ecuații Lissajous (x)</div>
-                    <div className="text-lg font-mono">
-                      {"\\( x(t) = A_1 \\cdot \\sin(\\omega_1 t) \\)"}
-                      <MathJaxRender />
+                  <TabsContent value="unde">
+                    <div className="formula-grid mb-4">
+                      {undeFormulas.map((formula, index) => (
+                        <div key={index} className="formula-card">
+                          <div className="font-semibold mb-2">{formula.title}</div>
+                          <div className="text-lg font-mono">
+                            {formula.formula}
+                            <MathJaxRender />
+                          </div>
+                        </div>
+                      ))}
                     </div>
-                  </div>
-                  <div className="formula-card">
-                    <div className="font-semibold mb-2">Ecuații Lissajous (y)</div>
-                    <div className="text-lg font-mono">
-                      {"\\( y(t) = A_2 \\cdot \\sin(\\omega_2 t + \\varphi) \\)"}
-                      <MathJaxRender />
+                  </TabsContent>
+
+                  <TabsContent value="prisma">
+                    <div className="formula-grid mb-4">
+                      {prismaFormulas.map((formula, index) => (
+                        <div key={index} className="formula-card">
+                          <div className="font-semibold mb-2">{formula.title}</div>
+                          <div className="text-lg font-mono">
+                            {formula.formula}
+                            <MathJaxRender />
+                          </div>
+                        </div>
+                      ))}
                     </div>
-                  </div>
-                </div>
+                  </TabsContent>
+
+                  <TabsContent value="pendule">
+                    <div className="formula-grid mb-4">
+                      {penduleFormulas.map((formula, index) => (
+                        <div key={index} className="formula-card">
+                          <div className="font-semibold mb-2">{formula.title}</div>
+                          <div className="text-lg font-mono">
+                            {formula.formula}
+                            <MathJaxRender />
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+                  </TabsContent>
+
+                  <TabsContent value="lissajous">
+                    <div className="formula-grid mb-4">
+                      {lissajousFormulas.map((formula, index) => (
+                        <div key={index} className="formula-card">
+                          <div className="font-semibold mb-2">{formula.title}</div>
+                          <div className="text-lg font-mono">
+                            {formula.formula}
+                            <MathJaxRender />
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+                  </TabsContent>
+                </Tabs>
               </div>
             </TabsContent>
 

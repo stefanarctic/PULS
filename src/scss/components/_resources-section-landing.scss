@@ -240,7 +240,6 @@
 }
 
 .resource-card__button {
-  margin-top: 1rem;
   display: inline-flex;
   align-items: center;
   gap: 0.5rem;
@@ -252,16 +251,28 @@
   padding: 0;
   transition: color 0.3s;
   cursor: pointer;
+  text-decoration: none;
 
   &:hover {
     color: var(--accent-color-current-mode);
-    // text-decoration: underline;
+    text-decoration: none;
     transform: scale(1.05);
   }
 
   .resource-card__button-icon {
     width: 1rem;
     height: 1rem;
+  }
+}
+
+.resource-card__links-row {
+  margin-top: 1rem;
+  display: flex;
+  justify-content: space-between;
+  gap: 0.75rem;
+
+  .resource-card__button {
+    margin-top: 0;
   }
 }
 

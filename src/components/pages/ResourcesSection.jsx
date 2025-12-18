@@ -18,45 +18,63 @@ import "/src/scss/components/_resources-section-landing.scss"; // Import the SCS
 const resources = [
   {
     title: "Pendulul",
-    description: "Descoperă mișcarea oscilatorie, formulele perioadei și aplicațiile pendulului în măsurarea timpului.",
+    description:
+      "Descoperă mișcarea oscilatorie, formulele perioadei și aplicațiile pendulului în măsurarea timpului.",
     imageLight: pendulumLight,
     imageDark: pendulumDark,
     icon: <Activity className="resource-icon" />,
+    experimentPath: "/resurse/pendule",
+    formulaCategory: "pendule",
   },
   {
     title: "Unde",
-    description: "Află despre unde mecanice și electromagnetice, interferență, difracție și aplicații practice.",
+    description:
+      "Află despre unde mecanice și electromagnetice, interferență, difracție și aplicații practice.",
     imageLight: wavesLight,
     imageDark: wavesDark,
     icon: <Waves className="resource-icon" />,
+    experimentPath: "/resurse/unde",
+    formulaCategory: "unde",
   },
   {
     title: "Figuri Lissajous",
-    description: "Explorează curbe armonice suprapuse, vizualizări matematice și oscilații perpendiculare.",
+    description:
+      "Explorează curbe armonice suprapuse, vizualizări matematice și oscilații perpendiculare.",
     imageLight: lissajousLight,
     imageDark: lissajousDark,
     icon: <Radio className="resource-icon" />,
+    experimentPath: "/resurse/lissajous",
+    formulaCategory: "lissajous",
   },
   {
     title: "Termodinamică",
-    description: "Studiază transferul de căldură, legile termodinamicii și transformările energetice.",
+    description:
+      "Studiază transferul de căldură, legile termodinamicii și transformările energetice.",
     imageLight: thermodynamicsLight,
     imageDark: thermodynamicsDark,
     icon: <Thermometer className="resource-icon" />,
+    experimentPath: "/resurse/termodinamica",
+    formulaCategory: "termodinamica",
   },
   {
     title: "Mecanică",
-    description: "Înțelege mișcarea corpurilor, forțele, energia cinetică și potențială, și legile lui Newton.",
+    description:
+      "Înțelege mișcarea corpurilor, forțele, energia cinetică și potențială, și legile lui Newton.",
     imageLight: mechanicsLight,
     imageDark: mechanicsDark,
     icon: <Cog className="resource-icon" />,
+    experimentPath: "/resurse/mecanica",
+    formulaCategory: "mecanica",
   },
   {
     title: "Seism",
-    description: "Analizează undele seismice, propagarea lor prin straturile Pământului și detectarea cutremurelor.",
+    description:
+      "Analizează undele seismice, propagarea lor prin straturile Pământului și detectarea cutremurelor.",
     imageLight: seismicLight,
     imageDark: seismicDark,
     icon: <Activity className="resource-icon" />,
+    experimentPath: "/resurse/seism",
+    formulaCategory: "seism",
   },
 ];
 

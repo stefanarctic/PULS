@@ -1,5 +1,6 @@
-import { BookOpen } from "lucide-react";
+import { BookOpen, Sigma } from "lucide-react";
 import React from "react";
+import { Link } from "react-router-dom";
 // import "./ResourceCard.scss";
 
 const ResourceCard = ({
@@ -8,6 +9,8 @@ const ResourceCard = ({
   image,
   icon,
   delay = 0,
+  experimentPath,
+  formulaCategory,
 }) => {
   return (
     <div
@@ -35,11 +38,25 @@ const ResourceCard = ({
         <p className="resource-card__description">
           {description}
         </p>
-        {/* Button */}
-        <button className="resource-card__button">
-          <BookOpen className="resource-card__button-icon" />
-          <span>Explorează</span>
-        </button>
+        {/* Links row: Experimente (stânga) și Formule (dreapta) */}
+        <div className="resource-card__links-row">
+          <Link
+            to={experimentPath || "/resurse?tab=experimente"}
+            className="resource-card__button"
+          >
+            <BookOpen className="resource-card__button-icon" />
+            <span>Experimente</span>
+          </Link>
+          {formulaCategory && (
+            <Link
+              to={`/resurse?tab=formule&formula=${formulaCategory}`}
+              className="resource-card__button"
+            >
+              <Sigma className="resource-card__button-icon" />
+              <span>Formule</span>
+            </Link>
+          )}
+        </div>
       </div>
       {/* Glow effect on hover */}
       <div className="resource-card__glow-overlay">

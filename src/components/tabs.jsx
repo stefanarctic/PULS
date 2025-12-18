@@ -1,11 +1,30 @@
 import React, { useState } from "react";
 
 // Tabs root component
-export function Tabs({ defaultValue, children, className = "" }) {
-  const [active, setActive] = useState(defaultValue);
+export function Tabs({
+  defaultValue,
+  value,
+  onValueChange,
+  children,
+  className = "",
+}) {
+  const [internalActive, setInternalActive] = useState(defaultValue);
+
+  const isControlled = value !== undefined;
+  const active = isControlled ? value : internalActive;
+
+  const setActive = (newValue) => {
+    if (!isControlled) {
+      setInternalActive(newValue);
+    }
+    if (onValueChange) {
+      onValueChange(newValue);
+    }
+  };
+
   return (
     <div className={className}>
-      {React.Children.map(children, child =>
+      {React.Children.map(children, (child) =>
         React.isValidElement(child)
           ? React.cloneElement(child, { active, setActive })
           : child
