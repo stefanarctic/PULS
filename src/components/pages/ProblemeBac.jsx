@@ -1061,15 +1061,20 @@ const ProblemeBac = () => {
         <Layout>
             <div className="problems-bac-page">
                 <div className="problems-bac-page-inner">
-                    <h1 className="problems-bac-page-title">Probleme de Bacalaureat</h1>
-                    <p className="problems-bac-page-subtitle">
-                        Probleme organizate pe variante de examen din diferiți ani
-                    </p>
+                    {/* Header Section */}
+                    <div className="problems-bac-header">
+                        <div className="header-content">
+                            <h1 className="problems-bac-page-title">Probleme de Bacalaureat</h1>
+                            <p className="problems-bac-page-subtitle">
+                                Probleme organizate pe variante de examen din diferiți ani
+                            </p>
+                        </div>
+                    </div>
 
-                    {/* Search and Filters */}
-                    <div className="problems-page-filters">
-                        <div className="filters-row">
-                            <form onSubmit={handleSearchSubmit} className="search-container">
+                    {/* Search and Filters Section */}
+                    <div className="problems-bac-filters-section">
+                        <form onSubmit={handleSearchSubmit} className="search-wrapper">
+                            <div className="search-container">
                                 <span className="search-icon"><SearchIcon /></span>
                                 <input
                                     type="text"
@@ -1078,8 +1083,12 @@ const ProblemeBac = () => {
                                     value={searchQuery}
                                     onChange={(e) => setSearchQuery(e.target.value)}
                                 />
-                            </form>
-                            <div className="select-container">
+                            </div>
+                        </form>
+                        
+                        <div className="filters-wrapper">
+                            <div className="filter-group">
+                                <label className="filter-label">Dificultate</label>
                                 <select
                                     className="filter-select"
                                     value={selectedDifficulty}
@@ -1087,42 +1096,55 @@ const ProblemeBac = () => {
                                 >
                                     {difficulties.map((difficulty) => (
                                         <option key={difficulty} value={difficulty}>
-                                            {difficulty === "Toate" ? "Toate dificultățile" : `Dificultate: ${difficulty}`}
+                                            {difficulty === "Toate" ? "Toate dificultățile" : difficulty}
                                         </option>
                                     ))}
+                                </select>
+                            </div>
+                            
+                            <div className="filter-group">
+                                <label className="filter-label">Sortare</label>
+                                <select
+                                    className="filter-select"
+                                    value={sortBy}
+                                    onChange={(e) => setSortBy(e.target.value)}
+                                >
+                                    <option value="newest">Cele mai noi</option>
+                                    <option value="oldest">Cele mai vechi</option>
+                                    <option value="difficulty-asc">Dificultate (crescător)</option>
+                                    <option value="difficulty-desc">Dificultate (descrescător)</option>
                                 </select>
                             </div>
                         </div>
                     </div>
 
-                    {/* Results Header */}
-                    <div className="results-header">
-                        <p className="results-count">
+                    {/* Results Count */}
+                    <div className="results-count-section">
+                        <span className="results-count-badge">
                             {sortedProblems.length} {sortedProblems.length === 1 ? 'problemă găsită' : 'probleme găsite'}
-                        </p>
-                        <select
-                            className="sort-select"
-                            value={sortBy}
-                            onChange={(e) => setSortBy(e.target.value)}
-                        >
-                            <option value="newest">Cele mai noi</option>
-                            <option value="oldest">Cele mai vechi</option>
-                            <option value="difficulty-asc">Dificultate (crescător)</option>
-                            <option value="difficulty-desc">Dificultate (descrescător)</option>
-                        </select>
+                        </span>
                     </div>
 
+                    {/* Loading State */}
                     {status === 'loading' && (
-                        <div className="problems-loading">Se încarcă problemele...</div>
+                        <div className="problems-loading">
+                            <div className="loading-spinner">
+                                <div className="spinner"></div>
+                            </div>
+                            <p>Se încarcă problemele...</p>
+                        </div>
                     )}
 
+                    {/* Empty State */}
                     {status === 'succeeded' && Object.keys(problemsByVariant).length === 0 && (
                         <div className="no-results">
+                            <div className="no-results-icon">📚</div>
                             <h3>Nu există probleme de bac disponibile</h3>
                             <p>Problemele vor fi adăugate în curând.</p>
                         </div>
                     )}
 
+                    {/* Variants Container */}
                     {status === 'succeeded' && Object.keys(problemsByVariant).length > 0 && (
                         <div className="variants-container">
                             {Object.entries(problemsByVariant).map(([variant, problems]) => {
@@ -1134,14 +1156,14 @@ const ProblemeBac = () => {
                                             onClick={() => toggleVariant(variant)}
                                             aria-expanded={isExpanded}
                                         >
-                                            <div className="variant-header-content">
+                                            <div className="variant-header-left">
                                                 <h2 className="variant-title">{formatVariantName(variant)}</h2>
                                                 <span className="variant-count">
                                                     {problems.length} {problems.length === 1 ? 'problemă' : 'probleme'}
                                                 </span>
                                             </div>
                                             <div className="variant-toggle">
-                                                {isExpanded ? <ChevronUp size={20} /> : <ChevronDown size={20} />}
+                                                {isExpanded ? <ChevronUp size={22} /> : <ChevronDown size={22} />}
                                             </div>
                                         </button>
                                         
@@ -1166,16 +1188,19 @@ const ProblemeBac = () => {
                         </div>
                     )}
 
+                    {/* Floating Action Button */}
                     {user && (
                         <button 
                             className="fab-add-problem"
                             onClick={() => setShowAddModal(true)}
                             title={isAdmin ? "Adaugă o problemă nouă" : "Sugerează o problemă"}
+                            aria-label={isAdmin ? "Adaugă o problemă nouă" : "Sugerează o problemă"}
                         >
                             <Plus size={24} />
                         </button>
                     )}
 
+                    {/* Add Problem Modal */}
                     <AddProblemModal 
                         isOpen={showAddModal}
                         onClose={() => setShowAddModal(false)}
