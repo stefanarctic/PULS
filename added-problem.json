@@ -1,0 +1,37 @@
+{
+    "titlu": "Termodinamică - Transformări izoterme și adiabatice - Bac 2024",
+    "descriere": "Problema de bacalaureat despre transformări termodinamice și lucrul mecanic",
+    "varianta": "simulare 2024",
+    "dificultate": "dificil",
+    "punctajTotal": 8,
+    "continut": "Un gaz ideal cu numărul de moli $n = 2$ mol se află într-un cilindru cu piston. Gazul efectuează o transformare izotermă (temperatură constantă) de la volumul $V_1 = 2$ L la volumul $V_2 = 5$ L, la temperatura $T = 300$ K.\n\nPentru transformarea izotermă:\n- Legea Boyle-Mariotte: $p_1V_1 = p_2V_2 = nRT$\n- Lucrul mecanic: $L = nRT \\ln\\left(\\frac{V_2}{V_1}\\right)$\n- Variația energiei interne: $\\Delta U = 0$ (pentru gaz ideal în transformare izotermă)\n- Căldura: $Q = L$ (din primul principiu al termodinamicii: $\\Delta U = Q - L$)\n\nunde $R = 8,31$ J/(mol·K) este constanta universală a gazelor ideale.",
+    "formule": [
+        "pV = nRT",
+        "L = nRT·ln(V₂/V₁)",
+        "ΔU = Q - L",
+        "Q = L (izotermă)",
+        "ΔU = 0 (izotermă)"
+    ],
+    "date": {
+        "n": "2 mol",
+        "V₁": "2 L",
+        "V₂": "5 L",
+        "T": "300 K",
+        "R": "8,31 J/(mol·K)"
+    },
+    "subpuncte": [
+        {
+            "cerinta": "Calculați lucrul mecanic efectuat într-o transformare izotermă când gazul se destinde de la volumul V₁ = 2 L la V₂ = 5 L la temperatura T = 300 K.",
+            "punctaj": 4
+        },
+        {
+            "cerinta": "Determinați variația energiei interne în transformarea izotermă.",
+            "punctaj": 2
+        },
+        {
+            "cerinta": "Calculați căldura schimbată cu mediul exterior în transformarea izotermă.",
+            "punctaj": 2
+        }
+    ]
+}
+
