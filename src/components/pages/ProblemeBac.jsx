@@ -1125,17 +1125,26 @@ const ProblemeBac = () => {
                         </span>
                     </div>
 
+                    {/* Loading State */}
                     {status === 'loading' && (
-                        <div className="problems-loading">Se încarcă problemele...</div>
+                        <div className="problems-loading">
+                            <div className="loading-spinner">
+                                <div className="spinner"></div>
+                            </div>
+                            <p>Se încarcă problemele...</p>
+                        </div>
                     )}
 
+                    {/* Empty State */}
                     {status === 'succeeded' && Object.keys(problemsByVariant).length === 0 && (
                         <div className="no-results">
+                            <div className="no-results-icon">📚</div>
                             <h3>Nu există probleme de bac disponibile</h3>
                             <p>Problemele vor fi adăugate în curând.</p>
                         </div>
                     )}
 
+                    {/* Variants Container */}
                     {status === 'succeeded' && Object.keys(problemsByVariant).length > 0 && (
                         <div className="variants-container">
                             {Object.entries(problemsByVariant).map(([variant, problems]) => {
@@ -1147,14 +1156,14 @@ const ProblemeBac = () => {
                                             onClick={() => toggleVariant(variant)}
                                             aria-expanded={isExpanded}
                                         >
-                                            <div className="variant-header-content">
+                                            <div className="variant-header-left">
                                                 <h2 className="variant-title">{formatVariantName(variant)}</h2>
                                                 <span className="variant-count">
                                                     {problems.length} {problems.length === 1 ? 'problemă' : 'probleme'}
                                                 </span>
                                             </div>
                                             <div className="variant-toggle">
-                                                {isExpanded ? <ChevronUp size={20} /> : <ChevronDown size={20} />}
+                                                {isExpanded ? <ChevronUp size={22} /> : <ChevronDown size={22} />}
                                             </div>
                                         </button>
                                         
@@ -1179,16 +1188,19 @@ const ProblemeBac = () => {
                         </div>
                     )}
 
+                    {/* Floating Action Button */}
                     {user && (
                         <button 
                             className="fab-add-problem"
                             onClick={() => setShowAddModal(true)}
                             title={isAdmin ? "Adaugă o problemă nouă" : "Sugerează o problemă"}
+                            aria-label={isAdmin ? "Adaugă o problemă nouă" : "Sugerează o problemă"}
                         >
                             <Plus size={24} />
                         </button>
                     )}
 
+                    {/* Add Problem Modal */}
                     <AddProblemModal 
                         isOpen={showAddModal}
                         onClose={() => setShowAddModal(false)}
