@@ -1061,15 +1061,20 @@ const ProblemeBac = () => {
         <Layout>
             <div className="problems-bac-page">
                 <div className="problems-bac-page-inner">
-                    <h1 className="problems-bac-page-title">Probleme de Bacalaureat</h1>
-                    <p className="problems-bac-page-subtitle">
-                        Probleme organizate pe variante de examen din diferiți ani
-                    </p>
+                    {/* Header Section */}
+                    <div className="problems-bac-header">
+                        <div className="header-content">
+                            <h1 className="problems-bac-page-title">Probleme de Bacalaureat</h1>
+                            <p className="problems-bac-page-subtitle">
+                                Probleme organizate pe variante de examen din diferiți ani
+                            </p>
+                        </div>
+                    </div>
 
-                    {/* Search and Filters */}
-                    <div className="problems-page-filters">
-                        <div className="filters-row">
-                            <form onSubmit={handleSearchSubmit} className="search-container">
+                    {/* Search and Filters Section */}
+                    <div className="problems-bac-filters-section">
+                        <form onSubmit={handleSearchSubmit} className="search-wrapper">
+                            <div className="search-container">
                                 <span className="search-icon"><SearchIcon /></span>
                                 <input
                                     type="text"
@@ -1078,8 +1083,12 @@ const ProblemeBac = () => {
                                     value={searchQuery}
                                     onChange={(e) => setSearchQuery(e.target.value)}
                                 />
-                            </form>
-                            <div className="select-container">
+                            </div>
+                        </form>
+                        
+                        <div className="filters-wrapper">
+                            <div className="filter-group">
+                                <label className="filter-label">Dificultate</label>
                                 <select
                                     className="filter-select"
                                     value={selectedDifficulty}
@@ -1087,29 +1096,33 @@ const ProblemeBac = () => {
                                 >
                                     {difficulties.map((difficulty) => (
                                         <option key={difficulty} value={difficulty}>
-                                            {difficulty === "Toate" ? "Toate dificultățile" : `Dificultate: ${difficulty}`}
+                                            {difficulty === "Toate" ? "Toate dificultățile" : difficulty}
                                         </option>
                                     ))}
+                                </select>
+                            </div>
+                            
+                            <div className="filter-group">
+                                <label className="filter-label">Sortare</label>
+                                <select
+                                    className="filter-select"
+                                    value={sortBy}
+                                    onChange={(e) => setSortBy(e.target.value)}
+                                >
+                                    <option value="newest">Cele mai noi</option>
+                                    <option value="oldest">Cele mai vechi</option>
+                                    <option value="difficulty-asc">Dificultate (crescător)</option>
+                                    <option value="difficulty-desc">Dificultate (descrescător)</option>
                                 </select>
                             </div>
                         </div>
                     </div>
 
-                    {/* Results Header */}
-                    <div className="results-header">
-                        <p className="results-count">
+                    {/* Results Count */}
+                    <div className="results-count-section">
+                        <span className="results-count-badge">
                             {sortedProblems.length} {sortedProblems.length === 1 ? 'problemă găsită' : 'probleme găsite'}
-                        </p>
-                        <select
-                            className="sort-select"
-                            value={sortBy}
-                            onChange={(e) => setSortBy(e.target.value)}
-                        >
-                            <option value="newest">Cele mai noi</option>
-                            <option value="oldest">Cele mai vechi</option>
-                            <option value="difficulty-asc">Dificultate (crescător)</option>
-                            <option value="difficulty-desc">Dificultate (descrescător)</option>
-                        </select>
+                        </span>
                     </div>
 
                     {status === 'loading' && (
