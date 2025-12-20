@@ -33,10 +33,26 @@ const ProblemeBac = () => {
     const [expandedVariants, setExpandedVariants] = useState({});
     const [searchQuery, setSearchQuery] = useState("");
     const [selectedDifficulty, setSelectedDifficulty] = useState("Toate");
+    const [selectedYear, setSelectedYear] = useState("Toate");
+    const [selectedSession, setSelectedSession] = useState("Toate");
     const [sortBy, setSortBy] = useState("newest");
     const [showAddModal, setShowAddModal] = useState(false);
     const [pendingUrlData, setPendingUrlData] = useState(null);
     const { solvedProblems } = useSolvedProblems();
+
+    // Helper functions for variant sorting
+    const extractYear = (variant) => {
+        const match = variant.match(/(\d{4})/);
+        return match ? parseInt(match[1]) : 0;
+    };
+
+    const getVariantType = (variant) => {
+        const lower = variant.toLowerCase();
+        if (lower.includes('simulare')) return 'simulare';
+        if (lower.includes('vara')) return 'vara';
+        if (lower.includes('toamna')) return 'toamna';
+        return 'other';
+    };
 
     // Filter only Bac problems
     const bacProblems = useMemo(() => {
@@ -46,7 +62,32 @@ const ProblemeBac = () => {
         );
     }, [problemeData]);
 
-    // Filter problems by search and difficulty
+    // Extract available years and sessions from problems
+    const availableYears = useMemo(() => {
+        const years = new Set();
+        bacProblems.forEach(problem => {
+            const variant = problem.varianta || '';
+            const year = extractYear(variant);
+            if (year > 0) {
+                years.add(year);
+            }
+        });
+        return Array.from(years).sort((a, b) => b - a); // Newest first
+    }, [bacProblems]);
+
+    const availableSessions = useMemo(() => {
+        const sessions = new Set();
+        bacProblems.forEach(problem => {
+            const variant = problem.varianta || '';
+            const session = getVariantType(variant);
+            if (session !== 'other') {
+                sessions.add(session);
+            }
+        });
+        return Array.from(sessions);
+    }, [bacProblems]);
+
+    // Filter problems by search, difficulty, year and session
     const filteredBacProblems = useMemo(() => {
         return bacProblems.filter((problem) => {
             if (searchQuery) {
@@ -64,23 +105,25 @@ const ProblemeBac = () => {
                 return false;
             }
 
+            if (selectedYear !== "Toate") {
+                const variant = problem.varianta || '';
+                const problemYear = extractYear(variant);
+                if (problemYear !== parseInt(selectedYear)) {
+                    return false;
+                }
+            }
+
+            if (selectedSession !== "Toate") {
+                const variant = problem.varianta || '';
+                const problemSession = getVariantType(variant);
+                if (problemSession !== selectedSession.toLowerCase()) {
+                    return false;
+                }
+            }
+
             return true;
         });
-    }, [bacProblems, searchQuery, selectedDifficulty]);
-
-    // Helper functions for variant sorting
-    const extractYear = (variant) => {
-        const match = variant.match(/(\d{4})/);
-        return match ? parseInt(match[1]) : 0;
-    };
-
-    const getVariantType = (variant) => {
-        const lower = variant.toLowerCase();
-        if (lower.includes('simulare')) return 'simulare';
-        if (lower.includes('vara')) return 'vara';
-        if (lower.includes('toamna')) return 'toamna';
-        return 'other';
-    };
+    }, [bacProblems, searchQuery, selectedDifficulty, selectedYear, selectedSession]);
 
     // Sort problems
     const difficultyOrder = { "ușor": 1, "mediu": 2, "dificil": 3, "concurs": 4 };
@@ -1099,6 +1142,36 @@ const ProblemeBac = () => {
                                             {difficulty === "Toate" ? "Toate dificultățile" : difficulty}
                                         </option>
                                     ))}
+                                </select>
+                            </div>
+                            
+                            <div className="filter-group">
+                                <label className="filter-label">An</label>
+                                <select
+                                    className="filter-select"
+                                    value={selectedYear}
+                                    onChange={(e) => setSelectedYear(e.target.value)}
+                                >
+                                    <option value="Toate">Toți anii</option>
+                                    {availableYears.map((year) => (
+                                        <option key={year} value={year.toString()}>
+                                            {year}
+                                        </option>
+                                    ))}
+                                </select>
+                            </div>
+                            
+                            <div className="filter-group">
+                                <label className="filter-label">Sesiune</label>
+                                <select
+                                    className="filter-select"
+                                    value={selectedSession}
+                                    onChange={(e) => setSelectedSession(e.target.value)}
+                                >
+                                    <option value="Toate">Toate sesiunile</option>
+                                    <option value="simulare">Simulare</option>
+                                    <option value="vara">Vară</option>
+                                    <option value="toamna">Toamnă</option>
                                 </select>
                             </div>
                             
