@@ -571,6 +571,16 @@ const ProblemeBac = () => {
                 }
             });
             
+            // Calculează următorul index disponibil pentru problemele de BAC
+            const bacProblemsOnly = problemeData.filter(p => 
+                p.categorie === 'Bac' || 
+                (p.categorie && normalizeString(p.categorie).includes('bac'))
+            );
+            const maxIndex = bacProblemsOnly.length > 0 
+                ? Math.max(...bacProblemsOnly.map(p => p.index || 0))
+                : 99; // Start from 100 if no BAC problems exist
+            const nextIndex = maxIndex + 1;
+            
             const problemData = {
                 titlu: formData.titlu,
                 descriere: formData.descriere,
@@ -585,7 +595,7 @@ const ProblemeBac = () => {
                     cerinta: subpunct.cerinta,
                     punctaj: subpunct.punctaj
                 })),
-                index: problemeData.length + 1,
+                index: nextIndex,
                 creator: '',
                 punctajTotal: formData.punctajTotal,
                 createdAt: new Date().toISOString(),
@@ -1276,7 +1286,15 @@ const ProblemeBac = () => {
                     {/* Add Problem Modal */}
                     <AddProblemModal 
                         isOpen={showAddModal}
-                        onClose={() => setShowAddModal(false)}
+                        onClose={() => {
+                            // Check if we're on a link with addProblem parameter
+                            const urlParams = new URLSearchParams(location.search);
+                            if (urlParams.get('addProblem') === '1') {
+                                // Clear the custom link and navigate to normal bac problems page
+                                navigate('/probleme/bac');
+                            }
+                            setShowAddModal(false);
+                        }}
                     />
                 </div>
             </div>

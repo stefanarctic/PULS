@@ -684,6 +684,12 @@ const PhysicsProblems = () => {
                 }
             });
             
+            // Calculează următorul index disponibil pentru a evita duplicatele
+            const maxIndex = problemeData.length > 0 
+                ? Math.max(...problemeData.map(p => p.index || 0))
+                : 0;
+            const nextIndex = maxIndex + 1;
+            
             // Prepare the problem data
             const problemData = {
                 titlu: formData.titlu,
@@ -698,7 +704,7 @@ const PhysicsProblems = () => {
                     cerinta: subpunct.cerinta,
                     punctaj: subpunct.punctaj
                 })),
-                index: problemeData.length + 1,
+                index: nextIndex,
                 creator: '',
                 punctajTotal: formData.punctajTotal,
                 createdAt: new Date().toISOString(),
@@ -1457,7 +1463,15 @@ const PhysicsProblems = () => {
                     {/* Add Problem Modal */}
                     <AddProblemModal 
                         isOpen={showAddModal}
-                        onClose={() => setShowAddModal(false)}
+                        onClose={() => {
+                            // Check if we're on a link with addProblem parameter
+                            const urlParams = new URLSearchParams(location.search);
+                            if (urlParams.get('addProblem') === '1') {
+                                // Clear the custom link and navigate to normal problems page
+                                navigate('/probleme');
+                            }
+                            setShowAddModal(false);
+                        }}
                         isAdmin={isAdmin}
                         user={user}
                         onSuccess={() => {

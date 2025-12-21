@@ -1,37 +1,34 @@
 {
-    "titlu": "Termodinamică - Transformări izoterme și adiabatice - Bac 2024",
-    "descriere": "Problema de bacalaureat despre transformări termodinamice și lucrul mecanic",
-    "varianta": "simulare 2024",
-    "dificultate": "dificil",
-    "punctajTotal": 8,
-    "continut": "Un gaz ideal cu numărul de moli $n = 2$ mol se află într-un cilindru cu piston. Gazul efectuează o transformare izotermă (temperatură constantă) de la volumul $V_1 = 2$ L la volumul $V_2 = 5$ L, la temperatura $T = 300$ K.\n\nPentru transformarea izotermă:\n- Legea Boyle-Mariotte: $p_1V_1 = p_2V_2 = nRT$\n- Lucrul mecanic: $L = nRT \\ln\\left(\\frac{V_2}{V_1}\\right)$\n- Variația energiei interne: $\\Delta U = 0$ (pentru gaz ideal în transformare izotermă)\n- Căldura: $Q = L$ (din primul principiu al termodinamicii: $\\Delta U = Q - L$)\n\nunde $R = 8,31$ J/(mol·K) este constanta universală a gazelor ideale.",
+    "titlu": "Mișcare circulară uniformă - Forță centripetă - Bac 2023",
+    "descriere": "Problema de bacalaureat despre mișcarea circulară uniformă și forța centripetă",
+    "varianta": "vara 2023",
+    "dificultate": "mediu",
+    "punctajTotal": 9,
+    "continut": "Un corp cu masa $m = 0,5$ kg se mișcă uniform pe o traiectorie circulară de rază $R = 2$ m cu viteza $v = 4$ m/s.\n\nPentru mișcarea circulară uniformă:\n- Viteza unghiulară: $\\omega = \\frac{v}{R}$\n- Perioada: $T = \\frac{2\\pi R}{v} = \\frac{2\\pi}{\\omega}$\n- Frecvența: $f = \\frac{1}{T} = \\frac{\\omega}{2\\pi}$\n- Accelerația centripetă: $a_c = \\frac{v^2}{R} = \\omega^2 R$\n- Forța centripetă: $F_c = m \\cdot a_c = m \\cdot \\frac{v^2}{R} = m \\omega^2 R$\n\nForța centripetă este perpendiculară pe viteza corpului și este orientată către centrul cercului.",
     "formule": [
-        "pV = nRT",
-        "L = nRT·ln(V₂/V₁)",
-        "ΔU = Q - L",
-        "Q = L (izotermă)",
-        "ΔU = 0 (izotermă)"
+        "ω = v/R",
+        "T = 2πR/v = 2π/ω",
+        "f = 1/T = ω/(2π)",
+        "a_c = v²/R = ω²R",
+        "F_c = m·a_c = m·v²/R = m·ω²R"
     ],
     "date": {
-        "n": "2 mol",
-        "V₁": "2 L",
-        "V₂": "5 L",
-        "T": "300 K",
-        "R": "8,31 J/(mol·K)"
+        "m": "0,5 kg",
+        "R": "2 m",
+        "v": "4 m/s"
     },
     "subpuncte": [
         {
-            "cerinta": "Calculați lucrul mecanic efectuat într-o transformare izotermă când gazul se destinde de la volumul V₁ = 2 L la V₂ = 5 L la temperatura T = 300 K.",
+            "cerinta": "Calculați viteza unghiulară a corpului.",
+            "punctaj": 2
+        },
+        {
+            "cerinta": "Determinați perioada și frecvența mișcării circulare.",
+            "punctaj": 3
+        },
+        {
+            "cerinta": "Calculați accelerația centripetă și forța centripetă care acționează asupra corpului.",
             "punctaj": 4
-        },
-        {
-            "cerinta": "Determinați variația energiei interne în transformarea izotermă.",
-            "punctaj": 2
-        },
-        {
-            "cerinta": "Calculați căldura schimbată cu mediul exterior în transformarea izotermă.",
-            "punctaj": 2
         }
     ]
 }
-
