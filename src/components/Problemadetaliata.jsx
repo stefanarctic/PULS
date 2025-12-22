@@ -9,7 +9,7 @@ import { Separator } from './separator';
 import MathJaxRender from './MathJaxRender';
 import ProblemSubmit from './ProblemSubmit';
 import { useDispatch, useSelector } from 'react-redux';
-import { deleteProblem, clearDeleteStatus } from '../features/problems/problemsSlice';
+import { deleteProblem, clearDeleteStatus, fetchProblems } from '../features/problems/problemsSlice';
 import { auth, db } from '../lib/firebase';
 import { onAuthStateChanged } from 'firebase/auth';
 import { doc, getDoc, setDoc } from 'firebase/firestore';
@@ -37,17 +37,12 @@ export const ProblemaDetaliata = ({ problema, onBack }) => {
         setIsAuthenticated(true);
         const userRef = doc(db, 'users', firebaseUser.uid);
         const userSnap = await getDoc(userRef);
-        const ADMIN_EMAILS = [
-          'matbajean@gmail.com',
-          'aleluianu09@gmail.com',
-          'pulsphysics@gmail.com',
-        ];
         if (userSnap.exists()) {
           const userData = userSnap.data();
-          setIsAdmin(userData.isAdmin || ADMIN_EMAILS.includes(firebaseUser.email));
+          setIsAdmin(userData.isAdmin === true);
           setFavorites(Array.isArray(userData.favorites) ? userData.favorites : []);
         } else {
-          setIsAdmin(ADMIN_EMAILS.includes(firebaseUser.email));
+          setIsAdmin(false);
           setFavorites([]);
         }
       } else {
@@ -66,19 +61,43 @@ export const ProblemaDetaliata = ({ problema, onBack }) => {
       return;
     }
 
-    if (window.confirm('Sigur vrei să ștergi această problemă?')) {
-      dispatch(deleteProblem(problema.id));
+    // Get the Firestore document ID - this MUST be the document ID from Firestore
+    const problemId = problema.id;
+    
+    console.log('Problem object:', problema);
+    console.log('Problem ID to delete:', problemId);
+    console.log('Problem index:', problema.index);
+    console.log('Problem title:', problema.titlu);
+    
+    if (!problemId) {
+      console.error('Problem ID is missing:', problema);
+      alert('Eroare: Problema nu are un ID valid. Nu se poate șterge.');
+      return;
+    }
+
+    if (window.confirm(`Sigur vrei să ștergi problema "${problema.titlu}"?`)) {
+      console.log('User confirmed deletion, dispatching deleteProblem with ID:', problemId, 'and index:', problema.index);
+      // Pass both ID and index to help find the document
+      dispatch(deleteProblem({ id: problemId, index: problema.index }));
     }
   };
 
   // Handle delete status changes
   useEffect(() => {
+    console.log('Delete status changed:', { deleteStatus, deleteError });
+    
     if (deleteStatus === 'succeeded') {
-      if (onBack) onBack();
-      else navigate('/probleme');
+      console.log('Delete succeeded, reloading problems and navigating away...');
+      // Reload problems from Firestore to update the frontend
+      dispatch(fetchProblems()).then(() => {
+        console.log('Problems reloaded successfully');
+        if (onBack) onBack();
+        else navigate('/probleme');
+      });
     } else if (deleteStatus === 'failed') {
       // Show more user-friendly error message
       const errorMessage = deleteError || 'A apărut o eroare necunoscută';
+      console.error('Delete failed with error:', errorMessage);
       alert(`Eroare la ștergerea problemei:\n\n${errorMessage}\n\nTe rugăm să încerci din nou sau să contactezi administratorul.`);
       dispatch(clearDeleteStatus());
     }

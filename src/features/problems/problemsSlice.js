@@ -1,5 +1,5 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
-import { collection, getDocs, addDoc, deleteDoc, doc } from 'firebase/firestore';
+import { collection, getDocs, addDoc, deleteDoc, doc, getDoc, query, where } from 'firebase/firestore';
 import { db, auth } from '../../lib/firebase';
 
 // Async thunk to fetch problems from Firestore
@@ -15,7 +15,7 @@ export const addProblem = createAsyncThunk('problems/addProblem', async (problem
 });
 
 // Async thunk to delete a problem from Firestore
-export const deleteProblem = createAsyncThunk('problems/deleteProblem', async (problemId, { rejectWithValue }) => {
+export const deleteProblem = createAsyncThunk('problems/deleteProblem', async (problemIdentifier, { rejectWithValue }) => {
   try {
     // Check if user is authenticated
     if (!auth.currentUser) {
@@ -23,21 +23,98 @@ export const deleteProblem = createAsyncThunk('problems/deleteProblem', async (p
       throw new Error('Utilizatorul nu este autentificat. Te rugăm să te conectezi pentru a șterge probleme.');
     }
 
-    console.log('Deleting problem with ID:', problemId, 'User:', auth.currentUser.uid);
+    // Handle both string ID and object with id/index
+    const problemId = typeof problemIdentifier === 'string' ? problemIdentifier : problemIdentifier.id;
+    const problemIndex = typeof problemIdentifier === 'object' ? problemIdentifier.index : null;
     
-    const problemRef = doc(db, 'problems', problemId);
+    console.log('Deleting problem with ID:', problemId, 'Index:', problemIndex, 'User:', auth.currentUser.uid);
+    console.log('User email:', auth.currentUser.email);
+    
+    // Verify user is admin by checking Firestore
+    const userRef = doc(db, 'users', auth.currentUser.uid);
+    const userSnap = await getDoc(userRef);
+    const isAdmin = userSnap.exists() && userSnap.data().isAdmin === true;
+    console.log('User isAdmin status:', isAdmin);
+    
+    if (!isAdmin) {
+      console.error('User is not admin, cannot delete problem');
+      return rejectWithValue('Nu ai permisiuni pentru a șterge această problemă. Doar administratorii pot șterge probleme.');
+    }
+    
+    // First, try to find the document by ID
+    let problemRef = doc(db, 'problems', problemId);
+    let problemSnap = await getDoc(problemRef);
+    
+      // If document doesn't exist with that ID, try to find it by index
+      if (!problemSnap.exists()) {
+        console.log(`Document with ID "${problemId}" not found, searching by index...`);
+        
+        const problemsCollection = collection(db, 'problems');
+        let indexToSearch = problemIndex;
+        
+        // If we don't have index from parameter, try to extract it from problemId
+        if (!indexToSearch && typeof problemId === 'string' && problemId.startsWith('bac-')) {
+          const indexMatch = problemId.match(/bac-(\d+)/);
+          if (indexMatch) {
+            indexToSearch = parseInt(indexMatch[1]);
+          }
+        }
+        
+        // If still no index, try parsing problemId as number
+        if (!indexToSearch) {
+          const parsedIndex = parseInt(problemId);
+          if (!isNaN(parsedIndex)) {
+            indexToSearch = parsedIndex;
+          }
+        }
+        
+        if (indexToSearch !== null && indexToSearch !== undefined) {
+          console.log(`Searching for problem with index: ${indexToSearch}`);
+          const q = query(problemsCollection, where('index', '==', indexToSearch));
+          const querySnapshot = await getDocs(q);
+          
+          if (!querySnapshot.empty) {
+            // Found it! Use the first matching document
+            const foundDoc = querySnapshot.docs[0];
+            problemRef = doc(db, 'problems', foundDoc.id);
+            problemSnap = foundDoc;
+            console.log(`Found document with Firestore ID: ${foundDoc.id}, index: ${indexToSearch}`);
+          } else {
+            console.error(`No document found with index: ${indexToSearch}`);
+          }
+        }
+        
+        // If still not found, return error
+        if (!problemSnap.exists()) {
+          console.error('Document does not exist with ID or index:', problemId, problemIndex);
+          return rejectWithValue(`Problema cu ID-ul "${problemId}" (index: ${problemIndex || 'N/A'}) nu există în baza de date.`);
+        }
+      }
+    
+    console.log('Document found, deleting...', problemSnap.data());
+    console.log('Firestore document ID:', problemRef.id);
+    
+    // Delete the document using the correct Firestore document ID
     await deleteDoc(problemRef);
     
-    console.log('Problem deleted successfully');
-    return problemId;
+    // Verify deletion by checking if document still exists
+    const verifySnap = await getDoc(problemRef);
+    if (verifySnap.exists()) {
+      console.error('Document still exists after deletion!');
+      return rejectWithValue('Eroare: Problema nu a fost ștearsă din baza de date. Te rugăm să încerci din nou.');
+    }
+    
+    console.log('Problem deleted successfully from Firestore and verified');
+    return problemRef.id; // Return the actual Firestore document ID
   } catch (error) {
     console.error('Error deleting problem:', error);
     console.error('Error code:', error.code);
     console.error('Error message:', error.message);
+    console.error('Error stack:', error.stack);
     
     // Handle specific Firebase errors
     if (error.code === 'permission-denied') {
-      return rejectWithValue('Nu ai permisiuni pentru a șterge această problemă.');
+      return rejectWithValue('Nu ai permisiuni pentru a șterge această problemă. Verifică că ești conectat ca administrator.');
     } else if (error.code === 'unauthenticated') {
       return rejectWithValue('Utilizatorul nu este autentificat. Te rugăm să te conectezi.');
     } else if (error.message.includes('insufficient permissions')) {

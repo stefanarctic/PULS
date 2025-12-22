@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import Layout from '../Layout';
 import ProblemaDetaliata from '../Problemadetaliata';
@@ -12,6 +12,13 @@ const ProblemaIndividuala = () => {
   
   // Find the problem by index (the id parameter is actually the index)
   const problema = problemeData.find(problem => problem.index === parseInt(id));
+  
+  // Redirect if problem not found (use useEffect to avoid render-time navigation)
+  useEffect(() => {
+    if (status !== 'loading' && !problema) {
+      navigate('/probleme');
+    }
+  }, [problema, status, navigate]);
   
   // If problems are still loading, show loading state
   if (status === 'loading') {
@@ -32,9 +39,8 @@ const ProblemaIndividuala = () => {
     );
   }
   
-  // If problem not found, redirect to problems page
+  // If problem not found, show nothing (redirect is handled in useEffect)
   if (!problema) {
-    navigate('/probleme');
     return null;
   }
 
