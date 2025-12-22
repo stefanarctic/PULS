@@ -8,7 +8,7 @@ import { normalizeString } from '../../lib/normalizeString';
 import { auth, db } from '../../lib/firebase';
 import { onAuthStateChanged } from 'firebase/auth';
 import { doc, getDoc, setDoc } from 'firebase/firestore';
-import { ChevronDown, ChevronUp, Plus } from 'lucide-react';
+import { Plus } from 'lucide-react';
 import { addProblem, clearAddStatus } from '../../features/problems/problemsSlice';
 import { sendProblemSuggestion } from '../../lib/emailService';
 import '../../scss/components/_probleme-bac.scss';
@@ -30,7 +30,6 @@ const ProblemeBac = () => {
     const [user, setUser] = useState(null);
     const [isAdmin, setIsAdmin] = useState(false);
     const [favorites, setFavorites] = useState([]);
-    const [expandedVariants, setExpandedVariants] = useState({});
     const [searchQuery, setSearchQuery] = useState("");
     const [selectedDifficulty, setSelectedDifficulty] = useState("Toate");
     const [selectedYear, setSelectedYear] = useState("Toate");
@@ -151,37 +150,6 @@ const ProblemeBac = () => {
         }
     }, [filteredBacProblems, sortBy]);
 
-    // Group problems by variant
-    const problemsByVariant = useMemo(() => {
-        const grouped = {};
-        sortedProblems.forEach(problem => {
-            const variant = problem.varianta || 'Altele';
-            if (!grouped[variant]) {
-                grouped[variant] = [];
-            }
-            grouped[variant].push(problem);
-        });
-        
-        // Sort variants by year (newest first)
-        const sortedVariants = Object.keys(grouped).sort((a, b) => {
-            const yearA = extractYear(a);
-            const yearB = extractYear(b);
-            if (yearA !== yearB) {
-                return yearB - yearA;
-            }
-            const typeOrder = { 'simulare': 0, 'vara': 1, 'toamna': 2 };
-            const typeA = getVariantType(a);
-            const typeB = getVariantType(b);
-            return (typeOrder[typeA] || 99) - (typeOrder[typeB] || 99);
-        });
-        
-        const sorted = {};
-        sortedVariants.forEach(variant => {
-            sorted[variant] = grouped[variant];
-        });
-        
-        return sorted;
-    }, [sortedProblems]);
 
     const solvedProblemsMap = useMemo(() => {
         return solvedProblems.reduce((acc, entry) => {
@@ -264,19 +232,6 @@ const ProblemeBac = () => {
         }
     };
 
-    const toggleVariant = (variant) => {
-        setExpandedVariants(prev => ({
-            ...prev,
-            [variant]: !prev[variant]
-        }));
-    };
-
-    const formatVariantName = (variant) => {
-        return variant
-            .split(' ')
-            .map(word => word.charAt(0).toUpperCase() + word.slice(1))
-            .join(' ');
-    };
 
     const handleSearchSubmit = (e) => {
         e.preventDefault();
@@ -1219,7 +1174,7 @@ const ProblemeBac = () => {
                     )}
 
                     {/* Empty State */}
-                    {status === 'succeeded' && Object.keys(problemsByVariant).length === 0 && (
+                    {status === 'succeeded' && sortedProblems.length === 0 && (
                         <div className="no-results">
                             <div className="no-results-icon">📚</div>
                             <h3>Nu există probleme de bac disponibile</h3>
@@ -1227,47 +1182,18 @@ const ProblemeBac = () => {
                         </div>
                     )}
 
-                    {/* Variants Container */}
-                    {status === 'succeeded' && Object.keys(problemsByVariant).length > 0 && (
-                        <div className="variants-container">
-                            {Object.entries(problemsByVariant).map(([variant, problems]) => {
-                                const isExpanded = expandedVariants[variant] !== false;
-                                return (
-                                    <div key={variant} className="variant-section">
-                                        <button
-                                            className="variant-header"
-                                            onClick={() => toggleVariant(variant)}
-                                            aria-expanded={isExpanded}
-                                        >
-                                            <div className="variant-header-left">
-                                                <h2 className="variant-title">{formatVariantName(variant)}</h2>
-                                                <span className="variant-count">
-                                                    {problems.length} {problems.length === 1 ? 'problemă' : 'probleme'}
-                                                </span>
-                                            </div>
-                                            <div className="variant-toggle">
-                                                {isExpanded ? <ChevronUp size={22} /> : <ChevronDown size={22} />}
-                                            </div>
-                                        </button>
-                                        
-                                        {isExpanded && (
-                                            <div className="variant-problems">
-                                                <div className="problems-grid">
-                                                    {problems.map((problem) => (
-                                                        <ProblemCard
-                                                            key={problem.id}
-                                                            problem={problem}
-                                                            isFavorite={favorites.includes(problem.id)}
-                                                            onToggleFavorite={toggleFavorite}
-                                                            completionPercent={getProblemCompletion(problem)}
-                                                        />
-                                                    ))}
-                                                </div>
-                                            </div>
-                                        )}
-                                    </div>
-                                );
-                            })}
+                    {/* Problems Grid */}
+                    {status === 'succeeded' && sortedProblems.length > 0 && (
+                        <div className="problems-grid">
+                            {sortedProblems.map((problem) => (
+                                <ProblemCard
+                                    key={problem.id}
+                                    problem={problem}
+                                    isFavorite={favorites.includes(problem.id)}
+                                    onToggleFavorite={toggleFavorite}
+                                    completionPercent={getProblemCompletion(problem)}
+                                />
+                            ))}
                         </div>
                     )}
 
