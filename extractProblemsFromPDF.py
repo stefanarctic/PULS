@@ -7,9 +7,11 @@ from collections import defaultdict
 BAC_DIR = Path("public/probleme/bac")
 OUT_DIR = Path("output")
 IMG_DIR = OUT_DIR / "images"
+PUBLIC_SCREENSHOTS_DIR = Path("public/problem-screenshots")
 
 OUT_DIR.mkdir(exist_ok=True)
 IMG_DIR.mkdir(exist_ok=True)
+PUBLIC_SCREENSHOTS_DIR.mkdir(exist_ok=True)
 
 # -------------------------
 # REGEX-URI CORECTE PENTRU BAC
@@ -92,17 +94,129 @@ def extract_from_pdf(pdf_path: Path, year: str = None, doc_type: str = None):
                         "cerinta": re.sub(r"\s+", " ", sm.group(2)).strip()
                     })
 
-                # Screenshot pagină
+                # Screenshot pagină - găsește toate paginile care conțin problema
                 img_paths = []
+                public_img_paths = []
                 pdf_name = pdf_path.stem
                 
+                # Determină sfârșitul problemei curente
+                prob_start_pos = m.start()
+                prob_end_pos = len(sec_text)
+                
+                # Pentru problema II, sfârșitul este la începutul problemei III sau sfârșitul secțiunii
+                if label == "II":
+                    next_iii = PROB_III_PATTERN.search(sec_text[prob_start_pos:])
+                    if next_iii:
+                        prob_end_pos = prob_start_pos + next_iii.start()
+                # Pentru problema III, sfârșitul este la sfârșitul secțiunii sau următoarea secțiune
+                else:  # label == "III"
+                    prob_end_pos = len(sec_text)
+                
+                # Extrage textul complet al problemei
+                prob_full_text = sec_text[prob_start_pos:prob_end_pos]
+                
+                # Găsește prima pagină care conține problema
+                start_page = None
+                prob_start_marker = "II. Rezolva" if label == "II" else "III. Rezolva"
                 for page_index, page_text in page_map:
-                    if prob_text[:200] in page_text:
-                        pix = doc[page_index].get_pixmap(dpi=200)
-                        img_path = IMG_DIR / f"{year}_{pdf_name}_{sec['letter']}_{label}_page{page_index}.png"
-                        pix.save(img_path)
-                        img_paths.append(str(img_path))
-                        break
+                    # Caută marker-ul problemei în textul paginii
+                    if prob_start_marker in page_text:
+                        # Verifică dacă textul problemei apare în această pagină
+                        search_text = prob_full_text[:min(200, len(prob_full_text))]
+                        if search_text in page_text:
+                            start_page = page_index
+                            break
+                
+                # Găsește ultima pagină care conține problema
+                end_page = start_page
+                if start_page is not None:
+                    # Caută ultima pagină care conține text din problemă
+                    # Folosim un fragment din mijloc și sfârșitul problemei pentru identificare
+                    prob_mid_text = prob_full_text[max(0, len(prob_full_text)//2):min(len(prob_full_text), len(prob_full_text)//2 + 300)]
+                    prob_end_text = prob_full_text[max(0, len(prob_full_text) - 300):]
+                    
+                    for page_index in range(start_page, len(page_map)):
+                        page_text = page_map[page_index][1]
+                        # Verifică dacă pagina conține text din problemă
+                        contains_prob = (
+                            prob_full_text[:200] in page_text or
+                            prob_mid_text in page_text or
+                            prob_end_text in page_text
+                        )
+                        
+                        # Verifică dacă nu am ajuns la următoarea problemă sau secțiune
+                        is_next_section = False
+                        if label == "II" and "III. Rezolva" in page_text:
+                            # Am ajuns la problema III, deci problema II s-a terminat
+                            is_next_section = True
+                        elif i + 1 < len(sections):
+                            # Verifică dacă am ajuns la următoarea secțiune A-D
+                            next_sec_letter = sections[i+1]["letter"]
+                            if f"{next_sec_letter}." in page_text and "Varianta" in page_text:
+                                is_next_section = True
+                        
+                        if contains_prob and not is_next_section:
+                            end_page = page_index
+                        elif is_next_section or not contains_prob:
+                            # Dacă am ajuns la următoarea secțiune sau nu mai conține text din problemă
+                            # Verifică dacă pagina anterioară era ultima pagină validă
+                            if page_index > start_page:
+                                break
+                    
+                    # Salvează screenshot-uri pentru toate paginile problemei (doar zona problemei)
+                    if start_page is not None and end_page is not None:
+                        # Creează folderul pentru această problemă
+                        problem_folder_name = f"{year}_{pdf_name}_{sec['letter']}_{label}"
+                        problem_folder = PUBLIC_SCREENSHOTS_DIR / problem_folder_name
+                        problem_folder.mkdir(exist_ok=True)
+                        
+                        for page_index in range(start_page, end_page + 1):
+                            page = doc[page_index]
+                            page_rect = page.rect
+                            
+                            # Găsește bounding box-ul problemei pe această pagină
+                            start_y = 0
+                            end_y = page_rect.y1
+                            
+                            # Pentru prima pagină, începe de la marker-ul problemei
+                            if page_index == start_page:
+                                prob_marker_rects = page.search_for(prob_start_marker)
+                                if prob_marker_rects:
+                                    start_y = prob_marker_rects[0].y0
+                            
+                            # Pentru ultima pagină, găsește sfârșitul problemei
+                            if page_index == end_page:
+                                # Caută următoarea problemă sau secțiune pe această pagină
+                                if label == "II":
+                                    next_iii_rects = page.search_for("III. Rezolva")
+                                    if next_iii_rects:
+                                        end_y = next_iii_rects[0].y0  # Începutul problemei III
+                                # Pentru problema III, poate există următoarea secțiune A-D
+                                # sau pur și simplu folosim sfârșitul paginii
+                            
+                            # Creează bounding box-ul pentru crop
+                            # Adaugă un mic padding pentru a include tot conținutul
+                            padding = 20
+                            crop_rect = fitz.Rect(
+                                max(0, page_rect.x0),
+                                max(0, start_y - padding),
+                                min(page_rect.x1, page_rect.x1),
+                                min(page_rect.y1, end_y + padding)
+                            )
+                            
+                            # Face crop doar la zona problemei
+                            pix = page.get_pixmap(dpi=200, clip=crop_rect)
+                            
+                            # Salvează în output/images (pentru compatibilitate)
+                            img_path = IMG_DIR / f"{year}_{pdf_name}_{sec['letter']}_{label}_page{page_index}.png"
+                            pix.save(img_path)
+                            img_paths.append(str(img_path))
+                            
+                            # Salvează în public/problem-screenshots/{problem_folder}/
+                            public_img_name = f"page{page_index}.png"
+                            public_img_path = problem_folder / public_img_name
+                            pix.save(public_img_path)
+                            public_img_paths.append(f"problem-screenshots/{problem_folder_name}/{public_img_name}")
 
                 results.append({
                     "arie": sec["name"],
@@ -111,6 +225,7 @@ def extract_from_pdf(pdf_path: Path, year: str = None, doc_type: str = None):
                     "continut": prob_text.strip(),
                     "subpuncte": subs,
                     "imagini": img_paths,
+                    "imagini_public": public_img_paths,
                     "an": year,
                     "fisier": pdf_path.name,
                     "tip_document": doc_type
@@ -236,3 +351,4 @@ print(f"   Fișiere salvate:")
 print(f"     - {OUT_DIR / 'bac_extracted_all.json'}")
 print(f"     - {OUT_DIR / 'bac_extracted_by_category.json'}")
 print(f"     - {OUT_DIR / 'by_year'}/*/")
+print(f"   Screenshot-uri salvate în: {PUBLIC_SCREENSHOTS_DIR}")

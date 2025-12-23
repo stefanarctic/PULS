@@ -51,6 +51,9 @@
         "imagini": [
           "output\\images\\2014_fizica-olimpici-2014-var_A_II_page0.png"
         ],
+        "imagini_public": [
+          "problem-screenshots/2014_fizica-olimpici-2014-var_A_II/page0.png"
+        ],
         "an": "2014",
         "fisier": "fizica-olimpici-2014-var.pdf",
         "tip_document": "subiect"
@@ -88,6 +91,9 @@
         ],
         "imagini": [
           "output\\images\\2014_fizica-olimpici-2014-var_A_III_page0.png"
+        ],
+        "imagini_public": [
+          "problem-screenshots/2014_fizica-olimpici-2014-var_A_III/page0.png"
         ],
         "an": "2014",
         "fisier": "fizica-olimpici-2014-var.pdf",
@@ -143,6 +149,9 @@
         "imagini": [
           "output\\images\\2014_fizica-olimpici-2014-var_B_II_page1.png"
         ],
+        "imagini_public": [
+          "problem-screenshots/2014_fizica-olimpici-2014-var_B_II/page1.png"
+        ],
         "an": "2014",
         "fisier": "fizica-olimpici-2014-var.pdf",
         "tip_document": "subiect"
@@ -180,6 +189,9 @@
         ],
         "imagini": [
           "output\\images\\2014_fizica-olimpici-2014-var_B_III_page1.png"
+        ],
+        "imagini_public": [
+          "problem-screenshots/2014_fizica-olimpici-2014-var_B_III/page1.png"
         ],
         "an": "2014",
         "fisier": "fizica-olimpici-2014-var.pdf",
@@ -235,6 +247,9 @@
         "imagini": [
           "output\\images\\2014_fizica-olimpici-2014-var_C_II_page2.png"
         ],
+        "imagini_public": [
+          "problem-screenshots/2014_fizica-olimpici-2014-var_C_II/page2.png"
+        ],
         "an": "2014",
         "fisier": "fizica-olimpici-2014-var.pdf",
         "tip_document": "subiect"
@@ -272,6 +287,9 @@
         ],
         "imagini": [
           "output\\images\\2014_fizica-olimpici-2014-var_C_III_page2.png"
+        ],
+        "imagini_public": [
+          "problem-screenshots/2014_fizica-olimpici-2014-var_C_III/page2.png"
         ],
         "an": "2014",
         "fisier": "fizica-olimpici-2014-var.pdf",
@@ -319,6 +337,9 @@
         "imagini": [
           "output\\images\\2014_fizica-olimpici-2014-var_D_II_page3.png"
         ],
+        "imagini_public": [
+          "problem-screenshots/2014_fizica-olimpici-2014-var_D_II/page3.png"
+        ],
         "an": "2014",
         "fisier": "fizica-olimpici-2014-var.pdf",
         "tip_document": "subiect"
@@ -348,6 +369,9 @@
         ],
         "imagini": [
           "output\\images\\2014_fizica-olimpici-2014-var_D_III_page3.png"
+        ],
+        "imagini_public": [
+          "problem-screenshots/2014_fizica-olimpici-2014-var_D_III/page3.png"
         ],
         "an": "2014",
         "fisier": "fizica-olimpici-2014-var.pdf",
@@ -405,6 +429,9 @@
         "imagini": [
           "output\\images\\2014_fizica_tehnologic_2014_var_04_lro_A_II_page0.png"
         ],
+        "imagini_public": [
+          "problem-screenshots/2014_fizica_tehnologic_2014_var_04_lro_A_II/page0.png"
+        ],
         "an": "2014",
         "fisier": "fizica_tehnologic_2014_var_04_lro.pdf",
         "tip_document": "subiect"
@@ -442,6 +469,9 @@
         ],
         "imagini": [
           "output\\images\\2014_fizica_tehnologic_2014_var_04_lro_A_III_page0.png"
+        ],
+        "imagini_public": [
+          "problem-screenshots/2014_fizica_tehnologic_2014_var_04_lro_A_III/page0.png"
         ],
         "an": "2014",
         "fisier": "fizica_tehnologic_2014_var_04_lro.pdf",
@@ -497,6 +527,9 @@
         "imagini": [
           "output\\images\\2014_fizica_tehnologic_2014_var_04_lro_B_II_page1.png"
         ],
+        "imagini_public": [
+          "problem-screenshots/2014_fizica_tehnologic_2014_var_04_lro_B_II/page1.png"
+        ],
         "an": "2014",
         "fisier": "fizica_tehnologic_2014_var_04_lro.pdf",
         "tip_document": "subiect"
@@ -534,6 +567,9 @@
         ],
         "imagini": [
           "output\\images\\2014_fizica_tehnologic_2014_var_04_lro_B_III_page1.png"
+        ],
+        "imagini_public": [
+          "problem-screenshots/2014_fizica_tehnologic_2014_var_04_lro_B_III/page1.png"
         ],
         "an": "2014",
         "fisier": "fizica_tehnologic_2014_var_04_lro.pdf",
@@ -589,6 +625,9 @@
         "imagini": [
           "output\\images\\2014_fizica_tehnologic_2014_var_04_lro_C_II_page2.png"
         ],
+        "imagini_public": [
+          "problem-screenshots/2014_fizica_tehnologic_2014_var_04_lro_C_II/page2.png"
+        ],
         "an": "2014",
         "fisier": "fizica_tehnologic_2014_var_04_lro.pdf",
         "tip_document": "subiect"
@@ -626,6 +665,9 @@
         ],
         "imagini": [
           "output\\images\\2014_fizica_tehnologic_2014_var_04_lro_C_III_page2.png"
+        ],
+        "imagini_public": [
+          "problem-screenshots/2014_fizica_tehnologic_2014_var_04_lro_C_III/page2.png"
         ],
         "an": "2014",
         "fisier": "fizica_tehnologic_2014_var_04_lro.pdf",
@@ -673,6 +715,9 @@
         "imagini": [
           "output\\images\\2014_fizica_tehnologic_2014_var_04_lro_D_II_page3.png"
         ],
+        "imagini_public": [
+          "problem-screenshots/2014_fizica_tehnologic_2014_var_04_lro_D_II/page3.png"
+        ],
         "an": "2014",
         "fisier": "fizica_tehnologic_2014_var_04_lro.pdf",
         "tip_document": "subiect"
@@ -702,6 +747,9 @@
         ],
         "imagini": [
           "output\\images\\2014_fizica_tehnologic_2014_var_04_lro_D_III_page3.png"
+        ],
+        "imagini_public": [
+          "problem-screenshots/2014_fizica_tehnologic_2014_var_04_lro_D_III/page3.png"
         ],
         "an": "2014",
         "fisier": "fizica_tehnologic_2014_var_04_lro.pdf",
@@ -757,6 +805,9 @@
         "imagini": [
           "output\\images\\2014_fizica_tehnologic_2014_var_10_lro_A_II_page0.png"
         ],
+        "imagini_public": [
+          "problem-screenshots/2014_fizica_tehnologic_2014_var_10_lro_A_II/page0.png"
+        ],
         "an": "2014",
         "fisier": "fizica_tehnologic_2014_var_10_lro.pdf",
         "tip_document": "subiect"
@@ -794,6 +845,9 @@
         ],
         "imagini": [
           "output\\images\\2014_fizica_tehnologic_2014_var_10_lro_A_III_page0.png"
+        ],
+        "imagini_public": [
+          "problem-screenshots/2014_fizica_tehnologic_2014_var_10_lro_A_III/page0.png"
         ],
         "an": "2014",
         "fisier": "fizica_tehnologic_2014_var_10_lro.pdf",
@@ -849,6 +903,9 @@
         "imagini": [
           "output\\images\\2014_fizica_tehnologic_2014_var_10_lro_B_II_page1.png"
         ],
+        "imagini_public": [
+          "problem-screenshots/2014_fizica_tehnologic_2014_var_10_lro_B_II/page1.png"
+        ],
         "an": "2014",
         "fisier": "fizica_tehnologic_2014_var_10_lro.pdf",
         "tip_document": "subiect"
@@ -886,6 +943,9 @@
         ],
         "imagini": [
           "output\\images\\2014_fizica_tehnologic_2014_var_10_lro_B_III_page1.png"
+        ],
+        "imagini_public": [
+          "problem-screenshots/2014_fizica_tehnologic_2014_var_10_lro_B_III/page1.png"
         ],
         "an": "2014",
         "fisier": "fizica_tehnologic_2014_var_10_lro.pdf",
@@ -941,6 +1001,9 @@
         "imagini": [
           "output\\images\\2014_fizica_tehnologic_2014_var_10_lro_C_II_page2.png"
         ],
+        "imagini_public": [
+          "problem-screenshots/2014_fizica_tehnologic_2014_var_10_lro_C_II/page2.png"
+        ],
         "an": "2014",
         "fisier": "fizica_tehnologic_2014_var_10_lro.pdf",
         "tip_document": "subiect"
@@ -978,6 +1041,9 @@
         ],
         "imagini": [
           "output\\images\\2014_fizica_tehnologic_2014_var_10_lro_C_III_page2.png"
+        ],
+        "imagini_public": [
+          "problem-screenshots/2014_fizica_tehnologic_2014_var_10_lro_C_III/page2.png"
         ],
         "an": "2014",
         "fisier": "fizica_tehnologic_2014_var_10_lro.pdf",
@@ -1025,6 +1091,9 @@
         "imagini": [
           "output\\images\\2014_fizica_tehnologic_2014_var_10_lro_D_II_page3.png"
         ],
+        "imagini_public": [
+          "problem-screenshots/2014_fizica_tehnologic_2014_var_10_lro_D_II/page3.png"
+        ],
         "an": "2014",
         "fisier": "fizica_tehnologic_2014_var_10_lro.pdf",
         "tip_document": "subiect"
@@ -1054,6 +1123,9 @@
         ],
         "imagini": [
           "output\\images\\2014_fizica_tehnologic_2014_var_10_lro_D_III_page3.png"
+        ],
+        "imagini_public": [
+          "problem-screenshots/2014_fizica_tehnologic_2014_var_10_lro_D_III/page3.png"
         ],
         "an": "2014",
         "fisier": "fizica_tehnologic_2014_var_10_lro.pdf",
@@ -1111,6 +1183,9 @@
         "imagini": [
           "output\\images\\2014_fizica_teoretic_vocational_2014_var_04_lro_A_II_page0.png"
         ],
+        "imagini_public": [
+          "problem-screenshots/2014_fizica_teoretic_vocational_2014_var_04_lro_A_II/page0.png"
+        ],
         "an": "2014",
         "fisier": "fizica_teoretic_vocational_2014_var_04_lro.pdf",
         "tip_document": "subiect"
@@ -1148,6 +1223,9 @@
         ],
         "imagini": [
           "output\\images\\2014_fizica_teoretic_vocational_2014_var_04_lro_A_III_page0.png"
+        ],
+        "imagini_public": [
+          "problem-screenshots/2014_fizica_teoretic_vocational_2014_var_04_lro_A_III/page0.png"
         ],
         "an": "2014",
         "fisier": "fizica_teoretic_vocational_2014_var_04_lro.pdf",
@@ -1203,6 +1281,9 @@
         "imagini": [
           "output\\images\\2014_fizica_teoretic_vocational_2014_var_04_lro_B_II_page1.png"
         ],
+        "imagini_public": [
+          "problem-screenshots/2014_fizica_teoretic_vocational_2014_var_04_lro_B_II/page1.png"
+        ],
         "an": "2014",
         "fisier": "fizica_teoretic_vocational_2014_var_04_lro.pdf",
         "tip_document": "subiect"
@@ -1240,6 +1321,9 @@
         ],
         "imagini": [
           "output\\images\\2014_fizica_teoretic_vocational_2014_var_04_lro_B_III_page1.png"
+        ],
+        "imagini_public": [
+          "problem-screenshots/2014_fizica_teoretic_vocational_2014_var_04_lro_B_III/page1.png"
         ],
         "an": "2014",
         "fisier": "fizica_teoretic_vocational_2014_var_04_lro.pdf",
@@ -1295,6 +1379,9 @@
         "imagini": [
           "output\\images\\2014_fizica_teoretic_vocational_2014_var_04_lro_C_II_page2.png"
         ],
+        "imagini_public": [
+          "problem-screenshots/2014_fizica_teoretic_vocational_2014_var_04_lro_C_II/page2.png"
+        ],
         "an": "2014",
         "fisier": "fizica_teoretic_vocational_2014_var_04_lro.pdf",
         "tip_document": "subiect"
@@ -1332,6 +1419,9 @@
         ],
         "imagini": [
           "output\\images\\2014_fizica_teoretic_vocational_2014_var_04_lro_C_III_page2.png"
+        ],
+        "imagini_public": [
+          "problem-screenshots/2014_fizica_teoretic_vocational_2014_var_04_lro_C_III/page2.png"
         ],
         "an": "2014",
         "fisier": "fizica_teoretic_vocational_2014_var_04_lro.pdf",
@@ -1379,6 +1469,9 @@
         "imagini": [
           "output\\images\\2014_fizica_teoretic_vocational_2014_var_04_lro_D_II_page3.png"
         ],
+        "imagini_public": [
+          "problem-screenshots/2014_fizica_teoretic_vocational_2014_var_04_lro_D_II/page3.png"
+        ],
         "an": "2014",
         "fisier": "fizica_teoretic_vocational_2014_var_04_lro.pdf",
         "tip_document": "subiect"
@@ -1408,6 +1501,9 @@
         ],
         "imagini": [
           "output\\images\\2014_fizica_teoretic_vocational_2014_var_04_lro_D_III_page3.png"
+        ],
+        "imagini_public": [
+          "problem-screenshots/2014_fizica_teoretic_vocational_2014_var_04_lro_D_III/page3.png"
         ],
         "an": "2014",
         "fisier": "fizica_teoretic_vocational_2014_var_04_lro.pdf",
@@ -1463,6 +1559,9 @@
         "imagini": [
           "output\\images\\2014_fizica_teoretic_vocational_2014_var_10_lro_A_II_page0.png"
         ],
+        "imagini_public": [
+          "problem-screenshots/2014_fizica_teoretic_vocational_2014_var_10_lro_A_II/page0.png"
+        ],
         "an": "2014",
         "fisier": "fizica_teoretic_vocational_2014_var_10_lro.pdf",
         "tip_document": "subiect"
@@ -1500,6 +1599,9 @@
         ],
         "imagini": [
           "output\\images\\2014_fizica_teoretic_vocational_2014_var_10_lro_A_III_page0.png"
+        ],
+        "imagini_public": [
+          "problem-screenshots/2014_fizica_teoretic_vocational_2014_var_10_lro_A_III/page0.png"
         ],
         "an": "2014",
         "fisier": "fizica_teoretic_vocational_2014_var_10_lro.pdf",
@@ -1555,6 +1657,9 @@
         "imagini": [
           "output\\images\\2014_fizica_teoretic_vocational_2014_var_10_lro_B_II_page1.png"
         ],
+        "imagini_public": [
+          "problem-screenshots/2014_fizica_teoretic_vocational_2014_var_10_lro_B_II/page1.png"
+        ],
         "an": "2014",
         "fisier": "fizica_teoretic_vocational_2014_var_10_lro.pdf",
         "tip_document": "subiect"
@@ -1592,6 +1697,9 @@
         ],
         "imagini": [
           "output\\images\\2014_fizica_teoretic_vocational_2014_var_10_lro_B_III_page1.png"
+        ],
+        "imagini_public": [
+          "problem-screenshots/2014_fizica_teoretic_vocational_2014_var_10_lro_B_III/page1.png"
         ],
         "an": "2014",
         "fisier": "fizica_teoretic_vocational_2014_var_10_lro.pdf",
@@ -1647,6 +1755,9 @@
         "imagini": [
           "output\\images\\2014_fizica_teoretic_vocational_2014_var_10_lro_C_II_page2.png"
         ],
+        "imagini_public": [
+          "problem-screenshots/2014_fizica_teoretic_vocational_2014_var_10_lro_C_II/page2.png"
+        ],
         "an": "2014",
         "fisier": "fizica_teoretic_vocational_2014_var_10_lro.pdf",
         "tip_document": "subiect"
@@ -1684,6 +1795,9 @@
         ],
         "imagini": [
           "output\\images\\2014_fizica_teoretic_vocational_2014_var_10_lro_C_III_page2.png"
+        ],
+        "imagini_public": [
+          "problem-screenshots/2014_fizica_teoretic_vocational_2014_var_10_lro_C_III/page2.png"
         ],
         "an": "2014",
         "fisier": "fizica_teoretic_vocational_2014_var_10_lro.pdf",
@@ -1731,6 +1845,9 @@
         "imagini": [
           "output\\images\\2014_fizica_teoretic_vocational_2014_var_10_lro_D_II_page3.png"
         ],
+        "imagini_public": [
+          "problem-screenshots/2014_fizica_teoretic_vocational_2014_var_10_lro_D_II/page3.png"
+        ],
         "an": "2014",
         "fisier": "fizica_teoretic_vocational_2014_var_10_lro.pdf",
         "tip_document": "subiect"
@@ -1760,6 +1877,9 @@
         ],
         "imagini": [
           "output\\images\\2014_fizica_teoretic_vocational_2014_var_10_lro_D_III_page3.png"
+        ],
+        "imagini_public": [
+          "problem-screenshots/2014_fizica_teoretic_vocational_2014_var_10_lro_D_III/page3.png"
         ],
         "an": "2014",
         "fisier": "fizica_teoretic_vocational_2014_var_10_lro.pdf",
