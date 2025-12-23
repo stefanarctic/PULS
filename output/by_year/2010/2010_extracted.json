@@ -1,0 +1,358 @@
+{
+  "subiect": {
+    "necunoscut": [
+      {
+        "arie": "MECANICĂ",
+        "subiect": "II",
+        "variant": "8",
+        "continut": "II. RezolvaȚi următoarea problemă: \n(15 puncte) \nPerformanȚele realizate în probele de schi alpin sunt influenȚate și de caracteristicile tehnice ale echipamentului \nfolosit. Pentru alegerea materialelor corespunzătoare este necesară măsurarea coeficientului de frecare la \nalunecare. În acest scop se folosește un dispozitiv fixat pe schiuri, care înregistrează atât valorile forȚelor de \ntensiune din cablurile cu care se acȚionează asupra sistemului (dispozitiv și schiuri), cât și acceleraȚia \nsistemului. Schiurile se află pe suprafaȚa orizontală a zăpezii, ca în figura alăturată. În tabel este prezentat unul \ndintre seturile de date înregistrate. Masa totală a sistemului \neste \n50kg,\nM =\n iar deplasarea are loc în sensul forȚei \n1\nT . \na. ReprezentaȚi forȚele care acȚionează asupra sistemului \n(dispozitiv și schiuri). \nb. DeterminaȚi valoarea coeficientului de frecare la alunecare între schiuri și \nzăpadă. \nc. CalculaȚi valoarea vitezei atinse după \ns\n2\n=\n∆t\n de la plecarea din repaus, \npresupunând că acceleraȚia se menȚine constantă la valoarea indicată în tabel. \nd. CalculaȚi viteza pe care ar atinge-o pe aceste schiuri un sportiv care coboară o pantă acoperită de zăpadă, \nînclinată cu \n°\n= 30\nα\n faȚă de orizontală, după parcurgerea unei diferenȚe de nivel \nm\n30\n=\nh\n faȚă de punctul din \ncare a plecat din repaus. Coeficientul de frecare la alunecarea pe pantă este \n0,04.\nµ =\n \nIII. RezolvaȚi următoarea problemă: \n(15 puncte) \nO bilă cu masa \ng\n \n100\n=\nm\n este prinsă la un capăt al unui fir elastic cu lungimea nedeformată \ncm\n \n40\n0 =\nℓ\n și \nconstanta elastică \nN/m\n \n100\n=\nk\n. Celălalt capăt al firului este prins într-un punct A situat la înălȚimea \ncm\n \n100\n=\nH\n faȚă de sol. Bila este ridicată în punctul A și i se dă drumul să cadă la momentul \ns 0\n0 =\nt\n. \nEnergia potenȚială gravitaȚională se consideră nulă la nivelul solului. Masa firului elastic este neglijabilă. \na. CalculaȚi energia potenȚială datorată interacȚiunii gravitaȚionale bilă-Pământ, atunci când bila se află în punctul A; \nb. CalculaȚi intervalul de timp după care firul începe să se alungească. \nc. ReprezentaȚi grafic dependenȚa modulului forȚei elastice din fir de alungirea acestuia, pentru alungiri ∆ℓ \ncuprinse în intervalul [\n]\n0 cm; 10 cm . \nd. DeterminaȚi alungirea maximă atinsă de firul elastic în timpul căderii bilei. \n(N)\n \n1\nT\n \n(N)\n \n2\nT\n \n(\n)\n2\nm/s\na\n165 \n120 \n0,50 \n\nMinisterul EducaȚiei, Cercetării, Tineretului și Sportului \nCentrul NaȚional de Evaluare și Examinare \nProba E - d): Probă scrisă la Fizică \n2 \nB. Elemente de termodinamică\n \n \nEXAMENUL DE BACALAUREAT 2010 \nProba scrisă la Fizică \nProba E - d): Filiera teoretică – profilul real, Filiera tehnologică – profilul tehnic și profilul resurse naturale și protecȚia \nmediului, Filiera vocaȚională – profilul militar \n• Sunt obligatorii toate subiectele din două arii tematice dintre cele patru prevăzute de programă, adică: A. MECANICĂ, \nB. ELEMENTE DE TERMODINAMICĂ, C. PRODUCEREA ȘI UTILIZAREA CURENTULUI CONTINUU, D. OPTICĂ \n• Se acordă 10 puncte din oficiu. \n• Timpul efectiv de lucru este de 3 ore.",
+        "subpuncte": [
+          {
+            "id": "a",
+            "cerinta": "ReprezentaȚi forȚele care acȚionează asupra sistemului (dispozitiv și schiuri)."
+          },
+          {
+            "id": "b",
+            "cerinta": "DeterminaȚi valoarea coeficientului de frecare la alunecare între schiuri și zăpadă."
+          },
+          {
+            "id": "c",
+            "cerinta": "CalculaȚi valoarea vitezei atinse după s 2 = ∆t de la plecarea din repaus, presupunând că acceleraȚia se menȚine constantă la valoarea indicată în tabel."
+          },
+          {
+            "id": "d",
+            "cerinta": "CalculaȚi viteza pe care ar atinge-o pe aceste schiuri un sportiv care coboară o pantă acoperită de zăpadă, înclinată cu ° = 30 α faȚă de orizontală, după parcurgerea unei diferenȚe de nivel m 30 = h faȚă de punctul din care a plecat din repaus. Coeficientul de frecare la alunecarea pe pantă este 0,04. µ ="
+          },
+          {
+            "id": "a",
+            "cerinta": "CalculaȚi energia potenȚială datorată interacȚiunii gravitaȚionale bilă-Pământ, atunci când bila se află în punctul A;"
+          },
+          {
+            "id": "b",
+            "cerinta": "CalculaȚi intervalul de timp după care firul începe să se alungească."
+          },
+          {
+            "id": "c",
+            "cerinta": "ReprezentaȚi grafic dependenȚa modulului forȚei elastice din fir de alungirea acestuia, pentru alungiri ∆ℓ cuprinse în intervalul [ ] 0 cm; 10 cm ."
+          },
+          {
+            "id": "d",
+            "cerinta": "DeterminaȚi alungirea maximă atinsă de firul elastic în timpul căderii bilei. (N) 1 T (N) 2 T ( ) 2 m/s a 165 120 0,50"
+          },
+          {
+            "id": "B",
+            "cerinta": "Elemente de termodinamică EXAMENUL DE BACALAUREAT 2010 Proba scrisă la Fizică Proba E - d): Filiera teoretică – profilul real, Filiera tehnologică – profilul tehnic și profilul resurse naturale și protecȚia mediului, Filiera vocaȚională – profilul militar • Sunt obligatorii toate subiectele din două arii tematice dintre cele patru prevăzute de programă, adică: A. MECANICĂ,"
+          },
+          {
+            "id": "B",
+            "cerinta": "ELEMENTE DE TERMODINAMICĂ, C. PRODUCEREA ȘI UTILIZAREA CURENTULUI CONTINUU, D. OPTICĂ • Se acordă 10 puncte din oficiu. • Timpul efectiv de lucru este de 3 ore."
+          }
+        ],
+        "imagini": [
+          "output\\images\\2010_fizica-subiecte-2010_A_II_page0.png"
+        ],
+        "an": "2010",
+        "fisier": "fizica-subiecte-2010.pdf",
+        "tip_document": "subiect"
+      },
+      {
+        "arie": "MECANICĂ",
+        "subiect": "III",
+        "variant": "8",
+        "continut": "III. RezolvaȚi următoarea problemă: \n(15 puncte) \nO bilă cu masa \ng\n \n100\n=\nm\n este prinsă la un capăt al unui fir elastic cu lungimea nedeformată \ncm\n \n40\n0 =\nℓ\n și \nconstanta elastică \nN/m\n \n100\n=\nk\n. Celălalt capăt al firului este prins într-un punct A situat la înălȚimea \ncm\n \n100\n=\nH\n faȚă de sol. Bila este ridicată în punctul A și i se dă drumul să cadă la momentul \ns 0\n0 =\nt\n. \nEnergia potenȚială gravitaȚională se consideră nulă la nivelul solului. Masa firului elastic este neglijabilă. \na. CalculaȚi energia potenȚială datorată interacȚiunii gravitaȚionale bilă-Pământ, atunci când bila se află în punctul A; \nb. CalculaȚi intervalul de timp după care firul începe să se alungească. \nc. ReprezentaȚi grafic dependenȚa modulului forȚei elastice din fir de alungirea acestuia, pentru alungiri ∆ℓ \ncuprinse în intervalul [\n]\n0 cm; 10 cm . \nd. DeterminaȚi alungirea maximă atinsă de firul elastic în timpul căderii bilei. \n(N)\n \n1\nT\n \n(N)\n \n2\nT\n \n(\n)\n2\nm/s\na\n165 \n120 \n0,50 \n\nMinisterul EducaȚiei, Cercetării, Tineretului și Sportului \nCentrul NaȚional de Evaluare și Examinare \nProba E - d): Probă scrisă la Fizică \n2 \nB. Elemente de termodinamică\n \n \nEXAMENUL DE BACALAUREAT 2010 \nProba scrisă la Fizică \nProba E - d): Filiera teoretică – profilul real, Filiera tehnologică – profilul tehnic și profilul resurse naturale și protecȚia \nmediului, Filiera vocaȚională – profilul militar \n• Sunt obligatorii toate subiectele din două arii tematice dintre cele patru prevăzute de programă, adică: A. MECANICĂ, \nB. ELEMENTE DE TERMODINAMICĂ, C. PRODUCEREA ȘI UTILIZAREA CURENTULUI CONTINUU, D. OPTICĂ \n• Se acordă 10 puncte din oficiu. \n• Timpul efectiv de lucru este de 3 ore.",
+        "subpuncte": [
+          {
+            "id": "a",
+            "cerinta": "CalculaȚi energia potenȚială datorată interacȚiunii gravitaȚionale bilă-Pământ, atunci când bila se află în punctul A;"
+          },
+          {
+            "id": "b",
+            "cerinta": "CalculaȚi intervalul de timp după care firul începe să se alungească."
+          },
+          {
+            "id": "c",
+            "cerinta": "ReprezentaȚi grafic dependenȚa modulului forȚei elastice din fir de alungirea acestuia, pentru alungiri ∆ℓ cuprinse în intervalul [ ] 0 cm; 10 cm ."
+          },
+          {
+            "id": "d",
+            "cerinta": "DeterminaȚi alungirea maximă atinsă de firul elastic în timpul căderii bilei. (N) 1 T (N) 2 T ( ) 2 m/s a 165 120 0,50"
+          },
+          {
+            "id": "B",
+            "cerinta": "Elemente de termodinamică EXAMENUL DE BACALAUREAT 2010 Proba scrisă la Fizică Proba E - d): Filiera teoretică – profilul real, Filiera tehnologică – profilul tehnic și profilul resurse naturale și protecȚia mediului, Filiera vocaȚională – profilul militar • Sunt obligatorii toate subiectele din două arii tematice dintre cele patru prevăzute de programă, adică: A. MECANICĂ,"
+          },
+          {
+            "id": "B",
+            "cerinta": "ELEMENTE DE TERMODINAMICĂ, C. PRODUCEREA ȘI UTILIZAREA CURENTULUI CONTINUU, D. OPTICĂ • Se acordă 10 puncte din oficiu. • Timpul efectiv de lucru este de 3 ore."
+          }
+        ],
+        "imagini": [
+          "output\\images\\2010_fizica-subiecte-2010_A_III_page0.png"
+        ],
+        "an": "2010",
+        "fisier": "fizica-subiecte-2010.pdf",
+        "tip_document": "subiect"
+      },
+      {
+        "arie": "ELEMENTE DE TERMODINAMICĂ",
+        "subiect": "II",
+        "variant": "8",
+        "continut": "II. RezolvaȚi următoarea problemă: \n(15 puncte) \nÎntr-un cilindru orizontal prevăzut cu piston mobil este închisă o cantitate \nmol\n 5\n0,\n=\nν\n de gaz ideal, ca în \nfigura alăturată. Gazul se află iniȚial la temperatura \nC\n70\n1 =\nt\n și la presiunea \n2\n0\np\np =\n. \nPistonul are aria \n2\ndm\n31\n,8\n=\nS\n. Un sistem de blocare împiedică deplasarea pistonului în \nsensul comprimării gazului, dar permite deplasarea cu frecare neglijabilă în sensul \nmăririi volumului. Presiunea atmosferică are valoarea \nPa\n \n105\n0 =\np\n. DeterminaȚi: \na. lungimea „a” a porȚiunii ocupate de gaz în starea iniȚială; \nb. numărul de molecule din unitatea de volum în starea iniȚială; \nc. temperatura \n2\nT  până la care trebuie încălzit gazul astfel încât pistonul să înceapă să se deplaseze; \nd. temperatura \n3\nT  până la care trebuie încălzit gazul, astfel încât lungimea porȚiunii ocupate de gaz să se \ndubleze. Cilindrul este suficient de lung. \nIII. RezolvaȚi următoarea problemă: \n(15 puncte) \nO cantitate \nmol\n 1\n=\nν\n de gaz ideal monoatomic (\n)\nR\nCV\n5,1\n=\n este supusă procesului \nciclic \n1\n4\n3\n2\n1\n→\n→\n→\n→\n, reprezentat în sistemul de coordonate V-T  în figura \nalăturată. Temperatura gazului în starea 1 este \nK\n \n00\n3\n1 =\nT\n. ConsideraȚi că \nln 2\n0,69\n≅\n. \na. CalculaȚi energia internă a gazului în starea 1. \nb. DeterminaȚi valoarea căldurii primite de gaz în timpul unui ciclu. \nc. CalculaȚi lucrul mecanic total schimbat de gaz cu mediul exterior în timpul unui \nciclu. \nd. ReprezentaȚi procesul ciclic în sistemul de coordonate p-V . \n\nMinisterul EducaȚiei, Cercetării, Tineretului și Sportului \nCentrul NaȚional de Evaluare și Examinare \nProba E - d): Probă scrisă la Fizică \n3 \nC. Producerea și utilizarea curentului continuu \nEXAMENUL DE BACALAUREAT 2010 \nProba scrisă la Fizică \nProba E - d): Filiera teoretică – profilul real, Filiera tehnologică – profilul tehnic și profilul resurse naturale și protecȚia \nmediului, Filiera vocaȚională – profilul militar \n• Sunt obligatorii toate subiectele din două arii tematice dintre cele patru prevăzute de programă, adică: A. MECANICĂ, \nB. ELEMENTE DE TERMODINAMICĂ, C. PRODUCEREA ȘI UTILIZAREA CURENTULUI CONTINUU, D. OPTICĂ \n• Se acordă 10 puncte din oficiu. \n• Timpul efectiv de lucru este de 3 ore.",
+        "subpuncte": [
+          {
+            "id": "a",
+            "cerinta": "lungimea „a” a porȚiunii ocupate de gaz în starea iniȚială;"
+          },
+          {
+            "id": "b",
+            "cerinta": "numărul de molecule din unitatea de volum în starea iniȚială;"
+          },
+          {
+            "id": "c",
+            "cerinta": "temperatura 2 T până la care trebuie încălzit gazul astfel încât pistonul să înceapă să se deplaseze;"
+          },
+          {
+            "id": "d",
+            "cerinta": "temperatura 3 T până la care trebuie încălzit gazul, astfel încât lungimea porȚiunii ocupate de gaz să se dubleze. Cilindrul este suficient de lung."
+          },
+          {
+            "id": "a",
+            "cerinta": "CalculaȚi energia internă a gazului în starea 1."
+          },
+          {
+            "id": "b",
+            "cerinta": "DeterminaȚi valoarea căldurii primite de gaz în timpul unui ciclu."
+          },
+          {
+            "id": "c",
+            "cerinta": "CalculaȚi lucrul mecanic total schimbat de gaz cu mediul exterior în timpul unui ciclu."
+          },
+          {
+            "id": "d",
+            "cerinta": "ReprezentaȚi procesul ciclic în sistemul de coordonate p-V ."
+          },
+          {
+            "id": "C",
+            "cerinta": "Producerea și utilizarea curentului continuu EXAMENUL DE BACALAUREAT 2010 Proba scrisă la Fizică Proba E - d): Filiera teoretică – profilul real, Filiera tehnologică – profilul tehnic și profilul resurse naturale și protecȚia mediului, Filiera vocaȚională – profilul militar • Sunt obligatorii toate subiectele din două arii tematice dintre cele patru prevăzute de programă, adică: A. MECANICĂ,"
+          },
+          {
+            "id": "B",
+            "cerinta": "ELEMENTE DE TERMODINAMICĂ, C. PRODUCEREA ȘI UTILIZAREA CURENTULUI CONTINUU, D. OPTICĂ • Se acordă 10 puncte din oficiu. • Timpul efectiv de lucru este de 3 ore."
+          }
+        ],
+        "imagini": [
+          "output\\images\\2010_fizica-subiecte-2010_B_II_page1.png"
+        ],
+        "an": "2010",
+        "fisier": "fizica-subiecte-2010.pdf",
+        "tip_document": "subiect"
+      },
+      {
+        "arie": "ELEMENTE DE TERMODINAMICĂ",
+        "subiect": "III",
+        "variant": "8",
+        "continut": "III. RezolvaȚi următoarea problemă: \n(15 puncte) \nO cantitate \nmol\n 1\n=\nν\n de gaz ideal monoatomic (\n)\nR\nCV\n5,1\n=\n este supusă procesului \nciclic \n1\n4\n3\n2\n1\n→\n→\n→\n→\n, reprezentat în sistemul de coordonate V-T  în figura \nalăturată. Temperatura gazului în starea 1 este \nK\n \n00\n3\n1 =\nT\n. ConsideraȚi că \nln 2\n0,69\n≅\n. \na. CalculaȚi energia internă a gazului în starea 1. \nb. DeterminaȚi valoarea căldurii primite de gaz în timpul unui ciclu. \nc. CalculaȚi lucrul mecanic total schimbat de gaz cu mediul exterior în timpul unui \nciclu. \nd. ReprezentaȚi procesul ciclic în sistemul de coordonate p-V . \n\nMinisterul EducaȚiei, Cercetării, Tineretului și Sportului \nCentrul NaȚional de Evaluare și Examinare \nProba E - d): Probă scrisă la Fizică \n3 \nC. Producerea și utilizarea curentului continuu \nEXAMENUL DE BACALAUREAT 2010 \nProba scrisă la Fizică \nProba E - d): Filiera teoretică – profilul real, Filiera tehnologică – profilul tehnic și profilul resurse naturale și protecȚia \nmediului, Filiera vocaȚională – profilul militar \n• Sunt obligatorii toate subiectele din două arii tematice dintre cele patru prevăzute de programă, adică: A. MECANICĂ, \nB. ELEMENTE DE TERMODINAMICĂ, C. PRODUCEREA ȘI UTILIZAREA CURENTULUI CONTINUU, D. OPTICĂ \n• Se acordă 10 puncte din oficiu. \n• Timpul efectiv de lucru este de 3 ore.",
+        "subpuncte": [
+          {
+            "id": "a",
+            "cerinta": "CalculaȚi energia internă a gazului în starea 1."
+          },
+          {
+            "id": "b",
+            "cerinta": "DeterminaȚi valoarea căldurii primite de gaz în timpul unui ciclu."
+          },
+          {
+            "id": "c",
+            "cerinta": "CalculaȚi lucrul mecanic total schimbat de gaz cu mediul exterior în timpul unui ciclu."
+          },
+          {
+            "id": "d",
+            "cerinta": "ReprezentaȚi procesul ciclic în sistemul de coordonate p-V ."
+          },
+          {
+            "id": "C",
+            "cerinta": "Producerea și utilizarea curentului continuu EXAMENUL DE BACALAUREAT 2010 Proba scrisă la Fizică Proba E - d): Filiera teoretică – profilul real, Filiera tehnologică – profilul tehnic și profilul resurse naturale și protecȚia mediului, Filiera vocaȚională – profilul militar • Sunt obligatorii toate subiectele din două arii tematice dintre cele patru prevăzute de programă, adică: A. MECANICĂ,"
+          },
+          {
+            "id": "B",
+            "cerinta": "ELEMENTE DE TERMODINAMICĂ, C. PRODUCEREA ȘI UTILIZAREA CURENTULUI CONTINUU, D. OPTICĂ • Se acordă 10 puncte din oficiu. • Timpul efectiv de lucru este de 3 ore."
+          }
+        ],
+        "imagini": [
+          "output\\images\\2010_fizica-subiecte-2010_B_III_page1.png"
+        ],
+        "an": "2010",
+        "fisier": "fizica-subiecte-2010.pdf",
+        "tip_document": "subiect"
+      },
+      {
+        "arie": "PRODUCEREA ȘI UTILIZAREA CURENTULUI CONTINUU",
+        "subiect": "II",
+        "variant": "8",
+        "continut": "II. RezolvaȚi următoarea problemă: \n(15 puncte) \nO baterie este formată din 6 surse de tensiune identice, caracterizate fiecare de valorile \n V\n20\n=\nE\n și \n1,0\nr =\nΩ. Bateria este alcătuită din 3 ramuri legate în paralel, fiecare ramură conȚinând 2 surse grupate \nserie. Bateria alimentează o grupare de patru rezistoare cu rezistenȚele \n,\nR\nΩ\n= 10\n1\n \n,\nR\nΩ\n= 20\n2\n \nΩ\n=\n0\n4\n3\n,\nR\n și \nΩ\n=\n0\n8\n4\n,\nR\n. Rezistoarele sunt conectate astfel: \n1\nR  și \n2\nR  în paralel, \n3\nR  și \n4\nR  în paralel, cele două grupări \nparalel fiind înseriate. \na. ReprezentaȚi schema electrică a circuitului. \nb. CalculaȚi valoarea rezistenȚei electrice echivalente a grupării celor patru rezistoare. \nc. CalculaȚi valoarea tensiunii electrice la bornele rezistorului \n2\nR . \nd. CalculaȚi valoarea intensităȚii curentului electric prin una dintre surse, dacă la bornele acesteia se \nconectează un fir conductor de rezistenȚă electrică neglijabilă. \nIII. RezolvaȚi următoarea problemă: \n(15 puncte) \nLa bornele unei surse având tensiunea electromotoare \n= 8,0 V\nE\n și rezistenȚa internă \nΩ\n=\n5,0\nr\n se leagă în \nparalel un rezistor a cărui rezistenȚă electrică are valoarea \nΩ\n=\n0\n2\n2\n,\nR\n și un bec. Un voltmetru, considerat \nideal \n)\n(\nv\n∞\n→\nR\n, conectat la bornele sursei, indică \n V\n6,0\n=\nU\n. Cunoscând rezistenȚa filamentului becului „la \nrece” (\nC\n \n00\n0 =\nt\n) \nΩ\n=\n0\n1\n01\n,\nR\n și coeficientul termic al rezistivităȚii materialului din care este confecȚionat \nfilamentul becului \n1\n 3 K\n10\n5\n2\n−\n−\n⋅\n= ,\nα\n, determinaȚi: \na. energia consumată de rezistor în 5 minute de funcȚionare; \nb. puterea totală dezvoltată de sursă; \nc. randamentul transferului de putere de la sursă la circuitul exterior; \nd. temperatura filamentului becului în timpul funcȚionării. \n\nMinisterul EducaȚiei, Cercetării, Tineretului și Sportului \nCentrul NaȚional de Evaluare și Examinare \nProba E - d): Probă scrisă la Fizică \n4 \nD. Optică \nEXAMENUL DE BACALAUREAT 2010 \nProba scrisă la Fizică \nProba E - d): Filiera teoretică – profilul real, Filiera tehnologică – profilul tehnic și profilul resurse naturale și protecȚia \nmediului, Filiera vocaȚională – profilul militar \n• Sunt obligatorii toate subiectele din două arii tematice dintre cele patru prevăzute de programă, adică: A. MECANICĂ, \nB. ELEMENTE DE TERMODINAMICĂ, C. PRODUCEREA ȘI UTILIZAREA CURENTULUI CONTINUU, D. OPTICĂ \n• Se acordă 10 puncte din oficiu. \n• Timpul efectiv de lucru este de 3 ore.",
+        "subpuncte": [
+          {
+            "id": "a",
+            "cerinta": "ReprezentaȚi schema electrică a circuitului."
+          },
+          {
+            "id": "b",
+            "cerinta": "CalculaȚi valoarea rezistenȚei electrice echivalente a grupării celor patru rezistoare."
+          },
+          {
+            "id": "c",
+            "cerinta": "CalculaȚi valoarea tensiunii electrice la bornele rezistorului 2 R ."
+          },
+          {
+            "id": "d",
+            "cerinta": "CalculaȚi valoarea intensităȚii curentului electric prin una dintre surse, dacă la bornele acesteia se conectează un fir conductor de rezistenȚă electrică neglijabilă."
+          },
+          {
+            "id": "a",
+            "cerinta": "energia consumată de rezistor în 5 minute de funcȚionare;"
+          },
+          {
+            "id": "b",
+            "cerinta": "puterea totală dezvoltată de sursă;"
+          },
+          {
+            "id": "c",
+            "cerinta": "randamentul transferului de putere de la sursă la circuitul exterior;"
+          },
+          {
+            "id": "d",
+            "cerinta": "temperatura filamentului becului în timpul funcȚionării."
+          },
+          {
+            "id": "D",
+            "cerinta": "Optică EXAMENUL DE BACALAUREAT 2010 Proba scrisă la Fizică Proba E - d): Filiera teoretică – profilul real, Filiera tehnologică – profilul tehnic și profilul resurse naturale și protecȚia mediului, Filiera vocaȚională – profilul militar • Sunt obligatorii toate subiectele din două arii tematice dintre cele patru prevăzute de programă, adică: A. MECANICĂ,"
+          },
+          {
+            "id": "B",
+            "cerinta": "ELEMENTE DE TERMODINAMICĂ, C. PRODUCEREA ȘI UTILIZAREA CURENTULUI CONTINUU, D. OPTICĂ • Se acordă 10 puncte din oficiu. • Timpul efectiv de lucru este de 3 ore."
+          }
+        ],
+        "imagini": [
+          "output\\images\\2010_fizica-subiecte-2010_C_II_page2.png"
+        ],
+        "an": "2010",
+        "fisier": "fizica-subiecte-2010.pdf",
+        "tip_document": "subiect"
+      },
+      {
+        "arie": "PRODUCEREA ȘI UTILIZAREA CURENTULUI CONTINUU",
+        "subiect": "III",
+        "variant": "8",
+        "continut": "III. RezolvaȚi următoarea problemă: \n(15 puncte) \nLa bornele unei surse având tensiunea electromotoare \n= 8,0 V\nE\n și rezistenȚa internă \nΩ\n=\n5,0\nr\n se leagă în \nparalel un rezistor a cărui rezistenȚă electrică are valoarea \nΩ\n=\n0\n2\n2\n,\nR\n și un bec. Un voltmetru, considerat \nideal \n)\n(\nv\n∞\n→\nR\n, conectat la bornele sursei, indică \n V\n6,0\n=\nU\n. Cunoscând rezistenȚa filamentului becului „la \nrece” (\nC\n \n00\n0 =\nt\n) \nΩ\n=\n0\n1\n01\n,\nR\n și coeficientul termic al rezistivităȚii materialului din care este confecȚionat \nfilamentul becului \n1\n 3 K\n10\n5\n2\n−\n−\n⋅\n= ,\nα\n, determinaȚi: \na. energia consumată de rezistor în 5 minute de funcȚionare; \nb. puterea totală dezvoltată de sursă; \nc. randamentul transferului de putere de la sursă la circuitul exterior; \nd. temperatura filamentului becului în timpul funcȚionării. \n\nMinisterul EducaȚiei, Cercetării, Tineretului și Sportului \nCentrul NaȚional de Evaluare și Examinare \nProba E - d): Probă scrisă la Fizică \n4 \nD. Optică \nEXAMENUL DE BACALAUREAT 2010 \nProba scrisă la Fizică \nProba E - d): Filiera teoretică – profilul real, Filiera tehnologică – profilul tehnic și profilul resurse naturale și protecȚia \nmediului, Filiera vocaȚională – profilul militar \n• Sunt obligatorii toate subiectele din două arii tematice dintre cele patru prevăzute de programă, adică: A. MECANICĂ, \nB. ELEMENTE DE TERMODINAMICĂ, C. PRODUCEREA ȘI UTILIZAREA CURENTULUI CONTINUU, D. OPTICĂ \n• Se acordă 10 puncte din oficiu. \n• Timpul efectiv de lucru este de 3 ore.",
+        "subpuncte": [
+          {
+            "id": "a",
+            "cerinta": "energia consumată de rezistor în 5 minute de funcȚionare;"
+          },
+          {
+            "id": "b",
+            "cerinta": "puterea totală dezvoltată de sursă;"
+          },
+          {
+            "id": "c",
+            "cerinta": "randamentul transferului de putere de la sursă la circuitul exterior;"
+          },
+          {
+            "id": "d",
+            "cerinta": "temperatura filamentului becului în timpul funcȚionării."
+          },
+          {
+            "id": "D",
+            "cerinta": "Optică EXAMENUL DE BACALAUREAT 2010 Proba scrisă la Fizică Proba E - d): Filiera teoretică – profilul real, Filiera tehnologică – profilul tehnic și profilul resurse naturale și protecȚia mediului, Filiera vocaȚională – profilul militar • Sunt obligatorii toate subiectele din două arii tematice dintre cele patru prevăzute de programă, adică: A. MECANICĂ,"
+          },
+          {
+            "id": "B",
+            "cerinta": "ELEMENTE DE TERMODINAMICĂ, C. PRODUCEREA ȘI UTILIZAREA CURENTULUI CONTINUU, D. OPTICĂ • Se acordă 10 puncte din oficiu. • Timpul efectiv de lucru este de 3 ore."
+          }
+        ],
+        "imagini": [
+          "output\\images\\2010_fizica-subiecte-2010_C_III_page2.png"
+        ],
+        "an": "2010",
+        "fisier": "fizica-subiecte-2010.pdf",
+        "tip_document": "subiect"
+      },
+      {
+        "arie": "OPTICĂ",
+        "subiect": "II",
+        "variant": "8",
+        "continut": "II. RezolvaȚi următoarea problemă: \n (15 puncte) \nPentru determinarea experimentală a distanȚei focale a unei lentile divergente se realizează un sistem alipit \nformat din lentila divergentă și o lentilă convergentă având distanȚa focală \ncm\n 8\n2 =\nf\n. Sistemul astfel format \nse așază pe un banc optic. Se constată că pentru a obȚine o imagine clară a obiectului real situat pe axa \noptică la distanȚa \ncm\n \n18\n1 =\nd\n în faȚa sistemului de lentile, ecranul trebuie plasat la distanȚa \ncm\n \n36\n2 =\nd\n faȚă \nde lentile. DeterminaȚi: \na. convergenȚa echivalentă a sistemului de lentile alipite;  \nb. mărirea liniară transversală dată de sistemul de lentile pentru obiectul considerat; \nc. distanȚa focală a lentilei divergente. \nd. RealizaȚi un desen în care să evidenȚiaȚi construcȚia imaginii printr-o lentilă divergentă, pentru un obiect \nsituat între focarul imagine și lentilă. \n \nIII. RezolvaȚi următoarea problemă: \n(15 puncte) \nÎn graficul alăturat este reprezentată dependenȚa energiei cinetice maxime a \nelectronilor emiși prin efect fotoelectric extern, de frecvenȚa radiaȚiei incidente. \nMetalul pentru care a fost obȚinut acest grafic este supus acȚiunii radiaȚiilor \nluminoase cu frecvenȚele \n14\n1\n4,00 10  Hz\nν =\n⋅\n, \nHz\n \n10\n45\n5\n14\n2\n⋅\n=\n,\nν\n și respectiv \nHz\n \n10\n6,25\n14\n3\n⋅\n=\nν\n. \nFrecvenȚa \nde \nprag \na \nmetalului \nare \nvaloarea \nHz\n \n10\n45\n5\n14\n0\n⋅\n=\n,\nν\n. \na. CalculaȚi valoarea lucrului mecanic de extracȚie. \nb. IndicaȚi semnificaȚia fizică a pantei dreptei reprezentate în grafic. \nc. IndicaȚi care dintre cele trei radiaȚii produc efect fotoelectric. JustificaȚi. \nd. CalculaȚi valoarea energiei cinetice maxime a electronilor extrași de radiaȚia cu frecvenȚa \n3\nν .",
+        "subpuncte": [
+          {
+            "id": "a",
+            "cerinta": "convergenȚa echivalentă a sistemului de lentile alipite;"
+          },
+          {
+            "id": "b",
+            "cerinta": "mărirea liniară transversală dată de sistemul de lentile pentru obiectul considerat;"
+          },
+          {
+            "id": "c",
+            "cerinta": "distanȚa focală a lentilei divergente."
+          },
+          {
+            "id": "d",
+            "cerinta": "RealizaȚi un desen în care să evidenȚiaȚi construcȚia imaginii printr-o lentilă divergentă, pentru un obiect situat între focarul imagine și lentilă."
+          },
+          {
+            "id": "a",
+            "cerinta": "CalculaȚi valoarea lucrului mecanic de extracȚie."
+          },
+          {
+            "id": "b",
+            "cerinta": "IndicaȚi semnificaȚia fizică a pantei dreptei reprezentate în grafic."
+          },
+          {
+            "id": "c",
+            "cerinta": "IndicaȚi care dintre cele trei radiaȚii produc efect fotoelectric. JustificaȚi."
+          },
+          {
+            "id": "d",
+            "cerinta": "CalculaȚi valoarea energiei cinetice maxime a electronilor extrași de radiaȚia cu frecvenȚa 3 ν ."
+          }
+        ],
+        "imagini": [
+          "output\\images\\2010_fizica-subiecte-2010_D_II_page3.png"
+        ],
+        "an": "2010",
+        "fisier": "fizica-subiecte-2010.pdf",
+        "tip_document": "subiect"
+      },
+      {
+        "arie": "OPTICĂ",
+        "subiect": "III",
+        "variant": "8",
+        "continut": "III. RezolvaȚi următoarea problemă: \n(15 puncte) \nÎn graficul alăturat este reprezentată dependenȚa energiei cinetice maxime a \nelectronilor emiși prin efect fotoelectric extern, de frecvenȚa radiaȚiei incidente. \nMetalul pentru care a fost obȚinut acest grafic este supus acȚiunii radiaȚiilor \nluminoase cu frecvenȚele \n14\n1\n4,00 10  Hz\nν =\n⋅\n, \nHz\n \n10\n45\n5\n14\n2\n⋅\n=\n,\nν\n și respectiv \nHz\n \n10\n6,25\n14\n3\n⋅\n=\nν\n. \nFrecvenȚa \nde \nprag \na \nmetalului \nare \nvaloarea \nHz\n \n10\n45\n5\n14\n0\n⋅\n=\n,\nν\n. \na. CalculaȚi valoarea lucrului mecanic de extracȚie. \nb. IndicaȚi semnificaȚia fizică a pantei dreptei reprezentate în grafic. \nc. IndicaȚi care dintre cele trei radiaȚii produc efect fotoelectric. JustificaȚi. \nd. CalculaȚi valoarea energiei cinetice maxime a electronilor extrași de radiaȚia cu frecvenȚa \n3\nν .",
+        "subpuncte": [
+          {
+            "id": "a",
+            "cerinta": "CalculaȚi valoarea lucrului mecanic de extracȚie."
+          },
+          {
+            "id": "b",
+            "cerinta": "IndicaȚi semnificaȚia fizică a pantei dreptei reprezentate în grafic."
+          },
+          {
+            "id": "c",
+            "cerinta": "IndicaȚi care dintre cele trei radiaȚii produc efect fotoelectric. JustificaȚi."
+          },
+          {
+            "id": "d",
+            "cerinta": "CalculaȚi valoarea energiei cinetice maxime a electronilor extrași de radiaȚia cu frecvenȚa 3 ν ."
+          }
+        ],
+        "imagini": [
+          "output\\images\\2010_fizica-subiecte-2010_D_III_page3.png"
+        ],
+        "an": "2010",
+        "fisier": "fizica-subiecte-2010.pdf",
+        "tip_document": "subiect"
+      }
+    ]
+  }
+}

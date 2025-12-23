@@ -1,0 +1,710 @@
+{
+  "subiect": {
+    "necunoscut": [
+      {
+        "arie": "MECANICĂ",
+        "subiect": "II",
+        "variant": "10",
+        "continut": "II. RezolvaȚi următoarea problemă: \n(15 puncte) \nUna dintre etapele turului ciclist al României s-a desfășurat între localităȚile Piatra NeamȚ și Miercurea Ciuc, \npe distanȚa totală \nkm\n \n150\n=\nD\n. Startul s-a dat la ora \n00\n:\n00\n:\n09\n (ora 9, 0 minute și 0 secunde). La ora \n00\n:\n20\n:\n12\n, când cel mai rapid ciclist a trecut linia de sosire, distanȚa dintre primul și ultimul ciclist era \nkm\n 6\n=\nd\n. Din acest moment ultimul ciclist își menȚine constantă viteza \nm/s\n \n11\n0 =\nv\n pe distanȚa \nm\n \n5500\n1 =\nd\n. Pe ultimii \nm\n \n500\n2 =\nd\n, încurajat de spectatori, acesta se deplasează cu acceleraȚie constantă \nși trece linia de sosire cu viteza \nm/s\n \n13\n=\nv\n. Etapa a cuprins la Cheile Bicazului și o „căȚărare”, în care \ncicliștii au urcat de la altitudinea \nm\n \n580\n1 =\nh\n la altitudinea \nm\n980\n2 =\nh\n. CalculaȚi: \na. valoarea vitezei medii a celui mai rapid ciclist; \nb. variaȚia energiei potenȚiale gravitaȚionale a unui ciclist având masa \nkg\n \n70\n =\nM\n în timpul „căȚărării” de la \nCheile Bicazului; \nc. valoarea acceleraȚiei ultimului ciclist în timpul parcurgerii distanȚei \nm\n \n500\n2 =\nd\n înaintea liniei de sosire; \nd. ora la care ultimul ciclist a trecut linia de sosire. \n \nIII. RezolvaȚi următoarea problemă: \n(15 puncte) \nÎntr-un experiment s-a studiat căderea a două corpuri în câmpul gravitaȚional terestru. Cele două corpuri au \naspect exterior identic (aceeași formă și aceleași dimensiuni), dar au mase diferite. Masa corpului A este \ng\n \n50\n=\nA\nm\n. Pe baza datelor obȚinute de la un senzor de mișcare a fost trasat graficul alăturat, în care este \nredată dependenȚa de timp a vitezei corpului A, respectiv B. Această dependenȚă a vitezei de timp poate fi \nexplicată dacă admitem că forȚa de rezistenȚă la înaintare este direct proporȚională cu viteza (\n)\nr\nF\nk v\n=\n⋅\n\u0001\u0002\n. \nValoarea coeficientului de proporȚionalitate k  depinde doar de forma și dimensiunile corpului. DeterminaȚi: \na. viteza maximă \nmax\nv\n atinsă de corpul A în timpul căderii; \nb. valoarea coeficientului de proporȚionalitate k ; \nc. masa corpului B; \nd. lucrul mecanic efectuat de forȚa de rezistenȚă la înaintare asupra corpului \nA în timpul \ns 4\n1,\nt =\n∆\n în care corpul a căzut, pornind din repaus, pe distanȚa \nm\n 4\n=\nd\n. \n \n\nMinisterul EducaȚiei, Cercetării, Tineretului și Sportului \nCentrul NaȚional de Evaluare și Examinare \nProba E - d): Probă scrisă la Fizică \n2 \nB. Elemente de termodinamică\n \n \nEXAMENUL DE BACALAUREAT 2010 \nProba scrisă la Fizică \nProba E - d): Filiera teoretică – profilul real, Filiera tehnologică – profilul tehnic și profilul resurse naturale și protecȚia \nmediului, Filiera vocaȚională – profilul militar \n• Sunt obligatorii toate subiectele din două arii tematice dintre cele patru prevăzute de programă, adică: A. MECANICĂ, \nB. ELEMENTE DE TERMODINAMICĂ, C. PRODUCEREA ȘI UTILIZAREA CURENTULUI CONTINUU, D. OPTICĂ \n• Se acordă 10 puncte din oficiu. \n• Timpul efectiv de lucru este de 3 ore.",
+        "subpuncte": [
+          {
+            "id": "a",
+            "cerinta": "valoarea vitezei medii a celui mai rapid ciclist;"
+          },
+          {
+            "id": "b",
+            "cerinta": "variaȚia energiei potenȚiale gravitaȚionale a unui ciclist având masa kg 70 = M în timpul „căȚărării” de la Cheile Bicazului;"
+          },
+          {
+            "id": "c",
+            "cerinta": "valoarea acceleraȚiei ultimului ciclist în timpul parcurgerii distanȚei m 500 2 = d înaintea liniei de sosire;"
+          },
+          {
+            "id": "d",
+            "cerinta": "ora la care ultimul ciclist a trecut linia de sosire."
+          },
+          {
+            "id": "a",
+            "cerinta": "viteza maximă max v atinsă de corpul A în timpul căderii;"
+          },
+          {
+            "id": "b",
+            "cerinta": "valoarea coeficientului de proporȚionalitate k ;"
+          },
+          {
+            "id": "c",
+            "cerinta": "masa corpului B;"
+          },
+          {
+            "id": "d",
+            "cerinta": "lucrul mecanic efectuat de forȚa de rezistenȚă la înaintare asupra corpului A în timpul s 4 1, t = ∆ în care corpul a căzut, pornind din repaus, pe distanȚa m 4 = d ."
+          },
+          {
+            "id": "B",
+            "cerinta": "Elemente de termodinamică EXAMENUL DE BACALAUREAT 2010 Proba scrisă la Fizică Proba E - d): Filiera teoretică – profilul real, Filiera tehnologică – profilul tehnic și profilul resurse naturale și protecȚia mediului, Filiera vocaȚională – profilul militar • Sunt obligatorii toate subiectele din două arii tematice dintre cele patru prevăzute de programă, adică: A. MECANICĂ,"
+          },
+          {
+            "id": "B",
+            "cerinta": "ELEMENTE DE TERMODINAMICĂ, C. PRODUCEREA ȘI UTILIZAREA CURENTULUI CONTINUU, D. OPTICĂ • Se acordă 10 puncte din oficiu. • Timpul efectiv de lucru este de 3 ore."
+          }
+        ],
+        "imagini": [
+          "output\\images\\None_proba_e_d_fizica_subiect_10_A_II_page0.png"
+        ],
+        "an": null,
+        "fisier": "proba_e_d_fizica_subiect_10.pdf",
+        "tip_document": "subiect"
+      },
+      {
+        "arie": "MECANICĂ",
+        "subiect": "III",
+        "variant": "10",
+        "continut": "III. RezolvaȚi următoarea problemă: \n(15 puncte) \nÎntr-un experiment s-a studiat căderea a două corpuri în câmpul gravitaȚional terestru. Cele două corpuri au \naspect exterior identic (aceeași formă și aceleași dimensiuni), dar au mase diferite. Masa corpului A este \ng\n \n50\n=\nA\nm\n. Pe baza datelor obȚinute de la un senzor de mișcare a fost trasat graficul alăturat, în care este \nredată dependenȚa de timp a vitezei corpului A, respectiv B. Această dependenȚă a vitezei de timp poate fi \nexplicată dacă admitem că forȚa de rezistenȚă la înaintare este direct proporȚională cu viteza (\n)\nr\nF\nk v\n=\n⋅\n\u0001\u0002\n. \nValoarea coeficientului de proporȚionalitate k  depinde doar de forma și dimensiunile corpului. DeterminaȚi: \na. viteza maximă \nmax\nv\n atinsă de corpul A în timpul căderii; \nb. valoarea coeficientului de proporȚionalitate k ; \nc. masa corpului B; \nd. lucrul mecanic efectuat de forȚa de rezistenȚă la înaintare asupra corpului \nA în timpul \ns 4\n1,\nt =\n∆\n în care corpul a căzut, pornind din repaus, pe distanȚa \nm\n 4\n=\nd\n. \n \n\nMinisterul EducaȚiei, Cercetării, Tineretului și Sportului \nCentrul NaȚional de Evaluare și Examinare \nProba E - d): Probă scrisă la Fizică \n2 \nB. Elemente de termodinamică\n \n \nEXAMENUL DE BACALAUREAT 2010 \nProba scrisă la Fizică \nProba E - d): Filiera teoretică – profilul real, Filiera tehnologică – profilul tehnic și profilul resurse naturale și protecȚia \nmediului, Filiera vocaȚională – profilul militar \n• Sunt obligatorii toate subiectele din două arii tematice dintre cele patru prevăzute de programă, adică: A. MECANICĂ, \nB. ELEMENTE DE TERMODINAMICĂ, C. PRODUCEREA ȘI UTILIZAREA CURENTULUI CONTINUU, D. OPTICĂ \n• Se acordă 10 puncte din oficiu. \n• Timpul efectiv de lucru este de 3 ore.",
+        "subpuncte": [
+          {
+            "id": "a",
+            "cerinta": "viteza maximă max v atinsă de corpul A în timpul căderii;"
+          },
+          {
+            "id": "b",
+            "cerinta": "valoarea coeficientului de proporȚionalitate k ;"
+          },
+          {
+            "id": "c",
+            "cerinta": "masa corpului B;"
+          },
+          {
+            "id": "d",
+            "cerinta": "lucrul mecanic efectuat de forȚa de rezistenȚă la înaintare asupra corpului A în timpul s 4 1, t = ∆ în care corpul a căzut, pornind din repaus, pe distanȚa m 4 = d ."
+          },
+          {
+            "id": "B",
+            "cerinta": "Elemente de termodinamică EXAMENUL DE BACALAUREAT 2010 Proba scrisă la Fizică Proba E - d): Filiera teoretică – profilul real, Filiera tehnologică – profilul tehnic și profilul resurse naturale și protecȚia mediului, Filiera vocaȚională – profilul militar • Sunt obligatorii toate subiectele din două arii tematice dintre cele patru prevăzute de programă, adică: A. MECANICĂ,"
+          },
+          {
+            "id": "B",
+            "cerinta": "ELEMENTE DE TERMODINAMICĂ, C. PRODUCEREA ȘI UTILIZAREA CURENTULUI CONTINUU, D. OPTICĂ • Se acordă 10 puncte din oficiu. • Timpul efectiv de lucru este de 3 ore."
+          }
+        ],
+        "imagini": [
+          "output\\images\\None_proba_e_d_fizica_subiect_10_A_III_page0.png"
+        ],
+        "an": null,
+        "fisier": "proba_e_d_fizica_subiect_10.pdf",
+        "tip_document": "subiect"
+      },
+      {
+        "arie": "ELEMENTE DE TERMODINAMICĂ",
+        "subiect": "II",
+        "variant": "10",
+        "continut": "II. RezolvaȚi următoarea problemă: \n(15 puncte) \nO butelie având volumul \nL \n10\n1 =\nV\n conȚine aer la presiunea \n5\n1\n2 10  Pa\np =\n⋅\n. Altă butelie, având volumul \nL 5\n2 =\nV\n, conȚine azot la presiunea \n5\n2\n3 10  Pa\np =\n⋅\n. Cele două butelii sunt legate printr-un tub cu volum \nneglijabil prevăzut cu o membrană care se sparge dacă diferenȚa dintre presiunile celor două gaze este \n5\n2 10  Pa\np\n∆\n=\n⋅\n. Ambele gaze, considerate ideale, se află la temperatura \nC\n70\n=\nt\n. Masa molară a aerului \neste \n3\n1\n29 10\n kg/mol\nµ\n−\n=\n⋅\n, iar cea a azotului \n3\n2\n28 10\n kg/mol\nµ\n−\n=\n⋅\n. DeterminaȚi: \na. numărul de molecule din aerul aflat în prima butelie; \nb. masa unei molecule de azot; \nc. masa minimă de azot care trebuie introdusă suplimentar în butelia de volum \n2\nV  pentru a produce \nspargerea membranei; \nd. masa molară a amestecului obȚinut după spargerea membranei, ca urmare a introducerii azotului \nsuplimentar. \nIII. RezolvaȚi următoarea problemă: \n(15 puncte) \nUn mol de gaz ideal monoatomic \n\n\n\n\n\n\n=\nR\nCv\n2\n3\n, aflat iniȚial în starea 1, la temperatura \nK\n250\n1 =\nT\n, este supus succesiunii de procese termodinamice \n4\n3\n2\n1\n→\n→\n→\n, \nreprezentate în sistemul de coordonate \nT\np −\n în figura alăturată. ConsideraȚi că \nln2\n0,69\n≅\n. \na. ReprezentaȚi succesiunea de procese termodinamice în sistemul de coordonate \nV\np −\n. \nb. DeterminaȚi energia internă a gazului în starea 2. \nc. CalculaȚi lucrul mecanic efectuat de gaz în transformarea \n3\n2 →\n. \nd. CalculaȚi căldura schimbată de gaz cu exteriorul în transformarea \n4\n3 →\n. \n \n\nMinisterul EducaȚiei, Cercetării, Tineretului și Sportului \nCentrul NaȚional de Evaluare și Examinare \nProba E - d): Probă scrisă la Fizică \n3 \nC. Producerea și utilizarea curentului continuu \nEXAMENUL DE BACALAUREAT 2010 \nProba scrisă la Fizică \nProba E - d): Filiera teoretică – profilul real, Filiera tehnologică – profilul tehnic și profilul resurse naturale și protecȚia \nmediului, Filiera vocaȚională – profilul militar \n• Sunt obligatorii toate subiectele din două arii tematice dintre cele patru prevăzute de programă, adică: A. MECANICĂ, \nB. ELEMENTE DE TERMODINAMICĂ, C. PRODUCEREA ȘI UTILIZAREA CURENTULUI CONTINUU, D. OPTICĂ \n• Se acordă 10 puncte din oficiu. \n• Timpul efectiv de lucru este de 3 ore.",
+        "subpuncte": [
+          {
+            "id": "a",
+            "cerinta": "numărul de molecule din aerul aflat în prima butelie;"
+          },
+          {
+            "id": "b",
+            "cerinta": "masa unei molecule de azot;"
+          },
+          {
+            "id": "c",
+            "cerinta": "masa minimă de azot care trebuie introdusă suplimentar în butelia de volum 2 V pentru a produce spargerea membranei;"
+          },
+          {
+            "id": "d",
+            "cerinta": "masa molară a amestecului obȚinut după spargerea membranei, ca urmare a introducerii azotului suplimentar."
+          },
+          {
+            "id": "a",
+            "cerinta": "ReprezentaȚi succesiunea de procese termodinamice în sistemul de coordonate V p − ."
+          },
+          {
+            "id": "b",
+            "cerinta": "DeterminaȚi energia internă a gazului în starea 2."
+          },
+          {
+            "id": "c",
+            "cerinta": "CalculaȚi lucrul mecanic efectuat de gaz în transformarea 3 2 → ."
+          },
+          {
+            "id": "d",
+            "cerinta": "CalculaȚi căldura schimbată de gaz cu exteriorul în transformarea 4 3 → ."
+          },
+          {
+            "id": "C",
+            "cerinta": "Producerea și utilizarea curentului continuu EXAMENUL DE BACALAUREAT 2010 Proba scrisă la Fizică Proba E - d): Filiera teoretică – profilul real, Filiera tehnologică – profilul tehnic și profilul resurse naturale și protecȚia mediului, Filiera vocaȚională – profilul militar • Sunt obligatorii toate subiectele din două arii tematice dintre cele patru prevăzute de programă, adică: A. MECANICĂ,"
+          },
+          {
+            "id": "B",
+            "cerinta": "ELEMENTE DE TERMODINAMICĂ, C. PRODUCEREA ȘI UTILIZAREA CURENTULUI CONTINUU, D. OPTICĂ • Se acordă 10 puncte din oficiu. • Timpul efectiv de lucru este de 3 ore."
+          }
+        ],
+        "imagini": [
+          "output\\images\\None_proba_e_d_fizica_subiect_10_B_II_page1.png"
+        ],
+        "an": null,
+        "fisier": "proba_e_d_fizica_subiect_10.pdf",
+        "tip_document": "subiect"
+      },
+      {
+        "arie": "ELEMENTE DE TERMODINAMICĂ",
+        "subiect": "III",
+        "variant": "10",
+        "continut": "III. RezolvaȚi următoarea problemă: \n(15 puncte) \nUn mol de gaz ideal monoatomic \n\n\n\n\n\n\n=\nR\nCv\n2\n3\n, aflat iniȚial în starea 1, la temperatura \nK\n250\n1 =\nT\n, este supus succesiunii de procese termodinamice \n4\n3\n2\n1\n→\n→\n→\n, \nreprezentate în sistemul de coordonate \nT\np −\n în figura alăturată. ConsideraȚi că \nln2\n0,69\n≅\n. \na. ReprezentaȚi succesiunea de procese termodinamice în sistemul de coordonate \nV\np −\n. \nb. DeterminaȚi energia internă a gazului în starea 2. \nc. CalculaȚi lucrul mecanic efectuat de gaz în transformarea \n3\n2 →\n. \nd. CalculaȚi căldura schimbată de gaz cu exteriorul în transformarea \n4\n3 →\n. \n \n\nMinisterul EducaȚiei, Cercetării, Tineretului și Sportului \nCentrul NaȚional de Evaluare și Examinare \nProba E - d): Probă scrisă la Fizică \n3 \nC. Producerea și utilizarea curentului continuu \nEXAMENUL DE BACALAUREAT 2010 \nProba scrisă la Fizică \nProba E - d): Filiera teoretică – profilul real, Filiera tehnologică – profilul tehnic și profilul resurse naturale și protecȚia \nmediului, Filiera vocaȚională – profilul militar \n• Sunt obligatorii toate subiectele din două arii tematice dintre cele patru prevăzute de programă, adică: A. MECANICĂ, \nB. ELEMENTE DE TERMODINAMICĂ, C. PRODUCEREA ȘI UTILIZAREA CURENTULUI CONTINUU, D. OPTICĂ \n• Se acordă 10 puncte din oficiu. \n• Timpul efectiv de lucru este de 3 ore.",
+        "subpuncte": [
+          {
+            "id": "a",
+            "cerinta": "ReprezentaȚi succesiunea de procese termodinamice în sistemul de coordonate V p − ."
+          },
+          {
+            "id": "b",
+            "cerinta": "DeterminaȚi energia internă a gazului în starea 2."
+          },
+          {
+            "id": "c",
+            "cerinta": "CalculaȚi lucrul mecanic efectuat de gaz în transformarea 3 2 → ."
+          },
+          {
+            "id": "d",
+            "cerinta": "CalculaȚi căldura schimbată de gaz cu exteriorul în transformarea 4 3 → ."
+          },
+          {
+            "id": "C",
+            "cerinta": "Producerea și utilizarea curentului continuu EXAMENUL DE BACALAUREAT 2010 Proba scrisă la Fizică Proba E - d): Filiera teoretică – profilul real, Filiera tehnologică – profilul tehnic și profilul resurse naturale și protecȚia mediului, Filiera vocaȚională – profilul militar • Sunt obligatorii toate subiectele din două arii tematice dintre cele patru prevăzute de programă, adică: A. MECANICĂ,"
+          },
+          {
+            "id": "B",
+            "cerinta": "ELEMENTE DE TERMODINAMICĂ, C. PRODUCEREA ȘI UTILIZAREA CURENTULUI CONTINUU, D. OPTICĂ • Se acordă 10 puncte din oficiu. • Timpul efectiv de lucru este de 3 ore."
+          }
+        ],
+        "imagini": [
+          "output\\images\\None_proba_e_d_fizica_subiect_10_B_III_page1.png"
+        ],
+        "an": null,
+        "fisier": "proba_e_d_fizica_subiect_10.pdf",
+        "tip_document": "subiect"
+      },
+      {
+        "arie": "PRODUCEREA ȘI UTILIZAREA CURENTULUI CONTINUU",
+        "subiect": "II",
+        "variant": "10",
+        "continut": "II. RezolvaȚi următoarea problemă: \n(15 puncte) \nÎn circuitul electric a cărui schemă este reprezentată în figura alăturată se \ncunosc: \nV\n60\n=\nE\n, \nΩ\n= 4\nr\n, \nΩ\n= 20\n1\nR\n, \nΩ\n= 30\n2\nR\n, \nΩ\n= 8\n3\nR\n. Voltmetrul este \nconsiderat ideal (\n)\n∞\n→\nV\nR\n. RezistenȚa electrică a conductoarelor de legătură se \nneglijează. DeterminaȚi: \na. rezistenȚa electrică echivalentă a circuitului exterior; \nb. valoarea tensiunii dintre punctele A și B; \nc. valoarea tensiunii indicate de voltmetru; \nd. intensitatea curentului prin sursă dacă se conectează între A și B un fir cu rezistenȚă neglijabilă. \n \nIII. RezolvaȚi următoarea problemă: \n(15 puncte) \nSursa de tensiune din circuitul din figura alăturată este caracterizată de tensiunea electromotoare \n V\n64\n=\nE\n și \nrezistenȚa internă \n2,0 \nr =\nΩ. Parametrii nominali ai becurilor sunt \n W\n10\n1 =\nP\n, \n A\n0,5\n1 =\nI\n, respectiv \n W\n12\n2 =\nP\n, \n A\n3\n0\n2\n,\nI\n=\n. RezistenȚa totală R  a reostatului \nși poziȚia cursorului C sunt astfel alese încât becurile să funcȚioneze la parametri \nnominali. Conductoarele de legătură au rezistenȚă electrică neglijabilă. \nDeterminaȚi: \na. intensitatea curentului electric prin conductorul AC; \nb. rezistenȚa electrică a becului B1, având parametrii \n1\nP  și 1I ; \nc. intensitatea curentului electric ce trece prin sursa de tensiune; \nd. rezistenȚa electrică \nBC\nR\n a porȚiunii reostatului cuprinsă între capătul B și cursorul C. \n \n\nMinisterul EducaȚiei, Cercetării, Tineretului și Sportului \nCentrul NaȚional de Evaluare și Examinare \nProba E - d): Probă scrisă la Fizică \n4 \nD. Optică \nEXAMENUL DE BACALAUREAT 2010 \nProba scrisă la Fizică \nProba E - d): Filiera teoretică – profilul real, Filiera tehnologică – profilul tehnic și profilul resurse naturale și protecȚia \nmediului, Filiera vocaȚională – profilul militar \n• Sunt obligatorii toate subiectele din două arii tematice dintre cele patru prevăzute de programă, adică: A. MECANICĂ, \nB. ELEMENTE DE TERMODINAMICĂ, C. PRODUCEREA ȘI UTILIZAREA CURENTULUI CONTINUU, D. OPTICĂ \n• Se acordă 10 puncte din oficiu. \n• Timpul efectiv de lucru este de 3 ore.",
+        "subpuncte": [
+          {
+            "id": "a",
+            "cerinta": "rezistenȚa electrică echivalentă a circuitului exterior;"
+          },
+          {
+            "id": "b",
+            "cerinta": "valoarea tensiunii dintre punctele A și B;"
+          },
+          {
+            "id": "c",
+            "cerinta": "valoarea tensiunii indicate de voltmetru;"
+          },
+          {
+            "id": "d",
+            "cerinta": "intensitatea curentului prin sursă dacă se conectează între A și B un fir cu rezistenȚă neglijabilă."
+          },
+          {
+            "id": "a",
+            "cerinta": "intensitatea curentului electric prin conductorul AC;"
+          },
+          {
+            "id": "b",
+            "cerinta": "rezistenȚa electrică a becului B1, având parametrii 1 P și 1I ;"
+          },
+          {
+            "id": "c",
+            "cerinta": "intensitatea curentului electric ce trece prin sursa de tensiune;"
+          },
+          {
+            "id": "d",
+            "cerinta": "rezistenȚa electrică BC R a porȚiunii reostatului cuprinsă între capătul B și cursorul C."
+          },
+          {
+            "id": "D",
+            "cerinta": "Optică EXAMENUL DE BACALAUREAT 2010 Proba scrisă la Fizică Proba E - d): Filiera teoretică – profilul real, Filiera tehnologică – profilul tehnic și profilul resurse naturale și protecȚia mediului, Filiera vocaȚională – profilul militar • Sunt obligatorii toate subiectele din două arii tematice dintre cele patru prevăzute de programă, adică: A. MECANICĂ,"
+          },
+          {
+            "id": "B",
+            "cerinta": "ELEMENTE DE TERMODINAMICĂ, C. PRODUCEREA ȘI UTILIZAREA CURENTULUI CONTINUU, D. OPTICĂ • Se acordă 10 puncte din oficiu. • Timpul efectiv de lucru este de 3 ore."
+          }
+        ],
+        "imagini": [
+          "output\\images\\None_proba_e_d_fizica_subiect_10_C_II_page2.png"
+        ],
+        "an": null,
+        "fisier": "proba_e_d_fizica_subiect_10.pdf",
+        "tip_document": "subiect"
+      },
+      {
+        "arie": "PRODUCEREA ȘI UTILIZAREA CURENTULUI CONTINUU",
+        "subiect": "III",
+        "variant": "10",
+        "continut": "III. RezolvaȚi următoarea problemă: \n(15 puncte) \nSursa de tensiune din circuitul din figura alăturată este caracterizată de tensiunea electromotoare \n V\n64\n=\nE\n și \nrezistenȚa internă \n2,0 \nr =\nΩ. Parametrii nominali ai becurilor sunt \n W\n10\n1 =\nP\n, \n A\n0,5\n1 =\nI\n, respectiv \n W\n12\n2 =\nP\n, \n A\n3\n0\n2\n,\nI\n=\n. RezistenȚa totală R  a reostatului \nși poziȚia cursorului C sunt astfel alese încât becurile să funcȚioneze la parametri \nnominali. Conductoarele de legătură au rezistenȚă electrică neglijabilă. \nDeterminaȚi: \na. intensitatea curentului electric prin conductorul AC; \nb. rezistenȚa electrică a becului B1, având parametrii \n1\nP  și 1I ; \nc. intensitatea curentului electric ce trece prin sursa de tensiune; \nd. rezistenȚa electrică \nBC\nR\n a porȚiunii reostatului cuprinsă între capătul B și cursorul C. \n \n\nMinisterul EducaȚiei, Cercetării, Tineretului și Sportului \nCentrul NaȚional de Evaluare și Examinare \nProba E - d): Probă scrisă la Fizică \n4 \nD. Optică \nEXAMENUL DE BACALAUREAT 2010 \nProba scrisă la Fizică \nProba E - d): Filiera teoretică – profilul real, Filiera tehnologică – profilul tehnic și profilul resurse naturale și protecȚia \nmediului, Filiera vocaȚională – profilul militar \n• Sunt obligatorii toate subiectele din două arii tematice dintre cele patru prevăzute de programă, adică: A. MECANICĂ, \nB. ELEMENTE DE TERMODINAMICĂ, C. PRODUCEREA ȘI UTILIZAREA CURENTULUI CONTINUU, D. OPTICĂ \n• Se acordă 10 puncte din oficiu. \n• Timpul efectiv de lucru este de 3 ore.",
+        "subpuncte": [
+          {
+            "id": "a",
+            "cerinta": "intensitatea curentului electric prin conductorul AC;"
+          },
+          {
+            "id": "b",
+            "cerinta": "rezistenȚa electrică a becului B1, având parametrii 1 P și 1I ;"
+          },
+          {
+            "id": "c",
+            "cerinta": "intensitatea curentului electric ce trece prin sursa de tensiune;"
+          },
+          {
+            "id": "d",
+            "cerinta": "rezistenȚa electrică BC R a porȚiunii reostatului cuprinsă între capătul B și cursorul C."
+          },
+          {
+            "id": "D",
+            "cerinta": "Optică EXAMENUL DE BACALAUREAT 2010 Proba scrisă la Fizică Proba E - d): Filiera teoretică – profilul real, Filiera tehnologică – profilul tehnic și profilul resurse naturale și protecȚia mediului, Filiera vocaȚională – profilul militar • Sunt obligatorii toate subiectele din două arii tematice dintre cele patru prevăzute de programă, adică: A. MECANICĂ,"
+          },
+          {
+            "id": "B",
+            "cerinta": "ELEMENTE DE TERMODINAMICĂ, C. PRODUCEREA ȘI UTILIZAREA CURENTULUI CONTINUU, D. OPTICĂ • Se acordă 10 puncte din oficiu. • Timpul efectiv de lucru este de 3 ore."
+          }
+        ],
+        "imagini": [
+          "output\\images\\None_proba_e_d_fizica_subiect_10_C_III_page2.png"
+        ],
+        "an": null,
+        "fisier": "proba_e_d_fizica_subiect_10.pdf",
+        "tip_document": "subiect"
+      },
+      {
+        "arie": "OPTICĂ",
+        "subiect": "II",
+        "variant": "10",
+        "continut": "II. RezolvaȚi următoarea problemă: \n (15 puncte) \nO lentilă este așezată între un obiect luminos cu înălȚimea \nmm\n \n10\n1 =\nh\n și un ecran. Se constată că dacă \nlentila este poziȚionată la distanȚa \ncm\n \n30\n1 =\nd\n faȚă de obiect, pe ecran se obȚine o imagine răsturnată având \nînălȚimea \nmm\n \n20\n2 =\nh\n.  \na. CalculaȚi mărirea liniară transversală dată de lentilă în situaȚia descrisă în problemă. \nb. DeterminaȚi distanȚa focală a lentilei. \nc. RealizaȚi un desen în care să evidenȚiaȚi construcȚia imaginii prin lentilă, pentru obiectul considerat, în \nsituaȚia descrisă de problemă. \nd. Lentila este deplasată între obiectul și ecranul aflate în poziȚii fixe. Se constată că există și o a doua \npoziȚie a lentilei pentru care pe ecran se obȚine o imagine clară. CalculaȚi înălȚimea imaginii obȚinute pe ecran \nîn acest al doilea caz. \n \nIII. RezolvaȚi următoarea problemă: \n(15 puncte) \nCatodul unei celule fotoelectrice este caracterizat de lucrul mecanic de extracȚie \nJ \n10\n0\n4\n19\n−\n⋅\n=\n,\nL\n. \na. DeterminaȚi valoarea frecvenȚei de prag a acestei celule fotoelectrice. \nb. PrecizaȚi dacă o radiaȚie monocromatică cu frecvenȚa \nHz\n \n10\n,5\n5\n14\n1\n⋅\n=\nν\n, incidentă pe fotocelulă, produce \nefect fotoelectric. \nc. DeterminaȚi valoarea energiei cinetice maxime a electronilor emiși dacă asupra celulei se trimite o altă \nradiaȚie monocromatică, cu frecvenȚa \nHz\n \n10\n5\n1\n15\n2\n⋅\n= ,\nν\n. \nd. Se modifică fluxul radiaȚiilor incidente menȚinând constantă frecvenȚa \nHz\n \n10\n5\n1\n15\n2\n⋅\n= ,\nν\n. JustificaȚi dacă \nmodificarea fluxului radiaȚiilor influenȚează valoarea energiei cinetice maxime a electronilor emiși.",
+        "subpuncte": [
+          {
+            "id": "a",
+            "cerinta": "CalculaȚi mărirea liniară transversală dată de lentilă în situaȚia descrisă în problemă."
+          },
+          {
+            "id": "b",
+            "cerinta": "DeterminaȚi distanȚa focală a lentilei."
+          },
+          {
+            "id": "c",
+            "cerinta": "RealizaȚi un desen în care să evidenȚiaȚi construcȚia imaginii prin lentilă, pentru obiectul considerat, în situaȚia descrisă de problemă."
+          },
+          {
+            "id": "d",
+            "cerinta": "Lentila este deplasată între obiectul și ecranul aflate în poziȚii fixe. Se constată că există și o a doua poziȚie a lentilei pentru care pe ecran se obȚine o imagine clară. CalculaȚi înălȚimea imaginii obȚinute pe ecran în acest al doilea caz."
+          },
+          {
+            "id": "a",
+            "cerinta": "DeterminaȚi valoarea frecvenȚei de prag a acestei celule fotoelectrice."
+          },
+          {
+            "id": "b",
+            "cerinta": "PrecizaȚi dacă o radiaȚie monocromatică cu frecvenȚa Hz 10 ,5 5 14 1 ⋅ = ν , incidentă pe fotocelulă, produce efect fotoelectric."
+          },
+          {
+            "id": "c",
+            "cerinta": "DeterminaȚi valoarea energiei cinetice maxime a electronilor emiși dacă asupra celulei se trimite o altă radiaȚie monocromatică, cu frecvenȚa Hz 10 5 1 15 2 ⋅ = , ν ."
+          },
+          {
+            "id": "d",
+            "cerinta": "Se modifică fluxul radiaȚiilor incidente menȚinând constantă frecvenȚa Hz 10 5 1 15 2 ⋅ = , ν . JustificaȚi dacă modificarea fluxului radiaȚiilor influenȚează valoarea energiei cinetice maxime a electronilor emiși."
+          }
+        ],
+        "imagini": [
+          "output\\images\\None_proba_e_d_fizica_subiect_10_D_II_page3.png"
+        ],
+        "an": null,
+        "fisier": "proba_e_d_fizica_subiect_10.pdf",
+        "tip_document": "subiect"
+      },
+      {
+        "arie": "OPTICĂ",
+        "subiect": "III",
+        "variant": "10",
+        "continut": "III. RezolvaȚi următoarea problemă: \n(15 puncte) \nCatodul unei celule fotoelectrice este caracterizat de lucrul mecanic de extracȚie \nJ \n10\n0\n4\n19\n−\n⋅\n=\n,\nL\n. \na. DeterminaȚi valoarea frecvenȚei de prag a acestei celule fotoelectrice. \nb. PrecizaȚi dacă o radiaȚie monocromatică cu frecvenȚa \nHz\n \n10\n,5\n5\n14\n1\n⋅\n=\nν\n, incidentă pe fotocelulă, produce \nefect fotoelectric. \nc. DeterminaȚi valoarea energiei cinetice maxime a electronilor emiși dacă asupra celulei se trimite o altă \nradiaȚie monocromatică, cu frecvenȚa \nHz\n \n10\n5\n1\n15\n2\n⋅\n= ,\nν\n. \nd. Se modifică fluxul radiaȚiilor incidente menȚinând constantă frecvenȚa \nHz\n \n10\n5\n1\n15\n2\n⋅\n= ,\nν\n. JustificaȚi dacă \nmodificarea fluxului radiaȚiilor influenȚează valoarea energiei cinetice maxime a electronilor emiși.",
+        "subpuncte": [
+          {
+            "id": "a",
+            "cerinta": "DeterminaȚi valoarea frecvenȚei de prag a acestei celule fotoelectrice."
+          },
+          {
+            "id": "b",
+            "cerinta": "PrecizaȚi dacă o radiaȚie monocromatică cu frecvenȚa Hz 10 ,5 5 14 1 ⋅ = ν , incidentă pe fotocelulă, produce efect fotoelectric."
+          },
+          {
+            "id": "c",
+            "cerinta": "DeterminaȚi valoarea energiei cinetice maxime a electronilor emiși dacă asupra celulei se trimite o altă radiaȚie monocromatică, cu frecvenȚa Hz 10 5 1 15 2 ⋅ = , ν ."
+          },
+          {
+            "id": "d",
+            "cerinta": "Se modifică fluxul radiaȚiilor incidente menȚinând constantă frecvenȚa Hz 10 5 1 15 2 ⋅ = , ν . JustificaȚi dacă modificarea fluxului radiaȚiilor influenȚează valoarea energiei cinetice maxime a electronilor emiși."
+          }
+        ],
+        "imagini": [
+          "output\\images\\None_proba_e_d_fizica_subiect_10_D_III_page3.png"
+        ],
+        "an": null,
+        "fisier": "proba_e_d_fizica_subiect_10.pdf",
+        "tip_document": "subiect"
+      },
+      {
+        "arie": "MECANICĂ",
+        "subiect": "II",
+        "variant": "9",
+        "continut": "II. RezolvaȚi următoarea problemă: \n(15 puncte) \nO locomotivă cu masa \nt\n40\n=\nM\n tractează, pe o cale ferată rectilinie orizontală, trei vagoane de masă \nt\n20\n=\nm\n fiecare. ForȚa de rezistenȚă la înaintare care acȚionează asupra fiecărui vagon este de \nN\n2000\n, iar \nforȚa de rezistenȚă la înaintare care acȚionează asupra locomotivei este de \nN\n5000\n. Aceste forȚe de \nrezistenȚă sunt considerate constante pe tot parcursul deplasării. \na. DeterminaȚi valoarea forȚei de tracȚiune dezvoltate de motorul locomotivei pentru deplasarea trenului cu \nviteză constantă. \nb. Pe o anumită porȚiune a traseului, forȚa de tracȚiune dezvoltată de motorul locomotivei are valoarea de \nkN\n46\n. CalculaȚi acceleraȚia trenului pe această porȚiune. \nc. DeterminaȚi valoarea forȚei de tensiune dezvoltate în cuplajul dintre ultimele două vagoane în situaȚia \nspecificată la punctul b. \nd. În momentul în care viteza trenului este v , mecanicul oprește motorul și lasă trenul să se deplaseze liber. \nTrenul se oprește după un interval de timp \ns\n100\n=\n∆t\n. CalculaȚi valoarea vitezei v . \n \nIII. RezolvaȚi următoarea problemă: \n(15 puncte) \nUn schior urcă, cu viteză constantă, pe o pistă acoperită cu zăpadă, fiind tractat de o tijă conectată la un \ncablu de teleschi, ca în figura alăturată. Lungimea pistei este \nAB\nD =\n. Unghiul \nde înclinare al pistei, măsurat faȚă de orizontală, este α . Tija face unghiul β  \ncu direcȚia pistei. Masa schiorului echipat este m , iar coeficientul de frecare la \nalunecare între schiuri și zăpadă este µ . ConsideraȚi cunoscute valorile \nmărimilor \n, \n, , , \nD m α β µ  și acceleraȚia gravitaȚională g . \na. ReprezentaȚi, într-o diagramă realizată pe foaia de examen, forȚele care \nacȚionează asupra schiorului. \nb. DeterminaȚi expresia forȚei de tensiune din tijă. \nc. DeterminaȚi expresia lucrului mecanic efectuat de greutatea schiorului, în timpul deplasării acestuia din A în B. \nd. Schiorul coboară liber panta, pornind din repaus din punctul B. DeterminaȚi expresia energiei cinetice atinse \nde schior în punctul A. \n \n\nMinisterul EducaȚiei, Cercetării, Tineretului și Sportului \nCentrul NaȚional de Evaluare și Examinare \nProbă scrisă la Fizică \n2 \nB. Elemente de termodinamică \nExamenul de bacalaureat 2011 \nProba E. d)  \nProba scrisă la FIZICĂ \nFiliera teoretică – profilul real, Filiera tehnologică – profilul tehnic și profilul resurse naturale și protecȚia mediului, \nFiliera vocaȚională – profilul militar \n• Sunt obligatorii toate subiectele din două arii tematice dintre cele patru prevăzute de programă, adică: A. MECANICĂ, \nB. ELEMENTE DE TERMODINAMICĂ, C. PRODUCEREA ȘI UTILIZAREA CURENTULUI CONTINUU, D. OPTICĂ \n• Se acordă 10 puncte din oficiu. \n• Timpul efectiv de lucru este de 3 ore.",
+        "subpuncte": [
+          {
+            "id": "a",
+            "cerinta": "DeterminaȚi valoarea forȚei de tracȚiune dezvoltate de motorul locomotivei pentru deplasarea trenului cu viteză constantă."
+          },
+          {
+            "id": "b",
+            "cerinta": "Pe o anumită porȚiune a traseului, forȚa de tracȚiune dezvoltată de motorul locomotivei are valoarea de kN 46 . CalculaȚi acceleraȚia trenului pe această porȚiune."
+          },
+          {
+            "id": "c",
+            "cerinta": "DeterminaȚi valoarea forȚei de tensiune dezvoltate în cuplajul dintre ultimele două vagoane în situaȚia specificată la punctul b."
+          },
+          {
+            "id": "d",
+            "cerinta": "În momentul în care viteza trenului este v , mecanicul oprește motorul și lasă trenul să se deplaseze liber. Trenul se oprește după un interval de timp s 100 = ∆t . CalculaȚi valoarea vitezei v ."
+          },
+          {
+            "id": "a",
+            "cerinta": "ReprezentaȚi, într-o diagramă realizată pe foaia de examen, forȚele care acȚionează asupra schiorului."
+          },
+          {
+            "id": "b",
+            "cerinta": "DeterminaȚi expresia forȚei de tensiune din tijă."
+          },
+          {
+            "id": "c",
+            "cerinta": "DeterminaȚi expresia lucrului mecanic efectuat de greutatea schiorului, în timpul deplasării acestuia din A în B."
+          },
+          {
+            "id": "d",
+            "cerinta": "Schiorul coboară liber panta, pornind din repaus din punctul B. DeterminaȚi expresia energiei cinetice atinse de schior în punctul A."
+          },
+          {
+            "id": "B",
+            "cerinta": "Elemente de termodinamică Examenul de bacalaureat 2011 Proba E. d) Proba scrisă la FIZICĂ Filiera teoretică – profilul real, Filiera tehnologică – profilul tehnic și profilul resurse naturale și protecȚia mediului, Filiera vocaȚională – profilul militar • Sunt obligatorii toate subiectele din două arii tematice dintre cele patru prevăzute de programă, adică: A. MECANICĂ,"
+          },
+          {
+            "id": "B",
+            "cerinta": "ELEMENTE DE TERMODINAMICĂ, C. PRODUCEREA ȘI UTILIZAREA CURENTULUI CONTINUU, D. OPTICĂ • Se acordă 10 puncte din oficiu. • Timpul efectiv de lucru este de 3 ore."
+          }
+        ],
+        "imagini": [
+          "output\\images\\None_proba_e_d_fizica_var_09_A_II_page0.png"
+        ],
+        "an": null,
+        "fisier": "proba_e_d_fizica_var_09.pdf",
+        "tip_document": "subiect"
+      },
+      {
+        "arie": "MECANICĂ",
+        "subiect": "III",
+        "variant": "9",
+        "continut": "III. RezolvaȚi următoarea problemă: \n(15 puncte) \nUn schior urcă, cu viteză constantă, pe o pistă acoperită cu zăpadă, fiind tractat de o tijă conectată la un \ncablu de teleschi, ca în figura alăturată. Lungimea pistei este \nAB\nD =\n. Unghiul \nde înclinare al pistei, măsurat faȚă de orizontală, este α . Tija face unghiul β  \ncu direcȚia pistei. Masa schiorului echipat este m , iar coeficientul de frecare la \nalunecare între schiuri și zăpadă este µ . ConsideraȚi cunoscute valorile \nmărimilor \n, \n, , , \nD m α β µ  și acceleraȚia gravitaȚională g . \na. ReprezentaȚi, într-o diagramă realizată pe foaia de examen, forȚele care \nacȚionează asupra schiorului. \nb. DeterminaȚi expresia forȚei de tensiune din tijă. \nc. DeterminaȚi expresia lucrului mecanic efectuat de greutatea schiorului, în timpul deplasării acestuia din A în B. \nd. Schiorul coboară liber panta, pornind din repaus din punctul B. DeterminaȚi expresia energiei cinetice atinse \nde schior în punctul A. \n \n\nMinisterul EducaȚiei, Cercetării, Tineretului și Sportului \nCentrul NaȚional de Evaluare și Examinare \nProbă scrisă la Fizică \n2 \nB. Elemente de termodinamică \nExamenul de bacalaureat 2011 \nProba E. d)  \nProba scrisă la FIZICĂ \nFiliera teoretică – profilul real, Filiera tehnologică – profilul tehnic și profilul resurse naturale și protecȚia mediului, \nFiliera vocaȚională – profilul militar \n• Sunt obligatorii toate subiectele din două arii tematice dintre cele patru prevăzute de programă, adică: A. MECANICĂ, \nB. ELEMENTE DE TERMODINAMICĂ, C. PRODUCEREA ȘI UTILIZAREA CURENTULUI CONTINUU, D. OPTICĂ \n• Se acordă 10 puncte din oficiu. \n• Timpul efectiv de lucru este de 3 ore.",
+        "subpuncte": [
+          {
+            "id": "a",
+            "cerinta": "ReprezentaȚi, într-o diagramă realizată pe foaia de examen, forȚele care acȚionează asupra schiorului."
+          },
+          {
+            "id": "b",
+            "cerinta": "DeterminaȚi expresia forȚei de tensiune din tijă."
+          },
+          {
+            "id": "c",
+            "cerinta": "DeterminaȚi expresia lucrului mecanic efectuat de greutatea schiorului, în timpul deplasării acestuia din A în B."
+          },
+          {
+            "id": "d",
+            "cerinta": "Schiorul coboară liber panta, pornind din repaus din punctul B. DeterminaȚi expresia energiei cinetice atinse de schior în punctul A."
+          },
+          {
+            "id": "B",
+            "cerinta": "Elemente de termodinamică Examenul de bacalaureat 2011 Proba E. d) Proba scrisă la FIZICĂ Filiera teoretică – profilul real, Filiera tehnologică – profilul tehnic și profilul resurse naturale și protecȚia mediului, Filiera vocaȚională – profilul militar • Sunt obligatorii toate subiectele din două arii tematice dintre cele patru prevăzute de programă, adică: A. MECANICĂ,"
+          },
+          {
+            "id": "B",
+            "cerinta": "ELEMENTE DE TERMODINAMICĂ, C. PRODUCEREA ȘI UTILIZAREA CURENTULUI CONTINUU, D. OPTICĂ • Se acordă 10 puncte din oficiu. • Timpul efectiv de lucru este de 3 ore."
+          }
+        ],
+        "imagini": [
+          "output\\images\\None_proba_e_d_fizica_var_09_A_III_page0.png"
+        ],
+        "an": null,
+        "fisier": "proba_e_d_fizica_var_09.pdf",
+        "tip_document": "subiect"
+      },
+      {
+        "arie": "ELEMENTE DE TERMODINAMICĂ",
+        "subiect": "II",
+        "variant": "9",
+        "continut": "II. RezolvaȚi următoarea problemă: \n(15 puncte) \nUn recipient cu pereȚi rigizi este izolat adiabatic. Recipientul este împărȚit în două compartimente cu ajutorul \nunui perete fix. Peretele are capacitate calorică neglijabilă și permite un transfer lent de căldură. În cele două \ncompartimente se introduc cantităȚi egale (\n)\n1\n2\nν\nν\n=\n din două gaze considerate ideale. Într-un compartiment \nse introduce heliu \n1\n(\n4 g/mol, \n1,5 )\nHe\nV\nC\nR\nµ\n=\n=\n, iar în celălalt se introduce azot \n2\n2\n(\n28 g/mol, \n2,5 )\nN\nV\nC\nR\nµ\n=\n=\n. \nTemperatura iniȚială a heliului este \n1\n327 C\nt =\n°\n, iar cea a azotului este \n2\n27 C\nt =\n°\n. Presiunile lor iniȚiale sunt \negale, având valoarea \n5\n0\n10  Pa\np =\n. DeterminaȚi:  \na. raportul dintre volumul ocupat de heliu și volumul ocupat de azot; \nb. temperatura de echilibru la care ajung cele două gaze; \nc. masa molară a amestecului obȚinut în urma producerii unei fisuri în peretele despărȚitor dintre \ncompartimente, după atingerea stării de echilibru termic; \nd. presiunea finală a amestecului de gaze din recipient. \nIII. RezolvaȚi următoarea problemă: \n(15 puncte) \nUn mol de gaz ideal monoatomic (\n1,5\nV\nC\nR\n=\n) evoluează după procesul \ntermodinamic 1-2-3-4-1, reprezentat în sistemul de coordonate p-V în graficul \nalăturat. În starea de echilibru termodinamic 1 temperatura este \nK\n300\n1 =\nT\n, iar între \nparametrii din stări diferite există relaȚiile: \n3\n1\n3\nV\nV\n=\n și \n2\n1\n2\np\np\n=\n.  \na. ReprezentaȚi grafic procesul ciclic într-un sistem de coordonate V-T. \nb. CalculaȚi lucrul mecanic schimbat de gaz cu exteriorul în timpul unui ciclu. \nc. CalculaȚi diferenȚa dintre valoarea maximă și cea minimă a energiei interne a gazului în \ntimpul unui ciclu. \nd. CalculaȚi căldura cedată de gaz mediului exterior, în timpul unui ciclu. \n\nMinisterul EducaȚiei, Cercetării, Tineretului și Sportului \nCentrul NaȚional de Evaluare și Examinare \nProbă scrisă la Fizică \n3 \nC. Producerea și utilizarea curentului continuu \nExamenul de bacalaureat 2011 \nProba E. d)  \nProba scrisă la FIZICĂ \nFiliera teoretică – profilul real, Filiera tehnologică – profilul tehnic și profilul resurse naturale și protecȚia mediului, \nFiliera vocaȚională – profilul militar \n• Sunt obligatorii toate subiectele din două arii tematice dintre cele patru prevăzute de programă, adică: A. MECANICĂ, \nB. ELEMENTE DE TERMODINAMICĂ, C. PRODUCEREA ȘI UTILIZAREA CURENTULUI CONTINUU, D. OPTICĂ \n• Se acordă 10 puncte din oficiu. \n• Timpul efectiv de lucru este de 3 ore.",
+        "subpuncte": [
+          {
+            "id": "a",
+            "cerinta": "raportul dintre volumul ocupat de heliu și volumul ocupat de azot;"
+          },
+          {
+            "id": "b",
+            "cerinta": "temperatura de echilibru la care ajung cele două gaze;"
+          },
+          {
+            "id": "c",
+            "cerinta": "masa molară a amestecului obȚinut în urma producerii unei fisuri în peretele despărȚitor dintre compartimente, după atingerea stării de echilibru termic;"
+          },
+          {
+            "id": "d",
+            "cerinta": "presiunea finală a amestecului de gaze din recipient."
+          },
+          {
+            "id": "a",
+            "cerinta": "ReprezentaȚi grafic procesul ciclic într-un sistem de coordonate V-T."
+          },
+          {
+            "id": "b",
+            "cerinta": "CalculaȚi lucrul mecanic schimbat de gaz cu exteriorul în timpul unui ciclu."
+          },
+          {
+            "id": "c",
+            "cerinta": "CalculaȚi diferenȚa dintre valoarea maximă și cea minimă a energiei interne a gazului în timpul unui ciclu."
+          },
+          {
+            "id": "d",
+            "cerinta": "CalculaȚi căldura cedată de gaz mediului exterior, în timpul unui ciclu."
+          },
+          {
+            "id": "C",
+            "cerinta": "Producerea și utilizarea curentului continuu Examenul de bacalaureat 2011 Proba E. d) Proba scrisă la FIZICĂ Filiera teoretică – profilul real, Filiera tehnologică – profilul tehnic și profilul resurse naturale și protecȚia mediului, Filiera vocaȚională – profilul militar • Sunt obligatorii toate subiectele din două arii tematice dintre cele patru prevăzute de programă, adică: A. MECANICĂ,"
+          },
+          {
+            "id": "B",
+            "cerinta": "ELEMENTE DE TERMODINAMICĂ, C. PRODUCEREA ȘI UTILIZAREA CURENTULUI CONTINUU, D. OPTICĂ • Se acordă 10 puncte din oficiu. • Timpul efectiv de lucru este de 3 ore."
+          }
+        ],
+        "imagini": [
+          "output\\images\\None_proba_e_d_fizica_var_09_B_II_page1.png"
+        ],
+        "an": null,
+        "fisier": "proba_e_d_fizica_var_09.pdf",
+        "tip_document": "subiect"
+      },
+      {
+        "arie": "ELEMENTE DE TERMODINAMICĂ",
+        "subiect": "III",
+        "variant": "9",
+        "continut": "III. RezolvaȚi următoarea problemă: \n(15 puncte) \nUn mol de gaz ideal monoatomic (\n1,5\nV\nC\nR\n=\n) evoluează după procesul \ntermodinamic 1-2-3-4-1, reprezentat în sistemul de coordonate p-V în graficul \nalăturat. În starea de echilibru termodinamic 1 temperatura este \nK\n300\n1 =\nT\n, iar între \nparametrii din stări diferite există relaȚiile: \n3\n1\n3\nV\nV\n=\n și \n2\n1\n2\np\np\n=\n.  \na. ReprezentaȚi grafic procesul ciclic într-un sistem de coordonate V-T. \nb. CalculaȚi lucrul mecanic schimbat de gaz cu exteriorul în timpul unui ciclu. \nc. CalculaȚi diferenȚa dintre valoarea maximă și cea minimă a energiei interne a gazului în \ntimpul unui ciclu. \nd. CalculaȚi căldura cedată de gaz mediului exterior, în timpul unui ciclu. \n\nMinisterul EducaȚiei, Cercetării, Tineretului și Sportului \nCentrul NaȚional de Evaluare și Examinare \nProbă scrisă la Fizică \n3 \nC. Producerea și utilizarea curentului continuu \nExamenul de bacalaureat 2011 \nProba E. d)  \nProba scrisă la FIZICĂ \nFiliera teoretică – profilul real, Filiera tehnologică – profilul tehnic și profilul resurse naturale și protecȚia mediului, \nFiliera vocaȚională – profilul militar \n• Sunt obligatorii toate subiectele din două arii tematice dintre cele patru prevăzute de programă, adică: A. MECANICĂ, \nB. ELEMENTE DE TERMODINAMICĂ, C. PRODUCEREA ȘI UTILIZAREA CURENTULUI CONTINUU, D. OPTICĂ \n• Se acordă 10 puncte din oficiu. \n• Timpul efectiv de lucru este de 3 ore.",
+        "subpuncte": [
+          {
+            "id": "a",
+            "cerinta": "ReprezentaȚi grafic procesul ciclic într-un sistem de coordonate V-T."
+          },
+          {
+            "id": "b",
+            "cerinta": "CalculaȚi lucrul mecanic schimbat de gaz cu exteriorul în timpul unui ciclu."
+          },
+          {
+            "id": "c",
+            "cerinta": "CalculaȚi diferenȚa dintre valoarea maximă și cea minimă a energiei interne a gazului în timpul unui ciclu."
+          },
+          {
+            "id": "d",
+            "cerinta": "CalculaȚi căldura cedată de gaz mediului exterior, în timpul unui ciclu."
+          },
+          {
+            "id": "C",
+            "cerinta": "Producerea și utilizarea curentului continuu Examenul de bacalaureat 2011 Proba E. d) Proba scrisă la FIZICĂ Filiera teoretică – profilul real, Filiera tehnologică – profilul tehnic și profilul resurse naturale și protecȚia mediului, Filiera vocaȚională – profilul militar • Sunt obligatorii toate subiectele din două arii tematice dintre cele patru prevăzute de programă, adică: A. MECANICĂ,"
+          },
+          {
+            "id": "B",
+            "cerinta": "ELEMENTE DE TERMODINAMICĂ, C. PRODUCEREA ȘI UTILIZAREA CURENTULUI CONTINUU, D. OPTICĂ • Se acordă 10 puncte din oficiu. • Timpul efectiv de lucru este de 3 ore."
+          }
+        ],
+        "imagini": [
+          "output\\images\\None_proba_e_d_fizica_var_09_B_III_page1.png"
+        ],
+        "an": null,
+        "fisier": "proba_e_d_fizica_var_09.pdf",
+        "tip_document": "subiect"
+      },
+      {
+        "arie": "PRODUCEREA ȘI UTILIZAREA CURENTULUI CONTINUU",
+        "subiect": "II",
+        "variant": "9",
+        "continut": "II. RezolvaȚi următoarea problemă: \n(15 puncte) \nÎn figura alăturată este reprezentată schema unui circuit electric pentru \ncare se cunosc: \n1\n5 V\nE =\n, \n2\n4 V\nE =\n, \n1\n10\nR =\nΩ, \n2\n10\nR =\nΩ, \n3\n20\nR =\nΩ, \n3\n0,12 A\nI =\n. RezistenȚele interne ale surselor sunt neglijabile. DeterminaȚi: \na. tensiunea electrică dintre nodurile A și B; \nb. intensitatea curentului electric prin rezistorul de rezistenȚă \n2\nR ; \nc. tensiunea electromotoare \n3\nE ; \nd. intensitatea curentului electric printr-un fir de rezistenȚă neglijabilă care \nse conectează în locul rezistorului de rezistenȚă \n3\nR . \nIII. RezolvaȚi următoarea problemă: \n(15 puncte) \nÎn figura alăturată este reprezentată schema unui circuit electric pentru care se \ncunosc: \n1\n9 V\nE =\n, \n2\n5 V\nE =\n, \n4\nR =\nΩ, 1\n2\n1\nr\nr\n=\n= Ω. De la momentul \n0\n0\nt =\n până la \nmomentul \n1\n10 min\nt =\n, comutatorul k1 este deschis, iar comutatorul k2 este închis. \nDe la momentul \n1\n10 min\nt =\n până la momentul \n2\n30 min\nt =\n, ambele comutatoare \nsunt închise. La momentul \n2\n30 min\nt =\n, comutatorul k2 se deschide. \na. DeterminaȚi valoarea energiei electrice consumate de rezistor în intervalul de \ntimp \n0\n1\n;\nt\nt\n\n\n\n. \nb. CalculaȚi randamentul circuitului în intervalul de timp \n0\n1\n;\nt\nt\n\n\n\n. \nc. ReprezentaȚi grafic dependenȚa intensităȚii curentului electric care străbate rezistorul  R  în funcȚie de timp pe \nintervalul 0 min; 35 min\n\n\n\n. \nd. DeterminaȚi valoarea puterii maxime pe care o poate furniza sursa cu tensiunea electromotoare \n2\nE  unui \nconsumator cu rezistenȚa convenabil aleasă. \n\nMinisterul EducaȚiei, Cercetării, Tineretului și Sportului \nCentrul NaȚional de Evaluare și Examinare \nProbă scrisă la Fizică \n4 \nD. Optică \nExamenul de bacalaureat 2011 \nProba E. d)  \nProba scrisă la FIZICĂ \nFiliera teoretică – profilul real, Filiera tehnologică – profilul tehnic și profilul resurse naturale și protecȚia mediului, \nFiliera vocaȚională – profilul militar \n• Sunt obligatorii toate subiectele din două arii tematice dintre cele patru prevăzute de programă, adică: A. MECANICĂ, \nB. ELEMENTE DE TERMODINAMICĂ, C. PRODUCEREA ȘI UTILIZAREA CURENTULUI CONTINUU, D. OPTICĂ \n• Se acordă 10 puncte din oficiu. \n• Timpul efectiv de lucru este de 3 ore.",
+        "subpuncte": [
+          {
+            "id": "a",
+            "cerinta": "tensiunea electrică dintre nodurile A și B;"
+          },
+          {
+            "id": "b",
+            "cerinta": "intensitatea curentului electric prin rezistorul de rezistenȚă 2 R ;"
+          },
+          {
+            "id": "c",
+            "cerinta": "tensiunea electromotoare 3 E ;"
+          },
+          {
+            "id": "d",
+            "cerinta": "intensitatea curentului electric printr-un fir de rezistenȚă neglijabilă care se conectează în locul rezistorului de rezistenȚă 3 R ."
+          },
+          {
+            "id": "a",
+            "cerinta": "DeterminaȚi valoarea energiei electrice consumate de rezistor în intervalul de timp 0 1 ; t t    ."
+          },
+          {
+            "id": "b",
+            "cerinta": "CalculaȚi randamentul circuitului în intervalul de timp 0 1 ; t t    ."
+          },
+          {
+            "id": "c",
+            "cerinta": "ReprezentaȚi grafic dependenȚa intensităȚii curentului electric care străbate rezistorul R în funcȚie de timp pe intervalul 0 min; 35 min    ."
+          },
+          {
+            "id": "d",
+            "cerinta": "DeterminaȚi valoarea puterii maxime pe care o poate furniza sursa cu tensiunea electromotoare 2 E unui consumator cu rezistenȚa convenabil aleasă."
+          },
+          {
+            "id": "D",
+            "cerinta": "Optică Examenul de bacalaureat 2011 Proba E. d) Proba scrisă la FIZICĂ Filiera teoretică – profilul real, Filiera tehnologică – profilul tehnic și profilul resurse naturale și protecȚia mediului, Filiera vocaȚională – profilul militar • Sunt obligatorii toate subiectele din două arii tematice dintre cele patru prevăzute de programă, adică: A. MECANICĂ,"
+          },
+          {
+            "id": "B",
+            "cerinta": "ELEMENTE DE TERMODINAMICĂ, C. PRODUCEREA ȘI UTILIZAREA CURENTULUI CONTINUU, D. OPTICĂ • Se acordă 10 puncte din oficiu. • Timpul efectiv de lucru este de 3 ore."
+          }
+        ],
+        "imagini": [
+          "output\\images\\None_proba_e_d_fizica_var_09_C_II_page2.png"
+        ],
+        "an": null,
+        "fisier": "proba_e_d_fizica_var_09.pdf",
+        "tip_document": "subiect"
+      },
+      {
+        "arie": "PRODUCEREA ȘI UTILIZAREA CURENTULUI CONTINUU",
+        "subiect": "III",
+        "variant": "9",
+        "continut": "III. RezolvaȚi următoarea problemă: \n(15 puncte) \nÎn figura alăturată este reprezentată schema unui circuit electric pentru care se \ncunosc: \n1\n9 V\nE =\n, \n2\n5 V\nE =\n, \n4\nR =\nΩ, 1\n2\n1\nr\nr\n=\n= Ω. De la momentul \n0\n0\nt =\n până la \nmomentul \n1\n10 min\nt =\n, comutatorul k1 este deschis, iar comutatorul k2 este închis. \nDe la momentul \n1\n10 min\nt =\n până la momentul \n2\n30 min\nt =\n, ambele comutatoare \nsunt închise. La momentul \n2\n30 min\nt =\n, comutatorul k2 se deschide. \na. DeterminaȚi valoarea energiei electrice consumate de rezistor în intervalul de \ntimp \n0\n1\n;\nt\nt\n\n\n\n. \nb. CalculaȚi randamentul circuitului în intervalul de timp \n0\n1\n;\nt\nt\n\n\n\n. \nc. ReprezentaȚi grafic dependenȚa intensităȚii curentului electric care străbate rezistorul  R  în funcȚie de timp pe \nintervalul 0 min; 35 min\n\n\n\n. \nd. DeterminaȚi valoarea puterii maxime pe care o poate furniza sursa cu tensiunea electromotoare \n2\nE  unui \nconsumator cu rezistenȚa convenabil aleasă. \n\nMinisterul EducaȚiei, Cercetării, Tineretului și Sportului \nCentrul NaȚional de Evaluare și Examinare \nProbă scrisă la Fizică \n4 \nD. Optică \nExamenul de bacalaureat 2011 \nProba E. d)  \nProba scrisă la FIZICĂ \nFiliera teoretică – profilul real, Filiera tehnologică – profilul tehnic și profilul resurse naturale și protecȚia mediului, \nFiliera vocaȚională – profilul militar \n• Sunt obligatorii toate subiectele din două arii tematice dintre cele patru prevăzute de programă, adică: A. MECANICĂ, \nB. ELEMENTE DE TERMODINAMICĂ, C. PRODUCEREA ȘI UTILIZAREA CURENTULUI CONTINUU, D. OPTICĂ \n• Se acordă 10 puncte din oficiu. \n• Timpul efectiv de lucru este de 3 ore.",
+        "subpuncte": [
+          {
+            "id": "a",
+            "cerinta": "DeterminaȚi valoarea energiei electrice consumate de rezistor în intervalul de timp 0 1 ; t t    ."
+          },
+          {
+            "id": "b",
+            "cerinta": "CalculaȚi randamentul circuitului în intervalul de timp 0 1 ; t t    ."
+          },
+          {
+            "id": "c",
+            "cerinta": "ReprezentaȚi grafic dependenȚa intensităȚii curentului electric care străbate rezistorul R în funcȚie de timp pe intervalul 0 min; 35 min    ."
+          },
+          {
+            "id": "d",
+            "cerinta": "DeterminaȚi valoarea puterii maxime pe care o poate furniza sursa cu tensiunea electromotoare 2 E unui consumator cu rezistenȚa convenabil aleasă."
+          },
+          {
+            "id": "D",
+            "cerinta": "Optică Examenul de bacalaureat 2011 Proba E. d) Proba scrisă la FIZICĂ Filiera teoretică – profilul real, Filiera tehnologică – profilul tehnic și profilul resurse naturale și protecȚia mediului, Filiera vocaȚională – profilul militar • Sunt obligatorii toate subiectele din două arii tematice dintre cele patru prevăzute de programă, adică: A. MECANICĂ,"
+          },
+          {
+            "id": "B",
+            "cerinta": "ELEMENTE DE TERMODINAMICĂ, C. PRODUCEREA ȘI UTILIZAREA CURENTULUI CONTINUU, D. OPTICĂ • Se acordă 10 puncte din oficiu. • Timpul efectiv de lucru este de 3 ore."
+          }
+        ],
+        "imagini": [
+          "output\\images\\None_proba_e_d_fizica_var_09_C_III_page2.png"
+        ],
+        "an": null,
+        "fisier": "proba_e_d_fizica_var_09.pdf",
+        "tip_document": "subiect"
+      },
+      {
+        "arie": "OPTICĂ",
+        "subiect": "II",
+        "variant": "9",
+        "continut": "II. RezolvaȚi următoarea problemă: \n(15 puncte) \nUn elev utilizează o lentilă convergentă subȚire pentru a observa un obiect liniar AB. Acesta plasează lentila \nla \ncm\n \n10\n de obiect, astfel încât obiectul să fie perpendicular pe axa optică principală a lentilei. Imaginea \nobservată este dreaptă și de trei ori mai mare decât obiectul. \na. DeterminaȚi mărirea liniară transversală dată de lentilă. \nb. CalculaȚi distanȚa focală a lentilei. \nc. RealizaȚi un desen în care să evidenȚiaȚi construcȚia imaginii prin lentilă în situaȚia descrisă. \nd. Elevul depărtează lentila de obiect cu \ncm\n30\n=\nd\n faȚă de poziȚia iniȚială. CalculaȚi distanȚa faȚă de lentilă la \ncare trebuie plasat un ecran astfel încât pe acesta să se formeze imaginea clară a obiectului AB. \n \nIII. RezolvaȚi următoarea problemă: \n(15 puncte) \nÎntr-un experiment de studiu al efectului fotoelectric pe un catod al unei celule \nfotoelectrice s-au folosit radiaȚii cu diferite frecvenȚe. În tabelul alăturat sunt înscrise, \npentru fiecare frecvenȚă folosită, valorile energiei cinetice maxime a electronilor emiși. \na. ReprezentaȚi grafic energia cinetică maximă a fotoelectronilor emiși de catod în \nfuncȚie frecvenȚa radiaȚiei incidente, pentru \n15\n15\n0,6 10  Hz; 1,5 10  Hz\nν\n\n\n∈\n⋅\n⋅\n\n. \nb. DeterminaȚi valoarea constantei lui Planck folosind datele experimentale. \nc. CalculaȚi lucrul mecanic de extracȚie corespunzător materialului din care este confecȚionat catodul. \nd. PrecizaȚi dacă se produce efect fotoelectric sub acȚiunea unei radiaȚii având frecvenȚa de \n14\n4 10  Hz\n⋅\n, în \ncazul catodului utilizat. JustificaȚi răspunsul. \n(\n)\nHz\n1015\nν\n(\n)\nJ\n10-19\nc\nE\n0,60 \n0,64 \n0,75 \n1,63 \n1,00 \n3,28 \n1,50 \n6,58",
+        "subpuncte": [
+          {
+            "id": "a",
+            "cerinta": "DeterminaȚi mărirea liniară transversală dată de lentilă."
+          },
+          {
+            "id": "b",
+            "cerinta": "CalculaȚi distanȚa focală a lentilei."
+          },
+          {
+            "id": "c",
+            "cerinta": "RealizaȚi un desen în care să evidenȚiaȚi construcȚia imaginii prin lentilă în situaȚia descrisă."
+          },
+          {
+            "id": "d",
+            "cerinta": "Elevul depărtează lentila de obiect cu cm 30 = d faȚă de poziȚia iniȚială. CalculaȚi distanȚa faȚă de lentilă la care trebuie plasat un ecran astfel încât pe acesta să se formeze imaginea clară a obiectului AB."
+          },
+          {
+            "id": "a",
+            "cerinta": "ReprezentaȚi grafic energia cinetică maximă a fotoelectronilor emiși de catod în funcȚie frecvenȚa radiaȚiei incidente, pentru 15 15 0,6 10 Hz; 1,5 10 Hz ν   ∈ ⋅ ⋅  ."
+          },
+          {
+            "id": "b",
+            "cerinta": "DeterminaȚi valoarea constantei lui Planck folosind datele experimentale."
+          },
+          {
+            "id": "c",
+            "cerinta": "CalculaȚi lucrul mecanic de extracȚie corespunzător materialului din care este confecȚionat catodul."
+          },
+          {
+            "id": "d",
+            "cerinta": "PrecizaȚi dacă se produce efect fotoelectric sub acȚiunea unei radiaȚii având frecvenȚa de 14 4 10 Hz ⋅ , în cazul catodului utilizat. JustificaȚi răspunsul. ( ) Hz 1015 ν ( ) J 10-19 c E 0,60 0,64 0,75 1,63 1,00 3,28 1,50 6,58"
+          }
+        ],
+        "imagini": [
+          "output\\images\\None_proba_e_d_fizica_var_09_D_II_page3.png"
+        ],
+        "an": null,
+        "fisier": "proba_e_d_fizica_var_09.pdf",
+        "tip_document": "subiect"
+      },
+      {
+        "arie": "OPTICĂ",
+        "subiect": "III",
+        "variant": "9",
+        "continut": "III. RezolvaȚi următoarea problemă: \n(15 puncte) \nÎntr-un experiment de studiu al efectului fotoelectric pe un catod al unei celule \nfotoelectrice s-au folosit radiaȚii cu diferite frecvenȚe. În tabelul alăturat sunt înscrise, \npentru fiecare frecvenȚă folosită, valorile energiei cinetice maxime a electronilor emiși. \na. ReprezentaȚi grafic energia cinetică maximă a fotoelectronilor emiși de catod în \nfuncȚie frecvenȚa radiaȚiei incidente, pentru \n15\n15\n0,6 10  Hz; 1,5 10  Hz\nν\n\n\n∈\n⋅\n⋅\n\n. \nb. DeterminaȚi valoarea constantei lui Planck folosind datele experimentale. \nc. CalculaȚi lucrul mecanic de extracȚie corespunzător materialului din care este confecȚionat catodul. \nd. PrecizaȚi dacă se produce efect fotoelectric sub acȚiunea unei radiaȚii având frecvenȚa de \n14\n4 10  Hz\n⋅\n, în \ncazul catodului utilizat. JustificaȚi răspunsul. \n(\n)\nHz\n1015\nν\n(\n)\nJ\n10-19\nc\nE\n0,60 \n0,64 \n0,75 \n1,63 \n1,00 \n3,28 \n1,50 \n6,58",
+        "subpuncte": [
+          {
+            "id": "a",
+            "cerinta": "ReprezentaȚi grafic energia cinetică maximă a fotoelectronilor emiși de catod în funcȚie frecvenȚa radiaȚiei incidente, pentru 15 15 0,6 10 Hz; 1,5 10 Hz ν   ∈ ⋅ ⋅  ."
+          },
+          {
+            "id": "b",
+            "cerinta": "DeterminaȚi valoarea constantei lui Planck folosind datele experimentale."
+          },
+          {
+            "id": "c",
+            "cerinta": "CalculaȚi lucrul mecanic de extracȚie corespunzător materialului din care este confecȚionat catodul."
+          },
+          {
+            "id": "d",
+            "cerinta": "PrecizaȚi dacă se produce efect fotoelectric sub acȚiunea unei radiaȚii având frecvenȚa de 14 4 10 Hz ⋅ , în cazul catodului utilizat. JustificaȚi răspunsul. ( ) Hz 1015 ν ( ) J 10-19 c E 0,60 0,64 0,75 1,63 1,00 3,28 1,50 6,58"
+          }
+        ],
+        "imagini": [
+          "output\\images\\None_proba_e_d_fizica_var_09_D_III_page3.png"
+        ],
+        "an": null,
+        "fisier": "proba_e_d_fizica_var_09.pdf",
+        "tip_document": "subiect"
+      }
+    ]
+  }
+}

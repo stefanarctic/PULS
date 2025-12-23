@@ -1,0 +1,1768 @@
+{
+  "subiect": {
+    "tehnologic": [
+      {
+        "arie": "MECANICĂ",
+        "subiect": "II",
+        "variant": "1",
+        "continut": "II. Rezolvați următoarea problemă: \n(15 puncte) \nSistemul mecanic din figura alăturată este alcătuit din două corpuri A și B, legate prin \nintermediul unui fir inextensibil și de masă neglijabilă. Masa corpului A este \n0,3 kg\nA\nm\n=\n. Firul \neste trecut peste un scripete fără frecări și lipsit de inerție. La momentul inițial corpurile se află \nîn repaus. După ce sistemul este lăsat liber, se constată că accelerația corpului A este orientată \nîn jos și are valoarea \n2\n5 m/s\na =\n. \na. Calculați valoarea vitezei corpului A la \n0,5 s\nt\n=\n din momentul în care sistemul este lăsat \nliber. \nb. Reprezentați toate forțele care se exercită asupra corpului A. \nc. Determinați valoarea tensiunii din fir. \nd. Determinați valoarea masei \nB\nm  a corpului B. \n \nIII. Rezolvați următoarea problemă: \n(15 puncte) \nUn corp având masa \n1,0 kg\nm =\n se află inițial în repaus la baza unui plan înclinat cu unghiul \n30\n=\n față de \norizontală. Frecarea dintre corp și planul înclinat este neglijabilă. Asupra corpului acționează o forță de \ntracțiune constantă \n40 N\nF =\n, orientată în lungul planului înclinat, \nca în figura alăturată. După ce corpul parcurge distanța \n20 cm\nd =\n, \nacțiunea forței F  încetează, iar corpul continuă să urce pe plan. \nPlanul înclinat este suficient de lung, astfel încât corpul nu \npărăsește \nsuprafața \nplanului \nînclinat. \nEnergia \npotențială \ngravitațională se consideră nulă la baza planului înclinat. \nDeterminați: \na. lucrul mecanic efectuat de greutate în timpul urcării corpului, pe \nplanul înclinat, pe distanța \n20 cm\nd =\n; \nb. energia cinetică a corpului în momentul în care acțiunea forței de tracțiune încetează; \nc. înălțimea \n1\nh  la care se află corpul față de baza planului înclinat în momentul în care, în timpul coborârii, \nenergia cinetică a corpului este egală cu energia potențială gravitațională din acel moment; \nd. valoarea vitezei corpului în momentul în care revine la baza planului înclinat. \nA \nB \nF   \n \nm \n\nMinisterul Educației \nCentrul Național de Politici și Evaluare în Educație \nProbă scrisă la Fizică \n2 \nB. Elemente de termodinamică\n \n \nExamenul național de bacalaureat 2021 \nProba E. d) \nFIZICĂ \nFiliera tehnologică – profilul tehnic și profilul resurse naturale și protecția mediului \n• Sunt obligatorii toate subiectele din două arii tematice dintre cele patru prevăzute de programă, adică: A. MECANICĂ, \nB. ELEMENTE DE TERMODINAMICĂ, C. PRODUCEREA ȘI UTILIZAREA CURENTULUI CONTINUU, D. OPTICĂ \n• Se acordă zece puncte din oficiu. \n• Timpul de lucru efectiv este de trei ore.",
+        "subpuncte": [
+          {
+            "id": "a",
+            "cerinta": "Calculați valoarea vitezei corpului A la 0,5 s t = din momentul în care sistemul este lăsat liber."
+          },
+          {
+            "id": "b",
+            "cerinta": "Reprezentați toate forțele care se exercită asupra corpului A."
+          },
+          {
+            "id": "c",
+            "cerinta": "Determinați valoarea tensiunii din fir."
+          },
+          {
+            "id": "d",
+            "cerinta": "Determinați valoarea masei B m a corpului B."
+          },
+          {
+            "id": "a",
+            "cerinta": "lucrul mecanic efectuat de greutate în timpul urcării corpului, pe planul înclinat, pe distanța 20 cm d = ;"
+          },
+          {
+            "id": "b",
+            "cerinta": "energia cinetică a corpului în momentul în care acțiunea forței de tracțiune încetează;"
+          },
+          {
+            "id": "c",
+            "cerinta": "înălțimea 1 h la care se află corpul față de baza planului înclinat în momentul în care, în timpul coborârii, energia cinetică a corpului este egală cu energia potențială gravitațională din acel moment;"
+          },
+          {
+            "id": "d",
+            "cerinta": "valoarea vitezei corpului în momentul în care revine la baza planului înclinat. A B F  m"
+          },
+          {
+            "id": "B",
+            "cerinta": "Elemente de termodinamică Examenul național de bacalaureat 2021 Proba E. d) FIZICĂ Filiera tehnologică – profilul tehnic și profilul resurse naturale și protecția mediului • Sunt obligatorii toate subiectele din două arii tematice dintre cele patru prevăzute de programă, adică: A. MECANICĂ,"
+          },
+          {
+            "id": "B",
+            "cerinta": "ELEMENTE DE TERMODINAMICĂ, C. PRODUCEREA ȘI UTILIZAREA CURENTULUI CONTINUU, D. OPTICĂ • Se acordă zece puncte din oficiu. • Timpul de lucru efectiv este de trei ore."
+          }
+        ],
+        "imagini": [
+          "output\\images\\2021_E_d_fizica_tehnologic_2021_var_01_LRO_A_II_page0.png"
+        ],
+        "an": "2021",
+        "fisier": "E_d_fizica_tehnologic_2021_var_01_LRO.pdf",
+        "tip_document": "subiect"
+      },
+      {
+        "arie": "MECANICĂ",
+        "subiect": "III",
+        "variant": "1",
+        "continut": "III. Rezolvați următoarea problemă: \n(15 puncte) \nUn corp având masa \n1,0 kg\nm =\n se află inițial în repaus la baza unui plan înclinat cu unghiul \n30\n=\n față de \norizontală. Frecarea dintre corp și planul înclinat este neglijabilă. Asupra corpului acționează o forță de \ntracțiune constantă \n40 N\nF =\n, orientată în lungul planului înclinat, \nca în figura alăturată. După ce corpul parcurge distanța \n20 cm\nd =\n, \nacțiunea forței F  încetează, iar corpul continuă să urce pe plan. \nPlanul înclinat este suficient de lung, astfel încât corpul nu \npărăsește \nsuprafața \nplanului \nînclinat. \nEnergia \npotențială \ngravitațională se consideră nulă la baza planului înclinat. \nDeterminați: \na. lucrul mecanic efectuat de greutate în timpul urcării corpului, pe \nplanul înclinat, pe distanța \n20 cm\nd =\n; \nb. energia cinetică a corpului în momentul în care acțiunea forței de tracțiune încetează; \nc. înălțimea \n1\nh  la care se află corpul față de baza planului înclinat în momentul în care, în timpul coborârii, \nenergia cinetică a corpului este egală cu energia potențială gravitațională din acel moment; \nd. valoarea vitezei corpului în momentul în care revine la baza planului înclinat. \nA \nB \nF   \n \nm \n\nMinisterul Educației \nCentrul Național de Politici și Evaluare în Educație \nProbă scrisă la Fizică \n2 \nB. Elemente de termodinamică\n \n \nExamenul național de bacalaureat 2021 \nProba E. d) \nFIZICĂ \nFiliera tehnologică – profilul tehnic și profilul resurse naturale și protecția mediului \n• Sunt obligatorii toate subiectele din două arii tematice dintre cele patru prevăzute de programă, adică: A. MECANICĂ, \nB. ELEMENTE DE TERMODINAMICĂ, C. PRODUCEREA ȘI UTILIZAREA CURENTULUI CONTINUU, D. OPTICĂ \n• Se acordă zece puncte din oficiu. \n• Timpul de lucru efectiv este de trei ore.",
+        "subpuncte": [
+          {
+            "id": "a",
+            "cerinta": "lucrul mecanic efectuat de greutate în timpul urcării corpului, pe planul înclinat, pe distanța 20 cm d = ;"
+          },
+          {
+            "id": "b",
+            "cerinta": "energia cinetică a corpului în momentul în care acțiunea forței de tracțiune încetează;"
+          },
+          {
+            "id": "c",
+            "cerinta": "înălțimea 1 h la care se află corpul față de baza planului înclinat în momentul în care, în timpul coborârii, energia cinetică a corpului este egală cu energia potențială gravitațională din acel moment;"
+          },
+          {
+            "id": "d",
+            "cerinta": "valoarea vitezei corpului în momentul în care revine la baza planului înclinat. A B F  m"
+          },
+          {
+            "id": "B",
+            "cerinta": "Elemente de termodinamică Examenul național de bacalaureat 2021 Proba E. d) FIZICĂ Filiera tehnologică – profilul tehnic și profilul resurse naturale și protecția mediului • Sunt obligatorii toate subiectele din două arii tematice dintre cele patru prevăzute de programă, adică: A. MECANICĂ,"
+          },
+          {
+            "id": "B",
+            "cerinta": "ELEMENTE DE TERMODINAMICĂ, C. PRODUCEREA ȘI UTILIZAREA CURENTULUI CONTINUU, D. OPTICĂ • Se acordă zece puncte din oficiu. • Timpul de lucru efectiv este de trei ore."
+          }
+        ],
+        "imagini": [
+          "output\\images\\2021_E_d_fizica_tehnologic_2021_var_01_LRO_A_III_page0.png"
+        ],
+        "an": "2021",
+        "fisier": "E_d_fizica_tehnologic_2021_var_01_LRO.pdf",
+        "tip_document": "subiect"
+      },
+      {
+        "arie": "ELEMENTE DE TERMODINAMICĂ",
+        "subiect": "II",
+        "variant": "1",
+        "continut": "II. Rezolvați următoarea problemă: \n(15 puncte) \nO masă \ng\n70\n=\nm\n de azot (\n)\n= 28g/mol  este închisă etanș într-un cilindru orizontal cu ajutorul unui piston, \ninițial blocat, ca în figura alăturată. În această stare azotul are temperatura \n= \n1\n7 C\nt\n, iar presiunea acestuia \neste \nPa\n10\n4\n,1\n5\n1\n\n=\np\n. Celălalt capăt al recipientului este deschis către aerul din exterior, a \ncărui presiune este constantă și egală cu \nPa\n105\n0 =\np\n.  \na. Calculați numărul de molecule de azot. \nb. Determinați densitatea azotului din cilindru. \nc. Pistonul se deblochează și se deplasează fără frecare în interiorul cilindrului în timp ce azotul este încălzit \nlent. În starea finală temperatura azotului este \n=\n\n2\n27 C\nt\n, iar pistonul se află în echilibru. Determinați \npresiunea azotului în starea finală. \nd. Determinați raportul dintre volumul azotului în starea finală și volumul inițial al azotului. \nIII. Rezolvați următoarea problemă: \n(15 puncte) \nO cantitate constantă de gaz ideal poliatomic (\n)\n= 3\nV\nC\nR  parcurge procesul \ntermodinamic 1-2-3, reprezentat în coordonate p-V  ca în figura alăturată. În \ntransformarea 1-2 temperatura rămâne constantă, iar în transformarea 2-3 \npresiunea este constantă. Se cunosc: \nPa\n105\n1 =\np\n, \nL\n4\n1 =\nV\n, \n2\n1\n0,5\nV\nV\n=\n\n, \n3\n1\n2\nV\nV\n=\n\n, iar \n0,7\n2\nln\n\n. Determinați: \na. presiunea gazului în starea 2; \nb. căldura schimbată de gaz cu exteriorul în cursul transformării 1-2; \nc. energia internă a gazului în starea 3; \nd. lucrul mecanic total schimbat de gaz cu exteriorul în cursul transformării 1-2-3. \n\nMinisterul Educației \nCentrul Național de Politici și Evaluare în Educație \nProbă scrisă la Fizică \n3 \nC. Producerea și utilizarea curentului continuu \nExamenul național de bacalaureat 2021 \nProba E. d) \nFIZICĂ \nFiliera tehnologică – profilul tehnic și profilul resurse naturale și protecția mediului \n• Sunt obligatorii toate subiectele din două arii tematice dintre cele patru prevăzute de programă, adică: A. MECANICĂ, \nB. ELEMENTE DE TERMODINAMICĂ, C. PRODUCEREA ȘI UTILIZAREA CURENTULUI CONTINUU, D. OPTICĂ \n• Se acordă zece puncte din oficiu. \n• Timpul de lucru efectiv este de trei ore.",
+        "subpuncte": [
+          {
+            "id": "a",
+            "cerinta": "Calculați numărul de molecule de azot."
+          },
+          {
+            "id": "b",
+            "cerinta": "Determinați densitatea azotului din cilindru."
+          },
+          {
+            "id": "c",
+            "cerinta": "Pistonul se deblochează și se deplasează fără frecare în interiorul cilindrului în timp ce azotul este încălzit lent. În starea finală temperatura azotului este =  2 27 C t , iar pistonul se află în echilibru. Determinați presiunea azotului în starea finală."
+          },
+          {
+            "id": "d",
+            "cerinta": "Determinați raportul dintre volumul azotului în starea finală și volumul inițial al azotului."
+          },
+          {
+            "id": "a",
+            "cerinta": "presiunea gazului în starea 2;"
+          },
+          {
+            "id": "b",
+            "cerinta": "căldura schimbată de gaz cu exteriorul în cursul transformării 1-2;"
+          },
+          {
+            "id": "c",
+            "cerinta": "energia internă a gazului în starea 3;"
+          },
+          {
+            "id": "d",
+            "cerinta": "lucrul mecanic total schimbat de gaz cu exteriorul în cursul transformării 1-2-3."
+          },
+          {
+            "id": "C",
+            "cerinta": "Producerea și utilizarea curentului continuu Examenul național de bacalaureat 2021 Proba E. d) FIZICĂ Filiera tehnologică – profilul tehnic și profilul resurse naturale și protecția mediului • Sunt obligatorii toate subiectele din două arii tematice dintre cele patru prevăzute de programă, adică: A. MECANICĂ,"
+          },
+          {
+            "id": "B",
+            "cerinta": "ELEMENTE DE TERMODINAMICĂ, C. PRODUCEREA ȘI UTILIZAREA CURENTULUI CONTINUU, D. OPTICĂ • Se acordă zece puncte din oficiu. • Timpul de lucru efectiv este de trei ore."
+          }
+        ],
+        "imagini": [
+          "output\\images\\2021_E_d_fizica_tehnologic_2021_var_01_LRO_B_II_page1.png"
+        ],
+        "an": "2021",
+        "fisier": "E_d_fizica_tehnologic_2021_var_01_LRO.pdf",
+        "tip_document": "subiect"
+      },
+      {
+        "arie": "ELEMENTE DE TERMODINAMICĂ",
+        "subiect": "III",
+        "variant": "1",
+        "continut": "III. Rezolvați următoarea problemă: \n(15 puncte) \nO cantitate constantă de gaz ideal poliatomic (\n)\n= 3\nV\nC\nR  parcurge procesul \ntermodinamic 1-2-3, reprezentat în coordonate p-V  ca în figura alăturată. În \ntransformarea 1-2 temperatura rămâne constantă, iar în transformarea 2-3 \npresiunea este constantă. Se cunosc: \nPa\n105\n1 =\np\n, \nL\n4\n1 =\nV\n, \n2\n1\n0,5\nV\nV\n=\n\n, \n3\n1\n2\nV\nV\n=\n\n, iar \n0,7\n2\nln\n\n. Determinați: \na. presiunea gazului în starea 2; \nb. căldura schimbată de gaz cu exteriorul în cursul transformării 1-2; \nc. energia internă a gazului în starea 3; \nd. lucrul mecanic total schimbat de gaz cu exteriorul în cursul transformării 1-2-3. \n\nMinisterul Educației \nCentrul Național de Politici și Evaluare în Educație \nProbă scrisă la Fizică \n3 \nC. Producerea și utilizarea curentului continuu \nExamenul național de bacalaureat 2021 \nProba E. d) \nFIZICĂ \nFiliera tehnologică – profilul tehnic și profilul resurse naturale și protecția mediului \n• Sunt obligatorii toate subiectele din două arii tematice dintre cele patru prevăzute de programă, adică: A. MECANICĂ, \nB. ELEMENTE DE TERMODINAMICĂ, C. PRODUCEREA ȘI UTILIZAREA CURENTULUI CONTINUU, D. OPTICĂ \n• Se acordă zece puncte din oficiu. \n• Timpul de lucru efectiv este de trei ore.",
+        "subpuncte": [
+          {
+            "id": "a",
+            "cerinta": "presiunea gazului în starea 2;"
+          },
+          {
+            "id": "b",
+            "cerinta": "căldura schimbată de gaz cu exteriorul în cursul transformării 1-2;"
+          },
+          {
+            "id": "c",
+            "cerinta": "energia internă a gazului în starea 3;"
+          },
+          {
+            "id": "d",
+            "cerinta": "lucrul mecanic total schimbat de gaz cu exteriorul în cursul transformării 1-2-3."
+          },
+          {
+            "id": "C",
+            "cerinta": "Producerea și utilizarea curentului continuu Examenul național de bacalaureat 2021 Proba E. d) FIZICĂ Filiera tehnologică – profilul tehnic și profilul resurse naturale și protecția mediului • Sunt obligatorii toate subiectele din două arii tematice dintre cele patru prevăzute de programă, adică: A. MECANICĂ,"
+          },
+          {
+            "id": "B",
+            "cerinta": "ELEMENTE DE TERMODINAMICĂ, C. PRODUCEREA ȘI UTILIZAREA CURENTULUI CONTINUU, D. OPTICĂ • Se acordă zece puncte din oficiu. • Timpul de lucru efectiv este de trei ore."
+          }
+        ],
+        "imagini": [
+          "output\\images\\2021_E_d_fizica_tehnologic_2021_var_01_LRO_B_III_page1.png"
+        ],
+        "an": "2021",
+        "fisier": "E_d_fizica_tehnologic_2021_var_01_LRO.pdf",
+        "tip_document": "subiect"
+      },
+      {
+        "arie": "PRODUCEREA ȘI UTILIZAREA CURENTULUI CONTINUU",
+        "subiect": "II",
+        "variant": "1",
+        "continut": "II. Rezolvați următoarea problemă: \n(15 puncte) \nSe consideră circuitul electric a cărui schemă este reprezentată în figura \nalăturată. Se cunosc: \nV\n20\n=\nE\n, \n\n= 2\nr\n, \n\n= 20\n1\nR\n. Intensitățile curenților \nelectrici indicate de ampermetrele ideale \n1\nA  și \n2\nA  (\n)\n1\n2\n0\nA\nA\nR\nR\n=\n\n sunt \nA\n4\n,0\n1 =\nA\nI\n, respectiv \nA\n6\n,0\n2 =\nA\nI\n. Determinați:  \na. tensiunea electrică la bornele generatorului;  \nb. tensiunea electrică la bornele rezistorului \n1\nR ;  \nc. valoarea rezistenței electrice \n2\nR ; \nd. valoarea rezistenței electrice \n3\nR . \nIII. Rezolvați următoarea problemă: \n(15 puncte) \nDouă consumatoare, având rezistențele electrice \n\n= 18\n1\nR\n, respectiv \n\n= 12\n2\nR\n, sunt legate în paralel. \nGruparea astfel formată este conectată la bornele unui generator de tensiune electromotoare \nV\n40\n=\nE\n și \nrezistență interioară diferită de zero. Puterea electrică consumată de consumatorul de rezistență electrică \n1\nR  \neste \nW\n72\n1 =\nP\n. \na. Desenați schema electrică a circuitului. \nb. Calculați intensitatea curentului electric care străbate consumatorul de rezistență electrică \n1\nR . \nc. Determinați energia electrică consumată de ambele consumatoare, împreună, în \n5\n=\nt\nminute de \nfuncționare. \nd. Determinați puterea dispată pe rezistența interioară a generatorului. \n\nMinisterul Educației \nCentrul Național de Politici și Evaluare în Educație \nProbă scrisă la Fizică \n4 \nD. Optică \nExamenul național de bacalaureat 2021 \nProba E. d) \nFIZICĂ \nFiliera tehnologică – profilul tehnic și profilul resurse naturale și protecția mediului \n• Sunt obligatorii toate subiectele din două arii tematice dintre cele patru prevăzute de programă, adică: A. MECANICĂ, \nB. ELEMENTE DE TERMODINAMICĂ, C. PRODUCEREA ȘI UTILIZAREA CURENTULUI CONTINUU, D. OPTICĂ \n• Se acordă zece puncte din oficiu. \n• Timpul de lucru efectiv este de trei ore.",
+        "subpuncte": [
+          {
+            "id": "a",
+            "cerinta": "tensiunea electrică la bornele generatorului;"
+          },
+          {
+            "id": "b",
+            "cerinta": "tensiunea electrică la bornele rezistorului 1 R ;"
+          },
+          {
+            "id": "c",
+            "cerinta": "valoarea rezistenței electrice 2 R ;"
+          },
+          {
+            "id": "d",
+            "cerinta": "valoarea rezistenței electrice 3 R ."
+          },
+          {
+            "id": "a",
+            "cerinta": "Desenați schema electrică a circuitului."
+          },
+          {
+            "id": "b",
+            "cerinta": "Calculați intensitatea curentului electric care străbate consumatorul de rezistență electrică 1 R ."
+          },
+          {
+            "id": "c",
+            "cerinta": "Determinați energia electrică consumată de ambele consumatoare, împreună, în 5 = t minute de funcționare."
+          },
+          {
+            "id": "d",
+            "cerinta": "Determinați puterea dispată pe rezistența interioară a generatorului."
+          },
+          {
+            "id": "D",
+            "cerinta": "Optică Examenul național de bacalaureat 2021 Proba E. d) FIZICĂ Filiera tehnologică – profilul tehnic și profilul resurse naturale și protecția mediului • Sunt obligatorii toate subiectele din două arii tematice dintre cele patru prevăzute de programă, adică: A. MECANICĂ,"
+          },
+          {
+            "id": "B",
+            "cerinta": "ELEMENTE DE TERMODINAMICĂ, C. PRODUCEREA ȘI UTILIZAREA CURENTULUI CONTINUU, D. OPTICĂ • Se acordă zece puncte din oficiu. • Timpul de lucru efectiv este de trei ore."
+          }
+        ],
+        "imagini": [
+          "output\\images\\2021_E_d_fizica_tehnologic_2021_var_01_LRO_C_II_page2.png"
+        ],
+        "an": "2021",
+        "fisier": "E_d_fizica_tehnologic_2021_var_01_LRO.pdf",
+        "tip_document": "subiect"
+      },
+      {
+        "arie": "PRODUCEREA ȘI UTILIZAREA CURENTULUI CONTINUU",
+        "subiect": "III",
+        "variant": "1",
+        "continut": "III. Rezolvați următoarea problemă: \n(15 puncte) \nDouă consumatoare, având rezistențele electrice \n\n= 18\n1\nR\n, respectiv \n\n= 12\n2\nR\n, sunt legate în paralel. \nGruparea astfel formată este conectată la bornele unui generator de tensiune electromotoare \nV\n40\n=\nE\n și \nrezistență interioară diferită de zero. Puterea electrică consumată de consumatorul de rezistență electrică \n1\nR  \neste \nW\n72\n1 =\nP\n. \na. Desenați schema electrică a circuitului. \nb. Calculați intensitatea curentului electric care străbate consumatorul de rezistență electrică \n1\nR . \nc. Determinați energia electrică consumată de ambele consumatoare, împreună, în \n5\n=\nt\nminute de \nfuncționare. \nd. Determinați puterea dispată pe rezistența interioară a generatorului. \n\nMinisterul Educației \nCentrul Național de Politici și Evaluare în Educație \nProbă scrisă la Fizică \n4 \nD. Optică \nExamenul național de bacalaureat 2021 \nProba E. d) \nFIZICĂ \nFiliera tehnologică – profilul tehnic și profilul resurse naturale și protecția mediului \n• Sunt obligatorii toate subiectele din două arii tematice dintre cele patru prevăzute de programă, adică: A. MECANICĂ, \nB. ELEMENTE DE TERMODINAMICĂ, C. PRODUCEREA ȘI UTILIZAREA CURENTULUI CONTINUU, D. OPTICĂ \n• Se acordă zece puncte din oficiu. \n• Timpul de lucru efectiv este de trei ore.",
+        "subpuncte": [
+          {
+            "id": "a",
+            "cerinta": "Desenați schema electrică a circuitului."
+          },
+          {
+            "id": "b",
+            "cerinta": "Calculați intensitatea curentului electric care străbate consumatorul de rezistență electrică 1 R ."
+          },
+          {
+            "id": "c",
+            "cerinta": "Determinați energia electrică consumată de ambele consumatoare, împreună, în 5 = t minute de funcționare."
+          },
+          {
+            "id": "d",
+            "cerinta": "Determinați puterea dispată pe rezistența interioară a generatorului."
+          },
+          {
+            "id": "D",
+            "cerinta": "Optică Examenul național de bacalaureat 2021 Proba E. d) FIZICĂ Filiera tehnologică – profilul tehnic și profilul resurse naturale și protecția mediului • Sunt obligatorii toate subiectele din două arii tematice dintre cele patru prevăzute de programă, adică: A. MECANICĂ,"
+          },
+          {
+            "id": "B",
+            "cerinta": "ELEMENTE DE TERMODINAMICĂ, C. PRODUCEREA ȘI UTILIZAREA CURENTULUI CONTINUU, D. OPTICĂ • Se acordă zece puncte din oficiu. • Timpul de lucru efectiv este de trei ore."
+          }
+        ],
+        "imagini": [
+          "output\\images\\2021_E_d_fizica_tehnologic_2021_var_01_LRO_C_III_page2.png"
+        ],
+        "an": "2021",
+        "fisier": "E_d_fizica_tehnologic_2021_var_01_LRO.pdf",
+        "tip_document": "subiect"
+      },
+      {
+        "arie": "OPTICĂ",
+        "subiect": "II",
+        "variant": "1",
+        "continut": "II. Rezolvați următoarea problemă: \n(15 puncte) \nO lentilă convergentă subțire, având distanța focală 1\n20 cm\nf =\n, formează pe un ecran imaginea unui obiect \nliniar așezat perpendicular pe axa optică principală. Imaginea este de patru ori mai mare decât obiectul. \na. Obiectul are înălțimea \n1\n1 cm\ny =\n. Calculați înălțimea imaginii. \nb. Calculați distanța dintre lentilă și ecran. \nc. Realizați un desen în care să evidențiați construcția grafică a imaginii prin lentilă, pentru obiectul \nconsiderat, în situația descrisă de problemă. \nd. Folosind lentila cu distanța focală 1f  și o a doua lentilă subțire cu distanța focală 2\n10 cm\nf =\n, se formează un \nsistem optic centrat. Se observă că orice rază de lumină care intră în sistem paralel cu axa optică principală, \niese din sistemul optic tot paralel cu axa optică principală. Calculați distanța dintre cele două lentile. \nIII. Rezolvați următoarea problemă: \n(15 puncte) \nO lamă cu fețe plan paralele, plasată în aer (\n1\n\naer\nn\n), are grosimea \n(\n)\ncm\n3\n3\ncm\n2\n,5\n\n=\nd\n și este \nconfecționată dintr-un material transparent cu indicele de refracție \n6,1\n=\nn\n. Deasupra lamei se află o oglindă \nplană, paralelă cu suprafața superioară a lamei, ca în figură. Pe fața superioară a lamei se află o sursă \npunctiformă S, care emite o rază de lumină monocromatică, orientată sub unghiul  față de normala la \nsuprafața lamei. După ce se reflectă pe suprafața oglinzii în punctul A, raza \natinge lama în punctul B și străbate lama până când iese din nou în aer, prin \npunctul C. Se cunosc: \n8,0\nsin\n=\n\n și distanța \ncm\n2,7\n=\nSB\n. \na. Calculați lungimea \n a drumului S-A-B, parcurs de raza de lumină în aer. \nb. Determinați măsura unghiului de refracție r  dintre normala la suprafață și \ndirecția razei de lumină BC care traversează lama. \nc. Determinați distanța BC. \nd. Determinați intervalul de timp necesar luminii pentru a ajunge din punctul B în punctul C.",
+        "subpuncte": [
+          {
+            "id": "a",
+            "cerinta": "Obiectul are înălțimea 1 1 cm y = . Calculați înălțimea imaginii."
+          },
+          {
+            "id": "b",
+            "cerinta": "Calculați distanța dintre lentilă și ecran."
+          },
+          {
+            "id": "c",
+            "cerinta": "Realizați un desen în care să evidențiați construcția grafică a imaginii prin lentilă, pentru obiectul considerat, în situația descrisă de problemă."
+          },
+          {
+            "id": "d",
+            "cerinta": "Folosind lentila cu distanța focală 1f și o a doua lentilă subțire cu distanța focală 2 10 cm f = , se formează un sistem optic centrat. Se observă că orice rază de lumină care intră în sistem paralel cu axa optică principală, iese din sistemul optic tot paralel cu axa optică principală. Calculați distanța dintre cele două lentile."
+          },
+          {
+            "id": "a",
+            "cerinta": "Calculați lungimea a drumului S-A-B, parcurs de raza de lumină în aer."
+          },
+          {
+            "id": "b",
+            "cerinta": "Determinați măsura unghiului de refracție r dintre normala la suprafață și direcția razei de lumină BC care traversează lama."
+          },
+          {
+            "id": "c",
+            "cerinta": "Determinați distanța BC."
+          },
+          {
+            "id": "d",
+            "cerinta": "Determinați intervalul de timp necesar luminii pentru a ajunge din punctul B în punctul C."
+          }
+        ],
+        "imagini": [
+          "output\\images\\2021_E_d_fizica_tehnologic_2021_var_01_LRO_D_II_page3.png"
+        ],
+        "an": "2021",
+        "fisier": "E_d_fizica_tehnologic_2021_var_01_LRO.pdf",
+        "tip_document": "subiect"
+      },
+      {
+        "arie": "OPTICĂ",
+        "subiect": "III",
+        "variant": "1",
+        "continut": "III. Rezolvați următoarea problemă: \n(15 puncte) \nO lamă cu fețe plan paralele, plasată în aer (\n1\n\naer\nn\n), are grosimea \n(\n)\ncm\n3\n3\ncm\n2\n,5\n\n=\nd\n și este \nconfecționată dintr-un material transparent cu indicele de refracție \n6,1\n=\nn\n. Deasupra lamei se află o oglindă \nplană, paralelă cu suprafața superioară a lamei, ca în figură. Pe fața superioară a lamei se află o sursă \npunctiformă S, care emite o rază de lumină monocromatică, orientată sub unghiul  față de normala la \nsuprafața lamei. După ce se reflectă pe suprafața oglinzii în punctul A, raza \natinge lama în punctul B și străbate lama până când iese din nou în aer, prin \npunctul C. Se cunosc: \n8,0\nsin\n=\n\n și distanța \ncm\n2,7\n=\nSB\n. \na. Calculați lungimea \n a drumului S-A-B, parcurs de raza de lumină în aer. \nb. Determinați măsura unghiului de refracție r  dintre normala la suprafață și \ndirecția razei de lumină BC care traversează lama. \nc. Determinați distanța BC. \nd. Determinați intervalul de timp necesar luminii pentru a ajunge din punctul B în punctul C.",
+        "subpuncte": [
+          {
+            "id": "a",
+            "cerinta": "Calculați lungimea a drumului S-A-B, parcurs de raza de lumină în aer."
+          },
+          {
+            "id": "b",
+            "cerinta": "Determinați măsura unghiului de refracție r dintre normala la suprafață și direcția razei de lumină BC care traversează lama."
+          },
+          {
+            "id": "c",
+            "cerinta": "Determinați distanța BC."
+          },
+          {
+            "id": "d",
+            "cerinta": "Determinați intervalul de timp necesar luminii pentru a ajunge din punctul B în punctul C."
+          }
+        ],
+        "imagini": [
+          "output\\images\\2021_E_d_fizica_tehnologic_2021_var_01_LRO_D_III_page3.png"
+        ],
+        "an": "2021",
+        "fisier": "E_d_fizica_tehnologic_2021_var_01_LRO.pdf",
+        "tip_document": "subiect"
+      },
+      {
+        "arie": "MECANICĂ",
+        "subiect": "II",
+        "variant": "4",
+        "continut": "II. Rezolvați următoarea problemă: \n(15 puncte) \nSistemul mecanic din figura alăturată este alcătuit din două corpuri A și B, legate prin intermediul unui fir \ninextensibil și de masă neglijabilă. Firul este trecut peste un scripete fără frecări și lipsit de inerție, situat în \nvârful unui plan înclinat. Masa corpului A este \n0,5 kg\nA\nm\n=\n. Coeficientul de frecare la alunecare dintre corpul \nB și suprafața planului înclinat este \n0,2\nµ =\n, iar unghiul format de planul înclinat cu orizontala este \n(\n)\n53\nsin\n0,8\nα\nα\n≅\n°\n=\n. La momentul inițial corpurile se află în repaus. Se constată că, după ce sistemul este \nlăsat liber, accelerația corpului A este orientată în sus și are \nvaloarea \n2\n1,2 m/s\na =\n. În timpul mișcării, corpul A nu atinge \nscripetele, iar corpul B nu ajunge la baza planului înclinat. \na. Reprezentați toate forțele care se exercită asupra corpului A. \nb. Determinați valoarea tensiunii din fir. \nc. Determinați valoarea masei \nB\nm  a corpului B. \nd. Calculați valoarea vitezei corpul B la \n0,5 s\nt\n∆=\n din \nmomentul în care sistemul este lăsat liber. \nIII. Rezolvați următoarea problemă: \n(15 puncte) \nUn corp având masa \n2 kg\nm =\n cade, din repaus, de la înălțimea \n50 m\nH =\n față de sol. După ce corpul \nparcurge în cădere liberă distanța \n45 m\nd =\n, pe ultimii 5 m , asupra corpului acționează o forță constantă \nF , orientată vertical în sus, sub acțiunea căreia corpul se oprește în momentul atingerii solului. Pe toată \ndurata mișcării, interacțiunea cu aerul se consideră neglijabilă. Energia potențială gravitațională se consideră \nnulă la nivelul solului. Determinați: \na. energia potențială gravitațională în momentul în care corpul se află la înălțimea \n50 m\nH =\n; \nb. lucrul mecanic efectuat de greutatea corpului în timpul căderii libere a acestuia pe distanța \n45 m\nd =\n; \nc. valoarea vitezei corpului în momentul în care începe să acționeze forța constantă F ; \nd. valoarea forței constante F . \nA\nB\nα \n\nMinisterul Educației \nCentrul Național de Politici și Evaluare în Educație \nProbă scrisă la Fizică \n2 \nB. Elemente de termodinamică\n \n \nExamenul național de bacalaureat 2021 \nProba E. d) \nFIZICĂ \nFiliera tehnologică – profilul tehnic și profilul resurse naturale și protecția mediului \n• Sunt obligatorii toate subiectele din două arii tematice dintre cele patru prevăzute de programă, adică: A. MECANICĂ, \nB. ELEMENTE DE TERMODINAMICĂ, C. PRODUCEREA ȘI UTILIZAREA CURENTULUI CONTINUU, D. OPTICĂ \n• Se acordă zece puncte din oficiu. \n• Timpul de lucru efectiv este de trei ore.",
+        "subpuncte": [
+          {
+            "id": "a",
+            "cerinta": "Reprezentați toate forțele care se exercită asupra corpului A."
+          },
+          {
+            "id": "b",
+            "cerinta": "Determinați valoarea tensiunii din fir."
+          },
+          {
+            "id": "c",
+            "cerinta": "Determinați valoarea masei B m a corpului B."
+          },
+          {
+            "id": "d",
+            "cerinta": "Calculați valoarea vitezei corpul B la 0,5 s t ∆= din momentul în care sistemul este lăsat liber."
+          },
+          {
+            "id": "a",
+            "cerinta": "energia potențială gravitațională în momentul în care corpul se află la înălțimea 50 m H = ;"
+          },
+          {
+            "id": "b",
+            "cerinta": "lucrul mecanic efectuat de greutatea corpului în timpul căderii libere a acestuia pe distanța 45 m d = ;"
+          },
+          {
+            "id": "c",
+            "cerinta": "valoarea vitezei corpului în momentul în care începe să acționeze forța constantă F ;"
+          },
+          {
+            "id": "d",
+            "cerinta": "valoarea forței constante F . A B α"
+          },
+          {
+            "id": "B",
+            "cerinta": "Elemente de termodinamică Examenul național de bacalaureat 2021 Proba E. d) FIZICĂ Filiera tehnologică – profilul tehnic și profilul resurse naturale și protecția mediului • Sunt obligatorii toate subiectele din două arii tematice dintre cele patru prevăzute de programă, adică: A. MECANICĂ,"
+          },
+          {
+            "id": "B",
+            "cerinta": "ELEMENTE DE TERMODINAMICĂ, C. PRODUCEREA ȘI UTILIZAREA CURENTULUI CONTINUU, D. OPTICĂ • Se acordă zece puncte din oficiu. • Timpul de lucru efectiv este de trei ore."
+          }
+        ],
+        "imagini": [
+          "output\\images\\2021_E_d_fizica_tehnologic_2021_var_04_LRO_A_II_page0.png"
+        ],
+        "an": "2021",
+        "fisier": "E_d_fizica_tehnologic_2021_var_04_LRO.pdf",
+        "tip_document": "subiect"
+      },
+      {
+        "arie": "MECANICĂ",
+        "subiect": "III",
+        "variant": "4",
+        "continut": "III. Rezolvați următoarea problemă: \n(15 puncte) \nUn corp având masa \n2 kg\nm =\n cade, din repaus, de la înălțimea \n50 m\nH =\n față de sol. După ce corpul \nparcurge în cădere liberă distanța \n45 m\nd =\n, pe ultimii 5 m , asupra corpului acționează o forță constantă \nF , orientată vertical în sus, sub acțiunea căreia corpul se oprește în momentul atingerii solului. Pe toată \ndurata mișcării, interacțiunea cu aerul se consideră neglijabilă. Energia potențială gravitațională se consideră \nnulă la nivelul solului. Determinați: \na. energia potențială gravitațională în momentul în care corpul se află la înălțimea \n50 m\nH =\n; \nb. lucrul mecanic efectuat de greutatea corpului în timpul căderii libere a acestuia pe distanța \n45 m\nd =\n; \nc. valoarea vitezei corpului în momentul în care începe să acționeze forța constantă F ; \nd. valoarea forței constante F . \nA\nB\nα \n\nMinisterul Educației \nCentrul Național de Politici și Evaluare în Educație \nProbă scrisă la Fizică \n2 \nB. Elemente de termodinamică\n \n \nExamenul național de bacalaureat 2021 \nProba E. d) \nFIZICĂ \nFiliera tehnologică – profilul tehnic și profilul resurse naturale și protecția mediului \n• Sunt obligatorii toate subiectele din două arii tematice dintre cele patru prevăzute de programă, adică: A. MECANICĂ, \nB. ELEMENTE DE TERMODINAMICĂ, C. PRODUCEREA ȘI UTILIZAREA CURENTULUI CONTINUU, D. OPTICĂ \n• Se acordă zece puncte din oficiu. \n• Timpul de lucru efectiv este de trei ore.",
+        "subpuncte": [
+          {
+            "id": "a",
+            "cerinta": "energia potențială gravitațională în momentul în care corpul se află la înălțimea 50 m H = ;"
+          },
+          {
+            "id": "b",
+            "cerinta": "lucrul mecanic efectuat de greutatea corpului în timpul căderii libere a acestuia pe distanța 45 m d = ;"
+          },
+          {
+            "id": "c",
+            "cerinta": "valoarea vitezei corpului în momentul în care începe să acționeze forța constantă F ;"
+          },
+          {
+            "id": "d",
+            "cerinta": "valoarea forței constante F . A B α"
+          },
+          {
+            "id": "B",
+            "cerinta": "Elemente de termodinamică Examenul național de bacalaureat 2021 Proba E. d) FIZICĂ Filiera tehnologică – profilul tehnic și profilul resurse naturale și protecția mediului • Sunt obligatorii toate subiectele din două arii tematice dintre cele patru prevăzute de programă, adică: A. MECANICĂ,"
+          },
+          {
+            "id": "B",
+            "cerinta": "ELEMENTE DE TERMODINAMICĂ, C. PRODUCEREA ȘI UTILIZAREA CURENTULUI CONTINUU, D. OPTICĂ • Se acordă zece puncte din oficiu. • Timpul de lucru efectiv este de trei ore."
+          }
+        ],
+        "imagini": [
+          "output\\images\\2021_E_d_fizica_tehnologic_2021_var_04_LRO_A_III_page0.png"
+        ],
+        "an": "2021",
+        "fisier": "E_d_fizica_tehnologic_2021_var_04_LRO.pdf",
+        "tip_document": "subiect"
+      },
+      {
+        "arie": "ELEMENTE DE TERMODINAMICĂ",
+        "subiect": "II",
+        "variant": "4",
+        "continut": "II. Rezolvați următoarea problemă: \n(15 puncte) \nUn cilindru orizontal este prevăzut cu un piston etanș care se poate mișca fără frecare. În cilindru se află o \nmasă \n11 g\nm =\n de dioxid de carbon \n2\n(\n)\nCO\n, cu masa molară \n3\n44 10\nkg/mol\nµ\n−\n=\n⋅\n. Inițial pistonul este blocat, \nvolumul ocupat de gaz este \nL\n62\n,\n16\n=\nV\n, iar temperatura este \n27 C\nt =\n\u0001\n. Presiunea aerului din exterior este \n5\n2\n0\n10 N/m\np =\n. Determinați: \na. cantitatea de dioxid de carbon din cilindru; \nb. densitatea dioxidului de carbon în starea inițială; \nc. presiunea la care se află dioxidul de carbon în starea inițială; \nd. volumul ocupat de gaz după deblocarea pistonului și stabilirea echilibrului, dacă temperatura rămâne \nconstantă. \nIII. Rezolvați următoarea problemă: \n(15 puncte) \nO cantitate de gaz ideal monoatomic (\n)\n1,5\nV\nC\nR\n=\n efectuează transformarea \nciclică 1\n2\n3\n4\n1\n→\n→\n→\n→ reprezentată grafic în coordonate p\nV\n−\n în figura \nalăturată. Parametrii de stare ai gazului în starea 1 sunt \n5\n10 Pa\np =\n și \n1L\nV =\n. \nCalculați: \na. lucrul mecanic schimbat de gaz cu exteriorul în transformarea 2\n3\n→\n; \nb. energia internă a gazului în starea 3;  \nc. căldura schimbată de gaz cu mediul exterior pe parcursul transformării 1\n2\n→\n; \nd. valoarea căldurii cedate de gaz pe parcursul transformării ciclice. \n\nMinisterul Educației \nCentrul Național de Politici și Evaluare în Educație \nProbă scrisă la Fizică \n3 \nC. Producerea și utilizarea curentului continuu \nExamenul național de bacalaureat 2021 \nProba E. d) \nFIZICĂ \nFiliera tehnologică – profilul tehnic și profilul resurse naturale și protecția mediului \n• Sunt obligatorii toate subiectele din două arii tematice dintre cele patru prevăzute de programă, adică: A. MECANICĂ, \nB. ELEMENTE DE TERMODINAMICĂ, C. PRODUCEREA ȘI UTILIZAREA CURENTULUI CONTINUU, D. OPTICĂ \n• Se acordă zece puncte din oficiu. \n• Timpul de lucru efectiv este de trei ore.",
+        "subpuncte": [
+          {
+            "id": "a",
+            "cerinta": "cantitatea de dioxid de carbon din cilindru;"
+          },
+          {
+            "id": "b",
+            "cerinta": "densitatea dioxidului de carbon în starea inițială;"
+          },
+          {
+            "id": "c",
+            "cerinta": "presiunea la care se află dioxidul de carbon în starea inițială;"
+          },
+          {
+            "id": "d",
+            "cerinta": "volumul ocupat de gaz după deblocarea pistonului și stabilirea echilibrului, dacă temperatura rămâne constantă."
+          },
+          {
+            "id": "a",
+            "cerinta": "lucrul mecanic schimbat de gaz cu exteriorul în transformarea 2 3 → ;"
+          },
+          {
+            "id": "b",
+            "cerinta": "energia internă a gazului în starea 3;"
+          },
+          {
+            "id": "c",
+            "cerinta": "căldura schimbată de gaz cu mediul exterior pe parcursul transformării 1 2 → ;"
+          },
+          {
+            "id": "d",
+            "cerinta": "valoarea căldurii cedate de gaz pe parcursul transformării ciclice."
+          },
+          {
+            "id": "C",
+            "cerinta": "Producerea și utilizarea curentului continuu Examenul național de bacalaureat 2021 Proba E. d) FIZICĂ Filiera tehnologică – profilul tehnic și profilul resurse naturale și protecția mediului • Sunt obligatorii toate subiectele din două arii tematice dintre cele patru prevăzute de programă, adică: A. MECANICĂ,"
+          },
+          {
+            "id": "B",
+            "cerinta": "ELEMENTE DE TERMODINAMICĂ, C. PRODUCEREA ȘI UTILIZAREA CURENTULUI CONTINUU, D. OPTICĂ • Se acordă zece puncte din oficiu. • Timpul de lucru efectiv este de trei ore."
+          }
+        ],
+        "imagini": [
+          "output\\images\\2021_E_d_fizica_tehnologic_2021_var_04_LRO_B_II_page1.png"
+        ],
+        "an": "2021",
+        "fisier": "E_d_fizica_tehnologic_2021_var_04_LRO.pdf",
+        "tip_document": "subiect"
+      },
+      {
+        "arie": "ELEMENTE DE TERMODINAMICĂ",
+        "subiect": "III",
+        "variant": "4",
+        "continut": "III. Rezolvați următoarea problemă: \n(15 puncte) \nO cantitate de gaz ideal monoatomic (\n)\n1,5\nV\nC\nR\n=\n efectuează transformarea \nciclică 1\n2\n3\n4\n1\n→\n→\n→\n→ reprezentată grafic în coordonate p\nV\n−\n în figura \nalăturată. Parametrii de stare ai gazului în starea 1 sunt \n5\n10 Pa\np =\n și \n1L\nV =\n. \nCalculați: \na. lucrul mecanic schimbat de gaz cu exteriorul în transformarea 2\n3\n→\n; \nb. energia internă a gazului în starea 3;  \nc. căldura schimbată de gaz cu mediul exterior pe parcursul transformării 1\n2\n→\n; \nd. valoarea căldurii cedate de gaz pe parcursul transformării ciclice. \n\nMinisterul Educației \nCentrul Național de Politici și Evaluare în Educație \nProbă scrisă la Fizică \n3 \nC. Producerea și utilizarea curentului continuu \nExamenul național de bacalaureat 2021 \nProba E. d) \nFIZICĂ \nFiliera tehnologică – profilul tehnic și profilul resurse naturale și protecția mediului \n• Sunt obligatorii toate subiectele din două arii tematice dintre cele patru prevăzute de programă, adică: A. MECANICĂ, \nB. ELEMENTE DE TERMODINAMICĂ, C. PRODUCEREA ȘI UTILIZAREA CURENTULUI CONTINUU, D. OPTICĂ \n• Se acordă zece puncte din oficiu. \n• Timpul de lucru efectiv este de trei ore.",
+        "subpuncte": [
+          {
+            "id": "a",
+            "cerinta": "lucrul mecanic schimbat de gaz cu exteriorul în transformarea 2 3 → ;"
+          },
+          {
+            "id": "b",
+            "cerinta": "energia internă a gazului în starea 3;"
+          },
+          {
+            "id": "c",
+            "cerinta": "căldura schimbată de gaz cu mediul exterior pe parcursul transformării 1 2 → ;"
+          },
+          {
+            "id": "d",
+            "cerinta": "valoarea căldurii cedate de gaz pe parcursul transformării ciclice."
+          },
+          {
+            "id": "C",
+            "cerinta": "Producerea și utilizarea curentului continuu Examenul național de bacalaureat 2021 Proba E. d) FIZICĂ Filiera tehnologică – profilul tehnic și profilul resurse naturale și protecția mediului • Sunt obligatorii toate subiectele din două arii tematice dintre cele patru prevăzute de programă, adică: A. MECANICĂ,"
+          },
+          {
+            "id": "B",
+            "cerinta": "ELEMENTE DE TERMODINAMICĂ, C. PRODUCEREA ȘI UTILIZAREA CURENTULUI CONTINUU, D. OPTICĂ • Se acordă zece puncte din oficiu. • Timpul de lucru efectiv este de trei ore."
+          }
+        ],
+        "imagini": [
+          "output\\images\\2021_E_d_fizica_tehnologic_2021_var_04_LRO_B_III_page1.png"
+        ],
+        "an": "2021",
+        "fisier": "E_d_fizica_tehnologic_2021_var_04_LRO.pdf",
+        "tip_document": "subiect"
+      },
+      {
+        "arie": "PRODUCEREA ȘI UTILIZAREA CURENTULUI CONTINUU",
+        "subiect": "II",
+        "variant": "4",
+        "continut": "II. Rezolvați următoarea problemă: \n(15 puncte) \nÎn circuitul electric a cărui schemă este prezentată în figura alăturată rezistențele electrice ale rezistoarelor \nau valorile \n10\nR =\nΩ și \n1\n9\nR =\nΩ. Cele două generatoare au tensiunile electromotoare \nV\n18\n1 =\nE\n, \nV\n15\n2 =\nE\n \nși rezistențele interioare \n1\n1\nr =\nΩ, \n2r  necunoscută. Intensitatea curentului electric prin rezistorul R  este \nA\n4\n,1\n=\nR\nI\n. \na. Calculați valoarea tensiunii electrice pe rezistorul R . \nb. Rezistorul \nR  \neste \nconfecționat \ndintr-un \nconductor \ncu \nrezistivitatea \n6\n3,14 10\nm\nρ\n−\n=\n⋅\nΩ\n și diametrul secțiunii transversale \nmm\n6\n,0\n=\nd\n. Determinați \nlungimea conductorului. \nc. Calculați tensiunea electrică la bornele generatorului \n1\nE . \nd. Determinați rezistența interioară a generatorului \n2\nE . \nIII. Rezolvați următoarea problemă: \n(15 puncte) \nÎn figura alăturată este reprezentată schema unui circuit electric. Bateria are parametrii \n12V\nE =\n și \n1\nr =\nΩ. \nCele trei rezistoare au rezistențele \n1\n13\nR =\nΩ, \n2\n15\nR =\nΩ, respectiv \n3\n10\nR =\nΩ. Inițial întrerupătorul K este \ndeschis.  \na. Calculați puterea disipată de rezistorul \n1\nR . \nb. Determinați energia electrică consumată de rezistorul \n3\nR  în \n15min\nt\n∆=\n de \nfuncționare. \nc. Se închide întrerupătorul K . Calculați puterea totală dezvoltată de baterie. \nd. Determinați randamentul circuitului, în condițiile în care întrerupătorul K este \nînchis. \n\nMinisterul Educației \nCentrul Național de Politici și Evaluare în Educație \nProbă scrisă la Fizică \n4 \nD. Optică \nExamenul național de bacalaureat 2021 \nProba E. d) \nFIZICĂ \nFiliera tehnologică – profilul tehnic și profilul resurse naturale și protecția mediului \n• Sunt obligatorii toate subiectele din două arii tematice dintre cele patru prevăzute de programă, adică: A. MECANICĂ, \nB. ELEMENTE DE TERMODINAMICĂ, C. PRODUCEREA ȘI UTILIZAREA CURENTULUI CONTINUU, D. OPTICĂ \n• Se acordă zece puncte din oficiu. \n• Timpul de lucru efectiv este de trei ore.",
+        "subpuncte": [
+          {
+            "id": "a",
+            "cerinta": "Calculați valoarea tensiunii electrice pe rezistorul R ."
+          },
+          {
+            "id": "b",
+            "cerinta": "Rezistorul R este confecționat dintr-un conductor cu rezistivitatea 6 3,14 10 m ρ − = ⋅ Ω și diametrul secțiunii transversale mm 6 ,0 = d . Determinați lungimea conductorului."
+          },
+          {
+            "id": "c",
+            "cerinta": "Calculați tensiunea electrică la bornele generatorului 1 E ."
+          },
+          {
+            "id": "d",
+            "cerinta": "Determinați rezistența interioară a generatorului 2 E ."
+          },
+          {
+            "id": "a",
+            "cerinta": "Calculați puterea disipată de rezistorul 1 R ."
+          },
+          {
+            "id": "b",
+            "cerinta": "Determinați energia electrică consumată de rezistorul 3 R în 15min t ∆= de funcționare."
+          },
+          {
+            "id": "c",
+            "cerinta": "Se închide întrerupătorul K . Calculați puterea totală dezvoltată de baterie."
+          },
+          {
+            "id": "d",
+            "cerinta": "Determinați randamentul circuitului, în condițiile în care întrerupătorul K este închis."
+          },
+          {
+            "id": "D",
+            "cerinta": "Optică Examenul național de bacalaureat 2021 Proba E. d) FIZICĂ Filiera tehnologică – profilul tehnic și profilul resurse naturale și protecția mediului • Sunt obligatorii toate subiectele din două arii tematice dintre cele patru prevăzute de programă, adică: A. MECANICĂ,"
+          },
+          {
+            "id": "B",
+            "cerinta": "ELEMENTE DE TERMODINAMICĂ, C. PRODUCEREA ȘI UTILIZAREA CURENTULUI CONTINUU, D. OPTICĂ • Se acordă zece puncte din oficiu. • Timpul de lucru efectiv este de trei ore."
+          }
+        ],
+        "imagini": [
+          "output\\images\\2021_E_d_fizica_tehnologic_2021_var_04_LRO_C_II_page2.png"
+        ],
+        "an": "2021",
+        "fisier": "E_d_fizica_tehnologic_2021_var_04_LRO.pdf",
+        "tip_document": "subiect"
+      },
+      {
+        "arie": "PRODUCEREA ȘI UTILIZAREA CURENTULUI CONTINUU",
+        "subiect": "III",
+        "variant": "4",
+        "continut": "III. Rezolvați următoarea problemă: \n(15 puncte) \nÎn figura alăturată este reprezentată schema unui circuit electric. Bateria are parametrii \n12V\nE =\n și \n1\nr =\nΩ. \nCele trei rezistoare au rezistențele \n1\n13\nR =\nΩ, \n2\n15\nR =\nΩ, respectiv \n3\n10\nR =\nΩ. Inițial întrerupătorul K este \ndeschis.  \na. Calculați puterea disipată de rezistorul \n1\nR . \nb. Determinați energia electrică consumată de rezistorul \n3\nR  în \n15min\nt\n∆=\n de \nfuncționare. \nc. Se închide întrerupătorul K . Calculați puterea totală dezvoltată de baterie. \nd. Determinați randamentul circuitului, în condițiile în care întrerupătorul K este \nînchis. \n\nMinisterul Educației \nCentrul Național de Politici și Evaluare în Educație \nProbă scrisă la Fizică \n4 \nD. Optică \nExamenul național de bacalaureat 2021 \nProba E. d) \nFIZICĂ \nFiliera tehnologică – profilul tehnic și profilul resurse naturale și protecția mediului \n• Sunt obligatorii toate subiectele din două arii tematice dintre cele patru prevăzute de programă, adică: A. MECANICĂ, \nB. ELEMENTE DE TERMODINAMICĂ, C. PRODUCEREA ȘI UTILIZAREA CURENTULUI CONTINUU, D. OPTICĂ \n• Se acordă zece puncte din oficiu. \n• Timpul de lucru efectiv este de trei ore.",
+        "subpuncte": [
+          {
+            "id": "a",
+            "cerinta": "Calculați puterea disipată de rezistorul 1 R ."
+          },
+          {
+            "id": "b",
+            "cerinta": "Determinați energia electrică consumată de rezistorul 3 R în 15min t ∆= de funcționare."
+          },
+          {
+            "id": "c",
+            "cerinta": "Se închide întrerupătorul K . Calculați puterea totală dezvoltată de baterie."
+          },
+          {
+            "id": "d",
+            "cerinta": "Determinați randamentul circuitului, în condițiile în care întrerupătorul K este închis."
+          },
+          {
+            "id": "D",
+            "cerinta": "Optică Examenul național de bacalaureat 2021 Proba E. d) FIZICĂ Filiera tehnologică – profilul tehnic și profilul resurse naturale și protecția mediului • Sunt obligatorii toate subiectele din două arii tematice dintre cele patru prevăzute de programă, adică: A. MECANICĂ,"
+          },
+          {
+            "id": "B",
+            "cerinta": "ELEMENTE DE TERMODINAMICĂ, C. PRODUCEREA ȘI UTILIZAREA CURENTULUI CONTINUU, D. OPTICĂ • Se acordă zece puncte din oficiu. • Timpul de lucru efectiv este de trei ore."
+          }
+        ],
+        "imagini": [
+          "output\\images\\2021_E_d_fizica_tehnologic_2021_var_04_LRO_C_III_page2.png"
+        ],
+        "an": "2021",
+        "fisier": "E_d_fizica_tehnologic_2021_var_04_LRO.pdf",
+        "tip_document": "subiect"
+      },
+      {
+        "arie": "OPTICĂ",
+        "subiect": "II",
+        "variant": "4",
+        "continut": "II. Rezolvați următoarea problemă: \n(15 puncte) \nO lentilă divergentă subțire, având modulul distanței focale \n1\n40 cm\nf =\n, formează imaginea virtuală a unui \nobiect liniar așezat perpendicular pe axa optică principală. Imaginea este de patru ori mai mică decât \nobiectul. \na. Obiectul are înălțimea \n1\n2 cm\ny =\n. Calculați înălțimea imaginii. \nb. Calculați distanța dintre lentilă și imagine. \nc. Realizați un desen în care să evidențiați construcția grafică a imaginii prin lentilă, pentru obiectul \nconsiderat, în situația descrisă de problemă. \nd. Se alipește de lentila cu distanța focală \n1f  o altă lentilă subțire, convergentă, cu distanța focală \n2\n50 cm\nf =\n. Calculați distanța focală echivalentă a sistemului optic format din cele două lentile. \nIII. Rezolvați următoarea problemă: \n(15 puncte) \nÎn figura alăturată sunt reprezentate două lame transparente (L1 și L2), așezate una peste cealaltă, având \nîntre ele o foiță subțire (F) care reflectă lumina. Cele două lame au indicii \nde refracție \n(\n)\n=\n≅\n1\n1,73\n3\nn\n și respectiv \n\n\n=\n≅\n\n\n\n\n\n\n2\n3\n1,22\n.\n2\nn\n O rază de \nlumină atinge suprafața superioară a lamei L1 sub unghiul de incidență \n=\no\n60 .\ni\n Indicele de refracție al aerului este \naer\n1\nn\n≅\n.  \na. Calculați viteza de propagare a luminii în lama L1. \nb. Calculați unghiul de refracție al razei de lumină la intrarea în lama L1. \nc. Realizați un desen în care să ilustrați drumul razei de lumină de la \nintrarea în lama L1 până la ieșirea din lamă în aer, după reflexia pe foița F.  \nd. Se scoate foița F dintre cele două lame, cele două lame rămânând lipite. Calculați unghiul sub care se \nrefractă raza de lumină la trecerea din lama L1 în lama L2.",
+        "subpuncte": [
+          {
+            "id": "a",
+            "cerinta": "Obiectul are înălțimea 1 2 cm y = . Calculați înălțimea imaginii."
+          },
+          {
+            "id": "b",
+            "cerinta": "Calculați distanța dintre lentilă și imagine."
+          },
+          {
+            "id": "c",
+            "cerinta": "Realizați un desen în care să evidențiați construcția grafică a imaginii prin lentilă, pentru obiectul considerat, în situația descrisă de problemă."
+          },
+          {
+            "id": "d",
+            "cerinta": "Se alipește de lentila cu distanța focală 1f o altă lentilă subțire, convergentă, cu distanța focală 2 50 cm f = . Calculați distanța focală echivalentă a sistemului optic format din cele două lentile."
+          },
+          {
+            "id": "a",
+            "cerinta": "Calculați viteza de propagare a luminii în lama L1."
+          },
+          {
+            "id": "b",
+            "cerinta": "Calculați unghiul de refracție al razei de lumină la intrarea în lama L1."
+          },
+          {
+            "id": "c",
+            "cerinta": "Realizați un desen în care să ilustrați drumul razei de lumină de la intrarea în lama L1 până la ieșirea din lamă în aer, după reflexia pe foița F."
+          },
+          {
+            "id": "d",
+            "cerinta": "Se scoate foița F dintre cele două lame, cele două lame rămânând lipite. Calculați unghiul sub care se refractă raza de lumină la trecerea din lama L1 în lama L2."
+          }
+        ],
+        "imagini": [
+          "output\\images\\2021_E_d_fizica_tehnologic_2021_var_04_LRO_D_II_page3.png"
+        ],
+        "an": "2021",
+        "fisier": "E_d_fizica_tehnologic_2021_var_04_LRO.pdf",
+        "tip_document": "subiect"
+      },
+      {
+        "arie": "OPTICĂ",
+        "subiect": "III",
+        "variant": "4",
+        "continut": "III. Rezolvați următoarea problemă: \n(15 puncte) \nÎn figura alăturată sunt reprezentate două lame transparente (L1 și L2), așezate una peste cealaltă, având \nîntre ele o foiță subțire (F) care reflectă lumina. Cele două lame au indicii \nde refracție \n(\n)\n=\n≅\n1\n1,73\n3\nn\n și respectiv \n\n\n=\n≅\n\n\n\n\n\n\n2\n3\n1,22\n.\n2\nn\n O rază de \nlumină atinge suprafața superioară a lamei L1 sub unghiul de incidență \n=\no\n60 .\ni\n Indicele de refracție al aerului este \naer\n1\nn\n≅\n.  \na. Calculați viteza de propagare a luminii în lama L1. \nb. Calculați unghiul de refracție al razei de lumină la intrarea în lama L1. \nc. Realizați un desen în care să ilustrați drumul razei de lumină de la \nintrarea în lama L1 până la ieșirea din lamă în aer, după reflexia pe foița F.  \nd. Se scoate foița F dintre cele două lame, cele două lame rămânând lipite. Calculați unghiul sub care se \nrefractă raza de lumină la trecerea din lama L1 în lama L2.",
+        "subpuncte": [
+          {
+            "id": "a",
+            "cerinta": "Calculați viteza de propagare a luminii în lama L1."
+          },
+          {
+            "id": "b",
+            "cerinta": "Calculați unghiul de refracție al razei de lumină la intrarea în lama L1."
+          },
+          {
+            "id": "c",
+            "cerinta": "Realizați un desen în care să ilustrați drumul razei de lumină de la intrarea în lama L1 până la ieșirea din lamă în aer, după reflexia pe foița F."
+          },
+          {
+            "id": "d",
+            "cerinta": "Se scoate foița F dintre cele două lame, cele două lame rămânând lipite. Calculați unghiul sub care se refractă raza de lumină la trecerea din lama L1 în lama L2."
+          }
+        ],
+        "imagini": [
+          "output\\images\\2021_E_d_fizica_tehnologic_2021_var_04_LRO_D_III_page3.png"
+        ],
+        "an": "2021",
+        "fisier": "E_d_fizica_tehnologic_2021_var_04_LRO.pdf",
+        "tip_document": "subiect"
+      }
+    ],
+    "teoretic_vocational": [
+      {
+        "arie": "MECANICĂ",
+        "subiect": "II",
+        "variant": "1",
+        "continut": "II. Rezolvați următoarea problemă: \n(15 puncte) \nSistemul mecanic din figura alăturată este alcătuit din două corpuri A și B, legate prin \nintermediul unui fir inextensibil și de masă neglijabilă. Firul este trecut peste un scripete fără \nfrecări și lipsit de inerție. La momentul inițial corpurile se află în repaus. După ce sistemul este \nlăsat liber, se constată că accelerația corpului A este orientată în jos și are valoarea \n2\n5 m/s\na =\n. \na. Calculați valoarea vitezei corpului A la \n0,5 s\nt\n=\n din momentul în care sistemul este lăsat \nliber. \nb. Reprezentați toate forțele care se exercită asupra fiecăruia dintre cele două corpuri. \nc. Determinați valoarea raportului \n/\nA\nB\nm\nm  dintre masa corpului A și masa corpului B. \nd. Determinați valoarea forței de apăsare din axul scripetelui, dacă \n300 g\nA\nm\n=\n. \nIII. Rezolvați următoarea problemă: \n(15 puncte) \nUn corp având masa \n1,0 kg\nm =\n se află inițial în repaus la baza unui plan înclinat cu unghiul \n30\n=\n față de \norizontală. Frecarea dintre corp și planul înclinat este neglijabilă. Asupra corpului acționează o forță de \ntracțiune constantă \n40 N\nF =\n, orientată în lungul planului înclinat, ca în figura alăturată. După ce corpul \nparcurge distanța \n20 cm\nd =\n, acțiunea forței F  încetează, iar corpul \ncontinuă să urce pe plan. Planul înclinat este suficient de lung, astfel \nîncât corpul nu părăsește suprafața planului înclinat. Energia \npotențială gravitațională se consideră nulă la baza planului înclinat. \nDeterminați: \na. lucrul mecanic efectuat de greutate în timpul urcării corpului, pe \nplanul înclinat, pe distanța \n20 cm\nd =\n; \nb. energia cinetică a corpului în momentul în care acțiunea forței de \ntracțiune încetează; \nc. înălțimea \n1\nh  la care se află corpul față de baza planului înclinat în momentul în care, în timpul coborârii, \nenergia cinetică a corpului este egală cu energia potențială gravitațională din acel moment; \nd. valoarea impulsului corpului în momentul în care revine la baza planului înclinat. \nA \nB \nF   \n \nm \n\nMinisterul Educației \nCentrul Național de Politici și Evaluare în Educație \nProbă scrisă la Fizică \n2 \nB. Elemente de termodinamică \nExamenul național de bacalaureat 2021 \nProba E. d) \nFIZICĂ \nFiliera teoretică – profilul real, Filiera vocațională – profilul militar \n• Sunt obligatorii toate subiectele din două arii tematice dintre cele patru prevăzute de programă, adică: A. MECANICĂ, \nB. ELEMENTE DE TERMODINAMICĂ, C. PRODUCEREA ȘI UTILIZAREA CURENTULUI CONTINUU, D. OPTICĂ \n• Se acordă zece puncte din oficiu. \n• Timpul de lucru efectiv este de trei ore.",
+        "subpuncte": [
+          {
+            "id": "a",
+            "cerinta": "Calculați valoarea vitezei corpului A la 0,5 s t = din momentul în care sistemul este lăsat liber."
+          },
+          {
+            "id": "b",
+            "cerinta": "Reprezentați toate forțele care se exercită asupra fiecăruia dintre cele două corpuri."
+          },
+          {
+            "id": "c",
+            "cerinta": "Determinați valoarea raportului / A B m m dintre masa corpului A și masa corpului B."
+          },
+          {
+            "id": "d",
+            "cerinta": "Determinați valoarea forței de apăsare din axul scripetelui, dacă 300 g A m = ."
+          },
+          {
+            "id": "a",
+            "cerinta": "lucrul mecanic efectuat de greutate în timpul urcării corpului, pe planul înclinat, pe distanța 20 cm d = ;"
+          },
+          {
+            "id": "b",
+            "cerinta": "energia cinetică a corpului în momentul în care acțiunea forței de tracțiune încetează;"
+          },
+          {
+            "id": "c",
+            "cerinta": "înălțimea 1 h la care se află corpul față de baza planului înclinat în momentul în care, în timpul coborârii, energia cinetică a corpului este egală cu energia potențială gravitațională din acel moment;"
+          },
+          {
+            "id": "d",
+            "cerinta": "valoarea impulsului corpului în momentul în care revine la baza planului înclinat. A B F  m"
+          },
+          {
+            "id": "B",
+            "cerinta": "Elemente de termodinamică Examenul național de bacalaureat 2021 Proba E. d) FIZICĂ Filiera teoretică – profilul real, Filiera vocațională – profilul militar • Sunt obligatorii toate subiectele din două arii tematice dintre cele patru prevăzute de programă, adică: A. MECANICĂ,"
+          },
+          {
+            "id": "B",
+            "cerinta": "ELEMENTE DE TERMODINAMICĂ, C. PRODUCEREA ȘI UTILIZAREA CURENTULUI CONTINUU, D. OPTICĂ • Se acordă zece puncte din oficiu. • Timpul de lucru efectiv este de trei ore."
+          }
+        ],
+        "imagini": [
+          "output\\images\\2021_E_d_fizica_teoretic_vocational_2021_var_01_LRO_A_II_page0.png"
+        ],
+        "an": "2021",
+        "fisier": "E_d_fizica_teoretic_vocational_2021_var_01_LRO.pdf",
+        "tip_document": "subiect"
+      },
+      {
+        "arie": "MECANICĂ",
+        "subiect": "III",
+        "variant": "1",
+        "continut": "III. Rezolvați următoarea problemă: \n(15 puncte) \nUn corp având masa \n1,0 kg\nm =\n se află inițial în repaus la baza unui plan înclinat cu unghiul \n30\n=\n față de \norizontală. Frecarea dintre corp și planul înclinat este neglijabilă. Asupra corpului acționează o forță de \ntracțiune constantă \n40 N\nF =\n, orientată în lungul planului înclinat, ca în figura alăturată. După ce corpul \nparcurge distanța \n20 cm\nd =\n, acțiunea forței F  încetează, iar corpul \ncontinuă să urce pe plan. Planul înclinat este suficient de lung, astfel \nîncât corpul nu părăsește suprafața planului înclinat. Energia \npotențială gravitațională se consideră nulă la baza planului înclinat. \nDeterminați: \na. lucrul mecanic efectuat de greutate în timpul urcării corpului, pe \nplanul înclinat, pe distanța \n20 cm\nd =\n; \nb. energia cinetică a corpului în momentul în care acțiunea forței de \ntracțiune încetează; \nc. înălțimea \n1\nh  la care se află corpul față de baza planului înclinat în momentul în care, în timpul coborârii, \nenergia cinetică a corpului este egală cu energia potențială gravitațională din acel moment; \nd. valoarea impulsului corpului în momentul în care revine la baza planului înclinat. \nA \nB \nF   \n \nm \n\nMinisterul Educației \nCentrul Național de Politici și Evaluare în Educație \nProbă scrisă la Fizică \n2 \nB. Elemente de termodinamică \nExamenul național de bacalaureat 2021 \nProba E. d) \nFIZICĂ \nFiliera teoretică – profilul real, Filiera vocațională – profilul militar \n• Sunt obligatorii toate subiectele din două arii tematice dintre cele patru prevăzute de programă, adică: A. MECANICĂ, \nB. ELEMENTE DE TERMODINAMICĂ, C. PRODUCEREA ȘI UTILIZAREA CURENTULUI CONTINUU, D. OPTICĂ \n• Se acordă zece puncte din oficiu. \n• Timpul de lucru efectiv este de trei ore.",
+        "subpuncte": [
+          {
+            "id": "a",
+            "cerinta": "lucrul mecanic efectuat de greutate în timpul urcării corpului, pe planul înclinat, pe distanța 20 cm d = ;"
+          },
+          {
+            "id": "b",
+            "cerinta": "energia cinetică a corpului în momentul în care acțiunea forței de tracțiune încetează;"
+          },
+          {
+            "id": "c",
+            "cerinta": "înălțimea 1 h la care se află corpul față de baza planului înclinat în momentul în care, în timpul coborârii, energia cinetică a corpului este egală cu energia potențială gravitațională din acel moment;"
+          },
+          {
+            "id": "d",
+            "cerinta": "valoarea impulsului corpului în momentul în care revine la baza planului înclinat. A B F  m"
+          },
+          {
+            "id": "B",
+            "cerinta": "Elemente de termodinamică Examenul național de bacalaureat 2021 Proba E. d) FIZICĂ Filiera teoretică – profilul real, Filiera vocațională – profilul militar • Sunt obligatorii toate subiectele din două arii tematice dintre cele patru prevăzute de programă, adică: A. MECANICĂ,"
+          },
+          {
+            "id": "B",
+            "cerinta": "ELEMENTE DE TERMODINAMICĂ, C. PRODUCEREA ȘI UTILIZAREA CURENTULUI CONTINUU, D. OPTICĂ • Se acordă zece puncte din oficiu. • Timpul de lucru efectiv este de trei ore."
+          }
+        ],
+        "imagini": [
+          "output\\images\\2021_E_d_fizica_teoretic_vocational_2021_var_01_LRO_A_III_page0.png"
+        ],
+        "an": "2021",
+        "fisier": "E_d_fizica_teoretic_vocational_2021_var_01_LRO.pdf",
+        "tip_document": "subiect"
+      },
+      {
+        "arie": "ELEMENTE DE TERMODINAMICĂ",
+        "subiect": "II",
+        "variant": "1",
+        "continut": "II. Rezolvați următoarea problemă: \n(15 puncte) \nO masă \ng\n70\n=\nm\n de azot (\ng/mol\n28\n=\n\n) este închisă etanș într-un cilindru orizontal, cu ajutorul unui piston care \nse poate deplasa fără frecare, ca în figura alăturată. Aerul din exterior este tot timpul la \npresiunea \nPa\n105\n0 =\np\n. Inițial pistonul este în echilibru, iar temperatura azotului este \n= \n1\n7 C\nt\n.  \na. Calculați numărul de molecule de azot din cilindru. \nb. Determinați densitatea azotului din cilindru. \nc. Pistonul se blochează și, foarte lent, se introduce în compartiment azot, la temperatura \n1t . După \nintroducerea masei suplimentare de azot, gazul este încălzit până la \n=\n\n2\n27 C\nt\n, iar presiunea acestuia \ndevine \nPa\n10\n5,1\n5\n2\n\n=\np\n. Determinați masa suplimentară de azot introdusă în compartiment. \nd. Pistonul este lăsat să se deplaseze liber, iar azotul este răcit. În starea finală pistonul este în echilibru, iar \ntemperatura azotului este \n= \n1\n7 C\nt\n. Determinați raportul dintre volumul azotului în starea finală și volumul \ninițial al azotului înainte de intoducerea cantității suplimentare de gaz.  \nIII. Rezolvați următoarea problemă:   \n \n \n \n \n \n \n(15 puncte) \nO \ncantitate \n1 mol\n=\n \nde \noxigen \n(\n)\n32 g/mol, C\n2,5\nV\nR\n=\n=\n \nefectuează \ntransformarea ciclică ABCA reprezentată în coordonate p V\n−\n în figura alăturată. \nÎn starea A gazul se află la presiunea \nkPa\n \n400\n=\nA\np\n și are densitatea \n3\nkg/m\n 2,3\n=\nA\n\n, iar în starea B \nA\nB\np\np\n2\n=\n. Calculați: \na. valoarea lucrului mecanic total schimbat de gaz cu mediul exterior; \nb. valoarea căldurii cedate de gaz mediului exterior; \nc. randamentului motorului care ar funcționa după acest ciclu termodinamic; \nd. randamentul ciclului Carnot care ar funcționa între temperaturile extreme atinse \nde gaz în decursul transformării ABCA. \n\nMinisterul Educației \nCentrul Național de Politici și Evaluare în Educație \nProbă scrisă la Fizică \n3 \nC. Producerea și utilizarea curentului continuu \nExamenul național de bacalaureat 2021 \nProba E. d) \nFIZICĂ \nFiliera teoretică – profilul real, Filiera vocațională – profilul militar \n• Sunt obligatorii toate subiectele din două arii tematice dintre cele patru prevăzute de programă, adică: A. MECANICĂ, \nB. ELEMENTE DE TERMODINAMICĂ, C. PRODUCEREA ȘI UTILIZAREA CURENTULUI CONTINUU, D. OPTICĂ \n• Se acordă zece puncte din oficiu. \n• Timpul de lucru efectiv este de trei ore.",
+        "subpuncte": [
+          {
+            "id": "a",
+            "cerinta": "Calculați numărul de molecule de azot din cilindru."
+          },
+          {
+            "id": "b",
+            "cerinta": "Determinați densitatea azotului din cilindru."
+          },
+          {
+            "id": "c",
+            "cerinta": "Pistonul se blochează și, foarte lent, se introduce în compartiment azot, la temperatura 1t . După introducerea masei suplimentare de azot, gazul este încălzit până la =  2 27 C t , iar presiunea acestuia devine Pa 10 5,1 5 2  = p . Determinați masa suplimentară de azot introdusă în compartiment."
+          },
+          {
+            "id": "d",
+            "cerinta": "Pistonul este lăsat să se deplaseze liber, iar azotul este răcit. În starea finală pistonul este în echilibru, iar temperatura azotului este =  1 7 C t . Determinați raportul dintre volumul azotului în starea finală și volumul inițial al azotului înainte de intoducerea cantității suplimentare de gaz."
+          },
+          {
+            "id": "a",
+            "cerinta": "valoarea lucrului mecanic total schimbat de gaz cu mediul exterior;"
+          },
+          {
+            "id": "b",
+            "cerinta": "valoarea căldurii cedate de gaz mediului exterior;"
+          },
+          {
+            "id": "c",
+            "cerinta": "randamentului motorului care ar funcționa după acest ciclu termodinamic;"
+          },
+          {
+            "id": "d",
+            "cerinta": "randamentul ciclului Carnot care ar funcționa între temperaturile extreme atinse de gaz în decursul transformării ABCA."
+          },
+          {
+            "id": "C",
+            "cerinta": "Producerea și utilizarea curentului continuu Examenul național de bacalaureat 2021 Proba E. d) FIZICĂ Filiera teoretică – profilul real, Filiera vocațională – profilul militar • Sunt obligatorii toate subiectele din două arii tematice dintre cele patru prevăzute de programă, adică: A. MECANICĂ,"
+          },
+          {
+            "id": "B",
+            "cerinta": "ELEMENTE DE TERMODINAMICĂ, C. PRODUCEREA ȘI UTILIZAREA CURENTULUI CONTINUU, D. OPTICĂ • Se acordă zece puncte din oficiu. • Timpul de lucru efectiv este de trei ore."
+          }
+        ],
+        "imagini": [
+          "output\\images\\2021_E_d_fizica_teoretic_vocational_2021_var_01_LRO_B_II_page1.png"
+        ],
+        "an": "2021",
+        "fisier": "E_d_fizica_teoretic_vocational_2021_var_01_LRO.pdf",
+        "tip_document": "subiect"
+      },
+      {
+        "arie": "ELEMENTE DE TERMODINAMICĂ",
+        "subiect": "III",
+        "variant": "1",
+        "continut": "III. Rezolvați următoarea problemă:   \n \n \n \n \n \n \n(15 puncte) \nO \ncantitate \n1 mol\n=\n \nde \noxigen \n(\n)\n32 g/mol, C\n2,5\nV\nR\n=\n=\n \nefectuează \ntransformarea ciclică ABCA reprezentată în coordonate p V\n−\n în figura alăturată. \nÎn starea A gazul se află la presiunea \nkPa\n \n400\n=\nA\np\n și are densitatea \n3\nkg/m\n 2,3\n=\nA\n\n, iar în starea B \nA\nB\np\np\n2\n=\n. Calculați: \na. valoarea lucrului mecanic total schimbat de gaz cu mediul exterior; \nb. valoarea căldurii cedate de gaz mediului exterior; \nc. randamentului motorului care ar funcționa după acest ciclu termodinamic; \nd. randamentul ciclului Carnot care ar funcționa între temperaturile extreme atinse \nde gaz în decursul transformării ABCA. \n\nMinisterul Educației \nCentrul Național de Politici și Evaluare în Educație \nProbă scrisă la Fizică \n3 \nC. Producerea și utilizarea curentului continuu \nExamenul național de bacalaureat 2021 \nProba E. d) \nFIZICĂ \nFiliera teoretică – profilul real, Filiera vocațională – profilul militar \n• Sunt obligatorii toate subiectele din două arii tematice dintre cele patru prevăzute de programă, adică: A. MECANICĂ, \nB. ELEMENTE DE TERMODINAMICĂ, C. PRODUCEREA ȘI UTILIZAREA CURENTULUI CONTINUU, D. OPTICĂ \n• Se acordă zece puncte din oficiu. \n• Timpul de lucru efectiv este de trei ore.",
+        "subpuncte": [
+          {
+            "id": "a",
+            "cerinta": "valoarea lucrului mecanic total schimbat de gaz cu mediul exterior;"
+          },
+          {
+            "id": "b",
+            "cerinta": "valoarea căldurii cedate de gaz mediului exterior;"
+          },
+          {
+            "id": "c",
+            "cerinta": "randamentului motorului care ar funcționa după acest ciclu termodinamic;"
+          },
+          {
+            "id": "d",
+            "cerinta": "randamentul ciclului Carnot care ar funcționa între temperaturile extreme atinse de gaz în decursul transformării ABCA."
+          },
+          {
+            "id": "C",
+            "cerinta": "Producerea și utilizarea curentului continuu Examenul național de bacalaureat 2021 Proba E. d) FIZICĂ Filiera teoretică – profilul real, Filiera vocațională – profilul militar • Sunt obligatorii toate subiectele din două arii tematice dintre cele patru prevăzute de programă, adică: A. MECANICĂ,"
+          },
+          {
+            "id": "B",
+            "cerinta": "ELEMENTE DE TERMODINAMICĂ, C. PRODUCEREA ȘI UTILIZAREA CURENTULUI CONTINUU, D. OPTICĂ • Se acordă zece puncte din oficiu. • Timpul de lucru efectiv este de trei ore."
+          }
+        ],
+        "imagini": [
+          "output\\images\\2021_E_d_fizica_teoretic_vocational_2021_var_01_LRO_B_III_page1.png"
+        ],
+        "an": "2021",
+        "fisier": "E_d_fizica_teoretic_vocational_2021_var_01_LRO.pdf",
+        "tip_document": "subiect"
+      },
+      {
+        "arie": "PRODUCEREA ȘI UTILIZAREA CURENTULUI CONTINUU",
+        "subiect": "II",
+        "variant": "1",
+        "continut": "II. Rezolvați următoarea problemă: \n \n \n \n \n \n \n \n (15 puncte) \nSe consideră circuitul electric a cărui schemă este reprezentată în figura alăturată. Se cunosc: \n=\n1\n16V\nE\n, \n\n= 2\n1r\n, \n\n= 1\n2r\n, \n1\n4\nR =\n, \n\n= 9\n2\nR\n, \n3\n7,2\nR =\n. Rezistența electrică \na ampermetrului este \n\n= 1\n1\nA\nR\n. Valoarea intensității curentului ce străbate \nsursa \n1\nE  este 1\n0,5A\nI =\n, având sensul indicat în figură. \na. Calculați valoarea tensiunii de la bornele rezistorului \n3\nR .  \nb. Determinați valoarea \n1\nAI\n a intensității curentului indicate de ampermetru. \nc. Calculați valoarea tensiunii electromotoare \n2\nE . \nd. Rezistorul \n2\nR  este confecționat dintr-un fir metalic având lungimea \n75 m\nL =\n și secțiunea transversală \n2\n0,75 mm\nS =\n. Determinați valoarea rezistivității electrice a materialului din care este confecționat rezistorul \n2\nR .  \n \nIII. Rezolvați următoarea problemă:   \n(15 puncte) \nDouă consumatoare, având rezistențele electrice \n\n= 18\n1\nR\n, respectiv \n\n= 12\n2\nR\n, sunt legate în paralel. \nGruparea astfel formată este conectată la bornele unui generator cu tensiunea electromotoare \nV\n40\n=\nE\n și \nrezistență interioară diferită de zero. Puterea electrică dezvoltată de consumatorul de rezistență electrică \n1\nR  \neste \nW\n72\n1 =\nP\n. Determinați: \na. energia electrică consumată de consumatorul de rezistență electrică \n1\nR  în \n5\n=\nt\nore de funcționare; \nb. intensitatea curentului electric care străbate generatorul; \nc. randamentul circuitului electric; \nd. valoarea rezistenței interioare a generatorului. \n\nMinisterul Educației \nCentrul Național de Politici și Evaluare în Educație \nProbă scrisă la Fizică \n4 \nD. Optică \nExamenul național de bacalaureat 2021 \nProba E. d) \nFIZICĂ \nFiliera teoretică – profilul real, Filiera vocațională – profilul militar \n• Sunt obligatorii toate subiectele din două arii tematice dintre cele patru prevăzute de programă, adică: A. MECANICĂ, \nB. ELEMENTE DE TERMODINAMICĂ, C. PRODUCEREA ȘI UTILIZAREA CURENTULUI CONTINUU, D. OPTICĂ \n• Se acordă zece puncte din oficiu. \n• Timpul de lucru efectiv este de trei ore.",
+        "subpuncte": [
+          {
+            "id": "a",
+            "cerinta": "Calculați valoarea tensiunii de la bornele rezistorului 3 R ."
+          },
+          {
+            "id": "b",
+            "cerinta": "Determinați valoarea 1 AI a intensității curentului indicate de ampermetru."
+          },
+          {
+            "id": "c",
+            "cerinta": "Calculați valoarea tensiunii electromotoare 2 E ."
+          },
+          {
+            "id": "d",
+            "cerinta": "Rezistorul 2 R este confecționat dintr-un fir metalic având lungimea 75 m L = și secțiunea transversală 2 0,75 mm S = . Determinați valoarea rezistivității electrice a materialului din care este confecționat rezistorul 2 R ."
+          },
+          {
+            "id": "a",
+            "cerinta": "energia electrică consumată de consumatorul de rezistență electrică 1 R în 5 = t ore de funcționare;"
+          },
+          {
+            "id": "b",
+            "cerinta": "intensitatea curentului electric care străbate generatorul;"
+          },
+          {
+            "id": "c",
+            "cerinta": "randamentul circuitului electric;"
+          },
+          {
+            "id": "d",
+            "cerinta": "valoarea rezistenței interioare a generatorului."
+          },
+          {
+            "id": "D",
+            "cerinta": "Optică Examenul național de bacalaureat 2021 Proba E. d) FIZICĂ Filiera teoretică – profilul real, Filiera vocațională – profilul militar • Sunt obligatorii toate subiectele din două arii tematice dintre cele patru prevăzute de programă, adică: A. MECANICĂ,"
+          },
+          {
+            "id": "B",
+            "cerinta": "ELEMENTE DE TERMODINAMICĂ, C. PRODUCEREA ȘI UTILIZAREA CURENTULUI CONTINUU, D. OPTICĂ • Se acordă zece puncte din oficiu. • Timpul de lucru efectiv este de trei ore."
+          }
+        ],
+        "imagini": [
+          "output\\images\\2021_E_d_fizica_teoretic_vocational_2021_var_01_LRO_C_II_page2.png"
+        ],
+        "an": "2021",
+        "fisier": "E_d_fizica_teoretic_vocational_2021_var_01_LRO.pdf",
+        "tip_document": "subiect"
+      },
+      {
+        "arie": "PRODUCEREA ȘI UTILIZAREA CURENTULUI CONTINUU",
+        "subiect": "III",
+        "variant": "1",
+        "continut": "III. Rezolvați următoarea problemă:   \n(15 puncte) \nDouă consumatoare, având rezistențele electrice \n\n= 18\n1\nR\n, respectiv \n\n= 12\n2\nR\n, sunt legate în paralel. \nGruparea astfel formată este conectată la bornele unui generator cu tensiunea electromotoare \nV\n40\n=\nE\n și \nrezistență interioară diferită de zero. Puterea electrică dezvoltată de consumatorul de rezistență electrică \n1\nR  \neste \nW\n72\n1 =\nP\n. Determinați: \na. energia electrică consumată de consumatorul de rezistență electrică \n1\nR  în \n5\n=\nt\nore de funcționare; \nb. intensitatea curentului electric care străbate generatorul; \nc. randamentul circuitului electric; \nd. valoarea rezistenței interioare a generatorului. \n\nMinisterul Educației \nCentrul Național de Politici și Evaluare în Educație \nProbă scrisă la Fizică \n4 \nD. Optică \nExamenul național de bacalaureat 2021 \nProba E. d) \nFIZICĂ \nFiliera teoretică – profilul real, Filiera vocațională – profilul militar \n• Sunt obligatorii toate subiectele din două arii tematice dintre cele patru prevăzute de programă, adică: A. MECANICĂ, \nB. ELEMENTE DE TERMODINAMICĂ, C. PRODUCEREA ȘI UTILIZAREA CURENTULUI CONTINUU, D. OPTICĂ \n• Se acordă zece puncte din oficiu. \n• Timpul de lucru efectiv este de trei ore.",
+        "subpuncte": [
+          {
+            "id": "a",
+            "cerinta": "energia electrică consumată de consumatorul de rezistență electrică 1 R în 5 = t ore de funcționare;"
+          },
+          {
+            "id": "b",
+            "cerinta": "intensitatea curentului electric care străbate generatorul;"
+          },
+          {
+            "id": "c",
+            "cerinta": "randamentul circuitului electric;"
+          },
+          {
+            "id": "d",
+            "cerinta": "valoarea rezistenței interioare a generatorului."
+          },
+          {
+            "id": "D",
+            "cerinta": "Optică Examenul național de bacalaureat 2021 Proba E. d) FIZICĂ Filiera teoretică – profilul real, Filiera vocațională – profilul militar • Sunt obligatorii toate subiectele din două arii tematice dintre cele patru prevăzute de programă, adică: A. MECANICĂ,"
+          },
+          {
+            "id": "B",
+            "cerinta": "ELEMENTE DE TERMODINAMICĂ, C. PRODUCEREA ȘI UTILIZAREA CURENTULUI CONTINUU, D. OPTICĂ • Se acordă zece puncte din oficiu. • Timpul de lucru efectiv este de trei ore."
+          }
+        ],
+        "imagini": [
+          "output\\images\\2021_E_d_fizica_teoretic_vocational_2021_var_01_LRO_C_III_page2.png"
+        ],
+        "an": "2021",
+        "fisier": "E_d_fizica_teoretic_vocational_2021_var_01_LRO.pdf",
+        "tip_document": "subiect"
+      },
+      {
+        "arie": "OPTICĂ",
+        "subiect": "II",
+        "variant": "1",
+        "continut": "II. Rezolvați următoarea problemă: \n(15 puncte) \nO lentilă convergentă subțire, având distanța focală 1\n20 cm\nf =\n, formează pe un ecran imaginea unui obiect \nliniar așezat perpendicular pe axa optică principală. Imaginea este de patru ori mai mare decât obiectul. \na. Obiectul are înălțimea \n1\n1 cm\ny =\n. Calculați înălțimea imaginii. \nb. Calculați distanța dintre lentilă și ecran. \nc. Realizați un desen în care să evidențiați construcția grafică a imaginii prin lentilă, pentru obiectul \nconsiderat, în situația descrisă de problemă. \nd. Folosind lentila cu distanța focală 1f  și o a doua lentilă subțire cu distanța focală 2\n10 cm\nf =\n, se formează un \nsistem optic centrat. Se observă că orice rază de lumină care intră în sistem paralel cu axa optică principală, \niese din sistemul optic tot paralel cu axa optică principală. Calculați distanța dintre cele două lentile. \nIII. Rezolvați următoarea problemă: \n(15 puncte) \nÎntr-un dispozitiv Young este utilizată o sursă de lumină care emite radiație cu spectru continuu, plasată pe \naxa de simetrie a dispozitivului. Lungimile de undă extreme ale spectrului emis sunt egale cu 400nm, \nrespectiv 700nm . Interfranja figurii de interferență formate pe ecranul dispozitivului de radiația cu lungimea \nde undă \n400nm\nv\n=\n este \n0,8mm\nvi\n=\n. \na. Calculați interfranja figurii de interferență formate pe ecranul dispozitivului de radiația cu lungimea de undă \n700nm\nr=\n. \nb. Determinați distanța care separă maximele de ordinul 3  ale radiațiilor cu lungimile de undă \n400nm\nv\n=\n \nși \n700nm\nr=\n, situate de aceeași parte a maximului central. \nc. Stabiliți distanța minimă nenulă, față de franja centrală, la care se suprapun maximele radiațiilor cu \nlungimile de undă \n400nm\nv\n=\n și \n700nm\nr=\n. \nd. Determinați lungimea de undă a radiației care formează un maxim de interferență la distanța de 2mm  \nfață de franja centrală.",
+        "subpuncte": [
+          {
+            "id": "a",
+            "cerinta": "Obiectul are înălțimea 1 1 cm y = . Calculați înălțimea imaginii."
+          },
+          {
+            "id": "b",
+            "cerinta": "Calculați distanța dintre lentilă și ecran."
+          },
+          {
+            "id": "c",
+            "cerinta": "Realizați un desen în care să evidențiați construcția grafică a imaginii prin lentilă, pentru obiectul considerat, în situația descrisă de problemă."
+          },
+          {
+            "id": "d",
+            "cerinta": "Folosind lentila cu distanța focală 1f și o a doua lentilă subțire cu distanța focală 2 10 cm f = , se formează un sistem optic centrat. Se observă că orice rază de lumină care intră în sistem paralel cu axa optică principală, iese din sistemul optic tot paralel cu axa optică principală. Calculați distanța dintre cele două lentile."
+          },
+          {
+            "id": "a",
+            "cerinta": "Calculați interfranja figurii de interferență formate pe ecranul dispozitivului de radiația cu lungimea de undă 700nm r= ."
+          },
+          {
+            "id": "b",
+            "cerinta": "Determinați distanța care separă maximele de ordinul 3 ale radiațiilor cu lungimile de undă 400nm v = și 700nm r= , situate de aceeași parte a maximului central."
+          },
+          {
+            "id": "c",
+            "cerinta": "Stabiliți distanța minimă nenulă, față de franja centrală, la care se suprapun maximele radiațiilor cu lungimile de undă 400nm v = și 700nm r= ."
+          },
+          {
+            "id": "d",
+            "cerinta": "Determinați lungimea de undă a radiației care formează un maxim de interferență la distanța de 2mm față de franja centrală."
+          }
+        ],
+        "imagini": [
+          "output\\images\\2021_E_d_fizica_teoretic_vocational_2021_var_01_LRO_D_II_page3.png"
+        ],
+        "an": "2021",
+        "fisier": "E_d_fizica_teoretic_vocational_2021_var_01_LRO.pdf",
+        "tip_document": "subiect"
+      },
+      {
+        "arie": "OPTICĂ",
+        "subiect": "III",
+        "variant": "1",
+        "continut": "III. Rezolvați următoarea problemă: \n(15 puncte) \nÎntr-un dispozitiv Young este utilizată o sursă de lumină care emite radiație cu spectru continuu, plasată pe \naxa de simetrie a dispozitivului. Lungimile de undă extreme ale spectrului emis sunt egale cu 400nm, \nrespectiv 700nm . Interfranja figurii de interferență formate pe ecranul dispozitivului de radiația cu lungimea \nde undă \n400nm\nv\n=\n este \n0,8mm\nvi\n=\n. \na. Calculați interfranja figurii de interferență formate pe ecranul dispozitivului de radiația cu lungimea de undă \n700nm\nr=\n. \nb. Determinați distanța care separă maximele de ordinul 3  ale radiațiilor cu lungimile de undă \n400nm\nv\n=\n \nși \n700nm\nr=\n, situate de aceeași parte a maximului central. \nc. Stabiliți distanța minimă nenulă, față de franja centrală, la care se suprapun maximele radiațiilor cu \nlungimile de undă \n400nm\nv\n=\n și \n700nm\nr=\n. \nd. Determinați lungimea de undă a radiației care formează un maxim de interferență la distanța de 2mm  \nfață de franja centrală.",
+        "subpuncte": [
+          {
+            "id": "a",
+            "cerinta": "Calculați interfranja figurii de interferență formate pe ecranul dispozitivului de radiația cu lungimea de undă 700nm r= ."
+          },
+          {
+            "id": "b",
+            "cerinta": "Determinați distanța care separă maximele de ordinul 3 ale radiațiilor cu lungimile de undă 400nm v = și 700nm r= , situate de aceeași parte a maximului central."
+          },
+          {
+            "id": "c",
+            "cerinta": "Stabiliți distanța minimă nenulă, față de franja centrală, la care se suprapun maximele radiațiilor cu lungimile de undă 400nm v = și 700nm r= ."
+          },
+          {
+            "id": "d",
+            "cerinta": "Determinați lungimea de undă a radiației care formează un maxim de interferență la distanța de 2mm față de franja centrală."
+          }
+        ],
+        "imagini": [
+          "output\\images\\2021_E_d_fizica_teoretic_vocational_2021_var_01_LRO_D_III_page3.png"
+        ],
+        "an": "2021",
+        "fisier": "E_d_fizica_teoretic_vocational_2021_var_01_LRO.pdf",
+        "tip_document": "subiect"
+      },
+      {
+        "arie": "MECANICĂ",
+        "subiect": "II",
+        "variant": "4",
+        "continut": "II. Rezolvați următoarea problemă: \n(15 puncte) \nSistemul mecanic din figura alăturată este alcătuit din două corpuri A și B, legate prin intermediul unui fir \ninextensibil și de masă neglijabilă. Firul este trecut peste un scripete fără frecări și lipsit de inerție, situat în \nvârful unui plan înclinat. Coeficientul de frecare la alunecare dintre corpul B și suprafața planului înclinat este \n0,2\nµ =\n, iar unghiul format de planul înclinat cu orizontala este \n(\n)\n53\nsin\n0,8\nα\nα\n≅\n°\n=\n. La momentul inițial \ncorpurile se află în repaus. Se constată că, după ce sistemul \neste lăsat liber, accelerația corpului A este orientată în sus și \nare valoarea \n2\n1,2 m/s\na =\n. În timpul mișcării, corpul A nu atinge \nscripetele, iar corpul B nu ajunge la baza planului înclinat. \na. Reprezentați toate forțele care se exercită asupra corpului B. \nb. Determinați valoarea tensiunii din fir, dacă \n1,0 kg\nB\nm\n=\n. \nc. Determinați valoarea raportului \n/\nB\nA\nm\nm  dintre masa \ncorpului B și masa corpului A. \nd. Calculați distanța parcursă de corpul B în \n0,5 s\nt\n∆=\n din momentul în care sistemul este lăsat liber. \nIII. Rezolvați următoarea problemă: \n(15 puncte) \nUn corp având masa \n2 kg\nm =\n cade, din repaus, de la înălțimea \n50 m\nH =\n față de sol. După ce corpul \nparcurge în cădere liberă distanța \n45 m\nd =\n, pe ultimii 5 m , asupra corpului acționează o forță constantă \nF , orientată vertical în sus, sub acțiunea căreia corpul se oprește în momentul atingerii solului. Pe toată \ndurata mișcării, interacțiunea cu aerul se consideră neglijabilă. Energia potențială gravitațională se consideră \nnulă la nivelul solului. Determinați: \na. energia potențială gravitațională în momentul în care corpul se află la înălțimea \n50 m\nH =\n; \nb. lucrul mecanic efectuat de greutatea corpului în timpul căderii libere a acestuia pe distanța \n45 m\nd =\n; \nc. valoarea impulsului corpului în momentul în care începe să acționeze forța constantă F ; \nd. valoarea forței constante F . \nA\nB\nα \n\nMinisterul Educației \nCentrul Național de Politici și Evaluare în Educație \nProbă scrisă la Fizică \n2 \nB. Elemente de termodinamică\n \n \nExamenul național de bacalaureat 2021 \nProba E. d) \nFIZICĂ \nFiliera teoretică – profilul real, Filiera vocațională – profilul militar \n• Sunt obligatorii toate subiectele din două arii tematice dintre cele patru prevăzute de programă, adică: A. MECANICĂ, \nB. ELEMENTE DE TERMODINAMICĂ, C. PRODUCEREA ȘI UTILIZAREA CURENTULUI CONTINUU, D. OPTICĂ \n• Se acordă zece puncte din oficiu. \n• Timpul de lucru efectiv este de trei ore.",
+        "subpuncte": [
+          {
+            "id": "a",
+            "cerinta": "Reprezentați toate forțele care se exercită asupra corpului B."
+          },
+          {
+            "id": "b",
+            "cerinta": "Determinați valoarea tensiunii din fir, dacă 1,0 kg B m = ."
+          },
+          {
+            "id": "c",
+            "cerinta": "Determinați valoarea raportului / B A m m dintre masa corpului B și masa corpului A."
+          },
+          {
+            "id": "d",
+            "cerinta": "Calculați distanța parcursă de corpul B în 0,5 s t ∆= din momentul în care sistemul este lăsat liber."
+          },
+          {
+            "id": "a",
+            "cerinta": "energia potențială gravitațională în momentul în care corpul se află la înălțimea 50 m H = ;"
+          },
+          {
+            "id": "b",
+            "cerinta": "lucrul mecanic efectuat de greutatea corpului în timpul căderii libere a acestuia pe distanța 45 m d = ;"
+          },
+          {
+            "id": "c",
+            "cerinta": "valoarea impulsului corpului în momentul în care începe să acționeze forța constantă F ;"
+          },
+          {
+            "id": "d",
+            "cerinta": "valoarea forței constante F . A B α"
+          },
+          {
+            "id": "B",
+            "cerinta": "Elemente de termodinamică Examenul național de bacalaureat 2021 Proba E. d) FIZICĂ Filiera teoretică – profilul real, Filiera vocațională – profilul militar • Sunt obligatorii toate subiectele din două arii tematice dintre cele patru prevăzute de programă, adică: A. MECANICĂ,"
+          },
+          {
+            "id": "B",
+            "cerinta": "ELEMENTE DE TERMODINAMICĂ, C. PRODUCEREA ȘI UTILIZAREA CURENTULUI CONTINUU, D. OPTICĂ • Se acordă zece puncte din oficiu. • Timpul de lucru efectiv este de trei ore."
+          }
+        ],
+        "imagini": [
+          "output\\images\\2021_E_d_fizica_teoretic_vocational_2021_var_04_LRO_A_II_page0.png"
+        ],
+        "an": "2021",
+        "fisier": "E_d_fizica_teoretic_vocational_2021_var_04_LRO.pdf",
+        "tip_document": "subiect"
+      },
+      {
+        "arie": "MECANICĂ",
+        "subiect": "III",
+        "variant": "4",
+        "continut": "III. Rezolvați următoarea problemă: \n(15 puncte) \nUn corp având masa \n2 kg\nm =\n cade, din repaus, de la înălțimea \n50 m\nH =\n față de sol. După ce corpul \nparcurge în cădere liberă distanța \n45 m\nd =\n, pe ultimii 5 m , asupra corpului acționează o forță constantă \nF , orientată vertical în sus, sub acțiunea căreia corpul se oprește în momentul atingerii solului. Pe toată \ndurata mișcării, interacțiunea cu aerul se consideră neglijabilă. Energia potențială gravitațională se consideră \nnulă la nivelul solului. Determinați: \na. energia potențială gravitațională în momentul în care corpul se află la înălțimea \n50 m\nH =\n; \nb. lucrul mecanic efectuat de greutatea corpului în timpul căderii libere a acestuia pe distanța \n45 m\nd =\n; \nc. valoarea impulsului corpului în momentul în care începe să acționeze forța constantă F ; \nd. valoarea forței constante F . \nA\nB\nα \n\nMinisterul Educației \nCentrul Național de Politici și Evaluare în Educație \nProbă scrisă la Fizică \n2 \nB. Elemente de termodinamică\n \n \nExamenul național de bacalaureat 2021 \nProba E. d) \nFIZICĂ \nFiliera teoretică – profilul real, Filiera vocațională – profilul militar \n• Sunt obligatorii toate subiectele din două arii tematice dintre cele patru prevăzute de programă, adică: A. MECANICĂ, \nB. ELEMENTE DE TERMODINAMICĂ, C. PRODUCEREA ȘI UTILIZAREA CURENTULUI CONTINUU, D. OPTICĂ \n• Se acordă zece puncte din oficiu. \n• Timpul de lucru efectiv este de trei ore.",
+        "subpuncte": [
+          {
+            "id": "a",
+            "cerinta": "energia potențială gravitațională în momentul în care corpul se află la înălțimea 50 m H = ;"
+          },
+          {
+            "id": "b",
+            "cerinta": "lucrul mecanic efectuat de greutatea corpului în timpul căderii libere a acestuia pe distanța 45 m d = ;"
+          },
+          {
+            "id": "c",
+            "cerinta": "valoarea impulsului corpului în momentul în care începe să acționeze forța constantă F ;"
+          },
+          {
+            "id": "d",
+            "cerinta": "valoarea forței constante F . A B α"
+          },
+          {
+            "id": "B",
+            "cerinta": "Elemente de termodinamică Examenul național de bacalaureat 2021 Proba E. d) FIZICĂ Filiera teoretică – profilul real, Filiera vocațională – profilul militar • Sunt obligatorii toate subiectele din două arii tematice dintre cele patru prevăzute de programă, adică: A. MECANICĂ,"
+          },
+          {
+            "id": "B",
+            "cerinta": "ELEMENTE DE TERMODINAMICĂ, C. PRODUCEREA ȘI UTILIZAREA CURENTULUI CONTINUU, D. OPTICĂ • Se acordă zece puncte din oficiu. • Timpul de lucru efectiv este de trei ore."
+          }
+        ],
+        "imagini": [
+          "output\\images\\2021_E_d_fizica_teoretic_vocational_2021_var_04_LRO_A_III_page0.png"
+        ],
+        "an": "2021",
+        "fisier": "E_d_fizica_teoretic_vocational_2021_var_04_LRO.pdf",
+        "tip_document": "subiect"
+      },
+      {
+        "arie": "ELEMENTE DE TERMODINAMICĂ",
+        "subiect": "II",
+        "variant": "4",
+        "continut": "II. Rezolvați următoarea problemă: \n(15 puncte) \nUn cilindru orizontal de volum \n22 L\nV =\n este împărțit în două compartimente printr-un piston subțire, \ntermoizolant, care se poate mișca fără frecare. Pistonul se află inițial în echilibru. Într-un compartiment al \ncilindrului se află o masă \n1\n11 g\nm =\n de dioxid de carbon \n2\n(\n)\nCO\n, cu masa molară \n3\n1\n44 10\nkg/mol\nµ\n−\n=\n⋅\n, iar în \ncelălalt compartiment se află o masă \n2\n16g\nm =\n oxigen \n2\n(\n)\nO\n, cu masa molară \n3\n2\n32 10\nkg/mol\nµ\n−\n=\n⋅\n. \nTemperatura inițială a celor două gaze este \n27 C\nt =\n°\n. Determinați: \na. cantitatea de oxigen din cilindru; \nb. raportul \n1\n2\nV V  al volumelor ocupate de dioxidul de carbon și de oxigen; \nc. densitatea dioxidului de carbon aflat în cilindru; \nd. temperatura până la care trebuie încălzit dioxidul de carbon, astfel încât pistonul să împartă cilindrul în două \ncompartimente de volume egale. Compartimentul care conține oxigen este menținut la temperatura inițială. \nIII. Rezolvați următoarea problemă: \n(15 puncte) \nO cantitate de gaz ideal monoatomic (\n)\n1,5\nV\nC\nR\n=\n efectuează transformarea ciclică \n1\n2\n3\n4\n1\n→\n→\n→\n→ reprezentată în coordonate p\nV\n−\n în figura alăturată. Parametrii \nde stare ai gazului în starea 1 sunt \n5\n10 Pa\np =\n și \n1 L\nV =\n. Calculați: \na. variația energiei interne a gazului între stările 1 și 3 ; \nb. valoarea căldurii primite de gaz pe parcursul transformării ciclice; \nc. randamentul unui motor termic care ar funcționa după transformarea ciclică descrisă; \nd. randamentul unui ciclu Carnot care ar funcționa între temperaturile extreme atinse \nde gaz în acest proces ciclic. \n\nMinisterul Educației \nCentrul Național de Politici și Evaluare în Educație \nProbă scrisă la Fizică \n3 \nC. Producerea și utilizarea curentului continuu \nExamenul național de bacalaureat 2021 \nProba E. d) \nFIZICĂ \nFiliera teoretică – profilul real, Filiera vocațională – profilul militar \n• Sunt obligatorii toate subiectele din două arii tematice dintre cele patru prevăzute de programă, adică: A. MECANICĂ, \nB. ELEMENTE DE TERMODINAMICĂ, C. PRODUCEREA ȘI UTILIZAREA CURENTULUI CONTINUU, D. OPTICĂ \n• Se acordă zece puncte din oficiu. \n• Timpul de lucru efectiv este de trei ore.",
+        "subpuncte": [
+          {
+            "id": "a",
+            "cerinta": "cantitatea de oxigen din cilindru;"
+          },
+          {
+            "id": "b",
+            "cerinta": "raportul 1 2 V V al volumelor ocupate de dioxidul de carbon și de oxigen;"
+          },
+          {
+            "id": "c",
+            "cerinta": "densitatea dioxidului de carbon aflat în cilindru;"
+          },
+          {
+            "id": "d",
+            "cerinta": "temperatura până la care trebuie încălzit dioxidul de carbon, astfel încât pistonul să împartă cilindrul în două compartimente de volume egale. Compartimentul care conține oxigen este menținut la temperatura inițială."
+          },
+          {
+            "id": "a",
+            "cerinta": "variația energiei interne a gazului între stările 1 și 3 ;"
+          },
+          {
+            "id": "b",
+            "cerinta": "valoarea căldurii primite de gaz pe parcursul transformării ciclice;"
+          },
+          {
+            "id": "c",
+            "cerinta": "randamentul unui motor termic care ar funcționa după transformarea ciclică descrisă;"
+          },
+          {
+            "id": "d",
+            "cerinta": "randamentul unui ciclu Carnot care ar funcționa între temperaturile extreme atinse de gaz în acest proces ciclic."
+          },
+          {
+            "id": "C",
+            "cerinta": "Producerea și utilizarea curentului continuu Examenul național de bacalaureat 2021 Proba E. d) FIZICĂ Filiera teoretică – profilul real, Filiera vocațională – profilul militar • Sunt obligatorii toate subiectele din două arii tematice dintre cele patru prevăzute de programă, adică: A. MECANICĂ,"
+          },
+          {
+            "id": "B",
+            "cerinta": "ELEMENTE DE TERMODINAMICĂ, C. PRODUCEREA ȘI UTILIZAREA CURENTULUI CONTINUU, D. OPTICĂ • Se acordă zece puncte din oficiu. • Timpul de lucru efectiv este de trei ore."
+          }
+        ],
+        "imagini": [
+          "output\\images\\2021_E_d_fizica_teoretic_vocational_2021_var_04_LRO_B_II_page1.png"
+        ],
+        "an": "2021",
+        "fisier": "E_d_fizica_teoretic_vocational_2021_var_04_LRO.pdf",
+        "tip_document": "subiect"
+      },
+      {
+        "arie": "ELEMENTE DE TERMODINAMICĂ",
+        "subiect": "III",
+        "variant": "4",
+        "continut": "III. Rezolvați următoarea problemă: \n(15 puncte) \nO cantitate de gaz ideal monoatomic (\n)\n1,5\nV\nC\nR\n=\n efectuează transformarea ciclică \n1\n2\n3\n4\n1\n→\n→\n→\n→ reprezentată în coordonate p\nV\n−\n în figura alăturată. Parametrii \nde stare ai gazului în starea 1 sunt \n5\n10 Pa\np =\n și \n1 L\nV =\n. Calculați: \na. variația energiei interne a gazului între stările 1 și 3 ; \nb. valoarea căldurii primite de gaz pe parcursul transformării ciclice; \nc. randamentul unui motor termic care ar funcționa după transformarea ciclică descrisă; \nd. randamentul unui ciclu Carnot care ar funcționa între temperaturile extreme atinse \nde gaz în acest proces ciclic. \n\nMinisterul Educației \nCentrul Național de Politici și Evaluare în Educație \nProbă scrisă la Fizică \n3 \nC. Producerea și utilizarea curentului continuu \nExamenul național de bacalaureat 2021 \nProba E. d) \nFIZICĂ \nFiliera teoretică – profilul real, Filiera vocațională – profilul militar \n• Sunt obligatorii toate subiectele din două arii tematice dintre cele patru prevăzute de programă, adică: A. MECANICĂ, \nB. ELEMENTE DE TERMODINAMICĂ, C. PRODUCEREA ȘI UTILIZAREA CURENTULUI CONTINUU, D. OPTICĂ \n• Se acordă zece puncte din oficiu. \n• Timpul de lucru efectiv este de trei ore.",
+        "subpuncte": [
+          {
+            "id": "a",
+            "cerinta": "variația energiei interne a gazului între stările 1 și 3 ;"
+          },
+          {
+            "id": "b",
+            "cerinta": "valoarea căldurii primite de gaz pe parcursul transformării ciclice;"
+          },
+          {
+            "id": "c",
+            "cerinta": "randamentul unui motor termic care ar funcționa după transformarea ciclică descrisă;"
+          },
+          {
+            "id": "d",
+            "cerinta": "randamentul unui ciclu Carnot care ar funcționa între temperaturile extreme atinse de gaz în acest proces ciclic."
+          },
+          {
+            "id": "C",
+            "cerinta": "Producerea și utilizarea curentului continuu Examenul național de bacalaureat 2021 Proba E. d) FIZICĂ Filiera teoretică – profilul real, Filiera vocațională – profilul militar • Sunt obligatorii toate subiectele din două arii tematice dintre cele patru prevăzute de programă, adică: A. MECANICĂ,"
+          },
+          {
+            "id": "B",
+            "cerinta": "ELEMENTE DE TERMODINAMICĂ, C. PRODUCEREA ȘI UTILIZAREA CURENTULUI CONTINUU, D. OPTICĂ • Se acordă zece puncte din oficiu. • Timpul de lucru efectiv este de trei ore."
+          }
+        ],
+        "imagini": [
+          "output\\images\\2021_E_d_fizica_teoretic_vocational_2021_var_04_LRO_B_III_page1.png"
+        ],
+        "an": "2021",
+        "fisier": "E_d_fizica_teoretic_vocational_2021_var_04_LRO.pdf",
+        "tip_document": "subiect"
+      },
+      {
+        "arie": "PRODUCEREA ȘI UTILIZAREA CURENTULUI CONTINUU",
+        "subiect": "II",
+        "variant": "4",
+        "continut": "II. Rezolvați următoarea problemă: \n(15 puncte) \nÎn circuitul electric a cărui schemă este prezentată în figura alăturată rezistențele electrice ale rezistoarelor au \nvalorile \n10\nR =\nΩ și \n1\n9\nR =\nΩ. Cele două generatoare au tensiunile electromotoare \nV\n18\n1 =\nE\n, \nV\n15\n2 =\nE\n și \nrezistențele interioare 1\n1\nr =\nΩ și 2r  necunoscută. Intensitatea curentului electric prin rezistorul R  este \nA\n4\n,1\n=\nR\nI\n. \na. Rezistorul \nR  \neste \nconfecționat \ndintr-un \nconductor \ncu \nrezistivitatea \n6\n3,14 10\nm\nρ\n−\n=\n⋅\nΩ⋅\n și diametrul secțiunii transversale \nmm\n6\n,0\n=\nd\n. Determinați \nlungimea conductorului. \nb. Calculați tensiunea electrică la bornele generatorului \n1\nE . \nc. Determinați rezistența interioară a generatorului \n2\nE . \nd. Se înlocuiește rezistorul R  cu un rezistor \nx\nR . Determinați rezistența electrică a \nacestui rezistor astfel încât intensitatea curentului electric prin generatorul \n2\nE  să fie nulă. \nIII. Rezolvați următoarea problemă: \n(15 puncte) \nÎn figura alăturată este reprezentată schema unui circuit electric. Bateria are parametrii \n12V\nE =\n și \n1\nr =\nΩ. \nCele trei rezistoare au rezistențele \n1\n13\nR =\nΩ, \n2\n15\nR =\nΩ, respectiv \n3\n10\nR =\nΩ. Inițial \nîntrerupătorul K  este deschis.  \na. Calculați puterea disipată de rezistorul \n1\nR . \nb. Determinați energia electrică consumată de rezistorul \n3\nR  în \n15min\nt\n∆=\n de \nfuncționare. \nc. Se închide întrerupătorul K . Calculați puterea totală dezvoltată de baterie. \nd. Determinați randamentul circuitului în condițiile în care întrerupătorul K  este închis. \n\nMinisterul Educației \nCentrul Național de Politici și Evaluare în Educație \nProbă scrisă la Fizică \n4 \nD. Optică \nExamenul național de bacalaureat 2021 \nProba E. d) \nFIZICĂ \nFiliera teoretică – profilul real, Filiera vocațională – profilul militar \n• Sunt obligatorii toate subiectele din două arii tematice dintre cele patru prevăzute de programă, adică: A. MECANICĂ, \nB. ELEMENTE DE TERMODINAMICĂ, C. PRODUCEREA ȘI UTILIZAREA CURENTULUI CONTINUU, D. OPTICĂ \n• Se acordă zece puncte din oficiu. \n• Timpul de lucru efectiv este de trei ore.",
+        "subpuncte": [
+          {
+            "id": "a",
+            "cerinta": "Rezistorul R este confecționat dintr-un conductor cu rezistivitatea 6 3,14 10 m ρ − = ⋅ Ω⋅ și diametrul secțiunii transversale mm 6 ,0 = d . Determinați lungimea conductorului."
+          },
+          {
+            "id": "b",
+            "cerinta": "Calculați tensiunea electrică la bornele generatorului 1 E ."
+          },
+          {
+            "id": "c",
+            "cerinta": "Determinați rezistența interioară a generatorului 2 E ."
+          },
+          {
+            "id": "d",
+            "cerinta": "Se înlocuiește rezistorul R cu un rezistor x R . Determinați rezistența electrică a acestui rezistor astfel încât intensitatea curentului electric prin generatorul 2 E să fie nulă."
+          },
+          {
+            "id": "a",
+            "cerinta": "Calculați puterea disipată de rezistorul 1 R ."
+          },
+          {
+            "id": "b",
+            "cerinta": "Determinați energia electrică consumată de rezistorul 3 R în 15min t ∆= de funcționare."
+          },
+          {
+            "id": "c",
+            "cerinta": "Se închide întrerupătorul K . Calculați puterea totală dezvoltată de baterie."
+          },
+          {
+            "id": "d",
+            "cerinta": "Determinați randamentul circuitului în condițiile în care întrerupătorul K este închis."
+          },
+          {
+            "id": "D",
+            "cerinta": "Optică Examenul național de bacalaureat 2021 Proba E. d) FIZICĂ Filiera teoretică – profilul real, Filiera vocațională – profilul militar • Sunt obligatorii toate subiectele din două arii tematice dintre cele patru prevăzute de programă, adică: A. MECANICĂ,"
+          },
+          {
+            "id": "B",
+            "cerinta": "ELEMENTE DE TERMODINAMICĂ, C. PRODUCEREA ȘI UTILIZAREA CURENTULUI CONTINUU, D. OPTICĂ • Se acordă zece puncte din oficiu. • Timpul de lucru efectiv este de trei ore."
+          }
+        ],
+        "imagini": [
+          "output\\images\\2021_E_d_fizica_teoretic_vocational_2021_var_04_LRO_C_II_page2.png"
+        ],
+        "an": "2021",
+        "fisier": "E_d_fizica_teoretic_vocational_2021_var_04_LRO.pdf",
+        "tip_document": "subiect"
+      },
+      {
+        "arie": "PRODUCEREA ȘI UTILIZAREA CURENTULUI CONTINUU",
+        "subiect": "III",
+        "variant": "4",
+        "continut": "III. Rezolvați următoarea problemă: \n(15 puncte) \nÎn figura alăturată este reprezentată schema unui circuit electric. Bateria are parametrii \n12V\nE =\n și \n1\nr =\nΩ. \nCele trei rezistoare au rezistențele \n1\n13\nR =\nΩ, \n2\n15\nR =\nΩ, respectiv \n3\n10\nR =\nΩ. Inițial \nîntrerupătorul K  este deschis.  \na. Calculați puterea disipată de rezistorul \n1\nR . \nb. Determinați energia electrică consumată de rezistorul \n3\nR  în \n15min\nt\n∆=\n de \nfuncționare. \nc. Se închide întrerupătorul K . Calculați puterea totală dezvoltată de baterie. \nd. Determinați randamentul circuitului în condițiile în care întrerupătorul K  este închis. \n\nMinisterul Educației \nCentrul Național de Politici și Evaluare în Educație \nProbă scrisă la Fizică \n4 \nD. Optică \nExamenul național de bacalaureat 2021 \nProba E. d) \nFIZICĂ \nFiliera teoretică – profilul real, Filiera vocațională – profilul militar \n• Sunt obligatorii toate subiectele din două arii tematice dintre cele patru prevăzute de programă, adică: A. MECANICĂ, \nB. ELEMENTE DE TERMODINAMICĂ, C. PRODUCEREA ȘI UTILIZAREA CURENTULUI CONTINUU, D. OPTICĂ \n• Se acordă zece puncte din oficiu. \n• Timpul de lucru efectiv este de trei ore.",
+        "subpuncte": [
+          {
+            "id": "a",
+            "cerinta": "Calculați puterea disipată de rezistorul 1 R ."
+          },
+          {
+            "id": "b",
+            "cerinta": "Determinați energia electrică consumată de rezistorul 3 R în 15min t ∆= de funcționare."
+          },
+          {
+            "id": "c",
+            "cerinta": "Se închide întrerupătorul K . Calculați puterea totală dezvoltată de baterie."
+          },
+          {
+            "id": "d",
+            "cerinta": "Determinați randamentul circuitului în condițiile în care întrerupătorul K este închis."
+          },
+          {
+            "id": "D",
+            "cerinta": "Optică Examenul național de bacalaureat 2021 Proba E. d) FIZICĂ Filiera teoretică – profilul real, Filiera vocațională – profilul militar • Sunt obligatorii toate subiectele din două arii tematice dintre cele patru prevăzute de programă, adică: A. MECANICĂ,"
+          },
+          {
+            "id": "B",
+            "cerinta": "ELEMENTE DE TERMODINAMICĂ, C. PRODUCEREA ȘI UTILIZAREA CURENTULUI CONTINUU, D. OPTICĂ • Se acordă zece puncte din oficiu. • Timpul de lucru efectiv este de trei ore."
+          }
+        ],
+        "imagini": [
+          "output\\images\\2021_E_d_fizica_teoretic_vocational_2021_var_04_LRO_C_III_page2.png"
+        ],
+        "an": "2021",
+        "fisier": "E_d_fizica_teoretic_vocational_2021_var_04_LRO.pdf",
+        "tip_document": "subiect"
+      },
+      {
+        "arie": "OPTICĂ",
+        "subiect": "II",
+        "variant": "4",
+        "continut": "II. Rezolvați următoarea problemă: \n(15 puncte) \nO lentilă divergentă subțire, având modulul distanței focale \n1\n40 cm\nf =\n, formează imaginea virtuală a unui \nobiect liniar așezat perpendicular pe axa optică principală. Imaginea este de patru ori mai mică decât \nobiectul. \na. Obiectul are înălțimea \n1\n2 cm\ny =\n. Calculați înălțimea imaginii. \nb. Calculați distanța dintre lentilă și imagine. \nc. Realizați un desen în care să evidențiați construcția grafică a imaginii prin lentilă, pentru obiectul \nconsiderat, în situația descrisă de problemă. \nd. Se alipește de lentila cu distanța focală \n1f  o altă lentilă subțire, convergentă, cu distanța focală \n2\n50 cm\nf =\n. Calculați distanța focală echivalentă a sistemului optic format din cele două lentile. \nIII. Rezolvați următoarea problemă: \n(15 puncte) \nUn dispozitiv Young, situat în aer, are distanța dintre fante 2\n0,75 mm\n=\nℓ\n, iar distanța dintre planul fantelor și \necran este D . Se iluminează dispozitivul cu o sursă coerentă de lumină monocromatică, situată pe axa de \nsimetrie a sistemului. Lungimea de undă a radiației emise de sursă este \n700nm\nλ =\n. Pe ecran se observă \ncă pe o lungime \n14mm\nL =\n (măsurată perpendicular pe franjele de interferență) se află \n10\nN =\n interfranje. \na. Calculați valoarea i  a interfranjei. \nb. Determinați distanța D  dintre planul fantelor și ecran. \nc. Determinați valoarea frecvenței radiației utilizate. \nd. În fața uneia dintre fante se plasează o foiță subțire, dintr-un material transparent, cu indicele de refracție \n1,5\nn =\n. Pe ecran se observă că se produce o deplasare a întregii figuri de interferență cu 2,5i . Calculați \ngrosimea e  a foiței utilizate.",
+        "subpuncte": [
+          {
+            "id": "a",
+            "cerinta": "Obiectul are înălțimea 1 2 cm y = . Calculați înălțimea imaginii."
+          },
+          {
+            "id": "b",
+            "cerinta": "Calculați distanța dintre lentilă și imagine."
+          },
+          {
+            "id": "c",
+            "cerinta": "Realizați un desen în care să evidențiați construcția grafică a imaginii prin lentilă, pentru obiectul considerat, în situația descrisă de problemă."
+          },
+          {
+            "id": "d",
+            "cerinta": "Se alipește de lentila cu distanța focală 1f o altă lentilă subțire, convergentă, cu distanța focală 2 50 cm f = . Calculați distanța focală echivalentă a sistemului optic format din cele două lentile."
+          },
+          {
+            "id": "a",
+            "cerinta": "Calculați valoarea i a interfranjei."
+          },
+          {
+            "id": "b",
+            "cerinta": "Determinați distanța D dintre planul fantelor și ecran."
+          },
+          {
+            "id": "c",
+            "cerinta": "Determinați valoarea frecvenței radiației utilizate."
+          },
+          {
+            "id": "d",
+            "cerinta": "În fața uneia dintre fante se plasează o foiță subțire, dintr-un material transparent, cu indicele de refracție 1,5 n = . Pe ecran se observă că se produce o deplasare a întregii figuri de interferență cu 2,5i . Calculați grosimea e a foiței utilizate."
+          }
+        ],
+        "imagini": [
+          "output\\images\\2021_E_d_fizica_teoretic_vocational_2021_var_04_LRO_D_II_page3.png"
+        ],
+        "an": "2021",
+        "fisier": "E_d_fizica_teoretic_vocational_2021_var_04_LRO.pdf",
+        "tip_document": "subiect"
+      },
+      {
+        "arie": "OPTICĂ",
+        "subiect": "III",
+        "variant": "4",
+        "continut": "III. Rezolvați următoarea problemă: \n(15 puncte) \nUn dispozitiv Young, situat în aer, are distanța dintre fante 2\n0,75 mm\n=\nℓ\n, iar distanța dintre planul fantelor și \necran este D . Se iluminează dispozitivul cu o sursă coerentă de lumină monocromatică, situată pe axa de \nsimetrie a sistemului. Lungimea de undă a radiației emise de sursă este \n700nm\nλ =\n. Pe ecran se observă \ncă pe o lungime \n14mm\nL =\n (măsurată perpendicular pe franjele de interferență) se află \n10\nN =\n interfranje. \na. Calculați valoarea i  a interfranjei. \nb. Determinați distanța D  dintre planul fantelor și ecran. \nc. Determinați valoarea frecvenței radiației utilizate. \nd. În fața uneia dintre fante se plasează o foiță subțire, dintr-un material transparent, cu indicele de refracție \n1,5\nn =\n. Pe ecran se observă că se produce o deplasare a întregii figuri de interferență cu 2,5i . Calculați \ngrosimea e  a foiței utilizate.",
+        "subpuncte": [
+          {
+            "id": "a",
+            "cerinta": "Calculați valoarea i a interfranjei."
+          },
+          {
+            "id": "b",
+            "cerinta": "Determinați distanța D dintre planul fantelor și ecran."
+          },
+          {
+            "id": "c",
+            "cerinta": "Determinați valoarea frecvenței radiației utilizate."
+          },
+          {
+            "id": "d",
+            "cerinta": "În fața uneia dintre fante se plasează o foiță subțire, dintr-un material transparent, cu indicele de refracție 1,5 n = . Pe ecran se observă că se produce o deplasare a întregii figuri de interferență cu 2,5i . Calculați grosimea e a foiței utilizate."
+          }
+        ],
+        "imagini": [
+          "output\\images\\2021_E_d_fizica_teoretic_vocational_2021_var_04_LRO_D_III_page3.png"
+        ],
+        "an": "2021",
+        "fisier": "E_d_fizica_teoretic_vocational_2021_var_04_LRO.pdf",
+        "tip_document": "subiect"
+      },
+      {
+        "arie": "MECANICĂ",
+        "subiect": "II",
+        "variant": "7",
+        "continut": "II. Rezolvați următoarea problemă: \n(15 puncte) \nÎn sistemul mecanic reprezentat în figura alăturată masele \ncelor două corpuri A și B sunt \nA\n6,0kg\nm =\n și \nB\n2,0kg\nm\n=\n. \nCoeficientul de frecare la alunecare dintre corpul A și planul \nînclinat este \n\n\n\n\n\n\n\n=\n6\n3\n29\n,0\nA\n\n, iar dintre corpul B și planul \norizontal este \nB\n0,35\n=\n. Unghiul format de planul înclinat cu \norizontala este \no\n30\n=\n. Planul înclinat este fixat, firul este inextensibil, cei doi scripeți au mase neglijabile, \niar frecările din scripeți sunt neglijabile. Sistemul de corpuri este lăsat liber. \na. Reprezentați toate forțele care acționează asupra corpului A. \nb. Determinați valoarea accelerației sistemului de corpuri. \nc. Calculați valoarea forței de reacțiune în axul scripetelui S2. \nd. Calculați masa unui corp care trebuie așezat pe corpul B, rămânând fixat de acesta, pentru ca sistemul de \ncorpuri să se deplaseze cu viteză constantă. \nIII. Rezolvați următoarea problemă: \n(15 puncte) \nUn corp de masă \nkg\n2\n=\nm\n este lansat cu viteza inițială \n0\n5 m/s\nv =\n, de-a lungul unei suprafețe orizontale, ca \nîn figura alăturată. Suprafața se află la înălțimea \nm\n8,0\n=\nH\n față de podea. Mișcarea pe suprafața orizontală \nare loc cu frecare, coeficientul de frecare la alunecare fiind \n0,4\n=\n. După ce corpul parcurge distanța \n2 m\nd =\n, ajunge la capătul suprafeței orizontale și cade pe podea. Se neglijează frecarea cu aerul și se \nconsideră că energia potențială gravitațională este nulă la \nnivelul podelei. Calculați: \na. energia cinetică inițială a corpului; \nb. lucrul mecanic efectuat de forța de frecare pe toată durata \nmișcării corpului de-a lungul suprafeței orizontale; \nc. valoarea vitezei corpului în momentul în care acesta ajunge \nla capătul suprafeței orizontale; \nd. valoarea impulsului corpului în momentul imediat anterior impactului cu podeaua. \n\nMinisterul Educației \nCentrul Național de Politici și Evaluare în Educație \nProbă scrisă la Fizică \n2 \nB. Elemente de termodinamică \nFiliera teoretică – profilul real, Filiera vocațională – profilul militar \nExamenul național de bacalaureat 2021 \nProba E. d) \nFIZICĂ \nFiliera teoretică – profilul real, Filiera vocațională – profilul militar \n• Sunt obligatorii toate subiectele din două arii tematice dintre cele patru prevăzute de programă, adică: A. MECANICĂ, \nB. ELEMENTE DE TERMODINAMICĂ, C. PRODUCEREA ȘI UTILIZAREA CURENTULUI CONTINUU, D. OPTICĂ \n• Se acordă zece puncte din oficiu. \n• Timpul de lucru efectiv este de trei ore.",
+        "subpuncte": [
+          {
+            "id": "a",
+            "cerinta": "Reprezentați toate forțele care acționează asupra corpului A."
+          },
+          {
+            "id": "b",
+            "cerinta": "Determinați valoarea accelerației sistemului de corpuri."
+          },
+          {
+            "id": "c",
+            "cerinta": "Calculați valoarea forței de reacțiune în axul scripetelui S2."
+          },
+          {
+            "id": "d",
+            "cerinta": "Calculați masa unui corp care trebuie așezat pe corpul B, rămânând fixat de acesta, pentru ca sistemul de corpuri să se deplaseze cu viteză constantă."
+          },
+          {
+            "id": "a",
+            "cerinta": "energia cinetică inițială a corpului;"
+          },
+          {
+            "id": "b",
+            "cerinta": "lucrul mecanic efectuat de forța de frecare pe toată durata mișcării corpului de-a lungul suprafeței orizontale;"
+          },
+          {
+            "id": "c",
+            "cerinta": "valoarea vitezei corpului în momentul în care acesta ajunge la capătul suprafeței orizontale;"
+          },
+          {
+            "id": "d",
+            "cerinta": "valoarea impulsului corpului în momentul imediat anterior impactului cu podeaua."
+          },
+          {
+            "id": "B",
+            "cerinta": "Elemente de termodinamică Filiera teoretică – profilul real, Filiera vocațională – profilul militar Examenul național de bacalaureat 2021 Proba E. d) FIZICĂ Filiera teoretică – profilul real, Filiera vocațională – profilul militar • Sunt obligatorii toate subiectele din două arii tematice dintre cele patru prevăzute de programă, adică: A. MECANICĂ,"
+          },
+          {
+            "id": "B",
+            "cerinta": "ELEMENTE DE TERMODINAMICĂ, C. PRODUCEREA ȘI UTILIZAREA CURENTULUI CONTINUU, D. OPTICĂ • Se acordă zece puncte din oficiu. • Timpul de lucru efectiv este de trei ore."
+          }
+        ],
+        "imagini": [
+          "output\\images\\2021_E_d_fizica_teoretic_vocational_2021_var_07_LRO_A_II_page0.png"
+        ],
+        "an": "2021",
+        "fisier": "E_d_fizica_teoretic_vocational_2021_var_07_LRO.pdf",
+        "tip_document": "subiect"
+      },
+      {
+        "arie": "MECANICĂ",
+        "subiect": "III",
+        "variant": "7",
+        "continut": "III. Rezolvați următoarea problemă: \n(15 puncte) \nUn corp de masă \nkg\n2\n=\nm\n este lansat cu viteza inițială \n0\n5 m/s\nv =\n, de-a lungul unei suprafețe orizontale, ca \nîn figura alăturată. Suprafața se află la înălțimea \nm\n8,0\n=\nH\n față de podea. Mișcarea pe suprafața orizontală \nare loc cu frecare, coeficientul de frecare la alunecare fiind \n0,4\n=\n. După ce corpul parcurge distanța \n2 m\nd =\n, ajunge la capătul suprafeței orizontale și cade pe podea. Se neglijează frecarea cu aerul și se \nconsideră că energia potențială gravitațională este nulă la \nnivelul podelei. Calculați: \na. energia cinetică inițială a corpului; \nb. lucrul mecanic efectuat de forța de frecare pe toată durata \nmișcării corpului de-a lungul suprafeței orizontale; \nc. valoarea vitezei corpului în momentul în care acesta ajunge \nla capătul suprafeței orizontale; \nd. valoarea impulsului corpului în momentul imediat anterior impactului cu podeaua. \n\nMinisterul Educației \nCentrul Național de Politici și Evaluare în Educație \nProbă scrisă la Fizică \n2 \nB. Elemente de termodinamică \nFiliera teoretică – profilul real, Filiera vocațională – profilul militar \nExamenul național de bacalaureat 2021 \nProba E. d) \nFIZICĂ \nFiliera teoretică – profilul real, Filiera vocațională – profilul militar \n• Sunt obligatorii toate subiectele din două arii tematice dintre cele patru prevăzute de programă, adică: A. MECANICĂ, \nB. ELEMENTE DE TERMODINAMICĂ, C. PRODUCEREA ȘI UTILIZAREA CURENTULUI CONTINUU, D. OPTICĂ \n• Se acordă zece puncte din oficiu. \n• Timpul de lucru efectiv este de trei ore.",
+        "subpuncte": [
+          {
+            "id": "a",
+            "cerinta": "energia cinetică inițială a corpului;"
+          },
+          {
+            "id": "b",
+            "cerinta": "lucrul mecanic efectuat de forța de frecare pe toată durata mișcării corpului de-a lungul suprafeței orizontale;"
+          },
+          {
+            "id": "c",
+            "cerinta": "valoarea vitezei corpului în momentul în care acesta ajunge la capătul suprafeței orizontale;"
+          },
+          {
+            "id": "d",
+            "cerinta": "valoarea impulsului corpului în momentul imediat anterior impactului cu podeaua."
+          },
+          {
+            "id": "B",
+            "cerinta": "Elemente de termodinamică Filiera teoretică – profilul real, Filiera vocațională – profilul militar Examenul național de bacalaureat 2021 Proba E. d) FIZICĂ Filiera teoretică – profilul real, Filiera vocațională – profilul militar • Sunt obligatorii toate subiectele din două arii tematice dintre cele patru prevăzute de programă, adică: A. MECANICĂ,"
+          },
+          {
+            "id": "B",
+            "cerinta": "ELEMENTE DE TERMODINAMICĂ, C. PRODUCEREA ȘI UTILIZAREA CURENTULUI CONTINUU, D. OPTICĂ • Se acordă zece puncte din oficiu. • Timpul de lucru efectiv este de trei ore."
+          }
+        ],
+        "imagini": [
+          "output\\images\\2021_E_d_fizica_teoretic_vocational_2021_var_07_LRO_A_III_page0.png"
+        ],
+        "an": "2021",
+        "fisier": "E_d_fizica_teoretic_vocational_2021_var_07_LRO.pdf",
+        "tip_document": "subiect"
+      },
+      {
+        "arie": "ELEMENTE DE TERMODINAMICĂ",
+        "subiect": "II",
+        "variant": "7",
+        "continut": "II. Rezolvați următoarea problemă: \n(15 puncte) \nUn recipient cu pereți rigizi, izolat adiabatic de exterior, este împărțit în două compartimente de volume \n1\nV  și \n2\nV  printr-un piston mobil, termoconductor, care se poate deplasa fără frecare, ca în figura alăturată. În cele \ndouă compartimente se află cantități egale din două gaze considerate ideale. În compartimentul 1 se află \nheliu (\n)\n1\n1\n4g/mol,\n1,5\nv\nC\nR\n=\n=\n, iar în compartimentul 2 se află oxigen (\n)\n2\n2\n32g/mol,\n2,5\nv\nC\nR\n=\n=\n. Inițial heliul \nse află la temperatura \n1\n127 C\nt =\n\n și presiunea \n5\n1,8 10 Pa\np =\n\n, iar oxigenul la \ntemperatura 2\n47 C\nt =\n\n și presiunea \n5\n1,8 10 Pa\np =\n\n. Determinați:  \na. raportul dintre densitatea oxigenului și cea a heliului în starea inițială;  \nb. raportul dintre volumul \n1\nV ocupat de heliu în starea finală (după ce gazele \najung la echilibru termic și pistonul este în echilibru mecanic) și volumul ocupat de heliu în starea inițială; \nc. temperatura de echilibru la care ajung gazele;  \nd. presiunea finală a oxigenului. \nIII. Rezolvați următoarea problemă: \n(15 puncte) \nO cantitate \nmol\n1\n=\n\n de gaz ideal biatomic (\n)\nR\nCv\n5,2\n=\n parcurge transformarea ciclică \n1\n3\n2\n1\n→\n→\n→\n \nreprezentată în coordonate \nV\np −\n în figura alăturată. În starea 3  temperatura gazului \nare valoarea \n3\n300 K\nT =\n, iar presiunea este \n3\n1\n0,5\np\np\n=\n\n. Calculați: \na. variația energiei interne a gazului în transformarea \n1\n3 →\n; \nb. căldura primită de gaz în transformarea \n2\n1→\n; \nc. lucrul mecanic total schimbat de gaz cu mediul exterior în decursul unui ciclu; \nd. randamentul unui ciclu Carnot care ar funcționa între temperaturile extreme atinse \nîn transformarea ciclică \n1\n3\n2\n1\n→\n→\n→\n. \n\nMinisterul Educației \nCentrul Național de Politici și Evaluare în Educație \nProbă scrisă la Fizică \n3 \nC. Producerea și utilizarea curentului continuu \nFiliera teoretică – profilul real, Filiera vocațională – profilul militar \nExamenul național de bacalaureat 2021 \nProba E. d) \nFIZICĂ \nFiliera teoretică – profilul real, Filiera vocațională – profilul militar \n• Sunt obligatorii toate subiectele din două arii tematice dintre cele patru prevăzute de programă, adică: A. MECANICĂ, \nB. ELEMENTE DE TERMODINAMICĂ, C. PRODUCEREA ȘI UTILIZAREA CURENTULUI CONTINUU, D. OPTICĂ \n• Se acordă zece puncte din oficiu. \n• Timpul de lucru efectiv este de trei ore.",
+        "subpuncte": [
+          {
+            "id": "a",
+            "cerinta": "raportul dintre densitatea oxigenului și cea a heliului în starea inițială;"
+          },
+          {
+            "id": "b",
+            "cerinta": "raportul dintre volumul 1 V ocupat de heliu în starea finală (după ce gazele ajung la echilibru termic și pistonul este în echilibru mecanic) și volumul ocupat de heliu în starea inițială;"
+          },
+          {
+            "id": "c",
+            "cerinta": "temperatura de echilibru la care ajung gazele;"
+          },
+          {
+            "id": "d",
+            "cerinta": "presiunea finală a oxigenului."
+          },
+          {
+            "id": "a",
+            "cerinta": "variația energiei interne a gazului în transformarea 1 3 → ;"
+          },
+          {
+            "id": "b",
+            "cerinta": "căldura primită de gaz în transformarea 2 1→ ;"
+          },
+          {
+            "id": "c",
+            "cerinta": "lucrul mecanic total schimbat de gaz cu mediul exterior în decursul unui ciclu;"
+          },
+          {
+            "id": "d",
+            "cerinta": "randamentul unui ciclu Carnot care ar funcționa între temperaturile extreme atinse în transformarea ciclică 1 3 2 1 → → → ."
+          },
+          {
+            "id": "C",
+            "cerinta": "Producerea și utilizarea curentului continuu Filiera teoretică – profilul real, Filiera vocațională – profilul militar Examenul național de bacalaureat 2021 Proba E. d) FIZICĂ Filiera teoretică – profilul real, Filiera vocațională – profilul militar • Sunt obligatorii toate subiectele din două arii tematice dintre cele patru prevăzute de programă, adică: A. MECANICĂ,"
+          },
+          {
+            "id": "B",
+            "cerinta": "ELEMENTE DE TERMODINAMICĂ, C. PRODUCEREA ȘI UTILIZAREA CURENTULUI CONTINUU, D. OPTICĂ • Se acordă zece puncte din oficiu. • Timpul de lucru efectiv este de trei ore."
+          }
+        ],
+        "imagini": [
+          "output\\images\\2021_E_d_fizica_teoretic_vocational_2021_var_07_LRO_B_II_page1.png"
+        ],
+        "an": "2021",
+        "fisier": "E_d_fizica_teoretic_vocational_2021_var_07_LRO.pdf",
+        "tip_document": "subiect"
+      },
+      {
+        "arie": "ELEMENTE DE TERMODINAMICĂ",
+        "subiect": "III",
+        "variant": "7",
+        "continut": "III. Rezolvați următoarea problemă: \n(15 puncte) \nO cantitate \nmol\n1\n=\n\n de gaz ideal biatomic (\n)\nR\nCv\n5,2\n=\n parcurge transformarea ciclică \n1\n3\n2\n1\n→\n→\n→\n \nreprezentată în coordonate \nV\np −\n în figura alăturată. În starea 3  temperatura gazului \nare valoarea \n3\n300 K\nT =\n, iar presiunea este \n3\n1\n0,5\np\np\n=\n\n. Calculați: \na. variația energiei interne a gazului în transformarea \n1\n3 →\n; \nb. căldura primită de gaz în transformarea \n2\n1→\n; \nc. lucrul mecanic total schimbat de gaz cu mediul exterior în decursul unui ciclu; \nd. randamentul unui ciclu Carnot care ar funcționa între temperaturile extreme atinse \nîn transformarea ciclică \n1\n3\n2\n1\n→\n→\n→\n. \n\nMinisterul Educației \nCentrul Național de Politici și Evaluare în Educație \nProbă scrisă la Fizică \n3 \nC. Producerea și utilizarea curentului continuu \nFiliera teoretică – profilul real, Filiera vocațională – profilul militar \nExamenul național de bacalaureat 2021 \nProba E. d) \nFIZICĂ \nFiliera teoretică – profilul real, Filiera vocațională – profilul militar \n• Sunt obligatorii toate subiectele din două arii tematice dintre cele patru prevăzute de programă, adică: A. MECANICĂ, \nB. ELEMENTE DE TERMODINAMICĂ, C. PRODUCEREA ȘI UTILIZAREA CURENTULUI CONTINUU, D. OPTICĂ \n• Se acordă zece puncte din oficiu. \n• Timpul de lucru efectiv este de trei ore.",
+        "subpuncte": [
+          {
+            "id": "a",
+            "cerinta": "variația energiei interne a gazului în transformarea 1 3 → ;"
+          },
+          {
+            "id": "b",
+            "cerinta": "căldura primită de gaz în transformarea 2 1→ ;"
+          },
+          {
+            "id": "c",
+            "cerinta": "lucrul mecanic total schimbat de gaz cu mediul exterior în decursul unui ciclu;"
+          },
+          {
+            "id": "d",
+            "cerinta": "randamentul unui ciclu Carnot care ar funcționa între temperaturile extreme atinse în transformarea ciclică 1 3 2 1 → → → ."
+          },
+          {
+            "id": "C",
+            "cerinta": "Producerea și utilizarea curentului continuu Filiera teoretică – profilul real, Filiera vocațională – profilul militar Examenul național de bacalaureat 2021 Proba E. d) FIZICĂ Filiera teoretică – profilul real, Filiera vocațională – profilul militar • Sunt obligatorii toate subiectele din două arii tematice dintre cele patru prevăzute de programă, adică: A. MECANICĂ,"
+          },
+          {
+            "id": "B",
+            "cerinta": "ELEMENTE DE TERMODINAMICĂ, C. PRODUCEREA ȘI UTILIZAREA CURENTULUI CONTINUU, D. OPTICĂ • Se acordă zece puncte din oficiu. • Timpul de lucru efectiv este de trei ore."
+          }
+        ],
+        "imagini": [
+          "output\\images\\2021_E_d_fizica_teoretic_vocational_2021_var_07_LRO_B_III_page1.png"
+        ],
+        "an": "2021",
+        "fisier": "E_d_fizica_teoretic_vocational_2021_var_07_LRO.pdf",
+        "tip_document": "subiect"
+      },
+      {
+        "arie": "PRODUCEREA ȘI UTILIZAREA CURENTULUI CONTINUU",
+        "subiect": "II",
+        "variant": "7",
+        "continut": "II. Rezolvați următoarea problemă: \n(15 puncte) \nÎn figura alăturată este reprezentată schema unui circuit electric. Rezistențele electrice ale celor trei \nconsumatori sunt egale, \n\n=\n=\n=\n9\n3\n2\n1\nR\nR\nR\n, tensiunea electromotoare a \nbateriei este \nV\n12\n=\nE\n, iar rezistența ei interioară este \n\n= 2\nr\n. Se neglijează \nrezistența electrică a conductoarelor de legătură. Calculați: \na. intensitatea curentului electric ce străbate bateria în situația în care \nîntrerupătorul K este deschis; \nb. intensitatea curentului electric ce străbate bateria în situația în care \nîntrerupătorul K este închis; \nc. indicația unui voltmetru ideal (\n)\n\n→\nV\nR\n conectat între punctele A și B în \nsituația în care întrerupătorul K este închis; \nd. indicația unui ampermetru ideal (\n)\n0\nA\nR \n conectat între punctele A și B în situația în care întrerupătorul \nK este închis. \nIII. Rezolvați următoarea problemă: \n(15 puncte) \nO baterie este formată prin legarea în paralel a trei generatoare electrice identice având fiecare tensiunea \nelectromotoare \nV\n10\n=\nE\n și rezistența interioară \n\n= 3\nr\n. Bateria alimentează un consumator cu rezistența \nelectrică \n\n= 9\n1\nR\n. \na. Calculați randamentul transferului de putere de la baterie la circuitul exterior. \nb. Calculați puterea electrică dezvoltată de consumator. \nc. Se deconectează consumatorul \n1\nR . Calculați valoarea rezistenței electrice \n1\n2\nR\nR \n a unui alt consumator \ncare, conectat la bornele bateriei, dezvoltă aceeași putere ca și consumatorul \n1\nR . \nd. Calculați puterea maximă ce ar putea fi debitată de baterie pe un circuit exterior având rezistența convenabil \naleasă. \n\nMinisterul Educației \nCentrul Național de Politici și Evaluare în Educație \nProbă scrisă la Fizică \n4 \nD. Optică \nFiliera teoretică – profilul real, Filiera vocațională – profilul militar \nExamenul național de bacalaureat 2021 \nProba E. d) \nFIZICĂ \nFiliera teoretică – profilul real, Filiera vocațională – profilul militar \n• Sunt obligatorii toate subiectele din două arii tematice dintre cele patru prevăzute de programă, adică: A. MECANICĂ, \nB. ELEMENTE DE TERMODINAMICĂ, C. PRODUCEREA ȘI UTILIZAREA CURENTULUI CONTINUU, D. OPTICĂ \n• Se acordă zece puncte din oficiu. \n• Timpul de lucru efectiv este de trei ore.",
+        "subpuncte": [
+          {
+            "id": "a",
+            "cerinta": "intensitatea curentului electric ce străbate bateria în situația în care întrerupătorul K este deschis;"
+          },
+          {
+            "id": "b",
+            "cerinta": "intensitatea curentului electric ce străbate bateria în situația în care întrerupătorul K este închis;"
+          },
+          {
+            "id": "c",
+            "cerinta": "indicația unui voltmetru ideal ( )  → V R conectat între punctele A și B în situația în care întrerupătorul K este închis;"
+          },
+          {
+            "id": "d",
+            "cerinta": "indicația unui ampermetru ideal ( ) 0 A R   conectat între punctele A și B în situația în care întrerupătorul K este închis."
+          },
+          {
+            "id": "a",
+            "cerinta": "Calculați randamentul transferului de putere de la baterie la circuitul exterior."
+          },
+          {
+            "id": "b",
+            "cerinta": "Calculați puterea electrică dezvoltată de consumator."
+          },
+          {
+            "id": "c",
+            "cerinta": "Se deconectează consumatorul 1 R . Calculați valoarea rezistenței electrice 1 2 R R  a unui alt consumator care, conectat la bornele bateriei, dezvoltă aceeași putere ca și consumatorul 1 R ."
+          },
+          {
+            "id": "d",
+            "cerinta": "Calculați puterea maximă ce ar putea fi debitată de baterie pe un circuit exterior având rezistența convenabil aleasă."
+          },
+          {
+            "id": "D",
+            "cerinta": "Optică Filiera teoretică – profilul real, Filiera vocațională – profilul militar Examenul național de bacalaureat 2021 Proba E. d) FIZICĂ Filiera teoretică – profilul real, Filiera vocațională – profilul militar • Sunt obligatorii toate subiectele din două arii tematice dintre cele patru prevăzute de programă, adică: A. MECANICĂ,"
+          },
+          {
+            "id": "B",
+            "cerinta": "ELEMENTE DE TERMODINAMICĂ, C. PRODUCEREA ȘI UTILIZAREA CURENTULUI CONTINUU, D. OPTICĂ • Se acordă zece puncte din oficiu. • Timpul de lucru efectiv este de trei ore."
+          }
+        ],
+        "imagini": [
+          "output\\images\\2021_E_d_fizica_teoretic_vocational_2021_var_07_LRO_C_II_page2.png"
+        ],
+        "an": "2021",
+        "fisier": "E_d_fizica_teoretic_vocational_2021_var_07_LRO.pdf",
+        "tip_document": "subiect"
+      },
+      {
+        "arie": "PRODUCEREA ȘI UTILIZAREA CURENTULUI CONTINUU",
+        "subiect": "III",
+        "variant": "7",
+        "continut": "III. Rezolvați următoarea problemă: \n(15 puncte) \nO baterie este formată prin legarea în paralel a trei generatoare electrice identice având fiecare tensiunea \nelectromotoare \nV\n10\n=\nE\n și rezistența interioară \n\n= 3\nr\n. Bateria alimentează un consumator cu rezistența \nelectrică \n\n= 9\n1\nR\n. \na. Calculați randamentul transferului de putere de la baterie la circuitul exterior. \nb. Calculați puterea electrică dezvoltată de consumator. \nc. Se deconectează consumatorul \n1\nR . Calculați valoarea rezistenței electrice \n1\n2\nR\nR \n a unui alt consumator \ncare, conectat la bornele bateriei, dezvoltă aceeași putere ca și consumatorul \n1\nR . \nd. Calculați puterea maximă ce ar putea fi debitată de baterie pe un circuit exterior având rezistența convenabil \naleasă. \n\nMinisterul Educației \nCentrul Național de Politici și Evaluare în Educație \nProbă scrisă la Fizică \n4 \nD. Optică \nFiliera teoretică – profilul real, Filiera vocațională – profilul militar \nExamenul național de bacalaureat 2021 \nProba E. d) \nFIZICĂ \nFiliera teoretică – profilul real, Filiera vocațională – profilul militar \n• Sunt obligatorii toate subiectele din două arii tematice dintre cele patru prevăzute de programă, adică: A. MECANICĂ, \nB. ELEMENTE DE TERMODINAMICĂ, C. PRODUCEREA ȘI UTILIZAREA CURENTULUI CONTINUU, D. OPTICĂ \n• Se acordă zece puncte din oficiu. \n• Timpul de lucru efectiv este de trei ore.",
+        "subpuncte": [
+          {
+            "id": "a",
+            "cerinta": "Calculați randamentul transferului de putere de la baterie la circuitul exterior."
+          },
+          {
+            "id": "b",
+            "cerinta": "Calculați puterea electrică dezvoltată de consumator."
+          },
+          {
+            "id": "c",
+            "cerinta": "Se deconectează consumatorul 1 R . Calculați valoarea rezistenței electrice 1 2 R R  a unui alt consumator care, conectat la bornele bateriei, dezvoltă aceeași putere ca și consumatorul 1 R ."
+          },
+          {
+            "id": "d",
+            "cerinta": "Calculați puterea maximă ce ar putea fi debitată de baterie pe un circuit exterior având rezistența convenabil aleasă."
+          },
+          {
+            "id": "D",
+            "cerinta": "Optică Filiera teoretică – profilul real, Filiera vocațională – profilul militar Examenul național de bacalaureat 2021 Proba E. d) FIZICĂ Filiera teoretică – profilul real, Filiera vocațională – profilul militar • Sunt obligatorii toate subiectele din două arii tematice dintre cele patru prevăzute de programă, adică: A. MECANICĂ,"
+          },
+          {
+            "id": "B",
+            "cerinta": "ELEMENTE DE TERMODINAMICĂ, C. PRODUCEREA ȘI UTILIZAREA CURENTULUI CONTINUU, D. OPTICĂ • Se acordă zece puncte din oficiu. • Timpul de lucru efectiv este de trei ore."
+          }
+        ],
+        "imagini": [
+          "output\\images\\2021_E_d_fizica_teoretic_vocational_2021_var_07_LRO_C_III_page2.png"
+        ],
+        "an": "2021",
+        "fisier": "E_d_fizica_teoretic_vocational_2021_var_07_LRO.pdf",
+        "tip_document": "subiect"
+      },
+      {
+        "arie": "OPTICĂ",
+        "subiect": "II",
+        "variant": "7",
+        "continut": "II. Rezolvați următoarea problemă: \n(15 puncte) \nPentru a proiecta imaginea unui obiect luminos real pe un ecran, se utilizează o lentilă subțire convergentă \navând distanța focală \ncm\n40\n1 =\nf\n. Obiectul se plasează perpendicular pe axa optică principală, iar imaginea \ncare se obține pe ecran are mărimea egală cu mărimea obiectului. Sistemul se află în aer. \na. Calculați convergența lentilei. \nb. Calculați distanța dintre ecran și lentilă. \nc. Realizați un desen în care să evidențiați construcția grafică a imaginii prin lentilă, pentru obiectul \nconsiderat, în situația descrisă de problemă. \nd. Se formează un sistem optic centrat prin alipirea de prima lentilă a unei a doua lentile subțiri, divergente, \navând modulul distanței focale \nm\n25\n,0\n2 =\nf\n. Calculați convergența sistemului optic format. \nIII. Rezolvați următoarea problemă: \n(15 puncte) \nUn dispozitiv Young, având distanța dintre planul fantelor și ecran \nm\n2\n=\nD\n, distanța dintre fante \n\n2 , se \npoate utiliza pentru determinarea lungimii de undă a unei radiații luminoase. Sursa de lumină se află pe axa \nde simetrie a dispozitivului. Dacă sursa emite radiații monocromatice cu lungimea de undă \n0,5μm\n=\n, \nvaloarea interfranjei obținute pe ecran este \nmm\n 1\n=\ni\n, iar dacă sursa emite radiații monocromatice cu \nlungimea de undă , pe ecran se observă că distanța dintre maximul central și maximul de ordinul 5 este \nmm\n6\n=\nd\n.  \na. Determinați distanța \n2  dintre fantele dispozitivului Young. \nb. Determinați valoarea interfranjei corespunzătoare radiației cu lungimea de undă . \nc. Determinați lungimea de undă a radiației necunoscute. \nd. Se utilizează lumină albă cu lungimea de undă cuprinsă în intervalul \n\n400nm; 750 nm . Calculați lungimile \nde undă ce corespund radiațiilor care formează minime la distanța \nmm\n2,3\n=\nx\n față de franja centrală.",
+        "subpuncte": [
+          {
+            "id": "a",
+            "cerinta": "Calculați convergența lentilei."
+          },
+          {
+            "id": "b",
+            "cerinta": "Calculați distanța dintre ecran și lentilă."
+          },
+          {
+            "id": "c",
+            "cerinta": "Realizați un desen în care să evidențiați construcția grafică a imaginii prin lentilă, pentru obiectul considerat, în situația descrisă de problemă."
+          },
+          {
+            "id": "d",
+            "cerinta": "Se formează un sistem optic centrat prin alipirea de prima lentilă a unei a doua lentile subțiri, divergente, având modulul distanței focale m 25 ,0 2 = f . Calculați convergența sistemului optic format."
+          },
+          {
+            "id": "a",
+            "cerinta": "Determinați distanța  2 dintre fantele dispozitivului Young."
+          },
+          {
+            "id": "b",
+            "cerinta": "Determinați valoarea interfranjei corespunzătoare radiației cu lungimea de undă ."
+          },
+          {
+            "id": "c",
+            "cerinta": "Determinați lungimea de undă a radiației necunoscute."
+          },
+          {
+            "id": "d",
+            "cerinta": "Se utilizează lumină albă cu lungimea de undă cuprinsă în intervalul   400nm; 750 nm . Calculați lungimile de undă ce corespund radiațiilor care formează minime la distanța mm 2,3 = x față de franja centrală."
+          }
+        ],
+        "imagini": [
+          "output\\images\\2021_E_d_fizica_teoretic_vocational_2021_var_07_LRO_D_II_page3.png"
+        ],
+        "an": "2021",
+        "fisier": "E_d_fizica_teoretic_vocational_2021_var_07_LRO.pdf",
+        "tip_document": "subiect"
+      },
+      {
+        "arie": "OPTICĂ",
+        "subiect": "III",
+        "variant": "7",
+        "continut": "III. Rezolvați următoarea problemă: \n(15 puncte) \nUn dispozitiv Young, având distanța dintre planul fantelor și ecran \nm\n2\n=\nD\n, distanța dintre fante \n\n2 , se \npoate utiliza pentru determinarea lungimii de undă a unei radiații luminoase. Sursa de lumină se află pe axa \nde simetrie a dispozitivului. Dacă sursa emite radiații monocromatice cu lungimea de undă \n0,5μm\n=\n, \nvaloarea interfranjei obținute pe ecran este \nmm\n 1\n=\ni\n, iar dacă sursa emite radiații monocromatice cu \nlungimea de undă , pe ecran se observă că distanța dintre maximul central și maximul de ordinul 5 este \nmm\n6\n=\nd\n.  \na. Determinați distanța \n2  dintre fantele dispozitivului Young. \nb. Determinați valoarea interfranjei corespunzătoare radiației cu lungimea de undă . \nc. Determinați lungimea de undă a radiației necunoscute. \nd. Se utilizează lumină albă cu lungimea de undă cuprinsă în intervalul \n\n400nm; 750 nm . Calculați lungimile \nde undă ce corespund radiațiilor care formează minime la distanța \nmm\n2,3\n=\nx\n față de franja centrală.",
+        "subpuncte": [
+          {
+            "id": "a",
+            "cerinta": "Determinați distanța  2 dintre fantele dispozitivului Young."
+          },
+          {
+            "id": "b",
+            "cerinta": "Determinați valoarea interfranjei corespunzătoare radiației cu lungimea de undă ."
+          },
+          {
+            "id": "c",
+            "cerinta": "Determinați lungimea de undă a radiației necunoscute."
+          },
+          {
+            "id": "d",
+            "cerinta": "Se utilizează lumină albă cu lungimea de undă cuprinsă în intervalul   400nm; 750 nm . Calculați lungimile de undă ce corespund radiațiilor care formează minime la distanța mm 2,3 = x față de franja centrală."
+          }
+        ],
+        "imagini": [
+          "output\\images\\2021_E_d_fizica_teoretic_vocational_2021_var_07_LRO_D_III_page3.png"
+        ],
+        "an": "2021",
+        "fisier": "E_d_fizica_teoretic_vocational_2021_var_07_LRO.pdf",
+        "tip_document": "subiect"
+      }
+    ]
+  }
+}

@@ -1,0 +1,358 @@
+{
+  "subiect": {
+    "necunoscut": [
+      {
+        "arie": "MECANICĂ",
+        "subiect": "II",
+        "variant": "3",
+        "continut": "II. RezolvaȚi următoarea problemă: \n(15 puncte) \nCablul de oȚel al unei macarale are, în stare nedeformată, lungimea de 40 m și aria secȚiunii transversale \n2\n8cm . În graficul alăturat este reprezentată dependenȚa dintre alungirea \n∆ℓ  a cablului și mărimea F a forȚei care îl întinde. Utilizând aceste date, \ndeterminaȚi: \na. valoarea forȚei deformatoare sub acȚiunea căreia alungirea cablului este \nde \ncm\n 2\n; \nb. constanta elastică a cablului; \nc. modulul de elasticitate (Young) al oȚelului din care este confecȚionat \ncablul; \nd. lucrul mecanic efectuat de forȚa deformatoare lent crescătoare pentru a \nalungi cablul (iniȚial nedeformat) cu 2,5 cm. \nIII. RezolvaȚi următoarea problemă: \n(15 puncte) \nO minge cu masa de \nkg\n 5\n0,\n este lăsată să cadă liber de la înălȚimea \nm\n \n45\n2\n1\n,\nh =\n faȚă de podeaua sălii de \nsport. După ce lovește podeaua, mingea sare pe aceeași verticală pe care a căzut și urcă până la înălȚimea \ncm\n \n170\n2 =\nh\n faȚă de podea. ForȚele de rezistenȚă la înaintare datorate aerului sunt neglijabile. \na. CalculaȚi lucrul mecanic efectuat de greutatea mingii în cursul deplasării ei de la înălȚimea \n1\nh  la înălȚimea \n2\nh . \nb. CalculaȚi viteza mingii în momentul imediat anterior atingerii podelei. \nc. CalculaȚi raportul dintre viteza cu care mingea a lovit podeaua și cea cu care a început să se ridice. \nd. ReprezentaȚi grafic energia cinetică a mingii în funcȚie de distanȚa parcursă, în cursul căderii de la \nînălȚimea \n1\nh  până la nivelul podelei. \nDescarcat de pe variantebacalaureat.com\nwww.variantebacalaureat.com\nvariantebacalaureat.com\n\nMinisterul EducaȚiei, Cercetării, Tineretului și Sportului \nCentrul NaȚional de Evaluare și Examinare \nProbă scrisă la Fizică \n2 \nB. Elemente de termodinamică \nExamenul de bacalaureat 2011 \nProba E. d)  \nProba scrisă la FIZICĂ \nFiliera teoretică – profilul real, Filiera tehnologică – profilul tehnic și profilul resurse naturale și protecȚia mediului, \nFiliera vocaȚională – profilul militar \n• Sunt obligatorii toate subiectele din două arii tematice dintre cele patru prevăzute de programă, adică: A. MECANICĂ, \nB. ELEMENTE DE TERMODINAMICĂ, C. PRODUCEREA ȘI UTILIZAREA CURENTULUI CONTINUU, D. OPTICĂ \n• Se acordă 10 puncte din oficiu. \n• Timpul efectiv de lucru este de 3 ore.",
+        "subpuncte": [
+          {
+            "id": "a",
+            "cerinta": "valoarea forȚei deformatoare sub acȚiunea căreia alungirea cablului este de cm 2 ;"
+          },
+          {
+            "id": "b",
+            "cerinta": "constanta elastică a cablului;"
+          },
+          {
+            "id": "c",
+            "cerinta": "modulul de elasticitate (Young) al oȚelului din care este confecȚionat cablul;"
+          },
+          {
+            "id": "d",
+            "cerinta": "lucrul mecanic efectuat de forȚa deformatoare lent crescătoare pentru a alungi cablul (iniȚial nedeformat) cu 2,5 cm."
+          },
+          {
+            "id": "a",
+            "cerinta": "CalculaȚi lucrul mecanic efectuat de greutatea mingii în cursul deplasării ei de la înălȚimea 1 h la înălȚimea 2 h ."
+          },
+          {
+            "id": "b",
+            "cerinta": "CalculaȚi viteza mingii în momentul imediat anterior atingerii podelei."
+          },
+          {
+            "id": "c",
+            "cerinta": "CalculaȚi raportul dintre viteza cu care mingea a lovit podeaua și cea cu care a început să se ridice."
+          },
+          {
+            "id": "d",
+            "cerinta": "ReprezentaȚi grafic energia cinetică a mingii în funcȚie de distanȚa parcursă, în cursul căderii de la înălȚimea 1 h până la nivelul podelei. Descarcat de pe variantebacalaureat.com www.variantebacalaureat.com variantebacalaureat.com"
+          },
+          {
+            "id": "B",
+            "cerinta": "Elemente de termodinamică Examenul de bacalaureat 2011 Proba E. d) Proba scrisă la FIZICĂ Filiera teoretică – profilul real, Filiera tehnologică – profilul tehnic și profilul resurse naturale și protecȚia mediului, Filiera vocaȚională – profilul militar • Sunt obligatorii toate subiectele din două arii tematice dintre cele patru prevăzute de programă, adică: A. MECANICĂ,"
+          },
+          {
+            "id": "B",
+            "cerinta": "ELEMENTE DE TERMODINAMICĂ, C. PRODUCEREA ȘI UTILIZAREA CURENTULUI CONTINUU, D. OPTICĂ • Se acordă 10 puncte din oficiu. • Timpul efectiv de lucru este de 3 ore."
+          }
+        ],
+        "imagini": [
+          "output\\images\\2011_fizica-bac-2011-subiect-sesiunea-a-doua_A_II_page0.png"
+        ],
+        "an": "2011",
+        "fisier": "fizica-bac-2011-subiect-sesiunea-a-doua.pdf",
+        "tip_document": "subiect"
+      },
+      {
+        "arie": "MECANICĂ",
+        "subiect": "III",
+        "variant": "3",
+        "continut": "III. RezolvaȚi următoarea problemă: \n(15 puncte) \nO minge cu masa de \nkg\n 5\n0,\n este lăsată să cadă liber de la înălȚimea \nm\n \n45\n2\n1\n,\nh =\n faȚă de podeaua sălii de \nsport. După ce lovește podeaua, mingea sare pe aceeași verticală pe care a căzut și urcă până la înălȚimea \ncm\n \n170\n2 =\nh\n faȚă de podea. ForȚele de rezistenȚă la înaintare datorate aerului sunt neglijabile. \na. CalculaȚi lucrul mecanic efectuat de greutatea mingii în cursul deplasării ei de la înălȚimea \n1\nh  la înălȚimea \n2\nh . \nb. CalculaȚi viteza mingii în momentul imediat anterior atingerii podelei. \nc. CalculaȚi raportul dintre viteza cu care mingea a lovit podeaua și cea cu care a început să se ridice. \nd. ReprezentaȚi grafic energia cinetică a mingii în funcȚie de distanȚa parcursă, în cursul căderii de la \nînălȚimea \n1\nh  până la nivelul podelei. \nDescarcat de pe variantebacalaureat.com\nwww.variantebacalaureat.com\nvariantebacalaureat.com\n\nMinisterul EducaȚiei, Cercetării, Tineretului și Sportului \nCentrul NaȚional de Evaluare și Examinare \nProbă scrisă la Fizică \n2 \nB. Elemente de termodinamică \nExamenul de bacalaureat 2011 \nProba E. d)  \nProba scrisă la FIZICĂ \nFiliera teoretică – profilul real, Filiera tehnologică – profilul tehnic și profilul resurse naturale și protecȚia mediului, \nFiliera vocaȚională – profilul militar \n• Sunt obligatorii toate subiectele din două arii tematice dintre cele patru prevăzute de programă, adică: A. MECANICĂ, \nB. ELEMENTE DE TERMODINAMICĂ, C. PRODUCEREA ȘI UTILIZAREA CURENTULUI CONTINUU, D. OPTICĂ \n• Se acordă 10 puncte din oficiu. \n• Timpul efectiv de lucru este de 3 ore.",
+        "subpuncte": [
+          {
+            "id": "a",
+            "cerinta": "CalculaȚi lucrul mecanic efectuat de greutatea mingii în cursul deplasării ei de la înălȚimea 1 h la înălȚimea 2 h ."
+          },
+          {
+            "id": "b",
+            "cerinta": "CalculaȚi viteza mingii în momentul imediat anterior atingerii podelei."
+          },
+          {
+            "id": "c",
+            "cerinta": "CalculaȚi raportul dintre viteza cu care mingea a lovit podeaua și cea cu care a început să se ridice."
+          },
+          {
+            "id": "d",
+            "cerinta": "ReprezentaȚi grafic energia cinetică a mingii în funcȚie de distanȚa parcursă, în cursul căderii de la înălȚimea 1 h până la nivelul podelei. Descarcat de pe variantebacalaureat.com www.variantebacalaureat.com variantebacalaureat.com"
+          },
+          {
+            "id": "B",
+            "cerinta": "Elemente de termodinamică Examenul de bacalaureat 2011 Proba E. d) Proba scrisă la FIZICĂ Filiera teoretică – profilul real, Filiera tehnologică – profilul tehnic și profilul resurse naturale și protecȚia mediului, Filiera vocaȚională – profilul militar • Sunt obligatorii toate subiectele din două arii tematice dintre cele patru prevăzute de programă, adică: A. MECANICĂ,"
+          },
+          {
+            "id": "B",
+            "cerinta": "ELEMENTE DE TERMODINAMICĂ, C. PRODUCEREA ȘI UTILIZAREA CURENTULUI CONTINUU, D. OPTICĂ • Se acordă 10 puncte din oficiu. • Timpul efectiv de lucru este de 3 ore."
+          }
+        ],
+        "imagini": [
+          "output\\images\\2011_fizica-bac-2011-subiect-sesiunea-a-doua_A_III_page0.png"
+        ],
+        "an": "2011",
+        "fisier": "fizica-bac-2011-subiect-sesiunea-a-doua.pdf",
+        "tip_document": "subiect"
+      },
+      {
+        "arie": "ELEMENTE DE TERMODINAMICĂ",
+        "subiect": "II",
+        "variant": "3",
+        "continut": "II. RezolvaȚi următoarea problemă: \n(15 puncte) \nÎntr-o butelie de volum \nL \n30\n=\nV\n se află o cantitate de oxigen (\n2\n32g/mol; C\n2,5\nO\nV\nR\nµ\n=\n=\n) considerat gaz ideal. \nOxigenul se află la presiunea \nPa\n10\n3\n 5\n1\n⋅\n=\np\n și temperatura \nC\n27\n1\n°\n=\nt\n. Butelia este prevăzută cu o supapă de \nevacuare a gazului care se deschide în momentul în care presiunea gazului din interior este cu \nPa\n \n10\n4\n5\n⋅\n=\n∆p\n \nmai mare faȚă de presiunea atmosferică exterioară \nPa\n10  5\n0 =\np\n. DeterminaȚi:  \na. densitatea oxigenului din butelie la temperatura 1t ; \nb. valoarea temperaturii maxime \nmax\nT\n până la care poate fi încălzită butelia astfel încât supapa să nu se \ndeschidă; \nc. masa de oxigen care trebuie evacuată astfel încât presiunea gazului din butelie să revină la valoarea \niniȚială \n1\np , temperatura rămânând constantă la valoarea \nmax\nT\n; \nd. variaȚia energiei interne a gazului din butelie în procesul descris la punctul c. \nIII. RezolvaȚi următoarea problemă: \n(15 puncte) \nUn mol de gaz ideal monoatomic având căldura molară la volum constant \nR\n,\nCV\n5\n1\n=\n se află într-o stare \niniȚială 1 la temperatura \n1\n300K\nT =\n. Din această stare gazul se destinde izobar până într-o stare 2 apoi \nprintr-o transformare izocoră ajunge într-o stare 3 din care revine în starea iniȚială printr-o transformare \nizotermă. Căldura totală schimbată de gaz cu exteriorul în transformările 1-2 și 2-3 este \n123\n831 J\nQ\n=\n.  \na. ReprezentaȚi grafic transformarea cicilică în coordonate \nV\np −\n. \nb. CalculaȚi valoarea temperaturii gazului în starea 2. \nc. DeterminaȚi valoarea raportului dintre volumul maxim și volumul minim atinse în cursul transformărilor. \nd. CalculaȚi lucrul mecanic schimbat de gaz cu exteriorul în transformarea 3-1 (Se utilizează \n28\n,0\nln 3\n4 ≈\n). \nDescarcat de pe variantebacalaureat.com\nwww.variantebacalaureat.com\nvariantebacalaureat.com\n\nMinisterul EducaȚiei, Cercetării, Tineretului și Sportului \nCentrul NaȚional de Evaluare și Examinare \nProbă scrisă la Fizică \n3 \nC. Producerea și utilizarea curentului continuu \nExamenul de bacalaureat 2011 \nProba E. d)  \nProba scrisă la FIZICĂ \nFiliera teoretică – profilul real, Filiera tehnologică – profilul tehnic și profilul resurse naturale și protecȚia mediului, \nFiliera vocaȚională – profilul militar \n• Sunt obligatorii toate subiectele din două arii tematice dintre cele patru prevăzute de programă, adică: A. MECANICĂ, \nB. ELEMENTE DE TERMODINAMICĂ, C. PRODUCEREA ȘI UTILIZAREA CURENTULUI CONTINUU, D. OPTICĂ \n• Se acordă 10 puncte din oficiu. \n• Timpul efectiv de lucru este de 3 ore.",
+        "subpuncte": [
+          {
+            "id": "a",
+            "cerinta": "densitatea oxigenului din butelie la temperatura 1t ;"
+          },
+          {
+            "id": "b",
+            "cerinta": "valoarea temperaturii maxime max T până la care poate fi încălzită butelia astfel încât supapa să nu se deschidă;"
+          },
+          {
+            "id": "c",
+            "cerinta": "masa de oxigen care trebuie evacuată astfel încât presiunea gazului din butelie să revină la valoarea iniȚială 1 p , temperatura rămânând constantă la valoarea max T ;"
+          },
+          {
+            "id": "d",
+            "cerinta": "variaȚia energiei interne a gazului din butelie în procesul descris la punctul c."
+          },
+          {
+            "id": "a",
+            "cerinta": "ReprezentaȚi grafic transformarea cicilică în coordonate V p − ."
+          },
+          {
+            "id": "b",
+            "cerinta": "CalculaȚi valoarea temperaturii gazului în starea 2."
+          },
+          {
+            "id": "c",
+            "cerinta": "DeterminaȚi valoarea raportului dintre volumul maxim și volumul minim atinse în cursul transformărilor."
+          },
+          {
+            "id": "d",
+            "cerinta": "CalculaȚi lucrul mecanic schimbat de gaz cu exteriorul în transformarea 3-1 (Se utilizează 28 ,0 ln 3 4 ≈ ). Descarcat de pe variantebacalaureat.com www.variantebacalaureat.com variantebacalaureat.com"
+          },
+          {
+            "id": "C",
+            "cerinta": "Producerea și utilizarea curentului continuu Examenul de bacalaureat 2011 Proba E. d) Proba scrisă la FIZICĂ Filiera teoretică – profilul real, Filiera tehnologică – profilul tehnic și profilul resurse naturale și protecȚia mediului, Filiera vocaȚională – profilul militar • Sunt obligatorii toate subiectele din două arii tematice dintre cele patru prevăzute de programă, adică: A. MECANICĂ,"
+          },
+          {
+            "id": "B",
+            "cerinta": "ELEMENTE DE TERMODINAMICĂ, C. PRODUCEREA ȘI UTILIZAREA CURENTULUI CONTINUU, D. OPTICĂ • Se acordă 10 puncte din oficiu. • Timpul efectiv de lucru este de 3 ore."
+          }
+        ],
+        "imagini": [
+          "output\\images\\2011_fizica-bac-2011-subiect-sesiunea-a-doua_B_II_page1.png"
+        ],
+        "an": "2011",
+        "fisier": "fizica-bac-2011-subiect-sesiunea-a-doua.pdf",
+        "tip_document": "subiect"
+      },
+      {
+        "arie": "ELEMENTE DE TERMODINAMICĂ",
+        "subiect": "III",
+        "variant": "3",
+        "continut": "III. RezolvaȚi următoarea problemă: \n(15 puncte) \nUn mol de gaz ideal monoatomic având căldura molară la volum constant \nR\n,\nCV\n5\n1\n=\n se află într-o stare \niniȚială 1 la temperatura \n1\n300K\nT =\n. Din această stare gazul se destinde izobar până într-o stare 2 apoi \nprintr-o transformare izocoră ajunge într-o stare 3 din care revine în starea iniȚială printr-o transformare \nizotermă. Căldura totală schimbată de gaz cu exteriorul în transformările 1-2 și 2-3 este \n123\n831 J\nQ\n=\n.  \na. ReprezentaȚi grafic transformarea cicilică în coordonate \nV\np −\n. \nb. CalculaȚi valoarea temperaturii gazului în starea 2. \nc. DeterminaȚi valoarea raportului dintre volumul maxim și volumul minim atinse în cursul transformărilor. \nd. CalculaȚi lucrul mecanic schimbat de gaz cu exteriorul în transformarea 3-1 (Se utilizează \n28\n,0\nln 3\n4 ≈\n). \nDescarcat de pe variantebacalaureat.com\nwww.variantebacalaureat.com\nvariantebacalaureat.com\n\nMinisterul EducaȚiei, Cercetării, Tineretului și Sportului \nCentrul NaȚional de Evaluare și Examinare \nProbă scrisă la Fizică \n3 \nC. Producerea și utilizarea curentului continuu \nExamenul de bacalaureat 2011 \nProba E. d)  \nProba scrisă la FIZICĂ \nFiliera teoretică – profilul real, Filiera tehnologică – profilul tehnic și profilul resurse naturale și protecȚia mediului, \nFiliera vocaȚională – profilul militar \n• Sunt obligatorii toate subiectele din două arii tematice dintre cele patru prevăzute de programă, adică: A. MECANICĂ, \nB. ELEMENTE DE TERMODINAMICĂ, C. PRODUCEREA ȘI UTILIZAREA CURENTULUI CONTINUU, D. OPTICĂ \n• Se acordă 10 puncte din oficiu. \n• Timpul efectiv de lucru este de 3 ore.",
+        "subpuncte": [
+          {
+            "id": "a",
+            "cerinta": "ReprezentaȚi grafic transformarea cicilică în coordonate V p − ."
+          },
+          {
+            "id": "b",
+            "cerinta": "CalculaȚi valoarea temperaturii gazului în starea 2."
+          },
+          {
+            "id": "c",
+            "cerinta": "DeterminaȚi valoarea raportului dintre volumul maxim și volumul minim atinse în cursul transformărilor."
+          },
+          {
+            "id": "d",
+            "cerinta": "CalculaȚi lucrul mecanic schimbat de gaz cu exteriorul în transformarea 3-1 (Se utilizează 28 ,0 ln 3 4 ≈ ). Descarcat de pe variantebacalaureat.com www.variantebacalaureat.com variantebacalaureat.com"
+          },
+          {
+            "id": "C",
+            "cerinta": "Producerea și utilizarea curentului continuu Examenul de bacalaureat 2011 Proba E. d) Proba scrisă la FIZICĂ Filiera teoretică – profilul real, Filiera tehnologică – profilul tehnic și profilul resurse naturale și protecȚia mediului, Filiera vocaȚională – profilul militar • Sunt obligatorii toate subiectele din două arii tematice dintre cele patru prevăzute de programă, adică: A. MECANICĂ,"
+          },
+          {
+            "id": "B",
+            "cerinta": "ELEMENTE DE TERMODINAMICĂ, C. PRODUCEREA ȘI UTILIZAREA CURENTULUI CONTINUU, D. OPTICĂ • Se acordă 10 puncte din oficiu. • Timpul efectiv de lucru este de 3 ore."
+          }
+        ],
+        "imagini": [
+          "output\\images\\2011_fizica-bac-2011-subiect-sesiunea-a-doua_B_III_page1.png"
+        ],
+        "an": "2011",
+        "fisier": "fizica-bac-2011-subiect-sesiunea-a-doua.pdf",
+        "tip_document": "subiect"
+      },
+      {
+        "arie": "PRODUCEREA ȘI UTILIZAREA CURENTULUI CONTINUU",
+        "subiect": "II",
+        "variant": "3",
+        "continut": "II. RezolvaȚi următoarea problemă: \n(15 puncte) \nSe consideră circuitul electric a cărui schemă  este reprezentată în figura alăturată. Se cunosc: \nΩ\n= 30\n1\nR\n, \nΩ\n= 120\n2\nR\n, \nΩ\n= 20\n3\nR\n. Cele două surse sunt identice, rezistenȚa internă a unei \nsurse fiind \nΩ\n= 2\nr\n. Când întrerupătorul k este deschis, intensitatea curentului \nelectric indicată de ampermetrul ideal (\n0\n≅\nA\nR\n) are valoarea \n= 1A\nDI\n. RezistenȚa \nelectrică a conductoarelor de legătură se neglijează. DeterminaȚi:  \na. tensiunea electromotoare a unei surse; \nb. tensiunea între punctele A și B când întrerupătorul k este deschis; \nc. indicaȚia ampermetrului când întrerupătorul k este închis; \nd. intensitatea curentului electric prin rezistorul \n2\nR  când întrerupătorul k este \nînchis. \n \nIII. RezolvaȚi următoarea problemă: \n(15 puncte) \nO baterie cu tensiunea electromotoare \nV\n120\n=\nE\n se conectează la montajul serie al rezistoarelor având \nrezistenȚele electrice \nΩ\n= 24\n1\nR\n și \nΩ\n= 30\n2\nR\n. Puterea disipată în rezistorul de rezistenȚă R1 este \nW\n96\n1 =\nP\n. \nDeterminaȚi: \na. tensiunea la bornele rezistorului R1; \nb. puterea disipată în ansamblul celor două rezistoare; \nc. rezistenȚa internă a sursei ; \nd. randamentul transferului de putere de la sursă la cele două rezistoare. \nDescarcat de pe variantebacalaureat.com\nwww.variantebacalaureat.com\nvariantebacalaureat.com\n\nMinisterul EducaȚiei, Cercetării, Tineretului și Sportului \nCentrul NaȚional de Evaluare și Examinare \nProbă scrisă la Fizică \n4 \nD. Optică \nExamenul de bacalaureat 2011 \nProba E. d)  \nProba scrisă la FIZICĂ \nFiliera teoretică – profilul real, Filiera tehnologică – profilul tehnic și profilul resurse naturale și protecȚia mediului, \nFiliera vocaȚională – profilul militar \n• Sunt obligatorii toate subiectele din două arii tematice dintre cele patru prevăzute de programă, adică: A. MECANICĂ, \nB. ELEMENTE DE TERMODINAMICĂ, C. PRODUCEREA ȘI UTILIZAREA CURENTULUI CONTINUU, D. OPTICĂ \n• Se acordă 10 puncte din oficiu. \n• Timpul efectiv de lucru este de 3 ore.",
+        "subpuncte": [
+          {
+            "id": "a",
+            "cerinta": "tensiunea electromotoare a unei surse;"
+          },
+          {
+            "id": "b",
+            "cerinta": "tensiunea între punctele A și B când întrerupătorul k este deschis;"
+          },
+          {
+            "id": "c",
+            "cerinta": "indicaȚia ampermetrului când întrerupătorul k este închis;"
+          },
+          {
+            "id": "d",
+            "cerinta": "intensitatea curentului electric prin rezistorul 2 R când întrerupătorul k este închis."
+          },
+          {
+            "id": "a",
+            "cerinta": "tensiunea la bornele rezistorului R1;"
+          },
+          {
+            "id": "b",
+            "cerinta": "puterea disipată în ansamblul celor două rezistoare;"
+          },
+          {
+            "id": "c",
+            "cerinta": "rezistenȚa internă a sursei ;"
+          },
+          {
+            "id": "d",
+            "cerinta": "randamentul transferului de putere de la sursă la cele două rezistoare. Descarcat de pe variantebacalaureat.com www.variantebacalaureat.com variantebacalaureat.com"
+          },
+          {
+            "id": "D",
+            "cerinta": "Optică Examenul de bacalaureat 2011 Proba E. d) Proba scrisă la FIZICĂ Filiera teoretică – profilul real, Filiera tehnologică – profilul tehnic și profilul resurse naturale și protecȚia mediului, Filiera vocaȚională – profilul militar • Sunt obligatorii toate subiectele din două arii tematice dintre cele patru prevăzute de programă, adică: A. MECANICĂ,"
+          },
+          {
+            "id": "B",
+            "cerinta": "ELEMENTE DE TERMODINAMICĂ, C. PRODUCEREA ȘI UTILIZAREA CURENTULUI CONTINUU, D. OPTICĂ • Se acordă 10 puncte din oficiu. • Timpul efectiv de lucru este de 3 ore."
+          }
+        ],
+        "imagini": [
+          "output\\images\\2011_fizica-bac-2011-subiect-sesiunea-a-doua_C_II_page2.png"
+        ],
+        "an": "2011",
+        "fisier": "fizica-bac-2011-subiect-sesiunea-a-doua.pdf",
+        "tip_document": "subiect"
+      },
+      {
+        "arie": "PRODUCEREA ȘI UTILIZAREA CURENTULUI CONTINUU",
+        "subiect": "III",
+        "variant": "3",
+        "continut": "III. RezolvaȚi următoarea problemă: \n(15 puncte) \nO baterie cu tensiunea electromotoare \nV\n120\n=\nE\n se conectează la montajul serie al rezistoarelor având \nrezistenȚele electrice \nΩ\n= 24\n1\nR\n și \nΩ\n= 30\n2\nR\n. Puterea disipată în rezistorul de rezistenȚă R1 este \nW\n96\n1 =\nP\n. \nDeterminaȚi: \na. tensiunea la bornele rezistorului R1; \nb. puterea disipată în ansamblul celor două rezistoare; \nc. rezistenȚa internă a sursei ; \nd. randamentul transferului de putere de la sursă la cele două rezistoare. \nDescarcat de pe variantebacalaureat.com\nwww.variantebacalaureat.com\nvariantebacalaureat.com\n\nMinisterul EducaȚiei, Cercetării, Tineretului și Sportului \nCentrul NaȚional de Evaluare și Examinare \nProbă scrisă la Fizică \n4 \nD. Optică \nExamenul de bacalaureat 2011 \nProba E. d)  \nProba scrisă la FIZICĂ \nFiliera teoretică – profilul real, Filiera tehnologică – profilul tehnic și profilul resurse naturale și protecȚia mediului, \nFiliera vocaȚională – profilul militar \n• Sunt obligatorii toate subiectele din două arii tematice dintre cele patru prevăzute de programă, adică: A. MECANICĂ, \nB. ELEMENTE DE TERMODINAMICĂ, C. PRODUCEREA ȘI UTILIZAREA CURENTULUI CONTINUU, D. OPTICĂ \n• Se acordă 10 puncte din oficiu. \n• Timpul efectiv de lucru este de 3 ore.",
+        "subpuncte": [
+          {
+            "id": "a",
+            "cerinta": "tensiunea la bornele rezistorului R1;"
+          },
+          {
+            "id": "b",
+            "cerinta": "puterea disipată în ansamblul celor două rezistoare;"
+          },
+          {
+            "id": "c",
+            "cerinta": "rezistenȚa internă a sursei ;"
+          },
+          {
+            "id": "d",
+            "cerinta": "randamentul transferului de putere de la sursă la cele două rezistoare. Descarcat de pe variantebacalaureat.com www.variantebacalaureat.com variantebacalaureat.com"
+          },
+          {
+            "id": "D",
+            "cerinta": "Optică Examenul de bacalaureat 2011 Proba E. d) Proba scrisă la FIZICĂ Filiera teoretică – profilul real, Filiera tehnologică – profilul tehnic și profilul resurse naturale și protecȚia mediului, Filiera vocaȚională – profilul militar • Sunt obligatorii toate subiectele din două arii tematice dintre cele patru prevăzute de programă, adică: A. MECANICĂ,"
+          },
+          {
+            "id": "B",
+            "cerinta": "ELEMENTE DE TERMODINAMICĂ, C. PRODUCEREA ȘI UTILIZAREA CURENTULUI CONTINUU, D. OPTICĂ • Se acordă 10 puncte din oficiu. • Timpul efectiv de lucru este de 3 ore."
+          }
+        ],
+        "imagini": [
+          "output\\images\\2011_fizica-bac-2011-subiect-sesiunea-a-doua_C_III_page2.png"
+        ],
+        "an": "2011",
+        "fisier": "fizica-bac-2011-subiect-sesiunea-a-doua.pdf",
+        "tip_document": "subiect"
+      },
+      {
+        "arie": "OPTICĂ",
+        "subiect": "II",
+        "variant": "3",
+        "continut": "II. RezolvaȚi următoarea problemă: \n(15 puncte) \nUn obiect luminos este situat perpendicular pe axa optică principală a unei lentile sferice subȚiri. DistanȚa \ndintre obiect și lentilă este egală cu dublul distanȚei focale. ConvergenȚa lentilei este de 10 dioptrii.  \na. CalculaȚi distanȚa focală a lentilei. \nb. DeterminaȚi distanȚa la care se formează imaginea faȚă de lentilă și precizaȚi natura imaginii (reală sau \nvirtuală). \nc. DeterminaȚi mărirea liniară transversală în cazul considerat și precizaȚi orientarea imaginii (dreaptă sau \nrăsturnată). \nd. DeterminaȚi distanȚa pe care se deplasează imaginea dacă obiectul se depărtează de lentilă cu 10 cm. \nIII. RezolvaȚi următoarea problemă: \n(15 puncte) \nÎntr-un experiment pentru studiul efectului fotoelectric extern se constată că, iradiind catodul unei celule \nfotoelectrice cu o radiaȚie monocromatică cu frecvenȚa ν1, energia cinetică maximă a electronilor emiși este \n1\nc\nE\n. Mărind frecvenȚa radiaȚiei incidente cu ∆ν , energia cinetică maximă a electronilor emiși crește cu \nc\nE\n∆\n. \na. ReprezentaȚi grafic, calitativ, \nc\nE\n∆\n în funcȚie de \nν\n∆\n. \nb. CalculaȚi \nν\n∆\n dacă \nc\nE\n∆\n are valoarea de \nJ \n10\n2\n3\n19\n−\n⋅\n,\n. \nc. DeterminaȚi valoarea frecvenȚei de prag, cunoscând diferenȚa \nJ \n10\n8\n4\n19\n1\n1\n−\n⋅\n=\n−\n,\nE\nh\nc\nν\n. \nd. JustificaȚi dacă modificarea fluxului radiaȚiei incidente în condiȚiile menȚinerii constante a frecvenȚei \ninfluenȚează valoarea energiei cinetice maxime a electronilor emiși. \nC  [m−1] \nn \n8 \n4 \n0 \nDescarcat de pe variantebacalaureat.com\nwww.variantebacalaureat.com\nvariantebacalaureat.com",
+        "subpuncte": [
+          {
+            "id": "a",
+            "cerinta": "CalculaȚi distanȚa focală a lentilei."
+          },
+          {
+            "id": "b",
+            "cerinta": "DeterminaȚi distanȚa la care se formează imaginea faȚă de lentilă și precizaȚi natura imaginii (reală sau virtuală)."
+          },
+          {
+            "id": "c",
+            "cerinta": "DeterminaȚi mărirea liniară transversală în cazul considerat și precizaȚi orientarea imaginii (dreaptă sau răsturnată)."
+          },
+          {
+            "id": "d",
+            "cerinta": "DeterminaȚi distanȚa pe care se deplasează imaginea dacă obiectul se depărtează de lentilă cu 10 cm."
+          },
+          {
+            "id": "a",
+            "cerinta": "ReprezentaȚi grafic, calitativ, c E ∆ în funcȚie de ν ∆ ."
+          },
+          {
+            "id": "b",
+            "cerinta": "CalculaȚi ν ∆ dacă c E ∆ are valoarea de J 10 2 3 19 − ⋅ , ."
+          },
+          {
+            "id": "c",
+            "cerinta": "DeterminaȚi valoarea frecvenȚei de prag, cunoscând diferenȚa J 10 8 4 19 1 1 − ⋅ = − , E h c ν ."
+          },
+          {
+            "id": "d",
+            "cerinta": "JustificaȚi dacă modificarea fluxului radiaȚiei incidente în condiȚiile menȚinerii constante a frecvenȚei influenȚează valoarea energiei cinetice maxime a electronilor emiși. C [m−1] n 8 4 0 Descarcat de pe variantebacalaureat.com www.variantebacalaureat.com variantebacalaureat.com"
+          }
+        ],
+        "imagini": [
+          "output\\images\\2011_fizica-bac-2011-subiect-sesiunea-a-doua_D_II_page3.png"
+        ],
+        "an": "2011",
+        "fisier": "fizica-bac-2011-subiect-sesiunea-a-doua.pdf",
+        "tip_document": "subiect"
+      },
+      {
+        "arie": "OPTICĂ",
+        "subiect": "III",
+        "variant": "3",
+        "continut": "III. RezolvaȚi următoarea problemă: \n(15 puncte) \nÎntr-un experiment pentru studiul efectului fotoelectric extern se constată că, iradiind catodul unei celule \nfotoelectrice cu o radiaȚie monocromatică cu frecvenȚa ν1, energia cinetică maximă a electronilor emiși este \n1\nc\nE\n. Mărind frecvenȚa radiaȚiei incidente cu ∆ν , energia cinetică maximă a electronilor emiși crește cu \nc\nE\n∆\n. \na. ReprezentaȚi grafic, calitativ, \nc\nE\n∆\n în funcȚie de \nν\n∆\n. \nb. CalculaȚi \nν\n∆\n dacă \nc\nE\n∆\n are valoarea de \nJ \n10\n2\n3\n19\n−\n⋅\n,\n. \nc. DeterminaȚi valoarea frecvenȚei de prag, cunoscând diferenȚa \nJ \n10\n8\n4\n19\n1\n1\n−\n⋅\n=\n−\n,\nE\nh\nc\nν\n. \nd. JustificaȚi dacă modificarea fluxului radiaȚiei incidente în condiȚiile menȚinerii constante a frecvenȚei \ninfluenȚează valoarea energiei cinetice maxime a electronilor emiși. \nC  [m−1] \nn \n8 \n4 \n0 \nDescarcat de pe variantebacalaureat.com\nwww.variantebacalaureat.com\nvariantebacalaureat.com",
+        "subpuncte": [
+          {
+            "id": "a",
+            "cerinta": "ReprezentaȚi grafic, calitativ, c E ∆ în funcȚie de ν ∆ ."
+          },
+          {
+            "id": "b",
+            "cerinta": "CalculaȚi ν ∆ dacă c E ∆ are valoarea de J 10 2 3 19 − ⋅ , ."
+          },
+          {
+            "id": "c",
+            "cerinta": "DeterminaȚi valoarea frecvenȚei de prag, cunoscând diferenȚa J 10 8 4 19 1 1 − ⋅ = − , E h c ν ."
+          },
+          {
+            "id": "d",
+            "cerinta": "JustificaȚi dacă modificarea fluxului radiaȚiei incidente în condiȚiile menȚinerii constante a frecvenȚei influenȚează valoarea energiei cinetice maxime a electronilor emiși. C [m−1] n 8 4 0 Descarcat de pe variantebacalaureat.com www.variantebacalaureat.com variantebacalaureat.com"
+          }
+        ],
+        "imagini": [
+          "output\\images\\2011_fizica-bac-2011-subiect-sesiunea-a-doua_D_III_page3.png"
+        ],
+        "an": "2011",
+        "fisier": "fizica-bac-2011-subiect-sesiunea-a-doua.pdf",
+        "tip_document": "subiect"
+      }
+    ]
+  }
+}

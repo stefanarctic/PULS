@@ -1,0 +1,1062 @@
+{
+  "subiect": {
+    "necunoscut": [
+      {
+        "arie": "MECANICĂ",
+        "subiect": "II",
+        "variant": "1",
+        "continut": "II. Rezolvați următoarea problemă: \n(15 puncte) \nUn sistem este format din două corpuri cu masele \nkg\n10\n1 =\nm\n și \nkg\n20\n2 =\nm\n, aflate inițial în repaus pe o \nsuprafață orizontală, legate între ele printr-un fir inextensibil de masă neglijabilă. Coeficientul de frecare la \nalunecare între corpuri și suprafața orizontală este \n0,10\nµ =\n.  \na. Asupra corpului de masă \n1\nm  se aplică o forță orizontală F\n\u0001\u0002\n, ca în figura alăturată. \nModulul forței este \n60N\nF =\n. Determinați valoarea forței de frecare la alunecare care acționează asupra corpului de \nmasă \n2\nm . \nb. Determinați viteza atinsă de sistem după \n2,0s\nt\n∆=\n de la aplicarea forței F\n\u0001\u0002\n, în condițiile punctului a.. \nc. Se aplică aceeași forță orizontală de modul \nN\n60\n=\nF\n asupra corpului cu masa \n,\nm2  ca în figura alăturată. Precizați, justificând afirmația voastră, dacă accelerația \nsistemului în această situație se modifică față de situația de la punctul a. \nd. Determinați raportul \na\nc\n/\nT\nT  dintre forțele de tensiune care apar în firul de legătură dintre corpuri în \nsituațiile descrise la punctele a. și c. \nIII. Rezolvați următoarea problemă: \n(15 puncte) \nUn corp de mici dimensiuni, cu masa \n1,0 kg,\nm =\n aflat în vârful A al unui plan înclinat (vezi figura alăturată), \nalunecă fără viteză inițială spre baza planului. Se cunosc: diferența de nivel dintre punctele A și B, \n1\n2,0m\nh =\n, \ncoeficientul de frecare la alunecare dintre corp și suprafața planului înclinat \n0,10\nµ =\n și unghiul de înclinare a suprafeței planului față de orizontală \n45\nα =\n° . Determinați: \na. lucrul mecanic efectuat de forța de frecare pe distanța AB; \nb. viteza corpului în momentul în care acesta trece prin punctul B;  \nc. înălțimea \n2\nh  a planului înclinat, dacă viteza corpului la baza planului are valoarea \nm/s\n5\n7,\nv =\n; \nd. distanța parcursă de corp până la oprirea sa pe planul orizontal cu care se continuă planul înclinat, dacă \ncoeficientul de frecare la alunecare pe planul orizontal este \n25\n,0\n1 =\nµ\n. Trecerea pe porțiunea orizontală se \nface lin, fără modificarea modulului vitezei. \n\nMinisterul Educației, Cercetării, Tineretului și Sportului \nCentrul Național de Evaluare și Examinare \nProbă scrisă la Fizică \n2 \nB. Elemente de termodinamică \nExamenul de bacalaureat 2012 \nProba E. d)  \nProba scrisă la FIZICĂ \nFiliera teoretică – profilul real, Filiera tehnologică – profilul tehnic și profilul resurse naturale și protecția mediului, \nFiliera vocațională – profilul militar \n• Sunt obligatorii toate subiectele din două arii tematice dintre cele patru prevăzute de programă, adică: A. MECANICĂ, \nB. ELEMENTE DE TERMODINAMICĂ, C. PRODUCEREA ȘI UTILIZAREA CURENTULUI CONTINUU, D. OPTICĂ \n• Se acordă 10 puncte din oficiu. \n• Timpul efectiv de lucru este de 3 ore.",
+        "subpuncte": [
+          {
+            "id": "a",
+            "cerinta": "Asupra corpului de masă 1 m se aplică o forță orizontală F \u0001\u0002 , ca în figura alăturată. Modulul forței este 60N F = . Determinați valoarea forței de frecare la alunecare care acționează asupra corpului de masă 2 m ."
+          },
+          {
+            "id": "b",
+            "cerinta": "Determinați viteza atinsă de sistem după 2,0s t ∆= de la aplicarea forței F \u0001\u0002 , în condițiile punctului a.."
+          },
+          {
+            "id": "c",
+            "cerinta": "Se aplică aceeași forță orizontală de modul N 60 = F asupra corpului cu masa , m2 ca în figura alăturată. Precizați, justificând afirmația voastră, dacă accelerația sistemului în această situație se modifică față de situația de la punctul a."
+          },
+          {
+            "id": "d",
+            "cerinta": "Determinați raportul a c / T T dintre forțele de tensiune care apar în firul de legătură dintre corpuri în situațiile descrise la punctele a. și c."
+          },
+          {
+            "id": "a",
+            "cerinta": "lucrul mecanic efectuat de forța de frecare pe distanța AB;"
+          },
+          {
+            "id": "b",
+            "cerinta": "viteza corpului în momentul în care acesta trece prin punctul B;"
+          },
+          {
+            "id": "c",
+            "cerinta": "înălțimea 2 h a planului înclinat, dacă viteza corpului la baza planului are valoarea m/s 5 7, v = ;"
+          },
+          {
+            "id": "d",
+            "cerinta": "distanța parcursă de corp până la oprirea sa pe planul orizontal cu care se continuă planul înclinat, dacă coeficientul de frecare la alunecare pe planul orizontal este 25 ,0 1 = µ . Trecerea pe porțiunea orizontală se face lin, fără modificarea modulului vitezei."
+          },
+          {
+            "id": "B",
+            "cerinta": "Elemente de termodinamică Examenul de bacalaureat 2012 Proba E. d) Proba scrisă la FIZICĂ Filiera teoretică – profilul real, Filiera tehnologică – profilul tehnic și profilul resurse naturale și protecția mediului, Filiera vocațională – profilul militar • Sunt obligatorii toate subiectele din două arii tematice dintre cele patru prevăzute de programă, adică: A. MECANICĂ,"
+          },
+          {
+            "id": "B",
+            "cerinta": "ELEMENTE DE TERMODINAMICĂ, C. PRODUCEREA ȘI UTILIZAREA CURENTULUI CONTINUU, D. OPTICĂ • Se acordă 10 puncte din oficiu. • Timpul efectiv de lucru este de 3 ore."
+          }
+        ],
+        "imagini": [
+          "output\\images\\2012_fizica-2012_var_01_lro_A_II_page0.png"
+        ],
+        "an": "2012",
+        "fisier": "fizica-2012_var_01_lro.pdf",
+        "tip_document": "subiect"
+      },
+      {
+        "arie": "MECANICĂ",
+        "subiect": "III",
+        "variant": "1",
+        "continut": "III. Rezolvați următoarea problemă: \n(15 puncte) \nUn corp de mici dimensiuni, cu masa \n1,0 kg,\nm =\n aflat în vârful A al unui plan înclinat (vezi figura alăturată), \nalunecă fără viteză inițială spre baza planului. Se cunosc: diferența de nivel dintre punctele A și B, \n1\n2,0m\nh =\n, \ncoeficientul de frecare la alunecare dintre corp și suprafața planului înclinat \n0,10\nµ =\n și unghiul de înclinare a suprafeței planului față de orizontală \n45\nα =\n° . Determinați: \na. lucrul mecanic efectuat de forța de frecare pe distanța AB; \nb. viteza corpului în momentul în care acesta trece prin punctul B;  \nc. înălțimea \n2\nh  a planului înclinat, dacă viteza corpului la baza planului are valoarea \nm/s\n5\n7,\nv =\n; \nd. distanța parcursă de corp până la oprirea sa pe planul orizontal cu care se continuă planul înclinat, dacă \ncoeficientul de frecare la alunecare pe planul orizontal este \n25\n,0\n1 =\nµ\n. Trecerea pe porțiunea orizontală se \nface lin, fără modificarea modulului vitezei. \n\nMinisterul Educației, Cercetării, Tineretului și Sportului \nCentrul Național de Evaluare și Examinare \nProbă scrisă la Fizică \n2 \nB. Elemente de termodinamică \nExamenul de bacalaureat 2012 \nProba E. d)  \nProba scrisă la FIZICĂ \nFiliera teoretică – profilul real, Filiera tehnologică – profilul tehnic și profilul resurse naturale și protecția mediului, \nFiliera vocațională – profilul militar \n• Sunt obligatorii toate subiectele din două arii tematice dintre cele patru prevăzute de programă, adică: A. MECANICĂ, \nB. ELEMENTE DE TERMODINAMICĂ, C. PRODUCEREA ȘI UTILIZAREA CURENTULUI CONTINUU, D. OPTICĂ \n• Se acordă 10 puncte din oficiu. \n• Timpul efectiv de lucru este de 3 ore.",
+        "subpuncte": [
+          {
+            "id": "a",
+            "cerinta": "lucrul mecanic efectuat de forța de frecare pe distanța AB;"
+          },
+          {
+            "id": "b",
+            "cerinta": "viteza corpului în momentul în care acesta trece prin punctul B;"
+          },
+          {
+            "id": "c",
+            "cerinta": "înălțimea 2 h a planului înclinat, dacă viteza corpului la baza planului are valoarea m/s 5 7, v = ;"
+          },
+          {
+            "id": "d",
+            "cerinta": "distanța parcursă de corp până la oprirea sa pe planul orizontal cu care se continuă planul înclinat, dacă coeficientul de frecare la alunecare pe planul orizontal este 25 ,0 1 = µ . Trecerea pe porțiunea orizontală se face lin, fără modificarea modulului vitezei."
+          },
+          {
+            "id": "B",
+            "cerinta": "Elemente de termodinamică Examenul de bacalaureat 2012 Proba E. d) Proba scrisă la FIZICĂ Filiera teoretică – profilul real, Filiera tehnologică – profilul tehnic și profilul resurse naturale și protecția mediului, Filiera vocațională – profilul militar • Sunt obligatorii toate subiectele din două arii tematice dintre cele patru prevăzute de programă, adică: A. MECANICĂ,"
+          },
+          {
+            "id": "B",
+            "cerinta": "ELEMENTE DE TERMODINAMICĂ, C. PRODUCEREA ȘI UTILIZAREA CURENTULUI CONTINUU, D. OPTICĂ • Se acordă 10 puncte din oficiu. • Timpul efectiv de lucru este de 3 ore."
+          }
+        ],
+        "imagini": [
+          "output\\images\\2012_fizica-2012_var_01_lro_A_III_page0.png"
+        ],
+        "an": "2012",
+        "fisier": "fizica-2012_var_01_lro.pdf",
+        "tip_document": "subiect"
+      },
+      {
+        "arie": "ELEMENTE DE TERMODINAMICĂ",
+        "subiect": "II",
+        "variant": "1",
+        "continut": "II. Rezolvați următoarea problemă: \n(15 puncte) \nUn vas cilindric orizontal, care are volumul \n6L\nV =\n și aria secțiunii transversale \n2\ncm\n \n50\n=\nS\n, este menținut \npermanent la o temperatura constantă \nK\n \n300\n=\nT\n. Vasul este împărțit în două compartimente de volume \negale cu ajutorul unui piston, inițial blocat. În compartimentul din stânga se află heliu (\ng/mol\n 4\n1 =\nµ\n) la \npresiunea \nPa\n \n10\n62\n,\n16\n5\n1\n⋅\n=\np\n, iar în cel din dreapta de dioxid de sulf (\ng/mol\n \n64\n2 =\nµ\n) la \nPa\n \n10\n31\n,8\n5\n2\n⋅\n=\np\n. \nGazele sunt considerate ideale. \na. Calculați masa de dioxid de sulf din vas. \nb. Calculați numărul de atomi de heliu din vas. \nc. Se deblochează pistonul dintre cele două compartimente. Calculați deplasarea pistonului până în \nmomentul în care pistonul atinge din nou starea de echilibru știind că deplasarea lui are loc fără frecare. \nd. Pentru a readuce pistonul la mijlocul cilindrului se scoate o masă de gaz dintr-un compartiment. Precizați \nnatura gazului scos și calculați masa de gaz scoasă. \nIII. Rezolvați următoarea problemă: \n(15 puncte) \nO cantitate \n5\n0,60\nmol\n8,31\nν\n\n\n=\n≅\n\n\n\n\nde gaz ideal biatomic (\n2,5\nV\nC\nR\n=\n) se află inițial, în starea 1, la o presiune \negală cu 100 kPa. Gazul este este încălzit izocor până în starea 2, în care presiunea s-a dublat, apoi destins \nizoterm până în starea 3, în care presiunea revine la valoarea inițială. În destinderea izotermă lucrul mecanic \nefectuat de gaz este egal cu 1,4 kJ . Se consideră ln2\n0,69\n≅\n. \na. Reprezentați grafic dependența presiunii de volum în procesul 1\n2\n3\n→\n→\n; \nb. Calculați temperatura gazului la sfârșitul încălzirii izocore; \nc. Calculați volumul inițial al gazului; \nd. Calculați căldura primită pe parcursul transformării 1\n2\n3\n→\n→\n. \n\nMinisterul Educației, Cercetării, Tineretului și Sportului \nCentrul Național de Evaluare și Examinare \nProbă scrisă la Fizică \n3 \nC. Producerea și utilizarea curentului continuu \nExamenul de bacalaureat 2012 \nProba E. d)  \nProba scrisă la FIZICĂ \nFiliera teoretică – profilul real, Filiera tehnologică – profilul tehnic și profilul resurse naturale și protecția mediului, \nFiliera vocațională – profilul militar \n• Sunt obligatorii toate subiectele din două arii tematice dintre cele patru prevăzute de programă, adică: A. MECANICĂ, \nB. ELEMENTE DE TERMODINAMICĂ, C. PRODUCEREA ȘI UTILIZAREA CURENTULUI CONTINUU, D. OPTICĂ \n• Se acordă 10 puncte din oficiu. \n• Timpul efectiv de lucru este de 3 ore.",
+        "subpuncte": [
+          {
+            "id": "a",
+            "cerinta": "Calculați masa de dioxid de sulf din vas."
+          },
+          {
+            "id": "b",
+            "cerinta": "Calculați numărul de atomi de heliu din vas."
+          },
+          {
+            "id": "c",
+            "cerinta": "Se deblochează pistonul dintre cele două compartimente. Calculați deplasarea pistonului până în momentul în care pistonul atinge din nou starea de echilibru știind că deplasarea lui are loc fără frecare."
+          },
+          {
+            "id": "d",
+            "cerinta": "Pentru a readuce pistonul la mijlocul cilindrului se scoate o masă de gaz dintr-un compartiment. Precizați natura gazului scos și calculați masa de gaz scoasă."
+          },
+          {
+            "id": "a",
+            "cerinta": "Reprezentați grafic dependența presiunii de volum în procesul 1 2 3 → → ;"
+          },
+          {
+            "id": "b",
+            "cerinta": "Calculați temperatura gazului la sfârșitul încălzirii izocore;"
+          },
+          {
+            "id": "c",
+            "cerinta": "Calculați volumul inițial al gazului;"
+          },
+          {
+            "id": "d",
+            "cerinta": "Calculați căldura primită pe parcursul transformării 1 2 3 → → ."
+          },
+          {
+            "id": "C",
+            "cerinta": "Producerea și utilizarea curentului continuu Examenul de bacalaureat 2012 Proba E. d) Proba scrisă la FIZICĂ Filiera teoretică – profilul real, Filiera tehnologică – profilul tehnic și profilul resurse naturale și protecția mediului, Filiera vocațională – profilul militar • Sunt obligatorii toate subiectele din două arii tematice dintre cele patru prevăzute de programă, adică: A. MECANICĂ,"
+          },
+          {
+            "id": "B",
+            "cerinta": "ELEMENTE DE TERMODINAMICĂ, C. PRODUCEREA ȘI UTILIZAREA CURENTULUI CONTINUU, D. OPTICĂ • Se acordă 10 puncte din oficiu. • Timpul efectiv de lucru este de 3 ore."
+          }
+        ],
+        "imagini": [
+          "output\\images\\2012_fizica-2012_var_01_lro_B_II_page1.png"
+        ],
+        "an": "2012",
+        "fisier": "fizica-2012_var_01_lro.pdf",
+        "tip_document": "subiect"
+      },
+      {
+        "arie": "ELEMENTE DE TERMODINAMICĂ",
+        "subiect": "III",
+        "variant": "1",
+        "continut": "III. Rezolvați următoarea problemă: \n(15 puncte) \nO cantitate \n5\n0,60\nmol\n8,31\nν\n\n\n=\n≅\n\n\n\n\nde gaz ideal biatomic (\n2,5\nV\nC\nR\n=\n) se află inițial, în starea 1, la o presiune \negală cu 100 kPa. Gazul este este încălzit izocor până în starea 2, în care presiunea s-a dublat, apoi destins \nizoterm până în starea 3, în care presiunea revine la valoarea inițială. În destinderea izotermă lucrul mecanic \nefectuat de gaz este egal cu 1,4 kJ . Se consideră ln2\n0,69\n≅\n. \na. Reprezentați grafic dependența presiunii de volum în procesul 1\n2\n3\n→\n→\n; \nb. Calculați temperatura gazului la sfârșitul încălzirii izocore; \nc. Calculați volumul inițial al gazului; \nd. Calculați căldura primită pe parcursul transformării 1\n2\n3\n→\n→\n. \n\nMinisterul Educației, Cercetării, Tineretului și Sportului \nCentrul Național de Evaluare și Examinare \nProbă scrisă la Fizică \n3 \nC. Producerea și utilizarea curentului continuu \nExamenul de bacalaureat 2012 \nProba E. d)  \nProba scrisă la FIZICĂ \nFiliera teoretică – profilul real, Filiera tehnologică – profilul tehnic și profilul resurse naturale și protecția mediului, \nFiliera vocațională – profilul militar \n• Sunt obligatorii toate subiectele din două arii tematice dintre cele patru prevăzute de programă, adică: A. MECANICĂ, \nB. ELEMENTE DE TERMODINAMICĂ, C. PRODUCEREA ȘI UTILIZAREA CURENTULUI CONTINUU, D. OPTICĂ \n• Se acordă 10 puncte din oficiu. \n• Timpul efectiv de lucru este de 3 ore.",
+        "subpuncte": [
+          {
+            "id": "a",
+            "cerinta": "Reprezentați grafic dependența presiunii de volum în procesul 1 2 3 → → ;"
+          },
+          {
+            "id": "b",
+            "cerinta": "Calculați temperatura gazului la sfârșitul încălzirii izocore;"
+          },
+          {
+            "id": "c",
+            "cerinta": "Calculați volumul inițial al gazului;"
+          },
+          {
+            "id": "d",
+            "cerinta": "Calculați căldura primită pe parcursul transformării 1 2 3 → → ."
+          },
+          {
+            "id": "C",
+            "cerinta": "Producerea și utilizarea curentului continuu Examenul de bacalaureat 2012 Proba E. d) Proba scrisă la FIZICĂ Filiera teoretică – profilul real, Filiera tehnologică – profilul tehnic și profilul resurse naturale și protecția mediului, Filiera vocațională – profilul militar • Sunt obligatorii toate subiectele din două arii tematice dintre cele patru prevăzute de programă, adică: A. MECANICĂ,"
+          },
+          {
+            "id": "B",
+            "cerinta": "ELEMENTE DE TERMODINAMICĂ, C. PRODUCEREA ȘI UTILIZAREA CURENTULUI CONTINUU, D. OPTICĂ • Se acordă 10 puncte din oficiu. • Timpul efectiv de lucru este de 3 ore."
+          }
+        ],
+        "imagini": [
+          "output\\images\\2012_fizica-2012_var_01_lro_B_III_page1.png"
+        ],
+        "an": "2012",
+        "fisier": "fizica-2012_var_01_lro.pdf",
+        "tip_document": "subiect"
+      },
+      {
+        "arie": "PRODUCEREA ȘI UTILIZAREA CURENTULUI CONTINUU",
+        "subiect": "II",
+        "variant": "1",
+        "continut": "II. Rezolvați următoarea problemă: \n(15 puncte) \nÎn figura alăturată este reprezentată schema unui circuit electric. Se cunosc \nparametrii celor două surse: \n1\n12V\nE =\n, \n1\n3\nr =\nΩ și respectiv \n2\n36 V\nE =\n, \n2\n6\nr =\nΩ. Rezistorul legat la bornele grupării celor două surse are rezistența \nelectrică \n13\nR =\nΩ. \na. Determinați intensitatea curentului electric prin rezistorul R  dacă \nîntrerupătorul K este deschis; \nb. Determinați intensitatea curentului electric prin rezistorul R  dacă întrerupătorul K este închis; \nc. Se înlocuiește rezistorul R  cu un ampermetru ideal \n≅\n(\n0)\nA\nR\n, iar comutatorul K rămâne închis. \nDeterminați valoarea intensității curentului indicat de ampermetru. \nd. Se înlocuiește ampermetrul cu un voltmetru ideal \n→∞\n(\n)\nV\nR\n, iar comutatorul K rămâne închis. Calculați \ncăderea de tensiune pe rezistența internă a sursei \n2\nE . \nIII. Rezolvați următoarea problemă: \n(15 puncte) \nUn generator cu t.e.m. \n60V\nE =\n alimentează montajul  a cărui schemă este \nreprezentată în figura alăturată, în care rezistorii au rezistențele electrice \n1\n30\nR =\nΩ și respectiv \nΩ\n= 70\n2\nR\n, iar ampermetrul și voltmetrul au rezistențele \nelectrice \n4 \nA\nR\n=\nΩ și \nV\nR . Instrumentele de măsură indică \n0,6A\nI =\n și respectiv \n15 V\nV\nU\n=\n. Determinați: \na. puterea electrică disipată pe ampermetru; \nb. energia electrică disipată de voltmetru în unitatea de timp; \nc. rezistența internă a sursei; \nd. raportul dintre puterea \n12\nP  disipată de rezistorii \n1\nR  și \n2\nR  și puterea totală dezvoltată de sursă. \n(3p) \n\nMinisterul Educației, Cercetării, Tineretului și Sportului \nCentrul Național de Evaluare și Examinare \nProbă scrisă la Fizică \n4 \nD. Optică \nExamenul de bacalaureat 2012 \nProba E. d)  \nProba scrisă la FIZICĂ \nFiliera teoretică – profilul real, Filiera tehnologică – profilul tehnic și profilul resurse naturale și protecția mediului, \nFiliera vocațională – profilul militar \n• Sunt obligatorii toate subiectele din două arii tematice dintre cele patru prevăzute de programă, adică: A. MECANICĂ, \nB. ELEMENTE DE TERMODINAMICĂ, C. PRODUCEREA ȘI UTILIZAREA CURENTULUI CONTINUU, D. OPTICĂ \n• Se acordă 10 puncte din oficiu. \n• Timpul efectiv de lucru este de 3 ore.",
+        "subpuncte": [
+          {
+            "id": "a",
+            "cerinta": "Determinați intensitatea curentului electric prin rezistorul R dacă întrerupătorul K este deschis;"
+          },
+          {
+            "id": "b",
+            "cerinta": "Determinați intensitatea curentului electric prin rezistorul R dacă întrerupătorul K este închis;"
+          },
+          {
+            "id": "c",
+            "cerinta": "Se înlocuiește rezistorul R cu un ampermetru ideal ≅ ( 0) A R , iar comutatorul K rămâne închis. Determinați valoarea intensității curentului indicat de ampermetru."
+          },
+          {
+            "id": "d",
+            "cerinta": "Se înlocuiește ampermetrul cu un voltmetru ideal →∞ ( ) V R , iar comutatorul K rămâne închis. Calculați căderea de tensiune pe rezistența internă a sursei 2 E ."
+          },
+          {
+            "id": "a",
+            "cerinta": "puterea electrică disipată pe ampermetru;"
+          },
+          {
+            "id": "b",
+            "cerinta": "energia electrică disipată de voltmetru în unitatea de timp;"
+          },
+          {
+            "id": "c",
+            "cerinta": "rezistența internă a sursei;"
+          },
+          {
+            "id": "d",
+            "cerinta": "raportul dintre puterea 12 P disipată de rezistorii 1 R și 2 R și puterea totală dezvoltată de sursă. (3p)"
+          },
+          {
+            "id": "D",
+            "cerinta": "Optică Examenul de bacalaureat 2012 Proba E. d) Proba scrisă la FIZICĂ Filiera teoretică – profilul real, Filiera tehnologică – profilul tehnic și profilul resurse naturale și protecția mediului, Filiera vocațională – profilul militar • Sunt obligatorii toate subiectele din două arii tematice dintre cele patru prevăzute de programă, adică: A. MECANICĂ,"
+          },
+          {
+            "id": "B",
+            "cerinta": "ELEMENTE DE TERMODINAMICĂ, C. PRODUCEREA ȘI UTILIZAREA CURENTULUI CONTINUU, D. OPTICĂ • Se acordă 10 puncte din oficiu. • Timpul efectiv de lucru este de 3 ore."
+          }
+        ],
+        "imagini": [
+          "output\\images\\2012_fizica-2012_var_01_lro_C_II_page2.png"
+        ],
+        "an": "2012",
+        "fisier": "fizica-2012_var_01_lro.pdf",
+        "tip_document": "subiect"
+      },
+      {
+        "arie": "PRODUCEREA ȘI UTILIZAREA CURENTULUI CONTINUU",
+        "subiect": "III",
+        "variant": "1",
+        "continut": "III. Rezolvați următoarea problemă: \n(15 puncte) \nUn generator cu t.e.m. \n60V\nE =\n alimentează montajul  a cărui schemă este \nreprezentată în figura alăturată, în care rezistorii au rezistențele electrice \n1\n30\nR =\nΩ și respectiv \nΩ\n= 70\n2\nR\n, iar ampermetrul și voltmetrul au rezistențele \nelectrice \n4 \nA\nR\n=\nΩ și \nV\nR . Instrumentele de măsură indică \n0,6A\nI =\n și respectiv \n15 V\nV\nU\n=\n. Determinați: \na. puterea electrică disipată pe ampermetru; \nb. energia electrică disipată de voltmetru în unitatea de timp; \nc. rezistența internă a sursei; \nd. raportul dintre puterea \n12\nP  disipată de rezistorii \n1\nR  și \n2\nR  și puterea totală dezvoltată de sursă. \n(3p) \n\nMinisterul Educației, Cercetării, Tineretului și Sportului \nCentrul Național de Evaluare și Examinare \nProbă scrisă la Fizică \n4 \nD. Optică \nExamenul de bacalaureat 2012 \nProba E. d)  \nProba scrisă la FIZICĂ \nFiliera teoretică – profilul real, Filiera tehnologică – profilul tehnic și profilul resurse naturale și protecția mediului, \nFiliera vocațională – profilul militar \n• Sunt obligatorii toate subiectele din două arii tematice dintre cele patru prevăzute de programă, adică: A. MECANICĂ, \nB. ELEMENTE DE TERMODINAMICĂ, C. PRODUCEREA ȘI UTILIZAREA CURENTULUI CONTINUU, D. OPTICĂ \n• Se acordă 10 puncte din oficiu. \n• Timpul efectiv de lucru este de 3 ore.",
+        "subpuncte": [
+          {
+            "id": "a",
+            "cerinta": "puterea electrică disipată pe ampermetru;"
+          },
+          {
+            "id": "b",
+            "cerinta": "energia electrică disipată de voltmetru în unitatea de timp;"
+          },
+          {
+            "id": "c",
+            "cerinta": "rezistența internă a sursei;"
+          },
+          {
+            "id": "d",
+            "cerinta": "raportul dintre puterea 12 P disipată de rezistorii 1 R și 2 R și puterea totală dezvoltată de sursă. (3p)"
+          },
+          {
+            "id": "D",
+            "cerinta": "Optică Examenul de bacalaureat 2012 Proba E. d) Proba scrisă la FIZICĂ Filiera teoretică – profilul real, Filiera tehnologică – profilul tehnic și profilul resurse naturale și protecția mediului, Filiera vocațională – profilul militar • Sunt obligatorii toate subiectele din două arii tematice dintre cele patru prevăzute de programă, adică: A. MECANICĂ,"
+          },
+          {
+            "id": "B",
+            "cerinta": "ELEMENTE DE TERMODINAMICĂ, C. PRODUCEREA ȘI UTILIZAREA CURENTULUI CONTINUU, D. OPTICĂ • Se acordă 10 puncte din oficiu. • Timpul efectiv de lucru este de 3 ore."
+          }
+        ],
+        "imagini": [
+          "output\\images\\2012_fizica-2012_var_01_lro_C_III_page2.png"
+        ],
+        "an": "2012",
+        "fisier": "fizica-2012_var_01_lro.pdf",
+        "tip_document": "subiect"
+      },
+      {
+        "arie": "OPTICĂ",
+        "subiect": "II",
+        "variant": "1",
+        "continut": "II. Rezolvați următoarea problemă: \n(15 puncte) \nO lentilă subțire convergentă are distanța focală egală cu 40 cm. Pe un ecran aflat la 60 cm de lentilă se \nobservă imaginea clară a unui obiect. Înălțimea imaginii este egală cu 20 cm. \na. Calculați convergența lentilei și exprimați rezultatul în dioptrii. \nb. Calculați înălțimea obiectului. \nc. Se mențin fixe, în pozițiile inițiale, obiectul și ecranul. Lentila se deplasează până când, pe ecran, se \nobservă o nouă imagine clară a obiectului. Determinați distanța pe care a fost deplasată lentila. \nd. De lentila convergentă se alipește o lentilă subțire divergentă cu modulul distanței focale de 60 cm . Se \ndeplasează convenabil obiectul și ecranul până când pe ecran se obține o imagine de trei ori mai mare decât \nobiectul. Calculați distanța la care este așezat obiectul față de ansamblul celor două lentile.  \n \nIII. Rezolvați următoarea problemă: \n(15 puncte) \nO sursă emite radiații electromagnetice cu frecvența \n14\n12 10\n Hz\nν =\n⋅\n. Energia transportată de radiația care \ncade pe suprafața metalului timp de 2s  este de 200 J\nµ . Lucrul mecanic de extracție a electronilor din metal \neste \n19\n3,2 10\nJ\next\nL\n−\n=\n⋅\n. Determinați: \na. lungimea de undă a radiației electromagnetice emise de sursă; \nb. numărul de fotoni care cad pe suprafața metalului în unitatea de timp; \nc. frecvența de prag pentru acest metal; \nd. energia cinetică maximă a fotoelectronilor emiși. \nS’\nS",
+        "subpuncte": [
+          {
+            "id": "a",
+            "cerinta": "Calculați convergența lentilei și exprimați rezultatul în dioptrii."
+          },
+          {
+            "id": "b",
+            "cerinta": "Calculați înălțimea obiectului."
+          },
+          {
+            "id": "c",
+            "cerinta": "Se mențin fixe, în pozițiile inițiale, obiectul și ecranul. Lentila se deplasează până când, pe ecran, se observă o nouă imagine clară a obiectului. Determinați distanța pe care a fost deplasată lentila."
+          },
+          {
+            "id": "d",
+            "cerinta": "De lentila convergentă se alipește o lentilă subțire divergentă cu modulul distanței focale de 60 cm . Se deplasează convenabil obiectul și ecranul până când pe ecran se obține o imagine de trei ori mai mare decât obiectul. Calculați distanța la care este așezat obiectul față de ansamblul celor două lentile."
+          },
+          {
+            "id": "a",
+            "cerinta": "lungimea de undă a radiației electromagnetice emise de sursă;"
+          },
+          {
+            "id": "b",
+            "cerinta": "numărul de fotoni care cad pe suprafața metalului în unitatea de timp;"
+          },
+          {
+            "id": "c",
+            "cerinta": "frecvența de prag pentru acest metal;"
+          },
+          {
+            "id": "d",
+            "cerinta": "energia cinetică maximă a fotoelectronilor emiși. S’ S"
+          }
+        ],
+        "imagini": [
+          "output\\images\\2012_fizica-2012_var_01_lro_D_II_page3.png"
+        ],
+        "an": "2012",
+        "fisier": "fizica-2012_var_01_lro.pdf",
+        "tip_document": "subiect"
+      },
+      {
+        "arie": "OPTICĂ",
+        "subiect": "III",
+        "variant": "1",
+        "continut": "III. Rezolvați următoarea problemă: \n(15 puncte) \nO sursă emite radiații electromagnetice cu frecvența \n14\n12 10\n Hz\nν =\n⋅\n. Energia transportată de radiația care \ncade pe suprafața metalului timp de 2s  este de 200 J\nµ . Lucrul mecanic de extracție a electronilor din metal \neste \n19\n3,2 10\nJ\next\nL\n−\n=\n⋅\n. Determinați: \na. lungimea de undă a radiației electromagnetice emise de sursă; \nb. numărul de fotoni care cad pe suprafața metalului în unitatea de timp; \nc. frecvența de prag pentru acest metal; \nd. energia cinetică maximă a fotoelectronilor emiși. \nS’\nS",
+        "subpuncte": [
+          {
+            "id": "a",
+            "cerinta": "lungimea de undă a radiației electromagnetice emise de sursă;"
+          },
+          {
+            "id": "b",
+            "cerinta": "numărul de fotoni care cad pe suprafața metalului în unitatea de timp;"
+          },
+          {
+            "id": "c",
+            "cerinta": "frecvența de prag pentru acest metal;"
+          },
+          {
+            "id": "d",
+            "cerinta": "energia cinetică maximă a fotoelectronilor emiși. S’ S"
+          }
+        ],
+        "imagini": [
+          "output\\images\\2012_fizica-2012_var_01_lro_D_III_page3.png"
+        ],
+        "an": "2012",
+        "fisier": "fizica-2012_var_01_lro.pdf",
+        "tip_document": "subiect"
+      },
+      {
+        "arie": "MECANICĂ",
+        "subiect": "II",
+        "variant": "2",
+        "continut": "II. Rezolvați următoarea problemă: \n(15 puncte) \nUn corp cu masa de 0,5 kg, pornind din repaus, se deplasează cu frecare pe un plan \norizontal, sub acțiunea unei forțe de tracțiune care formează cu orizontala unghiul \n°\n= 37\nα\n (\n)\n° ≅\nsin37\n0,6 , ca în figura alăturată. Accelerația corpului are valoarea de \n2\nm/s\n 2\n0,\n și modulul forței de apăsare exercitată de corp pe plan este de 3,8 N. \na. Calculați timpul necesar corpului să atingă viteza \n10 m/s\nv =\n. \nb. Calculați modulul forței F. \nc. Considerând că modulul forței este \n2 N\nF =\n, calculați coeficientul de frecare la alunecare dintre corp și \nplanul orizontal. \nd. Calculați mărimea rezultantei forțelor exercitate de planul orizontal asupra corpului. \n \nIII. Rezolvați următoarea problemă: \n(15 puncte) \nO minge de baseball cu masa de 0,3 kg  este lansată vertical în sus cu viteza \n0\n18 m/s\nv\n=\n de un lansator de \nmingi. Se consideră energia potențială nulă la nivelul de lansare a mingii și se neglijează toate frecările. Se \ncunoaște \n≅\n2\n1,41. Calculați: \na. energia cinetică a mingii în momentul lansării; \nb. înălțimea maximă la care ajunge mingea față de nivelul de lansare; \nc. lucrul mecanic efectuat de greutate din momentul lansării până în momentul în care mingea ajunge la \nînălțimea de 4 m față de nivelul de lansare; \nd. viteza mingii în momentul în care energia sa cinetică este egală cu energia potențială. \n \n \n F(N)\nx(m)\n10\n-10\n0 \n50 \n100\n150 \n →\nF \nα\n\nMinisterul Educației, Cercetării, Tineretului și Sportului \nCentrul Național de Evaluare și Examinare \nProbă scrisă la Fizică \n2 \nB. Elemente de termodinamică \nExamenul de bacalaureat 2012 \nProba E. d)  \nProba scrisă la FIZICĂ \nFiliera teoretică – profilul real, Filiera tehnologică – profilul tehnic și profilul resurse naturale și protecția mediului, \nFiliera vocațională – profilul militar \n• Sunt obligatorii toate subiectele din două arii tematice dintre cele patru prevăzute de programă, adică: A. MECANICĂ, \nB. ELEMENTE DE TERMODINAMICĂ, C. PRODUCEREA ȘI UTILIZAREA CURENTULUI CONTINUU, D. OPTICĂ \n• Se acordă 10 puncte din oficiu. \n• Timpul efectiv de lucru este de 3 ore.",
+        "subpuncte": [
+          {
+            "id": "a",
+            "cerinta": "Calculați timpul necesar corpului să atingă viteza 10 m/s v = ."
+          },
+          {
+            "id": "b",
+            "cerinta": "Calculați modulul forței F."
+          },
+          {
+            "id": "c",
+            "cerinta": "Considerând că modulul forței este 2 N F = , calculați coeficientul de frecare la alunecare dintre corp și planul orizontal."
+          },
+          {
+            "id": "d",
+            "cerinta": "Calculați mărimea rezultantei forțelor exercitate de planul orizontal asupra corpului."
+          },
+          {
+            "id": "a",
+            "cerinta": "energia cinetică a mingii în momentul lansării;"
+          },
+          {
+            "id": "b",
+            "cerinta": "înălțimea maximă la care ajunge mingea față de nivelul de lansare;"
+          },
+          {
+            "id": "c",
+            "cerinta": "lucrul mecanic efectuat de greutate din momentul lansării până în momentul în care mingea ajunge la înălțimea de 4 m față de nivelul de lansare;"
+          },
+          {
+            "id": "d",
+            "cerinta": "viteza mingii în momentul în care energia sa cinetică este egală cu energia potențială. F(N) x(m) 10 -10 0 50 100 150 → F α"
+          },
+          {
+            "id": "B",
+            "cerinta": "Elemente de termodinamică Examenul de bacalaureat 2012 Proba E. d) Proba scrisă la FIZICĂ Filiera teoretică – profilul real, Filiera tehnologică – profilul tehnic și profilul resurse naturale și protecția mediului, Filiera vocațională – profilul militar • Sunt obligatorii toate subiectele din două arii tematice dintre cele patru prevăzute de programă, adică: A. MECANICĂ,"
+          },
+          {
+            "id": "B",
+            "cerinta": "ELEMENTE DE TERMODINAMICĂ, C. PRODUCEREA ȘI UTILIZAREA CURENTULUI CONTINUU, D. OPTICĂ • Se acordă 10 puncte din oficiu. • Timpul efectiv de lucru este de 3 ore."
+          }
+        ],
+        "imagini": [
+          "output\\images\\2012_fizica-2012_var_02_lro_A_II_page0.png"
+        ],
+        "an": "2012",
+        "fisier": "fizica-2012_var_02_lro.pdf",
+        "tip_document": "subiect"
+      },
+      {
+        "arie": "MECANICĂ",
+        "subiect": "III",
+        "variant": "2",
+        "continut": "III. Rezolvați următoarea problemă: \n(15 puncte) \nO minge de baseball cu masa de 0,3 kg  este lansată vertical în sus cu viteza \n0\n18 m/s\nv\n=\n de un lansator de \nmingi. Se consideră energia potențială nulă la nivelul de lansare a mingii și se neglijează toate frecările. Se \ncunoaște \n≅\n2\n1,41. Calculați: \na. energia cinetică a mingii în momentul lansării; \nb. înălțimea maximă la care ajunge mingea față de nivelul de lansare; \nc. lucrul mecanic efectuat de greutate din momentul lansării până în momentul în care mingea ajunge la \nînălțimea de 4 m față de nivelul de lansare; \nd. viteza mingii în momentul în care energia sa cinetică este egală cu energia potențială. \n \n \n F(N)\nx(m)\n10\n-10\n0 \n50 \n100\n150 \n →\nF \nα\n\nMinisterul Educației, Cercetării, Tineretului și Sportului \nCentrul Național de Evaluare și Examinare \nProbă scrisă la Fizică \n2 \nB. Elemente de termodinamică \nExamenul de bacalaureat 2012 \nProba E. d)  \nProba scrisă la FIZICĂ \nFiliera teoretică – profilul real, Filiera tehnologică – profilul tehnic și profilul resurse naturale și protecția mediului, \nFiliera vocațională – profilul militar \n• Sunt obligatorii toate subiectele din două arii tematice dintre cele patru prevăzute de programă, adică: A. MECANICĂ, \nB. ELEMENTE DE TERMODINAMICĂ, C. PRODUCEREA ȘI UTILIZAREA CURENTULUI CONTINUU, D. OPTICĂ \n• Se acordă 10 puncte din oficiu. \n• Timpul efectiv de lucru este de 3 ore.",
+        "subpuncte": [
+          {
+            "id": "a",
+            "cerinta": "energia cinetică a mingii în momentul lansării;"
+          },
+          {
+            "id": "b",
+            "cerinta": "înălțimea maximă la care ajunge mingea față de nivelul de lansare;"
+          },
+          {
+            "id": "c",
+            "cerinta": "lucrul mecanic efectuat de greutate din momentul lansării până în momentul în care mingea ajunge la înălțimea de 4 m față de nivelul de lansare;"
+          },
+          {
+            "id": "d",
+            "cerinta": "viteza mingii în momentul în care energia sa cinetică este egală cu energia potențială. F(N) x(m) 10 -10 0 50 100 150 → F α"
+          },
+          {
+            "id": "B",
+            "cerinta": "Elemente de termodinamică Examenul de bacalaureat 2012 Proba E. d) Proba scrisă la FIZICĂ Filiera teoretică – profilul real, Filiera tehnologică – profilul tehnic și profilul resurse naturale și protecția mediului, Filiera vocațională – profilul militar • Sunt obligatorii toate subiectele din două arii tematice dintre cele patru prevăzute de programă, adică: A. MECANICĂ,"
+          },
+          {
+            "id": "B",
+            "cerinta": "ELEMENTE DE TERMODINAMICĂ, C. PRODUCEREA ȘI UTILIZAREA CURENTULUI CONTINUU, D. OPTICĂ • Se acordă 10 puncte din oficiu. • Timpul efectiv de lucru este de 3 ore."
+          }
+        ],
+        "imagini": [
+          "output\\images\\2012_fizica-2012_var_02_lro_A_III_page0.png"
+        ],
+        "an": "2012",
+        "fisier": "fizica-2012_var_02_lro.pdf",
+        "tip_document": "subiect"
+      },
+      {
+        "arie": "ELEMENTE DE TERMODINAMICĂ",
+        "subiect": "II",
+        "variant": "2",
+        "continut": "II. Rezolvați următoarea problemă: \n(15 puncte) \nAmestecul respirabil denumit NOAA NITROX II, introdus în butelii speciale folosite de scafandri, este \ncompus din oxigen (\n2\nO ) și azot (\n2\nN ). Masa oxigenului reprezintă 36%  din masa totală a amestecului. \nAmestecul de gaze este introdus într-o butelie având volumul \n3\ndm\n12\n=\nV\n la presiunea \nPa\n10\n62\n,\n16\n5\n⋅\n=\np\n și \ntemperatura \n20 C\nt =\n°\n. Presupuneți că amestecul gazos se comportă ca un gaz ideal. Se cunosc masele \natomice relative pentru oxigen \n16\n=\nrO\nm\n și azot \n14\n=\nrN\nm\n. Determinați: \na. masa molară medie a amestecului gazos; \nb. raportul dintre numărul de molecule de oxigen și numărul de molecule de azot din amestec;  \nc. masa amestecului gazos conținut în butelie; \n \nd. presiunea la care ajunge amestecul gazos din butelie după ce se consumă \n%\n20\n din cantitatea existentă \ninițial, temperatura amestecului rămânând constantă. \n \n \n \n                                      \n \nIII. Rezolvați următoarea problemă: \n(15 puncte) \nÎn figura alăturată este reprezentată transformarea ciclică a unei cantități constante de gaz ideal. Căldura \nprimită și variația energiei interne a gazului în transformarea \n2\n1 →\n au valorile \nJ\n12465\n12 =\nQ\n și respectiv \nJ\n7479\n12 =\n∆U\n. Se cunoaște \n1,1\n3\nln\n≅\n. Determinați: \na. variația energiei interne a gazului în transformarea \n3\n2 →\n; \nb. raportul \np\nv\nC\nC\nγ =\n dintre căldurile molare la presiune constantă și la volum \nconstant pentru gazul considerat; \nc. lucrul mecanic schimbat de gaz cu exteriorul în transformarea \n1\n3 →\n; \nd. căldura cedată de gaz mediului exterior pe parcursul unui ciclu. \n\nMinisterul Educației, Cercetării, Tineretului și Sportului \nCentrul Național de Evaluare și Examinare \nProbă scrisă la Fizică \n3 \nC. Producerea și utilizarea curentului continuu \nExamenul de bacalaureat 2012 \nProba E. d)  \nProba scrisă la FIZICĂ \nFiliera teoretică – profilul real, Filiera tehnologică – profilul tehnic și profilul resurse naturale și protecția mediului, \nFiliera vocațională – profilul militar \n• Sunt obligatorii toate subiectele din două arii tematice dintre cele patru prevăzute de programă, adică: A. MECANICĂ, \nB. ELEMENTE DE TERMODINAMICĂ, C. PRODUCEREA ȘI UTILIZAREA CURENTULUI CONTINUU, D. OPTICĂ \n• Se acordă 10 puncte din oficiu. \n• Timpul efectiv de lucru este de 3 ore.",
+        "subpuncte": [
+          {
+            "id": "a",
+            "cerinta": "masa molară medie a amestecului gazos;"
+          },
+          {
+            "id": "b",
+            "cerinta": "raportul dintre numărul de molecule de oxigen și numărul de molecule de azot din amestec;"
+          },
+          {
+            "id": "c",
+            "cerinta": "masa amestecului gazos conținut în butelie;"
+          },
+          {
+            "id": "d",
+            "cerinta": "presiunea la care ajunge amestecul gazos din butelie după ce se consumă % 20 din cantitatea existentă inițial, temperatura amestecului rămânând constantă."
+          },
+          {
+            "id": "a",
+            "cerinta": "variația energiei interne a gazului în transformarea 3 2 → ;"
+          },
+          {
+            "id": "b",
+            "cerinta": "raportul p v C C γ = dintre căldurile molare la presiune constantă și la volum constant pentru gazul considerat;"
+          },
+          {
+            "id": "c",
+            "cerinta": "lucrul mecanic schimbat de gaz cu exteriorul în transformarea 1 3 → ;"
+          },
+          {
+            "id": "d",
+            "cerinta": "căldura cedată de gaz mediului exterior pe parcursul unui ciclu."
+          },
+          {
+            "id": "C",
+            "cerinta": "Producerea și utilizarea curentului continuu Examenul de bacalaureat 2012 Proba E. d) Proba scrisă la FIZICĂ Filiera teoretică – profilul real, Filiera tehnologică – profilul tehnic și profilul resurse naturale și protecția mediului, Filiera vocațională – profilul militar • Sunt obligatorii toate subiectele din două arii tematice dintre cele patru prevăzute de programă, adică: A. MECANICĂ,"
+          },
+          {
+            "id": "B",
+            "cerinta": "ELEMENTE DE TERMODINAMICĂ, C. PRODUCEREA ȘI UTILIZAREA CURENTULUI CONTINUU, D. OPTICĂ • Se acordă 10 puncte din oficiu. • Timpul efectiv de lucru este de 3 ore."
+          }
+        ],
+        "imagini": [
+          "output\\images\\2012_fizica-2012_var_02_lro_B_II_page1.png"
+        ],
+        "an": "2012",
+        "fisier": "fizica-2012_var_02_lro.pdf",
+        "tip_document": "subiect"
+      },
+      {
+        "arie": "ELEMENTE DE TERMODINAMICĂ",
+        "subiect": "III",
+        "variant": "2",
+        "continut": "III. Rezolvați următoarea problemă: \n(15 puncte) \nÎn figura alăturată este reprezentată transformarea ciclică a unei cantități constante de gaz ideal. Căldura \nprimită și variația energiei interne a gazului în transformarea \n2\n1 →\n au valorile \nJ\n12465\n12 =\nQ\n și respectiv \nJ\n7479\n12 =\n∆U\n. Se cunoaște \n1,1\n3\nln\n≅\n. Determinați: \na. variația energiei interne a gazului în transformarea \n3\n2 →\n; \nb. raportul \np\nv\nC\nC\nγ =\n dintre căldurile molare la presiune constantă și la volum \nconstant pentru gazul considerat; \nc. lucrul mecanic schimbat de gaz cu exteriorul în transformarea \n1\n3 →\n; \nd. căldura cedată de gaz mediului exterior pe parcursul unui ciclu. \n\nMinisterul Educației, Cercetării, Tineretului și Sportului \nCentrul Național de Evaluare și Examinare \nProbă scrisă la Fizică \n3 \nC. Producerea și utilizarea curentului continuu \nExamenul de bacalaureat 2012 \nProba E. d)  \nProba scrisă la FIZICĂ \nFiliera teoretică – profilul real, Filiera tehnologică – profilul tehnic și profilul resurse naturale și protecția mediului, \nFiliera vocațională – profilul militar \n• Sunt obligatorii toate subiectele din două arii tematice dintre cele patru prevăzute de programă, adică: A. MECANICĂ, \nB. ELEMENTE DE TERMODINAMICĂ, C. PRODUCEREA ȘI UTILIZAREA CURENTULUI CONTINUU, D. OPTICĂ \n• Se acordă 10 puncte din oficiu. \n• Timpul efectiv de lucru este de 3 ore.",
+        "subpuncte": [
+          {
+            "id": "a",
+            "cerinta": "variația energiei interne a gazului în transformarea 3 2 → ;"
+          },
+          {
+            "id": "b",
+            "cerinta": "raportul p v C C γ = dintre căldurile molare la presiune constantă și la volum constant pentru gazul considerat;"
+          },
+          {
+            "id": "c",
+            "cerinta": "lucrul mecanic schimbat de gaz cu exteriorul în transformarea 1 3 → ;"
+          },
+          {
+            "id": "d",
+            "cerinta": "căldura cedată de gaz mediului exterior pe parcursul unui ciclu."
+          },
+          {
+            "id": "C",
+            "cerinta": "Producerea și utilizarea curentului continuu Examenul de bacalaureat 2012 Proba E. d) Proba scrisă la FIZICĂ Filiera teoretică – profilul real, Filiera tehnologică – profilul tehnic și profilul resurse naturale și protecția mediului, Filiera vocațională – profilul militar • Sunt obligatorii toate subiectele din două arii tematice dintre cele patru prevăzute de programă, adică: A. MECANICĂ,"
+          },
+          {
+            "id": "B",
+            "cerinta": "ELEMENTE DE TERMODINAMICĂ, C. PRODUCEREA ȘI UTILIZAREA CURENTULUI CONTINUU, D. OPTICĂ • Se acordă 10 puncte din oficiu. • Timpul efectiv de lucru este de 3 ore."
+          }
+        ],
+        "imagini": [
+          "output\\images\\2012_fizica-2012_var_02_lro_B_III_page1.png"
+        ],
+        "an": "2012",
+        "fisier": "fizica-2012_var_02_lro.pdf",
+        "tip_document": "subiect"
+      },
+      {
+        "arie": "PRODUCEREA ȘI UTILIZAREA CURENTULUI CONTINUU",
+        "subiect": "II",
+        "variant": "2",
+        "continut": "II. Rezolvați următoarea problemă: \n(15 puncte) \nPentru circuitul din figura alăturată se cunosc: \n1\n40\nR =\nΩ, \n2\n60\n,\nR =\nΩ \n3\n30\nR =\nΩ \nși \n10\nr =\nΩ. Un voltmetru ideal (\n)\nV\nR\n→∞ conectat între B și C indică \n12 V\nBC\nU\n=\n. \nDeterminați: \na. valoarea intensității curentului ce străbate rezistorul \n2\nR ; \nb. valoarea tensiunii electromotoare a sursei; \nc. valoarea tensiunii de la bornele rezistorului \n1\nR  dacă între B și C se conectează \nun fir de rezistență electrică neglijabilă; \nd. valoarea indicației unui ampermetru ideal (\n0)\nA\nR\n→\n conectat la bornele sursei.  \n \nIII. Rezolvați următoarea problemă: \n(15 puncte) \nDouă becuri au fiecare tensiunea nominală \n160 V\nn\nU =\n. În condiții normale de funcționare primul bec \nconsumă puterea \n1\n80 W\nP =\n, iar al doilea bec este parcurs de un curent de intensitate 2\n1 A\nI =\n. \na. Calculați intensitatea curentului electric prin primul bec în condiții normale de funcționare. \nb. Calculați energia consumată de cel de al doilea bec, în condiții normale de funcționare, timp de 10 min.  \nc. Se leagă cele două becuri în serie și la bornele grupării se aplică tensiunea \n1\n240 V\nU =\n. Calculați puterea \nabsorbită de gruparea celor două becuri considerând că rezistențele lor rămân constante. \nd. Se realizează un montaj format din gruparea paralel a celor două becuri, conectată în serie cu un rezistor \navând rezistența electrică \n3\nR . La bornele montajului se aplică tensiunea \n2\n320 V.\nU\n=\n Determinați valoarea \nrezistenței electrice \n3\nR  care asigură funcționarea normală a celor două becuri. \n \n\nMinisterul Educației, Cercetării, Tineretului și Sportului \nCentrul Național de Evaluare și Examinare \nProbă scrisă la Fizică \n4 \nD. Optică \nExamenul de bacalaureat 2012 \nProba E. d)  \nProba scrisă la FIZICĂ \nFiliera teoretică – profilul real, Filiera tehnologică – profilul tehnic și profilul resurse naturale și protecția mediului, \nFiliera vocațională – profilul militar \n• Sunt obligatorii toate subiectele din două arii tematice dintre cele patru prevăzute de programă, adică: A. MECANICĂ, \nB. ELEMENTE DE TERMODINAMICĂ, C. PRODUCEREA ȘI UTILIZAREA CURENTULUI CONTINUU, D. OPTICĂ \n• Se acordă 10 puncte din oficiu. \n• Timpul efectiv de lucru este de 3 ore.",
+        "subpuncte": [
+          {
+            "id": "a",
+            "cerinta": "valoarea intensității curentului ce străbate rezistorul 2 R ;"
+          },
+          {
+            "id": "b",
+            "cerinta": "valoarea tensiunii electromotoare a sursei;"
+          },
+          {
+            "id": "c",
+            "cerinta": "valoarea tensiunii de la bornele rezistorului 1 R dacă între B și C se conectează un fir de rezistență electrică neglijabilă;"
+          },
+          {
+            "id": "d",
+            "cerinta": "valoarea indicației unui ampermetru ideal ( 0) A R → conectat la bornele sursei."
+          },
+          {
+            "id": "a",
+            "cerinta": "Calculați intensitatea curentului electric prin primul bec în condiții normale de funcționare."
+          },
+          {
+            "id": "b",
+            "cerinta": "Calculați energia consumată de cel de al doilea bec, în condiții normale de funcționare, timp de 10 min."
+          },
+          {
+            "id": "c",
+            "cerinta": "Se leagă cele două becuri în serie și la bornele grupării se aplică tensiunea 1 240 V U = . Calculați puterea absorbită de gruparea celor două becuri considerând că rezistențele lor rămân constante."
+          },
+          {
+            "id": "d",
+            "cerinta": "Se realizează un montaj format din gruparea paralel a celor două becuri, conectată în serie cu un rezistor având rezistența electrică 3 R . La bornele montajului se aplică tensiunea 2 320 V. U = Determinați valoarea rezistenței electrice 3 R care asigură funcționarea normală a celor două becuri."
+          },
+          {
+            "id": "D",
+            "cerinta": "Optică Examenul de bacalaureat 2012 Proba E. d) Proba scrisă la FIZICĂ Filiera teoretică – profilul real, Filiera tehnologică – profilul tehnic și profilul resurse naturale și protecția mediului, Filiera vocațională – profilul militar • Sunt obligatorii toate subiectele din două arii tematice dintre cele patru prevăzute de programă, adică: A. MECANICĂ,"
+          },
+          {
+            "id": "B",
+            "cerinta": "ELEMENTE DE TERMODINAMICĂ, C. PRODUCEREA ȘI UTILIZAREA CURENTULUI CONTINUU, D. OPTICĂ • Se acordă 10 puncte din oficiu. • Timpul efectiv de lucru este de 3 ore."
+          }
+        ],
+        "imagini": [
+          "output\\images\\2012_fizica-2012_var_02_lro_C_II_page2.png"
+        ],
+        "an": "2012",
+        "fisier": "fizica-2012_var_02_lro.pdf",
+        "tip_document": "subiect"
+      },
+      {
+        "arie": "PRODUCEREA ȘI UTILIZAREA CURENTULUI CONTINUU",
+        "subiect": "III",
+        "variant": "2",
+        "continut": "III. Rezolvați următoarea problemă: \n(15 puncte) \nDouă becuri au fiecare tensiunea nominală \n160 V\nn\nU =\n. În condiții normale de funcționare primul bec \nconsumă puterea \n1\n80 W\nP =\n, iar al doilea bec este parcurs de un curent de intensitate 2\n1 A\nI =\n. \na. Calculați intensitatea curentului electric prin primul bec în condiții normale de funcționare. \nb. Calculați energia consumată de cel de al doilea bec, în condiții normale de funcționare, timp de 10 min.  \nc. Se leagă cele două becuri în serie și la bornele grupării se aplică tensiunea \n1\n240 V\nU =\n. Calculați puterea \nabsorbită de gruparea celor două becuri considerând că rezistențele lor rămân constante. \nd. Se realizează un montaj format din gruparea paralel a celor două becuri, conectată în serie cu un rezistor \navând rezistența electrică \n3\nR . La bornele montajului se aplică tensiunea \n2\n320 V.\nU\n=\n Determinați valoarea \nrezistenței electrice \n3\nR  care asigură funcționarea normală a celor două becuri. \n \n\nMinisterul Educației, Cercetării, Tineretului și Sportului \nCentrul Național de Evaluare și Examinare \nProbă scrisă la Fizică \n4 \nD. Optică \nExamenul de bacalaureat 2012 \nProba E. d)  \nProba scrisă la FIZICĂ \nFiliera teoretică – profilul real, Filiera tehnologică – profilul tehnic și profilul resurse naturale și protecția mediului, \nFiliera vocațională – profilul militar \n• Sunt obligatorii toate subiectele din două arii tematice dintre cele patru prevăzute de programă, adică: A. MECANICĂ, \nB. ELEMENTE DE TERMODINAMICĂ, C. PRODUCEREA ȘI UTILIZAREA CURENTULUI CONTINUU, D. OPTICĂ \n• Se acordă 10 puncte din oficiu. \n• Timpul efectiv de lucru este de 3 ore.",
+        "subpuncte": [
+          {
+            "id": "a",
+            "cerinta": "Calculați intensitatea curentului electric prin primul bec în condiții normale de funcționare."
+          },
+          {
+            "id": "b",
+            "cerinta": "Calculați energia consumată de cel de al doilea bec, în condiții normale de funcționare, timp de 10 min."
+          },
+          {
+            "id": "c",
+            "cerinta": "Se leagă cele două becuri în serie și la bornele grupării se aplică tensiunea 1 240 V U = . Calculați puterea absorbită de gruparea celor două becuri considerând că rezistențele lor rămân constante."
+          },
+          {
+            "id": "d",
+            "cerinta": "Se realizează un montaj format din gruparea paralel a celor două becuri, conectată în serie cu un rezistor având rezistența electrică 3 R . La bornele montajului se aplică tensiunea 2 320 V. U = Determinați valoarea rezistenței electrice 3 R care asigură funcționarea normală a celor două becuri."
+          },
+          {
+            "id": "D",
+            "cerinta": "Optică Examenul de bacalaureat 2012 Proba E. d) Proba scrisă la FIZICĂ Filiera teoretică – profilul real, Filiera tehnologică – profilul tehnic și profilul resurse naturale și protecția mediului, Filiera vocațională – profilul militar • Sunt obligatorii toate subiectele din două arii tematice dintre cele patru prevăzute de programă, adică: A. MECANICĂ,"
+          },
+          {
+            "id": "B",
+            "cerinta": "ELEMENTE DE TERMODINAMICĂ, C. PRODUCEREA ȘI UTILIZAREA CURENTULUI CONTINUU, D. OPTICĂ • Se acordă 10 puncte din oficiu. • Timpul efectiv de lucru este de 3 ore."
+          }
+        ],
+        "imagini": [
+          "output\\images\\2012_fizica-2012_var_02_lro_C_III_page2.png"
+        ],
+        "an": "2012",
+        "fisier": "fizica-2012_var_02_lro.pdf",
+        "tip_document": "subiect"
+      },
+      {
+        "arie": "OPTICĂ",
+        "subiect": "II",
+        "variant": "2",
+        "continut": "II. Rezolvați următoarea problemă: \n(15 puncte) \nUn obiect liniar cu înălțimea \nmm\n6\n=\nh\n este așezat perpendicular pe axa optică principală a unei lentile \nsubțiri convergente (\n1\nL ), la distanța de 80cm  de lentilă. Pe un ecran așezat la distanța d  față de lentila \n1\nL  \nse observă o imagine clară, de două ori mai mică decât obiectul. Apoi, de lentila \n1\nL  se alipește o lentilă \nsubțire divergentă \n2\nL , iar distanța dintre obiect și sistemul de lentile rămâne egală cu 80cm . Se deplasează \necranul până când, pe acesta, se observă o imagine clară, de două ori mai mare decât obiectul. Determinați: \na. distanța d  dintre lentila \n1\nL  și ecran; \nb. convergența lentilei \n1\nL ; \nc. distanța focală a lentilei divergente \n2\nL ; \nd. mărimea imaginii obiectului care se observă prin sistemul de lentile alipite, dacă obiectul este plasat la \ndistanța de 25 cm  față de sistemul de lentile. \nIII. Rezolvați următoarea problemă: \n(15 puncte) \nPe o placă metalică se trimite un fascicul de radiații monocromatice format din fotoni având energia \neV\n9\n1 =\nε\n (\n)\n19\n1eV\n1,6 10\nJ\n−\n=\n⋅\n și se măsoară tensiunea de stopare a fotoelectronilor. Dacă frecvența radiației \nincidente pe catod crește cu \n%\n20\n, se constată că tensiunea de stopare crește cu \n%\n40\n. \na. Calculați valoarea lucrului mecanic de extracție pentru metalul din care este confecționată placa. \nb. Determinați valoarea tensiunii de stopare a fotoelectronilor emiși sub acțiunea unei radiații formată din \nfotoni având energia \neV\n6\n2 =\nε\n. \nc. Calculați frecvența ν  a radiației incidente pe placă, pentru care energia cinetică maximă a fotoelectronilor \nemiși este egală cu \n= 0,5eV\nc\nE\n. \nd. Reprezentați grafic tensiunea de stopare a electronilor emiși de placa metalică în funcție de energia \nfotonilor din radiația incidentă pe placă.",
+        "subpuncte": [
+          {
+            "id": "a",
+            "cerinta": "distanța d dintre lentila 1 L și ecran;"
+          },
+          {
+            "id": "b",
+            "cerinta": "convergența lentilei 1 L ;"
+          },
+          {
+            "id": "c",
+            "cerinta": "distanța focală a lentilei divergente 2 L ;"
+          },
+          {
+            "id": "d",
+            "cerinta": "mărimea imaginii obiectului care se observă prin sistemul de lentile alipite, dacă obiectul este plasat la distanța de 25 cm față de sistemul de lentile."
+          },
+          {
+            "id": "a",
+            "cerinta": "Calculați valoarea lucrului mecanic de extracție pentru metalul din care este confecționată placa."
+          },
+          {
+            "id": "b",
+            "cerinta": "Determinați valoarea tensiunii de stopare a fotoelectronilor emiși sub acțiunea unei radiații formată din fotoni având energia eV 6 2 = ε ."
+          },
+          {
+            "id": "c",
+            "cerinta": "Calculați frecvența ν a radiației incidente pe placă, pentru care energia cinetică maximă a fotoelectronilor emiși este egală cu = 0,5eV c E ."
+          },
+          {
+            "id": "d",
+            "cerinta": "Reprezentați grafic tensiunea de stopare a electronilor emiși de placa metalică în funcție de energia fotonilor din radiația incidentă pe placă."
+          }
+        ],
+        "imagini": [
+          "output\\images\\2012_fizica-2012_var_02_lro_D_II_page3.png"
+        ],
+        "an": "2012",
+        "fisier": "fizica-2012_var_02_lro.pdf",
+        "tip_document": "subiect"
+      },
+      {
+        "arie": "OPTICĂ",
+        "subiect": "III",
+        "variant": "2",
+        "continut": "III. Rezolvați următoarea problemă: \n(15 puncte) \nPe o placă metalică se trimite un fascicul de radiații monocromatice format din fotoni având energia \neV\n9\n1 =\nε\n (\n)\n19\n1eV\n1,6 10\nJ\n−\n=\n⋅\n și se măsoară tensiunea de stopare a fotoelectronilor. Dacă frecvența radiației \nincidente pe catod crește cu \n%\n20\n, se constată că tensiunea de stopare crește cu \n%\n40\n. \na. Calculați valoarea lucrului mecanic de extracție pentru metalul din care este confecționată placa. \nb. Determinați valoarea tensiunii de stopare a fotoelectronilor emiși sub acțiunea unei radiații formată din \nfotoni având energia \neV\n6\n2 =\nε\n. \nc. Calculați frecvența ν  a radiației incidente pe placă, pentru care energia cinetică maximă a fotoelectronilor \nemiși este egală cu \n= 0,5eV\nc\nE\n. \nd. Reprezentați grafic tensiunea de stopare a electronilor emiși de placa metalică în funcție de energia \nfotonilor din radiația incidentă pe placă.",
+        "subpuncte": [
+          {
+            "id": "a",
+            "cerinta": "Calculați valoarea lucrului mecanic de extracție pentru metalul din care este confecționată placa."
+          },
+          {
+            "id": "b",
+            "cerinta": "Determinați valoarea tensiunii de stopare a fotoelectronilor emiși sub acțiunea unei radiații formată din fotoni având energia eV 6 2 = ε ."
+          },
+          {
+            "id": "c",
+            "cerinta": "Calculați frecvența ν a radiației incidente pe placă, pentru care energia cinetică maximă a fotoelectronilor emiși este egală cu = 0,5eV c E ."
+          },
+          {
+            "id": "d",
+            "cerinta": "Reprezentați grafic tensiunea de stopare a electronilor emiși de placa metalică în funcție de energia fotonilor din radiația incidentă pe placă."
+          }
+        ],
+        "imagini": [
+          "output\\images\\2012_fizica-2012_var_02_lro_D_III_page3.png"
+        ],
+        "an": "2012",
+        "fisier": "fizica-2012_var_02_lro.pdf",
+        "tip_document": "subiect"
+      },
+      {
+        "arie": "MECANICĂ",
+        "subiect": "II",
+        "variant": "3",
+        "continut": "II. Rezolvați următoarea problemă: \n(15 puncte) \nUn corp cu masa de 100 g  este aruncat pe verticală de jos în sus în câmp gravitațional \nterestru. Corpul întâmpină din partea aerului o forță de rezistență constantă orientată pe \ndirecția de mișcare a corpului. Graficul alăturat reprezintă dependența vitezei corpului, \nfuncție de timp, pentru porțiunea de urcare. \na. Reprezentați forțele ce acționează asupra corpului în timpul urcării. \nb. Calculați viteza medie de deplasare a corpului în prima secundă de mișcare. \nc. Determinați accelerația corpului, în urcare. \nd. Calculați valoarea forței de rezistență întâmpinată de corp din partea aerului. \n \nIII. Rezolvați următoarea problemă: \n(15 puncte) \nÎntr-un sport olimpic de iarnă un bloc de piatră cu masa de 19,96 kg  este lansat, pe suprafața gheții, cu \nscopul parcurgerii unei anumite distanțe până la o țintă. Suprafața gheții este plană și orizontală și se află la \nînălțimea \n100 m\nh =\n față de nivelul mării. Jucătorii perie suprafața gheții din fața blocului de piatră în scopul \nmicșorării frecărilor. Un astfel de bloc, de dimensiuni neglijabile, este lansat către o țintă situată la distanța \n20 m\nd =\n, de locul lansării. Prin perierea suprafeței gheții coeficientul de frecare la alunecare dintre blocul \nde piatră și suprafața gheții, scade liniar de la valoarea \n1\n0,06\nµ =\n în locul de lansare la valoarea \n2\n0,02\nµ =\n \nlângă țintă. Determinați: \na. greutatea blocului de piatră; \nb. lucrul mecanic al forței de frecare la alunecare, dintre blocul de piatră și suprafața gheții, pe distanța d ; \nc. viteza cu care trebuie lansat blocul de piatră pentru a se opri la țintă; \nd. energia mecanică a blocului de piatră aflat în repaus pe suprafața gheții, considerând că energia \npotențială este nulă la nivelul mării.  \n\nMinisterul Educației, Cercetării, Tineretului și Sportului \nCentrul Național de Evaluare și Examinare \nProbă scrisă la Fizică \n2 \nB. Elemente de termodinamică \nExamenul de bacalaureat 2012 \nProba E. d)  \nProba scrisă la FIZICĂ \nFiliera teoretică – profilul real, Filiera tehnologică – profilul tehnic și profilul resurse naturale și protecția mediului, \nFiliera vocațională – profilul militar \n• Sunt obligatorii toate subiectele din două arii tematice dintre cele patru prevăzute de programă, adică: A. MECANICĂ, \nB. ELEMENTE DE TERMODINAMICĂ, C. PRODUCEREA ȘI UTILIZAREA CURENTULUI CONTINUU, D. OPTICĂ \n• Se acordă 10 puncte din oficiu. \n• Timpul efectiv de lucru este de 3 ore.",
+        "subpuncte": [
+          {
+            "id": "a",
+            "cerinta": "Reprezentați forțele ce acționează asupra corpului în timpul urcării."
+          },
+          {
+            "id": "b",
+            "cerinta": "Calculați viteza medie de deplasare a corpului în prima secundă de mișcare."
+          },
+          {
+            "id": "c",
+            "cerinta": "Determinați accelerația corpului, în urcare."
+          },
+          {
+            "id": "d",
+            "cerinta": "Calculați valoarea forței de rezistență întâmpinată de corp din partea aerului."
+          },
+          {
+            "id": "a",
+            "cerinta": "greutatea blocului de piatră;"
+          },
+          {
+            "id": "b",
+            "cerinta": "lucrul mecanic al forței de frecare la alunecare, dintre blocul de piatră și suprafața gheții, pe distanța d ;"
+          },
+          {
+            "id": "c",
+            "cerinta": "viteza cu care trebuie lansat blocul de piatră pentru a se opri la țintă;"
+          },
+          {
+            "id": "d",
+            "cerinta": "energia mecanică a blocului de piatră aflat în repaus pe suprafața gheții, considerând că energia potențială este nulă la nivelul mării."
+          },
+          {
+            "id": "B",
+            "cerinta": "Elemente de termodinamică Examenul de bacalaureat 2012 Proba E. d) Proba scrisă la FIZICĂ Filiera teoretică – profilul real, Filiera tehnologică – profilul tehnic și profilul resurse naturale și protecția mediului, Filiera vocațională – profilul militar • Sunt obligatorii toate subiectele din două arii tematice dintre cele patru prevăzute de programă, adică: A. MECANICĂ,"
+          },
+          {
+            "id": "B",
+            "cerinta": "ELEMENTE DE TERMODINAMICĂ, C. PRODUCEREA ȘI UTILIZAREA CURENTULUI CONTINUU, D. OPTICĂ • Se acordă 10 puncte din oficiu. • Timpul efectiv de lucru este de 3 ore."
+          }
+        ],
+        "imagini": [
+          "output\\images\\2012_fizica-2012_var_03_lro_A_II_page0.png"
+        ],
+        "an": "2012",
+        "fisier": "fizica-2012_var_03_lro.pdf",
+        "tip_document": "subiect"
+      },
+      {
+        "arie": "MECANICĂ",
+        "subiect": "III",
+        "variant": "3",
+        "continut": "III. Rezolvați următoarea problemă: \n(15 puncte) \nÎntr-un sport olimpic de iarnă un bloc de piatră cu masa de 19,96 kg  este lansat, pe suprafața gheții, cu \nscopul parcurgerii unei anumite distanțe până la o țintă. Suprafața gheții este plană și orizontală și se află la \nînălțimea \n100 m\nh =\n față de nivelul mării. Jucătorii perie suprafața gheții din fața blocului de piatră în scopul \nmicșorării frecărilor. Un astfel de bloc, de dimensiuni neglijabile, este lansat către o țintă situată la distanța \n20 m\nd =\n, de locul lansării. Prin perierea suprafeței gheții coeficientul de frecare la alunecare dintre blocul \nde piatră și suprafața gheții, scade liniar de la valoarea \n1\n0,06\nµ =\n în locul de lansare la valoarea \n2\n0,02\nµ =\n \nlângă țintă. Determinați: \na. greutatea blocului de piatră; \nb. lucrul mecanic al forței de frecare la alunecare, dintre blocul de piatră și suprafața gheții, pe distanța d ; \nc. viteza cu care trebuie lansat blocul de piatră pentru a se opri la țintă; \nd. energia mecanică a blocului de piatră aflat în repaus pe suprafața gheții, considerând că energia \npotențială este nulă la nivelul mării.  \n\nMinisterul Educației, Cercetării, Tineretului și Sportului \nCentrul Național de Evaluare și Examinare \nProbă scrisă la Fizică \n2 \nB. Elemente de termodinamică \nExamenul de bacalaureat 2012 \nProba E. d)  \nProba scrisă la FIZICĂ \nFiliera teoretică – profilul real, Filiera tehnologică – profilul tehnic și profilul resurse naturale și protecția mediului, \nFiliera vocațională – profilul militar \n• Sunt obligatorii toate subiectele din două arii tematice dintre cele patru prevăzute de programă, adică: A. MECANICĂ, \nB. ELEMENTE DE TERMODINAMICĂ, C. PRODUCEREA ȘI UTILIZAREA CURENTULUI CONTINUU, D. OPTICĂ \n• Se acordă 10 puncte din oficiu. \n• Timpul efectiv de lucru este de 3 ore.",
+        "subpuncte": [
+          {
+            "id": "a",
+            "cerinta": "greutatea blocului de piatră;"
+          },
+          {
+            "id": "b",
+            "cerinta": "lucrul mecanic al forței de frecare la alunecare, dintre blocul de piatră și suprafața gheții, pe distanța d ;"
+          },
+          {
+            "id": "c",
+            "cerinta": "viteza cu care trebuie lansat blocul de piatră pentru a se opri la țintă;"
+          },
+          {
+            "id": "d",
+            "cerinta": "energia mecanică a blocului de piatră aflat în repaus pe suprafața gheții, considerând că energia potențială este nulă la nivelul mării."
+          },
+          {
+            "id": "B",
+            "cerinta": "Elemente de termodinamică Examenul de bacalaureat 2012 Proba E. d) Proba scrisă la FIZICĂ Filiera teoretică – profilul real, Filiera tehnologică – profilul tehnic și profilul resurse naturale și protecția mediului, Filiera vocațională – profilul militar • Sunt obligatorii toate subiectele din două arii tematice dintre cele patru prevăzute de programă, adică: A. MECANICĂ,"
+          },
+          {
+            "id": "B",
+            "cerinta": "ELEMENTE DE TERMODINAMICĂ, C. PRODUCEREA ȘI UTILIZAREA CURENTULUI CONTINUU, D. OPTICĂ • Se acordă 10 puncte din oficiu. • Timpul efectiv de lucru este de 3 ore."
+          }
+        ],
+        "imagini": [
+          "output\\images\\2012_fizica-2012_var_03_lro_A_III_page0.png"
+        ],
+        "an": "2012",
+        "fisier": "fizica-2012_var_03_lro.pdf",
+        "tip_document": "subiect"
+      },
+      {
+        "arie": "ELEMENTE DE TERMODINAMICĂ",
+        "subiect": "II",
+        "variant": "3",
+        "continut": "II. Rezolvați următoarea problemă: \n(15 puncte) \nÎn figura alăturată este reprezentată schematic o pompă de compresiune, al cărei corp de pompă are \nvolumul \nL 1\n0 =\nV\n. Pompa este folosită pentru umplerea cu aer a unui balon de volum \nL \n10\n=\nV\n până la \npresiunea \n2\n 5 N/m\n10\n5,1 ⋅\n=\np\n. Inițial, în balon se afla aer la presiunea atmosferică normală \n2\n 5\n0\nN/m\n10\n=\np\n. \nPompa preia, la fiecare cursă a pistonului P, aer la presiunea atmosferică normală prin deschiderea supapei \nS1, supapa S2 fiind închisă. Procesul de umplere a balonului cu aer comprimat are loc la temperatura \nmediului ambiant \nC\n17°\n=\nt\n, prin închiderea supapei S1 și deschiderea supapei S2. Pereții balonului rezistă \npână la o presiune \n2\n 5\nmax\nN/m\n10\n7,1 ⋅\n=\np\n. Masa molară a aerului \n-1\nmol\ng\n \n29\n⋅\n=\nµ\n. \na. Calculați masa inițială a aerului din balon. \nb. Determinați numărul N de curse ce trebuie efectuat de pistonul P pentru a aduce \npresiunea aerului din balon la valoarea p . \nc. Calculați densitatea aerului din balon la sfârșitul celor N curse ale pistonului. \nd. După umplerea balonului cu aer la presiunea p , balonul este închis și corpul de pompă este decuplat. \nCalculați valoarea maximă a temperaturii până la care poate fi încălzit balonul fără a se sparge. \nIII. Rezolvați următoarea problemă: \n(15 puncte) \nÎntr-un cilindru cu piston mobil, ce se poate mișca etanș și fără frecări, se află un mol de gaz ideal la \ntemperatura \nK\n \n300\n1 =\nT\n. Gazul este răcit la volum constant, apoi este încălzit la presiune constantă până \nrevine la temperatura inițială \n1\nT . În acest proces lucrul mecanic efectuat de gaz este de \nJ \n831 , iar raportul \ndintre căldura primită și modulul căldurii cedate este \n5 3\nk =\n. Se cunoaște ln1,5\n.\n4\n,0\n≅\n \na. Reprezentați graficul transformărilor în coordonate p-T. \nb. Calculați raportul dintre valoarea maximă și cea minimă a volumului ocupat de gaz în acest proces. \nc. Determinați valoarea căldurii molare la volum constant a gazului. \nd. Determinați lucrul mecanic primit de gaz pentru a reveni în starea inițială printr-o transformare la temperatură \nconstantă. \n\nMinisterul Educației, Cercetării, Tineretului și Sportului \nCentrul Național de Evaluare și Examinare \nProbă scrisă la Fizică \n3 \nC. Producerea și utilizarea curentului continuu \nExamenul de bacalaureat 2012 \nProba E. d)  \nProba scrisă la FIZICĂ \nFiliera teoretică – profilul real, Filiera tehnologică – profilul tehnic și profilul resurse naturale și protecția mediului, \nFiliera vocațională – profilul militar \n• Sunt obligatorii toate subiectele din două arii tematice dintre cele patru prevăzute de programă, adică: A. MECANICĂ, \nB. ELEMENTE DE TERMODINAMICĂ, C. PRODUCEREA ȘI UTILIZAREA CURENTULUI CONTINUU, D. OPTICĂ \n• Se acordă 10 puncte din oficiu. \n• Timpul efectiv de lucru este de 3 ore.",
+        "subpuncte": [
+          {
+            "id": "a",
+            "cerinta": "Calculați masa inițială a aerului din balon."
+          },
+          {
+            "id": "b",
+            "cerinta": "Determinați numărul N de curse ce trebuie efectuat de pistonul P pentru a aduce presiunea aerului din balon la valoarea p ."
+          },
+          {
+            "id": "c",
+            "cerinta": "Calculați densitatea aerului din balon la sfârșitul celor N curse ale pistonului."
+          },
+          {
+            "id": "d",
+            "cerinta": "După umplerea balonului cu aer la presiunea p , balonul este închis și corpul de pompă este decuplat. Calculați valoarea maximă a temperaturii până la care poate fi încălzit balonul fără a se sparge."
+          },
+          {
+            "id": "a",
+            "cerinta": "Reprezentați graficul transformărilor în coordonate p-T."
+          },
+          {
+            "id": "b",
+            "cerinta": "Calculați raportul dintre valoarea maximă și cea minimă a volumului ocupat de gaz în acest proces."
+          },
+          {
+            "id": "c",
+            "cerinta": "Determinați valoarea căldurii molare la volum constant a gazului."
+          },
+          {
+            "id": "d",
+            "cerinta": "Determinați lucrul mecanic primit de gaz pentru a reveni în starea inițială printr-o transformare la temperatură constantă."
+          },
+          {
+            "id": "C",
+            "cerinta": "Producerea și utilizarea curentului continuu Examenul de bacalaureat 2012 Proba E. d) Proba scrisă la FIZICĂ Filiera teoretică – profilul real, Filiera tehnologică – profilul tehnic și profilul resurse naturale și protecția mediului, Filiera vocațională – profilul militar • Sunt obligatorii toate subiectele din două arii tematice dintre cele patru prevăzute de programă, adică: A. MECANICĂ,"
+          },
+          {
+            "id": "B",
+            "cerinta": "ELEMENTE DE TERMODINAMICĂ, C. PRODUCEREA ȘI UTILIZAREA CURENTULUI CONTINUU, D. OPTICĂ • Se acordă 10 puncte din oficiu. • Timpul efectiv de lucru este de 3 ore."
+          }
+        ],
+        "imagini": [
+          "output\\images\\2012_fizica-2012_var_03_lro_B_II_page1.png"
+        ],
+        "an": "2012",
+        "fisier": "fizica-2012_var_03_lro.pdf",
+        "tip_document": "subiect"
+      },
+      {
+        "arie": "ELEMENTE DE TERMODINAMICĂ",
+        "subiect": "III",
+        "variant": "3",
+        "continut": "III. Rezolvați următoarea problemă: \n(15 puncte) \nÎntr-un cilindru cu piston mobil, ce se poate mișca etanș și fără frecări, se află un mol de gaz ideal la \ntemperatura \nK\n \n300\n1 =\nT\n. Gazul este răcit la volum constant, apoi este încălzit la presiune constantă până \nrevine la temperatura inițială \n1\nT . În acest proces lucrul mecanic efectuat de gaz este de \nJ \n831 , iar raportul \ndintre căldura primită și modulul căldurii cedate este \n5 3\nk =\n. Se cunoaște ln1,5\n.\n4\n,0\n≅\n \na. Reprezentați graficul transformărilor în coordonate p-T. \nb. Calculați raportul dintre valoarea maximă și cea minimă a volumului ocupat de gaz în acest proces. \nc. Determinați valoarea căldurii molare la volum constant a gazului. \nd. Determinați lucrul mecanic primit de gaz pentru a reveni în starea inițială printr-o transformare la temperatură \nconstantă. \n\nMinisterul Educației, Cercetării, Tineretului și Sportului \nCentrul Național de Evaluare și Examinare \nProbă scrisă la Fizică \n3 \nC. Producerea și utilizarea curentului continuu \nExamenul de bacalaureat 2012 \nProba E. d)  \nProba scrisă la FIZICĂ \nFiliera teoretică – profilul real, Filiera tehnologică – profilul tehnic și profilul resurse naturale și protecția mediului, \nFiliera vocațională – profilul militar \n• Sunt obligatorii toate subiectele din două arii tematice dintre cele patru prevăzute de programă, adică: A. MECANICĂ, \nB. ELEMENTE DE TERMODINAMICĂ, C. PRODUCEREA ȘI UTILIZAREA CURENTULUI CONTINUU, D. OPTICĂ \n• Se acordă 10 puncte din oficiu. \n• Timpul efectiv de lucru este de 3 ore.",
+        "subpuncte": [
+          {
+            "id": "a",
+            "cerinta": "Reprezentați graficul transformărilor în coordonate p-T."
+          },
+          {
+            "id": "b",
+            "cerinta": "Calculați raportul dintre valoarea maximă și cea minimă a volumului ocupat de gaz în acest proces."
+          },
+          {
+            "id": "c",
+            "cerinta": "Determinați valoarea căldurii molare la volum constant a gazului."
+          },
+          {
+            "id": "d",
+            "cerinta": "Determinați lucrul mecanic primit de gaz pentru a reveni în starea inițială printr-o transformare la temperatură constantă."
+          },
+          {
+            "id": "C",
+            "cerinta": "Producerea și utilizarea curentului continuu Examenul de bacalaureat 2012 Proba E. d) Proba scrisă la FIZICĂ Filiera teoretică – profilul real, Filiera tehnologică – profilul tehnic și profilul resurse naturale și protecția mediului, Filiera vocațională – profilul militar • Sunt obligatorii toate subiectele din două arii tematice dintre cele patru prevăzute de programă, adică: A. MECANICĂ,"
+          },
+          {
+            "id": "B",
+            "cerinta": "ELEMENTE DE TERMODINAMICĂ, C. PRODUCEREA ȘI UTILIZAREA CURENTULUI CONTINUU, D. OPTICĂ • Se acordă 10 puncte din oficiu. • Timpul efectiv de lucru este de 3 ore."
+          }
+        ],
+        "imagini": [
+          "output\\images\\2012_fizica-2012_var_03_lro_B_III_page1.png"
+        ],
+        "an": "2012",
+        "fisier": "fizica-2012_var_03_lro.pdf",
+        "tip_document": "subiect"
+      },
+      {
+        "arie": "PRODUCEREA ȘI UTILIZAREA CURENTULUI CONTINUU",
+        "subiect": "II",
+        "variant": "3",
+        "continut": "II. Rezolvați următoarea problemă: \n(15 puncte) \nSe consideră circuitul electric a cărui schemă este reprezentată în figura \nalăturată. Se cunosc: \nΩ\n= 30\n1\nR\n, \nΩ\n= 120\n2\nR\n, \nΩ\n= 20\n3\nR\n. Cele două surse \nsunt identice, rezistența internă a unei surse fiind \nΩ\n= 2\nr\n. Când \nîntrerupătorul K este închis, intensitatea curentului electric indicată de \nampermetrul ideal (\n0\n≅\nA\nR\n) are valoarea \nA\n25\n,0\n=\nA\nI\n. Rezistența electrică a \nconductoarelor de legătură se neglijează. Determinați:  \na. rezistența echivalentă a grupării formate din rezistoarele \n1\nR , \n2\nR , \n3\nR ; \nb. valoarea tensiunii electromotoare a unei surse; \nc. intensitatea curentului electric care trece prin rezistorul \n1\nR  dacă întrerupătorul K este închis; \nd. tensiunea dintre punctele A și B dacă întrerupătorul K este deschis.  \nIII. Rezolvați următoarea problemă: \n(15 puncte) \nUn elev are la dispoziție o baterie cu tensiunea electromotoare \n12 V\nE =\n și rezistența internă \n1\nr = Ω și două \nrezistoare având rezistențele electrice \n1\n1\nR =\nΩ și respectiv \n2\n10\nR =\nΩ. Elevul conectează la bornele bateriei \ncele două rezistoare grupate în serie. \na. Calculați rezistența echivalentă a grupării de rezistoare. \nb. Determinați energia consumată de circuitul exterior în timpul 1\n10min\nt =\n. \nc. Calculați randamentul circuitului electric. \nd. Desenați schema electrică a circuitului pe care elevul trebuie să-l realizeze astfel încât sursa să debiteze \nputerea maximă pe circuitul exterior și calculați valoarea acestei puteri maxime.  \n\nMinisterul Educației, Cercetării, Tineretului și Sportului \nCentrul Național de Evaluare și Examinare \nProbă scrisă la Fizică \n4 \nD. Optică \nExamenul de bacalaureat 2012 \nProba E. d)  \nProba scrisă la FIZICĂ \nFiliera teoretică – profilul real, Filiera tehnologică – profilul tehnic și profilul resurse naturale și protecția mediului, \nFiliera vocațională – profilul militar \n• Sunt obligatorii toate subiectele din două arii tematice dintre cele patru prevăzute de programă, adică: A. MECANICĂ, \nB. ELEMENTE DE TERMODINAMICĂ, C. PRODUCEREA ȘI UTILIZAREA CURENTULUI CONTINUU, D. OPTICĂ \n• Se acordă 10 puncte din oficiu. \n• Timpul efectiv de lucru este de 3 ore.",
+        "subpuncte": [
+          {
+            "id": "a",
+            "cerinta": "rezistența echivalentă a grupării formate din rezistoarele 1 R , 2 R , 3 R ;"
+          },
+          {
+            "id": "b",
+            "cerinta": "valoarea tensiunii electromotoare a unei surse;"
+          },
+          {
+            "id": "c",
+            "cerinta": "intensitatea curentului electric care trece prin rezistorul 1 R dacă întrerupătorul K este închis;"
+          },
+          {
+            "id": "d",
+            "cerinta": "tensiunea dintre punctele A și B dacă întrerupătorul K este deschis."
+          },
+          {
+            "id": "a",
+            "cerinta": "Calculați rezistența echivalentă a grupării de rezistoare."
+          },
+          {
+            "id": "b",
+            "cerinta": "Determinați energia consumată de circuitul exterior în timpul 1 10min t = ."
+          },
+          {
+            "id": "c",
+            "cerinta": "Calculați randamentul circuitului electric."
+          },
+          {
+            "id": "d",
+            "cerinta": "Desenați schema electrică a circuitului pe care elevul trebuie să-l realizeze astfel încât sursa să debiteze puterea maximă pe circuitul exterior și calculați valoarea acestei puteri maxime."
+          },
+          {
+            "id": "D",
+            "cerinta": "Optică Examenul de bacalaureat 2012 Proba E. d) Proba scrisă la FIZICĂ Filiera teoretică – profilul real, Filiera tehnologică – profilul tehnic și profilul resurse naturale și protecția mediului, Filiera vocațională – profilul militar • Sunt obligatorii toate subiectele din două arii tematice dintre cele patru prevăzute de programă, adică: A. MECANICĂ,"
+          },
+          {
+            "id": "B",
+            "cerinta": "ELEMENTE DE TERMODINAMICĂ, C. PRODUCEREA ȘI UTILIZAREA CURENTULUI CONTINUU, D. OPTICĂ • Se acordă 10 puncte din oficiu. • Timpul efectiv de lucru este de 3 ore."
+          }
+        ],
+        "imagini": [
+          "output\\images\\2012_fizica-2012_var_03_lro_C_II_page2.png"
+        ],
+        "an": "2012",
+        "fisier": "fizica-2012_var_03_lro.pdf",
+        "tip_document": "subiect"
+      },
+      {
+        "arie": "PRODUCEREA ȘI UTILIZAREA CURENTULUI CONTINUU",
+        "subiect": "III",
+        "variant": "3",
+        "continut": "III. Rezolvați următoarea problemă: \n(15 puncte) \nUn elev are la dispoziție o baterie cu tensiunea electromotoare \n12 V\nE =\n și rezistența internă \n1\nr = Ω și două \nrezistoare având rezistențele electrice \n1\n1\nR =\nΩ și respectiv \n2\n10\nR =\nΩ. Elevul conectează la bornele bateriei \ncele două rezistoare grupate în serie. \na. Calculați rezistența echivalentă a grupării de rezistoare. \nb. Determinați energia consumată de circuitul exterior în timpul 1\n10min\nt =\n. \nc. Calculați randamentul circuitului electric. \nd. Desenați schema electrică a circuitului pe care elevul trebuie să-l realizeze astfel încât sursa să debiteze \nputerea maximă pe circuitul exterior și calculați valoarea acestei puteri maxime.  \n\nMinisterul Educației, Cercetării, Tineretului și Sportului \nCentrul Național de Evaluare și Examinare \nProbă scrisă la Fizică \n4 \nD. Optică \nExamenul de bacalaureat 2012 \nProba E. d)  \nProba scrisă la FIZICĂ \nFiliera teoretică – profilul real, Filiera tehnologică – profilul tehnic și profilul resurse naturale și protecția mediului, \nFiliera vocațională – profilul militar \n• Sunt obligatorii toate subiectele din două arii tematice dintre cele patru prevăzute de programă, adică: A. MECANICĂ, \nB. ELEMENTE DE TERMODINAMICĂ, C. PRODUCEREA ȘI UTILIZAREA CURENTULUI CONTINUU, D. OPTICĂ \n• Se acordă 10 puncte din oficiu. \n• Timpul efectiv de lucru este de 3 ore.",
+        "subpuncte": [
+          {
+            "id": "a",
+            "cerinta": "Calculați rezistența echivalentă a grupării de rezistoare."
+          },
+          {
+            "id": "b",
+            "cerinta": "Determinați energia consumată de circuitul exterior în timpul 1 10min t = ."
+          },
+          {
+            "id": "c",
+            "cerinta": "Calculați randamentul circuitului electric."
+          },
+          {
+            "id": "d",
+            "cerinta": "Desenați schema electrică a circuitului pe care elevul trebuie să-l realizeze astfel încât sursa să debiteze puterea maximă pe circuitul exterior și calculați valoarea acestei puteri maxime."
+          },
+          {
+            "id": "D",
+            "cerinta": "Optică Examenul de bacalaureat 2012 Proba E. d) Proba scrisă la FIZICĂ Filiera teoretică – profilul real, Filiera tehnologică – profilul tehnic și profilul resurse naturale și protecția mediului, Filiera vocațională – profilul militar • Sunt obligatorii toate subiectele din două arii tematice dintre cele patru prevăzute de programă, adică: A. MECANICĂ,"
+          },
+          {
+            "id": "B",
+            "cerinta": "ELEMENTE DE TERMODINAMICĂ, C. PRODUCEREA ȘI UTILIZAREA CURENTULUI CONTINUU, D. OPTICĂ • Se acordă 10 puncte din oficiu. • Timpul efectiv de lucru este de 3 ore."
+          }
+        ],
+        "imagini": [
+          "output\\images\\2012_fizica-2012_var_03_lro_C_III_page2.png"
+        ],
+        "an": "2012",
+        "fisier": "fizica-2012_var_03_lro.pdf",
+        "tip_document": "subiect"
+      },
+      {
+        "arie": "OPTICĂ",
+        "subiect": "II",
+        "variant": "3",
+        "continut": "II. Rezolvați următoarea problemă: \n(15 puncte) \nPe un banc optic se montează o lentilă biconvexă (L1), considerată subțire, având distanța focală \ncm\n \n30\n1 =\nf\n, \nrazele de curbură egale în modul și indicele de refracție \n5\n1,\nn =\n. Un obiect liniar este plasat în fața lentilei, \nperpendicular pe axul optic principal. Pe un ecran, plasat la o distanță adecvată, se observă o imagine clară \na obiectului, de două ori mai mare decât obiectul. \na. Calculați modulul razelor de curbură ale lentilei. \nb. Calculați distanța la care se află obiectul față de lentilă. \nc. Menținând fixe obiectul și lentila (L1), se alipește de lentila biconvexă (L1) o a doua lentilă (L2). Se observă \ncă pe ecranul aflat la distanța de 90 cm de obiect se formează o nouă imagine clară a obiectului. Calculați \ndistanța focală a celei de a doua lentile (L2). \nd. Se depărtează lentila (L2) de lentila (L1) și se înlătură obiectul. Se constată că pentru o anumită distanță \nîntre lentile un fascicul de lumină paralel cu axul optic principal, provenit de la o sursă de lumină laser, \nincident pe lentila (L1) părăsește lentila (L2) tot paralel cu axul optic principal. Realizați un desen în care să \nfigureze mersul razelor de lumină prin sistemul de lentile în acest caz și determinați distanța D dintre lentile. \nIII. Rezolvați următoarea problemă: \n(15 puncte) \nÎn graficul din figura alăturată este reprezentată dependența energiei cinetice maxime a \nfotoelectronilor extrași dintr-un metal prin efect fotoelectric de frecvența radiației \nincidente.  \na. Determinați, folosind datele din grafic, lucrul mecanic de extracție. \nb. Iluminând suprafața catodului cu o radiație de frecvență \n14\n8 10\nHz\nυ =\n⋅\n, determinați \nenergia cinetică maximă a fotoelectronilor emiși. \nc. Determinați valoarea absolută a tensiunii de stopare care trebuie aplicată electrozilor pentru a anula \ncurentul de fotelectroni emis sub acțiunea radiației de frecvență \n14\n8 10\nHz\nυ =\n⋅\n. \nd. Determinați semnificația fizică a pantei dreptei din grafic (\nα\ntg\n).",
+        "subpuncte": [
+          {
+            "id": "a",
+            "cerinta": "Calculați modulul razelor de curbură ale lentilei."
+          },
+          {
+            "id": "b",
+            "cerinta": "Calculați distanța la care se află obiectul față de lentilă."
+          },
+          {
+            "id": "c",
+            "cerinta": "Menținând fixe obiectul și lentila (L1), se alipește de lentila biconvexă (L1) o a doua lentilă (L2). Se observă că pe ecranul aflat la distanța de 90 cm de obiect se formează o nouă imagine clară a obiectului. Calculați distanța focală a celei de a doua lentile (L2)."
+          },
+          {
+            "id": "d",
+            "cerinta": "Se depărtează lentila (L2) de lentila (L1) și se înlătură obiectul. Se constată că pentru o anumită distanță între lentile un fascicul de lumină paralel cu axul optic principal, provenit de la o sursă de lumină laser, incident pe lentila (L1) părăsește lentila (L2) tot paralel cu axul optic principal. Realizați un desen în care să figureze mersul razelor de lumină prin sistemul de lentile în acest caz și determinați distanța D dintre lentile."
+          },
+          {
+            "id": "a",
+            "cerinta": "Determinați, folosind datele din grafic, lucrul mecanic de extracție."
+          },
+          {
+            "id": "b",
+            "cerinta": "Iluminând suprafața catodului cu o radiație de frecvență 14 8 10 Hz υ = ⋅ , determinați energia cinetică maximă a fotoelectronilor emiși."
+          },
+          {
+            "id": "c",
+            "cerinta": "Determinați valoarea absolută a tensiunii de stopare care trebuie aplicată electrozilor pentru a anula curentul de fotelectroni emis sub acțiunea radiației de frecvență 14 8 10 Hz υ = ⋅ ."
+          },
+          {
+            "id": "d",
+            "cerinta": "Determinați semnificația fizică a pantei dreptei din grafic ( α tg )."
+          }
+        ],
+        "imagini": [
+          "output\\images\\2012_fizica-2012_var_03_lro_D_II_page3.png"
+        ],
+        "an": "2012",
+        "fisier": "fizica-2012_var_03_lro.pdf",
+        "tip_document": "subiect"
+      },
+      {
+        "arie": "OPTICĂ",
+        "subiect": "III",
+        "variant": "3",
+        "continut": "III. Rezolvați următoarea problemă: \n(15 puncte) \nÎn graficul din figura alăturată este reprezentată dependența energiei cinetice maxime a \nfotoelectronilor extrași dintr-un metal prin efect fotoelectric de frecvența radiației \nincidente.  \na. Determinați, folosind datele din grafic, lucrul mecanic de extracție. \nb. Iluminând suprafața catodului cu o radiație de frecvență \n14\n8 10\nHz\nυ =\n⋅\n, determinați \nenergia cinetică maximă a fotoelectronilor emiși. \nc. Determinați valoarea absolută a tensiunii de stopare care trebuie aplicată electrozilor pentru a anula \ncurentul de fotelectroni emis sub acțiunea radiației de frecvență \n14\n8 10\nHz\nυ =\n⋅\n. \nd. Determinați semnificația fizică a pantei dreptei din grafic (\nα\ntg\n).",
+        "subpuncte": [
+          {
+            "id": "a",
+            "cerinta": "Determinați, folosind datele din grafic, lucrul mecanic de extracție."
+          },
+          {
+            "id": "b",
+            "cerinta": "Iluminând suprafața catodului cu o radiație de frecvență 14 8 10 Hz υ = ⋅ , determinați energia cinetică maximă a fotoelectronilor emiși."
+          },
+          {
+            "id": "c",
+            "cerinta": "Determinați valoarea absolută a tensiunii de stopare care trebuie aplicată electrozilor pentru a anula curentul de fotelectroni emis sub acțiunea radiației de frecvență 14 8 10 Hz υ = ⋅ ."
+          },
+          {
+            "id": "d",
+            "cerinta": "Determinați semnificația fizică a pantei dreptei din grafic ( α tg )."
+          }
+        ],
+        "imagini": [
+          "output\\images\\2012_fizica-2012_var_03_lro_D_III_page3.png"
+        ],
+        "an": "2012",
+        "fisier": "fizica-2012_var_03_lro.pdf",
+        "tip_document": "subiect"
+      }
+    ]
+  }
+}
