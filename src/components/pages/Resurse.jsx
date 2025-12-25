@@ -64,6 +64,7 @@ const ResursePage = () => {
 
   const [activeTab, setActiveTab] = useState("lectii");
   const [activeFormulaTab, setActiveFormulaTab] = useState("mecanica");
+  const [visibleFormulasCount, setVisibleFormulasCount] = useState({});
 
   const [searchParams] = useSearchParams();
 
@@ -204,6 +205,79 @@ const ResursePage = () => {
     }
   }, []);
 
+  // Încărcare progresivă a formulelor pentru a evita blocajul
+  useEffect(() => {
+    if (activeTab !== "formule") return;
+
+    const formulasMap = {
+      mecanica: mecanicaFormulas,
+      termodinamica: termodinamicaFormulas,
+      seism: seismFormulas,
+      unde: undeFormulas,
+      prisma: prismaFormulas,
+      pendule: penduleFormulas,
+      lissajous: lissajousFormulas,
+    };
+
+    const currentFormulas = formulasMap[activeFormulaTab] || [];
+    const totalFormulas = currentFormulas.length;
+    
+    if (totalFormulas === 0) return;
+
+    // Verificăm dacă categoria a fost deja încărcată complet
+    setVisibleFormulasCount(prev => {
+      const currentVisible = prev[activeFormulaTab] || 0;
+      
+      // Dacă categoria a fost deja încărcată complet, nu facem nimic
+      if (currentVisible >= totalFormulas) {
+        return prev;
+      }
+
+      // Inițializăm sau continuăm de unde am rămas
+      const batchSize = 5;
+      const startCount = currentVisible > 0 ? currentVisible : Math.min(batchSize, totalFormulas);
+
+      return {
+        ...prev,
+        [activeFormulaTab]: startCount
+      };
+    });
+
+    // Pornim încărcarea progresivă dacă nu am terminat
+    let intervalId = null;
+
+    // Verificăm periodic dacă trebuie să continuăm încărcarea
+    intervalId = setInterval(() => {
+      setVisibleFormulasCount(prev => {
+        const currentVisible = prev[activeFormulaTab] || 0;
+        if (currentVisible < totalFormulas) {
+          const batchSize = 5;
+          const newCount = Math.min(currentVisible + batchSize, totalFormulas);
+          if (newCount >= totalFormulas && intervalId) {
+            clearInterval(intervalId);
+            intervalId = null;
+          }
+          return {
+            ...prev,
+            [activeFormulaTab]: newCount
+          };
+        }
+        if (intervalId) {
+          clearInterval(intervalId);
+          intervalId = null;
+        }
+        return prev;
+      });
+    }, 50); // Delay de 50ms între batch-uri
+
+    // Cleanup: oprim interval-ul când se schimbă tab-ul sau când componenta se demontează
+    return () => {
+      if (intervalId) {
+        clearInterval(intervalId);
+      }
+    };
+  }, [activeTab, activeFormulaTab]);
+
   return (
     <Layout>
       <div className="resurse-page page-section">
@@ -244,100 +318,114 @@ const ResursePage = () => {
 
                   <TabsContent value="mecanica">
                     <div className="formula-grid mb-4">
-                      {mecanicaFormulas.map((formula, index) => (
+                      {mecanicaFormulas
+                        .slice(0, visibleFormulasCount.mecanica || 5)
+                        .map((formula, index) => (
                         <div key={index} className="formula-card">
                           <div className="font-semibold mb-2">{formula.title}</div>
                           <div className="text-lg font-mono">
                             {formula.formula}
-                            <MathJaxRender />
                           </div>
                         </div>
                       ))}
                     </div>
+                    <MathJaxRender key={`mecanica-${visibleFormulasCount.mecanica || 0}`} />
                   </TabsContent>
 
                   <TabsContent value="termodinamica">
                     <div className="formula-grid mb-4">
-                      {termodinamicaFormulas.map((formula, index) => (
+                      {termodinamicaFormulas
+                        .slice(0, visibleFormulasCount.termodinamica || 5)
+                        .map((formula, index) => (
                         <div key={index} className="formula-card">
                           <div className="font-semibold mb-2">{formula.title}</div>
                           <div className="text-lg font-mono">
                             {formula.formula}
-                            <MathJaxRender />
                           </div>
                         </div>
                       ))}
                     </div>
+                    <MathJaxRender key={`termodinamica-${visibleFormulasCount.termodinamica || 0}`} />
                   </TabsContent>
 
                   <TabsContent value="seism">
                     <div className="formula-grid mb-4">
-                      {seismFormulas.map((formula, index) => (
+                      {seismFormulas
+                        .slice(0, visibleFormulasCount.seism || 5)
+                        .map((formula, index) => (
                         <div key={index} className="formula-card">
                           <div className="font-semibold mb-2">{formula.title}</div>
                           <div className="text-lg font-mono">
                             {formula.formula}
-                            <MathJaxRender />
                           </div>
                         </div>
                       ))}
                     </div>
+                    <MathJaxRender key={`seism-${visibleFormulasCount.seism || 0}`} />
                   </TabsContent>
 
                   <TabsContent value="unde">
                     <div className="formula-grid mb-4">
-                      {undeFormulas.map((formula, index) => (
+                      {undeFormulas
+                        .slice(0, visibleFormulasCount.unde || 5)
+                        .map((formula, index) => (
                         <div key={index} className="formula-card">
                           <div className="font-semibold mb-2">{formula.title}</div>
                           <div className="text-lg font-mono">
                             {formula.formula}
-                            <MathJaxRender />
                           </div>
                         </div>
                       ))}
                     </div>
+                    <MathJaxRender key={`unde-${visibleFormulasCount.unde || 0}`} />
                   </TabsContent>
 
                   <TabsContent value="prisma">
                     <div className="formula-grid mb-4">
-                      {prismaFormulas.map((formula, index) => (
+                      {prismaFormulas
+                        .slice(0, visibleFormulasCount.prisma || 5)
+                        .map((formula, index) => (
                         <div key={index} className="formula-card">
                           <div className="font-semibold mb-2">{formula.title}</div>
                           <div className="text-lg font-mono">
                             {formula.formula}
-                            <MathJaxRender />
                           </div>
                         </div>
                       ))}
                     </div>
+                    <MathJaxRender key={`prisma-${visibleFormulasCount.prisma || 0}`} />
                   </TabsContent>
 
                   <TabsContent value="pendule">
                     <div className="formula-grid mb-4">
-                      {penduleFormulas.map((formula, index) => (
+                      {penduleFormulas
+                        .slice(0, visibleFormulasCount.pendule || 5)
+                        .map((formula, index) => (
                         <div key={index} className="formula-card">
                           <div className="font-semibold mb-2">{formula.title}</div>
                           <div className="text-lg font-mono">
                             {formula.formula}
-                            <MathJaxRender />
                           </div>
                         </div>
                       ))}
                     </div>
+                    <MathJaxRender key={`pendule-${visibleFormulasCount.pendule || 0}`} />
                   </TabsContent>
 
                   <TabsContent value="lissajous">
                     <div className="formula-grid mb-4">
-                      {lissajousFormulas.map((formula, index) => (
+                      {lissajousFormulas
+                        .slice(0, visibleFormulasCount.lissajous || 5)
+                        .map((formula, index) => (
                         <div key={index} className="formula-card">
                           <div className="font-semibold mb-2">{formula.title}</div>
                           <div className="text-lg font-mono">
                             {formula.formula}
-                            <MathJaxRender />
                           </div>
                         </div>
                       ))}
                     </div>
+                    <MathJaxRender key={`lissajous-${visibleFormulasCount.lissajous || 0}`} />
                   </TabsContent>
                 </Tabs>
               </div>
