@@ -77,15 +77,35 @@ const ResursePage = () => {
   ];
 
   const mecanicaFormulas = [
+    { title: "Legea a doua a lui Newton", formula: "\\( \\vec{F} = m\\vec{a} \\)" },
+    { title: "Forța de greutate", formula: "\\( G = mg \\)" },
+    { title: "Forța de frecare", formula: "\\( F_f = \\mu N \\)" },
+    { title: "Energia cinetică", formula: "\\( E_c = \\frac{1}{2}mv^2 \\)" },
+    { title: "Energia potențială gravitațională", formula: "\\( E_p = mgh \\)" },
+    { title: "Energia potențială elastică", formula: "\\( E_p = \\frac{1}{2}kx^2 \\)" },
+    { title: "Lucrul mecanic", formula: "\\( L = F \\cdot d \\cdot \\cos(\\alpha) \\)" },
+    { title: "Teorema variației energiei cinetice", formula: "\\( L = \\Delta E_c = \\frac{1}{2}mv_2^2 - \\frac{1}{2}mv_1^2 \\)" },
+    { title: "Conservarea energiei mecanice", formula: "\\( E_m = E_c + E_p = const. \\)" },
+    { title: "Impulsul", formula: "\\( \\vec{p} = m\\vec{v} \\)" },
+    { title: "Conservarea impulsului", formula: "\\( m_1 v_{1i} + m_2 v_{2i} = m_1 v_{1f} + m_2 v_{2f} \\)" },
+    { title: "Coeficientul de restituire", formula: "\\( e = \\frac{v_{2f} - v_{1f}}{v_{1i} - v_{2i}} \\)" },
+    { title: "Mișcare uniformă", formula: "\\( x(t) = x_0 + vt \\)" },
+    { title: "Mișcare uniform variată", formula: "\\( x(t) = x_0 + v_0t + \\frac{1}{2}at^2 \\)" },
+    { title: "Viteza în mișcare uniform variată", formula: "\\( v(t) = v_0 + at \\)" },
+    { title: "Ecuația lui Galilei", formula: "\\( v^2 = v_0^2 + 2a(x - x_0) \\)" },
+    { title: "Mișcare circulară uniformă - accelerația centripetă", formula: "\\( a_c = \\frac{v^2}{R} = \\omega^2 R \\)" },
+    { title: "Viteza unghiulară", formula: "\\( \\omega = \\frac{2\\pi}{T} = 2\\pi f \\)" },
+    { title: "Forța centripetă", formula: "\\( F_c = m\\frac{v^2}{R} = m\\omega^2 R \\)" },
     { title: "Legea mișcării oscilatorii pe OX", formula: "\\( x(t) = A \\sin(\\omega t + \\phi) \\)" },
     { title: "Legea vitezei oscilatorii", formula: "\\( v(t) = \\omega A \\cos(\\omega t + \\phi) \\)" },
     { title: "Legea accelerației oscilatorii", formula: "\\( a(t) = -\\omega^2 A \\sin(\\omega t + \\phi) \\)" },
-    { title: "Viteza unghiulară", formula: "\\( \\omega = \\sqrt{\\frac{k}{m}} \\)" },
+    { title: "Viteza unghiulară (oscilator)", formula: "\\( \\omega = \\sqrt{\\frac{k}{m}} \\)" },
     { title: "Perioada oscilației", formula: "\\( T = 2\\pi \\sqrt{\\frac{m}{k}} \\)" },
-    { title: "Conservarea impulsului", formula: "\\( m_1 v_{1i} + m_2 v_{2i} = m_1 v_{1f} + m_2 v_{2f} \\)" },
-    { title: "Coeficientul de restituire", formula: "\\( e = \\frac{v_{2f} - v_{1f}}{v_{1i} - v_{2i}} \\)" },
-    { title: "Forța pe plan înclinat", formula: "\\( F_{||} = mg \\sin(\\alpha) \\)" },
+    { title: "Perioada pendulului gravitațional", formula: "\\( T = 2\\pi \\sqrt{\\frac{l}{g}} \\)" },
+    { title: "Forța pe plan înclinat (componenta paralelă)", formula: "\\( F_{||} = mg \\sin(\\alpha) \\)" },
+    { title: "Forța pe plan înclinat (componenta perpendiculară)", formula: "\\( F_{\\perp} = mg \\cos(\\alpha) \\)" },
     { title: "Accelerația pe plan înclinat", formula: "\\( a = g(\\sin(\\alpha) - \\mu \\cos(\\alpha)) \\)" },
+    { title: "Puterea mecanică", formula: "\\( P = \\frac{L}{t} = F \\cdot v \\)" },
   ];
 
   const termodinamicaFormulas = [
@@ -217,8 +237,8 @@ const ResursePage = () => {
                     <TabsTrigger value="termodinamica">Termodinamică</TabsTrigger>
                     <TabsTrigger value="seism">Seism</TabsTrigger>
                     <TabsTrigger value="unde">Unde</TabsTrigger>
-                    <TabsTrigger value="prisma">Prismă</TabsTrigger>
-                    <TabsTrigger value="pendule">Pendule</TabsTrigger>
+                    <TabsTrigger value="prisma">Refracție</TabsTrigger>
+                    <TabsTrigger value="pendule">Oscilații</TabsTrigger>
                     <TabsTrigger value="lissajous">Lissajous</TabsTrigger>
                   </TabsList>
 
