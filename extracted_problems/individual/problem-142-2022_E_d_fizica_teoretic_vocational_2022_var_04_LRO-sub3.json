@@ -1,0 +1,42 @@
+{
+  "titlu": "Problema III - Fizică - Bac 2022 Var 4",
+  "descriere": "Problema de bacalaureat - Subiectul III din Fizică, 2022, Varianta 4, teoretic",
+  "categorie": "Bac",
+  "varianta": "2022 Var 4",
+  "dificultate": "mediu",
+  "punctajTotal": 15,
+  "continut": "Într-un experiment de interferență a luminii se utilizează un dispozitiv interferențial Young având distanța dintre planul fantelor și ecran $D = 2 \\, \\text{m}$. Sursa de lumină este situată pe axa de simetrie a dispozitivului și emite radiație luminoasă monocromatică și coerentă cu lungimea de undă $\\lambda = 500 \\, \\text{nm}$. Analizând figura de interferență de pe ecran se determină valoarea interfranjei $i = 2 \\, \\text{mm}$.\n\na. Calculați distanța dintre fantele dispozitivului.\nb. Calculați distanța dintre cel de al treilea minim situat de o parte a maximului central și maximul de ordinul 1 situat de cealaltă parte a maximului central.\nc. Calculați diferența de drum optic dintre radiațiile monocromatice care formează prin interferență pe ecran franja luminoasă de ordinul $k = 2$.\nd. Fără a schimba poziția fantelor și a ecranului, se înlocuiește sursa de lumină cu o sursă care emite lumină albă. Lungimile de undă extreme ale spectrului continuu emis de sursă sunt $\\lambda_r = 750 \\, \\text{nm}$ și $\\lambda_v = 400 \\, \\text{nm}$. Calculați numărul de lungimi de undă distincte ale radiațiilor din spectrul continuu emis de sursă care formează maxime luminoase la distanța $x = 6 \\, \\text{mm}$ de maximul central.",
+  "formule": [],
+  "date": {},
+  "subpuncte": [
+    {
+      "id": "1a",
+      "cerinta": "Calculați distanța dintre fantele dispozitivului.",
+      "punctaj": 3
+    },
+    {
+      "id": "2b",
+      "cerinta": "Calculați distanța dintre cel de al treilea minim situat de o parte a maximului central și maximul de ordinul 1 situat de cealaltă parte a maximului central.",
+      "punctaj": 3
+    },
+    {
+      "id": "3c",
+      "cerinta": "Calculați diferența de drum optic dintre radiațiile monocromatice care formează prin interferență pe ecran franja luminoasă de ordinul $k = 2$.",
+      "punctaj": 3
+    },
+    {
+      "id": "4d",
+      "cerinta": "Fără a schimba poziția fantelor și a ecranului, se înlocuiește sursa de lumină cu o sursă care emite lumină albă. Lungimile de undă extreme ale spectrului continuu emis de sursă sunt $\\lambda_r = 750 \\, \\text{nm}$ și $\\lambda_v = 400 \\, \\text{nm}$. Calculați numărul de lungimi de undă distincte ale radiațiilor din spectrul continuu emis de sursă care formează maxime luminoase la distanța $x = 6 \\, \\text{mm}$ de maximul central.",
+      "punctaj": 3
+    }
+  ],
+  "poze": [],
+  "metadata": {
+    "source": "2022_E_d_fizica_teoretic_vocational_2022_var_04_LRO",
+    "year": 2022,
+    "variant": 4,
+    "type": "teoretic",
+    "subjectArea": null,
+    "subjectNumber": 3
+  }
+}

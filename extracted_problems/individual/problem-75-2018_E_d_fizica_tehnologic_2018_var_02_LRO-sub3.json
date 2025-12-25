@@ -1,0 +1,42 @@
+{
+  "titlu": "Problema III - Fizică - Bac 2018 Var 2",
+  "descriere": "Problema de bacalaureat - Subiectul III din Fizică, 2018, Varianta 2, tehnologic",
+  "categorie": "Bac",
+  "varianta": "2018 Var 2",
+  "dificultate": "mediu",
+  "punctajTotal": 15,
+  "continut": "Un corp cu masă $m = 1\\,\\mathrm{kg}$ este lansat cu viteza $v_0 = 3\\,\\mathrm{m/s}$ de-a lungul unei suprafețe orizontale pe care se deplasează cu frecare. După ce corpul a parcurs distanța $d = 2\\,\\mathrm{m}$, asupra lui acționează, suplimentar, o forță orizontală constantă $\\bar{F}$ care îl frânează pe distanța $x = 10\\,\\mathrm{cm}$, până la oprire. Coeficientul de frecare la alunecare dintre corp și suprafața orizontală este $\\mu = 0,2$, iar frecarea cu aerul se neglijează.\n\na. Calculați energia cinetică a corpului în momentul lansării.\nb. Calculați lucrul mecanic efectuat de forța de frecare pe distanța $d$.\nc. Calculați valoarea vitezei corpului după ce a parcurs distanța $d$.\nd. Calculați lucrul mecanic efectuat de forța orizontală constantă $\\bar{F}$ pe distanța $x$, până la oprirea corpului.",
+  "formule": [],
+  "date": {},
+  "subpuncte": [
+    {
+      "id": "1a",
+      "cerinta": "Calculați energia cinetică a corpului în momentul lansării.",
+      "punctaj": 3
+    },
+    {
+      "id": "2b",
+      "cerinta": "Calculați lucrul mecanic efectuat de forța de frecare pe distanța $d$.",
+      "punctaj": 3
+    },
+    {
+      "id": "3c",
+      "cerinta": "Calculați valoarea vitezei corpului după ce a parcurs distanța $d$.",
+      "punctaj": 3
+    },
+    {
+      "id": "4d",
+      "cerinta": "Calculați lucrul mecanic efectuat de forța orizontală constantă $\\bar{F}$ pe distanța $x$, până la oprirea corpului.",
+      "punctaj": 3
+    }
+  ],
+  "poze": [],
+  "metadata": {
+    "source": "2018_E_d_fizica_tehnologic_2018_var_02_LRO",
+    "year": 2018,
+    "variant": 2,
+    "type": "tehnologic",
+    "subjectArea": null,
+    "subjectNumber": 3
+  }
+}

@@ -1,0 +1,42 @@
+{
+  "titlu": "Problema II - Fizică - Bac 2022",
+  "descriere": "Problema de bacalaureat - Subiectul II din Fizică, 2022, teoretic",
+  "categorie": "Bac",
+  "varianta": "2022",
+  "dificultate": "mediu",
+  "punctajTotal": 15,
+  "continut": "Un obiect luminos de înălțime $y_1 = 3 \\, \\text{cm}$ este plasat perpendicular pe axa optică principală a unei lentile divergente, având convergența $C_1 = -1,25 \\, \\text{m}^{-1}$. Imaginea obiectului prin lentilă este poziționată exact la mijlocul distanței dintre obiect și lentilă.\n\na. Determinați distanța dintre obiect și lentilă.\nb. Calculați înălțimea imaginii.\nc. Realizați un desen în care să evidențiați construcția imaginii prin lentilă.\nd. Fără a modifica poziția lentilei și a obiectului, în contact cu lentila se aduce o altă lentilă, de convergență $C_2 = 7,5 \\, \\text{m}^{-1}$, astfel încât cele două lentile formează un sistem optic centrat. Imaginea obiectului prin sistemul optic se formează pe un ecran. Determinați distanța dintre sistemul celor două lentile și ecran.",
+  "formule": [],
+  "date": {},
+  "subpuncte": [
+    {
+      "id": "1a",
+      "cerinta": "Determinați distanța dintre obiect și lentilă.",
+      "punctaj": 3
+    },
+    {
+      "id": "2b",
+      "cerinta": "Calculați înălțimea imaginii.",
+      "punctaj": 3
+    },
+    {
+      "id": "3c",
+      "cerinta": "Realizați un desen în care să evidențiați construcția imaginii prin lentilă.",
+      "punctaj": 3
+    },
+    {
+      "id": "4d",
+      "cerinta": "Fără a modifica poziția lentilei și a obiectului, în contact cu lentila se aduce o altă lentilă, de convergență $C_2 = 7,5 \\, \\text{m}^{-1}$, astfel încât cele două lentile formează un sistem optic centrat. Imaginea obiectului prin sistemul optic se formează pe un ecran. Determinați distanța dintre sistemul celor două lentile și ecran.",
+      "punctaj": 3
+    }
+  ],
+  "poze": [],
+  "metadata": {
+    "source": "2022_E_d_fizica_teoretic_vocational_2022_var_simulare_LRO",
+    "year": 2022,
+    "variant": null,
+    "type": "teoretic",
+    "subjectArea": null,
+    "subjectNumber": 2
+  }
+}

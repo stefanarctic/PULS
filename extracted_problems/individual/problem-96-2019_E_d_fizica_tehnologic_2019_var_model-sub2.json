@@ -1,0 +1,42 @@
+{
+  "titlu": "Problema II - Fizică - Bac 2019",
+  "descriere": "Problema de bacalaureat - Subiectul II din Fizică, 2019, tehnologic",
+  "categorie": "Bac",
+  "varianta": "2019",
+  "dificultate": "mediu",
+  "punctajTotal": 15,
+  "continut": "O butelie de volum $V = 10 \\ \\mathrm{L}$ conține azot $(\\mu = 28 \\ \\mathrm{g} \\cdot \\mathrm{mol}^{-1})$ la temperatura $t_1 = 7^{\\circ} \\mathrm{C}$ și presiunea $p = 8,31 \\ \\mathrm{MPa}$. Se deschide robinetul astfel încât din butelie iese o masă $\\Delta m$ de gaz. Se închide robinetul buteliei și gazul este încălzit până la temperatura $t_2 = 127^{\\circ} \\mathrm{C}$, iar presiunea azotului a revenit la valoarea $p = 8,31 \\ \\mathrm{MPa}$. Determinați:\na. masa inițială de azot din butelie;\nb. densitatea gazului din butelie aflat la temperatura $t_2$;\nc. masa de gaz $\\Delta m$ care a ieșit din butelie.\nd. presiunea azotului rămas în butelie după închiderea robinetului și răcirea acestuia până la temperatura $t_1 = 7^{\\circ} \\mathrm{C}$.",
+  "formule": [],
+  "date": {},
+  "subpuncte": [
+    {
+      "id": "1a",
+      "cerinta": "masa inițială de azot din butelie;",
+      "punctaj": 3
+    },
+    {
+      "id": "2b",
+      "cerinta": "densitatea gazului din butelie aflat la temperatura $t_2$;",
+      "punctaj": 3
+    },
+    {
+      "id": "3c",
+      "cerinta": "masa de gaz $\\Delta m$ care a ieșit din butelie.",
+      "punctaj": 3
+    },
+    {
+      "id": "4d",
+      "cerinta": "presiunea azotului rămas în butelie după închiderea robinetului și răcirea acestuia până la temperatura $t_1 = 7^{\\circ} \\mathrm{C}$.",
+      "punctaj": 3
+    }
+  ],
+  "poze": [],
+  "metadata": {
+    "source": "2019_E_d_fizica_tehnologic_2019_var_model",
+    "year": 2019,
+    "variant": null,
+    "type": "tehnologic",
+    "subjectArea": null,
+    "subjectNumber": 2
+  }
+}

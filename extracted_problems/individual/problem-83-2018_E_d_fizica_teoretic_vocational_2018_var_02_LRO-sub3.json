@@ -1,0 +1,42 @@
+{
+  "titlu": "Problema III - Fizică - Bac 2018 Var 2",
+  "descriere": "Problema de bacalaureat - Subiectul III din Fizică, 2018, Varianta 2, teoretic",
+  "categorie": "Bac",
+  "varianta": "2018 Var 2",
+  "dificultate": "mediu",
+  "punctajTotal": 15,
+  "continut": "Un corp cu masă $m = 1\\,\\mathrm{kg}$ este lansat cu viteza $v_0 = 3\\,\\mathrm{m/s}$ de-a lungul unei suprafețe orizontale pe care se deplasează cu frecare. După ce corpul a parcurs distanța $d = 2\\,\\mathrm{m}$, el lovește capătul liber al unui resort orizontal nedeformat, pe care îl comprimă cu $x = 8\\,\\mathrm{cm}$. Celălalt capăt al resortului este fixat de un perete vertical și imobil. Deplasarea corpului se face cu frecare atât înainte, cât și după lovirea resortului. Coeficientul de frecare la alunecare dintre corp și suprafața orizontală este $\\mu = 0,2$, iar frecarea cu aerul se neglijează.\n\na. Calculați energia cinetică a corpului în momentul lansării.\nb. Calculați valoarea vitezei corpului în momentul atingerii resortului.\nc. Calculați lucrul mecanic efectuat de forța elastică pe parcursul comprimării resortului.\nd. Determinați valoarea impulsului mecanic al corpului la revenirea lui în poziția în care a atins resortul.",
+  "formule": [],
+  "date": {},
+  "subpuncte": [
+    {
+      "id": "1a",
+      "cerinta": "Calculați energia cinetică a corpului în momentul lansării.",
+      "punctaj": 3
+    },
+    {
+      "id": "2b",
+      "cerinta": "Calculați valoarea vitezei corpului în momentul atingerii resortului.",
+      "punctaj": 3
+    },
+    {
+      "id": "3c",
+      "cerinta": "Calculați lucrul mecanic efectuat de forța elastică pe parcursul comprimării resortului.",
+      "punctaj": 3
+    },
+    {
+      "id": "4d",
+      "cerinta": "Determinați valoarea impulsului mecanic al corpului la revenirea lui în poziția în care a atins resortul.",
+      "punctaj": 3
+    }
+  ],
+  "poze": [],
+  "metadata": {
+    "source": "2018_E_d_fizica_teoretic_vocational_2018_var_02_LRO",
+    "year": 2018,
+    "variant": 2,
+    "type": "teoretic",
+    "subjectArea": null,
+    "subjectNumber": 3
+  }
+}

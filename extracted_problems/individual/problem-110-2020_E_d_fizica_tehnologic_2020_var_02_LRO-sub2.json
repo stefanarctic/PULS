@@ -1,0 +1,42 @@
+{
+  "titlu": "Problema II - Fizică - Bac 2020 Var 2",
+  "descriere": "Problema de bacalaureat - Subiectul II din Fizică, 2020, Varianta 2, tehnologic",
+  "categorie": "Bac",
+  "varianta": "2020 Var 2",
+  "dificultate": "mediu",
+  "punctajTotal": 15,
+  "continut": "O butelie cu volumul $V = 8,31\\ \\mathrm{dm}^3$ conține $m = 58\\ \\mathrm{g}$ de aer la presiunea $p = 6 \\cdot 10^{5}\\ \\mathrm{Pa}$ și temperatura $T = 300\\ \\mathrm{K}$. Se poate considera că aerul se comportă ca un gaz ideal și are căldura molară la volum constant $C_V = 2,5\\ \\mathrm{R}$. Determinați:\n\na. densitatea aerului din butelie;\nb. masa molară a aerului;\nc. energia internă a aerului din butelie la temperatura $T$;\nd. temperatura maximă până la care poate fi încălzită butelia dacă butelia rezistă până la presiunea interioară maximă $p_{\\max} = 10^{6}\\ \\mathrm{Pa}$.",
+  "formule": [],
+  "date": {},
+  "subpuncte": [
+    {
+      "id": "1a",
+      "cerinta": "densitatea aerului din butelie;",
+      "punctaj": 3
+    },
+    {
+      "id": "2b",
+      "cerinta": "masa molară a aerului;",
+      "punctaj": 3
+    },
+    {
+      "id": "3c",
+      "cerinta": "energia internă a aerului din butelie la temperatura $T$;",
+      "punctaj": 3
+    },
+    {
+      "id": "4d",
+      "cerinta": "temperatura maximă până la care poate fi încălzită butelia dacă butelia rezistă până la presiunea interioară maximă $p_{\\max} = 10^{6}\\ \\mathrm{Pa}$.",
+      "punctaj": 3
+    }
+  ],
+  "poze": [],
+  "metadata": {
+    "source": "2020_E_d_fizica_tehnologic_2020_var_02_LRO",
+    "year": 2020,
+    "variant": 2,
+    "type": "tehnologic",
+    "subjectArea": null,
+    "subjectNumber": 2
+  }
+}

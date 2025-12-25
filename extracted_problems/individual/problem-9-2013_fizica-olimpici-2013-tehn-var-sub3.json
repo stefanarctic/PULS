@@ -1,0 +1,42 @@
+{
+  "titlu": "Problema III - Fizică - Bac 2013",
+  "descriere": "Problema de bacalaureat - Subiectul III din Fizică, 2013",
+  "categorie": "Bac",
+  "varianta": "2013",
+  "dificultate": "mediu",
+  "punctajTotal": 15,
+  "continut": "Un automobil cu masa $m = 1600\\,\\mathrm{kg}$ parcurge distanța dintre două puncte A și B, situate la altitudinile, măsurate în raport cu nivelul mării, $h_A = 360\\,\\mathrm{m}$, respectiv $h_B = 310\\,\\mathrm{m}$. Automobilul pleacă din punctul A cu viteza $v_A = 15\\,\\mathrm{m/s}$. Energia potențială gravitațională este considerată nulă la nivelul mării. Determinați:\na. lucrul mecanic efectuat de greutate în timpul deplasării din A în B;\nb. energia mecanică a automobilului în punctul A;\nc. lucrul mecanic efectuat de forțele de frecare în timpul deplasării automobilului, cu motorul oprit, din A în B, dacă acesta ajunge în B cu viteza $v_B = 5\\,\\mathrm{m/s}$;\nd. lucrul mecanic ce trebuie efectuat de motor pentru a urca automobilul din B în A, cu viteză constantă, dacă lucrul mecanic efectuat de forțele de frecare egal cu $-960\\,\\mathrm{kJ}$.",
+  "formule": [],
+  "date": {},
+  "subpuncte": [
+    {
+      "id": "1a",
+      "cerinta": "lucrul mecanic efectuat de greutate în timpul deplasării din A în B;",
+      "punctaj": 3
+    },
+    {
+      "id": "2b",
+      "cerinta": "energia mecanică a automobilului în punctul A;",
+      "punctaj": 3
+    },
+    {
+      "id": "3c",
+      "cerinta": "lucrul mecanic efectuat de forțele de frecare în timpul deplasării automobilului, cu motorul oprit, din A în B, dacă acesta ajunge în B cu viteza $v_B = 5\\,\\mathrm{m/s}$;",
+      "punctaj": 3
+    },
+    {
+      "id": "4d",
+      "cerinta": "lucrul mecanic ce trebuie efectuat de motor pentru a urca automobilul din B în A, cu viteză constantă, dacă lucrul mecanic efectuat de forțele de frecare egal cu $-960\\,\\mathrm{kJ}$.",
+      "punctaj": 3
+    }
+  ],
+  "poze": [],
+  "metadata": {
+    "source": "2013_fizica-olimpici-2013-tehn-var",
+    "year": 2013,
+    "variant": null,
+    "type": null,
+    "subjectArea": null,
+    "subjectNumber": 3
+  }
+}

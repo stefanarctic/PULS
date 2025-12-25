@@ -1,0 +1,42 @@
+{
+  "titlu": "Problema II - Fizică - Bac 2018 Var 1",
+  "descriere": "Problema de bacalaureat - Subiectul II din Fizică, 2018, Varianta 1, teoretic",
+  "categorie": "Bac",
+  "varianta": "2018 Var 1",
+  "dificultate": "mediu",
+  "punctajTotal": 15,
+  "continut": "Un corp, având masa $m = 1\\,\\text{kg}$, urcă uniform de-a lungul unui plan înclinat, sub acțiunea unei forțe $\\vec{F}$ paralele cu planul înclinat. Planul înclinat formează unghiul $\\alpha = 30^\\circ$ cu orizontală. Forța de frecare la alunecare dintre corp și suprafața planului înclinat are valoarea $F_r = 7,5\\,\\text{N}$.\n\na. Reprezentați forțele ce acționează asupra corpului în timpul urcării pe planul înclinat.\n\nb. Determinați valoarea forței de tracțiune $\\vec{F}$.\n\nc. Calculați valoarea coeficientului de frecare la alunecare dintre corp și suprafața planului înclinat.\n\nd. Determinați valoarea accelerației corpului în timpul urcării pe planul înclinat sub acțiunea unei forțe de tracțiune $\\vec{F}' = 1,2 \\cdot \\vec{F}$ care înlocuiește forța $\\vec{F}$.",
+  "formule": [],
+  "date": {},
+  "subpuncte": [
+    {
+      "id": "1a",
+      "cerinta": "Reprezentați forțele ce acționează asupra corpului în timpul urcării pe planul înclinat.",
+      "punctaj": 3
+    },
+    {
+      "id": "2b",
+      "cerinta": "Determinați valoarea forței de tracțiune $\\vec{F}$.",
+      "punctaj": 3
+    },
+    {
+      "id": "3c",
+      "cerinta": "Calculați valoarea coeficientului de frecare la alunecare dintre corp și suprafața planului înclinat.",
+      "punctaj": 3
+    },
+    {
+      "id": "4d",
+      "cerinta": "Determinați valoarea accelerației corpului în timpul urcării pe planul înclinat sub acțiunea unei forțe de tracțiune $\\vec{F}' = 1,2 \\cdot \\vec{F}$ care înlocuiește forța $\\vec{F}$.",
+      "punctaj": 3
+    }
+  ],
+  "poze": [],
+  "metadata": {
+    "source": "2018_E_d_fizica_teoretic_vocational_2018_var_01_LRO",
+    "year": 2018,
+    "variant": 1,
+    "type": "teoretic",
+    "subjectArea": null,
+    "subjectNumber": 2
+  }
+}

@@ -1,0 +1,42 @@
+{
+  "titlu": "Problema III - Fizică - Bac 2016 Var 10",
+  "descriere": "Problema de bacalaureat - Subiectul III din Fizică, 2016, Varianta 10, tehnologic",
+  "categorie": "Bac",
+  "varianta": "2016 Var 10",
+  "dificultate": "mediu",
+  "punctajTotal": 15,
+  "continut": "Un elev aflat într-un turn de înălțime $h = 15\\,\\mathrm{m}$ aruncă vertical în jos, cu viteza $v_o = 10\\,\\mathrm{m/s}$, un corp de dimensiuni mici, având masa $m = 0,2\\,\\mathrm{kg}$. Se neglijează interacțiunea corpului cu aerul, iar energia potențială gravitațională a sistemului corp-Pământ se consideră nulă la nivelul solului. Calculați:\n\na. energia cinetică a corpului în momentul aruncării acestuia;\n\nb. lucrul mecanic efectuat de greutatea corpului din momentul aruncării acestuia și până la atingerea solului;\n\nc. viteza corpului în momentul imediat anterior atingerii solului;\n\nd. energia potențială în momentul în care viteza corpului are valoarea $v_t = 16\\,\\mathrm{m/s}$.",
+  "formule": [],
+  "date": {},
+  "subpuncte": [
+    {
+      "id": "1a",
+      "cerinta": "energia cinetică a corpului în momentul aruncării acestuia;",
+      "punctaj": 3
+    },
+    {
+      "id": "2b",
+      "cerinta": "lucrul mecanic efectuat de greutatea corpului din momentul aruncării acestuia și până la atingerea solului;",
+      "punctaj": 3
+    },
+    {
+      "id": "3c",
+      "cerinta": "viteza corpului în momentul imediat anterior atingerii solului;",
+      "punctaj": 3
+    },
+    {
+      "id": "4d",
+      "cerinta": "energia potențială în momentul în care viteza corpului are valoarea $v_t = 16\\,\\mathrm{m/s}$.",
+      "punctaj": 3
+    }
+  ],
+  "poze": [],
+  "metadata": {
+    "source": "2016_e_d_fizica_tehnologic_2016_var_10_lro",
+    "year": 2016,
+    "variant": 10,
+    "type": "tehnologic",
+    "subjectArea": null,
+    "subjectNumber": 3
+  }
+}

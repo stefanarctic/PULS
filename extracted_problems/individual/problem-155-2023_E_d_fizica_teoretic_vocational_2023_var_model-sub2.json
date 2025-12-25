@@ -1,0 +1,42 @@
+{
+  "titlu": "Problema II - Fizică - Bac 2023",
+  "descriere": "Problema de bacalaureat - Subiectul II din Fizică, 2023, teoretic",
+  "categorie": "Bac",
+  "varianta": "2023",
+  "dificultate": "mediu",
+  "punctajTotal": 15,
+  "continut": "O lentilă subțire convergentă, cu distanța focală de $5 \\, \\text{cm}$, formează pe un ecran imaginea clară a unui obiect așezat perpendicular pe axa optică principală a lentilei. Obiectul are înălțimea de $2 \\, \\text{cm}$. Distanța dintre obiect și lentilă este de $30 \\, \\text{cm}$.\n\na. Calculați convergența lentilei.\nb. Determinați distanța dintre lentilă și ecran.\nc. Obiectul este deplasat într-o nouă poziție. Calculați înălțimea imaginii clare a obiectului dacă aceasta se obține pe ecranul adus la 10 cm față de centrul optic al lentilei.\nd. Realizați un desen în care să evidențiați construcția imaginii obiectului prin lentilă, în situația descrisă la punctul c..",
+  "formule": [],
+  "date": {},
+  "subpuncte": [
+    {
+      "id": "1a",
+      "cerinta": "Calculați convergența lentilei.",
+      "punctaj": 3
+    },
+    {
+      "id": "2b",
+      "cerinta": "Determinați distanța dintre lentilă și ecran.",
+      "punctaj": 3
+    },
+    {
+      "id": "3c",
+      "cerinta": "Obiectul este deplasat într-o nouă poziție. Calculați înălțimea imaginii clare a obiectului dacă aceasta se obține pe ecranul adus la 10 cm față de centrul optic al lentilei.",
+      "punctaj": 3
+    },
+    {
+      "id": "4d",
+      "cerinta": "Realizați un desen în care să evidențiați construcția imaginii obiectului prin lentilă, în situația descrisă la punctul c..",
+      "punctaj": 3
+    }
+  ],
+  "poze": [],
+  "metadata": {
+    "source": "2023_E_d_fizica_teoretic_vocational_2023_var_model",
+    "year": 2023,
+    "variant": null,
+    "type": "teoretic",
+    "subjectArea": null,
+    "subjectNumber": 2
+  }
+}

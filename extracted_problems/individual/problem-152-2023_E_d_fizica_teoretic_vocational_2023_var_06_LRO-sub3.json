@@ -1,0 +1,42 @@
+{
+  "titlu": "Problema III - Fizică - Bac 2023 Var 6",
+  "descriere": "Problema de bacalaureat - Subiectul III din Fizică, 2023, Varianta 6, teoretic",
+  "categorie": "Bac",
+  "varianta": "2023 Var 6",
+  "dificultate": "mediu",
+  "punctajTotal": 15,
+  "continut": "Un dispozitiv Young, plasat în aer, are distanța dintre fante $2\\ell = 1mm$ și este iluminat cu o radiație monocromatică și coerentă cu lungimea de undă $\\lambda = 500nm$. Sursa de lumină este situată pe axa de simetrie a dispozitivului la distanța $d = 10cm$ în fața paravanului cu fante. În figura de interferență s-a măsurat interfranja, obținându-se valoarea $i = 2mm$.\n\na. Calculați distanța de la paravanul cu fante la ecranul pe care s-a format figura de interferență.\nb. Calculați distanța dintre maximul de ordinul 2 situat de o parte a maximului central și cel de-al treilea minim aflat de cealaltă parte a maximului central.\nc. O fantă a dispozitivului se acoperă cu o lamă de grosime $e_1 = 5,0\\ \\mu m$, iar cealaltă se acoperă cu o lamă de grosime $e_2 = 2,5\\ \\mu m$. Se observă că maximul central se află acum în poziția în care s-a aflat maximul de ordinul 2. Lamele fiind confectionate din același material transparent, aflați indicele de refracție al acestui material.\nd. Calculați distanța pe care trebuie deplasată sursa de lumină, pe direcție perpendiculară pe axa de simetrie a dispozitivului, pentru ca sistemul de franje să revină în poziția inițială.",
+  "formule": [],
+  "date": {},
+  "subpuncte": [
+    {
+      "id": "1a",
+      "cerinta": "Calculați distanța de la paravanul cu fante la ecranul pe care s-a format figura de interferență.",
+      "punctaj": 3
+    },
+    {
+      "id": "2b",
+      "cerinta": "Calculați distanța dintre maximul de ordinul 2 situat de o parte a maximului central și cel de-al treilea minim aflat de cealaltă parte a maximului central.",
+      "punctaj": 3
+    },
+    {
+      "id": "3c",
+      "cerinta": "O fantă a dispozitivului se acoperă cu o lamă de grosime $e_1 = 5,0\\ \\mu m$, iar cealaltă se acoperă cu o lamă de grosime $e_2 = 2,5\\ \\mu m$. Se observă că maximul central se află acum în poziția în care s-a aflat maximul de ordinul 2. Lamele fiind confectionate din același material transparent, aflați indicele de refracție al acestui material.",
+      "punctaj": 3
+    },
+    {
+      "id": "4d",
+      "cerinta": "Calculați distanța pe care trebuie deplasată sursa de lumină, pe direcție perpendiculară pe axa de simetrie a dispozitivului, pentru ca sistemul de franje să revină în poziția inițială.",
+      "punctaj": 3
+    }
+  ],
+  "poze": [],
+  "metadata": {
+    "source": "2023_E_d_fizica_teoretic_vocational_2023_var_06_LRO",
+    "year": 2023,
+    "variant": 6,
+    "type": "teoretic",
+    "subjectArea": null,
+    "subjectNumber": 3
+  }
+}

@@ -1,0 +1,42 @@
+{
+  "titlu": "Problema III - Fizică - Bac 2023",
+  "descriere": "Problema de bacalaureat - Subiectul III din Fizică, 2023, teoretic",
+  "categorie": "Bac",
+  "varianta": "2023",
+  "dificultate": "mediu",
+  "punctajTotal": 15,
+  "continut": "Un dispozitiv Young, aflat în aer, este iluminat utilizând o sursă de lumină monocromatică și coerentă, aflată pe axa de simetrie a sistemului. Sursa emite o radiație cu lungimea de undă $\\lambda = 500 \\, \\text{nm}$. Distanța dintre fantele dispozitivului este $2\\ell = 1 \\, \\text{mm}$, iar distanța dintre planul fantelor și ecran este $D = 2 \\, \\text{m}$. Determinați:\n\na. valoarea interfranjei;\nb. diferența de drum optic dintre cele două unde luminoase coerente care determină pe ecran maximul de ordin $k = 4$;\nc. distanța dintre maximul de ordinul 3 situat de o parte a maximului central și a patra franjă întunecoasă situată de cealaltă parte a maximului central;\nd. valoarea deplasării sistemului de franje de interferență, dacă una dintre fantele dispozitivului se acoperă cu o lamelă cu fețele plane și paralele, de grosime $e = 0,02 \\, \\text{mm}$, confectionată dintr-un material cu indicele de refracție $n = 1,5$.",
+  "formule": [],
+  "date": {},
+  "subpuncte": [
+    {
+      "id": "1a",
+      "cerinta": "valoarea interfranjei;",
+      "punctaj": 3
+    },
+    {
+      "id": "2b",
+      "cerinta": "diferența de drum optic dintre cele două unde luminoase coerente care determină pe ecran maximul de ordin $k = 4$;",
+      "punctaj": 3
+    },
+    {
+      "id": "3c",
+      "cerinta": "distanța dintre maximul de ordinul 3 situat de o parte a maximului central și a patra franjă întunecoasă situată de cealaltă parte a maximului central;",
+      "punctaj": 3
+    },
+    {
+      "id": "4d",
+      "cerinta": "valoarea deplasării sistemului de franje de interferență, dacă una dintre fantele dispozitivului se acoperă cu o lamelă cu fețele plane și paralele, de grosime $e = 0,02 \\, \\text{mm}$, confectionată dintr-un material cu indicele de refracție $n = 1,5$.",
+      "punctaj": 3
+    }
+  ],
+  "poze": [],
+  "metadata": {
+    "source": "2023_E_d_fizica_teoretic_vocational_2023_var_model",
+    "year": 2023,
+    "variant": null,
+    "type": "teoretic",
+    "subjectArea": null,
+    "subjectNumber": 3
+  }
+}

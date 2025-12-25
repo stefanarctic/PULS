@@ -1,0 +1,42 @@
+{
+  "titlu": "Problema III - Fizică - Bac 2019",
+  "descriere": "Problema de bacalaureat - Subiectul III din Fizică, 2019, tehnologic",
+  "categorie": "Bac",
+  "varianta": "2019",
+  "dificultate": "mediu",
+  "punctajTotal": 15,
+  "continut": "Un corp cu masa $m = 200\\,\\mathrm{g}$ este lansat vertical în sus cu viteza $v_0 = 10\\,\\mathrm{m/s}$, de la înălțimea $h_0 = 2,0\\,\\mathrm{m}$ față de suprafața solului. Dimensiunile corpului sunt suficient de mici, astfel încât acesta poate fi considerat punct material, iar interacțiunea cu aerul se neglijează. Se consideră că energia potențială gravitațională a sistemului corp-Pământ este nulă la suprafața solului. Calculați:\n\na. energia mecanică totală la momentul inițial;\nb. înălțimea maximă la care ajunge corpul, măsurată față de sol;\nc. lucrul mecanic efectuat de greutatea corpului în timpul coborârii acestuia de la înălțimea maximă până în punctul din care a fost lansat;\nd. valoarea vitezei corpului în momentul în care atinge solul.",
+  "formule": [],
+  "date": {},
+  "subpuncte": [
+    {
+      "id": "1a",
+      "cerinta": "energia mecanică totală la momentul inițial;",
+      "punctaj": 3
+    },
+    {
+      "id": "2b",
+      "cerinta": "înălțimea maximă la care ajunge corpul, măsurată față de sol;",
+      "punctaj": 3
+    },
+    {
+      "id": "3c",
+      "cerinta": "lucrul mecanic efectuat de greutatea corpului în timpul coborârii acestuia de la înălțimea maximă până în punctul din care a fost lansat;",
+      "punctaj": 3
+    },
+    {
+      "id": "4d",
+      "cerinta": "valoarea vitezei corpului în momentul în care atinge solul.",
+      "punctaj": 3
+    }
+  ],
+  "poze": [],
+  "metadata": {
+    "source": "2019_E_d_fizica_tehnologic_2019_var_model",
+    "year": 2019,
+    "variant": null,
+    "type": "tehnologic",
+    "subjectArea": null,
+    "subjectNumber": 3
+  }
+}

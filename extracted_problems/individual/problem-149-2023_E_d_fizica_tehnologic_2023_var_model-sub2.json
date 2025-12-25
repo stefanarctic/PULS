@@ -1,0 +1,42 @@
+{
+  "titlu": "Problema II - Fizică - Bac 2023",
+  "descriere": "Problema de bacalaureat - Subiectul II din Fizică, 2023, tehnologic",
+  "categorie": "Bac",
+  "varianta": "2023",
+  "dificultate": "mediu",
+  "punctajTotal": 15,
+  "continut": "Un corp având masa $m = 3\\,\\mathrm{kg}$ se mișcă pe o suprafață orizontală, cu viteză constantă, sub acțiunea unei forțe orizontale $\\vec{F}$. Forța de frecare la alunecare dintre corp și suprafața orizontală este $F_l = 18\\,\\mathrm{N}$.\n\na. Reprezentați forțele ce acționează asupra corpului.\n\nb. Determinați valoarea forței $\\vec{F}$.\n\nc. Calculați valoarea coeficientului de frecare la alunecare dintre corp și suprafața orizontală.\n\nd. Se înlocuiește forța $\\vec{F}$ cu o forță orizontală de două ori mai mare decât $\\vec{F}$. Determinați accelerația corpului în această situație.",
+  "formule": [],
+  "date": {},
+  "subpuncte": [
+    {
+      "id": "1a",
+      "cerinta": "Reprezentați forțele ce acționează asupra corpului.",
+      "punctaj": 3
+    },
+    {
+      "id": "2b",
+      "cerinta": "Determinați valoarea forței $\\vec{F}$.",
+      "punctaj": 3
+    },
+    {
+      "id": "3c",
+      "cerinta": "Calculați valoarea coeficientului de frecare la alunecare dintre corp și suprafața orizontală.",
+      "punctaj": 3
+    },
+    {
+      "id": "4d",
+      "cerinta": "Se înlocuiește forța $\\vec{F}$ cu o forță orizontală de două ori mai mare decât $\\vec{F}$. Determinați accelerația corpului în această situație.",
+      "punctaj": 3
+    }
+  ],
+  "poze": [],
+  "metadata": {
+    "source": "2023_E_d_fizica_tehnologic_2023_var_model",
+    "year": 2023,
+    "variant": null,
+    "type": "tehnologic",
+    "subjectArea": null,
+    "subjectNumber": 2
+  }
+}

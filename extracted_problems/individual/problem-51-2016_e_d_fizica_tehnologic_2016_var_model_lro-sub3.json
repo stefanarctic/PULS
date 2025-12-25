@@ -1,0 +1,42 @@
+{
+  "titlu": "Problema III - Fizică - Bac 2016",
+  "descriere": "Problema de bacalaureat - Subiectul III din Fizică, 2016, tehnologic",
+  "categorie": "Bac",
+  "varianta": "2016",
+  "dificultate": "mediu",
+  "punctajTotal": 15,
+  "continut": "Un corp de masă $m = 2\\,\\mathrm{kg}$ este lansat cu viteza inițială $v_1 = 5\\,\\mathrm{m/s}$ pe o suprafață orizontală pe care se deplasează cu frecare. După parcurgerea distanței $d_1 = 4,5\\,\\mathrm{m}$, când viteza corpului a scăzut la $v_2 = 4\\,\\mathrm{m/s}$, corpul intră pe un plan înclinat cu unghiul $\\alpha = 30^\\circ$ față de orizontală, pe care urcă fără frecare. Trecerea pe planul înclinat se face lin, fără modificarea modulului vitezei. Determinați:\n\na. energia cinetică a corpului la momentul inițial;\nb. lucrul mecanic efectuat de forța de frecare pe porțiunea orizontală;\nc. valoarea coeficientului de frecare la alunecare;\nd. distanța $d_2$ parcursă pe planul înclinat, până la oprire.",
+  "formule": [],
+  "date": {},
+  "subpuncte": [
+    {
+      "id": "1a",
+      "cerinta": "energia cinetică a corpului la momentul inițial;",
+      "punctaj": 3
+    },
+    {
+      "id": "2b",
+      "cerinta": "lucrul mecanic efectuat de forța de frecare pe porțiunea orizontală;",
+      "punctaj": 3
+    },
+    {
+      "id": "3c",
+      "cerinta": "valoarea coeficientului de frecare la alunecare;",
+      "punctaj": 3
+    },
+    {
+      "id": "4d",
+      "cerinta": "distanța $d_2$ parcursă pe planul înclinat, până la oprire.",
+      "punctaj": 3
+    }
+  ],
+  "poze": [],
+  "metadata": {
+    "source": "2016_e_d_fizica_tehnologic_2016_var_model_lro",
+    "year": 2016,
+    "variant": null,
+    "type": "tehnologic",
+    "subjectArea": null,
+    "subjectNumber": 3
+  }
+}

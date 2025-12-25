@@ -1,0 +1,42 @@
+{
+  "titlu": "Problema II - Fizică - Bac 2021",
+  "descriere": "Problema de bacalaureat - Subiectul II din Fizică, 2021, tehnologic",
+  "categorie": "Bac",
+  "varianta": "2021",
+  "dificultate": "mediu",
+  "punctajTotal": 15,
+  "continut": "Un corp de masă $m_1 = 4\\,\\mathrm{kg}$ este așezat pe un plan înclinat cu unghiul $\\alpha = 30^\\circ$ față de orizontală, ca în figura alăturată. Corpul de masă $m_1$ este legat de un alt corp de masă $m_2$ prin intermediul unui fir inextensibil și de masă neglijabilă, trecut peste un scripete fără frecări și lipsit de inerție. Coeficientul de frecare la alunecare dintre corpul de masă $m_1$ și plan este $\\mu = 0,29 \\left( \\cong \\frac{1}{2\\sqrt{3}} \\right)$.\n\na. Reprezentați forțele care acționează asupra corpului de masă $m_2$.\nb. Calculați valoarea masei $m_2$ a corpului atârnat, astfel încât acesta să coboare cu viteză constantă.\nc. Se dezleagă corpul de masă $m_2$. Calculați accelerația corpului de masă $m_1$, lăsat liber pe planul înclinat.\nd. Calculați, în condițiile punctului c., viteza atinsă de corpul de masă $m_1$ după $\\Delta t = 2\\,\\mathrm{s}$ de la plecarea din repaus, considerând planul înclinat suficient de lung.",
+  "formule": [],
+  "date": {},
+  "subpuncte": [
+    {
+      "id": "1a",
+      "cerinta": "Reprezentați forțele care acționează asupra corpului de masă $m_2$.",
+      "punctaj": 3
+    },
+    {
+      "id": "2b",
+      "cerinta": "Calculați valoarea masei $m_2$ a corpului atârnat, astfel încât acesta să coboare cu viteză constantă.",
+      "punctaj": 3
+    },
+    {
+      "id": "3c",
+      "cerinta": "Se dezleagă corpul de masă $m_2$. Calculați accelerația corpului de masă $m_1$, lăsat liber pe planul înclinat.",
+      "punctaj": 3
+    },
+    {
+      "id": "4d",
+      "cerinta": "Calculați, în condițiile punctului c., viteza atinsă de corpul de masă $m_1$ după $\\Delta t = 2\\,\\mathrm{s}$ de la plecarea din repaus, considerând planul înclinat suficient de lung.",
+      "punctaj": 3
+    }
+  ],
+  "poze": [],
+  "metadata": {
+    "source": "2021_E_d_fizica_tehnologic_2021_var_model",
+    "year": 2021,
+    "variant": null,
+    "type": "tehnologic",
+    "subjectArea": null,
+    "subjectNumber": 2
+  }
+}

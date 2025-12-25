@@ -1,0 +1,42 @@
+{
+  "titlu": "Problema III - Fizică - Bac 2012 Var 3",
+  "descriere": "Problema de bacalaureat - Subiectul III din Fizică, 2012, Varianta 3",
+  "categorie": "Bac",
+  "varianta": "2012 Var 3",
+  "dificultate": "mediu",
+  "punctajTotal": 15,
+  "continut": "Într-un sport olimpic de iarnă un bloc de piatră cu masă de 19,96 kg este lansat, pe suprafața gheții, cu scopul parcurgerii unei anumite distanțe până la o țintă. Suprafața gheții este plană și orizontală și se află la înălțimea $h = 100\\,\\mathrm{m}$ față de nivelul mării. Jucătorii perie suprafața gheții din fața blocului de piatră în scopul micșorării frecărilor. Un astfel de bloc, de dimensiuni neglijabile, este lansat către o țintă situată la distanța $d = 20\\,\\mathrm{m}$, de locul lansării. Prin perierea suprafeței gheții coeficientul de frecare la alunecare dintre blocul de piatră și suprafața gheții, scade liniar de la valoarea $\\mu_1 = 0,06$ în locul de lansare la valoarea $\\mu_2 = 0,02$ lângă țintă. Determinați:\n\na. greutatea blocului de piatră;\nb. lucrul mecanic al forței de frecare la alunecare, dintre blocul de piatră și suprafața gheții, pe distanța $d$;\nc. viteza cu care trebuie lansat blocul de piatră pentru a se opri la țintă;\nd. energia mecanică a blocului de piatră aflat în repaus pe suprafața gheții, considerând că energia potențială este nulă la nivelul mării.",
+  "formule": [],
+  "date": {},
+  "subpuncte": [
+    {
+      "id": "1a",
+      "cerinta": "greutatea blocului de piatră;",
+      "punctaj": 3
+    },
+    {
+      "id": "2b",
+      "cerinta": "lucrul mecanic al forței de frecare la alunecare, dintre blocul de piatră și suprafața gheții, pe distanța $d$;",
+      "punctaj": 3
+    },
+    {
+      "id": "3c",
+      "cerinta": "viteza cu care trebuie lansat blocul de piatră pentru a se opri la țintă;",
+      "punctaj": 3
+    },
+    {
+      "id": "4d",
+      "cerinta": "energia mecanică a blocului de piatră aflat în repaus pe suprafața gheții, considerând că energia potențială este nulă la nivelul mării.",
+      "punctaj": 3
+    }
+  ],
+  "poze": [],
+  "metadata": {
+    "source": "2012_fizica-2012_var_03_lro",
+    "year": 2012,
+    "variant": 3,
+    "type": null,
+    "subjectArea": null,
+    "subjectNumber": 3
+  }
+}

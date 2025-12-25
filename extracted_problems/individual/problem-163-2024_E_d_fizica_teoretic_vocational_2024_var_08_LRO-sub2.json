@@ -1,0 +1,42 @@
+{
+  "titlu": "Problema II - Fizică - Bac 2024 Var 8",
+  "descriere": "Problema de bacalaureat - Subiectul II din Fizică, 2024, Varianta 8, teoretic",
+  "categorie": "Bac",
+  "varianta": "2024 Var 8",
+  "dificultate": "mediu",
+  "punctajTotal": 15,
+  "continut": "Pe un banc optic se montează o lentilă subțire având convergența $C = 5 \\, \\text{m}^{-1}$. Perpendicular pe axa optică principală, la distanța de 30 cm în fața lentilei, este plasat un obiect luminos liniar cu înălțimea de 2 cm.\n\na. Calculați distanța focală a lentilei.\nb. Realizați un desen în care să evidențiați construcția imaginii prin lentilă în situația descrisă.\nc. Calculați înălțimea imaginii formate de lentilă.\nd. Se apropie obiectul de lentilă cu 20 cm. Calculați distanța dintre obiect și noua imagine a obiectului prin lentilă.",
+  "formule": [],
+  "date": {},
+  "subpuncte": [
+    {
+      "id": "1a",
+      "cerinta": "Calculați distanța focală a lentilei.",
+      "punctaj": 3
+    },
+    {
+      "id": "2b",
+      "cerinta": "Realizați un desen în care să evidențiați construcția imaginii prin lentilă în situația descrisă.",
+      "punctaj": 3
+    },
+    {
+      "id": "3c",
+      "cerinta": "Calculați înălțimea imaginii formate de lentilă.",
+      "punctaj": 3
+    },
+    {
+      "id": "4d",
+      "cerinta": "Se apropie obiectul de lentilă cu 20 cm. Calculați distanța dintre obiect și noua imagine a obiectului prin lentilă.",
+      "punctaj": 3
+    }
+  ],
+  "poze": [],
+  "metadata": {
+    "source": "2024_E_d_fizica_teoretic_vocational_2024_var_08_LRO",
+    "year": 2024,
+    "variant": 8,
+    "type": "teoretic",
+    "subjectArea": null,
+    "subjectNumber": 2
+  }
+}

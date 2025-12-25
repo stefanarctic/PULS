@@ -1,0 +1,42 @@
+{
+  "titlu": "Problema III - Fizică - Bac 2021",
+  "descriere": "Problema de bacalaureat - Subiectul III din Fizică, 2021, tehnologic",
+  "categorie": "Bac",
+  "varianta": "2021",
+  "dificultate": "mediu",
+  "punctajTotal": 15,
+  "continut": "Un corp cu masă $m = 1\\,\\mathrm{kg}$ este lăsat să cadă liber de la înălțimea $H = 3,2\\,\\mathrm{m}$, măsurată de la nivelul solului. Considerați că frecarea corpului cu aerul se neglijează și că nivelul zero al energiei potențiale gravitaționale este situat la nivelul solului. Calculați:\na. energia potențială a corpului în momentul inițial al căderii libere;\nb. lucrul mecanic efectuat de greutatea corpului pe parcursul căderii libere până la sol;\nc. viteza corpului în momentul imediat anterior atingerii solului;\nd. energia cinetică a corpului în momentul trecerii printr-un punct aflat la înălțimea $h = 1\\,\\mathrm{m}$ deasupra solului.",
+  "formule": [],
+  "date": {},
+  "subpuncte": [
+    {
+      "id": "1a",
+      "cerinta": "energia potențială a corpului în momentul inițial al căderii libere;",
+      "punctaj": 3
+    },
+    {
+      "id": "2b",
+      "cerinta": "lucrul mecanic efectuat de greutatea corpului pe parcursul căderii libere până la sol;",
+      "punctaj": 3
+    },
+    {
+      "id": "3c",
+      "cerinta": "viteza corpului în momentul imediat anterior atingerii solului;",
+      "punctaj": 3
+    },
+    {
+      "id": "4d",
+      "cerinta": "energia cinetică a corpului în momentul trecerii printr-un punct aflat la înălțimea $h = 1\\,\\mathrm{m}$ deasupra solului.",
+      "punctaj": 3
+    }
+  ],
+  "poze": [],
+  "metadata": {
+    "source": "2021_E_d_fizica_tehnologic_2021_var_Simulare_LRO",
+    "year": 2021,
+    "variant": null,
+    "type": "tehnologic",
+    "subjectArea": null,
+    "subjectNumber": 3
+  }
+}

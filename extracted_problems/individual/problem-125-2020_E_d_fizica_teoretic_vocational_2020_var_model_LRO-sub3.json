@@ -1,0 +1,44 @@
+{
+  "titlu": "Problema III - Fizică - Bac 2020",
+  "descriere": "Problema de bacalaureat - Subiectul III din Fizică, 2020, teoretic",
+  "categorie": "Bac",
+  "varianta": "2020",
+  "dificultate": "mediu",
+  "punctajTotal": 15,
+  "continut": "Un corp de masă $m = 200 \\, \\text{g}$, considerat punctiform, este lăsat liber să alunece, fără frecări, de-a lungul unei suprafețe curbate, după care corpul își continuă mișcarea, cu frecare, pe o suprafață orizontală, până la oprire. Coeficientul de frecare la alunecare dintre corp și suprafața orizontală este $\\mu = 0,2$. Corpul a fost lăsat liber de la înălțimea $h = 0,8 \\, \\text{m}$ față de nivelul suprafeței orizontale.\n\nDeterminați:\na. lucrul mecanic efectuat de greutate din momentul în care corpul a fost lăsat liber până în momentul în care acesta se oprește;\nb. valoarea vitezei corpului în momentul în care acesta, trecând prin punctul A, intră pe suprafața orizontală;\nc. valoarea vitezei corpului într-un punct B aflat la distanța $d = 3 \\, \\text{m}$ de punctul A pe suprafața orizontală;\nd. valoarea impulsului mecanic al corpului la $t = 1,5 \\, \\text{s}$ după intrarea pe suprafața orizontală.\n\n![img-2.jpeg](img-2.jpeg)",
+  "formule": [],
+  "date": {},
+  "subpuncte": [
+    {
+      "id": "1a",
+      "cerinta": "lucrul mecanic efectuat de greutate din momentul în care corpul a fost lăsat liber până în momentul în care acesta se oprește;",
+      "punctaj": 3
+    },
+    {
+      "id": "2b",
+      "cerinta": "valoarea vitezei corpului în momentul în care acesta, trecând prin punctul A, intră pe suprafața orizontală;",
+      "punctaj": 3
+    },
+    {
+      "id": "3c",
+      "cerinta": "valoarea vitezei corpului într-un punct B aflat la distanța $d = 3 \\, \\text{m}$ de punctul A pe suprafața orizontală;",
+      "punctaj": 3
+    },
+    {
+      "id": "4d",
+      "cerinta": "valoarea impulsului mecanic al corpului la $t = 1,5 \\, \\text{s}$ după intrarea pe suprafața orizontală.",
+      "punctaj": 3
+    }
+  ],
+  "poze": [
+    "data:image/jpeg;base64,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"
+  ],
+  "metadata": {
+    "source": "2020_E_d_fizica_teoretic_vocational_2020_var_model_LRO",
+    "year": 2020,
+    "variant": null,
+    "type": "teoretic",
+    "subjectArea": null,
+    "subjectNumber": 3
+  }
+}

@@ -1,0 +1,42 @@
+{
+  "titlu": "Problema II - Fizică - Bac 2014",
+  "descriere": "Problema de bacalaureat - Subiectul II din Fizică, 2014",
+  "categorie": "Bac",
+  "varianta": "2014",
+  "dificultate": "mediu",
+  "punctajTotal": 15,
+  "continut": "Peste un scripete fără frecări și lipsit de inerție este trecut un fir inextensibil și fără masă, la capetele căruia sunt prinse două corpuri de masă $m_1 = 2\\,\\mathrm{kg}$ și respectiv $m_2 = 3\\,\\mathrm{kg}$. Corpul de masă $m_1$ este legat, în punctul A, de un resort elastic ideal prins de un suport fix, ca în figură. În aceste condiții, sistemul este în echilibru. Lungimea resortului în stare nedeformată este $\\ell_0 = 25\\,\\mathrm{cm}$, iar constanta elastică a acestuia este $k = 250\\,\\mathrm{N/m}$.\n\na. Reprezentați forțele care acționează asupra celor două corpuri în starea de echilibru.\nb. Calculați lungimea resortului în starea de echilibru.\nc. Se desface legătura din punctul A dintre resort și corpul $m_1$ și se lasă sistemul liber. Calculați valoarea accelerației corpurilor.\nd. Determinați valoarea forței de apăsare exercitate asupra axului scripetelui în situația descrisă la punctul c..",
+  "formule": [],
+  "date": {},
+  "subpuncte": [
+    {
+      "id": "1a",
+      "cerinta": "Reprezentați forțele care acționează asupra celor două corpuri în starea de echilibru.",
+      "punctaj": 3
+    },
+    {
+      "id": "2b",
+      "cerinta": "Calculați lungimea resortului în starea de echilibru.",
+      "punctaj": 3
+    },
+    {
+      "id": "3c",
+      "cerinta": "Se desface legătura din punctul A dintre resort și corpul $m_1$ și se lasă sistemul liber. Calculați valoarea accelerației corpurilor.",
+      "punctaj": 3
+    },
+    {
+      "id": "4d",
+      "cerinta": "Determinați valoarea forței de apăsare exercitate asupra axului scripetelui în situația descrisă la punctul c..",
+      "punctaj": 3
+    }
+  ],
+  "poze": [],
+  "metadata": {
+    "source": "2014_fizica-olimpici-2014-var",
+    "year": 2014,
+    "variant": null,
+    "type": null,
+    "subjectArea": null,
+    "subjectNumber": 2
+  }
+}

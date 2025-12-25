@@ -1,0 +1,42 @@
+{
+  "titlu": "Problema III - Fizică - Bac 2012 Var 2",
+  "descriere": "Problema de bacalaureat - Subiectul III din Fizică, 2012, Varianta 2",
+  "categorie": "Bac",
+  "varianta": "2012 Var 2",
+  "dificultate": "mediu",
+  "punctajTotal": 15,
+  "continut": "O minge de baseball cu masa de 0,3 kg este lansată vertical în sus cu viteza $\\nu_0 = 18\\,\\mathrm{m/s}$ de un lansator de mingi. Se consideră energia potențială nulă la nivelul de lansare a mingii și se neglijează toate frecările. Se cunoaște $\\sqrt{2} \\cong 1,41$. Calculați:\na. energia cinetică a mingii în momentul lansării;\nb. înălțimea maximă la care ajunge mingea față de nivelul de lansare;\nc. lucrul mecanic efectuat de greutate din momentul lansării până în momentul în care mingea ajunge la înălțimea de 4 m față de nivelul de lansare;\nd. viteza mingii în momentul în care energia sa cinetică este egală cu energia potențială.",
+  "formule": [],
+  "date": {},
+  "subpuncte": [
+    {
+      "id": "1a",
+      "cerinta": "energia cinetică a mingii în momentul lansării;",
+      "punctaj": 3
+    },
+    {
+      "id": "2b",
+      "cerinta": "înălțimea maximă la care ajunge mingea față de nivelul de lansare;",
+      "punctaj": 3
+    },
+    {
+      "id": "3c",
+      "cerinta": "lucrul mecanic efectuat de greutate din momentul lansării până în momentul în care mingea ajunge la înălțimea de 4 m față de nivelul de lansare;",
+      "punctaj": 3
+    },
+    {
+      "id": "4d",
+      "cerinta": "viteza mingii în momentul în care energia sa cinetică este egală cu energia potențială.",
+      "punctaj": 3
+    }
+  ],
+  "poze": [],
+  "metadata": {
+    "source": "2012_fizica-2012_var_02_lro",
+    "year": 2012,
+    "variant": 2,
+    "type": null,
+    "subjectArea": null,
+    "subjectNumber": 3
+  }
+}
