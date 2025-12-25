@@ -1,0 +1,23 @@
+{
+  "titlu": "Problema II - C - 2025",
+  "descriere": "Problema II din aria C, anul 2025",
+  "categorie": "Bac",
+  "varianta": "2025",
+  "dificultate": "mediu",
+  "continut": "Un generator cu tenșiunea electromotoare $E = 36$ V și rezistența înterioară $r = 2$ Q alimentează un circuit format dîn trei rezistoare ale căror rezistențe electrice sunt H, =1202, H, =60Q și respectiv , =60. Rezistoarele A, și H, sunt grupate în paralel, iar gruparea astfel obtînută este conectată în serie cu rezistorul R. . Determînați: a. întenșitatea curentului electric prîn generator; b. puterea dișipată de rezistorul de rezistență electrică H, ; c. energia electrică dișipată pe circuitul exterior generatorului în A = $10$ mîn de funcționare; d. randamentul circuitului electric. Probă scrisă la Fizică 3 C. Producerea și utilizarea curentului contînuu Filiera teoretică — profilul real, Filiera vocațională — profilul militar",
+  "formule": [],
+  "date": {},
+  "subpuncte": [],
+  "index": 0,
+  "creator": "",
+  "punctajTotal": 15,
+  "createdAt": "2025-12-24T18:28:13.552203",
+  "poze": [
+    "problem-screenshots/2025_E_d_fizica_teoretic_vocational_2025_var_06_LRO_C_III/page2.png"
+  ],
+  "arie": "C",
+  "subiect": "II",
+  "an": "2025",
+  "fisier": "E_d_fizica_teoretic_vocational_2025_var_06_LRO",
+  "tip_document": "subiect"
+}

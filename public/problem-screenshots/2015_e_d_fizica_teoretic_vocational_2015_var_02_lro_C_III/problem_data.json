@@ -1,0 +1,23 @@
+{
+  "titlu": "Problema II - C - 2015",
+  "descriere": "Problema II din aria C, anul 2015",
+  "categorie": "Bac",
+  "varianta": "2015",
+  "dificultate": "mediu",
+  "continut": "d. tenșiunea la bornele unui generator. Ill. Rezolvați următoarea problemă: (15 puncte) Un bec are înscrise pe soclul său următoarele valori nomînale: 0,2 A ;0,5W. Becul este alimentat la o baterie cu tenșiunea electromotoare $E = 45$ V și rezistență înterioară $r = 12$ Q.. Pentru funcționarea becului în regim nomînal se leagă în serie cu acesta un rezistor R. Calculați: a. valoarea tenșiunii nomînale a becului; b. energia consumată de bec în întervalul de timp Af = $1$ mîn; c. rezistența electrică a rezistorului R; d. randamentul circuitului. Probă scrisă la Fizică 3 C. Producerea și utilizarea curentului contînuu Filiera teoretică — profilul real, Filiera vocațională — profilul militar\n\n",
+  "formule": [],
+  "date": {},
+  "subpuncte": [],
+  "index": 0,
+  "creator": "",
+  "punctajTotal": 15,
+  "createdAt": "2025-12-24T18:20:12.368492",
+  "poze": [
+    "problem-screenshots/2015_e_d_fizica_teoretic_vocational_2015_var_02_lro_C_III/page2.png"
+  ],
+  "arie": "C",
+  "subiect": "II",
+  "an": "2015",
+  "fisier": "e_d_fizica_teoretic_vocational_2015_var_02_lro",
+  "tip_document": "subiect"
+}

@@ -1,0 +1,23 @@
+{
+  "titlu": "Problema II - B - 2022",
+  "descriere": "Problema II din aria B, anul 2022",
+  "categorie": "Bac",
+  "varianta": "2022",
+  "dificultate": "mediu",
+  "continut": "d. 10” kPa (3p) Il. Rezolvați următoarea problemă: (15 puncte) O masă m = $280$ g de azot molecular [,u=$28$ miol] ocupă, în starea înițială, volumul V, la temperatura T, = 500 K și preșiunea p, = 831kPa. Gazul, conșiderat ideal, se comprimă la temperatură constantă, până la înjumătățirea volumului, iar apoi este încălzit la preșiune constantă, până la volumul înițial V. Determînați: a. numărul moleculelor de azot ce alcătuiesc gazul; b. volumul înițial ocupat de gaz; c. denșitatea maximă a gazului în cursul transformărilor; d. raportul dîntre temperatura mînimă și temperatura maximă a gazului în cursul transformărilor. IIl. Rezolvați următoarea problemă: (15 puncte) . ( 2 X AI PD\n\n",
+  "formule": [],
+  "date": {},
+  "subpuncte": [],
+  "index": 0,
+  "creator": "",
+  "punctajTotal": 15,
+  "createdAt": "2025-12-24T18:25:32.757094",
+  "poze": [
+    "problem-screenshots/2022_E_d_fizica_tehnologic_2022_var_05_LRO_B_II/page1.png"
+  ],
+  "arie": "B",
+  "subiect": "II",
+  "an": "2022",
+  "fisier": "E_d_fizica_tehnologic_2022_var_05_LRO",
+  "tip_document": "subiect"
+}

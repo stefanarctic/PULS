@@ -1,0 +1,23 @@
+{
+  "titlu": "Problema II - B - 2018",
+  "descriere": "Problema II din aria B, anul 2018",
+  "categorie": "Bac",
+  "varianta": "2018",
+  "dificultate": "mediu",
+  "continut": "O butelie cu volumul $V = 8,31$ dm* conțîne un amestec gazos format dîn v, =$15$ mol de oxigen (4 = 32 g/mol) și v, =0,$5$ mol de heliu (4, = 4g/mol). Amestecul se află la temperatura T = $300$K și poate fi conșiderat gaz ideal. Determînați: a. numărul de molecule de oxigen; b. masă de heliu; c. preșiunea amestecului gazos dîn butelie; d. denșitatea amestecului gazos dîn butelie.",
+  "formule": [],
+  "date": {},
+  "subpuncte": [],
+  "index": 0,
+  "creator": "",
+  "punctajTotal": 15,
+  "createdAt": "2025-12-24T18:21:53.459666",
+  "poze": [
+    "problem-screenshots/2018_E_d_fizica_tehnologic_2018_var_01_LRO_B_II/page1.png"
+  ],
+  "arie": "B",
+  "subiect": "II",
+  "an": "2018",
+  "fisier": "E_d_fizica_tehnologic_2018_var_01_LRO",
+  "tip_document": "subiect"
+}

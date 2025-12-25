@@ -1,0 +1,23 @@
+{
+  "titlu": "Problema II - C - 2012",
+  "descriere": "Problema II din aria C, anul 2012",
+  "categorie": "Bac",
+  "varianta": "2012",
+  "dificultate": "mediu",
+  "continut": "În figură alăturată este reprezentată schema unui circuit electric. Se cunosc parametrii celor două surse: E, =12V, r,=320 și respectiv E, = 36V, E E, . a < , 2 , r, =62. Rezistorul legat la bornele grupării celor două surse are rezistența R T T; electrică $R = 132.$ K a. Determînați întenșitatea curentului electric prîn rezistorul R dacă întrerupătorul K este deschis; b. Determînați întenșitatea curentului electric prîn rezistorul R dacă întrerupătorul K este închis; c. Se înlocuiește rezistorul R cu un ampermetru ideal (AH, =0), iar comutatorul K rămâne închis. Determînați valoarea întenșității curentului îndicât de ampermetru. d. Se înlocuiește ampermetrul cu un voltmetru ideal (fiy > —), iar comutatorul K rămâne închis. Calculați căderea de tenșiune pe rezistența înternă a sursei £E,.",
+  "formule": [],
+  "date": {},
+  "subpuncte": [],
+  "index": 0,
+  "creator": "",
+  "punctajTotal": 15,
+  "createdAt": "2025-12-24T18:17:13.013863",
+  "poze": [
+    "problem-screenshots/2012_fizica-2012_var_01_lro_C_II/page2.png"
+  ],
+  "arie": "C",
+  "subiect": "II",
+  "an": "2012",
+  "fisier": "fizica-2012_var_01_lro",
+  "tip_document": "subiect"
+}

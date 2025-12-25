@@ -1,0 +1,23 @@
+{
+  "titlu": "Problema II - A - 2016",
+  "descriere": "Problema II din aria A, anul 2016",
+  "categorie": "Bac",
+  "varianta": "2016",
+  "dificultate": "mediu",
+  "continut": "Un elev aflat într-un turn, la înălțimea fi = $20$ m față de sol, aruncă vertical în sus, cu viteza v, =$10$ m/s, un corp de dimenșiuni mici, având masă m = $0$,$2$ kg. Se neglijează înteracțiunea corpului cu aerul, iar energia potențială gravitațională a șistemului corp-Pământ se conșideră nulă la nivelul solului. Calculați: a. energia cînetică a corpului în momentul aruncării acestuia; b. lucrul mecanic efectuat de greutatea corpului dîn momentul aruncării acestuia și până la atîngerea solului; c. energia potențială gravitațională în momentul în care viteza corpului are valoarea v, = $20$ m/s; d. variația impulsului corpului dîn momentul aruncării și până la atîngerea vitezei v,. Probă scrisă la Fizică 1 A. Mecanică Filiera teoretică — profilul real, Filiera vocațională — profilul militar",
+  "formule": [],
+  "date": {},
+  "subpuncte": [],
+  "index": 0,
+  "creator": "",
+  "punctajTotal": 15,
+  "createdAt": "2025-12-24T18:20:55.291983",
+  "poze": [
+    "problem-screenshots/2016_e_d_fizica_teoretic_vocational_2016_var_10_lro_A_III/page0.png"
+  ],
+  "arie": "A",
+  "subiect": "II",
+  "an": "2016",
+  "fisier": "e_d_fizica_teoretic_vocational_2016_var_10_lro",
+  "tip_document": "subiect"
+}

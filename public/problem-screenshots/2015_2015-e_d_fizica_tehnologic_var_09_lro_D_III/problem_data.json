@@ -1,0 +1,27 @@
+{
+  "titlu": "Problema II - D - 2015",
+  "descriere": "Problema II din aria D, anul 2015",
+  "categorie": "Bac",
+  "varianta": "2015",
+  "dificultate": "mediu",
+  "continut": "d. Calculați înălțimea imagînii obiectului pe ecran. Ill. Rezolvați următoarea problemă: (15 puncte) O rază de lumînă venînd dîn aer (n,., =1) cade pe suprafața plană a unui > | $1$ mediu optic transparent cu îndicele de refracție n = 1,73 = J3 , sub un unghi ' Naor de încidență / = 60\". La suprafața plană a mediului optic raza de lumînă | suferă atât fenomenul de refracție, cât și fenomenul de reflexie. } n a. Precizați care dîn cele trei raze de lumînă notate în figură alăturată prîn 3 cifrele 1, 2 și 3 reprezîntă raza încidentă, raza reflectată și raza refractată. b. Calculați viteza de propagare a lumînii în mediul optic transparent cu îndicele de refracție n. c. Determînați unghiul dîntre direcția razei încidente și direcția razei refractate la trecerea dîn aer în mediul optic transparent. d. Calculați unghiul format de raza reflectată cu raza refractată. Probă scrisă la Fizică 4 D. Optică Filiera tehnologică — profilul tehnic și profilul resurse naturale și protecția mediului\n\n",
+  "formule": [],
+  "date": {},
+  "subpuncte": [],
+  "index": 0,
+  "creator": "",
+  "punctajTotal": 15,
+  "createdAt": "2025-12-24T18:19:36.221138",
+  "poze": [
+    "problem-screenshots/2015_2015-e_d_fizica_tehnologic_var_09_lro_D_III/page3.png",
+    "problem-screenshots/2015_2015-e_d_fizica_tehnologic_var_09_lro_D_III/figure_page3_1.png"
+  ],
+  "arie": "D",
+  "subiect": "II",
+  "an": "2015",
+  "fisier": "2015-e_d_fizica_tehnologic_var_09_lro",
+  "tip_document": "subiect",
+  "figuri": [
+    "problem-screenshots/2015_2015-e_d_fizica_tehnologic_var_09_lro_D_III/figure_page3_1.png"
+  ]
+}

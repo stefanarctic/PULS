@@ -1,0 +1,23 @@
+{
+  "titlu": "Problema II - C - 2013",
+  "descriere": "Problema II din aria C, anul 2013",
+  "categorie": "Bac",
+  "varianta": "2013",
+  "dificultate": "mediu",
+  "continut": "d. 800 (SP) Il. Rezolvați următoarea problemă: (15 puncte) Circuitul dîn figură alăturată conțîne un generator electric cu t.e.m $E = 6$ V și rezistența înterioară $r = 052,$ două rezistoare având rezistențele electrice R,=1502, R,=32Q2 și un R, întrerupător K. a. Calculați tenșiunea la bornele rezistorului R, când întrerupătorul Keste R, K deschis. b. Determînați valoarea rezistenței echivalente a circuitului exterior sursei dacă întrerupătorul K este închis; c. Determînați valoarea întenșității curentului dîn rezistorul R, când întrerupătorul E,r K este închis. d. Se conectează îÎn serie cu generatorul dîn circuit un generator identic, iar întrerupătorul K se deschide. Determînați noua valoare a tenșiunii la bornele rezistorului R;. IIl. Rezolvați următoarea problemă: (15 puncte) T f m IXb ob X nnta unmunarnîntati nmlemnma a iE mu iE l natuta favmm nt dînte a m a Z mRR & a a\n\n",
+  "formule": [],
+  "date": {},
+  "subpuncte": [],
+  "index": 0,
+  "creator": "",
+  "punctajTotal": 15,
+  "createdAt": "2025-12-24T18:17:42.064674",
+  "poze": [
+    "problem-screenshots/2013_fizica-olimpici-2013-tehn-var_C_II/page2.png"
+  ],
+  "arie": "C",
+  "subiect": "II",
+  "an": "2013",
+  "fisier": "fizica-olimpici-2013-tehn-var",
+  "tip_document": "subiect"
+}

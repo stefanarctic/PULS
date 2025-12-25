@@ -1,0 +1,23 @@
+{
+  "titlu": "Problema II - D - 2019",
+  "descriere": "Problema II din aria D, anul 2019",
+  "categorie": "Bac",
+  "varianta": "2019",
+  "dificultate": "mediu",
+  "continut": "(Sp) Il. Rezolvați următoarea problemă: (15 puncte) Un obiect lîniar lumînos, cu înălțimea de $2$ cm, este plasăt perpendicular pe axa optică prîncipală la distanța de $75$ cm în fața unei lentile subțiri convergente. Pe un ecran așezat corespunzător se observă o imagîne clară a obiectului. Lentila are distanța focală f = $25$ cm. Calculați: a. Calculați convergentța lentilei. b. Calculați distanța la care se află ecranul față de lentilă. c. Calculați înălțimea imagînii observate pe ecran. d. Realizați un desen în care să evidențiați construcția imagînii prîn lentilă, în șituația descrisă. IIl. Rezolvați următoarea problemă: (15 puncte)\n\n",
+  "formule": [],
+  "date": {},
+  "subpuncte": [],
+  "index": 0,
+  "creator": "",
+  "punctajTotal": 15,
+  "createdAt": "2025-12-24T18:22:53.615953",
+  "poze": [
+    "problem-screenshots/2019_E_d_fizica_tehnologic_2019_var_02_LRO_D_II/page3.png"
+  ],
+  "arie": "D",
+  "subiect": "II",
+  "an": "2019",
+  "fisier": "E_d_fizica_tehnologic_2019_var_02_LRO",
+  "tip_document": "subiect"
+}

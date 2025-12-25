@@ -1,0 +1,23 @@
+{
+  "titlu": "Problema II - B - 2012",
+  "descriere": "Problema II din aria B, anul 2012",
+  "categorie": "Bac",
+  "varianta": "2012",
+  "dificultate": "mediu",
+  "continut": "înițial, temperatura amestecului ramânând constantă. IIl. Rezolvați următoarea problemă: (15 puncte) În figură alăturată este reprezentată transformarea ciclică a unei cantități constante de gaz ideal. Căldura primită și variația energiei înterne a gazului în transformarea 1> 2 au valorile Q„ =12465J și respectiv AU,» = 7479J. Se cunoaște În3 = 1,1. Determînați: V a. variația energiei înterne a gazului în transformarea 2 > 3; a 2 C wp-- b. raportul y=C_p dîntre căldurile molare la preșiune constantă și la volum 17 v VL1 constant pentru gazul conșiderat; = c. lucrul mecanic schimbat de gaz cu exteriorul în transformarea 3 > 1; T d. căldura cedată de gaz mediului exterior pe parcursul unui ciclu. Probă scrisă la Fizică 2 B. Elemente de termodînamică\n\n",
+  "formule": [],
+  "date": {},
+  "subpuncte": [],
+  "index": 0,
+  "creator": "",
+  "punctajTotal": 15,
+  "createdAt": "2025-12-24T18:17:20.787295",
+  "poze": [
+    "problem-screenshots/2012_fizica-2012_var_02_lro_B_III/page1.png"
+  ],
+  "arie": "B",
+  "subiect": "II",
+  "an": "2012",
+  "fisier": "fizica-2012_var_02_lro",
+  "tip_document": "subiect"
+}

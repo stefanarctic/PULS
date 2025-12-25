@@ -1,0 +1,23 @@
+{
+  "titlu": "Problema II - C - 2015",
+  "descriere": "Problema II din aria C, anul 2015",
+  "categorie": "Bac",
+  "varianta": "2015",
+  "dificultate": "mediu",
+  "continut": "WIUNICAZA UN ICZISWT AVANU ICZISUn A CICCURaA riy — ZFT. R R IIl. Rezolvați următoarea problemă: (15 puncte) O baterie este formată prîn legarea în paralel a șase elemente identice, fiecare element având tenșiunea electromotoare $E = 32$ VYV și rezistența înterioară r . Bateria alimentează un rezistor R. Tenșiunea la bornele bateriei este $U = 30$ V , iar puterea dișipată pe rezistor este $P = 60$ W . Determînați: a. energia consumată de rezistor într-un înterval de timp At = $1$ mîn ; b. rezistența înterioară r a unui element; c. randamentul circuitului; d. puterea maximă ce ar putea fi debitată de baterie pe un circuit având rezistența electrică convenabil aleasă. Probă scrisă la Fizică 3 C. Producerea și utilizarea curentului contînuu Filiera teoretică — profilul real, Filiera vocațională — profilul militar\n\n",
+  "formule": [],
+  "date": {},
+  "subpuncte": [],
+  "index": 0,
+  "creator": "",
+  "punctajTotal": 15,
+  "createdAt": "2025-12-24T18:19:53.377033",
+  "poze": [
+    "problem-screenshots/2015_2015-olimpici-teoretic-vocational_C_III/page2.png"
+  ],
+  "arie": "C",
+  "subiect": "II",
+  "an": "2015",
+  "fisier": "2015-olimpici-teoretic-vocational",
+  "tip_document": "subiect"
+}

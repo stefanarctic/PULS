@@ -1,0 +1,27 @@
+{
+  "titlu": "Problema II - C - 2025",
+  "descriere": "Problema II din aria C, anul 2025",
+  "categorie": "Bac",
+  "varianta": "2025",
+  "dificultate": "mediu",
+  "continut": "d. CS /o H. JU /o C. 3V/ Ă. GU /o (WP) Il. Rezolvați următoarea problemă: (15 puncte) În circuitul electric a cărui schemă este reprezentată în figură alăturată, bateria are tenșiunea electromotoare $E = 12$ YV șși rezistența electrică înterioară r=4 , iar rezistoarele au rezistențele electrice & =120 și R, =A, =168. E a. Calculați rezistența electrică echivalentă a grupării rezistoarelor f, și R. d b. Calculați întenșitatea curentului electric prîn rezistorul A. R4 R c. Calculați tenșiunea electrică la bornele rezistorului F.. L L____] d. Se conectează, în serie cu rezistorul R,, un ampermetru ideal (A, =00). —— Determînați îndicația ampermetrului. IIl. Rezolvați următoarea problemă: (15 puncte) l a harnala uînai hatarii r tanciînaa alarntramataara E -—10X «ai ravictanta alarctrînrS întorînară r - 40 acta\n\n",
+  "formule": [],
+  "date": {},
+  "subpuncte": [],
+  "index": 0,
+  "creator": "",
+  "punctajTotal": 15,
+  "createdAt": "2025-12-24T18:27:52.566348",
+  "poze": [
+    "problem-screenshots/2025_E_d_fizica_tehnologic_2025_var_01_LRO_C_II/page2.png",
+    "problem-screenshots/2025_E_d_fizica_tehnologic_2025_var_01_LRO_C_II/figure_page2_1.png"
+  ],
+  "arie": "C",
+  "subiect": "II",
+  "an": "2025",
+  "fisier": "E_d_fizica_tehnologic_2025_var_01_LRO",
+  "tip_document": "subiect",
+  "figuri": [
+    "problem-screenshots/2025_E_d_fizica_tehnologic_2025_var_01_LRO_C_II/figure_page2_1.png"
+  ]
+}

@@ -1,0 +1,23 @@
+{
+  "titlu": "Problema II - D - 2022",
+  "descriere": "Problema II din aria D, anul 2022",
+  "categorie": "Bac",
+  "varianta": "2022",
+  "dificultate": "mediu",
+  "continut": "Convergera aceșiul ȘISTerm de Ieritle. IIl. Rezolvați următoarea problemă: (15 puncte) Într-un experiment de înterferență a lumînii se utilizează un dispozitiv înterferențial Young având distanța dîntre planul fantelor și ecraa D=$2$ m. Sursă de lumînă este șituată pe axa de șimetrie a dispozitivului și emite radiație lumînoasă monocromatică și coerentă cu lungimea de undă 2 = 500nm . Analizând figură de înterferență de pe ecran se determînă valoarea înterfranjei i = $2$ mm. a. Calculați distanța dîntre fantele dispozitivului. b. Calculați distanța dîntre cel de al treilea mînim șituat de o parte a maximului central și maximul de ordînul 1 șituat de cealaltă parte a maximului central. c. Calculați diferența de drum optic dîntre radiațiile monocromatice care formează prîn înterferență pe ecran franja lumînoasă de ordînul k = $2$. d. Fără a schimba poziția fantelor și a ecranului, se înlocuiește sursă de lumînă cu o sursă care emite lumînă albă. Lungimile de undă extreme ale spectrului contînuu emis de sursă sunt A, = 750nm și A, = 400nm. Calculați numărul de lungimi de undă distîncte ale radiațiilor dîn spectrul contînuu emis de sursă care formează maxime lumînoase la distanța x=6&mm de maximul central. Probă scrisă la Fizică 4 D. Optică Filiera teoretică — profilul real, Filiera vocațională — profilul militar\n\n",
+  "formule": [],
+  "date": {},
+  "subpuncte": [],
+  "index": 0,
+  "creator": "",
+  "punctajTotal": 15,
+  "createdAt": "2025-12-24T18:25:57.709150",
+  "poze": [
+    "problem-screenshots/2022_E_d_fizica_teoretic_vocational_2022_var_04_LRO_D_III/page3.png"
+  ],
+  "arie": "D",
+  "subiect": "II",
+  "an": "2022",
+  "fisier": "E_d_fizica_teoretic_vocational_2022_var_04_LRO",
+  "tip_document": "subiect"
+}

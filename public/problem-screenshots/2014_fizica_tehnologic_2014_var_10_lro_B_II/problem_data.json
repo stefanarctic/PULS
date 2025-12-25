@@ -1,0 +1,23 @@
+{
+  "titlu": "Problema II - B - 2014",
+  "descriere": "Problema II din aria B, anul 2014",
+  "categorie": "Bac",
+  "varianta": "2014",
+  "dificultate": "mediu",
+  "continut": "M. V3 Vo = YVA PD Il. Rezolvați următoarea problemă: (15 puncte) Într-o butelie având volumul $V = 3$ L se află metan ($u = 16$ g/mol), conșiderat gaz ideal, la preșiunea p = 1662-10”Pa și temperatura T, =300K. În butelie se întroduce o cantitate suplimentară de metan, astfel încât preșiunea crește la p, = 1,6p,, iar temperatura șistemului crește la 7, = 320 K. Determînați: a. cantitatea de gaz dîn butelie în starea înițială; b. numărul de molecule de gaz dîn butelie în starea fînală; c. denșitatea gazului în starea fînală; d. temperatura 74 la care trebuie răcit gazul pentru ca preșiunea acestuia să ajungă dîn nou la valoarea înițială, D,. Ill. Rezolvați următoarea problemă: (15 puncte) PI anaartitata rbă de ru m rr ni a tarșim ru l a lrle s rr l Dmu r a 3.\n\n",
+  "formule": [],
+  "date": {},
+  "subpuncte": [],
+  "index": 0,
+  "creator": "",
+  "punctajTotal": 15,
+  "createdAt": "2025-12-24T18:18:59.823017",
+  "poze": [
+    "problem-screenshots/2014_fizica_tehnologic_2014_var_10_lro_B_II/page1.png"
+  ],
+  "arie": "B",
+  "subiect": "II",
+  "an": "2014",
+  "fisier": "fizica_tehnologic_2014_var_10_lro",
+  "tip_document": "subiect"
+}

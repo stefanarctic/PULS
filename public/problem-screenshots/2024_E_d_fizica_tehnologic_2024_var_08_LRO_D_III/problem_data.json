@@ -1,0 +1,27 @@
+{
+  "titlu": "Problema II - D - 2024",
+  "descriere": "Problema II din aria D, anul 2024",
+  "categorie": "Bac",
+  "varianta": "2024",
+  "dificultate": "mediu",
+  "continut": "Două lame transparente, cu fețele plane și paralele, sunt suprapuse ca în figură S ' alăturată. Cele două lame au îndicii de refracție n, 1,22[\" \\/;} și respectiv : x RR OR OE N ' n = 1,73(; \\/5) O rază de lumînă atînge suprafața superioară a primei lame sub : unghiul de încidență / = 60\". Îndicele de refracție al aerului este n,, =1,0. N, îe a. Calculați raportul dîntre viteza de propagare a lumînii în lama cu îndicele de refracție n, și viteza de propagare a lumînii în lama cu îndicele de refracție n,. b. Calculați unghiul de refracție al razei de lumînă la trecerea dîn aer în lama cu îndicele de refracție n,. c. Calculați unghiul de refracție al razei de lumînă la trecerea dîn lama cu îndicele de refracție n, în lama cu îndicele de refracție n,. d. Cunoscând groșimea celei de-a doua lame, e=1,$73$ cm, calculați distanța parcursă de raza de lumînă în această lamă, până la ieșirea în aer prîn fața înferioară a lamei. Probă scrisă la Fizică 4 D. Optică Filiera tehnologică — profilul tehnic și profilul resurse naturale și protecția mediului",
+  "formule": [],
+  "date": {},
+  "subpuncte": [],
+  "index": 0,
+  "creator": "",
+  "punctajTotal": 15,
+  "createdAt": "2025-12-24T18:27:15.527230",
+  "poze": [
+    "problem-screenshots/2024_E_d_fizica_tehnologic_2024_var_08_LRO_D_III/page3.png",
+    "problem-screenshots/2024_E_d_fizica_tehnologic_2024_var_08_LRO_D_III/figure_page3_1.png"
+  ],
+  "arie": "D",
+  "subiect": "II",
+  "an": "2024",
+  "fisier": "E_d_fizica_tehnologic_2024_var_08_LRO",
+  "tip_document": "subiect",
+  "figuri": [
+    "problem-screenshots/2024_E_d_fizica_tehnologic_2024_var_08_LRO_D_III/figure_page3_1.png"
+  ]
+}

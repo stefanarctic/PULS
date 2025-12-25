@@ -1,0 +1,23 @@
+{
+  "titlu": "Problema II - A - 2022",
+  "descriere": "Problema II din aria A, anul 2022",
+  "categorie": "Bac",
+  "varianta": "2022",
+  "dificultate": "mediu",
+  "continut": "Un corp de masă m = $600$g este lăsăt să alunece, pornînd dîn repaus, dîn punciul A, șituat la înălțimea h = $125$m, ca în figură alăturată. Corpul trece prîn punctul B și întră pe porțiunea orizontală BC, de lungime d=2,$25$ m. Pe porțiunea curbată AB frecările sunt neglijabile, iar pe porțiunea orizontală BC coeficientul de frecare la alunecare este r — 0,2. În punctul C, corpul lovește un perete vertical fix, CD. Contactul cu peretele durează un timp $\\Delta t = 7$-10\"s , după care corpul se întoarce și se oprește în punctul B. D m Energia potențială gravitațională se conșideră nulă la nivelul suprafeței BC. Determînați: | /l îh a. energia mecanică a corpului în punctul A; C B b. valoarea vitezei corpului la trecerea prîn punctul B; c. valoarea impulsului mecanic al corpului în punctul C, imediat înaînte de a lovi peretele; d. valoarea forței medii cu care peretele a acționat asupra corpului în întervalul de timp At. Probă scrisă la Fizică 1 A. Mecanică Filiera teoretică — profilul real, Filiera vocațională — profilul militar",
+  "formule": [],
+  "date": {},
+  "subpuncte": [],
+  "index": 0,
+  "creator": "",
+  "punctajTotal": 15,
+  "createdAt": "2025-12-24T18:25:41.094034",
+  "poze": [
+    "problem-screenshots/2022_E_d_fizica_teoretic_vocational_2022_var_01_LRO_A_III/page0.png"
+  ],
+  "arie": "A",
+  "subiect": "II",
+  "an": "2022",
+  "fisier": "E_d_fizica_teoretic_vocational_2022_var_01_LRO",
+  "tip_document": "subiect"
+}

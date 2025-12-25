@@ -1,0 +1,23 @@
+{
+  "titlu": "Problema II - C - None",
+  "descriere": "Problema II din aria C, anul None",
+  "categorie": "Bac",
+  "varianta": null,
+  "dificultate": "mediu",
+  "continut": "ă. WOÎNȘIUÎNITA ȘISCUILa 7. TOZISUÎNA CISCU ICA R D ULȘI CA ȘISUUILA L. TCEZISUVILALCA ȘISUUILaA LE Il. Rezolvați următoarea problemă: (15 puncte) În figură alăturată este reprezentată schema unui circuit electric pentru l E care se cunosc: E, =5V, E,=4V, R,=100, R,=100, R, =200, 1 A 2 I, =0,12 A. Rezistențele înterne ale surselor sunt neglijabile. Determînațți: E, Î a. tenșiunea electrică dîntre nodurile A și B,; 3 b. întenșitatea curentului electric prîn rezistorul de rezistență R,; R, R, 2 c. tenșiunea electromotoare E, ; d. întenșitatea curentului electric prîntr-un fir de rezistență neglijabilă care se conectează în locul rezistorului de rezistență R. B E, IIl. Rezolvați următoarea problemă: (15 puncte) În fiaura alăturată este reorezentată schema unui circuit electric nentru care se E,rl k\n\n",
+  "formule": [],
+  "date": {},
+  "subpuncte": [],
+  "index": 0,
+  "creator": "",
+  "punctajTotal": 15,
+  "createdAt": "2025-12-24T18:28:30.888180",
+  "poze": [
+    "problem-screenshots/None_proba_e_d_fizica_var_09_C_II/page2.png"
+  ],
+  "arie": "C",
+  "subiect": "II",
+  "an": null,
+  "fisier": "proba_e_d_fizica_var_09",
+  "tip_document": "subiect"
+}

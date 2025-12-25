@@ -1,0 +1,23 @@
+{
+  "titlu": "Problema II - C - 2024",
+  "descriere": "Problema II din aria C, anul 2024",
+  "categorie": "Bac",
+  "varianta": "2024",
+  "dificultate": "mediu",
+  "continut": "d. 180 (3p) Il. Rezolvați următoarea problemă: (15 puncte) În circuitul a cărui schemă este reprezentată în figură alăturată cele trei surse au tenșiunile electromotoare $E = 9,50$ V, £, =9,25V, &, =9,00V și rezistențele înterioare 4 = =3 =1,02. Întenșitatea curentului electric prîn sursă cu tenșiunea electromotoare Eg este nulă. Rezistorul R este confecționat dîntr-un fir conductor având diametrul secțiunii transversăle d =0,$1$ mm și lungimea L. Determînați: a. întenșitatea curentului electric prîn sursă cu tenșiunea electromotoare E, ; E E E b. valoarea sărcînii electrice care trece în întervalul de timp At =$1$ mîn prîn sursă 1 ? 3 R cu tenșiunea electromotoare E, ; [1 5 f3 c. rezistența electrică R a rezistorului dîn circuit; d. lungimea L a firului conductor dacă rezistivitatea electrică a materialului dîn care este confecționat este p=314-10*Q-m. IIl. Rezolvați următoarea problemă: (15 puncte) l rirruntul dîn fînirira alsturată rala trai horciiri frînctînnaază în ronirm niomînal PRaril R. ara niitarea nomînală\n\n",
+  "formule": [],
+  "date": {},
+  "subpuncte": [],
+  "index": 0,
+  "creator": "",
+  "punctajTotal": 15,
+  "createdAt": "2025-12-24T18:27:32.771341",
+  "poze": [
+    "problem-screenshots/2024_E_d_fizica_teoretic_vocational_2024_var_04_LRO_C_II/page2.png"
+  ],
+  "arie": "C",
+  "subiect": "II",
+  "an": "2024",
+  "fisier": "E_d_fizica_teoretic_vocational_2024_var_04_LRO",
+  "tip_document": "subiect"
+}

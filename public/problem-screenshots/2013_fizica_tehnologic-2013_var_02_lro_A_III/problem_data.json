@@ -1,0 +1,23 @@
+{
+  "titlu": "Problema II - A - 2013",
+  "descriere": "Problema II din aria A, anul 2013",
+  "categorie": "Bac",
+  "varianta": "2013",
+  "dificultate": "mediu",
+  "continut": "în care șistemul este lăsăt liber, conșiderând firul suficient de lung pentru ca direcțiile de mișcare ale corpurilor să nu se modifice. IIl. Rezolvați următoarea problemă: (15 puncte) Două plane înclînate de unghi a = $30$* sunt racordate la o suprafață orizontală, ca în figură alăturată. Dîn punctul A, șituat la înălțimea h = $0$,$8$ m, se lasă liber, dîn repaus, un corp cu masă m = $2$kg care alunecă spre baza planului înclînat AB. Mișcarea pe planele înclînate AB și CD se face fără frecare, iar pe porțiunea orizontală BC=d=$3$ m coeficientul de frecare la alunecare este u - 0,15. Se conșideră că energia potențială gravitațională este nulă la nivelul planului orizontal. Trecerile corpului prîn punctele B și C se fac fără modificarea modulelor vitezelor. Determînați: a. energia mecanică a corpului în starea înițială; A D b.lucrul mecanic efectuat de forța de frecare în timpul deplasării MRR h h corpului dîn 8 llnvC, - Î B C Z c. energia cînetică a corpului în punctul C ; nistșiszzluttza CR d. viteza mînimă care trebuie imprimată corpului în punctul A, d orientată către punctul B, pentru ca acesta să poată ajunge în punctul D, șituat la aceeași înălțime ca și A. Filiera tehnologică — profilul tehnic și profilul resurse naturale și protecția mediului\n\n",
+  "formule": [],
+  "date": {},
+  "subpuncte": [],
+  "index": 0,
+  "creator": "",
+  "punctajTotal": 15,
+  "createdAt": "2025-12-24T18:17:58.602787",
+  "poze": [
+    "problem-screenshots/2013_fizica_tehnologic-2013_var_02_lro_A_III/page0.png"
+  ],
+  "arie": "A",
+  "subiect": "II",
+  "an": "2013",
+  "fisier": "fizica_tehnologic-2013_var_02_lro",
+  "tip_document": "subiect"
+}

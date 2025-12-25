@@ -1,0 +1,23 @@
+{
+  "titlu": "Problema II - D - 2020",
+  "descriere": "Problema II din aria D, anul 2020",
+  "categorie": "Bac",
+  "varianta": "2020",
+  "dificultate": "mediu",
+  "continut": "O rază de lumînă monocromatică ce se propagă prîn aer este încidentă pe suprafața liberă a unui lichid sub unghiul de încidență / = 45\". Îndicele de refracție al lichidului are valoarea n = 1,41(5 \\/5) La întrarea lumînii în lichid se produce atât fenomen de reflexie cât și fenomen de refracție. Conșiderați că îndicele de refracție al aerului are valoarea n,,, =1. a. Determînați valoarea vitezei de propagare a lumînii în acest lichid. b. Realizați un desen în care să reprezentați mersul razei încidente, al razei refractate și al razei reflectate. Pe desen, veți marca și veți nota unghiul de încidență /, unghiul de refracție r și unghiul de reflexie r'. c. Calculați unghiul de refracție al razei de lumînă la trecerea dîn aer în lichid. d. Calculați unghiul dîntre raza refractată și raza reflectată pe suprafața lichidului. Probă scrisă la Fizică 4 D. Optică",
+  "formule": [],
+  "date": {},
+  "subpuncte": [],
+  "index": 0,
+  "creator": "",
+  "punctajTotal": 15,
+  "createdAt": "2025-12-24T18:23:52.666526",
+  "poze": [
+    "problem-screenshots/2020_E_d_fizica_tehnologic_2020_var_05_LRO_D_III/page3.png"
+  ],
+  "arie": "D",
+  "subiect": "II",
+  "an": "2020",
+  "fisier": "E_d_fizica_tehnologic_2020_var_05_LRO",
+  "tip_document": "subiect"
+}

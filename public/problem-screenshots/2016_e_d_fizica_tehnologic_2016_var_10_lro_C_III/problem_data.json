@@ -1,0 +1,23 @@
+{
+  "titlu": "Problema II - C - 2016",
+  "descriere": "Problema II din aria C, anul 2016",
+  "categorie": "Bac",
+  "varianta": "2016",
+  "dificultate": "mediu",
+  "continut": "d. rezistivitatea electrică a manganînei. Ill. Rezolvați următoarea problemă: (15 puncte) Două rezistoare, cu rezistențele electrice A, și , sunt conectate în serie la bornele unei baterii cu tenșiunea electromotoare $E = 12$ V și rezistență înterioară neglijabilă. Într-un înterval de timp At = $2$ mîn, energia dișipată în cele două rezistoare este $W = 1,44$ kJ. Știînd că o fracțiune f,=25% dîn această energie se degajă în rezistorul R,, determînați: a. puterea electrică furnizată de generator circuitului exterior; b. rezistența electrică echivalentă corespunzătoare grupării serie a rezistoarelor; c. întenșitatea curentului electric debitat de generatorul electric. d. valoarea rezistenței electrice a rezistorului A. Probă scrisă la Fizică 3 C. Producerea și utilizarea curentului contînuu Filiera tehnologică — profilul tehnic și profilul resurse naturale și protecția mediului\n\n",
+  "formule": [],
+  "date": {},
+  "subpuncte": [],
+  "index": 0,
+  "creator": "",
+  "punctajTotal": 15,
+  "createdAt": "2025-12-24T18:20:30.192734",
+  "poze": [
+    "problem-screenshots/2016_e_d_fizica_tehnologic_2016_var_10_lro_C_III/page2.png"
+  ],
+  "arie": "C",
+  "subiect": "II",
+  "an": "2016",
+  "fisier": "e_d_fizica_tehnologic_2016_var_10_lro",
+  "tip_document": "subiect"
+}

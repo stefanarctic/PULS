@@ -1,0 +1,23 @@
+{
+  "titlu": "Problema II - A - 2022",
+  "descriere": "Problema II din aria A, anul 2022",
+  "categorie": "Bac",
+  "varianta": "2022",
+  "dificultate": "mediu",
+  "continut": "Un balon meteorologic coboară vertical cu viteza constantă v = $6$,$0$ m/s. La înălțimea h = $18$,$2$ m față de sol, dîn balon se desprînde un corp cu masă m = $100$g. Înteracțiunea corpului de masă m cu aerul se conșideră neglijabilă. Energia potențială gravitațională se conșideră nulă la nivelul solului. a. Calculați energia cînetică a corpului de masă m, în momentul desprînderii săle dîn balon. b. Calculați lucrul mecanic efectuat de greutatea corpului dîn momentul desprînderii până în momentul în care acesta atînge solul. c. Calculați înălțimea la care se află corpul atunci când energia să potențială este egală cu energia să cînetică. d. Determînați valoarea vitezei corpului în momentul imediat anterior atîngerii solului. Probă scrisă la Fizică 1 A. Mecanică Filiera tehnologică — profilul tehnic și profilul resurse naturale și protecția mediului",
+  "formule": [],
+  "date": {},
+  "subpuncte": [],
+  "index": 0,
+  "creator": "",
+  "punctajTotal": 15,
+  "createdAt": "2025-12-24T18:25:31.744673",
+  "poze": [
+    "problem-screenshots/2022_E_d_fizica_tehnologic_2022_var_05_LRO_A_III/page0.png"
+  ],
+  "arie": "A",
+  "subiect": "II",
+  "an": "2022",
+  "fisier": "E_d_fizica_tehnologic_2022_var_05_LRO",
+  "tip_document": "subiect"
+}

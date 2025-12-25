@@ -1,0 +1,23 @@
+{
+  "titlu": "Problema II - C - 2025",
+  "descriere": "Problema II din aria C, anul 2025",
+  "categorie": "Bac",
+  "varianta": "2025",
+  "dificultate": "mediu",
+  "continut": "— LA IIIIUUUIU\\,J\\U + ÎNI TI LI AE VA G CAT NA AT CAIIIPUIIIIULIU MA CAT \\l IA T XE aa} . \\'-/ l ' Determînați îndicația ampermetrului. IIl. Rezolvați următoarea problemă: (13 puncte) În figură alăturată este reprezentată schema unui circuit electric. Bateria are tenșiunea electromotoare $E = 12$ V și rezistența electrică înterioară r = 40. Înițial întrerupătorul K este deschis, iar becul funcționează la parametrii săi nomînali, U, =9V șși $R = 45$ W. EIr a. Calculați rezistența electrică a becului. R R - - ICă Ă x e în ti - b 1 b. Calculați energia electrică totală produsă de baterie în timp de Zece mînute. c. Calculați valoarea rezistenței electrice R. R d. Se închide întrerupătorul K și se înlocuiește bateria cu tenșiunea K 2 electromotoare E cu o altă baterie având tenșiunea electromotoare E'=17 V și rezistența înterioară $r = 40.$ Calculați valoarea rezistenței electrice A, astfel încât becul să funcționeze la parametrii nomînali. Probă scrisă la Fizică 3 C. Producerea și utilizarea curentului contînuu Filiera teoretică — profilul real, Filiera vocațională — profilul militar\n\n",
+  "formule": [],
+  "date": {},
+  "subpuncte": [],
+  "index": 0,
+  "creator": "",
+  "punctajTotal": 13,
+  "createdAt": "2025-12-24T18:28:03.002274",
+  "poze": [
+    "problem-screenshots/2025_E_d_fizica_teoretic_vocational_2025_var_01_LRO_C_III/page2.png"
+  ],
+  "arie": "C",
+  "subiect": "II",
+  "an": "2025",
+  "fisier": "E_d_fizica_teoretic_vocational_2025_var_01_LRO",
+  "tip_document": "subiect"
+}

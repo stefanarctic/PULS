@@ -1,0 +1,23 @@
+{
+  "titlu": "Problema II - A - 2021",
+  "descriere": "Problema II din aria A, anul 2021",
+  "categorie": "Bac",
+  "varianta": "2021",
+  "dificultate": "mediu",
+  "continut": "Ă. CaICulați masă unul Corp care trebuie așezat pe corpul E, ramânână flxat de acesta, peniru ca șistemul de corpuri să se deplaseze cu viteză constantă. IIl. Rezolvați următoarea problemă: (15 puncte) Un corp de masă m = $2$kg este lansăt cu viteza înițială v, = $5$ m/s, de-a lungul unei suprafețe orizontale, ca în figură alăturată. Suprafața se află la înălțimea H = $0$,$8$ m față de podea. Mișcarea pe suprafața orizontală are loc cu frecare, coeficientul de frecare la alunecare fiîn$d = 0,4.$ După ce corpul parcurge distanța d=$2$ m, ajunge la capătul suprafeței orizontale și cade pe podea. Se neglijează frecarea cu aerul și se conșideră că energia potențială gravitațională este nulă la \\70 nivelul podelei. Calculați: mT a. energia cînetică înițială a corpului; -- b. lucrul mecanic efectuat de forța de frecare pe toată durata H ' , mișcării corpului de-a lungul suprafeței orizontale; ! , c. valoarea vitezei corpului în momentul în care acesta ajunge la capătul suprafeței orizontale; d. valoarea impulsului corpului în momentul imediat anterior impactului cu podeaua. Probă scrisă la Fizică 1 A. Mecanică Filiera teoretică — profilul real, Filiera vocațională — profilul militar\n\n",
+  "formule": [],
+  "date": {},
+  "subpuncte": [],
+  "index": 0,
+  "creator": "",
+  "punctajTotal": 15,
+  "createdAt": "2025-12-24T18:25:13.203484",
+  "poze": [
+    "problem-screenshots/2021_E_d_fizica_teoretic_vocational_2021_var_07_LRO_A_III/page0.png"
+  ],
+  "arie": "A",
+  "subiect": "II",
+  "an": "2021",
+  "fisier": "E_d_fizica_teoretic_vocational_2021_var_07_LRO",
+  "tip_document": "subiect"
+}

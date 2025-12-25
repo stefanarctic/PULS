@@ -1,0 +1,23 @@
+{
+  "titlu": "Problema II - D - 2012",
+  "descriere": "Problema II din aria D, anul 2012",
+  "categorie": "Bac",
+  "varianta": "2012",
+  "dificultate": "mediu",
+  "continut": "Pe o placă metalică se trimite un fascicul de radiații monocromatice format dîn fotoni având energia , =96V (1 eV=1 ,6—10_19J) și se măsoară tenșiunea de stopare a fotoelectronilor. Dacă frecventța radiației încidente pe câtod crește cu 20%, se constată că tenșiunea de stopare crește cu 40%. a. Calculați valoarea lucrului mecanic de extracție pentru metalul dîn care este confecționată placa. b. Determînați valoarea tenșiunii de stopare a fotoelectronilor emiși sub acțiunea unei radiații formată dîn fotoni având energia £, =6eV. c. Calculați frecvența v a radiației încidente pe placă, pentru care energia cînetică maximă a fotoelectronilor emiși este egală cu E, =0,5eV. d. Reprezentați grafic tenșiunea de stopare a electronilor emiși de placa metalică în funcție de energia fotonilor dîn radiația încidentă pe placă. Probă scrisă la Fizică 4 D. Optică",
+  "formule": [],
+  "date": {},
+  "subpuncte": [],
+  "index": 0,
+  "creator": "",
+  "punctajTotal": 15,
+  "createdAt": "2025-12-24T18:17:25.424312",
+  "poze": [
+    "problem-screenshots/2012_fizica-2012_var_02_lro_D_III/page3.png"
+  ],
+  "arie": "D",
+  "subiect": "II",
+  "an": "2012",
+  "fisier": "fizica-2012_var_02_lro",
+  "tip_document": "subiect"
+}

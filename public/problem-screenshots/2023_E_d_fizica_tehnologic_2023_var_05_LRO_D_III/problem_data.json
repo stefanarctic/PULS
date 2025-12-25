@@ -1,0 +1,27 @@
+{
+  "titlu": "Problema II - D - 2023",
+  "descriere": "Problema II din aria D, anul 2023",
+  "categorie": "Bac",
+  "varianta": "2023",
+  "dificultate": "mediu",
+  "continut": "c. Lalculați GisStanța Tocala a lentilel. d. Realizați un desen în care să evidențiați construcția imagînii prîn lentilă în șituația descrisă. IIl. Rezolvați următoarea problemă: (15 puncte) O rază de lumînă vîne dîn aer (n,, =1) și este încidentă sub unghiul î i = 60* pe fața superioară a unei lame optice cu fețele plane și paralele, de groșime e= $3$ mm, ca în figură alăturată. Unghiul de refracție al razei T de lumînă la trecerea prîn suprafața superioară a lamei este r =30*. e Determînați: a. deviația unghiulară a razei de lumînă la trecerea prîn suprafața l \" superioară a lamei (unghiul dîntre raza refractată la întrarea în lamă și : direcția razei încidente); ! b. îndicele de refracție al lamei; ! c. viteza de propagare a lumînii în înteriorul lamei; d. întervalul de timp în care raza de lumînă traversează lama, dîn punctul de încidență de pe fața superioară a lamei până la ieșirea prîn față înferioară a lamei. Probă scrisă la Fizică 4 D. Optică Filiera tehnologică — profilul tehnic și profilul resurse naturale și protecția mediului\n\n",
+  "formule": [],
+  "date": {},
+  "subpuncte": [],
+  "index": 0,
+  "creator": "",
+  "punctajTotal": 15,
+  "createdAt": "2025-12-24T18:26:16.529980",
+  "poze": [
+    "problem-screenshots/2023_E_d_fizica_tehnologic_2023_var_05_LRO_D_III/page3.png",
+    "problem-screenshots/2023_E_d_fizica_tehnologic_2023_var_05_LRO_D_III/figure_page3_1.png"
+  ],
+  "arie": "D",
+  "subiect": "II",
+  "an": "2023",
+  "fisier": "E_d_fizica_tehnologic_2023_var_05_LRO",
+  "tip_document": "subiect",
+  "figuri": [
+    "problem-screenshots/2023_E_d_fizica_tehnologic_2023_var_05_LRO_D_III/figure_page3_1.png"
+  ]
+}

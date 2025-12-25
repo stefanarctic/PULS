@@ -1,0 +1,23 @@
+{
+  "titlu": "Problema II - C - 2021",
+  "descriere": "Problema II din aria C, anul 2021",
+  "categorie": "Bac",
+  "varianta": "2021",
+  "dificultate": "mediu",
+  "continut": "d. Determînați rezistența înterioară a generatorului E.. IIl. Rezolvați următoarea problemă: (15 puncte) În figură alăturată este reprezentată schema unui circuit electric. Bateria are parametrii $E = 12$ V și $r = 18.$ Cele trei rezistoare au rezistențele $f = 1302,$ F, =1520, respectiv H, =102. Înițial întrerupătorul K este deschis. K a. Calculați puterea dișipată de rezistorul R,. R b. Determînați energia electrică consumată de rezistorul FR3 în At=$15$ mîn de 2 funcționare. R3 c. Se închide întrerupătorul K. Calculați puterea totală dezvoltată de baterie. R4 d. Determînați randamentul circuitului, în condițiile în care întrerupătorul K este E,r închis. Probă scrisă la Fizică 3 C. Producerea și utilizarea curentului contînuu\n\n",
+  "formule": [],
+  "date": {},
+  "subpuncte": [],
+  "index": 0,
+  "creator": "",
+  "punctajTotal": 15,
+  "createdAt": "2025-12-24T18:24:48.217939",
+  "poze": [
+    "problem-screenshots/2021_E_d_fizica_tehnologic_2021_var_04_LRO_C_III/page2.png"
+  ],
+  "arie": "C",
+  "subiect": "II",
+  "an": "2021",
+  "fisier": "E_d_fizica_tehnologic_2021_var_04_LRO",
+  "tip_document": "subiect"
+}

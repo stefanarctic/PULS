@@ -1,0 +1,23 @@
+{
+  "titlu": "Problema II - C - 2014",
+  "descriere": "Problema II din aria C, anul 2014",
+  "categorie": "Bac",
+  "varianta": "2014",
+  "dificultate": "mediu",
+  "continut": "â. 1o H. /) C. £ Ă. WPJ Il. Rezolvați următoarea problemă: (15 puncte) În figură alăturată este desenată schema unui circuit electric. Generatorul are t.e.m. E și rezistența înterioară $r = 10$ Q și alimentează patru rezistoare având rezistențele electrice R,=40Q, F,=302, R =500 și R, =1002. Între rezistoarele , și R, este conectat un R+ Ra întrerupător K înițial închis. Știînd că întenșitatea curentului ce trece prîn rezistorul R,, când întrerupătorul K este închis, este egală cu k = $12$A, K determînați: a. rezistența echivalentă a circuitului exterior când întrerupătorul K este Er R, R închis; 4 b. valoarea t.e.m. a generatorului; c.întenșitatea curentului electric ce străbate rezistorul , când întrerupătorul K este închis. d. tenșiunea la bornele rezistorului R, dacă întrerupătorul K este deschis. Ill. Rezolvați următoarea problemă: (15 puncte) ll a a m r r b e m m de r r r r l r l E d QOR £..u db r a a r e d a r r l m A antba m mbbb Dm m mu m L\n\n",
+  "formule": [],
+  "date": {},
+  "subpuncte": [],
+  "index": 0,
+  "creator": "",
+  "punctajTotal": 15,
+  "createdAt": "2025-12-24T18:18:52.726234",
+  "poze": [
+    "problem-screenshots/2014_fizica_tehnologic_2014_var_04_lro_C_II/page2.png"
+  ],
+  "arie": "C",
+  "subiect": "II",
+  "an": "2014",
+  "fisier": "fizica_tehnologic_2014_var_04_lro",
+  "tip_document": "subiect"
+}

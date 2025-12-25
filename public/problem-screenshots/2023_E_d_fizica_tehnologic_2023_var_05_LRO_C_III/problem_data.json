@@ -1,0 +1,23 @@
+{
+  "titlu": "Problema II - C - 2023",
+  "descriere": "Problema II din aria C, anul 2023",
+  "categorie": "Bac",
+  "varianta": "2023",
+  "dificultate": "mediu",
+  "continut": "a. întenșitatea curentului prîn generator dacă înîre punciele A ȘI E se S conectează un fir conductor cu rezistența electrică neglijabilă. IIl. Rezolvați următoarea problemă: (15 puncte) Două becuri sunt legate în serie și conectate la bornele unui generator cu tenșiunea electromotoare $E = 120$ V și rezistența înterioară nenulă. Primul bec este caracterizat de valorile nomînale $R = 100$ W și U, =80 V, iar tenșiunea nomînală a celui de-al doilea bec este U, = 20 V. Cele două becuri funcționează la valori nomînale. Determînați: a. rezistența electrică a primului bec; b. puterea nomînală a becului al doilea; c. energia consumată de gruparea becurilor în întervalul de timp At = $2$ mîn; d. raportul dîntre puterea consumată de circuitul exterior generatorului și puterea totală dezvoltată de generator. Probă scrisă la Fizică 3 C. Producerea și utilizarea curentului contînuu Filiera tehnologică — profilul tehnic și profilul resurse naturale și protecția mediului\n\n",
+  "formule": [],
+  "date": {},
+  "subpuncte": [],
+  "index": 0,
+  "creator": "",
+  "punctajTotal": 15,
+  "createdAt": "2025-12-24T18:26:14.239023",
+  "poze": [
+    "problem-screenshots/2023_E_d_fizica_tehnologic_2023_var_05_LRO_C_III/page2.png"
+  ],
+  "arie": "C",
+  "subiect": "II",
+  "an": "2023",
+  "fisier": "E_d_fizica_tehnologic_2023_var_05_LRO",
+  "tip_document": "subiect"
+}

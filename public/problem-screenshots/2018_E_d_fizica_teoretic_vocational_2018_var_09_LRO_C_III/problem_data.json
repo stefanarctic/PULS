@@ -1,0 +1,23 @@
+{
+  "titlu": "Problema II - C - 2018",
+  "descriere": "Problema II din aria C, anul 2018",
+  "categorie": "Bac",
+  "varianta": "2018",
+  "dificultate": "mediu",
+  "continut": "În figură alăturată este reprezentată schema unui circuit electric. Bateria are t.e.m $E = 24$ V șirezistența înterioară r = 2%. Valorile rezistențelor electrice ale celor trei Elr rezistoare conectate la bornele bateriei sunt R, = 2002, , =130 și , =520. Se R3 R neglijează rezistența electrică a conductoarelor de legătură. Determînați: TTTT a. întenșitatea curentului electric ce străbate bateria; … b. valoarea puterii dișipate prîn rezistorul cu rezistența Ry; — c. energia dișipată de rezistorul A., în Af = $10$ mîn; d. randamentul de transfer al energiei electrice de la baterie câtre gruparea celor trei rezistoare. Probă scrisă la Fizică 3 C. Producerea și utilizarea curentului contînuu Filiera teoretică — profilul real, Filiera vocațională — profilul militar",
+  "formule": [],
+  "date": {},
+  "subpuncte": [],
+  "index": 0,
+  "creator": "",
+  "punctajTotal": 15,
+  "createdAt": "2025-12-24T18:22:33.995599",
+  "poze": [
+    "problem-screenshots/2018_E_d_fizica_teoretic_vocational_2018_var_09_LRO_C_III/page2.png"
+  ],
+  "arie": "C",
+  "subiect": "II",
+  "an": "2018",
+  "fisier": "E_d_fizica_teoretic_vocational_2018_var_09_LRO",
+  "tip_document": "subiect"
+}

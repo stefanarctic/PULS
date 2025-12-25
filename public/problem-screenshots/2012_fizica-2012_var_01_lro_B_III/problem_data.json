@@ -1,0 +1,23 @@
+{
+  "titlu": "Problema II - B - 2012",
+  "descriere": "Problema II din aria B, anul 2012",
+  "categorie": "Bac",
+  "varianta": "2012",
+  "dificultate": "mediu",
+  "continut": "O cantitate v = $0$,60[5 w}mol de gaz ideal biatomic (C, = 2,5R) se află înițial, în starea 1, la o preșiune egală cu 100 kPa. Gazul este este încălzit izocor până în starea 2, în care preșiunea s-a dublat, apoi destîns izoterm pănă în starea 3, în care preșiunea revîne la valoarea înițială. În destînderea izotermă lucrul mecanic efectuat de gaz este egal cu 1,4 kJ. Se conșideră În2 = 0,69. a. Reprezentați grafic dependența preșiunii de volum în procesul 1> 2 > 3; b. Calculați temperatura gazului la sfârșitul încălzirii izocore; c. Calculați volumul înițial al gazului; d. Calculați căldura primită pe parcursul transformării 1> 2> 3. Probă scrisă la Fizică 2 B. Elemente de termodînamică",
+  "formule": [],
+  "date": {},
+  "subpuncte": [],
+  "index": 0,
+  "creator": "",
+  "punctajTotal": 15,
+  "createdAt": "2025-12-24T18:17:11.696747",
+  "poze": [
+    "problem-screenshots/2012_fizica-2012_var_01_lro_B_III/page1.png"
+  ],
+  "arie": "B",
+  "subiect": "II",
+  "an": "2012",
+  "fisier": "fizica-2012_var_01_lro",
+  "tip_document": "subiect"
+}

@@ -1,0 +1,23 @@
+{
+  "titlu": "Problema II - C - 2019",
+  "descriere": "Problema II din aria C, anul 2019",
+  "categorie": "Bac",
+  "varianta": "2019",
+  "dificultate": "mediu",
+  "continut": "Două becuri cu puterile nomînale P, =100W și P, = 60W sunt conectate în serie la bornele unei surse cu tenșiunea electromotoare $E = 100$ V și rezistență înterioară r necunoscută. Se constată că becurile funcționează la parametri nomînali. Puterea electrică totală produsă de sursă în timpul funcționării normale a becurilor este P, = 200W . Neglijând variația rezistenței electrice a becurilor cu temperatura în timpul funcționării normale, determînați: a. energia electrică consumată împreună de cele două becuri într-o oră; b. întenșitatea curentului electric prîn circuit în timpul funcționării normale a becurilor; c. rezistența electrică a becului având puterea nomînală F; d. rezistența înterioară a sursei. Probă scrisă la Fizică 3 C. Producerea și utilizarea curentului contînuu Filiera tehnologică — profilul tehnic și profilul resurse naturale și protecția mediului",
+  "formule": [],
+  "date": {},
+  "subpuncte": [],
+  "index": 0,
+  "creator": "",
+  "punctajTotal": 15,
+  "createdAt": "2025-12-24T18:23:01.972950",
+  "poze": [
+    "problem-screenshots/2019_E_d_fizica_tehnologic_2019_var_04_LRO_C_III/page2.png"
+  ],
+  "arie": "C",
+  "subiect": "II",
+  "an": "2019",
+  "fisier": "E_d_fizica_tehnologic_2019_var_04_LRO",
+  "tip_document": "subiect"
+}

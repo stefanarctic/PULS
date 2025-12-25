@@ -1,0 +1,23 @@
+{
+  "titlu": "Problema II - B - 2024",
+  "descriere": "Problema II din aria B, anul 2024",
+  "categorie": "Bac",
+  "varianta": "2024",
+  "dificultate": "mediu",
+  "continut": "O cantitate de gaz ideal monoatomic (C, =15R) parcurge ciclul termodînamic p 1>2> 3>1 reprezentat în coordonate p-V în graficul dîn figură alăturată. > 3 Căldura primită de gaz în procesul 1> 2 este $Q = 300$ J. Temperatura gazului în Pf | starea 1 este 7;, iar în starea 2 este 7, = 27;. Determînați: 4 a. variația energiei înterne a gazului în procesul 1> 2> 3; P, EE: : b. căldura schimbată de gaz cu mediul exterior în procesul 2 > 3; ! ! c. lucrul mecanic schimbat de gaz cu mediul exterior în procesul ciclic; : ' d. randamentul unui motor termic care ar funcționa după acest ciclu. 0 y 2 V Probă scrisă la Fizică 2 B. Elemente de termodînamică Filiera teoretică — profilul real, Filiera vocațională — profilul militar",
+  "formule": [],
+  "date": {},
+  "subpuncte": [],
+  "index": 0,
+  "creator": "",
+  "punctajTotal": 15,
+  "createdAt": "2025-12-24T18:27:31.637326",
+  "poze": [
+    "problem-screenshots/2024_E_d_fizica_teoretic_vocational_2024_var_04_LRO_B_III/page1.png"
+  ],
+  "arie": "B",
+  "subiect": "II",
+  "an": "2024",
+  "fisier": "E_d_fizica_teoretic_vocational_2024_var_04_LRO",
+  "tip_document": "subiect"
+}

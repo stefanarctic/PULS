@@ -1,0 +1,23 @@
+{
+  "titlu": "Problema II - C - 2020",
+  "descriere": "Problema II din aria C, anul 2020",
+  "categorie": "Bac",
+  "varianta": "2020",
+  "dificultate": "mediu",
+  "continut": "a. I2UU D. L4UU C. SUUL Ă. SOUL PJ Il. Rezolvați următoarea problemă: (15 puncte) În circuitul a cărui schemă este prezentată în figură alăturată rezistențele electrice ale rezistoarelor au valorile R,=200Q și R, =1520. Voltmetrul V dîn circuit, conșiderat ideal (R, — »), îndică tenșiunea U, = 9V când întrerupătorul K este deschis și tenșiunea U, = 5 V când întrerupătorul Er R2 K este închis. Întrerupătorul K fiînd închis, determînați: a. rezistența electrică a circuitului exterior sursei; K R1 b. tenșiunea electrică la bornele sursei; c. rezistența înterioară a sursei; d. întenșitatea curentului electric îndicâtă de un ampermetru ideal (A, =02), conectat în locul voltmetrului. IIl. Rezolvați următoarea problemă: (15 puncte) lă L lu au 0 l m pu d a s EE E U a P , m cu m m zuu m mu ÎN s | d [CXIAI -AT HI ret ws U u lo ou m m ' u m ee mclîn v mu u m pm a 0 Dm . .\n\n",
+  "formule": [],
+  "date": {},
+  "subpuncte": [],
+  "index": 0,
+  "creator": "",
+  "punctajTotal": 15,
+  "createdAt": "2025-12-24T18:23:39.627203",
+  "poze": [
+    "problem-screenshots/2020_E_d_fizica_tehnologic_2020_var_02_LRO_C_II/page2.png"
+  ],
+  "arie": "C",
+  "subiect": "II",
+  "an": "2020",
+  "fisier": "E_d_fizica_tehnologic_2020_var_02_LRO",
+  "tip_document": "subiect"
+}

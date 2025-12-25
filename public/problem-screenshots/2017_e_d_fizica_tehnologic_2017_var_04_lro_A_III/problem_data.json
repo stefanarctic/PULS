@@ -1,0 +1,23 @@
+{
+  "titlu": "Problema II - A - 2017",
+  "descriere": "Problema II din aria A, anul 2017",
+  "categorie": "Bac",
+  "varianta": "2017",
+  "dificultate": "mediu",
+  "continut": "rămâne orizontală, dar are moduluil F = $15$ N. Determînați accelerația lăzii în acest caz. IIl. Rezolvați următoarea problemă: (15 puncte) Un contaîner de masă m = $1$t, șituat înițial pe sol, este ridicât de o macara, prîn întermediul unui cablu a cărui masă este neglijabilă față de masă contaînerului. Ridicarea se face pe verticală, cu viteză constantă, de la nivelul solului până la înălțimea F = $20$ m, în timpul Af = $80$ s.. Înteracțiunea cu aerul este neglijabilă. a. Calculați energia potențială gravitațională a contaînerului aflat la înălțimea H = $20$ m, conșiderând că energia potențială gravitațională este nulă la nivelul solului. b. Calculați lucrul mecanic efectuat de macara pentru ridicarea contaînerului pe distanța H = $20$ m. c. Determînați viteza contaînerului în timpul ridicării la înălțimea H = $20$ m. d. După ce a fost adus la înălțimea H, contaînerul se află în repaus. La un moment dat se desprînde dîn acesta o mică piesă. Determînați viteza piesei în momentul imediat anterior impactului cu solul. Probă scrisă la Fizică 1 A. Mecanică Filiera tehnologică — profilul tehnic și profilul resurse naturale și protecția mediului\n\n",
+  "formule": [],
+  "date": {},
+  "subpuncte": [],
+  "index": 0,
+  "creator": "",
+  "punctajTotal": 15,
+  "createdAt": "2025-12-24T18:21:04.707145",
+  "poze": [
+    "problem-screenshots/2017_e_d_fizica_tehnologic_2017_var_04_lro_A_III/page0.png"
+  ],
+  "arie": "A",
+  "subiect": "II",
+  "an": "2017",
+  "fisier": "e_d_fizica_tehnologic_2017_var_04_lro",
+  "tip_document": "subiect"
+}

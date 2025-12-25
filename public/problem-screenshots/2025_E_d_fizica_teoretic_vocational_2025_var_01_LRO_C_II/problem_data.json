@@ -1,0 +1,27 @@
+{
+  "titlu": "Problema II - C - 2025",
+  "descriere": "Problema II din aria C, anul 2025",
+  "categorie": "Bac",
+  "varianta": "2025",
+  "dificultate": "mediu",
+  "continut": "În circuitul electric a cărui schemă este reprezentată în figură alăturată, bateria are tenșiunea electromotoare $E = 12$ V și rezistența electrică înterioară $r = 4.$ Rezistoarele au rezistențele electrice R,=120Q2 și R,=R, =160, iar voltmetrul este conșiderat ideal E,lr (Rv —)oo). R; R a. Calculați rezistența electrică echivalentă a circuitului exterior bateriei. TT TI b. Calculați tenșiunea electrică la bornele bateriei. c. Determînați tenșiunea electrică îndicâtă de voltmetrul ideal. H “ d. Se înlocuiește voltmetrul ideal cu un ampermetru ideal (R, =00). o e Determînați îndicația ampermetrului. IIl. Rezolvați următoarea problemă: (15 puncte) Iln fiaura alăturată estae renrezentată schema unui circuit alectrîn Rateria are tenșiunea alertromatoaare",
+  "formule": [],
+  "date": {},
+  "subpuncte": [],
+  "index": 0,
+  "creator": "",
+  "punctajTotal": 15,
+  "createdAt": "2025-12-24T18:28:01.778537",
+  "poze": [
+    "problem-screenshots/2025_E_d_fizica_teoretic_vocational_2025_var_01_LRO_C_II/page2.png",
+    "problem-screenshots/2025_E_d_fizica_teoretic_vocational_2025_var_01_LRO_C_II/figure_page2_1.png"
+  ],
+  "arie": "C",
+  "subiect": "II",
+  "an": "2025",
+  "fisier": "E_d_fizica_teoretic_vocational_2025_var_01_LRO",
+  "tip_document": "subiect",
+  "figuri": [
+    "problem-screenshots/2025_E_d_fizica_teoretic_vocational_2025_var_01_LRO_C_II/figure_page2_1.png"
+  ]
+}

@@ -1,0 +1,23 @@
+{
+  "titlu": "Problema II - C - 2021",
+  "descriere": "Problema II din aria C, anul 2021",
+  "categorie": "Bac",
+  "varianta": "2021",
+  "dificultate": "mediu",
+  "continut": "În fiaura alăturată este reorezentată schema unui circuit electric. Bateria are parametrii $E = 12$ V și r=10.",
+  "formule": [],
+  "date": {},
+  "subpuncte": [],
+  "index": 0,
+  "creator": "",
+  "punctajTotal": 15,
+  "createdAt": "2025-12-24T18:25:07.367616",
+  "poze": [
+    "problem-screenshots/2021_E_d_fizica_teoretic_vocational_2021_var_04_LRO_C_II/page2.png"
+  ],
+  "arie": "C",
+  "subiect": "II",
+  "an": "2021",
+  "fisier": "E_d_fizica_teoretic_vocational_2021_var_04_LRO",
+  "tip_document": "subiect"
+}

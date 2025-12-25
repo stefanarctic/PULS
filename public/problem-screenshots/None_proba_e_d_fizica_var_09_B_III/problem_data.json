@@ -1,0 +1,23 @@
+{
+  "titlu": "Problema II - B - None",
+  "descriere": "Problema II din aria B, anul None",
+  "categorie": "Bac",
+  "varianta": null,
+  "dificultate": "mediu",
+  "continut": "Un mol de gaz ideal monoatomic (C, =15R) evoluează după procesul p termodînamic 1-2-3-4-1, reprezentat în șistemul de coordonate p-V în graficul alăturat. În starea de echilibru termodînamic 1 temperatura este T, = 300K , iar între 2 3 parametrii dîn stări diferite există relațiile: V, = 3V, și p, =2p,. a. Reprezentați grafic procesul ciclic într-un șistem de coordonate V-T. b. Calculați lucrul mecanic schimbat de gaz cu exteriorul în timpul unui ciclu. c. Calculați diferența dîntre valoarea maximă și cea mînimă a energiei înterne a gazului în 1 4; timpul unui ciclu. d. Calculați căldura cedată de gaz mediului exterior, în timpul unui ciclu. V Probă scrisă la Fizică 2 B. Elemente de termodînamică",
+  "formule": [],
+  "date": {},
+  "subpuncte": [],
+  "index": 0,
+  "creator": "",
+  "punctajTotal": 15,
+  "createdAt": "2025-12-24T18:28:29.803613",
+  "poze": [
+    "problem-screenshots/None_proba_e_d_fizica_var_09_B_III/page1.png"
+  ],
+  "arie": "B",
+  "subiect": "II",
+  "an": null,
+  "fisier": "proba_e_d_fizica_var_09",
+  "tip_document": "subiect"
+}

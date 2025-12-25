@@ -1,0 +1,23 @@
+{
+  "titlu": "Problema II - A - 2023",
+  "descriere": "Problema II din aria A, anul 2023",
+  "categorie": "Bac",
+  "varianta": "2023",
+  "dificultate": "mediu",
+  "continut": "Un corp având masă m = $1$kg se află în repaus pe o platformă orizontală șituată la înălțimea h = $0$,$6$ m față de sol. Sub acțiunea unei forțe constante F = 5\\/ă N, care formează cu orizontală unghiul a = $45$*, ca în figură alăturată, corpul parcurge distanța d=0,$5$ m. Când corpul ajunge la capătul m F platformei, acțiunea forței F încetează, iar corpul se desprînde de platformă. OS Mișcarea pe suprafața orizontală are loc cu frecare, coeficientul de frecare la alunecare fiînd ,:=0,2. Se neglijează înteracțiunea cu aerul. Energia potențială Îv d_î gravitațională se conșideră nulă la nivelul solului. Determînați: + h a. lucrul mecanic efectuat de forța F ; ; b. viteza corpului după parcurgerea distanței d ; ; \\ C. puterea medie dezvoltată de forța F ; - d. modului impulsului corpului în momentul imediat anterior impactului cu solul. Probă scrisă la Fizică 1 A. Mecanică Filiera teoretică — profilul real, Filiera vocațională — profilul militar",
+  "formule": [],
+  "date": {},
+  "subpuncte": [],
+  "index": 0,
+  "creator": "",
+  "punctajTotal": 15,
+  "createdAt": "2025-12-24T18:26:29.622175",
+  "poze": [
+    "problem-screenshots/2023_E_d_fizica_teoretic_vocational_2023_var_05_LRO_A_III/page0.png"
+  ],
+  "arie": "A",
+  "subiect": "II",
+  "an": "2023",
+  "fisier": "E_d_fizica_teoretic_vocational_2023_var_05_LRO",
+  "tip_document": "subiect"
+}

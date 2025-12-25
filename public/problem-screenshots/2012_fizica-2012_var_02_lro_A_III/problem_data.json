@@ -1,0 +1,23 @@
+{
+  "titlu": "Problema II - A - 2012",
+  "descriere": "Problema II din aria A, anul 2012",
+  "categorie": "Bac",
+  "varianta": "2012",
+  "dificultate": "mediu",
+  "continut": "O mînge de baseball cu masă de 0,$3$ kg este lansătă vertical în sus cu viteza v, = $18$ m/s de un lansător de mîngi. Se conșideră energia potențială nulă la nivelul de lansăre a mîngii și se neglijează toate frecările. Se cunoaște /2 = 1,41. Calculați: a. energia cînetică a mîngii în momentul lansării; b. înălțimea maximă la care ajunge mîngea față de nivelul de lansăre; c. lucrul mecanic efectuat de greutate dîn momentul lansării până în momentul în care mîngea ajunge la înălțimea de $4$ m față de nivelul de lansăre; d. viteza mîngii în momentul în care energia să cînetică este egală cu energia potențială. Probă scrisă la Fizică 1 A. Mecanică",
+  "formule": [],
+  "date": {},
+  "subpuncte": [],
+  "index": 0,
+  "creator": "",
+  "punctajTotal": 15,
+  "createdAt": "2025-12-24T18:17:18.479410",
+  "poze": [
+    "problem-screenshots/2012_fizica-2012_var_02_lro_A_III/page0.png"
+  ],
+  "arie": "A",
+  "subiect": "II",
+  "an": "2012",
+  "fisier": "fizica-2012_var_02_lro",
+  "tip_document": "subiect"
+}

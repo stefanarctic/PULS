@@ -1,0 +1,23 @@
+{
+  "titlu": "Problema II - A - 2024",
+  "descriere": "Problema II din aria A, anul 2024",
+  "categorie": "Bac",
+  "varianta": "2024",
+  "dificultate": "mediu",
+  "continut": "Un corp având masă m = $0$,$5$ kg, aflat la înălțimea h = $4$,$2$ m față de sol, este aruncât vertical de jos în sus, cu viteza înițială v, = 4,$0$ m/s . Se neglijează atât dimenșiunile corpului cât și înteracțiunea acestuia cu aerul. Energia potențială gravitațională se conșideră nulă la nivelul solului. a. Calculați energia mecanică a corpului la momentul înițial. b. Calculați înălțimea maximă, măsurată față de sol, la care ajunge corpul. c. Calculați lucrul mecanic efectuat de greutatea corpului dîn momentul aruncării lui și până la atîngerea solului. d. Corpul pătrunde în sol și se oprește după $\\Delta t = 1$,0-10\"s de la atîngerea solului. Calculați mărimea forței rezultante medii care acționează asupra corpului în timpul pătrunderii în sol. Probă scrisă la Fizică 1 A. Mecanică Filiera teoretică — profilul real, Filiera vocațională — profilul militar",
+  "formule": [],
+  "date": {},
+  "subpuncte": [],
+  "index": 0,
+  "creator": "",
+  "punctajTotal": 15,
+  "createdAt": "2025-12-24T18:27:29.053999",
+  "poze": [
+    "problem-screenshots/2024_E_d_fizica_teoretic_vocational_2024_var_04_LRO_A_III/page0.png"
+  ],
+  "arie": "A",
+  "subiect": "II",
+  "an": "2024",
+  "fisier": "E_d_fizica_teoretic_vocational_2024_var_04_LRO",
+  "tip_document": "subiect"
+}

@@ -1,0 +1,23 @@
+{
+  "titlu": "Problema II - C - 2021",
+  "descriere": "Problema II din aria C, anul 2021",
+  "categorie": "Bac",
+  "varianta": "2021",
+  "dificultate": "mediu",
+  "continut": "O baterie este formată prîn legarea în paralel a trei generatoare electrice identice având fiecare tenșiunea electromotoare $E = 10$ YV și rezistența înterioară $r = 3$ Q. Bateria alimentează un consumator cu rezistența electrică R, =920. a. Calculați randamentul transferului de putere de la baterie la circuitul exterior. b. Calculați puterea electrică dezvoltată de consumator. c. Se deconectează consumatorul FR,. Calculați valoarea rezistenței electrice H, + A, a unui alt consumator care, conectat la bornele bateriei, dezvoltă aceeași putere ca și consumatorul R. d. Calculați puterea maximă ce ar putea fi debitată de baterie pe un circuit exterior având rezistența convenabil aleasă. Probă scrisă la Fizică 3 C. Producerea și utilizarea curentului contînuu Filiera teoretică — profilul real, Filiera vocațională — profilul militar",
+  "formule": [],
+  "date": {},
+  "subpuncte": [],
+  "index": 0,
+  "creator": "",
+  "punctajTotal": 15,
+  "createdAt": "2025-12-24T18:25:17.906389",
+  "poze": [
+    "problem-screenshots/2021_E_d_fizica_teoretic_vocational_2021_var_07_LRO_C_III/page2.png"
+  ],
+  "arie": "C",
+  "subiect": "II",
+  "an": "2021",
+  "fisier": "E_d_fizica_teoretic_vocational_2021_var_07_LRO",
+  "tip_document": "subiect"
+}

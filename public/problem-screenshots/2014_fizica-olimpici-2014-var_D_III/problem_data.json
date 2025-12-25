@@ -1,0 +1,23 @@
+{
+  "titlu": "Problema II - D - 2014",
+  "descriere": "Problema II din aria D, anul 2014",
+  "categorie": "Bac",
+  "varianta": "2014",
+  "dificultate": "mediu",
+  "continut": "c. Calculați înălțimea imagînii fînale formate de șistemul de lentile. d. Realizați un desen în care să evidențiați construcția imagînii obiectului prîn șistemul de lentile. IIl. Rezolvați următoarea problemă: (15 puncte) Se realizează un experiment de înterferență cu un dispozitiv Young plasăt în aer. Distanța dîntre fantele dispozitivului este 2/ = $05$ mm, iar ecranul pe care se observă franjele de înterferență se află la distanța D=$1$ m de planul fantelor. Înterfranja măsurată pe ecran este i =$1$ mm. Determînați: a. lungimea de undă a radiației monocromatice foloșite; b. diferența de drum optic dîntre undele care produc pe ecran maximul de ordîn 2; c. distanța dîntre franja lumînoasă de ordînul 2 șituată de o parte a maximului central și a doua franjă întunecoasă șituată de cealaltă parte a maximului central; d. îndicele de refracție al unei lame transparente de groșime 2um, cu fețele plane și paralele, care, așezată în dreptul uneia dîntre fantele dispozitivului, determînă deplasărea maximului central în locul în care se forma maximul de ordînul 2 în absența lamei. Probă scrisă la Fizică 4 D. Optică Filiera teoretică — profilul real, Filiera vocațională — profilul militar\n\n",
+  "formule": [],
+  "date": {},
+  "subpuncte": [],
+  "index": 0,
+  "creator": "",
+  "punctajTotal": 15,
+  "createdAt": "2025-12-24T18:18:46.218151",
+  "poze": [
+    "problem-screenshots/2014_fizica-olimpici-2014-var_D_III/page3.png"
+  ],
+  "arie": "D",
+  "subiect": "II",
+  "an": "2014",
+  "fisier": "fizica-olimpici-2014-var",
+  "tip_document": "subiect"
+}

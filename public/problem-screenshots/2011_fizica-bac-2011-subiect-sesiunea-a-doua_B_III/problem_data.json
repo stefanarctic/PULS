@@ -1,0 +1,23 @@
+{
+  "titlu": "Problema II - B - 2011",
+  "descriere": "Problema II din aria B, anul 2011",
+  "categorie": "Bac",
+  "varianta": "2011",
+  "dificultate": "mediu",
+  "continut": "Un mol de gaz ideal monoatomic având căldura molară la volum constant C, = 115R se află într-o stare înițială 1 la temperatura T, = 300K. Dîn această stare gazul se destînde izobar până într-o stare 2 apoi prîntr-o transformare izocoră ajunge într-o stare 3 dîn care revîne în starea înițială prîntr-o transformare izotermă. Căldura totală schimbată de gaz cu exteriorul în transformările 1-2 și 2-3 este Q,,, = 831J. a. Reprezentați grafic transformarea cicilică în coordonate p-V . b. Calculați valoarea temperaturii gazului în starea 2. c. Determînați valoarea raportului dîntre volumul maxim și volumul mînim atînse în cursul transformărilor. d. Calculați lucrul mecanic schimbat de gaz cu exteriorul în transformarea 3-1 (Se utilizează În% =0,28). Probă scrisă la Fizică 2 B. Elemente de termodînamică Descarcât de pe variantebacalaureat.com",
+  "formule": [],
+  "date": {},
+  "subpuncte": [],
+  "index": 0,
+  "creator": "",
+  "punctajTotal": 15,
+  "createdAt": "2025-12-24T18:17:02.128024",
+  "poze": [
+    "problem-screenshots/2011_fizica-bac-2011-subiect-sesiunea-a-doua_B_III/page1.png"
+  ],
+  "arie": "B",
+  "subiect": "II",
+  "an": "2011",
+  "fisier": "fizica-bac-2011-subiect-sesiunea-a-doua",
+  "tip_document": "subiect"
+}

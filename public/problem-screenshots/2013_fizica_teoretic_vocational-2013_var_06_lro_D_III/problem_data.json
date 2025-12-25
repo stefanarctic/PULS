@@ -1,0 +1,23 @@
+{
+  "titlu": "Problema II - D - 2013",
+  "descriere": "Problema II din aria D, anul 2013",
+  "categorie": "Bac",
+  "varianta": "2013",
+  "dificultate": "mediu",
+  "continut": "d. Obiectul AB revîne în poziția înițială iar ecranul se așază la $24$ cm de lentilă. Calculați convergența lentilei care alipită de prima face ca imagînea fînală să se obțînă pe ecran. IIl. Rezolvați următoarea problemă: (15 puncte) Sursă de lumînă a unui dispozitiv Young emite radiații cu lungimea de undă de 500 nm. Distanța dîntre cele două fante ale dispozitivului este a = $1$ mm. a. Calculați distanța la care trebuie să se afle ecranul față de planul fantelor pentru ca înterfranja să fie de $15$ mm atunci când dispozitivul este în aer. b. Conșiderând că ecranul de observație se plasează la $2$ m de planul fantelor, calculați diferența de drum optic dîntre două raze care înterferă într-un punct aflat pe ecranul de observație la 1,$2$ mm de maximul central; c. Calculați distanța dîntre cel de al treilea mînim de înterferență șituat de o parte a maximului central și maximul de ordîn unu șituat de cealaltă parte a maximului central. Distanța dîntre planul fantelor și ecran este D=$2$ m. d. Calculați noua valoare a înterfranjei dacă întreg dispozitivul se întroduce în apă și se mențîne distanța D = $2$ m dîntre planul fantelor și ecran. Îndicele de refracție al apei este n,, = Fe Probă scrisă la Fizică 4 D. Optică Filiera teoretică — profilul real, Filiera vocațională — profilul militar\n\n",
+  "formule": [],
+  "date": {},
+  "subpuncte": [],
+  "index": 0,
+  "creator": "",
+  "punctajTotal": 15,
+  "createdAt": "2025-12-24T18:18:35.898447",
+  "poze": [
+    "problem-screenshots/2013_fizica_teoretic_vocational-2013_var_06_lro_D_III/page3.png"
+  ],
+  "arie": "D",
+  "subiect": "II",
+  "an": "2013",
+  "fisier": "fizica_teoretic_vocational-2013_var_06_lro",
+  "tip_document": "subiect"
+}

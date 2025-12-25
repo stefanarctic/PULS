@@ -1,0 +1,27 @@
+{
+  "titlu": "Problema II - A - 2020",
+  "descriere": "Problema II din aria A, anul 2020",
+  "categorie": "Bac",
+  "varianta": "2020",
+  "dificultate": "mediu",
+  "continut": "Y. cVRT P Il. Rezolvați următoarea problemă: (15 puncte) Două lăzi având mase M = $6$kg și m = $2$kg, legate prîntr-un resort orizontal M — de masă neglijabilă și constantă elastică k = $600$N/m, sunt tractate pe o l N I - alunecare dîntre lăzi și suprafată are valoarea $z = 0,2.$ M ——— EE ——— a. Determînați valoarea forței de apăsăre normală a lăzii de masă M asupra suprafeței orizontale. b. Calculați alungirea resortului în cazul în care cele două lăzi se deplasează uniform. c. Calculați valoarea forței F pentru care cele două lăzi se deplasează cu viteză constantă. d. Când viteza celor două lăzi este v = $2$m-s\", lada având masă M se desprînde de resort. Calculați întervalul de timp scurs dîn momentul desprînderii și până la oprirea lăzii de masă M. IIl. Rezolvați următoarea problemă: (15 puncte) CN rr r m RR rr r u retasMe Ol m m r r a Lr d r l db d a a r m r ab r r e m r l e v l e r r r e I m lb r e e\n\n",
+  "formule": [],
+  "date": {},
+  "subpuncte": [],
+  "index": 0,
+  "creator": "",
+  "punctajTotal": 15,
+  "createdAt": "2025-12-24T18:24:23.544882",
+  "poze": [
+    "problem-screenshots/2020_E_d_fizica_teoretic_vocational_2020_var_06_LRO_A_II/page0.png",
+    "problem-screenshots/2020_E_d_fizica_teoretic_vocational_2020_var_06_LRO_A_II/figure_page0_1.png"
+  ],
+  "arie": "A",
+  "subiect": "II",
+  "an": "2020",
+  "fisier": "E_d_fizica_teoretic_vocational_2020_var_06_LRO",
+  "tip_document": "subiect",
+  "figuri": [
+    "problem-screenshots/2020_E_d_fizica_teoretic_vocational_2020_var_06_LRO_A_II/figure_page0_1.png"
+  ]
+}

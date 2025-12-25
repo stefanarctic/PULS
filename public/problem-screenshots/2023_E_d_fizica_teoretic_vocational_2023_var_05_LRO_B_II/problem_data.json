@@ -1,0 +1,23 @@
+{
+  "titlu": "Problema II - B - 2023",
+  "descriere": "Problema II din aria B, anul 2023",
+  "categorie": "Bac",
+  "varianta": "2023",
+  "dificultate": "mediu",
+  "continut": "E - N F I d. p = > = 3 (3p) Il. Rezolvați următoarea problemă: (15 puncte) Un cilîndru orizontal, închis la ambele capete, este împărțit în două compartimente prîntr-un piston termoizolant, de groșime neglijabilă și care se poate deplasă fără frecare. Într-un compartiment se află neon ( = 20 g/mol), iar în celălalt se află oxigen (» =32 g/mol). Masele celor două gaze sunt egale. Temperatura în ambele compartimente este aceeași, ( =27\"C, iar pistonul se află în echilibru mecanic. Cantitatea totală de gaz dîn cilîndru este v = $6$,$5$ mol. Gazele sunt conșiderate ideale. a. Calculați raportul dîntre lungimile compartimentelor ocupate de cele două gaze /1/f>. b. Determînați cantitatea de neon dîn cilîndru. c. Se modifică temperatura oxigenului până la valoarea pentru care pistonul se află în echilibru la mijlocul cilîndrului. Determînați variația temperaturii oxigenului, conșiderând că temperatura neonului nu se modifică. d. Calculați masă molară a amestecului de gaze obțînut prîn îndepărtarea pistonului. IIl. Rezolvați următoarea problemă: (15 puncte) PN mR mtiîntea dan m 'rdanal m l ntannmzîn (f NADI ARanuni m ll S a e ll r R a *.,\n\n",
+  "formule": [],
+  "date": {},
+  "subpuncte": [],
+  "index": 0,
+  "creator": "",
+  "punctajTotal": 15,
+  "createdAt": "2025-12-24T18:26:31.013355",
+  "poze": [
+    "problem-screenshots/2023_E_d_fizica_teoretic_vocational_2023_var_05_LRO_B_II/page1.png"
+  ],
+  "arie": "B",
+  "subiect": "II",
+  "an": "2023",
+  "fisier": "E_d_fizica_teoretic_vocational_2023_var_05_LRO",
+  "tip_document": "subiect"
+}

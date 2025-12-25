@@ -1,0 +1,23 @@
+{
+  "titlu": "Problema II - C - 2020",
+  "descriere": "Problema II din aria C, anul 2020",
+  "categorie": "Bac",
+  "varianta": "2020",
+  "dificultate": "mediu",
+  "continut": "conectat în locul volimetrului. . Ill. Rezolvați următoarea problemă: (15 puncte) Două becuri identice au parametrii nomînali P, =15W și U„=3V. La bornele unei baterii cu tenșiunea electromotoare E și rezistența înterioară r se conectează cele două becuri legate în serie. Apoi la bornele aceleiași baterii se conectează gruparea paralel a celor două becuri. Se constată că becurile funcționează în regim nomînal și când sunt legate la bornele bateriei în serie și când sunt conectate în paralel. Determînați: a. energia consumată împreună de cele două becuri în întervalul de timp 1 = $1$ mîn ; b. temperatura atînsă de filamentului unui bec în regim nomînal de funcționare știînd că rezistența electrică a filamentului la temperatura 1=0\"C este , =0,620 și coeficientul termic al rezistivității filamentului este a = $0$,0045K\"'; c. întenșitatea curentului electric prîn baterie când becurile sunt legate în paralel la bornele bateriei; d. tenșiunea electromotoare a bateriei. Probă scrisă la Fizică 3 C. Producerea și utilizarea curentului contînuu\n\n",
+  "formule": [],
+  "date": {},
+  "subpuncte": [],
+  "index": 0,
+  "creator": "",
+  "punctajTotal": 15,
+  "createdAt": "2025-12-24T18:23:40.747684",
+  "poze": [
+    "problem-screenshots/2020_E_d_fizica_tehnologic_2020_var_02_LRO_C_III/page2.png"
+  ],
+  "arie": "C",
+  "subiect": "II",
+  "an": "2020",
+  "fisier": "E_d_fizica_tehnologic_2020_var_02_LRO",
+  "tip_document": "subiect"
+}

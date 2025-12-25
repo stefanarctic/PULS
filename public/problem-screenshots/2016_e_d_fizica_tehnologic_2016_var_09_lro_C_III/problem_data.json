@@ -1,0 +1,27 @@
+{
+  "titlu": "Problema II - C - 2016",
+  "descriere": "Problema II din aria C, anul 2016",
+  "categorie": "Bac",
+  "varianta": "2016",
+  "dificultate": "mediu",
+  "continut": "transversăle S = 0,$1$ mm\" și rezistivitatea p =12-10\"Q-m. IIl. Rezolvați următoarea problemă: (15 puncte) În figură alăturată este reprezentată schema unui circuit electric. Se cunosc: Er $r = 150,$ R,=52, R,=100Q2 și rezistența becului Ag =520. Întenșitatea ! curentului electric prîn bec este /, =2A, iar conductoarele de legătură au rezistența electrică neglijabilă. E T a. Calculați puterea electrică dișipată de bec. R .'4. b. Calculați energia consumată de rezistorul R, în timpul t = $10$mîn. 1 RB c. Determînați valoarea tenșiunii electromotoare a bateriei. —— d. În cazul în care becul se arde, precizați dacă tenșiunea la bornele sursei R crește său scade. Justificați răspunsul vostru. Probă scrisă la Fizică 3 C. Producerea și utilizarea curentului contînuu Filiera tehnologică — profilul tehnic și protfilul resurse naturale și protecția mediului\n\n",
+  "formule": [],
+  "date": {},
+  "subpuncte": [],
+  "index": 0,
+  "creator": "",
+  "punctajTotal": 15,
+  "createdAt": "2025-12-24T18:20:21.887151",
+  "poze": [
+    "problem-screenshots/2016_e_d_fizica_tehnologic_2016_var_09_lro_C_III/page2.png",
+    "problem-screenshots/2016_e_d_fizica_tehnologic_2016_var_09_lro_C_III/figure_page2_1.png"
+  ],
+  "arie": "C",
+  "subiect": "II",
+  "an": "2016",
+  "fisier": "e_d_fizica_tehnologic_2016_var_09_lro",
+  "tip_document": "subiect",
+  "figuri": [
+    "problem-screenshots/2016_e_d_fizica_tehnologic_2016_var_09_lro_C_III/figure_page2_1.png"
+  ]
+}

@@ -1,0 +1,23 @@
+{
+  "titlu": "Problema II - C - 2017",
+  "descriere": "Problema II din aria C, anul 2017",
+  "categorie": "Bac",
+  "varianta": "2017",
+  "dificultate": "mediu",
+  "continut": "d. VU H. IV C. IZILU H. IVULU LWP7 Il. Rezolvați următoarea problemă: (15 puncte) Se conșideră circuitul electric a cărui schemă este reprezentată în figură alăturată. Se cunosc: $E = 12$ V, $r = 402,$ R,=250Q, R, =150, HK, =102. , L ROR .. < RIIE El'r Rezistența electrică a conductoarelor de legătură se neglijează. Determînați: R R a. rezistența electrică a circuitului exterior dacă întrerupătorul K este deschis; L , b. întenșitatea curentului care străbate generatorul dacă întrerupătorul K este R deschis; ? K c. tenșiunea la bornele generatorului dacă întrerupătorul Keste închis; d. întenșitatea curentului care străbate rezistorul R. dacă întrerupătorul K este închis. IIl. Rezolvați următoarea problemă: (15 puncte) l- l- l a .D a a a a a z d r a r a e e r d e a e D a L e s e e a f = a m ab m a DR A a s im 2 r s l EA, m L a a L .,\n\n",
+  "formule": [],
+  "date": {},
+  "subpuncte": [],
+  "index": 0,
+  "creator": "",
+  "punctajTotal": 15,
+  "createdAt": "2025-12-24T18:21:17.436088",
+  "poze": [
+    "problem-screenshots/2017_e_d_fizica_tehnologic_2017_var_07_lro_C_II/page2.png"
+  ],
+  "arie": "C",
+  "subiect": "II",
+  "an": "2017",
+  "fisier": "e_d_fizica_tehnologic_2017_var_07_lro",
+  "tip_document": "subiect"
+}

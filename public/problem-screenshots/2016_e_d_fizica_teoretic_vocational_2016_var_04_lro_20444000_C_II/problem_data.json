@@ -1,0 +1,23 @@
+{
+  "titlu": "Problema II - C - 2016",
+  "descriere": "Problema II din aria C, anul 2016",
+  "categorie": "Bac",
+  "varianta": "2016",
+  "dificultate": "mediu",
+  "continut": "A. 1U s ho= f SE s d SE M. Tu AE d ă Il. Rezolvați următoarea problemă: (15 puncte) O baterie este formată prîn legarea în paralel a două generatoare identice având fiecare tenșiunea electromotoare $E = 26$ V și rezistența înterioară $r = 2$ Q. La bornele bateriei este conectat un rezistor cu rezistența electrică $R = 12$ Q. Rezistorul este confecționat dîntr-un fir conductor cu diametrul secțiunii transversăle d = 0,$2$ mm, iar rezistivitatea electrică a materialului dîn care este confecționat are valoarea p=6,28-10” Qm. a. Calculați tenșiunea electromotoare și rezistența înterioară a bateriei. b. Determînați lungimea firului conductor. c. Calculați tenșiunea la bornele bateriei. d. În paralel cu rezistorul R se conectează un alt rezistor având rezistența electrică A,. Tenșiunea la bornele grupării paralel este $U = 208$ V . Determînați valoarea rezistenței R. IIl. Rezolvați următoarea problemă: (15 puncte) FR m d a m r a r a e a r d r a c a TT A r Ll a a L a a m z l a = l r a DP m a \"L CA a m I I*\n\n",
+  "formule": [],
+  "date": {},
+  "subpuncte": [],
+  "index": 0,
+  "creator": "",
+  "punctajTotal": 15,
+  "createdAt": "2025-12-24T18:20:39.365450",
+  "poze": [
+    "problem-screenshots/2016_e_d_fizica_teoretic_vocational_2016_var_04_lro_20444000_C_II/page2.png"
+  ],
+  "arie": "C",
+  "subiect": "II",
+  "an": "2016",
+  "fisier": "e_d_fizica_teoretic_vocational_2016_var_04_lro_20444000",
+  "tip_document": "subiect"
+}

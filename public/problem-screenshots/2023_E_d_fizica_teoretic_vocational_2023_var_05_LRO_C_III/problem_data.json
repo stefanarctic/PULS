@@ -1,0 +1,23 @@
+{
+  "titlu": "Problema II - C - 2023",
+  "descriere": "Problema II din aria C, anul 2023",
+  "categorie": "Bac",
+  "varianta": "2023",
+  "dificultate": "mediu",
+  "continut": "montat între punciele A ȘI D Să înăice un curent &elreciric Cu Întenșitatea nula. -I £ iE IIl. Rezolvați următoarea problemă: (15 puncte) Două becuri sunt legate în serie și conectate la bornele unui generator cu t.e.m $E = 120$ Y și rezistența înterioară $r = 16$ Q. Primul bec este caracterizat de valorile nomînale $R = 100$ W și U, =80 V . Cele două becuri funcționează la valori nomînale. Determînați: a. rezistența electrică a primului bec; b. rezistența electrică a celui de-al doilea bec; c. energia electrică consumată de cel de-al doilea bec în întervalul de timp At = $2$ mîn ; d. raportul dîntre puterea consumată de circuitul exterior generatorului și puterea totală dezvoltată de generator. Probă scrisă la Fizică 3 C. Producerea și utilizarea curentului contînuu Filiera teoretică — profilul real, Filiera vocațională — profilul militar\n\n",
+  "formule": [],
+  "date": {},
+  "subpuncte": [],
+  "index": 0,
+  "creator": "",
+  "punctajTotal": 15,
+  "createdAt": "2025-12-24T18:26:34.699266",
+  "poze": [
+    "problem-screenshots/2023_E_d_fizica_teoretic_vocational_2023_var_05_LRO_C_III/page2.png"
+  ],
+  "arie": "C",
+  "subiect": "II",
+  "an": "2023",
+  "fisier": "E_d_fizica_teoretic_vocational_2023_var_05_LRO",
+  "tip_document": "subiect"
+}

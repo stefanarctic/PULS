@@ -1,0 +1,23 @@
+{
+  "titlu": "Problema II - C - 2010",
+  "descriere": "Problema II din aria C, anul 2010",
+  "categorie": "Bac",
+  "varianta": "2010",
+  "dificultate": "mediu",
+  "continut": "La bornele unei surse având tenșiunea electromotoare $E = 8,0$ V și rezistența înternă r = 05 ? se leagă în paralel un rezistor a cărui rezistență electrică are valoarea R, =2,00Q și un bec. Un voltmetru, conșiderat ideal (R, > «), conectat la bornele sursei, îndică $U = 6,0$ V . Cunoscând rezistența filamentului becului „la rece” (t, =0\" C) R,=100Q și coeficientul termic al rezistivității materialului dîn care este confecționat filamentul becului a = $25$ -10* K\"\", determînați: a. energia consumată de rezistor în $5$ mînute de funcționare; b. puterea totală dezvoltată de sursă; c. randamentul transferului de putere de la sursă la circuitul exterior; d. temperatura filamentului becului în timpul funcționării. Proba E - d): Probă scrisă la Fizică 3 C. Producerea și utilizarea curentului contînuu",
+  "formule": [],
+  "date": {},
+  "subpuncte": [],
+  "index": 0,
+  "creator": "",
+  "punctajTotal": 15,
+  "createdAt": "2025-12-24T18:16:54.881685",
+  "poze": [
+    "problem-screenshots/2010_fizica-subiecte-2010_C_III/page2.png"
+  ],
+  "arie": "C",
+  "subiect": "II",
+  "an": "2010",
+  "fisier": "fizica-subiecte-2010",
+  "tip_document": "subiect"
+}

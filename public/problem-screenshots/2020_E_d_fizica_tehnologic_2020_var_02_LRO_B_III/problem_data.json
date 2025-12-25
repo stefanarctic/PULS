@@ -1,0 +1,23 @@
+{
+  "titlu": "Problema II - B - 2020",
+  "descriere": "Problema II din aria B, anul 2020",
+  "categorie": "Bac",
+  "varianta": "2020",
+  "dificultate": "mediu",
+  "continut": "MILCIIVATA MIAANIIĂ fpmax Ș IV FQ. Ill. Rezolvați următoarea problemă: (15 puncte) . 1 , , , a O cantitate v = $0$,$12$ mol (s amol) de gaz ideal biatomic (C, = 2,5R), având p | 2 în starea înițială temperatura 7,=300K, parcurge ciclul termodînamic (=) reprezentat în figură alăturată. În procesele (2) > (3) și (4) — (1) temperatura T2=ct. gazului rămâne constantă. Căldura absorbită de gaz în procesul (1) — (2) este (3) egală cu lucrul mecanic efectuat de gaz în procesul (2) — (3), Q,» = L3 = 1500J. (1) . , R l a. Reprezentați ciclul termodînamic în coordonate V -T. I (4) b. Calculați temperatura maximă atînsă de gaz în cursul ciclului. } I c. Determînați căldura primită de gaz într-un ciclu complet. V d. Determînați lucrul mecanic schimbat de gaz cu exteriorul în procesul (4) > (1). 0 V1 V3 Probă scrisă la Fizică 2 B. Elemente de termodînamică\n\n",
+  "formule": [],
+  "date": {},
+  "subpuncte": [],
+  "index": 0,
+  "creator": "",
+  "punctajTotal": 15,
+  "createdAt": "2025-12-24T18:23:38.413484",
+  "poze": [
+    "problem-screenshots/2020_E_d_fizica_tehnologic_2020_var_02_LRO_B_III/page1.png"
+  ],
+  "arie": "B",
+  "subiect": "II",
+  "an": "2020",
+  "fisier": "E_d_fizica_tehnologic_2020_var_02_LRO",
+  "tip_document": "subiect"
+}

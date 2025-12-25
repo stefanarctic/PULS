@@ -1,0 +1,23 @@
+{
+  "titlu": "Problema II - C - 2012",
+  "descriere": "Problema II din aria C, anul 2012",
+  "categorie": "Bac",
+  "varianta": "2012",
+  "dificultate": "mediu",
+  "continut": "A. V,LZI Ș£ H. U,D 52 C. V, fY iL H. 154 WVEPJ Il. Rezolvați următoarea problemă: (15 puncte) Pentru circuitul dîn figură alăturată se cunosc: A, = 400, R, =6020, , =302 și $r = 10$ Q. Un voltmetru ideal (R, — ) conectat între B și C îndică $U = 12$ V. R, Determînați: A R a. valoarea întenșității curentului ce străbate rezistorul F,; 1 b. valoarea tenșiunii electromotoare a sursei; B R, C c. valoarea tenșiunii de la bornele rezistorului A, dacă între B și C se conectează Er un fir de rezistență electrică neglijabilă; d. valoarea îndicației unui ampermetru ideal (R, — 0) conectat la bornele sursei. IIl. Rezolvați următoarea problemă: , (15 puncte)\n\n",
+  "formule": [],
+  "date": {},
+  "subpuncte": [],
+  "index": 0,
+  "creator": "",
+  "punctajTotal": 15,
+  "createdAt": "2025-12-24T18:17:21.761849",
+  "poze": [
+    "problem-screenshots/2012_fizica-2012_var_02_lro_C_II/page2.png"
+  ],
+  "arie": "C",
+  "subiect": "II",
+  "an": "2012",
+  "fisier": "fizica-2012_var_02_lro",
+  "tip_document": "subiect"
+}

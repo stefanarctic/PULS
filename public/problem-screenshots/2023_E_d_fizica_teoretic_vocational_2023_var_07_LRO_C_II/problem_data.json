@@ -1,0 +1,27 @@
+{
+  "titlu": "Problema II - C - 2023",
+  "descriere": "Problema II din aria C, anul 2023",
+  "categorie": "Bac",
+  "varianta": "2023",
+  "dificultate": "mediu",
+  "continut": "a. V-m' b. V*-m c. V* m d. V-m” (3p) Il. Rezolvați următoarea problemă: (15 puncte) În circuitul a cărui schemă este reprezentată în figură alăturată, rezistențele electrice ale rezistoarelor au valorile A, =100, A, =150 și A, =25Q. Tenșiunea îndicâtă de un voltmetru ideal (R, > w) conectat între bornele M și N ale circuitului are valoarea U, =8 V. Dacă în locul voltmetrului este , E R2 conectat un ampermetru ideal (R, =00), curentul îndicât de acesta are — oM întenșitatea /, =9 A. Determînați: a. rezistența electrică echivalentă a circuitului exterior sursei când între bornele R1 M și N este conectat voltmetrul; b. sărcîna electrică care străbate sursă în întervalul de timp Af = $1$ mîn când între oN bornele M și N este conectat voltmetrul; c. tenșiunea electrică la bornele rezistorului ș când între bornele M și N este conectat voltmetrul; d. rezistența înterioară r a sursei. IIl. Rezolvați următoarea problemă: (15 puncte) În rirmiiitul alsrtrir A rărni erhomă acta ranrosoantată în fînuira alăturată hacrnirile fiînrtînnasăvă la naramoatrii\n\n",
+  "formule": [],
+  "date": {},
+  "subpuncte": [],
+  "index": 0,
+  "creator": "",
+  "punctajTotal": 15,
+  "createdAt": "2025-12-24T18:26:53.046797",
+  "poze": [
+    "problem-screenshots/2023_E_d_fizica_teoretic_vocational_2023_var_07_LRO_C_II/page2.png",
+    "problem-screenshots/2023_E_d_fizica_teoretic_vocational_2023_var_07_LRO_C_II/figure_page2_1.png"
+  ],
+  "arie": "C",
+  "subiect": "II",
+  "an": "2023",
+  "fisier": "E_d_fizica_teoretic_vocational_2023_var_07_LRO",
+  "tip_document": "subiect",
+  "figuri": [
+    "problem-screenshots/2023_E_d_fizica_teoretic_vocational_2023_var_07_LRO_C_II/figure_page2_1.png"
+  ]
+}

@@ -1,0 +1,27 @@
+{
+  "titlu": "Problema II - C - 2019",
+  "descriere": "Problema II din aria C, anul 2019",
+  "categorie": "Bac",
+  "varianta": "2019",
+  "dificultate": "mediu",
+  "continut": "În figură alăturată este reprezentată schema unui circuit electric. Se cunosc: tenșiunile electromotoare ale generatoarelor electrice E, = E, = 45V, rezistențele înterioare ale celor două generatoare, 4 =/, =12. Rezistența echivalentă a circuitului exterior este R. = 320 iar rezistențele electrice ale rezistorilor 2 și $3$ sunt egale cu , =32, respectiv $R = 15$ Q2. Ampermetrul montat în circuit este conșiderat ideal (A, =020). Determînați: R a. tenșiunea electromotoare și rezistența înterioară a sursei echivalente R+ M 0 cu gruparea celor două generatoare; [ — b. întenșitatea curentului electric prîn generatoare; c. rezistența electrică H, a rezistorului 1; | 3 [ d. întenșitatea curentului îndicâtă de ampermetru. E7 E&I ,",
+  "formule": [],
+  "date": {},
+  "subpuncte": [],
+  "index": 0,
+  "creator": "",
+  "punctajTotal": 15,
+  "createdAt": "2025-12-24T18:23:00.901817",
+  "poze": [
+    "problem-screenshots/2019_E_d_fizica_tehnologic_2019_var_04_LRO_C_II/page2.png",
+    "problem-screenshots/2019_E_d_fizica_tehnologic_2019_var_04_LRO_C_II/figure_page2_1.png"
+  ],
+  "arie": "C",
+  "subiect": "II",
+  "an": "2019",
+  "fisier": "E_d_fizica_tehnologic_2019_var_04_LRO",
+  "tip_document": "subiect",
+  "figuri": [
+    "problem-screenshots/2019_E_d_fizica_tehnologic_2019_var_04_LRO_C_II/figure_page2_1.png"
+  ]
+}

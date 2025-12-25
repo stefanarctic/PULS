@@ -1,0 +1,23 @@
+{
+  "titlu": "Problema II - D - 2021",
+  "descriere": "Problema II din aria D, anul 2021",
+  "categorie": "Bac",
+  "varianta": "2021",
+  "dificultate": "mediu",
+  "continut": "Un dispozitiv Young, având distanța dîntre planul fantelor și ecran D=$2$ m, distanța dîntre fante 2/, se poate utiliza pentru determînarea lungimii de undă a unei radiații lumînoase. Sursă de lumînă se află pe axa de șimetrie a dispozitivului. Dacă sursă emite radiații monocromatice cu lungimea de undă $A = 0,5$ um, valoarea înterfranjei obțînute pe ecran este /=$1$ mm, iar dacă sursă emite radiații monocromatice cu lungimea de undă 14', pe ecran se observă că distanța dîntre maximul central și maximul de ordînul 5 este d=6&mm. a. Determînați distanța 2/ dîntre fantele dispozitivului Young. b. Determînați valoarea înterfranjei corespunzătoare radiației cu lungimea de undă 2'. c. Determînați lungimea de undă 2'a radiației necunoscute. d. Se utilizează lumînă albă cu lungimea de undă cuprînsă în întervalul [400nm; 750 nm]. Calculați lungimile de undă ce corespund radiațiilor care formează mînime la distanța x = 3,$2$ mm față de franja centrală. Probă scrisă la Fizică 4 D. Optică Filiera teoretică — profilul real, Filiera vocațională — profilul militar",
+  "formule": [],
+  "date": {},
+  "subpuncte": [],
+  "index": 0,
+  "creator": "",
+  "punctajTotal": 15,
+  "createdAt": "2025-12-24T18:25:20.335950",
+  "poze": [
+    "problem-screenshots/2021_E_d_fizica_teoretic_vocational_2021_var_07_LRO_D_III/page3.png"
+  ],
+  "arie": "D",
+  "subiect": "II",
+  "an": "2021",
+  "fisier": "E_d_fizica_teoretic_vocational_2021_var_07_LRO",
+  "tip_document": "subiect"
+}

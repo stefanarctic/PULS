@@ -1,0 +1,23 @@
+{
+  "titlu": "Problema II - C - 2015",
+  "descriere": "Problema II din aria C, anul 2015",
+  "categorie": "Bac",
+  "varianta": "2015",
+  "dificultate": "mediu",
+  "continut": "a. /U 7a H. OU /o C. U / Ă. IUU 7a LWP7 Il. Rezolvați următoarea problemă: (15 puncte) O baterie este formată prîn legarea în serie a două generatoare identice cu tenșiunile electromotoare E, = E, = 25 V șirezistențele înterioare ; = , =05 Q. La bornele bateriei este conectată o grupare paralel formată dîn două rezistoare având rezistențele electrice R, = 4002 și R, =6020. Neglijând rezistența electrică a conductoarelor de legătură, calculați: a. rezistența echivalentă a circuitului exterior; b. tenșiunea electromotoare și rezistența înterioară a bateriei; c. întenșitatea curentului electric prîn baterie; d. tenșiunea la bornele unui generator. IIl. Rezolvați următoarea problemă: (15 puncte) I IH 2a PM a a a a =azzl..l -I , Lian a ale . .alat -- r a =l -. NSĂ .AR rDaza..l -- -l = =Lal I -\n\n",
+  "formule": [],
+  "date": {},
+  "subpuncte": [],
+  "index": 0,
+  "creator": "",
+  "punctajTotal": 15,
+  "createdAt": "2025-12-24T18:20:01.659956",
+  "poze": [
+    "problem-screenshots/2015_e_d_fizica_tehnologic_2015_var_02_lro_C_II/page2.png"
+  ],
+  "arie": "C",
+  "subiect": "II",
+  "an": "2015",
+  "fisier": "e_d_fizica_tehnologic_2015_var_02_lro",
+  "tip_document": "subiect"
+}

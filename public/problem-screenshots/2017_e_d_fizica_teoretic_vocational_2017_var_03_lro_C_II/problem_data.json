@@ -1,0 +1,23 @@
+{
+  "titlu": "Problema II - C - 2017",
+  "descriere": "Problema II din aria C, anul 2017",
+  "categorie": "Bac",
+  "varianta": "2017",
+  "dificultate": "mediu",
+  "continut": "a.0V b.1,2V c. 7,56V d. 12V (3p) Il. Rezolvați următoarea problemă: (15 puncte) În figură alăturată este reprezentată schema unui circuit electric. Rezistența înterioară a bateriei este r = g , iar $R = 100$ Q. Când întrerupătorul K este deschis ampermetrul îndică 2R A R I, =0,36 A. Știînd că ampermetrul este conșiderat ideal (R, =00), să se m m determîne: a. rezușt_ența echivalentă a circuitului exterior sursei când întrerupătorul K este ——— ——— deschis; B b. tenșiunea electromotoare E a bateriei; 0 c. îndicația ampermetrului când întrerupătorul K este închis; ELr d. îndicația unui voltmetru ideal (Ry — --) conectat între punctele A și B în locul întrerupătorului. IIl. Rezolvați următoarea problemă: (15 puncte) CE su su D ru e l mu Îu a p a E u m ru du ru Î m 2 P DC lu a u Gl u s r a r ÎE m uu r e u su r u ru G UR a pu r Î\n\n",
+  "formule": [],
+  "date": {},
+  "subpuncte": [],
+  "index": 0,
+  "creator": "",
+  "punctajTotal": 15,
+  "createdAt": "2025-12-24T18:21:26.980840",
+  "poze": [
+    "problem-screenshots/2017_e_d_fizica_teoretic_vocational_2017_var_03_lro_C_II/page2.png"
+  ],
+  "arie": "C",
+  "subiect": "II",
+  "an": "2017",
+  "fisier": "e_d_fizica_teoretic_vocational_2017_var_03_lro",
+  "tip_document": "subiect"
+}

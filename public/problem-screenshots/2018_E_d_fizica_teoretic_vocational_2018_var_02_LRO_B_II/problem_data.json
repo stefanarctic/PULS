@@ -1,0 +1,23 @@
+{
+  "titlu": "Problema II - B - 2018",
+  "descriere": "Problema II din aria B, anul 2018",
+  "categorie": "Bac",
+  "varianta": "2018",
+  "dificultate": "mediu",
+  "continut": "d. 4-1 U V (3P) Il. Rezolvați următoarea problemă: (15 puncte) Un cilîndru orizontal cu secțiunea S = $831$ cm\"* și lungimea L = $60$ cm, închis la ambele capete, este împărțit în două compartimente, A și B, prîntr-un piston subțire, care se poate mișca fără frecări. Înițial, în cele două compartimente se află cantități egale de azot ($u = 28$ g/mol) la preșiunea », =10* N/ m* și la temperatura t = $27$\"C. Se întroduce în compartimentul A azot la temperatura t = $27$\"C până când preșiunea azotului dîn compartimentul B devîne p=3-10*\" N/m*. Calculați: a. volumul înițial al compartimentului A; b. cantitatea de azot dîn compartimentul B; c. distanța x pe care se deplasează pistonul; d. masă de azot care s-a întrodus suplimentar în compartimentul A. IIl. Rezolvați următoarea problemă: (15 puncte)\n\n",
+  "formule": [],
+  "date": {},
+  "subpuncte": [],
+  "index": 0,
+  "creator": "",
+  "punctajTotal": 15,
+  "createdAt": "2025-12-24T18:22:21.383434",
+  "poze": [
+    "problem-screenshots/2018_E_d_fizica_teoretic_vocational_2018_var_02_LRO_B_II/page1.png"
+  ],
+  "arie": "B",
+  "subiect": "II",
+  "an": "2018",
+  "fisier": "E_d_fizica_teoretic_vocational_2018_var_02_LRO",
+  "tip_document": "subiect"
+}

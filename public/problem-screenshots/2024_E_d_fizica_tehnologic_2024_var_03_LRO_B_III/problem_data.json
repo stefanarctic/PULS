@@ -1,0 +1,23 @@
+{
+  "titlu": "Problema II - B - 2024",
+  "descriere": "Problema II din aria B, anul 2024",
+  "categorie": "Bac",
+  "varianta": "2024",
+  "dificultate": "mediu",
+  "continut": "O cantitate v = $1$,$0$ mol de gaz ideal biatomic, având căldura molară la volum constant C, = 25R, parcurge transformarea 1— 2 — 3 reprezentată în coordonate p-V în graficul dîn figură alăturată. În starea 1 temperatura gazului are valoarea T;, = 400K , în P starea 2 preșiunea gazului este p, = 2p,, iar în starea 3 volumul gazului este pL---- 2 3 2 V4 =2V. l a. Reprezentați grafic transformarea 1 2 > 3 în coordonate V-T. 4 : b. Calculați energia înternă a gazului în starea 2. BT A : c. Calculați căldura primită de gaz în transformarea 2 > 3. : : d. Calculați lucrul mecanic total schimbat de gaz cu mediul exterior în I ! decursul transformării 1 2 > 3. 0 V, V, V Probă scrisă la Fizică 2 B. Elemente de termodînamică Filiera tehnologică — profilul tehnic și profilul resurse naturale și protecția mediului",
+  "formule": [],
+  "date": {},
+  "subpuncte": [],
+  "index": 0,
+  "creator": "",
+  "punctajTotal": 15,
+  "createdAt": "2025-12-24T18:27:01.582664",
+  "poze": [
+    "problem-screenshots/2024_E_d_fizica_tehnologic_2024_var_03_LRO_B_III/page1.png"
+  ],
+  "arie": "B",
+  "subiect": "II",
+  "an": "2024",
+  "fisier": "E_d_fizica_tehnologic_2024_var_03_LRO",
+  "tip_document": "subiect"
+}

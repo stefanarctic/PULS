@@ -1,0 +1,27 @@
+{
+  "titlu": "Problema II - A - 2013",
+  "descriere": "Problema II din aria A, anul 2013",
+  "categorie": "Bac",
+  "varianta": "2013",
+  "dificultate": "mediu",
+  "continut": "y y g + Il. Rezolvați următoarea problemă: (15 puncte) În figură alăturată sunt reprezentate două corpuri A și B, cu masele m, = $40$ kg și respectiv m, = $60$ kg, așezate unul peste altul și legate între ele B cu un fir înextenșibil și de masă neglijabilă, de lungime /= $50$ cm. Corpul A -l_ este așezat pe suprafața orizontală a unei mese. fir , a. Calculați forța de apăsăre exercitată pe suprafața orizontală a mesei. b. Dacă asupra corpului B acționează o forță verticală, în sus, corpul B urcă având viteza constantă v = $0$,3& km/h. Calculați întervalul de timp după care distanța dîntre corpuri devîne / = $50$ cm. c. Dacă asupra corpului B acționează o forță verticală, în sus, de valoare $F = 1,2$ KN și firul dîntre corpuri este întîns, șistemul format dîn cele două corpuri se deplasează vertical în sus cu accelerația a. Calculați accelerația șistemului. d. Calculați valoarea forței de tenșiune dîn fir în condițiile de la punctul c. IIl. Rezolvați următoarea problemă: (15 puncte)\n\n",
+  "formule": [],
+  "date": {},
+  "subpuncte": [],
+  "index": 0,
+  "creator": "",
+  "punctajTotal": 15,
+  "createdAt": "2025-12-24T18:18:06.517035",
+  "poze": [
+    "problem-screenshots/2013_fizica_tehnologic-2013_var_06_lro_A_II/page0.png",
+    "problem-screenshots/2013_fizica_tehnologic-2013_var_06_lro_A_II/figure_page0_1.png"
+  ],
+  "arie": "A",
+  "subiect": "II",
+  "an": "2013",
+  "fisier": "fizica_tehnologic-2013_var_06_lro",
+  "tip_document": "subiect",
+  "figuri": [
+    "problem-screenshots/2013_fizica_tehnologic-2013_var_06_lro_A_II/figure_page0_1.png"
+  ]
+}

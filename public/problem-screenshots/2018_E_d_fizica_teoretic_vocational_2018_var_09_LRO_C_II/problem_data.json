@@ -1,0 +1,23 @@
+{
+  "titlu": "Problema II - C - 2018",
+  "descriere": "Problema II din aria C, anul 2018",
+  "categorie": "Bac",
+  "varianta": "2018",
+  "dificultate": "mediu",
+  "continut": "C. 1U 52 Ql1 2423 £ d. 10002 (Sp) l. Rezolvați următoarea problemă: (15 puncte) În figură alăturată este reprezentată schema unui circuit electric. Bateria este formată prîn conectarea în serie a trei generatoare caracterizate prîn parametrii (E;r), (2E;2r) și (3E;3r). Se cunosc $E = 1$ V și $r = 10.$ La bornele bateriei se conectează un conductor dîn nichelînă (p = 4'10“7Q—m) a 0 cărui rezistență electrică este R=240. Înstrumentele de măsură conectate în circuit sunt conșiderate ideale (R, =020, Ry > =), iar rezistența electrică a |*FEl3“ 2El2r E[r conductoarelor de legătură se neglijează. K 0 a. Calculați valoarea tenșiunii îndicâte de voltmetru când întrerupătorul K este [__] deschis. R b. Calculați valoarea întenșității curentului îndicâtă de ampermetru când întrerupătorul K este închis. c. Calculați lungimea firului dîn care este confecționat conductorul, știînd că diametrul secțiunii transversăle a . 1 acestuia este d = 0,$25$ mm| = — mm |. J5x d. Se leagă cele trei generatoare în paralel, formându-se astfel o nouă baterie. La bornele acesteia se conectează conductorul cu rezistența RH. Calculați valoarea întenșității curentului prîn conductorul cu rezistența A. Ill. Rezolvați următoarea problemă: (15 puncte) T fimiivr lZ ienbX nata vramnvrmnnbnii anbhamrma l mivrniilt mlantrîn Datavuîn mvn & m a\n\n",
+  "formule": [],
+  "date": {},
+  "subpuncte": [],
+  "index": 0,
+  "creator": "",
+  "punctajTotal": 15,
+  "createdAt": "2025-12-24T18:22:32.846253",
+  "poze": [
+    "problem-screenshots/2018_E_d_fizica_teoretic_vocational_2018_var_09_LRO_C_II/page2.png"
+  ],
+  "arie": "C",
+  "subiect": "II",
+  "an": "2018",
+  "fisier": "E_d_fizica_teoretic_vocational_2018_var_09_LRO",
+  "tip_document": "subiect"
+}

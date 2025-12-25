@@ -1,0 +1,23 @@
+{
+  "titlu": "Problema II - C - 2024",
+  "descriere": "Problema II din aria C, anul 2024",
+  "categorie": "Bac",
+  "varianta": "2024",
+  "dificultate": "mediu",
+  "continut": "În figură alăturată este reprezentată schema unui circuit electric. Se cunosc: $E = 9$ V, $r = 10,$ R,=80, R, =40 și R =50. Între bornele A și B se pot conecta, pe rând, diferite elemente de circuit, fără a modifica restul rețelei electrice. Calculați: a. rezistența echivalentă a circuitului exterior sursei, dacă între bornele A și B se A B conectează un rezistor cu valoarea R, =6£0; R3 b. întenșitatea curentului electric îndicâtă de un ampermetru ideal (R, =00) conectat între bornele A și B; R1 R2 c. tenșiunea îndicâtă de un voltmetru ideal (Ffv —>oo) conectat între bornele A și B; 4E1 d. tenșiunea electromotoare E' pe care trebuie să o aibă o sursă ideală (r'=00), conectată între bornele A și B, astfel încât rezistorul R$3$ să nu fie parcurs de curent electric.",
+  "formule": [],
+  "date": {},
+  "subpuncte": [],
+  "index": 0,
+  "creator": "",
+  "punctajTotal": 13,
+  "createdAt": "2025-12-24T18:27:42.785418",
+  "poze": [
+    "problem-screenshots/2024_E_d_fizica_teoretic_vocational_2024_var_08_LRO_C_II/page2.png"
+  ],
+  "arie": "C",
+  "subiect": "II",
+  "an": "2024",
+  "fisier": "E_d_fizica_teoretic_vocational_2024_var_08_LRO",
+  "tip_document": "subiect"
+}

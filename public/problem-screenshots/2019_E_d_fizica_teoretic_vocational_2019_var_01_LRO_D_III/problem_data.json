@@ -1,0 +1,23 @@
+{
+  "titlu": "Problema II - D - 2019",
+  "descriere": "Problema II din aria D, anul 2019",
+  "categorie": "Bac",
+  "varianta": "2019",
+  "dificultate": "mediu",
+  "continut": "distanța focală a lentilei L, f = —$20$ cm și știînd că șistemul nu este acolat, determînați distanța dîntre cele două lentile. IIl. Rezolvați următoarea problemă: (15 puncte) Distanța dîntre fantele unui dispozitiv Young este 2/=$1$ mm, iar distanța care separă planul fantelor de ecran este D=$2$ m. Sursă de lumînă utilizată este plasătă pe axa de șimetrie a dispozitivului și emite lumînă coerentă, monocromatică cu frecvența v = $5$-10!*Hz. a. Determînați valoarea înterfranjei figurii de înterferență observată pe ecran. b. Calculați distanța dîntre maximul de ordînul 3 șituat de o parte a maximului central și maximul de ordînul 2 șituat de cealaltă parte a maximului central. c. Se îndepărtează ecranul de planul fantelor în direcția axei de șimetrie cu distanța AD=$1$ m. Determînați deplasărea pe ecran a maximului de ordînul 3. d. Se întroduce în fața uneia dîn fante un film transparent cu îndicele de refracție $n = 12.$ Se constată că maximul de ordînul 3 revîne în poziția ocupată înițial pe ecran. Determînați groșimea filmului. Probă scrisă la Fizică 4 D. Optică Filiera teoretică — profilul real, Filiera vocațională — profilul militar\n\n",
+  "formule": [],
+  "date": {},
+  "subpuncte": [],
+  "index": 0,
+  "creator": "",
+  "punctajTotal": 15,
+  "createdAt": "2025-12-24T18:23:14.174136",
+  "poze": [
+    "problem-screenshots/2019_E_d_fizica_teoretic_vocational_2019_var_01_LRO_D_III/page3.png"
+  ],
+  "arie": "D",
+  "subiect": "II",
+  "an": "2019",
+  "fisier": "E_d_fizica_teoretic_vocational_2019_var_01_LRO",
+  "tip_document": "subiect"
+}

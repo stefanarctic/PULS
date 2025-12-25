@@ -1,0 +1,23 @@
+{
+  "titlu": "Problema II - D - 2023",
+  "descriere": "Problema II din aria D, anul 2023",
+  "categorie": "Bac",
+  "varianta": "2023",
+  "dificultate": "mediu",
+  "continut": "O lamă cu fețe plane și paralele, confecționată dîntr-un material optic transparent cu îndicele de refracție $n = 132,$ este șituată în aer (naer = 1). O rază de lumînă monocromatică, venînd dîn aer, este încidentă pe una dîntre fețele lamei sub unghiul de încidență / = 60* și traversează lama, ieșînd prîn fața opusă. Conșiderați cunoscute valorile: sîn41* = 0,656, cos41*” = 0,755 și sîn60*” = 0,866. a. Determînați viteza de propagare a lumînii în lamă. b. Realizați un desen în care să reprezentați mersul razei de lumînă prîn aer și prîn lamă. Pentru întrarea în lamă, marcați pe desen și notați cu / unghiul de încidență, respectiv cu r unghiul de refracție. c. Calculați valoarea unghiului de refracție la trecerea razei de lumînă dîn aer în lamă. d. Dacă groșimea lamei este e =15,$1$ mm, determînați distanța parcursă de raza de lumînă prîn lama cu fețe plane și paralele. Probă scrisă la Fizică 4 D. Optică Filiera tehnologică — profilul tehnic și profilul resurse naturale și protecția mediului",
+  "formule": [],
+  "date": {},
+  "subpuncte": [],
+  "index": 0,
+  "creator": "",
+  "punctajTotal": 15,
+  "createdAt": "2025-12-24T18:26:27.084438",
+  "poze": [
+    "problem-screenshots/2023_E_d_fizica_tehnologic_2023_var_07_LRO_D_III/page3.png"
+  ],
+  "arie": "D",
+  "subiect": "II",
+  "an": "2023",
+  "fisier": "E_d_fizica_tehnologic_2023_var_07_LRO",
+  "tip_document": "subiect"
+}

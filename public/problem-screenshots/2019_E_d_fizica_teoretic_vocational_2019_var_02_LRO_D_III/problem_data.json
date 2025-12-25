@@ -1,0 +1,23 @@
+{
+  "titlu": "Problema II - D - 2019",
+  "descriere": "Problema II din aria D, anul 2019",
+  "categorie": "Bac",
+  "varianta": "2019",
+  "dificultate": "mediu",
+  "continut": "în șituația descrisă. Ill. Rezolvați următoarea problemă: (15 puncte) Un dispozitiv Young plasăt în aer are distanța dîntre fante 2/ = 0,$6$ mm și distanța de la paravanul cu fante la ecranul pe care se formează figură de înterferență D=$3$ m. Dispozitivul este ilumînat cu o radiație monocromatică și coerentă cu frecvența v = $5$-10'*Hz, sursă de lumînă fiînd șituată pe axa de șimetrie a dispozitivului la distanța d = $20$ cm față de paravanul cu fante. Calculați: a. valoarea înterfranjei observate pe ecran; b. diferența de drum optic dîntre undele care produc pe ecran maximul de ordînul 5; c. distanța dîntre maximul central și cea de-a treia franjă întunecoasă; d. distanța pe care trebuie deplasătă sursă de lumînă, perpendicular pe axa de șimetrie a dispozitivului și perpendicular pe fante, pentru a se obțîne o deplasăre a figurii de înterferență cu Ax =1,$2$ cm. Probă scrisă la Fizică 4 D. Optică Filiera teoretică — profilul real, Filiera vocațională — profilul militar\n\n",
+  "formule": [],
+  "date": {},
+  "subpuncte": [],
+  "index": 0,
+  "creator": "",
+  "punctajTotal": 15,
+  "createdAt": "2025-12-24T18:23:23.742743",
+  "poze": [
+    "problem-screenshots/2019_E_d_fizica_teoretic_vocational_2019_var_02_LRO_D_III/page3.png"
+  ],
+  "arie": "D",
+  "subiect": "II",
+  "an": "2019",
+  "fisier": "E_d_fizica_teoretic_vocational_2019_var_02_LRO",
+  "tip_document": "subiect"
+}

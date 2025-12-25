@@ -1,0 +1,23 @@
+{
+  "titlu": "Problema II - C - 2021",
+  "descriere": "Problema II din aria C, anul 2021",
+  "categorie": "Bac",
+  "varianta": "2021",
+  "dificultate": "mediu",
+  "continut": "în cîntt SER aE aE SE S E SE A m S SE SE SE S Du S R EE ES VT Il. Rezolvați următoarea problemă: (15 puncte) Se conșideră circuitul electric a cărui schemă este reprezentată în figură alăturată. Se cunosc: E, =16V, , =20, „ =10, $R = 402,$ R. =90, H, =7,20. Rezistența electrică R a ampermetrului este $R = 10.$ Valoarea întenșității curentului ce străbate sursă E, este /, =0,5A , având sensul îndicât în figură. héi Esr l a. Calculați valoarea tenșiunii de la bornele rezistorului F3 . Ra+ R b. Determînați valoarea /,, a întenșității curentului îndicâte de ampermetru. E2,2 EI'-R?- ;3 \\ c. Calculați valoarea tenșiunii electromotoare £E,. d. Rezistorul R, este confecționat dîntr-un fir metalic având lungimea L=$75$ m și secțiunea transversălă S=0,$75$ mm. Determînați valoarea rezistivității electrice a materialului dîn care este confecționat rezistorul R,. IIl. Rezolvați următoarea problemă: (15 puncte) Dră raoncrimataara awânri razvietantala alortrira D -1RO racnartiui R — 120 arînt lomato în narsăloal\n\n",
+  "formule": [],
+  "date": {},
+  "subpuncte": [],
+  "index": 0,
+  "creator": "",
+  "punctajTotal": 15,
+  "createdAt": "2025-12-24T18:24:57.499218",
+  "poze": [
+    "problem-screenshots/2021_E_d_fizica_teoretic_vocational_2021_var_01_LRO_C_II/page2.png"
+  ],
+  "arie": "C",
+  "subiect": "II",
+  "an": "2021",
+  "fisier": "E_d_fizica_teoretic_vocational_2021_var_01_LRO",
+  "tip_document": "subiect"
+}

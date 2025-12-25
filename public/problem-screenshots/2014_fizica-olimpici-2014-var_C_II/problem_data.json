@@ -1,0 +1,23 @@
+{
+  "titlu": "Problema II - C - 2014",
+  "descriere": "Problema II din aria C, anul 2014",
+  "categorie": "Bac",
+  "varianta": "2014",
+  "dificultate": "mediu",
+  "continut": "A. 1U să Î SE = D aă ș CVU de l$o = 1$ U SE , OVU L CEELE AEE A AI LE Il. Rezolvați următoarea problemă: (15 puncte) În circuitul electric a cărui schemă este reprezentată în figură alăturată, rezistențele electrice ale rezistoarelor au valorile R,=60 și R, =82. Voltmetrul V dîn circuit (Ry — > ) îndică tenșiunea $U = 15$ V atunci când întrerupătorul K este deschis și tenșiunea U, = 6&V atunci când întrerupătorul K este E;r R2 închis. a. Calculați rezistența electrică a circuitului exterior sursei când întrerupătorul K este închis. b. Rezistorul Aî este confecționat dîntr-un conductor având diametrul secțiunii transversăle d =$05$ mm, iar rezistivitatea materialului p=3,14-10*Q-m. Determînați lungimea conductorului. c. Calculați energia dișipată, sub formă de căldură, de cei doi rezistori în $10$ mîn când întrerupătorul K este închis. d. Determînați rezistența înterioară a generatorului. IIl. Rezolvați următoarea problemă: (15 puncte) T f o l Zb mb X a ab vnm a a nbab$i m ale a ma a IE nleni E alantuîn Tamnati a aR nlaaturna aba m a m m m b s l i\n\n",
+  "formule": [],
+  "date": {},
+  "subpuncte": [],
+  "index": 0,
+  "creator": "",
+  "punctajTotal": 15,
+  "createdAt": "2025-12-24T18:18:42.355692",
+  "poze": [
+    "problem-screenshots/2014_fizica-olimpici-2014-var_C_II/page2.png"
+  ],
+  "arie": "C",
+  "subiect": "II",
+  "an": "2014",
+  "fisier": "fizica-olimpici-2014-var",
+  "tip_document": "subiect"
+}

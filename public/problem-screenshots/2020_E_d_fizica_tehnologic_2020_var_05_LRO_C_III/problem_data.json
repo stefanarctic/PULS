@@ -1,0 +1,23 @@
+{
+  "titlu": "Problema II - C - 2020",
+  "descriere": "Problema II din aria C, anul 2020",
+  "categorie": "Bac",
+  "varianta": "2020",
+  "dificultate": "mediu",
+  "continut": "rezistența neglijapbila. IIl. Rezolvați următoarea problemă: (15 puncte) O baterie cu tenșiunea electromotoare $E = 9$ V alimentează un rezistor cu rezistența electrică R. Tenșiunea electrică la bornele bateriei este $U = 8$ V, iar energia electrică consumată de rezistor în At = $1$ mîn este $W = 0,48$ kJ. Determînați: a. puterea electrică dișipată de rezistor; b. rezistența înterioară a bateriei; c. lungimea firului dîn care este confecționat rezistorul, dacă secțiunea lui transversălă este S = 0,$16$ mm” și rezistivitatea materialului dîn care este confecționat este p =16-107Q-m; d. randamentul circuitului electric. Probă scrisă la Fizică 3 C. Producerea și utilizarea curentului contînuu\n\n",
+  "formule": [],
+  "date": {},
+  "subpuncte": [],
+  "index": 0,
+  "creator": "",
+  "punctajTotal": 15,
+  "createdAt": "2025-12-24T18:23:50.070447",
+  "poze": [
+    "problem-screenshots/2020_E_d_fizica_tehnologic_2020_var_05_LRO_C_III/page2.png"
+  ],
+  "arie": "C",
+  "subiect": "II",
+  "an": "2020",
+  "fisier": "E_d_fizica_tehnologic_2020_var_05_LRO",
+  "tip_document": "subiect"
+}

@@ -1,0 +1,23 @@
+{
+  "titlu": "Problema II - C - 2018",
+  "descriere": "Problema II din aria C, anul 2018",
+  "categorie": "Bac",
+  "varianta": "2018",
+  "dificultate": "mediu",
+  "continut": "Punctul M împarte reostatul AB dîn figură alăturată în două părți egale. Rezistența electrică totală a reostatului este A,, = 40 Q. Ampermetrul montat în circuit este conșiderat ideal (R, =0 Q). Se cunosc: $E = 15$ V, $r = 52.$ Calculați: Elr A a. îndicația ampermetrului când cursorul C este pe poziția B; l M C b. tenșiunea la bornele reostatului (între punctele A și M) când cursorul C este pe poziția M; Elr c. tenșiunea la bornele uneia dîntre surse când cursorul C este pe poziția M; B d. îndicația ampermetrului dacă una dîntre baterii este montată, dîn greșeală, cu polaritatea înversă.",
+  "formule": [],
+  "date": {},
+  "subpuncte": [],
+  "index": 0,
+  "creator": "",
+  "punctajTotal": 15,
+  "createdAt": "2025-12-24T18:22:05.227148",
+  "poze": [
+    "problem-screenshots/2018_E_d_fizica_tehnologic_2018_var_02_LRO_C_II/page2.png"
+  ],
+  "arie": "C",
+  "subiect": "II",
+  "an": "2018",
+  "fisier": "E_d_fizica_tehnologic_2018_var_02_LRO",
+  "tip_document": "subiect"
+}

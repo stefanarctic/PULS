@@ -1,0 +1,23 @@
+{
+  "titlu": "Problema II - B - 2019",
+  "descriere": "Problema II din aria B, anul 2019",
+  "categorie": "Bac",
+  "varianta": "2019",
+  "dificultate": "mediu",
+  "continut": "Ă. AUUJI SER (Sp) Il. Rezolvați următoarea problemă: (15 puncte) Un cilîndru închis la ambele capete este împărțit în două compartimente prîntr-un piston, înițial blocât. În compartimentul dîn dreapta se află v, =0,$1$ mol de heliu (, = 4g/mol) la preșiunea p, =1,5-10*Pa. În compartimentul dîn stânga se află v, =0,$3$ mol de oxigen (u, =32g/mol) la preșiunea p, =3-10\"Pa. Gazele, cu comportare ideală, se află la aceeași temperatură t = $27$\"C. a. Calculați masă totală a gazelor dîn cilîndru; b. Determînați raportul dîntre volumul ocupat de oxigen și cel ocupat de heliu; c. Se îndepărtează pistonul. Calculați preșiunea amestecului de gaze obțînut în cilîndru. d. Calculați masă molară a amestecului obțînut după îndepărtarea pistonului. Ill. Rezolvați următoarea problemă: (15 puncte)\n\n",
+  "formule": [],
+  "date": {},
+  "subpuncte": [],
+  "index": 0,
+  "creator": "",
+  "punctajTotal": 15,
+  "createdAt": "2025-12-24T18:22:39.878955",
+  "poze": [
+    "problem-screenshots/2019_E_d_fizica_tehnologic_2019_var_01_LRO_B_II/page1.png"
+  ],
+  "arie": "B",
+  "subiect": "II",
+  "an": "2019",
+  "fisier": "E_d_fizica_tehnologic_2019_var_01_LRO",
+  "tip_document": "subiect"
+}

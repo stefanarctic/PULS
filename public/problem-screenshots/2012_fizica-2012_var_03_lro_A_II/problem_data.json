@@ -1,0 +1,23 @@
+{
+  "titlu": "Problema II - A - 2012",
+  "descriere": "Problema II din aria A, anul 2012",
+  "categorie": "Bac",
+  "varianta": "2012",
+  "dificultate": "mediu",
+  "continut": "a. creșie D. scade c. se anuleaza d. ramâne același (Sp) Il. Rezolvați următoarea problemă: (15 puncte) Un corp cu masă de 100 g este aruncât pe verticală de jos în sus în câmp gravitațional V(m/s) terestru. Corpul întâmpînă dîn partea aerului o forță de rezistență constantă orientată pe 24 direcția de mișcare a corpului. Graficul alăturat reprezîntă dependența vitezei corpului, funcție de timp, pentru porțiunea de urcare. a. Reprezentați forțele ce acționează asupra corpului în timpul urcării. b. Calculați viteza medie de deplasăre a corpului în prima secundă de mișcare. 0 1 2 $1$ s) c. Determînați accelerația corpului, în urcare. d. Calculați valoarea forței de rezistență întâmpînată de corp dîn partea aerului. IIl. Rezolvați următoarea problemă: (15 puncte) î..…l… u m m r e a l a aT a T a L s Înalea 22 aT A. m z m m l 1AR OTT — —Ll a L m m u r L l -AT m a\n\n",
+  "formule": [],
+  "date": {},
+  "subpuncte": [],
+  "index": 0,
+  "creator": "",
+  "punctajTotal": 15,
+  "createdAt": "2025-12-24T18:17:26.763666",
+  "poze": [
+    "problem-screenshots/2012_fizica-2012_var_03_lro_A_II/page0.png"
+  ],
+  "arie": "A",
+  "subiect": "II",
+  "an": "2012",
+  "fisier": "fizica-2012_var_03_lro",
+  "tip_document": "subiect"
+}

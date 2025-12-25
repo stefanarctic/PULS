@@ -1,0 +1,23 @@
+{
+  "titlu": "Problema II - A - 2018",
+  "descriere": "Problema II din aria A, anul 2018",
+  "categorie": "Bac",
+  "varianta": "2018",
+  "dificultate": "mediu",
+  "continut": "coboară spre baza planului înclînat. Determînați accelerația cu care corpul coboară pe planul înciînat. IIl. Rezolvați următoarea problemă: (15 puncte) Un corp de masă m = $0$,$2$ kg este aruncât vertical, de jos în sus, de la înălțimea n=$16$ m față de sol, cu viteza înițială v, = $4$ ms. Se neglijează înteracțiunea cu aerul. Conșiderând că energia potențială gravitațională este nulă la nivelul solului, calculați: a. energia mecanică înițială a corpului; b. lucrul mecanic efectuat de greutatea corpului dîn momentul aruncării lui și până la atîngerea solului; c. înălțimea maximă, măsurată față de sol, la care ajunge corpul; d. valoarea impulsului mecanic al corpului la atîngerea solului. Probă scrisă la Fizică 1 A. Mecanică Filiera teoretică — profilul real, Filiera vocațională — profilul militar\n\n",
+  "formule": [],
+  "date": {},
+  "subpuncte": [],
+  "index": 0,
+  "creator": "",
+  "punctajTotal": 15,
+  "createdAt": "2025-12-24T18:22:29.164315",
+  "poze": [
+    "problem-screenshots/2018_E_d_fizica_teoretic_vocational_2018_var_09_LRO_A_III/page0.png"
+  ],
+  "arie": "A",
+  "subiect": "II",
+  "an": "2018",
+  "fisier": "E_d_fizica_teoretic_vocational_2018_var_09_LRO",
+  "tip_document": "subiect"
+}

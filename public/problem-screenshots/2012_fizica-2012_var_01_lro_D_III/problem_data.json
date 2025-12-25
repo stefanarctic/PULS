@@ -1,0 +1,23 @@
+{
+  "titlu": "Problema II - D - 2012",
+  "descriere": "Problema II din aria D, anul 2012",
+  "categorie": "Bac",
+  "varianta": "2012",
+  "dificultate": "mediu",
+  "continut": "O sursă emite radiații electromagnetice cu frecvența v = $12$-10'* Hz . Energia transportată de radiația care cade pe suprafața metalului timp de $2$ s este de 200 uJ. Lucrul mecanic de extracție a electronilor dîn metal este L, =3,2-10\"\"*J. Determînați: a. lungimea de undă a radiației electromagnetice emise de sursă; b. numărul de fotoni care cad pe suprafața metalului în unitatea de timp; c. frecvența de prag pentru acest metal; d. energia cînetică maximă a fotoelectronilor emiși. Probă scrisă la Fizică 0000004 D. Optică",
+  "formule": [],
+  "date": {},
+  "subpuncte": [],
+  "index": 0,
+  "creator": "",
+  "punctajTotal": 15,
+  "createdAt": "2025-12-24T18:17:16.234685",
+  "poze": [
+    "problem-screenshots/2012_fizica-2012_var_01_lro_D_III/page3.png"
+  ],
+  "arie": "D",
+  "subiect": "II",
+  "an": "2012",
+  "fisier": "fizica-2012_var_01_lro",
+  "tip_document": "subiect"
+}

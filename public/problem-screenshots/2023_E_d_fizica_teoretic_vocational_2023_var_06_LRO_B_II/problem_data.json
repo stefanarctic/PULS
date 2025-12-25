@@ -1,0 +1,27 @@
+{
+  "titlu": "Problema II - B - 2023",
+  "descriere": "Problema II din aria B, anul 2023",
+  "categorie": "Bac",
+  "varianta": "2023",
+  "dificultate": "mediu",
+  "continut": "Il. Rezolvați următoarea problemă: (15 puncte) În figură alăturată este reprezentat un cilîndru în înteriorul căruia se găsesc două pistoane A și B care se pot deplasă fără frecări. ln compartimentul dîn stânga al cilîndrului este închisă o cantitate v; = $3$ mol de oxigen ( = 32g/mol), iar în compatimentul dîn dreapta este închisă o cantitate v> =$1$ mol A B de azot (,u2 = 28g/mol). Pistoanele sunt în echilibru mecanic, iar temperatura este aceeași în ambele compartimente. a. Calculați masă oxigenului aflat în compartimentul dîn stânga al cilîndrului. b. Calculați raportul dîntre volumul V, ocupat de oxigen și volumul V, ocupat de azot. c.Pistonul B este deplasăt lent spre dreapta, pe distanța d=$4$ cm, și mențînut în această poziție. Temperatura gazelor nu se modifică. Calculați deplasărea x a pistonului A dîn poziția înițială până în poziția fînală de echilibru. d. Calculați masă molară a amestecului de gaze obțînut prîn îndepărtarea pistonului A. IIl. Rezolvați următoarea problemă: (15 puncte) O rantitate v -$1$ mnol da na7 idasl hiatamir (CO — 25R narmurma transformaraa rirliră 1221\n\n",
+  "formule": [],
+  "date": {},
+  "subpuncte": [],
+  "index": 0,
+  "creator": "",
+  "punctajTotal": 15,
+  "createdAt": "2025-12-24T18:26:40.994182",
+  "poze": [
+    "problem-screenshots/2023_E_d_fizica_teoretic_vocational_2023_var_06_LRO_B_II/page1.png",
+    "problem-screenshots/2023_E_d_fizica_teoretic_vocational_2023_var_06_LRO_B_II/figure_page1_1.png"
+  ],
+  "arie": "B",
+  "subiect": "II",
+  "an": "2023",
+  "fisier": "E_d_fizica_teoretic_vocational_2023_var_06_LRO",
+  "tip_document": "subiect",
+  "figuri": [
+    "problem-screenshots/2023_E_d_fizica_teoretic_vocational_2023_var_06_LRO_B_II/figure_page1_1.png"
+  ]
+}

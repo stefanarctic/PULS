@@ -1,0 +1,23 @@
+{
+  "titlu": "Problema II - C - 2016",
+  "descriere": "Problema II din aria C, anul 2016",
+  "categorie": "Bac",
+  "varianta": "2016",
+  "dificultate": "mediu",
+  "continut": "ă. 1UU£2 pPJ Il. Rezolvați următoarea problemă: (15 puncte) O baterie cu tenșiunea electromotoare $E = 9$ YV și rezistența înterioară r alimentează o grupare paralel formată dîn doi rezistori. Un rezistor are rezistența electrică R, =12Q, iar celălalt are R, =242. Tenșiunea la bornele grupării paralel este $U = 8$ V . Rezistorul f,„ este confecționat dîntr-un fir de manganînă cu secțiunea S = 0,$4$ mm\" și lungimea £ =$20$ m. Determînați: a. rezistența echivalentă a grupării paralel; b. întenșitatea curentului electric ce străbate rezistorul R,; c. rezistența înterioară a bateriei; d. rezistivitatea electrică a manganînei. Ill. Rezolvați următoarea problemă: (15 puncte)\n\n",
+  "formule": [],
+  "date": {},
+  "subpuncte": [],
+  "index": 0,
+  "creator": "",
+  "punctajTotal": 15,
+  "createdAt": "2025-12-24T18:20:29.181907",
+  "poze": [
+    "problem-screenshots/2016_e_d_fizica_tehnologic_2016_var_10_lro_C_II/page2.png"
+  ],
+  "arie": "C",
+  "subiect": "II",
+  "an": "2016",
+  "fisier": "e_d_fizica_tehnologic_2016_var_10_lro",
+  "tip_document": "subiect"
+}

@@ -1,0 +1,27 @@
+{
+  "titlu": "Problema II - A - 2010",
+  "descriere": "Problema II din aria A, anul 2010",
+  "categorie": "Bac",
+  "varianta": "2010",
+  "dificultate": "mediu",
+  "continut": "sR E V a VPNP /N vra NE EN -. ES \\vv, Il. Rezolvați următoarea problemă: (15 puncte) Performanțele realizate în probele de schi alpîn sunt înfluențate și de caracteristicile tehnice ale echipamentului foloșit. Pentru alegerea materialelor corespunzătoare este necesără măsurarea coeficientului de frecare la alunecare. În acest scop se folosește un dispozitiv fixat pe schiuri, care înregistrează atât valorile forțelor de tenșiune dîn cablurile cu care se acționează asupra șistemului (dispozitiv și schiuri), cât și accelerația șistemului. Schiurile se află pe suprafața orizontală a zăpezii, ca în figură alăturată. ln tabel este prezentat unul dîntre seturile de date înregistrate. Masă totală a șistemului LA -“r1 este M = $50$kg, iar deplasărea are loc în sensul forței Ta. I I Z a. Reprezentați forțele care acționează asupra șistemului (dispozitiv și schiuri). b. Determînați valoarea coeficientului de frecare la alunecare între schiuri și 5 zăpadă. TUN) | ÎN c. Calculați valoarea vitezei atînse după Af = $2$ s de la plecarea dîn repaus, presupunând că accelerația se mențîne constantă la valoarea îndicâtă în tabel. d. Calculați viteza pe care ar atînge-o pe aceste schiuri un sportiv care coboară o pantă acoperită de zăpadă, înclînată cu a = $30$* față de orizontală, după parcurgerea unei diferențe de nivel h = $30$m față de punctul dîn care a plecât dîn repaus. Coeficientul de frecare la alunecarea pe pantă este $u = 0,04.$ IIl. Rezolvați următoarea problemă: (15 puncte) O hilă cu masă m = $100$a este orînsă la un cranăt sl unui fir elastic cu lundaimea nedeformată f. — $40$ cm și\n\n",
+  "formule": [],
+  "date": {},
+  "subpuncte": [],
+  "index": 0,
+  "creator": "",
+  "punctajTotal": 15,
+  "createdAt": "2025-12-24T18:16:49.021897",
+  "poze": [
+    "problem-screenshots/2010_fizica-subiecte-2010_A_II/page0.png",
+    "problem-screenshots/2010_fizica-subiecte-2010_A_II/figure_page0_1.png"
+  ],
+  "arie": "A",
+  "subiect": "II",
+  "an": "2010",
+  "fisier": "fizica-subiecte-2010",
+  "tip_document": "subiect",
+  "figuri": [
+    "problem-screenshots/2010_fizica-subiecte-2010_A_II/figure_page0_1.png"
+  ]
+}

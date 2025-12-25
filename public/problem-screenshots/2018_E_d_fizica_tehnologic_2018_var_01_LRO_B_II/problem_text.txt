@@ -1,0 +1,1 @@
+O butelie cu volumul $V = 8,31$ dm* conțîne un amestec gazos format dîn v, =$15$ mol de oxigen (4 = 32 g/mol) și v, =0,$5$ mol de heliu (4, = 4g/mol). Amestecul se află la temperatura T = $300$K și poate fi conșiderat gaz ideal. Determînați: a. numărul de molecule de oxigen; b. masă de heliu; c. preșiunea amestecului gazos dîn butelie; d. denșitatea amestecului gazos dîn butelie.

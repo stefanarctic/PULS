@@ -1,0 +1,27 @@
+{
+  "titlu": "Problema II - C - 2020",
+  "descriere": "Problema II din aria C, anul 2020",
+  "categorie": "Bac",
+  "varianta": "2020",
+  "dificultate": "mediu",
+  "continut": "d. 240 (3p) Il. Rezolvați următoarea problemă: (15 puncte) În figură alăturată este reprezentată schema unui circuit electric. Generatorul are tenșiunea electromotoare $E = 60$ YV și rezistența înterioară $r = 60.$ Rezistoarele au rezistențele electrice AI, =240, H, =300 și R, =6002, ampermetrul este ideal (R, =00Q), iar conductoarele de legătură au rezistența electrică neglijabilă. a. Calculați rezistența echivalentă a grupării celor trei rezistoare. I ——— ] b. Calculați întenșitatea curentului electric îndicâtă de ampermetru. R; “ c. Calculați întenșitatea curentului electric ce străbate rezistorul A,. 9 —— d. Calculați tenșiunea îndicâtă de un voltmetru ideal (Ai,y — =) conectat la Er F bornele generatorului. IIl. Rezolvați următoarea problemă: (15 puncte)\n\n",
+  "formule": [],
+  "date": {},
+  "subpuncte": [],
+  "index": 0,
+  "creator": "",
+  "punctajTotal": 15,
+  "createdAt": "2025-12-24T18:23:58.490076",
+  "poze": [
+    "problem-screenshots/2020_E_d_fizica_tehnologic_2020_var_06_LRO_C_II/page2.png",
+    "problem-screenshots/2020_E_d_fizica_tehnologic_2020_var_06_LRO_C_II/figure_page2_1.png"
+  ],
+  "arie": "C",
+  "subiect": "II",
+  "an": "2020",
+  "fisier": "E_d_fizica_tehnologic_2020_var_06_LRO",
+  "tip_document": "subiect",
+  "figuri": [
+    "problem-screenshots/2020_E_d_fizica_tehnologic_2020_var_06_LRO_C_II/figure_page2_1.png"
+  ]
+}

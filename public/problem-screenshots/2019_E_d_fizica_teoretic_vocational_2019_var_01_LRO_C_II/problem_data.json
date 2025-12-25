@@ -1,0 +1,27 @@
+{
+  "titlu": "Problema II - C - 2019",
+  "descriere": "Problema II din aria C, anul 2019",
+  "categorie": "Bac",
+  "varianta": "2019",
+  "dificultate": "mediu",
+  "continut": "If cf f a. R=— b.r=KAR c. R=— d. R=— (3p) 2 3 3 Il. Rezolvați următoarea problemă: (15 puncte) În figură alăturată este reprezentată schema unui circuit electric. Bateria are parametrii $E = 12$ V și $r = 0,50$ Q. Gruparea mixtă este formată dîn trei rezistori având rezistențele A, E,r 2R și respectiv 3R. Întenșitatea curentului îndicâtă de ampermetru are valoarea o l„=03 A. Conșiderând că înstrumentele de măsură conectate în circuit sunt . ANIT R ideale (A, =0,R, > --), determînați: a. valoarea întenșității curentului electric care străbate sursă; b. valoarea rezistenței electrice FR; I ° c. valoarea tenșiunii electrice U, îndicâte de voltmetru; d. noua îndicație a ampermetrului dacă voltmetrul este conectat în locul ampermetrului, iar ampermetrul în locul voltmetrului. IIl. Rezolvați următoarea problemă: (15 puncte) m P EE 4 r $0$ m a m s A = l C - I a a m — c CIR ' d EE E C 2 a * u m ÎN . JI d f53%7 ! m ll a u ÎN au CE: . OIC Suu m ÎN RE. m NSĂMTRI CR a E R p E -\n\n",
+  "formule": [],
+  "date": {},
+  "subpuncte": [],
+  "index": 0,
+  "creator": "",
+  "punctajTotal": 15,
+  "createdAt": "2025-12-24T18:23:10.747768",
+  "poze": [
+    "problem-screenshots/2019_E_d_fizica_teoretic_vocational_2019_var_01_LRO_C_II/page2.png",
+    "problem-screenshots/2019_E_d_fizica_teoretic_vocational_2019_var_01_LRO_C_II/figure_page2_1.png"
+  ],
+  "arie": "C",
+  "subiect": "II",
+  "an": "2019",
+  "fisier": "E_d_fizica_teoretic_vocational_2019_var_01_LRO",
+  "tip_document": "subiect",
+  "figuri": [
+    "problem-screenshots/2019_E_d_fizica_teoretic_vocational_2019_var_01_LRO_C_II/figure_page2_1.png"
+  ]
+}

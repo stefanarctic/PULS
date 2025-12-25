@@ -1,0 +1,23 @@
+{
+  "titlu": "Problema II - D - 2022",
+  "descriere": "Problema II din aria D, anul 2022",
+  "categorie": "Bac",
+  "varianta": "2022",
+  "dificultate": "mediu",
+  "continut": "Un dispozitiv Young, șituat în aer, este ilumînat cu o radiație monocromatică cu lungimea de undă $A = 550$ nm. Înterfranja observată pe ecran este j =îmm. Același dispozitiv, ilumînat cu o altă radiație monocromatică cu lungimea de undă 4,, prezîntă maximul de ordînul doi la distanța x = 2,$4$ mm față de maximul central. În ambele șituații sursă este șituată pe axa de șimetrie a dispozitivului. a. Determînați valoarea înterfranjei în cazul ilumînării dispozitivului cu lungimea de undă 4,; b. Determînați valoarea lungimii de undă , a celei de a doua radiații. c. Calculați valoarea, în modul, a diferenței frecvențelor celor două radiații. d. Se ilumînează dispozitivul șimultan cu ambele radiații. Aflați distanța mînimă, măsurată în raport cu franja centrală, la care are loc prima suprapunere a maximelor produse de cele două radiații. Probă scrisă la Fizică 4 D. Optică Filiera teoretică — profilul real, Filiera vocațională — profilul militar",
+  "formule": [],
+  "date": {},
+  "subpuncte": [],
+  "index": 0,
+  "creator": "",
+  "punctajTotal": 15,
+  "createdAt": "2025-12-24T18:26:07.424187",
+  "poze": [
+    "problem-screenshots/2022_E_d_fizica_teoretic_vocational_2022_var_05_LRO_D_III/page3.png"
+  ],
+  "arie": "D",
+  "subiect": "II",
+  "an": "2022",
+  "fisier": "E_d_fizica_teoretic_vocational_2022_var_05_LRO",
+  "tip_document": "subiect"
+}

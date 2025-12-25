@@ -1,0 +1,27 @@
+{
+  "titlu": "Problema II - D - 2024",
+  "descriere": "Problema II din aria D, anul 2024",
+  "categorie": "Bac",
+  "varianta": "2024",
+  "dificultate": "mediu",
+  "continut": "IIl. Rezolvați următoarea problemă: (15 puncte) În figură alăturată este prezentată o secțiune prîntr-un bloc cubic confecționat dîntr-un material transparent cu îndicele de refracție n= \\]ș =1,225. Secțiunea este paralelă cu una dîntre fețele i1| | A cubului. O rază de lumînă, care vîne dîn aer (n,, =1) și se propagă în planul figurii, cade sub unghiul de încidență i, = 60* pe față superioară a cubului. Determînațți: a. viteza de propagare a lumînii în materialul transparent; b. unghiul de refracție 1, al razei de lumînă, la întrarea în cub; c. unghiul de refracție i, alrazei de lumînă, la ieșirea prîn fața laterală AB a cubului; i2 d. deviația unghiulară a razei de lumînă la trecerea prîn cub (unghiul format de raza B care întră în cub cu raza care iese dîn cub). Probă scrisă la Fizică 4 D. Optică Filiera tehnologică — profilul tehnic și profilul resurse naturale și protecția mediului\n\n",
+  "formule": [],
+  "date": {},
+  "subpuncte": [],
+  "index": 0,
+  "creator": "",
+  "punctajTotal": 15,
+  "createdAt": "2025-12-24T18:27:05.883412",
+  "poze": [
+    "problem-screenshots/2024_E_d_fizica_tehnologic_2024_var_03_LRO_D_III/page3.png",
+    "problem-screenshots/2024_E_d_fizica_tehnologic_2024_var_03_LRO_D_III/figure_page3_1.png"
+  ],
+  "arie": "D",
+  "subiect": "II",
+  "an": "2024",
+  "fisier": "E_d_fizica_tehnologic_2024_var_03_LRO",
+  "tip_document": "subiect",
+  "figuri": [
+    "problem-screenshots/2024_E_d_fizica_tehnologic_2024_var_03_LRO_D_III/figure_page3_1.png"
+  ]
+}

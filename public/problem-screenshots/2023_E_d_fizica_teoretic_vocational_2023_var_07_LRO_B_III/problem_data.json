@@ -1,0 +1,23 @@
+{
+  "titlu": "Problema II - B - 2023",
+  "descriere": "Problema II din aria B, anul 2023",
+  "categorie": "Bac",
+  "varianta": "2023",
+  "dificultate": "mediu",
+  "continut": "O cantitate dată de gaz ideal monoatomic, având căldura molară la volum constant C, =1,5R, parcurge transformarea ciclică 1> 2—3 — 4 >1 reprezentată în coordonate preșiune-volum ca în figură alăturată. Pe parcursul transformărilor 2 > 3 și 4 — 1 temperatura gazului rămâne constantă. p În starea 1 gazul se află la preșiunea p, = 1,25-10* Pa și ocupă volumul V, = 4,8 L. p 2 Conșiderați că În2 = 07. Calculați: 1 a. variația energiei înterne a gazului în transformarea 1> 2; pit- 3 b. lucrul mecanic efectuat de gaz în transformarea 2— 3; 1 1 — I4 c. căldura cedată de gaz pe parcursul transformării ciclice 12 >3 > 4>1; , : d. randamentul unui motor termic care funcționează după acest ciclu. V, 2V1 V Probă scrisă la Fizică 2 B. Elemente de termodînamică Filiera teoretică — profilul real, Filiera vocațională — profilul militar",
+  "formule": [],
+  "date": {},
+  "subpuncte": [],
+  "index": 0,
+  "creator": "",
+  "punctajTotal": 15,
+  "createdAt": "2025-12-24T18:26:51.864695",
+  "poze": [
+    "problem-screenshots/2023_E_d_fizica_teoretic_vocational_2023_var_07_LRO_B_III/page1.png"
+  ],
+  "arie": "B",
+  "subiect": "II",
+  "an": "2023",
+  "fisier": "E_d_fizica_teoretic_vocational_2023_var_07_LRO",
+  "tip_document": "subiect"
+}

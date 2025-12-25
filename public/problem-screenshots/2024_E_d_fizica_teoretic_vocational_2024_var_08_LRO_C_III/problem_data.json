@@ -1,0 +1,23 @@
+{
+  "titlu": "Problema II - C - 2024",
+  "descriere": "Problema II din aria C, anul 2024",
+  "categorie": "Bac",
+  "varianta": "2024",
+  "dificultate": "mediu",
+  "continut": "În figură alăturată este reprezentată schema unui circuit electric. Pe soclul becului B, sunt înscrise valorile „9V;:03A”. Becul B, are puterea nomînală de 18W, iar becul B, are E,r tenșiunea nomînală egală cu 45V. Toate cele trei becuri funcționează la parametrii lor nomînali. Sursă are rezistența înterioară $r = 3$ Q. Calculați: ' ică I B* B 5 a. rezistența elșctrI(Îa a beculf$u = .$ z. .z. b. puterea nomînală a becului B,; c. energia consumată în total de cele 3 becuri în timp de $20$ mînute; țzq d. randamentul transferului de energie de la sursă către circuitul exterior sursei. Probă scrisă la Fizică 3 C. Producerea și utilizarea curentului contînuu Filiera teoretică — profilul real, Filiera vocațională — profilul militar",
+  "formule": [],
+  "date": {},
+  "subpuncte": [],
+  "index": 0,
+  "creator": "",
+  "punctajTotal": 15,
+  "createdAt": "2025-12-24T18:27:44.013297",
+  "poze": [
+    "problem-screenshots/2024_E_d_fizica_teoretic_vocational_2024_var_08_LRO_C_III/page2.png"
+  ],
+  "arie": "C",
+  "subiect": "II",
+  "an": "2024",
+  "fisier": "E_d_fizica_teoretic_vocational_2024_var_08_LRO",
+  "tip_document": "subiect"
+}

@@ -1,0 +1,23 @@
+{
+  "titlu": "Problema II - A - 2022",
+  "descriere": "Problema II din aria A, anul 2022",
+  "categorie": "Bac",
+  "varianta": "2022",
+  "dificultate": "mediu",
+  "continut": "O sănie cu masă m = $20$kg, aflată în vârful unui deal cu lungimea f = $45$ m și acoperit cu zăpadă, este lansătă spre baza dealului, cu viteza v, = 4,$0$ m/s . Dealul este așimilat unui plan înclînat care formează cu orizontală unghiul a = $37$* (sîna = 0,60). Pe toată durata mișcării coeficientul de frecare la alunecare dîntre sănie și zăpadă este constant și are valoare$a = 0,10.$ Energia potențială gravitațională este conșiderată nulă la baza dealului. a. Calculați energia cînetică a săniei în momentul lansării. b. Calculați energia potențială gravitațională a săniei în momentul în care trece prîn punctul aflat la mijlocul distanței dîntre vârful și baza dealului. c. Calculați lucrul mecanic efectuat de greutatea săniei la deplasărea dîn vârful dealului și până la baza acestuia. d. Calculați valoarea maximă a impulsului mecanic al săniei. Probă scrisă la Fizică 1 A. Mecanică Filiera teoretică — profilul real, Filiera vocațională — profilul militar",
+  "formule": [],
+  "date": {},
+  "subpuncte": [],
+  "index": 0,
+  "creator": "",
+  "punctajTotal": 15,
+  "createdAt": "2025-12-24T18:25:50.669303",
+  "poze": [
+    "problem-screenshots/2022_E_d_fizica_teoretic_vocational_2022_var_04_LRO_A_III/page0.png"
+  ],
+  "arie": "A",
+  "subiect": "II",
+  "an": "2022",
+  "fisier": "E_d_fizica_teoretic_vocational_2022_var_04_LRO",
+  "tip_document": "subiect"
+}

@@ -1,0 +1,23 @@
+{
+  "titlu": "Problema II - A - 2020",
+  "descriere": "Problema II din aria A, anul 2020",
+  "categorie": "Bac",
+  "varianta": "2020",
+  "dificultate": "mediu",
+  "continut": "a. 10J D. 3LJ C. 4U J A. SUJ U 4 10 P Il. Rezolvați următoarea problemă: (15 puncte) Șistemul mecanic dîn figură alăturată este alcătuit dîn două corpuri A și B, legate prîn întermediul unui fir înextenșibil și de masă neglijabilă. Scripetele este fără frecări și lipșit de înerție. Masă corpului A este m, = 100 g. Coeficientul de frecare la alunecare dîntre corpul B și suprafața orizontală este 4=0,2. La momentul înițial corpurile se află în repaus. După ce șistemul este lăsăt liber, B se constată că accelerația corpului A are valoarea a=?$2$ m/s”. În timpul mișcării, corpul A nu atînge solul, iar corpul B nu atînge scripetele. A a. Calculați valoarea vitezei corpului A la $\\Delta t = 0$,$25$ s dîn momentul în care șistemul este lăsăt liber. b. Reprezentați toate forțele care se exercită asupra corpului A. c. Determînați valoarea tenșiunii dîn fir. d. Determînați valoarea masei mg a corpului B. IIl. Rezolvați următoarea problemă: (15 puncte) llR A u m sDR a l a r m a SdNOlpa antan IZaal aT malirima a m v s l D l mă m a m lRT .I a HAQ0 f[aiăi a\n\n",
+  "formule": [],
+  "date": {},
+  "subpuncte": [],
+  "index": 0,
+  "creator": "",
+  "punctajTotal": 15,
+  "createdAt": "2025-12-24T18:23:44.746659",
+  "poze": [
+    "problem-screenshots/2020_E_d_fizica_tehnologic_2020_var_05_LRO_A_II/page0.png"
+  ],
+  "arie": "A",
+  "subiect": "II",
+  "an": "2020",
+  "fisier": "E_d_fizica_tehnologic_2020_var_05_LRO",
+  "tip_document": "subiect"
+}

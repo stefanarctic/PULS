@@ -1,0 +1,23 @@
+{
+  "titlu": "Problema II - A - 2018",
+  "descriere": "Problema II din aria A, anul 2018",
+  "categorie": "Bac",
+  "varianta": "2018",
+  "dificultate": "mediu",
+  "continut": "aă. Determînați valoarea accelerației cu care corpul urcă pe planul Înclînat. IIl. Rezolvați următoarea problemă: (15 puncte) Un corp cu masă m = $1$ kg este lansăt cu viteza v, = $3$ m/s de-a lungul unei suprafețe orizontale pe care se deplasează cu frecare. După ce corpul a parcurs distanța d=$2$ m, asupra lui acționează, suplimentar, o forță orizontală constantă F care îl frânează pe distanța x = $10$ cm, pănă la oprire. Coeficientul de frecare la alunecare dîntre corp și suprafața orizontală este : = 0,2, iar frecarea cu aerul se neglijează. a. Calculați energia cînetică a corpului în momentul lansării. b. Calculați lucrul mecanic efectuat de forța de frecare pe distanța d. c. Calculați valoarea vitezei corpului după ce a parcurs distanța d. d. Calculați lucrul mecanic efectuat de forța orizontală constantă F pe distanța x , până la oprirea corpului. Probă scrisă la Fizică 1 A. Mecanică Filiera tehnologică — profilul tehnic și profilul resurse naturale și protecția mediului\n\n",
+  "formule": [],
+  "date": {},
+  "subpuncte": [],
+  "index": 0,
+  "creator": "",
+  "punctajTotal": 15,
+  "createdAt": "2025-12-24T18:22:01.658302",
+  "poze": [
+    "problem-screenshots/2018_E_d_fizica_tehnologic_2018_var_02_LRO_A_III/page0.png"
+  ],
+  "arie": "A",
+  "subiect": "II",
+  "an": "2018",
+  "fisier": "E_d_fizica_tehnologic_2018_var_02_LRO",
+  "tip_document": "subiect"
+}

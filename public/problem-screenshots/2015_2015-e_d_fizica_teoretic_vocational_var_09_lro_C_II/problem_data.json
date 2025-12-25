@@ -1,0 +1,27 @@
+{
+  "titlu": "Problema II - C - 2015",
+  "descriere": "Problema II din aria C, anul 2015",
+  "categorie": "Bac",
+  "varianta": "2015",
+  "dificultate": "mediu",
+  "continut": "d. 5-10grad (3p) Il. Rezolvați următoarea problemă: (15 puncte) Pentru măsurarea rezistenței electrice a unui rezistor se folosește circuitul electric reprezentat în figură alăturată, în care sursă de tenșiune are rezistența înterioară nulă, ampermetrul R are rezistența înternă R, =18, iar voltmetrul are rezistența înternă A, =1kQ. G T Când comutatorul k este în poziția 1, tenșiunea îndicâtă de voltmetru este 1 2 U, = 100 V ,iar întenșitatea îndicâtă de ampermetru este /, =4 A. Calculați: k 0 a. tenșiunea electromotoare E a sursei; b. întenșitatea curentului electric ce străbate sursă; S c. rezistența electrică a rezistorului; E d. îndicația f, a ampermetrului atunci când comutatorul se află în poziția 2. Ill. Rezolvați următoarea problemă: (15 puncte) în Loame rr rulita vb m ntbrm vamarmvnmnaratbraboe ambaarrs almanatbriamie m eve v e DC AILIWMIma m EE\n\n",
+  "formule": [],
+  "date": {},
+  "subpuncte": [],
+  "index": 0,
+  "creator": "",
+  "punctajTotal": 15,
+  "createdAt": "2025-12-24T18:19:42.971592",
+  "poze": [
+    "problem-screenshots/2015_2015-e_d_fizica_teoretic_vocational_var_09_lro_C_II/page2.png",
+    "problem-screenshots/2015_2015-e_d_fizica_teoretic_vocational_var_09_lro_C_II/figure_page2_1.png"
+  ],
+  "arie": "C",
+  "subiect": "II",
+  "an": "2015",
+  "fisier": "2015-e_d_fizica_teoretic_vocational_var_09_lro",
+  "tip_document": "subiect",
+  "figuri": [
+    "problem-screenshots/2015_2015-e_d_fizica_teoretic_vocational_var_09_lro_C_II/figure_page2_1.png"
+  ]
+}

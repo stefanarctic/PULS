@@ -1,0 +1,27 @@
+{
+  "titlu": "Problema II - C - 2018",
+  "descriere": "Problema II din aria C, anul 2018",
+  "categorie": "Bac",
+  "varianta": "2018",
+  "dificultate": "mediu",
+  "continut": "În figură alăturată este reprezentată schema unui circuit electric. Rezistențele electrice ale celor trei rezistoare au valorile , =1502, A, = 400 și R, =6020. Tenșiunea electromotoare a generatorului este $E = 40$ V, iar voltmetrul ideal V dîn circuit (R, — ») îndică tenșiunea $U = 39$ V .. Determînați: R a.rezistența electrică echivalentă a grupării formate dîn cele trei 0 3 rezistoare; b. întenșitatea curentului electric prîn generator; L c. întenșitatea curentului electric prîn rezistorul ; d. rezistența înterioară a generatorului.",
+  "formule": [],
+  "date": {},
+  "subpuncte": [],
+  "index": 0,
+  "creator": "",
+  "punctajTotal": 15,
+  "createdAt": "2025-12-24T18:21:55.670827",
+  "poze": [
+    "problem-screenshots/2018_E_d_fizica_tehnologic_2018_var_01_LRO_C_II/page2.png",
+    "problem-screenshots/2018_E_d_fizica_tehnologic_2018_var_01_LRO_C_II/figure_page2_1.png"
+  ],
+  "arie": "C",
+  "subiect": "II",
+  "an": "2018",
+  "fisier": "E_d_fizica_tehnologic_2018_var_01_LRO",
+  "tip_document": "subiect",
+  "figuri": [
+    "problem-screenshots/2018_E_d_fizica_tehnologic_2018_var_01_LRO_C_II/figure_page2_1.png"
+  ]
+}

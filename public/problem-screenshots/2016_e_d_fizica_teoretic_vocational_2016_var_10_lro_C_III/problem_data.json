@@ -1,0 +1,23 @@
+{
+  "titlu": "Problema II - C - 2016",
+  "descriere": "Problema II din aria C, anul 2016",
+  "categorie": "Bac",
+  "varianta": "2016",
+  "dificultate": "mediu",
+  "continut": "locul ampermetrului Ideal. R3 IIl. Rezolvați următoarea problemă: (15 puncte) Două rezistoare, cu rezistențele electrice R, și R,, sunt conectate în serie la bornele unui generator electric cu tenșiunea electromotoare $E = 12$ V și rezistență înterioară nenulă. În întervalul de timp At=$2$ mîn energia dișipată în cele două rezistoare este $W = 1,44$ kJ, distribuîndu-se astfel: o fracțiune f =25% în rezistorul R,, iar restul în rezistorul R,. Tenșiunea la bornele rezistorului R, are valoarea U, =15V. Determînațți: a. puterea dișipată pe circuitul exterior; b. valoarea rezistenței electrice a rezistorului R,; c. rezistența electrică echivalentă a grupării rezistoarelor; d. randamentul de transfer al energiei de la sursă la cele două rezistoare. Probă scrisă la Fizică 3 C. Producerea și utilizarea curentului contînuu Filiera teoretică — profilul real, Filiera vocațională — profilul militar\n\n",
+  "formule": [],
+  "date": {},
+  "subpuncte": [],
+  "index": 0,
+  "creator": "",
+  "punctajTotal": 15,
+  "createdAt": "2025-12-24T18:20:59.758261",
+  "poze": [
+    "problem-screenshots/2016_e_d_fizica_teoretic_vocational_2016_var_10_lro_C_III/page2.png"
+  ],
+  "arie": "C",
+  "subiect": "II",
+  "an": "2016",
+  "fisier": "e_d_fizica_teoretic_vocational_2016_var_10_lro",
+  "tip_document": "subiect"
+}

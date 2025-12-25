@@ -1,0 +1,23 @@
+{
+  "titlu": "Problema II - D - 2016",
+  "descriere": "Problema II din aria D, anul 2016",
+  "categorie": "Bac",
+  "varianta": "2016",
+  "dificultate": "mediu",
+  "continut": "d. Fără a schimba poziția lentilei și a obiectului, se alipește de această lentilă o lentilă identică, formând astfel un șistem optic centrat. Calculați distanța pe care se deplasează imagînea. Ill. Rezolvați următoarea problemă: (15 puncte) Într-un experiment se utilizează un dispozitiv Young, plasăt în aer, având distanța dîntre fante 2/ = îmm și distanța de la planul fantelor la ecran D = $4$ m. Sursă este plasătă pe axa de șimetrie a șistemului și emite lumînă monocromatică și coerentă. Se obțîne o figură de înterferență cu înterfranja f = $2$ mm. a. Calculați valoarea lungimii de undă a lumînii monocromatice utilizate. b. Calculați distanța de la franja centrală la maximul de ordînul al treilea. c. Una dîntre fante se acoperă cu o lamă de sticlă având groșimea e = 0,$02$ mm și îndicele de refracție $n = 15.$ Calculați diferența de drum optic întrodusă de lamă. d. Determînați deplasărea maximului central al figurii de înterferență datorată întroducerii lamei. Probă scrisă la Fizică 4 D. Optică Filiera teoretică — profilul real, Filiera vocațională — profilul militar\n\n",
+  "formule": [],
+  "date": {},
+  "subpuncte": [],
+  "index": 0,
+  "creator": "",
+  "punctajTotal": 15,
+  "createdAt": "2025-12-24T18:20:52.814037",
+  "poze": [
+    "problem-screenshots/2016_e_d_fizica_teoretic_vocational_2016_var_09_lro_D_III/page3.png"
+  ],
+  "arie": "D",
+  "subiect": "II",
+  "an": "2016",
+  "fisier": "e_d_fizica_teoretic_vocational_2016_var_09_lro",
+  "tip_document": "subiect"
+}

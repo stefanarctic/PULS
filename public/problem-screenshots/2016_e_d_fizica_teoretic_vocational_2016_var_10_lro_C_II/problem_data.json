@@ -1,0 +1,27 @@
+{
+  "titlu": "Problema II - C - 2016",
+  "descriere": "Problema II din aria C, anul 2016",
+  "categorie": "Bac",
+  "varianta": "2016",
+  "dificultate": "mediu",
+  "continut": "Ă. My < Hz3 < % (Sp) Il. Rezolvați următoarea problemă: (15 puncte) În figură alăturată este reprezentată schema unui circuit electric. Tenșiunea electromotoare a bateriei este $E = 50$ V, iar rezistența înterioară a acesteia este $r = 5$ Q. Tenșiunea dîntre E lr punctele A și B este U,$g = 30$ V , iar întenșitatea curentului îndicât de ampermetrul ideal (R, =0 Q) este /=2 A. Cunoscând că R, = 20 Q determînați: a. tenșiunea la bornele bateriei; 0 l R, b. rezistența electrică a rezistorului A,; R c. rezistența electrică a rezistorului A ; A n B d. îndicația unui ampermetru având rezistența înterioară R, =100Q conectat în — locul ampermetrului ideal. R, Ill. Rezolvați următoarea problemă: (15 puncte)\n\n",
+  "formule": [],
+  "date": {},
+  "subpuncte": [],
+  "index": 0,
+  "creator": "",
+  "punctajTotal": 15,
+  "createdAt": "2025-12-24T18:20:58.739400",
+  "poze": [
+    "problem-screenshots/2016_e_d_fizica_teoretic_vocational_2016_var_10_lro_C_II/page2.png",
+    "problem-screenshots/2016_e_d_fizica_teoretic_vocational_2016_var_10_lro_C_II/figure_page2_1.png"
+  ],
+  "arie": "C",
+  "subiect": "II",
+  "an": "2016",
+  "fisier": "e_d_fizica_teoretic_vocational_2016_var_10_lro",
+  "tip_document": "subiect",
+  "figuri": [
+    "problem-screenshots/2016_e_d_fizica_teoretic_vocational_2016_var_10_lro_C_II/figure_page2_1.png"
+  ]
+}

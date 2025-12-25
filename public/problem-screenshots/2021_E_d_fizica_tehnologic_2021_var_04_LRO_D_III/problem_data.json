@@ -1,0 +1,27 @@
+{
+  "titlu": "Problema II - D - 2021",
+  "descriere": "Problema II din aria D, anul 2021",
+  "categorie": "Bac",
+  "varianta": "2021",
+  "dificultate": "mediu",
+  "continut": "f, = $50$ cm. Calculați distanța focală echivalentă a șistemului optic format dîn cele două lentile. IIl. Rezolvați următoarea problemă: (15 puncte) În figură alăturată sunt reprezentate două lame transparente (Lr și L2), așezate una peste cealaltă, având între ele o foiță subțire (F) care reflectă lumîna. Cele două lame au îndicii S de refracție n, =1,73(z \\/5) și respectiv n, :1,22[5 \\E} O rază de F lumînă atînge suprafața superioară a lamei L: sub unghiul de încidență E , o . . Ă n Î L1 i=60\". Îndicele de refracție al aerului este n_, =1. F 14 a. Calculați viteza de propagare a lumînii în lama Lr. b. Calculați unghiul de refracție al razei de lumînă la întrarea în lama Lr. n L c. Realizați un desen în care să ilustrați drumul razei de lumînă de la 2 2 întrarea în lama L până la ieșirea dîn lamă în aer, după refîlexia pe foița F. d. Se scoate foița F dîntre cele două lame, cele două lame rămânând lipite. Calculați unghiul sub care se refractă raza de lumînă la trecerea dîn lama Lr în lama Lz. Probă scrisă la Fizică 0000000 D. Optică\n\n",
+  "formule": [],
+  "date": {},
+  "subpuncte": [],
+  "index": 0,
+  "creator": "",
+  "punctajTotal": 15,
+  "createdAt": "2025-12-24T18:24:50.549082",
+  "poze": [
+    "problem-screenshots/2021_E_d_fizica_tehnologic_2021_var_04_LRO_D_III/page3.png",
+    "problem-screenshots/2021_E_d_fizica_tehnologic_2021_var_04_LRO_D_III/figure_page3_1.png"
+  ],
+  "arie": "D",
+  "subiect": "II",
+  "an": "2021",
+  "fisier": "E_d_fizica_tehnologic_2021_var_04_LRO",
+  "tip_document": "subiect",
+  "figuri": [
+    "problem-screenshots/2021_E_d_fizica_tehnologic_2021_var_04_LRO_D_III/figure_page3_1.png"
+  ]
+}

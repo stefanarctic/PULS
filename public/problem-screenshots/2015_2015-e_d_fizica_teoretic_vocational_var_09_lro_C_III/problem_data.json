@@ -1,0 +1,23 @@
+{
+  "titlu": "Problema II - C - 2015",
+  "descriere": "Problema II din aria C, anul 2015",
+  "categorie": "Bac",
+  "varianta": "2015",
+  "dificultate": "mediu",
+  "continut": "Avs TEZIȘIET IR CICCUICG A IEZISLIMÎNUL, - d. îndicația /„ a ampermetrului atunci când comutatorul se află în poziția 2. IIl. Rezolvați următoarea problemă: (15 puncte) În figură alăturată este reprezentată schema electrică a unui circuit. Se cunosc: $E = 12$ V, $r = 352,$ R,=102 și R, = 400 Calculați: a. puterea dișipată pe circuitul exterior când întrerupătorul k, este închis și Er R R întrerupătorul k este deschis; ' , b. puterea totală dezvoltată de sursă când întrerupătorul k, este închis și întrerupătorul k; este deschis; K K2 c. randamentul circuitului când ambele întrerupătoare sunt închise; d. energia electrică consumată de circuitul exterior în Af=$169$ s atunci când ambele întrerupătoare sunt închise. Probă scrisă la Fizică 3 C. Producerea și utilizarea curentului contînuu Filiera teoretică — profilul real, Filiera vocațională — profilul militar\n\n",
+  "formule": [],
+  "date": {},
+  "subpuncte": [],
+  "index": 0,
+  "creator": "",
+  "punctajTotal": 15,
+  "createdAt": "2025-12-24T18:19:44.016412",
+  "poze": [
+    "problem-screenshots/2015_2015-e_d_fizica_teoretic_vocational_var_09_lro_C_III/page2.png"
+  ],
+  "arie": "C",
+  "subiect": "II",
+  "an": "2015",
+  "fisier": "2015-e_d_fizica_teoretic_vocational_var_09_lro",
+  "tip_document": "subiect"
+}

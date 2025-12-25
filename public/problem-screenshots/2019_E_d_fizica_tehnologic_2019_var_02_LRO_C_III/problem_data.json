@@ -1,0 +1,23 @@
+{
+  "titlu": "Problema II - C - 2019",
+  "descriere": "Problema II din aria C, anul 2019",
+  "categorie": "Bac",
+  "varianta": "2019",
+  "dificultate": "mediu",
+  "continut": "Un bec având parametrii nomînali U, =12V și /, =1A este legat în serie cu un rezistor având rezistența electrică A, =920Q. Gruparea astfel formată este conectată la bornele unei baterii cu tenșiunea electromotoare $E = 24$ V și rezistența înterioară r. Becul funcționează la parametrii nomînali. Neglijând rezistența electrică a conductoarelor de legătură, calculați: a. puterea electrică a becului; b. energia electrică consumată de bec în timp de un mînut; c. puterea electrică furnizată de baterie circuitului exterior; d. căderea de tenșiune electrică în înteriorul bateriei. Probă scrisă la Fizică 3 C. Producerea și utilizarea curentului contînuu Filiera tehnologică — profilul tehnic și profilul resurse naturale și protecția mediului",
+  "formule": [],
+  "date": {},
+  "subpuncte": [],
+  "index": 0,
+  "creator": "",
+  "punctajTotal": 15,
+  "createdAt": "2025-12-24T18:22:52.609308",
+  "poze": [
+    "problem-screenshots/2019_E_d_fizica_tehnologic_2019_var_02_LRO_C_III/page2.png"
+  ],
+  "arie": "C",
+  "subiect": "II",
+  "an": "2019",
+  "fisier": "E_d_fizica_tehnologic_2019_var_02_LRO",
+  "tip_document": "subiect"
+}

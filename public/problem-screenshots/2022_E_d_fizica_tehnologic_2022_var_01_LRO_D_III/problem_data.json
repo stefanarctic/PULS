@@ -1,0 +1,27 @@
+{
+  "titlu": "Problema II - D - 2022",
+  "descriere": "Problema II din aria D, anul 2022",
+  "categorie": "Bac",
+  "varianta": "2022",
+  "dificultate": "mediu",
+  "continut": "sȘItuația GEescrisă de proDiema. IIl. Rezolvați următoarea problemă: (15 puncte) Un bloc de sticlă cu îndicele de refracție n =1,73(z \\/5) are secțiunea ABCD Îu loă a af MRR - A_NRE__B dreptunghiulară, ca în figură alăturată. Blocul este plasăt în aer (n,,, =1). O rază de lumînă monocromatică este încidentă pe suprafața AB în punctul E, sub unghiul / = 60* față de normala la suprafață. Propagarea razei de lumînă are loc în planul ABCD. Raza de lumînă se refractă în punctul E, străbate blocul de sticlă, se reflectă în punctul F, după care întersectează baza CD. Se cunosc: AB= $4$ cm și AD =5,2(53\\/5)cm „ lar F AE =EB. Determînați: D c a. măsura unghiului r , format de raza refractată cu normala la suprafață în punctul E; b. distanța dîntre punctele E și F; c. distanța dîntre punctele F și C; d. distanța dîntre punctul C și punctul în care raza de lumînă întersectează baza CD. Probă scrisă la Fizică 4 D. Optică Filiera tehnologică — profilul tehnic și profilul resurse naturale și protecția mediului\n\n",
+  "formule": [],
+  "date": {},
+  "subpuncte": [],
+  "index": 0,
+  "creator": "",
+  "punctajTotal": 15,
+  "createdAt": "2025-12-24T18:25:29.235009",
+  "poze": [
+    "problem-screenshots/2022_E_d_fizica_tehnologic_2022_var_01_LRO_D_III/page3.png",
+    "problem-screenshots/2022_E_d_fizica_tehnologic_2022_var_01_LRO_D_III/figure_page3_1.png"
+  ],
+  "arie": "D",
+  "subiect": "II",
+  "an": "2022",
+  "fisier": "E_d_fizica_tehnologic_2022_var_01_LRO",
+  "tip_document": "subiect",
+  "figuri": [
+    "problem-screenshots/2022_E_d_fizica_tehnologic_2022_var_01_LRO_D_III/figure_page3_1.png"
+  ]
+}

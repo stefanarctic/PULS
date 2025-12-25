@@ -1,0 +1,27 @@
+{
+  "titlu": "Problema II - B - 2014",
+  "descriere": "Problema II din aria B, anul 2014",
+  "categorie": "Bac",
+  "varianta": "2014",
+  "dificultate": "mediu",
+  "continut": "â. £ D. 3 C. 4 â. > (SpJ Il. Rezolvați următoarea problemă: (15 puncte) Două baloane rigide, izolate adiabatic, sunt legate prîntr-un tub de volum neglijabil prevăzut cu un robînet R, înițial închis. Primul balon are volumul V, =12L și conțîne v, =$1$ molde oxigen (4, =32g/mol), la temperatura 7;, = 360 K. Al doilea balon are volumul V, =20L și conțîne v, = $2$ mol SR de azot (4, = 28g/mol), la temperatura T, = 300 K. Căldura molară la volum constant g a celor două gaze biatomice este C$y = 25$ A. Calculați: a. denșitatea azotului dîn cel de-al doilea balon înaînte de deschiderea robînetului; b. masă molară a amestecului de gaze obțînut în urma deschiderii robînetului, după \\ stabilirea echilibrului termodînamic; c. temperatura de echilibru a amestecului de gaze; d. preșiunea fînală a amestecului de gaze. Ill. Rezolvați următoarea problemă: (15 puncte) l lo ccu dom m a EA ZAsc ol r. DE 0a p c m a cticlu z . de u ER sD l e E P SPR E CI DR D u r c a au\n\n",
+  "formule": [],
+  "date": {},
+  "subpuncte": [],
+  "index": 0,
+  "creator": "",
+  "punctajTotal": 15,
+  "createdAt": "2025-12-24T18:18:39.919036",
+  "poze": [
+    "problem-screenshots/2014_fizica-olimpici-2014-var_B_II/page1.png",
+    "problem-screenshots/2014_fizica-olimpici-2014-var_B_II/figure_page1_1.png"
+  ],
+  "arie": "B",
+  "subiect": "II",
+  "an": "2014",
+  "fisier": "fizica-olimpici-2014-var",
+  "tip_document": "subiect",
+  "figuri": [
+    "problem-screenshots/2014_fizica-olimpici-2014-var_B_II/figure_page1_1.png"
+  ]
+}

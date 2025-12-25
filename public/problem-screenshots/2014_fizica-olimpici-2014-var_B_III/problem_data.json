@@ -1,0 +1,23 @@
+{
+  "titlu": "Problema II - B - 2014",
+  "descriere": "Problema II din aria B, anul 2014",
+  "categorie": "Bac",
+  "varianta": "2014",
+  "dificultate": "mediu",
+  "continut": "c. temperatura de echilibru a amestecului de gaze; d. preșiunea fînală a amestecului de gaze. Ill. Rezolvați următoarea problemă: (15 puncte) Un motor termic funcționează după ciclul termodînamic reprezentat în RN < < , p coordonate p-V în figură alăturată. Substanța de lucru a motorului este 1 constituită dîn v = $4$ mol de gaz ideal (C, =2,5R). Temperatura mînimă R , , , , Ti=ct atînsă de gaz este f, =27\"C. Relația dîntre temperaturile extreme atînse de 1 gaz este 73 =213, iar cea dîntre volumele ocupate de gaz este V, = eV,, unde + Î , $e = 2,718$ este baza logaritmului natural. Determînați: : a. Variația energiei înterne în cursul transformării 2-3; : 3 b. lucrul mecanic total efectuat de gaz într-un ciclu; Î ' c. căldura cedată de gaz mediului exterior în decursul unui ciclu; V, V, V d. randamentul motorului termic. Probă scrisă la Fizică 2 B. Elemente de termodînamică Filiera teoretică — profilul real, Filiera vocațională — profilul militar\n\n",
+  "formule": [],
+  "date": {},
+  "subpuncte": [],
+  "index": 0,
+  "creator": "",
+  "punctajTotal": 15,
+  "createdAt": "2025-12-24T18:18:41.002585",
+  "poze": [
+    "problem-screenshots/2014_fizica-olimpici-2014-var_B_III/page1.png"
+  ],
+  "arie": "B",
+  "subiect": "II",
+  "an": "2014",
+  "fisier": "fizica-olimpici-2014-var",
+  "tip_document": "subiect"
+}

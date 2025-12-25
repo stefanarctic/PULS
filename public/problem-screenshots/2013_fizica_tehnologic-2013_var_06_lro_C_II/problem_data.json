@@ -1,0 +1,23 @@
+{
+  "titlu": "Problema II - C - 2013",
+  "descriere": "Problema II din aria C, anul 2013",
+  "categorie": "Bac",
+  "varianta": "2013",
+  "dificultate": "mediu",
+  "continut": "H. IUURAZ 0 1 2 3 4 5 _ (3p) Il. Rezolvați următoarea problemă: (15 puncte) Un consumator C este alcătuit dîn două rezistoare identice, având fiecare rezistența electrică R, grupate în paralel. Consumatorul este legat în serie cu un alt rezistor având rezistența R, =2RH. La bornele circuitului astfel format se aplică tenșiunea U. Tenșiunea la bornele consumatorului C este U,=17,5V, iar temperatura rezistoarelor dîn consumator în aceste condiții este 7 =323K. Știînd că R+ R,=752, calculați: a. valoarea rezistenței echivalente a circuitului; b. valoarea tenșiunii aplicâte U ; c. întenșitatea curentului electric prîntr-un rezistor al consumatorului C; d. valoarea rezistenței electrice a unui rezistor dîn consumatorul C, dacă este mențînut la temperatura T,=273K. Coeficientul termic al rezistivității materialului dîn care este confecționat rezistorul consumatorului este a = $4$-10K\" (se neglijează variația cu temperatura a dimenșiunilor rezistorului). IIl. Rezolvați următoarea problemă: (15 puncte) LRT m s A aT l m r r m r rb r lR a a m r T Im lZb L m m l LI TI lA e lR ab a fmii & r TT E !\n\n",
+  "formule": [],
+  "date": {},
+  "subpuncte": [],
+  "index": 0,
+  "creator": "",
+  "punctajTotal": 15,
+  "createdAt": "2025-12-24T18:18:11.261766",
+  "poze": [
+    "problem-screenshots/2013_fizica_tehnologic-2013_var_06_lro_C_II/page2.png"
+  ],
+  "arie": "C",
+  "subiect": "II",
+  "an": "2013",
+  "fisier": "fizica_tehnologic-2013_var_06_lro",
+  "tip_document": "subiect"
+}

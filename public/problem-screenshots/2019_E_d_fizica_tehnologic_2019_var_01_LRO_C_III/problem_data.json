@@ -1,0 +1,23 @@
+{
+  "titlu": "Problema II - C - 2019",
+  "descriere": "Problema II din aria C, anul 2019",
+  "categorie": "Bac",
+  "varianta": "2019",
+  "dificultate": "mediu",
+  "continut": "O baterie este formată dîn $n = 5$ elemente galvanice identice grupate în serie. Fiecare element are tenșiunea electromotoare E și rezistența înterioară $r = 1$ Q. La bornele bateriei se conectează doi consumatori, grupați în serie, ale căror rezistențe sunt , =100Q, respectiv R, =520. Întenșitatea curentului prîn baterie este / = 05 A. Determînați: a. valoarea tenșiunii electromotoare E a unui element; b. puterea debitată de baterie pe circuitul exterior; c. energia consumată de rezistorul R,, într-o oră de funcționare; d. randamentul circuitului electric dat. Probă scrisă la Fizică 3 C. Producerea și utilizarea curentului contînuu Filiera tehnologică — profilul tehnic și profilul resurse naturale și protecția mediului",
+  "formule": [],
+  "date": {},
+  "subpuncte": [],
+  "index": 0,
+  "creator": "",
+  "punctajTotal": 15,
+  "createdAt": "2025-12-24T18:22:43.442938",
+  "poze": [
+    "problem-screenshots/2019_E_d_fizica_tehnologic_2019_var_01_LRO_C_III/page2.png"
+  ],
+  "arie": "C",
+  "subiect": "II",
+  "an": "2019",
+  "fisier": "E_d_fizica_tehnologic_2019_var_01_LRO",
+  "tip_document": "subiect"
+}

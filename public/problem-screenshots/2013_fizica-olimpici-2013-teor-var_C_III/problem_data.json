@@ -1,0 +1,23 @@
+{
+  "titlu": "Problema II - C - 2013",
+  "descriere": "Problema II din aria C, anul 2013",
+  "categorie": "Bac",
+  "varianta": "2013",
+  "dificultate": "mediu",
+  "continut": "În figură alăturată este reprezentată schema unui circuit electric. Rezistențele înterioare ale bateriilor sunt , =10, respectiv $r = 150.$ Rezistența electrică a rezistorului este $R = 5202.$ Pe soclul becului sunt înscripționate valorile 1,5 A,9W. Se constată că becul funcționează la parametri nomînali, iar întenșitatea curentului electric ce străbate bateria având t.e.m E, are valoarea ; =05A. a. Determînați valoarea rezistenței electrice a becului în regim normal de R funcționare. b. Calculați valoarea tenșiunii electromotoare E, . E, |K, E|ra c. Determînați puterea electrică totală dezvoltată de bateria cu t.e.m. E;. l R d. Se deconectează ramura ce conțîne bateria cu t.e.m. E, și se L înlocuiește rezistorul R cu un alt rezistor R,. Și în aceste condiții becul funcționează la parametri nomînali. Determînați randamentul acestui circuit. Probă scrisă la Fizică 3 C. Producerea și utilizarea curentului contînuu Filiera teoretică — profilul real, Filiera vocațională — profilul militar",
+  "formule": [],
+  "date": {},
+  "subpuncte": [],
+  "index": 0,
+  "creator": "",
+  "punctajTotal": 15,
+  "createdAt": "2025-12-24T18:17:53.133142",
+  "poze": [
+    "problem-screenshots/2013_fizica-olimpici-2013-teor-var_C_III/page2.png"
+  ],
+  "arie": "C",
+  "subiect": "II",
+  "an": "2013",
+  "fisier": "fizica-olimpici-2013-teor-var",
+  "tip_document": "subiect"
+}

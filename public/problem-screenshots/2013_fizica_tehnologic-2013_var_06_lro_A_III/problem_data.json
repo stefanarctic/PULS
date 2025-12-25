@@ -1,0 +1,23 @@
+{
+  "titlu": "Problema II - A - 2013",
+  "descriere": "Problema II din aria A, anul 2013",
+  "categorie": "Bac",
+  "varianta": "2013",
+  "dificultate": "mediu",
+  "continut": "d. Calculați valoarea forței de tenșiune dîn fir în condițiile de la punctul c. IIl. Rezolvați următoarea problemă: (15 puncte) Un corp cu masă m = $2$kg se află înițial, în repaus, la baza unui plan înclînat care formează unghiul a cu suprafața orizontală (sîna = 0,6) . Corpul este ridicât până la înălțimea h = $1$,$8$ m , sub acțiunea unei forțe de tracțiune paralele cu planul înclînat și având modulul F =$20$ N. Coeficientul de frecare la alunecare dîntre corp și plan este 4 = 0,25. Energia potențială gravitațională este nulă la baza planului înclînat. a. Reprezentați toate forțele care acționează asupra corpului în timpul ridicării pe planul înclînat. b. Calculați energia potențială gravitațională la înălțimea h. c. Calculați lucrul mecanic efectuat de forța de tracțiune pentru ridicarea corpului la înălțimea h = $1$,$8$ m. d. Determînați valoarea vitezei atînse de corp la înălțimea h. Probă scrisă la Fizică 1 A. Mecanică Filiera tehnologică — profilul tehnic și profilul resurse naturale și protecția mediului\n\n",
+  "formule": [],
+  "date": {},
+  "subpuncte": [],
+  "index": 0,
+  "creator": "",
+  "punctajTotal": 15,
+  "createdAt": "2025-12-24T18:18:07.630098",
+  "poze": [
+    "problem-screenshots/2013_fizica_tehnologic-2013_var_06_lro_A_III/page0.png"
+  ],
+  "arie": "A",
+  "subiect": "II",
+  "an": "2013",
+  "fisier": "fizica_tehnologic-2013_var_06_lro",
+  "tip_document": "subiect"
+}

@@ -1,0 +1,23 @@
+{
+  "titlu": "Problema II - C - 2014",
+  "descriere": "Problema II din aria C, anul 2014",
+  "categorie": "Bac",
+  "varianta": "2014",
+  "dificultate": "mediu",
+  "continut": "MEZIȘIETIR CICCUICA FT ă UNUI CUTNUULLIUI C Cyala LU. a. 80 b. 100 c. 150 d. 240 (3p) Il. Rezolvați următoarea problemă: (15 puncte) Se conșideră circuitul electric a cărui schemă este reprezentată în figură alăturată. Se cunosc: E, =18V,r, =30, E, =9V, , =150Q2,HR, =1302 H, =200, H3 = 802. E,,r+ Rezistența electrică a conductoarelor de legătură se neglijează. Determînați: ._.l a. rezistența electrică echivalentă a grupării formate dîn rezistoarele A, R, și K: E>r> b. întenșitatea curentului electric care trece prîn rezistorul R,„ dacă întrerupătorul K R, este deschis; CI “ c. tenșiunea la bornele generatorului având tenșiunea electromotoare E, dacă — întrerupătorul K este închis; d. întenșitatea curentului electric care trece prîn generatorul având tenșiune electromotoare E, dacă întrerupătorul K este închis. IIl. Rezolvați următoarea problemă: (15 puncte)\n\n",
+  "formule": [],
+  "date": {},
+  "subpuncte": [],
+  "index": 0,
+  "creator": "",
+  "punctajTotal": 15,
+  "createdAt": "2025-12-24T18:19:12.479823",
+  "poze": [
+    "problem-screenshots/2014_fizica_teoretic_vocational_2014_var_04_lro_C_II/page2.png"
+  ],
+  "arie": "C",
+  "subiect": "II",
+  "an": "2014",
+  "fisier": "fizica_teoretic_vocational_2014_var_04_lro",
+  "tip_document": "subiect"
+}

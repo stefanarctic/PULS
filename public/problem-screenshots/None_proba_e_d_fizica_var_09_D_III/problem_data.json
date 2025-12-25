@@ -1,0 +1,27 @@
+{
+  "titlu": "Problema II - D - None",
+  "descriere": "Problema II din aria D, anul None",
+  "categorie": "Bac",
+  "varianta": null,
+  "dificultate": "mediu",
+  "continut": "LAC UCPUIT plidasăt UN CUIAT ASUNLIT NILAL PS ALTSLA SĂ II IVIÎNSZI MIAJIITA CIdI A A VPISLUUWIUL AD. IIl. Rezolvați următoarea problemă: (15 puncte) Într-un experiment de studiu al efectului fotoelectric pe un câtod al unei celule fotoelectrice s-au foloșit radiații cu diferite frecvențe. În tabelul alăturat sunt înscrise, Ec 103 pentru fiecare frecvență foloșită, valorile energiei cînetice maxime a electronilor emiși. | 060 | 064 | a. Reprezentați grafic energia cînetică maximă a fotoelectronilor emiși de câtod în funcție frecvența radiației încidente, pentru v € [0,6 -10* Hz; 15-10'* Hz] , [ 100 | 328 | b. Determînați valoarea constantei lui Planck folosînd datele experimentale. c. Calculați lucrul mecanic de extracție corespunzător materialului dîn care este confecționat câtodul. d. Precizați dacă se produce efect fotoelectric sub acțiunea unei radiații având frecvența de 4-10'* Hz, în cazul câtodului utilizat. Justificați răspunsul. Probă scrisă la Fizică 4 D. Optică\n\n",
+  "formule": [],
+  "date": {},
+  "subpuncte": [],
+  "index": 0,
+  "creator": "",
+  "punctajTotal": 15,
+  "createdAt": "2025-12-24T18:28:34.428850",
+  "poze": [
+    "problem-screenshots/None_proba_e_d_fizica_var_09_D_III/page3.png",
+    "problem-screenshots/None_proba_e_d_fizica_var_09_D_III/figure_page3_1.png"
+  ],
+  "arie": "D",
+  "subiect": "II",
+  "an": null,
+  "fisier": "proba_e_d_fizica_var_09",
+  "tip_document": "subiect",
+  "figuri": [
+    "problem-screenshots/None_proba_e_d_fizica_var_09_D_III/figure_page3_1.png"
+  ]
+}

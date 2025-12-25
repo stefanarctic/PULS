@@ -1,0 +1,23 @@
+{
+  "titlu": "Problema II - C - 2023",
+  "descriere": "Problema II din aria C, anul 2023",
+  "categorie": "Bac",
+  "varianta": "2023",
+  "dificultate": "mediu",
+  "continut": "(3p) Il. Rezolvați următoarea problemă: (15 puncte) În figură alăturată este reprezentată schema unui circuit electric. Generatorul are te.m $E = 18$ V și rezistența înterioară $r = 4$ Q, iar valorile rezistențelor R, R, electrice dîn circuit sunt: , =100Q, H, =200, H = $2020$ și H, =400. Determînațți: R; A Ri a. rezistența echivalentă a grupării celor patru rezistoare; 5 b. întenșitatea curentului electric prîn generator; c. tenșiunea electrică la bornele rezistorului H, ; = d. întenșitatea curentului prîn generator dacă între punctele A și B se r conectează un fir conductor cu rezistența electrică neglijabilă. IIl. Rezolvați următoarea problemă: (15 puncte) aă hornniri ourt larmiata îri oaria ei rransretata Îe hrarmals rînii ranaratar eu tancirînasă alarntramataara E -1iDON\n\n",
+  "formule": [],
+  "date": {},
+  "subpuncte": [],
+  "index": 0,
+  "creator": "",
+  "punctajTotal": 15,
+  "createdAt": "2025-12-24T18:26:13.044130",
+  "poze": [
+    "problem-screenshots/2023_E_d_fizica_tehnologic_2023_var_05_LRO_C_II/page2.png"
+  ],
+  "arie": "C",
+  "subiect": "II",
+  "an": "2023",
+  "fisier": "E_d_fizica_tehnologic_2023_var_05_LRO",
+  "tip_document": "subiect"
+}

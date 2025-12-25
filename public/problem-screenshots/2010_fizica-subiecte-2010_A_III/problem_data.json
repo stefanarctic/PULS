@@ -1,0 +1,23 @@
+{
+  "titlu": "Problema II - A - 2010",
+  "descriere": "Problema II din aria A, anul 2010",
+  "categorie": "Bac",
+  "varianta": "2010",
+  "dificultate": "mediu",
+  "continut": "O bilă cu masă m = $100$g este prînsă la un capăt al unui fir elastic cu lungimea nedeformată f, = $40$ cm și constantă elastică k = $100$N/m. Celălalt capăt al firului este prîns într-un punct A șituat la înălțimea H = $100$cm față de sol. Bila este ridicâtă în punctul A și i se dă drumul să cadă la momentul f,„ =$0$ s. Energia potențială gravitațională se conșideră nulă la nivelul solului. Masă firului elastic este neglijabilă. a. Calculați energia potențială datorată înteracțiunii gravitaționale bilă-Pământ, atunci când bila se află în punctul A; b. Calculați întervalul de timp după care firul începe să se alungească. c. Reprezentați grafic dependența modulului forței elastice dîn fir de alungirea acestuia, pentru alungiri Af cuprînse în întervalul [$0$ cm; 10 em]. d. Determînați alungirea maximă atînsă de firul elastic în timpul căderii bilei. Proba E - d): Probă scrisă la Fizică 1 A. Mecanică",
+  "formule": [],
+  "date": {},
+  "subpuncte": [],
+  "index": 0,
+  "creator": "",
+  "punctajTotal": 15,
+  "createdAt": "2025-12-24T18:16:50.143568",
+  "poze": [
+    "problem-screenshots/2010_fizica-subiecte-2010_A_III/page0.png"
+  ],
+  "arie": "A",
+  "subiect": "II",
+  "an": "2010",
+  "fisier": "fizica-subiecte-2010",
+  "tip_document": "subiect"
+}

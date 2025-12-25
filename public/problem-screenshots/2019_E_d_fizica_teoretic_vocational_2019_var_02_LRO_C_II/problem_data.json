@@ -1,0 +1,27 @@
+{
+  "titlu": "Problema II - C - 2019",
+  "descriere": "Problema II din aria C, anul 2019",
+  "categorie": "Bac",
+  "varianta": "2019",
+  "dificultate": "mediu",
+  "continut": "MILETIVATA A SUISLI AIE VAIUVAI LCA. 1a a. 120 b. 60 c. 20 d. 10 (3p) Il. Rezolvați următoarea problemă: (15 puncte) În circuitul electric dîn figură alăturată rezistoarele montate în circuit au rezistențele electrice H, = 40 0, R,=200, R, =30 Q2, iar generatoarele au tenșiunile electromotoare R; A R E,=12V, E,=12V, respectiv rezistențele electrice înterioare I I 1=20, , =22Q. Conșiderați că ampermetrul este ideal (R, =08Q) … și că rezistența electrică a conductoarelor de legătură este neglijabilă. U— o Calculați: a. tenșiunea electromotoare echivalentă a bateriei formate dîn cele două generatoare; l—l b. rezistența electrică echivalentă a circuitului exterior; E [ E |7n c. întenșitatea curentului electric îndicât de ampermetru; d.rezistența electrică R, pe care trebuie să o aibă ampermetrul pentru ca tenșiunea electrică dîntre punctele A și B să fie nulă. IIl. Rezolvați următoarea problemă: (15 puncte)\n\n",
+  "formule": [],
+  "date": {},
+  "subpuncte": [],
+  "index": 0,
+  "creator": "",
+  "punctajTotal": 15,
+  "createdAt": "2025-12-24T18:23:20.150153",
+  "poze": [
+    "problem-screenshots/2019_E_d_fizica_teoretic_vocational_2019_var_02_LRO_C_II/page2.png",
+    "problem-screenshots/2019_E_d_fizica_teoretic_vocational_2019_var_02_LRO_C_II/figure_page2_1.png"
+  ],
+  "arie": "C",
+  "subiect": "II",
+  "an": "2019",
+  "fisier": "E_d_fizica_teoretic_vocational_2019_var_02_LRO",
+  "tip_document": "subiect",
+  "figuri": [
+    "problem-screenshots/2019_E_d_fizica_teoretic_vocational_2019_var_02_LRO_C_II/figure_page2_1.png"
+  ]
+}

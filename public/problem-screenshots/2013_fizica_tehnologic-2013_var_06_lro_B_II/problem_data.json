@@ -1,0 +1,23 @@
+{
+  "titlu": "Problema II - B - 2013",
+  "descriere": "Problema II din aria B, anul 2013",
+  "categorie": "Bac",
+  "varianta": "2013",
+  "dificultate": "mediu",
+  "continut": "Într-un vas metalic închis etanș se află o masă m = $16$ g de oxigen [,u = BZmiolJ ,la preșiunea $p = 130$ kPa și temperatura t = $47$\"C. a. Calculați denșitatea gazului; b. Calculați numărul de molecule de oxigen aflate în vas; c. Determînați masă unei molecule de oxigen; d. Vasul este încălzit până când temperatura gazului devîne f'= 367\"C. Determînați cantitatea de oxigen care trebuie scoasă dîn vas, pentru ca preșiunea să revînă la valoarea înițială. Ill. Rezolvați următoarea problemă: (15 puncte) / rRrRrai",
+  "formule": [],
+  "date": {},
+  "subpuncte": [],
+  "index": 0,
+  "creator": "",
+  "punctajTotal": 15,
+  "createdAt": "2025-12-24T18:18:08.640666",
+  "poze": [
+    "problem-screenshots/2013_fizica_tehnologic-2013_var_06_lro_B_II/page1.png"
+  ],
+  "arie": "B",
+  "subiect": "II",
+  "an": "2013",
+  "fisier": "fizica_tehnologic-2013_var_06_lro",
+  "tip_document": "subiect"
+}

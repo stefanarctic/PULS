@@ -1,0 +1,1 @@
+În fiaura alăturată este reorezentată schema unui circuit electric. Bateria are parametrii $E = 12$ V și r=10.

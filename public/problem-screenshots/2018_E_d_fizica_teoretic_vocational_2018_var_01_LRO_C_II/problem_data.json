@@ -1,0 +1,23 @@
+{
+  "titlu": "Problema II - C - 2018",
+  "descriere": "Problema II din aria C, anul 2018",
+  "categorie": "Bac",
+  "varianta": "2018",
+  "dificultate": "mediu",
+  "continut": "În figură alăturată este reprezentată schema unui circuit electric. Rezistențele electrice ale celor trei rezistoare au valorile A, =1520, f, =4020 și A, =60 Q. Voltmetrul V dîn circuit (R > ») îndică tenșiunea U, = 40V când întrerupătorul K este deschis și tenșiunea U- 39V când întrerupătorul K este închis. R R3 Întrerupătorul K fiînd închis, determînați: Elr R a. rezistența electrică echivalentă a circuitului exterior generatorului; b. tenșiunea electrică la bornele rezistorului R,; c. întenșitatea curentului electric care trece prîn rezistorul A. ; d. rezistența înterioară a generatorului.",
+  "formule": [],
+  "date": {},
+  "subpuncte": [],
+  "index": 0,
+  "creator": "",
+  "punctajTotal": 15,
+  "createdAt": "2025-12-24T18:22:14.281105",
+  "poze": [
+    "problem-screenshots/2018_E_d_fizica_teoretic_vocational_2018_var_01_LRO_C_II/page2.png"
+  ],
+  "arie": "C",
+  "subiect": "II",
+  "an": "2018",
+  "fisier": "E_d_fizica_teoretic_vocational_2018_var_01_LRO",
+  "tip_document": "subiect"
+}

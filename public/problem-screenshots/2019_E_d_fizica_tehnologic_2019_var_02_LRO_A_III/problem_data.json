@@ -1,0 +1,27 @@
+{
+  "titlu": "Problema II - A - 2019",
+  "descriere": "Problema II din aria A, anul 2019",
+  "categorie": "Bac",
+  "varianta": "2019",
+  "dificultate": "mediu",
+  "continut": "a. Calculați accelerația cutiei în condlțiile punctului C. Ill. Rezolvați următoarea problemă: (15 puncte) Un corp având masă m = $0$,$5$ kg este aruncât vertical în sus, cu viteza înițială v, = $4$ m/s, de pe un pod șituat la înălțimea H = $40$m față de sol. Înteracțiunea corpului cu aerul este V, neglijabilă. Conșiderând energia potențială gravitațională nulă la nivelul solului, m /Î\\ 0 calculați: L a. energia potențială gravitațională a corpului în starea înițială; b. energia cînetică a corpului în momentul în care are viteza v, = $4$ m/s; H c. înălțimea maximă, măsurată față de nivelul podului, la care ajunge corpul; d. lucrul mecanic efectuat de greutatea corpului în timpul mișcării acestuia de la nivelul podului până la atîngerea solului. Probă scrisă la Fizică 1 A. Mecanică Filiera tehnologică — profilul tehnic și profilul resurse naturale și protecția mediului\n\n",
+  "formule": [],
+  "date": {},
+  "subpuncte": [],
+  "index": 0,
+  "creator": "",
+  "punctajTotal": 15,
+  "createdAt": "2025-12-24T18:22:48.007668",
+  "poze": [
+    "problem-screenshots/2019_E_d_fizica_tehnologic_2019_var_02_LRO_A_III/page0.png",
+    "problem-screenshots/2019_E_d_fizica_tehnologic_2019_var_02_LRO_A_III/figure_page0_1.png"
+  ],
+  "arie": "A",
+  "subiect": "II",
+  "an": "2019",
+  "fisier": "E_d_fizica_tehnologic_2019_var_02_LRO",
+  "tip_document": "subiect",
+  "figuri": [
+    "problem-screenshots/2019_E_d_fizica_tehnologic_2019_var_02_LRO_A_III/figure_page0_1.png"
+  ]
+}

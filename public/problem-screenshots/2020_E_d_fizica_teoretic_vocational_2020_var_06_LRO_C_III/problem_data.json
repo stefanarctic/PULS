@@ -1,0 +1,23 @@
+{
+  "titlu": "Problema II - C - 2020",
+  "descriere": "Problema II din aria C, anul 2020",
+  "categorie": "Bac",
+  "varianta": "2020",
+  "dificultate": "mediu",
+  "continut": "În circuitul electric prezentat în figură alăturată se cunosc: E, =13V, $r = 202,$ E, R+ E, =36V, , =502, Rh,=82, H, =3502. Ampermetrul ideal montat în circuit — (R, =0 Q) îndică curentul electric cu întenșitatea /, = 0,5A , având sensul îndicât în E2|if2 R figură. Calculați: EE T a. puterea consumată de rezistorul &,; 2 b. puterea totală dezvoltată de sursă având t.e.m. E,; c. energia electrică consumată de rezistorul A, în timpul Af=$10$ mîn; 3 d. rezistența electrică a rezistorului A. Probă scrisă la Fizică 3 C. Producerea și utilizarea curentului contînuu Filiera teoretică — profilul real, Filiera vocațională — profilul militar",
+  "formule": [],
+  "date": {},
+  "subpuncte": [],
+  "index": 0,
+  "creator": "",
+  "punctajTotal": 15,
+  "createdAt": "2025-12-24T18:24:29.863350",
+  "poze": [
+    "problem-screenshots/2020_E_d_fizica_teoretic_vocational_2020_var_06_LRO_C_III/page2.png"
+  ],
+  "arie": "C",
+  "subiect": "II",
+  "an": "2020",
+  "fisier": "E_d_fizica_teoretic_vocational_2020_var_06_LRO",
+  "tip_document": "subiect"
+}

@@ -1,0 +1,23 @@
+{
+  "titlu": "Problema II - A - 2014",
+  "descriere": "Problema II din aria A, anul 2014",
+  "categorie": "Bac",
+  "varianta": "2014",
+  "dificultate": "mediu",
+  "continut": "acestuia, valoarea ei se schimbă, astfel încât corpul coboară, cu viteză constantă, de-a lungul planului înclînat. Ill. Rezolvați următoarea problemă: (15 puncte) Un corp de masă m = $150$g, conșiderat punctiform, este lansăt, de la înălțimea /i=$18$ m față de suprafața pământului, vertical în sus, cu viteza înițială v, =$8$ m/s. Frecarea cu aerul se conșideră neglijabilă, iar energia potențială gravitațională se conșideră nulă la suprafața pământului. a. Calculați energia mecanică a corpului în momentul lansării acestuia. b. Determînați lucrul mecanic efectuat de greutate dîn momentul lansării corpului până în momentul în care acesta atînge înălțimea maximă. c. Determînați modulul variației impulsului mecanic al corpului între momentul lansării și momentul în care acesta atînge pământul. d. În urma impactului cu solul corpul se oprește, fără să se mai desprîndă de pământ. Timpul scurs dîn momentul în care corpul atînge pământul până la oprirea corpului este At=$15$ ms. Determînați valoarea forței medii care acționează asupra corpului în întervalul de timp At. Probă scrisă la Fizică 1 A. Mecanică Filiera teoretică — profilul real, Filiera vocațională — profilul militar\n\n",
+  "formule": [],
+  "date": {},
+  "subpuncte": [],
+  "index": 0,
+  "creator": "",
+  "punctajTotal": 15,
+  "createdAt": "2025-12-24T18:19:18.946353",
+  "poze": [
+    "problem-screenshots/2014_fizica_teoretic_vocational_2014_var_10_lro_A_III/page0.png"
+  ],
+  "arie": "A",
+  "subiect": "II",
+  "an": "2014",
+  "fisier": "fizica_teoretic_vocational_2014_var_10_lro",
+  "tip_document": "subiect"
+}

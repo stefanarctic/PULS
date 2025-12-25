@@ -1,0 +1,23 @@
+{
+  "titlu": "Problema II - C - 2021",
+  "descriere": "Problema II din aria C, anul 2021",
+  "categorie": "Bac",
+  "varianta": "2021",
+  "dificultate": "mediu",
+  "continut": "În figură alăturată este reprezentată schema unui circuit electric. Bateria are parametrii $E = 12$ V și $r = 12.$ Cele trei rezistoare au rezistențele A, =130, H, =152, respectiv R3 =108. Înițial K întrerupătorul K este deschis. R> a. Calculați puterea dișipată de rezistorul f,. b. Determînați energia electrică consumată de rezistorul f în Af=$15$ mîn de R, Rș funcționare. ET c. Se închide întrerupătorul K. Calculați puterea totală dezvoltată de baterie. d. Determînați randamentul circuitului în condițiile în care întrerupătorul K este închis. Probă scrisă la Fizică 3 C. Producerea și utilizarea curentului contînuu",
+  "formule": [],
+  "date": {},
+  "subpuncte": [],
+  "index": 0,
+  "creator": "",
+  "punctajTotal": 15,
+  "createdAt": "2025-12-24T18:25:08.329963",
+  "poze": [
+    "problem-screenshots/2021_E_d_fizica_teoretic_vocational_2021_var_04_LRO_C_III/page2.png"
+  ],
+  "arie": "C",
+  "subiect": "II",
+  "an": "2021",
+  "fisier": "E_d_fizica_teoretic_vocational_2021_var_04_LRO",
+  "tip_document": "subiect"
+}

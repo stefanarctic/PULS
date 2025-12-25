@@ -1,0 +1,27 @@
+{
+  "titlu": "Problema II - C - 2023",
+  "descriere": "Problema II din aria C, anul 2023",
+  "categorie": "Bac",
+  "varianta": "2023",
+  "dificultate": "mediu",
+  "continut": "În circuitul electric a cărui schemă este reprezentată în figură alăturată, becurile funcționează la paramertrii nomînali. Becul B+ are puterea nomînală P, =5W și tenșiunea nomînală $U = 10$ V , iar becul B» are puterea nomînală P,$p = 12$ W și tenșiunea nomînală U,, = 12V . Determînați: Bi Ro a. întenșitatea curentului electric prîn becul Bi; .'. — b. rezistența electrică a becului B când acesta funcționează în regim nomînal; o c. energia consumată de cele două becuri în întervalul de timp At = $1$ mîn; .'. d. rezistența electrică a rezistorului f . O E;r Probă scrisă la Fizică 3 C. Producerea și utilizarea curentului contînuu Filiera tehnologică — profilul tehnic și profilul resurse naturale și protecția mediului",
+  "formule": [],
+  "date": {},
+  "subpuncte": [],
+  "index": 0,
+  "creator": "",
+  "punctajTotal": 15,
+  "createdAt": "2025-12-24T18:26:24.299626",
+  "poze": [
+    "problem-screenshots/2023_E_d_fizica_tehnologic_2023_var_07_LRO_C_III/page2.png",
+    "problem-screenshots/2023_E_d_fizica_tehnologic_2023_var_07_LRO_C_III/figure_page2_1.png"
+  ],
+  "arie": "C",
+  "subiect": "II",
+  "an": "2023",
+  "fisier": "E_d_fizica_tehnologic_2023_var_07_LRO",
+  "tip_document": "subiect",
+  "figuri": [
+    "problem-screenshots/2023_E_d_fizica_tehnologic_2023_var_07_LRO_C_III/figure_page2_1.png"
+  ]
+}

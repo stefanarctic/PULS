@@ -1,0 +1,23 @@
+{
+  "titlu": "Problema II - A - 2012",
+  "descriere": "Problema II din aria A, anul 2012",
+  "categorie": "Bac",
+  "varianta": "2012",
+  "dificultate": "mediu",
+  "continut": "Un corp de mici dimenșiuni, cu masă m = $1$,$0$ kg, aflat în vârful A al unui plan înclînat (vezi figură alăturată), alunecă fără viteză înițială spre baza planului. Se cunosc: diferența de nivel dîntre punctele A și B, , =2,$0$ m, coeficientul de frecare la alunecare dîntre corp și suprafața planului înclînat u=0,10 și unghiul de înclînare a suprafeței planului față de orizontală QĂ a = $45$\". Determînați: Ih, a. lucrul mecanic efectuat de forța de frecare pe distanța AB,; 1 - Jh* b. viteza corpului în momentul în care acesta trece prîn punctul B; —_ -- c. înălțimea , a planului înclînat, dacă viteza corpului la baza planului are valoarea v = $7$,$5$ m/s; d. distanța parcursă de corp până la oprirea să pe planul orizontal cu care se contînuă planul înclînat, dacă coeficientul de frecare la alunecare pe planul orizontal este , = 0,25. Trecerea pe porțiunea orizontală se face lîn, fără modificarea modulului vitezei. Probă scrisă la Fizică 1 A. Mecanică",
+  "formule": [],
+  "date": {},
+  "subpuncte": [],
+  "index": 0,
+  "creator": "",
+  "punctajTotal": 15,
+  "createdAt": "2025-12-24T18:17:09.328497",
+  "poze": [
+    "problem-screenshots/2012_fizica-2012_var_01_lro_A_III/page0.png"
+  ],
+  "arie": "A",
+  "subiect": "II",
+  "an": "2012",
+  "fisier": "fizica-2012_var_01_lro",
+  "tip_document": "subiect"
+}

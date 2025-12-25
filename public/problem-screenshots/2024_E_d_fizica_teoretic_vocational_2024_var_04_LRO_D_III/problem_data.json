@@ -1,0 +1,23 @@
+{
+  "titlu": "Problema II - D - 2024",
+  "descriere": "Problema II din aria D, anul 2024",
+  "categorie": "Bac",
+  "varianta": "2024",
+  "dificultate": "mediu",
+  "continut": "Într-un experiment de înterferență a lumînii se utilizează un dispozitiv înterferențial Young, plasăt în aer, care are distanța dîntre fante 2/ = 5,0-10 *m , iar distanța dîntre planul fantelor și ecran D= 2,$0$ m. Sursă de lumînă este șituată pe axa de șimetrie a dispozitivului și emite radiație lumînoasă monocromatică. Analizând figură de înterferență de pe ecran se determînă valoarea înterfranjei / = 2,$0$ mm. a. Calculați lungimea de undă a radiației monocromatice emisă de sursă. b. Calculați distanța măsurată pe ecran între maximul central și cea de a doua franjă întunecâtă. c. Calculați distanța dîntre maximul central și un punct de pe ecran în care ajung două raze între care diferența de drum optic este 1 um. d. Fără a schimba poziția sursei, a fantelor și a ecranului, se scufundă dispozitivul într-un lichid transparent și se determînă noua valoare a înterfranjei, /'=1,$5$ mm . Calculați îndicele de refracție al acestui lichid. Filiera teoretică — profilul real, Filiera vocațională — profilul militar",
+  "formule": [],
+  "date": {},
+  "subpuncte": [],
+  "index": 0,
+  "creator": "",
+  "punctajTotal": 15,
+  "createdAt": "2025-12-24T18:27:36.545674",
+  "poze": [
+    "problem-screenshots/2024_E_d_fizica_teoretic_vocational_2024_var_04_LRO_D_III/page3.png"
+  ],
+  "arie": "D",
+  "subiect": "II",
+  "an": "2024",
+  "fisier": "E_d_fizica_teoretic_vocational_2024_var_04_LRO",
+  "tip_document": "subiect"
+}

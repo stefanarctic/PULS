@@ -1,0 +1,27 @@
+{
+  "titlu": "Problema II - A - 2022",
+  "descriere": "Problema II din aria A, anul 2022",
+  "categorie": "Bac",
+  "varianta": "2022",
+  "dificultate": "mediu",
+  "continut": "Un balon meteoroloaic coboară vertical cu viteza constantă v = $6$.$0$ m/s. La înăltimea n=18.$2$ m fată de sol.",
+  "formule": [],
+  "date": {},
+  "subpuncte": [],
+  "index": 0,
+  "creator": "",
+  "punctajTotal": 15,
+  "createdAt": "2025-12-24T18:25:59.098609",
+  "poze": [
+    "problem-screenshots/2022_E_d_fizica_teoretic_vocational_2022_var_05_LRO_A_II/page0.png",
+    "problem-screenshots/2022_E_d_fizica_teoretic_vocational_2022_var_05_LRO_A_II/figure_page0_1.png"
+  ],
+  "arie": "A",
+  "subiect": "II",
+  "an": "2022",
+  "fisier": "E_d_fizica_teoretic_vocational_2022_var_05_LRO",
+  "tip_document": "subiect",
+  "figuri": [
+    "problem-screenshots/2022_E_d_fizica_teoretic_vocational_2022_var_05_LRO_A_II/figure_page0_1.png"
+  ]
+}

@@ -1,0 +1,23 @@
+{
+  "titlu": "Problema II - C - 2022",
+  "descriere": "Problema II din aria C, anul 2022",
+  "categorie": "Bac",
+  "varianta": "2022",
+  "dificultate": "mediu",
+  "continut": "O baterie cu tenșiunea electromotoare $E = 12$ YV și rezistența înterioară $r = 10$ Q alimentează o grupare paralel formată dîn două rezistoare având rezistențele electrice R,=4 0Q și R,. Firul conductor dîn care este confecționat rezistorul R, are lungimea / =$12$ m și aria secțiunii transversăle S = 0,$16$ mm“. Puterea electrică totală dezvoltată de baterie este $P = 36$ W. Determînați: a. întenșitatea curentului electric prîn baterie; b. rezistivitatea materialului dîn care este confecționat rezistorul F ; c. puterea electrică dișipată de rezistorul A;; d. randamentul circuitului electric. Probă scrisă la Fizică 3 C. Producerea și utilizarea curentului contînuu Filiera teoretică — profilul real, Filiera vocațională — profilul militar",
+  "formule": [],
+  "date": {},
+  "subpuncte": [],
+  "index": 0,
+  "creator": "",
+  "punctajTotal": 15,
+  "createdAt": "2025-12-24T18:26:04.977394",
+  "poze": [
+    "problem-screenshots/2022_E_d_fizica_teoretic_vocational_2022_var_05_LRO_C_III/page2.png"
+  ],
+  "arie": "C",
+  "subiect": "II",
+  "an": "2022",
+  "fisier": "E_d_fizica_teoretic_vocational_2022_var_05_LRO",
+  "tip_document": "subiect"
+}

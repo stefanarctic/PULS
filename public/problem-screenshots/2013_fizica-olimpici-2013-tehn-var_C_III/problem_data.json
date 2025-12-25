@@ -1,0 +1,23 @@
+{
+  "titlu": "Problema II - C - 2013",
+  "descriere": "Problema II din aria C, anul 2013",
+  "categorie": "Bac",
+  "varianta": "2013",
+  "dificultate": "mediu",
+  "continut": "LOVOTTIITAZI TIUUA VAIVAIC A WCTIȘIUNII IA NVOÎNICIC FOZIȘIWIUNTI F+. Ill. Rezolvați următoarea problemă: (15 puncte) În figură alăturată este reprezentată schema unui circuit electric format dîntr-o sursă având t.e.m. $E = 120$ Vși rezistența înterioară $r = 30$ Q, un bec având puterea nomînală B R $P = 120$ W și tenșiunea nomînală $U = 60$ V și un rezistor având rezistența electrică R. Becul funcționează la parametri nomînali. Determînați: a. valoarea întenșității curentului electric prîn bec; b. rezistența electrică A a rezistorului; E,r c. energia consumată de rezistorul R în întervalul de timp At = $1$ mîn ; d. randamentul circuitului electric. Probă scrisă la Fizică 3 C. Producerea și utilizarea curentului contînuu Filiera tehnologică — profilul tehnic și profilul resurse naturale și protecția mediului\n\n",
+  "formule": [],
+  "date": {},
+  "subpuncte": [],
+  "index": 0,
+  "creator": "",
+  "punctajTotal": 15,
+  "createdAt": "2025-12-24T18:17:43.144550",
+  "poze": [
+    "problem-screenshots/2013_fizica-olimpici-2013-tehn-var_C_III/page2.png"
+  ],
+  "arie": "C",
+  "subiect": "II",
+  "an": "2013",
+  "fisier": "fizica-olimpici-2013-tehn-var",
+  "tip_document": "subiect"
+}

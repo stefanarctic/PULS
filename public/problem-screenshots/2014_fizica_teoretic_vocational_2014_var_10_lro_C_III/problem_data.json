@@ -1,0 +1,23 @@
+{
+  "titlu": "Problema II - C - 2014",
+  "descriere": "Problema II din aria C, anul 2014",
+  "categorie": "Bac",
+  "varianta": "2014",
+  "dificultate": "mediu",
+  "continut": "d. Se deconectează ampermetrul, iar în locul acestuia se conectează voltmetrul I_E_Ild:_l ideal. Determînați tenșiunea electrică îndicâtă de voltmetru. Ill. Rezolvați următoarea problemă: (15 puncte) Două generatoare electrice, având tenșiunile electromotoare E, =7,5 V, respectiv £, =3V și rezistențele înterioare 4 =1Q și „ necunoscută, sunt conectate în serie. La bornele bateriei astfel formate se conectează, în serie, un rezistor cu rezistența electrică A și un ampermetru ideal (RA = 0). Un voltmetru ideal (RV > oo) conectat la bornele generatorului 2 îndică tenșiune nulă, iar întenșitatea curentului îndicâtă de ampermetru este /=1,5 A. Determînați: a. valoarea rezistenței înterioare /> a generatorului 2; b. puterea dișipată pe rezistorul R; e. randamentul transferului de putere de la baterie către circuitul exterior; d. valoarea rezistenței electrice AA (A, + R) a unui alt rezistor, care conectat la bornele bateriei în locul lui R, consumă aceeași putere ca și rezistorul R. Probă scrisă la Fizică 3 C. Producerea și utilizarea curentului contînuu Filiera teoretică — profilul real, Filiera vocațională — profilul militar\n\n",
+  "formule": [],
+  "date": {},
+  "subpuncte": [],
+  "index": 0,
+  "creator": "",
+  "punctajTotal": 15,
+  "createdAt": "2025-12-24T18:19:23.881955",
+  "poze": [
+    "problem-screenshots/2014_fizica_teoretic_vocational_2014_var_10_lro_C_III/page2.png"
+  ],
+  "arie": "C",
+  "subiect": "II",
+  "an": "2014",
+  "fisier": "fizica_teoretic_vocational_2014_var_10_lro",
+  "tip_document": "subiect"
+}

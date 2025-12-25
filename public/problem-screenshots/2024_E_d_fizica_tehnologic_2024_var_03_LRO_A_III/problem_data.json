@@ -1,0 +1,23 @@
+{
+  "titlu": "Problema II - A - 2024",
+  "descriere": "Problema II din aria A, anul 2024",
+  "categorie": "Bac",
+  "varianta": "2024",
+  "dificultate": "mediu",
+  "continut": "Un corp cu masă m = $2$,$0$ kg este lansăt de la baza unui plan înclînat foarte lung cu viteza v, = $40$ m/s orientată de-a lungul planului înclînat, spre vârful acestuia. Corpul urcă pe planul înclînat până la înălțimea maximă = 0,$50$ m, după care revîne și ajunge la baza planului înclînat cu viteza v = $2$,$0$ m/s. Energia potențială gravitațională se conșideră nulă la baza planului înclînat. Determînați: a. energia cînetică a corpului în momentul lansării; b. energia potențială gravitațională a corpului aflat la înălțimea maximă = 0,$50$ m. c. lucrul mecanic efectuat de greutatea corpului în timpul coborării pe planul înclînat, de la înălțimea f = 0,$50$ m până la baza planului înclînat; d. lucrul mecanic efectuat de forța de frecare dîn momentul lansării până în momentul revenirii la baza planului înclînat. Probă scrisă la Fizică 1 A. Mecanică Filiera tehnologică — profilul tehnic și profilul resurse naturale și protecția mediului",
+  "formule": [],
+  "date": {},
+  "subpuncte": [],
+  "index": 0,
+  "creator": "",
+  "punctajTotal": 15,
+  "createdAt": "2025-12-24T18:26:59.341715",
+  "poze": [
+    "problem-screenshots/2024_E_d_fizica_tehnologic_2024_var_03_LRO_A_III/page0.png"
+  ],
+  "arie": "A",
+  "subiect": "II",
+  "an": "2024",
+  "fisier": "E_d_fizica_tehnologic_2024_var_03_LRO",
+  "tip_document": "subiect"
+}

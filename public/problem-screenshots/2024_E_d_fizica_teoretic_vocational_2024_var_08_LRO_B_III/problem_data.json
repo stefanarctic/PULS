@@ -1,0 +1,23 @@
+{
+  "titlu": "Problema II - B - 2024",
+  "descriere": "Problema II din aria B, anul 2024",
+  "categorie": "Bac",
+  "varianta": "2024",
+  "dificultate": "mediu",
+  "continut": "O cantitate de gaz ideal biatomic (C$V = 2,5$ R) parcurge ciclul termodînamic 1 23 > 4 > 1 reprezentat în coordonate p—V în figură alăturată. În transformarea 2— 3 D 3 preșiunea variază direct proporțional cu volumul, iar temperatura nînioiui gazului în starea 3 este egală cu temperatura dîn starea 4. Se cunoaște că energia înternă a gazului în starea 1 are valoarea , = 750 J. 2p 2 Calculați: , - 4 a. căldura primită de gaz pe transformarea 1> 2; Po[: Hr a l b. variația energiei înterne a gazului pe transformarea 2 > 3; 0 v 2y V c. lucrul mecanic efectuat de gaz pe transformarea 3 > 4; ”0 d. căldura schimbată de gaz cu mediul exterior pe transformarea 4 > 1. Probă scrisă la Fizică 2 B. Elemente de termodînamică Filiera teoretică — profilul real, Filiera vocațională — profilul militar",
+  "formule": [],
+  "date": {},
+  "subpuncte": [],
+  "index": 0,
+  "creator": "",
+  "punctajTotal": 15,
+  "createdAt": "2025-12-24T18:27:41.600071",
+  "poze": [
+    "problem-screenshots/2024_E_d_fizica_teoretic_vocational_2024_var_08_LRO_B_III/page1.png"
+  ],
+  "arie": "B",
+  "subiect": "II",
+  "an": "2024",
+  "fisier": "E_d_fizica_teoretic_vocational_2024_var_08_LRO",
+  "tip_document": "subiect"
+}

@@ -1,0 +1,27 @@
+{
+  "titlu": "Problema II - C - 2025",
+  "descriere": "Problema II din aria C, anul 2025",
+  "categorie": "Bac",
+  "varianta": "2025",
+  "dificultate": "mediu",
+  "continut": "O baterie, alcătuită dîn $n = 8$ elemente având fiecare tenșiunea electromotoare E, =1,5V și rezistența înterioară k = $0$,50, alimentează circuitul a cărui schemă este reprezentată în figură alăturată. Valorile rezistențelor electrice ale rezistoarelor dîn circuit sunt R, =200, R, = 300, E° PEÎ 0 ; =9002 și R, =285Q. Ampermetrele A, și Ay se conșideră ideale LE (RAI = hp, =0 Q). Determînați: R1 n;?8 R, I a. rezistența electrică echivalentă a circuitului exterior bateriei; b. întenșitatea curentului electric îndicâtă de ampermetrul A;; “ c. întenșitatea curentului electric îndicâtă de ampermetrul A,; — © d. tenșiunea îndicâtă de un voltmetru ideal (R, — w) conectat la bornele unui element al bateriei.",
+  "formule": [],
+  "date": {},
+  "subpuncte": [],
+  "index": 0,
+  "creator": "",
+  "punctajTotal": 15,
+  "createdAt": "2025-12-24T18:28:12.422721",
+  "poze": [
+    "problem-screenshots/2025_E_d_fizica_teoretic_vocational_2025_var_06_LRO_C_II/page2.png",
+    "problem-screenshots/2025_E_d_fizica_teoretic_vocational_2025_var_06_LRO_C_II/figure_page2_1.png"
+  ],
+  "arie": "C",
+  "subiect": "II",
+  "an": "2025",
+  "fisier": "E_d_fizica_teoretic_vocational_2025_var_06_LRO",
+  "tip_document": "subiect",
+  "figuri": [
+    "problem-screenshots/2025_E_d_fizica_teoretic_vocational_2025_var_06_LRO_C_II/figure_page2_1.png"
+  ]
+}

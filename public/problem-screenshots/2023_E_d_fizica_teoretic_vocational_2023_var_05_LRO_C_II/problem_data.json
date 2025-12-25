@@ -1,0 +1,27 @@
+{
+  "titlu": "Problema II - C - 2023",
+  "descriere": "Problema II din aria C, anul 2023",
+  "categorie": "Bac",
+  "varianta": "2023",
+  "dificultate": "mediu",
+  "continut": "a. 25% b. 60% c. 75% d. 80% (3p) Il. Rezolvați următoarea problemă: (15 puncte) Două generatoare identice montate în serie, având fiecare t.e.m $E = 9$ V și rezistența înterioară r =2 0, alimentează un circuit electric conform schemei dîn figură alăturată. Valorile rezistențelor electrice dîn circuit sunt: & =1002, $f = 200,$ F3 =40% și R, = 20 Q. Determînați: R R a. rezistența echivalentă a grupării celor patru rezistoare; A b. întenșitatea curentului electric prîn generatoare; c. tenșiunea electrică la bornele rezistorului H; d. valoarea pe care ar trebui să o aibă rezistența electrică a unui alt rezistor ___] L montat în locul rezistorului R,, astfel încât un ampermetru ideal ($R = 0$ Q) | I montat între punctele A și B să îndice un curent electric cu întenșitatea nulă. El'r El'r IIl. Rezolvați următoarea problemă: (15 puncte) PIR IR aR mR ab ll aR T m rR eT m a r bb lo ÎR m m r l l rr r mu bnmi m t m v E ATDOXN AT aR AR a mb\n\n",
+  "formule": [],
+  "date": {},
+  "subpuncte": [],
+  "index": 0,
+  "creator": "",
+  "punctajTotal": 15,
+  "createdAt": "2025-12-24T18:26:33.539971",
+  "poze": [
+    "problem-screenshots/2023_E_d_fizica_teoretic_vocational_2023_var_05_LRO_C_II/page2.png",
+    "problem-screenshots/2023_E_d_fizica_teoretic_vocational_2023_var_05_LRO_C_II/figure_page2_1.png"
+  ],
+  "arie": "C",
+  "subiect": "II",
+  "an": "2023",
+  "fisier": "E_d_fizica_teoretic_vocational_2023_var_05_LRO",
+  "tip_document": "subiect",
+  "figuri": [
+    "problem-screenshots/2023_E_d_fizica_teoretic_vocational_2023_var_05_LRO_C_II/figure_page2_1.png"
+  ]
+}

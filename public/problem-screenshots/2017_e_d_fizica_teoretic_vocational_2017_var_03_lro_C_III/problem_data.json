@@ -1,0 +1,23 @@
+{
+  "titlu": "Problema II - C - 2017",
+  "descriere": "Problema II din aria C, anul 2017",
+  "categorie": "Bac",
+  "varianta": "2017",
+  "dificultate": "mediu",
+  "continut": "= ÎNUICAUA ATIPETTTICUUIUI CANU IMUCTUPATOTUT F CS ITICTIIS, DNE —-L d. îndicația unui voltmetru ideal (Ry — =) conectat între punctele A și B în locul întrerupătorului. IIl. Rezolvați următoarea problemă: (15 puncte) Fiamentul unui bec are lungimea totală de $44$ cm. Pe bec sunt înscripționate valorile nomînale (220 V; 100 W), iar temperatura filamentului, la aceste valori, este t = $2000$*C. Pentru a așigura funcționarea normală a becului, dacă acesta se conectează la o tenșiune $U = 250$ V , se montează în serie cu acesta o rezistență adițională. Filamentul becului este dîn wolfram și se cunosc, pentru wolfram: rezistivitatea la f, =0\"C p, =55-10\" Q -m și coeficientul termic al rezistivității, a = $45$-10* grad\". Să se calculeze: a. rezistența filamentului când acesta funcționează la parametrii nomînali; b. aria secțiunii transversăle a filamentului, dacă se neglijează variațiile dimenșiunilor acestuia cu temperatura; c. valoarea rezistenței adiționale care așigură funcționarea normală a becului; d. energia totală consumată de bec împreună cu rezistența adițională în 22 de mînute de funcționare. Probă scrisă la Fizică 3 C. Producerea și utilizarea curentului contînuu Filiera teoretică — profilul real, Filiera vocațională — profilul militar\n\n",
+  "formule": [],
+  "date": {},
+  "subpuncte": [],
+  "index": 0,
+  "creator": "",
+  "punctajTotal": 15,
+  "createdAt": "2025-12-24T18:21:28.217664",
+  "poze": [
+    "problem-screenshots/2017_e_d_fizica_teoretic_vocational_2017_var_03_lro_C_III/page2.png"
+  ],
+  "arie": "C",
+  "subiect": "II",
+  "an": "2017",
+  "fisier": "e_d_fizica_teoretic_vocational_2017_var_03_lro",
+  "tip_document": "subiect"
+}

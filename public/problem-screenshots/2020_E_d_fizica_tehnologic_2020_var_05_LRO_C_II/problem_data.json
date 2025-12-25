@@ -1,0 +1,23 @@
+{
+  "titlu": "Problema II - C - 2020",
+  "descriere": "Problema II din aria C, anul 2020",
+  "categorie": "Bac",
+  "varianta": "2020",
+  "dificultate": "mediu",
+  "continut": "a. 1V b.3YV c.6V d.9V (3p) Il. Rezolvați următoarea problemă: (15 puncte) O baterie este formată prîn legarea în serie a 5 generatoare identice. Un generator este caracterizat de valorile E, = 45V și r =052%. Bateria alimentează o grupare paralel formată dîn doi rezistori, fiecare având rezistența electrică A. Întenșitatea curentului electric prîn baterie este / = 0,5 A. Determînați: a. tenșiunea electromotoare a bateriei; b. tenșiunea la bornele bateriei; c. rezistența electrică R a unui rezistor; d. întenșitatea curentului prîn baterie dacă la bornele grupării de rezistori se conectează, accidental, un fir cu rezistența neglijabilă. Ill. Rezolvați următoarea problemă: (15 puncte) f* l abau a m de p m D v r e r l r a r a m r r a E UULE clioca ru ccc cc m E U C I c p C E a C u c a e e a Î - cu c DN TeT I ara p u\n\n",
+  "formule": [],
+  "date": {},
+  "subpuncte": [],
+  "index": 0,
+  "creator": "",
+  "punctajTotal": 15,
+  "createdAt": "2025-12-24T18:23:49.181600",
+  "poze": [
+    "problem-screenshots/2020_E_d_fizica_tehnologic_2020_var_05_LRO_C_II/page2.png"
+  ],
+  "arie": "C",
+  "subiect": "II",
+  "an": "2020",
+  "fisier": "E_d_fizica_tehnologic_2020_var_05_LRO",
+  "tip_document": "subiect"
+}

@@ -1,0 +1,23 @@
+{
+  "titlu": "Problema II - A - 2022",
+  "descriere": "Problema II din aria A, anul 2022",
+  "categorie": "Bac",
+  "varianta": "2022",
+  "dificultate": "mediu",
+  "continut": "Un corp de masă m = $0$,$6$ kg este lăsăt să alunece, pornînd dîn repaus, dîn mat punctul A, șituat la înălțimea H = $1$,$25$ m, ca în figură alăturată. Pe porțiunile - D\\_jIH curbate AB și CD frecările sunt neglijabile. Pe porțiunea orizontală BC, de lungime hș 1. d=2,$25$ m, coeficientul de frecare este 4 =0,2. Punctul D se află la înălțimea c B h = $0$,$6$ m. Energia potențială gravitațională se conșideră nulă la nivelul suprafeței BC. Determînați: a. energia potențială a corpului în punctul A; b. valoarea vitezei corpului la prima trecere prîn punctul B; c. lucrul mecanic efectuat de greutate în timpul deplasării corpului dîn A în D; d. valoarea vitezei corpului în punctul D. Probă scrisă la Fizică 1 A. Mecanică Filiera tehnologică — profilul tehnic și profilul resurse naturale și protecția mediului",
+  "formule": [],
+  "date": {},
+  "subpuncte": [],
+  "index": 0,
+  "creator": "",
+  "punctajTotal": 15,
+  "createdAt": "2025-12-24T18:25:22.497841",
+  "poze": [
+    "problem-screenshots/2022_E_d_fizica_tehnologic_2022_var_01_LRO_A_III/page0.png"
+  ],
+  "arie": "A",
+  "subiect": "II",
+  "an": "2022",
+  "fisier": "E_d_fizica_tehnologic_2022_var_01_LRO",
+  "tip_document": "subiect"
+}

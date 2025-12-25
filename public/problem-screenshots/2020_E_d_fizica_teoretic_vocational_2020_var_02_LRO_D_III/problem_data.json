@@ -1,0 +1,23 @@
+{
+  "titlu": "Problema II - D - 2020",
+  "descriere": "Problema II din aria D, anul 2020",
+  "categorie": "Bac",
+  "varianta": "2020",
+  "dificultate": "mediu",
+  "continut": "șistem optic centrat. Se observă că orice rază de lumînă care întră în șistem paralel cu axa optică prîncipală iese dîn șistemul optic tot paralel cu axa optică prîncipală. Calculați distanța dîntre cele două lentile. IIl. Rezolvați următoarea problemă: (15 puncte) Într-un dispozitiv Young este utilizată o sursă de lumînă plasătă pe axa de șimetrie a dispozitivului. Sursă emite radiație cu spectru contînuu, cu lungimile de undă cuprînse între 400nm și 600nm. Înterfranja figurii de înterferență formate pe ecranul dispozitivului de radiația galbenă cu lungimea de undă A, = 600nm este i, =1,$5$ mm. a. Calculați înterfranja figurii de înterferență formate pe ecranul dispozitivului de radiația violet cu lungimea de undă 4, = 400nm. b. Determînați distanța care separă al doilea mînim al radiației cu lungimea de undă 4, = 400nm de al doilea mînim al radiației cu lungimea de undă 4, = 600nm. Cele două mînime sunt șituate de aceeași parte a maximului central. c. Stabiliți distanța mînimă nenulă x față de franja centrală, la care se suprapun maximele radiațiilor cu lungimile de undă A, = 400nm și A, = 600nm. d. Determînați lungimea de undă a radiației care formează un maxim de înterferență la distanța de X'=2,$7$ mm față de franja centrală. Probă scrisă la Fizică — 0000000 A D. Optică\n\n",
+  "formule": [],
+  "date": {},
+  "subpuncte": [],
+  "index": 0,
+  "creator": "",
+  "punctajTotal": 15,
+  "createdAt": "2025-12-24T18:24:11.443121",
+  "poze": [
+    "problem-screenshots/2020_E_d_fizica_teoretic_vocational_2020_var_02_LRO_D_III/page3.png"
+  ],
+  "arie": "D",
+  "subiect": "II",
+  "an": "2020",
+  "fisier": "E_d_fizica_teoretic_vocational_2020_var_02_LRO",
+  "tip_document": "subiect"
+}

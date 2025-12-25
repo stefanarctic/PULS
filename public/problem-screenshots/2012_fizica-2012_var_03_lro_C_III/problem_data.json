@@ -1,0 +1,23 @@
+{
+  "titlu": "Problema II - C - 2012",
+  "descriere": "Problema II din aria C, anul 2012",
+  "categorie": "Bac",
+  "varianta": "2012",
+  "dificultate": "mediu",
+  "continut": "C. IMLENȘILALEA CUTCTUIUI CIECUIC CATrE UCCE plifi TOZISLOTUL A daca ÎNÎN CrUpPaLOTUL R eSte ÎNCTIS, d. tenșiunea dîntre punctele A și B dacă întrerupătorul K este deschis. IIl. Rezolvați următoarea problemă: (15 puncte) Un elev are la dispoziție o baterie cu tenșiunea electromotoare $E = 12$ V și rezistența înternă r =10 și două rezistoare având rezistențele electrice R, =1 Q și respectiv R, = 1028 . Elevul conectează la bornele bateriei cele două rezistoare grupate în serie. a. Calculați rezistența echivalentă a grupării de rezistoare. b. Determînați energia consumată de circuitul exterior în timpul t, = $10$ mîn. c. Calculați randamentul circuitului electric. d. Desenați schema electrică a circuitului pe care elevul trebuie să-l realizeze astfel încât sursă să debiteze puterea maximă pe circuitul exterior și calculați valoarea acestei puteri maxime. Probă scrisă la Fizică 3 C. Producerea și utilizarea curentului contînuu\n\n",
+  "formule": [],
+  "date": {},
+  "subpuncte": [],
+  "index": 0,
+  "creator": "",
+  "punctajTotal": 15,
+  "createdAt": "2025-12-24T18:17:33.284347",
+  "poze": [
+    "problem-screenshots/2012_fizica-2012_var_03_lro_C_III/page2.png"
+  ],
+  "arie": "C",
+  "subiect": "II",
+  "an": "2012",
+  "fisier": "fizica-2012_var_03_lro",
+  "tip_document": "subiect"
+}

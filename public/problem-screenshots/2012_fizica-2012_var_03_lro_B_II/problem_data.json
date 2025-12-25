@@ -1,0 +1,23 @@
+{
+  "titlu": "Problema II - B - 2012",
+  "descriere": "Problema II din aria B, anul 2012",
+  "categorie": "Bac",
+  "varianta": "2012",
+  "dificultate": "mediu",
+  "continut": "IETAIAĂ. 3 a. Q >0,>Q b. $Q = 0$ Q=Q2, c. Q,<Q,<Q, d.Q,=0Q<Q, LLV» (3p) Il. Rezolvați următoarea problemă: (15 puncte) În figură alăturată este reprezentată schematic o pompă de compreșiune, al cărei corp de pompă are volumul V; =1L. Pompa este foloșită pentru umplerea cu aer a unui balon de volum $V = 10$ L până la preșiunea p=15-10\" N/m\".. Înițial, în balon se află aer la preșiunea atmosferică normală p, =10* N/m?. Pompa preia, la fiecare cursă a pistonului P, aer la preșiunea atmosferică normală prîn deschiderea supapei S;,, supapa S. fiînd închisă. Procesul de umplere a balonului cu aer comprimat are loc la temperatura mediului ambiant t = $17$*C, prîn închiderea supapei S; și deschiderea supapei S.. Pereții balonului rezistă până la o preșiune P, = 17 -10” N/m“. Masă molară a aerului 4 = 29 g-mol\". a. Calculați masă înițială a aerului dîn balon. | ss - P b. Determînați numărul N de curse ce trebuie efectuat de pistonul P pentru a aduce Vo preșiunea aerului dîn balon la valoarea p. V c. Calculați denșitatea aerului dîn balon la sfârșitul celor N curse ale pistonului. d. După umplerea balonului cu aer la preșiunea p, balonul este închis și corpul de pompă este decuplat. Calculați valoarea maximă a temperaturii până la care poate fi încălzit balonul fără a se sparge. IIl. Rezolvați următoarea problemă: (15 puncte) Uo = uu a u ll m u u u u e s u s l a d a m r e oP G e ll m f e ol m Denrte r d s a m E = u mu m m s a e l r l lu\n\n",
+  "formule": [],
+  "date": {},
+  "subpuncte": [],
+  "index": 0,
+  "creator": "",
+  "punctajTotal": 15,
+  "createdAt": "2025-12-24T18:17:29.533086",
+  "poze": [
+    "problem-screenshots/2012_fizica-2012_var_03_lro_B_II/page1.png"
+  ],
+  "arie": "B",
+  "subiect": "II",
+  "an": "2012",
+  "fisier": "fizica-2012_var_03_lro",
+  "tip_document": "subiect"
+}

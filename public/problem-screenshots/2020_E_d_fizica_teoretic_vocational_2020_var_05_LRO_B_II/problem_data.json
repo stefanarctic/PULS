@@ -1,0 +1,23 @@
+{
+  "titlu": "Problema II - B - 2020",
+  "descriere": "Problema II din aria B, anul 2020",
+  "categorie": "Bac",
+  "varianta": "2020",
+  "dificultate": "mediu",
+  "continut": "T3T T2T 1 ș d. V, >V>Y, (3p) Il. Rezolvați următoarea problemă: (15 puncte) O butelie cu volumul $V = 83,1$ L conțîne un amestec de heliu (u,, =4g/mol) și neon (u,, = 20g/mol) la temperatura T = $300$K. Ambele gaze au căldura molară la volum constant C, = 1,5A. Cantitatea totală de gaz dîn butelie este v = $5$mol , iar cantitatea de heliu este de patru ori mai mare decât cantitatea de neon. a. Calculați preșiunea amestecului de gaze dîn butelie. b. Calculați raportul dîntre masă de heliu și masă de neon dîn butelie. c. Calculați masă molară a amestecului de gaze dîn butelie. d. Se deschide robînetul buteliei, se elimînă A$m = 7,2$ g dîn masă înițială de amestec. Robînetul se închide și amestecul rămas se încălzeste cu 20'C. Aflați căldura primită de amestecul de gaze în timpul încălzirii. Ill. Rezolvați următoarea problemă: (15 puncte)\n\n",
+  "formule": [],
+  "date": {},
+  "subpuncte": [],
+  "index": 0,
+  "creator": "",
+  "punctajTotal": 15,
+  "createdAt": "2025-12-24T18:24:15.598207",
+  "poze": [
+    "problem-screenshots/2020_E_d_fizica_teoretic_vocational_2020_var_05_LRO_B_II/page1.png"
+  ],
+  "arie": "B",
+  "subiect": "II",
+  "an": "2020",
+  "fisier": "E_d_fizica_teoretic_vocational_2020_var_05_LRO",
+  "tip_document": "subiect"
+}

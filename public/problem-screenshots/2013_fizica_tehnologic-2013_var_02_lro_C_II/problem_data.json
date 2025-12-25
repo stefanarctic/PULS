@@ -1,0 +1,23 @@
+{
+  "titlu": "Problema II - C - 2013",
+  "descriere": "Problema II din aria C, anul 2013",
+  "categorie": "Bac",
+  "varianta": "2013",
+  "dificultate": "mediu",
+  "continut": "a. Y0V D. 95V c. Y9V a. 100V (3p) Il. Rezolvați următoarea problemă: (15 puncte) Un generator cu rezistența înterioară $r = 220,$ alimentează o grupare paralel formată dîn două rezistoare având rezistențele electrice A, = 300 și F, = 452. Întenșitatea curentului electric prîn rezistorul A, este I, =0,9A. Calculați: a. rezistența circuitului exterior generatorului; b. întenșitatea curentului electric prîn rezistorul F ; c. sărcîna electrică care trece prîn generator într-un înterval de timp egal cu un mînut; d. tenșiunea electromotoare a generatorului. Ill. Rezolvați următoarea problemă: (15 puncte) CEu lu ol u z z lu e e U l e pu r e m zu a l u u m ÎN a m r EE s a a r Î ru m NA c\n\n",
+  "formule": [],
+  "date": {},
+  "subpuncte": [],
+  "index": 0,
+  "creator": "",
+  "punctajTotal": 15,
+  "createdAt": "2025-12-24T18:18:01.981245",
+  "poze": [
+    "problem-screenshots/2013_fizica_tehnologic-2013_var_02_lro_C_II/page2.png"
+  ],
+  "arie": "C",
+  "subiect": "II",
+  "an": "2013",
+  "fisier": "fizica_tehnologic-2013_var_02_lro",
+  "tip_document": "subiect"
+}

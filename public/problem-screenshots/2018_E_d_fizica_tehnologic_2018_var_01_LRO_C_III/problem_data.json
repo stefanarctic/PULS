@@ -1,0 +1,23 @@
+{
+  "titlu": "Problema II - C - 2018",
+  "descriere": "Problema II din aria C, anul 2018",
+  "categorie": "Bac",
+  "varianta": "2018",
+  "dificultate": "mediu",
+  "continut": "to. ÎNLETȘILALEA CUTCTIUIUI CICCUTIR DrT TEZIȘIIUI f%, d. rezistența înterioară a generatorului. IIl. Rezolvați următoarea problemă: (15 puncte) La bornele unei baterii este conectat un consumator cu rezistența electrică R,. Puterea dișipată pe consumatorul R, este $A = 40,5$ W, iar tenșiunea la bornele bateriei este U, =27V. Se înlocuiește consumatorul F, cu un consumator cu rezistența electriră ,. Puterea dișipată în acest caz pe consumatorul , este $F = 625$ W ,iar tenșiunea la bornele bateriei este U, = 25 V. a. Determînați întenșitățile curenților electrici prîn cei doi consumatori. b. Calculați rezistențele electrice ale celor doi consumatori. c. Determînați tenșiunea electromotoare a bateriei, conșiderând că rezistența să înterioară este r =2 0. d. Se leagă cei doi consumatori în serie, iar gruparea astfel formată se conectează la bornele bateriei. Calculați puterea dișipată pe gruparea serie formată dîn cei doi consumatori. Probă scrisă la Fizică 3 C. Producerea și utilizarea curentului contînuu Filiera tehnologică — profilul tehnic și profilul resurse naturale și protecția mediului\n\n",
+  "formule": [],
+  "date": {},
+  "subpuncte": [],
+  "index": 0,
+  "creator": "",
+  "punctajTotal": 15,
+  "createdAt": "2025-12-24T18:21:56.855753",
+  "poze": [
+    "problem-screenshots/2018_E_d_fizica_tehnologic_2018_var_01_LRO_C_III/page2.png"
+  ],
+  "arie": "C",
+  "subiect": "II",
+  "an": "2018",
+  "fisier": "E_d_fizica_tehnologic_2018_var_01_LRO",
+  "tip_document": "subiect"
+}

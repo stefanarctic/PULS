@@ -1,0 +1,23 @@
+{
+  "titlu": "Problema II - C - 2022",
+  "descriere": "Problema II din aria C, anul 2022",
+  "categorie": "Bac",
+  "varianta": "2022",
+  "dificultate": "mediu",
+  "continut": "S. valOalE a TEZISULTIEI ILETOalC f d VAIETIEI. LET IIl. Rezolvați următoarea problemă: (15 puncte) În figură alăturată este reprezentată schema unui circuit electric. Valoarea întenșității curentului electric îndicâte de ampermetrul ideal (A, =00) este /=0,75A. Rezistorul, de rezistență $R = 960,$ este conectat în paralel cu gruparea serie a două becuri identice. Parametrii nomînali ai R unui bec sunt , =6W și U,„=12V .. Becurile funcționează la parametri nomînali. TI Determînați: B a. întenșitatea curentului electric ce străbate un bec; 1 B2 b. rezistența electrică a unui bec; OZQ OZO c. puterea electrică dișipată pe rezistor; d. energia electrică consumată de circuitul exterior bateriei în întervalul de timp Elir At=$5$ mîn. 9 Probă scrisă la Fizică 3 C. Producerea și utilizarea curentului contînuu Filiera tehnologică — profilul tehnic și profilul resurse naturale și protecția mediului\n\n",
+  "formule": [],
+  "date": {},
+  "subpuncte": [],
+  "index": 0,
+  "creator": "",
+  "punctajTotal": 15,
+  "createdAt": "2025-12-24T18:25:27.071581",
+  "poze": [
+    "problem-screenshots/2022_E_d_fizica_tehnologic_2022_var_01_LRO_C_III/page2.png"
+  ],
+  "arie": "C",
+  "subiect": "II",
+  "an": "2022",
+  "fisier": "E_d_fizica_tehnologic_2022_var_01_LRO",
+  "tip_document": "subiect"
+}

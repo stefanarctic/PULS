@@ -1,0 +1,27 @@
+{
+  "titlu": "Problema II - A - 2011",
+  "descriere": "Problema II din aria A, anul 2011",
+  "categorie": "Bac",
+  "varianta": "2011",
+  "dificultate": "mediu",
+  "continut": "O mînae cu masă de 05ka este lăsătă să cadă liber de la înăltimea n. = 2 $45$ m fată de nodeaua sălii de",
+  "formule": [],
+  "date": {},
+  "subpuncte": [],
+  "index": 0,
+  "creator": "",
+  "punctajTotal": 15,
+  "createdAt": "2025-12-24T18:16:58.388778",
+  "poze": [
+    "problem-screenshots/2011_fizica-bac-2011-subiect-sesiunea-a-doua_A_II/page0.png",
+    "problem-screenshots/2011_fizica-bac-2011-subiect-sesiunea-a-doua_A_II/figure_page0_1.png"
+  ],
+  "arie": "A",
+  "subiect": "II",
+  "an": "2011",
+  "fisier": "fizica-bac-2011-subiect-sesiunea-a-doua",
+  "tip_document": "subiect",
+  "figuri": [
+    "problem-screenshots/2011_fizica-bac-2011-subiect-sesiunea-a-doua_A_II/figure_page0_1.png"
+  ]
+}

@@ -1,0 +1,23 @@
+{
+  "titlu": "Problema II - C - 2013",
+  "descriere": "Problema II din aria C, anul 2013",
+  "categorie": "Bac",
+  "varianta": "2013",
+  "dificultate": "mediu",
+  "continut": "În figură alăturată este reprezentată schema unui circuit electric. Bateriile au tenșiunile electromotoare E,=6V și E,=12YV și rezistențele înterioare neglijabile. Valorile E E rezistențelor electrice ale rezistoarelor dîn circuit sunt: , =22, 1 2? R,=320, H, =42.Înițial comutatorul K este deschis. Determînați: K a. energia electrică dișipată în rezistorul H, în întervalul de timp R R: At = $30$ mîn; ! b. puterea totală dezvoltată de bateria cu tenșiunea electromotoare E, =12V când comutatorul K este deschis; R3 c. îndicația unui voltmetru ideal (R, — - ) conectat între punctele A și B când comutatorul K este deschis; d. puterea totală dezvoltată de bateria cu tenșiunea electromotoare E, când comutatorul K este închis. Probă scrisă la Fizică 3 C. Producerea și utilizarea curentului contînuu Filiera teoretică — profilul real, Filiera vocațională — profilul militar",
+  "formule": [],
+  "date": {},
+  "subpuncte": [],
+  "index": 0,
+  "creator": "",
+  "punctajTotal": 15,
+  "createdAt": "2025-12-24T18:18:33.112385",
+  "poze": [
+    "problem-screenshots/2013_fizica_teoretic_vocational-2013_var_06_lro_C_III/page2.png"
+  ],
+  "arie": "C",
+  "subiect": "II",
+  "an": "2013",
+  "fisier": "fizica_teoretic_vocational-2013_var_06_lro",
+  "tip_document": "subiect"
+}

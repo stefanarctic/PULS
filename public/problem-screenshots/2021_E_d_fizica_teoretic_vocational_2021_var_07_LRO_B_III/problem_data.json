@@ -1,0 +1,23 @@
+{
+  "titlu": "Problema II - B - 2021",
+  "descriere": "Problema II din aria B, anul 2021",
+  "categorie": "Bac",
+  "varianta": "2021",
+  "dificultate": "mediu",
+  "continut": "O cantitate v = $1$ mol de gaz ideal biatomic (C, =25R) parcurge transformarea ciclică 1—2—>3—>1 reprezentată în coordonate p-V în figură alăturată. În starea 3 temperatura gazului P 1 2 are valoarea 7, =300K, iar preșiunea este p, =0,5p,. Calculați: P1 . a. variația energiei înterne a gazului în transformarea 3 > 1; pH----- i b. căldura primită de gaz în transformarea 1 2; 3 ' 3 . lucrul mecanic total schimbat de gaz cu mediul exterior în decursul unui ciclu; - ' ' d. randamentul unui ciclu Carnot care ar funcționa între temperaturile extreme atînse u VY VV în transformarea ciclică 1> 2 — 3> 1. Probă scrisă la Fizică 2 B. Elemente de termodînamică Filiera teoretică — profilul real, Filiera vocațională — profilul militar",
+  "formule": [],
+  "date": {},
+  "subpuncte": [],
+  "index": 0,
+  "creator": "",
+  "punctajTotal": 15,
+  "createdAt": "2025-12-24T18:25:15.495493",
+  "poze": [
+    "problem-screenshots/2021_E_d_fizica_teoretic_vocational_2021_var_07_LRO_B_III/page1.png"
+  ],
+  "arie": "B",
+  "subiect": "II",
+  "an": "2021",
+  "fisier": "E_d_fizica_teoretic_vocational_2021_var_07_LRO",
+  "tip_document": "subiect"
+}

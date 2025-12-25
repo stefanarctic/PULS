@@ -1,0 +1,23 @@
+{
+  "titlu": "Problema II - C - 2015",
+  "descriere": "Problema II din aria C, anul 2015",
+  "categorie": "Bac",
+  "varianta": "2015",
+  "dificultate": "mediu",
+  "continut": "a. Iă IU H. GC IU C. ÎN IU A. IC IU VP Il. Rezolvați următoarea problemă: (15 puncte) În figură alăturată este reprezentată schema unui circuit electric. Generatoarele sunt identice, având t.e.m. $E = 6$ V și rezistența înterioară $r = 2$ Q fiecare. Cele două rezistoare sunt identice și au fiecare rezistența electrică $R = 242$ Q. Determînați: EF ET a. parametrii sursei echivalente formate dîn cele trei generatoare; E I II I b. îndicația unui ampermetru ideal conectat între bornele Ași B; A B c. îndicația unui voltmetru ideal conectat între bornele Ași B; r d. rezistența circuitului exterior sursei echivalente dacă între bornele A și B se montează un rezistor având rezistența electrică R, = 2A. R R Ill. Rezolvați următoarea problemă: (15 puncte)\n\n",
+  "formule": [],
+  "date": {},
+  "subpuncte": [],
+  "index": 0,
+  "creator": "",
+  "punctajTotal": 15,
+  "createdAt": "2025-12-24T18:19:52.329037",
+  "poze": [
+    "problem-screenshots/2015_2015-olimpici-teoretic-vocational_C_II/page2.png"
+  ],
+  "arie": "C",
+  "subiect": "II",
+  "an": "2015",
+  "fisier": "2015-olimpici-teoretic-vocational",
+  "tip_document": "subiect"
+}

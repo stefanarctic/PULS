@@ -1,0 +1,23 @@
+{
+  "titlu": "Problema II - B - 2025",
+  "descriere": "Problema II din aria B, anul 2025",
+  "categorie": "Bac",
+  "varianta": "2025",
+  "dificultate": "mediu",
+  "continut": "O cantitate de gaz ideal monoatomic (C$V = 1,5$ R) efectuează un proces ciclic format dîn următoarele transformări cvașistatice: 12 încălzire izocoră până la p, = 4 p,; 2—3 destîndere izotermă până la V, =3 V; 3—4 răcire izocoră până la preșiunea înițială și 4—1 răcire izobară până în starea înițială. În starea înițială gazul ocupă volumul V, = 10 L la preșiunea p = 1,0-10”Pa. Se conșideră În3=1,1. a. Reprezentați procesul ciclic în coordonate p- V. b. Determînați lucrul mecanic total schimbat de gaz cu mediul exterior în cursul unui proces ciclic. c. Determînați căldura primită de gaz dîn mediul exterior în cursul unui proces ciclic. d. Calculați randamentul unui motor Carnot care ar funcționa între temperaturile extreme ale ciclului descris. Probă scrisă la Fizică 2 B. Elemente de termodînamică Filiera teoretică — profilul real, Filiera vocațională — profilul militar",
+  "formule": [],
+  "date": {},
+  "subpuncte": [],
+  "index": 0,
+  "creator": "",
+  "punctajTotal": 15,
+  "createdAt": "2025-12-24T18:28:10.925009",
+  "poze": [
+    "problem-screenshots/2025_E_d_fizica_teoretic_vocational_2025_var_06_LRO_B_III/page1.png"
+  ],
+  "arie": "B",
+  "subiect": "II",
+  "an": "2025",
+  "fisier": "E_d_fizica_teoretic_vocational_2025_var_06_LRO",
+  "tip_document": "subiect"
+}

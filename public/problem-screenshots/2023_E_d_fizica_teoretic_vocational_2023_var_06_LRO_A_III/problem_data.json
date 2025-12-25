@@ -1,0 +1,23 @@
+{
+  "titlu": "Problema II - A - 2023",
+  "descriere": "Problema II din aria A, anul 2023",
+  "categorie": "Bac",
+  "varianta": "2023",
+  "dificultate": "mediu",
+  "continut": "O macara ridică uniform, pe verticală, un contaîner cu masă m = $400$ kg, aflat înițial pe sol. Contaînerul ajunge la înălțimea H = $15$m în întervalul de timp At = $30$ s. Energia potențială gravitațională la nivelul solului este conșiderată nulă, iar frecările se neglijează. Determînați: a. lucrul mecanic efectuat de greutatea contaînerului în timpul urcării acestuia până la înălțimea f b. puterea dezvoltată de motorul macaralei în timpul ridicării contaînerului; c. variația energiei potențiale gravitaționale a șistemului contaîner-Pământ în timpul ultimelor $10$ s ale ridicării contaînerului; d. energia cînetică a contaînerului în timpul ridicării uniforme. Probă scrisă la Fizică 1 A. Mecanică Filiera teoretică — profilul real, Filiera vocațională — profilul militar",
+  "formule": [],
+  "date": {},
+  "subpuncte": [],
+  "index": 0,
+  "creator": "",
+  "punctajTotal": 15,
+  "createdAt": "2025-12-24T18:26:39.680699",
+  "poze": [
+    "problem-screenshots/2023_E_d_fizica_teoretic_vocational_2023_var_06_LRO_A_III/page0.png"
+  ],
+  "arie": "A",
+  "subiect": "II",
+  "an": "2023",
+  "fisier": "E_d_fizica_teoretic_vocational_2023_var_06_LRO",
+  "tip_document": "subiect"
+}

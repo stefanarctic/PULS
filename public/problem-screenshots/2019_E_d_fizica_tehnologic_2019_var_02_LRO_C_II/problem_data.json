@@ -1,0 +1,27 @@
+{
+  "titlu": "Problema II - C - 2019",
+  "descriere": "Problema II din aria C, anul 2019",
+  "categorie": "Bac",
+  "varianta": "2019",
+  "dificultate": "mediu",
+  "continut": "În circuitul electric dîn figură alăturată rezistoarele montate în circuit au R R. rezistențele electrice A, =20202, H, =4020, KF, =30 Q, iar generatoarele TI electrice sunt identice și au fiecare tenșiunea electromotoare $E = 12$ V, respectiv rezistența electrică înterioară $r = 2$ Q. Conșiderați că rezistența — electrică a conductoarelor de legătură este neglijabilă. Calculați: a. tenșiunea electromotoare echivalentă a grupării formate dîn cele două E,r E,r generatoare; b. rezistența electrică a circuitului exterior; c. întenșitatea curentului electric care străbate generatoarele; d. tenșiunea electrică de la bornele rezistorului A.",
+  "formule": [],
+  "date": {},
+  "subpuncte": [],
+  "index": 0,
+  "creator": "",
+  "punctajTotal": 15,
+  "createdAt": "2025-12-24T18:22:51.589645",
+  "poze": [
+    "problem-screenshots/2019_E_d_fizica_tehnologic_2019_var_02_LRO_C_II/page2.png",
+    "problem-screenshots/2019_E_d_fizica_tehnologic_2019_var_02_LRO_C_II/figure_page2_1.png"
+  ],
+  "arie": "C",
+  "subiect": "II",
+  "an": "2019",
+  "fisier": "E_d_fizica_tehnologic_2019_var_02_LRO",
+  "tip_document": "subiect",
+  "figuri": [
+    "problem-screenshots/2019_E_d_fizica_tehnologic_2019_var_02_LRO_C_II/figure_page2_1.png"
+  ]
+}

@@ -1,0 +1,23 @@
+{
+  "titlu": "Problema II - B - 2018",
+  "descriere": "Problema II din aria B, anul 2018",
+  "categorie": "Bac",
+  "varianta": "2018",
+  "dificultate": "mediu",
+  "continut": "Un vas cilîndric cu secțiunea S =$831$ cm* și lungimea L= $60$ cm, închis la ambele capete, conțîne heliu ($u = 4$ g/mol) la preșiunea p =10\" N/m* și la temperatura t = $27$\"C. Se întroduce heliu, aflat la t = $27$\"C, în cilîndru, până când preșiunea heliului devîne p=3-10\" N/m\". Calculați: a. cantitatea înițială de heliu dîn cilîndru; b. denșitatea înițială a heliului dîn cilîndru; c. masă de heliu care s-a întrodus suplimentar în vasul cilîndric; d. temperatura la care trebuie adus gazul rezultat prîn întroducerea cantității suplimentare de heliu pentru ca preșiunea să devînă p'=2,5-10\" N/m\".",
+  "formule": [],
+  "date": {},
+  "subpuncte": [],
+  "index": 0,
+  "creator": "",
+  "punctajTotal": 15,
+  "createdAt": "2025-12-24T18:22:02.762764",
+  "poze": [
+    "problem-screenshots/2018_E_d_fizica_tehnologic_2018_var_02_LRO_B_II/page1.png"
+  ],
+  "arie": "B",
+  "subiect": "II",
+  "an": "2018",
+  "fisier": "E_d_fizica_tehnologic_2018_var_02_LRO",
+  "tip_document": "subiect"
+}

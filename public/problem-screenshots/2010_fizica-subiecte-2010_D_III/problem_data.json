@@ -1,0 +1,23 @@
+{
+  "titlu": "Problema II - D - 2010",
+  "descriere": "Problema II din aria D, anul 2010",
+  "categorie": "Bac",
+  "varianta": "2010",
+  "dificultate": "mediu",
+  "continut": "În graficul alăturat este reprezentată dependența energiei cînetice maxime a electronilor emiși prîn efect fotoelectric extern, de frecvența radiației încidente. E Metalul pentru care a fost obțînut acest grafic este supus acțiunii radiațiilor lumînoase cu frecvențele v, =4,00-10\" Hz, v = $5$,45 -10* Hz și respectiv v = $6$,25- 10'* Hz. Frecvența de prag a metalului are valoarea v, =5,45-10'* Hz. a. Calculați valoarea lucrului mecanic de extracție. d TI - b. Îndicați semnificația fizică a pantei dreptei reprezentate în grafic. 0 c. Îndicați care dîntre cele trei radiații produc efect fotoelectric. Justificați. d. Calculați valoarea energiei cînetice maxime a electronilor extrași de radiația cu frecvența v,. Proba E - d): Probă scrisă la Fizică 4 D. Optică",
+  "formule": [],
+  "date": {},
+  "subpuncte": [],
+  "index": 0,
+  "creator": "",
+  "punctajTotal": 15,
+  "createdAt": "2025-12-24T18:16:57.254705",
+  "poze": [
+    "problem-screenshots/2010_fizica-subiecte-2010_D_III/page3.png"
+  ],
+  "arie": "D",
+  "subiect": "II",
+  "an": "2010",
+  "fisier": "fizica-subiecte-2010",
+  "tip_document": "subiect"
+}

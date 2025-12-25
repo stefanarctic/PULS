@@ -1,0 +1,23 @@
+{
+  "titlu": "Problema II - A - 2023",
+  "descriere": "Problema II din aria A, anul 2023",
+  "categorie": "Bac",
+  "varianta": "2023",
+  "dificultate": "mediu",
+  "continut": "Q. LOLETTTNIIAL IMOGUIUNTIOUNBI . IIl. Rezolvați următoarea problemă: (15 puncte) Un corp având masă m = $1$kg se află în repaus pe o platformă orizontală șituată la înălțimea h = $0$,$6$ m față de sol. Sub acțiunea unei forțe orizontale constante F = $6$ N, corpul parcurge distanța d = 0,$5$ m. Când corpul ajunge la capătul platformei, acțiunea forței F încetează, iar corpul se desprînde m F de platformă. Mișcarea pe suprafața orizontală are loc cu frecare, coeficientul de . frecare la alunecare fiîn$d = 0,2.$ Se neglijează înteracțiunea cu aerul. Energia potențială gravitațională se conșideră nulă la nivelul solului. Determînați: a. lucrul mecanic efectuat de forța F; h b. lucrul mecanic efectuat de forța de frecare la alunecare; C. viteza corpului după parcurgerea distanței d ; d. viteza corpului în momentul imediat anterior impactului cu solul. Probă scrisă la Fizică 1 A. Mecanică Filiera tehnologică — profilul tehnic și profilul resurse naturale și protecția mediului\n\n",
+  "formule": [],
+  "date": {},
+  "subpuncte": [],
+  "index": 0,
+  "creator": "",
+  "punctajTotal": 15,
+  "createdAt": "2025-12-24T18:26:09.681986",
+  "poze": [
+    "problem-screenshots/2023_E_d_fizica_tehnologic_2023_var_05_LRO_A_III/page0.png"
+  ],
+  "arie": "A",
+  "subiect": "II",
+  "an": "2023",
+  "fisier": "E_d_fizica_tehnologic_2023_var_05_LRO",
+  "tip_document": "subiect"
+}

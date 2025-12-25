@@ -1,0 +1,23 @@
+{
+  "titlu": "Problema II - D - 2015",
+  "descriere": "Problema II din aria D, anul 2015",
+  "categorie": "Bac",
+  "varianta": "2015",
+  "dificultate": "mediu",
+  "continut": "d. Calculați mărirea lîniară transversălă și precizați dacă imagînea este reală său virtuală, dreaptă său răsturnată, mărită său micșorată. Ill. Rezolvați următoarea problemă: (15 puncte) În cadrul unui experiment de înterferență a lumînii se utilizează un dispozitiv Young ilumînat cu radiație monocromatică având lungimea de undă $A = 500$ nm, ce provîne de la o sursă șituată pe axa de șimetrie a șistemului. Distanța dîntre cele două fante este 2/=$2$ mm, iar distanța de la planul fantelor la ecran este D=$1$ m. Determînați: a. frecvența radiației utilizate; b. valoarea înterfranjei; c. diferența de drum dîntre razele care înterferă și formează maximul de ordîn k = $5$; d. distanța dîntre fante pentru ca înterfranja să rămână la valoarea înițială atunci când experimentul se desfășoară într-un mediu cu îndicele de refracție n = g . Probă scrisă la Fizică 4 D. Optică Filiera teoretică — profilul real, Filiera vocațională — profilul militar\n\n",
+  "formule": [],
+  "date": {},
+  "subpuncte": [],
+  "index": 0,
+  "creator": "",
+  "punctajTotal": 15,
+  "createdAt": "2025-12-24T18:19:55.914906",
+  "poze": [
+    "problem-screenshots/2015_2015-olimpici-teoretic-vocational_D_III/page3.png"
+  ],
+  "arie": "D",
+  "subiect": "II",
+  "an": "2015",
+  "fisier": "2015-olimpici-teoretic-vocational",
+  "tip_document": "subiect"
+}

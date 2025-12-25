@@ -1,0 +1,23 @@
+{
+  "titlu": "Problema II - C - 2017",
+  "descriere": "Problema II din aria C, anul 2017",
+  "categorie": "Bac",
+  "varianta": "2017",
+  "dificultate": "mediu",
+  "continut": "MUICALA UC VUIUTICUMU AIC ValUaGIEa. a. 0V b. 10V c. 15V d. 30V (3p) Il. Rezolvați următoarea problemă: (15 puncte) Se conșideră circuitul electric a cărui schemă este reprezentată în figură alăturată. Se cunosc: E, =9V, , =20, R, =12Q, R, =180, R. =150. Bateria cu tenșiunea K E:f electromotoare E, =12V este ideală (r2 =080). Rezistența electrică a conductoarelor '_I E, de legătură se neglijează. Determînați: R, R, a. rezistența electrică echivalentă a grupării formate dîn rezistoarele R,, F și A3: LIT b. întenșitatea curentului electric care trece prîn rezistorul y dacă întrerupătorul K este “ deschis; c. tenșiunea electrică de la bornele bateriei cu tenșiunea electromotoare E, dacă întrerupătorul K este închis; d. întenșitatea curentului electric care trece prîn sursă de tenșiune electromotoare E, dacă întrerupătorul K este închis. IIl. Rezolvați următoarea problemă: (15 puncte) N = lou pu u Î e E a E E R IE . R P U E R u a su l mu Î o l c c a a l DA E m m - C a ll au e u - C E 0 GE . R a l s ÎN a e a mu iE l î m uu z z\n\n",
+  "formule": [],
+  "date": {},
+  "subpuncte": [],
+  "index": 0,
+  "creator": "",
+  "punctajTotal": 15,
+  "createdAt": "2025-12-24T18:21:45.821742",
+  "poze": [
+    "problem-screenshots/2017_e_d_fizica_teoretic_vocational_2017_var_07_lro_C_II/page2.png"
+  ],
+  "arie": "C",
+  "subiect": "II",
+  "an": "2017",
+  "fisier": "e_d_fizica_teoretic_vocational_2017_var_07_lro",
+  "tip_document": "subiect"
+}

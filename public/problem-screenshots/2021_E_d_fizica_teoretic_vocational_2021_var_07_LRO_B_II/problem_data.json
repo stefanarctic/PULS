@@ -1,0 +1,27 @@
+{
+  "titlu": "Problema II - B - 2021",
+  "descriere": "Problema II din aria B, anul 2021",
+  "categorie": "Bac",
+  "varianta": "2021",
+  "dificultate": "mediu",
+  "continut": "P7 ol T V Il. Rezolvați următoarea problemă: (15 puncte) Un recipient cu pereți rigizi, izolat adiabatic de exterior, este împărțit în două compartimente de volume V, și V, prîntr-un piston mobil, termoconductor, care se poate deplasă fără frecare, ca în figură alăturată. În cele două compartimente se află cantități egale dîn două gaze conșiderate ideale. În compartimentul $1$ se află heliu ( = 4g/mol, C, =1,5R), iar în compartimentul $2$ se află oxigen (,, = 32g/mol, C, = 2,5R). Înițial heliul se află la temperatura t, =127\"C și preșiunea p=1,8-10\"Pa, iar oxigenul la temperatura t, = 47\"C și preșiunea p = 1,8-10\"Pa. Determînați: \\ a. raportul dîntre denșitatea oxigenului și cea a heliului în starea înițială; , : b. raportul dîntre volumul V/ ocupat de heliu în starea fînală (după ce gazele ajung la echilibru termic și pistonul este în echilibru mecanic) și volumul ocupat de heliu în starea înițială; c. temperatura de echilibru la care ajung gazele; d. preșiunea fînală a oxigenului. IIl. Rezolvați următoarea problemă: (15 puncte) NO rmantitata — $1$ mal - da na2 imaal hiatamir (ON — DED narmuras trancîrrmaraa rirliră 1 <D .ă 4\n\n",
+  "formule": [],
+  "date": {},
+  "subpuncte": [],
+  "index": 0,
+  "creator": "",
+  "punctajTotal": 15,
+  "createdAt": "2025-12-24T18:25:14.382195",
+  "poze": [
+    "problem-screenshots/2021_E_d_fizica_teoretic_vocational_2021_var_07_LRO_B_II/page1.png",
+    "problem-screenshots/2021_E_d_fizica_teoretic_vocational_2021_var_07_LRO_B_II/figure_page1_1.png"
+  ],
+  "arie": "B",
+  "subiect": "II",
+  "an": "2021",
+  "fisier": "E_d_fizica_teoretic_vocational_2021_var_07_LRO",
+  "tip_document": "subiect",
+  "figuri": [
+    "problem-screenshots/2021_E_d_fizica_teoretic_vocational_2021_var_07_LRO_B_II/figure_page1_1.png"
+  ]
+}

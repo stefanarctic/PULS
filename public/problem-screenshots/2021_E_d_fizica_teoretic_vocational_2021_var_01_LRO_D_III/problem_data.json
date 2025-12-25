@@ -1,0 +1,23 @@
+{
+  "titlu": "Problema II - D - 2021",
+  "descriere": "Problema II din aria D, anul 2021",
+  "categorie": "Bac",
+  "varianta": "2021",
+  "dificultate": "mediu",
+  "continut": "Într-un dispozitiv Young este utilizată o sursă de lumînă care emite radiație cu spectru contînuu, plasătă pe axa de șimetrie a dispozitivului. Lungimile de undă extreme ale spectrului emis sunt egale cu 400nm, respectiv 700nm. Înterfranja figurii de înterferență formate pe ecranul dispozitivului de radiația cu lungimea de undă , = 400nm este i, = 0,$8$ mm. a. Calculați înterfranja figurii de înterferență formate pe ecranul dispozitivului de radiația cu lungimea de undă A, = 700nm. b. Determînați distanța care separă maximele de ordînul 3 ale radiațiilor cu lungimile de undă 4, = 400nm și 4, = 700nm, șituate de aceeași parte a maximului central. c. Stabiliți distanța mînimă nenulă, față de franja centrală, la care se suprapun maximele radiațiilor cu lungimile de undă 4, = 400nm și 4, = 700nm. d. Determînați lungimea de undă a radiației care formează un maxim de înterferență la distanța de $2$ mm față de franja centrală. Probă scrisă la Fizică 4 D. Optică",
+  "formule": [],
+  "date": {},
+  "subpuncte": [],
+  "index": 0,
+  "creator": "",
+  "punctajTotal": 15,
+  "createdAt": "2025-12-24T18:25:01.297762",
+  "poze": [
+    "problem-screenshots/2021_E_d_fizica_teoretic_vocational_2021_var_01_LRO_D_III/page3.png"
+  ],
+  "arie": "D",
+  "subiect": "II",
+  "an": "2021",
+  "fisier": "E_d_fizica_teoretic_vocational_2021_var_01_LRO",
+  "tip_document": "subiect"
+}

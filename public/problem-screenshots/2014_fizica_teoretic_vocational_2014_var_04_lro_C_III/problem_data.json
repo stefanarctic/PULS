@@ -1,0 +1,23 @@
+{
+  "titlu": "Problema II - C - 2014",
+  "descriere": "Problema II din aria C, anul 2014",
+  "categorie": "Bac",
+  "varianta": "2014",
+  "dificultate": "mediu",
+  "continut": "Q. ÎNLENȘILALCA CUTNCNIUUNMUI CIECUIC CAlte UCCE plii ENEratorul aVvană LENȘIUNE CIECUMOUIMOLUVATIE E, daca întrerupătorul K este închis. Ill. Rezolvați următoarea problemă: (15 puncte) Un generator cu tenșiunea electromotoare E și rezistența înterioară $r = 1$ Q alimentează un bec legat în serie cu un rezistor R. La bornele becului se conectează un voltmetru cu rezistența înternă A$y = 15020.$ Tenșiunea îndicâtă de voltmetru este egală cu $U = 30$ YV. Puterea dișipată de rezistor în acest caz este P=5,76&W, iar valoarea întenșității curentului electric ce străbate generatorul este /=12A. Becul funcționează la parametri nomînali. a. Calculați rezistența electrică a rezistorului R. b. Determînați valoarea puterii nomînale a becului. c. Determînați tenșiunea electromotoare E a generatorului. d. Se deconectează voltmetrul de la bornele becului și se înlocuiește rezistorul R cu un alt rezistor având rezistența electrică A, astfel încât becul legat în serie cu A, funcționează la puterea nomînală. Determînați puterea A dișipată de rezistorul R,. Probă scrisă la Fizică 3 C. Producerea și utilizarea curentului contînuu Filiera teoretică — profilul real, Filiera vocațională — profilul militar\n\n",
+  "formule": [],
+  "date": {},
+  "subpuncte": [],
+  "index": 0,
+  "creator": "",
+  "punctajTotal": 15,
+  "createdAt": "2025-12-24T18:19:13.680031",
+  "poze": [
+    "problem-screenshots/2014_fizica_teoretic_vocational_2014_var_04_lro_C_III/page2.png"
+  ],
+  "arie": "C",
+  "subiect": "II",
+  "an": "2014",
+  "fisier": "fizica_teoretic_vocational_2014_var_04_lro",
+  "tip_document": "subiect"
+}

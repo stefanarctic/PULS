@@ -1,0 +1,23 @@
+{
+  "titlu": "Problema II - A - 2014",
+  "descriere": "Problema II din aria A, anul 2014",
+  "categorie": "Bac",
+  "varianta": "2014",
+  "dificultate": "mediu",
+  "continut": "Calculați valoarea acceleratiei corpurilor. d. Determînați valoarea forței de apăsăre exercitate asupra axului scripetelui în șituația descrisă la punctul €.. Ill. Rezolvați următoarea problemă: (15 puncte) Dîn vârful unui plan înclînat de lungime £ = 7,$07$ m(; $52$ m), care formează unghiul a = $45$* cu orizontală, alunecă liber un corp de masă m = $1$kg. Planul înclînat se contînuă cu un plan orizontal, la capătul căruia se află un suport fix C de care este legat capătul unui resort elastic orizontal, înițial nedeformat, ca în figură alăturată. Masă resortului este neglijabilă. Mișcarea corpului pe planul înclînat și pe porțiunea AB a planului orizontal se face cu frecare ( = 0,36) . Trecerea pe porțiunea orizontală se m face lîn, fără modificarea modulului vitezei. Corpul, ajuns în punctul B, î lovește resortul cu viteza vg =6&m/fs. Comprimarea maximă a resortului ” : este x=$12$ cm. Pe porțiunea BC mișcarea are loc fără frecare. Se \"c B A conșideră energia potențială gravitațională nulă la baza planului înclînat. Determînați: a. energia mecanică totală a corpului atunci când se află în vârful planului înclînat; b. valoarea vitezei corpului când acesta ajunge la baza planului înclînat; c. lucrul mecanic efectuat de forța de frecare la deplasărea corpului pe porțiunea AB; d. constantă elastică a resortului. Probă scrisă la Fizică 1 A. Mecanică Filiera teoretică — profilul real, Filiera vocațională — profilul militar\n\n",
+  "formule": [],
+  "date": {},
+  "subpuncte": [],
+  "index": 0,
+  "creator": "",
+  "punctajTotal": 15,
+  "createdAt": "2025-12-24T18:18:38.621214",
+  "poze": [
+    "problem-screenshots/2014_fizica-olimpici-2014-var_A_III/page0.png"
+  ],
+  "arie": "A",
+  "subiect": "II",
+  "an": "2014",
+  "fisier": "fizica-olimpici-2014-var",
+  "tip_document": "subiect"
+}

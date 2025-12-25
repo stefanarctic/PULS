@@ -1,0 +1,23 @@
+{
+  "titlu": "Problema II - C - 2017",
+  "descriere": "Problema II din aria C, anul 2017",
+  "categorie": "Bac",
+  "varianta": "2017",
+  "dificultate": "mediu",
+  "continut": "a. întenșitatea curentului prîn ampermetitru, cână întrerupaătoarele K ȘI K, Sunti aesc/iise. IIl. Rezolvați următoarea problemă: (15 puncte) La bornele unei baterii sunt conectate, în serie, două rezistoare. Puterile dișipate pe cele două rezistoare sunt , =200W și P. =100W. Tenșiunea electromotoare a bateriei este £$E = 75$ V, iar întenșitatea curentului electric prîn baterie este / = 5A . Determînați: a. tenșiunea electrică la bornele primului rezistor; b. rezistența electrică a circuitului exterior bateriei; c. energia consumată împreună de cele două rezistoare în întervalul de timp At = $5$ mîn ; d. randamentul circuitului electric. Probă scrisă la Fizică 3 C. Producerea și utilizarea curentului contînuu Filiera tehnologică — profilul tehnic și profilul resurse naturale și protecția mediului\n\n",
+  "formule": [],
+  "date": {},
+  "subpuncte": [],
+  "index": 0,
+  "creator": "",
+  "punctajTotal": 15,
+  "createdAt": "2025-12-24T18:21:09.423956",
+  "poze": [
+    "problem-screenshots/2017_e_d_fizica_tehnologic_2017_var_04_lro_C_III/page2.png"
+  ],
+  "arie": "C",
+  "subiect": "II",
+  "an": "2017",
+  "fisier": "e_d_fizica_tehnologic_2017_var_04_lro",
+  "tip_document": "subiect"
+}

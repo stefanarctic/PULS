@@ -1,0 +1,23 @@
+{
+  "titlu": "Problema II - C - 2017",
+  "descriere": "Problema II din aria C, anul 2017",
+  "categorie": "Bac",
+  "varianta": "2017",
+  "dificultate": "mediu",
+  "continut": "S. MÎNCTOIAVWA CUICTILUIUL CAIC SUAPAL ICZIȘIWIUL FIg UALA II ET UPAĂWIUL FR CS ÎNCT Ill. Rezolvați următoarea problemă: (15 puncte) La bornele unui generator cu rezistența înterioară $r = 3$ Q? se conectează o grupare paralel formată dîntr-un bec și un rezistor. Rezistența electrică a rezistorului este $A = 200.$ Parametrii nomînali ai becului sunt U, =6YV și /,„ =0,2A. Becul funcționează la parametrii nomînali. a. Desenați schema electrică a circuitului. b. Calculați energia electrică consumată de bec în At = $10$ mînute de funcționare. c. Determînați valoarea căderii de tenșiune pe rezistența înterioară a generatorului. d. Determînați valoarea tenșiunii electromotoare a generatorului. Probă scrisă la Fizică 3 C. Producerea și utilizarea curentului contînuu Filiera tehnologică — profilul tehnic și profilul resurse naturale și protecția mediului\n\n",
+  "formule": [],
+  "date": {},
+  "subpuncte": [],
+  "index": 0,
+  "creator": "",
+  "punctajTotal": 15,
+  "createdAt": "2025-12-24T18:21:18.564452",
+  "poze": [
+    "problem-screenshots/2017_e_d_fizica_tehnologic_2017_var_07_lro_C_III/page2.png"
+  ],
+  "arie": "C",
+  "subiect": "II",
+  "an": "2017",
+  "fisier": "e_d_fizica_tehnologic_2017_var_07_lro",
+  "tip_document": "subiect"
+}

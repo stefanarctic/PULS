@@ -1,0 +1,27 @@
+{
+  "titlu": "Problema II - C - 2013",
+  "descriere": "Problema II din aria C, anul 2013",
+  "categorie": "Bac",
+  "varianta": "2013",
+  "dificultate": "mediu",
+  "continut": "d. sărcîna electrică transportată într-o secundă de purtătorii de sărcînă care trec prîntr-o secțiune transversălă a conductorului. (3p) Il. Rezolvați următoarea problemă: (15 puncte) În figură alăturată este reprezentată schema unui circuit electric. Bateria are tenșiunea electromotoare $E = 9$ V și rezistență înterioară $r = 12$ Q. La bornele bateriei se conectează un R, A circuit format dîn: două rezistoare identice cu rezistența electrică R, =30Q2, un [ rezistor având rezistența electrică H, necunoscută și un ampermetru gElr conșiderat ideal ( R, =0). Ampermetrul îndică /= 15 A. Determînați: R, R, a. tenșiunea la bornele bateriei; b. valoarea rezistenței electrice F ; (R) c. randamentul circuitului electric; B d. îndicația ampermetrului dacă între bornele A și B se conectează un fir cu rezistență electrică neglijabilă. IIl. Rezolvați următoarea problemă: (15 puncte) îr\\ NCE mu u uu au Î SCu ș uu NE m o r UR r GRR UC . u z p r L a r Î a PR GL DEPR U US m a lo l m e m Î c pu pu | m PP EEIu P SN TE US ET TTAT IP AEE TET IEA\n\n",
+  "formule": [],
+  "date": {},
+  "subpuncte": [],
+  "index": 0,
+  "creator": "",
+  "punctajTotal": 15,
+  "createdAt": "2025-12-24T18:18:31.861221",
+  "poze": [
+    "problem-screenshots/2013_fizica_teoretic_vocational-2013_var_06_lro_C_II/page2.png",
+    "problem-screenshots/2013_fizica_teoretic_vocational-2013_var_06_lro_C_II/figure_page2_1.png"
+  ],
+  "arie": "C",
+  "subiect": "II",
+  "an": "2013",
+  "fisier": "fizica_teoretic_vocational-2013_var_06_lro",
+  "tip_document": "subiect",
+  "figuri": [
+    "problem-screenshots/2013_fizica_teoretic_vocational-2013_var_06_lro_C_II/figure_page2_1.png"
+  ]
+}

@@ -1,0 +1,23 @@
+{
+  "titlu": "Problema II - C - 2013",
+  "descriere": "Problema II din aria C, anul 2013",
+  "categorie": "Bac",
+  "varianta": "2013",
+  "dificultate": "mediu",
+  "continut": "c. sărcîna electrică totală ce străbate bateria într-un înterval de timp egal cu un mînut; d. tenșiunea electromotoare a unei surse. IIl. Rezolvați următoarea problemă: (15 puncte) Un bec are două filamente F, și F,, ca în schema dîn figură alăturată. Becul este conectat la bornele unei surse cu tenșiunea constantă $U = 12$ V . Puterea dișipată de F4 bec când ambele întrerupătoare sunt închise este $P = 72$ W. Când întrerupătorul K, este închis și întrerupătorul K. deschis, becul consumă energia W în întervalul de timp At =$3$ mîn. Aceeași energie W este consumată de bec în întervalul de timp F At, =$6$ mîn dacă întrerupătorul K, este deschis și întrerupătorul K, închis. Neglijând rezistența înternă a ampermetrului, calculați: K a. raportul rezistențelor electrice% al celor două filamente; K; 2 b. întenșitatea curentului îndicât de ampermetru când întrerupătorul K; este deschis și E întrerupătorul K, închis; U c. puterea mînimă dișipată de becul conectat la tenșiunea U, când cel puțîn unul dîntre întrerupătoare este închis. Justificați răspunsul. d. întervalul de timp At în care becul consumă energia W când ambele întrerupătoare sunt închise. Probă scrisă la Fizică 3 C. Producerea și utilizarea curentului contînuu Filiera teoretică — profilul real, Filiera vocațională — profilul militar\n\n",
+  "formule": [],
+  "date": {},
+  "subpuncte": [],
+  "index": 0,
+  "creator": "",
+  "punctajTotal": 15,
+  "createdAt": "2025-12-24T18:18:22.651359",
+  "poze": [
+    "problem-screenshots/2013_fizica_teoretic_vocational-2013_var_02_lro_C_III/page2.png"
+  ],
+  "arie": "C",
+  "subiect": "II",
+  "an": "2013",
+  "fisier": "fizica_teoretic_vocational-2013_var_02_lro",
+  "tip_document": "subiect"
+}

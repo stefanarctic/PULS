@@ -1,0 +1,23 @@
+{
+  "titlu": "Problema II - D - 2024",
+  "descriere": "Problema II din aria D, anul 2024",
+  "categorie": "Bac",
+  "varianta": "2024",
+  "dificultate": "mediu",
+  "continut": "Distanța dîntre fantele unui dispozitiv Young este 2/ = $1$ mm, , iar distanța care separă planul fantelor de ecranul pe care se observă figură de înterferență este D=$2$ m. Sursă de lumînă monocromatică utilizată este plasătă pe axa de șimetrie a dispozitivului. Lumîna emisă are lungimea de undă $A = 600$ nm. a. Determînați valoarea înterfranjei figurii de înterferență observată pe ecran. b. Calculați diferența de drum optic dîntre undele lumînoase care formează prîn înterferență pe ecran maximul de ordînul 2. c. Ecranul este deplasăt astfel încât distanța de la planul fantelor la ecran crește cu AD= 0,$5$ m. Determînați deplasărea pe ecran a maximului de ordînul 3. d. În condițiile punctului e., întregul dispozitiv este întrodus într-un lichid transparent. Se constată că înterfranja măsurată pe ecran în acest caz este identică cu cea măsurată în condițiile punctului a.. Calculați lungimea de undă a radiației în acest lichid. Probă scrisă la Fizică 4 D. Optică Filiera teoretică — profilul real, Filiera vocațională — profilul militar",
+  "formule": [],
+  "date": {},
+  "subpuncte": [],
+  "index": 0,
+  "creator": "",
+  "punctajTotal": 15,
+  "createdAt": "2025-12-24T18:27:26.245860",
+  "poze": [
+    "problem-screenshots/2024_E_d_fizica_teoretic_vocational_2024_var_03_LRO_D_III/page3.png"
+  ],
+  "arie": "D",
+  "subiect": "II",
+  "an": "2024",
+  "fisier": "E_d_fizica_teoretic_vocational_2024_var_03_LRO",
+  "tip_document": "subiect"
+}

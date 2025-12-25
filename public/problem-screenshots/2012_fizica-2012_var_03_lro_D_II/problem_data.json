@@ -1,0 +1,23 @@
+{
+  "titlu": "Problema II - D - 2012",
+  "descriere": "Problema II din aria D, anul 2012",
+  "categorie": "Bac",
+  "varianta": "2012",
+  "dificultate": "mediu",
+  "continut": "e mtndriti d. 10 rA (Sp) Il. Rezolvați următoarea problemă: (15 puncte) Pe un banc optic se montează o lentilă biconvexă (L1), conșiderată subțire, având distanța focală f = $30$ cm, razele de curbură egale în modul și îndicele de refracție $n = 15.$ Un obiect lîniar este plasăt în fața lentilei, perpendicular pe axul optic prîncipal. Pe un ecran, plasăt la o distanță adecvată, se observă o imagîne clară a obiectului, de două ori mai mare decât obiectul. a. Calculați modulul razelor de curbură ale lentilei. b. Calculați distanța la care se află obiectul față de lentilă. c. Mențînând fixe obiectul și lentila (L,), se alipește de lentila biconvexă (L;) o a doua lentilă (L.). Se observă că pe ecranul aflat la distanța de $90$ cm de obiect se formează o nouă imagîne clară a obiectului. Calculați distanța focală a celei de a doua lentile (L2). d. Se depărtează lentila (L.) de lentila (L,) și se înlătură obiectul. Se constată că pentru o anumită distanță între lentile un fascicul de lumînă paralel cu axul optic prîncipal, provenit de la o sursă de lumînă laser, încident pe lentila (L1) părăsește lentila (L>) tot paralel cu axul optic prîncipal. Realizați un desen în care să figureze mersul razelor de lumînă prîn șistemul de lentile în acest caz și determînați distanța D dîntre lentile. IIl. Rezolvați următoarea problemă: (15 puncte) Nu mauaou e a ll m Du eeu Dm ou llu u au luzliE _ommc eee UA aR DR S pm N z v c lE, l a D a p m s l a d DuR c a a a r u de a ru , DEPR S c E DPR s A 0\n\n",
+  "formule": [],
+  "date": {},
+  "subpuncte": [],
+  "index": 0,
+  "creator": "",
+  "punctajTotal": 15,
+  "createdAt": "2025-12-24T18:17:34.839925",
+  "poze": [
+    "problem-screenshots/2012_fizica-2012_var_03_lro_D_II/page3.png"
+  ],
+  "arie": "D",
+  "subiect": "II",
+  "an": "2012",
+  "fisier": "fizica-2012_var_03_lro",
+  "tip_document": "subiect"
+}

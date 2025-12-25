@@ -1,0 +1,23 @@
+{
+  "titlu": "Problema II - A - None",
+  "descriere": "Problema II din aria A, anul None",
+  "categorie": "Bac",
+  "varianta": null,
+  "dificultate": "mediu",
+  "continut": "IIl. Rezolvați următoarea problemă: (15 puncte) Într-un experiment s-a studiat căderea a două corpuri în câmpul gravitațional terestru. Cele două corpuri au aspect exterior identic (aceeași formă și aceleași dimenșiuni), dar au mase diferite. Masă corpului A este m, = 50g. Pe baza datelor obțînute de la un senzor de mișcare a fost trasăt graficul alăturat, în care este redată dependența de timp a vitezei corpului A, respectiv B. Această dependență a vitezei de timp poate fi explicâtă dacă admitem că forța de rezistență la înaîntare este direct proporțională cu viteza (\\Îff\\ :k'v). Valoarea coeficientului de proporționalitate k depînde doar de forma și dimenșiunile corpului. Determînați: a. viteza maximă v_„,„ atînsă de corpul A în timpul căderii; v(mis) A b. valoarea coeficientului de proporționalitate K ; 40- — — — PA c. masă corpului B; 20 B d. lucrul mecanic efectuat de forța de rezistență la înaîntare asupra corpului “ &T A în timpul Af = $14$ s în care corpul a căzut, pornînd dîn repaus, pe distanța % 04 08 12 16 1(s) d=$4$ m. Proba E - d): Probă scrisă la Fizică 1 A. Mecanică\n\n",
+  "formule": [],
+  "date": {},
+  "subpuncte": [],
+  "index": 0,
+  "creator": "",
+  "punctajTotal": 15,
+  "createdAt": "2025-12-24T18:28:18.460485",
+  "poze": [
+    "problem-screenshots/None_proba_e_d_fizica_subiect_10_A_III/page0.png"
+  ],
+  "arie": "A",
+  "subiect": "II",
+  "an": null,
+  "fisier": "proba_e_d_fizica_subiect_10",
+  "tip_document": "subiect"
+}

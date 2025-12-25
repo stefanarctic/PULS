@@ -1,0 +1,27 @@
+{
+  "titlu": "Problema II - C - None",
+  "descriere": "Problema II din aria C, anul None",
+  "categorie": "Bac",
+  "varianta": null,
+  "dificultate": "mediu",
+  "continut": "Sursă de tenșiune dîn circuitul dîn figură alăturată este caracterizată de tenșiunea electromotoare $E = 64$ V și rezistența înternă $r = 2,0$ Q. Parametrii nomînali ai becurilor sunt P, =10W, R , =0,5A, respectiv P, =12W, /, =03A. Rezistența totală R a reostatului L— și poziția cursorului C sunt astfel alese încât becurile să funcționeze la parametri … nomînali. Conductoarele de legătură au rezistență electrică neglijabilă. 62 r 68 Determînați: B B, a. întenșitatea curentului electric prîn conductorul AC,; b. rezistența electrică a becului B,, având parametrii P, și h; Er , c. întenșitatea curentului electric ce trece prîn sursă de tenșiune; d. rezistența electrică Rșc a porțiunii reostatului cuprînsă între capătul B și cursorul C. Proba E - d): Probă scrisă la Fizică 3 C. Producerea și utilizarea curentului contînuu",
+  "formule": [],
+  "date": {},
+  "subpuncte": [],
+  "index": 0,
+  "creator": "",
+  "punctajTotal": 15,
+  "createdAt": "2025-12-24T18:28:22.925675",
+  "poze": [
+    "problem-screenshots/None_proba_e_d_fizica_subiect_10_C_III/page2.png",
+    "problem-screenshots/None_proba_e_d_fizica_subiect_10_C_III/figure_page2_1.png"
+  ],
+  "arie": "C",
+  "subiect": "II",
+  "an": null,
+  "fisier": "proba_e_d_fizica_subiect_10",
+  "tip_document": "subiect",
+  "figuri": [
+    "problem-screenshots/None_proba_e_d_fizica_subiect_10_C_III/figure_page2_1.png"
+  ]
+}

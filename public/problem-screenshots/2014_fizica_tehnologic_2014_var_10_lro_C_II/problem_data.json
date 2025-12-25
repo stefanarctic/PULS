@@ -1,0 +1,23 @@
+{
+  "titlu": "Problema II - C - 2014",
+  "descriere": "Problema II din aria C, anul 2014",
+  "categorie": "Bac",
+  "varianta": "2014",
+  "dificultate": "mediu",
+  "continut": "H. CREL WPJ Il. Rezolvați următoarea problemă: (15 puncte) Un circuit electric este format dîntr-o sursă având tenșiunea Er electromotoare $E = 12$ V și rezistența înterioară $r = 2020,$ trei . rezistoare și un întrerupător K. Schema electrică a circuitului este reprezentată în figură alăturată. Valorile rezistențelor electrice ale R K celor trei rezistoare sunt: , =820Q, R, =6 , respectiv F3 =302. R 2 Determînați: ! R a. rezistența echivalentă a circuitului exterior sursei atunci când = întrerupătorul K este deschis; b. întenșitatea curentului electric care străbate rezistorul A, atunci când întrerupătorul K este deschis; c. tenșiunea electrică la bornele sursei atunci când întrerupătorul K este închis; d. energia electrică consumată de rezistorul A,, în At=imîn, atunci când întrerupătorul K este închis. IIl. Rezolvați următoarea problemă: (15 puncte) DN An a Z m sD a a a e e l mu r e mb r a I SN AT a m ab de Dimh e l r a u AN aRT Ia a m Î Aaaa m m m sb r m\n\n",
+  "formule": [],
+  "date": {},
+  "subpuncte": [],
+  "index": 0,
+  "creator": "",
+  "punctajTotal": 15,
+  "createdAt": "2025-12-24T18:19:02.425261",
+  "poze": [
+    "problem-screenshots/2014_fizica_tehnologic_2014_var_10_lro_C_II/page2.png"
+  ],
+  "arie": "C",
+  "subiect": "II",
+  "an": "2014",
+  "fisier": "fizica_tehnologic_2014_var_10_lro",
+  "tip_document": "subiect"
+}

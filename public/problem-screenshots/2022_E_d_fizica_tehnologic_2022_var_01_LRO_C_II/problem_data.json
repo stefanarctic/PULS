@@ -1,0 +1,27 @@
+{
+  "titlu": "Problema II - C - 2022",
+  "descriere": "Problema II din aria C, anul 2022",
+  "categorie": "Bac",
+  "varianta": "2022",
+  "dificultate": "mediu",
+  "continut": "d. 1,$6$ mA (3p) Il. Rezolvați următoarea problemă: (15 puncte) Se conșideră circuitul electric a cărui schemă este reprezentată în figură alăturată. Rezistențele electrice ale rezistoarelor sunt: , =20202, $f = 4002,$ H, =3020Q și A, =24 Q. Tenșiunea electromotoare a bateriei este $E = 72$ V, iar rezistența înterioară r este necunoscută. Înstrumentele de măsură montate în circuit sunt conșiderate ideale (R =06;Ay — =). Întenșitatea curentului — îndicâtă de ampermetru este /, = 1,5 A . Determînați: a. tenșiunea îndicâtă de voltmetru; R4 R> b. rezistența echivalentă a grupării rezistoarelor A, R și R3; — — c. valoarea întenșității curentului ce străbate rezistorul R ; 0 R4 IIQ d. valoarea rezistenței înterioare r a bateriei. Elr IIl. Rezolvați următoarea problemă: (15 puncte) În fiaura alăturată este reprezentată schema unui circuit electric. Valoarea întenșitătii curentului electric\n\n",
+  "formule": [],
+  "date": {},
+  "subpuncte": [],
+  "index": 0,
+  "creator": "",
+  "punctajTotal": 15,
+  "createdAt": "2025-12-24T18:25:25.981125",
+  "poze": [
+    "problem-screenshots/2022_E_d_fizica_tehnologic_2022_var_01_LRO_C_II/page2.png",
+    "problem-screenshots/2022_E_d_fizica_tehnologic_2022_var_01_LRO_C_II/figure_page2_1.png"
+  ],
+  "arie": "C",
+  "subiect": "II",
+  "an": "2022",
+  "fisier": "E_d_fizica_tehnologic_2022_var_01_LRO",
+  "tip_document": "subiect",
+  "figuri": [
+    "problem-screenshots/2022_E_d_fizica_tehnologic_2022_var_01_LRO_C_II/figure_page2_1.png"
+  ]
+}

@@ -1,0 +1,27 @@
+{
+  "titlu": "Problema II - B - 2022",
+  "descriere": "Problema II din aria B, anul 2022",
+  "categorie": "Bac",
+  "varianta": "2022",
+  "dificultate": "mediu",
+  "continut": "O cantitate dată de gaz ideal poliatomic (C, =3R) se află în starea 1, la p preșiunea p =10\" Pa și volumul V, =10 L. Gazul este supus procesului ciclic p __2 3 1>2—3 >1 reprezentat în coordonate p-V, în figură alăturată. Preșiunea ? 1 gazului în starea 2 este $p = 5$ p;. În procesul 1— 2 temperatura gazului este constantă. Conșiderați că În5 = 1,6. a. Reprezentați grafic procesul ciclic 1> 2 3 > 1 în coordonate V-T. b. Determînați variația energiei înterne în transformarea 3 > 1. P, 1 11 c. Calculați valoarea căldurii schimbate de gaz cu mediul exterior în V T V, transformarea 2 > 3. 2 1 d. Calculați valoarea lucrului mecanic schimbat de gaz cu mediul exterior în transformarea 1> 2. Filiera tehnologică — profilul tehnic și profilul resurse naturale și protecția mediului",
+  "formule": [],
+  "date": {},
+  "subpuncte": [],
+  "index": 0,
+  "creator": "",
+  "punctajTotal": 15,
+  "createdAt": "2025-12-24T18:25:24.773102",
+  "poze": [
+    "problem-screenshots/2022_E_d_fizica_tehnologic_2022_var_01_LRO_B_III/page1.png",
+    "problem-screenshots/2022_E_d_fizica_tehnologic_2022_var_01_LRO_B_III/figure_page1_1.png"
+  ],
+  "arie": "B",
+  "subiect": "II",
+  "an": "2022",
+  "fisier": "E_d_fizica_tehnologic_2022_var_01_LRO",
+  "tip_document": "subiect",
+  "figuri": [
+    "problem-screenshots/2022_E_d_fizica_tehnologic_2022_var_01_LRO_B_III/figure_page1_1.png"
+  ]
+}

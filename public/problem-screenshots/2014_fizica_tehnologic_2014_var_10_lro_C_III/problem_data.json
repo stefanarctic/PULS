@@ -1,0 +1,23 @@
+{
+  "titlu": "Problema II - C - 2014",
+  "descriere": "Problema II din aria C, anul 2014",
+  "categorie": "Bac",
+  "varianta": "2014",
+  "dificultate": "mediu",
+  "continut": "Ă. CTICIgIA CIECUICA CONSUNTIALA UC FOZISUWTUI H, IM AL= TIT , ALUNICI CANMA IM CTUPALOTUL A ES ÎNICTIS. IIl. Rezolvați următoarea problemă: (15 puncte) O sursă având tenșiunea electromotoare $E = 12$ V și rezistența înterioară $r = 40,$ debitează aceeași putere pe circuitul exterior atunci când acesta are rezistența F, =2 Q său rezistența I, (R, + R,). Determînați: a. valoarea puterii dișipate pe circuitul exterior sursei, atunci când acesta are rezistența F ; b. valoarea f a rezistenței circuitului exterior; c. puterea maximă pe care sursă o poate debita unui circuit exterior a cârui rezistență electrică este aleasă corespunzător; d. randamentul circuitului electric atunci când acesta are rezistența exterioară $F = 40.$ Probă scrisă la Fizică 3 C. Producerea și utilizarea curentului contînuu Filiera tehnologică — profilul tehnic și profilul resurse naturale și protecția mediului\n\n",
+  "formule": [],
+  "date": {},
+  "subpuncte": [],
+  "index": 0,
+  "creator": "",
+  "punctajTotal": 15,
+  "createdAt": "2025-12-24T18:19:03.526592",
+  "poze": [
+    "problem-screenshots/2014_fizica_tehnologic_2014_var_10_lro_C_III/page2.png"
+  ],
+  "arie": "C",
+  "subiect": "II",
+  "an": "2014",
+  "fisier": "fizica_tehnologic_2014_var_10_lro",
+  "tip_document": "subiect"
+}
