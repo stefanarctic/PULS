@@ -1,0 +1,43 @@
+{
+  "titlu": "Problema II - Optică - Bac 2016 Var 10",
+  "descriere": "Problema de bacalaureat - Subiectul II din Optică, 2016, Varianta 10, tehnologic",
+  "categorie": "Bac",
+  "varianta": "2016 Var 10",
+  "dificultate": "mediu",
+  "punctajTotal": 15,
+  "continut": "O lentilă subțire divergentă $(L_{1})$ are distanța focală $f_{1} = -20 \\, \\text{cm}$. La distanța de 60 cm în fața ei se așază, perpendicular pe axa optică principală, un obiect luminos cu înălțimea de 4 cm.\n\na. Realizați un desen în care să evidențiați construcția grafică a imaginii prin lentilă.\nb. Calculați distanța la care se formează imaginea față de lentilă.\nc. Calculați înălțimea imaginii.\nd. Se formează un sistem optic centrat alipind primei lentile $(L_{1})$ o altă lentilă subțire, convergentă $(L_{2})$, având convergența $C_{2} = 5 \\, \\text{m}^{-1}$. Determinați convergența echivalentă a sistemului optic format.",
+  "formule": [],
+  "date": {},
+  "subpuncte": [
+    {
+      "id": "1a",
+      "cerinta": "Realizați un desen în care să evidențiați construcția grafică a imaginii prin lentilă.",
+      "punctaj": 3
+    },
+    {
+      "id": "2b",
+      "cerinta": "Calculați distanța la care se formează imaginea față de lentilă.",
+      "punctaj": 3
+    },
+    {
+      "id": "3c",
+      "cerinta": "Calculați înălțimea imaginii.",
+      "punctaj": 3
+    },
+    {
+      "id": "4d",
+      "cerinta": "Se formează un sistem optic centrat alipind primei lentile $(L_{1})$ o altă lentilă subțire, convergentă $(L_{2})$, având convergența $C_{2} = 5 \\, \\text{m}^{-1}$. Determinați convergența echivalentă a sistemului optic format.",
+      "punctaj": 3
+    }
+  ],
+  "poze": [],
+  "metadata": {
+    "source": "2016_e_d_fizica_tehnologic_2016_var_10_lro",
+    "year": 2016,
+    "variant": 10,
+    "type": "tehnologic",
+    "subjectArea": "Optică",
+    "subjectCode": "D",
+    "subjectNumber": 2
+  }
+}

@@ -1,0 +1,43 @@
+{
+  "titlu": "Problema II - Optică - Bac 2021",
+  "descriere": "Problema de bacalaureat - Subiectul II din Optică, 2021, teoretic",
+  "categorie": "Bac",
+  "varianta": "2021",
+  "dificultate": "mediu",
+  "punctajTotal": 15,
+  "continut": "Pe un banc optic se află un sistem optic centrat, format din două lentile situate la distanța de 30 cm una de alta. Perpendicular pe axa optică principală, la distanța de 20 cm în fața primei lentile, se află un obiect luminos liniar înalt de 1 cm. Imaginea acestui obiect, formată de prima lentilă, este reală și are aceeași înălțime cu obiectul.\n\na. Calculați distanța focală a primei lentile.\nb. Determinați distanța la care se formează imaginea finală a obiectului dată de sistemul optic, măsurată în raport cu a doua lentilă, dacă aceasta din urmă are convergența $C_2 = -10 \\, \\text{m}^{-1}$.\nc. Calculați înălțimea imaginii finale formate de sistemul de lentile.\nd. Realizați un desen în care să evidențiați construcția imaginii obiectului prin sistemul de lentile.",
+  "formule": [],
+  "date": {},
+  "subpuncte": [
+    {
+      "id": "1a",
+      "cerinta": "Calculați distanța focală a primei lentile.",
+      "punctaj": 3
+    },
+    {
+      "id": "2b",
+      "cerinta": "Determinați distanța la care se formează imaginea finală a obiectului dată de sistemul optic, măsurată în raport cu a doua lentilă, dacă aceasta din urmă are convergența $C_2 = -10 \\, \\text{m}^{-1}$.",
+      "punctaj": 3
+    },
+    {
+      "id": "3c",
+      "cerinta": "Calculați înălțimea imaginii finale formate de sistemul de lentile.",
+      "punctaj": 3
+    },
+    {
+      "id": "4d",
+      "cerinta": "Realizați un desen în care să evidențiați construcția imaginii obiectului prin sistemul de lentile.",
+      "punctaj": 3
+    }
+  ],
+  "poze": [],
+  "metadata": {
+    "source": "2021_E_d_fizica_teoretic_vocational_2021_var_model",
+    "year": 2021,
+    "variant": null,
+    "type": "teoretic",
+    "subjectArea": "Optică",
+    "subjectCode": "D",
+    "subjectNumber": 2
+  }
+}

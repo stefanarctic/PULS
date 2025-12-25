@@ -1,0 +1,43 @@
+{
+  "titlu": "Problema III - Mecanică - Bac 2014 Var 4",
+  "descriere": "Problema de bacalaureat - Subiectul III din Mecanică, 2014, Varianta 4, teoretic",
+  "categorie": "Bac",
+  "varianta": "2014 Var 4",
+  "dificultate": "mediu",
+  "punctajTotal": 15,
+  "continut": "Un autoturism de masă $m = 1000\\,\\mathrm{kg}$ se deplasează din localitatea A, situată la altitudinea $h_A = 360\\,\\mathrm{m}$, în localitatea B, situată la altitudinea $h_B = 310\\,\\mathrm{m}$. Altitudinile sunt măsurate în raport cu nivelul mării. La ieșirea din localitatea B autoturismul își continuă mișcarea pe un drum orizontal. În timpul deplasării pe porțiunea orizontală, puterea dezvoltată de motor este $P = 50\\,\\mathrm{kW}$, iar viteza este constantă. Rezultanta forțelor de rezistență ce acționează asupra autoturismului reprezintă o fracțiune $f = 0,25$ din greutatea acestuia și rămâne tot timpul constantă. Considerând energia potențială gravitațională nulă la nivelul mării, determinați:\n\na. lucrul mecanic efectuat de greutate la deplasarea autoturismului între cele două localități;\nb. viteza autoturismului pe porțiunea orizontală;\nc. lucrul mecanic efectuat de forța de tracțiune pentru deplasarea autoturismului pe porțiunea orizontală a drumului, pe distanța $d = 2\\,\\mathrm{km}$;\nd. distanța $x$ parcursă de autoturism până la oprire, pe porțiunea orizontală, după întreruperea alimentării motorului. Considerați că viteza autoturismului în momentul întreruperii alimentării a fost $v = 20\\,\\mathrm{m/s}$ și că nu se acționează frâna.",
+  "formule": [],
+  "date": {},
+  "subpuncte": [
+    {
+      "id": "1a",
+      "cerinta": "lucrul mecanic efectuat de greutate la deplasarea autoturismului între cele două localități;",
+      "punctaj": 3
+    },
+    {
+      "id": "2b",
+      "cerinta": "viteza autoturismului pe porțiunea orizontală;",
+      "punctaj": 3
+    },
+    {
+      "id": "3c",
+      "cerinta": "lucrul mecanic efectuat de forța de tracțiune pentru deplasarea autoturismului pe porțiunea orizontală a drumului, pe distanța $d = 2\\,\\mathrm{km}$;",
+      "punctaj": 3
+    },
+    {
+      "id": "4d",
+      "cerinta": "distanța $x$ parcursă de autoturism până la oprire, pe porțiunea orizontală, după întreruperea alimentării motorului. Considerați că viteza autoturismului în momentul întreruperii alimentării a fost $v = 20\\,\\mathrm{m/s}$ și că nu se acționează frâna.",
+      "punctaj": 3
+    }
+  ],
+  "poze": [],
+  "metadata": {
+    "source": "2014_fizica_teoretic_vocational_2014_var_04_lro",
+    "year": 2014,
+    "variant": 4,
+    "type": "teoretic",
+    "subjectArea": "Mecanică",
+    "subjectCode": "A",
+    "subjectNumber": 3
+  }
+}

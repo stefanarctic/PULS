@@ -1,0 +1,43 @@
+{
+  "titlu": "Problema III - Mecanică - Bac 2024",
+  "descriere": "Problema de bacalaureat - Subiectul III din Mecanică, 2024, tehnologic",
+  "categorie": "Bac",
+  "varianta": "2024",
+  "dificultate": "mediu",
+  "punctajTotal": 15,
+  "continut": "O săniuță cu masă $m = 5\\mathrm{kg}$ este lăsată să alunece liber, pornind din repaus, din vârful unui plan înclinat, de la înălțimea $h = 20\\mathrm{m}$ față de baza acestuia. Unghiul dintre suprafața planului înclinat și suprafața orizontală este $\\alpha = 30^{\\circ}$. Săniuța ajunge la baza planului înclinat cu viteza $\\nu = 16\\mathrm{m/s}$. Se consideră că energia potențială gravitațională este nulă la baza planului înclinat. Determinați:\n\na. energia mecanică a săniuței în starea inițială;\nb. variația energiei cinetice a săniuței în timpul coborârii din vârful planului înclinat până la baza acestuia;\nc. lucrul mecanic efectuat de forța de frecare care acționează asupra săniuței, la coborâre;\nd. coeficientul de frecare la alunecare dintre săniuță și suprafața planului înclinat.",
+  "formule": [],
+  "date": {},
+  "subpuncte": [
+    {
+      "id": "1a",
+      "cerinta": "energia mecanică a săniuței în starea inițială;",
+      "punctaj": 3
+    },
+    {
+      "id": "2b",
+      "cerinta": "variația energiei cinetice a săniuței în timpul coborârii din vârful planului înclinat până la baza acestuia;",
+      "punctaj": 3
+    },
+    {
+      "id": "3c",
+      "cerinta": "lucrul mecanic efectuat de forța de frecare care acționează asupra săniuței, la coborâre;",
+      "punctaj": 3
+    },
+    {
+      "id": "4d",
+      "cerinta": "coeficientul de frecare la alunecare dintre săniuță și suprafața planului înclinat.",
+      "punctaj": 3
+    }
+  ],
+  "poze": [],
+  "metadata": {
+    "source": "2024_E_d_fizica_tehnologic_2024_var_simulare_LRO",
+    "year": 2024,
+    "variant": null,
+    "type": "tehnologic",
+    "subjectArea": "Mecanică",
+    "subjectCode": "A",
+    "subjectNumber": 3
+  }
+}

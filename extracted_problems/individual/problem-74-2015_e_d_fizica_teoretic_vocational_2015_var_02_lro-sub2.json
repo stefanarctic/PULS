@@ -1,0 +1,43 @@
+{
+  "titlu": "Problema II - Optică - Bac 2015 Var 2",
+  "descriere": "Problema de bacalaureat - Subiectul II din Optică, 2015, Varianta 2, teoretic",
+  "categorie": "Bac",
+  "varianta": "2015 Var 2",
+  "dificultate": "mediu",
+  "punctajTotal": 15,
+  "continut": "Un obiect cu înălțimea $y_{1} = 2 \\, \\text{cm}$ este plasat perpendicular pe axa optică principală a unei lentile subțiri $L_{1}$, la 30 cm de aceasta. Imaginea obiectului se formează pe un ecran aflat la distanța de 60 cm față de lentilă.\n\na. Calculați distanța focală a lentilei.\n\nb. Calculați înălțimea imaginii formate de lentilă.\n\nc. Determinați distanța dintre lentila $L_{1}$ și o altă lentilă subțire $L_{2}$ de distanță focală $f_{2} = -12,5 \\, \\text{cm}$, astfel încât orice fascicul paralel care intră în sistemul optic centrat format de cele două lentile, să iasă tot paralel din sistem.\n\nd. Se alipesc lentilele $L_{1}$ și $L_{2}$ folosite la punctul c. Determinați convergența sistemului optic astfel format.",
+  "formule": [],
+  "date": {},
+  "subpuncte": [
+    {
+      "id": "1a",
+      "cerinta": "Calculați distanța focală a lentilei.",
+      "punctaj": 3
+    },
+    {
+      "id": "2b",
+      "cerinta": "Calculați înălțimea imaginii formate de lentilă.",
+      "punctaj": 3
+    },
+    {
+      "id": "3c",
+      "cerinta": "Determinați distanța dintre lentila $L_{1}$ și o altă lentilă subțire $L_{2}$ de distanță focală $f_{2} = -12,5 \\, \\text{cm}$, astfel încât orice fascicul paralel care intră în sistemul optic centrat format de cele două lentile, să iasă tot paralel din sistem.",
+      "punctaj": 3
+    },
+    {
+      "id": "4d",
+      "cerinta": "Se alipesc lentilele $L_{1}$ și $L_{2}$ folosite la punctul c. Determinați convergența sistemului optic astfel format.",
+      "punctaj": 3
+    }
+  ],
+  "poze": [],
+  "metadata": {
+    "source": "2015_e_d_fizica_teoretic_vocational_2015_var_02_lro",
+    "year": 2015,
+    "variant": 2,
+    "type": "teoretic",
+    "subjectArea": "Optică",
+    "subjectCode": "D",
+    "subjectNumber": 2
+  }
+}

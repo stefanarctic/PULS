@@ -1,0 +1,43 @@
+{
+  "titlu": "Problema II - Termodinamică - Bac 2015",
+  "descriere": "Problema de bacalaureat - Subiectul II din Termodinamică, 2015, tehnologic",
+  "categorie": "Bac",
+  "varianta": "2015",
+  "dificultate": "mediu",
+  "punctajTotal": 15,
+  "continut": "Într-un cilindru orizontal cu piston mobil este închisă o masă $m = 4,2g$ de gaz ideal diatomic $(\\mu = 28g/mol)$. Inițial gazul se află la presiunea $p_1 = 10^5$ Pa și ocupă volumul $V_1 = 5L$. Gazul se răcește la presiune constantă până în starea 2, în care volumul său este $V_2 = 4L$. Se blochează pistonul, iar gazul este încălzit până în starea 3, în care temperatura ajunge la valoarea inițială. Determinați:\na. cantitatea de gaz din cilindru;\nb. densitatea gazului în starea 3;\nc. variația presiunii gazului în transformarea 2-3;\nd. lucrul mecanic schimbat de gaz cu exteriorul în transformarea 1-2.",
+  "formule": [],
+  "date": {},
+  "subpuncte": [
+    {
+      "id": "1a",
+      "cerinta": "cantitatea de gaz din cilindru;",
+      "punctaj": 3
+    },
+    {
+      "id": "2b",
+      "cerinta": "densitatea gazului în starea 3;",
+      "punctaj": 3
+    },
+    {
+      "id": "3c",
+      "cerinta": "variația presiunii gazului în transformarea 2-3;",
+      "punctaj": 3
+    },
+    {
+      "id": "4d",
+      "cerinta": "lucrul mecanic schimbat de gaz cu exteriorul în transformarea 1-2.",
+      "punctaj": 3
+    }
+  ],
+  "poze": [],
+  "metadata": {
+    "source": "2015_fizica_tehnologic_2015_var_model",
+    "year": 2015,
+    "variant": null,
+    "type": "tehnologic",
+    "subjectArea": "Termodinamică",
+    "subjectCode": "B",
+    "subjectNumber": 2
+  }
+}

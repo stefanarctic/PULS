@@ -1,0 +1,43 @@
+{
+  "titlu": "Problema II - Optică - Bac 2014",
+  "descriere": "Problema de bacalaureat - Subiectul II din Optică, 2014, teoretic",
+  "categorie": "Bac",
+  "varianta": "2014",
+  "dificultate": "mediu",
+  "punctajTotal": 15,
+  "continut": "Două lentile subțiri plan convexe, identice, situate în aer, sunt alipite formând un sistem optic centrat. Convergența unei lentile este $C = 10\\ \\mathrm{m}^{-1}$, iar indicele de refracție al materialului din care este confectionată are valoarea $n = 1,8$.\n\na. Determinați raza de curbură a feței convexe a unei lentile.\nb. La distanța de 15 cm de sistem se plasează, perpendicular pe axa optică principală, un mic obiect liniar. Determinați distanța, față de lentilă, la care se formează imaginea obiectului prin sistem.\nc. Se depărtează lentilele una de alta. Se observă că un fascicul de lumină monocromatică incident pe prima lentilă paralel cu axa optică principală părăsește sistemul tot paralel cu axa optică principală. Determinați distanța dintre lentile în această situație.\nd. Reprezentați printr-un desen mersul razelor de lumină în situația de la punctul c.\n\n#",
+  "formule": [],
+  "date": {},
+  "subpuncte": [
+    {
+      "id": "1a",
+      "cerinta": "Determinați raza de curbură a feței convexe a unei lentile.",
+      "punctaj": 3
+    },
+    {
+      "id": "2b",
+      "cerinta": "La distanța de 15 cm de sistem se plasează, perpendicular pe axa optică principală, un mic obiect liniar. Determinați distanța, față de lentilă, la care se formează imaginea obiectului prin sistem.",
+      "punctaj": 3
+    },
+    {
+      "id": "3c",
+      "cerinta": "Se depărtează lentilele una de alta. Se observă că un fascicul de lumină monocromatică incident pe prima lentilă paralel cu axa optică principală părăsește sistemul tot paralel cu axa optică principală. Determinați distanța dintre lentile în această situație.",
+      "punctaj": 3
+    },
+    {
+      "id": "4d",
+      "cerinta": "Reprezentați printr-un desen mersul razelor de lumină în situația de la punctul c.",
+      "punctaj": 3
+    }
+  ],
+  "poze": [],
+  "metadata": {
+    "source": "2014_fizica_teoretic_vocational-2014_var_model",
+    "year": 2014,
+    "variant": null,
+    "type": "teoretic",
+    "subjectArea": "Optică",
+    "subjectCode": "D",
+    "subjectNumber": 2
+  }
+}

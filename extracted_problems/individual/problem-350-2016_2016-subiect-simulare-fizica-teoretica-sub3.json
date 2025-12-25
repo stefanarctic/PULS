@@ -1,0 +1,43 @@
+{
+  "titlu": "Problema III - Optică - Bac 2016",
+  "descriere": "Problema de bacalaureat - Subiectul III din Optică, 2016, teoretic",
+  "categorie": "Bac",
+  "varianta": "2016",
+  "dificultate": "mediu",
+  "punctajTotal": 15,
+  "continut": "O sursă de lumină monocromatică $S_0$ este așezată pe axa de simetrie a unui dispozitiv Young la distanța $d = 20 \\, \\text{cm}$ de planul fantelor $S_1$ și $S_2$. Sursa emite o radiație cu lungimea de undă $\\lambda_1 = 500 \\, \\text{nm}$. Distanța dintre fante este $2\\ell = 1 \\, \\text{mm}$, iar distanța de la planul fantelor la ecran este $D = 2 \\, \\text{m}$.\n\na. Determinați distanța dintre maximele de ordinul al doilea ale sistemului de franje format pe ecran.\nb. În dreptul uneia dintre fantele dispozitivului se așază, paralel cu planul fantelor, o lamă cu fețe plane și paralele de grosime $2\\mu \\text{m}$. Se constată că maximul central s-a deplasat în locul celei de-a doua franje luminoase din absența lamei. Calculați indicele de refracție al materialului din care este confectionată lama.\nc. Se îndepărtează lama. Se înlocuiește sursa de lumină monocromatică cu o altă sursă care emite simultan două radiații cu lungimile de undă $\\lambda_1 = 500 \\, \\text{nm}$ și $\\lambda_2 = 450 \\, \\text{nm}$. Determinați distanța față de maximul central la care se realizează prima suprapunere a maximelor celor două radiații.\nd. Se deplasează sursa de lumină perpendicular pe axa de simetrie cu distanța $h = 0,2 \\, \\text{mm}$. Determinați distanța $\\Delta x_0$ pe care se deplasează maximul central.",
+  "formule": [],
+  "date": {},
+  "subpuncte": [
+    {
+      "id": "1a",
+      "cerinta": "Determinați distanța dintre maximele de ordinul al doilea ale sistemului de franje format pe ecran.",
+      "punctaj": 3
+    },
+    {
+      "id": "2b",
+      "cerinta": "În dreptul uneia dintre fantele dispozitivului se așază, paralel cu planul fantelor, o lamă cu fețe plane și paralele de grosime $2\\mu \\text{m}$. Se constată că maximul central s-a deplasat în locul celei de-a doua franje luminoase din absența lamei. Calculați indicele de refracție al materialului din care este confectionată lama.",
+      "punctaj": 3
+    },
+    {
+      "id": "3c",
+      "cerinta": "Se îndepărtează lama. Se înlocuiește sursa de lumină monocromatică cu o altă sursă care emite simultan două radiații cu lungimile de undă $\\lambda_1 = 500 \\, \\text{nm}$ și $\\lambda_2 = 450 \\, \\text{nm}$. Determinați distanța față de maximul central la care se realizează prima suprapunere a maximelor celor două radiații.",
+      "punctaj": 3
+    },
+    {
+      "id": "4d",
+      "cerinta": "Se deplasează sursa de lumină perpendicular pe axa de simetrie cu distanța $h = 0,2 \\, \\text{mm}$. Determinați distanța $\\Delta x_0$ pe care se deplasează maximul central.",
+      "punctaj": 3
+    }
+  ],
+  "poze": [],
+  "metadata": {
+    "source": "2016_2016-subiect-simulare-fizica-teoretica",
+    "year": 2016,
+    "variant": null,
+    "type": "teoretic",
+    "subjectArea": "Optică",
+    "subjectCode": "D",
+    "subjectNumber": 3
+  }
+}

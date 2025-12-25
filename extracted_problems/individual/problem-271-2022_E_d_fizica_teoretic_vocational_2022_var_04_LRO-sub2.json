@@ -1,0 +1,43 @@
+{
+  "titlu": "Problema II - Optică - Bac 2022 Var 4",
+  "descriere": "Problema de bacalaureat - Subiectul II din Optică, 2022, Varianta 4, teoretic",
+  "categorie": "Bac",
+  "varianta": "2022 Var 4",
+  "dificultate": "mediu",
+  "punctajTotal": 15,
+  "continut": "O lentilă convergentă, considerată subțire, are distanța focală de 20 cm. În fața acestei lentile este așezat, perpendicular pe axa optică principală, un obiect luminos liniar cu înălțimea de 5 cm. Distanța de la obiect la lentilă este de 25 cm. În spatele lentilei se află un ecran pe care se formează imaginea clară a obiectului.\n\na. Calculați distanța de la obiect la ecran.\nb. Realizați un desen în care să evidențiați construcția imaginii obiectului prin lentilă în situația descrisă.\nc. Calculați înălțimea imaginii obiectului pe ecran.\nd. Se alipește de această lentilă o lentilă identică pentru a forma un sistem optic centrat. Calculați convergența acestui sistem de lentile.",
+  "formule": [],
+  "date": {},
+  "subpuncte": [
+    {
+      "id": "1a",
+      "cerinta": "Calculați distanța de la obiect la ecran.",
+      "punctaj": 3
+    },
+    {
+      "id": "2b",
+      "cerinta": "Realizați un desen în care să evidențiați construcția imaginii obiectului prin lentilă în situația descrisă.",
+      "punctaj": 3
+    },
+    {
+      "id": "3c",
+      "cerinta": "Calculați înălțimea imaginii obiectului pe ecran.",
+      "punctaj": 3
+    },
+    {
+      "id": "4d",
+      "cerinta": "Se alipește de această lentilă o lentilă identică pentru a forma un sistem optic centrat. Calculați convergența acestui sistem de lentile.",
+      "punctaj": 3
+    }
+  ],
+  "poze": [],
+  "metadata": {
+    "source": "2022_E_d_fizica_teoretic_vocational_2022_var_04_LRO",
+    "year": 2022,
+    "variant": 4,
+    "type": "teoretic",
+    "subjectArea": "Optică",
+    "subjectCode": "D",
+    "subjectNumber": 2
+  }
+}

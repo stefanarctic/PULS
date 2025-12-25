@@ -1,0 +1,43 @@
+{
+  "titlu": "Problema III - Mecanică - Bac 2020 Var 5",
+  "descriere": "Problema de bacalaureat - Subiectul III din Mecanică, 2020, Varianta 5, tehnologic",
+  "categorie": "Bac",
+  "varianta": "2020 Var 5",
+  "dificultate": "mediu",
+  "punctajTotal": 15,
+  "continut": "Un corp având masa $m = 12\\,\\mathrm{kg}$ este lăsat să alunece pe un plan înclinat cu unghiul $\\alpha = 30^\\circ$ față de orizontală, plecând din repaus. Înălțimea inițială la care se află corpul, măsurată față de baza planului, este $H = 1\\,\\mathrm{m}$. După ce corpul parcurge pe planul înclinat distanța $d = 1,6\\,\\mathrm{m}$, asupra corpului începe să acționeze o forță constantă $F$, paralelă cu planul înclinat și orientată în sens opus mișcării, astfel încât corpul se oprește la baza planului înclinat. Frecarea cu planul înclinat este neglijabilă. Energia potențială gravitațională se consideră nulă la baza planului înclinat. Determinați:\n\na. energia potențială gravitațională în momentul în care corpul se află la înălțimea $H = 1\\,\\mathrm{m}$;\nb. lucrul mecanic efectuat de greutate în timpul deplasării corpului pe distanța $d = 1,6\\,\\mathrm{m}$;\nc. valoarea vitezei corpului în momentul în care începe să acționeze forța constantă $F$;\nd. valoarea forței constante $F$ sub acțiunea căreia corpul se oprește la baza planului înclinat.",
+  "formule": [],
+  "date": {},
+  "subpuncte": [
+    {
+      "id": "1a",
+      "cerinta": "energia potențială gravitațională în momentul în care corpul se află la înălțimea $H = 1\\,\\mathrm{m}$;",
+      "punctaj": 3
+    },
+    {
+      "id": "2b",
+      "cerinta": "lucrul mecanic efectuat de greutate în timpul deplasării corpului pe distanța $d = 1,6\\,\\mathrm{m}$;",
+      "punctaj": 3
+    },
+    {
+      "id": "3c",
+      "cerinta": "valoarea vitezei corpului în momentul în care începe să acționeze forța constantă $F$;",
+      "punctaj": 3
+    },
+    {
+      "id": "4d",
+      "cerinta": "valoarea forței constante $F$ sub acțiunea căreia corpul se oprește la baza planului înclinat.",
+      "punctaj": 3
+    }
+  ],
+  "poze": [],
+  "metadata": {
+    "source": "2020_E_d_fizica_tehnologic_2020_var_05_LRO",
+    "year": 2020,
+    "variant": 5,
+    "type": "tehnologic",
+    "subjectArea": "Mecanică",
+    "subjectCode": "A",
+    "subjectNumber": 3
+  }
+}

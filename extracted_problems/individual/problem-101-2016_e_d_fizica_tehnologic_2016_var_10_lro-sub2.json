@@ -1,0 +1,43 @@
+{
+  "titlu": "Problema II - Termodinamică - Bac 2016 Var 10",
+  "descriere": "Problema de bacalaureat - Subiectul II din Termodinamică, 2016, Varianta 10, tehnologic",
+  "categorie": "Bac",
+  "varianta": "2016 Var 10",
+  "dificultate": "mediu",
+  "punctajTotal": 15,
+  "continut": "O cantitate $\\nu = 1$ mol de oxigen, cu masa molară $\\mu = 32 \\mathrm{~g/mol}$, considerat gaz ideal, se află într-o stare 1 având $p_1 = 2 \\cdot 10^5 \\mathrm{~Pa}$ și $t_1 = 27^{\\circ} \\mathrm{C}$. Gazul este încălzit la presiune constantă astfel încât volumul ocupat de oxigen se dublează. Determinați:\na. masa unei molecule de oxigen;\nb. numărul de molecule de oxigen;\nc. volumul inițial ocupat de oxigen;\nd. densitatea oxigenului în starea finală.",
+  "formule": [],
+  "date": {},
+  "subpuncte": [
+    {
+      "id": "1a",
+      "cerinta": "masa unei molecule de oxigen;",
+      "punctaj": 3
+    },
+    {
+      "id": "2b",
+      "cerinta": "numărul de molecule de oxigen;",
+      "punctaj": 3
+    },
+    {
+      "id": "3c",
+      "cerinta": "volumul inițial ocupat de oxigen;",
+      "punctaj": 3
+    },
+    {
+      "id": "4d",
+      "cerinta": "densitatea oxigenului în starea finală.",
+      "punctaj": 3
+    }
+  ],
+  "poze": [],
+  "metadata": {
+    "source": "2016_e_d_fizica_tehnologic_2016_var_10_lro",
+    "year": 2016,
+    "variant": 10,
+    "type": "tehnologic",
+    "subjectArea": "Termodinamică",
+    "subjectCode": "B",
+    "subjectNumber": 2
+  }
+}

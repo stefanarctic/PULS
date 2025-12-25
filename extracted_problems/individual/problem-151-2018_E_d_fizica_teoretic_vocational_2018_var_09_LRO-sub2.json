@@ -1,0 +1,45 @@
+{
+  "titlu": "Problema II - Mecanică - Bac 2018 Var 9",
+  "descriere": "Problema de bacalaureat - Subiectul II din Mecanică, 2018, Varianta 9, teoretic",
+  "categorie": "Bac",
+  "varianta": "2018 Var 9",
+  "dificultate": "mediu",
+  "punctajTotal": 15,
+  "continut": "Un corp de masă $m = 1,7 \\, \\text{kg}$ urcă cu viteza constantă $v = 1,5 \\, \\text{m/s}$ pe un plan înclinat foarte lung, sub acțiunea unei forțe orizontale și constante $\\ddot{F}$, ca în figura alăturată. Unghiul pe care planul înclinat îl formează cu orizontală este $\\alpha \\cong 37^\\circ$ (sin $\\alpha = 0,6$), iar coeficientul de frecare la alunecare dintre corp și planul înclinat are valoarea $\\mu = 0,2$.\n\na. Determinați timpul în care corpul parcurge distanța $d = 1,5 \\, \\text{m}$ în lungul planului înclinat.\nb. Reprezentați forțele care acționează asupra corpului.\nc. Calculați valoarea forței $\\ddot{F}$ pentru care corpul urcă cu viteză constantă pe planul înclinat.\nd. Acțiunea forței $\\ddot{F}$ încetează, corpul continuă să urce încetinit pe planul înclinat până la oprire, apoi coboară spre baza planului înclinat. Determinați accelerația cu care corpul coboară pe planul înclinat.\n\n![img-1.jpeg](img-1.jpeg)",
+  "formule": [],
+  "date": {},
+  "subpuncte": [
+    {
+      "id": "1a",
+      "cerinta": "Determinați timpul în care corpul parcurge distanța $d = 1,5 \\, \\text{m}$ în lungul planului înclinat.",
+      "punctaj": 3
+    },
+    {
+      "id": "2b",
+      "cerinta": "Reprezentați forțele care acționează asupra corpului.",
+      "punctaj": 3
+    },
+    {
+      "id": "3c",
+      "cerinta": "Calculați valoarea forței $\\ddot{F}$ pentru care corpul urcă cu viteză constantă pe planul înclinat.",
+      "punctaj": 3
+    },
+    {
+      "id": "4d",
+      "cerinta": "Acțiunea forței $\\ddot{F}$ încetează, corpul continuă să urce încetinit pe planul înclinat până la oprire, apoi coboară spre baza planului înclinat. Determinați accelerația cu care corpul coboară pe planul înclinat.",
+      "punctaj": 3
+    }
+  ],
+  "poze": [
+    "data:image/jpeg;base64,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"
+  ],
+  "metadata": {
+    "source": "2018_E_d_fizica_teoretic_vocational_2018_var_09_LRO",
+    "year": 2018,
+    "variant": 9,
+    "type": "teoretic",
+    "subjectArea": "Mecanică",
+    "subjectCode": "A",
+    "subjectNumber": 2
+  }
+}

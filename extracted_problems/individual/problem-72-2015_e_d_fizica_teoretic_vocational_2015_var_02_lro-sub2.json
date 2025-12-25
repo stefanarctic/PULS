@@ -1,0 +1,43 @@
+{
+  "titlu": "Problema II - Termodinamică - Bac 2015 Var 2",
+  "descriere": "Problema de bacalaureat - Subiectul II din Termodinamică, 2015, Varianta 2, teoretic",
+  "categorie": "Bac",
+  "varianta": "2015 Var 2",
+  "dificultate": "mediu",
+  "punctajTotal": 15,
+  "continut": "Într-un cilindru orizontal este închisă o cantitate de oxid de azot $NO$ ($\\mu = 30\\mathrm{g/mol}$). Cilindrul este prevăzut la un capăt cu un piston etanș ce se poate deplasa fără frecare. În starea inițială pistonul este blocat. Volumul ocupat de gaz este $V_1 = 4,155\\mathrm{dm}^3$, presiunea gazului din cilindru este $p_1 = 80\\mathrm{kPa}$, iar temperatura gazului este $T_1 = 300\\mathrm{K}$. Presiunea atmosferică este $p_0 = 100\\mathrm{kPa}$.\n\na. Calculați masa de gaz din cilindru.\nb. Determinați volumul ocupat de gaz după deblocarea pistonului, dacă temperatura rămâne constantă.\nc. Se încălzește gazul din cilindru până la temperatura $T_2$ astfel încât pistonul revine în poziția inițială. Determinați temperatura $T_2$.\nd. Se blochează pistonul în poziția inițială și se mai introduce în cilindru o masă $m_2 = 2\\mathrm{g}$ de $NO$. Determinați presiunea gazului din cilindru, dacă temperatura acestuia devine cu $\\Delta T = 25\\mathrm{K}$ mai mare decât temperatura $T_2$.",
+  "formule": [],
+  "date": {},
+  "subpuncte": [
+    {
+      "id": "1a",
+      "cerinta": "Calculați masa de gaz din cilindru.",
+      "punctaj": 3
+    },
+    {
+      "id": "2b",
+      "cerinta": "Determinați volumul ocupat de gaz după deblocarea pistonului, dacă temperatura rămâne constantă.",
+      "punctaj": 3
+    },
+    {
+      "id": "3c",
+      "cerinta": "Se încălzește gazul din cilindru până la temperatura $T_2$ astfel încât pistonul revine în poziția inițială. Determinați temperatura $T_2$.",
+      "punctaj": 3
+    },
+    {
+      "id": "4d",
+      "cerinta": "Se blochează pistonul în poziția inițială și se mai introduce în cilindru o masă $m_2 = 2\\mathrm{g}$ de $NO$. Determinați presiunea gazului din cilindru, dacă temperatura acestuia devine cu $\\Delta T = 25\\mathrm{K}$ mai mare decât temperatura $T_2$.",
+      "punctaj": 3
+    }
+  ],
+  "poze": [],
+  "metadata": {
+    "source": "2015_e_d_fizica_teoretic_vocational_2015_var_02_lro",
+    "year": 2015,
+    "variant": 2,
+    "type": "teoretic",
+    "subjectArea": "Termodinamică",
+    "subjectCode": "B",
+    "subjectNumber": 2
+  }
+}

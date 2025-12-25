@@ -1,0 +1,43 @@
+{
+  "titlu": "Problema III - Optică - Bac 2021",
+  "descriere": "Problema de bacalaureat - Subiectul III din Optică, 2021, teoretic",
+  "categorie": "Bac",
+  "varianta": "2021",
+  "dificultate": "mediu",
+  "punctajTotal": 15,
+  "continut": "Un dispozitiv Young plasat în aer este iluminat cu o radiație cu lungimea de undă $\\lambda$ emisă de o sursă de lumină monocromatică și coerentă. Acesta este situată pe axa de simetrie a sistemului, la distanța $d = 10 \\, \\text{cm}$ în fața paravanului în care sunt practicate cele două fante. Distanța dintre fante este $2\\ell = 1 \\, \\text{mm}$, iar ecranul de observație se află la $D = 4 \\, \\text{m}$ de paravan. Studiind figura de interferență se constată că interfranja are valoarea $i = 2 \\, \\text{mm}$.\n\na. Calculați distanța dintre maximul de ordinul 2 situat de o parte a maximului central și primul minim aflat de cealaltă parte a maximului central.\nb. Determinați lungimea de undă a radiației utilizate.\nc. În calea fasciculului provenit de la una dintre fante se interpune, perpendicular pe acesta, o lamă de sticlă ($n = 1,5$) având grosimea $e = 60 \\, \\mu \\text{m}$. Calculați deplasarea maximului central.\nd. Calculați distanța $a$ pe care trebuie deplasată sursa, pe o direcție perpendiculară pe axa de simetrie a sistemului, pentru a înlătura deplasarea produsă de prezența lamei.",
+  "formule": [],
+  "date": {},
+  "subpuncte": [
+    {
+      "id": "1a",
+      "cerinta": "Calculați distanța dintre maximul de ordinul 2 situat de o parte a maximului central și primul minim aflat de cealaltă parte a maximului central.",
+      "punctaj": 3
+    },
+    {
+      "id": "2b",
+      "cerinta": "Determinați lungimea de undă a radiației utilizate.",
+      "punctaj": 3
+    },
+    {
+      "id": "3c",
+      "cerinta": "În calea fasciculului provenit de la una dintre fante se interpune, perpendicular pe acesta, o lamă de sticlă ($n = 1,5$) având grosimea $e = 60 \\, \\mu \\text{m}$. Calculați deplasarea maximului central.",
+      "punctaj": 3
+    },
+    {
+      "id": "4d",
+      "cerinta": "Calculați distanța $a$ pe care trebuie deplasată sursa, pe o direcție perpendiculară pe axa de simetrie a sistemului, pentru a înlătura deplasarea produsă de prezența lamei.",
+      "punctaj": 3
+    }
+  ],
+  "poze": [],
+  "metadata": {
+    "source": "2021_E_d_fizica_teoretic_vocational_2021_var_model",
+    "year": 2021,
+    "variant": null,
+    "type": "teoretic",
+    "subjectArea": "Optică",
+    "subjectCode": "D",
+    "subjectNumber": 3
+  }
+}

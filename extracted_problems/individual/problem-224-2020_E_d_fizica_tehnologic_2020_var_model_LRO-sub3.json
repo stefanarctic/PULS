@@ -1,0 +1,43 @@
+{
+  "titlu": "Problema III - Termodinamică - Bac 2020",
+  "descriere": "Problema de bacalaureat - Subiectul III din Termodinamică, 2020, tehnologic",
+  "categorie": "Bac",
+  "varianta": "2020",
+  "dificultate": "mediu",
+  "punctajTotal": 15,
+  "continut": "O cantitate constantă de gaz ideal $(C_V = 1,5R)$ se află inițial în starea 1 în care presiunea este $p_1 = 10^5\\mathrm{Pa}$, iar volumul ocupat de gaz este $V_1 = 20\\mathrm{L}$. Gazul este încălzit, la volum constant, până în starea 2 în care $p_2 = 3p_1$. În continuare gazul este destinat la temperatura constantă până la presiunea $p_3 = p_1$. Se cunoaște $\\ln 3 = 1,1$\n\na. Reprezentați grafic, în coordonate $p - V$, procesul $1 \\rightarrow 2 \\rightarrow 3$.\n\nb. Calculați energia internă a gazului în starea 2.\n\nc. Determinați căldura primită de gaz în timpul transformării $1 \\rightarrow 2$\n\nd. Determinați lucrul mecanic cedat de gaz mediului exterior în timpul transformării $2 \\rightarrow 3$.",
+  "formule": [],
+  "date": {},
+  "subpuncte": [
+    {
+      "id": "1a",
+      "cerinta": "Reprezentați grafic, în coordonate $p - V$, procesul $1 \\rightarrow 2 \\rightarrow 3$.",
+      "punctaj": 3
+    },
+    {
+      "id": "2b",
+      "cerinta": "Calculați energia internă a gazului în starea 2.",
+      "punctaj": 3
+    },
+    {
+      "id": "3c",
+      "cerinta": "Determinați căldura primită de gaz în timpul transformării $1 \\rightarrow 2$",
+      "punctaj": 3
+    },
+    {
+      "id": "4d",
+      "cerinta": "Determinați lucrul mecanic cedat de gaz mediului exterior în timpul transformării $2 \\rightarrow 3$.",
+      "punctaj": 3
+    }
+  ],
+  "poze": [],
+  "metadata": {
+    "source": "2020_E_d_fizica_tehnologic_2020_var_model_LRO",
+    "year": 2020,
+    "variant": null,
+    "type": "tehnologic",
+    "subjectArea": "Termodinamică",
+    "subjectCode": "B",
+    "subjectNumber": 3
+  }
+}

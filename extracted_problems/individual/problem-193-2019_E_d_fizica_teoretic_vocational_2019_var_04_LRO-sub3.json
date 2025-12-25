@@ -1,0 +1,43 @@
+{
+  "titlu": "Problema III - Mecanică - Bac 2019 Var 4",
+  "descriere": "Problema de bacalaureat - Subiectul III din Mecanică, 2019, Varianta 4, teoretic",
+  "categorie": "Bac",
+  "varianta": "2019 Var 4",
+  "dificultate": "mediu",
+  "punctajTotal": 15,
+  "continut": "Un tren, cu masa totală $m = 2 \\cdot 10^5\\,\\mathrm{kg}$, se deplasează pe o cale ferată orizontală. Puterea mecanică a locomotivei este constantă și are valoarea $P = 4000\\,\\mathrm{kW}$. Forța de rezistență la înaintare reprezintă o fracțiune $f = 0,05$ din greutatea trenului și se menține constantă în timpul deplasării.\n\na. Calculați energia cinetică a trenului în momentul în care acesta se deplasează cu viteza $v = 10\\,\\mathrm{m/s}$.\nb. Calculați lucrul mecanic efectuat de forța de rezistență la înaintare, în timpul deplasării trenului pe distanța $d = 100\\,\\mathrm{m}$.\nc. Calculați viteza maximă atinsă de tren.\nd. După atingerea vitezei maxime, forța de tracțiune a locomotivei își încetează acțiunea. Calculați distanța $d_{\\text{oprire}}$ parcursă de tren din momentul încetării acțiunii forței de tracțiune și până la oprirea trenului.",
+  "formule": [],
+  "date": {},
+  "subpuncte": [
+    {
+      "id": "1a",
+      "cerinta": "Calculați energia cinetică a trenului în momentul în care acesta se deplasează cu viteza $v = 10\\,\\mathrm{m/s}$.",
+      "punctaj": 3
+    },
+    {
+      "id": "2b",
+      "cerinta": "Calculați lucrul mecanic efectuat de forța de rezistență la înaintare, în timpul deplasării trenului pe distanța $d = 100\\,\\mathrm{m}$.",
+      "punctaj": 3
+    },
+    {
+      "id": "3c",
+      "cerinta": "Calculați viteza maximă atinsă de tren.",
+      "punctaj": 3
+    },
+    {
+      "id": "4d",
+      "cerinta": "După atingerea vitezei maxime, forța de tracțiune a locomotivei își încetează acțiunea. Calculați distanța $d_{\\text{oprire}}$ parcursă de tren din momentul încetării acțiunii forței de tracțiune și până la oprirea trenului.",
+      "punctaj": 3
+    }
+  ],
+  "poze": [],
+  "metadata": {
+    "source": "2019_E_d_fizica_teoretic_vocational_2019_var_04_LRO",
+    "year": 2019,
+    "variant": 4,
+    "type": "teoretic",
+    "subjectArea": "Mecanică",
+    "subjectCode": "A",
+    "subjectNumber": 3
+  }
+}

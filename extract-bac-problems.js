@@ -205,6 +205,340 @@ function determineSubjectArea(markdown) {
 }
 
 /**
+ * Get relevant formulas for a subject area
+ */
+function getFormulasForSubject(subjectArea) {
+    const formulasBySubject = {
+        'Mecanică': [
+            'F = ma',
+            'p = mv',
+            'E_c = (1/2)mv²',
+            'E_p = mgh',
+            'W = F·d',
+            'P = F·v',
+            'F_c = mv²/R',
+            'ω = v/R',
+            'T = 2πR/v',
+            'a_c = v²/R = ω²R',
+            'F_e = -k·Δx',
+            'T = 2π√(m/k)',
+            'v = v₀ + at',
+            's = v₀t + (1/2)at²',
+            'v² = v₀² + 2as',
+            'F_f = μ·N',
+            'F = mg·sin(α)',
+            'a = g(sin(α) - μ·cos(α))'
+        ],
+        'Termodinamică': [
+            'pV = νRT',
+            'pV = nRT',
+            'U = (f/2)νRT',
+            'Q = mcΔT',
+            'Q = νC_VΔT',
+            'Q = νC_pΔT',
+            'L = pΔV',
+            'L = ∫pdV',
+            'ΔU = Q - L',
+            'η = 1 - T_C/T_H',
+            'W = Q_H - Q_C',
+            'S = k_B·ln(Ω)',
+            'ΔS ≥ Q/T',
+            'C_V = (f/2)R',
+            'C_p = C_V + R',
+            'γ = C_p/C_V',
+            'pV^γ = const',
+            'TV^(γ-1) = const'
+        ],
+        'Curent continuu': [
+            'I = Q/t',
+            'I = U/R',
+            'U = RI',
+            'P = UI',
+            'P = I²R',
+            'P = U²/R',
+            'W = UIt',
+            'W = I²Rt',
+            'W = U²t/R',
+            'R = ρl/S',
+            'R_serie = R₁ + R₂ + ...',
+            '1/R_paralel = 1/R₁ + 1/R₂ + ...',
+            'U = E - Ir',
+            'I = E/(R + r)',
+            'P_max = E²/(4r)',
+            'η = R/(R + r)',
+            'Q = I²Rt',
+            'E = U + Ir'
+        ],
+        'Optică': [
+            'n = c/v',
+            'n₁sin(θ₁) = n₂sin(θ₂)',
+            '1/f = 1/x₁ + 1/x₂',
+            'β = x₂/x₁',
+            'β = y₂/y₁',
+            'C = 1/f',
+            'C_total = C₁ + C₂',
+            'E = hν',
+            'E = hc/λ',
+            'E_c = hν - W',
+            'λ_min = hc/E',
+            'sin(θ_crit) = n₂/n₁',
+            'δ = (n - 1)A',
+            'f = R/2',
+            'M = -x₂/x₁'
+        ]
+    };
+    
+    return formulasBySubject[subjectArea] || [];
+}
+
+/**
+ * Extract data (numerical values with units) from problem content
+ */
+function extractData(content) {
+    const data = {};
+    
+    // Pattern to match: $variable = value unit$ or variable = value unit
+    // Examples: $M = 40\,\mathrm{t}$, $R = 2$ m, masa $m = 0,5$ kg
+    
+    // Pattern 1: LaTeX format with \mathrm: $var = value\,\mathrm{unit}$
+    const latexPattern1 = /\$([A-Za-z_][A-Za-z0-9_]*)\s*=\s*([0-9,\.]+)\\?\,\\?mathrm\{([^}]+)\}/g;
+    let match;
+    
+    while ((match = latexPattern1.exec(content)) !== null) {
+        const varName = match[1];
+        const value = match[2].replace(',', '.');
+        const unit = match[3].trim();
+        data[varName] = `${value} ${unit}`;
+    }
+    
+    // Pattern 2: LaTeX format: $var = value$ unit (outside LaTeX)
+    const latexPattern2 = /\$([A-Za-z_][A-Za-z0-9_]*)\s*=\s*([0-9,\.]+)\$\s*([A-Za-z\/\s·]+)/g;
+    while ((match = latexPattern2.exec(content)) !== null) {
+        const varName = match[1];
+        const value = match[2].replace(',', '.');
+        const unit = match[3].trim();
+        if (!data[varName]) {
+            data[varName] = `${value} ${unit}`;
+        }
+    }
+    
+    // Pattern 3: Simple format: var = value unit (without LaTeX)
+    const simplePattern = /([A-Za-z_][A-Za-z0-9_]*)\s*=\s*([0-9,\.]+)\s*([A-Za-z\/\s·Ω]+)/g;
+    while ((match = simplePattern.exec(content)) !== null) {
+        const varName = match[1];
+        const value = match[2].replace(',', '.');
+        const unit = match[3].trim();
+        // Skip if already found or if it's a common word
+        if (!data[varName] && !['are', 'este', 'sunt', 'se', 'de', 'la', 'cu'].includes(varName.toLowerCase())) {
+            data[varName] = `${value} ${unit}`;
+        }
+    }
+    
+    // Pattern 4: Text format: "masa m = value unit" or "temperatura T = value unit"
+    const textPattern = /(?:masa|temperatura|presiunea|volumul|viteza|accelerația|forța|energia|puterea|rezistența|tensiunea|intensitatea|curentul|distanța|raza|lungimea|înălțimea|unghiul|coeficientul|constanta)\s+([A-Za-z_][A-Za-z0-9_]*)\s*[=:]\s*([0-9,\.]+)\s*([A-Za-z\/\s·Ω°]+)/gi;
+    while ((match = textPattern.exec(content)) !== null) {
+        const varName = match[2];
+        const value = match[3].replace(',', '.');
+        const unit = match[4].trim();
+        if (!data[varName]) {
+            data[varName] = `${value} ${unit}`;
+        }
+    }
+    
+    // Pattern 5: Constants mentioned: g = 10 m/s², R = 8,31 J/(mol·K), etc.
+    const constantPattern = /(?:Se consideră|se consideră|Considerați|considerați|cunoscut|Cunoscut)[^.]*?([A-Za-z_][A-Za-z0-9_]*)\s*=\s*([0-9,\.]+)\s*([A-Za-z\/\s·Ω°²³⁻¹]+)/gi;
+    while ((match = constantPattern.exec(content)) !== null) {
+        const varName = match[1];
+        const value = match[2].replace(',', '.');
+        const unit = match[3].trim();
+        if (!data[varName]) {
+            data[varName] = `${value} ${unit}`;
+        }
+    }
+    
+    return data;
+}
+
+/**
+ * Extract relevant formulas from content based on subject area and problem text
+ */
+function extractRelevantFormulas(content, subjectArea) {
+    const allFormulas = getFormulasForSubject(subjectArea);
+    const relevantFormulas = [];
+    
+    // Normalize content for matching (remove LaTeX delimiters, lowercase)
+    const normalizedContent = content
+        .replace(/\$[^$]+\$/g, '') // Remove LaTeX expressions
+        .toLowerCase()
+        .replace(/[^\w\s]/g, ' '); // Replace special chars with spaces
+    
+    // Check each formula against content
+    for (const formula of allFormulas) {
+        // Extract variable names from formula
+        const vars = formula.match(/[A-Za-z_][A-Za-z0-9_]*/g) || [];
+        
+        // Check if at least one variable from formula appears in content
+        const found = vars.some(v => {
+            const varLower = v.toLowerCase();
+            return normalizedContent.includes(varLower) || 
+                   content.includes(`$${v}`) || 
+                   content.includes(`$${varLower}`) ||
+                   content.includes(`\\mathrm{${v}}`) ||
+                   content.includes(`\\mathrm{${varLower}}`);
+        });
+        
+        if (found) {
+            relevantFormulas.push(formula);
+        }
+    }
+    
+    // If no formulas found, return common ones for the subject
+    if (relevantFormulas.length === 0 && allFormulas.length > 0) {
+        // Return first 3-5 most common formulas
+        return allFormulas.slice(0, Math.min(5, allFormulas.length));
+    }
+    
+    return relevantFormulas;
+}
+
+/**
+ * Extract subject area code and name from markdown content
+ * Returns { code: 'A', area: 'Mecanică' } or null
+ */
+function extractSubjectAreaFromContent(markdown) {
+    const subjectAreaPatterns = [
+        { pattern: /##\s*A\.\s*MECANICĂ/i, area: 'Mecanică', code: 'A' },
+        { pattern: /##\s*B\.\s*ELEMENTE\s*DE\s*TERMODINAMICĂ/i, area: 'Termodinamică', code: 'B' },
+        { pattern: /##\s*C\.\s*PRODUCEREA\s*ȘI\s*UTILIZAREA\s*CURENTULUI\s*CONTINUU/i, area: 'Curent continuu', code: 'C' },
+        { pattern: /##\s*C\.\s*CURENTULUI\s*CONTINUU/i, area: 'Curent continuu', code: 'C' },
+        { pattern: /##\s*D\.\s*OPTICĂ/i, area: 'Optică', code: 'D' }
+    ];
+    
+    for (const { pattern, area, code } of subjectAreaPatterns) {
+        if (pattern.test(markdown)) {
+            return { area, code };
+        }
+    }
+    
+    return null;
+}
+
+/**
+ * Extract problems (II and III) from a section of markdown for a specific subject area
+ */
+function extractProblemsFromSection(markdown, subjectArea, subjectCode, allPages, folderPath, metadata, folderName) {
+    const problems = [];
+    
+    // Extract Subject II
+    const subjectII = extractSubject(markdown, 2);
+    if (subjectII) {
+        const images = [];
+        
+        // Get images for Subject II
+        for (const imgRef of subjectII.imageRefs) {
+            let imageBase64 = getImageBase64(allPages, imgRef.path);
+            
+            // If not found in JSON, try reading from disk
+            if (!imageBase64) {
+                imageBase64 = readImageFile(folderPath, imgRef.path);
+            }
+            
+            if (imageBase64) {
+                images.push(imageBase64);
+            }
+        }
+        
+        const subpuncte = extractSubpuncte(subjectII.content);
+        
+        // Extract formulas and data
+        const formule = extractRelevantFormulas(subjectII.content, subjectArea || 'Mecanică');
+        const date = extractData(subjectII.content);
+        
+        problems.push({
+            titlu: `Problema II - ${subjectArea || 'Fizică'} - Bac ${metadata.year}${metadata.variant ? ` Var ${metadata.variant}` : ''}`,
+            descriere: `Problema de bacalaureat - Subiectul II din ${subjectArea || 'Fizică'}, ${metadata.year}${metadata.variant ? `, Varianta ${metadata.variant}` : ''}${metadata.type ? `, ${metadata.type}` : ''}`,
+            categorie: 'Bac',
+            varianta: metadata.year.toString() + (metadata.variant ? ` Var ${metadata.variant}` : ''),
+            dificultate: 'mediu',
+            punctajTotal: subjectII.punctaj,
+            continut: subjectII.content,
+            formule: formule,
+            date: date,
+            subpuncte: subpuncte.map((sub, idx) => ({
+                id: `${idx + 1}${String.fromCharCode(97 + idx)}`,
+                cerinta: sub.cerinta,
+                punctaj: sub.punctaj || Math.floor(subjectII.punctaj / subpuncte.length)
+            })),
+            poze: images,
+            metadata: {
+                source: folderName,
+                year: metadata.year,
+                variant: metadata.variant,
+                type: metadata.type,
+                subjectArea: subjectArea,
+                subjectCode: subjectCode,
+                subjectNumber: 2
+            }
+        });
+    }
+    
+    // Extract Subject III
+    const subjectIII = extractSubject(markdown, 3);
+    if (subjectIII) {
+        const images = [];
+        
+        // Get images for Subject III
+        for (const imgRef of subjectIII.imageRefs) {
+            let imageBase64 = getImageBase64(allPages, imgRef.path);
+            
+            // If not found in JSON, try reading from disk
+            if (!imageBase64) {
+                imageBase64 = readImageFile(folderPath, imgRef.path);
+            }
+            
+            if (imageBase64) {
+                images.push(imageBase64);
+            }
+        }
+        
+        const subpuncte = extractSubpuncte(subjectIII.content);
+        
+        // Extract formulas and data
+        const formule = extractRelevantFormulas(subjectIII.content, subjectArea || 'Mecanică');
+        const date = extractData(subjectIII.content);
+        
+        problems.push({
+            titlu: `Problema III - ${subjectArea || 'Fizică'} - Bac ${metadata.year}${metadata.variant ? ` Var ${metadata.variant}` : ''}`,
+            descriere: `Problema de bacalaureat - Subiectul III din ${subjectArea || 'Fizică'}, ${metadata.year}${metadata.variant ? `, Varianta ${metadata.variant}` : ''}${metadata.type ? `, ${metadata.type}` : ''}`,
+            categorie: 'Bac',
+            varianta: metadata.year.toString() + (metadata.variant ? ` Var ${metadata.variant}` : ''),
+            dificultate: 'mediu',
+            punctajTotal: subjectIII.punctaj,
+            continut: subjectIII.content,
+            formule: formule,
+            date: date,
+            subpuncte: subpuncte.map((sub, idx) => ({
+                id: `${idx + 1}${String.fromCharCode(97 + idx)}`,
+                cerinta: sub.cerinta,
+                punctaj: sub.punctaj || Math.floor(subjectIII.punctaj / subpuncte.length)
+            })),
+            poze: images,
+            metadata: {
+                source: folderName,
+                year: metadata.year,
+                variant: metadata.variant,
+                type: metadata.type,
+                subjectArea: subjectArea,
+                subjectCode: subjectCode,
+                subjectNumber: 3
+            }
+        });
+    }
+    
+    return problems;
+}
+
+/**
  * Process a single JSON file
  */
 function processFile(folderPath, jsonFileName) {
@@ -223,111 +557,48 @@ function processFile(folderPath, jsonFileName) {
         const metadata = extractMetadata(folderName);
         const problems = [];
         
-        // Combine all markdown from all pages
-        let fullMarkdown = '';
-        for (const page of data.pages) {
-            if (page.markdown) {
-                fullMarkdown += '\n\n' + page.markdown;
-            }
-        }
-        
-        // Determine subject area from content
-        const subjectArea = determineSubjectArea(fullMarkdown) || metadata.subjectArea;
-        
-        // Extract Subject II
-        const subjectII = extractSubject(fullMarkdown, 2);
-        if (subjectII) {
-            const images = [];
+        // Process each page separately to extract problems from each subject area
+        for (let pageIndex = 0; pageIndex < data.pages.length; pageIndex++) {
+            const page = data.pages[pageIndex];
+            if (!page.markdown) continue;
             
-            // Get images for Subject II
-            for (const imgRef of subjectII.imageRefs) {
-                let imageBase64 = getImageBase64(data.pages, imgRef.path);
-                
-                // If not found in JSON, try reading from disk
-                if (!imageBase64) {
-                    imageBase64 = readImageFile(folderPath, imgRef.path);
-                }
-                
-                if (imageBase64) {
-                    images.push(imageBase64);
-                }
-            }
+            // Try to identify subject area from this page
+            const subjectInfo = extractSubjectAreaFromContent(page.markdown);
             
-            const subpuncte = extractSubpuncte(subjectII.content);
-            
-            problems.push({
-                titlu: `Problema II - ${subjectArea || 'Fizică'} - Bac ${metadata.year}${metadata.variant ? ` Var ${metadata.variant}` : ''}`,
-                descriere: `Problema de bacalaureat - Subiectul II din ${subjectArea || 'Fizică'}, ${metadata.year}${metadata.variant ? `, Varianta ${metadata.variant}` : ''}${metadata.type ? `, ${metadata.type}` : ''}`,
-                categorie: 'Bac',
-                varianta: metadata.year.toString() + (metadata.variant ? ` Var ${metadata.variant}` : ''),
-                dificultate: 'mediu',
-                punctajTotal: subjectII.punctaj,
-                continut: subjectII.content,
-                formule: [],
-                date: {},
-                subpuncte: subpuncte.map((sub, idx) => ({
-                    id: `${idx + 1}${String.fromCharCode(97 + idx)}`,
-                    cerinta: sub.cerinta,
-                    punctaj: sub.punctaj || Math.floor(subjectII.punctaj / subpuncte.length)
-                })),
-                poze: images,
-                metadata: {
-                    source: folderName,
-                    year: metadata.year,
-                    variant: metadata.variant,
-                    type: metadata.type,
-                    subjectArea: subjectArea,
-                    subjectNumber: 2
-                }
-            });
-        }
-        
-        // Extract Subject III
-        const subjectIII = extractSubject(fullMarkdown, 3);
-        if (subjectIII) {
-            const images = [];
-            
-            // Get images for Subject III
-            for (const imgRef of subjectIII.imageRefs) {
-                let imageBase64 = getImageBase64(data.pages, imgRef.path);
+            if (subjectInfo) {
+                // Extract problems from this subject area
+                const sectionProblems = extractProblemsFromSection(
+                    page.markdown,
+                    subjectInfo.area,
+                    subjectInfo.code,
+                    data.pages,
+                    folderPath,
+                    metadata,
+                    folderName
+                );
                 
-                // If not found in JSON, try reading from disk
-                if (!imageBase64) {
-                    imageBase64 = readImageFile(folderPath, imgRef.path);
+                if (sectionProblems.length > 0) {
+                    problems.push(...sectionProblems);
+                    console.log(`    ✓ Found ${sectionProblems.length} problem(s) in ${subjectInfo.code}. ${subjectInfo.area}`);
                 }
-                
-                if (imageBase64) {
-                    images.push(imageBase64);
+            } else {
+                // If no subject area header found, try to determine from content
+                const area = determineSubjectArea(page.markdown);
+                if (area && area !== 'Unknown') {
+                    const sectionProblems = extractProblemsFromSection(
+                        page.markdown,
+                        area,
+                        null,
+                        data.pages,
+                        folderPath,
+                        metadata,
+                        folderName
+                    );
+                    if (sectionProblems.length > 0) {
+                        problems.push(...sectionProblems);
+                    }
                 }
             }
-            
-            const subpuncte = extractSubpuncte(subjectIII.content);
-            
-            problems.push({
-                titlu: `Problema III - ${subjectArea || 'Fizică'} - Bac ${metadata.year}${metadata.variant ? ` Var ${metadata.variant}` : ''}`,
-                descriere: `Problema de bacalaureat - Subiectul III din ${subjectArea || 'Fizică'}, ${metadata.year}${metadata.variant ? `, Varianta ${metadata.variant}` : ''}${metadata.type ? `, ${metadata.type}` : ''}`,
-                categorie: 'Bac',
-                varianta: metadata.year.toString() + (metadata.variant ? ` Var ${metadata.variant}` : ''),
-                dificultate: 'mediu',
-                punctajTotal: subjectIII.punctaj,
-                continut: subjectIII.content,
-                formule: [],
-                date: {},
-                subpuncte: subpuncte.map((sub, idx) => ({
-                    id: `${idx + 1}${String.fromCharCode(97 + idx)}`,
-                    cerinta: sub.cerinta,
-                    punctaj: sub.punctaj || Math.floor(subjectIII.punctaj / subpuncte.length)
-                })),
-                poze: images,
-                metadata: {
-                    source: folderName,
-                    year: metadata.year,
-                    variant: metadata.variant,
-                    type: metadata.type,
-                    subjectArea: subjectArea,
-                    subjectNumber: 3
-                }
-            });
         }
         
         return problems;

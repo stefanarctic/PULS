@@ -1,0 +1,43 @@
+{
+  "titlu": "Problema II - Optică - Bac 2016 Var 9",
+  "descriere": "Problema de bacalaureat - Subiectul II din Optică, 2016, Varianta 9, teoretic",
+  "categorie": "Bac",
+  "varianta": "2016 Var 9",
+  "dificultate": "mediu",
+  "punctajTotal": 15,
+  "continut": "Un obiect luminos, liniar, cu înălțimea de 2 cm, este plasat perpendicular pe axa optică principală în fața unei lentile convergente, considerată subțire și având distanța focală de 20 cm. Distanța de la obiect la lentilă este de 30 cm.\n\na. Determinați convergența lentilei.\nb. Calculați distanța de la lentilă la imagine.\nc. Calculați înălțimea imaginii\nd. Fără a schimba poziția lentilei și a obiectului, se alipește de această lentilă o lentilă identică, formând astfel un sistem optic centrat. Calculați distanța pe care se deplasează imaginea.",
+  "formule": [],
+  "date": {},
+  "subpuncte": [
+    {
+      "id": "1a",
+      "cerinta": "Determinați convergența lentilei.",
+      "punctaj": 3
+    },
+    {
+      "id": "2b",
+      "cerinta": "Calculați distanța de la lentilă la imagine.",
+      "punctaj": 3
+    },
+    {
+      "id": "3c",
+      "cerinta": "Calculați înălțimea imaginii",
+      "punctaj": 3
+    },
+    {
+      "id": "4d",
+      "cerinta": "Fără a schimba poziția lentilei și a obiectului, se alipește de această lentilă o lentilă identică, formând astfel un sistem optic centrat. Calculați distanța pe care se deplasează imaginea.",
+      "punctaj": 3
+    }
+  ],
+  "poze": [],
+  "metadata": {
+    "source": "2016_e_d_fizica_teoretic_vocational_2016_var_09_lro",
+    "year": 2016,
+    "variant": 9,
+    "type": "teoretic",
+    "subjectArea": "Optică",
+    "subjectCode": "D",
+    "subjectNumber": 2
+  }
+}

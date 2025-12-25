@@ -1,0 +1,45 @@
+{
+  "titlu": "Problema III - Mecanică - Bac 2022 Var 1",
+  "descriere": "Problema de bacalaureat - Subiectul III din Mecanică, 2022, Varianta 1, teoretic",
+  "categorie": "Bac",
+  "varianta": "2022 Var 1",
+  "dificultate": "mediu",
+  "punctajTotal": 15,
+  "continut": "Un corp de masă $m = 600\\mathrm{g}$ este lăsat să alunece, pornind din repaus, din punctul A, situat la înălțimea $h = 1,25\\mathrm{m}$, ca în figura alăturată. Corpul trece prin punctul B și intră pe porțiunea orizontală BC, de lungime $d = 2,25\\mathrm{m}$. Pe porțiunea curbată AB frecările sunt neglijabile, iar pe porțiunea orizontală BC coeficientul de frecare la alunecare este $\\mu = 0,2$. În punctul C, corpul lovește un perete vertical fix, CD. Contactul cu peretele durează un timp $\\Delta t = 7 \\cdot 10^{-3}\\mathrm{s}$, după care corpul se întoarce și se oprește în punctul B.\n\nEnergia potențială gravitațională se consideră nulă la nivelul suprafeței BC. Determinați:\na. energia mecanică a corpului în punctul A;\nb. valoarea vitezei corpului la trecerea prin punctul B;\nc. valoarea impulsului mecanic al corpului în punctul C, imediat înainte de a lovi peretele;\nd. valoarea forței medii cu care peretele au acționat asupra corpului în intervalul de timp $\\Delta t$.\n\n![img-2.jpeg](img-2.jpeg)",
+  "formule": [],
+  "date": {},
+  "subpuncte": [
+    {
+      "id": "1a",
+      "cerinta": "energia mecanică a corpului în punctul A;",
+      "punctaj": 3
+    },
+    {
+      "id": "2b",
+      "cerinta": "valoarea vitezei corpului la trecerea prin punctul B;",
+      "punctaj": 3
+    },
+    {
+      "id": "3c",
+      "cerinta": "valoarea impulsului mecanic al corpului în punctul C, imediat înainte de a lovi peretele;",
+      "punctaj": 3
+    },
+    {
+      "id": "4d",
+      "cerinta": "valoarea forței medii cu care peretele au acționat asupra corpului în intervalul de timp $\\Delta t$.",
+      "punctaj": 3
+    }
+  ],
+  "poze": [
+    "data:image/jpeg;base64,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"
+  ],
+  "metadata": {
+    "source": "2022_E_d_fizica_teoretic_vocational_2022_var_01_LRO",
+    "year": 2022,
+    "variant": 1,
+    "type": "teoretic",
+    "subjectArea": "Mecanică",
+    "subjectCode": "A",
+    "subjectNumber": 3
+  }
+}

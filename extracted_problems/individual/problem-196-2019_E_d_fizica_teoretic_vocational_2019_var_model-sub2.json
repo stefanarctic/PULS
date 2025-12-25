@@ -1,0 +1,43 @@
+{
+  "titlu": "Problema II - Mecanică - Bac 2019",
+  "descriere": "Problema de bacalaureat - Subiectul II din Mecanică, 2019, teoretic",
+  "categorie": "Bac",
+  "varianta": "2019",
+  "dificultate": "mediu",
+  "punctajTotal": 15,
+  "continut": "În sistemul reprezentat în figura alăturată corpul A are masa $m_A = 3,0 \\, \\text{kg}$, iar corpul B are masa $m_B = 2,0 \\, \\text{kg}$.\n\nPlanul înclinat este fixat de sol și formează unghiul $\\alpha = 30^\\circ$ cu orizontala. Frecarea dintre corpul B și planul înclinat se consideră neglijabilă. Resortul, având constanta elastică $k = 2,0 \\, \\text{N/cm}$, este legat la un capăt de corpul B, iar la celălalt capăt de sol în punctul C. Firul dintre corpurile A și B este inextensibil și de masă neglijabilă, scripetele este lipsit de frecare și de inerție, iar resortul are masă neglijabilă.\n\na. Reprezentați toate forțele care acționează asupra corpului B.\nb. Calculați alungirea resortului atunci când sistemul este în echilibru.\nc. Se dezleagă resortul de corpul B. Calculați valoarea accelerației corpului A în timpul deplasării spre sol.\nd. Calculați valoarea forței de apăsare din axul scripetelui, în condițiile de la punctul c.",
+  "formule": [],
+  "date": {},
+  "subpuncte": [
+    {
+      "id": "1a",
+      "cerinta": "Reprezentați toate forțele care acționează asupra corpului B.",
+      "punctaj": 3
+    },
+    {
+      "id": "2b",
+      "cerinta": "Calculați alungirea resortului atunci când sistemul este în echilibru.",
+      "punctaj": 3
+    },
+    {
+      "id": "3c",
+      "cerinta": "Se dezleagă resortul de corpul B. Calculați valoarea accelerației corpului A în timpul deplasării spre sol.",
+      "punctaj": 3
+    },
+    {
+      "id": "4d",
+      "cerinta": "Calculați valoarea forței de apăsare din axul scripetelui, în condițiile de la punctul c.",
+      "punctaj": 3
+    }
+  ],
+  "poze": [],
+  "metadata": {
+    "source": "2019_E_d_fizica_teoretic_vocational_2019_var_model",
+    "year": 2019,
+    "variant": null,
+    "type": "teoretic",
+    "subjectArea": "Mecanică",
+    "subjectCode": "A",
+    "subjectNumber": 2
+  }
+}

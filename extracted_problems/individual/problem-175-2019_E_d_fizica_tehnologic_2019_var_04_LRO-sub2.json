@@ -1,0 +1,43 @@
+{
+  "titlu": "Problema II - Termodinamică - Bac 2019 Var 4",
+  "descriere": "Problema de bacalaureat - Subiectul II din Termodinamică, 2019, Varianta 4, tehnologic",
+  "categorie": "Bac",
+  "varianta": "2019 Var 4",
+  "dificultate": "mediu",
+  "punctajTotal": 15,
+  "continut": "Un rezervor metallic este umplut cu o masă $m_1 = 0,145 \\mathrm{~kg}$ de aer ($\\mu_{\\text{aer}} = 29 \\mathrm{~g} \\cdot \\mathrm{mol}^{-1}$). Aerul din rezervor se află la presiunea $p_1 = 2,9 \\cdot 10^{5} \\mathrm{~N} \\cdot \\mathrm{m}^{-2}$ și la temperatura $T_1 = 290 \\mathrm{~K}$. Rezervorul este prevăzut cu un robinet de evacuare, inițial închis.\n\na. Determinați cantitatea de aer din rezervor în starea inițială.\nb. Calculați densitatea aerului din rezervor.\nc. Robinetul rămâne închis și aerul din rezervor este încălzit până la temperatura $t_2 = 27^{\\circ} \\mathrm{C}$. Calculați presiunea aerului din rezervor în urma încălzirii.\nd. Determinați masa de aer ce trebuie evacuată din rezervor, prin deschiderea robinetului, pentru ca presiunea aerului să revină la valoarea inițială $p_i$ dacă temperatura gazului rămâne la valoarea $t_2 = 27^{\\circ} \\mathrm{C}$.",
+  "formule": [],
+  "date": {},
+  "subpuncte": [
+    {
+      "id": "1a",
+      "cerinta": "Determinați cantitatea de aer din rezervor în starea inițială.",
+      "punctaj": 3
+    },
+    {
+      "id": "2b",
+      "cerinta": "Calculați densitatea aerului din rezervor.",
+      "punctaj": 3
+    },
+    {
+      "id": "3c",
+      "cerinta": "Robinetul rămâne închis și aerul din rezervor este încălzit până la temperatura $t_2 = 27^{\\circ} \\mathrm{C}$. Calculați presiunea aerului din rezervor în urma încălzirii.",
+      "punctaj": 3
+    },
+    {
+      "id": "4d",
+      "cerinta": "Determinați masa de aer ce trebuie evacuată din rezervor, prin deschiderea robinetului, pentru ca presiunea aerului să revină la valoarea inițială $p_i$ dacă temperatura gazului rămâne la valoarea $t_2 = 27^{\\circ} \\mathrm{C}$.",
+      "punctaj": 3
+    }
+  ],
+  "poze": [],
+  "metadata": {
+    "source": "2019_E_d_fizica_tehnologic_2019_var_04_LRO",
+    "year": 2019,
+    "variant": 4,
+    "type": "tehnologic",
+    "subjectArea": "Termodinamică",
+    "subjectCode": "B",
+    "subjectNumber": 2
+  }
+}

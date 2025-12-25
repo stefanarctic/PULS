@@ -1,0 +1,43 @@
+{
+  "titlu": "Problema II - Optică - Bac 2023",
+  "descriere": "Problema de bacalaureat - Subiectul II din Optică, 2023, teoretic",
+  "categorie": "Bac",
+  "varianta": "2023",
+  "dificultate": "mediu",
+  "punctajTotal": 15,
+  "continut": "O lentilă subțire $L_1$ formează pe un ecran imaginea clară a unui obiect liniar luminos. Obiectul este așezat perpendicular pe axa optică principală, la distanța de 30 cm de lentilă. Distanța dintre obiect și ecran este $d = 45 \\, \\text{cm}$.\n\na. Determinați distanța focală a lentilei.\nb. Se alipește de lentila $L_1$ o a doua lentilă subțire, $L_2$. Obiectul este așezat la distanța de 30 cm față de sistemul optic, iar imaginea observată pe ecranul așezat convenabil este de trei ori mai mică decât obiectul. Calculați distanța focală a lentilei $L_2$.\n\nc. Se plasează cele două lentile $L_1$ și $L_2$ la distanța $d_1$ una de alta, iar sistemul optic astfel format este centrat. Se constată că, indiferent de distanța de la obiect la prima lentilă în care intră lumina $(L_1)$, mărimea imaginii formate de sistem rămâne aceeași. Realizați un desen în care să reprezentați mersul unei raze de lumină prin sistemul optic, dacă raza intră în sistem paralel cu axa optică principală.\n\nd. În condițiile de la punctul c., dacă înălțimea obiectului $y_1 = 2 \\, \\text{cm}$, calculați înălțimea imaginii.",
+  "formule": [],
+  "date": {},
+  "subpuncte": [
+    {
+      "id": "1a",
+      "cerinta": "Determinați distanța focală a lentilei.",
+      "punctaj": 3
+    },
+    {
+      "id": "2b",
+      "cerinta": "Se alipește de lentila $L_1$ o a doua lentilă subțire, $L_2$. Obiectul este așezat la distanța de 30 cm față de sistemul optic, iar imaginea observată pe ecranul așezat convenabil este de trei ori mai mică decât obiectul. Calculați distanța focală a lentilei $L_2$.",
+      "punctaj": 3
+    },
+    {
+      "id": "3c",
+      "cerinta": "Se plasează cele două lentile $L_1$ și $L_2$ la distanța $d_1$ una de alta, iar sistemul optic astfel format este centrat. Se constată că, indiferent de distanța de la obiect la prima lentilă în care intră lumina $(L_1)$, mărimea imaginii formate de sistem rămâne aceeași. Realizați un desen în care să reprezentați mersul unei raze de lumină prin sistemul optic, dacă raza intră în sistem paralel cu axa optică principală.",
+      "punctaj": 3
+    },
+    {
+      "id": "4d",
+      "cerinta": "În condițiile de la punctul c., dacă înălțimea obiectului $y_1 = 2 \\, \\text{cm}$, calculați înălțimea imaginii.",
+      "punctaj": 3
+    }
+  ],
+  "poze": [],
+  "metadata": {
+    "source": "2023_E_d_fizica_teoretic_vocational_2023_var_simulare_LRO",
+    "year": 2023,
+    "variant": null,
+    "type": "teoretic",
+    "subjectArea": "Optică",
+    "subjectCode": "D",
+    "subjectNumber": 2
+  }
+}

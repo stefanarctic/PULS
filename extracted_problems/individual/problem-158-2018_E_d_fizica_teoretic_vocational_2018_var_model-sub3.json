@@ -1,0 +1,43 @@
+{
+  "titlu": "Problema III - Optică - Bac 2018",
+  "descriere": "Problema de bacalaureat - Subiectul III din Optică, 2018, teoretic",
+  "categorie": "Bac",
+  "varianta": "2018",
+  "dificultate": "mediu",
+  "punctajTotal": 15,
+  "continut": "Un dispozitiv Young plasat în aer are distanța dintre fante $2\\ell = 1,2 \\, \\text{mm}$ și este iluminat cu o radiație monocromatică și coerentă cu frecvența $\\nu = 5 \\cdot 10^{14} \\, \\text{Hz}$. Sursa punctiformă de lumină este situată pe axa de simetrie a dispozitivului, la distanța $d = 10 \\, \\text{cm}$ de paravanul cu fante. În figura de interferență observată pe ecran s-a măsurat interferența, obținându-se valoarea $i = 1,5 \\, \\text{mm}$.\n\na. Determinați distanța dintre paravanul cu fante și ecranul pe care s-a format figura de interferență.\nb. Calculați distanța dintre maximul de ordinul 3 situat de o parte a maximului central și cel de-al doilea minim aflat de cealaltă parte a maximului central.\nc. O fantă a dispozitivului Young se acoperă cu o lamă transparentă cu grosimea $e = 4 \\, \\mu \\text{m}$ și se observă că maximul central se află acum în poziția în care s-a aflat maximul de ordinul 4. Calculați indicele de refracție al materialului lamei.\nd. Calculați distanța pe care trebuie deplasată sursa de lumină, pe direcție perpendiculară pe axa de simetrie a dispozitivului, pentru ca sistemul de franje să revină în poziția inițială.",
+  "formule": [],
+  "date": {},
+  "subpuncte": [
+    {
+      "id": "1a",
+      "cerinta": "Determinați distanța dintre paravanul cu fante și ecranul pe care s-a format figura de interferență.",
+      "punctaj": 3
+    },
+    {
+      "id": "2b",
+      "cerinta": "Calculați distanța dintre maximul de ordinul 3 situat de o parte a maximului central și cel de-al doilea minim aflat de cealaltă parte a maximului central.",
+      "punctaj": 3
+    },
+    {
+      "id": "3c",
+      "cerinta": "O fantă a dispozitivului Young se acoperă cu o lamă transparentă cu grosimea $e = 4 \\, \\mu \\text{m}$ și se observă că maximul central se află acum în poziția în care s-a aflat maximul de ordinul 4. Calculați indicele de refracție al materialului lamei.",
+      "punctaj": 3
+    },
+    {
+      "id": "4d",
+      "cerinta": "Calculați distanța pe care trebuie deplasată sursa de lumină, pe direcție perpendiculară pe axa de simetrie a dispozitivului, pentru ca sistemul de franje să revină în poziția inițială.",
+      "punctaj": 3
+    }
+  ],
+  "poze": [],
+  "metadata": {
+    "source": "2018_E_d_fizica_teoretic_vocational_2018_var_model",
+    "year": 2018,
+    "variant": null,
+    "type": "teoretic",
+    "subjectArea": "Optică",
+    "subjectCode": "D",
+    "subjectNumber": 3
+  }
+}

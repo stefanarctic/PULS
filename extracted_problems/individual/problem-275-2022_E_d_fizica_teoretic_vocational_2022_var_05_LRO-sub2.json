@@ -1,0 +1,43 @@
+{
+  "titlu": "Problema II - Optică - Bac 2022 Var 5",
+  "descriere": "Problema de bacalaureat - Subiectul II din Optică, 2022, Varianta 5, teoretic",
+  "categorie": "Bac",
+  "varianta": "2022 Var 5",
+  "dificultate": "mediu",
+  "punctajTotal": 15,
+  "continut": "O lentilă subțire convergență are distanța focală $f = 40 \\, \\text{cm}$. Ea formează pe un ecran imaginea unui obiect luminos liniar așezat perpendicular pe axa optică principală. Distanța dintre obiect și lentilă este de $60 \\, \\text{cm}$.\n\na. Realizați un desen în care să evidențiați construcția imaginii prin lentilă în situația descrisă.\nb. Determinați convergența lentilei.\nc. Calculați distanța dintre obiect și imaginea obiectului formată pe ecran.\nd. Calculați înălțimea imaginii obținute pe ecran, dacă înălțimea obiectului este $y_1 = 10 \\, \\text{mm}$.",
+  "formule": [],
+  "date": {},
+  "subpuncte": [
+    {
+      "id": "1a",
+      "cerinta": "Realizați un desen în care să evidențiați construcția imaginii prin lentilă în situația descrisă.",
+      "punctaj": 3
+    },
+    {
+      "id": "2b",
+      "cerinta": "Determinați convergența lentilei.",
+      "punctaj": 3
+    },
+    {
+      "id": "3c",
+      "cerinta": "Calculați distanța dintre obiect și imaginea obiectului formată pe ecran.",
+      "punctaj": 3
+    },
+    {
+      "id": "4d",
+      "cerinta": "Calculați înălțimea imaginii obținute pe ecran, dacă înălțimea obiectului este $y_1 = 10 \\, \\text{mm}$.",
+      "punctaj": 3
+    }
+  ],
+  "poze": [],
+  "metadata": {
+    "source": "2022_E_d_fizica_teoretic_vocational_2022_var_05_LRO",
+    "year": 2022,
+    "variant": 5,
+    "type": "teoretic",
+    "subjectArea": "Optică",
+    "subjectCode": "D",
+    "subjectNumber": 2
+  }
+}

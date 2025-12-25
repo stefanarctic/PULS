@@ -1,0 +1,43 @@
+{
+  "titlu": "Problema II - Termodinamică - Bac 2019",
+  "descriere": "Problema de bacalaureat - Subiectul II din Termodinamică, 2019, teoretic",
+  "categorie": "Bac",
+  "varianta": "2019",
+  "dificultate": "mediu",
+  "punctajTotal": 15,
+  "continut": "Un cilindru având lungimea $L = 1,2\\mathrm{m}$ și aria secțiunii transversale $S = 83,1\\mathrm{cm}^2$ este prevăzut cu un orificiu O. Cilindrul este împărțit în două compartimente A și B de un piston mobil, termoizolant și etanș, care se poate deplasa fără frecări, ca în figura alăturată. Orificiul O permite legătura cu aerul atmosferic, aflat la presiunea atmosferică normală $(p_0 = 10^5\\mathrm{N / m}^2)$. Inițial orificiul este deschis, iar compartimentul A are lungimea $L_{1} = 0,3\\mathrm{m}$. Compartimentul B conține o cantitate de heliu. Gazele din cele două compartimente au aceeași temperatură, $T = 300\\mathrm{K}$, iar pistonul este în echilibru mecanic. Prin orificiul O se introduce apoi o cantitate suplimentară de aer, astfel încât pistonul se deplasează lent până la mijlocul cilindrului, după care se închide orificiul. Calculați:\na. cantitatea de heliu din compartimentul B;\nb. cantitatea suplimentară de aer, având temperatura $T = 300\\mathrm{K}$, introdusă în compartimentul A;\nc. presiunea finală a heliului din compartimentul B considerând că temperatura heliului nu se modifică;\nd. temperatura la care trebuie încălzit compartimentul B pentru ca pistonul să revină în poziția inițială, dacă aerul din compartimentul A este menținut temperatura $T = 300\\mathrm{K}$, iar orificiul este menținut închis.",
+  "formule": [],
+  "date": {},
+  "subpuncte": [
+    {
+      "id": "1a",
+      "cerinta": "cantitatea de heliu din compartimentul B;",
+      "punctaj": 3
+    },
+    {
+      "id": "2b",
+      "cerinta": "cantitatea suplimentară de aer, având temperatura $T = 300\\mathrm{K}$, introdusă în compartimentul A;",
+      "punctaj": 3
+    },
+    {
+      "id": "3c",
+      "cerinta": "presiunea finală a heliului din compartimentul B considerând că temperatura heliului nu se modifică;",
+      "punctaj": 3
+    },
+    {
+      "id": "4d",
+      "cerinta": "temperatura la care trebuie încălzit compartimentul B pentru ca pistonul să revină în poziția inițială, dacă aerul din compartimentul A este menținut temperatura $T = 300\\mathrm{K}$, iar orificiul este menținut închis.",
+      "punctaj": 3
+    }
+  ],
+  "poze": [],
+  "metadata": {
+    "source": "2019_E_d_fizica_teoretic_vocational_2019_var_simulare_LRO",
+    "year": 2019,
+    "variant": null,
+    "type": "teoretic",
+    "subjectArea": "Termodinamică",
+    "subjectCode": "B",
+    "subjectNumber": 2
+  }
+}

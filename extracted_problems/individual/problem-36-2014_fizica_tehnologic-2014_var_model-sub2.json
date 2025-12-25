@@ -1,0 +1,45 @@
+{
+  "titlu": "Problema II - Mecanică - Bac 2014",
+  "descriere": "Problema de bacalaureat - Subiectul II din Mecanică, 2014, tehnologic",
+  "categorie": "Bac",
+  "varianta": "2014",
+  "dificultate": "mediu",
+  "punctajTotal": 15,
+  "continut": "În sistemul reprezentat în figura alăturată corpul A are masa $m_A = 0,4\\,\\mathrm{kg}$, iar corpul B are masa $m_B = 0,1\\,\\mathrm{kg}$. Mișcarea corpului A are loc cu frecare, coeficientul de frecare la alunecare fiind $\\mu = 0,2$. Firul care leagă corpurile A și B se consideră inextensibil și de masă neglijabilă, iar scriptele S este lipsit de frecare și de inerție. Dacă se acționează asupra corpului A cu o forță orizontală constantă $\\vec{F}$, având orientarea din figură, sistemul se deplasează cu viteză constantă, iar corpul B urcă.\n\n![img-0.jpeg](img-0.jpeg)\n\na. Reprezentați toate forțele care acționează asupra corpului A, respectiv asupra corpului B.\nb. Determinați mărimea forței $\\vec{F}$ în condițiile date.\nc. În absența acțiunii forței $\\vec{F}$, sistemul se deplasează astfel încât corpul B coboară. Determinați valoarea accelerației corpului B.\nd. Determinați tensiunea din firul de legătură în condițiile de la punctul c.",
+  "formule": [],
+  "date": {},
+  "subpuncte": [
+    {
+      "id": "1a",
+      "cerinta": "Reprezentați toate forțele care acționează asupra corpului A, respectiv asupra corpului B.",
+      "punctaj": 3
+    },
+    {
+      "id": "2b",
+      "cerinta": "Determinați mărimea forței $\\vec{F}$ în condițiile date.",
+      "punctaj": 3
+    },
+    {
+      "id": "3c",
+      "cerinta": "În absența acțiunii forței $\\vec{F}$, sistemul se deplasează astfel încât corpul B coboară. Determinați valoarea accelerației corpului B.",
+      "punctaj": 3
+    },
+    {
+      "id": "4d",
+      "cerinta": "Determinați tensiunea din firul de legătură în condițiile de la punctul c.",
+      "punctaj": 3
+    }
+  ],
+  "poze": [
+    "data:image/jpeg;base64,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"
+  ],
+  "metadata": {
+    "source": "2014_fizica_tehnologic-2014_var_model",
+    "year": 2014,
+    "variant": null,
+    "type": "tehnologic",
+    "subjectArea": "Mecanică",
+    "subjectCode": "A",
+    "subjectNumber": 2
+  }
+}

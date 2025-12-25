@@ -1,0 +1,43 @@
+{
+  "titlu": "Problema II - Termodinamică - Bac 2013 Var 2",
+  "descriere": "Problema de bacalaureat - Subiectul II din Termodinamică, 2013, Varianta 2, tehnologic",
+  "categorie": "Bac",
+  "varianta": "2013 Var 2",
+  "dificultate": "mediu",
+  "punctajTotal": 15,
+  "continut": "Tubul unui laser cu gaz are volumul $V = 2\\mathrm{dm}^3$ și conține un amestec de heliu $(\\mu_1 = 4\\mathrm{g/mol})$ și neon $(\\mu_2 = 20\\mathrm{g/mol})$ în raportul molar $\\frac{V_1}{V_2} = 4$. În timpul funcționării laserului, amestecul gazos din tub se află la temperatura $T = 400\\mathrm{K}$ și presiunea $p = 16,62\\mathrm{Pa}$. Considerând că amestecul este gaz ideal, calculați:\n\na. cantitatea de amestec heliu-neon din tub;\nb. masa molară medie a amestecului din tub;\nc. densitatea gazului din tub;\nd. presiunea gazului din tub la temperatura $t_1 = 27^{\\circ}\\mathrm{C}$.",
+  "formule": [],
+  "date": {},
+  "subpuncte": [
+    {
+      "id": "1a",
+      "cerinta": "cantitatea de amestec heliu-neon din tub;",
+      "punctaj": 3
+    },
+    {
+      "id": "2b",
+      "cerinta": "masa molară medie a amestecului din tub;",
+      "punctaj": 3
+    },
+    {
+      "id": "3c",
+      "cerinta": "densitatea gazului din tub;",
+      "punctaj": 3
+    },
+    {
+      "id": "4d",
+      "cerinta": "presiunea gazului din tub la temperatura $t_1 = 27^{\\circ}\\mathrm{C}$.",
+      "punctaj": 3
+    }
+  ],
+  "poze": [],
+  "metadata": {
+    "source": "2013_fizica_tehnologic-2013_var_02_lro",
+    "year": 2013,
+    "variant": 2,
+    "type": "tehnologic",
+    "subjectArea": "Termodinamică",
+    "subjectCode": "B",
+    "subjectNumber": 2
+  }
+}

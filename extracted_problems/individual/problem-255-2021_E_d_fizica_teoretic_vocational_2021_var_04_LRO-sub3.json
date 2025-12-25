@@ -1,0 +1,43 @@
+{
+  "titlu": "Problema III - Mecanică - Bac 2021 Var 4",
+  "descriere": "Problema de bacalaureat - Subiectul III din Mecanică, 2021, Varianta 4, teoretic",
+  "categorie": "Bac",
+  "varianta": "2021 Var 4",
+  "dificultate": "mediu",
+  "punctajTotal": 15,
+  "continut": "Un corp având masa $m = 2\\,\\mathrm{kg}$ cade, din repaus, de la înălțimea $H = 50\\,\\mathrm{m}$ față de sol. După ce corpul parcurge în cadere liberă distanța $d = 45\\,\\mathrm{m}$, pe ultimii $5\\,\\mathrm{m}$, asupra corpului acționează o forță constantă $F$, orientată vertical în sus, sub acțiunea căreia corpul se oprește în momentul atingerii solului. Pe toată durata mișcării, interacțiunea cu aerul se consideră neglijabilă. Energia potențială gravitațională se consideră nulă la nivelul solului. Determinați:\na. energia potențială gravitațională în momentul în care corpul se află la înălțimea $H = 50\\,\\mathrm{m}$;\nb. lucrul mecanic efectuat de greutatea corpului în timpul căderii libere a acestuia pe distanța $d = 45\\,\\mathrm{m}$;\nc. valoarea impulsului corpului în momentul în care începe să acționeze forța constantă $F$;\nd. valoarea forței constante $F$.",
+  "formule": [],
+  "date": {},
+  "subpuncte": [
+    {
+      "id": "1a",
+      "cerinta": "energia potențială gravitațională în momentul în care corpul se află la înălțimea $H = 50\\,\\mathrm{m}$;",
+      "punctaj": 3
+    },
+    {
+      "id": "2b",
+      "cerinta": "lucrul mecanic efectuat de greutatea corpului în timpul căderii libere a acestuia pe distanța $d = 45\\,\\mathrm{m}$;",
+      "punctaj": 3
+    },
+    {
+      "id": "3c",
+      "cerinta": "valoarea impulsului corpului în momentul în care începe să acționeze forța constantă $F$;",
+      "punctaj": 3
+    },
+    {
+      "id": "4d",
+      "cerinta": "valoarea forței constante $F$.",
+      "punctaj": 3
+    }
+  ],
+  "poze": [],
+  "metadata": {
+    "source": "2021_E_d_fizica_teoretic_vocational_2021_var_04_LRO",
+    "year": 2021,
+    "variant": 4,
+    "type": "teoretic",
+    "subjectArea": "Mecanică",
+    "subjectCode": "A",
+    "subjectNumber": 3
+  }
+}

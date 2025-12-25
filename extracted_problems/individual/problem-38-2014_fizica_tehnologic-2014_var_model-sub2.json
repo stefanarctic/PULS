@@ -1,0 +1,43 @@
+{
+  "titlu": "Problema II - Termodinamică - Bac 2014",
+  "descriere": "Problema de bacalaureat - Subiectul II din Termodinamică, 2014, tehnologic",
+  "categorie": "Bac",
+  "varianta": "2014",
+  "dificultate": "mediu",
+  "punctajTotal": 15,
+  "continut": "Într-o butelie cu pereți rigizi, având volumul $V = 1$ L, se introduce o cantitate $\\nu$ de azot, considerat gaz ideal, cu masa molară $\\mu_{N_L} = 28 \\cdot 10^{-3} \\mathrm{kg/mol}$. Presiunea gazului din butelie are valoarea $p = 1,662 \\cdot 10^5 \\mathrm{Pa}$, iar temperatura acestuia este constantă și are valoarea $t = 7^{\\circ} \\mathrm{C}$. Pereții buteliei rezistă până la o presiune maximă $p_{\\max} = 4,155 \\cdot 10^5 \\mathrm{Pa}$. Determinați:\n\na. cantitatea de azot din butelie;\nb. masa unei molecule de azot;\nc. masa suplimentară de azot ce trebuie introdusă în butelie pentru ca presiunea gazului din incintă să se dubleze, temperatura rămânând constantă;\nd. valoarea temperaturii maxime până la care poate fi încălzită butelia, după introducerea masei suplimentare de azot.",
+  "formule": [],
+  "date": {},
+  "subpuncte": [
+    {
+      "id": "1a",
+      "cerinta": "cantitatea de azot din butelie;",
+      "punctaj": 3
+    },
+    {
+      "id": "2b",
+      "cerinta": "masa unei molecule de azot;",
+      "punctaj": 3
+    },
+    {
+      "id": "3c",
+      "cerinta": "masa suplimentară de azot ce trebuie introdusă în butelie pentru ca presiunea gazului din incintă să se dubleze, temperatura rămânând constantă;",
+      "punctaj": 3
+    },
+    {
+      "id": "4d",
+      "cerinta": "valoarea temperaturii maxime până la care poate fi încălzită butelia, după introducerea masei suplimentare de azot.",
+      "punctaj": 3
+    }
+  ],
+  "poze": [],
+  "metadata": {
+    "source": "2014_fizica_tehnologic-2014_var_model",
+    "year": 2014,
+    "variant": null,
+    "type": "tehnologic",
+    "subjectArea": "Termodinamică",
+    "subjectCode": "B",
+    "subjectNumber": 2
+  }
+}

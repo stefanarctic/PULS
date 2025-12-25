@@ -1,0 +1,43 @@
+{
+  "titlu": "Problema II - Termodinamică - Bac 2012 Var 2",
+  "descriere": "Problema de bacalaureat - Subiectul II din Termodinamică, 2012, Varianta 2",
+  "categorie": "Bac",
+  "varianta": "2012 Var 2",
+  "dificultate": "mediu",
+  "punctajTotal": 15,
+  "continut": "Amestecul respirabil denumit NOAA NITROX II, introdus în butelii speciale folosite de scafandri, este compus din oxigen ($O_2$) și azot ($N_2$). Masa oxigenului reprezintă 36% din masa totală a amestecului. Amestecul de gaze este introdus într-o butelie având volumul $V = 12 \\mathrm{dm}^3$ la presiunea $p = 16,62 \\cdot 10^5 \\mathrm{~Pa}$ și temperatura $t = 20^{\\circ} \\mathrm{C}$. Presupuneți că amestecul gazos se comportă ca un gaz ideal. Se cunosc masele atomice relative pentru oxigen $m_{nO} = 16$ și azot $m_{nN} = 14$. Determinați:\n\na. masa molară medie a amestecului gazos;\nb. raportul dintre numărul de molecule de oxigen și numărul de molecule de azot din amestec;\nc. masa amestecului gazos conținut în butelie;\nd. presiunea la care ajunge amestecul gazos din butelie după ce se consumă 20% din cantitatea existentă inițial, temperatura amestecului rămânând constantă.",
+  "formule": [],
+  "date": {},
+  "subpuncte": [
+    {
+      "id": "1a",
+      "cerinta": "masa molară medie a amestecului gazos;",
+      "punctaj": 3
+    },
+    {
+      "id": "2b",
+      "cerinta": "raportul dintre numărul de molecule de oxigen și numărul de molecule de azot din amestec;",
+      "punctaj": 3
+    },
+    {
+      "id": "3c",
+      "cerinta": "masa amestecului gazos conținut în butelie;",
+      "punctaj": 3
+    },
+    {
+      "id": "4d",
+      "cerinta": "presiunea la care ajunge amestecul gazos din butelie după ce se consumă 20% din cantitatea existentă inițial, temperatura amestecului rămânând constantă.",
+      "punctaj": 3
+    }
+  ],
+  "poze": [],
+  "metadata": {
+    "source": "2012_fizica-2012_var_02_lro",
+    "year": 2012,
+    "variant": 2,
+    "type": null,
+    "subjectArea": "Termodinamică",
+    "subjectCode": "B",
+    "subjectNumber": 2
+  }
+}

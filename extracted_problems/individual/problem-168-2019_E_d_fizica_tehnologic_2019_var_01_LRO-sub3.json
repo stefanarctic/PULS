@@ -1,0 +1,43 @@
+{
+  "titlu": "Problema III - Termodinamică - Bac 2019 Var 1",
+  "descriere": "Problema de bacalaureat - Subiectul III din Termodinamică, 2019, Varianta 1, tehnologic",
+  "categorie": "Bac",
+  "varianta": "2019 Var 1",
+  "dificultate": "mediu",
+  "punctajTotal": 15,
+  "continut": "O cantitate $\\nu = 0,12 \\left( \\equiv \\frac{1}{8,31} \\right)$ mol de gaz ideal monoatomic ($C_v = 1,5 R$) se află la temperatura $T_1 = 300 \\mathrm{~K}$.\n\nGazul descrie un proces ciclic format din următoarele transformări:\n- 1-2: încălzire la volum constant până la presiunea $p_2 = 2 p_1$\n- 2-3: destindere la temperatură constantă până la volumul $V_3 = 2 V_1$\n- 3-1: comprimare la presiune constantă până în starea inițială.\n\nSe consideră $\\ln 2 \\equiv 0,7$.\n\na. Reprezentați grafic procesul în coordonate $p - V$;\nb. Calculați variația energiei interne a gazului în transformarea 1-2;\nc. Calculați lucrul mecanic efectuat de gaz în transformarea 2-3;\nd. Calculați căldura cedată de gaz în transformarea 3-1.",
+  "formule": [],
+  "date": {},
+  "subpuncte": [
+    {
+      "id": "1a",
+      "cerinta": "Reprezentați grafic procesul în coordonate $p - V$;",
+      "punctaj": 3
+    },
+    {
+      "id": "2b",
+      "cerinta": "Calculați variația energiei interne a gazului în transformarea 1-2;",
+      "punctaj": 3
+    },
+    {
+      "id": "3c",
+      "cerinta": "Calculați lucrul mecanic efectuat de gaz în transformarea 2-3;",
+      "punctaj": 3
+    },
+    {
+      "id": "4d",
+      "cerinta": "Calculați căldura cedată de gaz în transformarea 3-1.",
+      "punctaj": 3
+    }
+  ],
+  "poze": [],
+  "metadata": {
+    "source": "2019_E_d_fizica_tehnologic_2019_var_01_LRO",
+    "year": 2019,
+    "variant": 1,
+    "type": "tehnologic",
+    "subjectArea": "Termodinamică",
+    "subjectCode": "B",
+    "subjectNumber": 3
+  }
+}

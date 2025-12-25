@@ -1,0 +1,43 @@
+{
+  "titlu": "Problema III - Optică - Bac 2022",
+  "descriere": "Problema de bacalaureat - Subiectul III din Optică, 2022, teoretic",
+  "categorie": "Bac",
+  "varianta": "2022",
+  "dificultate": "mediu",
+  "punctajTotal": 15,
+  "continut": "Un dispozitiv Young, plasat în aer, este iluminat cu o radiație monocromatică de lungime de undă $\\lambda = 625 \\, \\text{nm}$. Radiația este emisă de o sursă $S_1$, aflată pe axa de simetrie a dispozitivului. Figura de interferență se observă pe un ecran așezat paralel cu planul fantelor, la distanța $D = 0,8 \\, \\text{m}$ de acesta. Distanța dintre cele două fante este $2\\ell = 1 \\, \\text{mm}$.\n\na. Determinați frecvența radiației luminoase utilizate.\nb. Calculați valoarea interfranjei.\nc. Determinați valoarea distanței dintre a patra franjă întunecoasă aflată de o parte a franjei centrale și a treia franjă luminoasă aflată de cealaltă parte a franjei centrale.\nd. În fața fiecăreia dintre cele două fante se plasează câte o lamă cu fețe plan paralele, transparentă. Prima lamă, de grosime $e_1 = 0,05 \\, \\text{mm}$, este confectionată dintr-un material de indice de refracție $n_1 = 1,4$. Grosimea celei de-a doua lame este $e_2 = 0,04 \\, \\text{mm}$. Se observă că figura de interferență rămâne nemodificată. Determinați indicele de refacție al materialului din care este confectionată a doua lamă.",
+  "formule": [],
+  "date": {},
+  "subpuncte": [
+    {
+      "id": "1a",
+      "cerinta": "Determinați frecvența radiației luminoase utilizate.",
+      "punctaj": 3
+    },
+    {
+      "id": "2b",
+      "cerinta": "Calculați valoarea interfranjei.",
+      "punctaj": 3
+    },
+    {
+      "id": "3c",
+      "cerinta": "Determinați valoarea distanței dintre a patra franjă întunecoasă aflată de o parte a franjei centrale și a treia franjă luminoasă aflată de cealaltă parte a franjei centrale.",
+      "punctaj": 3
+    },
+    {
+      "id": "4d",
+      "cerinta": "În fața fiecăreia dintre cele două fante se plasează câte o lamă cu fețe plan paralele, transparentă. Prima lamă, de grosime $e_1 = 0,05 \\, \\text{mm}$, este confectionată dintr-un material de indice de refracție $n_1 = 1,4$. Grosimea celei de-a doua lame este $e_2 = 0,04 \\, \\text{mm}$. Se observă că figura de interferență rămâne nemodificată. Determinați indicele de refacție al materialului din care este confectionată a doua lamă.",
+      "punctaj": 3
+    }
+  ],
+  "poze": [],
+  "metadata": {
+    "source": "2022_E_d_fizica_teoretic_vocational_2022_var_simulare_LRO",
+    "year": 2022,
+    "variant": null,
+    "type": "teoretic",
+    "subjectArea": "Optică",
+    "subjectCode": "D",
+    "subjectNumber": 3
+  }
+}

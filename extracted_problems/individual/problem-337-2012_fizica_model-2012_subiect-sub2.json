@@ -1,0 +1,43 @@
+{
+  "titlu": "Problema II - Optică - Bac 2012",
+  "descriere": "Problema de bacalaureat - Subiectul II din Optică, 2012, model",
+  "categorie": "Bac",
+  "varianta": "2012",
+  "dificultate": "mediu",
+  "punctajTotal": 15,
+  "continut": "Două lentile $L_1$ și $L_2$ au distanțele focale $f_1 = 15$ cm, respectiv $f_2 = 30$ cm. Pentru un obiect real aflat la o anumită distanță de centrul optic al celor două lentile acolate (alipite), mărirea liniară transversală dată de sistemul optic este $\\beta = 4$. Determinați:\n\na. convergența sistemului de lentile acolate;\n\nb. distanța la care se află obiectul real față de centrul optic al sistemului de lentile acolate;\n\nc. distanța dintre obiect și imaginea sa dată de sistemul lentilelor acolate;\n\nd. distanța $d$ la care ar trebui plasate cele două lentile $L_1$ și $L_2$ pe aceeași axă optică principală astfel încât un fascicul paralel de lumină incident pe lentila $L_1$ să iasă tot ca fascicul paralel din lentila $L_2$.",
+  "formule": [],
+  "date": {},
+  "subpuncte": [
+    {
+      "id": "1a",
+      "cerinta": "convergența sistemului de lentile acolate;",
+      "punctaj": 3
+    },
+    {
+      "id": "2b",
+      "cerinta": "distanța la care se află obiectul real față de centrul optic al sistemului de lentile acolate;",
+      "punctaj": 3
+    },
+    {
+      "id": "3c",
+      "cerinta": "distanța dintre obiect și imaginea sa dată de sistemul lentilelor acolate;",
+      "punctaj": 3
+    },
+    {
+      "id": "4d",
+      "cerinta": "distanța $d$ la care ar trebui plasate cele două lentile $L_1$ și $L_2$ pe aceeași axă optică principală astfel încât un fascicul paralel de lumină incident pe lentila $L_1$ să iasă tot ca fascicul paralel din lentila $L_2$.",
+      "punctaj": 3
+    }
+  ],
+  "poze": [],
+  "metadata": {
+    "source": "2012_fizica_model-2012_subiect",
+    "year": 2012,
+    "variant": null,
+    "type": "model",
+    "subjectArea": "Optică",
+    "subjectCode": "D",
+    "subjectNumber": 2
+  }
+}

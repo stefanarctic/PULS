@@ -1,0 +1,43 @@
+{
+  "titlu": "Problema III - Optică - Bac 2019",
+  "descriere": "Problema de bacalaureat - Subiectul III din Optică, 2019, teoretic",
+  "categorie": "Bac",
+  "varianta": "2019",
+  "dificultate": "mediu",
+  "punctajTotal": 15,
+  "continut": "Un dispozitiv Young plasat în aer are distanța dintre fante $2\\,\\ell = 1\\,\\mathrm{mm}$ și este iluminat cu o radiație monocromatică și coerentă cu lungimea de undă $\\lambda = 500\\,\\mathrm{nm}$, sursa de lumină fiind situată pe axa de simetrie a dispozitivului. Valoarea interfranței este $i = 1,5\\,\\mathrm{mm}$.\n\na. Calculați distanța de la paravanul cu fante la ecranul pe care s-a format figura de interferență.\nb. Calculați diferența de drum optic dintre undele care produc pe ecran maximul de ordinul 4.\nc. O fantă a dispozitivului Young se acoperă cu o folie transparentă cu grosimea $e = 6\\,\\mu\\mathrm{m}$ și indicele de refracție $n = 1,5$. Calculați diferența de drum optic introdusă de folia transparentă.\nd. Calculați deplasarea maximului central al figurii de interferență ca urmare a acoperirii unei fante a dispozitivului cu folia transparentă.",
+  "formule": [],
+  "date": {},
+  "subpuncte": [
+    {
+      "id": "1a",
+      "cerinta": "Calculați distanța de la paravanul cu fante la ecranul pe care s-a format figura de interferență.",
+      "punctaj": 3
+    },
+    {
+      "id": "2b",
+      "cerinta": "Calculați diferența de drum optic dintre undele care produc pe ecran maximul de ordinul 4.",
+      "punctaj": 3
+    },
+    {
+      "id": "3c",
+      "cerinta": "O fantă a dispozitivului Young se acoperă cu o folie transparentă cu grosimea $e = 6\\,\\mu\\mathrm{m}$ și indicele de refracție $n = 1,5$. Calculați diferența de drum optic introdusă de folia transparentă.",
+      "punctaj": 3
+    },
+    {
+      "id": "4d",
+      "cerinta": "Calculați deplasarea maximului central al figurii de interferență ca urmare a acoperirii unei fante a dispozitivului cu folia transparentă.",
+      "punctaj": 3
+    }
+  ],
+  "poze": [],
+  "metadata": {
+    "source": "2019_E_d_fizica_teoretic_vocational_2019_var_model",
+    "year": 2019,
+    "variant": null,
+    "type": "teoretic",
+    "subjectArea": "Optică",
+    "subjectCode": "D",
+    "subjectNumber": 3
+  }
+}

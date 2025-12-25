@@ -1,0 +1,43 @@
+{
+  "titlu": "Problema III - Curent continuu - Bac 2015",
+  "descriere": "Problema de bacalaureat - Subiectul III din Curent continuu, 2015, tehnologic",
+  "categorie": "Bac",
+  "varianta": "2015",
+  "dificultate": "mediu",
+  "punctajTotal": 15,
+  "continut": "Doi rezistori identici, având fiecare rezistență electrică $R$, legați în paralel, consumă o putere totală de 12 W atunci când tensiunea la bornele lor este de 12 V. Calculați:\n\na. intensitatea curentului prin fiecare rezistor;\nb. rezistența electrică $R$;\nc. energia consumată de un rezistor în timp de 5 ore;\nd. puterea consumată de ansamblul celor doi rezistori atunci când sunt legați în serie la bornele unui generator cu t.e.m. de 12 V și cu rezistență interioară neglijabilă.",
+  "formule": [],
+  "date": {},
+  "subpuncte": [
+    {
+      "id": "1a",
+      "cerinta": "intensitatea curentului prin fiecare rezistor;",
+      "punctaj": 3
+    },
+    {
+      "id": "2b",
+      "cerinta": "rezistența electrică $R$;",
+      "punctaj": 3
+    },
+    {
+      "id": "3c",
+      "cerinta": "energia consumată de un rezistor în timp de 5 ore;",
+      "punctaj": 3
+    },
+    {
+      "id": "4d",
+      "cerinta": "puterea consumată de ansamblul celor doi rezistori atunci când sunt legați în serie la bornele unui generator cu t.e.m. de 12 V și cu rezistență interioară neglijabilă.",
+      "punctaj": 3
+    }
+  ],
+  "poze": [],
+  "metadata": {
+    "source": "2015_fizica_tehnologic_2015_var_simulare",
+    "year": 2015,
+    "variant": null,
+    "type": "tehnologic",
+    "subjectArea": "Curent continuu",
+    "subjectCode": "C",
+    "subjectNumber": 3
+  }
+}

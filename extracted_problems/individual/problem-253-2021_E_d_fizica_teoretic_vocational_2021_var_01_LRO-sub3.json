@@ -1,0 +1,43 @@
+{
+  "titlu": "Problema III - Optică - Bac 2021 Var 1",
+  "descriere": "Problema de bacalaureat - Subiectul III din Optică, 2021, Varianta 1, teoretic",
+  "categorie": "Bac",
+  "varianta": "2021 Var 1",
+  "dificultate": "mediu",
+  "punctajTotal": 15,
+  "continut": "Într-un dispozitiv Young este utilizată o sursă de lumină care emite radiație cu spectru continuu, plasată pe axa de simetrie a dispozitivului. Lungimile de undă extreme ale spectrului emis sunt egale cu 400 nm, respectiv 700 nm. Interfranja figurii de interferență formate pe ecranul dispozitivului de radiația cu lungimea de undă $\\lambda_{\\nu} = 400 \\, \\text{nm}$ este $i_{\\nu} = 0,8 \\, \\text{mm}$.\n\na. Calculați interfranja figurii de interferență formate pe ecranul dispozitivului de radiația cu lungimea de undă $\\lambda_r = 700 \\, \\text{nm}$.\nb. Determinați distanța care separă maximele de ordinul 3 ale radiațiilor cu lungimile de undă $\\lambda_{\\nu} = 400 \\, \\text{nm}$ și $\\lambda_r = 700 \\, \\text{nm}$, situate de aceeași parte a maximului central.\nc. Stabiliți distanța minimă nenulă, față de franja centrală, la care se suprapun maximele radiațiilor cu lungimile de undă $\\lambda_{\\nu} = 400 \\, \\text{nm}$ și $\\lambda_r = 700 \\, \\text{nm}$.\nd. Determinați lungimea de undă a radiației care formează un maxim de interferență la distanța de 2 mm față de franja centrală.",
+  "formule": [],
+  "date": {},
+  "subpuncte": [
+    {
+      "id": "1a",
+      "cerinta": "Calculați interfranja figurii de interferență formate pe ecranul dispozitivului de radiația cu lungimea de undă $\\lambda_r = 700 \\, \\text{nm}$.",
+      "punctaj": 3
+    },
+    {
+      "id": "2b",
+      "cerinta": "Determinați distanța care separă maximele de ordinul 3 ale radiațiilor cu lungimile de undă $\\lambda_{\\nu} = 400 \\, \\text{nm}$ și $\\lambda_r = 700 \\, \\text{nm}$, situate de aceeași parte a maximului central.",
+      "punctaj": 3
+    },
+    {
+      "id": "3c",
+      "cerinta": "Stabiliți distanța minimă nenulă, față de franja centrală, la care se suprapun maximele radiațiilor cu lungimile de undă $\\lambda_{\\nu} = 400 \\, \\text{nm}$ și $\\lambda_r = 700 \\, \\text{nm}$.",
+      "punctaj": 3
+    },
+    {
+      "id": "4d",
+      "cerinta": "Determinați lungimea de undă a radiației care formează un maxim de interferență la distanța de 2 mm față de franja centrală.",
+      "punctaj": 3
+    }
+  ],
+  "poze": [],
+  "metadata": {
+    "source": "2021_E_d_fizica_teoretic_vocational_2021_var_01_LRO",
+    "year": 2021,
+    "variant": 1,
+    "type": "teoretic",
+    "subjectArea": "Optică",
+    "subjectCode": "D",
+    "subjectNumber": 3
+  }
+}

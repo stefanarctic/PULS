@@ -1,0 +1,28 @@
+{
+  "titlu": "Problema III - Optică - Bac 2016",
+  "descriere": "Problema de bacalaureat - Subiectul III din Optică, 2016, tehnologic",
+  "categorie": "Bac",
+  "varianta": "2016",
+  "dificultate": "mediu",
+  "punctajTotal": 15,
+  "continut": "Un fascicul paralel de lumină monocromatică este incident pe suprafața de separare dintre sticlă și apă. Pentru o anumită valoare $i$ a unghiului de incidență raza se refractă în apă sub unghiul $r = 60^{\\circ}$. Indicele de refractie pentru apă este $n_{\\text{apă}} = \\frac{4}{3}$, iar pentru sticlă este $n_{\\text{sticlă}} = 1,92 \\left( \\equiv \\frac{10\\sqrt{3}}{9} \\right)$. Se consideră $\\sin 37^{\\circ} = 0,6$.\n\n#",
+  "formule": [],
+  "date": {},
+  "subpuncte": [
+    {
+      "id": "1a",
+      "cerinta": "Un fascicul paralel de lumină monocromatică este incident pe suprafața de separare dintre sticlă și apă. Pentru o anumită valoare $i$ a unghiului de incidență raza se refractă în apă sub unghiul $r = 60^{\\circ}$. Indicele de refractie pentru apă este $n_{\\text{apă}} = \\frac{4}{3}$, iar pentru sticlă este $n_{\\text{sticlă}} = 1,92 \\left( \\equiv \\frac{10\\sqrt{3}}{9} \\right)$. Se consideră $\\sin 37^{\\circ} = 0,6$.\n\n#",
+      "punctaj": 15
+    }
+  ],
+  "poze": [],
+  "metadata": {
+    "source": "2016_2016-subiect-simulare-fizica-tehnologic",
+    "year": 2016,
+    "variant": null,
+    "type": "tehnologic",
+    "subjectArea": "Optică",
+    "subjectCode": "D",
+    "subjectNumber": 3
+  }
+}

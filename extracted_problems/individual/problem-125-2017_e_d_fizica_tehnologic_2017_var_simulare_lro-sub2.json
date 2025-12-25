@@ -1,0 +1,45 @@
+{
+  "titlu": "Problema II - Mecanică - Bac 2017",
+  "descriere": "Problema de bacalaureat - Subiectul II din Mecanică, 2017, tehnologic",
+  "categorie": "Bac",
+  "varianta": "2017",
+  "dificultate": "mediu",
+  "punctajTotal": 15,
+  "continut": "Două corpuri, de mase $m_1 = 1\\,\\mathrm{kg}$ și $m_2 = 2\\,\\mathrm{kg}$, sunt legate prin intermediul unui fir inextensibil, de masă neglijabilă. Sistemul mecanic astfel format este așezat pe o suprafață orizontală. Asupra corpului de masă $m_1$ se acționează cu o forță $\\vec{F}$, orientată orizontal, ca în figura alăturată.\n\nCoeficientul de frecare dintre corpuri și suprafața planului orizontal este $\\mu = 0,2$. Accelerarea corpurilor este $a = 0,5\\,\\mathrm{m/s^2}$.\n\n![img-1.jpeg](img-1.jpeg)\n\na. Reprezentați toate forțele care acționează asupra corpului de masă $m_2$.\nb. Calculați valoarea forței de frecare dintre corpul de masă $m_2$ și suprafața orizontală.\nc. Determinați valoarea tensiunii din firul care leagă cele două corpuri.\nd. Determinați valoarea forței $\\vec{F}$.",
+  "formule": [],
+  "date": {},
+  "subpuncte": [
+    {
+      "id": "1a",
+      "cerinta": "Reprezentați toate forțele care acționează asupra corpului de masă $m_2$.",
+      "punctaj": 3
+    },
+    {
+      "id": "2b",
+      "cerinta": "Calculați valoarea forței de frecare dintre corpul de masă $m_2$ și suprafața orizontală.",
+      "punctaj": 3
+    },
+    {
+      "id": "3c",
+      "cerinta": "Determinați valoarea tensiunii din firul care leagă cele două corpuri.",
+      "punctaj": 3
+    },
+    {
+      "id": "4d",
+      "cerinta": "Determinați valoarea forței $\\vec{F}$.",
+      "punctaj": 3
+    }
+  ],
+  "poze": [
+    "data:image/jpeg;base64,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"
+  ],
+  "metadata": {
+    "source": "2017_e_d_fizica_tehnologic_2017_var_simulare_lro",
+    "year": 2017,
+    "variant": null,
+    "type": "tehnologic",
+    "subjectArea": "Mecanică",
+    "subjectCode": "A",
+    "subjectNumber": 2
+  }
+}

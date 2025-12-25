@@ -1,0 +1,43 @@
+{
+  "titlu": "Problema III - Optică - Bac 2012 Var 1",
+  "descriere": "Problema de bacalaureat - Subiectul III din Optică, 2012, Varianta 1",
+  "categorie": "Bac",
+  "varianta": "2012 Var 1",
+  "dificultate": "mediu",
+  "punctajTotal": 15,
+  "continut": "O sursă emite radiații electromagnetice cu frecvența $\\nu = 12 \\cdot 10^{14}$ Hz. Energia transportată de radiația care cade pe suprafața metalului timp de 2 s este de $200\\,\\mu\\mathrm{J}$. Lucrul mecanic de extracție a electronilor din metal este $L_{\\text{ext}} = 3,2 \\cdot 10^{-19}\\,\\mathrm{J}$. Determinați:\n\na. lungimea de undă a radiației electromagnetice emise de sursă;\nb. numărul de fotoni care cad pe suprafața metalului în unitatea de timp;\nc. frecvența de prag pentru acest metal;\nd. energia cinetică maximă a fotoelectronilor emiși.",
+  "formule": [],
+  "date": {},
+  "subpuncte": [
+    {
+      "id": "1a",
+      "cerinta": "lungimea de undă a radiației electromagnetice emise de sursă;",
+      "punctaj": 3
+    },
+    {
+      "id": "2b",
+      "cerinta": "numărul de fotoni care cad pe suprafața metalului în unitatea de timp;",
+      "punctaj": 3
+    },
+    {
+      "id": "3c",
+      "cerinta": "frecvența de prag pentru acest metal;",
+      "punctaj": 3
+    },
+    {
+      "id": "4d",
+      "cerinta": "energia cinetică maximă a fotoelectronilor emiși.",
+      "punctaj": 3
+    }
+  ],
+  "poze": [],
+  "metadata": {
+    "source": "2012_fizica-2012_var_01_lro",
+    "year": 2012,
+    "variant": 1,
+    "type": null,
+    "subjectArea": "Optică",
+    "subjectCode": "D",
+    "subjectNumber": 3
+  }
+}

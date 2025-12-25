@@ -1,0 +1,43 @@
+{
+  "titlu": "Problema III - Mecanică - Bac 2015",
+  "descriere": "Problema de bacalaureat - Subiectul III din Mecanică, 2015, teoretic",
+  "categorie": "Bac",
+  "varianta": "2015",
+  "dificultate": "mediu",
+  "punctajTotal": 15,
+  "continut": "Unui puc de hochei cu masa $m = 160 \\, \\text{g}$ i se imprimă un impuls orizontal $p_0 = 3,2 \\, \\text{N} \\cdot \\text{s}$ prin lovirea sa pe direcție centrală. Pucul, având formă de disc și fiind confectionat din cauciuc, alunecă pe suprafața gheții fără a se roti. Forța de frecare la alunecare dintre puc și suprafața gheții se consideră constantă pe tot parcursul deplasării pucului, coeficientul de frecare la alunecare dintre puc și suprafața gheții fiind $\\mu = 0,1$.\n\na. Calculați energia cinetică a pucului imediat după lovirea sa.\nb. Determinați distanța $d_1$ pe care ar parcurge-o pucul până la oprire, presupunând că nu ar întâlni niciun obstacol în calea sa.\nc. Calculați viteza pucului după ce acesta a parcurs distanța $d_2 = 38 \\, \\text{m}$.\nd. După parcurgerea distanței $d_2$ pucul lovește frontal mantinela (un perete). Presupunând că durata interacțiunii cu peretele este $\\Delta t = 2 \\, \\text{ms}$ și că pucul se întoarce pe aceeași direcție, viteza având același modul ca și înainte de lovirea peretelui, determinați valoarea forței exercitate de puc asupra mantinelei în acest interval de timp.",
+  "formule": [],
+  "date": {},
+  "subpuncte": [
+    {
+      "id": "1a",
+      "cerinta": "Calculați energia cinetică a pucului imediat după lovirea sa.",
+      "punctaj": 3
+    },
+    {
+      "id": "2b",
+      "cerinta": "Determinați distanța $d_1$ pe care ar parcurge-o pucul până la oprire, presupunând că nu ar întâlni niciun obstacol în calea sa.",
+      "punctaj": 3
+    },
+    {
+      "id": "3c",
+      "cerinta": "Calculați viteza pucului după ce acesta a parcurs distanța $d_2 = 38 \\, \\text{m}$.",
+      "punctaj": 3
+    },
+    {
+      "id": "4d",
+      "cerinta": "După parcurgerea distanței $d_2$ pucul lovește frontal mantinela (un perete). Presupunând că durata interacțiunii cu peretele este $\\Delta t = 2 \\, \\text{ms}$ și că pucul se întoarce pe aceeași direcție, viteza având același modul ca și înainte de lovirea peretelui, determinați valoarea forței exercitate de puc asupra mantinelei în acest interval de timp.",
+      "punctaj": 3
+    }
+  ],
+  "poze": [],
+  "metadata": {
+    "source": "2015_fizica_teoretic_vocational_2015_var_simulare",
+    "year": 2015,
+    "variant": null,
+    "type": "teoretic",
+    "subjectArea": "Mecanică",
+    "subjectCode": "A",
+    "subjectNumber": 3
+  }
+}

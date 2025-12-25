@@ -1,0 +1,43 @@
+{
+  "titlu": "Problema II - Termodinamică - Bac 2012 Var 3",
+  "descriere": "Problema de bacalaureat - Subiectul II din Termodinamică, 2012, Varianta 3",
+  "categorie": "Bac",
+  "varianta": "2012 Var 3",
+  "dificultate": "mediu",
+  "punctajTotal": 15,
+  "continut": "În figura alăturată este reprezentată schematic o pompă de compresiune, al cărei corp de pompă are volumul $V_0 = 1L$. Pompa este folosită pentru umplerea cu aer a unui balon de volum $V = 10L$ până la presiunea $p = 1,5 \\cdot 10^5 \\mathrm{~N} / \\mathrm{m}^2$. Inițial, în balon se află aer la presiunea atmosferică normală $p_0 = 10^5 \\mathrm{~N} / \\mathrm{m}^2$. Pompa preia, la fiecare cursă a pistonului P, aer la presiunea atmosferică normală prin deschiderea supapei $S_1$, supapa $S_2$ fiind închisă. Procesul de umplere a balonului cu aer comprimat are loc la temperatura mediului ambiant $t = 17^{\\circ}\\mathrm{C}$, prin închiderea supapei $S_1$ și deschiderea supapei $S_2$. Pereții balonului rezistă până la o presiune $p_{\\max} = 1,7 \\cdot 10^5 \\mathrm{~N} / \\mathrm{m}^2$. Masa molară a aerului $\\mu = 29 \\mathrm{~g} \\cdot \\mathrm{mol}^{-1}$.\n\na. Calculați masa inițială a aerului din balon.\nb. Determinați numărul N de curse ce trebuie efectuat de pistonul P pentru a aduce presiunea aerului din balon la valoarea $p$.\nc. Calculați densitatea aerului din balon la sfârșitul celor N curse ale pistonului.\nd. După umplerea balonului cu aer la presiunea $p$, balonul este închis și corpul de pompă este decuplat. Calculați valoarea maximă a temperaturii până la care poate fi încălzit balonul fără a se sparge.",
+  "formule": [],
+  "date": {},
+  "subpuncte": [
+    {
+      "id": "1a",
+      "cerinta": "Calculați masa inițială a aerului din balon.",
+      "punctaj": 3
+    },
+    {
+      "id": "2b",
+      "cerinta": "Determinați numărul N de curse ce trebuie efectuat de pistonul P pentru a aduce presiunea aerului din balon la valoarea $p$.",
+      "punctaj": 3
+    },
+    {
+      "id": "3c",
+      "cerinta": "Calculați densitatea aerului din balon la sfârșitul celor N curse ale pistonului.",
+      "punctaj": 3
+    },
+    {
+      "id": "4d",
+      "cerinta": "După umplerea balonului cu aer la presiunea $p$, balonul este închis și corpul de pompă este decuplat. Calculați valoarea maximă a temperaturii până la care poate fi încălzit balonul fără a se sparge.",
+      "punctaj": 3
+    }
+  ],
+  "poze": [],
+  "metadata": {
+    "source": "2012_fizica-2012_var_03_lro",
+    "year": 2012,
+    "variant": 3,
+    "type": null,
+    "subjectArea": "Termodinamică",
+    "subjectCode": "B",
+    "subjectNumber": 2
+  }
+}

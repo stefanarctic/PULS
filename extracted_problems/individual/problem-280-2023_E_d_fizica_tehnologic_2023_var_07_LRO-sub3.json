@@ -1,0 +1,43 @@
+{
+  "titlu": "Problema III - Optică - Bac 2023 Var 7",
+  "descriere": "Problema de bacalaureat - Subiectul III din Optică, 2023, Varianta 7, tehnologic",
+  "categorie": "Bac",
+  "varianta": "2023 Var 7",
+  "dificultate": "mediu",
+  "punctajTotal": 15,
+  "continut": "O lamă cu fețe plane și paralele, confectionată dintr-un material optic transparent cu indicele de refracție $n = 1,32$, este situată în aer $(n_{\\text{aer}} \\cong 1)$. O rază de lumină monocromatică, venind din aer, este incidentă pe una dintre fețele lamei sub unghiul de incidență $i = 60^\\circ$ și traversează lama, ieșind prin fața opusă. Considerați cunoscute valorile: $\\sin 41^\\circ \\cong 0,656$, $\\cos 41^\\circ \\cong 0,755$ și $\\sin 60^\\circ \\cong 0,866$.\n\na. Determinați viteza de propagare a luminii în lamă.\nb. Realizați un desen în care să reprezentați mersul razei de lumină prin aer și prin lamă. Pentru intrarea în lamă, marcați pe desen și notați cu $i$ unghiul de incidență, respectiv cu $r$ unghiul de refracție.\nc. Calculați valoarea unghiului de refracție la trecerea razei de lumină din aer în lamă.\nd. Dacă grosimea lamei este $e = 15,1 \\, \\text{mm}$, determinați distanța parcursă de raza de lumină prin lama cu fețe plane și paralele.",
+  "formule": [],
+  "date": {},
+  "subpuncte": [
+    {
+      "id": "1a",
+      "cerinta": "Determinați viteza de propagare a luminii în lamă.",
+      "punctaj": 3
+    },
+    {
+      "id": "2b",
+      "cerinta": "Realizați un desen în care să reprezentați mersul razei de lumină prin aer și prin lamă. Pentru intrarea în lamă, marcați pe desen și notați cu $i$ unghiul de incidență, respectiv cu $r$ unghiul de refracție.",
+      "punctaj": 3
+    },
+    {
+      "id": "3c",
+      "cerinta": "Calculați valoarea unghiului de refracție la trecerea razei de lumină din aer în lamă.",
+      "punctaj": 3
+    },
+    {
+      "id": "4d",
+      "cerinta": "Dacă grosimea lamei este $e = 15,1 \\, \\text{mm}$, determinați distanța parcursă de raza de lumină prin lama cu fețe plane și paralele.",
+      "punctaj": 3
+    }
+  ],
+  "poze": [],
+  "metadata": {
+    "source": "2023_E_d_fizica_tehnologic_2023_var_07_LRO",
+    "year": 2023,
+    "variant": 7,
+    "type": "tehnologic",
+    "subjectArea": "Optică",
+    "subjectCode": "D",
+    "subjectNumber": 3
+  }
+}

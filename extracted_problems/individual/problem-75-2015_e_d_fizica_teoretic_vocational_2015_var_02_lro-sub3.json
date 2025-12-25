@@ -1,0 +1,43 @@
+{
+  "titlu": "Problema III - Optică - Bac 2015 Var 2",
+  "descriere": "Problema de bacalaureat - Subiectul III din Optică, 2015, Varianta 2, teoretic",
+  "categorie": "Bac",
+  "varianta": "2015 Var 2",
+  "dificultate": "mediu",
+  "punctajTotal": 15,
+  "continut": "Un dispozitiv interferențial Young are distanța dintre fante $2\\ell = 0,5 \\, \\text{mm}$. Distanța de la planul fantelor la ecran este $D = 1 \\, \\text{m}$. O sursă de lumină coerentă monocromatică cu $\\lambda = 500 \\, \\text{nm}$ este așezată pe axa de simetrie a dispozitivului interferențial, la distanța $d = 20 \\, \\text{cm}$ de planul fantelor.\n\na. Calculați valoarea interfranjei.\n\nb. Calculați diferența de drum optic dintre undele luminoase care, în urma suprapunerii, formează pe ecran maximul de ordin $k = 4$.\n\nc. Determinați deplasarea $\\Delta x$ a figurii de interferență dacă sursa de lumină se deplasează paralel cu planul fantelor, perpendicular pe acestea, cu distanța $y = 1 \\, \\text{mm}$.\n\nd. Se înlocuiește sursa de lumină cu o altă sursă care emite lumină albă ale cărei limite spectrale sunt $\\lambda_{r} = 750 \\, \\text{nm}$ și $\\lambda_{\\nu} = 400 \\, \\text{nm}$. Determinați numărul de radiații cu lungimi de undă diferite care formează minime la distanța $x = 5 \\, \\text{mm}$ față de franja centrală.",
+  "formule": [],
+  "date": {},
+  "subpuncte": [
+    {
+      "id": "1a",
+      "cerinta": "Calculați valoarea interfranjei.",
+      "punctaj": 3
+    },
+    {
+      "id": "2b",
+      "cerinta": "Calculați diferența de drum optic dintre undele luminoase care, în urma suprapunerii, formează pe ecran maximul de ordin $k = 4$.",
+      "punctaj": 3
+    },
+    {
+      "id": "3c",
+      "cerinta": "Determinați deplasarea $\\Delta x$ a figurii de interferență dacă sursa de lumină se deplasează paralel cu planul fantelor, perpendicular pe acestea, cu distanța $y = 1 \\, \\text{mm}$.",
+      "punctaj": 3
+    },
+    {
+      "id": "4d",
+      "cerinta": "Se înlocuiește sursa de lumină cu o altă sursă care emite lumină albă ale cărei limite spectrale sunt $\\lambda_{r} = 750 \\, \\text{nm}$ și $\\lambda_{\\nu} = 400 \\, \\text{nm}$. Determinați numărul de radiații cu lungimi de undă diferite care formează minime la distanța $x = 5 \\, \\text{mm}$ față de franja centrală.",
+      "punctaj": 3
+    }
+  ],
+  "poze": [],
+  "metadata": {
+    "source": "2015_e_d_fizica_teoretic_vocational_2015_var_02_lro",
+    "year": 2015,
+    "variant": 2,
+    "type": "teoretic",
+    "subjectArea": "Optică",
+    "subjectCode": "D",
+    "subjectNumber": 3
+  }
+}

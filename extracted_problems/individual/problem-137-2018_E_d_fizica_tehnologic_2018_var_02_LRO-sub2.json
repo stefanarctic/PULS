@@ -1,0 +1,43 @@
+{
+  "titlu": "Problema II - Termodinamică - Bac 2018 Var 2",
+  "descriere": "Problema de bacalaureat - Subiectul II din Termodinamică, 2018, Varianta 2, tehnologic",
+  "categorie": "Bac",
+  "varianta": "2018 Var 2",
+  "dificultate": "mediu",
+  "punctajTotal": 15,
+  "continut": "Un vas cilindric cu secțiunea $S = 831 \\mathrm{~cm}^{2}$ și lungimea $L = 60 \\mathrm{~cm}$, închis la ambele capete, conține heliu $(\\mu = 4 \\mathrm{~g} / \\mathrm{mol})$ la presiunea $p_0 = 10^{5} \\mathrm{~N} / \\mathrm{m}^{2}$ și la temperatura $t = 27^{\\circ} \\mathrm{C}$. Se introduce heliu, aflat la $t = 27^{\\circ} \\mathrm{C}$, în cilindru, până când presiunea heliului devine $p = 3 \\cdot 10^{5} \\mathrm{~N} / \\mathrm{m}^{2}$. Calculați:\n\na. cantitatea inițială de heliu din cilindru;\nb. densitatea inițială a heliului din cilindru;\nc. masa de heliu care s-a introdus suplimentar în vasul cilindric;\nd. temperatura la care trebuie adus gazul rezultat prin introducerea cantității suplimentare de heliu pentru ca presiunea să devină $p' = 2,5 \\cdot 10^{5} \\mathrm{~N} / \\mathrm{m}^{2}$.",
+  "formule": [],
+  "date": {},
+  "subpuncte": [
+    {
+      "id": "1a",
+      "cerinta": "cantitatea inițială de heliu din cilindru;",
+      "punctaj": 3
+    },
+    {
+      "id": "2b",
+      "cerinta": "densitatea inițială a heliului din cilindru;",
+      "punctaj": 3
+    },
+    {
+      "id": "3c",
+      "cerinta": "masa de heliu care s-a introdus suplimentar în vasul cilindric;",
+      "punctaj": 3
+    },
+    {
+      "id": "4d",
+      "cerinta": "temperatura la care trebuie adus gazul rezultat prin introducerea cantității suplimentare de heliu pentru ca presiunea să devină $p' = 2,5 \\cdot 10^{5} \\mathrm{~N} / \\mathrm{m}^{2}$.",
+      "punctaj": 3
+    }
+  ],
+  "poze": [],
+  "metadata": {
+    "source": "2018_E_d_fizica_tehnologic_2018_var_02_LRO",
+    "year": 2018,
+    "variant": 2,
+    "type": "tehnologic",
+    "subjectArea": "Termodinamică",
+    "subjectCode": "B",
+    "subjectNumber": 2
+  }
+}

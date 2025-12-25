@@ -1,0 +1,43 @@
+{
+  "titlu": "Problema III - Mecanică - Bac 2019 Var 4",
+  "descriere": "Problema de bacalaureat - Subiectul III din Mecanică, 2019, Varianta 4, tehnologic",
+  "categorie": "Bac",
+  "varianta": "2019 Var 4",
+  "dificultate": "mediu",
+  "punctajTotal": 15,
+  "continut": "Un tren cu masa totală $m = 2 \\cdot 10^5 \\, \\text{kg}$ se deplasează cu viteza constantă $v = 10 \\, \\text{m/s}$ pe o cale ferată orizontală. Forța de rezistență la înaintare reprezintă o fracțiune $f = 0,05$ din greutatea trenului și se menține constantă în timpul deplasării. Determinați:\n\na. energia cinetică a trenului;\nb. intervalul de timp în care trenul parcurge distanța $D = 1 \\, \\text{km}$;\nc. valoarea puterii dezvoltate de locomotivă pentru deplasarea trenului cu viteza constantă $v$;\nd. lucrul mecanic efectuat de forța de rezistență la înaintare în timpul deplasării trenului pe distanța $d = 100 \\, \\text{m}$.",
+  "formule": [],
+  "date": {},
+  "subpuncte": [
+    {
+      "id": "1a",
+      "cerinta": "energia cinetică a trenului;",
+      "punctaj": 3
+    },
+    {
+      "id": "2b",
+      "cerinta": "intervalul de timp în care trenul parcurge distanța $D = 1 \\, \\text{km}$;",
+      "punctaj": 3
+    },
+    {
+      "id": "3c",
+      "cerinta": "valoarea puterii dezvoltate de locomotivă pentru deplasarea trenului cu viteza constantă $v$;",
+      "punctaj": 3
+    },
+    {
+      "id": "4d",
+      "cerinta": "lucrul mecanic efectuat de forța de rezistență la înaintare în timpul deplasării trenului pe distanța $d = 100 \\, \\text{m}$.",
+      "punctaj": 3
+    }
+  ],
+  "poze": [],
+  "metadata": {
+    "source": "2019_E_d_fizica_tehnologic_2019_var_04_LRO",
+    "year": 2019,
+    "variant": 4,
+    "type": "tehnologic",
+    "subjectArea": "Mecanică",
+    "subjectCode": "A",
+    "subjectNumber": 3
+  }
+}

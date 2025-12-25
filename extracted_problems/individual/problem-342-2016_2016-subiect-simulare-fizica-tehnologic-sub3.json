@@ -1,0 +1,43 @@
+{
+  "titlu": "Problema III - Curent continuu - Bac 2016",
+  "descriere": "Problema de bacalaureat - Subiectul III din Curent continuu, 2016, tehnologic",
+  "categorie": "Bac",
+  "varianta": "2016",
+  "dificultate": "mediu",
+  "punctajTotal": 15,
+  "continut": "La bornele unei baterii având tensiunea electromotoare $E = 12\\ \\mathrm{V}$ și rezistența interioară $r = 1\\ \\Omega$ sunt conectate două rezistoare legate în serie. Un voltmetru ideal $(R_{V} \\rightarrow \\infty)$ conectat la bornele unuia dintre rezistoare, având rezistența electrică $R_{1} = 4\\ \\Omega$, indică tensiunea $U_{1} = 8\\ \\mathrm{V}$. Conectând apoi același voltmetru la bornele bateriei acesta indică tensiunea $U = 10\\ \\mathrm{V}$. Determinați:\n\na. puterea disipată pe rezistorul $R_{1}$;\nb. puterea disipată în interiorul sursei;\nc. energia disipată pe cel de-al doilea rezistor $R_{2}$ în 10 minute;\nd. randamentul transferului de putere de la sursă către circuitul exterior.",
+  "formule": [],
+  "date": {},
+  "subpuncte": [
+    {
+      "id": "1a",
+      "cerinta": "puterea disipată pe rezistorul $R_{1}$;",
+      "punctaj": 3
+    },
+    {
+      "id": "2b",
+      "cerinta": "puterea disipată în interiorul sursei;",
+      "punctaj": 3
+    },
+    {
+      "id": "3c",
+      "cerinta": "energia disipată pe cel de-al doilea rezistor $R_{2}$ în 10 minute;",
+      "punctaj": 3
+    },
+    {
+      "id": "4d",
+      "cerinta": "randamentul transferului de putere de la sursă către circuitul exterior.",
+      "punctaj": 3
+    }
+  ],
+  "poze": [],
+  "metadata": {
+    "source": "2016_2016-subiect-simulare-fizica-tehnologic",
+    "year": 2016,
+    "variant": null,
+    "type": "tehnologic",
+    "subjectArea": "Curent continuu",
+    "subjectCode": "C",
+    "subjectNumber": 3
+  }
+}

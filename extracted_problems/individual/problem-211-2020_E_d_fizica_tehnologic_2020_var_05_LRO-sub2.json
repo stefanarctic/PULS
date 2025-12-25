@@ -1,0 +1,43 @@
+{
+  "titlu": "Problema II - Termodinamică - Bac 2020 Var 5",
+  "descriere": "Problema de bacalaureat - Subiectul II din Termodinamică, 2020, Varianta 5, tehnologic",
+  "categorie": "Bac",
+  "varianta": "2020 Var 5",
+  "dificultate": "mediu",
+  "punctajTotal": 15,
+  "continut": "O butelie cu volumul $V = 83,1 \\mathrm{~L}$ conține $\\nu = 4 \\mathrm{~mol}$ de heliu ($\\mu_{He} = 4 \\mathrm{~g/mol}$) la temperatura $T = 300 \\mathrm{~K}$. Căldura molară la volum constantă a heliului este $C_V = 1,5 R$.\n\na. Calculați presiunea gazului din butelie.\nb. Calculați densitatea heliului.\nc. Se încălzește butelia până când temperatura heliului devine $T_2 = 320 \\mathrm{~K}$. Calculați căldura primită de heliul aflat în butelie în procesul de încălzire.\nd. După încălzire robinetul buteliei se deschide astfel încât din butelie iese o masă $\\Delta m = 2 \\mathrm{~g}$ de gaz. Robinetul se închide, iar temperatura gazului din butelie rămâne $T_2 = 320 \\mathrm{~K}$. Calculați presiunea gazului rămas în butelie.",
+  "formule": [],
+  "date": {},
+  "subpuncte": [
+    {
+      "id": "1a",
+      "cerinta": "Calculați presiunea gazului din butelie.",
+      "punctaj": 3
+    },
+    {
+      "id": "2b",
+      "cerinta": "Calculați densitatea heliului.",
+      "punctaj": 3
+    },
+    {
+      "id": "3c",
+      "cerinta": "Se încălzește butelia până când temperatura heliului devine $T_2 = 320 \\mathrm{~K}$. Calculați căldura primită de heliul aflat în butelie în procesul de încălzire.",
+      "punctaj": 3
+    },
+    {
+      "id": "4d",
+      "cerinta": "După încălzire robinetul buteliei se deschide astfel încât din butelie iese o masă $\\Delta m = 2 \\mathrm{~g}$ de gaz. Robinetul se închide, iar temperatura gazului din butelie rămâne $T_2 = 320 \\mathrm{~K}$. Calculați presiunea gazului rămas în butelie.",
+      "punctaj": 3
+    }
+  ],
+  "poze": [],
+  "metadata": {
+    "source": "2020_E_d_fizica_tehnologic_2020_var_05_LRO",
+    "year": 2020,
+    "variant": 5,
+    "type": "tehnologic",
+    "subjectArea": "Termodinamică",
+    "subjectCode": "B",
+    "subjectNumber": 2
+  }
+}

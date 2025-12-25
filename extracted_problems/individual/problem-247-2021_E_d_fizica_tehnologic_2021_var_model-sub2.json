@@ -1,0 +1,43 @@
+{
+  "titlu": "Problema II - Optică - Bac 2021",
+  "descriere": "Problema de bacalaureat - Subiectul II din Optică, 2021, tehnologic",
+  "categorie": "Bac",
+  "varianta": "2021",
+  "dificultate": "mediu",
+  "punctajTotal": 15,
+  "continut": "Un elev dorește să observe un obiect de înălțime $h = 2 \\, \\text{mm}$ cu ajutorul unei lentile subțiri convergente, având distanța focală $f = 12,5 \\, \\text{cm}$. Pentru aceasta, elevul plasează lentila la distanța de 10 cm de obiect și privește prin lentila imaginea acestuia. Obiectul este perpendicular pe axa optică principală a lentilei.\n\na. Calculați convergența lentilei.\nb. Determinați distanța dintre lentila și imaginea observată de elev.\nc. Calculați înălțimea imaginii formate de lentila.\nd. Menținând lentila în aceeași poziție, elevul deplasează obiectul până când imaginea acestuia se formează pe un ecran plasat la distanța $x_2' = 25 \\, \\text{cm}$ față de lentila. Calculați distanța pe care a fost deplasat obiectul.",
+  "formule": [],
+  "date": {},
+  "subpuncte": [
+    {
+      "id": "1a",
+      "cerinta": "Calculați convergența lentilei.",
+      "punctaj": 3
+    },
+    {
+      "id": "2b",
+      "cerinta": "Determinați distanța dintre lentila și imaginea observată de elev.",
+      "punctaj": 3
+    },
+    {
+      "id": "3c",
+      "cerinta": "Calculați înălțimea imaginii formate de lentila.",
+      "punctaj": 3
+    },
+    {
+      "id": "4d",
+      "cerinta": "Menținând lentila în aceeași poziție, elevul deplasează obiectul până când imaginea acestuia se formează pe un ecran plasat la distanța $x_2' = 25 \\, \\text{cm}$ față de lentila. Calculați distanța pe care a fost deplasat obiectul.",
+      "punctaj": 3
+    }
+  ],
+  "poze": [],
+  "metadata": {
+    "source": "2021_E_d_fizica_tehnologic_2021_var_model",
+    "year": 2021,
+    "variant": null,
+    "type": "tehnologic",
+    "subjectArea": "Optică",
+    "subjectCode": "D",
+    "subjectNumber": 2
+  }
+}

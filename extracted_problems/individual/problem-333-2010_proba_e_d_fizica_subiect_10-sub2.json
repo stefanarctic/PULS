@@ -1,0 +1,43 @@
+{
+  "titlu": "Problema II - Termodinamică - Bac 2010",
+  "descriere": "Problema de bacalaureat - Subiectul II din Termodinamică, 2010",
+  "categorie": "Bac",
+  "varianta": "2010",
+  "dificultate": "mediu",
+  "punctajTotal": 15,
+  "continut": "O butelie având volumul $V_1 = 10L$ conține aer la presiunea $p_1 = 2 \\cdot 10^5$ Pa. Altă butelie, având volumul $V_2 = 5L$, conține azot la presiunea $p_2 = 3 \\cdot 10^5$ Pa. Cele două butelii sunt legate printr-un tub cu volum neglijabil prevăzut cu o membrană care se sparge dacă diferența dintre presiunile celor două gaze este $\\Delta p = 2 \\cdot 10^5$ Pa. Ambele gaze, considerate ideale, se află la temperatura $t = 7^0 C$. Masa molară a aerului este $\\mu_1 = 29 \\cdot 10^{-3}$ kg/mol, iar cea a azotului $\\mu_2 = 28 \\cdot 10^{-3}$ kg/mol. Determinați:\n\na. numărul de molecule din aerul aflat în prima butelie;\nb. masa unei molecule de azot;\nc. masa minimă de azot care trebuie introdusă suplimentar în butelia de volum $V_2$ pentru a produce spargerea membranei;\nd. masa molară a amestecului obținut după spargerea membranei, ca urmare a introducerii azotului suplimentar.",
+  "formule": [],
+  "date": {},
+  "subpuncte": [
+    {
+      "id": "1a",
+      "cerinta": "numărul de molecule din aerul aflat în prima butelie;",
+      "punctaj": 3
+    },
+    {
+      "id": "2b",
+      "cerinta": "masa unei molecule de azot;",
+      "punctaj": 3
+    },
+    {
+      "id": "3c",
+      "cerinta": "masa minimă de azot care trebuie introdusă suplimentar în butelia de volum $V_2$ pentru a produce spargerea membranei;",
+      "punctaj": 3
+    },
+    {
+      "id": "4d",
+      "cerinta": "masa molară a amestecului obținut după spargerea membranei, ca urmare a introducerii azotului suplimentar.",
+      "punctaj": 3
+    }
+  ],
+  "poze": [],
+  "metadata": {
+    "source": "2010_proba_e_d_fizica_subiect_10",
+    "year": 2010,
+    "variant": null,
+    "type": null,
+    "subjectArea": "Termodinamică",
+    "subjectCode": "B",
+    "subjectNumber": 2
+  }
+}

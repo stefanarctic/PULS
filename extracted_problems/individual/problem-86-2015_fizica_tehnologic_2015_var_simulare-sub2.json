@@ -1,0 +1,43 @@
+{
+  "titlu": "Problema II - Optică - Bac 2015",
+  "descriere": "Problema de bacalaureat - Subiectul II din Optică, 2015, tehnologic",
+  "categorie": "Bac",
+  "varianta": "2015",
+  "dificultate": "mediu",
+  "punctajTotal": 15,
+  "continut": "Un obiect cu înălțimea $h = 40 \\, \\text{mm}$ este așezat perpendicular pe axa optică principală a unei lentile convergente subțiri, $L_1$, la distanța $d = 30 \\, \\text{cm}$ de lentilă. Imaginea obiectului, proiectată pe un ecran situat în spatele lentilei, are înălțimea $H = 60 \\, \\text{mm}$. Aceeași mărime a imaginii obiectului se poate obține așezând obiectul la o distanță convenabilă în fața unei alte lentile convergente subțiri, $L_2$, cu distanța focală $f_2 = 36 \\, \\text{cm}$. Determinați:\n\na. distanța dintre lentila $L_1$ și ecran;\nb. distanța focală a lentilei $L_1$;\nc. distanța față de lentila $L_2$ la care trebuie așezat obiectul;\nd. convergența sistemului optic care s-ar obține prin alipirea lentilelor $L_1$ și $L_2$.",
+  "formule": [],
+  "date": {},
+  "subpuncte": [
+    {
+      "id": "1a",
+      "cerinta": "distanța dintre lentila $L_1$ și ecran;",
+      "punctaj": 3
+    },
+    {
+      "id": "2b",
+      "cerinta": "distanța focală a lentilei $L_1$;",
+      "punctaj": 3
+    },
+    {
+      "id": "3c",
+      "cerinta": "distanța față de lentila $L_2$ la care trebuie așezat obiectul;",
+      "punctaj": 3
+    },
+    {
+      "id": "4d",
+      "cerinta": "convergența sistemului optic care s-ar obține prin alipirea lentilelor $L_1$ și $L_2$.",
+      "punctaj": 3
+    }
+  ],
+  "poze": [],
+  "metadata": {
+    "source": "2015_fizica_tehnologic_2015_var_simulare",
+    "year": 2015,
+    "variant": null,
+    "type": "tehnologic",
+    "subjectArea": "Optică",
+    "subjectCode": "D",
+    "subjectNumber": 2
+  }
+}

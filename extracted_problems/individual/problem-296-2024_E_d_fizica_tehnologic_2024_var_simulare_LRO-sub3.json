@@ -1,0 +1,45 @@
+{
+  "titlu": "Problema III - Optică - Bac 2024",
+  "descriere": "Problema de bacalaureat - Subiectul III din Optică, 2024, tehnologic",
+  "categorie": "Bac",
+  "varianta": "2024",
+  "dificultate": "mediu",
+  "punctajTotal": 15,
+  "continut": "O lamă din sticlă cu indicele de refracție $n_{st} \\cong 1,41 \\left(= \\sqrt{2} \\right)$ are fețe plane și paralele și este situată în aer $(n_a = 1)$. În punctul S se plasează o sursă punctiformă care emite lumină în toate direcțiile. O rază de lumină monocromatică SI se propagă ajungând pe suprafața de separare sticlă—aer sub unghiul de incidență $i = 30^\\circ$ (ca în figura alăturată). Lama are grosimea $h = 1,5 \\, \\text{cm}$.\n\n![img-7.jpeg](img-7.jpeg)\n\na. Calculați viteza de propagare a luminii în sticlă.\nb. Determinați unghiul de refracție al razei de lumină pe fața superioară a lamei.\nc. Calculați distanța $SI$ parcursă de lumină.\nd. Calculați valoarea minimă a unghiului de incidență al unei raze pe fața superioară a lamei, astfel încât raza de lumină să nu poată ieși din lamă prin fața superioară.",
+  "formule": [],
+  "date": {},
+  "subpuncte": [
+    {
+      "id": "1a",
+      "cerinta": "Calculați viteza de propagare a luminii în sticlă.",
+      "punctaj": 3
+    },
+    {
+      "id": "2b",
+      "cerinta": "Determinați unghiul de refracție al razei de lumină pe fața superioară a lamei.",
+      "punctaj": 3
+    },
+    {
+      "id": "3c",
+      "cerinta": "Calculați distanța $SI$ parcursă de lumină.",
+      "punctaj": 3
+    },
+    {
+      "id": "4d",
+      "cerinta": "Calculați valoarea minimă a unghiului de incidență al unei raze pe fața superioară a lamei, astfel încât raza de lumină să nu poată ieși din lamă prin fața superioară.",
+      "punctaj": 3
+    }
+  ],
+  "poze": [
+    "data:image/jpeg;base64,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"
+  ],
+  "metadata": {
+    "source": "2024_E_d_fizica_tehnologic_2024_var_simulare_LRO",
+    "year": 2024,
+    "variant": null,
+    "type": "tehnologic",
+    "subjectArea": "Optică",
+    "subjectCode": "D",
+    "subjectNumber": 3
+  }
+}

@@ -1,0 +1,43 @@
+{
+  "titlu": "Problema II - Termodinamică - Bac 2015",
+  "descriere": "Problema de bacalaureat - Subiectul II din Termodinamică, 2015, tehnologic",
+  "categorie": "Bac",
+  "varianta": "2015",
+  "dificultate": "mediu",
+  "punctajTotal": 15,
+  "continut": "Un cilindru orizontal de volum $V = 10$ L este împărțit în două compartimente de volume egale cu ajutorul unui perete fix, de grosime neglijabilă. În compartimentul din stânga se află $\\nu_1 = 0,4$ mol de He ($\\mu_1 = 4$ g/mol), iar în cel din dreapta $\\nu_2 = 0,6$ mol de $O_2$ ($\\mu_2 = 32$ g/mol). Inițial temperaturile celor două gaze sunt egale cu $T = 300$ K. Determinați:\na. masa unei molecule de oxigen;\nb. raportul $\\frac{p_2}{p_1}$ al presiunilor gazelor din cele două compartimente;\nc. densitatea heliului;\nd. temperatura până la care trebuie încălzit heliul astfel încât presiunile celor două gaze să devină egale, considerând că temperatura oxigenului nu se modifică.",
+  "formule": [],
+  "date": {},
+  "subpuncte": [
+    {
+      "id": "1a",
+      "cerinta": "masa unei molecule de oxigen;",
+      "punctaj": 3
+    },
+    {
+      "id": "2b",
+      "cerinta": "raportul $\\frac{p_2}{p_1}$ al presiunilor gazelor din cele două compartimente;",
+      "punctaj": 3
+    },
+    {
+      "id": "3c",
+      "cerinta": "densitatea heliului;",
+      "punctaj": 3
+    },
+    {
+      "id": "4d",
+      "cerinta": "temperatura până la care trebuie încălzit heliul astfel încât presiunile celor două gaze să devină egale, considerând că temperatura oxigenului nu se modifică.",
+      "punctaj": 3
+    }
+  ],
+  "poze": [],
+  "metadata": {
+    "source": "2015_fizica_tehnologic_2015_var_simulare",
+    "year": 2015,
+    "variant": null,
+    "type": "tehnologic",
+    "subjectArea": "Termodinamică",
+    "subjectCode": "B",
+    "subjectNumber": 2
+  }
+}

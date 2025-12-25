@@ -1,0 +1,43 @@
+{
+  "titlu": "Problema II - Termodinamică - Bac 2019 Var 4",
+  "descriere": "Problema de bacalaureat - Subiectul II din Termodinamică, 2019, Varianta 4, teoretic",
+  "categorie": "Bac",
+  "varianta": "2019 Var 4",
+  "dificultate": "mediu",
+  "punctajTotal": 15,
+  "continut": "Un cilindru orizontal, închis la capete, este împărțit în două compartimente cu ajutorul unui piston. Pistonul este termoizolant, subțire și se poate mișca fără frecări. Inițial, pistonul este în echilibru mecanic, iar volumele celor două compartimente sunt $V_1$, respectiv $V_2 = 2V_1$. În compartimentul de volum $V_1$ se află hidrogen $\\left(\\mu_1 = 2g \\cdot \\mathrm{mol}^{-1}\\right)$, iar în compartimentul de volum $V_2$ se află heliu $\\left(\\mu_2 = 4g \\cdot \\mathrm{mol}^{-1}\\right)$. Gazele se află la aceeași temperatură $T = 300 \\mathrm{~K}$.\n\na. Calculați raportul dintre cantitatea de hidrogen și cea de heliu.\nb. Calculați raportul dintre densitatea hidrogenului și cea a heliului.\nc. Compartimentul care conține hidrogen este încălzit cu $\\Delta T$, iar celălalt este răcit tot cu $\\Delta T$. În starea finală pistonul este în echilibru mecanic, iar relația dintre volumele celor două compartimente devine $7V_1' = 4V_2'$. Calculați creșterea $\\Delta T$ a temperaturii hidrogenului.\nd. Calculați masa molară a amestecului format din cele două gaze dacă se îndepărtează pistonul.",
+  "formule": [],
+  "date": {},
+  "subpuncte": [
+    {
+      "id": "1a",
+      "cerinta": "Calculați raportul dintre cantitatea de hidrogen și cea de heliu.",
+      "punctaj": 3
+    },
+    {
+      "id": "2b",
+      "cerinta": "Calculați raportul dintre densitatea hidrogenului și cea a heliului.",
+      "punctaj": 3
+    },
+    {
+      "id": "3c",
+      "cerinta": "Compartimentul care conține hidrogen este încălzit cu $\\Delta T$, iar celălalt este răcit tot cu $\\Delta T$. În starea finală pistonul este în echilibru mecanic, iar relația dintre volumele celor două compartimente devine $7V_1' = 4V_2'$. Calculați creșterea $\\Delta T$ a temperaturii hidrogenului.",
+      "punctaj": 3
+    },
+    {
+      "id": "4d",
+      "cerinta": "Calculați masa molară a amestecului format din cele două gaze dacă se îndepărtează pistonul.",
+      "punctaj": 3
+    }
+  ],
+  "poze": [],
+  "metadata": {
+    "source": "2019_E_d_fizica_teoretic_vocational_2019_var_04_LRO",
+    "year": 2019,
+    "variant": 4,
+    "type": "teoretic",
+    "subjectArea": "Termodinamică",
+    "subjectCode": "B",
+    "subjectNumber": 2
+  }
+}

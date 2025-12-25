@@ -1,0 +1,43 @@
+{
+  "titlu": "Problema II - Termodinamică - Bac 2016",
+  "descriere": "Problema de bacalaureat - Subiectul II din Termodinamică, 2016, tehnologic",
+  "categorie": "Bac",
+  "varianta": "2016",
+  "dificultate": "mediu",
+  "punctajTotal": 15,
+  "continut": "Într-un cilindru orizontal cu piston mobil este închisă o masă $m = 4,2\\mathrm{g}$ de gaz ideal diatomic $(\\mu = 28\\mathrm{g/mol}, C_V = 2,5R)$. Inițial, în starea 1, gazul se află la presiunea $p_1 = 10^5\\mathrm{Pa}$ și ocupă volumul $V_1 = 5L$. Gazul este răcit la presiune constantă până în starea 2, în care volumul său este $V_2 = 4L$. Se blochează pistonul, iar gazul este încălzit până în starea 3, în care temperatura ajunge la valoarea inițială. Determinați:\n\na. numărul de molecule de gaz din unitatea de volum în starea 1;\nb. variația densității gazului în transformarea 1-2;\nc. lucrul mecanic schimbat de gaz cu exteriorul în transformarea 1-2-3;\nd. căldura primită de gaz din exterior în transformarea 2-3.",
+  "formule": [],
+  "date": {},
+  "subpuncte": [
+    {
+      "id": "1a",
+      "cerinta": "numărul de molecule de gaz din unitatea de volum în starea 1;",
+      "punctaj": 3
+    },
+    {
+      "id": "2b",
+      "cerinta": "variația densității gazului în transformarea 1-2;",
+      "punctaj": 3
+    },
+    {
+      "id": "3c",
+      "cerinta": "lucrul mecanic schimbat de gaz cu exteriorul în transformarea 1-2-3;",
+      "punctaj": 3
+    },
+    {
+      "id": "4d",
+      "cerinta": "căldura primită de gaz din exterior în transformarea 2-3.",
+      "punctaj": 3
+    }
+  ],
+  "poze": [],
+  "metadata": {
+    "source": "2016_e_d_fizica_tehnologic_2016_var_model_lro",
+    "year": 2016,
+    "variant": null,
+    "type": "tehnologic",
+    "subjectArea": "Termodinamică",
+    "subjectCode": "B",
+    "subjectNumber": 2
+  }
+}

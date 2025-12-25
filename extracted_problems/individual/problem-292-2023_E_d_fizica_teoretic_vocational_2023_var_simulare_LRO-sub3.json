@@ -1,0 +1,43 @@
+{
+  "titlu": "Problema III - Optică - Bac 2023",
+  "descriere": "Problema de bacalaureat - Subiectul III din Optică, 2023, teoretic",
+  "categorie": "Bac",
+  "varianta": "2023",
+  "dificultate": "mediu",
+  "punctajTotal": 15,
+  "continut": "Sursa de lumină coerentă a unui dispozitiv Young emite radiații monocromatice cu lungimea de undă $\\lambda_1 = 550 \\, \\text{nm}$. Inițial sursa se află pe axa de simetrie a dispozitivului, la distanța $d = 15 \\, \\text{cm}$ de paravanul cu fante, iar distanța dintre paravan și ecran este $D = 1,0 \\, \\text{m}$. Se măsoară pe ecran distanța dintre maximele de interferență de ordinul 1, găsindu-se $\\Delta x = 0,55 \\, \\text{mm}$.\n\na. Calculați distanța dintre fantele dispozitivului.\nb. Dacă în fața unei fante a dispozitivului Young se așază o lamă cu fețe plane și paralele cu $n = 1,55$ în punctul central se formează franja luminoasă de ordinul 7. Calculați grosimea lamei.\nc. Se deplasează sursa de lumină pe distanța $h = 1,5 \\, \\text{mm}$, perpendicular pe fante, într-un plan paralel cu planul fantelor. Determinați distanța pe care se deplasează maximul central.\nd. Se înlocuiește sursa cu alta, poziționată pe axa de simetrie, care emite simultan radiații cu lungimile de undă $\\lambda_1 = 550 \\, \\text{nm}$ și $\\lambda_2 = 500 \\, \\text{nm}$. Calculați distanța față de maximul central la care are loc prima suprapunere a maximelor de interferență.",
+  "formule": [],
+  "date": {},
+  "subpuncte": [
+    {
+      "id": "1a",
+      "cerinta": "Calculați distanța dintre fantele dispozitivului.",
+      "punctaj": 3
+    },
+    {
+      "id": "2b",
+      "cerinta": "Dacă în fața unei fante a dispozitivului Young se așază o lamă cu fețe plane și paralele cu $n = 1,55$ în punctul central se formează franja luminoasă de ordinul 7. Calculați grosimea lamei.",
+      "punctaj": 3
+    },
+    {
+      "id": "3c",
+      "cerinta": "Se deplasează sursa de lumină pe distanța $h = 1,5 \\, \\text{mm}$, perpendicular pe fante, într-un plan paralel cu planul fantelor. Determinați distanța pe care se deplasează maximul central.",
+      "punctaj": 3
+    },
+    {
+      "id": "4d",
+      "cerinta": "Se înlocuiește sursa cu alta, poziționată pe axa de simetrie, care emite simultan radiații cu lungimile de undă $\\lambda_1 = 550 \\, \\text{nm}$ și $\\lambda_2 = 500 \\, \\text{nm}$. Calculați distanța față de maximul central la care are loc prima suprapunere a maximelor de interferență.",
+      "punctaj": 3
+    }
+  ],
+  "poze": [],
+  "metadata": {
+    "source": "2023_E_d_fizica_teoretic_vocational_2023_var_simulare_LRO",
+    "year": 2023,
+    "variant": null,
+    "type": "teoretic",
+    "subjectArea": "Optică",
+    "subjectCode": "D",
+    "subjectNumber": 3
+  }
+}

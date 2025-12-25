@@ -1,0 +1,43 @@
+{
+  "titlu": "Problema II - Optică - Bac 2021",
+  "descriere": "Problema de bacalaureat - Subiectul II din Optică, 2021, teoretic",
+  "categorie": "Bac",
+  "varianta": "2021",
+  "dificultate": "mediu",
+  "punctajTotal": 15,
+  "continut": "O lentilă subțire convergentă are distanța focală $f = 20 \\, \\text{cm}$. Un obiect luminos liniar este așezat în fața lentilei pe axa optică principală și perpendicular pe aceasta. În spatele lentilei, perpendicular pe axa optică principală, se află un ecran pe care se formează imaginea clară a obiectului. Se constată că imaginea este de trei ori mai mare decât obiectul.\n\na. Determinați convergența lentilei.\nb. Calculați distanța de la lentilă până la ecran.\nc. Fără a schimba poziția obiectului și a lentilei, se așază între ecran și lentilă, la distanța $d = 70 \\, \\text{cm}$ față de aceasta, o lentilă divergentă cu distanța focală $f' = -20 \\, \\text{cm}$. Cele două lentile formează un sistem optic centrat. Calculați distanța pe care trebuie deplasat ecranul pentru ca imaginea formată de sistemul optic să se observe clar pe ecran.\nd. Calculați mărirea liniară transversală a sistemului optic.",
+  "formule": [],
+  "date": {},
+  "subpuncte": [
+    {
+      "id": "1a",
+      "cerinta": "Determinați convergența lentilei.",
+      "punctaj": 3
+    },
+    {
+      "id": "2b",
+      "cerinta": "Calculați distanța de la lentilă până la ecran.",
+      "punctaj": 3
+    },
+    {
+      "id": "3c",
+      "cerinta": "Fără a schimba poziția obiectului și a lentilei, se așază între ecran și lentilă, la distanța $d = 70 \\, \\text{cm}$ față de aceasta, o lentilă divergentă cu distanța focală $f' = -20 \\, \\text{cm}$. Cele două lentile formează un sistem optic centrat. Calculați distanța pe care trebuie deplasat ecranul pentru ca imaginea formată de sistemul optic să se observe clar pe ecran.",
+      "punctaj": 3
+    },
+    {
+      "id": "4d",
+      "cerinta": "Calculați mărirea liniară transversală a sistemului optic.",
+      "punctaj": 3
+    }
+  ],
+  "poze": [],
+  "metadata": {
+    "source": "2021_E_d_fizica_teoretic_vocational_2021_var_Simulare_LRO",
+    "year": 2021,
+    "variant": null,
+    "type": "teoretic",
+    "subjectArea": "Optică",
+    "subjectCode": "D",
+    "subjectNumber": 2
+  }
+}

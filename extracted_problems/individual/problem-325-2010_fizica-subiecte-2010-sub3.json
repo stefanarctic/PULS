@@ -1,0 +1,43 @@
+{
+  "titlu": "Problema III - Mecanică - Bac 2010",
+  "descriere": "Problema de bacalaureat - Subiectul III din Mecanică, 2010",
+  "categorie": "Bac",
+  "varianta": "2010",
+  "dificultate": "mediu",
+  "punctajTotal": 15,
+  "continut": "O bilă cu masa $m = 100\\mathrm{g}$ este prinsă la un capăt al unui fir elastic cu lungimea nedeformată $\\ell_0 = 40\\mathrm{cm}$ și constanta elastică $k = 100\\mathrm{N/m}$. Celălalt capăt al firului este prins într-un punct A situat la înălțimea $H = 100\\mathrm{cm}$ față de sol. Bila este ridicată în punctul A și i se dă drumul să cadă la momentul $t_0 = 0\\mathrm{s}$. Energia potențială gravitațională se consideră nulă la nivelul solului. Masa firului elastic este neglijabilă.\n\na. Calculați energia potențială datorată interacțiunii gravitaționale bilă-Pământ, atunci când bila se află în punctul A;\nb. Calculați intervalul de timp după care firul începe să se alungească.\nc. Reprezentați grafic dependența modulului forței elastice din fir de alungirea acestuia, pentru alungiri $\\Delta \\ell$ cuprinse în intervalul $[0\\mathrm{cm}; 10\\mathrm{cm}]$.\nd. Determinați alungirea maximă atinsă de firul elastic în timpul căderii bilei.\n\nProba E - d):",
+  "formule": [],
+  "date": {},
+  "subpuncte": [
+    {
+      "id": "1a",
+      "cerinta": "Calculați energia potențială datorată interacțiunii gravitaționale bilă-Pământ, atunci când bila se află în punctul A;",
+      "punctaj": 3
+    },
+    {
+      "id": "2b",
+      "cerinta": "Calculați intervalul de timp după care firul începe să se alungească.",
+      "punctaj": 3
+    },
+    {
+      "id": "3c",
+      "cerinta": "Reprezentați grafic dependența modulului forței elastice din fir de alungirea acestuia, pentru alungiri $\\Delta \\ell$ cuprinse în intervalul $[0\\mathrm{cm}; 10\\mathrm{cm}]$.",
+      "punctaj": 3
+    },
+    {
+      "id": "4d",
+      "cerinta": "Determinați alungirea maximă atinsă de firul elastic în timpul căderii bilei.",
+      "punctaj": 3
+    }
+  ],
+  "poze": [],
+  "metadata": {
+    "source": "2010_fizica-subiecte-2010",
+    "year": 2010,
+    "variant": null,
+    "type": null,
+    "subjectArea": "Mecanică",
+    "subjectCode": "A",
+    "subjectNumber": 3
+  }
+}

@@ -1,0 +1,43 @@
+{
+  "titlu": "Problema III - Mecanică - Bac 2019 Var 1",
+  "descriere": "Problema de bacalaureat - Subiectul III din Mecanică, 2019, Varianta 1, teoretic",
+  "categorie": "Bac",
+  "varianta": "2019 Var 1",
+  "dificultate": "mediu",
+  "punctajTotal": 15,
+  "continut": "Un automobil cu masa $m = 1,8\\,\\mathrm{t}$ se deplasează uniform accelerat viteza lui crescând de la valoarea $v_1 = 18\\,\\mathrm{km/h}$ la valoarea $v_2 = 72\\,\\mathrm{km/h}$ într-un interval de timp $\\Delta t = 5\\,\\mathrm{s}$. Lucrul mecanic efectuat de forța de tracțiune a motorului în intervalul de timp $\\Delta t = 5\\,\\mathrm{s}$ este egal cu $L_F = 375\\,\\mathrm{kJ}$.\n\na. Calculați puterea medie a motorului în acest interval de timp.\nb. Calculați lucrul mecanic al forței de rezistență în acest interval de timp.\nc. Determinați mărimea forței de tracțiune dezvoltată de motorul automobilului.\nd. După atingerea vitezei $v_2 = 72\\,\\mathrm{km/h}$ motorul este oprit. Forța medie de rezistență reprezintă o fracțiune $f = 0,04$ din greutatea automobilului. Calculați distanța parcursă de automobil din momentul în care a atins viteza $v_2$ și până la oprirea sa.",
+  "formule": [],
+  "date": {},
+  "subpuncte": [
+    {
+      "id": "1a",
+      "cerinta": "Calculați puterea medie a motorului în acest interval de timp.",
+      "punctaj": 3
+    },
+    {
+      "id": "2b",
+      "cerinta": "Calculați lucrul mecanic al forței de rezistență în acest interval de timp.",
+      "punctaj": 3
+    },
+    {
+      "id": "3c",
+      "cerinta": "Determinați mărimea forței de tracțiune dezvoltată de motorul automobilului.",
+      "punctaj": 3
+    },
+    {
+      "id": "4d",
+      "cerinta": "După atingerea vitezei $v_2 = 72\\,\\mathrm{km/h}$ motorul este oprit. Forța medie de rezistență reprezintă o fracțiune $f = 0,04$ din greutatea automobilului. Calculați distanța parcursă de automobil din momentul în care a atins viteza $v_2$ și până la oprirea sa.",
+      "punctaj": 3
+    }
+  ],
+  "poze": [],
+  "metadata": {
+    "source": "2019_E_d_fizica_teoretic_vocational_2019_var_01_LRO",
+    "year": 2019,
+    "variant": 1,
+    "type": "teoretic",
+    "subjectArea": "Mecanică",
+    "subjectCode": "A",
+    "subjectNumber": 3
+  }
+}

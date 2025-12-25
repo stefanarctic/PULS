@@ -1,0 +1,45 @@
+{
+  "titlu": "Problema II - Termodinamică - Bac 2021 Var 1",
+  "descriere": "Problema de bacalaureat - Subiectul II din Termodinamică, 2021, Varianta 1, teoretic",
+  "categorie": "Bac",
+  "varianta": "2021 Var 1",
+  "dificultate": "mediu",
+  "punctajTotal": 15,
+  "continut": "O masă $m = 70 \\text{ g}$ de azot ($\\mu = 28 \\text{ g/mol}$) este închisă etanș într-un cilindru orizontal, cu ajutorul unui piston care se poate deplasa fără frecare, ca în figura alăturată. Aerul din exterior este tot timpul la presiunea $p_0 = 10^{5} \\text{ Pa}$. Inițial pistonul este în echilibru, iar temperatura azotului este $t_1 = 7^{\\circ} \\text{C}$.\n\n![img-4.jpeg](img-4.jpeg)\n\na. Calculați numărul de molecule de azot din cilindru.\nb. Determinați densitatea azotului din cilindru.\nc. Pistonul se blochează și, foarte lent, se introduce în compartiment azot, la temperatura $t_1$. După introducerea masei suplimentare de azot, gazul este încălzit până la $t_2 = 27^{\\circ} \\text{C}$, iar presiunea acestuia devine $p_2 = 1,5 \\cdot 10^{5} \\text{ Pa}$. Determinați masa suplimentară de azot introdusă în compartiment.\nd. Pistonul este lăsat să se deplaseze liber, iar azotul este răcit. În starea finală pistonul este în echilibru, iar temperatura azotului este $t_1 = 7^{\\circ} \\text{C}$. Determinați raportul dintre volumul azotului în starea finală și volumul inițial al azotului înainte de introducerea cantității suplimentare de gaz.",
+  "formule": [],
+  "date": {},
+  "subpuncte": [
+    {
+      "id": "1a",
+      "cerinta": "Calculați numărul de molecule de azot din cilindru.",
+      "punctaj": 3
+    },
+    {
+      "id": "2b",
+      "cerinta": "Determinați densitatea azotului din cilindru.",
+      "punctaj": 3
+    },
+    {
+      "id": "3c",
+      "cerinta": "Pistonul se blochează și, foarte lent, se introduce în compartiment azot, la temperatura $t_1$. După introducerea masei suplimentare de azot, gazul este încălzit până la $t_2 = 27^{\\circ} \\text{C}$, iar presiunea acestuia devine $p_2 = 1,5 \\cdot 10^{5} \\text{ Pa}$. Determinați masa suplimentară de azot introdusă în compartiment.",
+      "punctaj": 3
+    },
+    {
+      "id": "4d",
+      "cerinta": "Pistonul este lăsat să se deplaseze liber, iar azotul este răcit. În starea finală pistonul este în echilibru, iar temperatura azotului este $t_1 = 7^{\\circ} \\text{C}$. Determinați raportul dintre volumul azotului în starea finală și volumul inițial al azotului înainte de introducerea cantității suplimentare de gaz.",
+      "punctaj": 3
+    }
+  ],
+  "poze": [
+    "data:image/jpeg;base64,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"
+  ],
+  "metadata": {
+    "source": "2021_E_d_fizica_teoretic_vocational_2021_var_01_LRO",
+    "year": 2021,
+    "variant": 1,
+    "type": "teoretic",
+    "subjectArea": "Termodinamică",
+    "subjectCode": "B",
+    "subjectNumber": 2
+  }
+}

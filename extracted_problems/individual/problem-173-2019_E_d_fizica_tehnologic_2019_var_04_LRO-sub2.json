@@ -1,0 +1,45 @@
+{
+  "titlu": "Problema II - Mecanică - Bac 2019 Var 4",
+  "descriere": "Problema de bacalaureat - Subiectul II din Mecanică, 2019, Varianta 4, tehnologic",
+  "categorie": "Bac",
+  "varianta": "2019 Var 4",
+  "dificultate": "mediu",
+  "punctajTotal": 15,
+  "continut": "Două corpuri A și B, de mase $m_A = 2 \\, \\text{kg}$ și respectiv $m_B = 1 \\, \\text{kg}$, sunt legate printr-un fir inextensibil și de masă neglijabilă, ca în figura alăturată. Scripetele S este lipsit de inerție și fără frecări. Deplasarea corpului A pe suprafața orizontală are loc cu frecare, coeficientul de frecare la alunecare fiind $\\mu = 0,2$. Sistemul format din cele două corpuri, aflat inițial în repaus, este lăsat liber.\n\na. Reprezentați pe foia de răspuns toate forțele care acționează asupra corpului A.\nb. Calculați valoarea forței de frecare la alunecare dintre corpul A și suprafața orizontală.\nc. Determinați valoarea accelerației sistemului.\nd. Determinați valoarea forței de reacțiune din axul scripetelui.\n\n![img-1.jpeg](img-1.jpeg)",
+  "formule": [],
+  "date": {},
+  "subpuncte": [
+    {
+      "id": "1a",
+      "cerinta": "Reprezentați pe foia de răspuns toate forțele care acționează asupra corpului A.",
+      "punctaj": 3
+    },
+    {
+      "id": "2b",
+      "cerinta": "Calculați valoarea forței de frecare la alunecare dintre corpul A și suprafața orizontală.",
+      "punctaj": 3
+    },
+    {
+      "id": "3c",
+      "cerinta": "Determinați valoarea accelerației sistemului.",
+      "punctaj": 3
+    },
+    {
+      "id": "4d",
+      "cerinta": "Determinați valoarea forței de reacțiune din axul scripetelui.",
+      "punctaj": 3
+    }
+  ],
+  "poze": [
+    "data:image/jpeg;base64,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"
+  ],
+  "metadata": {
+    "source": "2019_E_d_fizica_tehnologic_2019_var_04_LRO",
+    "year": 2019,
+    "variant": 4,
+    "type": "tehnologic",
+    "subjectArea": "Mecanică",
+    "subjectCode": "A",
+    "subjectNumber": 2
+  }
+}

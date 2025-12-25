@@ -1,0 +1,43 @@
+{
+  "titlu": "Problema II - Termodinamică - Bac 2019 Var 2",
+  "descriere": "Problema de bacalaureat - Subiectul II din Termodinamică, 2019, Varianta 2, teoretic",
+  "categorie": "Bac",
+  "varianta": "2019 Var 2",
+  "dificultate": "mediu",
+  "punctajTotal": 15,
+  "continut": "Un cilindru orizontal, închis la ambele capete, este separat în două compartimente de volume egale, printr-un piston subțire, termoizolant, etanș, care se poate deplasa fără frecări. Aria secțiunii transversale a pistonului este $S = 0,05\\mathrm{m}^2$. Inițial, în fiecare compartiment, de volum $V = 8,31\\mathrm{L}$, se găsește aceeași cantitate $\\nu = 2\\mathrm{mol}$ de gaz, considerat ideal, la presiunea $p = 5 \\cdot 10^{5}\\mathrm{N/m}^{2}$. Ulterior, gazul din compartimentul din stânga se încălzește până la dublarea temperaturii absolute, în timp ce temperatura gazului din compartimentul din dreapta rămâne nemodificată. Să se calculeze:\n\na. numărul $N$ de molecule de gaz aflate într-un compartiment, în starea inițială;\nb. temperatura gazului din fiecare compartiment în starea inițială;\nc. deplasarea $\\Delta x$ a pistonului după încălzirea gazului din compartimentul din stânga;\nd. cantitatea de gaz care trebuie scoasă din compartimentul din stânga pentru ca pistonul să revină la mijlocul cilindrului.",
+  "formule": [],
+  "date": {},
+  "subpuncte": [
+    {
+      "id": "1a",
+      "cerinta": "numărul $N$ de molecule de gaz aflate într-un compartiment, în starea inițială;",
+      "punctaj": 3
+    },
+    {
+      "id": "2b",
+      "cerinta": "temperatura gazului din fiecare compartiment în starea inițială;",
+      "punctaj": 3
+    },
+    {
+      "id": "3c",
+      "cerinta": "deplasarea $\\Delta x$ a pistonului după încălzirea gazului din compartimentul din stânga;",
+      "punctaj": 3
+    },
+    {
+      "id": "4d",
+      "cerinta": "cantitatea de gaz care trebuie scoasă din compartimentul din stânga pentru ca pistonul să revină la mijlocul cilindrului.",
+      "punctaj": 3
+    }
+  ],
+  "poze": [],
+  "metadata": {
+    "source": "2019_E_d_fizica_teoretic_vocational_2019_var_02_LRO",
+    "year": 2019,
+    "variant": 2,
+    "type": "teoretic",
+    "subjectArea": "Termodinamică",
+    "subjectCode": "B",
+    "subjectNumber": 2
+  }
+}

@@ -1,0 +1,43 @@
+{
+  "titlu": "Problema II - Optică - Bac 2025 Var 1",
+  "descriere": "Problema de bacalaureat - Subiectul II din Optică, 2025, Varianta 1, tehnologic",
+  "categorie": "Bac",
+  "varianta": "2025 Var 1",
+  "dificultate": "mediu",
+  "punctajTotal": 15,
+  "continut": "Un obiect liniar cu înălțimea de 10 mm este așezat perpendicular pe axa optică principală a unei lentile subțiri având distanța focală $f = 20 \\, \\text{cm}$. Obiectul și imaginea obiectului se află la distanțe egale față de lentilă, de o parte și de alta a acesteia.\n\na. Calculați convergența lentilei.\nb. Determinați distanța dintre obiect și lentilă.\nc. Calculați mărimea imaginii obiectului.\nd. Realizați un desen în care să evidențiați construcția imaginii prin lentilă în situația dată.",
+  "formule": [],
+  "date": {},
+  "subpuncte": [
+    {
+      "id": "1a",
+      "cerinta": "Calculați convergența lentilei.",
+      "punctaj": 3
+    },
+    {
+      "id": "2b",
+      "cerinta": "Determinați distanța dintre obiect și lentilă.",
+      "punctaj": 3
+    },
+    {
+      "id": "3c",
+      "cerinta": "Calculați mărimea imaginii obiectului.",
+      "punctaj": 3
+    },
+    {
+      "id": "4d",
+      "cerinta": "Realizați un desen în care să evidențiați construcția imaginii prin lentilă în situația dată.",
+      "punctaj": 3
+    }
+  ],
+  "poze": [],
+  "metadata": {
+    "source": "2025_E_d_fizica_tehnologic_2025_var_01_LRO",
+    "year": 2025,
+    "variant": 1,
+    "type": "tehnologic",
+    "subjectArea": "Optică",
+    "subjectCode": "D",
+    "subjectNumber": 2
+  }
+}

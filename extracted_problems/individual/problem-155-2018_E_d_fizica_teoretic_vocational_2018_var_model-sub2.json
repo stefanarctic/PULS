@@ -1,0 +1,43 @@
+{
+  "titlu": "Problema II - Termodinamică - Bac 2018",
+  "descriere": "Problema de bacalaureat - Subiectul II din Termodinamică, 2018, teoretic",
+  "categorie": "Bac",
+  "varianta": "2018",
+  "dificultate": "mediu",
+  "punctajTotal": 15,
+  "continut": "Un pompier folosește pentru respirație o butelie de volum $V = 8,31 \\mathrm{~L}$. Butelia este încărcată cu $M = 2,9 \\mathrm{~kg}$ de aer $(\\mu = 29 \\mathrm{~g/mol})$, considerat gaz ideal, la temperatura $t = 20^{\\circ} \\mathrm{C}$. Pe durata stingerii unui incendiu pompierul efectuează, în medie, $N = 25$ respirații/minut. La o respirație pompierul inspiră o cantitate de aer al cărei volum este $V_0 = 1,5 \\mathrm{~L}$, la presiunea normală $p_0 = 1,0 \\cdot 10^5 \\mathrm{~Pa}$ și temperatura $t = 20^{\\circ} \\mathrm{C}$. Aerul din butelie poate fi utilizat dacă presiunea acestuia este mai mare decât $p_0$. Aerul poate fi considerat un amestec de oxigen și azot, iar cantitatea de oxigen reprezintă 21% din cantitatea totală de aer. Determinați:\n\na. presiunea aerului din butelie după încărcare;\nb. masa oxigenului $(\\mu_1 = 32 \\mathrm{~g/mol})$ din butelie;\nc. masa aerului rămas în butelie după un timp $\\tau = 29,3 \\mathrm{~min}$;\nd. timpul cât poate fi folosită butelia de către pompier.",
+  "formule": [],
+  "date": {},
+  "subpuncte": [
+    {
+      "id": "1a",
+      "cerinta": "presiunea aerului din butelie după încărcare;",
+      "punctaj": 3
+    },
+    {
+      "id": "2b",
+      "cerinta": "masa oxigenului $(\\mu_1 = 32 \\mathrm{~g/mol})$ din butelie;",
+      "punctaj": 3
+    },
+    {
+      "id": "3c",
+      "cerinta": "masa aerului rămas în butelie după un timp $\\tau = 29,3 \\mathrm{~min}$;",
+      "punctaj": 3
+    },
+    {
+      "id": "4d",
+      "cerinta": "timpul cât poate fi folosită butelia de către pompier.",
+      "punctaj": 3
+    }
+  ],
+  "poze": [],
+  "metadata": {
+    "source": "2018_E_d_fizica_teoretic_vocational_2018_var_model",
+    "year": 2018,
+    "variant": null,
+    "type": "teoretic",
+    "subjectArea": "Termodinamică",
+    "subjectCode": "B",
+    "subjectNumber": 2
+  }
+}

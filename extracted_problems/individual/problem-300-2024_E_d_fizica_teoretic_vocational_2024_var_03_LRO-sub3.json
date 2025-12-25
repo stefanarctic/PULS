@@ -1,0 +1,43 @@
+{
+  "titlu": "Problema III - Optică - Bac 2024 Var 3",
+  "descriere": "Problema de bacalaureat - Subiectul III din Optică, 2024, Varianta 3, teoretic",
+  "categorie": "Bac",
+  "varianta": "2024 Var 3",
+  "dificultate": "mediu",
+  "punctajTotal": 15,
+  "continut": "Distanța dintre fantele unui dispozitiv Young este $2\\ell = 1 \\, \\text{mm}$, iar distanța care separă planul fantelor de ecranul pe care se observă figura de interferență este $D = 2 \\, \\text{m}$. Sursa de lumină monocromatică utilizată este plasată pe axa de simetrie a dispozitivului. Lumina emisă are lungimea de undă $\\lambda = 600 \\, \\text{nm}$.\n\na. Determinați valoarea interfranjei figurii de interferență observată pe ecran.\nb. Calculați diferența de drum optic dintre undele luminoase care formează prin interferență pe ecran maximul de ordinul 2.\nc. Ecranul este deplasat astfel încât distanța de la planul fantelor la ecran crește cu $\\Delta D = 0,5 \\, \\text{m}$. Determinați deplasarea pe ecran a maximului de ordinul 3.\nd. În condițiile punctului c., întregul dispozitiv este introdus într-un lichid transparent. Se constată că interfranja măsurată pe ecran în acest caz este identică cu cea măsurată în condițiile punctului a.. Calculați lungimea de undă a radiației în acest lichid.",
+  "formule": [],
+  "date": {},
+  "subpuncte": [
+    {
+      "id": "1a",
+      "cerinta": "Determinați valoarea interfranjei figurii de interferență observată pe ecran.",
+      "punctaj": 3
+    },
+    {
+      "id": "2b",
+      "cerinta": "Calculați diferența de drum optic dintre undele luminoase care formează prin interferență pe ecran maximul de ordinul 2.",
+      "punctaj": 3
+    },
+    {
+      "id": "3c",
+      "cerinta": "Ecranul este deplasat astfel încât distanța de la planul fantelor la ecran crește cu $\\Delta D = 0,5 \\, \\text{m}$. Determinați deplasarea pe ecran a maximului de ordinul 3.",
+      "punctaj": 3
+    },
+    {
+      "id": "4d",
+      "cerinta": "În condițiile punctului c., întregul dispozitiv este introdus într-un lichid transparent. Se constată că interfranja măsurată pe ecran în acest caz este identică cu cea măsurată în condițiile punctului a.. Calculați lungimea de undă a radiației în acest lichid.",
+      "punctaj": 3
+    }
+  ],
+  "poze": [],
+  "metadata": {
+    "source": "2024_E_d_fizica_teoretic_vocational_2024_var_03_LRO",
+    "year": 2024,
+    "variant": 3,
+    "type": "teoretic",
+    "subjectArea": "Optică",
+    "subjectCode": "D",
+    "subjectNumber": 3
+  }
+}

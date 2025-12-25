@@ -1,0 +1,43 @@
+{
+  "titlu": "Problema III - Optică - Bac 2025 Var 6",
+  "descriere": "Problema de bacalaureat - Subiectul III din Optică, 2025, Varianta 6, teoretic",
+  "categorie": "Bac",
+  "varianta": "2025 Var 6",
+  "dificultate": "mediu",
+  "punctajTotal": 15,
+  "continut": "Într-un experiment de interferență a luminii se utilizează un dispozitiv interferențial Young care are distanța dintre fante $2\\ell = 0,3 \\, \\text{mm}$ și distanța de la planul fantelor la ecran $D = 1,2 \\, \\text{m}$. Sursa de lumină emite radiație monocromatică și este situată pe axa de simetrie a dispozitivului, la distanța $d = 20 \\, \\text{cm}$ de planul fantelor. Figura de interferență de pe ecran are interferența $i = 2 \\, \\text{mm}$.\n\na. Calculați lungimea de undă a radiației monocromatice emise de sursă.\nb. Calculați distanța de pe ecran dintre maximul de ordinul $k_1 = 1$ și maximul de ordinul $k_2 = 3$, situate de aceeași parte a maximului central.\nc. Calculați diferența de drum optic dintre radiațiile care formează pe ecran franja luminoasă de ordinul $k = 2$.\nd. Fără a schimba poziția fantelor și a ecranului, sursa de lumină se deplasează paralel cu planul fantelor și perpendicular pe fante, pe distanța $y = 2 \\, \\text{mm}$. Calculați deplasarea figurii de interferență.",
+  "formule": [],
+  "date": {},
+  "subpuncte": [
+    {
+      "id": "1a",
+      "cerinta": "Calculați lungimea de undă a radiației monocromatice emise de sursă.",
+      "punctaj": 3
+    },
+    {
+      "id": "2b",
+      "cerinta": "Calculați distanța de pe ecran dintre maximul de ordinul $k_1 = 1$ și maximul de ordinul $k_2 = 3$, situate de aceeași parte a maximului central.",
+      "punctaj": 3
+    },
+    {
+      "id": "3c",
+      "cerinta": "Calculați diferența de drum optic dintre radiațiile care formează pe ecran franja luminoasă de ordinul $k = 2$.",
+      "punctaj": 3
+    },
+    {
+      "id": "4d",
+      "cerinta": "Fără a schimba poziția fantelor și a ecranului, sursa de lumină se deplasează paralel cu planul fantelor și perpendicular pe fante, pe distanța $y = 2 \\, \\text{mm}$. Calculați deplasarea figurii de interferență.",
+      "punctaj": 3
+    }
+  ],
+  "poze": [],
+  "metadata": {
+    "source": "2025_E_d_fizica_teoretic_vocational_2025_var_06_LRO",
+    "year": 2025,
+    "variant": 6,
+    "type": "teoretic",
+    "subjectArea": "Optică",
+    "subjectCode": "D",
+    "subjectNumber": 3
+  }
+}

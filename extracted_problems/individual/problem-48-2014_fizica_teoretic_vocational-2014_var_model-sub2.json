@@ -1,0 +1,43 @@
+{
+  "titlu": "Problema II - Termodinamică - Bac 2014",
+  "descriere": "Problema de bacalaureat - Subiectul II din Termodinamică, 2014, teoretic",
+  "categorie": "Bac",
+  "varianta": "2014",
+  "dificultate": "mediu",
+  "punctajTotal": 15,
+  "continut": "Hidreliox-ul este un amestec sintetic ce are în componentă oxigen, heliu și hidrogen ($\\mu_{H_2} = 2\\mathrm{g/mol}$, $\\mu_{He} = 4\\mathrm{g/mol}$ și $\\mu_{O_2} = 32\\mathrm{g/mol}$), utilizat în scufundările la adâncimi mari simulate în laboratoarele de cercetare. Compoziția procentuală molară a amestecului ($\\nu_x = f_x \\cdot \\nu_{\\text{amestec}}$) este: $f_{H_2} = 28\\%$, $f_{He} = 70\\%$, respectiv $f_{O_2} = 2\\%$. O butelie având volumul $V = 8,31\\mathrm{L}$ este umplută cu hidreliox la presiunea $p = 1,5 \\cdot 10^6\\mathrm{Pa}$ și temperatura $T = 300\\mathrm{K}$. Determinați:\n\na. masa unui atom de heliu;\nb. cantitatea de oxigen din butelie;\nc. masa molară a hidreliox-ului;\nd. masa de azot ($\\mu_{H_2} = 28\\mathrm{g/mol}$) ce trebuie introdusă în butelie pentru ca presiunea să devină $p' = 6 \\cdot 10^6\\mathrm{Pa}$, temperatura menținându-se constantă.",
+  "formule": [],
+  "date": {},
+  "subpuncte": [
+    {
+      "id": "1a",
+      "cerinta": "masa unui atom de heliu;",
+      "punctaj": 3
+    },
+    {
+      "id": "2b",
+      "cerinta": "cantitatea de oxigen din butelie;",
+      "punctaj": 3
+    },
+    {
+      "id": "3c",
+      "cerinta": "masa molară a hidreliox-ului;",
+      "punctaj": 3
+    },
+    {
+      "id": "4d",
+      "cerinta": "masa de azot ($\\mu_{H_2} = 28\\mathrm{g/mol}$) ce trebuie introdusă în butelie pentru ca presiunea să devină $p' = 6 \\cdot 10^6\\mathrm{Pa}$, temperatura menținându-se constantă.",
+      "punctaj": 3
+    }
+  ],
+  "poze": [],
+  "metadata": {
+    "source": "2014_fizica_teoretic_vocational-2014_var_model",
+    "year": 2014,
+    "variant": null,
+    "type": "teoretic",
+    "subjectArea": "Termodinamică",
+    "subjectCode": "B",
+    "subjectNumber": 2
+  }
+}

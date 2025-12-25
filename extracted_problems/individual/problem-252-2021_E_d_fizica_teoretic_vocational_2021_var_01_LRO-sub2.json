@@ -1,0 +1,43 @@
+{
+  "titlu": "Problema II - Optică - Bac 2021 Var 1",
+  "descriere": "Problema de bacalaureat - Subiectul II din Optică, 2021, Varianta 1, teoretic",
+  "categorie": "Bac",
+  "varianta": "2021 Var 1",
+  "dificultate": "mediu",
+  "punctajTotal": 15,
+  "continut": "O lentilă convergentă subțire, având distanța focală $f_1 = 20 \\, \\text{cm}$, formează pe un ecran imaginea unui obiect liniar așezat perpendicular pe axa optică principală. Imaginea este de patru ori mai mare decât obiectul.\n\na. Obiectul are înălțimea $y_1 = 1 \\, \\text{cm}$. Calculați înălțimea imaginii.\nb. Calculați distanța dintre lentilă și ecran.\nc. Realizați un desen în care să evidențiați construcția grafică a imaginii prin lentilă, pentru obiectul considerat, în situația descrisă de problemă.\nd. Folosind lentila cu distanța focală $f_1$ și o a doua lentilă subțire cu distanța focală $f_2 = 10 \\, \\text{cm}$, se formează un sistem optic centrat. Se observă că orice rază de lumină care intră în sistem paralel cu axa optică principală, iese din sistemul optic tot paralel cu axa optică principală. Calculați distanța dintre cele două lentile.",
+  "formule": [],
+  "date": {},
+  "subpuncte": [
+    {
+      "id": "1a",
+      "cerinta": "Obiectul are înălțimea $y_1 = 1 \\, \\text{cm}$. Calculați înălțimea imaginii.",
+      "punctaj": 3
+    },
+    {
+      "id": "2b",
+      "cerinta": "Calculați distanța dintre lentilă și ecran.",
+      "punctaj": 3
+    },
+    {
+      "id": "3c",
+      "cerinta": "Realizați un desen în care să evidențiați construcția grafică a imaginii prin lentilă, pentru obiectul considerat, în situația descrisă de problemă.",
+      "punctaj": 3
+    },
+    {
+      "id": "4d",
+      "cerinta": "Folosind lentila cu distanța focală $f_1$ și o a doua lentilă subțire cu distanța focală $f_2 = 10 \\, \\text{cm}$, se formează un sistem optic centrat. Se observă că orice rază de lumină care intră în sistem paralel cu axa optică principală, iese din sistemul optic tot paralel cu axa optică principală. Calculați distanța dintre cele două lentile.",
+      "punctaj": 3
+    }
+  ],
+  "poze": [],
+  "metadata": {
+    "source": "2021_E_d_fizica_teoretic_vocational_2021_var_01_LRO",
+    "year": 2021,
+    "variant": 1,
+    "type": "teoretic",
+    "subjectArea": "Optică",
+    "subjectCode": "D",
+    "subjectNumber": 2
+  }
+}

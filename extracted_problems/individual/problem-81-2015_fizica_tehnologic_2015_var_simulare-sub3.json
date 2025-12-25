@@ -1,0 +1,45 @@
+{
+  "titlu": "Problema III - Mecanică - Bac 2015",
+  "descriere": "Problema de bacalaureat - Subiectul III din Mecanică, 2015, tehnologic",
+  "categorie": "Bac",
+  "varianta": "2015",
+  "dificultate": "mediu",
+  "punctajTotal": 15,
+  "continut": "Unui puc de hochei, cu masa $m = 160\\,\\mathrm{g}$, i se imprimă o viteză orizontală $v_1 = 20\\,\\mathrm{m/s}$ prin lovirea sa pe direcție centrală, ca în desenul din figura alăturată. Pucul, având formă de disc și fiind confectionat din cauciuc, alunecă pe suprafața gheții fără a se roti. Coeficientul de frecare la alunecare dintre puc și suprafața gheții fiind $\\mu = 0,1$, determinați:\n\n![img-3.jpeg](img-3.jpeg)\n\na. energia cinetică a pucului imediat după lovirea sa;\nb. lucrul mecanic efectuat de forța de frecare dintre puc și suprafața gheții în timpul deplasării pe distanța $d_1 = 38\\,\\mathrm{m}$, presupunând că forța de frecare este constantă pe toată durata deplasării pucului;\nc. viteza pucului după ce aceasta a parcurs distanța $d_1 = 38\\,\\mathrm{m}$;\nd. distanța $d_2$ pe care ar parcurge-o pucul din momentul lansării sale până la oprire, presupunând că nu ar întâlni nici un obstacol în calea sa.",
+  "formule": [],
+  "date": {},
+  "subpuncte": [
+    {
+      "id": "1a",
+      "cerinta": "energia cinetică a pucului imediat după lovirea sa;",
+      "punctaj": 3
+    },
+    {
+      "id": "2b",
+      "cerinta": "lucrul mecanic efectuat de forța de frecare dintre puc și suprafața gheții în timpul deplasării pe distanța $d_1 = 38\\,\\mathrm{m}$, presupunând că forța de frecare este constantă pe toată durata deplasării pucului;",
+      "punctaj": 3
+    },
+    {
+      "id": "3c",
+      "cerinta": "viteza pucului după ce aceasta a parcurs distanța $d_1 = 38\\,\\mathrm{m}$;",
+      "punctaj": 3
+    },
+    {
+      "id": "4d",
+      "cerinta": "distanța $d_2$ pe care ar parcurge-o pucul din momentul lansării sale până la oprire, presupunând că nu ar întâlni nici un obstacol în calea sa.",
+      "punctaj": 3
+    }
+  ],
+  "poze": [
+    "data:image/jpeg;base64,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"
+  ],
+  "metadata": {
+    "source": "2015_fizica_tehnologic_2015_var_simulare",
+    "year": 2015,
+    "variant": null,
+    "type": "tehnologic",
+    "subjectArea": "Mecanică",
+    "subjectCode": "A",
+    "subjectNumber": 3
+  }
+}

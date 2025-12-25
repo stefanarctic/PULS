@@ -1,0 +1,43 @@
+{
+  "titlu": "Problema II - Mecanică - Bac 2012 Var 1",
+  "descriere": "Problema de bacalaureat - Subiectul II din Mecanică, 2012, Varianta 1",
+  "categorie": "Bac",
+  "varianta": "2012 Var 1",
+  "dificultate": "mediu",
+  "punctajTotal": 15,
+  "continut": "Un sistem este format din două corpuri cu masele $m_1 = 10\\mathrm{kg}$ și $m_2 = 20\\mathrm{kg}$, aflate inițial în repaus pe o suprafață orizontală, legate între ele printr-un fir inextensibil de masă neglijabilă. Coeficientul de frecare la alunecare între corpuri și suprafața orizontală este $\\mu = 0,10$.\n\na. Asupra corpului de masă $m_1$ se aplică o forță orizontală $\\overline{F}$, ca în figura alăturată.\nModulul forței este $F = 60\\mathrm{N}$. Determinați valoarea forței de frecare la alunecare care acționează asupra corpului de masă $m_2$.\n\nb. Determinați viteza atinsă de sistem după $\\Delta t = 2,0\\mathrm{s}$ de la aplicarea forței $\\overline{F}$, în condițiile punctului a..\n\nc. Se aplică aceeași forță orizontală de modul $F = 60\\mathrm{N}$ asupra corpului cu masa $m_2$, ca în figura alăturată. Precizați, justificând afirmația voastră, dacă accelerația sistemului în această situație se modifică față de situația de la punctul a.\n\nd. Determinați raportul $T_s / T_s$ dintre forțele de tensiune care apar în firul de legătură dintre corpuri în situațiile descrise la punctele a. și c.",
+  "formule": [],
+  "date": {},
+  "subpuncte": [
+    {
+      "id": "1a",
+      "cerinta": "Asupra corpului de masă $m_1$ se aplică o forță orizontală $\\overline{F}$, ca în figura alăturată. Modulul forței este $F = 60\\mathrm{N}$. Determinați valoarea forței de frecare la alunecare care acționează asupra corpului de masă $m_2$.",
+      "punctaj": 3
+    },
+    {
+      "id": "2b",
+      "cerinta": "Determinați viteza atinsă de sistem după $\\Delta t = 2,0\\mathrm{s}$ de la aplicarea forței $\\overline{F}$, în condițiile punctului a..",
+      "punctaj": 3
+    },
+    {
+      "id": "3c",
+      "cerinta": "Se aplică aceeași forță orizontală de modul $F = 60\\mathrm{N}$ asupra corpului cu masa $m_2$, ca în figura alăturată. Precizați, justificând afirmația voastră, dacă accelerația sistemului în această situație se modifică față de situația de la punctul a.",
+      "punctaj": 3
+    },
+    {
+      "id": "4d",
+      "cerinta": "Determinați raportul $T_s / T_s$ dintre forțele de tensiune care apar în firul de legătură dintre corpuri în situațiile descrise la punctele a. și c.",
+      "punctaj": 3
+    }
+  ],
+  "poze": [],
+  "metadata": {
+    "source": "2012_fizica-2012_var_01_lro",
+    "year": 2012,
+    "variant": 1,
+    "type": null,
+    "subjectArea": "Mecanică",
+    "subjectCode": "A",
+    "subjectNumber": 2
+  }
+}

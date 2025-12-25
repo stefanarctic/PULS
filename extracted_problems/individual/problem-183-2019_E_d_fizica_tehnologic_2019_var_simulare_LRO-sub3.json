@@ -1,0 +1,43 @@
+{
+  "titlu": "Problema III - Termodinamică - Bac 2019",
+  "descriere": "Problema de bacalaureat - Subiectul III din Termodinamică, 2019, tehnologic",
+  "categorie": "Bac",
+  "varianta": "2019",
+  "dificultate": "mediu",
+  "punctajTotal": 15,
+  "continut": "O cantitate de gaz ideal poliatomic, având căldura molară la volum constant $C_V = 3R$, se află în starea inițială la presiunea $p_1 = 10^5 \\mathrm{~N} / \\mathrm{m}^2$ și ocupă volumul $V_1 = 2 \\mathrm{dm}^3$. Gazul este încălzit la volum constant până în starea 2 în care presiunea este $p_2 = 3p_1$. Din această stare, gazul se destinde la temperatura constantă până în starea 3, în care volumul devine $V_3 = 2V_2$. Se cunoaște $\\ln 2 \\cong 0,7$.\n\na. Reprezentați grafic succesiunea de transformări în coordonate $p - V$.\nb. Calculați energia internă a gazului în starea inițială (1).\nc. Calculați căldura primită de gaz în transformarea $1 \\rightarrow 2$.\nd. Calculați lucrul mecanic efectuat de gaz în transformarea $2 \\rightarrow 3$.",
+  "formule": [],
+  "date": {},
+  "subpuncte": [
+    {
+      "id": "1a",
+      "cerinta": "Reprezentați grafic succesiunea de transformări în coordonate $p - V$.",
+      "punctaj": 3
+    },
+    {
+      "id": "2b",
+      "cerinta": "Calculați energia internă a gazului în starea inițială (1).",
+      "punctaj": 3
+    },
+    {
+      "id": "3c",
+      "cerinta": "Calculați căldura primită de gaz în transformarea $1 \\rightarrow 2$.",
+      "punctaj": 3
+    },
+    {
+      "id": "4d",
+      "cerinta": "Calculați lucrul mecanic efectuat de gaz în transformarea $2 \\rightarrow 3$.",
+      "punctaj": 3
+    }
+  ],
+  "poze": [],
+  "metadata": {
+    "source": "2019_E_d_fizica_tehnologic_2019_var_simulare_LRO",
+    "year": 2019,
+    "variant": null,
+    "type": "tehnologic",
+    "subjectArea": "Termodinamică",
+    "subjectCode": "B",
+    "subjectNumber": 3
+  }
+}

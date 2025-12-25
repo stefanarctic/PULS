@@ -1,0 +1,43 @@
+{
+  "titlu": "Problema III - Mecanică - Bac 2016",
+  "descriere": "Problema de bacalaureat - Subiectul III din Mecanică, 2016, teoretic",
+  "categorie": "Bac",
+  "varianta": "2016",
+  "dificultate": "mediu",
+  "punctajTotal": 15,
+  "continut": "Un corp A, având masa $m_1 = 2\\,\\text{kg}$, este lăsat să alunece liber din vârful planului înclinat care formează unghiul $\\alpha = 30^\\circ$ cu orizontala, parcurgând până la baza planului distanța $D = 2\\,\\text{m}$. Coeficientul de frecare la alunecare dintre corp și suprafața planului înclinat este $\\mu = 0,12\\left(\\cong \\frac{1}{5\\sqrt{3}}\\right)$. După ce ajunge la baza planului înclinat, corpul își continuă mișcarea, fără frecare, pe o suprafață orizontală. Trecerea pe porțiunea orizontală se face lin, fără modificarea modulului vitezei. Corpul A se cuplează cu un corp B de masă $m_2 = 3\\,\\text{kg}$ aflat în repaus pe suprafața orizontală. Cele două corpuri cuplate își continuă mișcarea fără frecare, după care intră într-o zonă rugoasă a suprafeței orizontale, pe care deplasarea are loc cu frecare. Din momentul intrării pe suprafața rugoasă și până la oprire corpurile parcurg distanța $d = 0,8\\,\\text{m}$. Calculați:\n\na. energia mecanică a corpului A în vârful planului, considerând că energia potențială este nulă la baza planului;\nb. lucrul mecanic al forței de frecare la deplasarea pe planul înclinat;\nc. viteza corpurilor imediat după cuplare;\nd. coeficientul de frecare la alunecare dintre corpuri și suprafața rugoasă.",
+  "formule": [],
+  "date": {},
+  "subpuncte": [
+    {
+      "id": "1a",
+      "cerinta": "energia mecanică a corpului A în vârful planului, considerând că energia potențială este nulă la baza planului;",
+      "punctaj": 3
+    },
+    {
+      "id": "2b",
+      "cerinta": "lucrul mecanic al forței de frecare la deplasarea pe planul înclinat;",
+      "punctaj": 3
+    },
+    {
+      "id": "3c",
+      "cerinta": "viteza corpurilor imediat după cuplare;",
+      "punctaj": 3
+    },
+    {
+      "id": "4d",
+      "cerinta": "coeficientul de frecare la alunecare dintre corpuri și suprafața rugoasă.",
+      "punctaj": 3
+    }
+  ],
+  "poze": [],
+  "metadata": {
+    "source": "2016_2016-subiect-simulare-fizica-teoretica",
+    "year": 2016,
+    "variant": null,
+    "type": "teoretic",
+    "subjectArea": "Mecanică",
+    "subjectCode": "A",
+    "subjectNumber": 3
+  }
+}

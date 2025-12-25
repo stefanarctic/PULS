@@ -1,0 +1,45 @@
+{
+  "titlu": "Problema III - Termodinamică - Bac 2016 Var 9",
+  "descriere": "Problema de bacalaureat - Subiectul III din Termodinamică, 2016, Varianta 9, tehnologic",
+  "categorie": "Bac",
+  "varianta": "2016 Var 9",
+  "dificultate": "mediu",
+  "punctajTotal": 15,
+  "continut": "O cantitate dată de gaz ideal biatomic $(C_V = 2,5R)$ se află în starea inițială 1 în care presiunea este $p_1 = 10^{5}\\mathrm{Pa}$ și volumul $V_{1} = 4\\mathrm{L}$. Gazul este încălzit la volum constant până în starea 2, apoi este comprimat la temperatura constantă până în starea finală 3 în care volumul gazului devine $V_{3} = 0,5V_{1}$. Căldura primită de gaz în transformarea $1\\rightarrow 2$ este $Q_{12} = 300\\mathrm{J}$. Se consideră $\\ln 2\\equiv 0,7$.\n\na. Reprezentați grafic succesiunea de transformări $1\\rightarrow 2\\rightarrow 3$ în sistemul de coordonate $p - V$.\nb. Calculați variația energiei interne a gazului între stările 1 și 2.\nc. Calculați presiunea gazului în starea 2.\nd. Determinați căldura schimbată de gaz cu mediul exterior în transformarea $2\\rightarrow 3$.\n\n![img-3.jpeg](img-3.jpeg)",
+  "formule": [],
+  "date": {},
+  "subpuncte": [
+    {
+      "id": "1a",
+      "cerinta": "Reprezentați grafic succesiunea de transformări $1\\rightarrow 2\\rightarrow 3$ în sistemul de coordonate $p - V$.",
+      "punctaj": 3
+    },
+    {
+      "id": "2b",
+      "cerinta": "Calculați variația energiei interne a gazului între stările 1 și 2.",
+      "punctaj": 3
+    },
+    {
+      "id": "3c",
+      "cerinta": "Calculați presiunea gazului în starea 2.",
+      "punctaj": 3
+    },
+    {
+      "id": "4d",
+      "cerinta": "Determinați căldura schimbată de gaz cu mediul exterior în transformarea $2\\rightarrow 3$.",
+      "punctaj": 3
+    }
+  ],
+  "poze": [
+    "data:image/jpeg;base64,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"
+  ],
+  "metadata": {
+    "source": "2016_e_d_fizica_tehnologic_2016_var_09_lro",
+    "year": 2016,
+    "variant": 9,
+    "type": "tehnologic",
+    "subjectArea": "Termodinamică",
+    "subjectCode": "B",
+    "subjectNumber": 3
+  }
+}

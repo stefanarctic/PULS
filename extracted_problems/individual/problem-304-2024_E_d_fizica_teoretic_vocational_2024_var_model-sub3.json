@@ -1,0 +1,43 @@
+{
+  "titlu": "Problema III - Optică - Bac 2024",
+  "descriere": "Problema de bacalaureat - Subiectul III din Optică, 2024, teoretic",
+  "categorie": "Bac",
+  "varianta": "2024",
+  "dificultate": "mediu",
+  "punctajTotal": 15,
+  "continut": "Într-un experiment se utilizează un dispozitiv Young, plasat în aer, având distanța dintre fante $2\\ell = 1 \\, \\text{mm}$ și distanța de la planul fantelor la ecran $D = 4 \\, \\text{m}$. Sursa este plasată pe axa de simetrie a sistemului și emite lumină monocromatică și coerentă. Se obține o figură de interferență cu interferența $i = 2 \\, \\text{mm}$.\n\na. Calculați valoarea lungimii de undă a luminii monocromatice utilizate.\nb. Calculați distanța de la franja centrală la maximul de ordinul al treilea.\nc. Una dintre fante se acoperă cu o lamă de sticlă având grosimea $e = 0,02 \\, \\text{mm}$ și indicele de refracție $n = 1,5$. Calculați diferența de drum optic introdusă de lamă.\nd. Determinați deplasarea maximului central al figurii de interferență datorată introducerii lamei.",
+  "formule": [],
+  "date": {},
+  "subpuncte": [
+    {
+      "id": "1a",
+      "cerinta": "Calculați valoarea lungimii de undă a luminii monocromatice utilizate.",
+      "punctaj": 3
+    },
+    {
+      "id": "2b",
+      "cerinta": "Calculați distanța de la franja centrală la maximul de ordinul al treilea.",
+      "punctaj": 3
+    },
+    {
+      "id": "3c",
+      "cerinta": "Una dintre fante se acoperă cu o lamă de sticlă având grosimea $e = 0,02 \\, \\text{mm}$ și indicele de refracție $n = 1,5$. Calculați diferența de drum optic introdusă de lamă.",
+      "punctaj": 3
+    },
+    {
+      "id": "4d",
+      "cerinta": "Determinați deplasarea maximului central al figurii de interferență datorată introducerii lamei.",
+      "punctaj": 3
+    }
+  ],
+  "poze": [],
+  "metadata": {
+    "source": "2024_E_d_fizica_teoretic_vocational_2024_var_model",
+    "year": 2024,
+    "variant": null,
+    "type": "teoretic",
+    "subjectArea": "Optică",
+    "subjectCode": "D",
+    "subjectNumber": 3
+  }
+}

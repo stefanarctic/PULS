@@ -1,0 +1,43 @@
+{
+  "titlu": "Problema III - Optică - Bac 2020 Var 5",
+  "descriere": "Problema de bacalaureat - Subiectul III din Optică, 2020, Varianta 5, tehnologic",
+  "categorie": "Bac",
+  "varianta": "2020 Var 5",
+  "dificultate": "mediu",
+  "punctajTotal": 15,
+  "continut": "O rază de lumină monocromatică ce se propagă prin aer este incidentă pe suprafața liberă a unui lichid sub unghiul de incidență $i = 45^\\circ$. Indicele de refracție al lichidului are valoarea $n = 1,41 \\left( \\equiv \\sqrt{2} \\right)$. La intrarea luminii în lichid se produce atât fenomen de reflexie cât și fenomen de refracție. Considerați că indicele de refracție al aerului are valoarea $n_{\\text{aer}} \\approx 1$.\n\na. Determinați valoarea vitezei de propagare a luminii în acest lichid.\nb. Realizați un desen în care să reprezentați mersul razei incidente, al razei refractate și al razei reflectate. Pe desen, veți marca și veți nota unghiul de incidență $i$, unghiul de refracție $r$ și unghiul de reflexie $r'$.\nc. Calculați unghiul de refracție al razei de lumină la trecerea din aer în lichid.\nd. Calculați unghiul dintre raza refractată și raza reflectată pe suprafața lichidului.",
+  "formule": [],
+  "date": {},
+  "subpuncte": [
+    {
+      "id": "1a",
+      "cerinta": "Determinați valoarea vitezei de propagare a luminii în acest lichid.",
+      "punctaj": 3
+    },
+    {
+      "id": "2b",
+      "cerinta": "Realizați un desen în care să reprezentați mersul razei incidente, al razei refractate și al razei reflectate. Pe desen, veți marca și veți nota unghiul de incidență $i$, unghiul de refracție $r$ și unghiul de reflexie $r'$.",
+      "punctaj": 3
+    },
+    {
+      "id": "3c",
+      "cerinta": "Calculați unghiul de refracție al razei de lumină la trecerea din aer în lichid.",
+      "punctaj": 3
+    },
+    {
+      "id": "4d",
+      "cerinta": "Calculați unghiul dintre raza refractată și raza reflectată pe suprafața lichidului.",
+      "punctaj": 3
+    }
+  ],
+  "poze": [],
+  "metadata": {
+    "source": "2020_E_d_fizica_tehnologic_2020_var_05_LRO",
+    "year": 2020,
+    "variant": 5,
+    "type": "tehnologic",
+    "subjectArea": "Optică",
+    "subjectCode": "D",
+    "subjectNumber": 3
+  }
+}

@@ -1,0 +1,43 @@
+{
+  "titlu": "Problema II - Optică - Bac 2023 Var 7",
+  "descriere": "Problema de bacalaureat - Subiectul II din Optică, 2023, Varianta 7, teoretic",
+  "categorie": "Bac",
+  "varianta": "2023 Var 7",
+  "dificultate": "mediu",
+  "punctajTotal": 15,
+  "continut": "O lentilă subțire, convergentă, are distanța focală de 10 cm. În fața lentilei este așezat, perpendicular pe axa optică principală, un obiect luminos liniar cu înălțimea de 4 cm. Distanța de la obiect la lentilă este de 30 cm. De cealaltă parte a lentilei, perpendicular pe axa optică principală, se află un ecran pe care se formează imaginea clară a obiectului.\n\na. Calculați distanța de la lentilă la ecran.\nb. Realizați un desen în care să evidențiați construcția grafică a imaginii formate de lentilă.\nc. Calculați înălțimea imaginii de pe ecran.\nd. Fără a schimba poziția obiectului și a lentilei, se alipește de aceasta o lentilă identică pentru a forma un sistem optic centrat. Calculați distanța pe care trebuie deplasat ecranul pentru ca imaginea formată de sistemul optic să se observe clar pe ecran.",
+  "formule": [],
+  "date": {},
+  "subpuncte": [
+    {
+      "id": "1a",
+      "cerinta": "Calculați distanța de la lentilă la ecran.",
+      "punctaj": 3
+    },
+    {
+      "id": "2b",
+      "cerinta": "Realizați un desen în care să evidențiați construcția grafică a imaginii formate de lentilă.",
+      "punctaj": 3
+    },
+    {
+      "id": "3c",
+      "cerinta": "Calculați înălțimea imaginii de pe ecran.",
+      "punctaj": 3
+    },
+    {
+      "id": "4d",
+      "cerinta": "Fără a schimba poziția obiectului și a lentilei, se alipește de aceasta o lentilă identică pentru a forma un sistem optic centrat. Calculați distanța pe care trebuie deplasat ecranul pentru ca imaginea formată de sistemul optic să se observe clar pe ecran.",
+      "punctaj": 3
+    }
+  ],
+  "poze": [],
+  "metadata": {
+    "source": "2023_E_d_fizica_teoretic_vocational_2023_var_07_LRO",
+    "year": 2023,
+    "variant": 7,
+    "type": "teoretic",
+    "subjectArea": "Optică",
+    "subjectCode": "D",
+    "subjectNumber": 2
+  }
+}

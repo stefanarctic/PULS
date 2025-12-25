@@ -1,0 +1,43 @@
+{
+  "titlu": "Problema II - Termodinamică - Bac 2019 Var 2",
+  "descriere": "Problema de bacalaureat - Subiectul II din Termodinamică, 2019, Varianta 2, tehnologic",
+  "categorie": "Bac",
+  "varianta": "2019 Var 2",
+  "dificultate": "mediu",
+  "punctajTotal": 15,
+  "continut": "O butelie cu volumul $V_1 = 24,93\\mathrm{L}$ conține $\\nu_1 = 2\\mathrm{mol}$ de oxigen cu masa molară $\\mu_1 = 32\\mathrm{g/mol}$, la temperatura $T_1 = 300\\mathrm{K}$. O altă butelie cu volumul $V_2 = 16,62\\mathrm{L}$ conține heliu cu masa molară $\\mu_2 = 4\\mathrm{g/mol}$, la temperatura $T_2 = 400\\mathrm{K}$ și presiunea $p_2 = 10^5\\mathrm{Pa}$. Cele două butelii sunt conectate printr-un tub cu volumul neglijabil prevăzut cu un robinet, inițial închis. Considerați că cele două gaze au un comportament de gaz ideal și că pe timpul conectării buteliilor nu există scăpări de gaze.\n\na. Calculați masa de oxigen din prima butelie.\nb. Calculați cantitatea de heliu din a doua butelie.\nc. Calculați densitatea heliului din a doua butelie.\nd. Se răcește heliul până la temperatura $T_1 = 300\\mathrm{K}$, apoi se deschide robinetul și cele două gaze se amestecă. Calculați presiunea amestecului de gaze.",
+  "formule": [],
+  "date": {},
+  "subpuncte": [
+    {
+      "id": "1a",
+      "cerinta": "Calculați masa de oxigen din prima butelie.",
+      "punctaj": 3
+    },
+    {
+      "id": "2b",
+      "cerinta": "Calculați cantitatea de heliu din a doua butelie.",
+      "punctaj": 3
+    },
+    {
+      "id": "3c",
+      "cerinta": "Calculați densitatea heliului din a doua butelie.",
+      "punctaj": 3
+    },
+    {
+      "id": "4d",
+      "cerinta": "Se răcește heliul până la temperatura $T_1 = 300\\mathrm{K}$, apoi se deschide robinetul și cele două gaze se amestecă. Calculați presiunea amestecului de gaze.",
+      "punctaj": 3
+    }
+  ],
+  "poze": [],
+  "metadata": {
+    "source": "2019_E_d_fizica_tehnologic_2019_var_02_LRO",
+    "year": 2019,
+    "variant": 2,
+    "type": "tehnologic",
+    "subjectArea": "Termodinamică",
+    "subjectCode": "B",
+    "subjectNumber": 2
+  }
+}

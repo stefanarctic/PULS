@@ -1,0 +1,43 @@
+{
+  "titlu": "Problema III - Termodinamică - Bac 2019",
+  "descriere": "Problema de bacalaureat - Subiectul III din Termodinamică, 2019, tehnologic",
+  "categorie": "Bac",
+  "varianta": "2019",
+  "dificultate": "mediu",
+  "punctajTotal": 15,
+  "continut": "O cantitate constantă de gaz ideal ($C_V = 3 R$) aflată inițial în starea 1, la presiunea $p_1 = 200 \\ \\mathrm{kPa}$ și volumul $V_1 = 2 \\ \\mathrm{L}$, este supusă procesului ciclic 1231, format din următoarele transformări:\n1→2 destindere izotermă până în starea cu $V_2 = 4 \\ \\mathrm{L}$;\n2→3 răcire izocoră;\n3→4 comprimare izotermă până la volumul $V_1$ și presiunea $p_4 = 100 \\ \\mathrm{kPa}$ și\n4→1 încălzire izocoră până în starea inițială.\n\nSe cunoaște că $\\ln 2 \\cong 0,7$.\n\na. Reprezentați succesiunea de transformări în coordonate $p - V$.\nb. Calculați valoarea energiei interne a gazului în starea 1.\nc. Calculați lucrul mecanic schimbat de gaz cu exteriorul în decursul transformării 1→2.\nd. Calculați căldura primită de gaz în decursul transformării 4→1.",
+  "formule": [],
+  "date": {},
+  "subpuncte": [
+    {
+      "id": "1a",
+      "cerinta": "Reprezentați succesiunea de transformări în coordonate $p - V$.",
+      "punctaj": 3
+    },
+    {
+      "id": "2b",
+      "cerinta": "Calculați valoarea energiei interne a gazului în starea 1.",
+      "punctaj": 3
+    },
+    {
+      "id": "3c",
+      "cerinta": "Calculați lucrul mecanic schimbat de gaz cu exteriorul în decursul transformării 1→2.",
+      "punctaj": 3
+    },
+    {
+      "id": "4d",
+      "cerinta": "Calculați căldura primită de gaz în decursul transformării 4→1.",
+      "punctaj": 3
+    }
+  ],
+  "poze": [],
+  "metadata": {
+    "source": "2019_E_d_fizica_tehnologic_2019_var_model",
+    "year": 2019,
+    "variant": null,
+    "type": "tehnologic",
+    "subjectArea": "Termodinamică",
+    "subjectCode": "B",
+    "subjectNumber": 3
+  }
+}
