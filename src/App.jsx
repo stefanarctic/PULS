@@ -24,6 +24,7 @@ import SimulationPage from "./components/pages/SimulationPage";
 import ScrollToTop from "./components/ScrollToTop";
 import Profile from "./components/pages/Profile";
 import ProblemSubmit from "./components/ProblemSubmit";
+import AdminDashboard from "./components/pages/AdminDashboard";
 import { useEffect } from "react";
 import uploadProblems from "./components/uploadProblems";
 import { useDispatch } from 'react-redux';
@@ -118,6 +119,7 @@ const App = () => {
           <Route path="/about-us" element={<About />} />
           <Route path="/search" element={<SearchResults />} />
           <Route path="/profil" element={<Profile />} />
+          <Route path="/admin" element={<AdminDashboard />} />
           <Route path="/api-test" element={<ProblemSubmit />} />
         </Routes>
       </div>

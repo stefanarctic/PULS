@@ -1,5 +1,5 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
-import { collection, getDocs, addDoc, deleteDoc, doc, getDoc, query, where } from 'firebase/firestore';
+import { collection, getDocs, addDoc, deleteDoc, updateDoc, doc, getDoc, query, where } from 'firebase/firestore';
 import { db, auth } from '../../lib/firebase';
 
 // Async thunk to fetch problems from Firestore
@@ -12,6 +12,46 @@ export const fetchProblems = createAsyncThunk('problems/fetchProblems', async ()
 export const addProblem = createAsyncThunk('problems/addProblem', async (problemData) => {
   const docRef = await addDoc(collection(db, 'problems'), problemData);
   return { id: docRef.id, ...problemData };
+});
+
+// Async thunk to update a problem in Firestore
+export const updateProblem = createAsyncThunk('problems/updateProblem', async ({ problemId, problemData }, { rejectWithValue }) => {
+  try {
+    // Check if user is authenticated
+    if (!auth.currentUser) {
+      throw new Error('Utilizatorul nu este autentificat. Te rugăm să te conectezi pentru a modifica probleme.');
+    }
+
+    // Verify user is admin
+    const userRef = doc(db, 'users', auth.currentUser.uid);
+    const userSnap = await getDoc(userRef);
+    const isAdmin = userSnap.exists() && userSnap.data().isAdmin === true;
+
+    if (!isAdmin) {
+      return rejectWithValue('Nu ai permisiuni pentru a modifica această problemă. Doar administratorii pot modifica probleme.');
+    }
+
+    // Update the document
+    const problemRef = doc(db, 'problems', problemId);
+    await updateDoc(problemRef, problemData);
+
+    // Fetch the updated document to return complete data
+    const updatedSnap = await getDoc(problemRef);
+    if (!updatedSnap.exists()) {
+      throw new Error('Problema nu a fost găsită după actualizare.');
+    }
+    
+    return { id: problemId, ...updatedSnap.data() };
+  } catch (error) {
+    console.error('Error updating problem:', error);
+    if (error.code === 'permission-denied') {
+      return rejectWithValue('Nu ai permisiuni pentru a modifica această problemă. Verifică că ești conectat ca administrator.');
+    } else if (error.code === 'unauthenticated') {
+      return rejectWithValue('Utilizatorul nu este autentificat. Te rugăm să te conectezi.');
+    } else {
+      return rejectWithValue(error.message || 'A apărut o eroare la modificarea problemei.');
+    }
+  }
 });
 
 // Async thunk to delete a problem from Firestore
@@ -135,6 +175,8 @@ const problemsSlice = createSlice({
     error: null,
     addStatus: 'idle', // 'idle' | 'loading' | 'succeeded' | 'failed'
     addError: null,
+    updateStatus: 'idle', // 'idle' | 'loading' | 'succeeded' | 'failed'
+    updateError: null,
     deleteStatus: 'idle', // 'idle' | 'loading' | 'succeeded' | 'failed'
     deleteError: null,
   },
@@ -142,6 +184,10 @@ const problemsSlice = createSlice({
     clearAddStatus: (state) => {
       state.addStatus = 'idle';
       state.addError = null;
+    },
+    clearUpdateStatus: (state) => {
+      state.updateStatus = 'idle';
+      state.updateError = null;
     },
     clearDeleteStatus: (state) => {
       state.deleteStatus = 'idle';
@@ -176,6 +222,22 @@ const problemsSlice = createSlice({
         state.addStatus = 'failed';
         state.addError = action.error.message;
       })
+      // Update problem
+      .addCase(updateProblem.pending, (state) => {
+        state.updateStatus = 'loading';
+        state.updateError = null;
+      })
+      .addCase(updateProblem.fulfilled, (state, action) => {
+        state.updateStatus = 'succeeded';
+        const index = state.value.findIndex(p => p.id === action.payload.id);
+        if (index !== -1) {
+          state.value[index] = action.payload;
+        }
+      })
+      .addCase(updateProblem.rejected, (state, action) => {
+        state.updateStatus = 'failed';
+        state.updateError = action.error.message;
+      })
       // Delete problem
       .addCase(deleteProblem.pending, (state) => {
         state.deleteStatus = 'loading';
@@ -192,5 +254,5 @@ const problemsSlice = createSlice({
   },
 });
 
-export const { clearAddStatus, clearDeleteStatus } = problemsSlice.actions;
+export const { clearAddStatus, clearUpdateStatus, clearDeleteStatus } = problemsSlice.actions;
 export default problemsSlice.reducer; 
