@@ -5,7 +5,7 @@
   "varianta": "2021",
   "dificultate": "mediu",
   "punctajTotal": 15,
-  "continut": "Un mol de gaz ideal monoatomic $\\left(C_V = \\frac{3}{2} R\\right)$, aflat inițial în starea 1, la temperatura $T_1 = 250 \\mathrm{~K}$, este supus succesiunii de procese termodinamice $1 \\rightarrow 2 \\rightarrow 3 \\rightarrow 4$, reprezentate în sistemul de coordonate $p - T$ în figura alăturată. Considerați că $\\ln 2 \\cong 0,7$.\n\na. Reprezentați succesiunea de procese termodinamice în sistemul de coordonate $p - V$.\nb. Determinați energia internă a gazului în starea 2.\nc. Calculați lucrul mecanic efectuat de gaz în transformarea $2 \\rightarrow 3$.\nd. Calculați căldura schimbată de gaz cu exteriorul în transformarea $3 \\rightarrow 4$.\n\n![img-2.jpeg](img-2.jpeg)",
+  "continut": "Un mol de gaz ideal monoatomic $\\left(C_V = \\frac{3}{2} R\\right)$, aflat inițial în starea 1, la temperatura $T_1 = 250 \\mathrm{~K}$, este supus succesiunii de procese termodinamice $1 \\rightarrow 2 \\rightarrow 3 \\rightarrow 4$, reprezentate în sistemul de coordonate $p - T$ în figura alăturată. Considerați că $\\ln 2 \\cong 0,7$.\n\na. Reprezentați succesiunea de procese termodinamice în sistemul de coordonate $p - V$.\nb. Determinați energia internă a gazului în starea 2.\nc. Calculați lucrul mecanic efectuat de gaz în transformarea $2 \\rightarrow 3$.\nd. Calculați căldura schimbată de gaz cu exteriorul în transformarea $3 \\rightarrow 4$.",
   "formule": [],
   "date": {},
   "subpuncte": [

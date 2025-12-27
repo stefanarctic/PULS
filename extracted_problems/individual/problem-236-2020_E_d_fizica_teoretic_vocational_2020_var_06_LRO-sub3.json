@@ -5,7 +5,7 @@
   "varianta": "2020 Var 6",
   "dificultate": "mediu",
   "punctajTotal": 15,
-  "continut": "În circuitul electric prezentat în figura alăturată se cunosc: $E_1 = 13\\,\\mathrm{V}$, $r_1 = 2\\,\\Omega$, $E_2 = 36\\,\\mathrm{V}$, $r_2 = 5\\,\\Omega$, $R_1 = 8\\,\\Omega$, $R_2 = 35\\,\\Omega$. Ampermetrul ideal montat în circuit ($R_A \\cong 0\\,\\Omega$) indică curentul electric cu intensitatea $I_2 = 0,5\\,\\mathrm{A}$, având sensul indicat în figură. Calculați:\n\na. puterea consumată de rezistorul $R_2$;\nb. puterea totală dezvoltată de sursa având t.e.m. $E_2$;\nc. energia electrică consumată de rezistorul $R_1$ în timpul $\\Delta t = 10\\,\\mathrm{min}$;\nd. rezistența electrică a rezistorului $R_3$.\n\n![img-7.jpeg](img-7.jpeg)",
+  "continut": "În circuitul electric prezentat în figura alăturată se cunosc: $E_1 = 13\\,\\mathrm{V}$, $r_1 = 2\\,\\Omega$, $E_2 = 36\\,\\mathrm{V}$, $r_2 = 5\\,\\Omega$, $R_1 = 8\\,\\Omega$, $R_2 = 35\\,\\Omega$. Ampermetrul ideal montat în circuit ($R_A \\cong 0\\,\\Omega$) indică curentul electric cu intensitatea $I_2 = 0,5\\,\\mathrm{A}$, având sensul indicat în figură. Calculați:\n\na. puterea consumată de rezistorul $R_2$;\nb. puterea totală dezvoltată de sursa având t.e.m. $E_2$;\nc. energia electrică consumată de rezistorul $R_1$ în timpul $\\Delta t = 10\\,\\mathrm{min}$;\nd. rezistența electrică a rezistorului $R_3$.",
   "formule": [],
   "date": {},
   "subpuncte": [

@@ -5,7 +5,7 @@
   "varianta": "2018",
   "dificultate": "mediu",
   "punctajTotal": 15,
-  "continut": "O cantitate $\\nu = 0,12 \\mathrm{~mol} \\left( \\cong \\frac{1}{8,31} \\mathrm{~mol} \\right)$ de gaz ideal evoluează după procesul termodinamic ciclic ABCA reprezentat în coordonate $p-T$ în figura alăturată. Se cunosc: $C_V = 1,5 R$ și $\\ln 2 \\cong 0,7$.\n\na. Reprezentați procesul termodinamic ciclic ABCA în coordonate $p-V$.\nb. Calculați variația energiei interne a gazului în transformarea $C \\to A$.\nc. Calculați lucrul mecanic total schimbat de gaz cu mediul exterior într-un ciclu.\nd. Calculați randamentul motorului termic ce ar funcționa după procesul termodinamic ciclic ABCA.\n\n![img-3.jpeg](img-3.jpeg)",
+  "continut": "O cantitate $\\nu = 0,12 \\mathrm{~mol} \\left( \\cong \\frac{1}{8,31} \\mathrm{~mol} \\right)$ de gaz ideal evoluează după procesul termodinamic ciclic ABCA reprezentat în coordonate $p-T$ în figura alăturată. Se cunosc: $C_V = 1,5 R$ și $\\ln 2 \\cong 0,7$.\n\na. Reprezentați procesul termodinamic ciclic ABCA în coordonate $p-V$.\nb. Calculați variația energiei interne a gazului în transformarea $C \\to A$.\nc. Calculați lucrul mecanic total schimbat de gaz cu mediul exterior într-un ciclu.\nd. Calculați randamentul motorului termic ce ar funcționa după procesul termodinamic ciclic ABCA.",
   "formule": [],
   "date": {},
   "subpuncte": [

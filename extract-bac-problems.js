@@ -1,9 +1,23 @@
 import fs from 'fs';
 import path from 'path';
 import { fileURLToPath } from 'url';
+import { Mistral } from '@mistralai/mistralai';
+import dotenv from 'dotenv';
+
+// Load environment variables
+dotenv.config();
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
+
+// Initialize Mistral AI client
+const apiKey = process.env.MISTRAL_API_KEY;
+let mistralClient = null;
+if (apiKey) {
+    mistralClient = new Mistral({ apiKey: apiKey });
+} else {
+    console.warn('⚠️  MISTRAL_API_KEY not set. AI extraction will be skipped.');
+}
 
 // Configuration
 const INPUT_DIR = path.join(__dirname, 'variante_transcribed');
@@ -96,6 +110,12 @@ function extractSubject(markdown, subjectNumber) {
             path: imageMatch[2]
         });
     }
+    
+    // Remove image references from content (images are handled in poze array)
+    content = content.replace(/!\[([^\]]*)\]\(([^)]+)\)/g, '').trim();
+    
+    // Clean up multiple consecutive newlines that might result from removing images
+    content = content.replace(/\n{3,}/g, '\n\n');
     
     return {
         content,
@@ -205,94 +225,259 @@ function determineSubjectArea(markdown) {
 }
 
 /**
- * Get relevant formulas for a subject area
+ * Extract LaTeX formula from MathJax format (remove \( and \))
  */
-function getFormulasForSubject(subjectArea) {
-    const formulasBySubject = {
-        'Mecanică': [
-            'F = ma',
-            'p = mv',
-            'E_c = (1/2)mv²',
-            'E_p = mgh',
-            'W = F·d',
-            'P = F·v',
-            'F_c = mv²/R',
-            'ω = v/R',
-            'T = 2πR/v',
-            'a_c = v²/R = ω²R',
-            'F_e = -k·Δx',
-            'T = 2π√(m/k)',
-            'v = v₀ + at',
-            's = v₀t + (1/2)at²',
-            'v² = v₀² + 2as',
-            'F_f = μ·N',
-            'F = mg·sin(α)',
-            'a = g(sin(α) - μ·cos(α))'
-        ],
-        'Termodinamică': [
-            'pV = νRT',
-            'pV = nRT',
-            'U = (f/2)νRT',
-            'Q = mcΔT',
-            'Q = νC_VΔT',
-            'Q = νC_pΔT',
-            'L = pΔV',
-            'L = ∫pdV',
-            'ΔU = Q - L',
-            'η = 1 - T_C/T_H',
-            'W = Q_H - Q_C',
-            'S = k_B·ln(Ω)',
-            'ΔS ≥ Q/T',
-            'C_V = (f/2)R',
-            'C_p = C_V + R',
-            'γ = C_p/C_V',
-            'pV^γ = const',
-            'TV^(γ-1) = const'
-        ],
-        'Curent continuu': [
-            'I = Q/t',
-            'I = U/R',
-            'U = RI',
-            'P = UI',
-            'P = I²R',
-            'P = U²/R',
-            'W = UIt',
-            'W = I²Rt',
-            'W = U²t/R',
-            'R = ρl/S',
-            'R_serie = R₁ + R₂ + ...',
-            '1/R_paralel = 1/R₁ + 1/R₂ + ...',
-            'U = E - Ir',
-            'I = E/(R + r)',
-            'P_max = E²/(4r)',
-            'η = R/(R + r)',
-            'Q = I²Rt',
-            'E = U + Ir'
-        ],
-        'Optică': [
-            'n = c/v',
-            'n₁sin(θ₁) = n₂sin(θ₂)',
-            '1/f = 1/x₁ + 1/x₂',
-            'β = x₂/x₁',
-            'β = y₂/y₁',
-            'C = 1/f',
-            'C_total = C₁ + C₂',
-            'E = hν',
-            'E = hc/λ',
-            'E_c = hν - W',
-            'λ_min = hc/E',
-            'sin(θ_crit) = n₂/n₁',
-            'δ = (n - 1)A',
-            'f = R/2',
-            'M = -x₂/x₁'
-        ]
-    };
-    
-    return formulasBySubject[subjectArea] || [];
+function extractLatexFormula(mathJaxFormula) {
+    return mathJaxFormula
+        .replace(/\\\(/g, '')
+        .replace(/\\\)/g, '')
+        .trim();
 }
 
 /**
- * Extract data (numerical values with units) from problem content
+ * Get relevant formulas for a subject area (from Resurse.jsx)
+ */
+function getFormulasForSubject(subjectArea) {
+    // Formule din Resurse.jsx - Mecanică
+    const mecanicaFormulas = [
+        { title: "Legea a doua a lui Newton", formula: "\\( \\vec{F} = m\\vec{a} \\)" },
+        { title: "Forța de greutate", formula: "\\( G = mg \\)" },
+        { title: "Forța de frecare", formula: "\\( F_f = \\mu N \\)" },
+        { title: "Energia cinetică", formula: "\\( E_c = \\frac{1}{2}mv^2 \\)" },
+        { title: "Energia potențială gravitațională", formula: "\\( E_p = mgh \\)" },
+        { title: "Energia potențială elastică", formula: "\\( E_p = \\frac{1}{2}kx^2 \\)" },
+        { title: "Lucrul mecanic", formula: "\\( L = F \\cdot d \\cdot \\cos(\\alpha) \\)" },
+        { title: "Teorema variației energiei cinetice", formula: "\\( L = \\Delta E_c = \\frac{1}{2}mv_2^2 - \\frac{1}{2}mv_1^2 \\)" },
+        { title: "Conservarea energiei mecanice", formula: "\\( E_m = E_c + E_p = const. \\)" },
+        { title: "Impulsul", formula: "\\( \\vec{p} = m\\vec{v} \\)" },
+        { title: "Conservarea impulsului", formula: "\\( m_1 v_{1i} + m_2 v_{2i} = m_1 v_{1f} + m_2 v_{2f} \\)" },
+        { title: "Coeficientul de restituire", formula: "\\( e = \\frac{v_{2f} - v_{1f}}{v_{1i} - v_{2i}} \\)" },
+        { title: "Mișcare uniformă", formula: "\\( x(t) = x_0 + vt \\)" },
+        { title: "Mișcare uniform variată", formula: "\\( x(t) = x_0 + v_0t + \\frac{1}{2}at^2 \\)" },
+        { title: "Viteza în mișcare uniform variată", formula: "\\( v(t) = v_0 + at \\)" },
+        { title: "Ecuația lui Galilei", formula: "\\( v^2 = v_0^2 + 2a(x - x_0) \\)" },
+        { title: "Mișcare circulară uniformă - accelerația centripetă", formula: "\\( a_c = \\frac{v^2}{R} = \\omega^2 R \\)" },
+        { title: "Viteza unghiulară", formula: "\\( \\omega = \\frac{2\\pi}{T} = 2\\pi f \\)" },
+        { title: "Forța centripetă", formula: "\\( F_c = m\\frac{v^2}{R} = m\\omega^2 R \\)" },
+        { title: "Legea mișcării oscilatorii pe OX", formula: "\\( x(t) = A \\sin(\\omega t + \\phi) \\)" },
+        { title: "Legea vitezei oscilatorii", formula: "\\( v(t) = \\omega A \\cos(\\omega t + \\phi) \\)" },
+        { title: "Legea accelerației oscilatorii", formula: "\\( a(t) = -\\omega^2 A \\sin(\\omega t + \\phi) \\)" },
+        { title: "Viteza unghiulară (oscilator)", formula: "\\( \\omega = \\sqrt{\\frac{k}{m}} \\)" },
+        { title: "Perioada oscilației", formula: "\\( T = 2\\pi \\sqrt{\\frac{m}{k}} \\)" },
+        { title: "Perioada pendulului gravitațional", formula: "\\( T = 2\\pi \\sqrt{\\frac{l}{g}} \\)" },
+        { title: "Forța pe plan înclinat (componenta paralelă)", formula: "\\( F_{||} = mg \\sin(\\alpha) \\)" },
+        { title: "Forța pe plan înclinat (componenta perpendiculară)", formula: "\\( F_{\\perp} = mg \\cos(\\alpha) \\)" },
+        { title: "Accelerația pe plan înclinat", formula: "\\( a = g(\\sin(\\alpha) - \\mu \\cos(\\alpha)) \\)" },
+        { title: "Puterea mecanică", formula: "\\( P = \\frac{L}{t} = F \\cdot v \\)" },
+    ];
+
+    // Formule din Resurse.jsx - Termodinamică
+    const termodinamicaFormulas = [
+        { title: "Prima lege a termodinamicii", formula: "\\( \\Delta U = Q - L \\)" },
+        { title: "Ecuația de stare pentru gazul ideal", formula: "\\( pV = nRT \\)" },
+        { title: "Entropia (Boltzmann)", formula: "\\( S = k_B \\ln \\Omega \\)" },
+        { title: "A doua lege a termodinamicii", formula: "\\( \\Delta S \\geq \\frac{Q}{T} \\)" },
+        { title: "Energia internă pentru gazul ideal", formula: "\\( U = \\frac{f}{2}nRT \\)" },
+        { title: "Lucrul mecanic în procese reversibile", formula: "\\( L = \\int_{V_1}^{V_2} p \\, dV \\)" },
+        { title: "Căldura specifică la volum constant", formula: "\\( C_V = \\left(\\frac{\\partial U}{\\partial T}\\right)_V \\)" },
+        { title: "Entalpia", formula: "\\( H = U + pV \\)" },
+        { title: "Energia liberă Helmholtz", formula: "\\( F = U - TS \\)" },
+        { title: "Energia liberă Gibbs", formula: "\\( G = H - TS \\)" },
+        { title: "Eficiența motorului Carnot", formula: "\\( \\eta = 1 - \\frac{T_C}{T_H} \\)" },
+    ];
+
+    // Formule pentru Curent continuu (nu sunt în Resurse.jsx, le adăugăm manual)
+    const curentContinuuFormulas = [
+        { title: "Intensitatea curentului", formula: "\\( I = \\frac{Q}{t} \\)" },
+        { title: "Legea lui Ohm", formula: "\\( U = RI \\)" },
+        { title: "Puterea electrică", formula: "\\( P = UI = I^2R = \\frac{U^2}{R} \\)" },
+        { title: "Lucrul mecanic electric", formula: "\\( W = UIt = I^2Rt = \\frac{U^2t}{R} \\)" },
+        { title: "Rezistența electrică", formula: "\\( R = \\rho \\frac{l}{S} \\)" },
+        { title: "Rezistențe în serie", formula: "\\( R_{serie} = R_1 + R_2 + ... \\)" },
+        { title: "Rezistențe în paralel", formula: "\\( \\frac{1}{R_{paralel}} = \\frac{1}{R_1} + \\frac{1}{R_2} + ... \\)" },
+        { title: "Tensiunea la borne", formula: "\\( U = E - Ir \\)" },
+        { title: "Intensitatea în circuit", formula: "\\( I = \\frac{E}{R + r} \\)" },
+        { title: "Puterea maximă", formula: "\\( P_{max} = \\frac{E^2}{4r} \\)" },
+        { title: "Randamentul", formula: "\\( \\eta = \\frac{R}{R + r} \\)" },
+        { title: "Energia consumată", formula: "\\( W = I^2Rt \\)" },
+    ];
+
+    // Formule pentru Optică (nu sunt în Resurse.jsx, le adăugăm manual)
+    const opticaFormulas = [
+        { title: "Indicele de refracție", formula: "\\( n = \\frac{c}{v} \\)" },
+        { title: "Legea refracției (Snell)", formula: "\\( n_1 \\sin(\\theta_1) = n_2 \\sin(\\theta_2) \\)" },
+        { title: "Formula lentilelor subțiri", formula: "\\( \\frac{1}{f} = \\frac{1}{x_1} + \\frac{1}{x_2} \\)" },
+        { title: "Mărirea liniară", formula: "\\( \\beta = \\frac{x_2}{x_1} = \\frac{y_2}{y_1} \\)" },
+        { title: "Convergența", formula: "\\( C = \\frac{1}{f} \\)" },
+        { title: "Convergența sistemului", formula: "\\( C_{total} = C_1 + C_2 + ... \\)" },
+        { title: "Energia fotonului", formula: "\\( E = h\\nu = \\frac{hc}{\\lambda} \\)" },
+        { title: "Efectul fotoelectric", formula: "\\( E_c = h\\nu - W \\)" },
+        { title: "Unghiul critic", formula: "\\( \\sin(\\theta_{crit}) = \\frac{n_2}{n_1} \\)" },
+        { title: "Deviația în prismă", formula: "\\( \\delta = (n - 1)A \\)" },
+    ];
+
+    const formulasMap = {
+        'Mecanică': mecanicaFormulas,
+        'Termodinamică': termodinamicaFormulas,
+        'Curent continuu': curentContinuuFormulas,
+        'Optică': opticaFormulas
+    };
+
+    const formulas = formulasMap[subjectArea] || [];
+    
+    // Extract LaTeX formulas (keep MathJax format)
+    return formulas.map(f => extractLatexFormula(f.formula));
+}
+
+/**
+ * Use AI to extract data and formulas from problem content
+ */
+async function extractDataWithAI(content, subjectArea) {
+    if (!mistralClient) {
+        // Fallback to regex extraction if AI is not available
+        return extractData(content);
+    }
+
+    try {
+        const prompt = `Ești un expert în fizică. Analizează următoarea problemă de fizică și extrage:
+
+1. DATELE NUMERICE: Toate valorile numerice date în enunț cu unitățile lor (ex: m = 4 kg, v = 10 m/s, R = 2 m, etc.)
+2. FORMULELE RELEVANTE: Formulele fizice necesare pentru rezolvarea acestei probleme din domeniul ${subjectArea || 'fizică'}
+
+Problema:
+${content}
+
+Răspunde DOAR cu un JSON valid în următorul format (ATENȚIE: în JSON, backslash-urile trebuie dublate):
+{
+  "date": {
+    "nume_variabila": "valoare unitate",
+    "m": "4 kg",
+    "v": "10 m/s"
+  },
+  "formule": [
+    "F = ma",
+    "E_c = \\\\frac{1}{2}mv^2"
+  ]
+}
+
+IMPORTANT: 
+- Pentru date, folosește numele variabilelor exact cum apar în problemă (ex: m, M, v_o, v_t, h, R, etc.)
+- Pentru formule, folosește format LaTeX MathJax FĂRĂ delimiters \\( și \\) (ex: "F = ma", "E_c = \\\\frac{1}{2}mv^2", "pV = nRT", "\\\\vec{F} = m\\\\vec{a}")
+- ÎN JSON, toate backslash-urile din formule trebuie să fie ESCAPE-UITE (dublate): \\\\ în loc de \\
+- Include DOAR datele și formulele care sunt relevante pentru rezolvarea problemei
+- Nu include constante generale precum g, R, N_A dacă nu sunt date explicit în problemă
+- Formulele trebuie să fie în format LaTeX complet, cu toate simbolurile matematice corecte`;
+
+        const response = await mistralClient.chat.complete({
+            model: 'mistral-large-latest',
+            messages: [
+                {
+                    role: 'user',
+                    content: prompt
+                }
+            ],
+            temperature: 0.3,
+            maxTokens: 2000
+        });
+
+        const aiResponse = response.choices[0]?.message?.content || '';
+        
+        // Try to extract data using regex instead of JSON parsing (more robust)
+        const extractedData = {};
+        const extractedFormulas = [];
+        
+        // Extract date section
+        const dateMatch = aiResponse.match(/"date"\s*:\s*\{([^}]*)\}/s);
+        if (dateMatch) {
+            const dateContent = dateMatch[1];
+            // Extract key-value pairs: "key": "value"
+            const datePairs = dateContent.match(/"([^"]+)"\s*:\s*"([^"]*)"/g);
+            if (datePairs) {
+                for (const pair of datePairs) {
+                    const match = pair.match(/"([^"]+)"\s*:\s*"([^"]*)"/);
+                    if (match) {
+                        extractedData[match[1]] = match[2];
+                    }
+                }
+            }
+        }
+        
+        // Extract formule section
+        const formuleMatch = aiResponse.match(/"formule"\s*:\s*\[(.*?)\]/s);
+        if (formuleMatch) {
+            const formuleContent = formuleMatch[1];
+            // Extract formula strings (handle escaped quotes and backslashes)
+            // Match: "formula content" (including escaped quotes)
+            const formulaPattern = /"((?:[^"\\]|\\.)*)"/g;
+            let formulaMatch;
+            while ((formulaMatch = formulaPattern.exec(formuleContent)) !== null) {
+                // Unescape the formula string
+                let formula = formulaMatch[1]
+                    .replace(/\\"/g, '"')  // Unescape quotes
+                    .replace(/\\\\/g, '\\'); // Unescape backslashes
+                extractedFormulas.push(formula);
+            }
+        }
+        
+        // If we extracted data, return it
+        if (Object.keys(extractedData).length > 0 || extractedFormulas.length > 0) {
+            // Clean formulas (remove MathJax delimiters if present)
+            const cleanFormulas = extractedFormulas.map(f => extractLatexFormula(f));
+            
+            return {
+                date: extractedData,
+                formule: cleanFormulas
+            };
+        }
+        
+        // Fallback: try JSON parsing
+        const jsonMatch = aiResponse.match(/\{[\s\S]*\}/);
+        if (jsonMatch) {
+            try {
+                // Try to fix JSON by replacing problematic patterns
+                let jsonStr = jsonMatch[0];
+                
+                // Replace unescaped backslashes in string values
+                // Strategy: find strings and fix backslashes inside them
+                jsonStr = jsonStr.replace(/"([^"]*)"/g, (match, content) => {
+                    // Escape backslashes that aren't part of valid escape sequences
+                    const fixed = content.replace(/\\(?!["\\/bfnrtu0-9x])/g, '\\\\');
+                    return `"${fixed}"`;
+                });
+                
+                const parsed = JSON.parse(jsonStr);
+                
+                const cleanFormulas = (parsed.formule || []).map(f => {
+                    if (typeof f === 'string') {
+                        return extractLatexFormula(f);
+                    }
+                    return String(f);
+                });
+                
+                return {
+                    date: parsed.date || {},
+                    formule: cleanFormulas
+                };
+            } catch (e) {
+                // Log for debugging
+                const preview = aiResponse.substring(0, 500);
+                console.warn(`  ⚠️  Failed to parse AI response: ${e.message}`);
+                console.warn(`  📝 Response preview: ${preview}...`);
+            }
+        }
+    } catch (error) {
+        console.warn(`  ⚠️  AI extraction failed: ${error.message}, using fallback`);
+    }
+
+    // Fallback to regex extraction
+    return {
+        date: extractData(content),
+        formule: extractRelevantFormulas(content, subjectArea)
+    };
+}
+
+/**
+ * Extract data (numerical values with units) from problem content (fallback method)
  */
 function extractData(content) {
     const data = {};
@@ -301,58 +486,148 @@ function extractData(content) {
     // Examples: $M = 40\,\mathrm{t}$, $R = 2$ m, masa $m = 0,5$ kg
     
     // Pattern 1: LaTeX format with \mathrm: $var = value\,\mathrm{unit}$
+    // Handles: $h = 15\,\mathrm{m}$, $v_o = 10\,\mathrm{m/s}$, $m = 0,2\,\mathrm{kg}$
     const latexPattern1 = /\$([A-Za-z_][A-Za-z0-9_]*)\s*=\s*([0-9,\.]+)\\?\,\\?mathrm\{([^}]+)\}/g;
     let match;
     
     while ((match = latexPattern1.exec(content)) !== null) {
         const varName = match[1];
-        const value = match[2].replace(',', '.');
+        let value = match[2].replace(',', '.');
         const unit = match[3].trim();
         data[varName] = `${value} ${unit}`;
     }
     
-    // Pattern 2: LaTeX format: $var = value$ unit (outside LaTeX)
-    const latexPattern2 = /\$([A-Za-z_][A-Za-z0-9_]*)\s*=\s*([0-9,\.]+)\$\s*([A-Za-z\/\s·]+)/g;
-    while ((match = latexPattern2.exec(content)) !== null) {
+    // Pattern 1b: LaTeX format with \mathrm and optional spaces: $var = value \,\mathrm{unit}$
+    const latexPattern1b = /\$([A-Za-z_][A-Za-z0-9_]*)\s*=\s*([0-9,\.]+)\s*\\?\,\\?mathrm\{([^}]+)\}/g;
+    while ((match = latexPattern1b.exec(content)) !== null) {
         const varName = match[1];
-        const value = match[2].replace(',', '.');
+        let value = match[2].replace(',', '.');
         const unit = match[3].trim();
         if (!data[varName]) {
             data[varName] = `${value} ${unit}`;
         }
     }
     
-    // Pattern 3: Simple format: var = value unit (without LaTeX)
-    const simplePattern = /([A-Za-z_][A-Za-z0-9_]*)\s*=\s*([0-9,\.]+)\s*([A-Za-z\/\s·Ω]+)/g;
+    // Pattern 2: LaTeX format: $var = value$ unit (outside LaTeX)
+    const latexPattern2 = /\$([A-Za-z_][A-Za-z0-9_]*)\s*=\s*([0-9,\.]+)\$\s*([A-Za-z\/\s·Ω°²³⁻¹]+)/g;
+    while ((match = latexPattern2.exec(content)) !== null) {
+        const varName = match[1];
+        let value = match[2].replace(',', '.');
+        const unit = match[3].trim();
+        if (!data[varName] && unit.length > 0) {
+            data[varName] = `${value} ${unit}`;
+        }
+    }
+    
+    // Pattern 2b: LaTeX format: $var = value$ followed by unit in text (with space)
+    const latexPattern2b = /\$([A-Za-z_][A-Za-z0-9_]*)\s*=\s*([0-9,\.]+)\$\s+([A-Za-z\/\s·Ω°²³⁻¹]+)/g;
+    while ((match = latexPattern2b.exec(content)) !== null) {
+        const varName = match[1];
+        let value = match[2].replace(',', '.');
+        const unit = match[3].trim();
+        if (!data[varName] && unit.length > 0) {
+            data[varName] = `${value} ${unit}`;
+        }
+    }
+    
+    // Pattern 3: Simple format: var = value unit (without LaTeX, requires space before unit)
+    const simplePattern = /\b([A-Za-z_][A-Za-z0-9_]*)\s*=\s*([0-9,\.]+)\s+([A-Za-z\/\s·Ω°²³⁻¹]+)/g;
     while ((match = simplePattern.exec(content)) !== null) {
         const varName = match[1];
-        const value = match[2].replace(',', '.');
+        let value = match[2].replace(',', '.');
         const unit = match[3].trim();
         // Skip if already found or if it's a common word
-        if (!data[varName] && !['are', 'este', 'sunt', 'se', 'de', 'la', 'cu'].includes(varName.toLowerCase())) {
+        if (!data[varName] && !['are', 'este', 'sunt', 'se', 'de', 'la', 'cu', 'si', 'și'].includes(varName.toLowerCase()) && unit.length > 0) {
             data[varName] = `${value} ${unit}`;
         }
     }
     
     // Pattern 4: Text format: "masa m = value unit" or "temperatura T = value unit"
-    const textPattern = /(?:masa|temperatura|presiunea|volumul|viteza|accelerația|forța|energia|puterea|rezistența|tensiunea|intensitatea|curentul|distanța|raza|lungimea|înălțimea|unghiul|coeficientul|constanta)\s+([A-Za-z_][A-Za-z0-9_]*)\s*[=:]\s*([0-9,\.]+)\s*([A-Za-z\/\s·Ω°]+)/gi;
+    const textPattern = /(?:masa|temperatura|presiunea|volumul|viteza|accelerația|forța|energia|puterea|rezistența|tensiunea|intensitatea|curentul|distanța|raza|lungimea|înălțimea|unghiul|coeficientul|constanta|mărimea|valoarea|mărime|valoare)\s+([A-Za-z_][A-Za-z0-9_]*)\s*[=:]\s*([0-9,\.]+)\s*([A-Za-z\/\s·Ω°²³⁻¹]+)/gi;
     while ((match = textPattern.exec(content)) !== null) {
-        const varName = match[2];
-        const value = match[3].replace(',', '.');
-        const unit = match[4].trim();
-        if (!data[varName]) {
+        const varName = match[1];
+        let value = match[2].replace(',', '.');
+        const unit = match[3].trim();
+        if (!data[varName] && unit.length > 0) {
             data[varName] = `${value} ${unit}`;
         }
     }
     
     // Pattern 5: Constants mentioned: g = 10 m/s², R = 8,31 J/(mol·K), etc.
-    const constantPattern = /(?:Se consideră|se consideră|Considerați|considerați|cunoscut|Cunoscut)[^.]*?([A-Za-z_][A-Za-z0-9_]*)\s*=\s*([0-9,\.]+)\s*([A-Za-z\/\s·Ω°²³⁻¹]+)/gi;
+    const constantPattern = /(?:Se consideră|se consideră|Considerați|considerați|cunoscut|Cunoscut|se cunoaște|se cunoaște)[^.]*?([A-Za-z_][A-Za-z0-9_]*)\s*=\s*([0-9,\.]+)\s*([A-Za-z\/\s·Ω°²³⁻¹]+)/gi;
     while ((match = constantPattern.exec(content)) !== null) {
         const varName = match[1];
-        const value = match[2].replace(',', '.');
+        let value = match[2].replace(',', '.');
+        const unit = match[3].trim();
+        if (!data[varName] && unit.length > 0) {
+            data[varName] = `${value} ${unit}`;
+        }
+    }
+    
+    // Pattern 6: Variables in context: "având masa $m = 0,2\,\mathrm{kg}$" or "cu viteza $v_o = 10\,\mathrm{m/s}$"
+    const contextPattern = /(?:având|cu|de|are|este|au|avem|aflat|se|care)\s+[^$]*?\$([A-Za-z_][A-Za-z0-9_]*)\s*=\s*([0-9,\.]+)\\?\,\\?mathrm\{([^}]+)\}/gi;
+    while ((match = contextPattern.exec(content)) !== null) {
+        const varName = match[1];
+        let value = match[2].replace(',', '.');
         const unit = match[3].trim();
         if (!data[varName]) {
             data[varName] = `${value} ${unit}`;
+        }
+    }
+    
+    // Pattern 7: Values given in text without LaTeX: "2000 N", "5000 N", "46 kN"
+    // Look for numbers followed by units in text
+    const textValuePattern = /\b([0-9,\.]+)\s+([A-Za-zΩ°²³⁻¹\/\s·]+(?:N|kg|g|m|s|V|A|Ω|J|W|K|mol|Pa|Hz|°C|°|rad|m\/s|m\/s²|km\/h|t|kN|MJ|kJ|mC|μC|nC|pC|eV|MeV|GeV))\b/gi;
+    while ((match = textValuePattern.exec(content)) !== null) {
+        const value = match[1].replace(',', '.');
+        const unit = match[2].trim();
+        // Only add if it looks like a physical quantity (has a unit)
+        if (unit.length > 0 && unit.length < 20 && !data[`value_${Object.keys(data).length}`]) {
+            // Try to find a variable name nearby
+            const beforeMatch = content.substring(Math.max(0, match.index - 50), match.index);
+            const varMatch = beforeMatch.match(/(?:masa|temperatura|presiunea|volumul|viteza|accelerația|forța|energia|puterea|rezistența|tensiunea|intensitatea|curentul|distanța|raza|lungimea|înălțimea|unghiul|coeficientul|constanta|mărimea|valoarea)\s+([A-Za-z_][A-Za-z0-9_]*)/i);
+            if (varMatch) {
+                const varName = varMatch[1];
+                if (!data[varName]) {
+                    data[varName] = `${value} ${unit}`;
+                }
+            }
+        }
+    }
+    
+    // Pattern 8: Extract values from "Forța ... este de X unit" or "are valoarea de X unit"
+    const forceValuePattern = /(?:Forța|forța|Tensiunea|tensiunea|Intensitatea|intensitatea|Viteza|viteza|Accelerația|accelerația|Energia|energia|Puterea|puterea|Rezistența|rezistența|Distanța|distanța|Lungimea|lungimea|Raza|raza|Înălțimea|înălțimea|Masa|masa|Temperatura|temperatura|Presiunea|presiunea|Volumul|volumul)[^0-9]*?(?:este|are|de|valoarea|valoare)\s+(?:de\s+)?([0-9,\.]+)\s+([A-Za-zΩ°²³⁻¹\/\s·]+(?:N|kg|g|m|s|V|A|Ω|J|W|K|mol|Pa|Hz|°C|°|rad|m\/s|m\/s²|km\/h|t|kN|MJ|kJ|mC|μC|nC|pC|eV|MeV|GeV))/gi;
+    while ((match = forceValuePattern.exec(content)) !== null) {
+        const value = match[1].replace(',', '.');
+        const unit = match[2].trim();
+        // Extract variable name from the beginning of the match
+        const fullMatch = match[0];
+        const varMatch = fullMatch.match(/([A-Za-z_][A-Za-z0-9_]*)/);
+        if (varMatch && unit.length > 0 && unit.length < 20) {
+            const varName = varMatch[1].toLowerCase();
+            // Map common Romanian words to variable names
+            const varMap = {
+                'forța': 'F',
+                'tensiunea': 'T',
+                'intensitatea': 'I',
+                'viteza': 'v',
+                'accelerația': 'a',
+                'energia': 'E',
+                'puterea': 'P',
+                'rezistența': 'R',
+                'distanța': 'd',
+                'lungimea': 'l',
+                'raza': 'R',
+                'înălțimea': 'h',
+                'masa': 'm',
+                'temperatura': 'T',
+                'presiunea': 'p',
+                'volumul': 'V'
+            };
+            const mappedVar = varMap[varMatch[1].toLowerCase()] || varMatch[1];
+            if (!data[mappedVar] || !data[varMatch[1]]) {
+                data[mappedVar] = `${value} ${unit}`;
+            }
         }
     }
     
@@ -373,9 +648,12 @@ function extractRelevantFormulas(content, subjectArea) {
         .replace(/[^\w\s]/g, ' '); // Replace special chars with spaces
     
     // Check each formula against content
-    for (const formula of allFormulas) {
+    for (const formulaObj of allFormulas) {
+        // Extract formula string (remove MathJax delimiters)
+        const formulaStr = extractLatexFormula(formulaObj.formula || formulaObj);
+        
         // Extract variable names from formula
-        const vars = formula.match(/[A-Za-z_][A-Za-z0-9_]*/g) || [];
+        const vars = formulaStr.match(/[A-Za-z_][A-Za-z0-9_]*/g) || [];
         
         // Check if at least one variable from formula appears in content
         const found = vars.some(v => {
@@ -388,14 +666,16 @@ function extractRelevantFormulas(content, subjectArea) {
         });
         
         if (found) {
-            relevantFormulas.push(formula);
+            relevantFormulas.push(formulaStr);
         }
     }
     
     // If no formulas found, return common ones for the subject
     if (relevantFormulas.length === 0 && allFormulas.length > 0) {
-        // Return first 3-5 most common formulas
-        return allFormulas.slice(0, Math.min(5, allFormulas.length));
+        // Return first 3-5 most common formulas (extract formula strings)
+        return allFormulas.slice(0, Math.min(5, allFormulas.length)).map(f => 
+            extractLatexFormula(f.formula || f)
+        );
     }
     
     return relevantFormulas;
@@ -426,7 +706,7 @@ function extractSubjectAreaFromContent(markdown) {
 /**
  * Extract problems (II and III) from a section of markdown for a specific subject area
  */
-function extractProblemsFromSection(markdown, subjectArea, subjectCode, allPages, folderPath, metadata, folderName) {
+async function extractProblemsFromSection(markdown, subjectArea, subjectCode, allPages, folderPath, metadata, folderName) {
     const problems = [];
     
     // Extract Subject II
@@ -450,9 +730,9 @@ function extractProblemsFromSection(markdown, subjectArea, subjectCode, allPages
         
         const subpuncte = extractSubpuncte(subjectII.content);
         
-        // Extract formulas and data
-        const formule = extractRelevantFormulas(subjectII.content, subjectArea || 'Mecanică');
-        const date = extractData(subjectII.content);
+        // Leave formulas and data empty - will be filled manually later
+        const formule = [];
+        const date = {};
         
         problems.push({
             titlu: `Problema II - ${subjectArea || 'Fizică'} - Bac ${metadata.year}${metadata.variant ? ` Var ${metadata.variant}` : ''}`,
@@ -503,9 +783,9 @@ function extractProblemsFromSection(markdown, subjectArea, subjectCode, allPages
         
         const subpuncte = extractSubpuncte(subjectIII.content);
         
-        // Extract formulas and data
-        const formule = extractRelevantFormulas(subjectIII.content, subjectArea || 'Mecanică');
-        const date = extractData(subjectIII.content);
+        // Leave formulas and data empty - will be filled manually later
+        const formule = [];
+        const date = {};
         
         problems.push({
             titlu: `Problema III - ${subjectArea || 'Fizică'} - Bac ${metadata.year}${metadata.variant ? ` Var ${metadata.variant}` : ''}`,
@@ -541,7 +821,7 @@ function extractProblemsFromSection(markdown, subjectArea, subjectCode, allPages
 /**
  * Process a single JSON file
  */
-function processFile(folderPath, jsonFileName) {
+async function processFile(folderPath, jsonFileName) {
     const jsonPath = path.join(folderPath, jsonFileName);
     const folderName = path.basename(folderPath);
     
@@ -567,7 +847,7 @@ function processFile(folderPath, jsonFileName) {
             
             if (subjectInfo) {
                 // Extract problems from this subject area
-                const sectionProblems = extractProblemsFromSection(
+                const sectionProblems = await extractProblemsFromSection(
                     page.markdown,
                     subjectInfo.area,
                     subjectInfo.code,
@@ -585,7 +865,7 @@ function processFile(folderPath, jsonFileName) {
                 // If no subject area header found, try to determine from content
                 const area = determineSubjectArea(page.markdown);
                 if (area && area !== 'Unknown') {
-                    const sectionProblems = extractProblemsFromSection(
+                    const sectionProblems = await extractProblemsFromSection(
                         page.markdown,
                         area,
                         null,
@@ -612,7 +892,7 @@ function processFile(folderPath, jsonFileName) {
 /**
  * Main function
  */
-function main() {
+async function main() {
     console.log('🚀 Starting extraction of Subject II and Subject III problems...\n');
     
     if (!fs.existsSync(INPUT_DIR)) {
@@ -642,7 +922,7 @@ function main() {
         console.log(`📁 Processing ${folder}...`);
         
         for (const jsonFile of jsonFiles) {
-            const problems = processFile(folderPath, jsonFile);
+            const problems = await processFile(folderPath, jsonFile);
             allProblems.push(...problems);
             totalProblems += problems.length;
             
@@ -700,10 +980,9 @@ function main() {
     console.log('\n✅ Extraction complete!');
 }
 
-try {
-    main();
-} catch (error) {
+main().catch(error => {
     console.error('Fatal error:', error);
     process.exit(1);
-}
+});
+
 

@@ -5,7 +5,7 @@
   "varianta": "2014 Var 4",
   "dificultate": "mediu",
   "punctajTotal": 15,
-  "continut": "Un mol de gaz ideal poliatomic ($C_V = 3 R$) trece prin succesiunea de transformări reprezentată în coordonate $p-V$ în figura alăturată. Transformarea $2 \\rightarrow 3$ este o destindere izotermă pe parcursul căreia gazul primește căldura $Q_{23} = 6731,1 \\mathrm{~J}$, iar volumul gazului crește până la $V_3 = 2,7 \\cdot V_1 \\equiv e \\cdot V_1$, unde $e$ este baza logaritmului natural.\n\na. Reprezentați succesiunea de transformări în coordonate $V-T$.\nb. Calculați valoarea temperaturii gazului în starea 3.\nc. Determinați căldura schimbată de gaz cu mediul exterior în transformarea $3 \\rightarrow 1$.\nd. Calculați lucrul mecanic total efectuat de gaz pe un ciclu.\n\n![img-2.jpeg](img-2.jpeg)",
+  "continut": "Un mol de gaz ideal poliatomic ($C_V = 3 R$) trece prin succesiunea de transformări reprezentată în coordonate $p-V$ în figura alăturată. Transformarea $2 \\rightarrow 3$ este o destindere izotermă pe parcursul căreia gazul primește căldura $Q_{23} = 6731,1 \\mathrm{~J}$, iar volumul gazului crește până la $V_3 = 2,7 \\cdot V_1 \\equiv e \\cdot V_1$, unde $e$ este baza logaritmului natural.\n\na. Reprezentați succesiunea de transformări în coordonate $V-T$.\nb. Calculați valoarea temperaturii gazului în starea 3.\nc. Determinați căldura schimbată de gaz cu mediul exterior în transformarea $3 \\rightarrow 1$.\nd. Calculați lucrul mecanic total efectuat de gaz pe un ciclu.",
   "formule": [],
   "date": {},
   "subpuncte": [

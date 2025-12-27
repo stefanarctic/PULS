@@ -5,7 +5,7 @@
   "varianta": "2019 Var 2",
   "dificultate": "mediu",
   "punctajTotal": 15,
-  "continut": "O cantitate constantă de gaz ideal $(C_{\\nu} = 2R)$ parcurge transformarea ciclică $1 \\rightarrow 2 \\rightarrow 3 \\rightarrow 1$ reprezentată în coordonate $p - V$ ca în figura alăturată. În transformarea $2 \\rightarrow 3$ temperatura gazului rămâne constantă. În starea 1 presiunea și volumul gazului au valorile $p_1 = 10^5\\mathrm{Pa}$, respectiv $V_1 = 2\\mathrm{L}$. Considerați că $\\ln 2 = 0,7$.\n\na. Calculați variația energiei interne a gazului în transformarea $3 \\rightarrow 1$.\nb. Calculați căldura primită de gaz în transformarea $2 \\rightarrow 3$.\nc. Calculați lucrul mecanic total schimbat de gaz cu mediul exterior pe parcursul unui ciclu complet.\nd. Calculați randamentul unui motor care funcționează după acest ciclu.\n\n![img-2.jpeg](img-2.jpeg)\n\n![img-3.jpeg](img-3.jpeg)",
+  "continut": "O cantitate constantă de gaz ideal $(C_{\\nu} = 2R)$ parcurge transformarea ciclică $1 \\rightarrow 2 \\rightarrow 3 \\rightarrow 1$ reprezentată în coordonate $p - V$ ca în figura alăturată. În transformarea $2 \\rightarrow 3$ temperatura gazului rămâne constantă. În starea 1 presiunea și volumul gazului au valorile $p_1 = 10^5\\mathrm{Pa}$, respectiv $V_1 = 2\\mathrm{L}$. Considerați că $\\ln 2 = 0,7$.\n\na. Calculați variația energiei interne a gazului în transformarea $3 \\rightarrow 1$.\nb. Calculați căldura primită de gaz în transformarea $2 \\rightarrow 3$.\nc. Calculați lucrul mecanic total schimbat de gaz cu mediul exterior pe parcursul unui ciclu complet.\nd. Calculați randamentul unui motor care funcționează după acest ciclu.",
   "formule": [],
   "date": {},
   "subpuncte": [

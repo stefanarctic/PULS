@@ -5,7 +5,7 @@
   "varianta": "2014",
   "dificultate": "mediu",
   "punctajTotal": 15,
-  "continut": "Un motor termic funcționează după ciclul termodinamic reprezentat în coordonate $p - V$ în figura alăturată. Substanța de lucru a motorului este constituită din $\\nu = 4\\ \\mathrm{mol}$ de gaz ideal ($C_V = 2,5\\ \\mathrm{R}$). Temperatura minimă atinsă de gaz este $t_2 = 27^{\\circ}C$. Relația dintre temperaturile extreme atinse de gaz este $T_1 = 2T_3$, iar cea dintre volumele ocupate de gaz este $V_2 = eV_1$, unde $e \\cong 2,718$ este baza logaritmului natural. Determinați:\n\na. variația energiei interne în cursul transformării 2-3;\nb. lucrul mecanic total efectuat de gaz într-un ciclu;\nc. căldura cedată de gaz mediului exterior în decursul unui ciclu;\nd. randamentul motorului termic.\n\n![img-3.jpeg](img-3.jpeg)\n\n![img-4.jpeg](img-4.jpeg)",
+  "continut": "Un motor termic funcționează după ciclul termodinamic reprezentat în coordonate $p - V$ în figura alăturată. Substanța de lucru a motorului este constituită din $\\nu = 4\\ \\mathrm{mol}$ de gaz ideal ($C_V = 2,5\\ \\mathrm{R}$). Temperatura minimă atinsă de gaz este $t_2 = 27^{\\circ}C$. Relația dintre temperaturile extreme atinse de gaz este $T_1 = 2T_3$, iar cea dintre volumele ocupate de gaz este $V_2 = eV_1$, unde $e \\cong 2,718$ este baza logaritmului natural. Determinați:\n\na. variația energiei interne în cursul transformării 2-3;\nb. lucrul mecanic total efectuat de gaz într-un ciclu;\nc. căldura cedată de gaz mediului exterior în decursul unui ciclu;\nd. randamentul motorului termic.",
   "formule": [],
   "date": {},
   "subpuncte": [

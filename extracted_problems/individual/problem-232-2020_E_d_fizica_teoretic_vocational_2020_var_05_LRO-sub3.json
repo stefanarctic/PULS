@@ -5,7 +5,7 @@
   "varianta": "2020 Var 5",
   "dificultate": "mediu",
   "punctajTotal": 15,
-  "continut": "O cantitate $\\nu = 1,2 \\mathrm{~mol} \\left( \\cong \\frac{10}{8,31} \\mathrm{~mol} \\right)$ de gaz ideal poliatomic $(C_V = 3 R)$ se află în starea 1 în care temperatura gazului este $T_1 = 200 \\mathrm{~K}$. Gazul parcurge procesul ciclic reprezentat în coordonate $p - V$ în figura alăturată. Presiunea gazului în starea 2 este $p_2 = 3 p_1$. Calculați:\na. variația energiei interne a gazului în procesul $3 \\rightarrow 1$;\nb. căldura primită de gaz în procesul ciclic;\nc. lucru mecanic total schimbat de gaz cu mediul exterior în timpul unui ciclu;\nd. randamentul unui motor termic care funcționează după procesul ciclic reprezentat în graficul din figura alăturată.\n\n![img-3.jpeg](img-3.jpeg)",
+  "continut": "O cantitate $\\nu = 1,2 \\mathrm{~mol} \\left( \\cong \\frac{10}{8,31} \\mathrm{~mol} \\right)$ de gaz ideal poliatomic $(C_V = 3 R)$ se află în starea 1 în care temperatura gazului este $T_1 = 200 \\mathrm{~K}$. Gazul parcurge procesul ciclic reprezentat în coordonate $p - V$ în figura alăturată. Presiunea gazului în starea 2 este $p_2 = 3 p_1$. Calculați:\na. variația energiei interne a gazului în procesul $3 \\rightarrow 1$;\nb. căldura primită de gaz în procesul ciclic;\nc. lucru mecanic total schimbat de gaz cu mediul exterior în timpul unui ciclu;\nd. randamentul unui motor termic care funcționează după procesul ciclic reprezentat în graficul din figura alăturată.",
   "formule": [],
   "date": {},
   "subpuncte": [

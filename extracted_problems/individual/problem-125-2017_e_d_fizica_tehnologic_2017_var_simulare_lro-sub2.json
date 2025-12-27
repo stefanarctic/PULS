@@ -5,7 +5,7 @@
   "varianta": "2017",
   "dificultate": "mediu",
   "punctajTotal": 15,
-  "continut": "Două corpuri, de mase $m_1 = 1\\,\\mathrm{kg}$ și $m_2 = 2\\,\\mathrm{kg}$, sunt legate prin intermediul unui fir inextensibil, de masă neglijabilă. Sistemul mecanic astfel format este așezat pe o suprafață orizontală. Asupra corpului de masă $m_1$ se acționează cu o forță $\\vec{F}$, orientată orizontal, ca în figura alăturată.\n\nCoeficientul de frecare dintre corpuri și suprafața planului orizontal este $\\mu = 0,2$. Accelerarea corpurilor este $a = 0,5\\,\\mathrm{m/s^2}$.\n\n![img-1.jpeg](img-1.jpeg)\n\na. Reprezentați toate forțele care acționează asupra corpului de masă $m_2$.\nb. Calculați valoarea forței de frecare dintre corpul de masă $m_2$ și suprafața orizontală.\nc. Determinați valoarea tensiunii din firul care leagă cele două corpuri.\nd. Determinați valoarea forței $\\vec{F}$.",
+  "continut": "Două corpuri, de mase $m_1 = 1\\,\\mathrm{kg}$ și $m_2 = 2\\,\\mathrm{kg}$, sunt legate prin intermediul unui fir inextensibil, de masă neglijabilă. Sistemul mecanic astfel format este așezat pe o suprafață orizontală. Asupra corpului de masă $m_1$ se acționează cu o forță $\\vec{F}$, orientată orizontal, ca în figura alăturată.\n\nCoeficientul de frecare dintre corpuri și suprafața planului orizontal este $\\mu = 0,2$. Accelerarea corpurilor este $a = 0,5\\,\\mathrm{m/s^2}$.\n\na. Reprezentați toate forțele care acționează asupra corpului de masă $m_2$.\nb. Calculați valoarea forței de frecare dintre corpul de masă $m_2$ și suprafața orizontală.\nc. Determinați valoarea tensiunii din firul care leagă cele două corpuri.\nd. Determinați valoarea forței $\\vec{F}$.",
   "formule": [],
   "date": {},
   "subpuncte": [

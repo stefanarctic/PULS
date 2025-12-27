@@ -5,7 +5,7 @@
   "varianta": "2020 Var 6",
   "dificultate": "mediu",
   "punctajTotal": 15,
-  "continut": "O cantitate de gaz ideal poliatomic $(C_{\\mathrm{v}} = 3R)$ parcurge succesiunea de transformări $1 \\rightarrow 2 \\rightarrow 3 \\rightarrow 4$ reprezentată în coordonate $p-V$ în figura alăturată. Transformarea $2 \\rightarrow 3$ are loc la temperatura constantă. Parametrii gazului în starea inițială sunt $p_1 = 10^5$ Pa și $V_1 = 5L$. Se cunoaște $\\ln 3 \\cong 1,1$.\n\na. Calculați variația energiei interne a gazului între starea 1 și starea 4.\nb. Calculați valoarea căldurii cedate de gaz mediului exterior în procesul descris.\nc. Determinați valoarea lucrului mecanic total schimbat de gaz cu mediul exterior.\nd. Reprezentați grafic succesiunea de transformări în coordonate $V - T$.\n\n![img-3.jpeg](img-3.jpeg)",
+  "continut": "O cantitate de gaz ideal poliatomic $(C_{\\mathrm{v}} = 3R)$ parcurge succesiunea de transformări $1 \\rightarrow 2 \\rightarrow 3 \\rightarrow 4$ reprezentată în coordonate $p-V$ în figura alăturată. Transformarea $2 \\rightarrow 3$ are loc la temperatura constantă. Parametrii gazului în starea inițială sunt $p_1 = 10^5$ Pa și $V_1 = 5L$. Se cunoaște $\\ln 3 \\cong 1,1$.\n\na. Calculați variația energiei interne a gazului între starea 1 și starea 4.\nb. Calculați valoarea căldurii cedate de gaz mediului exterior în procesul descris.\nc. Determinați valoarea lucrului mecanic total schimbat de gaz cu mediul exterior.\nd. Reprezentați grafic succesiunea de transformări în coordonate $V - T$.",
   "formule": [],
   "date": {},
   "subpuncte": [

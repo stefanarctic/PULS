@@ -5,7 +5,7 @@
   "varianta": "2015",
   "dificultate": "mediu",
   "punctajTotal": 15,
-  "continut": "Un corp de masă $m = 1\\,\\mathrm{kg}$ este lansat din punctul $A$ cu viteza $v_1 = 2\\,\\mathrm{m/s}$ și se deplasează cu frecare pe o suprafață orizontală $AB$ care se continuă cu o suprafață curbă pe care mișcarea se face fără frecare, ca în figura alăturată. După parcurgerea distanței $d = AB = 2\\,\\mathrm{m}$, viteza corpului în punctul $B$ este $v_2 = \\frac{v_1}{2}$. Energia potențială gravitațională se consideră nulă la nivelul suprafeței orizontale $AB$. Calculați:\na. energia cinetică a corpului în poziția inițială $A$;\nb. înălțimea maximă $h$ până la care ajunge corpul;\nc. lucrul mecanic efectuat de forța de frecare în timpul deplasării corpului din $A$ în $B$;\nd. valoarea coeficientului de frecare la alunecare pe porțiunea orizontală.\n\n![img-1.jpeg](img-1.jpeg)\n\n![img-2.jpeg](img-2.jpeg)",
+  "continut": "Un corp de masă $m = 1\\,\\mathrm{kg}$ este lansat din punctul $A$ cu viteza $v_1 = 2\\,\\mathrm{m/s}$ și se deplasează cu frecare pe o suprafață orizontală $AB$ care se continuă cu o suprafață curbă pe care mișcarea se face fără frecare, ca în figura alăturată. După parcurgerea distanței $d = AB = 2\\,\\mathrm{m}$, viteza corpului în punctul $B$ este $v_2 = \\frac{v_1}{2}$. Energia potențială gravitațională se consideră nulă la nivelul suprafeței orizontale $AB$. Calculați:\na. energia cinetică a corpului în poziția inițială $A$;\nb. înălțimea maximă $h$ până la care ajunge corpul;\nc. lucrul mecanic efectuat de forța de frecare în timpul deplasării corpului din $A$ în $B$;\nd. valoarea coeficientului de frecare la alunecare pe porțiunea orizontală.",
   "formule": [],
   "date": {},
   "subpuncte": [

@@ -5,7 +5,7 @@
   "varianta": "2021",
   "dificultate": "mediu",
   "punctajTotal": 15,
-  "continut": "Corpul de masă $m = 9,2\\,\\mathrm{kg}$ se deplasează pe suprafața orizontală cu viteza constantă $v = 2\\,\\mathrm{m/s}$, sub acțiunea unei forțe $\\vec{F}$ orientată sub unghiul $\\alpha = 37^\\circ$ față de orizontală și având valoarea constantă $F = 20\\,\\mathrm{N}$. Considerați cunoscute valorile: $\\sin 37^\\circ \\cong 0,6$ și $\\cos 37^\\circ \\cong 0,8$.\n\n![img-1.jpeg](img-1.jpeg)\n\na. Calculați distanța parcursă de corp în intervalul de timp $\\Delta t = 3\\,\\mathrm{s}$.\nb. Reprezentați forțele care acționează asupra corpului $m$.\nc. Calculați valoarea forței de frecare la alunecare dintre corpul $m$ și suprafața orizontală.\nd. Calculați valoarea coeficientului de frecare la alunecare dintre corp și suprafața orizontală.",
+  "continut": "Corpul de masă $m = 9,2\\,\\mathrm{kg}$ se deplasează pe suprafața orizontală cu viteza constantă $v = 2\\,\\mathrm{m/s}$, sub acțiunea unei forțe $\\vec{F}$ orientată sub unghiul $\\alpha = 37^\\circ$ față de orizontală și având valoarea constantă $F = 20\\,\\mathrm{N}$. Considerați cunoscute valorile: $\\sin 37^\\circ \\cong 0,6$ și $\\cos 37^\\circ \\cong 0,8$.\n\na. Calculați distanța parcursă de corp în intervalul de timp $\\Delta t = 3\\,\\mathrm{s}$.\nb. Reprezentați forțele care acționează asupra corpului $m$.\nc. Calculați valoarea forței de frecare la alunecare dintre corpul $m$ și suprafața orizontală.\nd. Calculați valoarea coeficientului de frecare la alunecare dintre corp și suprafața orizontală.",
   "formule": [],
   "date": {},
   "subpuncte": [

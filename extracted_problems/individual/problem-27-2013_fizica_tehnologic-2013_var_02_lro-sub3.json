@@ -5,7 +5,7 @@
   "varianta": "2013 Var 2",
   "dificultate": "mediu",
   "punctajTotal": 15,
-  "continut": "În figura alăturată este reprezentată dependența presiunii unui gaz de volumul acestuia, în cursul unui proces ciclic în care cantitatea de gaz rămâne constantă. Gazul poate fi considerat ideal $(C_V = 1,5 \\cdot R)$ și are în starea inițială presiunea $p_1 = 10^5\\mathrm{Pa}$ și volumul $V_1 = 1\\mathrm{dm}^3$. Determinați:\n\na. presiunea gazului în starea (2);\nb. raportul dintre temperatura maximă și temperatura minimă atinsă de gaz în cursul ciclului;\nc. lucrul mecanic total schimbat de gaz cu exteriorul într-un ciclu complet;\nd. căldura cedată de gaz în transformarea (3) → (1).\n\n![img-4.jpeg](img-4.jpeg)",
+  "continut": "În figura alăturată este reprezentată dependența presiunii unui gaz de volumul acestuia, în cursul unui proces ciclic în care cantitatea de gaz rămâne constantă. Gazul poate fi considerat ideal $(C_V = 1,5 \\cdot R)$ și are în starea inițială presiunea $p_1 = 10^5\\mathrm{Pa}$ și volumul $V_1 = 1\\mathrm{dm}^3$. Determinați:\n\na. presiunea gazului în starea (2);\nb. raportul dintre temperatura maximă și temperatura minimă atinsă de gaz în cursul ciclului;\nc. lucrul mecanic total schimbat de gaz cu exteriorul într-un ciclu complet;\nd. căldura cedată de gaz în transformarea (3) → (1).",
   "formule": [],
   "date": {},
   "subpuncte": [

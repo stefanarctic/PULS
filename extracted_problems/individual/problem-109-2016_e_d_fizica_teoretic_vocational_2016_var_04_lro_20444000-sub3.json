@@ -5,7 +5,7 @@
   "varianta": "2016 Var 4",
   "dificultate": "mediu",
   "punctajTotal": 15,
-  "continut": "O cantitate de gaz ideal biatomic parcurge procesul ciclic 1-2-3-1 reprezentat în coordonate $p - V$ în figura alăturată. Cunoscând $C_v = 2,5R$, $p_1 = 10^5 \\mathrm{Pa}$ și $V_1 = 20 \\mathrm{dm}^3$, determinați:\n\na. variația energiei interne în procesul 2-3;\nb. căldura primită de gaz în procesul 1-2-3;\nc. lucrul mecanic total schimbat de gaz cu exteriorul în procesul ciclic;\nd. randamentul unui motor termic care ar funcționa după un ciclu Carnot între temperaturile extreme atinse de gaz în procesul 1-2-3-1.\n\n![img-3.jpeg](img-3.jpeg)",
+  "continut": "O cantitate de gaz ideal biatomic parcurge procesul ciclic 1-2-3-1 reprezentat în coordonate $p - V$ în figura alăturată. Cunoscând $C_v = 2,5R$, $p_1 = 10^5 \\mathrm{Pa}$ și $V_1 = 20 \\mathrm{dm}^3$, determinați:\n\na. variația energiei interne în procesul 2-3;\nb. căldura primită de gaz în procesul 1-2-3;\nc. lucrul mecanic total schimbat de gaz cu exteriorul în procesul ciclic;\nd. randamentul unui motor termic care ar funcționa după un ciclu Carnot între temperaturile extreme atinse de gaz în procesul 1-2-3-1.",
   "formule": [],
   "date": {},
   "subpuncte": [

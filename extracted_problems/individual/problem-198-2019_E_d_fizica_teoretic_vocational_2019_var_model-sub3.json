@@ -5,7 +5,7 @@
   "varianta": "2019",
   "dificultate": "mediu",
   "punctajTotal": 15,
-  "continut": "O cantitate dată de gaz ideal monoatomic $(C_V = 1,5R)$ parcurge procesul ciclic 1231 reprezentat în coordonate $p - V$ ca în figură. În transformarea 2-3 temperatura rămâne constantă. Se cunosc valorile: $p_1 = 2 \\cdot 10^5 \\mathrm{~Pa}$ și $V_1 = 10 \\mathrm{dm}^3$, iar $\\ln 2 \\cong 0,7$. Calculați:\n\na. variația energiei interne în transformarea 1-2;\nb. căldura primită în transformarea 2-3;\nc. lucrul mecanic total schimbat de gaz cu mediul exterior;\nd. randamentul unui motor termic ce ar funcționa după ciclul 1231.\n\n![img-3.jpeg](img-3.jpeg)",
+  "continut": "O cantitate dată de gaz ideal monoatomic $(C_V = 1,5R)$ parcurge procesul ciclic 1231 reprezentat în coordonate $p - V$ ca în figură. În transformarea 2-3 temperatura rămâne constantă. Se cunosc valorile: $p_1 = 2 \\cdot 10^5 \\mathrm{~Pa}$ și $V_1 = 10 \\mathrm{dm}^3$, iar $\\ln 2 \\cong 0,7$. Calculați:\n\na. variația energiei interne în transformarea 1-2;\nb. căldura primită în transformarea 2-3;\nc. lucrul mecanic total schimbat de gaz cu mediul exterior;\nd. randamentul unui motor termic ce ar funcționa după ciclul 1231.",
   "formule": [],
   "date": {},
   "subpuncte": [

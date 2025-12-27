@@ -5,7 +5,7 @@
   "varianta": "2018",
   "dificultate": "mediu",
   "punctajTotal": 15,
-  "continut": "În circuitul electric prezentat în figura alăturată se cunosc rezistențele electrice: $r = 2\\,\\Omega$, $R_1 = 8\\,\\Omega$, $R_2 = 15\\,\\Omega$ și $R_3 = 30\\,\\Omega$. Ampermetrul ideal montat în circuit $(R_A \\cong 0\\,\\Omega)$ indică intensitatea $I_A = 0,6\\,\\mathrm{A}$ când întrerupătorul $K$ este deschis. Determinați:\n\na. valoarea tensiunii la bornele rezistorului $R_2$;\nb. valoarea tensiunii electromotoare a generatorului;\nc. rezistența electrică a circuitului exterior după închiderea întrerupătorului $K$;\nd. intensitatea curentului electric indicat de ampermetru după închiderea întrerupătorului $K$.\n\n![img-6.jpeg](img-6.jpeg)\n\n#",
+  "continut": "În circuitul electric prezentat în figura alăturată se cunosc rezistențele electrice: $r = 2\\,\\Omega$, $R_1 = 8\\,\\Omega$, $R_2 = 15\\,\\Omega$ și $R_3 = 30\\,\\Omega$. Ampermetrul ideal montat în circuit $(R_A \\cong 0\\,\\Omega)$ indică intensitatea $I_A = 0,6\\,\\mathrm{A}$ când întrerupătorul $K$ este deschis. Determinați:\n\na. valoarea tensiunii la bornele rezistorului $R_2$;\nb. valoarea tensiunii electromotoare a generatorului;\nc. rezistența electrică a circuitului exterior după închiderea întrerupătorului $K$;\nd. intensitatea curentului electric indicat de ampermetru după închiderea întrerupătorului $K$.\n\n#",
   "formule": [],
   "date": {},
   "subpuncte": [

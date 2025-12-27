@@ -5,7 +5,7 @@
   "varianta": "2021",
   "dificultate": "mediu",
   "punctajTotal": 15,
-  "continut": "Un mol de gaz ideal monoatomic $(C_v = 1,5R)$, aflat inițial în starea 1, la temperatura $T_1 = 250\\mathrm{K}$, este supus procesului ciclic $1\\rightarrow 2\\rightarrow 3\\rightarrow 4\\rightarrow 1$, reprezentat în sistemul de coordonate $p-T$ în figura alăturată. Considerați că $\\ln 2 \\cong 0,7$.\n\na. Determinați variația energiei interne a gazului în procesul $1 \\rightarrow 2$.\nb. Calculați căldura schimbată de gaz cu exteriorul în transformarea $3 \\rightarrow 4$.\nc. Calculați lucrul mecanic total schimbat de gaz cu mediul exterior în procesul ciclic $1 \\rightarrow 2 \\rightarrow 3 \\rightarrow 4 \\rightarrow 1$.\nd. Randamentul unui motor termic care ar funcționa după procesul ciclic descris.\n\n![img-3.jpeg](img-3.jpeg)",
+  "continut": "Un mol de gaz ideal monoatomic $(C_v = 1,5R)$, aflat inițial în starea 1, la temperatura $T_1 = 250\\mathrm{K}$, este supus procesului ciclic $1\\rightarrow 2\\rightarrow 3\\rightarrow 4\\rightarrow 1$, reprezentat în sistemul de coordonate $p-T$ în figura alăturată. Considerați că $\\ln 2 \\cong 0,7$.\n\na. Determinați variația energiei interne a gazului în procesul $1 \\rightarrow 2$.\nb. Calculați căldura schimbată de gaz cu exteriorul în transformarea $3 \\rightarrow 4$.\nc. Calculați lucrul mecanic total schimbat de gaz cu mediul exterior în procesul ciclic $1 \\rightarrow 2 \\rightarrow 3 \\rightarrow 4 \\rightarrow 1$.\nd. Randamentul unui motor termic care ar funcționa după procesul ciclic descris.",
   "formule": [],
   "date": {},
   "subpuncte": [

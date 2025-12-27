@@ -5,7 +5,7 @@
   "varianta": "2018 Var 2",
   "dificultate": "mediu",
   "punctajTotal": 15,
-  "continut": "O cantitate de gaz ideal monoatomic $(C_{\\nu} = 1,5R)$ parcurge succesiunea de transformări reprezentată în coordonate $p-V$ în figura alăturată. În stările 1 și 3 gazul se află la aceeași temperatură. Se cunosc parametrii $p_1 = 10^{5} \\mathrm{~Pa}$ și $V_1 = 30 \\mathrm{dm}^3$.\n\na. Reprezentați succesiunea de transformări în coordonate $p-T$.\nb. Calculați căldura schimbată de gaz cu mediul exterior pe transformarea 1-2.\nc. Calculați variația energiei interne a gazului pe transformarea 2-3.\nd. Calculați lucrul mecanic total schimbat de gaz cu mediul exterior în decursul transformării 1-2-3.\n\n![img-3.jpeg](img-3.jpeg)\n(15 puncte)",
+  "continut": "O cantitate de gaz ideal monoatomic $(C_{\\nu} = 1,5R)$ parcurge succesiunea de transformări reprezentată în coordonate $p-V$ în figura alăturată. În stările 1 și 3 gazul se află la aceeași temperatură. Se cunosc parametrii $p_1 = 10^{5} \\mathrm{~Pa}$ și $V_1 = 30 \\mathrm{dm}^3$.\n\na. Reprezentați succesiunea de transformări în coordonate $p-T$.\nb. Calculați căldura schimbată de gaz cu mediul exterior pe transformarea 1-2.\nc. Calculați variația energiei interne a gazului pe transformarea 2-3.\nd. Calculați lucrul mecanic total schimbat de gaz cu mediul exterior în decursul transformării 1-2-3.\n\n(15 puncte)",
   "formule": [],
   "date": {},
   "subpuncte": [

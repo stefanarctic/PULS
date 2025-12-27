@@ -5,7 +5,7 @@
   "varianta": "2018",
   "dificultate": "mediu",
   "punctajTotal": 15,
-  "continut": "În figura alăturată este reprezentată schema unui circuit electric. Se cunosc: $E_1 = 27\\mathrm{V}$, $r_1 = 2\\Omega$, $E_2 = 36\\mathrm{V}$, $r_2 = 5\\Omega$, $R_1 = 8\\Omega$, $R_2 = 35\\Omega$. Ampermetrul ideal ($R_A \\cong 0\\Omega$) montat în circuit indică intensitatea $I_2 = 0,5\\mathrm{A}$, având sensul indicat în figură. Determinați:\n\na. valoarea tensiunii la bornele generatorului $E_2$;\nb. valoarea tensiunii la bornele rezistorului $R_1$;\nc. rezistența electrică a rezistorului $R_3$;\nd. valoarea pe care ar trebui să o aibă rezistența rezistorului $R_3$ pentru ca intensitatea curentului electric prin rezistorul $R_1$ să fie nulă.\n\n![img-7.jpeg](img-7.jpeg)\n\n#",
+  "continut": "În figura alăturată este reprezentată schema unui circuit electric. Se cunosc: $E_1 = 27\\mathrm{V}$, $r_1 = 2\\Omega$, $E_2 = 36\\mathrm{V}$, $r_2 = 5\\Omega$, $R_1 = 8\\Omega$, $R_2 = 35\\Omega$. Ampermetrul ideal ($R_A \\cong 0\\Omega$) montat în circuit indică intensitatea $I_2 = 0,5\\mathrm{A}$, având sensul indicat în figură. Determinați:\n\na. valoarea tensiunii la bornele generatorului $E_2$;\nb. valoarea tensiunii la bornele rezistorului $R_1$;\nc. rezistența electrică a rezistorului $R_3$;\nd. valoarea pe care ar trebui să o aibă rezistența rezistorului $R_3$ pentru ca intensitatea curentului electric prin rezistorul $R_1$ să fie nulă.\n\n#",
   "formule": [],
   "date": {},
   "subpuncte": [

@@ -5,7 +5,7 @@
   "varianta": "2020 Var 6",
   "dificultate": "mediu",
   "punctajTotal": 15,
-  "continut": "În figura alăturată este reprezentată schema unui circuit electric. Se cunosc tensiunile electromotoare ale generatoarelor $E_1 = 20\\,\\mathrm{V}$ și $E_2 = 30\\,\\mathrm{V}$ precum și rezistența interioară $r_1 = 4\\,\\Omega$. Rezistoarele au rezistențele electrice $R_1 = 25\\,\\Omega$, $R_2 = 30\\,\\Omega$ și $R_3 = 60\\,\\Omega$. Ampermetrul, considerat ideal ($R_A \\cong 0\\,\\Omega$), indică $I = 1\\,\\mathrm{A}$. Conductoarele de legătură au rezistența electrică nulă. Determinați:\n\na. rezistența echivalentă a grupării celor trei rezistoare;\nb. rezistența interioară $r_2$;\nc. indicația unui voltmetru ideal ($R_V \\rightarrow \\infty$) conectat între bornele M și N;\nd. intensitatea curentului electric ce străbate rezistorul $R_2$.\n\n![img-6.jpeg](img-6.jpeg)\n\n#",
+  "continut": "În figura alăturată este reprezentată schema unui circuit electric. Se cunosc tensiunile electromotoare ale generatoarelor $E_1 = 20\\,\\mathrm{V}$ și $E_2 = 30\\,\\mathrm{V}$ precum și rezistența interioară $r_1 = 4\\,\\Omega$. Rezistoarele au rezistențele electrice $R_1 = 25\\,\\Omega$, $R_2 = 30\\,\\Omega$ și $R_3 = 60\\,\\Omega$. Ampermetrul, considerat ideal ($R_A \\cong 0\\,\\Omega$), indică $I = 1\\,\\mathrm{A}$. Conductoarele de legătură au rezistența electrică nulă. Determinați:\n\na. rezistența echivalentă a grupării celor trei rezistoare;\nb. rezistența interioară $r_2$;\nc. indicația unui voltmetru ideal ($R_V \\rightarrow \\infty$) conectat între bornele M și N;\nd. intensitatea curentului electric ce străbate rezistorul $R_2$.\n\n#",
   "formule": [],
   "date": {},
   "subpuncte": [

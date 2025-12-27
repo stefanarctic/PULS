@@ -5,7 +5,7 @@
   "varianta": "2020 Var 5",
   "dificultate": "mediu",
   "punctajTotal": 15,
-  "continut": "O cantitate $\\nu = 1,2 \\mathrm{~mol} \\left( \\equiv \\frac{10}{8,31} \\mathrm{~mol} \\right)$ de gaz ideal poliatomic ($C_V = 3 R$) parcurge succesiunea de procese $(1 \\rightarrow 2 \\rightarrow 3)$ reprezentate în coordonate $p - V$ în graficul din figura alăturată. În transformarea $2 \\rightarrow 3$ temperatura este constantă. Temperatura gazului în starea 1 este $T_1 = 200 \\mathrm{~K}$. Se cunoaște $\\ln 1,5 \\cong 0,4$. Se cer:\na. temperatura gazului în starea 2;\nb. lucrul mecanic efectuat de gaz în transformarea $1 \\rightarrow 2$;\nc. căldura primită de gaz în transformarea $1 \\rightarrow 2$;\nd. căldura cedată de gaz în transformarea $2 \\rightarrow 3$.\n\n![img-3.jpeg](img-3.jpeg)",
+  "continut": "O cantitate $\\nu = 1,2 \\mathrm{~mol} \\left( \\equiv \\frac{10}{8,31} \\mathrm{~mol} \\right)$ de gaz ideal poliatomic ($C_V = 3 R$) parcurge succesiunea de procese $(1 \\rightarrow 2 \\rightarrow 3)$ reprezentate în coordonate $p - V$ în graficul din figura alăturată. În transformarea $2 \\rightarrow 3$ temperatura este constantă. Temperatura gazului în starea 1 este $T_1 = 200 \\mathrm{~K}$. Se cunoaște $\\ln 1,5 \\cong 0,4$. Se cer:\na. temperatura gazului în starea 2;\nb. lucrul mecanic efectuat de gaz în transformarea $1 \\rightarrow 2$;\nc. căldura primită de gaz în transformarea $1 \\rightarrow 2$;\nd. căldura cedată de gaz în transformarea $2 \\rightarrow 3$.",
   "formule": [],
   "date": {},
   "subpuncte": [
