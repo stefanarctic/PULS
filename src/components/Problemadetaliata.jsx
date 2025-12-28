@@ -209,7 +209,15 @@ export const ProblemaDetaliata = ({ problema, onBack }) => {
   const navigateToAI = () => {
     if (assistant && assistant.openWithMessage) {
       const msg = `Rezolva aceasta problema:\n\n${generateProblemText()}`;
-      assistant.openWithMessage(msg);
+      try {
+        assistant.openWithMessage(msg);
+      } catch (error) {
+        console.error('Error opening AI assistant:', error);
+        alert('Eroare la deschiderea asistentului AI. Te rugăm să încerci din nou.');
+      }
+    } else {
+      console.warn('AI Assistant not available. Make sure the AssistantAvatar component is mounted.');
+      alert('Asistentul AI nu este disponibil momentan. Te rugăm să reîmprospătezi pagina.');
     }
   };
 

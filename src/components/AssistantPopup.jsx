@@ -80,15 +80,34 @@ const AssistantPopup = ({ onClose, initialMessage }) => {
   }, [currentChatId, currentChat]);
 
   // Auto-send initialMessage if provided
+  const initialMessageSentRef = useRef(false);
   React.useEffect(() => {
-    if (initialMessage && currentChatId) {
-      setInputValue(initialMessage);
-      setTimeout(() => {
-        handleSend(null, initialMessage);
-      }, 300);
+    // Reset flag when initialMessage changes
+    if (initialMessage) {
+      initialMessageSentRef.current = false;
+    } else {
+      // If initialMessage is cleared, reset the flag
+      initialMessageSentRef.current = false;
     }
-    // eslint-disable-next-line
-  }, [currentChatId]);
+  }, [initialMessage]);
+
+  React.useEffect(() => {
+    // Only send if we have an initialMessage, haven't sent it yet, user is logged in, and chats are loaded
+    if (initialMessage && !initialMessageSentRef.current && user?.uid && !chatsLoading) {
+      setInputValue(initialMessage);
+      // Use a delay to ensure popup is fully mounted and hooks are ready
+      const timeoutId = setTimeout(() => {
+        // Double-check that we still have the message and user is logged in before sending
+        if (initialMessage && user?.uid) {
+          initialMessageSentRef.current = true;
+          handleSend(null, initialMessage);
+        }
+      }, 500);
+      
+      return () => clearTimeout(timeoutId);
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [initialMessage, user?.uid, chatsLoading]);
 
   // Block body scroll when popup is open
   React.useEffect(() => {
@@ -112,10 +131,10 @@ const AssistantPopup = ({ onClose, initialMessage }) => {
     };
   }, [onClose]);
 
-  // Scroll to bottom when messages change
-  useEffect(() => {
-    scrollToBottom();
-  }, [messages, typing]);
+  // Scroll to bottom when messages change - DISABLED per user request
+  // useEffect(() => {
+  //   scrollToBottom();
+  // }, [messages, typing]);
 
   const scrollToBottom = () => {
     if (chatRef.current) {
@@ -200,10 +219,10 @@ const AssistantPopup = ({ onClose, initialMessage }) => {
         
         const now = Date.now();
         
-        // Scroll to bottom periodically during typing
-        if (chatRef.current) {
-          chatRef.current.scrollTop = chatRef.current.scrollHeight;
-        }
+        // Scroll to bottom periodically during typing - DISABLED per user request
+        // if (chatRef.current) {
+        //   chatRef.current.scrollTop = chatRef.current.scrollHeight;
+        // }
         
         // Typeset MathJax periodically during typing
         if (now - lastTypesetTime >= typesetInterval) {
@@ -215,13 +234,28 @@ const AssistantPopup = ({ onClose, initialMessage }) => {
       } else {
         clearInterval(typeInterval);
         setTyping(false);
-        setTypingText("");
+        // Nu ștergem typingText imediat - îl păstrăm până când mesajul este complet actualizat
+        // pentru a evita refresh-ul vizual
         setTimeout(() => {
-          if (chatRef.current) {
-            chatRef.current.scrollTop = chatRef.current.scrollHeight;
-          }
+          // Scroll to bottom after typing - DISABLED per user request
+          // if (chatRef.current) {
+          //   chatRef.current.scrollTop = chatRef.current.scrollHeight;
+          // }
           typesetLastAIBubble();
-          if (callback) callback();
+          if (callback) {
+            callback(() => {
+              // Șterge typingText doar după ce callback-ul s-a terminat
+              // și mesajul este complet actualizat în state
+              setTimeout(() => {
+                setTypingText("");
+              }, 100);
+            });
+          } else {
+            // Dacă nu există callback, șterge typingText după un delay
+            setTimeout(() => {
+              setTypingText("");
+            }, 300);
+          }
         }, 200);
       }
     }, 7);
@@ -384,8 +418,11 @@ const AssistantPopup = ({ onClose, initialMessage }) => {
       setLoading(false);
       
       setTimeout(() => {
-        simulateTyping(aiText, async () => {
+        simulateTyping(aiText, async (clearTypingText) => {
+          // Actualizăm mesajul în Firestore
+          // Mesajul rămâne afișat prin typingText până când este complet actualizat
           try {
+            // Actualizăm în Firestore
             await updateChat(activeChatId, (currentChat) => {
               if (!currentChat || currentChat.id !== activeChatId) {
                 return {};
@@ -401,8 +438,23 @@ const AssistantPopup = ({ onClose, initialMessage }) => {
               
               return { messages: updatedMessages };
             });
+            
+            // După ce mesajul este actualizat în Firestore și state,
+            // șterge typingText pentru a permite afișarea mesajului din state
+            if (clearTypingText) {
+              // Așteaptă puțin pentru ca state-ul să se actualizeze
+              setTimeout(() => {
+                clearTypingText();
+              }, 100);
+            }
           } catch (error) {
             console.error('Error updating AI message:', error);
+            // Șterge typingText chiar dacă a apărut o eroare
+            if (clearTypingText) {
+              setTimeout(() => {
+                clearTypingText();
+              }, 100);
+            }
           }
           
           setTimeout(() => {
@@ -669,7 +721,11 @@ const AssistantPopup = ({ onClose, initialMessage }) => {
                       </div>
                     ) : (
                       messages.map((msg, idx) => {
-                        const displayText = (typing && idx === messages.length - 1 && msg.role === 'ai' && typingText) 
+                        // Afișează typingText dacă există și este ultimul mesaj AI
+                        // Păstrăm typingText până când mesajul este complet actualizat în state
+                        // pentru a evita refresh-ul vizual
+                        const isLastAIMessage = idx === messages.length - 1 && msg.role === 'ai';
+                        const displayText = (isLastAIMessage && typingText) 
                           ? typingText 
                           : msg.text;
                         const messageId = `${msg.role}-${idx}`;

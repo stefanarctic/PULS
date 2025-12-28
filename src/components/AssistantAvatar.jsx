@@ -13,12 +13,22 @@ const AssistantAvatar = () => {
       setInitialMessage(msg);
       setOpen(true);
     },
-    close: () => setOpen(false),
+    close: () => {
+      setOpen(false);
+      // Clear initialMessage when closing to prevent resending
+      setTimeout(() => setInitialMessage(""), 100);
+    },
   });
 
   useEffect(() => {
     setAssistantRef(localRef.current);
   }, []);
+
+  const handleClose = () => {
+    setOpen(false);
+    // Clear initialMessage when closing to prevent resending
+    setTimeout(() => setInitialMessage(""), 100);
+  };
 
   const avatarSrc = darkModeOn 
     ? "/Modele Asistent/professor-whiz-negru.png"
@@ -33,7 +43,7 @@ const AssistantAvatar = () => {
       >
         <img src={avatarSrc} alt="Asistent Virtual" />
       </div>
-      {open && <AssistantPopup onClose={() => setOpen(false)} initialMessage={initialMessage} />}
+      {open && <AssistantPopup onClose={handleClose} initialMessage={initialMessage} />}
     </>
   );
 };
