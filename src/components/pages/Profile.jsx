@@ -9,7 +9,7 @@ import { ProblemCard } from './Probleme.jsx';
 import { Link } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
 import '../../scss/components/_probleme.scss';
-import { Check } from 'lucide-react';
+import { Check, ShieldCheck, Star } from 'lucide-react';
 import RecentActivity from '../RecentActivity';
 import Achievements from '../Achievements';
 import Statistics from '../Statistics';
@@ -20,93 +20,93 @@ import { uploadToCloudinary } from '../../lib/cloudinary';
 
 // FavoriteProblemCard definit aici
 const ExternalLinkIcon = () => (
-  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-    <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" />
-    <polyline points="15,3 21,3 21,9" />
-    <line x1="10" y1="14" x2="21" y2="3" />
-  </svg>
+    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+        <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" />
+        <polyline points="15,3 21,3 21,9" />
+        <line x1="10" y1="14" x2="21" y2="3" />
+    </svg>
 );
 
 // FavoriteProblemCard cu stiluri îmbunătățite
 const FavoriteProblemCard = ({ problem, onUnstar, onResolveClick, completionPercent }) => {
-  const { index, titlu, dificultate, categorie, solved, createdByAlias } = problem;
-  const isPerfectScore = completionPercent === 100;
-  const getDifficultyColorClass = (diff) => {
-    switch (diff) {
-      case 'ușor':
-      case 'usoare':
-        return 'difficulty--usor';
-      case 'mediu':
-      case 'medii':
-        return 'difficulty--mediu';
-      case 'dificil':
-      case 'dificile':
-        return 'difficulty--dificil';
-      case 'concurs':
-      case 'concursuri':
-        return 'difficulty--concurs';
-      default:
-        return '';
-    }
-  };
-  return (
-    <div className={`problem-card favorite-problem-card${(solved || isPerfectScore) ? ' solved' : ''}`} style={{ position: 'relative' }}>
-      <div className="problem-card-actions">
-        <button
-          onClick={onUnstar}
-          title="Elimină din favorite"
-          className="problem-card-favorite-btn is-active"
-          aria-label="Elimină din favorite"
-        >
-          ★
-        </button>
-        {isPerfectScore && (
-          <div className="problem-card-perfect-badge" title="Ai obținut scorul maxim la această problemă">
-            <span className="problem-card-perfect-icon" aria-hidden="true">
-              <Check size={14} strokeWidth={3} />
-            </span>
-            <span className="problem-card-perfect-text">100%</span>
-          </div>
-        )}
-      </div>
-      {/* Autorul, ca la ProblemCard */}
-      {createdByAlias && (
-        <span style={{ 
-          position: 'absolute', 
-          top: 12, 
-          right: 44, 
-          fontSize: 12, 
-          fontStyle: 'italic', 
-          color: '#888', 
-          zIndex: 2 
-        }} title="Autor problemă">{createdByAlias}</span>
-      )}
-      <div className="problem-card-header">
-        <div className="problem-card-info">
-          <span className="problem-card-id">#{index}</span>
-          <h3 className="problem-card-title">{titlu}</h3>
-          <p className="problem-card-topic">{categorie}</p>
+    const { index, titlu, dificultate, categorie, solved, createdByAlias } = problem;
+    const isPerfectScore = completionPercent === 100;
+    const getDifficultyColorClass = (diff) => {
+        switch (diff) {
+            case 'ușor':
+            case 'usoare':
+                return 'difficulty--usor';
+            case 'mediu':
+            case 'medii':
+                return 'difficulty--mediu';
+            case 'dificil':
+            case 'dificile':
+                return 'difficulty--dificil';
+            case 'concurs':
+            case 'concursuri':
+                return 'difficulty--concurs';
+            default:
+                return '';
+        }
+    };
+    return (
+        <div className={`problem-card favorite-problem-card${(solved || isPerfectScore) ? ' solved' : ''}`} style={{ position: 'relative' }}>
+            <div className="problem-card-actions">
+                <button
+                    onClick={onUnstar}
+                    title="Elimină din favorite"
+                    className="problem-card-favorite-btn is-active"
+                    aria-label="Elimină din favorite"
+                >
+                    ★
+                </button>
+                {isPerfectScore && (
+                    <div className="problem-card-perfect-badge" title="Ai obținut scorul maxim la această problemă">
+                        <span className="problem-card-perfect-icon" aria-hidden="true">
+                            <Check size={14} strokeWidth={3} />
+                        </span>
+                        <span className="problem-card-perfect-text">100%</span>
+                    </div>
+                )}
+            </div>
+            {/* Autorul, ca la ProblemCard */}
+            {createdByAlias && (
+                <span style={{
+                    position: 'absolute',
+                    top: 12,
+                    right: 44,
+                    fontSize: 12,
+                    fontStyle: 'italic',
+                    color: '#888',
+                    zIndex: 2
+                }} title="Autor problemă">{createdByAlias}</span>
+            )}
+            <div className="problem-card-header">
+                <div className="problem-card-info">
+                    <span className="problem-card-id">#{index}</span>
+                    <h3 className="problem-card-title">{titlu}</h3>
+                    <p className="problem-card-topic">{categorie}</p>
+                </div>
+                {solved && <div className="problem-card-solved-badge">Rezolvată</div>}
+            </div>
+            <div className="problem-card-footer">
+                <div className={`problem-card-difficulty ${getDifficultyColorClass(dificultate)}`}>{dificultate}</div>
+                <button
+                    className="problem-card-link"
+                    onClick={() => onResolveClick(problem)}
+                >
+                    <span>Rezolvă</span>
+                    <ExternalLinkIcon />
+                </button>
+            </div>
         </div>
-        {solved && <div className="problem-card-solved-badge">Rezolvată</div>}
-      </div>
-      <div className="problem-card-footer">
-        <div className={`problem-card-difficulty ${getDifficultyColorClass(dificultate)}`}>{dificultate}</div>
-        <button
-          className="problem-card-link"
-          onClick={() => onResolveClick(problem)}
-        >
-          <span>Rezolvă</span>
-          <ExternalLinkIcon />
-        </button>
-      </div>
-    </div>
-  );
+    );
 };
 
 const ADMIN_EMAILS = [
-  'matbajean@gmail.com',
-  'aleluianu09@gmail.com',
-  'pulsphysics@gmail.com',
+    'matbajean@gmail.com',
+    'aleluianu09@gmail.com',
+    'pulsphysics@gmail.com',
 ];
 
 // Function to fix Google profile image URLs
@@ -114,17 +114,17 @@ const fixGoogleProfileImageUrl = (url) => {
     if (!url || !url.includes('googleusercontent.com')) {
         return url;
     }
-    
+
     // For Google images, try the original URL first, then clean it up if needed
     // Remove any query parameters that might cause issues
     let cleanUrl = url.split('?')[0];
-    
+
     // Remove existing size parameters
     cleanUrl = cleanUrl.replace(/=s\d+-c$/, '');
-    
+
     // Add a reliable size parameter
     cleanUrl = cleanUrl + '=s96-c';
-    
+
     return cleanUrl;
 };
 
@@ -134,25 +134,25 @@ const createFallbackAvatar = (name) => {
     canvas.width = 96;
     canvas.height = 96;
     const ctx = canvas.getContext('2d');
-    
+
     // Create gradient background
     const gradient = ctx.createLinearGradient(0, 0, 96, 96);
     gradient.addColorStop(0, '#667eea');
     gradient.addColorStop(1, '#764ba2');
-    
+
     // Draw circle background
     ctx.fillStyle = gradient;
     ctx.beginPath();
     ctx.arc(48, 48, 48, 0, 2 * Math.PI);
     ctx.fill();
-    
+
     // Draw text
     ctx.fillStyle = 'white';
     ctx.font = 'bold 36px Arial';
     ctx.textAlign = 'center';
     ctx.textBaseline = 'middle';
     ctx.fillText(name.charAt(0).toUpperCase(), 48, 48);
-    
+
     return canvas.toDataURL();
 };
 
@@ -160,12 +160,12 @@ const normalizeFavoriteIds = (ids = []) => Array.from(new Set((ids || []).filter
 
 const Profile = () => {
     const navigate = useNavigate();
-    
+
     // Helper function to scroll to top
     const scrollToTop = () => {
         window.scrollTo({ top: 0 });
     };
-    
+
     const [user, setUser] = useState(null);
     const [alias, setAlias] = useState('');
     const [aliasInput, setAliasInput] = useState('');
@@ -224,7 +224,7 @@ const Profile = () => {
         }
         return null;
     };
-    
+
     // Loading states for different operations
     const [userProblemsLoading, setUserProblemsLoading] = useState(false);
     const [profileSaveLoading, setProfileSaveLoading] = useState(false);
@@ -232,7 +232,7 @@ const Profile = () => {
     const [uploadSuccess, setUploadSuccess] = useState(false);
     const [selectedImageFile, setSelectedImageFile] = useState(null);
     const [selectedImagePreview, setSelectedImagePreview] = useState(null);
-    
+
     // Email/Password authentication states
     const [showEmailAuth, setShowEmailAuth] = useState(false);
     const [isSignUp, setIsSignUp] = useState(true);
@@ -252,9 +252,9 @@ const Profile = () => {
                 const userSnap = await getDoc(userRef);
                 if (!userSnap.exists()) {
                     // Extract name from email if displayName is not available
-                    const defaultName = firebaseUser.displayName || 
+                    const defaultName = firebaseUser.displayName ||
                         (firebaseUser.email ? firebaseUser.email.split('@')[0] : 'Utilizator');
-                    
+
                     await setDoc(userRef, {
                         name: defaultName,
                         email: firebaseUser.email,
@@ -272,7 +272,7 @@ const Profile = () => {
                     setIsAdmin(ADMIN_EMAILS.includes(firebaseUser.email));
                 } else {
                     const userData = userSnap.data();
-                    
+
                     setAlias(userData.alias || '');
                     setName(userData.name || firebaseUser.displayName || '');
                     const profilePicUrl = userData.profilePic || firebaseUser.photoURL || '';
@@ -327,7 +327,7 @@ const Profile = () => {
             document.body.style.overflow = 'hidden';
         } else {
             document.body.style.overflow = 'unset';
-            
+
             // Cleanup selected image when modal closes
             if (selectedImagePreview) {
                 URL.revokeObjectURL(selectedImagePreview);
@@ -379,7 +379,7 @@ const Profile = () => {
             await signInWithPopup(auth, provider);
         } catch (error) {
             console.error('Error signing in with Google:', error);
-            
+
             // Verifică dacă utilizatorul este deja autentificat cu email/password
             if (user && user.providerData && user.providerData.length > 0) {
                 const hasEmailProvider = user.providerData.some(provider => provider.providerId === 'password');
@@ -389,7 +389,7 @@ const Profile = () => {
                     return;
                 }
             }
-            
+
             // Gestionăm erorile specifice Firebase
             switch (error.code) {
                 case 'auth/account-exists-with-different-credential':
@@ -557,11 +557,11 @@ const Profile = () => {
                     { problemId: 2, scoreObtained: 7, maxScore: 10 },
                     { problemId: 3, scoreObtained: 9, maxScore: 10 },
                 ];
-                
+
                 for (const problem of testProblems) {
                     await saveSolvedProblem(problem.problemId, problem.scoreObtained, problem.maxScore);
                 }
-                
+
                 alert('Probleme de test adăugate!');
             };
 
@@ -610,12 +610,12 @@ const Profile = () => {
         setDescriptionError('');
         setSaveError('');
         setProfileSaveLoading(true);
-        
+
         try {
             const trimmedName = nameInput.trim();
             const trimmedAlias = aliasInput.trim();
             const trimmedDescription = descriptionInput.trim();
-            
+
             // Validate name
             if (!trimmedName) {
                 setNameError('Numele nu poate fi gol.');
@@ -629,7 +629,7 @@ const Profile = () => {
                 setNameError('Numele nu poate avea mai mult de 50 de caractere.');
                 return;
             }
-            
+
             // Validate alias
             if (!trimmedAlias) {
                 setAliasError('Aliasul nu poate fi gol.');
@@ -644,20 +644,20 @@ const Profile = () => {
                 setAliasError('Aliasul este deja folosit.');
                 return;
             }
-            
+
             // Validate description
             if (trimmedDescription.length > 200) {
                 setDescriptionError('Descrierea nu poate avea mai mult de 200 de caractere.');
                 return;
             }
-            
+
             let finalProfilePicUrl = profilePic; // Folosește imaginea existentă implicit
-            
+
             // Dacă există o imagine nouă selectată, uploadează-o la Cloudinary
             if (selectedImageFile) {
                 console.log('Uploading image to Cloudinary...');
                 setProfilePicUploadLoading(true);
-                
+
                 try {
                     // Upload la Cloudinary
                     const cloudinaryUrl = await uploadToCloudinary(selectedImageFile);
@@ -671,33 +671,33 @@ const Profile = () => {
                     setProfilePicUploadLoading(false);
                 }
             }
-            
+
             // Salvează profilul în Firebase
             const userRef = doc(db, 'users', user.uid);
-            await setDoc(userRef, { 
+            await setDoc(userRef, {
                 name: trimmedName,
-                alias: trimmedAlias, 
-                profilePic: finalProfilePicUrl, 
-                description: trimmedDescription 
+                alias: trimmedAlias,
+                profilePic: finalProfilePicUrl,
+                description: trimmedDescription
             }, { merge: true });
-            
+
             // Actualizează state-ul local
             setName(trimmedName);
             setAlias(trimmedAlias);
             setProfilePic(finalProfilePicUrl);
             setDescription(trimmedDescription);
-            
+
             // Curăță state-urile pentru imagine
             if (selectedImageFile) {
                 setSelectedImageFile(null);
                 setSelectedImagePreview(null);
                 setProfilePicInput('');
             }
-            
+
             setShowEditModal(false);
             setUploadSuccess(true);
             setTimeout(() => setUploadSuccess(false), 3000);
-            
+
         } catch (error) {
             console.error('Error saving profile:', error);
             setSaveError('Eroare la salvarea profilului. Te rugăm să încerci din nou.');
@@ -727,16 +727,16 @@ const Profile = () => {
         try {
             // Salvează imaginea local și creează preview
             setSelectedImageFile(file);
-            
+
             // Creează URL pentru preview
             const previewUrl = URL.createObjectURL(file);
             setSelectedImagePreview(previewUrl);
-            
+
             // Actualizează input-ul cu numele fișierului (pentru referință)
             setProfilePicInput(file.name);
-            
+
             console.log('Imagine selectată local:', file.name, 'Size:', file.size);
-            
+
         } catch (err) {
             console.error('Eroare la procesarea imaginii:', err);
             alert('Eroare la procesarea imaginii. Te rog încearcă din nou.');
@@ -797,29 +797,29 @@ const Profile = () => {
     // Construiește activityLog și statisticile (fără achievements)
     useEffect(() => {
         if (!user || !user.uid) return;
-        
+
         // Probleme adăugate de utilizator
         const addedProblems = userProblems.filter(p => p.createdByAlias === alias);
-        
+
         // Construim activityLog - filtrează problemele care nu există
         const allAvailableProblems = allProblems;
-        const addedProblemsFiltered = addedProblems.filter(p => 
+        const addedProblemsFiltered = addedProblems.filter(p =>
             allAvailableProblems.some(ap => String(ap.id) === String(p.id))
         );
-        
+
         // Procesăm problemele rezolvate cu scorurile lor (din hook)
         const solvedActivities = solvedProblems.map(solvedProblem => {
             const originalProblem = allAvailableProblems.find(p => String(p.id) === String(solvedProblem.problemId));
-            
+
             // Folosește titlul personalizat dacă există, altfel caută în problemele existente
             let problemTitle = solvedProblem.customTitle;
             if (!problemTitle) {
                 problemTitle = originalProblem ? originalProblem.titlu : `Problema ${solvedProblem.problemId}`;
             }
-            
+
             // Extragem index-ul problemei pentru navigare (ruta folosește index-ul)
             const problemIndex = originalProblem ? originalProblem.index : null;
-            
+
             return {
                 type: 'problem_solved',
                 title: problemTitle,
@@ -832,32 +832,32 @@ const Profile = () => {
                 }
             };
         });
-        
+
         const activity = [
             ...solvedActivities,
             ...addedProblemsFiltered.map(p => {
                 const originalProblem = allAvailableProblems.find(ap => String(ap.id) === String(p.id));
                 const problemIndex = originalProblem ? originalProblem.index : null;
-                return { 
-                    type: 'problem_added', 
-                    title: p.titlu, 
-                    date: p.createdAt || '', 
+                return {
+                    type: 'problem_added',
+                    title: p.titlu,
+                    date: p.createdAt || '',
                     link: p.id ? `/probleme/${problemIndex || p.id}` : undefined,
                     problemIndex: problemIndex
                 };
             }),
         ].sort((a, b) => new Date(b.date) - new Date(a.date));
         setActivityLog(activity);
-        
+
         // Statistici pentru probleme rezolvate și adăugate
-        const stats = { 
-            dificultate: {}, 
+        const stats = {
+            dificultate: {},
             categorie: {},
             solvedProblems: solvedActivities.length,
             totalScore: solvedActivities.reduce((total, activity) => total + activity.score.scoreObtained, 0),
             maxPossibleScore: solvedActivities.reduce((total, activity) => total + activity.score.maxScore, 0)
         };
-        
+
         // Statistici pentru probleme adăugate
         addedProblems.forEach(p => {
             if (p.dificultate) stats.dificultate[p.dificultate] = (stats.dificultate[p.dificultate] || 0) + 1;
@@ -894,16 +894,16 @@ const Profile = () => {
             <Layout>
                 <div className={`profile-container profile-login-center ${showEmailAuth && isSignUp ? 'profile-login-center-signup' : ''}`}>
                     <h2 className="profile-title">Profil</h2>
-                    
+
                     {!showEmailAuth ? (
                         <div className="profile-auth-container">
                             <div className="profile-login-btns">
                                 <button className="profile-btn-big profile-btn-google" onClick={handleGoogleLogin}>
                                     <svg width="20" height="20" viewBox="0 0 24 24" style={{ marginRight: '10px' }}>
-                                        <path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/>
-                                        <path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/>
-                                        <path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"/>
-                                        <path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"/>
+                                        <path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" />
+                                        <path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" />
+                                        <path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z" />
+                                        <path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" />
                                     </svg>
                                     Autentifică-te cu Google
                                 </button>
@@ -911,8 +911,8 @@ const Profile = () => {
                                     <span>sau</span>
                                 </div>
                                 <div className="profile-email-options">
-                                    <button 
-                                        className="profile-btn-big profile-btn-blue" 
+                                    <button
+                                        className="profile-btn-big profile-btn-blue"
                                         onClick={() => {
                                             setShowEmailAuth(true);
                                             setIsSignUp(true);
@@ -927,8 +927,8 @@ const Profile = () => {
                                     >
                                         Creează cont cu email
                                     </button>
-                                    <button 
-                                        className="profile-btn-big profile-btn-outline" 
+                                    <button
+                                        className="profile-btn-big profile-btn-outline"
                                         onClick={() => {
                                             setShowEmailAuth(true);
                                             setIsSignUp(false);
@@ -951,7 +951,7 @@ const Profile = () => {
                             <h3 className="profile-email-auth-title">
                                 {isSignUp ? 'Creează un cont nou' : 'Autentifică-te'}
                             </h3>
-                            
+
                             <form onSubmit={handleEmailSignUp}>
                                 <div className="profile-email-auth-field">
                                     <label htmlFor="email">Email:</label>
@@ -968,7 +968,7 @@ const Profile = () => {
                                         disabled={authLoading}
                                     />
                                 </div>
-                                
+
                                 {isSignUp && (
                                     <>
                                         <div className="profile-email-auth-field">
@@ -988,7 +988,7 @@ const Profile = () => {
                                                 maxLength={50}
                                             />
                                         </div>
-                                        
+
                                         <div className="profile-email-auth-field">
                                             <label htmlFor="aliasSignUp">Alias:</label>
                                             <input
@@ -1007,7 +1007,7 @@ const Profile = () => {
                                         </div>
                                     </>
                                 )}
-                                
+
                                 <div className="profile-email-auth-field">
                                     <label htmlFor="password">Parolă:</label>
                                     <input
@@ -1024,7 +1024,7 @@ const Profile = () => {
                                         minLength={6}
                                     />
                                 </div>
-                                
+
                                 {isSignUp && (
                                     <div className="profile-email-auth-field">
                                         <label htmlFor="confirmPassword">Confirmă parola:</label>
@@ -1043,23 +1043,23 @@ const Profile = () => {
                                         />
                                     </div>
                                 )}
-                                
+
                                 {authError && (
                                     <div className="profile-auth-error">
                                         {authError}
                                     </div>
                                 )}
-                                
+
                                 <div className="profile-email-auth-actions">
-                                    <button 
-                                        type="submit" 
+                                    <button
+                                        type="submit"
                                         className="profile-btn profile-btn-blue"
                                         disabled={authLoading}
                                     >
                                         {authLoading ? 'Se procesează...' : (isSignUp ? 'Creează cont' : 'Autentifică-te')}
                                     </button>
-                                    <button 
-                                        type="button" 
+                                    <button
+                                        type="button"
                                         className="profile-btn profile-btn-red"
                                         onClick={() => {
                                             setShowEmailAuth(false);
@@ -1074,12 +1074,12 @@ const Profile = () => {
                                         Anulează
                                     </button>
                                 </div>
-                                
+
                                 <div className="profile-email-auth-switch">
                                     {isSignUp ? (
                                         <span>
                                             Ai deja cont?{' '}
-                                            <button 
+                                            <button
                                                 type="button"
                                                 className="profile-auth-link"
                                                 onClick={() => {
@@ -1097,7 +1097,7 @@ const Profile = () => {
                                     ) : (
                                         <span>
                                             Nu ai cont?{' '}
-                                            <button 
+                                            <button
                                                 type="button"
                                                 className="profile-auth-link"
                                                 onClick={() => {
@@ -1122,23 +1122,23 @@ const Profile = () => {
 
     return (
         <Layout>
-            <AchievementNotification 
-                achievements={newAchievements} 
-                onClose={clearNewAchievements} 
+            <AchievementNotification
+                achievements={newAchievements}
+                onClose={clearNewAchievements}
             />
             <div className="page-section profile-container">
                 <div className="profile-header">
                     <div className="profile-header-content">
                         <div className="profile-avatar">
                             {profilePic && profilePic.trim() !== '' ? (
-                                <img 
-                                    src={profilePic} 
-                                    alt="avatar" 
+                                <img
+                                    src={profilePic}
+                                    alt="avatar"
                                     className="profile-avatar-img"
                                     {...(profilePic.includes('googleusercontent.com') && { crossOrigin: 'anonymous', referrerPolicy: 'no-referrer' })}
                                     onError={(e) => {
                                         console.error('Avatar image failed to load:', profilePic);
-                                        
+
                                         // Create fallback avatar immediately
                                         const fallbackDataUrl = createFallbackAvatar(user?.name || 'User');
                                         e.target.src = fallbackDataUrl;
@@ -1174,10 +1174,10 @@ const Profile = () => {
                                     <span className="stat-text">Membru din {user.joinedDate?.slice(0, 10) || '-'}</span>
                                 </div>
                                 {isAdmin && (
-                                <div className="stat-item">
+                                    <div className="stat-item">
                                         <span className="stat-icon">⭐</span>
                                         <span className="stat-text">Administrator</span>
-                                </div>
+                                    </div>
                                 )}
                             </div>
                         </div>
@@ -1203,6 +1203,12 @@ const Profile = () => {
                                 Deconectează-te
                             </button>
                         </div>
+                        {isAdmin && (
+                            <button className="admin-dashboard-btn" onClick={() => navigate('/admin')}>
+                                <ShieldCheck size={18} />
+                                <span>Panou Admin</span>
+                            </button>
+                        )}
                     </div>
                 </div>
                 {showEditModal && (
@@ -1235,12 +1241,12 @@ const Profile = () => {
                                 onDragOver={e => e.preventDefault()}
                                 onPaste={handlePaste}
                                 onClick={handleDropzoneClick}
-                                style={{ 
-                                    border: '2px dashed #aaa', 
-                                    borderRadius: 8, 
-                                    padding: 16, 
-                                    textAlign: 'center', 
-                                    cursor: profilePicUploadLoading ? 'not-allowed' : 'pointer', 
+                                style={{
+                                    border: '2px dashed #aaa',
+                                    borderRadius: 8,
+                                    padding: 16,
+                                    textAlign: 'center',
+                                    cursor: profilePicUploadLoading ? 'not-allowed' : 'pointer',
                                     marginBottom: 12,
                                     opacity: profilePicUploadLoading ? 0.6 : 1
                                 }}
@@ -1251,7 +1257,7 @@ const Profile = () => {
                                         <div style={{ fontSize: '0.75rem', color: '#6b7280', marginBottom: '8px' }}>
                                             {selectedImageFile?.name}
                                         </div>
-                                        <button 
+                                        <button
                                             type="button"
                                             onClick={() => {
                                                 setSelectedImageFile(null);
@@ -1275,9 +1281,9 @@ const Profile = () => {
                                         </button>
                                     </div>
                                 ) : profilePic && (profilePic.startsWith('http') || profilePic.startsWith('data:image')) ? (
-                                    <img 
-                                        src={profilePic} 
-                                        alt="current profile" 
+                                    <img
+                                        src={profilePic}
+                                        alt="current profile"
                                         style={{ maxWidth: 120, maxHeight: 120, borderRadius: '50%', marginBottom: 8 }}
                                         {...(profilePic.includes('googleusercontent.com') && { crossOrigin: 'anonymous', referrerPolicy: 'no-referrer' })}
                                     />
@@ -1301,9 +1307,9 @@ const Profile = () => {
                                 />
                             </div>
                             {uploadSuccess && (
-                                <div style={{ 
-                                    color: '#10b981', 
-                                    fontSize: '0.875rem', 
+                                <div style={{
+                                    color: '#10b981',
+                                    fontSize: '0.875rem',
                                     marginTop: '8px',
                                     textAlign: 'center',
                                     fontWeight: '500'
@@ -1321,15 +1327,15 @@ const Profile = () => {
                             {descriptionError && <div className="description-error">{descriptionError}</div>}
                             {saveError && <div className="profile-save-error">{saveError}</div>}
                             <div className="profile-edit-actions">
-                                <button 
-                                    className="profile-btn profile-btn-blue" 
+                                <button
+                                    className="profile-btn profile-btn-blue"
                                     onClick={handleProfileSave}
                                     disabled={profileSaveLoading}
                                 >
                                     {profileSaveLoading ? 'Se salvează...' : 'Salvează'}
                                 </button>
-                                <button 
-                                    className="profile-btn profile-btn-red" 
+                                <button
+                                    className="profile-btn profile-btn-red"
                                     onClick={() => setShowEditModal(false)}
                                     disabled={profileSaveLoading}
                                 >
