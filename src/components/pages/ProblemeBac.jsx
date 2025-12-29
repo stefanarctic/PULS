@@ -42,9 +42,9 @@ const getSubjectNumber = (problem) => {
     if (problem.metadata?.subjectNumber) {
         return problem.metadata.subjectNumber;
     }
-    // Try to extract from titlu (e.g., "Problema II" or "Problema III")
+    // Try to extract from titlu (e.g., "Sub II" or "Sub III" or "Problema II" for backward compatibility)
     const titlu = problem.titlu || '';
-    const match = titlu.match(/Problema\s+(I{1,3})/i);
+    const match = titlu.match(/(?:Sub|Problema)\s+(I{1,3})/i);
     if (match) {
         const roman = match[1];
         return roman === 'I' ? 1 : roman === 'II' ? 2 : roman === 'III' ? 3 : null;
