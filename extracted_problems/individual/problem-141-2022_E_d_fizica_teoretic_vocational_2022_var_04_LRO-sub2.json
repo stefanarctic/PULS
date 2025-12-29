@@ -1,5 +1,5 @@
 {
-  "titlu": "Sub II - Fizică - Bac 2022 Var 4",
+  "titlu": "Sub II - Optică - Bac 2022 Var 4",
   "descriere": "Problema de bacalaureat - Subiectul II din Fizică, 2022, Varianta 4, teoretic",
   "categorie": "Bac",
   "punctajTotal": 15,
@@ -34,7 +34,7 @@
     "year": 2022,
     "variant": 4,
     "type": "teoretic",
-    "subjectArea": null,
+    "subjectArea": "Optică",
     "subjectNumber": 2,
     "session": "bac"
   }

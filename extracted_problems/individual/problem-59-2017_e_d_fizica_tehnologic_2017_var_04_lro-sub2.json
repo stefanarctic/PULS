@@ -1,5 +1,5 @@
 {
-  "titlu": "Sub II - Fizică - Bac 2017 Var 4",
+  "titlu": "Sub II - Mecanică - Bac 2017 Var 4",
   "descriere": "Problema de bacalaureat - Subiectul II din Fizică, 2017, Varianta 4, tehnologic",
   "categorie": "Bac",
   "punctajTotal": 15,
@@ -34,7 +34,7 @@
     "year": 2017,
     "variant": 4,
     "type": "tehnologic",
-    "subjectArea": null,
+    "subjectArea": "Mecanică",
     "subjectNumber": 2,
     "session": "bac"
   }

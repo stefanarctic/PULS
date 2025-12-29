@@ -1,5 +1,5 @@
 {
-  "titlu": "Sub II - Fizică - Bac 2021 Var 1",
+  "titlu": "Sub II - Termodinamică - Bac 2021 Var 1",
   "descriere": "Problema de bacalaureat - Subiectul II din Fizică, 2021, Varianta 1, teoretic",
   "categorie": "Bac",
   "punctajTotal": 15,
@@ -36,7 +36,7 @@
     "year": 2021,
     "variant": 1,
     "type": "teoretic",
-    "subjectArea": null,
+    "subjectArea": "Termodinamică",
     "subjectNumber": 2,
     "session": "bac"
   }

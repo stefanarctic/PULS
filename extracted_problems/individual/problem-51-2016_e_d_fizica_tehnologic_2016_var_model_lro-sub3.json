@@ -1,5 +1,5 @@
 {
-  "titlu": "Sub III - Fizică - Bac 2016",
+  "titlu": "Sub III - Mecanică - Bac 2016",
   "descriere": "Problema de bacalaureat - Subiectul III din Fizică, 2016, tehnologic",
   "categorie": "Bac",
   "punctajTotal": 15,
@@ -34,7 +34,7 @@
     "year": 2016,
     "variant": null,
     "type": "tehnologic",
-    "subjectArea": null,
+    "subjectArea": "Mecanică",
     "subjectNumber": 3,
     "session": "model"
   }

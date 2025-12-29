@@ -1,5 +1,5 @@
 {
-  "titlu": "Sub III - Fizică - Bac 2025 Var 1",
+  "titlu": "Sub III - Termodinamică - Bac 2025 Var 1",
   "descriere": "Problema de bacalaureat - Subiectul III din Fizică, 2025, Varianta 1, teoretic",
   "categorie": "Bac",
   "punctajTotal": 15,
@@ -36,7 +36,7 @@
     "year": 2025,
     "variant": 1,
     "type": "teoretic",
-    "subjectArea": null,
+    "subjectArea": "Termodinamică",
     "subjectNumber": 3,
     "session": "bac"
   }

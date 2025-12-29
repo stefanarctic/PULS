@@ -1,5 +1,5 @@
 {
-  "titlu": "Sub III - Fizică - Bac 2023 Var 7",
+  "titlu": "Sub III - Optică - Bac 2023 Var 7",
   "descriere": "Problema de bacalaureat - Subiectul III din Fizică, 2023, Varianta 7, tehnologic",
   "categorie": "Bac",
   "punctajTotal": 15,
@@ -34,7 +34,7 @@
     "year": 2023,
     "variant": 7,
     "type": "tehnologic",
-    "subjectArea": null,
+    "subjectArea": "Optică",
     "subjectNumber": 3,
     "session": "bac"
   }

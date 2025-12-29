@@ -1,5 +1,5 @@
 {
-  "titlu": "Sub II - Fizică - Bac 2023",
+  "titlu": "Sub II - Mecanică - Bac 2023",
   "descriere": "Problema de bacalaureat - Subiectul II din Fizică, 2023, teoretic",
   "categorie": "Bac",
   "punctajTotal": 15,
@@ -36,7 +36,7 @@
     "year": 2023,
     "variant": null,
     "type": "teoretic",
-    "subjectArea": null,
+    "subjectArea": "Mecanică",
     "subjectNumber": 2,
     "session": "simulare"
   }

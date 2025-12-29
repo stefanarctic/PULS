@@ -1,5 +1,5 @@
 {
-  "titlu": "Sub II - Fizică - Bac 2022 Var 5",
+  "titlu": "Sub II - Mecanică - Bac 2022 Var 5",
   "descriere": "Problema de bacalaureat - Subiectul II din Fizică, 2022, Varianta 5, teoretic",
   "categorie": "Bac",
   "punctajTotal": 15,
@@ -36,7 +36,7 @@
     "year": 2022,
     "variant": 5,
     "type": "teoretic",
-    "subjectArea": null,
+    "subjectArea": "Mecanică",
     "subjectNumber": 2,
     "session": "bac"
   }

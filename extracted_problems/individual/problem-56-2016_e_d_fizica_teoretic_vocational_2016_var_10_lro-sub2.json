@@ -1,5 +1,5 @@
 {
-  "titlu": "Sub II - Fizică - Bac 2016 Var 10",
+  "titlu": "Sub II - Mecanică - Bac 2016 Var 10",
   "descriere": "Problema de bacalaureat - Subiectul II din Fizică, 2016, Varianta 10, teoretic",
   "categorie": "Bac",
   "punctajTotal": 15,
@@ -37,7 +37,7 @@
     "year": 2016,
     "variant": 10,
     "type": "teoretic",
-    "subjectArea": null,
+    "subjectArea": "Mecanică",
     "subjectNumber": 2,
     "session": "bac"
   }

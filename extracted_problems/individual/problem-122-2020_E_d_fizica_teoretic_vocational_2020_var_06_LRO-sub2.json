@@ -1,5 +1,5 @@
 {
-  "titlu": "Sub II - Fizică - Bac 2020 Var 6",
+  "titlu": "Sub II - Termodinamică - Bac 2020 Var 6",
   "descriere": "Problema de bacalaureat - Subiectul II din Fizică, 2020, Varianta 6, teoretic",
   "categorie": "Bac",
   "punctajTotal": 15,
@@ -34,7 +34,7 @@
     "year": 2020,
     "variant": 6,
     "type": "teoretic",
-    "subjectArea": null,
+    "subjectArea": "Termodinamică",
     "subjectNumber": 2,
     "session": "bac"
   }

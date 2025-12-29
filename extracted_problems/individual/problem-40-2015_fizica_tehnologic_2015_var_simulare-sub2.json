@@ -1,5 +1,5 @@
 {
-  "titlu": "Sub II - Fizică - Bac 2015",
+  "titlu": "Sub II - Mecanică - Bac 2015",
   "descriere": "Problema de bacalaureat - Subiectul II din Fizică, 2015, tehnologic",
   "categorie": "Bac",
   "punctajTotal": 15,
@@ -36,7 +36,7 @@
     "year": 2015,
     "variant": null,
     "type": "tehnologic",
-    "subjectArea": null,
+    "subjectArea": "Mecanică",
     "subjectNumber": 2,
     "session": "simulare"
   }

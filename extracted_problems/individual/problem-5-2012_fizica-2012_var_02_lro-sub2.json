@@ -1,5 +1,5 @@
 {
-  "titlu": "Sub II - Fizică - Bac 2012 Var 2",
+  "titlu": "Sub II - Termodinamică - Bac 2012 Var 2",
   "descriere": "Problema de bacalaureat - Subiectul II din Fizică, 2012, Varianta 2",
   "categorie": "Bac",
   "punctajTotal": 15,
@@ -34,7 +34,7 @@
     "year": 2012,
     "variant": 2,
     "type": null,
-    "subjectArea": null,
+    "subjectArea": "Termodinamică",
     "subjectNumber": 2,
     "session": "bac"
   }

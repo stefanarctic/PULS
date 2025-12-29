@@ -1,5 +1,5 @@
 {
-  "titlu": "Sub II - Fizică - Bac 2018",
+  "titlu": "Sub II - Mecanică - Bac 2018",
   "descriere": "Problema de bacalaureat - Subiectul II din Fizică, 2018, tehnologic",
   "categorie": "Bac",
   "punctajTotal": 15,
@@ -36,7 +36,7 @@
     "year": 2018,
     "variant": null,
     "type": "tehnologic",
-    "subjectArea": null,
+    "subjectArea": "Mecanică",
     "subjectNumber": 2,
     "session": "model"
   }

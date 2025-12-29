@@ -1,5 +1,5 @@
 {
-  "titlu": "Sub III - Fizică - Bac 2019 Var 2",
+  "titlu": "Sub III - Mecanică - Bac 2019 Var 2",
   "descriere": "Problema de bacalaureat - Subiectul III din Fizică, 2019, Varianta 2, tehnologic",
   "categorie": "Bac",
   "punctajTotal": 15,
@@ -36,7 +36,7 @@
     "year": 2019,
     "variant": 2,
     "type": "tehnologic",
-    "subjectArea": null,
+    "subjectArea": "Mecanică",
     "subjectNumber": 3,
     "session": "bac"
   }

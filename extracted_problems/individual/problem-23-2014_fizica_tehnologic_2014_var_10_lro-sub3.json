@@ -1,5 +1,5 @@
 {
-  "titlu": "Sub III - Fizică - Bac 2014 Var 10",
+  "titlu": "Sub III - Mecanică - Bac 2014 Var 10",
   "descriere": "Problema de bacalaureat - Subiectul III din Fizică, 2014, Varianta 10, tehnologic",
   "categorie": "Bac",
   "punctajTotal": 15,
@@ -34,7 +34,7 @@
     "year": 2014,
     "variant": 10,
     "type": "tehnologic",
-    "subjectArea": null,
+    "subjectArea": "Mecanică",
     "subjectNumber": 3,
     "session": "bac"
   }
