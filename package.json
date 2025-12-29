@@ -8,7 +8,8 @@
     "build": "vite build",
     "lint": "eslint .",
     "preview": "vite preview",
-    "extract-bac": "node extract-bac-problems.js"
+    "extract-bac": "node extract-bac-problems.js",
+    "upload-bac": "node upload-bac-problems.js"
   },
   "dependencies": {
     "@mistralai/mistralai": "^1.11.0",
@@ -18,6 +19,7 @@
     "cloudinary": "^2.7.0",
     "dotenv": "^16.6.1",
     "firebase": "^12.0.0",
+    "firebase-admin": "^13.6.0",
     "imagekit": "^6.0.0",
     "jquery": "^3.7.1",
     "lucide-react": "^0.511.0",

@@ -684,11 +684,19 @@ const PhysicsProblems = () => {
                 }
             });
             
-            // Calculează următorul index disponibil pentru a evita duplicatele
-            const maxIndex = problemeData.length > 0 
-                ? Math.max(...problemeData.map(p => p.index || 0))
-                : 0;
-            const nextIndex = maxIndex + 1;
+            // Calculează următorul index disponibil pentru probleme normale (< 1000)
+            const allIndexes = new Set(problemeData.map(p => p.index).filter(idx => idx !== undefined && idx !== null && idx < 1000));
+            
+            // Găsește cel mai mic index disponibil < 1000
+            let nextIndex = 1;
+            while (allIndexes.has(nextIndex)) {
+                nextIndex++;
+            }
+            
+            // Dacă am ajuns la 1000, înseamnă că nu mai sunt index-uri disponibile sub 1000
+            if (nextIndex >= 1000) {
+                console.warn('⚠️ Nu mai sunt index-uri disponibile sub 1000 pentru probleme normale!');
+            }
             
             // Prepare the problem data
             const problemData = {

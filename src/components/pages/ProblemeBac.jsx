@@ -609,15 +609,14 @@ const ProblemeBac = () => {
                 }
             });
             
-            // Calculează următorul index disponibil pentru problemele de BAC
-            const bacProblemsOnly = problemeData.filter(p => 
-                p.categorie === 'Bac' || 
-                (p.categorie && normalizeString(p.categorie).includes('bac'))
-            );
-            const maxIndex = bacProblemsOnly.length > 0 
-                ? Math.max(...bacProblemsOnly.map(p => p.index || 0))
-                : 99; // Start from 100 if no BAC problems exist
-            const nextIndex = maxIndex + 1;
+            // Calculează următorul index disponibil pentru problemele de BAC (>= 1000)
+            const allIndexes = new Set(problemeData.map(p => p.index).filter(idx => idx !== undefined && idx !== null));
+            
+            // Găsește cel mai mic index disponibil >= 1000
+            let nextIndex = 1000;
+            while (allIndexes.has(nextIndex)) {
+                nextIndex++;
+            }
             
             const problemData = {
                 titlu: formData.titlu,

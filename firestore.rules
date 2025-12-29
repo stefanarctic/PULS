@@ -96,8 +96,10 @@ service cloud.firestore {
                        // Validate required fields
                        'titlu' in request.resource.data &&
                        'categorie' in request.resource.data &&
-                       'dificultate' in request.resource.data &&
-                       'continut' in request.resource.data;
+                       'continut' in request.resource.data &&
+                       // dificultate is required for non-Bac problems, optional for Bac problems
+                       (request.resource.data.categorie == 'Bac' || 
+                        'dificultate' in request.resource.data);
 
       // Only admins can update problems
       allow update: if isAdmin();
