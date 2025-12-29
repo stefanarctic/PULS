@@ -349,19 +349,36 @@ function detectCategory(problem) {
 }
 
 /**
- * Actualizează titlul problemei pentru a include categoria
+ * Actualizează titlul problemei pentru a include categoria și tipul de sesiune
  */
 function updateTitle(problem, category) {
     if (!category) return problem.titlu;
     
     const titlu = problem.titlu || '';
+    const session = problem.metadata?.session;
     
-    // Verificăm dacă titlul conține deja categoria corectă
+    // Verificăm dacă titlul conține deja categoria corectă și sesiunea corectă
     if (titlu.includes(category)) {
         // Verificăm dacă nu există alte categorii în titlu
         const categories = ['Mecanică', 'Termodinamică', 'Optică', 'Curent continuu'];
         const foundCategories = categories.filter(cat => titlu.includes(cat));
-        if (foundCategories.length === 1 && foundCategories[0] === category) {
+        const hasCorrectCategory = foundCategories.length === 1 && foundCategories[0] === category;
+        
+        // Verificăm dacă sesiunea este corectă în titlu
+        let hasCorrectSession = true;
+        if (session && session !== 'bac') {
+            const sessionLower = session.toLowerCase();
+            const titluLower = titlu.toLowerCase();
+            hasCorrectSession = titluLower.includes(`(${sessionLower})`) || 
+                               titluLower.includes(`- ${sessionLower}`) ||
+                               titluLower.includes(` ${sessionLower}`);
+        } else if (!session || session === 'bac') {
+            // Pentru "bac" sau lipsă, verificăm că nu există alte tipuri de sesiune
+            const sessions = ['simulare', 'model'];
+            hasCorrectSession = !sessions.some(s => titlu.toLowerCase().includes(s));
+        }
+        
+        if (hasCorrectCategory && hasCorrectSession) {
             return titlu; // Deja corect
         }
     }
@@ -377,6 +394,15 @@ function updateTitle(problem, category) {
         .replace(/\s*Optică\s*/g, '')
         .replace(/\s*Curent continuu\s*/g, '');
     
+    // Eliminăm tipurile de sesiune existente
+    newTitlu = newTitlu
+        .replace(/\s*\(simulare\)\s*/gi, '')
+        .replace(/\s*\(model\)\s*/gi, '')
+        .replace(/\s*-\s*simulare\s*/gi, '')
+        .replace(/\s*-\s*model\s*/gi, '')
+        .replace(/\s*simulare\s*/gi, '')
+        .replace(/\s*model\s*/gi, '');
+    
     // Încercăm să înlocuim "Fizică" cu categoria
     if (newTitlu.includes('Fizică')) {
         newTitlu = newTitlu.replace('Fizică', category);
@@ -389,6 +415,14 @@ function updateTitle(problem, category) {
             // Dacă nu găsim pattern-ul, adăugăm categoria la început
             newTitlu = `${category} - ${newTitlu}`;
         }
+    }
+    
+    // Adăugăm tipul de sesiune dacă există și nu este "bac"
+    if (session && session !== 'bac') {
+        // Capitalizăm prima literă
+        const sessionFormatted = session.charAt(0).toUpperCase() + session.slice(1).toLowerCase();
+        // Adăugăm sesiunea la sfârșitul titlului, în paranteză
+        newTitlu = `${newTitlu} (${sessionFormatted})`;
     }
     
     // Curățăm spațiile multiple
@@ -417,8 +451,25 @@ function processFile(filePath) {
         const titlu = problem.titlu || '';
         const categories = ['Mecanică', 'Termodinamică', 'Optică', 'Curent continuu'];
         const foundCategories = categories.filter(cat => titlu.includes(cat));
+        const session = problem.metadata?.session;
+        
+        // Verificăm dacă sesiunea este corectă în titlu
+        let needsSessionUpdate = false;
+        if (session && session !== 'bac') {
+            const sessionLower = session.toLowerCase();
+            const titluLower = titlu.toLowerCase();
+            needsSessionUpdate = !titluLower.includes(`(${sessionLower})`) && 
+                                !titluLower.includes(`- ${sessionLower}`) &&
+                                !titluLower.includes(` ${sessionLower}`);
+        } else if (session === 'bac' || !session) {
+            // Pentru "bac" sau lipsă, verificăm că nu există alte tipuri de sesiune
+            const sessions = ['simulare', 'model'];
+            needsSessionUpdate = sessions.some(s => titlu.toLowerCase().includes(s));
+        }
+        
         const needsTitleUpdate = foundCategories.length !== 1 || 
-                                (problem.metadata?.subjectArea && !titlu.includes(problem.metadata.subjectArea));
+                                (problem.metadata?.subjectArea && !titlu.includes(problem.metadata.subjectArea)) ||
+                                needsSessionUpdate;
         
         if (needsCategoryUpdate || needsTitleUpdate) {
             // Detectăm categoria

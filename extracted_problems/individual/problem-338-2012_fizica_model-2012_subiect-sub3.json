@@ -1,5 +1,5 @@
 {
-  "titlu": "Sub III - Optică - Bac 2012",
+  "titlu": "Sub III - Mecanică - Bac 2012 (Model)",
   "descriere": "Problema de bacalaureat - Subiectul III din Optică, 2012, model",
   "categorie": "Bac",
   "punctajTotal": 15,
@@ -36,7 +36,7 @@
     "year": 2012,
     "variant": null,
     "type": "model",
-    "subjectArea": "Optică",
+    "subjectArea": "Mecanică",
     "subjectCode": "D",
     "subjectNumber": 3,
     "session": "model"
