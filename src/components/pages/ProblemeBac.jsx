@@ -21,6 +21,59 @@ const SearchIcon = () => (
     </svg>
 );
 
+// Helper functions for variant sorting
+const extractYear = (variant) => {
+    const match = variant.match(/(\d{4})/);
+    return match ? parseInt(match[1]) : 0;
+};
+
+const getVariantType = (variant, metadata) => {
+    const lower = (variant || '').toLowerCase();
+    const sourceLower = (metadata?.source || '').toLowerCase();
+    const combined = lower + ' ' + sourceLower;
+    
+    if (combined.includes('simulare')) return 'simulare';
+    if (combined.includes('model')) return 'model';
+    if (combined.includes('vara')) return 'vara';
+    if (combined.includes('toamna')) return 'toamna';
+    return 'bac';
+};
+
+const getSubjectNumber = (problem) => {
+    // Try metadata.subjectNumber first
+    if (problem.metadata?.subjectNumber) {
+        return problem.metadata.subjectNumber;
+    }
+    // Try to extract from titlu (e.g., "Problema II" or "Problema III")
+    const titlu = problem.titlu || '';
+    const match = titlu.match(/Problema\s+(I{1,3})/i);
+    if (match) {
+        const roman = match[1];
+        return roman === 'I' ? 1 : roman === 'II' ? 2 : roman === 'III' ? 3 : null;
+    }
+    // Try to extract from filename or source
+    const source = problem.metadata?.source || '';
+    const subMatch = source.match(/sub(\d)/i);
+    if (subMatch) {
+        return parseInt(subMatch[1]);
+    }
+    return null;
+};
+
+const getSubjectArea = (problem) => {
+    // Try metadata.subjectArea first
+    if (problem.metadata?.subjectArea) {
+        return problem.metadata.subjectArea;
+    }
+    // Try to extract from titlu
+    const titlu = problem.titlu || '';
+    if (titlu.includes('Mecanică') || titlu.includes('Mecanic')) return 'Mecanică';
+    if (titlu.includes('Termodinamică') || titlu.includes('Termodinamic')) return 'Termodinamică';
+    if (titlu.includes('Optică') || titlu.includes('Optic')) return 'Optică';
+    if (titlu.includes('Curent continuu') || titlu.includes('Electric')) return 'Curent continuu';
+    return null;
+};
+
 const ProblemeBac = () => {
     const navigate = useNavigate();
     const location = useLocation();
@@ -31,27 +84,14 @@ const ProblemeBac = () => {
     const [isAdmin, setIsAdmin] = useState(false);
     const [favorites, setFavorites] = useState([]);
     const [searchQuery, setSearchQuery] = useState("");
-    const [selectedDifficulty, setSelectedDifficulty] = useState("Toate");
+    const [selectedSubject, setSelectedSubject] = useState("Toate");
     const [selectedYear, setSelectedYear] = useState("Toate");
     const [selectedSession, setSelectedSession] = useState("Toate");
+    const [selectedCategory, setSelectedCategory] = useState("Toate");
     const [sortBy, setSortBy] = useState("newest");
     const [showAddModal, setShowAddModal] = useState(false);
     const [pendingUrlData, setPendingUrlData] = useState(null);
     const { solvedProblems } = useSolvedProblems();
-
-    // Helper functions for variant sorting
-    const extractYear = (variant) => {
-        const match = variant.match(/(\d{4})/);
-        return match ? parseInt(match[1]) : 0;
-    };
-
-    const getVariantType = (variant) => {
-        const lower = variant.toLowerCase();
-        if (lower.includes('simulare')) return 'simulare';
-        if (lower.includes('vara')) return 'vara';
-        if (lower.includes('toamna')) return 'toamna';
-        return 'other';
-    };
 
     // Filter only Bac problems
     const bacProblems = useMemo(() => {
@@ -61,12 +101,11 @@ const ProblemeBac = () => {
         );
     }, [problemeData]);
 
-    // Extract available years and sessions from problems
+    // Extract available years, sessions, subjects and categories from problems
     const availableYears = useMemo(() => {
         const years = new Set();
         bacProblems.forEach(problem => {
-            const variant = problem.varianta || '';
-            const year = extractYear(variant);
+            const year = problem.metadata?.year || extractYear(problem.varianta || '');
             if (year > 0) {
                 years.add(year);
             }
@@ -77,16 +116,37 @@ const ProblemeBac = () => {
     const availableSessions = useMemo(() => {
         const sessions = new Set();
         bacProblems.forEach(problem => {
-            const variant = problem.varianta || '';
-            const session = getVariantType(variant);
-            if (session !== 'other') {
+            const session = problem.metadata?.session || getVariantType(problem.varianta || '', problem.metadata);
+            if (session) {
                 sessions.add(session);
             }
         });
-        return Array.from(sessions);
+        return Array.from(sessions).sort();
     }, [bacProblems]);
 
-    // Filter problems by search, difficulty, year and session
+    const availableSubjects = useMemo(() => {
+        const subjects = new Set();
+        bacProblems.forEach(problem => {
+            const subjectNum = getSubjectNumber(problem);
+            if (subjectNum) {
+                subjects.add(subjectNum);
+            }
+        });
+        return Array.from(subjects).sort((a, b) => a - b);
+    }, [bacProblems]);
+
+    const availableCategories = useMemo(() => {
+        const categories = new Set();
+        bacProblems.forEach(problem => {
+            const category = getSubjectArea(problem);
+            if (category) {
+                categories.add(category);
+            }
+        });
+        return Array.from(categories).sort();
+    }, [bacProblems]);
+
+    // Filter problems by search, subject, year, session and category
     const filteredBacProblems = useMemo(() => {
         return bacProblems.filter((problem) => {
             if (searchQuery) {
@@ -100,50 +160,70 @@ const ProblemeBac = () => {
                 }
             }
 
-            if (selectedDifficulty !== "Toate" && normalizeString(problem.dificultate) !== normalizeString(selectedDifficulty)) {
-                return false;
+            if (selectedSubject !== "Toate") {
+                const subjectNum = getSubjectNumber(problem);
+                const selectedNum = parseInt(selectedSubject);
+                if (subjectNum !== selectedNum) {
+                    return false;
+                }
             }
 
             if (selectedYear !== "Toate") {
-                const variant = problem.varianta || '';
-                const problemYear = extractYear(variant);
+                const problemYear = problem.metadata?.year || extractYear(problem.varianta || '');
                 if (problemYear !== parseInt(selectedYear)) {
                     return false;
                 }
             }
 
             if (selectedSession !== "Toate") {
-                const variant = problem.varianta || '';
-                const problemSession = getVariantType(variant);
+                const problemSession = problem.metadata?.session || getVariantType(problem.varianta || '', problem.metadata);
                 if (problemSession !== selectedSession.toLowerCase()) {
+                    return false;
+                }
+            }
+
+            if (selectedCategory !== "Toate") {
+                const category = getSubjectArea(problem);
+                if (!category || normalizeString(category) !== normalizeString(selectedCategory)) {
                     return false;
                 }
             }
 
             return true;
         });
-    }, [bacProblems, searchQuery, selectedDifficulty, selectedYear, selectedSession]);
+    }, [bacProblems, searchQuery, selectedSubject, selectedYear, selectedSession, selectedCategory]);
 
     // Sort problems
-    const difficultyOrder = { "ușor": 1, "mediu": 2, "dificil": 3, "concurs": 4 };
     const sortedProblems = useMemo(() => {
         const problems = [...filteredBacProblems];
         switch (sortBy) {
             case "newest":
-                return problems.sort((a, b) => b.index - a.index);
-            case "oldest":
-                return problems.sort((a, b) => a.index - b.index);
-            case "difficulty-asc":
                 return problems.sort((a, b) => {
-                    const orderA = difficultyOrder[a.dificultate] || 0;
-                    const orderB = difficultyOrder[b.dificultate] || 0;
-                    return orderA === orderB ? a.index - b.index : orderA - orderB;
+                    const yearA = a.metadata?.year || extractYear(a.varianta || '') || 0;
+                    const yearB = b.metadata?.year || extractYear(b.varianta || '') || 0;
+                    if (yearB !== yearA) return yearB - yearA;
+                    return b.index - a.index;
                 });
-            case "difficulty-desc":
+            case "oldest":
                 return problems.sort((a, b) => {
-                    const orderA = difficultyOrder[a.dificultate] || 0;
-                    const orderB = difficultyOrder[b.dificultate] || 0;
-                    return orderA === orderB ? a.index - b.index : orderB - orderA;
+                    const yearA = a.metadata?.year || extractYear(a.varianta || '') || 0;
+                    const yearB = b.metadata?.year || extractYear(b.varianta || '') || 0;
+                    if (yearA !== yearB) return yearA - yearB;
+                    return a.index - b.index;
+                });
+            case "subject-asc":
+                return problems.sort((a, b) => {
+                    const subA = getSubjectNumber(a) || 0;
+                    const subB = getSubjectNumber(b) || 0;
+                    if (subA !== subB) return subA - subB;
+                    return a.index - b.index;
+                });
+            case "subject-desc":
+                return problems.sort((a, b) => {
+                    const subA = getSubjectNumber(a) || 0;
+                    const subB = getSubjectNumber(b) || 0;
+                    if (subA !== subB) return subB - subA;
+                    return a.index - b.index;
                 });
             default:
                 return problems.sort((a, b) => a.index - b.index);
@@ -260,11 +340,15 @@ const ProblemeBac = () => {
             const problemData = {
                 titlu: decodeURIComponent(urlParams.get('titlu') || ''),
                 descriere: decodeURIComponent(urlParams.get('descriere') || ''),
-                varianta: decodeURIComponent(urlParams.get('varianta') || ''),
                 categorie: 'Bac',
-                dificultate: decodeURIComponent(urlParams.get('dificultate') || 'mediu'),
                 continut: decodeURIComponent(urlParams.get('continut') || ''),
                 punctajTotal: parseInt(urlParams.get('punctajTotal')) || 0,
+                metadata: {
+                    year: urlParams.get('an') ? parseInt(urlParams.get('an')) : null,
+                    subjectNumber: urlParams.get('subiect') ? parseInt(urlParams.get('subiect')) : null,
+                    subjectArea: urlParams.get('categorie') || null,
+                    session: urlParams.get('sesiune') || null
+                }
             };
             
             // Decode base64 JSON data
@@ -367,7 +451,6 @@ const ProblemeBac = () => {
         }
     }, [isAdmin, user]);
 
-    const difficulties = ["Toate", "ușor", "mediu", "dificil", "concurs"];
 
     // AddProblemModal for Bac page
     const AddProblemModal = ({ isOpen, onClose }) => {
@@ -375,8 +458,10 @@ const ProblemeBac = () => {
             titlu: '',
             descriere: '',
             categorie: 'Bac',
-            varianta: '',
-            dificultate: 'mediu',
+            subiect: '',
+            an: '',
+            sesiune: '',
+            subjectArea: '',
             continut: '',
             formule: [''],
             date: {},
@@ -540,8 +625,6 @@ const ProblemeBac = () => {
                 titlu: formData.titlu,
                 descriere: formData.descriere,
                 categorie: 'Bac',
-                varianta: formData.varianta,
-                dificultate: formData.dificultate,
                 continut: formData.continut,
                 formule: formData.formule,
                 date: dateObject,
@@ -555,6 +638,12 @@ const ProblemeBac = () => {
                 punctajTotal: formData.punctajTotal,
                 createdAt: new Date().toISOString(),
                 poze: formData.poze,
+                metadata: {
+                    year: formData.an ? parseInt(formData.an) : null,
+                    subjectNumber: formData.subiect ? parseInt(formData.subiect) : null,
+                    subjectArea: formData.subjectArea || null,
+                    session: formData.sesiune || null
+                }
             };
             
             if (isAdmin) {
@@ -564,8 +653,10 @@ const ProblemeBac = () => {
                         titlu: '',
                         descriere: '',
                         categorie: 'Bac',
-                        varianta: '',
-                        dificultate: 'mediu',
+                        subiect: '',
+                        an: '',
+                        sesiune: '',
+                        subjectArea: '',
                         continut: '',
                         formule: [''],
                         date: {},
@@ -596,8 +687,10 @@ const ProblemeBac = () => {
                         titlu: '',
                         descriere: '',
                         categorie: 'Bac',
-                        varianta: '',
-                        dificultate: 'mediu',
+                        subiect: '',
+                        an: '',
+                        sesiune: '',
+                        subjectArea: '',
                         continut: '',
                         formule: [''],
                         date: {},
@@ -630,13 +723,22 @@ const ProblemeBac = () => {
                     const prefillData = window.__prefillProblemData;
                     console.log('📝 [Modal] Populating form with URL data:', prefillData);
                     
+                    // Extract data from prefill or metadata
+                    const metadata = prefillData.metadata || {};
+                    const year = metadata.year || extractYear(prefillData.varianta || '') || '';
+                    const subjectNum = metadata.subjectNumber || getSubjectNumber(prefillData) || '';
+                    const session = metadata.session || getVariantType(prefillData.varianta || '', metadata) || '';
+                    const subjectArea = metadata.subjectArea || getSubjectArea(prefillData) || '';
+                    
                     // Set form data
                     setFormData({
                         titlu: prefillData.titlu || '',
                         descriere: prefillData.descriere || '',
                         categorie: 'Bac',
-                        varianta: prefillData.varianta || '',
-                        dificultate: prefillData.dificultate || 'mediu',
+                        subiect: subjectNum ? String(subjectNum) : '',
+                        an: year ? String(year) : '',
+                        sesiune: session || '',
+                        subjectArea: subjectArea || '',
                         continut: prefillData.continut || '',
                         formule: prefillData.formule && prefillData.formule.length > 0 
                             ? prefillData.formule 
@@ -673,8 +775,10 @@ const ProblemeBac = () => {
                         titlu: '',
                         descriere: '',
                         categorie: 'Bac',
-                        varianta: '',
-                        dificultate: 'mediu',
+                        subiect: '',
+                        an: '',
+                        sesiune: '',
+                        subjectArea: '',
                         continut: '',
                         formule: [''],
                         date: {},
@@ -690,8 +794,10 @@ const ProblemeBac = () => {
                     titlu: '',
                     descriere: '',
                     categorie: 'Bac',
-                    varianta: '',
-                    dificultate: 'mediu',
+                    subiect: '',
+                    an: '',
+                    sesiune: '',
+                    subjectArea: '',
                     continut: '',
                     formule: [''],
                     date: {},
@@ -845,18 +951,6 @@ const ProblemeBac = () => {
                             </div>
 
                             <div className="form-group">
-                                <label>Varianta *</label>
-                                <input
-                                    type="text"
-                                    value={formData.varianta}
-                                    onChange={(e) => handleInputChange('varianta', e.target.value)}
-                                    placeholder="ex: simulare 2024, vara 2023, sesiune toamna 2022"
-                                    required
-                                    disabled={addStatus === 'loading'}
-                                />
-                            </div>
-
-                            <div className="form-group">
                                 <label>Descriere</label>
                                 <textarea
                                     value={formData.descriere}
@@ -869,20 +963,70 @@ const ProblemeBac = () => {
 
                             <div className="form-row">
                                 <div className="form-group">
-                                    <label>Dificultate *</label>
+                                    <label>Subiect *</label>
                                     <select
-                                        value={formData.dificultate}
-                                        onChange={(e) => handleInputChange('dificultate', e.target.value)}
+                                        value={formData.subiect}
+                                        onChange={(e) => handleInputChange('subiect', e.target.value)}
                                         required
                                         disabled={addStatus === 'loading'}
                                     >
-                                        <option value="ușor">Ușor</option>
-                                        <option value="mediu">Mediu</option>
-                                        <option value="dificil">Dificil</option>
-                                        <option value="concurs">Concurs</option>
+                                        <option value="">Selectează subiectul</option>
+                                        <option value="1">Subiectul I</option>
+                                        <option value="2">Subiectul II</option>
+                                        <option value="3">Subiectul III</option>
                                     </select>
                                 </div>
 
+                                <div className="form-group">
+                                    <label>An *</label>
+                                    <input
+                                        type="number"
+                                        value={formData.an}
+                                        onChange={(e) => handleInputChange('an', e.target.value)}
+                                        placeholder="ex: 2024"
+                                        required
+                                        min="2000"
+                                        max="2100"
+                                        disabled={addStatus === 'loading'}
+                                    />
+                                </div>
+                            </div>
+
+                            <div className="form-row">
+                                <div className="form-group">
+                                    <label>Sesiune *</label>
+                                    <select
+                                        value={formData.sesiune}
+                                        onChange={(e) => handleInputChange('sesiune', e.target.value)}
+                                        required
+                                        disabled={addStatus === 'loading'}
+                                    >
+                                        <option value="">Selectează sesiunea</option>
+                                        <option value="simulare">Simulare</option>
+                                        <option value="model">Model</option>
+                                        <option value="vara">Vară</option>
+                                        <option value="toamna">Toamnă</option>
+                                        <option value="bac">Bac</option>
+                                    </select>
+                                </div>
+
+                                <div className="form-group">
+                                    <label>Categorie</label>
+                                    <select
+                                        value={formData.subjectArea}
+                                        onChange={(e) => handleInputChange('subjectArea', e.target.value)}
+                                        disabled={addStatus === 'loading'}
+                                    >
+                                        <option value="">Selectează categoria</option>
+                                        <option value="Mecanică">Mecanică</option>
+                                        <option value="Termodinamică">Termodinamică</option>
+                                        <option value="Optică">Optică</option>
+                                        <option value="Curent continuu">Curent continuu</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div className="form-row">
                                 <div className="form-group">
                                     <label>Punctaj total</label>
                                     <input
@@ -1096,15 +1240,16 @@ const ProblemeBac = () => {
                         
                         <div className="filters-wrapper">
                             <div className="filter-group">
-                                <label className="filter-label">Dificultate</label>
+                                <label className="filter-label">Subiect</label>
                                 <select
                                     className="filter-select"
-                                    value={selectedDifficulty}
-                                    onChange={(e) => setSelectedDifficulty(e.target.value)}
+                                    value={selectedSubject}
+                                    onChange={(e) => setSelectedSubject(e.target.value)}
                                 >
-                                    {difficulties.map((difficulty) => (
-                                        <option key={difficulty} value={difficulty}>
-                                            {difficulty === "Toate" ? "Toate dificultățile" : difficulty}
+                                    <option value="Toate">Toate subiectele</option>
+                                    {availableSubjects.map((subjectNum) => (
+                                        <option key={subjectNum} value={subjectNum.toString()}>
+                                            Subiectul {subjectNum === 1 ? 'I' : subjectNum === 2 ? 'II' : 'III'}
                                         </option>
                                     ))}
                                 </select>
@@ -1134,9 +1279,31 @@ const ProblemeBac = () => {
                                     onChange={(e) => setSelectedSession(e.target.value)}
                                 >
                                     <option value="Toate">Toate sesiunile</option>
-                                    <option value="simulare">Simulare</option>
-                                    <option value="vara">Vară</option>
-                                    <option value="toamna">Toamnă</option>
+                                    {availableSessions.map((session) => (
+                                        <option key={session} value={session}>
+                                            {session === 'simulare' ? 'Simulare' : 
+                                             session === 'model' ? 'Model' :
+                                             session === 'vara' ? 'Vară' : 
+                                             session === 'toamna' ? 'Toamnă' : 
+                                             session === 'bac' ? 'Bac' : session}
+                                        </option>
+                                    ))}
+                                </select>
+                            </div>
+                            
+                            <div className="filter-group">
+                                <label className="filter-label">Categorie</label>
+                                <select
+                                    className="filter-select"
+                                    value={selectedCategory}
+                                    onChange={(e) => setSelectedCategory(e.target.value)}
+                                >
+                                    <option value="Toate">Toate categoriile</option>
+                                    {availableCategories.map((category) => (
+                                        <option key={category} value={category}>
+                                            {category}
+                                        </option>
+                                    ))}
                                 </select>
                             </div>
                             
@@ -1149,8 +1316,8 @@ const ProblemeBac = () => {
                                 >
                                     <option value="newest">Cele mai noi</option>
                                     <option value="oldest">Cele mai vechi</option>
-                                    <option value="difficulty-asc">Dificultate (crescător)</option>
-                                    <option value="difficulty-desc">Dificultate (descrescător)</option>
+                                    <option value="subject-asc">Subiect (I → III)</option>
+                                    <option value="subject-desc">Subiect (III → I)</option>
                                 </select>
                             </div>
                         </div>
