@@ -2,8 +2,6 @@
   "titlu": "Problema III - Optică - Bac 2016 Var 10",
   "descriere": "Problema de bacalaureat - Subiectul III din Optică, 2016, Varianta 10, teoretic",
   "categorie": "Bac",
-  "varianta": "2016 Var 10",
-  "dificultate": "mediu",
   "punctajTotal": 15,
   "continut": "Un dispozitiv Young are distanța între cele două fante $2\\ell = 2 \\, \\text{mm}$, iar distanța de la planul fantelor la un ecran așezat paralel cu planul fantelor este $D = 80 \\, \\text{cm}$. Se iluminează fantele cu radiație monocromatică cu $\\lambda = 625 \\, \\text{nm}$ provenită de la o sursă plasată pe axa de simetrie a sistemului.\n\na. Calculați valoarea interfranjei.\nb. Ecranul se poziționează la distanța $D' = 240 \\, \\text{cm}$ față de planul fantelor. Calculați variația relativă a interfranjei.\nc. Se umple spațiul dintre fante și ecran cu apă. Indicele de refracție al apei este $n_a = \\frac{4}{3}$. Calculați valoarea vitezei luminii în apă.\nd. Distanța dintre planul fantelor și ecran rămâne cea stabilită la punctul b. Calculați valoarea interfranjei după introducerea apei în spațiul dintre fante și ecran.",
   "formule": [],
@@ -38,6 +36,7 @@
     "type": "teoretic",
     "subjectArea": "Optică",
     "subjectCode": "D",
-    "subjectNumber": 3
+    "subjectNumber": 3,
+    "session": "bac"
   }
 }

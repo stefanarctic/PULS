@@ -2,8 +2,6 @@
   "titlu": "Problema II - Optică - Bac 2016 Var 10",
   "descriere": "Problema de bacalaureat - Subiectul II din Optică, 2016, Varianta 10, teoretic",
   "categorie": "Bac",
-  "varianta": "2016 Var 10",
-  "dificultate": "mediu",
   "punctajTotal": 15,
   "continut": "O lentilă subțire divergentă $(L_1)$ are modulul distanței focale $|f_i| = 20 \\, \\text{cm}$. La distanța de $60 \\, \\text{cm}$ în fața ei se așază, perpendicular pe axa optică principală, un obiect luminos cu înălțimea de $4 \\, \\text{cm}$.\n\na. Realizați un desen în care să evidențiați construcția grafică a imaginii prin lentila $L_1$.\nb. Calculați înălțimea imaginii.\nc. Se formează un sistem optic centrat alipind primei lentile $(L_1)$ o altă lentilă subțire, convergentă $(L_2)$, având convergența $C_2 = 2 \\, \\text{m}^{-1}$. Determinați convergența echivalentă a sistemului optic format.\nd. Se depărtează una de alta cele două lentile $L_1$ și $L_2$ până când se constată că orice rază care intră în sistemul optic paralel cu axa optică principală, iese din sistem tot paralel cu axa optică principală. Calculați distanța dintre lentile.",
   "formule": [],
@@ -38,6 +36,7 @@
     "type": "teoretic",
     "subjectArea": "Optică",
     "subjectCode": "D",
-    "subjectNumber": 2
+    "subjectNumber": 2,
+    "session": "bac"
   }
 }

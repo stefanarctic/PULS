@@ -2,8 +2,6 @@
   "titlu": "Problema II - Optică - Bac 2021 Var 4",
   "descriere": "Problema de bacalaureat - Subiectul II din Optică, 2021, Varianta 4, teoretic",
   "categorie": "Bac",
-  "varianta": "2021 Var 4",
-  "dificultate": "mediu",
   "punctajTotal": 15,
   "continut": "O lentilă divergentă subțire, având modulul distanței focale $|f_1| = 40$ cm, formează imaginea virtuală a unui obiect liniar așezat perpendicular pe axa optică principală. Imaginea este de patru ori mai mică decât obiectul.\n\na. Obiectul are înălțimea $y_{1} = 2$ cm. Calculați înălțimea imaginii.\nb. Calculați distanța dintre lentilă și imagine.\nc. Realizați un desen în care să evidențiați construcția grafică a imaginii prin lentilă, pentru obiectul considerat, în situația descrisă de problemă.\nd. Se alipește de lentila cu distanța focală $f_{1}$ o altă lentilă subțire, convergentă, cu distanța focală $f_{2} = 50$ cm. Calculați distanța focală echivalentă a sistemului optic format din cele două lentile.",
   "formule": [],
@@ -38,6 +36,7 @@
     "type": "teoretic",
     "subjectArea": "Optică",
     "subjectCode": "D",
-    "subjectNumber": 2
+    "subjectNumber": 2,
+    "session": "bac"
   }
 }

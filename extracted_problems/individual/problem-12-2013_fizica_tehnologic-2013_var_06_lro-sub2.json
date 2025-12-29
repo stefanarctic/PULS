@@ -2,8 +2,6 @@
   "titlu": "Problema II - Fizică - Bac 2013 Var 6",
   "descriere": "Problema de bacalaureat - Subiectul II din Fizică, 2013, Varianta 6, tehnologic",
   "categorie": "Bac",
-  "varianta": "2013 Var 6",
-  "dificultate": "mediu",
   "punctajTotal": 15,
   "continut": "![img-0.jpeg](img-0.jpeg)\n\nÎn figura alăturată sunt reprezentate două corpuri A și B, cu masele $m_A = 40\\,\\mathrm{kg}$ și respectiv $m_B = 60\\,\\mathrm{kg}$, așezate unul peste altul și legate între ele cu un fir inextensibil și de masă neglijabilă, de lungime $\\ell = 50\\,\\mathrm{cm}$. Corpul A este așezat pe suprafața orizontală a unei mese.\n\n![img-1.jpeg](img-1.jpeg)\n\na. Calculați forța de apăsare exercitată pe suprafața orizontală a mesei.\nb. Dacă asupra corpului B acționează o forță verticală, în sus, corpul B urcă având viteza constantă $\\nu = 0,36\\,\\mathrm{km/h}$. Calculați intervalul de timp după care distanța dintre corpuri devine $\\ell = 50\\,\\mathrm{cm}$.\nc. Dacă asupra corpului B acționează o forță verticală, în sus, de valoare $F = 1,2\\,\\mathrm{kN}$ și firul dintre corpuri este întins, sistemul format din cele două corpuri se deplasează vertical în sus cu accelerația $a$. Calculați accelerația sistemului.\nd. Calculați valoarea forței de tensiune din fir în condițiile de la punctul c.",
   "formule": [],
@@ -40,6 +38,7 @@
     "variant": 6,
     "type": "tehnologic",
     "subjectArea": null,
-    "subjectNumber": 2
+    "subjectNumber": 2,
+    "session": "bac"
   }
 }

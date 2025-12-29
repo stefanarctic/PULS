@@ -2,8 +2,6 @@
   "titlu": "Problema II - Fizică - Bac 2018 Var 9",
   "descriere": "Problema de bacalaureat - Subiectul II din Fizică, 2018, Varianta 9, teoretic",
   "categorie": "Bac",
-  "varianta": "2018 Var 9",
-  "dificultate": "mediu",
   "punctajTotal": 15,
   "continut": "Un corp de masă $m = 1,7 \\, \\text{kg}$ urcă cu viteza constantă $v = 1,5 \\, \\text{m/s}$ pe un plan înclinat foarte lung, sub acțiunea unei forțe orizontale și constante $\\ddot{F}$, ca în figura alăturată. Unghiul pe care planul înclinat îl formează cu orizontală este $\\alpha \\cong 37^\\circ$ (sin $\\alpha = 0,6$), iar coeficientul de frecare la alunecare dintre corp și planul înclinat are valoarea $\\mu = 0,2$.\n\na. Determinați timpul în care corpul parcurge distanța $d = 1,5 \\, \\text{m}$ în lungul planului înclinat.\nb. Reprezentați forțele care acționează asupra corpului.\nc. Calculați valoarea forței $\\ddot{F}$ pentru care corpul urcă cu viteză constantă pe planul înclinat.\nd. Acțiunea forței $\\ddot{F}$ încetează, corpul continuă să urce încetinit pe planul înclinat până la oprire, apoi coboară spre baza planului înclinat. Determinați accelerația cu care corpul coboară pe planul înclinat.\n\n![img-1.jpeg](img-1.jpeg)",
   "formule": [],
@@ -39,6 +37,7 @@
     "variant": 9,
     "type": "teoretic",
     "subjectArea": null,
-    "subjectNumber": 2
+    "subjectNumber": 2,
+    "session": "bac"
   }
 }

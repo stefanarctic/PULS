@@ -2,8 +2,6 @@
   "titlu": "Problema II - Fizică - Bac 2021 Var 4",
   "descriere": "Problema de bacalaureat - Subiectul II din Fizică, 2021, Varianta 4, teoretic",
   "categorie": "Bac",
-  "varianta": "2021 Var 4",
-  "dificultate": "mediu",
   "punctajTotal": 15,
   "continut": "Sistemul mecanic din figura alăturată este alcătuit din două corpuri A și B, legate prin intermediul unui fir inextensibil și de masă neglijabilă. Firul este trecut peste un scripete fără frecări și lipsit de inerție, situat în vârful unui plan înclinat. Coeficientul de frecare la alunecare dintre corpul B și suprafața planului înclinat este $\\mu = 0,2$, iar unghiul format de planul înclinat cu orizontala este $\\alpha \\cong 53^\\circ$ ($\\sin \\alpha = 0,8$). La momentul inițial corpurile se află în repaus. Se constată că, după ce sistemul este lăsat liber, accelerația corpului A este orientată în sus și are valoarea $a = 1,2\\,\\mathrm{m/s^2}$. În timpul mișcării, corpul A nu atinge scripetele, iar corpul B nu ajunge la baza planului înclinat.\n\na. Reprezentați toate forțele care se exercită asupra corpului B.\nb. Determinați valoarea tensiunii din fir, dacă $m_B = 1,0\\,\\mathrm{kg}$.\nc. Determinați valoarea raportului $m_B / m_A$ dintre masa corpului B și masa corpului A.\nd. Calculați distanța parcursă de corpul B în $\\Delta t = 0,5\\,\\mathrm{s}$ din momentul în care sistemul este lăsat liber.\n\n![img-1.jpeg](img-1.jpeg)",
   "formule": [],
@@ -39,6 +37,7 @@
     "variant": 4,
     "type": "teoretic",
     "subjectArea": null,
-    "subjectNumber": 2
+    "subjectNumber": 2,
+    "session": "bac"
   }
 }

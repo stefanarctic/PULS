@@ -2,8 +2,6 @@
   "titlu": "Problema III - Termodinamică - Bac 2017 Var 7",
   "descriere": "Problema de bacalaureat - Subiectul III din Termodinamică, 2017, Varianta 7, teoretic",
   "categorie": "Bac",
-  "varianta": "2017 Var 7",
-  "dificultate": "mediu",
   "punctajTotal": 15,
   "continut": "Un motor termic folosește ca fluid de lucru un gaz ideal monoatomic $(C_V = 1,5R)$. Procesul ciclic de funcționare este reprezentat, în coordonate $p - V$, în figura alăturată. În transformarea 2–3 temperatura este constantă, iar în transformarea 3–1 presiunea variază direct proporțional cu volumul. Se cunosc: $p_1 = 10^5\\mathrm{Pa}$, $V_1 = 2\\mathrm{L}$, $p_2 = 4p_1$, $p_3 = 2p_1$, $V_3 = 2V_1$, $\\ln 2 \\cong 0,7$. Determinați:\n\na. variația energiei interne în cursul transformării 1–2;\nb. căldura schimbată de gaz cu exteriorul în cursul transformării 2–3;\nc. lucrul mecanic schimbat de gaz cu exteriorul în decursul unui ciclu;\nd. randamentul motorului termic.",
   "formule": [],
@@ -41,6 +39,7 @@
     "type": "teoretic",
     "subjectArea": "Termodinamică",
     "subjectCode": "B",
-    "subjectNumber": 3
+    "subjectNumber": 3,
+    "session": "bac"
   }
 }

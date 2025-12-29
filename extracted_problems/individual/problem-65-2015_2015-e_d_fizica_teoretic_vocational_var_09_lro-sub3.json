@@ -2,8 +2,6 @@
   "titlu": "Problema III - Optică - Bac 2015 Var 9",
   "descriere": "Problema de bacalaureat - Subiectul III din Optică, 2015, Varianta 9, teoretic",
   "categorie": "Bac",
-  "varianta": "2015 Var 9",
-  "dificultate": "mediu",
   "punctajTotal": 15,
   "continut": "Distanța dintre fantele unui dispozitiv Young este $2\\ell = 1,5 \\, \\text{mm}$, iar distanța care separă planul fantelor de ecranul pe care se observă figura de interferență este $D = 3 \\, \\text{m}$. Sursa este plasată pe axa de simetrie a dispozitivului și emite o radiație luminoasă monocromatică și coerentă cu lungimea de undă $\\lambda = 500 \\, \\text{nm}$.\n\na. Calculați frecvența radiației monocromatice utilizate.\nb. Determinați interferența figurii de interferență observate pe ecran.\nc. Determinați distanța, măsurată pe ecran, care separă maximul de ordinul 3 aflat de o parte a maximului central, de primul minim de interferență situat de aceeași parte a maximului central.\nd. Una dintre fantele dispozitivului se acoperă cu o lamă transparentă, de grosime $e_1 = 12 \\, \\mu \\text{m}$ și indice de refracție $n_1 = 1,5$, iar cealaltă fantă se acoperă cu o altă lamă transparentă, de grosime $e_2 = 15 \\, \\mu \\text{m}$ și indice de refracție $n_2$. Sistemul de franje observat pe ecran nu își modifică poziția. Determinați indicele de refracție $n_2$.",
   "formule": [],
@@ -38,6 +36,7 @@
     "type": "teoretic",
     "subjectArea": "Optică",
     "subjectCode": "D",
-    "subjectNumber": 3
+    "subjectNumber": 3,
+    "session": "bac"
   }
 }

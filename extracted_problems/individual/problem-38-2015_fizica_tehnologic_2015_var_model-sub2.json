@@ -2,8 +2,6 @@
   "titlu": "Problema II - Fizică - Bac 2015",
   "descriere": "Problema de bacalaureat - Subiectul II din Fizică, 2015, tehnologic",
   "categorie": "Bac",
-  "varianta": "2015",
-  "dificultate": "mediu",
   "punctajTotal": 15,
   "continut": "Pentru sistemul de corpuri din figură se cunosc masele corpurilor $m_1 = m_2 = 1\\,\\mathrm{kg}$, unghiul planului înclinat $\\alpha \\cong 37^\\circ$ ($\\sin \\alpha = 0,6; \\cos \\alpha = 0,8$) și coeficientul de frecare la alunecare $\\mu = 0,2$, același pentru ambele corpuri și suprafețe. Sistemul de corpuri este lăsat liber din repaus.\n\na. Reprezentați forțele care acționează asupra fiecărui corp.\nb. Calculați valoarea forței de frecare dintre corpul de masă $m_2$ și planul înclinat.\nc. Determinați valoarea accelerației corpurilor.\nd. Determinați intervalul de timp în care corpul de masă $m_1$ parcurge distanța $d = 0,75\\,\\mathrm{m}$, dacă sistemul s-ar deplasa cu viteza constantă $v = 0,5\\,\\mathrm{m/s}$.",
   "formule": [],
@@ -37,6 +35,7 @@
     "variant": null,
     "type": "tehnologic",
     "subjectArea": null,
-    "subjectNumber": 2
+    "subjectNumber": 2,
+    "session": "model"
   }
 }

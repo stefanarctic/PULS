@@ -2,8 +2,6 @@
   "titlu": "Problema III - Termodinamică - Bac 2015",
   "descriere": "Problema de bacalaureat - Subiectul III din Termodinamică, 2015, tehnologic",
   "categorie": "Bac",
-  "varianta": "2015",
-  "dificultate": "mediu",
   "punctajTotal": 15,
   "continut": "Un gaz ideal aflat inițial în starea 1, în care presiunea este $p_1 = 10^5$ Pa, iar volumul $V_1 = 2L$, parcurge procesul termodinamic 1-2-3, reprezentat în coordonate $p-V$ în figura alăturată. În cursul transformării 2-3 temperatura gazului rămâne constantă. Căldura molară izocoră a gazului este $C_V = 2,5R$. Se consideră $\\ln 1,5 \\cong 0,4$. Determinați:\na. volumul gazului în starea 3;\nb. lucrul mecanic efectuat de gaz în transformarea 1-2;\nc. variația energiei interne a gazului în transformarea 1-2-3;\nd. căldura schimbată de gaz cu mediul exterior în transformarea 2-3.",
   "formule": [],
@@ -40,6 +38,7 @@
     "type": "tehnologic",
     "subjectArea": "Termodinamică",
     "subjectCode": "B",
-    "subjectNumber": 3
+    "subjectNumber": 3,
+    "session": "model"
   }
 }

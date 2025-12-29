@@ -2,8 +2,6 @@
   "titlu": "Problema III - Mecanică - Bac 2021",
   "descriere": "Problema de bacalaureat - Subiectul III din Mecanică, 2021, teoretic",
   "categorie": "Bac",
-  "varianta": "2021",
-  "dificultate": "mediu",
   "punctajTotal": 15,
   "continut": "Un corp de masă $m = 150\\,\\mathrm{g}$, considerat punctiform, este lansat, de la înălțimea $h = 1,8\\,\\mathrm{m}$ față de sol, vertical în sus, cu viteza inițială $v_0 = 8,0\\,\\mathrm{m/s}$. Frecarea cu aerul se consideră neglijabilă, iar energia potențială gravitațională se consideră nulă la nivelul solului.\n\na. Calculați energia mecanică a corpului în momentul lansării acestuia.\nb. Determinați lucrul mecanic efectuat de greutate din momentul lansării corpului până în momentul în care acesta atinge solul.\nc. Determinați modulul variației impulsului mecanic al corpului între momentul lansării și momentul în care acesta atinge solul.\n\nd. În urma impactului cu solul corpul se oprește, fără să se mai desprindă de pământ. Timpul scurs din momentul în care corpul atinge solul până la oprirea corpului este $\\Delta t = 15\\,\\mathrm{ms}$. Determinați valoarea forței medii care acționează asupra corpului în intervalul de timp $\\Delta t$.",
   "formule": [],
@@ -38,6 +36,7 @@
     "type": "teoretic",
     "subjectArea": "Mecanică",
     "subjectCode": "A",
-    "subjectNumber": 3
+    "subjectNumber": 3,
+    "session": "model"
   }
 }

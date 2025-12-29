@@ -2,8 +2,6 @@
   "titlu": "Problema III - Fizică - Bac 2025 Var 6",
   "descriere": "Problema de bacalaureat - Subiectul III din Fizică, 2025, Varianta 6, teoretic",
   "categorie": "Bac",
-  "varianta": "2025 Var 6",
-  "dificultate": "mediu",
   "punctajTotal": 15,
   "continut": "Un corp având masa $M = 100\\mathrm{g}$, considerat punctiform, este lăsat să alunece pe suprafața din figura alăturată, plecând din repaus din punctul A situat la înălțimea $H_{A} = 8,8\\mathrm{m}$ față de sol. Corpul părăsește suprafața în punctul B aflat la înălțimea $H_{B} = 4,0\\mathrm{m}$ față de sol, cu viteza $v_{B} = 8\\mathrm{m/s}$.\n\nCorpul își continuă mișcarea până la căderea pe suprafața orizontală a solului. Se neglijează interacțiunea cu aerul, iar energia potențială gravitațională este considerată nulă la nivelul solului. Calculați:\n\na. lucrul mecanic efectuat de greutate în timpul deplasării corpului din A în B;\nb. energia mecanică a corpului în punctul B;\nc. lucrul mecanic efectuat de forța de frecare în timpul deplasării corpului din A în B;\nd. valoarea impulsului mecanic al corpului în momentul imediat anterior atingerii solului.\n\n![img-2.jpeg](img-2.jpeg)",
   "formule": [],
@@ -39,6 +37,7 @@
     "variant": 6,
     "type": "teoretic",
     "subjectArea": null,
-    "subjectNumber": 3
+    "subjectNumber": 3,
+    "session": "bac"
   }
 }

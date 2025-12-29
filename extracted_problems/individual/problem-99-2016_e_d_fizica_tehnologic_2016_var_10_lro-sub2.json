@@ -2,8 +2,6 @@
   "titlu": "Problema II - Mecanică - Bac 2016 Var 10",
   "descriere": "Problema de bacalaureat - Subiectul II din Mecanică, 2016, Varianta 10, tehnologic",
   "categorie": "Bac",
-  "varianta": "2016 Var 10",
-  "dificultate": "mediu",
   "punctajTotal": 15,
   "continut": "O săniuță cu masa $m = 5\\,\\mathrm{kg}$ este tractată de-a lungul unei suprafețe orizontale, sub acțiunea unei forțe de tracțiune $F_I$, paralelă cu suprafața. Coeficientul de frecare la alunecare este $\\mu = 0,05$, iar viteza saniei variază în timp conform graficului alăturat.\n\na. Reprezentați toate forțele care acționează asupra saniei în timpul mișcării acesteia.\n\nb. Determinați accelerația saniei în primele 10 s ale mișcării.\n\nc. Determinați distanța parcursă de sanie în timpul deplasării cu viteză constantă.\n\nd. Determinați valoarea forței de tracțiune în ultimele 10 s ale mișcării.",
   "formule": [],
@@ -40,6 +38,7 @@
     "type": "tehnologic",
     "subjectArea": "Mecanică",
     "subjectCode": "A",
-    "subjectNumber": 2
+    "subjectNumber": 2,
+    "session": "bac"
   }
 }

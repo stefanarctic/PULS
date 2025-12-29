@@ -2,8 +2,6 @@
   "titlu": "Problema II - Termodinamică - Bac 2019",
   "descriere": "Problema de bacalaureat - Subiectul II din Termodinamică, 2019, tehnologic",
   "categorie": "Bac",
-  "varianta": "2019",
-  "dificultate": "mediu",
   "punctajTotal": 15,
   "continut": "O cantitate de heliu, considerat gaz ideal, este închisă într-un cilindru cu piston. Inițial gazul se află la presiunea $p_0 = 10^5 \\mathrm{~N} / \\mathrm{m}^2$ și temperatura $T = 300 \\mathrm{~K}$, iar pistonul se află la distanța $L = 1,2 \\mathrm{~m}$ față de capătul închis al cilindrului, ca în figura alăturată. Aria secțiunii transversale a pistonului este $S = 83,1 \\mathrm{~cm}^2$. Pistonul este etanș și se poate deplasa fără frecare. Masa molară a heliului este $\\mu = 4 \\mathrm{~g} / \\mathrm{mol}$. În exteriorul cilindrului aerul se află la presiunea atmosferică normală, $p_0 = 10^5 \\mathrm{~N} / \\mathrm{m}^2$. Calculați:\n\na. cantitatea de heliu din cilindru;\nb. numărul de atomi de heliu din cilindru;\nc. densitatea gazului din cilindru;\nd. distanța la care ajunge pistonul față de capătul închis al cilindrului dacă temperatura heliului din cilindru crește cu $\\Delta T = 100 \\mathrm{~K}$.",
   "formule": [],
@@ -40,6 +38,7 @@
     "type": "tehnologic",
     "subjectArea": "Termodinamică",
     "subjectCode": "B",
-    "subjectNumber": 2
+    "subjectNumber": 2,
+    "session": "simulare"
   }
 }

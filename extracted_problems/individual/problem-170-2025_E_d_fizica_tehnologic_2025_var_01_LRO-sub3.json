@@ -2,8 +2,6 @@
   "titlu": "Problema III - Fizică - Bac 2025 Var 1",
   "descriere": "Problema de bacalaureat - Subiectul III din Fizică, 2025, Varianta 1, tehnologic",
   "categorie": "Bac",
-  "varianta": "2025 Var 1",
-  "dificultate": "mediu",
   "punctajTotal": 15,
   "continut": "O cantitate $\\nu = \\frac{2}{8,31} \\mathrm{~mol} (\\cong 0,24 \\mathrm{~mol})$ de gaz ideal monoatomic, având căldura molară la volum constant $C_V = 1,5R$, parcurge transformarea $1 \\rightarrow 2 \\rightarrow 3$ reprezentată în coordonate $p - V$ ca în figura alăturată. În starea 1 temperatura gazului are valoarea $T_1 = 300\\mathrm{K}$.\n\na. Reprezentați grafic transformarea $1 \\rightarrow 2 \\rightarrow 3$ în coordonatele $V - T$.\nb. Calculați variația energiei interne a gazului în transformarea $1 \\rightarrow 2$.\nc. Calculați căldura primită de gaz în transformarea $2 \\rightarrow 3$.\nd. Calculați lucrul mecanic schimbat de gaz cu mediul exterior în transformarea $1 \\rightarrow 2 \\rightarrow 3$.\n\n![img-3.jpeg](img-3.jpeg)",
   "formule": [],
@@ -39,6 +37,7 @@
     "variant": 1,
     "type": "tehnologic",
     "subjectArea": null,
-    "subjectNumber": 3
+    "subjectNumber": 3,
+    "session": "bac"
   }
 }

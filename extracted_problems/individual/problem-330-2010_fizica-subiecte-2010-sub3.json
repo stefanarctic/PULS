@@ -2,8 +2,6 @@
   "titlu": "Problema III - Optică - Bac 2010",
   "descriere": "Problema de bacalaureat - Subiectul III din Optică, 2010",
   "categorie": "Bac",
-  "varianta": "2010",
-  "dificultate": "mediu",
   "punctajTotal": 15,
   "continut": "În graficul alăturat este reprezentată dependența energiei cinetice maxime a electronilor emiși prin efect fotoelectric extern, de frecvența radiației incidente. Metalul pentru care a fost obținut acest grafic este supus acțiunii radiațiilor luminoase cu frecvențele $\\nu_1 = 4,00 \\cdot 10^{14}$ Hz, $\\nu_2 = 5,45 \\cdot 10^{14}$ Hz și respectiv $\\nu_3 = 6,25 \\cdot 10^{14}$ Hz. Frecvența de prag a metalului are valoarea $\\nu_0 = 5,45 \\cdot 10^{14}$ Hz.\n\na. Calculați valoarea lucrului mecanic de extracție.\nb. Indicați semnificația fizică a pantei dreptei reprezentate în grafic.\nc. Indicați care dintre cele trei radiații produc efect fotoelectric. Justificați.\nd. Calculați valoarea energiei cinetice maxime a electronilor extrăși de radiația cu frecvența $\\nu_3$.\n\nProba E - d):",
   "formule": [],
@@ -40,6 +38,7 @@
     "type": null,
     "subjectArea": "Optică",
     "subjectCode": "D",
-    "subjectNumber": 3
+    "subjectNumber": 3,
+    "session": "bac"
   }
 }

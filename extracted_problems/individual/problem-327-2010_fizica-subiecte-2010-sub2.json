@@ -2,8 +2,6 @@
   "titlu": "Problema II - Curent continuu - Bac 2010",
   "descriere": "Problema de bacalaureat - Subiectul II din Curent continuu, 2010",
   "categorie": "Bac",
-  "varianta": "2010",
-  "dificultate": "mediu",
   "punctajTotal": 15,
   "continut": "O baterie este formată din 6 surse de tensiune identice, caracterizate fiecare de valorile $E = 20\\,\\text{V}$ și $r = 1,0\\,\\Omega$. Bateria este alcătuită din 3 ramuri legate în paralel, fiecare ramură conținând 2 surse grupate serie. Bateria alimentează o grupare de patru rezistoare cu rezistențele $R_1 = 10\\,\\Omega$, $R_2 = 20\\,\\Omega$, $R_3 = 4,0\\,\\Omega$ și $R_4 = 8,0\\,\\Omega$. Rezistoarele sunt conectate astfel: $R_1$ și $R_2$ în paralel, $R_3$ și $R_4$ în paralel, cele două grupări paralel fiind înseriate.\n\na. Reprezentați schema electrică a circuitului.\nb. Calculați valoarea rezistenței electrice echivalente a grupării celor patru rezistoare.\nc. Calculați valoarea tensiunii electrice la bornele rezistorului $R_2$.\nd. Calculați valoarea intensității curentului electric prin una dintre surse, dacă la bornele acesteia se conectează un fir conductor de rezistență electrică neglijabilă.",
   "formule": [],
@@ -38,6 +36,7 @@
     "type": null,
     "subjectArea": "Curent continuu",
     "subjectCode": "C",
-    "subjectNumber": 2
+    "subjectNumber": 2,
+    "session": "bac"
   }
 }

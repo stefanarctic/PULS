@@ -2,8 +2,6 @@
   "titlu": "Problema II - Curent continuu - Bac 2016",
   "descriere": "Problema de bacalaureat - Subiectul II din Curent continuu, 2016, tehnologic",
   "categorie": "Bac",
-  "varianta": "2016",
-  "dificultate": "mediu",
   "punctajTotal": 15,
   "continut": "În figura alăturată este reprezentată schema unui circuit electric. Tensiunea electromotoare a bateriei este $E = 22\\ \\mathrm{V}$, iar rezistențele electrice ale celor trei rezistoare au valorile $R_{1} = 15\\ \\Omega$, $R_{2} = R_{3} = 10\\ \\Omega$. Ampermetrul ideal $(R_{A} \\rightarrow 0)$ indică $I_{2} = 0,5\\ \\mathrm{A}$.\n\nDeterminați:\n\na. tensiunea la bornele rezistorului $R_{2}$;\nb. rezistența echivalentă a circuitului exterior bateriei\nc. rezistența interioară a bateriei;\nd. intensitatea curentului care ar străbate un fir de rezistență electrică neglijabilă conectat între bornele bateriei.\n\n#",
   "formule": [],
@@ -40,6 +38,7 @@
     "type": "tehnologic",
     "subjectArea": "Curent continuu",
     "subjectCode": "C",
-    "subjectNumber": 2
+    "subjectNumber": 2,
+    "session": "simulare"
   }
 }

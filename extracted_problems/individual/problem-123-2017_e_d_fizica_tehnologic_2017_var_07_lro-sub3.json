@@ -2,8 +2,6 @@
   "titlu": "Problema III - Termodinamică - Bac 2017 Var 7",
   "descriere": "Problema de bacalaureat - Subiectul III din Termodinamică, 2017, Varianta 7, tehnologic",
   "categorie": "Bac",
-  "varianta": "2017 Var 7",
-  "dificultate": "mediu",
   "punctajTotal": 15,
   "continut": "O cantitate de gaz ideal, aflat inițial în starea 1, în care presiunea este $p_1 = 0,5 \\cdot 10^5 \\mathrm{~Pa}$, iar volumul $V_1 = 2 \\mathrm{~L}$, parcurge procesul termodinamic $1 - 2 - 3$, reprezentat în coordonate $p - V$ în figura alăturată. Transformarea 2-3 are loc la temperatura constantă, iar $V_z = 3V_1$ și $p_2 = 2p_1$. Se cunoaște $\\ln 3 \\cong 1,1$. Căldura molară izocoră a gazului este $C_V = 1,5R$.\n\na. Determinați presiunea gazului în starea 3.\nb. Calculați lucrul mecanic efectuat de gaz în transformarea 1-2.\nc. Determinați variația energiei interne în transformarea 1-2.\nd. Determinați căldura schimbată de gaz cu exteriorul în cursul transformării 2-3.",
   "formule": [],
@@ -40,6 +38,7 @@
     "type": "tehnologic",
     "subjectArea": "Termodinamică",
     "subjectCode": "B",
-    "subjectNumber": 3
+    "subjectNumber": 3,
+    "session": "bac"
   }
 }

@@ -2,8 +2,6 @@
   "titlu": "Problema III - Fizică - Bac 2019 Var 1",
   "descriere": "Problema de bacalaureat - Subiectul III din Fizică, 2019, Varianta 1, tehnologic",
   "categorie": "Bac",
-  "varianta": "2019 Var 1",
-  "dificultate": "mediu",
   "punctajTotal": 15,
   "continut": "Un automobil cu masa $m = 1,5\\,\\mathrm{t}$ se deplasează cu viteza constantă $v = 20\\,\\mathrm{m/s}$ pe o distanță $d = 1\\,\\mathrm{km}$. Puterea motorului în timpul acestei deplasări este $P = 20\\,\\mathrm{kW}$, iar forța medie de rezistență la înaintarea este constantă.\n\na. Calculați energia cinetică a automobilului.\nb. Calculați valoarea forței de tracțiune dezvoltată de motorul automobilului.\nc. Determinați lucrul mecanic efectuat de forța de rezistență.\nd. După parcurgerea distanței $d = 1\\,\\mathrm{km}$ acțiunea motorului încetează. Forța de rezistență ce acționează asupra automobilului are valoarea $F_r = 1\\,\\mathrm{kN}$. Calculați distanța parcursă de automobil până la oprire, măsurată din momentul opririi motorului.",
   "formule": [],
@@ -37,6 +35,7 @@
     "variant": 1,
     "type": "tehnologic",
     "subjectArea": null,
-    "subjectNumber": 3
+    "subjectNumber": 3,
+    "session": "bac"
   }
 }

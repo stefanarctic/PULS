@@ -2,8 +2,6 @@
   "titlu": "Problema II - Mecanică - Bac 2024 Var 3",
   "descriere": "Problema de bacalaureat - Subiectul II din Mecanică, 2024, Varianta 3, teoretic",
   "categorie": "Bac",
-  "varianta": "2024 Var 3",
-  "dificultate": "mediu",
   "punctajTotal": 15,
   "continut": "Sistemul din figura alăturată este format din două corpuri cu masele $m_1 = 3,0\\mathrm{kg}$ și $m_2 = 1,0\\mathrm{kg}$. Corpurile sunt legate printr-un fir inextensibil de masă neglijabilă, trecut peste scripetele S lipsit de frecare și de inerție. Asupra corpului de masă $m_1$ acționează forța $F = 20\\mathrm{N}$ care formează cu orizontală unghiul $\\alpha \\cong 37^\\circ$ (sin $\\alpha = 0,6$). Coeficientul de frecare la alunecare dintre corpul de masă $m_1$ și suprafața orizontală este $\\mu = 0,20$.\n\na. Reprezentați, pe foaia de examen, toate forțele care acționează asupra corpului de masă $m_1$.\nb. Calculați valoarea reacțiunii normale care acționează asupra corpului de masă $m_1$.\nc. Calculați valoarea accelerației sistemului de corpuri.\nd. Determinați valoarea forței cu care firul apasă pe scripete.",
   "formule": [],
@@ -40,6 +38,7 @@
     "type": "teoretic",
     "subjectArea": "Mecanică",
     "subjectCode": "A",
-    "subjectNumber": 2
+    "subjectNumber": 2,
+    "session": "bac"
   }
 }

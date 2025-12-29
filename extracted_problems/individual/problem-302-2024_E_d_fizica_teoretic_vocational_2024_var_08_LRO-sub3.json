@@ -2,8 +2,6 @@
   "titlu": "Problema III - Optică - Bac 2024 Var 8",
   "descriere": "Problema de bacalaureat - Subiectul III din Optică, 2024, Varianta 8, teoretic",
   "categorie": "Bac",
-  "varianta": "2024 Var 8",
-  "dificultate": "mediu",
   "punctajTotal": 15,
   "continut": "Într-un experiment de interferență se utilizează un dispozitiv Young plasat în aer care are distanța dintre fante $2\\ell = 1,0 \\, \\text{mm}$ și este iluminat cu radiație monocromatică cu lungimea de undă $\\lambda = 0,60 \\, \\mu \\text{m}$. Sursa de lumină monocromatică este situată pe axa de simetrie a dispozitivului. Distanța dintre maximele de ordinul 2 situate de-o parte și de alta a maximului central este $\\Delta x = 6,0 \\, \\text{mm}$.\n\na. Calculați frecvența radiației luminoase utilizate.\nb. Calculați distanța de la planul fantelor la ecranul pe care se formează figura de interferență.\nc. Calculați diferența de drum între undele care formează pe ecran maximul de ordinul $k = 3$.\nd. În calea fasciculului provenit de la o fantă se introduce o peliculă transparentă, cu fețe plane și paralele, cu grosimea $e = 20 \\, \\mu \\text{m}$ și cu indicele de refracție $n = 1,5$. Calculați deplasarea figurii de interferență produsă de introducerea peliculei transparente.",
   "formule": [],
@@ -38,6 +36,7 @@
     "type": "teoretic",
     "subjectArea": "Optică",
     "subjectCode": "D",
-    "subjectNumber": 3
+    "subjectNumber": 3,
+    "session": "bac"
   }
 }

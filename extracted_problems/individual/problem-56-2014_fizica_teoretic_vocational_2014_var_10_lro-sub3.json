@@ -2,8 +2,6 @@
   "titlu": "Problema III - Mecanică - Bac 2014 Var 10",
   "descriere": "Problema de bacalaureat - Subiectul III din Mecanică, 2014, Varianta 10, teoretic",
   "categorie": "Bac",
-  "varianta": "2014 Var 10",
-  "dificultate": "mediu",
   "punctajTotal": 15,
   "continut": "Un corp de masă $m = 150 \\, \\text{g}$, considerat punctiform, este lansat, de la înălțimea $h = 1,8 \\, \\text{m}$ față de suprafața pământului, vertical în sus, cu viteza inițială $v_0 = 8 \\, \\text{m/s}$. Frecarea cu aerul se consideră neglijabilă, iar energia potențială gravitațională se consideră nulă la suprafața pământului.\n\na. Calculați energia mecanică a corpului în momentul lansării acestuia.\nb. Determinați lucrul mecanic efectuat de greutate din momentul lansării corpului până în momentul în care acesta atinge înălțimea maximă.\nc. Determinați modulul variației impulsului mecanic al corpului între momentul lansării și momentul în care acesta atinge pământul.\nd. În urma impactului cu solul corpul se oprește, fără să se mai desprindă de pământ. Timpul scurs din momentul în care corpul atinge pământul până la oprirea corpului este $\\Delta t = 15 \\, \\text{ms}$. Determinați valoarea forței medii care acționează asupra corpului în intervalul de timp $\\Delta t$.",
   "formule": [],
@@ -38,6 +36,7 @@
     "type": "teoretic",
     "subjectArea": "Mecanică",
     "subjectCode": "A",
-    "subjectNumber": 3
+    "subjectNumber": 3,
+    "session": "bac"
   }
 }

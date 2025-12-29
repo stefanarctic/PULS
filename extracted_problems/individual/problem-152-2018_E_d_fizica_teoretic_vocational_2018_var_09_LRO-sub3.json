@@ -2,8 +2,6 @@
   "titlu": "Problema III - Mecanică - Bac 2018 Var 9",
   "descriere": "Problema de bacalaureat - Subiectul III din Mecanică, 2018, Varianta 9, teoretic",
   "categorie": "Bac",
-  "varianta": "2018 Var 9",
-  "dificultate": "mediu",
   "punctajTotal": 15,
   "continut": "Un corp de masă $m = 0,2 \\, \\text{kg}$ este aruncat vertical, de jos în sus, de la înălțimea $h = 16 \\, \\text{m}$ față de sol, cu viteza inițială $v_0 = 4 \\, \\text{m/s}$. Se neglijează interacțiunea cu aerul. Considerând că energia potențială gravitațională este nulă la nivelul solului, calculați:\n\na. energia mecanică inițială a corpului;\nb. lucrul mecanic efectuat de greutatea corpului din momentul aruncării lui și până la atingerea solului;\nc. înălțimea maximă, măsurată față de sol, la care ajunge corpul;\nd. valoarea impulsului mecanic al corpului la atingerea solului.",
   "formule": [],
@@ -38,6 +36,7 @@
     "type": "teoretic",
     "subjectArea": "Mecanică",
     "subjectCode": "A",
-    "subjectNumber": 3
+    "subjectNumber": 3,
+    "session": "bac"
   }
 }

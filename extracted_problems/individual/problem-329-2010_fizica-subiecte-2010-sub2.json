@@ -2,8 +2,6 @@
   "titlu": "Problema II - Optică - Bac 2010",
   "descriere": "Problema de bacalaureat - Subiectul II din Optică, 2010",
   "categorie": "Bac",
-  "varianta": "2010",
-  "dificultate": "mediu",
   "punctajTotal": 15,
   "continut": "Pentru determinarea experimentală a distanței focale a unei lentile divergente se realizează un sistem alipit format din lentila divergentă și o lentilă convergentă având distanța focală $f_2 = 8$ cm. Sistemul astfel format se așază pe un banc optic. Se constată că pentru a obține o imagine clară a obiectului real situat pe axa optică la distanța $d_1 = 18$ cm în fața sistemului de lentile, ecranul trebuie plasat la distanța $d_2 = 36$ cm față de lentile. Determinați:\na. convergența echivalentă a sistemului de lentile alipite;\nb. mărirea liniară transversală dată de sistemul de lentile pentru obiectul considerat;\nc. distanța focală a lentilei divergente.\nd. Realizați un desen în care să evidențiați construcția imaginii printr-o lentilă divergentă, pentru un obiect situat între focarul imagine și lentilă.",
   "formule": [],
@@ -38,6 +36,7 @@
     "type": null,
     "subjectArea": "Optică",
     "subjectCode": "D",
-    "subjectNumber": 2
+    "subjectNumber": 2,
+    "session": "bac"
   }
 }

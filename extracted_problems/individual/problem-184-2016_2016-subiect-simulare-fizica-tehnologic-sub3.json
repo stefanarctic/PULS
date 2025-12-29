@@ -2,8 +2,6 @@
   "titlu": "Problema III - Fizică - Bac 2016",
   "descriere": "Problema de bacalaureat - Subiectul III din Fizică, 2016, tehnologic",
   "categorie": "Bac",
-  "varianta": "2016",
-  "dificultate": "mediu",
   "punctajTotal": 15,
   "continut": "Un autoturism cu masa $m = 1 \\, \\text{t}$ se deplasează cu viteza constantă $v = 54 \\, \\text{km/h}$ pe o șosea orizontală, motorul dezvoltând o putere constantă $P = 15 \\, \\text{kW}$. La un moment dat motorul se oprește și autoturismul continuă să se deplaseze fără a frâna, până la oprire. Se consideră că forțele de rezistență la înaintarea autoturismului sunt constante și au aceeași valoare atât înainte cât și după oprirea motorului. Determinați:\n\na. energia cinetică a autoturismului înaintea opririi motorului;\nb. valoarea forței de tracțiune dezvoltată de motor în timpul deplasării cu viteza constantă;\nc. lucrul mecanic efectuat de forțele de rezistență la înaintare din momentul opririi motorului și până la oprirea autoturismului;\nd. distanța parcursă de autoturism de la oprirea motorului și până la oprirea autoturismului.",
   "formule": [],
@@ -37,6 +35,7 @@
     "variant": null,
     "type": "tehnologic",
     "subjectArea": null,
-    "subjectNumber": 3
+    "subjectNumber": 3,
+    "session": "simulare"
   }
 }

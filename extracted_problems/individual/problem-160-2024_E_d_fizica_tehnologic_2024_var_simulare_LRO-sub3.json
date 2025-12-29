@@ -2,8 +2,6 @@
   "titlu": "Problema III - Fizică - Bac 2024",
   "descriere": "Problema de bacalaureat - Subiectul III din Fizică, 2024, tehnologic",
   "categorie": "Bac",
-  "varianta": "2024",
-  "dificultate": "mediu",
   "punctajTotal": 15,
   "continut": "O săniuță cu masă $m = 5\\mathrm{kg}$ este lăsată să alunece liber, pornind din repaus, din vârful unui plan înclinat, de la înălțimea $h = 20\\mathrm{m}$ față de baza acestuia. Unghiul dintre suprafața planului înclinat și suprafața orizontală este $\\alpha = 30^{\\circ}$. Săniuța ajunge la baza planului înclinat cu viteza $\\nu = 16\\mathrm{m/s}$. Se consideră că energia potențială gravitațională este nulă la baza planului înclinat. Determinați:\n\na. energia mecanică a săniuței în starea inițială;\nb. variația energiei cinetice a săniuței în timpul coborârii din vârful planului înclinat până la baza acestuia;\nc. lucrul mecanic efectuat de forța de frecare care acționează asupra săniuței, la coborâre;\nd. coeficientul de frecare la alunecare dintre săniuță și suprafața planului înclinat.",
   "formule": [],
@@ -37,6 +35,7 @@
     "variant": null,
     "type": "tehnologic",
     "subjectArea": null,
-    "subjectNumber": 3
+    "subjectNumber": 3,
+    "session": "simulare"
   }
 }

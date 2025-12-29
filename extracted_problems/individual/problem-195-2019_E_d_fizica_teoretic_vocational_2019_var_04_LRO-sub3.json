@@ -2,8 +2,6 @@
   "titlu": "Problema III - Termodinamică - Bac 2019 Var 4",
   "descriere": "Problema de bacalaureat - Subiectul III din Termodinamică, 2019, Varianta 4, teoretic",
   "categorie": "Bac",
-  "varianta": "2019 Var 4",
-  "dificultate": "mediu",
   "punctajTotal": 15,
   "continut": "O cantitate constantă de gaz ideal monoatomic $(C_{\\nu} = 1,5R)$, aflată inițial la presiunea $p_1 = 10^5 \\mathrm{N} \\cdot \\mathrm{m}^{-2}$ și volumul $V_1 = 2L$, efectuează următoarea succesiune de transformări: o încălzire 1-2 la volum constant până la $T_2 = 2T_1$, o destindere 2-3 la presiune constantă până la $V_3 = 2V_1$ și o transformare 3-1 în care presiunea depinde liniar de volum $p = aV$ ($a = \\text{constant}$) până în starea inițială. Determinați:\n\na. variația energiei interne în transformarea 1-2;\nb. căldura schimbată de gaz cu mediul exterior în transformarea 2-3;\nc. lucrul mecanic schimbat de gaz cu mediul exterior în transformarea 3-1;\nd. randamentul unui motor termic care ar funcționa după un ciclu Carnot între temperaturile extreme atinse de gaz în decursul transformării ciclice.",
   "formule": [],
@@ -38,6 +36,7 @@
     "type": "teoretic",
     "subjectArea": "Termodinamică",
     "subjectCode": "B",
-    "subjectNumber": 3
+    "subjectNumber": 3,
+    "session": "bac"
   }
 }

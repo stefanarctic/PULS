@@ -2,8 +2,6 @@
   "titlu": "Problema II - Mecanică - Bac 2011 Var 9",
   "descriere": "Problema de bacalaureat - Subiectul II din Mecanică, 2011, Varianta 9",
   "categorie": "Bac",
-  "varianta": "2011 Var 9",
-  "dificultate": "mediu",
   "punctajTotal": 15,
   "continut": "O locomotivă cu masa $M = 40\\,\\mathrm{t}$ tractează, pe o cale ferată rectilinie orizontală, trei vagoane de masă $m = 20\\,\\mathrm{t}$ fiecare. Forța de rezistență la înaintare care acționează asupra fiecărui vagon este de 2000 N, iar forța de rezistență la înaintare care acționează asupra locomotivei este de 5000 N. Aceste forțe de rezistență sunt considerate constante pe tot parcursul deplasării.\n\na. Determinați valoarea forței de tracțiune dezvoltate de motorul locomotivei pentru deplasarea trenului cu viteză constantă.\nb. Pe o anumită porțiune a traseului, forța de tracțiune dezvoltată de motorul locomotivei are valoarea de 46 kN. Calculați accelerația trenului pe această porțiune.\nc. Determinați valoarea forței de tensiune dezvoltate în cuplajul dintre ultimele două vagoane în situația specificată la punctul b.\nd. În momentul în care viteza trenului este $\\nu$, mecanicul oprește motorul și lasă trenul să se deplaseze liber. Trenul se oprește după un interval de timp $\\Delta t = 100\\,\\mathrm{s}$. Calculați valoarea vitezei $\\nu$.",
   "formule": [],
@@ -38,6 +36,7 @@
     "type": null,
     "subjectArea": "Mecanică",
     "subjectCode": "A",
-    "subjectNumber": 2
+    "subjectNumber": 2,
+    "session": "bac"
   }
 }

@@ -2,8 +2,6 @@
   "titlu": "Problema II - Fizică - Bac 2020 Var 6",
   "descriere": "Problema de bacalaureat - Subiectul II din Fizică, 2020, Varianta 6, teoretic",
   "categorie": "Bac",
-  "varianta": "2020 Var 6",
-  "dificultate": "mediu",
   "punctajTotal": 15,
   "continut": "Un cilindru orizontal, închis la ambele capete, de lungime $L = 1,2\\mathrm{m}$ și secțiune $S = 35\\mathrm{cm}^2$, este împărțit în două compartimente cu ajutorul unui piston subțire, termoizolator care se poate deplasa fără frecare. Un compartiment, de lungime $L_1 = 48\\mathrm{cm}$, conține azot $\\left(\\mu_{N_0} = 28\\mathrm{g/mol}\\right)$, iar în cel de-al doilea compartiment se află oxigen $\\left(\\mu_{O_2} = 32\\mathrm{g/mol}\\right)$. Cele două gaze, considerate ideale, au căldura molară izocoră $C_V = 2,5R$. Inițial cele două gaze se află la temperatura $t = 27^{\\circ}C$ și la presiunea $p = 166,2\\mathrm{kPa}$.\n\na. Determinați raportul dintre cantitatea de azot și cea de oxigen din cilindru.\nb. Calculați numărul de molecule de oxigen din cilindru.\nc. Se micșorează temperatura unui compartiment cu $\\Delta T$ și în același timp se mărește temperatura celuilalt compartiment cu $\\Delta T$, până când pistonul ajunge în echilibru mecanic la mijlocul cilindrului. Aflați variația $\\Delta T$ a temperaturii azotului.\nd. Calculați raportul dintre energia internă a azotului și energia internă a oxigenului în momentul în care pistonul se află în echilibru mecanic la mijlocul cilindrului.",
   "formule": [],
@@ -37,6 +35,7 @@
     "variant": 6,
     "type": "teoretic",
     "subjectArea": null,
-    "subjectNumber": 2
+    "subjectNumber": 2,
+    "session": "bac"
   }
 }

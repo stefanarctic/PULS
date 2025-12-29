@@ -2,8 +2,6 @@
   "titlu": "Problema III - Fizică - Bac 2012 Var 1",
   "descriere": "Problema de bacalaureat - Subiectul III din Fizică, 2012, Varianta 1",
   "categorie": "Bac",
-  "varianta": "2012 Var 1",
-  "dificultate": "mediu",
   "punctajTotal": 15,
   "continut": "Un corp de mici dimensiuni, cu masa $m = 1,0\\mathrm{kg}$, aflat în vârful A al unui plan înclinat (vezi figura alăturată), alunecă fără viteză inițială spre baza planului. Se cunosc: diferența de nivel dintre punctele A și B, $h_1 = 2,0\\mathrm{m}$, coeficientul de frecare la alunecare dintre corp și suprafața planului înclinat $\\mu = 0,10$ și unghiul de înclinare a suprafeței planului față de orizontală $\\alpha = 45^\\circ$. Determinați:\n\na. lucrul mecanic efectuat de forța de frecare pe distanța AB;\nb. viteza corpului în momentul în care acesta trece prin punctul B;\nc. înălțimea $h_2$ a planului înclinat, dacă viteza corpului la baza planului are valoarea $\\nu = 7,5\\mathrm{m/s}$;\nd. distanța parcursă de corp până la oprirea sa pe planul orizontal cu care se continuă planul înclinat, dacă coeficientul de frecare la alunecare pe planul orizontal este $\\mu_1 = 0,25$. Trecerea pe porțiunea orizontală se face lin, fără modificarea modulului vitezei.\n\n![img-1.jpeg](img-1.jpeg)",
   "formule": [],
@@ -39,6 +37,7 @@
     "variant": 1,
     "type": null,
     "subjectArea": null,
-    "subjectNumber": 3
+    "subjectNumber": 3,
+    "session": "bac"
   }
 }

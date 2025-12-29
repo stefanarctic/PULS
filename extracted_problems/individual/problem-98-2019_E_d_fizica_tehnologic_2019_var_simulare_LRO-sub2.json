@@ -2,8 +2,6 @@
   "titlu": "Problema II - Fizică - Bac 2019",
   "descriere": "Problema de bacalaureat - Subiectul II din Fizică, 2019, tehnologic",
   "categorie": "Bac",
-  "varianta": "2019",
-  "dificultate": "mediu",
   "punctajTotal": 15,
   "continut": "În figura alăturată, corpurile A, B, și C au masele $m_A = 6 \\, \\text{kg}$, $m_B = 2 \\, \\text{kg}$, respectiv $m_C = 2 \\, \\text{kg}$. Firele AB și BC sunt inextensibile și de masă neglijabilă, iar scriptele este lipsit de frecări și de inerție. Coeficientul de frecare la alunecare dintre corpul A și suprafața orizontală este egal cu coeficientul de frecare la alunecare dintre corpul B și suprafața orizontală. În aceste condiții sistemul se deplasează uniform. Calculați:\n\n![img-1.jpeg](img-1.jpeg)\n\na. valoarea tensiunii în firul care leagă corpurile B și C;\nb. coeficientul de frecare la alunecare dintre corpuri și suprafața orizontală;\nc. accelerația sistemului format din corpurile B și C, dacă se taie firul de legătură dintre corpurile A și B;\nd. forța de apăsare în axul scripetelui, în condițiile de la punctul c..",
   "formule": [],
@@ -39,6 +37,7 @@
     "variant": null,
     "type": "tehnologic",
     "subjectArea": null,
-    "subjectNumber": 2
+    "subjectNumber": 2,
+    "session": "simulare"
   }
 }

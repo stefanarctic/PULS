@@ -2,8 +2,6 @@
   "titlu": "Problema III - Fizică - Bac 2018",
   "descriere": "Problema de bacalaureat - Subiectul III din Fizică, 2018, tehnologic",
   "categorie": "Bac",
-  "varianta": "2018",
-  "dificultate": "mediu",
   "punctajTotal": 15,
   "continut": "Un corp, considerat punctiform, este lansat vertical în sus de la nivelul solului. Forța de frecare cu aerul este neglijabilă. În graficul din figura alăturată este reprezentată dependența energiei potențiale a corpului de înălțimea la care se află, din momentul lansării și până la atingerea înălțimii maxime. Determinați:\n\na. înălțimea maximă atinsă de corp, exprimată în unități S.I.;\nb. masa corpului;\nc. lucrul mecanic efectuat de greutate din momentul lansării corpului până în momentul în care acesta atinge înălțimea maximă;\nd. viteza cu care a fost lansat corpul.\n\n![img-2.jpeg](img-2.jpeg)",
   "formule": [],
@@ -39,6 +37,7 @@
     "variant": null,
     "type": "tehnologic",
     "subjectArea": null,
-    "subjectNumber": 3
+    "subjectNumber": 3,
+    "session": "simulare"
   }
 }

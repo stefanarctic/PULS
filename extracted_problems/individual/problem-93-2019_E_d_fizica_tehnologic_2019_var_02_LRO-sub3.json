@@ -2,8 +2,6 @@
   "titlu": "Problema III - Fizică - Bac 2019 Var 2",
   "descriere": "Problema de bacalaureat - Subiectul III din Fizică, 2019, Varianta 2, tehnologic",
   "categorie": "Bac",
-  "varianta": "2019 Var 2",
-  "dificultate": "mediu",
   "punctajTotal": 15,
   "continut": "Un corp având masa $m = 0,5\\,\\mathrm{kg}$ este aruncat vertical în sus, cu viteza inițială $v_0 = 4\\,\\mathrm{m/s}$, de pe un pod situat la înălțimea $H = 40\\,\\mathrm{m}$ față de sol. Interacțiunea corpului cu aerul este neglijabilă. Considerând energia potențială gravitațională nulă la nivelul solului, calculați:\n\na. energia potențială gravitațională a corpului în starea inițială;\nb. energia cinetică a corpului în momentul în care are viteza $v_0 = 4\\,\\mathrm{m/s}$;\nc. înălțimea maximă, măsurată față de nivelul podului, la care ajunge corpul;\nd. lucrul mecanic efectuat de greutatea corpului în timpul mișcării acestuia de la nivelul podului până la atingerea solului.\n\n![img-1.jpeg](img-1.jpeg)",
   "formule": [],
@@ -39,6 +37,7 @@
     "variant": 2,
     "type": "tehnologic",
     "subjectArea": null,
-    "subjectNumber": 3
+    "subjectNumber": 3,
+    "session": "bac"
   }
 }

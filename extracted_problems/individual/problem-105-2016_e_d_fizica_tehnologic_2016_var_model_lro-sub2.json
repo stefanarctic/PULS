@@ -2,8 +2,6 @@
   "titlu": "Problema II - Termodinamică - Bac 2016",
   "descriere": "Problema de bacalaureat - Subiectul II din Termodinamică, 2016, tehnologic",
   "categorie": "Bac",
-  "varianta": "2016",
-  "dificultate": "mediu",
   "punctajTotal": 15,
   "continut": "Într-un cilindru orizontal cu piston mobil este închisă o masă $m = 4,2\\mathrm{g}$ de gaz ideal diatomic $(\\mu = 28\\mathrm{g/mol}, C_V = 2,5R)$. Inițial, în starea 1, gazul se află la presiunea $p_1 = 10^5\\mathrm{Pa}$ și ocupă volumul $V_1 = 5L$. Gazul este răcit la presiune constantă până în starea 2, în care volumul său este $V_2 = 4L$. Se blochează pistonul, iar gazul este încălzit până în starea 3, în care temperatura ajunge la valoarea inițială. Determinați:\n\na. numărul de molecule de gaz din unitatea de volum în starea 1;\nb. variația densității gazului în transformarea 1-2;\nc. lucrul mecanic schimbat de gaz cu exteriorul în transformarea 1-2-3;\nd. căldura primită de gaz din exterior în transformarea 2-3.",
   "formule": [],
@@ -38,6 +36,7 @@
     "type": "tehnologic",
     "subjectArea": "Termodinamică",
     "subjectCode": "B",
-    "subjectNumber": 2
+    "subjectNumber": 2,
+    "session": "model"
   }
 }

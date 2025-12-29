@@ -2,8 +2,6 @@
   "titlu": "Problema II - Mecanică - Bac 2010",
   "descriere": "Problema de bacalaureat - Subiectul II din Mecanică, 2010",
   "categorie": "Bac",
-  "varianta": "2010",
-  "dificultate": "mediu",
   "punctajTotal": 15,
   "continut": "Performanțele realizate în probele de schi alpin sunt influențate și de caracteristicile tehnice ale echipamentului folosit. Pentru alegerea materialelor corespunzătoare este necesară măsurarea coeficientului de frecare la alunecare. În acest scop se folosește un dispozitiv fixat pe schiuri, care înregistrează atât valorile forțelor de tensiune din cablurile cu care se acționează asupra sistemului (dispozitiv și schiuri), cât și accelerația sistemului. Schiurile se află pe suprafața orizontală a zăpezii, ca în figura alăturată. În tabel este prezentat unul dintre seturile de date înregistrate. Masa totală a sistemului este $M = 50\\mathrm{kg}$, iar deplasarea are loc în sensul forței $\\vec{T}_1$.\n\na. Reprezentați forțele care acționează asupra sistemului (dispozitiv și schiuri).\n\nb. Determinați valoarea coeficientului de frecare la alunecare între schiuri și zăpadă.\n\nc. Calculați valoarea vitezei atinse după $\\Delta t = 2\\mathrm{s}$ de la plecarea din repaus, presupunând că accelerația se menține constantă la valoarea indicată în tabel.\n\n|  T1 (N) | T2 (N) | a[m/s²]  |\n| --- | --- | --- |\n|  165 | 120 | 0,50  |\n\nd. Calculați viteza pe care ar atinge-o pe aceste schiuri un sportiv care coboară o pantă acoperită de zăpadă, înclinată cu $\\alpha = 30^\\circ$ față de orizontală, după parcurgerea unei diferențe de nivel $h = 30\\mathrm{m}$ față de punctul din care a plecat din repaus. Coeficientul de frecare la alunecarea pe pantă este $\\mu = 0,04$.",
   "formule": [],
@@ -40,6 +38,7 @@
     "type": null,
     "subjectArea": "Mecanică",
     "subjectCode": "A",
-    "subjectNumber": 2
+    "subjectNumber": 2,
+    "session": "bac"
   }
 }

@@ -2,8 +2,6 @@
   "titlu": "Problema II - Mecanică - Bac 2017 Var 4",
   "descriere": "Problema de bacalaureat - Subiectul II din Mecanică, 2017, Varianta 4, tehnologic",
   "categorie": "Bac",
-  "varianta": "2017 Var 4",
-  "dificultate": "mediu",
   "punctajTotal": 15,
   "continut": "O ladă cu masa $m = 2,0\\,\\mathrm{kg}$ este tractată cu viteză constantă pe o suprafață orizontală. Forța de tracțiune este orizontală și are valoarea $F = 10\\,\\mathrm{N}$.\n\na. Reprezentați forțele ce acționează asupra corpului.\nb. Determinați valoarea forței de frecare la alunecare $\\bar{F}_t$ dintre corp și suprafața orizontală.\nc. Calculați valoarea coeficientului de frecare la alunecare dintre corp și suprafața orizontală.\nd. Presupunem că mișcarea lăzii are loc în continuare pe aceeași suprafață orizontală, iar forța de tracțiune rămâne orizontală, dar are modulul $F' = 15\\,\\mathrm{N}$. Determinați accelerația lăzii în acest caz.",
   "formule": [],
@@ -38,6 +36,7 @@
     "type": "tehnologic",
     "subjectArea": "Mecanică",
     "subjectCode": "A",
-    "subjectNumber": 2
+    "subjectNumber": 2,
+    "session": "bac"
   }
 }

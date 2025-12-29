@@ -2,8 +2,6 @@
   "titlu": "Problema III - Fizică - Bac 2021 Var 4",
   "descriere": "Problema de bacalaureat - Subiectul III din Fizică, 2021, Varianta 4, teoretic",
   "categorie": "Bac",
-  "varianta": "2021 Var 4",
-  "dificultate": "mediu",
   "punctajTotal": 15,
   "continut": "Un corp având masa $m = 2\\,\\mathrm{kg}$ cade, din repaus, de la înălțimea $H = 50\\,\\mathrm{m}$ față de sol. După ce corpul parcurge în cadere liberă distanța $d = 45\\,\\mathrm{m}$, pe ultimii $5\\,\\mathrm{m}$, asupra corpului acționează o forță constantă $F$, orientată vertical în sus, sub acțiunea căreia corpul se oprește în momentul atingerii solului. Pe toată durata mișcării, interacțiunea cu aerul se consideră neglijabilă. Energia potențială gravitațională se consideră nulă la nivelul solului. Determinați:\na. energia potențială gravitațională în momentul în care corpul se află la înălțimea $H = 50\\,\\mathrm{m}$;\nb. lucrul mecanic efectuat de greutatea corpului în timpul căderii libere a acestuia pe distanța $d = 45\\,\\mathrm{m}$;\nc. valoarea impulsului corpului în momentul în care începe să acționeze forța constantă $F$;\nd. valoarea forței constante $F$.",
   "formule": [],
@@ -37,6 +35,7 @@
     "variant": 4,
     "type": "teoretic",
     "subjectArea": null,
-    "subjectNumber": 3
+    "subjectNumber": 3,
+    "session": "bac"
   }
 }

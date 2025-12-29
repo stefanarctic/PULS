@@ -2,8 +2,6 @@
   "titlu": "Problema III - Optică - Bac 2020 Var 6",
   "descriere": "Problema de bacalaureat - Subiectul III din Optică, 2020, Varianta 6, tehnologic",
   "categorie": "Bac",
-  "varianta": "2020 Var 6",
-  "dificultate": "mediu",
   "punctajTotal": 15,
   "continut": "O rază de lumină este incidentă, sub unghiul de incidență $i = 45^\\circ$, pe suprafața liberă a lichidului dintr-un vas. În punctul de incidență are loc atât fenomenul de reflexie, cât și cel de refracție. Raza refractată ajunge într-un punct A, aflat pe fundul vasului. Indicele de refracție al lichidului din vas este $n = \\sqrt{2}$. Se consideră indicele de refracție al aerului $n_0 = 1$.\n\na. Determinați valoarea vitezei de propagare a luminii în lichid.\nb. Realizați un desen în care să ilustrați mersul razelor de lumină prin aer și prin lichid, până la punctul A.\nc. Calculați unghiul format de rază incidentă cu raza reflectată pe suprafața lichidului.\nd. Calculați unghiul de refracție al razei de lumină.",
   "formule": [],
@@ -38,6 +36,7 @@
     "type": "tehnologic",
     "subjectArea": "Optică",
     "subjectCode": "D",
-    "subjectNumber": 3
+    "subjectNumber": 3,
+    "session": "bac"
   }
 }

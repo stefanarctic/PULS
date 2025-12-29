@@ -2,8 +2,6 @@
   "titlu": "Problema II - Termodinamică - Bac 2014 Var 4",
   "descriere": "Problema de bacalaureat - Subiectul II din Termodinamică, 2014, Varianta 4, tehnologic",
   "categorie": "Bac",
-  "varianta": "2014 Var 4",
-  "dificultate": "mediu",
   "punctajTotal": 15,
   "continut": "O butelie cu volumul $V = 41,55 \\mathrm{dm}^3$ conține o masă $m_1 = 100 \\mathrm{g}$ de oxigen ($\\mu = 32 \\mathrm{~g/mol}$) la temperatura $t_1 = 15^{\\circ} \\mathrm{C}$. Căldura molară izocoră a oxigenului este $C_V = 2,5 R$.\n\na. Calculați presiunea oxigenului din butelie.\nb. Oxigenul din butelie este încălzit astfel încât presiunea sa a crescut cu $\\Delta p = 0,4 \\cdot 10^{5} \\mathrm{Pa}$. Determinați temperatura oxigenului după încălzire.\nc. Determinați variația energiei interne a oxigenului în urma creșterii temperaturii sale.\nd. Se deschide robinetul buteliei și se consumă oxigen până când temperatura gazului devine egală cu $t_1 = 15^{\\circ} \\mathrm{C}$, iar presiunea gazului scade până la valoarea $p_3 = 10^{5} \\mathrm{Pa}$. Determinați masa $\\Delta m$ de oxigen care a fost consumată.",
   "formule": [],
@@ -38,6 +36,7 @@
     "type": "tehnologic",
     "subjectArea": "Termodinamică",
     "subjectCode": "B",
-    "subjectNumber": 2
+    "subjectNumber": 2,
+    "session": "bac"
   }
 }

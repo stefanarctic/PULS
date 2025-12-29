@@ -2,8 +2,6 @@
   "titlu": "Problema II - Optică - Bac 2024",
   "descriere": "Problema de bacalaureat - Subiectul II din Optică, 2024, tehnologic",
   "categorie": "Bac",
-  "varianta": "2024",
-  "dificultate": "mediu",
   "punctajTotal": 15,
   "continut": "Un obiect liniar este așezat perpendicular pe axa optică principală a unei lentile subțiri convergente, astfel încât pe un ecran se formează imaginea clară și mărită a obiectului. Convergența lentilei este $C = \\frac{20}{3} \\, \\text{m}^{-1}$, iar distanța de la lentilă la imagine este de 3 ori mai mare decât distanța de la lentilă la obiect.\n\na. Realizați un desen în care să evidențiați construcția imaginii obiectului prin lentilă.\nb. Calculați distanța focală a lentilei.\nc. Determinați distanța de la obiect la lentilă.\nd. Imaginea are înălțimea de 6 cm. Calculați înălțimea obiectului.",
   "formule": [],
@@ -38,6 +36,7 @@
     "type": "tehnologic",
     "subjectArea": "Optică",
     "subjectCode": "D",
-    "subjectNumber": 2
+    "subjectNumber": 2,
+    "session": "simulare"
   }
 }

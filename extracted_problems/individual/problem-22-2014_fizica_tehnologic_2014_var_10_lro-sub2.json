@@ -2,8 +2,6 @@
   "titlu": "Problema II - Fizică - Bac 2014 Var 10",
   "descriere": "Problema de bacalaureat - Subiectul II din Fizică, 2014, Varianta 10, tehnologic",
   "categorie": "Bac",
-  "varianta": "2014 Var 10",
-  "dificultate": "mediu",
   "punctajTotal": 15,
   "continut": "Un corp de masă $m = 600\\,\\mathrm{g}$ este atașat unui resort de constantă elastică $k = 1,5\\,\\mathrm{N/cm}$ și de masă neglijabilă. Sistemul astfel format este așezat pe un plan înclinat de unghi $\\alpha = 30^\\circ$. Se trage de capătul liber al resortului cu o forță de valoare $F = 4,5\\,\\mathrm{N}$, orientată paralel cu suprafața planului înclinat, astfel încât corpul urcă, cu viteză constantă, de-a lungul planului.\n\na. Reprezentați toate forțele care acționează asupra corpului în timpul deplasării acestuia pe planul înclinat.\nb. Determinați valoarea alungirii resortului în timpul deplasării corpului.\nc. Determinați valoarea forței de frecare dintre corp și planul înclinat.\nd. Calculați valoarea coeficientului de frecare la alunecare dintre corp și suprafața planului înclinat.",
   "formule": [],
@@ -37,6 +35,7 @@
     "variant": 10,
     "type": "tehnologic",
     "subjectArea": null,
-    "subjectNumber": 2
+    "subjectNumber": 2,
+    "session": "bac"
   }
 }

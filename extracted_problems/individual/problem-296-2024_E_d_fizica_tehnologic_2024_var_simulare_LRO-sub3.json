@@ -2,8 +2,6 @@
   "titlu": "Problema III - Optică - Bac 2024",
   "descriere": "Problema de bacalaureat - Subiectul III din Optică, 2024, tehnologic",
   "categorie": "Bac",
-  "varianta": "2024",
-  "dificultate": "mediu",
   "punctajTotal": 15,
   "continut": "O lamă din sticlă cu indicele de refracție $n_{st} \\cong 1,41 \\left(= \\sqrt{2} \\right)$ are fețe plane și paralele și este situată în aer $(n_a = 1)$. În punctul S se plasează o sursă punctiformă care emite lumină în toate direcțiile. O rază de lumină monocromatică SI se propagă ajungând pe suprafața de separare sticlă—aer sub unghiul de incidență $i = 30^\\circ$ (ca în figura alăturată). Lama are grosimea $h = 1,5 \\, \\text{cm}$.\n\na. Calculați viteza de propagare a luminii în sticlă.\nb. Determinați unghiul de refracție al razei de lumină pe fața superioară a lamei.\nc. Calculați distanța $SI$ parcursă de lumină.\nd. Calculați valoarea minimă a unghiului de incidență al unei raze pe fața superioară a lamei, astfel încât raza de lumină să nu poată ieși din lamă prin fața superioară.",
   "formule": [],
@@ -40,6 +38,7 @@
     "type": "tehnologic",
     "subjectArea": "Optică",
     "subjectCode": "D",
-    "subjectNumber": 3
+    "subjectNumber": 3,
+    "session": "simulare"
   }
 }

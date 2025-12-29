@@ -2,8 +2,6 @@
   "titlu": "Problema II - Optică - Bac 2010",
   "descriere": "Problema de bacalaureat - Subiectul II din Optică, 2010",
   "categorie": "Bac",
-  "varianta": "2010",
-  "dificultate": "mediu",
   "punctajTotal": 15,
   "continut": "O lentilă este așezată între un obiect luminos cu înălțimea $h_1 = 10\\,\\mathrm{mm}$ și un ecran. Se constată că dacă lentila este poziționată la distanța $d_1 = 30\\,\\mathrm{cm}$ față de obiect, pe ecran se obține o imagine răsturnată având înălțimea $h_2 = 20\\,\\mathrm{mm}$.\n\na. Calculați mărirea liniară transversală dată de lentilă în situația descrisă în problemă.\nb. Determinați distanța focală a lentilei.\nc. Realizați un desen în care să evidențiați construcția imaginii prin lentilă, pentru obiectul considerat, în situația descrisă de problemă.\nd. Lentila este deplasată între obiectul și ecranul aflate în poziții fixe. Se constată că există și o a doua poziție a lentilei pentru care pe ecran se obține o imagine clară. Calculați înălțimea imaginii obținute pe ecran în acest al doilea caz.",
   "formule": [],
@@ -38,6 +36,7 @@
     "type": null,
     "subjectArea": "Optică",
     "subjectCode": "D",
-    "subjectNumber": 2
+    "subjectNumber": 2,
+    "session": "bac"
   }
 }

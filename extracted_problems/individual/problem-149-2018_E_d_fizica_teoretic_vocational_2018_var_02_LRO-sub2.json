@@ -2,8 +2,6 @@
   "titlu": "Problema II - Mecanică - Bac 2018 Var 2",
   "descriere": "Problema de bacalaureat - Subiectul II din Mecanică, 2018, Varianta 2, teoretic",
   "categorie": "Bac",
-  "varianta": "2018 Var 2",
-  "dificultate": "mediu",
   "punctajTotal": 15,
   "continut": "Un corp cu masă $m = 1\\,\\mathrm{kg}$ se deplasează cu frecare, cu viteza constantă $v = 2\\,\\mathrm{m/s}$, pe o suprafață orizontală, sub acțiunea unei forțe orizontale $F = 2\\,\\mathrm{N}$. Ulterior corpul urcă pe un plan înclinat sub acțiunea unei forțe orizontale $F_1 = 20\\,\\mathrm{N}$, ca în figura alăturată. Planul înclinat formează unghiul $\\alpha = 45^\\circ$ cu suprafața orizontală, iar coeficientul de frecare la alunecare dintre corp și planul înclinat are valoarea $\\mu = 0,2$.\n\na. Determinați distanța parcursă de corp pe suprafața orizontală în timpul $\\Delta t = 0,25\\,\\mathrm{s}$.\nb. Calculați valoarea coeficientului de frecare la alunecare dintre corp și suprafața orizontală.\nc. Calculați valoarea accelerației corpului în timpul urcării pe planul înclinat sub acțiunea forței orizontale $\\vec{F}_1$.\nd. Determinați valoarea pe care ar trebui să o aibă forța orizontală $\\vec{F}_1$, astfel încât corpul să coboare cu viteză constantă pe planul înclinat.",
   "formule": [],
@@ -40,6 +38,7 @@
     "type": "teoretic",
     "subjectArea": "Mecanică",
     "subjectCode": "A",
-    "subjectNumber": 2
+    "subjectNumber": 2,
+    "session": "bac"
   }
 }

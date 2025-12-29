@@ -2,8 +2,6 @@
   "titlu": "Problema III - Fizică - Bac 2018",
   "descriere": "Problema de bacalaureat - Subiectul III din Fizică, 2018, teoretic",
   "categorie": "Bac",
-  "varianta": "2018",
-  "dificultate": "mediu",
   "punctajTotal": 15,
   "continut": "Un corp de masă $m = 0,8 \\, \\text{kg}$ este lansat vertical în sus de la nivelul solului. Forța de rezistență la înaintare datorată interacțiunii cu aerul se consideră constantă pe tot parcursul mișcării. În graficul din figura alăturată este reprezentată dependența pătratului vitezei corpului de înălțimea la care se află acesta până în momentul în care corpul atinge înălțimea maximă. Determinați:\n\n![img-2.jpeg](img-2.jpeg)\n\na. impulsul mecanic al corpului în momentul lansării;\nb. lucrul mecanic efectuat de greutate din momentul lansării corpului până în momentul în care acesta atinge înălțimea maximă;\nc. valoarea forței de rezistență la înaintare datorată interacțiunii cu aerul;\nd. timpul scurs din momentul lansării corpului până în momentul în care acesta atinge înălțimea maximă.",
   "formule": [],
@@ -39,6 +37,7 @@
     "variant": null,
     "type": "teoretic",
     "subjectArea": null,
-    "subjectNumber": 3
+    "subjectNumber": 3,
+    "session": "simulare"
   }
 }

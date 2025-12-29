@@ -2,8 +2,6 @@
   "titlu": "Problema III - Fizică - Bac 2016 Var 10",
   "descriere": "Problema de bacalaureat - Subiectul III din Fizică, 2016, Varianta 10, teoretic",
   "categorie": "Bac",
-  "varianta": "2016 Var 10",
-  "dificultate": "mediu",
   "punctajTotal": 15,
   "continut": "Un elev aflat într-un turn, la înălțimea $h = 20 \\, \\text{m}$ față de sol, aruncă vertical în sus, cu viteza $v_0 = 10 \\, \\text{m/s}$, un corp de dimensiuni mici, având masa $m = 0,2 \\, \\text{kg}$. Se neglijează interacțiunea corpului cu aerul, iar energia potențială gravitațională a sistemului corp-Pământ se consideră nulă la nivelul solului. Calculați:\n\na. energia cinetică a corpului în momentul aruncării acestuia;\n\nb. lucrul mecanic efectuat de greutatea corpului din momentul aruncării acestuia și până la atingerea solului;\n\nc. energia potențială gravitațională în momentul în care viteza corpului are valoarea $v_1 = 20 \\, \\text{m/s}$;\n\nd. variația impulsului corpului din momentul aruncării și până la atingerea vitezei $v_1$.",
   "formule": [],
@@ -37,6 +35,7 @@
     "variant": 10,
     "type": "teoretic",
     "subjectArea": null,
-    "subjectNumber": 3
+    "subjectNumber": 3,
+    "session": "bac"
   }
 }

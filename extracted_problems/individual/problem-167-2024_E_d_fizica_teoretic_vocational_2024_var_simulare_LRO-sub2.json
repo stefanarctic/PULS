@@ -2,8 +2,6 @@
   "titlu": "Problema II - Fizică - Bac 2024",
   "descriere": "Problema de bacalaureat - Subiectul II din Fizică, 2024, teoretic",
   "categorie": "Bac",
-  "varianta": "2024",
-  "dificultate": "mediu",
   "punctajTotal": 15,
   "continut": "Două corpuri de masă $m_1 = 1,0\\,\\mathrm{kg}$ și $m_2 = 2,0\\,\\mathrm{kg}$, aflate pe o suprafață orizontală, sunt legate între ele prin intermediul unui resort elastic de masă neglijabilă. Se trage de corpul de masă $m_1$ cu o forță $\\vec{F}$ a cărei direcție formează unghiul $\\alpha \\cong 37^\\circ$ (sin $\\alpha = 0,6$) cu orizontală, astfel încât ambele corpuri se deplasează cu accelerația constantă $a = 30\\,\\mathrm{cm/s^2}$. În aceste condiții deformarea resortului este $\\Delta \\ell = 20\\,\\mathrm{mm}$. Coeficientul de frecare la alunecare dintre cele două corpuri și suprafața orizontală este același, $\\mu = 0,20$.\n\na. Determinați valoarea constantei elastice a resortului.\nb. Calculați valoarea forței de tracțiune $\\vec{F}$.\nc. Calculați valoarea variației vitezei unui corp în $\\Delta t_1 = 4,0\\,\\mathrm{s}$ de deplasare cu accelerația constantă $a$.\nd. În momentul în care fiecare dintre cele două corpuri are viteza $v_0 = 1,2\\,\\mathrm{m/s}$, acțiunea forței $\\vec{F}$ încetează, iar corpurile continuă să înainteze pe suprafața orizontală cu frecare. După $\\Delta t = 0,30\\,\\mathrm{s}$ de la încetarea acțiunii forței $\\vec{F}$ viteza corpului de masă $m_1$ este $v_1 = 0,76\\,\\mathrm{m/s}$. Calculați viteza corpului de masă $m_2$ la acest moment de timp.",
   "formule": [],
@@ -37,6 +35,7 @@
     "variant": null,
     "type": "teoretic",
     "subjectArea": null,
-    "subjectNumber": 2
+    "subjectNumber": 2,
+    "session": "simulare"
   }
 }

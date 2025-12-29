@@ -2,8 +2,6 @@
   "titlu": "Problema II - Termodinamică - Bac 2012 Var 1",
   "descriere": "Problema de bacalaureat - Subiectul II din Termodinamică, 2012, Varianta 1",
   "categorie": "Bac",
-  "varianta": "2012 Var 1",
-  "dificultate": "mediu",
   "punctajTotal": 15,
   "continut": "Un vas cilindric orizontal, care are volumul $V = 6L$ și aria secțiunii transversale $S = 50\\mathrm{cm}^2$, este menținut permanent la o temperatură constantă $T = 300\\mathrm{K}$. Vasul este împărțit în două compartimente de volume egale cu ajutorul unui piston, inițial blocat. În compartimentul din stânga se află heliu ($\\mu_1 = 4\\mathrm{g/mol}$) la presiunea $p_1 = 16,62 \\cdot 10^5\\mathrm{Pa}$, iar în cel din dreapta de dioxid de sulf ($\\mu_2 = 64\\mathrm{g/mol}$) la $p_2 = 8,31 \\cdot 10^5\\mathrm{Pa}$. Gazele sunt considerate ideale.\n\na. Calculați masa de dioxid de sulf din vas.\nb. Calculați numărul de atomi de heliu din vas.\nc. Se deblochează pistonul dintre cele două compartimente. Calculați deplasarea pistonului până în momentul în care pistonul atinge din nou starea de echilibru știind că deplasarea lui are loc fără frecare.\nd. Pentru a readuce pistonul la mijlocul cilindrului se scoate o masă de gaz dintr-un compartiment. Precizați natura gazului scos și calculați masa de gaz scoasă.",
   "formule": [],
@@ -38,6 +36,7 @@
     "type": null,
     "subjectArea": "Termodinamică",
     "subjectCode": "B",
-    "subjectNumber": 2
+    "subjectNumber": 2,
+    "session": "bac"
   }
 }

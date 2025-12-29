@@ -2,8 +2,6 @@
   "titlu": "Problema II - Termodinamică - Bac 2016 Var 4",
   "descriere": "Problema de bacalaureat - Subiectul II din Termodinamică, 2016, Varianta 4, teoretic",
   "categorie": "Bac",
-  "varianta": "2016 Var 4",
-  "dificultate": "mediu",
   "punctajTotal": 15,
   "continut": "Într-un cilindru cu piston se găsește o masă $m = 160 \\mathrm{~g}$ de oxigen, considerat gaz ideal $\\left(\\mu_{O_2} = 32 \\cdot 10^{-3} \\mathrm{kg/mol}\\right)$. În starea inițială presiunea gazului este $p_1 = 8,31 \\cdot 10^4 \\mathrm{Pa}$, iar temperatura este $t_1 = 47^{\\circ} \\mathrm{C}$. Gazul este supus unei succesiuni de transformări:\n\n- transformarea $1 \\rightarrow 2$ în care temperatura rămâne constantă, iar presiunea devine $p_2 = 0,25 p_1$,\n- transformarea $2 \\rightarrow 3$ în care volumul gazului rămâne constant, iar $T_3 = 2T_1$.\n\na. Calculați numărul de molecule de oxigen.\nb. Determinați valoarea maximă a densității gazului în decursul celor două transformări.\nc. Calculați valoarea presiunii gazului în starea finală 3.\nd. Considerând că în starea finală 3 gazul se amestecă cu o cantitate $\\nu' = 5 \\mathrm{~mol}$ de azot $\\left(\\mu' = 28 \\cdot 10^{-3} \\mathrm{kg/mol}\\right)$, calculați masa molară a amestecului obținut.",
   "formule": [],
@@ -38,6 +36,7 @@
     "type": "teoretic",
     "subjectArea": "Termodinamică",
     "subjectCode": "B",
-    "subjectNumber": 2
+    "subjectNumber": 2,
+    "session": "bac"
   }
 }

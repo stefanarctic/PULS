@@ -2,8 +2,6 @@
   "titlu": "Problema III - Fizică - Bac 2020 Var 6",
   "descriere": "Problema de bacalaureat - Subiectul III din Fizică, 2020, Varianta 6, tehnologic",
   "categorie": "Bac",
-  "varianta": "2020 Var 6",
-  "dificultate": "mediu",
   "punctajTotal": 15,
   "continut": "O sanie are masa $m = 20\\,\\mathrm{kg}$. Sub acțiunea unei forțe de tracțiune orizontale, sania se deplasează cu viteza constantă $v = 10\\,\\mathrm{m/s}$ pe porțiunea orizontală de drum AB, ca în figura alăturată. Începând din punctul B, când sania intră pe trambulina de forma unui plan înclinat cu unghiul $\\alpha$ ($\\sin \\alpha = 0,1$; $\\cos \\alpha \\cong 1$), acțiunea forței de tracțiune încetează, dar sania își continuă deplasarea. Lungimea trambulinei este $BC = d = 40\\,\\mathrm{m}$. Coeficientul de frecare la alunecarea saniei pe suprafața orizontală este $\\mu_t = 0,05$. Trecerea pe planul înclinat se face lin, fără modificarea modulului vitezei. Calculați:\n\n![img-2.jpeg](img-2.jpeg)\n\na. valoarea forței de tracțiune pe porțiunea orizontală de drum AB;\nb. puterea dezvoltată pentru tractarea saniei pe porțiunea orizontală de drum AB;\nc. lucrul mecanic efectuat de greutatea saniei la urcarea acesteia pe trambulină, până în punctul C;\nd. valoarea coeficientului de frecare la alunecare dintre sanie și trambulină, știind că sania se oprește în punctul C.",
   "formule": [],
@@ -39,6 +37,7 @@
     "variant": 6,
     "type": "tehnologic",
     "subjectArea": null,
-    "subjectNumber": 3
+    "subjectNumber": 3,
+    "session": "bac"
   }
 }

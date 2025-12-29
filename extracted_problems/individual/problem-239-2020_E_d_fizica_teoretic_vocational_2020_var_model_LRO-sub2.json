@@ -2,8 +2,6 @@
   "titlu": "Problema II - Termodinamică - Bac 2020",
   "descriere": "Problema de bacalaureat - Subiectul II din Termodinamică, 2020, teoretic",
   "categorie": "Bac",
-  "varianta": "2020",
-  "dificultate": "mediu",
   "punctajTotal": 15,
   "continut": "Un recipient cu pereți rigizi, izolat adiabatic de exterior, este împărțit în două compartimente de volume $V_1$ și $V_2$ printr-un piston mobil, termoconductor, care se poate deplasa fără frecare, ca în figura alăturată. În cele două compartimente se află cantități egale din două gaze considerate ideale. În compartimentul 1 se află heliu $(\\mu_1 = 4\\mathrm{g/mol}, C_{v_1} = 1,5R)$, iar în compartimentul 2 se află oxigen $(\\mu_2 = 32\\mathrm{g/mol}, C_{v_2} = 2,5R)$. Inițial heliul se află la temperatura $t_1 = 127^{\\circ}\\mathrm{C}$ și presiunea $p = 1,8 \\cdot 10^5\\mathrm{Pa}$, iar oxigenul la temperatura $t_2 = 47^{\\circ}\\mathrm{C}$ și presiunea $p = 1,8 \\cdot 10^5\\mathrm{Pa}$. Determinați:\n\na. raportul dintre densitatea oxigenului și cea a heliului în starea inițială;\nb. raportul dintre volumul $V_1'$ ocupat de heliu în starea finală (după ce gazele ajung la echilibru termic și pistonul este în echilibru mecanic) și volumul ocupat de heliu în starea inițială;\nc. temperatura de echilibru la care ajung gazele;\nd. presiunea finală a oxigenului.",
   "formule": [],
@@ -38,6 +36,7 @@
     "type": "teoretic",
     "subjectArea": "Termodinamică",
     "subjectCode": "B",
-    "subjectNumber": 2
+    "subjectNumber": 2,
+    "session": "model"
   }
 }

@@ -2,8 +2,6 @@
   "titlu": "Problema III - Optică - Bac 2015",
   "descriere": "Problema de bacalaureat - Subiectul III din Optică, 2015, tehnologic",
   "categorie": "Bac",
-  "varianta": "2015",
-  "dificultate": "mediu",
   "punctajTotal": 15,
   "continut": "O rază de lumină emisă de o sursă laser se propagă în aer ($n_{\\text{aer}} \\cong 1$). Raza cade sub unghiul de incidență $i \\cong 48,6^\\circ$ (sin $i = 0,75$) în centrul feței plane a unui cilindru având diametrul $d = 5 \\, \\text{mm}$, ca în figura alăturată. Indicele de refracție al materialului transparent din care este confectionat cilindrul este $n_1 = 1,5$. Determinați:\n\na. măsura unghiului de refracție sub care pătrunde lumina în cilindru;\nb. valoarea indicelui de refracție $n_2$ al unui material care ar trebui să învelească cilindrul pentru ca, în punctul $B$ aflat pe suprafața de separație dintre cilindru și înveliș, raza de lumină să se propage de-a lungul suprafeței de separare;\nc. viteza de propagare a luminii prin cilindru;\nd. distanța $D$ parcursă de raza de lumină reflectată în punctul $B$, între două reflexii succesive, considerând cilindrul suficient de lung.",
   "formule": [],
@@ -40,6 +38,7 @@
     "type": "tehnologic",
     "subjectArea": "Optică",
     "subjectCode": "D",
-    "subjectNumber": 3
+    "subjectNumber": 3,
+    "session": "simulare"
   }
 }

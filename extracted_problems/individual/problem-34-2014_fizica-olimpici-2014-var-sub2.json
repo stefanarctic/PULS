@@ -2,8 +2,6 @@
   "titlu": "Problema II - Termodinamică - Bac 2014",
   "descriere": "Problema de bacalaureat - Subiectul II din Termodinamică, 2014",
   "categorie": "Bac",
-  "varianta": "2014",
-  "dificultate": "mediu",
   "punctajTotal": 15,
   "continut": "Două baloane rigide, izolate adiabatic, sunt legate printr-un tub de volum neglijabil prevăzut cu un robinet R, inițial închis. Primul balon are volumul $V_1 = 12\\ \\mathrm{L}$ și conține $\\nu_1 = 1\\ \\mathrm{mol}$ de oxigen ($\\mu_1 = 32\\ \\mathrm{g/mol}$), la temperatura $T_1 = 360\\ \\mathrm{K}$. Al doilea balon are volumul $V_2 = 20\\ \\mathrm{L}$ și conține $\\nu_2 = 2\\ \\mathrm{mol}$ de azot ($\\mu_2 = 28\\ \\mathrm{g/mol}$), la temperatura $T_2 = 300\\ \\mathrm{K}$. Căldura molară la volum constantă a celor două gaze biatomice este $C_V = 2,5\\ \\mathrm{R}$. Calculați:\n\na. densitatea azotului din cel de-al doilea balon înainte de deschiderea robinetului;\nb. masa molară a amestecului de gaze obținut în urma deschiderii robinetului, după stabilirea echilibrului termodinamic;\nc. temperatura de echilibru a amestecului de gaze;\nd. presiunea finală a amestecului de gaze.",
   "formule": [],
@@ -38,6 +36,7 @@
     "type": null,
     "subjectArea": "Termodinamică",
     "subjectCode": "B",
-    "subjectNumber": 2
+    "subjectNumber": 2,
+    "session": "bac"
   }
 }

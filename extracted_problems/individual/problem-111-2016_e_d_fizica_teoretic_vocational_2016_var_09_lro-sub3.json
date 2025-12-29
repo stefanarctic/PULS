@@ -2,8 +2,6 @@
   "titlu": "Problema III - Mecanică - Bac 2016 Var 9",
   "descriere": "Problema de bacalaureat - Subiectul III din Mecanică, 2016, Varianta 9, teoretic",
   "categorie": "Bac",
-  "varianta": "2016 Var 9",
-  "dificultate": "mediu",
   "punctajTotal": 15,
   "continut": "Un corp cu masă $m = 1 \\, \\text{kg}$ este ridicat cu viteză constantă, timp de 10 s, cu ajutorul unui motor electric. Energia potențială gravitațională variază în timp conform graficului alăturat. Se consideră că energia potențială este nulă la nivelul solului. Forțele de rezistență la înaintare sunt neglijabile.\n\na. Determinați înălțimea la care se află corpul la momentul $t = 5 \\, \\text{s}$.\nb. Calculați energia cinetică a corpului în timpul ridicării.\nc. Determinați puterea dezvoltată de motor.\nd. Din punctul aflat la înălțimea $h = 20 \\, \\text{m}$, corpul este lăsat să cadă liber, din repaus. Calculați valoarea impulsului corpului în momentul în care, în timpul căderii sale, energia cinetică este de trei ori mai mică decât energia potențială.",
   "formule": [],
@@ -40,6 +38,7 @@
     "type": "teoretic",
     "subjectArea": "Mecanică",
     "subjectCode": "A",
-    "subjectNumber": 3
+    "subjectNumber": 3,
+    "session": "bac"
   }
 }

@@ -2,8 +2,6 @@
   "titlu": "Problema II - Termodinamică - Bac 2017 Var 7",
   "descriere": "Problema de bacalaureat - Subiectul II din Termodinamică, 2017, Varianta 7, teoretic",
   "categorie": "Bac",
-  "varianta": "2017 Var 7",
-  "dificultate": "mediu",
   "punctajTotal": 15,
   "continut": "Într-un vas de sticlă închis, de volum $V = 8,31\\mathrm{L}$, se găsește oxigen $(\\mu = 32\\mathrm{g/mol})$ la presiunea $p_1 = 0,75 \\cdot 10^5\\mathrm{Pa}$ și la temperatura $t_1 = 27^{\\circ}\\mathrm{C}$. Căldura molară izocoră a oxigenului este $C_V = 2,5R$.\n\na. Calculați masa unei molecule de oxigen.\nb. Determinați masa de oxigen din vas.\nc. Oxigenul este încălzit până când presiunea acestuia devine $p_2 = 10^5\\mathrm{Pa}$. Calculați valoarea temperaturii $T_2$ atinse de gaz.\nd. Determinați căldura primită de gaz în cursul procesului de încălzire.",
   "formule": [],
@@ -38,6 +36,7 @@
     "type": "teoretic",
     "subjectArea": "Termodinamică",
     "subjectCode": "B",
-    "subjectNumber": 2
+    "subjectNumber": 2,
+    "session": "bac"
   }
 }

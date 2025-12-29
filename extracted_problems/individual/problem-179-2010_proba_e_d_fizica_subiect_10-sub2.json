@@ -2,8 +2,6 @@
   "titlu": "Problema II - Fizică - Bac 2010",
   "descriere": "Problema de bacalaureat - Subiectul II din Fizică, 2010",
   "categorie": "Bac",
-  "varianta": "2010",
-  "dificultate": "mediu",
   "punctajTotal": 15,
   "continut": "Una dintre etapele turului ciclist al României s-a desfășurat între localitățile Piatra Neamț și Miercurea Ciuc, pe distanța totală $D = 150\\mathrm{km}$. Startul s-a dat la ora 09:00:00 (ora 9, 0 minute și 0 secunde). La ora 12:20:00, când cel mai rapid ciclist a trecut linia de sosire, distanța dintre primul și ultimul ciclist era $d = 6\\mathrm{km}$. Din acest moment ultimul ciclist își menține constantă viteza $\\nu_{0} = 11\\mathrm{m/s}$ pe distanța $d_{1} = 5500\\mathrm{m}$. Pe ultimii $d_{2} = 500\\mathrm{m}$, încurajat de spectatori, acesta se deplasează cu accelerație constantă și trece linia de sosire cu viteza $\\nu = 13\\mathrm{m/s}$. Etapa a cuprins la Cheile Bicazului și o „cățărare”, în care cicliștii au urcat de la altitudinea $h_{1} = 580\\mathrm{m}$ la altitudinea $h_{2} = 980\\mathrm{m}$. Calculați:\n\na. valoarea vitezei medii a celui mai rapid ciclist;\n\nb. variația energiei potențiale gravitaționale a unui ciclist având masa $M = 70\\mathrm{kg}$ în timpul „cățărării” de la Cheile Bicazului;\n\nc. valoarea accelerației ultimului ciclist în timpul parcurgerii distanței $d_{2} = 500\\mathrm{m}$ înaintea liniei de sosire;\n\nd. ora la care ultimul ciclist a trecut linia de sosire.",
   "formule": [],
@@ -37,6 +35,7 @@
     "variant": null,
     "type": null,
     "subjectArea": null,
-    "subjectNumber": 2
+    "subjectNumber": 2,
+    "session": "bac"
   }
 }

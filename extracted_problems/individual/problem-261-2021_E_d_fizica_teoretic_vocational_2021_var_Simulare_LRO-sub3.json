@@ -2,8 +2,6 @@
   "titlu": "Problema III - Optică - Bac 2021",
   "descriere": "Problema de bacalaureat - Subiectul III din Optică, 2021, teoretic",
   "categorie": "Bac",
-  "varianta": "2021",
-  "dificultate": "mediu",
   "punctajTotal": 15,
   "continut": "Un dispozitiv interferențial Young are distanța dintre fante $2\\ell = 0,2 \\, \\text{mm}$ și distanța de la planul fantelor la ecran $D = 0,5 \\, \\text{m}$. Sursa de lumină monocromatică și punctiformă este situată pe axa de simetrie a dispozitivului. Distanța dintre două franje luminoase succesive observate pe ecran are valoarea $i = 1,5 \\, \\text{mm}$.\n\na. Calculați distanța măsurată pe ecran dintre maximul central și maximul de ordinul $k = 2$.\nb. Calculați lungimea de undă a radiației monocromatice utilizate.\nc. Calculați diferența de drum optic dintre radiațiile monocromatice care formează prin interferență pe ecran franja luminoasă de ordinul $k = 3$.\nd. Se înlocuiește sursa de lumină cu o altă sursă care emite simultan radiație cu lungimile de undă $\\lambda_1 = 550 \\, \\text{nm}$ și $\\lambda_2 = 440 \\, \\text{nm}$. Calculați distanța, față de maximul central, la care are loc prima suprapunere între un maxim format de radiația cu $\\lambda_1$ și un minim format de radiația cu $\\lambda_2$.",
   "formule": [],
@@ -38,6 +36,7 @@
     "type": "teoretic",
     "subjectArea": "Optică",
     "subjectCode": "D",
-    "subjectNumber": 3
+    "subjectNumber": 3,
+    "session": "simulare"
   }
 }

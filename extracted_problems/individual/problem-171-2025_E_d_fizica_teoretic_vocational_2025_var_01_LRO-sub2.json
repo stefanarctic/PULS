@@ -2,8 +2,6 @@
   "titlu": "Problema II - Fizică - Bac 2025 Var 1",
   "descriere": "Problema de bacalaureat - Subiectul II din Fizică, 2025, Varianta 1, teoretic",
   "categorie": "Bac",
-  "varianta": "2025 Var 1",
-  "dificultate": "mediu",
   "punctajTotal": 15,
   "continut": "Sistemul mecanic reprezentat în figura alăturată este format din două corpuri cu masele $m_1 = 2\\,\\mathrm{kg}$ și $m_2 = 1\\,\\mathrm{kg}$. Corpurile sunt legate prin intermediul unui fir inextensibil și de masă neglijabilă, trecut peste un scripete fără frecări și lipsit de inerție. Sub acțiunea forței orizontale $F = 8\\,\\mathrm{N}$, corpul de masă $m_1$ se deplasează cu viteză constantă. Coeficientul de frecare la alunecare dintre corpul de masă $m_1$ și suprafața orizontală este $\\mu_1 = 0,1$.\n\n![img-1.jpeg](img-1.jpeg)\n\na. Reprezentați forțele care acționează asupra corpului de masă $m_1$.\nb. Calculați valoarea tensiunii din fir.\nc. Calculați valoarea coeficientului de frecare la alunecare dintre corpul de masă $m_2$ și suprafața orizontală.\nd. Calculați valoarea reacțiunii din axul scripetelui.",
   "formule": [],
@@ -39,6 +37,7 @@
     "variant": 1,
     "type": "teoretic",
     "subjectArea": null,
-    "subjectNumber": 2
+    "subjectNumber": 2,
+    "session": "bac"
   }
 }

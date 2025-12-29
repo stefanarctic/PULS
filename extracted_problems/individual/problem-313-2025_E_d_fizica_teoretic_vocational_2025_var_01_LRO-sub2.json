@@ -2,8 +2,6 @@
   "titlu": "Problema II - Termodinamică - Bac 2025 Var 1",
   "descriere": "Problema de bacalaureat - Subiectul II din Termodinamică, 2025, Varianta 1, teoretic",
   "categorie": "Bac",
-  "varianta": "2025 Var 1",
-  "dificultate": "mediu",
   "punctajTotal": 15,
   "continut": "În interiorul unui cilindru este închisă, cu ajutorul unui piston, o cantitate $\\nu_1 = 2,0\\,\\mathrm{mol}$ de oxigen $\\left(\\mu_1 = 32\\,\\mathrm{g/mol}, C_{\\nu_1} = 2,5\\,\\mathrm{R}\\right)$ la temperatura $T = 300\\,\\mathrm{K}$ și presiunea $p = 1,5 \\cdot 10^5\\,\\mathrm{Pa}$. Ulterior în interiorul cilindrului se mai introduce lent o cantitate de heliu $\\left(\\mu_2 = 4,0\\,\\mathrm{g/mol}, C_{\\nu_2} = 1,5\\,\\mathrm{R}\\right)$ având temperatura $T = 300\\,\\mathrm{K}$, până când volumul total ocupat de amestecul gazos din cilindru se dublează. În timpul acestui proces, prin deplasarea pistonului, presiunea amestecului aflat la temperatura $T = 300\\,\\mathrm{K}$ este menținută constantă, la valoarea $p = 1,5 \\cdot 10^5\\,\\mathrm{Pa}$. Atât oxigenul cât și heliul sunt considerate gaze ideale. Calculați:\na. masa de oxigen din tubul cilindric;\nb. densitatea oxigenului din tub înainte de introducerea heliului;\nc. cantitatea de heliu introdusă suplimentar în interiorul tubului cilindric;\nd. energia internă a amestecului gazos după introducerea suplimentară a heliului.",
   "formule": [],
@@ -38,6 +36,7 @@
     "type": "teoretic",
     "subjectArea": "Termodinamică",
     "subjectCode": "B",
-    "subjectNumber": 2
+    "subjectNumber": 2,
+    "session": "bac"
   }
 }

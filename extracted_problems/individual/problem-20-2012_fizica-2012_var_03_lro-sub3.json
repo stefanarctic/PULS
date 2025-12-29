@@ -2,8 +2,6 @@
   "titlu": "Problema III - Curent continuu - Bac 2012 Var 3",
   "descriere": "Problema de bacalaureat - Subiectul III din Curent continuu, 2012, Varianta 3",
   "categorie": "Bac",
-  "varianta": "2012 Var 3",
-  "dificultate": "mediu",
   "punctajTotal": 15,
   "continut": "Un elev are la dispoziție o baterie cu tensiunea electromotoare $E = 12\\ \\text{V}$ și rezistența internă $r = 1\\ \\Omega$ și două rezistoare având rezistențele electrice $R_1 = 1\\ \\Omega$ și respectiv $R_2 = 10\\ \\Omega$. Elevul conectează la bornele bateriei cele două rezistoare grupate în serie.\n\na. Calculați rezistența echivalentă a grupării de rezistoare.\nb. Determinați energia consumată de circuitul exterior în timpul $t_1 = 10\\ \\text{min}$.\nc. Calculați randamentul circuitului electric.\nd. Desenați schema electrică a circuitului pe care elevul trebuie să-l realizeze astfel încât sursa să debiteze puterea maximă pe circuitul exterior și calculați valoarea acestei puteri maxime.",
   "formule": [],
@@ -38,6 +36,7 @@
     "type": null,
     "subjectArea": "Curent continuu",
     "subjectCode": "C",
-    "subjectNumber": 3
+    "subjectNumber": 3,
+    "session": "bac"
   }
 }

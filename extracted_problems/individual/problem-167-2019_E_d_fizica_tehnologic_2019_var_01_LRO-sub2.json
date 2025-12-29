@@ -2,8 +2,6 @@
   "titlu": "Problema II - Termodinamică - Bac 2019 Var 1",
   "descriere": "Problema de bacalaureat - Subiectul II din Termodinamică, 2019, Varianta 1, tehnologic",
   "categorie": "Bac",
-  "varianta": "2019 Var 1",
-  "dificultate": "mediu",
   "punctajTotal": 15,
   "continut": "Un cilindru închis la ambele capete este împărțit în două compartimente printr-un piston, inițial blocat. În compartimentul din dreapta se află $\\nu_1 = 0,1$ mol de heliu ($\\mu_1 = 4 \\mathrm{~g/mol}$) la presiunea $p_1 = 1,5 \\cdot 10^{5} \\mathrm{~Pa}$. În compartimentul din stânga se află $\\nu_2 = 0,3$ mol de oxigen ($\\mu_2 = 32 \\mathrm{~g/mol}$) la presiunea $p_2 = 3 \\cdot 10^{5} \\mathrm{~Pa}$. Gazele, cu comportare ideală, se află la aceeași temperatură $t = 27^{\\circ} \\mathrm{C}$.\n\na. Calculați masa totală a gazelor din cilindru;\nb. Determinați raportul dintre volumul ocupat de oxigen și cel ocupat de heliu;\nc. Se îndepărtează pistonul. Calculați presiunea amestecului de gaze obținut în cilindru.\nd. Calculați masa molară a amestecului obținut după îndepărtarea pistonului.",
   "formule": [],
@@ -38,6 +36,7 @@
     "type": "tehnologic",
     "subjectArea": "Termodinamică",
     "subjectCode": "B",
-    "subjectNumber": 2
+    "subjectNumber": 2,
+    "session": "bac"
   }
 }

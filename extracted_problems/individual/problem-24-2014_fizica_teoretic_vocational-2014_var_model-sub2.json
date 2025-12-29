@@ -2,8 +2,6 @@
   "titlu": "Problema II - Fizică - Bac 2014",
   "descriere": "Problema de bacalaureat - Subiectul II din Fizică, 2014, teoretic",
   "categorie": "Bac",
-  "varianta": "2014",
-  "dificultate": "mediu",
   "punctajTotal": 15,
   "continut": "În sistemul reprezentat în figura alăturată, corpul A are masa $M = 100$ g și se poate deplasa pe un plan înclinat cu unghiul $\\alpha$ față de orizontală (sin $\\alpha = 0,6$). Coeficientul de frecare la alunecare dintre corpul A și planul înclinat este $\\mu = 0,1$. Firul care leagă corpul A de platanul B se consideră inextensibil și de masă neglijabilă, iar scriptele S este lipsit de frecare și de inerție. Pe platanul de masă neglijabilă B se pot așeza corpuri de diferite mase.\n\na. Pe platan se așază un corp. Se constată că platanul coboară cu viteză constantă. Reprezentați forțele care acționează asupra corpului A.\nb. Determinați masa $m_1$ a corpului așezat pe platan în situația descrisă la punctul a.\nc. Determinați valoarea forței care apasă asupra axului scripetelui S în condițiile de la punctul a.\nd. Se înlocuiește corpul cu masa $m_1$ de pe platanul B cu un alt corp de masă $m_2 = 40$ g. Se constată că platanul urcă accelerat. Determinați valoarea accelerației corpurilor.",
   "formule": [],
@@ -37,6 +35,7 @@
     "variant": null,
     "type": "teoretic",
     "subjectArea": null,
-    "subjectNumber": 2
+    "subjectNumber": 2,
+    "session": "model"
   }
 }

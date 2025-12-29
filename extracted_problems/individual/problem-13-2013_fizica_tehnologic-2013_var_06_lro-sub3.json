@@ -2,8 +2,6 @@
   "titlu": "Problema III - Fizică - Bac 2013 Var 6",
   "descriere": "Problema de bacalaureat - Subiectul III din Fizică, 2013, Varianta 6, tehnologic",
   "categorie": "Bac",
-  "varianta": "2013 Var 6",
-  "dificultate": "mediu",
   "punctajTotal": 15,
   "continut": "Un corp cu masa $m = 2\\,\\mathrm{kg}$ se află inițial, în repaus, la baza unui plan înclinat care formează unghiul $\\alpha$ cu suprafața orizontală $(\\sin \\alpha = 0,6)$. Corpul este ridicat până la înălțimea $h = 1,8\\,\\mathrm{m}$, sub acțiunea unei forțe de tracțiune paralele cu planul înclinat și având modulul $F = 20\\,\\mathrm{N}$. Coeficientul de frecare la alunecare dintre corp și plan este $\\mu = 0,25$. Energia potențială gravitațională este nulă la baza planului înclinat.\n\na. Reprezentați toate forțele care acționează asupra corpului în timpul ridicării pe planul înclinat.\nb. Calculați energia potențială gravitațională la înălțimea $h$.\nc. Calculați lucrul mecanic efectuat de forța de tracțiune pentru ridicarea corpului la înălțimea $h = 1,8\\,\\mathrm{m}$.\nd. Determinați valoarea vitezei atinse de corp la înălțimea $h$.",
   "formule": [],
@@ -37,6 +35,7 @@
     "variant": 6,
     "type": "tehnologic",
     "subjectArea": null,
-    "subjectNumber": 3
+    "subjectNumber": 3,
+    "session": "bac"
   }
 }

@@ -2,8 +2,6 @@
   "titlu": "Problema III - Fizică - Bac 2014",
   "descriere": "Problema de bacalaureat - Subiectul III din Fizică, 2014",
   "categorie": "Bac",
-  "varianta": "2014",
-  "dificultate": "mediu",
   "punctajTotal": 15,
   "continut": "Din vârful unui plan înclinat de lungime $\\ell = 7,07\\,\\mathrm{m}$ $(\\cong 5\\sqrt{2}\\,\\mathrm{m})$, care formează unghiul $\\alpha = 45^\\circ$ cu orizontala, alunecă liber un corp de masă $m = 1\\,\\mathrm{kg}$. Planul înclinat se continuă cu un plan orizontal, la capătul căruia se află un suport fix C de care este legat capătul unui resort elastic orizontal, inițial nedeformat, ca în figura alăturată. Masa resortului este neglijabilă. Mișcarea corpului pe planul înclinat și pe porțiunea $AB$ a planului orizontal se face cu frecare $(\\mu = 0,36)$. Trecerea pe porțiunea orizontală se face din, fără modificarea modulului vitezei. Corpul, ajuns în punctul $B$, lovește resortul cu viteza $v_B = 6\\,\\mathrm{m/s}$. Comprimarea maximă a resortului este $x = 12\\,\\mathrm{cm}$. Pe porțiunea $BC$ mișcarea are loc fără frecare. Se consideră energia potențială gravitațională nulă la baza planului înclinat. Determinați:\n\na. energia mecanică totală a corpului atunci când se află în vârful planului înclinat;\nb. valoarea vitezei corpului când acesta ajunge la baza planului înclinat;\nc. lucrul mecanic efectuat de forța de frecare la deplasarea corpului pe porțiunea $AB$;\nd. constanta elastică a resortului.\n\n![img-0.jpeg](img-0.jpeg)\n\n![img-1.jpeg](img-1.jpeg)",
   "formule": [],
@@ -40,6 +38,7 @@
     "variant": null,
     "type": null,
     "subjectArea": null,
-    "subjectNumber": 3
+    "subjectNumber": 3,
+    "session": "bac"
   }
 }

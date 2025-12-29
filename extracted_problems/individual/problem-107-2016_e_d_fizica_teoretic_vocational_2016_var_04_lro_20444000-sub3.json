@@ -2,8 +2,6 @@
   "titlu": "Problema III - Mecanică - Bac 2016 Var 4",
   "descriere": "Problema de bacalaureat - Subiectul III din Mecanică, 2016, Varianta 4, teoretic",
   "categorie": "Bac",
-  "varianta": "2016 Var 4",
-  "dificultate": "mediu",
   "punctajTotal": 15,
   "continut": "Un tren cu masa totală $M = 100 \\, \\text{t}$ se deplasează orizontal cu viteza constantă. Puterea dezvoltată de motorul locomotivei este $P = 200 \\, \\text{kW}$, iar forțele de rezistență ce acționează asupra trenului reprezintă o fracțiune $f = 0,01$ din greutatea sa și se mențin constante pe tot parcursul deplasării. Determinați:\n\na. lucrul mecanic efectuat de către forța dezvoltată de motorul locomotivei într-un interval de timp $\\Delta t = 2 \\, \\text{min}$;\nb. lucrul mecanic efectuat de către forțele de rezistență la deplasarea trenului pe distanța $d = 1200 \\, \\text{m}$;\nc. viteza trenului;\nd. distanța parcursă de un vagon desprins de tren, de la decuplare și până în momentul opririi, dacă forța de rezistență ce acționează asupra vagonului reprezintă o fracțiune $f = 0,01$ din greutatea acestuia și viteza trenului în momentul desprinderii vagonului este $v = 20 \\, \\text{m/s}$.",
   "formule": [],
@@ -38,6 +36,7 @@
     "type": "teoretic",
     "subjectArea": "Mecanică",
     "subjectCode": "A",
-    "subjectNumber": 3
+    "subjectNumber": 3,
+    "session": "bac"
   }
 }

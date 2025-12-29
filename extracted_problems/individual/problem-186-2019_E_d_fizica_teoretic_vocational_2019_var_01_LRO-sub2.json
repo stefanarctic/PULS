@@ -2,8 +2,6 @@
   "titlu": "Problema II - Termodinamică - Bac 2019 Var 1",
   "descriere": "Problema de bacalaureat - Subiectul II din Termodinamică, 2019, Varianta 1, teoretic",
   "categorie": "Bac",
-  "varianta": "2019 Var 1",
-  "dificultate": "mediu",
   "punctajTotal": 15,
   "continut": "O butelie cu volumul $V_1 = 24,93$ L conține oxigen cu masa molară $\\mu_1 = 32$ g/mol la temperatura $T_1 = 300$ K și presiunea $p_1 = 2 \\cdot 10^5$ Pa. O altă butelie cu volumul $V_2 = 16,62$ L conține heliu cu masa molară $\\mu_2 = 4$ g/mol la temperatura $T_2 = 400$ K și presiunea $p_2 = 10^5$ Pa. Cele două butelii sunt conectate printr-un tub cu volumul neglijabil prevăzut cu un robinet, inițial închis. Considerați că cele două gaze sunt ideale și că pe timpul conectării buteliilor nu există scăpări de gaze.\n\na. Calculați cantitatea de oxigen din prima butelie.\nb. Calculați densitatea heliului din a doua butelie.\nc. Se răcește heliul până la temperatura $T_1 = 300$ K, apoi se deschide robinetul și cele două gaze se amestecă. Calculați presiunea amestecului de gaze.\nd. Calculați masa molară a gazului obținut prin amestecul celor două gaze.",
   "formule": [],
@@ -38,6 +36,7 @@
     "type": "teoretic",
     "subjectArea": "Termodinamică",
     "subjectCode": "B",
-    "subjectNumber": 2
+    "subjectNumber": 2,
+    "session": "bac"
   }
 }

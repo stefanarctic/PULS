@@ -2,8 +2,6 @@
   "titlu": "Problema III - Optică - Bac 2022 Var 4",
   "descriere": "Problema de bacalaureat - Subiectul III din Optică, 2022, Varianta 4, teoretic",
   "categorie": "Bac",
-  "varianta": "2022 Var 4",
-  "dificultate": "mediu",
   "punctajTotal": 15,
   "continut": "Într-un experiment de interferență a luminii se utilizează un dispozitiv interferențial Young având distanța dintre planul fantelor și ecran $D = 2 \\, \\text{m}$. Sursa de lumină este situată pe axa de simetrie a dispozitivului și emite radiație luminoasă monocromatică și coerentă cu lungimea de undă $\\lambda = 500 \\, \\text{nm}$. Analizând figura de interferență de pe ecran se determină valoarea interfranjei $i = 2 \\, \\text{mm}$.\n\na. Calculați distanța dintre fantele dispozitivului.\nb. Calculați distanța dintre cel de al treilea minim situat de o parte a maximului central și maximul de ordinul 1 situat de cealaltă parte a maximului central.\nc. Calculați diferența de drum optic dintre radiațiile monocromatice care formează prin interferență pe ecran franja luminoasă de ordinul $k = 2$.\nd. Fără a schimba poziția fantelor și a ecranului, se înlocuiește sursa de lumină cu o sursă care emite lumină albă. Lungimile de undă extreme ale spectrului continuu emis de sursă sunt $\\lambda_r = 750 \\, \\text{nm}$ și $\\lambda_v = 400 \\, \\text{nm}$. Calculați numărul de lungimi de undă distincte ale radiațiilor din spectrul continuu emis de sursă care formează maxime luminoase la distanța $x = 6 \\, \\text{mm}$ de maximul central.",
   "formule": [],
@@ -38,6 +36,7 @@
     "type": "teoretic",
     "subjectArea": "Optică",
     "subjectCode": "D",
-    "subjectNumber": 3
+    "subjectNumber": 3,
+    "session": "bac"
   }
 }

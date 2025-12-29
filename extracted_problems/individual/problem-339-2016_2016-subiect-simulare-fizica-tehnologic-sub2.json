@@ -2,8 +2,6 @@
   "titlu": "Problema II - Mecanică - Bac 2016",
   "descriere": "Problema de bacalaureat - Subiectul II din Mecanică, 2016, tehnologic",
   "categorie": "Bac",
-  "varianta": "2016",
-  "dificultate": "mediu",
   "punctajTotal": 15,
   "continut": "Un bloc de beton (B) cu masa $m = 300 \\, \\text{kg}$ este ridicat cu viteza constantă $v = 10 \\, \\text{cm/s}$ de-a lungul unei rampe de încărcare ce formează unghiul $\\alpha \\cong 37^\\circ$ (sin $\\alpha = 0,6$) cu orizontală. Forța de tracțiune este exercitată asupra blocului de beton prin intermediul unui cablu inextensibil acționat de către un motor (M) fixat în vârful rampei. Cablul este paralel cu suprafața planului înclinat, ca în figura alăturată. Masa cablului este neglijabilă în raport cu masa blocului de beton. Forța de tracțiune are valoarea $F = 3,6 \\, \\text{kN}$.\n\na. Reprezentați forțele ce acționează asupra blocului de beton (B).\nb. Determinați valoarea forței de apăsare a blocului de beton pe suprafața rampei.\nc. Determinați valoarea coeficientului de frecare la alunecare dintre blocul de beton și rampă.\nd. Calculați distanța parcursă de blocul de beton (B) în intervalul de timp $\\Delta t = 1 \\, \\text{min}$.",
   "formule": [],
@@ -40,6 +38,7 @@
     "type": "tehnologic",
     "subjectArea": "Mecanică",
     "subjectCode": "A",
-    "subjectNumber": 2
+    "subjectNumber": 2,
+    "session": "simulare"
   }
 }

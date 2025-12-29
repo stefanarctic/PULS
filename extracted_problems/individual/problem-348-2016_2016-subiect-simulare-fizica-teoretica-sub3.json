@@ -2,8 +2,6 @@
   "titlu": "Problema III - Curent continuu - Bac 2016",
   "descriere": "Problema de bacalaureat - Subiectul III din Curent continuu, 2016, teoretic",
   "categorie": "Bac",
-  "varianta": "2016",
-  "dificultate": "mediu",
   "punctajTotal": 15,
   "continut": "Un circuit electric este format dintr-o sursă cu tensiunea electromotoare $E = 24\\,\\mathrm{V}$ și rezistența interioară $r = 0,5\\,\\Omega$ la bornele căreia se conectează un rezistor cu rezistența $R$ legat în serie cu o grupare paralel a două becuri. Puterile consumate de cele două becuri sunt $P_1 = 24\\,\\mathrm{W}$, respectiv $P_2 = 36\\,\\mathrm{W}$. Intensitatea curentului electric prin rezistorul cu rezistența $R$ are valoarea $I = 5\\,\\mathrm{A}$.\n\na. Reprezentați schema circuitului descris.\nb. Determinați valoarea intensității curentului electric care străbate becul 1.\nc. Determinați valoarea rezistenței electrice $R$.\nd. Becul 1 se arde. Pentru ca becul 2 să consume aceeași putere $P_2$ se înlocuiește rezistorul având rezistența $R$ cu un alt rezistor. Determinați valoarea $R'$ a rezistenței electrice a noului rezistor.",
   "formule": [],
@@ -38,6 +36,7 @@
     "type": "teoretic",
     "subjectArea": "Curent continuu",
     "subjectCode": "C",
-    "subjectNumber": 3
+    "subjectNumber": 3,
+    "session": "simulare"
   }
 }

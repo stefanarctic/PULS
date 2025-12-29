@@ -2,8 +2,6 @@
   "titlu": "Problema III - Termodinamică - Bac 2012 Var 3",
   "descriere": "Problema de bacalaureat - Subiectul III din Termodinamică, 2012, Varianta 3",
   "categorie": "Bac",
-  "varianta": "2012 Var 3",
-  "dificultate": "mediu",
   "punctajTotal": 15,
   "continut": "Într-un cilindru cu piston mobil, ce se poate mișca etanș și fără frecări, se află un mol de gaz ideal la temperatura $T_1 = 300K$. Gazul este răcit la volum constant, apoi este încălzit la presiune constantă până revine la temperatura inițială $T_1$. În acest proces lucrul mecanic efectuat de gaz este de 831J, iar raportul dintre căldura primită și modulul căldurii cedate este $k = 5/3$. Se cunoaște $\\ln 1,5 \\cong 0,4$.\n\na. Reprezentați graficul transformărilor în coordonate $p-T$.\nb. Calculați raportul dintre valoarea maximă și cea minimă a volumului ocupat de gaz în acest proces.\nc. Determinați valoarea căldurii molare la volum constant a gazului.\nd. Determinați lucrul mecanic primit de gaz pentru a reveni în starea inițială printr-o transformare la temperatura constantă.",
   "formule": [],
@@ -40,6 +38,7 @@
     "type": null,
     "subjectArea": "Termodinamică",
     "subjectCode": "B",
-    "subjectNumber": 3
+    "subjectNumber": 3,
+    "session": "bac"
   }
 }

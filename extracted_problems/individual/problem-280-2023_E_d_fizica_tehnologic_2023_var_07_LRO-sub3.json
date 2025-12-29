@@ -2,8 +2,6 @@
   "titlu": "Problema III - Optică - Bac 2023 Var 7",
   "descriere": "Problema de bacalaureat - Subiectul III din Optică, 2023, Varianta 7, tehnologic",
   "categorie": "Bac",
-  "varianta": "2023 Var 7",
-  "dificultate": "mediu",
   "punctajTotal": 15,
   "continut": "O lamă cu fețe plane și paralele, confectionată dintr-un material optic transparent cu indicele de refracție $n = 1,32$, este situată în aer $(n_{\\text{aer}} \\cong 1)$. O rază de lumină monocromatică, venind din aer, este incidentă pe una dintre fețele lamei sub unghiul de incidență $i = 60^\\circ$ și traversează lama, ieșind prin fața opusă. Considerați cunoscute valorile: $\\sin 41^\\circ \\cong 0,656$, $\\cos 41^\\circ \\cong 0,755$ și $\\sin 60^\\circ \\cong 0,866$.\n\na. Determinați viteza de propagare a luminii în lamă.\nb. Realizați un desen în care să reprezentați mersul razei de lumină prin aer și prin lamă. Pentru intrarea în lamă, marcați pe desen și notați cu $i$ unghiul de incidență, respectiv cu $r$ unghiul de refracție.\nc. Calculați valoarea unghiului de refracție la trecerea razei de lumină din aer în lamă.\nd. Dacă grosimea lamei este $e = 15,1 \\, \\text{mm}$, determinați distanța parcursă de raza de lumină prin lama cu fețe plane și paralele.",
   "formule": [],
@@ -38,6 +36,7 @@
     "type": "tehnologic",
     "subjectArea": "Optică",
     "subjectCode": "D",
-    "subjectNumber": 3
+    "subjectNumber": 3,
+    "session": "bac"
   }
 }

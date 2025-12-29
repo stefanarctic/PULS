@@ -2,8 +2,6 @@
   "titlu": "Problema II - Optică - Bac 2019",
   "descriere": "Problema de bacalaureat - Subiectul II din Optică, 2019, teoretic",
   "categorie": "Bac",
-  "varianta": "2019",
-  "dificultate": "mediu",
   "punctajTotal": 15,
   "continut": "Pentru a măsura distanța focală a unei lentile biconvexe simetrice din sticlă ($n = 1,5$) se plasează în fața acesteia, perpendicular pe axa optică principală, o lumânare, iar în spatele lentilei, un ecran. Atunci când lumânarea se află la distanța de 30 cm de lentilă, pentru ca imaginea să fie clară pe ecran, acesta trebuie așezat la distanța de 60 cm de lentilă, paralel cu ea. Lumânarea are înălțimea inițială de 5 cm. Calculați:\n\na. distanța focală a lentilei;\nb. modulul razei de curbură a unei fețe a lentilei;\nc. înălțimea $h_1$ care a ars din lumânare până când imaginea flăcării s-a deplasat pe ecran cu $h_2 = 2$ cm;\nd. distanța pe care trebuie deplasat ecranul față de lumânare, astfel încât imaginea să rămână clară, dacă lentila se depărtează de lumânare cu $d_1 = 10$ cm. Precizați și sensul deplasării ecranului (apropiere sau depărtare de lumânare).",
   "formule": [],
@@ -38,6 +36,7 @@
     "type": "teoretic",
     "subjectArea": "Optică",
     "subjectCode": "D",
-    "subjectNumber": 2
+    "subjectNumber": 2,
+    "session": "simulare"
   }
 }

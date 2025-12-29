@@ -2,8 +2,6 @@
   "titlu": "Problema III - Optică - Bac 2019",
   "descriere": "Problema de bacalaureat - Subiectul III din Optică, 2019, teoretic",
   "categorie": "Bac",
-  "varianta": "2019",
-  "dificultate": "mediu",
   "punctajTotal": 15,
   "continut": "Un dispozitiv Young cu distanța dintre fante de $1 \\mathrm{~mm}$ și distanța de la planul fantelor la ecran de $2 \\mathrm{~m}$, este iluminat de o sursă care emite simultan două radiații cu lungimile de undă $\\lambda_1 = 400 \\mathrm{~nm}$ și respectiv $\\lambda_2$. Fiecare dintre cele două radiații este coerentă și monocromatică. Întregul dispozitiv este în aer. Se constată că diferența dintre interfranjele produse de cele două radiații este $\\Delta i = i_2 - i_1 = 0,4 \\mathrm{~mm}$. Calculați:\n\na. lungimea de undă $\\lambda_2$;\nb. distanța minimă față de franja centrală la care se suprapun două franje luminoase ale celor două radiații;\nc. distanța pe care ar trebui deplasat ecranul, pentru ca interfranja finală corespunzătoare radiației cu lungimea de undă $\\lambda_1$ să devină egală cu cea inițială corespunzătoare radiației cu lungimea de undă $\\lambda_2$;\nd. indicele de refracție al unui lichid în care trebuie scufundat dispozitivul inițial pentru ca interfranja corespunzătoare radiației cu lungimea de undă $\\lambda_2$ să scadă cu $25\\%$ față de valoarea sa în aer.",
   "formule": [],
@@ -38,6 +36,7 @@
     "type": "teoretic",
     "subjectArea": "Optică",
     "subjectCode": "D",
-    "subjectNumber": 3
+    "subjectNumber": 3,
+    "session": "simulare"
   }
 }

@@ -2,8 +2,6 @@
   "titlu": "Problema II - Mecanică - Bac 2021",
   "descriere": "Problema de bacalaureat - Subiectul II din Mecanică, 2021, teoretic",
   "categorie": "Bac",
-  "varianta": "2021",
-  "dificultate": "mediu",
   "punctajTotal": 15,
   "continut": "Sistemul de corpuri $m_1$ și $m_2$, reprezentat în figura alăturată, se deplasează cu viteză constantă pe suprafața orizontală, sub acțiunea unei forțe constante $\\bar{F}$ orientată sub unghiul $\\alpha = 37^\\circ$ (sin $\\alpha = 0,6$) față de orizontală. Masele celor două corpuri sunt $m_1 = 5,0\\,\\mathrm{kg}$ și $m_2 = 4,2\\,\\mathrm{kg}$, iar coeficientul de frecare la alunecare dintre fiecare corp și suprafața orizontală are valoarea $\\mu = 0,2$.\n\na. Reprezentați forțele care acționează asupra corpului $m_1$.\nb. Calculați valoarea forței $\\bar{f}$ exercitată de corpul $m_1$ asupra corpului $m_2$.\nc. Calculați valoarea forței $\\bar{F}$.\nd. Se îndepărtează corpul $m_2$, iar forța $\\bar{F}$ rămâne neschimbată. Calculați accelerația corpului $m_1$ în această situație.",
   "formule": [],
@@ -40,6 +38,7 @@
     "type": "teoretic",
     "subjectArea": "Mecanică",
     "subjectCode": "A",
-    "subjectNumber": 2
+    "subjectNumber": 2,
+    "session": "simulare"
   }
 }

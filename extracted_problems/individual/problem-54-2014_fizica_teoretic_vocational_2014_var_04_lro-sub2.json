@@ -2,8 +2,6 @@
   "titlu": "Problema II - Termodinamică - Bac 2014 Var 4",
   "descriere": "Problema de bacalaureat - Subiectul II din Termodinamică, 2014, Varianta 4, teoretic",
   "categorie": "Bac",
-  "varianta": "2014 Var 4",
-  "dificultate": "mediu",
   "punctajTotal": 15,
   "continut": "Într-o butelie se află $m = 48 \\mathrm{g}$ de oxigen ($\\mu_{O_2} = 32 \\mathrm{g/mol}$), considerat gaz ideal. Gazul, aflat inițial în starea 1 în care temperatura este $t_1 = 7^{\\circ} \\mathrm{C}$ și presiunea $p_1 = 4 \\cdot 10^{5} \\mathrm{~Pa}$, este încălzit până în starea 2 în care temperatura devine $t_2 = 77^{\\circ} \\mathrm{C}$. Ulterior, se consumă $\\Delta m = 6 \\mathrm{g}$ din oxigenul aflat în butelie. În final, în starea 3, temperatura oxigenului rămas în butelie este $t_3 = t_1 = 7^{\\circ} \\mathrm{C}$. Căldura molară izocoră a oxigenului este $C_V = 2,5 R$. Determinați:\n\na. căldura necesară încălzirii oxigenului de la temperatura $t_1$ la temperatura $t_2$;\nb. presiunea maximă atinsă de oxigenul din butelie în cursul transformării $1 - 2 - 3$;\nc. densitatea gazului în starea finală 3;\nd. variația energiei interne a oxigenului în transformarea $1 - 2 - 3$.",
   "formule": [],
@@ -38,6 +36,7 @@
     "type": "teoretic",
     "subjectArea": "Termodinamică",
     "subjectCode": "B",
-    "subjectNumber": 2
+    "subjectNumber": 2,
+    "session": "bac"
   }
 }

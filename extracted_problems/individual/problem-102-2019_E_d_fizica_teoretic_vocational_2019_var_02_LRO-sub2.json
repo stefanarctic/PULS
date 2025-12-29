@@ -2,8 +2,6 @@
   "titlu": "Problema II - Fizică - Bac 2019 Var 2",
   "descriere": "Problema de bacalaureat - Subiectul II din Fizică, 2019, Varianta 2, teoretic",
   "categorie": "Bac",
-  "varianta": "2019 Var 2",
-  "dificultate": "mediu",
   "punctajTotal": 15,
   "continut": "O cutie cu masa $m = 4\\,\\mathrm{kg}$ se află în repaus pe o suprafață orizontală. Deasupra acesteia, la înălțimea $h = 30\\,\\mathrm{cm}$, se află un suport fix AB, ca în figura alăturată. Cutia este legată de suport prin intermediul a două resorturi elastice identice, cu masa neglijabilă, fiecare resort având constanta elastică $k = 100\\,\\mathrm{N/m}$ și lungimea $\\ell = 50\\,\\mathrm{cm}$. Fiecare resort are, în stare nedeformată, lungimea $\\ell_0 = h = 30\\,\\mathrm{cm}$. Dimensiunile cutiei se consideră neglijabile.\n\na. Reprezentați forțele care acționează asupra cutiei.\nb. Calculați valoarea forței elastice care acționează în unul din cele două resorturi.\nc. Calculați valoarea forței de apăsare a cutiei pe suprafața orizontală.\nd. Unul dintre resorturi se desprinde de cutie. Coeficientul de frecare la alunecare dintre cutie și suprafața orizontală este $\\mu = 0,1$. Calculați accelerația cutiei imediat după desprinderea resortului.\n\n![img-0.jpeg](img-0.jpeg)",
   "formule": [],
@@ -39,6 +37,7 @@
     "variant": 2,
     "type": "teoretic",
     "subjectArea": null,
-    "subjectNumber": 2
+    "subjectNumber": 2,
+    "session": "bac"
   }
 }

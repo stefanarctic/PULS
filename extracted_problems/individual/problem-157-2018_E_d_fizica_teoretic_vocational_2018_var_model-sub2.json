@@ -2,8 +2,6 @@
   "titlu": "Problema II - Optică - Bac 2018",
   "descriere": "Problema de bacalaureat - Subiectul II din Optică, 2018, teoretic",
   "categorie": "Bac",
-  "varianta": "2018",
-  "dificultate": "mediu",
   "punctajTotal": 15,
   "continut": "O lentilă subțire are convergența $C = 5 \\, \\text{m}^{-1}$. La distanța de 30 cm în fața lentilei este așezat, perpendicular pe axa optică principală, un obiect luminos liniar cu înălțimea de 2 cm.\n\na. Realizați un desen în care să evidențiați construcția grafică a imaginii prin lentilă.\nb. Calculați distanța la care se formează imaginea față de lentilă.\nc. Calculați înălțimea imaginii obiectului.\nd. Se aduce în contact cu prima lentilă o altă lentilă subțire, a cărei convergență este $C' = -3 \\, \\text{m}^{-1}$, iar obiectul se așază la distanța de 60 cm în fața sistemului de lentile. Calculați mărirea liniară transversală dată de sistemul de lentile.",
   "formule": [],
@@ -38,6 +36,7 @@
     "type": "teoretic",
     "subjectArea": "Optică",
     "subjectCode": "D",
-    "subjectNumber": 2
+    "subjectNumber": 2,
+    "session": "model"
   }
 }

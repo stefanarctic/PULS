@@ -2,8 +2,6 @@
   "titlu": "Problema II - Fizică - Bac 2023",
   "descriere": "Problema de bacalaureat - Subiectul II din Fizică, 2023, teoretic",
   "categorie": "Bac",
-  "varianta": "2023",
-  "dificultate": "mediu",
   "punctajTotal": 15,
   "continut": "O cutie cu masa $m = 4,0\\,\\mathrm{kg}$ este așezată pe un plan înclinat cu unghiul $\\alpha = 30^\\circ$. Cutia este legată la un capăt al unui fir elastic având masa neglijabilă, lungimea în stare nedeformată $\\ell_0 = 60\\,\\mathrm{cm}$ și aria secțiunii transversale $S$. De capătul liber al firului se trage în sus, paralel cu suprafața planului, ca în figura alăturată. Cutia coboară uniform atunci când lungimea firului este $\\ell_1 = 80\\,\\mathrm{cm}$. Cutia urcă uniform când lungimea firului devine $\\ell_2 = 120\\,\\mathrm{cm}$.\n\na. Reprezentați toate forțele care acționează asupra cutiei atunci când aceasta urcă uniform.\nb. Determinați valoarea constantei elastice a firului.\nc. Determinați valoarea coeficientului de frecare la alunecare dintre cutie și suprafața planului înclinat.\nd. Se înlocuiește firul cu un alt fir elastic, confectionat din același material, dar cu aria secțiunii transversale $2S$ și cu lungimea în stare nedeformată $\\ell_0 = 20\\,\\mathrm{cm}$. De capătul liber al noului fir se trage în sus, paralel cu suprafața planului. Determinați alungirea firului atunci când cutia urcă accelerat cu accelerația $a = 1,5\\,\\mathrm{m/s^2}$.\n\n![img-1.jpeg](img-1.jpeg)",
   "formule": [],
@@ -39,6 +37,7 @@
     "variant": null,
     "type": "teoretic",
     "subjectArea": null,
-    "subjectNumber": 2
+    "subjectNumber": 2,
+    "session": "simulare"
   }
 }

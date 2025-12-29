@@ -2,8 +2,6 @@
   "titlu": "Problema II - Optică - Bac 2015 Var 2",
   "descriere": "Problema de bacalaureat - Subiectul II din Optică, 2015, Varianta 2, tehnologic",
   "categorie": "Bac",
-  "varianta": "2015 Var 2",
-  "dificultate": "mediu",
   "punctajTotal": 15,
   "continut": "Un obiect cu înălțimea $y_{1} = 20 \\, \\text{cm}$ este plasat perpendicular pe axa optică principală a unei lentile subțiri $L_{1}$, la 60 cm de aceasta. Imaginea obiectului se formează pe un ecran aflat de cealaltă parte a lentilei, la distanța $x_{2} = 30 \\, \\text{cm}$ față de lentilă.\n\na. Calculați distanța focală a lentilei.\nb. Calculați înălțimea imaginii formate de lentilă.\nc. Se alipește de lentila $L_{1}$ o altă lentilă subțire convergență $L_{2}$ având distanța focală $f' = 80 \\, \\text{cm}$. Determinați convergența sistemului optic astfel format.\nd. Se realizează un sistem optic centrat cu ajutorul lentilei $L_{2}$ având distanța focală $f' = 80 \\, \\text{cm}$ și a lentilei $L_{1}$. Calculați distanța dintre cele două lentile astfel încât orice fascicul paralel care intră în sistem, să iasă tot paralel din sistem.",
   "formule": [],
@@ -38,6 +36,7 @@
     "type": "tehnologic",
     "subjectArea": "Optică",
     "subjectCode": "D",
-    "subjectNumber": 2
+    "subjectNumber": 2,
+    "session": "bac"
   }
 }

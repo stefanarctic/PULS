@@ -2,8 +2,6 @@
   "titlu": "Problema III - Fizică - Bac 2021 Var 1",
   "descriere": "Problema de bacalaureat - Subiectul III din Fizică, 2021, Varianta 1, teoretic",
   "categorie": "Bac",
-  "varianta": "2021 Var 1",
-  "dificultate": "mediu",
   "punctajTotal": 15,
   "continut": "Un corp având masa $m = 1,0$ kg se află inițial în repaus la baza unui plan înclinat cu unghiul $\\alpha = 30^\\circ$ față de orizontală. Frecarea dintre corp și planul înclinat este neglijabilă. Asupra corpului acționează o forță de tracțiune constantă $F = 40$ N, orientată în lungul planului înclinat, ca în figura alăturată. După ce corpul\n\nparcurge distanța $d = 20$ cm, acțiunea forței $\\vec{F}$ încetează, iar corpul continuă să urce pe plan. Planul înclinat este suficient de lung, astfel încât corpul nu părăsește suprafața planului înclinat. Energia potențială gravitațională se consideră nulă la baza planului înclinat. Determinați:\n\na. lucrul mecanic efectuat de greutate în timpul urcării corpului, pe planul înclinat, pe distanța $d = 20$ cm;\nb. energia cinetică a corpului în momentul în care acțiunea forței de tracțiune încetează;\nc. înălțimea $h_1$ la care se află corpul față de baza planului înclinat în momentul în care, în timpul coborârii, energia cinetică a corpului este egală cu energia potențială gravitațională din acel moment;\nd. valoarea impulsului corpului în momentul în care revine la baza planului înclinat.\n\n![img-2.jpeg](img-2.jpeg)",
   "formule": [],
@@ -39,6 +37,7 @@
     "variant": 1,
     "type": "teoretic",
     "subjectArea": null,
-    "subjectNumber": 3
+    "subjectNumber": 3,
+    "session": "bac"
   }
 }

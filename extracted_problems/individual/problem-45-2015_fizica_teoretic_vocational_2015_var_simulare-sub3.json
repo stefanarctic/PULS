@@ -2,8 +2,6 @@
   "titlu": "Problema III - Fizică - Bac 2015",
   "descriere": "Problema de bacalaureat - Subiectul III din Fizică, 2015, teoretic",
   "categorie": "Bac",
-  "varianta": "2015",
-  "dificultate": "mediu",
   "punctajTotal": 15,
   "continut": "Unui puc de hochei cu masa $m = 160 \\, \\text{g}$ i se imprimă un impuls orizontal $p_0 = 3,2 \\, \\text{N} \\cdot \\text{s}$ prin lovirea sa pe direcție centrală. Pucul, având formă de disc și fiind confectionat din cauciuc, alunecă pe suprafața gheții fără a se roti. Forța de frecare la alunecare dintre puc și suprafața gheții se consideră constantă pe tot parcursul deplasării pucului, coeficientul de frecare la alunecare dintre puc și suprafața gheții fiind $\\mu = 0,1$.\n\na. Calculați energia cinetică a pucului imediat după lovirea sa.\nb. Determinați distanța $d_1$ pe care ar parcurge-o pucul până la oprire, presupunând că nu ar întâlni niciun obstacol în calea sa.\nc. Calculați viteza pucului după ce acesta a parcurs distanța $d_2 = 38 \\, \\text{m}$.\nd. După parcurgerea distanței $d_2$ pucul lovește frontal mantinela (un perete). Presupunând că durata interacțiunii cu peretele este $\\Delta t = 2 \\, \\text{ms}$ și că pucul se întoarce pe aceeași direcție, viteza având același modul ca și înainte de lovirea peretelui, determinați valoarea forței exercitate de puc asupra mantinelei în acest interval de timp.",
   "formule": [],
@@ -37,6 +35,7 @@
     "variant": null,
     "type": "teoretic",
     "subjectArea": null,
-    "subjectNumber": 3
+    "subjectNumber": 3,
+    "session": "simulare"
   }
 }

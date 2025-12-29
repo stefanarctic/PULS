@@ -2,8 +2,6 @@
   "titlu": "Problema II - Fizică - Bac 2022 Var 1",
   "descriere": "Problema de bacalaureat - Subiectul II din Fizică, 2022, Varianta 1, teoretic",
   "categorie": "Bac",
-  "varianta": "2022 Var 1",
-  "dificultate": "mediu",
   "punctajTotal": 15,
   "continut": "Un obiect luminos este plasat în fața unei lentile subțiri $L_1$, perpendicular pe axa optică principală. Distanța dintre obiect și lentilă este $-x_1 = 50 \\, \\text{cm}$. Lentila formează imaginea obiectului pe un ecran plasat convenabil. Înălțimea imaginii este de 4 ori mai mică decât înălțimea obiectului.\n\na. Calculați mărirea liniară transversală.\nb. Determinați distanța focală a lentilei.\nc. Realizați un desen în care să evidențiați construcția imaginii prin lentilă, pentru obiectul considerat, în situația descrisă de problemă.\nd. Se formează un sistem optic centrat prin alipirea lentilei $L_1$ de o altă lentilă subțire, $L_2$, având distanța focală $f_2 = -25 \\, \\text{cm}$. Determinați convergența sistemului optic format din cele două lentile.",
   "formule": [],
@@ -37,6 +35,7 @@
     "variant": 1,
     "type": "teoretic",
     "subjectArea": null,
-    "subjectNumber": 2
+    "subjectNumber": 2,
+    "session": "bac"
   }
 }

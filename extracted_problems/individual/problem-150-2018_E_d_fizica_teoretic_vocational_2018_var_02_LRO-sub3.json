@@ -2,8 +2,6 @@
   "titlu": "Problema III - Mecanică - Bac 2018 Var 2",
   "descriere": "Problema de bacalaureat - Subiectul III din Mecanică, 2018, Varianta 2, teoretic",
   "categorie": "Bac",
-  "varianta": "2018 Var 2",
-  "dificultate": "mediu",
   "punctajTotal": 15,
   "continut": "Un corp cu masă $m = 1\\,\\mathrm{kg}$ este lansat cu viteza $v_0 = 3\\,\\mathrm{m/s}$ de-a lungul unei suprafețe orizontale pe care se deplasează cu frecare. După ce corpul a parcurs distanța $d = 2\\,\\mathrm{m}$, el lovește capătul liber al unui resort orizontal nedeformat, pe care îl comprimă cu $x = 8\\,\\mathrm{cm}$. Celălalt capăt al resortului este fixat de un perete vertical și imobil. Deplasarea corpului se face cu frecare atât înainte, cât și după lovirea resortului. Coeficientul de frecare la alunecare dintre corp și suprafața orizontală este $\\mu = 0,2$, iar frecarea cu aerul se neglijează.\n\na. Calculați energia cinetică a corpului în momentul lansării.\nb. Calculați valoarea vitezei corpului în momentul atingerii resortului.\nc. Calculați lucrul mecanic efectuat de forța elastică pe parcursul comprimării resortului.\nd. Determinați valoarea impulsului mecanic al corpului la revenirea lui în poziția în care a atins resortul.",
   "formule": [],
@@ -38,6 +36,7 @@
     "type": "teoretic",
     "subjectArea": "Mecanică",
     "subjectCode": "A",
-    "subjectNumber": 3
+    "subjectNumber": 3,
+    "session": "bac"
   }
 }

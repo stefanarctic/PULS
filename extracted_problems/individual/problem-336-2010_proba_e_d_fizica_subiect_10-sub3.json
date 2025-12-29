@@ -2,8 +2,6 @@
   "titlu": "Problema III - Optică - Bac 2010",
   "descriere": "Problema de bacalaureat - Subiectul III din Optică, 2010",
   "categorie": "Bac",
-  "varianta": "2010",
-  "dificultate": "mediu",
   "punctajTotal": 15,
   "continut": "Catodul unei celule fotoelectrice este caracterizat de lucrul mecanic de extracție $L = 4,0 \\cdot 10^{-19}\\,\\mathrm{J}$.\n\na. Determinați valoarea frecvenței de prag a acestei celule fotoelectrice.\nb. Precizați dacă o radiație monocromatică cu frecvența $\\nu_1 = 5,5 \\cdot 10^{14}\\,\\mathrm{Hz}$, incidentă pe fotocelulă, produce efect fotoelectric.\nc. Determinați valoarea energiei cinetice maxime a electronilor emiși dacă asupra celulei se trimite o altă radiație monocromatică, cu frecvența $\\nu_2 = 1,5 \\cdot 10^{15}\\,\\mathrm{Hz}$.\nd. Se modifică fluxul radiațiilor incidente menținând constantă frecvența $\\nu_2 = 1,5 \\cdot 10^{15}\\,\\mathrm{Hz}$. Justificați dacă modificarea fluxului radiațiilor influențează valoarea energiei cinetice maxime a electronilor emiși.\n\nProba E - d):",
   "formule": [],
@@ -38,6 +36,7 @@
     "type": null,
     "subjectArea": "Optică",
     "subjectCode": "D",
-    "subjectNumber": 3
+    "subjectNumber": 3,
+    "session": "bac"
   }
 }

@@ -2,8 +2,6 @@
   "titlu": "Problema III - Fizică - Bac 2014",
   "descriere": "Problema de bacalaureat - Subiectul III din Fizică, 2014, teoretic",
   "categorie": "Bac",
-  "varianta": "2014",
-  "dificultate": "mediu",
   "punctajTotal": 15,
   "continut": "Un corp cu masa $m = 2 \\, \\text{kg}$ este lansat, de la nivelul solului, de-a lungul unui plan înclinat, cu viteza $v_0 = 5 \\, \\text{m/s}$. Lungimea planului înclinat este $\\ell = 1,2 \\, \\text{m}$. Planul formează unghiul $\\alpha = 30^\\circ$ cu orizontală. Mișcarea corpului are loc cu frecare, coeficientul de frecare la alunecare fiind $\\mu = 0,19 \\left( \\cong \\frac{1}{3\\sqrt{3}} \\right)$. Din vârful planului\n\n![img-1.jpeg](img-1.jpeg)\n\n![img-2.jpeg](img-2.jpeg)\n\nÎnclinat corpul își continuă mișcarea până când atinge solul. Neglijând frecările cu aerul, determinați:\n\na. lucrul mecanic efectuat de greutatea corpului de la lansare până la atingerea solului;\nb. lucrul mecanic efectuat de forța de frecare la alunecare;\nc. valoarea vitezei corpului în vârful planului;\nd. valoarea impulsului corpului în momentul în care acesta atinge solul.",
   "formule": [],
@@ -40,6 +38,7 @@
     "variant": null,
     "type": "teoretic",
     "subjectArea": null,
-    "subjectNumber": 3
+    "subjectNumber": 3,
+    "session": "model"
   }
 }

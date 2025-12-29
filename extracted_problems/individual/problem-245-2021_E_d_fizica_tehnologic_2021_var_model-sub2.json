@@ -2,8 +2,6 @@
   "titlu": "Problema II - Termodinamică - Bac 2021",
   "descriere": "Problema de bacalaureat - Subiectul II din Termodinamică, 2021, tehnologic",
   "categorie": "Bac",
-  "varianta": "2021",
-  "dificultate": "mediu",
   "punctajTotal": 15,
   "continut": "O butelie având volumul $V = 8,31 \\mathrm{~L}$ conține aer la presiunea $p = 2,0 \\cdot 10^{5} \\mathrm{~Pa}$ și temperatura $t = 17^{\\circ} \\mathrm{C}$. Butelia este prevăzută cu o membrană care se sparge dacă diferența dintre presiunea gazului din interior și cea atmosferică este $\\Delta p = 3,0 \\cdot 10^{5} \\mathrm{~Pa}$. Masa molară a aerului este $\\mu = 29 \\cdot 10^{-3} \\mathrm{~kg/mol}$, presiunea atmosferică este constantă și are valoarea $p_0 = 1,0 \\cdot 10^{5} \\mathrm{~Pa}$. Determinați:\n\na. numărul de molecule de aer;\nb. densitatea aerului din butelie;\nc. masa minimă de azot, aflată la temperatura $t = 17^{\\circ} \\mathrm{C}$, care trebuie introdusă suplimentar în butelie pentru a produce spargerea membranei (masa molară a azotului este $\\mu_{N_2} = 28 \\cdot 10^{-3} \\mathrm{~kg/mol}$);\nd. masa molară a amestecului obținut după spargerea membranei, ca urmare a introducerii azotului suplimentar.",
   "formule": [],
@@ -38,6 +36,7 @@
     "type": "tehnologic",
     "subjectArea": "Termodinamică",
     "subjectCode": "B",
-    "subjectNumber": 2
+    "subjectNumber": 2,
+    "session": "model"
   }
 }

@@ -2,8 +2,6 @@
   "titlu": "Problema II - Fizică - Bac 2019 Var 1",
   "descriere": "Problema de bacalaureat - Subiectul II din Fizică, 2019, Varianta 1, tehnologic",
   "categorie": "Bac",
-  "varianta": "2019 Var 1",
-  "dificultate": "mediu",
   "punctajTotal": 15,
   "continut": "Pentru a ridica uniform accelerat, cu accelerația $a = 1\\,\\mathrm{m/s^2}$, un corp cu masa $m = 2\\,\\mathrm{kg}$ de-a lungul unui plan înclinat, suficient de lung, ce formează unghiul $\\alpha \\cong 37^\\circ$ (sin $\\alpha = 0,6$; $\\cos \\alpha = 0,8$) cu orizontala, se acționează cu o forță $\\vec{F}$, aplicată la capătul $P$ al unui fir inextensibil legat de corp. Firul este trecut peste un scripete fix, lipsit de masă și fără frecări, ca în desenul din figura alăturată. Se neglijează frecările dintre corp și suprafața planului înclinat.\n\na. Reprezentați forțele care acționează asupra corpului în timpul deplasării acestuia de-a lungul planului înclinat.\nb. Determinați valoarea forței $\\vec{F}$.\nc. Determinați valoarea forței de reacțiune din axul scripetelui.\nd. Se dezleagă firul și se lasă corpul să alunece liber pe plan. Considerând că valoarea coeficientului de frecare la alunecare dintre corp și plan este $\\mu = 0,2$, calculați valoarea accelerației corpului.\n\n![img-0.jpeg](img-0.jpeg)\n\n![img-1.jpeg](img-1.jpeg)",
   "formule": [],
@@ -40,6 +38,7 @@
     "variant": 1,
     "type": "tehnologic",
     "subjectArea": null,
-    "subjectNumber": 2
+    "subjectNumber": 2,
+    "session": "bac"
   }
 }

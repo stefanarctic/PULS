@@ -2,8 +2,6 @@
   "titlu": "Problema III - Termodinamică - Bac 2015 Var 9",
   "descriere": "Problema de bacalaureat - Subiectul III din Termodinamică, 2015, Varianta 9, tehnologic",
   "categorie": "Bac",
-  "varianta": "2015 Var 9",
-  "dificultate": "mediu",
   "punctajTotal": 15,
   "continut": "O cantitate $\\nu = 10 \\mathrm{~mol}$ de gaz ideal, aflată în starea inițială la temperatura $T_1 = 600 \\mathrm{~K}$, evoluează după un proces termodinamic ciclic $1 \\rightarrow 2 \\rightarrow 3 \\rightarrow 1$ compus din: destindere la temperatura constantă $1 \\rightarrow 2$, până când presiunea devine $p_2 = 0,5p_1$, răcire la presiune constantă $2 \\rightarrow 3$, până la un volum $V_3 = V_1$ și procesul $3 \\rightarrow 1$ în care volumul este menținut constant. Se cunoaște $C_V = 2,5R$ și $\\ln 2 \\equiv 0,7$.\n\na. Reprezentați grafic procesul termodinamic $1 \\rightarrow 2 \\rightarrow 3 \\rightarrow 1$ în coordonate $p - V$.\nb. Calculați căldura primită de gaz în transformarea $1 \\rightarrow 2$.\nc. Calculați lucrul mecanic $L_{23}$ schimbat de gaz cu mediul exterior în transformarea $2 \\rightarrow 3$.\nd. Calculați variația energiei interne a gazului în transformarea $3 \\rightarrow 1$.",
   "formule": [],
@@ -38,6 +36,7 @@
     "type": "tehnologic",
     "subjectArea": "Termodinamică",
     "subjectCode": "B",
-    "subjectNumber": 3
+    "subjectNumber": 3,
+    "session": "bac"
   }
 }

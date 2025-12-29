@@ -2,8 +2,6 @@
   "titlu": "Problema III - Mecanică - Bac 2023",
   "descriere": "Problema de bacalaureat - Subiectul III din Mecanică, 2023, tehnologic",
   "categorie": "Bac",
-  "varianta": "2023",
-  "dificultate": "mediu",
   "punctajTotal": 15,
   "continut": "Asupra unui corp cu masa $m = 6\\,\\mathrm{kg}$, aflat inițial în repaus pe sol, acționează o forță verticală constantă $F = 108\\,\\mathrm{N}$. După ce corpul a parcurs pe verticală distanța $h = 100\\,\\mathrm{m}$, acțiunea forței verticale $F$ încetează. Se neglijează efectul interacțiunii cu aerul și se consideră că energia potențială gravitațională este nulă la nivelul solului. Determinați:\n\na. lucrul mecanic efectuat de forța $F$;\n\nb. viteza atinsă de corp în momentul încetării acțiunii forței $F$;\n\nc. înălțimea maximă atinsă de corp în timpul mișcării, măsurată în raport cu solul;\n\nd. energia cinetică a corpului în momentul revenirii sale la sol.",
   "formule": [],
@@ -38,6 +36,7 @@
     "type": "tehnologic",
     "subjectArea": "Mecanică",
     "subjectCode": "A",
-    "subjectNumber": 3
+    "subjectNumber": 3,
+    "session": "model"
   }
 }

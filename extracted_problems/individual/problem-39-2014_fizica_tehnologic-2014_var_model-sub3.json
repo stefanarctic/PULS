@@ -2,8 +2,6 @@
   "titlu": "Problema III - Termodinamică - Bac 2014",
   "descriere": "Problema de bacalaureat - Subiectul III din Termodinamică, 2014, tehnologic",
   "categorie": "Bac",
-  "varianta": "2014",
-  "dificultate": "mediu",
   "punctajTotal": 15,
   "continut": "O cantitate $\\nu = 0,12 \\cong \\left(\\frac{1}{8,31}\\right) \\mathrm{mol}$ de gaz ideal monoatomic ($C_V = 1,5R$) aflat în starea inițială 1, caracterizată de temperatura $t_1 = 27^{\\circ} \\mathrm{C}$, efectuează un proces ciclic format din următoarele transformări: $1 \\rightarrow 2$ destindere la presiune constantă până la dublarea volumului inițial; $2 \\rightarrow 3$ răcire la volum constant și $3 \\rightarrow 1$ comprimare la temperatura constantă până în starea inițială. Se cunoaște în $2 \\cong 0,7$.\n\na. Reprezentați grafic, în coordonate $(p - V)$, procesul ciclic $1 \\rightarrow 2 \\rightarrow 3 \\rightarrow 1$.\nb. Determinați valoarea energiei interne a gazului în starea 2.\nc. Calculați lucrul mecanic efectuat de gaz în cursul transformării $1 \\rightarrow 2$.\nd. Determinați căldura cedată de gaz mediului exterior pe parcursul procesului ciclic.",
   "formule": [],
@@ -38,6 +36,7 @@
     "type": "tehnologic",
     "subjectArea": "Termodinamică",
     "subjectCode": "B",
-    "subjectNumber": 3
+    "subjectNumber": 3,
+    "session": "model"
   }
 }

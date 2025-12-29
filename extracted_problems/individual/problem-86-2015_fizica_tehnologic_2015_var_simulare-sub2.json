@@ -2,8 +2,6 @@
   "titlu": "Problema II - Optică - Bac 2015",
   "descriere": "Problema de bacalaureat - Subiectul II din Optică, 2015, tehnologic",
   "categorie": "Bac",
-  "varianta": "2015",
-  "dificultate": "mediu",
   "punctajTotal": 15,
   "continut": "Un obiect cu înălțimea $h = 40 \\, \\text{mm}$ este așezat perpendicular pe axa optică principală a unei lentile convergente subțiri, $L_1$, la distanța $d = 30 \\, \\text{cm}$ de lentilă. Imaginea obiectului, proiectată pe un ecran situat în spatele lentilei, are înălțimea $H = 60 \\, \\text{mm}$. Aceeași mărime a imaginii obiectului se poate obține așezând obiectul la o distanță convenabilă în fața unei alte lentile convergente subțiri, $L_2$, cu distanța focală $f_2 = 36 \\, \\text{cm}$. Determinați:\n\na. distanța dintre lentila $L_1$ și ecran;\nb. distanța focală a lentilei $L_1$;\nc. distanța față de lentila $L_2$ la care trebuie așezat obiectul;\nd. convergența sistemului optic care s-ar obține prin alipirea lentilelor $L_1$ și $L_2$.",
   "formule": [],
@@ -38,6 +36,7 @@
     "type": "tehnologic",
     "subjectArea": "Optică",
     "subjectCode": "D",
-    "subjectNumber": 2
+    "subjectNumber": 2,
+    "session": "simulare"
   }
 }

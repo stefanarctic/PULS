@@ -2,8 +2,6 @@
   "titlu": "Problema II - Curent continuu - Bac 2016",
   "descriere": "Problema de bacalaureat - Subiectul II din Curent continuu, 2016, teoretic",
   "categorie": "Bac",
-  "varianta": "2016",
-  "dificultate": "mediu",
   "punctajTotal": 15,
   "continut": "În figura alăturată este reprezentată schema unui circuit electric. Generatoarele electromotoare $E_1 = E_2 = 15\\,\\mathrm{V}$ și rezistențele interioare $r_1 = 1\\,\\Omega$, respectiv $r_2 = 2\\,\\Omega$. Rezistența electrică a rezistorului 3 este $R_3 = 6\\,\\Omega$, iar rezistența internă a ampermetrului este $R_A = 2\\,\\Omega$. Intensitatea curentului indicată de ampermetru este $I_A = 1\\,\\mathrm{A}$. Determinați:\n\na. tensiunea electrică $U_{\\mathrm{MN}}$ dintre nodurile M și N;\nb. valoarea rezistenței electrice a rezistorului $R_2$;\nc. indicația unui voltmetru ideal $(R_V \\to \\infty)$ conectat la bornele generatorului cu tensiunea electromotoare $E_1$;\nd. intensitatea curentului electric prin sursa cu tensiunea electromotoare $E_2$ dacă sursa având tensiunea electromotoare $E_1$ se înlocuiește cu un fir cu rezistența neglijabilă.\n\n#",
   "formule": [],
@@ -40,6 +38,7 @@
     "type": "teoretic",
     "subjectArea": "Curent continuu",
     "subjectCode": "C",
-    "subjectNumber": 2
+    "subjectNumber": 2,
+    "session": "simulare"
   }
 }

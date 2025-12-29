@@ -2,8 +2,6 @@
   "titlu": "Problema III - Optică - Bac 2021 Var 1",
   "descriere": "Problema de bacalaureat - Subiectul III din Optică, 2021, Varianta 1, teoretic",
   "categorie": "Bac",
-  "varianta": "2021 Var 1",
-  "dificultate": "mediu",
   "punctajTotal": 15,
   "continut": "Într-un dispozitiv Young este utilizată o sursă de lumină care emite radiație cu spectru continuu, plasată pe axa de simetrie a dispozitivului. Lungimile de undă extreme ale spectrului emis sunt egale cu 400 nm, respectiv 700 nm. Interfranja figurii de interferență formate pe ecranul dispozitivului de radiația cu lungimea de undă $\\lambda_{\\nu} = 400 \\, \\text{nm}$ este $i_{\\nu} = 0,8 \\, \\text{mm}$.\n\na. Calculați interfranja figurii de interferență formate pe ecranul dispozitivului de radiația cu lungimea de undă $\\lambda_r = 700 \\, \\text{nm}$.\nb. Determinați distanța care separă maximele de ordinul 3 ale radiațiilor cu lungimile de undă $\\lambda_{\\nu} = 400 \\, \\text{nm}$ și $\\lambda_r = 700 \\, \\text{nm}$, situate de aceeași parte a maximului central.\nc. Stabiliți distanța minimă nenulă, față de franja centrală, la care se suprapun maximele radiațiilor cu lungimile de undă $\\lambda_{\\nu} = 400 \\, \\text{nm}$ și $\\lambda_r = 700 \\, \\text{nm}$.\nd. Determinați lungimea de undă a radiației care formează un maxim de interferență la distanța de 2 mm față de franja centrală.",
   "formule": [],
@@ -38,6 +36,7 @@
     "type": "teoretic",
     "subjectArea": "Optică",
     "subjectCode": "D",
-    "subjectNumber": 3
+    "subjectNumber": 3,
+    "session": "bac"
   }
 }

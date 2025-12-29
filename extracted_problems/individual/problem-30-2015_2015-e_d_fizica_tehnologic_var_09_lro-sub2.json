@@ -2,8 +2,6 @@
   "titlu": "Problema II - Fizică - Bac 2015 Var 9",
   "descriere": "Problema de bacalaureat - Subiectul II din Fizică, 2015, Varianta 9, tehnologic",
   "categorie": "Bac",
-  "varianta": "2015 Var 9",
-  "dificultate": "mediu",
   "punctajTotal": 15,
   "continut": "O ladă cu masa $m = 20\\,\\mathrm{kg}$ coboară cu viteză constantă pe o rampă care formează cu orizontală unghiul $\\alpha = 37^\\circ$ (sin$\\alpha \\cong 0,6$). În timpul coborârii asupra lăzii acționează forța $F = 80\\,\\mathrm{N}$ orientată pe direcția normală la suprafața rampei, ca în figura alăturată.\n\na. Reprezentați toate forțele care acționează asupra lăzii.\nb. Calculați valoarea forței de frecare la alunecare dintre ladă și rampă.\nc. Determinați valoarea forței normale de reacțiune care acționează asupra lăzii la suprafața de contact cu rampa.\nd. Calculați valoarea coeficientului de frecare la alunecare dintre ladă și rampă.\n\n![img-1.jpeg](img-1.jpeg)",
   "formule": [],
@@ -39,6 +37,7 @@
     "variant": 9,
     "type": "tehnologic",
     "subjectArea": null,
-    "subjectNumber": 2
+    "subjectNumber": 2,
+    "session": "bac"
   }
 }

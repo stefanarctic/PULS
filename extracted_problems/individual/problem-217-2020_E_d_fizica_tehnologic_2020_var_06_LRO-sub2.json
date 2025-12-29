@@ -2,8 +2,6 @@
   "titlu": "Problema II - Termodinamică - Bac 2020 Var 6",
   "descriere": "Problema de bacalaureat - Subiectul II din Termodinamică, 2020, Varianta 6, tehnologic",
   "categorie": "Bac",
-  "varianta": "2020 Var 6",
-  "dificultate": "mediu",
   "punctajTotal": 15,
   "continut": "O butelie de formă cilindrică, cu lungimea $L = 1,2 \\mathrm{~m}$ și aria secțiunii transversale $S = 350 \\mathrm{~cm}^{2}$, conține o cantitate de azot $\\left(\\mu_{N_A} = 28 \\mathrm{~g/mol}\\right)$, considerat gaz ideal. Butelia este prevăzută cu o supapă care se deschide numai când presiunea gazului din butelie atinge valoarea $\\rho_{\\max} = 415,5 \\mathrm{kPa}$. Inițial, gazul se află la temperatura $t = 7^{\\circ} \\mathrm{C}$ și la presiunea $p = 166,2 \\mathrm{kPa}$. Calculați:\n\na. cantitatea de gaz din butelie;\nb. numărul de molecule de azot din butelie;\nc. densitatea azotului din butelie;\nd. temperatura minimă până la care trebuie încălzit gazul pentru ca supapa să se deschidă.",
   "formule": [],
@@ -38,6 +36,7 @@
     "type": "tehnologic",
     "subjectArea": "Termodinamică",
     "subjectCode": "B",
-    "subjectNumber": 2
+    "subjectNumber": 2,
+    "session": "bac"
   }
 }

@@ -2,8 +2,6 @@
   "titlu": "Problema III - Fizică - Bac 2021",
   "descriere": "Problema de bacalaureat - Subiectul III din Fizică, 2021, tehnologic",
   "categorie": "Bac",
-  "varianta": "2021",
-  "dificultate": "mediu",
   "punctajTotal": 15,
   "continut": "Un corp de masă $m = 150\\,\\mathrm{g}$, considerat punctiform, este lansat, de la înălțimea $h = 1,8\\,\\mathrm{m}$ față de sol, vertical în sus, cu viteza inițială $v_0 = 8,0\\,\\mathrm{m/s}$. Frecarea cu aerul se consideră neglijabilă, iar energia potențială gravitațională se consideră nulă la nivelul solului. Determinați:\n\na. energia mecanică a corpului în momentul lansării acestuia;\nb. lucrul mecanic efectuat de greutate din momentul lansării corpului până în momentul în care acesta atinge înălțimea maximă;\nc. viteza corpului în momentul în care acesta atinge solul;\nd. intervalul de timp care s-a scurs din momentul atingerii înălțimii maxime până în momentul în care corpul ajunge pe sol.\n\n![img-0.jpeg](img-0.jpeg)",
   "formule": [],
@@ -39,6 +37,7 @@
     "variant": null,
     "type": "tehnologic",
     "subjectArea": null,
-    "subjectNumber": 3
+    "subjectNumber": 3,
+    "session": "model"
   }
 }

@@ -2,8 +2,6 @@
   "titlu": "Problema III - Mecanică - Bac 2024",
   "descriere": "Problema de bacalaureat - Subiectul III din Mecanică, 2024, teoretic",
   "categorie": "Bac",
-  "varianta": "2024",
-  "dificultate": "mediu",
   "punctajTotal": 15,
   "continut": "O săniuță cu masă $m = 10\\,\\mathrm{kg}$, aflată pe un plan înclinat, la înălțimea $h = 6\\,\\mathrm{m}$ față de baza planului înclinat, este lansată spre baza planului cu viteza inițială $v_0 = 3\\,\\mathrm{m/s}$. Unghiul dintre suprafața planului înclinat și orizontală este $\\alpha \\cong 37^\\circ$ (sin $\\alpha = 0,6$). Sania ajunge la baza planului cu viteza $v_1 = 9\\,\\mathrm{m/s}$ după care își continuă mișcarea pe o suprafață orizontală până la oprire. Coeficientului de frecare la alunecare dintre săniuță și suprafață este același pe toată suprafața planului înclinat și pe orizontală. Trecerea săniuței de pe planul înclinat pe suprafața orizontală se face lin, fără modificarea modulului vitezei. Se consideră că energia potențială gravitațională este nulă la baza planului înclinat. Determinați:\n\na. energia mecanică a săniuței în momentul lansării spre baza planului înclinat;\nb. valoarea coeficientului de frecare la alunecare dintre săniuță și suprafața planului;\nc. distanța parcursă de sanie, pe suprafața orizontală, până la oprire;\nd. valoarea medie a puterii dezvoltate de forța de frecare ce acționează asupra săniuței pe suprafața orizontală, până la oprire.",
   "formule": [],
@@ -38,6 +36,7 @@
     "type": "teoretic",
     "subjectArea": "Mecanică",
     "subjectCode": "A",
-    "subjectNumber": 3
+    "subjectNumber": 3,
+    "session": "simulare"
   }
 }

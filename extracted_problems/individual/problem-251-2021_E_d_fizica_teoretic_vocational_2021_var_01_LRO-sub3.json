@@ -2,8 +2,6 @@
   "titlu": "Problema III - Termodinamică - Bac 2021 Var 1",
   "descriere": "Problema de bacalaureat - Subiectul III din Termodinamică, 2021, Varianta 1, teoretic",
   "categorie": "Bac",
-  "varianta": "2021 Var 1",
-  "dificultate": "mediu",
   "punctajTotal": 15,
   "continut": "O cantitate $\\nu = 1 \\text{ mol}$ de oxigen ($\\mu = 32 \\text{ g/mol}, C_V = 2,5R$) efectuează transformarea ciclică ABCA reprezentată în coordonate $p - V$ în figura alăturată. În starea A gazul se află la presiunea $p_A = 400 \\text{ kPa}$ și are densitatea $\\rho_A = 3,2 \\text{ kg/m}^3$, iar în starea B $p_B = 2p_A$. Calculați:\na. valoarea lucrului mecanic total schimbat de gaz cu mediul exterior;\nb. valoarea căldurii cedate de gaz mediului exterior;\nc. randamentului motorului care ar funcționa după acest ciclu termodinamic;\nd. randamentul ciclului Carnot care ar funcționa între temperaturile extreme atinse de gaz în decursul transformării ABCA.",
   "formule": [],
@@ -40,6 +38,7 @@
     "type": "teoretic",
     "subjectArea": "Termodinamică",
     "subjectCode": "B",
-    "subjectNumber": 3
+    "subjectNumber": 3,
+    "session": "bac"
   }
 }

@@ -2,8 +2,6 @@
   "titlu": "Problema III - Mecanică - Bac 2025",
   "descriere": "Problema de bacalaureat - Subiectul III din Mecanică, 2025, teoretic",
   "categorie": "Bac",
-  "varianta": "2025",
-  "dificultate": "mediu",
   "punctajTotal": 15,
   "continut": "Corpul de masă $m_1 = 200\\,\\mathrm{g}$ din figura alăturată se află pe o suprafață orizontală, în contact cu capătul liber al unui resort ideal de constantă elastică $k = 500\\,\\mathrm{N/m}$. În starea inițială resortul este comprimat cu $x = AB = 10$ cm, iar corpul de masă $m_1$ este menținut în punctul A. După eliberare, resortul se destinde și împinge corpul, care se deplasează pe suprafața orizontală. Pe porțiunea BC, de lungime $d = 2\\,\\mathrm{m}$, coeficientul de frecare la alunecare dintre corp și suprafață este $\\mu = 0,4$. În rest, frecările sunt neglijabile. După ce trece de punctul C, corpul de masă $m_1$ se cuplează cu un corp de masă $m_2 = 100\\,\\mathrm{g}$. Corpul $m_2$ este suspendat de un fir vertical de lungime $\\ell = 1\\,\\mathrm{m}$ și se află în repaus. Firul este inextensibil și de masă neglijabilă. Cele două corpuri pot fi considerate puncte materiale. Calculați:\n\na. viteza corpului de masă $m_1$ la trecerea prin punctul B;\nb. energia cinetică a corpului de masă $m_1$ la trecerea prin punctul C;\nc. viteza ansamblului celor două corpuri, imediat după cuplare;\nd. înălțimea maximă, față de suprafața orizontală, la care ajunge ansamblul celor două corpuri.",
   "formule": [],
@@ -40,6 +38,7 @@
     "type": "teoretic",
     "subjectArea": "Mecanică",
     "subjectCode": "A",
-    "subjectNumber": 3
+    "subjectNumber": 3,
+    "session": "model"
   }
 }

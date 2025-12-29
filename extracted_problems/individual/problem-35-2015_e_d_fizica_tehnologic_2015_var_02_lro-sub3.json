@@ -2,8 +2,6 @@
   "titlu": "Problema III - Fizică - Bac 2015 Var 2",
   "descriere": "Problema de bacalaureat - Subiectul III din Fizică, 2015, Varianta 2, tehnologic",
   "categorie": "Bac",
-  "varianta": "2015 Var 2",
-  "dificultate": "mediu",
   "punctajTotal": 15,
   "continut": "Un corp de mici dimensiuni, cu masa $m = 1 \\, \\text{kg}$, este lansat vertical în jos, cu viteza $v_0 = 8 \\, \\frac{\\text{m}}{\\text{s}}$, dintr-un punct situat la înălțimea $h = 1,8 \\, \\text{m}$ deasupra solului. Se consideră că energia potențială gravitațională este nulă la nivelul solului și se neglijează interacțiunea cu aerul. Calculați:\n\na. energia cinetică inițială a corpului;\n\nb. energia mecanică a corpului;\n\nc. lucrul mecanic efectuat de greutatea corpului din momentul lansării și până în momentul atingerii solului;\n\nd. viteza corpului în momentul atingerii solului.",
   "formule": [],
@@ -37,6 +35,7 @@
     "variant": 2,
     "type": "tehnologic",
     "subjectArea": null,
-    "subjectNumber": 3
+    "subjectNumber": 3,
+    "session": "bac"
   }
 }

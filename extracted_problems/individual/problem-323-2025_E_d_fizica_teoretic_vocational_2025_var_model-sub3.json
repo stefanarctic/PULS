@@ -2,8 +2,6 @@
   "titlu": "Problema III - Optică - Bac 2025",
   "descriere": "Problema de bacalaureat - Subiectul III din Optică, 2025, teoretic",
   "categorie": "Bac",
-  "varianta": "2025",
-  "dificultate": "mediu",
   "punctajTotal": 15,
   "continut": "Un dispozitiv Young este iluminat cu o radiație monocromatică, cu lungimea de undă $\\lambda = 420 \\, \\text{nm}$. Distanța dintre fantele dispozitivului este $2\\ell = 1 \\, \\text{mm}$, iar distanța de la planul fantelor la ecranul pe care se observă figura de interferență este $D = 2 \\, \\text{m}$.\n\na. Calculați valoarea interfranjei.\nb. Calculați frecvența radiației incidente.\nc. Se înlocuiește sursa de lumină cu o altă sursă care emite simultan radiație roșie cu lungimea de undă $\\lambda_r = 760 \\, \\text{nm}$ și radiație violet cu lungimea de undă $\\lambda_v = 400 \\, \\text{nm}$. Calculați distanța dintre maximul de ordin 1 corespunzător radiației roșii și maximul de ordin 1 corespunzător radiației violet, aflate de aceeași parte a maximului central.\nd. Sursa de lumină coerentă se află la distanța $d = 1 \\, \\text{m}$ față de planul fantelor, pe mediatoarea segmentului ce unește cele două fante. Determinați distanța pe care se deplasează franja centrală, dacă sursa S se deplasează, cu distanța $h = 1 \\, \\text{mm}$, perpendicular pe axa de simetrie a dispozitivului și perpendicular pe fante.",
   "formule": [],
@@ -38,6 +36,7 @@
     "type": "teoretic",
     "subjectArea": "Optică",
     "subjectCode": "D",
-    "subjectNumber": 3
+    "subjectNumber": 3,
+    "session": "model"
   }
 }

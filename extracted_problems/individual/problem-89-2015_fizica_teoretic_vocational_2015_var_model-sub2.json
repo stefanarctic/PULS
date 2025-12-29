@@ -2,8 +2,6 @@
   "titlu": "Problema II - Termodinamică - Bac 2015",
   "descriere": "Problema de bacalaureat - Subiectul II din Termodinamică, 2015, teoretic",
   "categorie": "Bac",
-  "varianta": "2015",
-  "dificultate": "mediu",
   "punctajTotal": 15,
   "continut": "Într-o butelie se află $m = 48\\mathrm{g}$ de oxigen ($\\mu_{O_2} = 32\\mathrm{g/mol}$), considerat gaz ideal. Gazul, aflat inițial în starea 1 în care temperatura este $t_1 = 7^{\\circ}\\mathrm{C}$ și presiunea $p_1 = 4 \\cdot 10^5\\mathrm{Pa}$, este încălzit până în starea 2 în care temperatura devine $t_2 = 77^{\\circ}\\mathrm{C}$. Ulterior, se consumă $\\Delta m = 6\\mathrm{g}$ din oxigenul aflat în butelie. În final, în starea 3, temperatura oxigenului rămas în butelie este $t_3 = t_1 = 7^{\\circ}\\mathrm{C}$. Determinați:\n\na. cantitatea de oxigen aflată în butelie în starea inițială 1;\nb. densitatea gazului în starea inițială 1;\nc. presiunea maximă atinsă de oxigenul din butelie în cursul transformării;\nd. presiunea oxigenului din butelie în starea finală 3.",
   "formule": [],
@@ -38,6 +36,7 @@
     "type": "teoretic",
     "subjectArea": "Termodinamică",
     "subjectCode": "B",
-    "subjectNumber": 2
+    "subjectNumber": 2,
+    "session": "model"
   }
 }

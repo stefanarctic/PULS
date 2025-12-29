@@ -2,8 +2,6 @@
   "titlu": "Problema III - Fizică - Bac 2020",
   "descriere": "Problema de bacalaureat - Subiectul III din Fizică, 2020, tehnologic",
   "categorie": "Bac",
-  "varianta": "2020",
-  "dificultate": "mediu",
   "punctajTotal": 15,
   "continut": "Un corp de masă $m = 200 \\, \\text{g}$, considerat punctiform, este lăsat liber să alunece, fără frecări, de-a lungul unei suprafețe curbate, după care corpul își continuă mișcarea, cu frecare, pe o suprafață orizontală, până la oprire. Coeficientul de frecare la alunecare dintre corp și suprafața orizontală este $\\mu = 0,2$. Corpul a fost lăsat liber de la înălțimea $h = 0,8 \\, \\text{m}$ față de nivelul suprafeței orizontale.\n\nDeterminați:\na. lucrul mecanic efectuat de greutate din momentul în care corpul a fost lăsat liber până în momentul în care acesta se oprește;\nb. valoarea vitezei corpului în momentul în care acesta, trecând prin punctul A, intră pe suprafața orizontală;\nc. valoarea vitezei corpului într-un punct B aflat la distanța $d = 3 \\, \\text{m}$ de punctul A pe suprafața orizontală;\nd. distanța parcursă de corp, pe suprafața orizontală, până la oprire.\n\n![img-2.jpeg](img-2.jpeg)",
   "formule": [],
@@ -39,6 +37,7 @@
     "variant": null,
     "type": "tehnologic",
     "subjectArea": null,
-    "subjectNumber": 3
+    "subjectNumber": 3,
+    "session": "model"
   }
 }

@@ -2,8 +2,6 @@
   "titlu": "Problema II - Fizică - Bac 2019 Var 2",
   "descriere": "Problema de bacalaureat - Subiectul II din Fizică, 2019, Varianta 2, tehnologic",
   "categorie": "Bac",
-  "varianta": "2019 Var 2",
-  "dificultate": "mediu",
   "punctajTotal": 15,
   "continut": "![img-0.jpeg](img-0.jpeg)\n\nÎn figura alăturată este reprezentată o ladă cu masa $m = 40\\,\\mathrm{kg}$ aflată în repaus pe o suprafață orizontală. De ladă este legat un resort elastic, cu masa neglijabilă, având constanta elastică $k = 800\\,\\mathrm{N/m}$ și lungimea $\\ell_0 = 30\\,\\mathrm{cm}$ în stare nedeformată. La capătul resortului acționează o forță $F = 40\\,\\mathrm{N}$ care alungește resortul fără să scoată lada din stare de repaus.\n\na. Calculați forța de apăsare normală a lăzii pe suprafața pe care se află.\nb. Calculați lungimea resortului elastic deformat sub acțiunea forței $\\vec{F}$.\nc. Dacă valoarea forței care acționează la capătul resortului elastic devine $F' = 220\\,\\mathrm{N}$, lada se deplasează. Coeficientul de frecare la alunecarea lăzii pe suprafața orizontală este $\\mu = 0,5$. Calculați valoarea forței de frecare la alunecare.\nd. Calculați accelerația cutiei în condițiile punctului c.",
   "formule": [],
@@ -39,6 +37,7 @@
     "variant": 2,
     "type": "tehnologic",
     "subjectArea": null,
-    "subjectNumber": 2
+    "subjectNumber": 2,
+    "session": "bac"
   }
 }

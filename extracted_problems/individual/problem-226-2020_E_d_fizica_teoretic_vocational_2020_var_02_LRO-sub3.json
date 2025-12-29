@@ -2,8 +2,6 @@
   "titlu": "Problema III - Mecanică - Bac 2020 Var 2",
   "descriere": "Problema de bacalaureat - Subiectul III din Mecanică, 2020, Varianta 2, teoretic",
   "categorie": "Bac",
-  "varianta": "2020 Var 2",
-  "dificultate": "mediu",
   "punctajTotal": 15,
   "continut": "Un corp având masa $m = 0,50\\,\\mathrm{kg}$ se află inițial pe sol, în repaus. Asupra corpului acționează o forță constantă $F = 250\\,\\mathrm{N}$, orientată vertical în sus, până când corpul ajunge la înălțimea $h = 40\\,\\mathrm{cm}$. Ulterior, corpul se mișcă liber, urcând până la înălțimea maximă și apoi revenind pe sol. Pe toată durata mișcării, interacțiunea cu aerul se consideră neglijabilă. Energia potențială gravitațională se consideră nulă la nivelul solului. Toate înălțimile se măsoară față de sol. Determinați:\na. lucrul mecanic efectuat de greutatea corpului din momentul în care acesta se află pe sol și până când ajunge la înălțimea $h = 40\\,\\mathrm{cm}$;\nb. energia cinetică a corpului în momentul în care acesta ajunge la înălțimea $h = 40\\,\\mathrm{cm}$;\nc. înălțimea la care, în timpul căderii, energia cinetică a corpului este egală cu o treime din energia sa potențială gravitațională din acel moment;\nd. valoarea impulsului corpului în momentul în care acesta, în cădere, atinge solul.",
   "formule": [],
@@ -38,6 +36,7 @@
     "type": "teoretic",
     "subjectArea": "Mecanică",
     "subjectCode": "A",
-    "subjectNumber": 3
+    "subjectNumber": 3,
+    "session": "bac"
   }
 }

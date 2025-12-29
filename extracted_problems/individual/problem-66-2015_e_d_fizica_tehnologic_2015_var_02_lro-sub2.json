@@ -2,8 +2,6 @@
   "titlu": "Problema II - Mecanică - Bac 2015 Var 2",
   "descriere": "Problema de bacalaureat - Subiectul II din Mecanică, 2015, Varianta 2, tehnologic",
   "categorie": "Bac",
-  "varianta": "2015 Var 2",
-  "dificultate": "mediu",
   "punctajTotal": 15,
   "continut": "O bandă rulantă transportoare este orientată oblic și este folosită pentru ridicarea unor corpuri la înălțimea $h = 6 \\, \\text{m}$, ca în figura alăturată. Banda rulează cu viteza constantă $v = 0,5 \\, \\text{m/s}$, fiind pusă în mișcare de un motor M. Distanța MA este $d = 10 \\, \\text{m}$. Banda urcă, din M până în A, o cutie cu masa $m = 20 \\, \\text{kg}$.\n\na. Calculați greutatea cutiei.\n\nb. Calculați intervalul de timp în care cutia este ridicată din M până în A.\n\nc. Determinați valoarea forței de apăsare normală exercitată de cutie asupra benzii.\n\nd. Se oprește motorul M, iar banda transportoare rămâne în repaus. Calculați valoarea coeficientului de frecare la alunecare dintre bandă și cutie pentru care cutia coboară cu viteză constantă pe banda transportoare.",
   "formule": [],
@@ -40,6 +38,7 @@
     "type": "tehnologic",
     "subjectArea": "Mecanică",
     "subjectCode": "A",
-    "subjectNumber": 2
+    "subjectNumber": 2,
+    "session": "bac"
   }
 }

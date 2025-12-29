@@ -2,8 +2,6 @@
   "titlu": "Problema II - Fizică - Bac 2024",
   "descriere": "Problema de bacalaureat - Subiectul II din Fizică, 2024, tehnologic",
   "categorie": "Bac",
-  "varianta": "2024",
-  "dificultate": "mediu",
   "punctajTotal": 15,
   "continut": "Două corpuri de mase $m_{1} = 1\\mathrm{kg}$ și $m_{2} = 2\\mathrm{kg}$, aflate pe o suprafață orizontală, sunt legate între ele printr-un fir inextensibil și de masă neglijabilă. În condițiile în care se trage de corpul de masă $m_{1}$ cu o forță $\\bar{F}$ a cărei direcție formează unghiul $\\alpha = 30^{\\circ}$ cu orizontala, sistemul format de cele două corpuri se deplasează cu accelerația $a = 1\\mathrm{m/s}^2$. Coeficientul de frecare la alunecare dintre cele două corpuri și suprafața orizontală este același, $\\mu = 0,2$.\n\na. Reprezentați forțele care acționează asupra corpului de masă $m_{2}$.\nb. Calculați viteza sistemului format din cele două corpuri, la momentul $t = 4\\mathrm{s}$ de la începerea mișcării, considerând că sistemul pornește din repaus.\nc. Determinați valoarea tensiunii din firul de legătură.\nd. Calculați valoarea forței de tracțiune $\\bar{F}$.",
   "formule": [],
@@ -37,6 +35,7 @@
     "variant": null,
     "type": "tehnologic",
     "subjectArea": null,
-    "subjectNumber": 2
+    "subjectNumber": 2,
+    "session": "simulare"
   }
 }

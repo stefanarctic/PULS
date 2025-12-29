@@ -2,8 +2,6 @@
   "titlu": "Problema II - Optică - Bac 2016",
   "descriere": "Problema de bacalaureat - Subiectul II din Optică, 2016, teoretic",
   "categorie": "Bac",
-  "varianta": "2016",
-  "dificultate": "mediu",
   "punctajTotal": 15,
   "continut": "Un obiect liniar este plasat perpendicular pe axa optică principală la distanța de 40 cm față de o lentilă $L_1$. Pe un ecran așezat corespunzător se observă o imagine clară de 3 ori mai mare decât obiectul. Se alipește de lentila $L_1$ o lentilă $L_2$. Același obiect este plasat, perpendicular pe axa optică principală a sistemului de lentile, la distanța de 60 cm față de sistem. Imaginea obiectului este virtuală și de 4 ori mai mare decât obiectul.\n\na. Determinați distanța focală a lentilei $L_1$.\nb. Determinați convergența sistemului optic format din lentilele $L_1$ și $L_2$ alipite.\nc. Determinați distanța focală a lentilei $L_2$.\nd. Știind că lentila $L_2$ este plan concavă, determinați indicele de refracție al materialului din care este confectionată lentila, aceasta fiind plasată în aer ($n_{\\text{aer}} \\cong 1$). Raza de curbură a suprafeței sferice a lentilei este $|R| = 24 \\, \\text{cm}$.",
   "formule": [],
@@ -38,6 +36,7 @@
     "type": "teoretic",
     "subjectArea": "Optică",
     "subjectCode": "D",
-    "subjectNumber": 2
+    "subjectNumber": 2,
+    "session": "simulare"
   }
 }

@@ -2,8 +2,6 @@
   "titlu": "Problema III - Termodinamică - Bac 2018",
   "descriere": "Problema de bacalaureat - Subiectul III din Termodinamică, 2018, tehnologic",
   "categorie": "Bac",
-  "varianta": "2018",
-  "dificultate": "mediu",
   "punctajTotal": 15,
   "continut": "O cantitate de gaz considerat ideal, a cărui căldură molară izocoră este $C_V = 2,5R$, se află inițial în starea 1 în care presiunea este $p_1 = 10^5\\mathrm{Pa}$, iar volumul $V_1 = 2L$. Gazul parcurge procesul termodinamic 1-2-3, reprezentat în coordonate $p-V$ în figura alăturată. Transformarea 2-3 are loc la temperatură constantă. Se cunosc: $V_2 = 1,5V_1$, $V_3 = 0,5V_1$ și $\\ln 3 \\cong 1,1$.\n\na. Determinați lucrul mecanic schimbat de gaz cu exteriorul în cursul transformării 1-2.\nb. Calculați valoarea energiei interne a gazului în starea 3.\nc. Reprezentați procesul 1-2-3 în coordonate $V - T$.\nd. Determinați căldura schimbată de gaz cu exteriorul în cursul transformării 2-3.",
   "formule": [],
@@ -40,6 +38,7 @@
     "type": "tehnologic",
     "subjectArea": "Termodinamică",
     "subjectCode": "B",
-    "subjectNumber": 3
+    "subjectNumber": 3,
+    "session": "model"
   }
 }

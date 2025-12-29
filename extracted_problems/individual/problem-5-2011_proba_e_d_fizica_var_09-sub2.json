@@ -2,8 +2,6 @@
   "titlu": "Problema II - Optică - Bac 2011 Var 9",
   "descriere": "Problema de bacalaureat - Subiectul II din Optică, 2011, Varianta 9",
   "categorie": "Bac",
-  "varianta": "2011 Var 9",
-  "dificultate": "mediu",
   "punctajTotal": 15,
   "continut": "Un elev utilizează o lentilă convergentă subțire pentru a observa un obiect liniar AB. Acesta plasează lentila la 10 cm de obiect, astfel încât obiectul să fie perpendicular pe axa optică principală a lentilei. Imaginea observată este dreaptă și de trei ori mai mare decât obiectul.\n\na. Determinați mărirea liniară transversală dată de lentilă.\nb. Calculați distanța focală a lentilei.\nc. Realizați un desen în care să evidențiați construcția imaginii prin lentilă în situația descrisă.\nd. Elevul depărtează lentila de obiect cu $d = 30\\,\\mathrm{cm}$ față de poziția inițială. Calculați distanța față de lentilă la care trebuie plasat un ecran astfel încât pe acesta să se formeze imaginea clară a obiectului AB.",
   "formule": [],
@@ -38,6 +36,7 @@
     "type": null,
     "subjectArea": "Optică",
     "subjectCode": "D",
-    "subjectNumber": 2
+    "subjectNumber": 2,
+    "session": "bac"
   }
 }

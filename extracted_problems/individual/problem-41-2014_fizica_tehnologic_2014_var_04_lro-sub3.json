@@ -2,8 +2,6 @@
   "titlu": "Problema III - Mecanică - Bac 2014 Var 4",
   "descriere": "Problema de bacalaureat - Subiectul III din Mecanică, 2014, Varianta 4, tehnologic",
   "categorie": "Bac",
-  "varianta": "2014 Var 4",
-  "dificultate": "mediu",
   "punctajTotal": 15,
   "continut": "Un corp este lansat pe verticală de jos în sus, de la nivelul solului, cu energia cinetică inițială $E_{\\mathrm{cu}} = 4000\\,\\mathrm{J}$. Corpul urcă în câmpul gravitațional terestru până la înălțimea maximă $H = 80\\,\\mathrm{m}$. Se consideră că energia potențială gravitațională este nulă la nivelul solului. Neglijând frecările cu aerul, determinați:\n\na. masa corpului\nb. viteza cu care a fost lansat corpul\nc. viteza corpului aflat în urcare, în momentul în care acesta trece prin punctul aflat la înălțimea de 35 m față de sol.\nd. lucrul mecanic efectuat de greutatea corpului din momentul atingerii înălțimii de 35 m și până la revenirea sa pe sol.",
   "formule": [],
@@ -38,6 +36,7 @@
     "type": "tehnologic",
     "subjectArea": "Mecanică",
     "subjectCode": "A",
-    "subjectNumber": 3
+    "subjectNumber": 3,
+    "session": "bac"
   }
 }

@@ -2,8 +2,6 @@
   "titlu": "Problema III - Optică - Bac 2021",
   "descriere": "Problema de bacalaureat - Subiectul III din Optică, 2021, tehnologic",
   "categorie": "Bac",
-  "varianta": "2021",
-  "dificultate": "mediu",
   "punctajTotal": 15,
   "continut": "Un vas de formă cilindrică are diametrul bazei $D = 60 \\, \\text{cm}$ și înălțimea $H = 40 \\, \\text{cm}$. O sursă punctiformă de lumină este plasată pe fundul vasului, în centrul acestuia. Se umple vasul cu apă. Indicele de refracție al apei este $n_a = 4/3$.\n\na. Determinați valoarea vitezei de propagare a luminii în apă.\nb. Calculați valoarea maximă a sinusului unghiului sub care se refractă lumina la trecerea prin suprafața orizontală plană de separare dintre apă și aer.\nc. Se așază pe suprafața apei o oglindă plană circulară cu fața reflectătoare lipită de suprafața apei. Centrul oglinzii se află pe verticala sursei. Calculați distanța dintre sursă și imaginea sursei formată în oglindă.\nd. În condițiile punctului c, determinați diametrul minim al oglinzii astfel încât baza vasului să fie luminată în întregime de razele reflectate.",
   "formule": [],
@@ -38,6 +36,7 @@
     "type": "tehnologic",
     "subjectArea": "Optică",
     "subjectCode": "D",
-    "subjectNumber": 3
+    "subjectNumber": 3,
+    "session": "model"
   }
 }

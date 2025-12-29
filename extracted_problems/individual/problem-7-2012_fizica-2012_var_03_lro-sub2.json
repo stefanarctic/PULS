@@ -2,8 +2,6 @@
   "titlu": "Problema II - Fizică - Bac 2012 Var 3",
   "descriere": "Problema de bacalaureat - Subiectul II din Fizică, 2012, Varianta 3",
   "categorie": "Bac",
-  "varianta": "2012 Var 3",
-  "dificultate": "mediu",
   "punctajTotal": 15,
   "continut": "Un corp cu masă de 100 g este aruncat pe verticală de jos în sus în câmp gravitațional terestru. Corpul întâmpină din partea aerului o forță de rezistență constantă orientată pe direcția de mișcare a corpului. Graficul alăturat reprezintă dependența vitezei corpului, funcție de timp, pentru porțiunea de urcare.\n\na. Reprezentați forțele ce acționează asupra corpului în timpul urcării.\nb. Calculați viteza medie de deplasare a corpului în prima secundă de mișcare.\nc. Determinați accelerația corpului, în urcare.\nd. Calculați valoarea forței de rezistență întâmpinată de corp din partea aerului.\n\n![img-0.jpeg](img-0.jpeg)\n\n![img-1.jpeg](img-1.jpeg)",
   "formule": [],
@@ -40,6 +38,7 @@
     "variant": 3,
     "type": null,
     "subjectArea": null,
-    "subjectNumber": 2
+    "subjectNumber": 2,
+    "session": "bac"
   }
 }

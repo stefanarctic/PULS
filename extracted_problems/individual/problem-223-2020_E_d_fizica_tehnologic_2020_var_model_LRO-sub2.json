@@ -2,8 +2,6 @@
   "titlu": "Problema II - Termodinamică - Bac 2020",
   "descriere": "Problema de bacalaureat - Subiectul II din Termodinamică, 2020, tehnologic",
   "categorie": "Bac",
-  "varianta": "2020",
-  "dificultate": "mediu",
   "punctajTotal": 15,
   "continut": "Un cilindru cu piston, așezat orizontal, conține o cantitate $\\nu_1 = 2\\mathrm{mol}$ de azot $(\\mu_1 = 28\\mathrm{g/mol})$, la temperatura $t_1 = 7^{\\circ}\\mathrm{C}$ și la presiunea $p_1 = 10^5\\mathrm{Pa}$, egală cu cea atmosferică. Inițial pistonul este blocat. Considerând azotul ca fiind gaz ideal, determinați:\n\na. masa azotului aflat în cilindru;\n\nb. volumul ocupat de azot în starea inițială;\n\nc. valoarea temperaturii $T_2$ până la care trebuie încălzit azotul astfel încât presiunea lui să se dubleze.\n\nd. volumul ocupat de azot în starea de echilibru atinsă după deblocarea pistonului, temperatura azotului fiind menținută valoarea $T_2$. Se consideră că pistonul se poate deplasa liber, fără frecări.",
   "formule": [],
@@ -38,6 +36,7 @@
     "type": "tehnologic",
     "subjectArea": "Termodinamică",
     "subjectCode": "B",
-    "subjectNumber": 2
+    "subjectNumber": 2,
+    "session": "model"
   }
 }

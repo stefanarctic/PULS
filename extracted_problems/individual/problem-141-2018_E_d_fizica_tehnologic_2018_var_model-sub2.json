@@ -2,8 +2,6 @@
   "titlu": "Problema II - Termodinamică - Bac 2018",
   "descriere": "Problema de bacalaureat - Subiectul II din Termodinamică, 2018, tehnologic",
   "categorie": "Bac",
-  "varianta": "2018",
-  "dificultate": "mediu",
   "punctajTotal": 15,
   "continut": "Un cilindru orizontal de lungime $L = 1\\mathrm{m}$ este împărțit în două compartimente de volume egale cu ajutorul unui piston de secțiune $S = 166,2\\mathrm{cm}^2$ și grosime neglijabilă, care se poate deplasa fără frecări. Inițial, pistonul este în echilibru. În fiecare compartiment se află o cantitate $\\nu = 0,4\\mathrm{mol}$ de hidrogen $\\left(\\mu_{H_2} = 2\\mathrm{g/mol}\\right)$, la presiunea $p = 10^5\\mathrm{Pa}$. Temperatura întregului sistem este menținută tot timpul constantă.\n\na. Determinați numărul moleculelor de hidrogen din cilindru.\nb. Calculați temperatura la care se află hidrogenul.\nc. Determinați densitatea hidrogenului.\nd. Se deplasează pistonul pe distanța $x = 30\\mathrm{cm}$, iar apoi pistonul este blocat. Determinați raportul dintre presiunea hidrogenului din compartimentul mai mic și presiunea hidrogenului din compartimentul mai mare.",
   "formule": [],
@@ -38,6 +36,7 @@
     "type": "tehnologic",
     "subjectArea": "Termodinamică",
     "subjectCode": "B",
-    "subjectNumber": 2
+    "subjectNumber": 2,
+    "session": "model"
   }
 }

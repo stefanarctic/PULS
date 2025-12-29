@@ -2,8 +2,6 @@
   "titlu": "Problema III - Optică - Bac 2011 Var 9",
   "descriere": "Problema de bacalaureat - Subiectul III din Optică, 2011, Varianta 9",
   "categorie": "Bac",
-  "varianta": "2011 Var 9",
-  "dificultate": "mediu",
   "punctajTotal": 15,
   "continut": "Într-un experiment de studiu al efectului fotoelectric pe un catod al unei celule fotoelectrice s-au folosit radiații cu diferite frecvențe. În tabelul alăturat sunt înscrise, pentru fiecare frecvență folosită, valorile energiei cinetice maxime a electronilor emiși.\n\na. Reprezentați grafic energia cinetică maximă a fotoelectronilor emiși de catod în funcție de frecvența radiației incidente, pentru $\\nu \\in [0,6 \\cdot 10^{15}\\,\\mathrm{Hz}; 1,5 \\cdot 10^{15}\\,\\mathrm{Hz}]$.\n\nb. Determinați valoarea constantei lui Planck folosind datele experimentale.\n\nc. Calculați lucrul mecanic de extracție corespunzător materialului din care este confectionat catodul.\n\nd. Precizați dacă se produce efect fotoelectric sub acțiunea unei radiații având frecvența de $4 \\cdot 10^{14}\\,\\mathrm{Hz}$, în cazul catodului utilizat. Justificați răspunsul.\n\n|  $\\nu \\cdot (10^{15}\\,\\mathrm{Hz})$ | $E_c (10^{-19}\\,\\mathrm{J})$  |\n| --- | --- |\n|  0,60 | 0,64  |\n|  0,75 | 1,63  |\n|  1,00 | 3,28  |\n|  1,50 | 6,58  |",
   "formule": [],
@@ -38,6 +36,7 @@
     "type": null,
     "subjectArea": "Optică",
     "subjectCode": "D",
-    "subjectNumber": 3
+    "subjectNumber": 3,
+    "session": "bac"
   }
 }

@@ -2,8 +2,6 @@
   "titlu": "Problema III - Mecanică - Bac 2015",
   "descriere": "Problema de bacalaureat - Subiectul III din Mecanică, 2015, tehnologic",
   "categorie": "Bac",
-  "varianta": "2015",
-  "dificultate": "mediu",
   "punctajTotal": 15,
   "continut": "Unui puc de hochei, cu masa $m = 160\\,\\mathrm{g}$, i se imprimă o viteză orizontală $v_1 = 20\\,\\mathrm{m/s}$ prin lovirea sa pe direcție centrală, ca în desenul din figura alăturată. Pucul, având formă de disc și fiind confectionat din cauciuc, alunecă pe suprafața gheții fără a se roti. Coeficientul de frecare la alunecare dintre puc și suprafața gheții fiind $\\mu = 0,1$, determinați:\n\na. energia cinetică a pucului imediat după lovirea sa;\nb. lucrul mecanic efectuat de forța de frecare dintre puc și suprafața gheții în timpul deplasării pe distanța $d_1 = 38\\,\\mathrm{m}$, presupunând că forța de frecare este constantă pe toată durata deplasării pucului;\nc. viteza pucului după ce aceasta a parcurs distanța $d_1 = 38\\,\\mathrm{m}$;\nd. distanța $d_2$ pe care ar parcurge-o pucul din momentul lansării sale până la oprire, presupunând că nu ar întâlni nici un obstacol în calea sa.",
   "formule": [],
@@ -40,6 +38,7 @@
     "type": "tehnologic",
     "subjectArea": "Mecanică",
     "subjectCode": "A",
-    "subjectNumber": 3
+    "subjectNumber": 3,
+    "session": "simulare"
   }
 }

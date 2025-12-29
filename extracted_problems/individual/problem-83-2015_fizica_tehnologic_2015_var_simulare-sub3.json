@@ -2,8 +2,6 @@
   "titlu": "Problema III - Termodinamică - Bac 2015",
   "descriere": "Problema de bacalaureat - Subiectul III din Termodinamică, 2015, tehnologic",
   "categorie": "Bac",
-  "varianta": "2015",
-  "dificultate": "mediu",
   "punctajTotal": 15,
   "continut": "O cantitate $\\nu = 0,12$ mol $\\left(\\cong \\frac{1}{8,31}\\mathrm{mol}\\right)$ de gaz ideal biatomic ($C_v = 2,5R$) efectuează transformarea $1 \\rightarrow 2 \\rightarrow 3 \\rightarrow 4$ reprezentată în coordonate $p - V$ în figura alăturată. Se cunoaște $T_1 = 500\\mathrm{K}, p_1 = 2p_2$ și $V_2 = 3V$.\n\na. Reprezentați grafic în coordonate $p - T$ transformarea $1 \\rightarrow 2 \\rightarrow 3 \\rightarrow 4$.\nb. Calculați căldura schimbată de gaz cu exteriorul în transformarea $1 \\rightarrow 2$.\nc. Calculați variația energiei interne a gazului în transformarea $2 \\rightarrow 3$.\nd. Calculați lucrul mecanic schimbat de gaz cu exteriorul în transformarea $3 \\rightarrow 4$.",
   "formule": [],
@@ -40,6 +38,7 @@
     "type": "tehnologic",
     "subjectArea": "Termodinamică",
     "subjectCode": "B",
-    "subjectNumber": 3
+    "subjectNumber": 3,
+    "session": "simulare"
   }
 }

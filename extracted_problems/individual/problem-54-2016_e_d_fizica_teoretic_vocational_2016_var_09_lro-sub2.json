@@ -2,8 +2,6 @@
   "titlu": "Problema II - Fizică - Bac 2016 Var 9",
   "descriere": "Problema de bacalaureat - Subiectul II din Fizică, 2016, Varianta 9, teoretic",
   "categorie": "Bac",
-  "varianta": "2016 Var 9",
-  "dificultate": "mediu",
   "punctajTotal": 15,
   "continut": "Corpurile din figura alăturată sunt legate printr-un fir inextensibil și de masă neglijabilă, trecut peste un scripete lipsit de inerție și frecări. Sub acțiunea forței constante $\\vec{F}$, corpul de masă $m_1$ se deplasează, în sensul de acțiune al forței, cu viteza constantă $v = 0,5 \\, \\text{m/s}$. Se cunosc masele corpurilor $m_1 = m_2 = 5 \\, \\text{kg}$, unghiul planului înclinat $\\alpha = 45^\\circ$ și coeficientul de frecare la alunecare, același pentru ambele corpuri și suprafețe $\\mu = 0,2$. Firul este suficient de lung pentru ca în timpul mișcării corpul de masă $m_2$ să nu atingă scripetele.\n\n![img-1.jpeg](img-1.jpeg)\n\na. Reprezentați forțele care acționează asupra corpului de masă $m_2$.\nb. Determinați timpul în care corpul de masă $m_1$ parcurge distanța $d = 1,5 \\, \\text{m}$.\nc. Calculați valoarea tensiunii din fir.\nd. Se modifică modulul forței $\\vec{F}$, noua valoare fiind $F' = 62,3 \\, \\text{N}$. Determinați accelerația sistemului în acest caz.",
   "formule": [],
@@ -39,6 +37,7 @@
     "variant": 9,
     "type": "teoretic",
     "subjectArea": null,
-    "subjectNumber": 2
+    "subjectNumber": 2,
+    "session": "bac"
   }
 }

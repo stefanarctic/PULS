@@ -2,8 +2,6 @@
   "titlu": "Problema III - Optică - Bac 2025 Var 1",
   "descriere": "Problema de bacalaureat - Subiectul III din Optică, 2025, Varianta 1, teoretic",
   "categorie": "Bac",
-  "varianta": "2025 Var 1",
-  "dificultate": "mediu",
   "punctajTotal": 15,
   "continut": "Distanța dintre fantele unui dispozitiv Young plasat în aer $(n_{\\text{aer}} = 1)$ este $2\\ell = 0,9 \\, \\text{mm}$, iar distanța care separă planul fantelor de ecranul pe care se observă figura de interferență este $D = 2,25 \\, \\text{m}$. Pe axa de simetrie a dispozitivului este plasată o sursă de lumină monocromatică având frecvența $\\nu = 5 \\cdot 10^{14} \\, \\text{Hz}$.\n\na. Calculați lungimea de undă a luminii emise de sursă.\nb. Determinați interfranja figurii de interferență observate pe ecran.\nc. Se depărtează ecranul de planul fantelor cu distanța $\\Delta D = 0,75 \\, \\text{m}$, în direcția axei de simetrie a dispozitivului. Calculați distanța, măsurată pe ecran, cu care s-a deplasat maximul de ordinul $k = 3$.\nd. După ce ecranul a fost adus în poziția specificată la punctul c., întregul dispozitiv este introdus într-un lichid omogen și transparent. Se constată că maximul de ordinul $k = 3$ revine în poziția pe care o avea înainte de deplasarea ecranului. Determinați indicele de refracție al lichidului.\n\n(15 puncte)",
   "formule": [],
@@ -41,6 +39,7 @@
     "type": "teoretic",
     "subjectArea": "Optică",
     "subjectCode": "D",
-    "subjectNumber": 3
+    "subjectNumber": 3,
+    "session": "bac"
   }
 }

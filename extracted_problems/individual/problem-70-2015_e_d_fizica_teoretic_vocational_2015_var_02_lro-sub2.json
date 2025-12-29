@@ -2,8 +2,6 @@
   "titlu": "Problema II - Mecanică - Bac 2015 Var 2",
   "descriere": "Problema de bacalaureat - Subiectul II din Mecanică, 2015, Varianta 2, teoretic",
   "categorie": "Bac",
-  "varianta": "2015 Var 2",
-  "dificultate": "mediu",
   "punctajTotal": 15,
   "continut": "O platformă basculantă AB a unui camion are lungimea $d = AB = 4 \\, \\text{m}$. La mijlocul platformei se află un corp de masă $m = 100 \\, \\text{kg}$, considerat de dimensiuni neglijabile. Platforma este înclinată cu ajutorul unui cric hidraulic OC. Punctul C se află la mijlocul platformei AB. Se constată că, atunci când cricul are lungimea $OC = 1,5 \\, \\text{m}$, corpul alunecă uniform, iar cricul este perpendicular pe platforma AB.\n\na. Reprezentați forțele care acționează asupra corpului în timpul alunecării acestuia.\nb. Determinați valoarea forței de reacțiune normală care acționează asupra corpului în timpul alunecării acestuia.\nc. Calculați coeficientul de frecare la alunecare dintre corp și platformă.\nd. Determinați valoarea accelerației cu care ar coborî corpul, dacă platforma s-ar înclina la $53^{\\circ}$ față de orizontală. Se cunoaște $\\sin 53^{\\circ} \\cong 0,8$.",
   "formule": [],
@@ -38,6 +36,7 @@
     "type": "teoretic",
     "subjectArea": "Mecanică",
     "subjectCode": "A",
-    "subjectNumber": 2
+    "subjectNumber": 2,
+    "session": "bac"
   }
 }

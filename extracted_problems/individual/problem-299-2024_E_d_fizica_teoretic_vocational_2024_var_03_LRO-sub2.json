@@ -2,8 +2,6 @@
   "titlu": "Problema II - Optică - Bac 2024 Var 3",
   "descriere": "Problema de bacalaureat - Subiectul II din Optică, 2024, Varianta 3, teoretic",
   "categorie": "Bac",
-  "varianta": "2024 Var 3",
-  "dificultate": "mediu",
   "punctajTotal": 15,
   "continut": "Un obiect liniar cu înălțimea de 1 cm este așezat perpendicular pe axa optică principală a unei lentile subțiri, la distanța de 30 cm față de lentilă. Imaginea clară a obiectului se formează pe un ecran situat la distanța de 90 cm față de obiect.\n\na. Realizați un desen în care să evidențiați construcția imaginii prin lentilă în situația descrisă.\nb. Calculați distanța focală a lentilei.\nc. Determinați înălțimea imaginii obiectului.\nd. Între lentilă și ecran este introdusă o a doua lentilă, identică cu prima, formând astfel un sistem centrat. Se constată că un fascicul de lumină paralel cu axa optică principală, incident pe prima lentilă, rămâne tot paralel cu axa optică principală la ieșirea din cea de a doua lentilă. Determinați distanța dintre cele două lentile.",
   "formule": [],
@@ -38,6 +36,7 @@
     "type": "teoretic",
     "subjectArea": "Optică",
     "subjectCode": "D",
-    "subjectNumber": 2
+    "subjectNumber": 2,
+    "session": "bac"
   }
 }

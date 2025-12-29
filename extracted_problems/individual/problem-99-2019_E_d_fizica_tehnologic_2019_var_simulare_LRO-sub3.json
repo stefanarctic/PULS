@@ -2,8 +2,6 @@
   "titlu": "Problema III - Fizică - Bac 2019",
   "descriere": "Problema de bacalaureat - Subiectul III din Fizică, 2019, tehnologic",
   "categorie": "Bac",
-  "varianta": "2019",
-  "dificultate": "mediu",
   "punctajTotal": 15,
   "continut": "Un săritor cu schiurile alunecă pornind din repaus din punctul A al unei trambuline, ca în figura alăturată. Schiorul are masa totală $m = 80 \\, \\text{kg}$. El se desprinde de trambulină în B, aterizează în C, după care se oprește în D. Punctul A se află la înălțimea $H = 25 \\, \\text{m}$ față de C, iar punctele B și D se află la aceeași înălțime, $h = 10 \\, \\text{m}$, față de C. Se neglijează dimensiunile schiorului. Calculați:\n\na. variația energiei potențiale a schiorului pe porțiunea AB;\nb. lucrul mecanic efectuat de forța de frecare pe porțiunea AB, știind că viteza schiorului în B este $v_B = 10 \\, \\text{m/s}$;\nc. energia cinetică a schiorului imediat înainte de atingerea punctului C, dacă se neglijează rezistența din partea aerului;\nd. lucrul mecanic efectuat de greutatea schiorului pe porțiunea CD.\n\n![img-2.jpeg](img-2.jpeg)",
   "formule": [],
@@ -39,6 +37,7 @@
     "variant": null,
     "type": "tehnologic",
     "subjectArea": null,
-    "subjectNumber": 3
+    "subjectNumber": 3,
+    "session": "simulare"
   }
 }

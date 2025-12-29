@@ -2,8 +2,6 @@
   "titlu": "Problema II - Termodinamică - Bac 2016 Var 9",
   "descriere": "Problema de bacalaureat - Subiectul II din Termodinamică, 2016, Varianta 9, teoretic",
   "categorie": "Bac",
-  "varianta": "2016 Var 9",
-  "dificultate": "mediu",
   "punctajTotal": 15,
   "continut": "Două vase, de volume $V_1 = 24,93$ L și $V_2 = 16,62$ L, sunt conectate printr-un tub subțire de volum neglijabil prevăzut cu un robinet inițial închis, ca în figura alăturată. În primul vas se află heliu $\\left(\\mu_{He} = 4\\mathrm{g/mol}\\right)$ la presiunea $p_1 = 3 \\cdot 10^5$ Pa, iar în al doilea vas se află aer $\\left(\\mu_{aer} = 29\\mathrm{g/mol}\\right)$ la presiunea $p_2 = 1,5 \\cdot 10^5$ Pa. Cele două gaze, considerate ideale, se află la aceeași temperatură $t = 27^{\\circ} \\mathrm{C}$. Determinați:\na. cantitatea de heliu din primul recipient;\nb. densitatea aerului din al doilea recipient;\nc. presiunea care se stabilește în vase după deschiderea robinetului, temperatura rămânând constantă;\nd. masa molară a amestecului obținut în urma deschiderii robinetului.",
   "formule": [],
@@ -38,6 +36,7 @@
     "type": "teoretic",
     "subjectArea": "Termodinamică",
     "subjectCode": "B",
-    "subjectNumber": 2
+    "subjectNumber": 2,
+    "session": "bac"
   }
 }

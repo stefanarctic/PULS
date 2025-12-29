@@ -2,8 +2,6 @@
   "titlu": "Problema III - Fizică - Bac 2016",
   "descriere": "Problema de bacalaureat - Subiectul III din Fizică, 2016, teoretic",
   "categorie": "Bac",
-  "varianta": "2016",
-  "dificultate": "mediu",
   "punctajTotal": 15,
   "continut": "Un corp de mici dimensiuni având masa $m = 400\\,\\text{g}$, aflat inițial în repaus în punctul de coordonată $x_0 = 1\\,\\text{m}$, se poate deplasa doar de-a lungul axei Ox. În figura alăturată este reprezentată dependența proiectiei pe axa Ox a forței rezultante care acționează asupra corpului de coordonată acestuia.\n\na. Calculați lucrul mecanic efectuat de forța rezultantă la deplasarea corpului din punctul de coordonată $x_0 = 1\\,\\text{m}$ în punctul de coordonată $x = 7\\,\\text{m}$;\nb. Determinați energia cinetică a corpului la trecerea prin punctul de coordonată $x_1 = 5\\,\\text{m}$;\nc. Calculați valoarea vitezei corpului la trecerea prin punctul de coordonată $x = 7\\,\\text{m}$.\nd. Când viteza corpului este $v = 20\\,\\text{m/s}$, acesta se cuplează cu un corp identic\n\n![img-2.jpeg](img-2.jpeg)\n\naflat în repaus. Considerând că în cursul acestui proces și după realizarea cuplajului rezultantă forțelor externe este nulă, determinați viteza celor două corpuri cuplate.",
   "formule": [],
@@ -39,6 +37,7 @@
     "variant": null,
     "type": "teoretic",
     "subjectArea": null,
-    "subjectNumber": 3
+    "subjectNumber": 3,
+    "session": "model"
   }
 }

@@ -2,8 +2,6 @@
   "titlu": "Problema III - Optică - Bac 2021 Var 4",
   "descriere": "Problema de bacalaureat - Subiectul III din Optică, 2021, Varianta 4, teoretic",
   "categorie": "Bac",
-  "varianta": "2021 Var 4",
-  "dificultate": "mediu",
   "punctajTotal": 15,
   "continut": "Un dispozitiv Young, situat în aer, are distanța dintre fante $2\\ell = 0,75$ mm, iar distanța dintre planul fantelor și ecran este $D$. Se iluminează dispozitivul cu o sursă coerentă de lumină monocromatică, situată pe axa de simetrie a sistemului. Lungimea de undă a radiației emise de sursă este $\\lambda = 700 \\, \\text{nm}$. Pe ecran se observă că pe o lungime $L = 14 \\, \\text{mm}$ (măsurată perpendicular pe franjele de interferență) se află $N = 10$ interfranje.\n\na. Calculați valoarea $i$ a interfranjei.\nb. Determinați distanța $D$ dintre planul fantelor și ecran.\nc. Determinați valoarea frecvenței radiației utilizate.\nd. În fața uneia dintre fante se plasează o foiță subțire, dintr-un material transparent, cu indicele de refracție $n = 1,5$. Pe ecran se observă că se produce o deplasare a întregii figuri de interferență cu $2,5i$. Calculați grosimea $e$ a foiței utilizate.",
   "formule": [],
@@ -38,6 +36,7 @@
     "type": "teoretic",
     "subjectArea": "Optică",
     "subjectCode": "D",
-    "subjectNumber": 3
+    "subjectNumber": 3,
+    "session": "bac"
   }
 }

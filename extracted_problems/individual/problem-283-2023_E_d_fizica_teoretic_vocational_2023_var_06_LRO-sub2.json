@@ -2,8 +2,6 @@
   "titlu": "Problema II - Optică - Bac 2023 Var 6",
   "descriere": "Problema de bacalaureat - Subiectul II din Optică, 2023, Varianta 6, teoretic",
   "categorie": "Bac",
-  "varianta": "2023 Var 6",
-  "dificultate": "mediu",
   "punctajTotal": 15,
   "continut": "O lentilă subțire are convergența $C = -2m^{-1}$. La distanța de 50 cm în fața lentilei este așezat, perpendicular pe axa optică principală, un obiect luminos liniar cu înălțimea de 4 cm.\n\na. Realizați un desen în care să evidențiați construcția grafică a imaginii prin lentilă.\nb. Calculați distanța la care se formează imaginea față de lentilă.\nc. Calculați înălțimea imaginii obiectului.\nd. Se aduce în contact cu prima lentilă o altă lentilă, a cărei convergență este $C' = 7m^{-1}$, iar obiectul se așază la distanța de 60 cm în fața sistemului de lentile. Calculați distanța dintre obiect și ecranul pe care se formează imaginea clară a obiectului.",
   "formule": [],
@@ -38,6 +36,7 @@
     "type": "teoretic",
     "subjectArea": "Optică",
     "subjectCode": "D",
-    "subjectNumber": 2
+    "subjectNumber": 2,
+    "session": "bac"
   }
 }

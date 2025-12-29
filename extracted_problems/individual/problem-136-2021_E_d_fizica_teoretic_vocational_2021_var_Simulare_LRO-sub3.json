@@ -2,8 +2,6 @@
   "titlu": "Problema III - Fizică - Bac 2021",
   "descriere": "Problema de bacalaureat - Subiectul III din Fizică, 2021, teoretic",
   "categorie": "Bac",
-  "varianta": "2021",
-  "dificultate": "mediu",
   "punctajTotal": 15,
   "continut": "Un corp de masă $m_1 = 200\\,\\mathrm{g}$, considerat punctiform, este lansat, cu viteza inițială $v_0 = 4\\,\\mathrm{m/s}$, de-a lungul unei suprafețe orizontale. Coeficientul de frecare dintre corp și suprafață este $\\mu = 0,1$. După ce corpul parcurge distanța $d_1 = 3,5\\,\\mathrm{m}$, acesta intră pe o suprafață orizontală fără frecări, ca în figura alăturată. După parcurgerea, fără frecare, a distanței $d_2 = 1,5\\,\\mathrm{m}$, corpul de masă $m_1$ se cuplează cu un alt corp de masă $m_2 = 100\\,\\mathrm{g}$, aflat în repaus. Corpul astfel format urcă, fără frecare, pe o suprafață curbă. Trecerea de pe suprafața orizontală pe cea curbă se face lin, fără modificarea modulului vitezei. Energia potențială gravitațională se consideră nulă la nivelul suprafeței orizontale.\n\nDeterminați:\n\na. lucrul mecanic efectuat de forța de frecare la deplasarea corpului de masă $m_1$ de-a lungul suprafeței orizontale, la parcurgerea distanței $d_1$;\nb. durata mișcării corpului de masă $m_1$ pe planul orizontal din momentul lansării și până la impactul cu $m_2$;\nc. valoarea energiei cinetice, imediat după impact, a corpului format;\nd. înălțimea maximă la care urcă, pe suprafața curbă, corpul format prin impact.\n\n![img-2.jpeg](img-2.jpeg)",
   "formule": [],
@@ -39,6 +37,7 @@
     "variant": null,
     "type": "teoretic",
     "subjectArea": null,
-    "subjectNumber": 3
+    "subjectNumber": 3,
+    "session": "simulare"
   }
 }

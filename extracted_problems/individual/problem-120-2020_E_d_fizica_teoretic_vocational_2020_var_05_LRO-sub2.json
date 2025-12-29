@@ -2,8 +2,6 @@
   "titlu": "Problema II - Fizică - Bac 2020 Var 5",
   "descriere": "Problema de bacalaureat - Subiectul II din Fizică, 2020, Varianta 5, teoretic",
   "categorie": "Bac",
-  "varianta": "2020 Var 5",
-  "dificultate": "mediu",
   "punctajTotal": 15,
   "continut": "Sistemul mecanic din figura alăturată este alcătuit din două corpuri A și B, legate prin intermediul unui fir inextensibil și de masă neglijabilă. Scripetele este fără frecări și lipsit de inerție. Coeficientul de frecare la alunecare dintre corpul B și suprafața orizontală este $\\mu = 0,2$. La momentul inițial corpurile se află în repaus. Se constată că la $\\Delta t = 0,25\\,\\mathrm{s}$ din momentul în care sistemul este lăsat liber, viteza corpului A are valoarea $\\nu = 50\\,\\mathrm{cm/s}$. În intervalul de timp $\\Delta t$, corpul A nu atinge solul, iar corpul B nu atinge scripetele.\n\n![img-1.jpeg](img-1.jpeg)\n\na. Calculați valoarea accelerației corpurilor.\nb. Reprezentați toate forțele care se exercită asupra corpului B.\nc. Determinați valoarea raportului $m_A / m_B$ dintre masa corpului A și masa corpului B.\nd. Determinați valoarea forței de reacțiune din axul scripetelui, dacă $m_B = 200\\,\\mathrm{g}$.",
   "formule": [],
@@ -39,6 +37,7 @@
     "variant": 5,
     "type": "teoretic",
     "subjectArea": null,
-    "subjectNumber": 2
+    "subjectNumber": 2,
+    "session": "bac"
   }
 }

@@ -2,8 +2,6 @@
   "titlu": "Problema III - Termodinamică - Bac 2014",
   "descriere": "Problema de bacalaureat - Subiectul III din Termodinamică, 2014, teoretic",
   "categorie": "Bac",
-  "varianta": "2014",
-  "dificultate": "mediu",
   "punctajTotal": 15,
   "continut": "Un mol de gaz ideal biatomic ($C_P = \\frac{7R}{2}$) evoluează după transformarea ciclică 12341 reprezentată grafic în coordonate $V - T$ în figura alăturată. Temperaturile stărilor 1, 3 și 4 sunt $t_1 = 27^{\\circ}C$, $t_3 = 327^{\\circ}C$ și respectiv $t_4 = 127^{\\circ}C$.\n\na. Reprezentați grafic procesul ciclic în coordonate $p - V$.\nb. Calculați căldura cedată de gaz mediului exterior pe parcursul transformării ciclice.\nc. Determinați temperatura gazului în starea 2.\nd. Calculați lucrul mecanic total schimbat de gaz cu mediul exterior pe parcursul unui ciclu.",
   "formule": [],
@@ -40,6 +38,7 @@
     "type": "teoretic",
     "subjectArea": "Termodinamică",
     "subjectCode": "B",
-    "subjectNumber": 3
+    "subjectNumber": 3,
+    "session": "model"
   }
 }

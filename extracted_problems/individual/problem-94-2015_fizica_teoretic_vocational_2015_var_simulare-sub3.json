@@ -2,8 +2,6 @@
   "titlu": "Problema III - Optică - Bac 2015",
   "descriere": "Problema de bacalaureat - Subiectul III din Optică, 2015, teoretic",
   "categorie": "Bac",
-  "varianta": "2015",
-  "dificultate": "mediu",
   "punctajTotal": 15,
   "continut": "Un dispozitiv Young situat în aer, având distanța dintre planul fantelor și ecran $D = 2 \\, \\text{m}$, este iluminat pe rând cu radiații monocromatice care au lungimile de undă cuprinse în intervalul $400 \\, \\text{nm} \\leq \\lambda \\leq 700 \\, \\text{nm}$. Interfranja obținută pe ecranul de observație variază cu lungimea de undă conform graficului din figura alăturată. Determinați:\n\na. distanța dintre fantele dispozitivului Young;\nb. distanța față de maximul central, la care se formează maximul de ordinul 3 pentru radiația cu lungimea de undă $\\lambda = 700 \\, \\text{nm}$;\nc. distanța față de maximul central la care are loc prima suprapunere a maximelor de interferență pentru radiațiile cu lungimile de undă $\\lambda_i = 400 \\, \\text{nm}$ și respectiv $\\lambda_z = 600 \\, \\text{nm}$;\nd. variația relativă a interfranjei la introducerea dispozitivului din aer într-un mediu cu indicele de refracție $n = 4/3$, dacă se folosește o sursă de lumină monocromatică.",
   "formule": [],
@@ -40,6 +38,7 @@
     "type": "teoretic",
     "subjectArea": "Optică",
     "subjectCode": "D",
-    "subjectNumber": 3
+    "subjectNumber": 3,
+    "session": "simulare"
   }
 }

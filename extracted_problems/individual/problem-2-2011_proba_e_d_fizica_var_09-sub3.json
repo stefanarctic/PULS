@@ -2,8 +2,6 @@
   "titlu": "Problema III - Mecanică - Bac 2011 Var 9",
   "descriere": "Problema de bacalaureat - Subiectul III din Mecanică, 2011, Varianta 9",
   "categorie": "Bac",
-  "varianta": "2011 Var 9",
-  "dificultate": "mediu",
   "punctajTotal": 15,
   "continut": "Un schior urcă, cu viteză constantă, pe o pistă acoperită cu zăpadă, fiind tractat de o tijă conectată la un cablu de teleschi, ca în figura alăturată. Lungimea pistei este $D = \\mathrm{AB}$. Unghiul de înclinare al pistei, măsurat față de orizontală, este $\\alpha$. Tija face unghiul $\\beta$ cu direcția pistei. Masa schiorului echipat este $m$, iar coeficientul de frecare la alunecare între schiuri și zăpadă este $\\mu$. Considerați cunoscute valorile mărimilor $D$, $m$, $\\alpha$, $\\beta$, $\\mu$ și accelerația gravitațională $g$.\n\na. Reprezentați, într-o diagramă realizată pe foaia de examen, forțele care acționează asupra schiorului.\nb. Determinați expresia forței de tensiune din tijă.\nc. Determinați expresia lucrului mecanic efectuat de greutatea schiorului, în timpul deplasării acestuia din A în B.\nd. Schiorul coboară liber panta, pornind din repaus din punctul B. Determinați expresia energiei cinetice atinse de schior în punctul A.",
   "formule": [],
@@ -40,6 +38,7 @@
     "type": null,
     "subjectArea": "Mecanică",
     "subjectCode": "A",
-    "subjectNumber": 3
+    "subjectNumber": 3,
+    "session": "bac"
   }
 }

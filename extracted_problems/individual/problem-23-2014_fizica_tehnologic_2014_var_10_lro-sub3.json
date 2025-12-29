@@ -2,8 +2,6 @@
   "titlu": "Problema III - Fizică - Bac 2014 Var 10",
   "descriere": "Problema de bacalaureat - Subiectul III din Fizică, 2014, Varianta 10, tehnologic",
   "categorie": "Bac",
-  "varianta": "2014 Var 10",
-  "dificultate": "mediu",
   "punctajTotal": 15,
   "continut": "Un corp de masă $m = 150\\,\\mathrm{g}$, considerat punctiform, este lansat, de la înălțimea $h = 1,8\\,\\mathrm{m}$ față de suprafața pământului, vertical în sus, cu viteza inițială $v_0 = 8\\,\\mathrm{m/s}$. Frecarea cu aerul se consideră neglijabilă, iar energia potențială gravitațională se consideră nulă la suprafața pământului. Determinați:\n\na. energia mecanică a corpului în momentul lansării acestuia;\nb. lucrul mecanic efectuat de greutate din momentul lansării corpului până în momentul în care acesta atinge înălțimea maximă;\nc. viteza corpului în momentul în care acesta atinge pământul;\nd. intervalul de timp care s-a scurs din momentul atingerii înălțimii maxime până în momentul în care corpul atinge pământul.",
   "formule": [],
@@ -37,6 +35,7 @@
     "variant": 10,
     "type": "tehnologic",
     "subjectArea": null,
-    "subjectNumber": 3
+    "subjectNumber": 3,
+    "session": "bac"
   }
 }

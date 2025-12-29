@@ -2,8 +2,6 @@
   "titlu": "Problema II - Fizică - Bac 2015",
   "descriere": "Problema de bacalaureat - Subiectul II din Fizică, 2015, teoretic",
   "categorie": "Bac",
-  "varianta": "2015",
-  "dificultate": "mediu",
   "punctajTotal": 15,
   "continut": "Un corp cu masa $M = 200 \\, \\text{g}$ este așezat pe suprafața unui plan înclinat cu unghiul $\\alpha$ față de orizontală. Corpul este legat la un capăt al unui fir trecut peste un scripete, ca în figura alăturată. La celălalt capăt al firului se leagă un platan cu masa $m = 100 \\, \\text{g}$. Dacă pe platan se așază un corp cu masa $m_1 = 100 \\, \\text{g}$, corpul cu masa $M$ urcă uniform pe planul înclinat. Dacă în locul corpului cu masa $m_1$ se pune pe platan un corp cu masa $m_2 = 20 \\, \\text{g}$, corpul cu masa $M$ coboară uniform pe planul înclinat. Se consideră că firul este inextensibil și de masă neglijabilă. Scripetele este lipsit de frecări și de inerție. Determinați:\n\n![img-1.jpeg](img-1.jpeg)\n\na. raportul $T_2 / T_1$ dintre forțele de tensiune din fir atunci când corpul cu masa $M$ coboară, respectiv urcă uniform pe planul înclinat;\nb. sinusul unghiului planului înclinat;\nc. coeficientul de frecare la alunecare dintre corpul cu masa $M$ și planul înclinat;\nd. accelerația cu care coboară corpul cu masa $M$ pe planul înclinat dacă pe platan nu este pus niciun corp, iar coeficientul de frecare la alunecare dintre corpul cu masa $M$ și planul înclinat este $\\mu = 1 / 3$.",
   "formule": [],
@@ -39,6 +37,7 @@
     "variant": null,
     "type": "teoretic",
     "subjectArea": null,
-    "subjectNumber": 2
+    "subjectNumber": 2,
+    "session": "simulare"
   }
 }

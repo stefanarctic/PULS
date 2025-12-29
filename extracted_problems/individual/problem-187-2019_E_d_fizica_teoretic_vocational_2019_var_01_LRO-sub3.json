@@ -2,8 +2,6 @@
   "titlu": "Problema III - Termodinamică - Bac 2019 Var 1",
   "descriere": "Problema de bacalaureat - Subiectul III din Termodinamică, 2019, Varianta 1, teoretic",
   "categorie": "Bac",
-  "varianta": "2019 Var 1",
-  "dificultate": "mediu",
   "punctajTotal": 15,
   "continut": "O cantitate de gaz ideal biatomic ($C_V = 2,5$ R) efectuează transformarea ciclică reprezentată grafic în figura alăturată. Presiunea gazului în starea 1 este $p_1 = 10^5$ Pa. Căldura schimbată de gaz cu mediul exterior pe parcursul transformării 2–3 este $Q_{23} = 3,3$ kJ. Se consideră $\\ln 3 \\cong 1,1$.\n\na. Reprezentați grafic transformarea ciclică $1 - 2 - 3 - 1$ în coordonate $p - V$.\nb. Determinați volumul ocupat de gaz în starea 3.\nc. Calculați valoarea căldurii cedate de gaz mediului exterior pe parcursul transformării ciclice.\nd. Determinați randamentul unei mașini termice care ar funcționa după transformarea ciclică descrisă.",
   "formule": [],
@@ -40,6 +38,7 @@
     "type": "teoretic",
     "subjectArea": "Termodinamică",
     "subjectCode": "B",
-    "subjectNumber": 3
+    "subjectNumber": 3,
+    "session": "bac"
   }
 }

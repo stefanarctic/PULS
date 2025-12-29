@@ -2,8 +2,6 @@
   "titlu": "Problema II - Optică - Bac 2024",
   "descriere": "Problema de bacalaureat - Subiectul II din Optică, 2024, teoretic",
   "categorie": "Bac",
-  "varianta": "2024",
-  "dificultate": "mediu",
   "punctajTotal": 15,
   "continut": "Un obiect luminos liniar este situat la 0,80 m în fața unei lentile subțiri cu distanța focală $f = 16,0 \\, \\text{cm}$, perpendicular pe axa optică principală a lentilei. Imaginea se formează pe un ecran aflat de cealaltă parte a lentilei.\n\na. Realizați un desen în care să evidențiați construcția imaginii prin lentilă.\nb. Calculați convergența lentilei.\nc. Calculați distanța dintre obiectul luminos și imaginea acestuia prin lentilă.\nd. Calculați mărirea liniară transversală și precizați dacă imaginea este reală sau virtuală, dreaptă sau răsturnată, mărită sau micșorată.",
   "formule": [],
@@ -38,6 +36,7 @@
     "type": "teoretic",
     "subjectArea": "Optică",
     "subjectCode": "D",
-    "subjectNumber": 2
+    "subjectNumber": 2,
+    "session": "model"
   }
 }

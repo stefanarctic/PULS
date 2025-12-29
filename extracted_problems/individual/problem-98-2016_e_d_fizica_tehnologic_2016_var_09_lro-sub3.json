@@ -2,8 +2,6 @@
   "titlu": "Problema III - Termodinamică - Bac 2016 Var 9",
   "descriere": "Problema de bacalaureat - Subiectul III din Termodinamică, 2016, Varianta 9, tehnologic",
   "categorie": "Bac",
-  "varianta": "2016 Var 9",
-  "dificultate": "mediu",
   "punctajTotal": 15,
   "continut": "O cantitate dată de gaz ideal biatomic $(C_V = 2,5R)$ se află în starea inițială 1 în care presiunea este $p_1 = 10^{5}\\mathrm{Pa}$ și volumul $V_{1} = 4\\mathrm{L}$. Gazul este încălzit la volum constant până în starea 2, apoi este comprimat la temperatura constantă până în starea finală 3 în care volumul gazului devine $V_{3} = 0,5V_{1}$. Căldura primită de gaz în transformarea $1\\rightarrow 2$ este $Q_{12} = 300\\mathrm{J}$. Se consideră $\\ln 2\\equiv 0,7$.\n\na. Reprezentați grafic succesiunea de transformări $1\\rightarrow 2\\rightarrow 3$ în sistemul de coordonate $p - V$.\nb. Calculați variația energiei interne a gazului între stările 1 și 2.\nc. Calculați presiunea gazului în starea 2.\nd. Determinați căldura schimbată de gaz cu mediul exterior în transformarea $2\\rightarrow 3$.",
   "formule": [],
@@ -40,6 +38,7 @@
     "type": "tehnologic",
     "subjectArea": "Termodinamică",
     "subjectCode": "B",
-    "subjectNumber": 3
+    "subjectNumber": 3,
+    "session": "bac"
   }
 }

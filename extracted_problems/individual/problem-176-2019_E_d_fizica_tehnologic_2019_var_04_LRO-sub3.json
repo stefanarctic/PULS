@@ -2,8 +2,6 @@
   "titlu": "Problema III - Termodinamică - Bac 2019 Var 4",
   "descriere": "Problema de bacalaureat - Subiectul III din Termodinamică, 2019, Varianta 4, tehnologic",
   "categorie": "Bac",
-  "varianta": "2019 Var 4",
-  "dificultate": "mediu",
   "punctajTotal": 15,
   "continut": "O cantitate $\\nu = 1$ mol de gaz ideal monoatomic ($C_\\nu = 1,5 R$), aflată inițial la temperatura $T_1 = 400 \\mathrm{~K}$, efectuează o transformare ciclică compusă din următoarele procese termodinamice:\n\n1 → 2 încălzire la presiune constantă până când volumul se dublează,\n2 → 3 răcire la volum constant până la temperatura inițială și\n3 → 1 comprimare la temperatura constantă până în starea inițială.\n\nSe cunoaște $\\ln 2 \\cong 0,7$.\n\na. Reprezentați procesul ciclic în coordonate $p - V$.\nb. Calculați căldura schimbată de gaz cu exteriorul în transformarea 1-2.\nc. Calculați variația energiei interne în procesul 2-3;\nd. Determinați lucrul mecanic schimbat de gaz cu exteriorul în comprimarea la temperatura constantă.",
   "formule": [],
@@ -38,6 +36,7 @@
     "type": "tehnologic",
     "subjectArea": "Termodinamică",
     "subjectCode": "B",
-    "subjectNumber": 3
+    "subjectNumber": 3,
+    "session": "bac"
   }
 }

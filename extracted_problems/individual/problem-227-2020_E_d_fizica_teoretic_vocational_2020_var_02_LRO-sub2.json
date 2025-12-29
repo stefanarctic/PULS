@@ -2,8 +2,6 @@
   "titlu": "Problema II - Termodinamică - Bac 2020 Var 2",
   "descriere": "Problema de bacalaureat - Subiectul II din Termodinamică, 2020, Varianta 2, teoretic",
   "categorie": "Bac",
-  "varianta": "2020 Var 2",
-  "dificultate": "mediu",
   "punctajTotal": 15,
   "continut": "O butelie cu volumul $V = 8,31\\ \\mathrm{dm}^3$ conține $m = 58\\ \\mathrm{g}$ de aer la presiunea $p = 6 \\cdot 10^5\\ \\mathrm{Pa}$ și temperatura $T = 300\\ \\mathrm{K}$. Presiunea maximă admisibilă în interiorul buteliei este $p_{\\max} = 10^6\\ \\mathrm{Pa}$. Se poate considera că aerul este un amestec de oxigen ($\\mu_1 = 32\\ \\mathrm{g/mol}$) și azot ($\\mu_2 = 28\\ \\mathrm{g/mol}$) care se comportă ca un gaz ideal. Determinați:\na. masa molară a aerului;\nb. temperatura maximă până la care poate fi încălzit aerul din butelie;\nc. masa de oxigen din butelie;\nd. raportul dintre energia internă a azotului și energia internă a oxigenului din butelie la temperatura $T$ (căldurile molare la volum constant ale oxigenului și azotului sunt egale).",
   "formule": [],
@@ -38,6 +36,7 @@
     "type": "teoretic",
     "subjectArea": "Termodinamică",
     "subjectCode": "B",
-    "subjectNumber": 2
+    "subjectNumber": 2,
+    "session": "bac"
   }
 }

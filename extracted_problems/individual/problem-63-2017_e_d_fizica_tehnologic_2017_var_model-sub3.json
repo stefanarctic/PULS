@@ -2,8 +2,6 @@
   "titlu": "Problema III - Fizică - Bac 2017",
   "descriere": "Problema de bacalaureat - Subiectul III din Fizică, 2017, tehnologic",
   "categorie": "Bac",
-  "varianta": "2017",
-  "dificultate": "mediu",
   "punctajTotal": 15,
   "continut": "Un dispozitiv echipat cu motor ridică uniform, pe verticală, un container cu masa $m = 400\\,\\mathrm{kg}$, aflat pe sol. Containerul ajunge la înălțimea de $H = 15\\,\\mathrm{m}$ în $\\Delta t = 30\\,\\mathrm{s}$. Energia potențială gravitațională la nivelul solului este nulă, iar frecările se neglijează. Determinați:\n\na. lucrul mecanic efectuat de forța de tracțiune dezvoltată de motorul dispozitivului în timpul ridicării containerului până la înălțimea $H$;\nb. puterea dezvoltată de motorul dispozitivului în timpul ridicării containerului;\nc. energia potențială gravitațională în momentul în care containerul ajunge la înălțimea $h = \\frac{H}{2}$;\nd. energia cinetică a containerului în timpul ridicării uniforme.",
   "formule": [],
@@ -37,6 +35,7 @@
     "variant": null,
     "type": "tehnologic",
     "subjectArea": null,
-    "subjectNumber": 3
+    "subjectNumber": 3,
+    "session": "model"
   }
 }

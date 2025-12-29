@@ -2,8 +2,6 @@
   "titlu": "Problema II - Fizică - Bac 2013 Var 2",
   "descriere": "Problema de bacalaureat - Subiectul II din Fizică, 2013, Varianta 2, teoretic",
   "categorie": "Bac",
-  "varianta": "2013 Var 2",
-  "dificultate": "mediu",
   "punctajTotal": 15,
   "continut": "În sistemul din figura alăturată, corpul cu masa $m = 2\\,\\mathrm{kg}$ este legat de o ladă cu masa $M = 8\\,\\mathrm{kg}$ prin intermediul unui fir inextensibil, cu masa neglijabilă. Firul, având inserat un resort de masă neglijabilă, este trecut peste un scripete ideal. Se consideră că alungirea resortului este proporțională cu forța deformatoare, resortul alungindu-se cu 1 cm pentru o valoare a forței de 10 N. Mișcarea pe planul orizontal se face cu frecare, iar coeficientul de frecare la alunecare este $\\mu = 0,2$. Sistemul fiind lăsat liber, fără viteză inițială, resortul ajunge la o alungire constantă și mișcarea devine uniform accelerată.\n\na. Reprezentați forțele care acționează asupra corpului de masă $m$, respectiv asupra lăzii în timpul mișcării.\nb. Calculați accelerația sistemului.\nc. Determinați valoarea alungirii resortului în timpul mișcării uniform accelerate a sistemului.\nd. Determinați valoarea unei forțe orizontale care, aplicată lăzii de masă $M$, ar produce mișcarea sistemului de corpuri cu viteză constantă, lada de masă $M$ deplasându-se spre stânga.",
   "formule": [],
@@ -37,6 +35,7 @@
     "variant": 2,
     "type": "teoretic",
     "subjectArea": null,
-    "subjectNumber": 2
+    "subjectNumber": 2,
+    "session": "bac"
   }
 }

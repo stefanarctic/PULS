@@ -2,8 +2,6 @@
   "titlu": "Problema II - Termodinamică - Bac 2015 Var 9",
   "descriere": "Problema de bacalaureat - Subiectul II din Termodinamică, 2015, Varianta 9, tehnologic",
   "categorie": "Bac",
-  "varianta": "2015 Var 9",
-  "dificultate": "mediu",
   "punctajTotal": 15,
   "continut": "O butelie din oțel având volumul $V = 30 \\mathrm{dm}^3$ conține $m_1 = 96 \\mathrm{g}$ de oxigen ($\\mu = 32 \\mathrm{g/mol}$) la presiunea $p_1 = 249,3 \\mathrm{kPa}$. Butelia este prevăzută cu o supapă care rămâne închisă până în momentul în care presiunea oxigenului devine $p_2 = 2p_1$. Se neglijează efectele dilatării buteliei la încălzirea acesteia. Determinați:\na. densitatea oxigenului aflat în butelie;\nb. temperatura inițială $T_1$ a oxigenului din butelie;\nc. numărul de molecule de oxigen din butelie;\nd. temperatura maximă $T_2$ până la care poate fi încălzită butelia astfel încât supapa să rămână închisă.",
   "formule": [],
@@ -38,6 +36,7 @@
     "type": "tehnologic",
     "subjectArea": "Termodinamică",
     "subjectCode": "B",
-    "subjectNumber": 2
+    "subjectNumber": 2,
+    "session": "bac"
   }
 }

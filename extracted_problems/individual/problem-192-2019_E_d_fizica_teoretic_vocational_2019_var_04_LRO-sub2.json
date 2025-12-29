@@ -2,8 +2,6 @@
   "titlu": "Problema II - Mecanică - Bac 2019 Var 4",
   "descriere": "Problema de bacalaureat - Subiectul II din Mecanică, 2019, Varianta 4, teoretic",
   "categorie": "Bac",
-  "varianta": "2019 Var 4",
-  "dificultate": "mediu",
   "punctajTotal": 15,
   "continut": "Asupra unui corp de masă $m = 1\\,\\mathrm{kg}$ acționează o forță $\\vec{F}$, orientată sub un unghi $\\alpha = 45^\\circ$ față de orizontală.\n\nCorpul este legat, prin intermediul unui fir inextensibil, de un resort de constantă elastică $k = 200\\,\\mathrm{N/m}$, ca în figura alăturată. Firul se rupe când tensiunea din fir atinge valoarea maximă $T_r = 2\\,\\mathrm{N}$. Coeficientul de frecare la alunecare între corp și suprafața orizontală este $\\mu = 0,25$. Se neglijează atât masa firului, cât și masa resortului.\n\na. Reprezentați forțele care acționează asupra corpului în timpul alungirii resortului.\nb. Calculați alungirea resortului în momentul ruperii firului.\nc. După ruperea firului, valoarea forței $\\vec{F}$ devine $F = 4,23\\,\\mathrm{N} \\left( \\equiv 3\\sqrt{2}\\,\\mathrm{N} \\right)$. Determinați valoarea accelerației corpului.\nd. După ruperea firului, în momentul în care corpul atinge viteza $v = 6\\,\\mathrm{m/s}$, acțiunea forței asupra corpului încetează. Calculați după cât timp din momentul încetării acțiunii forței se oprește corpul.",
   "formule": [],
@@ -40,6 +38,7 @@
     "type": "teoretic",
     "subjectArea": "Mecanică",
     "subjectCode": "A",
-    "subjectNumber": 2
+    "subjectNumber": 2,
+    "session": "bac"
   }
 }

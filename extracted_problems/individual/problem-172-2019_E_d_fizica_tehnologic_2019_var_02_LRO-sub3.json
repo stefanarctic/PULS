@@ -2,8 +2,6 @@
   "titlu": "Problema III - Termodinamică - Bac 2019 Var 2",
   "descriere": "Problema de bacalaureat - Subiectul III din Termodinamică, 2019, Varianta 2, tehnologic",
   "categorie": "Bac",
-  "varianta": "2019 Var 2",
-  "dificultate": "mediu",
   "punctajTotal": 15,
   "continut": "O cantitate $\\nu = 2\\mathrm{mol}$ de gaz ideal având căldura molară la volum constant $C_v = 2R$, parcurge transformarea $1 \\rightarrow 2 \\rightarrow 3$ reprezentată în figura alăturată. Temperatura gazului în starea 1 are valoarea $T_1 = 250\\mathrm{K}$. Transformarea $2 \\rightarrow 3$ are loc la temperatura constantă. Considerați că $\\ln 2 = 0,7$.\n\na. Reprezentați grafic transformarea $1 \\rightarrow 2 \\rightarrow 3$ în coordonate $V - T$.\nb. Calculați căldura primită de gaz în transformarea $1 \\rightarrow 2$.\nc. Calculați lucrul mecanic efectuat de gaz în transformarea $2 \\rightarrow 3$.\nd. Calculați variația energiei interne a gazului pe parcursul transformării $1 \\rightarrow 2 \\rightarrow 3$.",
   "formule": [],
@@ -40,6 +38,7 @@
     "type": "tehnologic",
     "subjectArea": "Termodinamică",
     "subjectCode": "B",
-    "subjectNumber": 3
+    "subjectNumber": 3,
+    "session": "bac"
   }
 }

@@ -2,8 +2,6 @@
   "titlu": "Problema II - Mecanică - Bac 2016 Var 4",
   "descriere": "Problema de bacalaureat - Subiectul II din Mecanică, 2016, Varianta 4, teoretic",
   "categorie": "Bac",
-  "varianta": "2016 Var 4",
-  "dificultate": "mediu",
   "punctajTotal": 15,
   "continut": "Sistemul din figură, format din corpuri identice având masele $m_1 = m_2 = 2 \\, \\text{kg}$, se deplasează cu viteza constantă $v = 1,5 \\, \\text{m/s}$ sub acțiunea forței constante $\\vec{F}$, orientată paralel cu suprafața planului înclinat. Deplasarea corpului de masă $m_1$ are loc în sensul forței $\\vec{F}$. Corpurile sunt legate prin intermediul unui fir inextensibil și de masă neglijabilă. Scripetele este lipsit de inerție și fără frecări. Unghiul format de planul înclinat cu orizontală este $\\alpha \\cong 37^\\circ (\\sin \\alpha = 0,6)$, iar coeficientul de frecare la alunecare dintre corpuri și suprafețe este același, având valoarea $\\mu = 0,2$. Firul este suficient de lung pentru ca în timpul mișcării corpul de masă $m_2$ să nu atingă scripetele.\n\na. Reprezentați forțele care acționează asupra corpului de masă $m_1$.\nb. Calculați valoarea tensiunii din fir.\nc. Calculați valoarea forței $\\vec{F}$.\nd. Determinați intervalul de timp necesar corpului de masă $m_1$ pentru a parcurge distanța $d = 1,5 \\, \\text{m}$.",
   "formule": [],
@@ -41,6 +39,7 @@
     "type": "teoretic",
     "subjectArea": "Mecanică",
     "subjectCode": "A",
-    "subjectNumber": 2
+    "subjectNumber": 2,
+    "session": "bac"
   }
 }

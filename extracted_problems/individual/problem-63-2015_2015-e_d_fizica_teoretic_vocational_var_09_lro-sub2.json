@@ -2,8 +2,6 @@
   "titlu": "Problema II - Termodinamică - Bac 2015 Var 9",
   "descriere": "Problema de bacalaureat - Subiectul II din Termodinamică, 2015, Varianta 9, teoretic",
   "categorie": "Bac",
-  "varianta": "2015 Var 9",
-  "dificultate": "mediu",
   "punctajTotal": 15,
   "continut": "Un recipient de volum 74,79 L, închis etanș cu o supapă, conține 90 g de gaz. Presiunea și temperatura gazului din interior sunt aceleași cu cele ale aerului exterior și au valorile $p = 10^5$ Pa, respectiv $t = 27^\\circ \\mathrm{C}$. Supapa se deschide atunci când diferența dintre presiunea gazului din interior și presiunea aerului exterior depășește valoarea $\\Delta p = 3 \\cdot 10^4$ Pa. Calculați:\na. masa molară a gazului din recipient;\nb. densitatea inițială a gazului din recipient;\nc. temperatura maximă $T^*$ până la care poate fi încălzit gazul din recipient astfel încât supapa să rămână închisă;\nd. masa de gaz care ar trebui eliminată din recipient, pentru ca presiunea să rămână $p = 10^5$ Pa, atunci când temperatura gazului devine $T^* = 540$ K.",
   "formule": [],
@@ -38,6 +36,7 @@
     "type": "teoretic",
     "subjectArea": "Termodinamică",
     "subjectCode": "B",
-    "subjectNumber": 2
+    "subjectNumber": 2,
+    "session": "bac"
   }
 }

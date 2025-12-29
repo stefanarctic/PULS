@@ -2,8 +2,6 @@
   "titlu": "Problema III - Optică - Bac 2014",
   "descriere": "Problema de bacalaureat - Subiectul III din Optică, 2014, teoretic",
   "categorie": "Bac",
-  "varianta": "2014",
-  "dificultate": "mediu",
   "punctajTotal": 15,
   "continut": "O sursă de lumină coerentă S, ce emite o radiație cu lungimea de undă $\\lambda = 600$ nm, este așezată pe axa de simetrie a unui dispozitiv Young la distanța $d = 0,5$ m de planul fantelor, ca în figura alăturată. Distanța dintre fante este $2\\ell = 0,6$ mm, iar distanța de la planul fantelor la ecran este $D = 1$ m.\n\na. Determinați mărimea interfranjei.\nb. Determinați distanța, măsurată pe ecran, între a șasea franjă întunecoasă situată de o parte a axei de simetrie și franja luminoasă de ordinul cinci situată de cealaltă parte a axei de simetrie.\nc. Se deplasează sursa de lumină monocromatică S, în planul desenului și perpendicular pe axa de simetrie, cu distanța $h = 0,5$ mm. Determinați distanța $\\Delta x_0$ pe care se deplasează maximul central.\nd. Se înlocuiește sursa de lumină monocromatică S cu o altă sursă $S_1$ care emite simultan două radiații cu lungimile de undă $\\lambda_1 = 760$ nm, respectiv $\\lambda_2 = 570$ nm. Determinați distanța față de maximul central la care se realizează prima suprapunere a maximelor celor două radiații.",
   "formule": [],
@@ -40,6 +38,7 @@
     "type": "teoretic",
     "subjectArea": "Optică",
     "subjectCode": "D",
-    "subjectNumber": 3
+    "subjectNumber": 3,
+    "session": "model"
   }
 }

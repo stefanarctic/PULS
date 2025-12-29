@@ -2,8 +2,6 @@
   "titlu": "Problema III - Optică - Bac 2022 Var 5",
   "descriere": "Problema de bacalaureat - Subiectul III din Optică, 2022, Varianta 5, teoretic",
   "categorie": "Bac",
-  "varianta": "2022 Var 5",
-  "dificultate": "mediu",
   "punctajTotal": 15,
   "continut": "Un dispozitiv Young, situat în aer, este iluminat cu o radiație monocromatică cu lungimea de undă $\\lambda_1 = 550 \\, \\text{nm}$. Interfranja observată pe ecran este $i_1 = 1 \\, \\text{mm}$. Același dispozitiv, iluminat cu o altă radiație monocromatică cu lungimea de undă $\\lambda_2$, prezintă maximul de ordinul doi la distanța $x = 2,4 \\, \\text{mm}$ față de maximul central. În ambele situații sursa este situată pe axa de simetrie a dispozitivului.\n\na. Determinați valoarea interfranjei în cazul iluminării dispozitivului cu lungimea de undă $\\lambda_2$;\nb. Determinați valoarea lungimii de undă $\\lambda_2$ a celei de a doua radiații.\nc. Calculați valoarea, în modul, a diferenței frecvențelor celor două radiații.\nd. Se iluminează dispozitivul simultan cu ambele radiații. Aflați distanța minimă, măsurată în raport cu franja centrală, la care are loc prima suprapunere a maximelor produse de cele două radiații.",
   "formule": [],
@@ -38,6 +36,7 @@
     "type": "teoretic",
     "subjectArea": "Optică",
     "subjectCode": "D",
-    "subjectNumber": 3
+    "subjectNumber": 3,
+    "session": "bac"
   }
 }

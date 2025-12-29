@@ -2,8 +2,6 @@
   "titlu": "Problema III - Termodinamică - Bac 2019 Var 1",
   "descriere": "Problema de bacalaureat - Subiectul III din Termodinamică, 2019, Varianta 1, tehnologic",
   "categorie": "Bac",
-  "varianta": "2019 Var 1",
-  "dificultate": "mediu",
   "punctajTotal": 15,
   "continut": "O cantitate $\\nu = 0,12 \\left( \\equiv \\frac{1}{8,31} \\right)$ mol de gaz ideal monoatomic ($C_v = 1,5 R$) se află la temperatura $T_1 = 300 \\mathrm{~K}$.\n\nGazul descrie un proces ciclic format din următoarele transformări:\n- 1-2: încălzire la volum constant până la presiunea $p_2 = 2 p_1$\n- 2-3: destindere la temperatură constantă până la volumul $V_3 = 2 V_1$\n- 3-1: comprimare la presiune constantă până în starea inițială.\n\nSe consideră $\\ln 2 \\equiv 0,7$.\n\na. Reprezentați grafic procesul în coordonate $p - V$;\nb. Calculați variația energiei interne a gazului în transformarea 1-2;\nc. Calculați lucrul mecanic efectuat de gaz în transformarea 2-3;\nd. Calculați căldura cedată de gaz în transformarea 3-1.",
   "formule": [],
@@ -38,6 +36,7 @@
     "type": "tehnologic",
     "subjectArea": "Termodinamică",
     "subjectCode": "B",
-    "subjectNumber": 3
+    "subjectNumber": 3,
+    "session": "bac"
   }
 }

@@ -2,8 +2,6 @@
   "titlu": "Problema III - Optică - Bac 2012 Var 3",
   "descriere": "Problema de bacalaureat - Subiectul III din Optică, 2012, Varianta 3",
   "categorie": "Bac",
-  "varianta": "2012 Var 3",
-  "dificultate": "mediu",
   "punctajTotal": 15,
   "continut": "În graficul din figura alăturată este reprezentată dependența energiei cinetice maxime a fotoelectronilor extrăși dintr-un metal prin efect fotoelectric de frecvență radiației incidente.\n\na. Determinați, folosind datele din grafic, lucrul mecanic de extracție.\nb. Iluminând suprafața catodului cu o radiație de frecvență $\\nu = 8 \\cdot 10^{14}$ Hz, determinați energia cinetică maximă a fotoelectronilor emisi.\nc. Determinați valoarea absolută a tensiunii de stopare care trebuie aplicată electrozilor pentru a anula curentul de fotoelectron emis sub acțiunea radiației de frecvență $\\nu = 8 \\cdot 10^{14}$ Hz.\nd. Determinați semnificația fizică a pantei dreptei din grafic ($t_{g\\alpha}$).",
   "formule": [],
@@ -40,6 +38,7 @@
     "type": null,
     "subjectArea": "Optică",
     "subjectCode": "D",
-    "subjectNumber": 3
+    "subjectNumber": 3,
+    "session": "bac"
   }
 }

@@ -2,8 +2,6 @@
   "titlu": "Problema II - Fizică - Bac 2016 Var 10",
   "descriere": "Problema de bacalaureat - Subiectul II din Fizică, 2016, Varianta 10, teoretic",
   "categorie": "Bac",
-  "varianta": "2016 Var 10",
-  "dificultate": "mediu",
   "punctajTotal": 15,
   "continut": "O săniuță cu masa $m = 5 \\, \\text{kg}$ este tractată pe o suprafață orizontală sub acțiunea unei forțe de tracțiune $F_t$, paralelă cu suprafața în intervalul de timp $t \\in (0 \\, \\text{s}; 40 \\, \\text{s})$. Coeficientul de frecare la alunecare este $\\mu = 0,25$, iar viteza saniei variază în timp conform graficului alăturat.\n\na. Determinați accelerația saniei în primele 10 s ale mișcării.\n\nb. Determinați distanța totală parcursă de sanie în intervalul de timp $t \\in (0 \\, \\text{s}; 50 \\, \\text{s})$.\n\nc. Calculați valoarea forței de tracțiune în intervalul de timp $t \\in (10 \\, \\text{s}; 40 \\, \\text{s})$.\n\nd. În ultimele 10 s ale mișcării forța de tracțiune formează cu orizontala unghiul $\\alpha \\cong 53^\\circ$ ($\\sin \\alpha = 0,8$), deasupra acesteia, ca în figura alăturată. Calculați valoarea forței de tracțiune în intervalul de timp $t \\in (40 \\, \\text{s}; 50 \\, \\text{s})$.\n\n![img-0.jpeg](img-0.jpeg)\n\n![img-1.jpeg](img-1.jpeg)",
   "formule": [],
@@ -40,6 +38,7 @@
     "variant": 10,
     "type": "teoretic",
     "subjectArea": null,
-    "subjectNumber": 2
+    "subjectNumber": 2,
+    "session": "bac"
   }
 }

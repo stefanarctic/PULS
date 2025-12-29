@@ -2,8 +2,6 @@
   "titlu": "Problema III - Mecanică - Bac 2017 Var 4",
   "descriere": "Problema de bacalaureat - Subiectul III din Mecanică, 2017, Varianta 4, tehnologic",
   "categorie": "Bac",
-  "varianta": "2017 Var 4",
-  "dificultate": "mediu",
   "punctajTotal": 15,
   "continut": "Un container de masă $m = 1\\,\\mathrm{t}$, situat inițial pe sol, este ridicat de o macară, prin intermediul unui cablu a cărui masă este neglijabilă față de masa containerului. Ridicarea se face pe verticală, cu viteză constantă, de la nivelul solului până la înălțimea $H = 20\\,\\mathrm{m}$, în timpul $\\Delta t = 80\\,\\mathrm{s}$. Interacțiunea cu aerul este neglijabilă.\n\na. Calculați energia potențială gravitațională a containerului aflat la înălțimea $H = 20\\,\\mathrm{m}$, considerând că energia potențială gravitațională este nulă la nivelul solului.\nb. Calculați lucrul mecanic efectuat de macara pentru ridicarea containerului pe distanța $H = 20\\,\\mathrm{m}$.\nc. Determinați viteza containerului în timpul ridicării la înălțimea $H = 20\\,\\mathrm{m}$.\nd. După ce a fost adus la înălțimea $H$, containerul se află în repaus. La un moment dat se desprinde din acesta o mică piesă. Determinați viteza piesei în momentul imediat anterior impactului cu solul.",
   "formule": [],
@@ -38,6 +36,7 @@
     "type": "tehnologic",
     "subjectArea": "Mecanică",
     "subjectCode": "A",
-    "subjectNumber": 3
+    "subjectNumber": 3,
+    "session": "bac"
   }
 }

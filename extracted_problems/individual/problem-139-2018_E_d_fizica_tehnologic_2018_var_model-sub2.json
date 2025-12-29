@@ -2,8 +2,6 @@
   "titlu": "Problema II - Mecanică - Bac 2018",
   "descriere": "Problema de bacalaureat - Subiectul II din Mecanică, 2018, tehnologic",
   "categorie": "Bac",
-  "varianta": "2018",
-  "dificultate": "mediu",
   "punctajTotal": 15,
   "continut": "Un muncitor împinge un corp cu masa $M = 85\\,\\mathrm{kg}$ cu o forță constantă, a cărei direcție formează unghiul $\\alpha$ (sin $\\alpha = 0,6$; $\\cos \\alpha = 0,8$) cu orizontala, ca în figura alăturată. Corpul se deplasează cu viteza constantă $v = 0,5\\,\\mathrm{m/s}$. Valoarea forței de frecare la alunecare dintre corp și suprafața orizontală este $F_f = 200\\,\\mathrm{N}$.\n\na. Reprezentați forțele care acționează asupra corpului.\nb. Calculați distanța parcursă de corp în $\\Delta t = 20\\,\\mathrm{s}$.\nc. Calculați valoarea forței $\\bar{F}$ exercitate de muncitor, pentru deplasarea uniformă a corpului.\nd. Determinați valoarea coeficientului de frecare la alunecare dintre corp și suprafață.",
   "formule": [],
@@ -40,6 +38,7 @@
     "type": "tehnologic",
     "subjectArea": "Mecanică",
     "subjectCode": "A",
-    "subjectNumber": 2
+    "subjectNumber": 2,
+    "session": "model"
   }
 }

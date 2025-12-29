@@ -2,8 +2,6 @@
   "titlu": "Problema II - Termodinamică - Bac 2025 Var 1",
   "descriere": "Problema de bacalaureat - Subiectul II din Termodinamică, 2025, Varianta 1, tehnologic",
   "categorie": "Bac",
-  "varianta": "2025 Var 1",
-  "dificultate": "mediu",
   "punctajTotal": 15,
   "continut": "În interiorul unui cilindru orizontal este închisă, cu ajutorul unui piston, o cantitate $\\nu = 2,0$ mol de oxigen. Masa molară a oxigenului este $\\mu = 32\\mathrm{g/mol}$, iar căldura molară la volum constantă este $C_V = 2,5R$. Oxigenul, considerat gaz ideal, se află la temperatura $T = 300\\mathrm{K}$ și presiunea $p_0 = 1,0 \\cdot 10^5\\mathrm{Pa}$. Pistonul este etanș și se poate deplasa fără frecări. Presiunea aerului din exteriorul cilindrului este constantă și are valoarea $p_0 = 1,0 \\cdot 10^5\\mathrm{Pa}$. Pistonul este lăsat să se mișce liber.\n\na. Calculați masa de oxigen din cilindru.\nb. Determinați densitatea oxigenului din cilindru.\nc. Se încălzește oxigenul până la temperatura $t' = 127^{\\circ} \\mathrm{C}$. Determinați raportul dintre volumul ocupat de oxigen în starea inițială și volumul ocupat de oxigen în starea finală.\nd. Calculați valoarea energiei interne a oxigenului în starea finală.",
   "formule": [],
@@ -38,6 +36,7 @@
     "type": "tehnologic",
     "subjectArea": "Termodinamică",
     "subjectCode": "B",
-    "subjectNumber": 2
+    "subjectNumber": 2,
+    "session": "bac"
   }
 }

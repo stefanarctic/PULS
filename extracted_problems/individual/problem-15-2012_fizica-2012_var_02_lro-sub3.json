@@ -2,8 +2,6 @@
   "titlu": "Problema III - Termodinamică - Bac 2012 Var 2",
   "descriere": "Problema de bacalaureat - Subiectul III din Termodinamică, 2012, Varianta 2",
   "categorie": "Bac",
-  "varianta": "2012 Var 2",
-  "dificultate": "mediu",
   "punctajTotal": 15,
   "continut": "În figura alăturată este reprezentată transformarea ciclică a unei cantități constante de gaz ideal. Căldura primită și variația energiei interne a gazului în transformarea $1 \\rightarrow 2$ au valorile $Q_{12} = 12465 \\mathrm{~J}$ și respectiv $\\Delta U_{12} = 7479 \\mathrm{~J}$. Se cunoaște în $3 \\equiv 1,1$. Determinați:\n\na. variația energiei interne a gazului în transformarea $2 \\rightarrow 3$;\nb. raportul $\\gamma = \\frac{C_p}{C_v}$ dintre căldurile molare la presiune constantă și la volum constant pentru gazul considerat;\nc. lucrul mecanic schimbat de gaz cu exteriorul în transformarea $3 \\rightarrow 1$;\nd. căldura cedată de gaz mediului exterior pe parcursul unui ciclu.",
   "formule": [],
@@ -40,6 +38,7 @@
     "type": null,
     "subjectArea": "Termodinamică",
     "subjectCode": "B",
-    "subjectNumber": 3
+    "subjectNumber": 3,
+    "session": "bac"
   }
 }

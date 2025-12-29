@@ -2,8 +2,6 @@
   "titlu": "Problema II - Mecanică - Bac 2013 Var 2",
   "descriere": "Problema de bacalaureat - Subiectul II din Mecanică, 2013, Varianta 2, tehnologic",
   "categorie": "Bac",
-  "varianta": "2013 Var 2",
-  "dificultate": "mediu",
   "punctajTotal": 15,
   "continut": "Se consideră dispozitivul din figura alăturată. Corpurile de masă $m_1 = 1,5 \\, \\text{kg}$, respectiv $m_2 = 0,5 \\, \\text{kg}$ sunt legate printr-un fir inextensibil, fără masă, trecut peste un scripete ideal fixat în vârful planului înclinat. Coeficientul de frecare la alunecare dintre corpul de masă $m_1$ și planul înclinat de unghi $\\alpha = 30^\\circ$ este $\\mu = 0,115 \\left( \\equiv \\frac{0,2}{\\sqrt{3}} \\right)$. Lăsând sistemul liber, din repaus, corpul de masă $m_1$ coboară.\n\na. Reprezentați forțele care acționează asupra fiecăruia dintre cele două corpuri în timpul mișcării acestora.\nb. Calculați valoarea forței de frecare dintre corpul de masă $m_1$ și suprafața planului.\nc. Calculați valoarea accelerației corpului de masă $m_1$.\nd. Calculați valoarea vitezei corpului de masă $m_2$ după $\\Delta t = 1 \\, \\text{s}$ din momentul în care sistemul este lăsat liber, considerând firul suficient de lung pentru ca direcțiile de mișcare ale corpurilor să nu se modifice.\n\n(15 puncte)",
   "formule": [],
@@ -40,6 +38,7 @@
     "type": "tehnologic",
     "subjectArea": "Mecanică",
     "subjectCode": "A",
-    "subjectNumber": 2
+    "subjectNumber": 2,
+    "session": "bac"
   }
 }

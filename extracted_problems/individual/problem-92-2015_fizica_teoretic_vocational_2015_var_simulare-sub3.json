@@ -2,8 +2,6 @@
   "titlu": "Problema III - Curent continuu - Bac 2015",
   "descriere": "Problema de bacalaureat - Subiectul III din Curent continuu, 2015, teoretic",
   "categorie": "Bac",
-  "varianta": "2015",
-  "dificultate": "mediu",
   "punctajTotal": 15,
   "continut": "În figura alăturată este reprezentată schema unui circuit electric. Se cunosc: $E_2 = 24\\,\\mathrm{V}$ și $r_1 = r_2 = 1\\,\\Omega$. Intensitatea curentului indicată de ampermetrul $A_1$ este nulă, iar intensitatea curentului indicată de ampermetrul $A_2$ este $I_2 = 1\\,\\mathrm{A}$. Rezistența electrică a rezistorului 2 este $R_2 = 8\\,\\Omega$, iar ampermetrele sunt ideale $(R_A \\cong 0)$.\n\na. Calculați energia electrică consumată de rezistorul $R_2$ în timp de o oră.\nb. Calculați valoarea rezistenței electrice $R_1$.\nc. Determinați valoarea t.e.m. $E_1$.\nd. Se înlocuiește generatorul având $E_1$ cu un rezistor având rezistența $R = 24\\,\\Omega$. Calculați puterea absorbită de circuitul exterior de la generatorul având $E_2$.",
   "formule": [],
@@ -40,6 +38,7 @@
     "type": "teoretic",
     "subjectArea": "Curent continuu",
     "subjectCode": "C",
-    "subjectNumber": 3
+    "subjectNumber": 3,
+    "session": "simulare"
   }
 }

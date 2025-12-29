@@ -2,8 +2,6 @@
   "titlu": "Problema II - Optică - Bac 2012 Var 3",
   "descriere": "Problema de bacalaureat - Subiectul II din Optică, 2012, Varianta 3",
   "categorie": "Bac",
-  "varianta": "2012 Var 3",
-  "dificultate": "mediu",
   "punctajTotal": 15,
   "continut": "Pe un banc optic se montează o lentilă biconvexă ($L_1$), considerată subțire, având distanța focală $f_t = 30$ cm, razele de curbură egale în modul și indicele de refracție $n = 1,5$. Un obiect liniar este plasat în fața lentilei, perpendicular pe axul optic principal. Pe un ecran, plasat la o distanță adecvată, se observă o imagine clară a obiectului, de două ori mai mare decât obiectul.\n\na. Calculați modulul razelor de curbură ale lentilei.\nb. Calculați distanța la care se află obiectul față de lentilă.\nc. Menținând fixe obiectul și lentila ($L_1$), se alipește de lentila biconvexă ($L_1$) o a doua lentilă ($L_2$). Se observă că pe ecranul aflat la distanța de 90 cm de obiect se formează o nouă imagine clară a obiectului. Calculați distanța focală a celei de a doua lentila ($L_2$).\nd. Se depărtează lentila ($L_2$) de lentila ($L_1$) și se înlătură obiectul. Se constată că pentru o anumită distanță între lentile un fascicul de lumină paralel cu axul optic principal, provenit de la o sursă de lumină laser, incident pe lentila ($L_1$) părăsește lentila ($L_2$) tot paralel cu axul optic principal. Realizați un desen în care să figureze mersul razelor de lumină prin sistemul de lentile în acest caz și determinați distanța D dintre lentile.",
   "formule": [],
@@ -38,6 +36,7 @@
     "type": null,
     "subjectArea": "Optică",
     "subjectCode": "D",
-    "subjectNumber": 2
+    "subjectNumber": 2,
+    "session": "bac"
   }
 }

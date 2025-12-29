@@ -34,8 +34,6 @@ const getVariantType = (variant, metadata) => {
     
     if (combined.includes('simulare')) return 'simulare';
     if (combined.includes('model')) return 'model';
-    if (combined.includes('vara')) return 'vara';
-    if (combined.includes('toamna')) return 'toamna';
     return 'bac';
 };
 
@@ -1002,11 +1000,9 @@ const ProblemeBac = () => {
                                         disabled={addStatus === 'loading'}
                                     >
                                         <option value="">Selectează sesiunea</option>
-                                        <option value="simulare">Simulare</option>
-                                        <option value="model">Model</option>
-                                        <option value="vara">Vară</option>
-                                        <option value="toamna">Toamnă</option>
                                         <option value="bac">Bac</option>
+                                        <option value="model">Model</option>
+                                        <option value="simulare">Simulare</option>
                                     </select>
                                 </div>
 
@@ -1283,8 +1279,6 @@ const ProblemeBac = () => {
                                         <option key={session} value={session}>
                                             {session === 'simulare' ? 'Simulare' : 
                                              session === 'model' ? 'Model' :
-                                             session === 'vara' ? 'Vară' : 
-                                             session === 'toamna' ? 'Toamnă' : 
                                              session === 'bac' ? 'Bac' : session}
                                         </option>
                                     ))}

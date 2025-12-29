@@ -2,8 +2,6 @@
   "titlu": "Problema III - Mecanică - Bac 2018 Var 1",
   "descriere": "Problema de bacalaureat - Subiectul III din Mecanică, 2018, Varianta 1, tehnologic",
   "categorie": "Bac",
-  "varianta": "2018 Var 1",
-  "dificultate": "mediu",
   "punctajTotal": 15,
   "continut": "Un corp de dimensiuni neglijabile, având masa $m = 200\\,\\text{g}$, este lăsat să alunece liber pe o suprafață curbă fără frecare, de la înălțimea $h = 45\\,\\text{cm}$, ca în figura alăturată. Suprafața curbă se continuă cu un plan orizontal AB pe care corpul se mișcă cu frecare, coeficientul de frecare la alunecare fiind $\\mu = 0,2$. Punctul B se află la distanța $\\ell = 2\\,\\text{m}$ față de punctul A. Determinați:\n\na. energia potențială gravitațională inițială, considerând că energia potențială gravitațională este nulă pe planul orizontal AB;\n\nb. valoarea vitezei corpului la trecerea prin punctul A;\n\nc. lucrul mecanic efectuat de forța de frecare pe porțiunea AB;\n\nd. energia cinetică a corpului la trecerea prin punctul B.",
   "formule": [],
@@ -40,6 +38,7 @@
     "type": "tehnologic",
     "subjectArea": "Mecanică",
     "subjectCode": "A",
-    "subjectNumber": 3
+    "subjectNumber": 3,
+    "session": "bac"
   }
 }

@@ -2,8 +2,6 @@
   "titlu": "Problema III - Fizică - Bac 2018",
   "descriere": "Problema de bacalaureat - Subiectul III din Fizică, 2018, teoretic",
   "categorie": "Bac",
-  "varianta": "2018",
-  "dificultate": "mediu",
   "punctajTotal": 15,
   "continut": "Un aerostat urcă vertical cu viteza constantă $v_0 = 5,0\\,\\mathrm{m/s}$. În momentul în care ajunge la înălțimea $H$ din aerostat cade o piatră cu masa $m = 50\\,\\mathrm{g}$. Piatra atinge suprafața solului cu viteza $v = 25\\,\\mathrm{m/s}$ și, după impactul cu solul, care durează $\\Delta t = 1,0\\,\\mathrm{ms}$, piatra se înalță la $h = 80\\,\\mathrm{cm}$, pe aceeași verticală. Neglijând interacțiunea cu aerul, determinați:\n\na. înălțimea $H$ de la care cade piatra;\n\nb. intervalul de timp $\\Delta t_c$ în care piatra ajunge la suprafața solului, măsurat din momentul în care ea cade din aerostat;\n\nc. lucrul mecanic efectuat de greutatea pietrei, din momentul în care aceasta cade din aerostat și până în momentul în care atinge înălțimea $h$;\n\nd. valoarea forței rezultante medii exercitate asupra pietrei în timpul impactului cu solul.",
   "formule": [],
@@ -37,6 +35,7 @@
     "variant": null,
     "type": "teoretic",
     "subjectArea": null,
-    "subjectNumber": 3
+    "subjectNumber": 3,
+    "session": "model"
   }
 }

@@ -2,8 +2,6 @@
   "titlu": "Problema II - Fizică - Bac 2025",
   "descriere": "Problema de bacalaureat - Subiectul II din Fizică, 2025, teoretic",
   "categorie": "Bac",
-  "varianta": "2025",
-  "dificultate": "mediu",
   "punctajTotal": 15,
   "continut": "Asupra unui corp de masă $m = 1,0\\,\\mathrm{kg}$ acționează o forță $\\bar{F}$, orientată sub un unghi $\\alpha = 45^\\circ$ față de orizontală. Corpul este legat, prin intermediul unui fir inextensibil, de un resort de constantă elastică $k = 200\\,\\mathrm{N/m}$, ca în figura alăturată. Firul se rupe când tensiunea din fir atinge valoarea maximă $T_r = 2,0\\,\\mathrm{N}$. Coeficientul de frecare la alunecare între corp și suprafața orizontală este $\\mu = 0,25$. Se neglijează atât masa firului, cât și masa resortului.\n\na. Reprezentați forțele care acționează asupra corpului în timpul alungirii resortului.\nb. Calculați alungirea resortului în momentul ruperii firului.\nc. După ruperea firului, valoarea forței $\\bar{F}$ devine $F = 4,23\\,\\mathrm{N} \\left( \\cong 3\\sqrt{2}\\,\\mathrm{N} \\right)$.\n\nDeterminați valoarea accelerației corpului.\n\nd. După ruperea firului, în momentul în care corpul atinge viteza $v = 6\\,\\mathrm{m/s}$, acțiunea forței asupra corpului încetează. Calculați după cât timp din momentul încetării acțiunii forței se oprește corpul.",
   "formule": [],
@@ -37,6 +35,7 @@
     "variant": null,
     "type": "teoretic",
     "subjectArea": null,
-    "subjectNumber": 2
+    "subjectNumber": 2,
+    "session": "model"
   }
 }

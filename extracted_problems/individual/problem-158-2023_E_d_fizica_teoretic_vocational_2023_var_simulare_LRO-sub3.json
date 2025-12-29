@@ -2,8 +2,6 @@
   "titlu": "Problema III - Fizică - Bac 2023",
   "descriere": "Problema de bacalaureat - Subiectul III din Fizică, 2023, teoretic",
   "categorie": "Bac",
-  "varianta": "2023",
-  "dificultate": "mediu",
   "punctajTotal": 15,
   "continut": "Cele două corpuri din figura alăturată au masele $m_1 = 400\\,\\mathrm{g}$ și respectiv $m_2 = 100\\,\\mathrm{g}$ și sunt inițial în repaus. Corpul cu masa $m_1$ se află în punctul A la înălțimea $h = 80\\,\\mathrm{cm}$. În punctul C este fixat capătul unui resort elastic cu constanta elastică $k = 100\\,\\mathrm{N/m}$ și lungimea în stare nedeformată $\\mathrm{CD} = d = 30\\,\\mathrm{cm}$. Corpul cu masa $m_2$ este așezat în contact cu capătul liber al resortului, la distanța $d_0 = 20\\,\\mathrm{cm}$ față de punctul C. Coeficientul de frecare la alunecarea corpului cu masa $m_2$ pe suprafața $\\mathrm{CD}$ este $\\mu = 0,5$. Deplasările corpurilor pe suprafețele $\\mathbf{AB}$ și $\\mathbf{BD}$ au loc fără frecare. Cele două corpuri, eliberate simultan, se întâlnesc și se cuplează pe porțiunea orizontală $\\mathbf{BD}$. Calculați:\n\na. lucrul mecanic efectuat de greutatea corpului cu masa $m_1$ pe porțiunea $\\mathbf{AB}$;\nb. viteza corpului cu masa $m_1$ în punctul B;\nc. viteza corpului cu masa $m_2$ în punctul D;\nd. viteza ansamblului celor două corpuri imediat după cuplare.\n\n![img-2.jpeg](img-2.jpeg)",
   "formule": [],
@@ -39,6 +37,7 @@
     "variant": null,
     "type": "teoretic",
     "subjectArea": null,
-    "subjectNumber": 3
+    "subjectNumber": 3,
+    "session": "simulare"
   }
 }

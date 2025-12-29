@@ -2,8 +2,6 @@
   "titlu": "Problema III - Mecanică - Bac 2018",
   "descriere": "Problema de bacalaureat - Subiectul III din Mecanică, 2018, tehnologic",
   "categorie": "Bac",
-  "varianta": "2018",
-  "dificultate": "mediu",
   "punctajTotal": 15,
   "continut": "Din vârful unui plan înclinat, ce formează unghiul $\\alpha = 45^\\circ$ cu orizontala, este lăsat să alunece liber un corp cu masa $m = 2\\,\\mathrm{kg}$, de la înălțimea $h = 4\\,\\mathrm{m}$. Mișcarea corpului pe plan se face cu frecare, coeficientul de frecare la alunecare fiind $\\mu$. Viteza corpului la baza planului înclinat are valoarea $v = 8\\,\\mathrm{m/s}$. Considerând energia potențială nulă la baza planului înclinat, determinați:\n\na. energia potențială gravitațională la înălțimea $h = 4\\,\\mathrm{m}$;\nb. lucrul mecanic efectuat de greutatea corpului în timpul mișcării sale până la baza planului înclinat;\nc. valoarea energiei mecanice a corpului la baza planului înclinat;\nd. valoarea coeficientului de frecare la alunecare $\\mu$ dintre corp și suprafața planului.",
   "formule": [],
@@ -38,6 +36,7 @@
     "type": "tehnologic",
     "subjectArea": "Mecanică",
     "subjectCode": "A",
-    "subjectNumber": 3
+    "subjectNumber": 3,
+    "session": "model"
   }
 }

@@ -2,8 +2,6 @@
   "titlu": "Problema II - Optică - Bac 2019",
   "descriere": "Problema de bacalaureat - Subiectul II din Optică, 2019, teoretic",
   "categorie": "Bac",
-  "varianta": "2019",
-  "dificultate": "mediu",
   "punctajTotal": 15,
   "continut": "Un obiect luminos liniar este plasat perpendicular pe axa optică principală, la distanța de 50 cm în fața unei lentile. Pe un ecran așezat corespunzător se observă o imagine clară a obiectului, imaginea având înălțimea egală cu înălțimea obiectului.\n\na. Calculați distanța la care se află ecranul față de obiect.\nb. Calculați convergența lentilei.\nc. Se apropie obiectul de lentilă cu distanța $\\Delta x_1 = 20\\,\\mathrm{cm}$. Determinați distanța la care trebuie plasat ecranul, față de lentilă, pentru ca imaginea clară a obiectului să se formeze pe ecran.\nd. Se aduce încă o lentilă convergentă la distanța $D = 70\\,\\mathrm{cm}$ față de prima lentilă, formând un sistem optic centrat. Se constată că un fascicul de lumină cilindric, care intră în prima lentilă paralel cu axa optică principală, iese din cea de-a doua lentilă tot paralel cu axa optică principală. Determinați diametrul fasciculului care iese din cea de-a doua lentilă dacă fasciculul incident pe prima lentilă are diametrul $d_1 = 5\\,\\mathrm{mm}$.",
   "formule": [],
@@ -38,6 +36,7 @@
     "type": "teoretic",
     "subjectArea": "Optică",
     "subjectCode": "D",
-    "subjectNumber": 2
+    "subjectNumber": 2,
+    "session": "model"
   }
 }

@@ -2,8 +2,6 @@
   "titlu": "Problema III - Mecanică - Bac 2018 Var 1",
   "descriere": "Problema de bacalaureat - Subiectul III din Mecanică, 2018, Varianta 1, teoretic",
   "categorie": "Bac",
-  "varianta": "2018 Var 1",
-  "dificultate": "mediu",
   "punctajTotal": 15,
   "continut": "Un corp de dimensiuni neglijabile, având masa $m = 200\\,\\text{g}$, este lăsat să alunece liber pe o suprafață curbă fără frecare, de la înălțimea $h = 45\\,\\text{cm}$, ca în figura alăturată. Suprafața curbă se continuă cu un plan orizontal AB de lungime $\\ell = 2\\,\\text{m}$ pe care corpul se mișcă cu frecare, coeficientul de frecare la alunecare fiind $\\mu = 0,2$. În punctul B corpul se lovește frontal de un perete vertical, pierzând la impact o fracțiune $f = 0,64$ din energia sa cinetică și se întoarce pe aceeași direcție pe care a venit. Energia potențială gravitațională se consideră nulă la nivelul planului orizontal AB. Determinați:\n\na. energia potențială gravitațională inițială;\n\nb. valoarea vitezei corpului la trecerea prin punctul A;\n\nc. energia cinetică a corpului în punctul B, imediat înaintea impactului cu peretele;\n\nd. modulul variației impulsului corpului în timpul impactului cu peretele.",
   "formule": [],
@@ -40,6 +38,7 @@
     "type": "teoretic",
     "subjectArea": "Mecanică",
     "subjectCode": "A",
-    "subjectNumber": 3
+    "subjectNumber": 3,
+    "session": "bac"
   }
 }

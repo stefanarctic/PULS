@@ -2,8 +2,6 @@
   "titlu": "Problema II - Termodinamică - Bac 2011 Var 9",
   "descriere": "Problema de bacalaureat - Subiectul II din Termodinamică, 2011, Varianta 9",
   "categorie": "Bac",
-  "varianta": "2011 Var 9",
-  "dificultate": "mediu",
   "punctajTotal": 15,
   "continut": "Un recipient cu pereți rigizi este izolat adiabatic. Recipientul este împărțit în două compartimente cu ajutorul unui perete fix. Peretele are capacitate calorică neglijabilă și permite un transfer lent de căldură. În cele două compartimente se introduc cantități egale $(\\nu_{1} = \\nu_{2})$ din două gaze considerate ideale. Într-un compartiment se introduce heliu $(\\mu_{He} = 4\\mathrm{g / mol}, C_{\\nu_{1}} = 1,5R)$, iar în celălalt se introduce azot $(\\mu_{N_{2}} = 28\\mathrm{g / mol}, C_{\\nu_{2}} = 2,5R)$. Temperatura inițială a heliului este $t_1 = 327^{\\circ}\\mathrm{C}$, iar cea a azotului este $t_2 = 27^{\\circ}\\mathrm{C}$. Presiunile lor inițiale sunt egale, având valoarea $p_0 = 10^5$ Pa. Determinați:\n\na. raportul dintre volumul ocupat de heliu și volumul ocupat de azot;\nb. temperatura de echilibru la care ajung cele două gaze;\nc. masa molară a amestecului obținut în urma producerii unei fisuri în peretele despărțitor dintre compartimente, după atingerea stării de echilibru termic;\nd. presiunea finală a amestecului de gaze din recipient.",
   "formule": [],
@@ -38,6 +36,7 @@
     "type": null,
     "subjectArea": "Termodinamică",
     "subjectCode": "B",
-    "subjectNumber": 2
+    "subjectNumber": 2,
+    "session": "bac"
   }
 }

@@ -2,8 +2,6 @@
   "titlu": "Problema III - Mecanică - Bac 2013 Var 2",
   "descriere": "Problema de bacalaureat - Subiectul III din Mecanică, 2013, Varianta 2, tehnologic",
   "categorie": "Bac",
-  "varianta": "2013 Var 2",
-  "dificultate": "mediu",
   "punctajTotal": 15,
   "continut": "Două plane înclinate de unghi $\\alpha = 30^\\circ$ sunt racordate la o suprafață orizontală, ca în figura alăturată. Din punctul $A$, situat la înălțimea $h = 0,8 \\, \\text{m}$, se lasă liber, din repaus, un corp cu masa $m = 2 \\, \\text{kg}$ care alunecă spre baza planului înclinat $AB$. Mișcarea pe planele înclinate $AB$ și $CD$ se face fără frecare, iar pe porțiunea orizontală $BC = d = 3 \\, \\text{m}$ coeficientul de frecare la alunecare este $\\mu = 0,15$. Se consideră că energia potențială gravitațională este nulă la nivelul planului orizontal. Trecerile corpului prin punctele $B$ și $C$ se fac fără modificarea modulelor vitezelor. Determinați:\n\na. energia mecanică a corpului în starea inițială;\nb. lucrul mecanic efectuat de forța de frecare în timpul deplasării corpului din $B$ în $C$;\nc. energia cinetică a corpului în punctul $C$;\nd. viteza minimă care trebuie imprimată corpului în punctul $A$, orientată către punctul $B$, pentru ca acesta să poată ajunge în punctul $D$, situat la aceeași înălțime ca și $A$.",
   "formule": [],
@@ -40,6 +38,7 @@
     "type": "tehnologic",
     "subjectArea": "Mecanică",
     "subjectCode": "A",
-    "subjectNumber": 3
+    "subjectNumber": 3,
+    "session": "bac"
   }
 }

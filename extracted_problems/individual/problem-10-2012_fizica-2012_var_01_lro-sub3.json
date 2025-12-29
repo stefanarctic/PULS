@@ -2,8 +2,6 @@
   "titlu": "Problema III - Termodinamică - Bac 2012 Var 1",
   "descriere": "Problema de bacalaureat - Subiectul III din Termodinamică, 2012, Varianta 1",
   "categorie": "Bac",
-  "varianta": "2012 Var 1",
-  "dificultate": "mediu",
   "punctajTotal": 15,
   "continut": "O cantitate $\\nu = 0,60\\left(\\equiv \\frac{5}{8,31}\\right)$ mol de gaz ideal biatomic ($C_V = 2,5R$) se află inițial, în starea 1, la o presiune egală cu $100\\mathrm{kPa}$. Gazul este încheiat izocor până în starea 2, în care presiunea s-a dublat, apoi destins izoterm până în starea 3, în care presiunea revine la valoarea inițială. În destinderea izotermă lucrul mecanic efectuat de gaz este egal cu $1,4\\mathrm{kJ}$. Se consideră $\\ln 2 \\cong 0,69$.\n\na. Reprezentați grafic dependența presiunii de volum în procesul $1 \\rightarrow 2 \\rightarrow 3$;\nb. Calculați temperatura gazului la sfârșitul încălzirii izocorei;\nc. Calculați volumul inițial al gazului;\nd. Calculați căldura primită pe parcursul transformării $1 \\rightarrow 2 \\rightarrow 3$.",
   "formule": [],
@@ -38,6 +36,7 @@
     "type": null,
     "subjectArea": "Termodinamică",
     "subjectCode": "B",
-    "subjectNumber": 3
+    "subjectNumber": 3,
+    "session": "bac"
   }
 }

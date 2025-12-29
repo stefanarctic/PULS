@@ -2,8 +2,6 @@
   "titlu": "Problema III - Termodinamică - Bac 2011 Var 9",
   "descriere": "Problema de bacalaureat - Subiectul III din Termodinamică, 2011, Varianta 9",
   "categorie": "Bac",
-  "varianta": "2011 Var 9",
-  "dificultate": "mediu",
   "punctajTotal": 15,
   "continut": "Un mol de gaz ideal monoatomic $(C_{\\nu} = 1,5R)$ evoluează după procesul termodinamic 1-2-3-4-1, reprezentat în sistemul de coordonate $p-V$ în graficul alăturat. În starea de echilibru termodinamic 1 temperatura este $T_{1} = 300\\mathrm{K}$, iar între parametrii din stări diferite există relațiile: $V_{3} = 3V_{1}$ și $p_{2} = 2p_{1}$.\n\na. Reprezentați grafic procesul ciclic într-un sistem de coordonate V-T.\nb. Calculați lucrul mecanic schimbat de gaz cu exteriorul în timpul unui ciclu.\nc. Calculați diferența dintre valoarea maximă și cea minimă a energiei interne a gazului în timpul unui ciclu.\nd. Calculați căldura cedată de gaz mediului exterior, în timpul unui ciclu.",
   "formule": [],
@@ -40,6 +38,7 @@
     "type": null,
     "subjectArea": "Termodinamică",
     "subjectCode": "B",
-    "subjectNumber": 3
+    "subjectNumber": 3,
+    "session": "bac"
   }
 }

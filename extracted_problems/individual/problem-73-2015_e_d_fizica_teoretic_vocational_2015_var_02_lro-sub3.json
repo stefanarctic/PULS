@@ -2,8 +2,6 @@
   "titlu": "Problema III - Termodinamică - Bac 2015 Var 2",
   "descriere": "Problema de bacalaureat - Subiectul III din Termodinamică, 2015, Varianta 2, teoretic",
   "categorie": "Bac",
-  "varianta": "2015 Var 2",
-  "dificultate": "mediu",
   "punctajTotal": 15,
   "continut": "Un motor termic funcționează după ciclul termodinamic reprezentat în coordonate $p - V$ în figura alăturată.\n\nGazul utilizat ca substanță de lucru are căldura molară la volum constant $C_V = 2R$. În procesul $(3) \\rightarrow (1)$ temperatura gazului rămâne constantă.\n\nCunoscând presiunea și volumul gazului în starea inițială, $p_1 = 8 \\cdot 10^5 \\mathrm{N/m}^2$, $V_1 = 0,5 \\mathrm{dm}^3$ și $\\ln 2 \\cong 0,7$ determinați:\n\na. lucrul mecanic schimbat de gaz cu mediul exterior în transformarea 1–2;\nb. căldura schimbată de gaz cu exteriorul în transformarea 3–1;\nc. variația energiei interne a gazului între stările 2 și 3;\nd. randamentul motorului termic.",
   "formule": [],
@@ -40,6 +38,7 @@
     "type": "teoretic",
     "subjectArea": "Termodinamică",
     "subjectCode": "B",
-    "subjectNumber": 3
+    "subjectNumber": 3,
+    "session": "bac"
   }
 }

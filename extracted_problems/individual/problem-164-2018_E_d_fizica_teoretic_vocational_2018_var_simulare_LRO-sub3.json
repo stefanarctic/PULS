@@ -2,8 +2,6 @@
   "titlu": "Problema III - Curent continuu - Bac 2018",
   "descriere": "Problema de bacalaureat - Subiectul III din Curent continuu, 2018, teoretic",
   "categorie": "Bac",
-  "varianta": "2018",
-  "dificultate": "mediu",
   "punctajTotal": 15,
   "continut": "În figura alăturată este reprezentată schema unui circuit electric. Bateria este formată prin legarea în serie a patru generatoare identice, fiecare având t.e.m $E_0 = 1\\mathrm{V}$ și rezistența interioară $r_0$. Se cunosc: $R_1 = 3\\Omega$, $R_2 = 5\\Omega$, iar firul conductor, notat NM, al reostatului cu cursor, are lungimea $L_{\\mathrm{NM}} = 90\\mathrm{cm}$ și rezistența electrică totală $R_{\\mathrm{NM}} = 48\\Omega$. Întrerupătorul K este deschis, iar ampermetrul ideal montat în circuit ($R_{\\mathrm{A}} \\cong 0\\Omega$) indică intensitatea $I = 400\\mathrm{mA}$.\n\na. Calculați puterea totală dezvoltată de baterie.\nb. Calculați rezistența interioară $r_0$ a unui generator.\nc. Se închide întrerupătorul K și se poziționează cursorul reostatului (C) la jumătatea firului NM. Calculați energia electrică consumată de circuitul exterior bateriei în timpul $\\Delta t = 100\\mathrm{s}$.\nd. Întrerupătorul K rămâne închis și cursorul reostatului (C) se poziționează astfel încât puterea absorbită de circuitul exterior generatoarelor să fie maximă. Aflați distanța la care se află cursorul față de punctul M.",
   "formule": [],
@@ -40,6 +38,7 @@
     "type": "teoretic",
     "subjectArea": "Curent continuu",
     "subjectCode": "C",
-    "subjectNumber": 3
+    "subjectNumber": 3,
+    "session": "simulare"
   }
 }

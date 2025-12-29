@@ -2,8 +2,6 @@
   "titlu": "Problema III - Termodinamică - Bac 2020 Var 2",
   "descriere": "Problema de bacalaureat - Subiectul III din Termodinamică, 2020, Varianta 2, teoretic",
   "categorie": "Bac",
-  "varianta": "2020 Var 2",
-  "dificultate": "mediu",
   "punctajTotal": 15,
   "continut": "O cantitate $\\nu = 0,12\\ \\mathrm{mol}\\left(\\equiv \\frac{1}{8,31}\\ \\mathrm{mol}\\right)$ de gaz ideal biatomic ($C_V = 2,5R$), având în starea inițială temperatura $T_1 = 300\\ \\mathrm{K}$, parcurge ciclul termodinamic reprezentat în figura alăturată. În procesele $(2) \\rightarrow (3)$ și $(4) \\rightarrow (1)$ temperatura gazului rămâne constantă. Căldura absorbită de gaz în procesul $(1) \\rightarrow (2)$ este egală cu lucrul mecanic efectuat de gaz în procesul $(2) \\rightarrow (3)$, $Q_{12} = L_{23} = 1500\\ \\mathrm{J}$.\n\na. Reprezentați ciclul termodinamic în coordonate $p - T$.\nb. Calculați temperatura maximă atinsă de gaz în cursul ciclului.\nc. Determinați lucrul mecanic schimbat de gaz cu mediul exterior într-un ciclu complet.\nd. Determinați randamentul unui motor termic care ar funcționa după ciclul considerat.",
   "formule": [],
@@ -40,6 +38,7 @@
     "type": "teoretic",
     "subjectArea": "Termodinamică",
     "subjectCode": "B",
-    "subjectNumber": 3
+    "subjectNumber": 3,
+    "session": "bac"
   }
 }

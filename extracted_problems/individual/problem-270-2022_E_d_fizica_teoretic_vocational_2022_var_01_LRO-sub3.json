@@ -2,8 +2,6 @@
   "titlu": "Problema III - Optică - Bac 2022 Var 1",
   "descriere": "Problema de bacalaureat - Subiectul III din Optică, 2022, Varianta 1, teoretic",
   "categorie": "Bac",
-  "varianta": "2022 Var 1",
-  "dificultate": "mediu",
   "punctajTotal": 15,
   "continut": "Un dispozitiv Young, plasat în aer, este iluminat cu o radiație monocromatică de lungime de undă $\\lambda = 650 \\, \\text{nm}$. Radiația este emisă de o sursă $S_1$, aflată pe axa de simetrie a dispozitivului. Figura de interferență se observă pe un ecran așezat paralel cu planul fantelor, la distanța $D = 2 \\, \\text{m}$ de acesta. Se observă că valoarea interfranjei este $i = 1 \\, \\text{mm}$.\n\na. Determinați frecvența radiației luminoase utilizate.\nb. Calculați distanța dintre cele două fante ale dispozitivului.\nc. Determinați valoarea distanței dintre a treia franja întunecată aflată de o parte a franjei centrale și franja luminoasă de ordinul 2 aflată de cealaltă parte a franjei centrale.\nd. Sursa de lumină $S_1$ se înlocuiește cu o alta, $S_2$, care emite două radiații monocromatice, având lungimile de undă $\\lambda = 650 \\, \\text{nm}$ și respectiv $\\lambda'$. Se constată că franja luminoasă de ordinul 4 a radiației de lungime de undă $\\lambda$ se suprapune cu franja luminoasă de ordinul 5 a radiației de lungime de undă $\\lambda'$. Determinați lungimea de undă $\\lambda'$.",
   "formule": [],
@@ -38,6 +36,7 @@
     "type": "teoretic",
     "subjectArea": "Optică",
     "subjectCode": "D",
-    "subjectNumber": 3
+    "subjectNumber": 3,
+    "session": "bac"
   }
 }

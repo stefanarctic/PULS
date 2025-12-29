@@ -2,8 +2,6 @@
   "titlu": "Problema II - Mecanică - Bac 2020",
   "descriere": "Problema de bacalaureat - Subiectul II din Mecanică, 2020, tehnologic",
   "categorie": "Bac",
-  "varianta": "2020",
-  "dificultate": "mediu",
   "punctajTotal": 15,
   "continut": "În sistemul din figura alăturată, masa corpului A are valoarea $m_A = 2 \\, \\text{kg}$, iar masa corpului B este $m_B = 2,5 \\, \\text{kg}$. Unghiul format de suprafața planului înclinat cu orizontală este $\\alpha = 30^\\circ$, firul este inextensibil, de masă neglijabilă, iar scripetele este ideal. Coeficientul de frecare la alunecare dintre corpul A și suprafața planului orizontal este $\\mu_A$, iar cel dintre corpul B și suprafața planului înclinat este $\\mu_B = 0,29 \\left( \\equiv \\frac{1}{2\\sqrt{3}} \\right)$. Sistemul este lăsat liber. În aceste condiții valoarea tensiunii în fir este $T = 5 \\, \\text{N}$.\n\na. Reprezentați toate forțele care acționează asupra corpului B.\nb. Calculați valoarea forței de apăsare normală a corpului B asupra suprafeței planului.\nc. Determinați valoarea accelerației sistemului de corpuri\nd. Calculați valoarea $\\mu_A$ a coeficientului de frecare dintre corpul A și suprafața planului orizontal.",
   "formule": [],
@@ -40,6 +38,7 @@
     "type": "tehnologic",
     "subjectArea": "Mecanică",
     "subjectCode": "A",
-    "subjectNumber": 2
+    "subjectNumber": 2,
+    "session": "model"
   }
 }

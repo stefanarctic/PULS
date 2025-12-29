@@ -2,8 +2,6 @@
   "titlu": "Problema III - Fizică - Bac 2019 Var 1",
   "descriere": "Problema de bacalaureat - Subiectul III din Fizică, 2019, Varianta 1, teoretic",
   "categorie": "Bac",
-  "varianta": "2019 Var 1",
-  "dificultate": "mediu",
   "punctajTotal": 15,
   "continut": "Un automobil cu masa $m = 1,8\\,\\mathrm{t}$ se deplasează uniform accelerat viteza lui crescând de la valoarea $v_1 = 18\\,\\mathrm{km/h}$ la valoarea $v_2 = 72\\,\\mathrm{km/h}$ într-un interval de timp $\\Delta t = 5\\,\\mathrm{s}$. Lucrul mecanic efectuat de forța de tracțiune a motorului în intervalul de timp $\\Delta t = 5\\,\\mathrm{s}$ este egal cu $L_F = 375\\,\\mathrm{kJ}$.\n\na. Calculați puterea medie a motorului în acest interval de timp.\nb. Calculați lucrul mecanic al forței de rezistență în acest interval de timp.\nc. Determinați mărimea forței de tracțiune dezvoltată de motorul automobilului.\nd. După atingerea vitezei $v_2 = 72\\,\\mathrm{km/h}$ motorul este oprit. Forța medie de rezistență reprezintă o fracțiune $f = 0,04$ din greutatea automobilului. Calculați distanța parcursă de automobil din momentul în care a atins viteza $v_2$ și până la oprirea sa.",
   "formule": [],
@@ -37,6 +35,7 @@
     "variant": 1,
     "type": "teoretic",
     "subjectArea": null,
-    "subjectNumber": 3
+    "subjectNumber": 3,
+    "session": "bac"
   }
 }
