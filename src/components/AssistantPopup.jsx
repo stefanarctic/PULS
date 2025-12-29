@@ -347,6 +347,11 @@ const AssistantPopup = ({ onClose, initialMessage }) => {
     
     setInputValue("");
     setLoading(true);
+    
+    // Scroll smooth la finalul chat-ului după trimiterea mesajului
+    setTimeout(() => {
+      scrollToBottom();
+    }, 100);
 
     try {
       const response = await fetch("/api/webhook/chat", {
