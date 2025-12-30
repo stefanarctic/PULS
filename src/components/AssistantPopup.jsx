@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect } from "react";
+import React, { useState, useRef, useEffect, useMemo, useCallback } from "react";
 import ReactMarkdown from "react-markdown";
 import "../scss/components/_assistant-popup.scss";
 import { 
@@ -6,8 +6,180 @@ import {
   Copy, Check, Bot, User, Sparkles, Loader2
 } from "lucide-react";
 import { searchKnowledgeBase } from "../lib/assistant-knowledge-base.js";
-import MathJaxRender from "./MathJaxRender.jsx";
+// MathJaxRender eliminat - fiecare mesaj gestionează propriul rendering prin Intersection Observer
 import { useChats } from "../hooks/useChats";
+
+// Hook pentru Intersection Observer - detectează când mesajul devine vizibil
+const useIntersectionObserver = (ref, options = {}) => {
+  const [isIntersecting, setIsIntersecting] = useState(false);
+  const [hasBeenVisible, setHasBeenVisible] = useState(false);
+
+  useEffect(() => {
+    const element = ref.current;
+    if (!element) return;
+
+    const observer = new IntersectionObserver(([entry]) => {
+      if (entry.isIntersecting) {
+        setIsIntersecting(true);
+        setHasBeenVisible(true);
+      } else {
+        setIsIntersecting(false);
+      }
+    }, {
+      rootMargin: '100px', // Începe să formateze cu 100px înainte să devină vizibil
+      threshold: 0.1,
+      ...options
+    });
+
+    observer.observe(element);
+
+    return () => {
+      observer.disconnect();
+    };
+  }, [ref, options]);
+
+  return { isIntersecting, hasBeenVisible };
+};
+
+// Component memoizat pentru mesaje cu lazy loading MathJax
+const MessageBubble = React.memo(({ 
+  msg, 
+  idx, 
+  isLastAIMessage, 
+  typingText, 
+  typing, 
+  userProfilePic, 
+  onCopyMessage,
+  copiedMessageId,
+  formatTime
+}) => {
+  const messageRef = useRef(null);
+  const { hasBeenVisible } = useIntersectionObserver(messageRef, {
+    rootMargin: '150px' // Formatare anticipată cu 150px
+  });
+  
+  const displayText = (isLastAIMessage && typingText) ? typingText : msg.text;
+  const messageId = `${msg.role}-${idx}`;
+  const isCopied = copiedMessageId === messageId;
+  
+  const preprocessTextForMarkdown = useCallback((text) => {
+    const markdownLinkRegex = /\[([^\]]+)\]\(([^)]+)\)/;
+    if (markdownLinkRegex.test(text)) {
+      return text;
+    }
+    
+    const urlRegex = /(https?:\/\/[^\s]+)/g;
+    return text.replace(urlRegex, (url) => {
+      return `[${url}](${url})`;
+    });
+  }, []);
+
+  // Typeset MathJax doar când mesajul devine vizibil sau este ultimul mesaj AI (care trebuie formatat imediat)
+  useEffect(() => {
+    if (msg.role === 'ai' && (hasBeenVisible || isLastAIMessage)) {
+      // Delay mic pentru a permite render-ul complet
+      const timeoutId = setTimeout(() => {
+        if (messageRef.current) {
+          const contentElement = messageRef.current.querySelector('.assistant-message-content');
+          if (contentElement && window.MathJax) {
+            if (window.MathJax.typesetPromise) {
+              window.MathJax.typesetPromise([contentElement]).catch(() => {});
+            } else if (window.MathJax.typeset) {
+              window.MathJax.typeset([contentElement]);
+            }
+          }
+        }
+      }, 50);
+      
+      return () => clearTimeout(timeoutId);
+    }
+  }, [hasBeenVisible, isLastAIMessage, msg.role, displayText]);
+  
+  return (
+    <div 
+      ref={messageRef}
+      className={`assistant-message assistant-message--${msg.role} ${typing && isLastAIMessage ? 'typing' : ''}`}
+    >
+      <div className="assistant-message-avatar">
+        {msg.role === 'ai' ? (
+          <Bot size={20} />
+        ) : userProfilePic ? (
+          <img 
+            src={userProfilePic} 
+            alt="User avatar" 
+            className="assistant-message-avatar-img"
+            {...(userProfilePic.includes('googleusercontent.com') && { 
+              crossOrigin: 'anonymous', 
+              referrerPolicy: 'no-referrer' 
+            })}
+            onError={(e) => {
+              e.target.style.display = 'none';
+              const userIcon = e.target.parentElement.querySelector('.assistant-message-avatar-fallback');
+              if (userIcon) {
+                userIcon.style.display = 'flex';
+              }
+            }}
+          />
+        ) : null}
+        {msg.role === 'user' && (
+          <User 
+            size={20} 
+            className="assistant-message-avatar-fallback"
+            style={{ display: userProfilePic ? 'none' : 'flex' }}
+          />
+        )}
+      </div>
+      <div className="assistant-message-content-wrapper">
+        <div className="assistant-message-content">
+          {msg.role === 'ai' ? (
+            <ReactMarkdown
+              components={{
+                a: ({node, ...props}) => (
+                  <a {...props} className="assistant-link" target="_self" rel="noopener noreferrer" />
+                )
+              }}
+            >
+              {preprocessTextForMarkdown(displayText)}
+            </ReactMarkdown>
+          ) : (
+            <span>{displayText}</span>
+          )}
+        </div>
+        {msg.role === 'ai' && displayText && (
+          <div className="assistant-message-actions">
+            <button
+              className="assistant-message-action-btn"
+              onClick={() => onCopyMessage(displayText, messageId)}
+              title="Copiază mesajul"
+            >
+              {isCopied ? <Check size={14} /> : <Copy size={14} />}
+            </button>
+          </div>
+        )}
+        {msg.timestamp && (
+          <div className="assistant-message-timestamp">
+            {formatTime(msg.timestamp)}
+          </div>
+        )}
+      </div>
+    </div>
+  );
+}, (prevProps, nextProps) => {
+  // Comparare custom pentru a evita re-render-uri inutile
+  return (
+    prevProps.msg.text === nextProps.msg.text &&
+    prevProps.msg.role === nextProps.msg.role &&
+    prevProps.msg.timestamp === nextProps.msg.timestamp &&
+    prevProps.idx === nextProps.idx &&
+    prevProps.isLastAIMessage === nextProps.isLastAIMessage &&
+    prevProps.typingText === nextProps.typingText &&
+    prevProps.typing === nextProps.typing &&
+    prevProps.userProfilePic === nextProps.userProfilePic &&
+    prevProps.copiedMessageId === nextProps.copiedMessageId
+  );
+});
+
+MessageBubble.displayName = 'MessageBubble';
 
 const PROMPTS = [
   "Raportează o problemă",
@@ -161,8 +333,8 @@ const AssistantPopup = ({ onClose, initialMessage }) => {
     setInputValue("");
   };
 
-  // Copy message to clipboard
-  const handleCopyMessage = async (text, messageId) => {
+  // Copy message to clipboard - memoizat pentru performanță
+  const handleCopyMessage = useCallback(async (text, messageId) => {
     try {
       await navigator.clipboard.writeText(text);
       setCopiedMessageId(messageId);
@@ -170,35 +342,24 @@ const AssistantPopup = ({ onClose, initialMessage }) => {
     } catch (err) {
       console.error('Failed to copy:', err);
     }
-  };
+  }, []);
 
-  // Typeset MathJax for all AI message bubbles
-  const typesetAllAIBubbles = () => {
-    try {
-      if (!chatRef.current) return;
-      const bubbles = chatRef.current.querySelectorAll('.assistant-message-content');
-      if (bubbles.length === 0) return;
-      
-      if (window.MathJax && window.MathJax.typesetPromise) {
-        window.MathJax.typesetPromise(Array.from(bubbles));
-      } else if (window.MathJax && window.MathJax.typeset) {
-        window.MathJax.typeset(Array.from(bubbles));
-      }
-    } catch (_) {}
-  };
-
-  // Typeset MathJax only for the most recent AI message bubble
+  // Typeset MathJax only for the most recent AI message bubble - folosit doar în timpul typing
   const typesetLastAIBubble = () => {
     try {
       if (!chatRef.current) return;
       const bubbles = chatRef.current.querySelectorAll('.assistant-message-content');
       const last = bubbles[bubbles.length - 1];
       if (!last) return;
-      if (window.MathJax && window.MathJax.typesetPromise) {
-        window.MathJax.typesetPromise([last]);
-      } else if (window.MathJax && window.MathJax.typeset) {
-        window.MathJax.typeset([last]);
-      }
+      
+      // Folosim requestAnimationFrame pentru a evita blocking
+      requestAnimationFrame(() => {
+        if (window.MathJax && window.MathJax.typesetPromise) {
+          window.MathJax.typesetPromise([last]).catch(() => {});
+        } else if (window.MathJax && window.MathJax.typeset) {
+          window.MathJax.typeset([last]);
+        }
+      });
     } catch (_) {}
   };
 
@@ -209,56 +370,58 @@ const AssistantPopup = ({ onClose, initialMessage }) => {
     let currentText = "";
     let index = 0;
     let lastTypesetTime = Date.now();
-    const typesetInterval = 300;
+    const typesetInterval = 500; // Mărit de la 300ms pentru a reduce overhead
+    let animationFrameId = null;
+    let lastUpdateTime = Date.now();
+    const minInterval = 20; // Minimum 20ms între actualizări (50 FPS max)
     
-    const typeInterval = setInterval(() => {
-      if (index < text.length) {
-        currentText += text[index];
+    const typeStep = () => {
+      const now = Date.now();
+      if (index < text.length && now - lastUpdateTime >= minInterval) {
+        // Adaugă mai multe caractere dacă textul este lung pentru a accelera
+        const chunkSize = text.length > 500 ? 3 : 1;
+        const endIndex = Math.min(index + chunkSize, text.length);
+        currentText = text.substring(0, endIndex);
         setTypingText(currentText);
-        index++;
+        index = endIndex;
+        lastUpdateTime = now;
         
-        const now = Date.now();
-        
-        // Scroll to bottom periodically during typing - DISABLED per user request
-        // if (chatRef.current) {
-        //   chatRef.current.scrollTop = chatRef.current.scrollHeight;
-        // }
-        
-        // Typeset MathJax periodically during typing
+        // Typeset MathJax periodic, dar mai rar
         if (now - lastTypesetTime >= typesetInterval) {
-          setTimeout(() => {
+          // Folosim requestAnimationFrame pentru a evita blocking
+          requestAnimationFrame(() => {
             typesetLastAIBubble();
-          }, 50);
+          });
           lastTypesetTime = now;
         }
-      } else {
-        clearInterval(typeInterval);
+        
+        animationFrameId = requestAnimationFrame(typeStep);
+      } else if (index >= text.length) {
+        // Finalizare
+        if (animationFrameId) {
+          cancelAnimationFrame(animationFrameId);
+        }
         setTyping(false);
-        // Nu ștergem typingText imediat - îl păstrăm până când mesajul este complet actualizat
-        // pentru a evita refresh-ul vizual
         setTimeout(() => {
-          // Scroll to bottom after typing - DISABLED per user request
-          // if (chatRef.current) {
-          //   chatRef.current.scrollTop = chatRef.current.scrollHeight;
-          // }
           typesetLastAIBubble();
           if (callback) {
             callback(() => {
-              // Șterge typingText doar după ce callback-ul s-a terminat
-              // și mesajul este complet actualizat în state
               setTimeout(() => {
                 setTypingText("");
               }, 100);
             });
           } else {
-            // Dacă nu există callback, șterge typingText după un delay
             setTimeout(() => {
               setTypingText("");
             }, 300);
           }
         }, 200);
+      } else {
+        animationFrameId = requestAnimationFrame(typeStep);
       }
-    }, 7);
+    };
+    
+    animationFrameId = requestAnimationFrame(typeStep);
   };
 
   const handleNewChat = async () => {
@@ -277,6 +440,14 @@ const AssistantPopup = ({ onClose, initialMessage }) => {
     setTyping(false);
     setTypingText("");
     setLoading(false);
+    
+    // Scroll instant la ultimul mesaj când se selectează un chat (fără delay)
+    // Folosim requestAnimationFrame pentru a aștepta render-ul DOM
+    requestAnimationFrame(() => {
+      if (chatRef.current) {
+        chatRef.current.scrollTop = chatRef.current.scrollHeight;
+      }
+    });
   };
 
   const handleDeleteChat = async (chatId, e) => {
@@ -298,7 +469,8 @@ const AssistantPopup = ({ onClose, initialMessage }) => {
     return chat.title || `Chat ${new Date(chat.createdAt).toLocaleDateString('ro-RO')}`;
   };
 
-  const formatTime = (timestamp) => {
+  // Memoizat pentru performanță
+  const formatTime = useCallback((timestamp) => {
     if (!timestamp) return '';
     const date = new Date(timestamp);
     const now = new Date();
@@ -309,7 +481,7 @@ const AssistantPopup = ({ onClose, initialMessage }) => {
     if (diffMins < 60) return `Acum ${diffMins} min`;
     if (diffMins < 1440) return `Acum ${Math.floor(diffMins / 60)}h`;
     return date.toLocaleDateString('ro-RO', { day: 'numeric', month: 'short' });
-  };
+  }, []);
 
   const handleSend = async (e, prompt = null) => {
     if (e) e.preventDefault();
@@ -480,25 +652,47 @@ const AssistantPopup = ({ onClose, initialMessage }) => {
     }
   };
 
+  // Cache pentru hidden div pentru a evita crearea/ștergerea repetată
+  const hiddenDivRef = useRef(null);
+  
   const handleInput = (e) => {
     const textarea = e.target;
-    setInputValue(textarea.value);
-    const hiddenDiv = document.createElement('div');
-    hiddenDiv.style.cssText = window.getComputedStyle(textarea, null).cssText;
-    hiddenDiv.style.height = 'auto';
-    hiddenDiv.style.position = 'absolute';
-    hiddenDiv.style.visibility = 'hidden';
-    hiddenDiv.style.whiteSpace = 'pre-wrap';
-    hiddenDiv.style.wordWrap = 'break-word';
-    hiddenDiv.textContent = textarea.value + '\n';
-    document.body.appendChild(hiddenDiv);
-    const scrollHeight = hiddenDiv.offsetHeight;
-    document.body.removeChild(hiddenDiv);
-    const newHeight = Math.min(Math.max(44, scrollHeight), 120);
-    if (textarea.style.height !== newHeight + 'px') {
-      textarea.style.height = newHeight + 'px';
-    }
+    const value = textarea.value;
+    setInputValue(value);
+    
+    // Folosim requestAnimationFrame pentru a evita blocking
+    requestAnimationFrame(() => {
+      if (!hiddenDivRef.current) {
+        hiddenDivRef.current = document.createElement('div');
+        hiddenDivRef.current.style.cssText = window.getComputedStyle(textarea, null).cssText;
+        hiddenDivRef.current.style.height = 'auto';
+        hiddenDivRef.current.style.position = 'absolute';
+        hiddenDivRef.current.style.visibility = 'hidden';
+        hiddenDivRef.current.style.whiteSpace = 'pre-wrap';
+        hiddenDivRef.current.style.wordWrap = 'break-word';
+        hiddenDivRef.current.style.top = '-9999px';
+        document.body.appendChild(hiddenDivRef.current);
+      }
+      
+      hiddenDivRef.current.textContent = value + '\n';
+      const scrollHeight = hiddenDivRef.current.offsetHeight;
+      const newHeight = Math.min(Math.max(44, scrollHeight), 120);
+      
+      if (textarea.style.height !== newHeight + 'px') {
+        textarea.style.height = newHeight + 'px';
+      }
+    });
   };
+  
+  // Cleanup pentru hidden div
+  useEffect(() => {
+    return () => {
+      if (hiddenDivRef.current && hiddenDivRef.current.parentNode) {
+        hiddenDivRef.current.parentNode.removeChild(hiddenDivRef.current);
+        hiddenDivRef.current = null;
+      }
+    };
+  }, []);
 
   const handleKeyDown = (e) => {
     if (e.key === 'Enter' && !e.shiftKey) {
@@ -507,25 +701,16 @@ const AssistantPopup = ({ onClose, initialMessage }) => {
     }
   };
 
+  // Scroll instant la ultimul mesaj când se deschide un chat nou
+  // MathJax va formata doar mesajele vizibile prin Intersection Observer
   useEffect(() => {
-    if (!typing && messages.length > 0) {
-      setTimeout(() => {
-        typesetAllAIBubbles();
-      }, 100);
+    if (currentChatId && chatRef.current && messages.length > 0) {
+      // Scroll instant la ultimul mesaj (fără animație)
+      if (chatRef.current) {
+        chatRef.current.scrollTop = chatRef.current.scrollHeight;
+      }
     }
-  }, [messages, typing]);
-
-  const preprocessTextForMarkdown = (text) => {
-    const markdownLinkRegex = /\[([^\]]+)\]\(([^)]+)\)/;
-    if (markdownLinkRegex.test(text)) {
-      return text;
-    }
-    
-    const urlRegex = /(https?:\/\/[^\s]+)/g;
-    return text.replace(urlRegex, (url) => {
-      return `[${url}](${url})`;
-    });
-  };
+  }, [currentChatId]); // Doar când se schimbă chat-ul, nu la fiecare mesaj
 
   return (
     <div 
@@ -726,88 +911,21 @@ const AssistantPopup = ({ onClose, initialMessage }) => {
                       </div>
                     ) : (
                       messages.map((msg, idx) => {
-                        // Afișează typingText dacă există și este ultimul mesaj AI
-                        // Păstrăm typingText până când mesajul este complet actualizat în state
-                        // pentru a evita refresh-ul vizual
                         const isLastAIMessage = idx === messages.length - 1 && msg.role === 'ai';
-                        const displayText = (isLastAIMessage && typingText) 
-                          ? typingText 
-                          : msg.text;
-                        const messageId = `${msg.role}-${idx}`;
-                        const isCopied = copiedMessageId === messageId;
                         
                         return (
-                          <div 
-                            key={idx} 
-                            className={`assistant-message assistant-message--${msg.role} ${typing && idx === messages.length - 1 && msg.role === 'ai' ? 'typing' : ''}`}
-                          >
-                            <div className="assistant-message-avatar">
-                              {msg.role === 'ai' ? (
-                                <Bot size={20} />
-                              ) : userProfilePic ? (
-                                <img 
-                                  src={userProfilePic} 
-                                  alt="User avatar" 
-                                  className="assistant-message-avatar-img"
-                                  {...(userProfilePic.includes('googleusercontent.com') && { 
-                                    crossOrigin: 'anonymous', 
-                                    referrerPolicy: 'no-referrer' 
-                                  })}
-                                  onError={(e) => {
-                                    // Dacă imaginea nu se încarcă, afișează iconița User
-                                    e.target.style.display = 'none';
-                                    const userIcon = e.target.parentElement.querySelector('.assistant-message-avatar-fallback');
-                                    if (userIcon) {
-                                      userIcon.style.display = 'flex';
-                                    }
-                                  }}
-                                />
-                              ) : null}
-                              {msg.role === 'user' && (
-                                <User 
-                                  size={20} 
-                                  className="assistant-message-avatar-fallback"
-                                  style={{ display: userProfilePic ? 'none' : 'flex' }}
-                                />
-                              )}
-                            </div>
-                            <div className="assistant-message-content-wrapper">
-                              <div className="assistant-message-content">
-                                {msg.role === 'ai' ? (
-                                  <>
-                                    <ReactMarkdown
-                                      components={{
-                                        a: ({node, ...props}) => (
-                                          <a {...props} className="assistant-link" target="_self" rel="noopener noreferrer" />
-                                        )
-                                      }}
-                                    >
-                                      {preprocessTextForMarkdown(displayText)}
-                                    </ReactMarkdown>
-                                    <MathJaxRender />
-                                  </>
-                                ) : (
-                                  <span>{displayText}</span>
-                                )}
-                              </div>
-                              {msg.role === 'ai' && displayText && (
-                                <div className="assistant-message-actions">
-                                  <button
-                                    className="assistant-message-action-btn"
-                                    onClick={() => handleCopyMessage(displayText, messageId)}
-                                    title="Copiază mesajul"
-                                  >
-                                    {isCopied ? <Check size={14} /> : <Copy size={14} />}
-                                  </button>
-                                </div>
-                              )}
-                              {msg.timestamp && (
-                                <div className="assistant-message-timestamp">
-                                  {formatTime(msg.timestamp)}
-                                </div>
-                              )}
-                            </div>
-                          </div>
+                          <MessageBubble
+                            key={`${msg.role}-${idx}-${msg.timestamp || idx}`}
+                            msg={msg}
+                            idx={idx}
+                            isLastAIMessage={isLastAIMessage}
+                            typingText={typingText}
+                            typing={typing}
+                            userProfilePic={userProfilePic}
+                            onCopyMessage={handleCopyMessage}
+                            copiedMessageId={copiedMessageId}
+                            formatTime={formatTime}
+                          />
                         );
                       })
                     )}
@@ -858,7 +976,6 @@ const AssistantPopup = ({ onClose, initialMessage }) => {
             </div>
           </div>
         </div>
-        <MathJaxRender />
       </div>
     </div>
   );

@@ -56,8 +56,13 @@ export const useChats = () => {
   };
 
   /**
-   * Încarcă chat-urile din Firestore cu TOATE mesajele
+   * Încarcă chat-urile din Firestore cu limitare pentru performanță
+   * Limitează numărul de mesaje per chat pentru a evita lag-uri
+   * NOTĂ: Aceste limite sunt doar pentru optimizare - mesajele vechi rămân în Firestore
    */
+  const MAX_MESSAGES_PER_CHAT = 200; // Limitează la ultimele 200 mesaje per chat (mărit pentru compatibilitate)
+  const MAX_CHATS_TO_LOAD = 100; // Limitează la ultimele 100 chat-uri (mărit pentru compatibilitate)
+  
   const loadChatsFromFirestore = async () => {
     if (!user?.uid) {
       throw new Error('User must be authenticated to load chats');
@@ -69,15 +74,30 @@ export const useChats = () => {
       const querySnapshot = await getDocs(q);
       
       const loadedChats = [];
+      let chatCount = 0;
+      
       querySnapshot.forEach((docSnapshot) => {
+        if (chatCount >= MAX_CHATS_TO_LOAD) return; // Stop la limită pentru performanță
+        
         const data = docSnapshot.data();
+        const messages = Array.isArray(data.messages) ? data.messages : [];
+        
+        // Limitează DOAR pentru afișare în UI - mesajele vechi rămân în Firestore
+        // Pentru chat-uri cu multe mesaje, afișăm doar ultimele MAX_MESSAGES_PER_CHAT pentru performanță
+        const displayMessages = messages.length > MAX_MESSAGES_PER_CHAT 
+          ? messages.slice(-MAX_MESSAGES_PER_CHAT) 
+          : messages;
+        
         loadedChats.push({
           id: docSnapshot.id,
           title: data.title || `Chat ${new Date(data.createdAt || Date.now()).toLocaleDateString('ro-RO')}`,
-          messages: Array.isArray(data.messages) ? data.messages : [],
+          messages: displayMessages, // Doar pentru afișare, nu afectează Firestore
+          allMessagesCount: messages.length, // Păstrăm count-ul total pentru referință
           createdAt: data.createdAt || new Date().toISOString(),
           updatedAt: data.updatedAt || new Date().toISOString()
         });
+        
+        chatCount++;
       });
 
       console.log('✅ Loaded chats from Firestore:', loadedChats.length, 'chats');
@@ -178,7 +198,8 @@ export const useChats = () => {
       // Construim chat-ul actualizat
       let updatedChat;
       if (actualUpdates.messages && Array.isArray(actualUpdates.messages)) {
-        // Folosim direct messages din actualUpdates
+        // Folosim direct messages din actualUpdates - NU limităm la salvare
+        // Limitarea este doar pentru afișare în UI, nu pentru salvare în Firestore
         updatedChat = {
           ...currentChatData,
           ...actualUpdates,
@@ -233,7 +254,7 @@ export const useChats = () => {
       const currentChatData = chatDoc.data();
       const currentMessages = Array.isArray(currentChatData.messages) ? currentChatData.messages : [];
       
-      // Adaugă noul mesaj
+      // Adaugă noul mesaj - NU limităm la salvare, păstrăm TOATE mesajele în Firestore
       const updatedMessages = [...currentMessages, message];
       
       const updatedChat = {
