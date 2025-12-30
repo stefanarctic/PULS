@@ -385,16 +385,62 @@ export const ProblemaDetaliata = ({ problema, onBack }) => {
                     <Calculator className="w-4 h-4 mr-2" /> Formule relevante:
                   </h4>
                   <div className="space-y-2">
-                    {problema.formule.map((formula, index) => (
-                      <div key={index}>
-                        <span
-                          className="block bg-white px-3 py-2 rounded border text-sm font-mono"
-                          // MathJax inline
-                          dangerouslySetInnerHTML={{ __html: `\\(${formula}\\)` }}
-                        />
-                        <MathJaxRender />
-                      </div>
-                    ))}
+                    {problema.formule.map((formula, index) => {
+                      // Curăță formula și asigură că este în format LaTeX valid
+                      let cleanedFormula = formula.trim();
+                      
+                      // Elimină delimitatori LaTeX dacă există deja
+                      cleanedFormula = cleanedFormula.replace(/^\$+|\$+$/g, '');
+                      cleanedFormula = cleanedFormula.replace(/^\\\(|\\\)$/g, '');
+                      cleanedFormula = cleanedFormula.replace(/^\\\[|\\\]$/g, '');
+                      
+                      // Corectează sintaxa LaTeX comună din răspunsurile AI
+                      // Funcție helper pentru a verifica dacă un caracter la o poziție este precedat de backslash
+                      const isEscaped = (str, pos) => {
+                        let backslashCount = 0;
+                        for (let i = pos - 1; i >= 0 && str[i] === '\\'; i--) {
+                          backslashCount++;
+                        }
+                        return backslashCount % 2 === 1;
+                      };
+                      
+                      // Corectează pattern-urile comune fără backslash
+                      const patterns = [
+                        { find: /\bcdot\b/g, replace: '\\cdot' },
+                        { find: /\bfrac\b/g, replace: '\\frac' },
+                        { find: /\bsin(?=\()/g, replace: '\\sin' },
+                        { find: /\bcos(?=\()/g, replace: '\\cos' },
+                        { find: /\btan(?=\()/g, replace: '\\tan' },
+                        { find: /\bmu\b/g, replace: '\\mu' },
+                        { find: /\balpha\b/g, replace: '\\alpha' },
+                        { find: /\bDelta\b/g, replace: '\\Delta' },
+                        { find: /\btheta\b/g, replace: '\\theta' },
+                        { find: /\bpi\b/g, replace: '\\pi' },
+                      ];
+                      
+                      // Aplică corecțiile doar dacă nu sunt deja escape-uite
+                      patterns.forEach(({ find, replace }) => {
+                        cleanedFormula = cleanedFormula.replace(find, (match, offset) => {
+                          // Verifică dacă este deja escape-uit
+                          if (isEscaped(cleanedFormula, offset)) {
+                            return match;
+                          }
+                          return replace;
+                        });
+                      });
+                      
+                      return (
+                        <div key={index}>
+                          <span
+                            className="block bg-white px-3 py-2 rounded border text-sm"
+                            style={{ fontFamily: 'inherit' }}
+                            // MathJax inline
+                            dangerouslySetInnerHTML={{ __html: `\\(${cleanedFormula}\\)` }}
+                          />
+                          <MathJaxRender />
+                        </div>
+                      );
+                    })}
                   </div>
                 </div>
               )}
@@ -405,17 +451,48 @@ export const ProblemaDetaliata = ({ problema, onBack }) => {
                     <BookOpen className="w-4 h-4 mr-2" /> Date cunoscute:
                   </h4>
                   <div className="grid grid-cols-2 gap-3">
-                    {Object.entries(problema.date).map(([key, value]) => (
-                      <div key={key} className="flex justify-between">
-                        <span
-                          className="text-gray-600"
-                          dangerouslySetInnerHTML={{
-                            __html: `${convertDollarToInlineMathJax(key.replace(/_/g, ' '))}: <span class='font-medium'>${convertDollarToInlineMathJax(String(value))}</span>`
-                          }}
-                        />
-                        <MathJaxRender />
-                      </div>
-                    ))}
+                    {Object.entries(problema.date).map(([key, value]) => {
+                      // Păstrează formatarea LaTeX exactă din enunț
+                      // Dacă cheia conține backslash sau caractere matematice speciale, păstrează-o ca LaTeX
+                      let formattedKey = key;
+                      const hasLatex = key.includes('\\') || key.includes('$') || /[α-ωΑ-Ω]/.test(key);
+                      
+                      if (!hasLatex) {
+                        // Pentru chei simple precum "m_1", păstrăm underscore-ul pentru LaTeX
+                        // Dacă cheia are format "m_1", o transformăm în "$m_1$"
+                        if (key.includes('_')) {
+                          formattedKey = `$${key}$`;
+                        } else {
+                          // Dacă nu are underscore, înlocuim cu spații doar dacă e necesar
+                          formattedKey = `$${key}$`;
+                        }
+                      } else if (!formattedKey.includes('$') && !formattedKey.startsWith('\\(')) {
+                        // Dacă are LaTeX dar nu are delimitatori, adaugă delimitatori
+                        formattedKey = `$${formattedKey}$`;
+                      }
+                      
+                      // Pentru valoare, păstrăm formatarea exactă
+                      let formattedValue = String(value);
+                      const valueHasLatex = formattedValue.includes('\\') || formattedValue.includes('$') || /[α-ωΑ-Ω°]/.test(formattedValue);
+                      
+                      if (!valueHasLatex && !formattedValue.includes('$') && !formattedValue.startsWith('\\(')) {
+                        formattedValue = `$${formattedValue}$`;
+                      } else if (valueHasLatex && !formattedValue.includes('$') && !formattedValue.startsWith('\\(')) {
+                        formattedValue = `$${formattedValue}$`;
+                      }
+                      
+                      return (
+                        <div key={key} className="flex justify-between items-center">
+                          <span
+                            className="text-gray-600"
+                            dangerouslySetInnerHTML={{
+                              __html: `${convertDollarToInlineMathJax(formattedKey)}: <span class='font-medium'>${convertDollarToInlineMathJax(formattedValue)}</span>`
+                            }}
+                          />
+                          <MathJaxRender />
+                        </div>
+                      );
+                    })}
                   </div>
                 </div>
               )}

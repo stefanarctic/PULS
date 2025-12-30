@@ -45,6 +45,7 @@ const AdminDashboard = () => {
     metadata: {}
   });
   const [datePairs, setDatePairs] = useState([{ key: '', value: '' }]);
+  const [aiAnalyzing, setAiAnalyzing] = useState(false);
 
   useEffect(() => {
     if (!adminLoading && !isAdmin) {
@@ -395,6 +396,364 @@ const AdminDashboard = () => {
         [field]: value
       }
     });
+  };
+
+  const handleAiAnalysis = async () => {
+    if (!formData.continut || !formData.continut.trim()) {
+      console.warn('[AI Analysis] Nu există conținut în enunț pentru analiză');
+      alert('Te rugăm să introduci mai întâi enunțul problemei.');
+      return;
+    }
+
+    console.log('[AI Analysis] Început analiză problemă');
+    console.log('[AI Analysis] Enunțul problemei:', formData.continut.substring(0, 200) + '...');
+    
+    setAiAnalyzing(true);
+    const startTime = Date.now();
+    
+    try {
+      const prompt = `Analizează următoarea problemă de fizică și extrage:
+1. Toate datele numerice și variabilele menționate în enunț (ex: m = 5 kg, v = 10 m/s, t = 2 s)
+2. Toate formulele fizice necesare pentru rezolvarea problemei
+
+Enunțul problemei:
+${formData.continut}
+
+Răspunde în format JSON cu următoarea structură:
+{
+  "date": {
+    "nume_variabila": "valoare cu unitate",
+    ...
+  },
+  "formule": [
+    "formula 1 în format LaTeX",
+    "formula 2 în format LaTeX",
+    ...
+  ]
+}
+
+Dacă nu găsești date sau formule, returnează obiecte goale. Răspunde DOAR cu JSON, fără text suplimentar.`;
+
+      const sessionId = `admin-analysis-${Date.now()}`;
+      console.log('[AI Analysis] Trimite request către API');
+      console.log('[AI Analysis] Session ID:', sessionId);
+      console.log('[AI Analysis] Prompt length:', prompt.length, 'caractere');
+
+      const response = await fetch("/api/webhook/chat", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ message: prompt, sessionId }),
+      });
+
+      const requestTime = Date.now() - startTime;
+      console.log('[AI Analysis] Request completat în', requestTime, 'ms');
+      console.log('[AI Analysis] Response status:', response.status, response.statusText);
+
+      if (!response.ok) {
+        const errorText = await response.text();
+        console.error('[AI Analysis] Eroare HTTP:', response.status, response.statusText);
+        console.error('[AI Analysis] Response body:', errorText);
+        throw new Error(`Eroare ${response.status}: ${response.statusText}`);
+      }
+
+      const responseText = await response.text();
+      console.log('[AI Analysis] Response primit, lungime:', responseText.length, 'caractere');
+      console.log('[AI Analysis] Response raw (primele 500 caractere):', responseText.substring(0, 500));
+      
+      let aiResponse = responseText;
+      let parsedResponse = null;
+
+      // Try to parse the response as JSON first (it might be an array or object)
+      try {
+        parsedResponse = JSON.parse(responseText);
+        console.log('[AI Analysis] Response parsat ca JSON:', Array.isArray(parsedResponse) ? 'Array' : 'Object');
+        
+        // If it's an array, try to get the first element
+        if (Array.isArray(parsedResponse) && parsedResponse.length > 0) {
+          const firstItem = parsedResponse[0];
+          console.log('[AI Analysis] Primul element din array:', Object.keys(firstItem));
+          
+          // Check if it has an "output" field
+          if (firstItem.output) {
+            console.log('[AI Analysis] Găsit câmp "output", extragere conținut...');
+            aiResponse = firstItem.output;
+          } else if (firstItem.message) {
+            console.log('[AI Analysis] Găsit câmp "message", extragere conținut...');
+            aiResponse = firstItem.message;
+          } else if (firstItem.text) {
+            console.log('[AI Analysis] Găsit câmp "text", extragere conținut...');
+            aiResponse = firstItem.text;
+          } else {
+            // Use the whole object as string
+            aiResponse = JSON.stringify(firstItem);
+          }
+        } else if (parsedResponse && typeof parsedResponse === 'object') {
+          // It's an object, check for output/message/text fields
+          if (parsedResponse.output) {
+            console.log('[AI Analysis] Găsit câmp "output" în obiect, extragere conținut...');
+            aiResponse = parsedResponse.output;
+          } else if (parsedResponse.message) {
+            console.log('[AI Analysis] Găsit câmp "message" în obiect, extragere conținut...');
+            aiResponse = parsedResponse.message;
+          } else if (parsedResponse.text) {
+            console.log('[AI Analysis] Găsit câmp "text" în obiect, extragere conținut...');
+            aiResponse = parsedResponse.text;
+          }
+        }
+      } catch (e) {
+        console.log('[AI Analysis] Response nu este JSON valid, se folosește textul direct');
+      }
+
+      // Try to extract JSON from markdown code blocks (```json ... ```)
+      const markdownJsonMatch = aiResponse.match(/```json\s*([\s\S]*?)\s*```/);
+      if (markdownJsonMatch) {
+        console.log('[AI Analysis] JSON detectat în bloc markdown, extragere...');
+        aiResponse = markdownJsonMatch[1].trim();
+        console.log('[AI Analysis] JSON extras din markdown, lungime:', aiResponse.length, 'caractere');
+      } else {
+        // Try to extract JSON from code blocks without language (``` ... ```)
+        const codeBlockMatch = aiResponse.match(/```\s*([\s\S]*?)\s*```/);
+        if (codeBlockMatch) {
+          console.log('[AI Analysis] Bloc de cod detectat (fără language), extragere...');
+          aiResponse = codeBlockMatch[1].trim();
+        }
+      }
+
+      // Try to extract JSON object from the response
+      const jsonMatch = aiResponse.match(/\{[\s\S]*\}/);
+      if (jsonMatch) {
+        console.log('[AI Analysis] JSON detectat în răspuns, extragere...');
+        aiResponse = jsonMatch[0];
+        console.log('[AI Analysis] JSON extras, lungime:', aiResponse.length, 'caractere');
+      } else {
+        console.warn('[AI Analysis] Nu s-a găsit JSON în răspuns, se încearcă parsare directă');
+      }
+
+      // Parse the JSON response
+      let analysisData = {
+        date: {},
+        formule: []
+      };
+      try {
+        console.log('[AI Analysis] Încearcă parsare JSON final...');
+        console.log('[AI Analysis] JSON de parsat (primele 300 caractere):', aiResponse.substring(0, 300));
+        const parsed = JSON.parse(aiResponse);
+        
+        // Asigură că avem structura corectă
+        if (parsed && typeof parsed === 'object') {
+          analysisData = {
+            date: parsed.date || {},
+            formule: Array.isArray(parsed.formule) ? parsed.formule : []
+          };
+        } else {
+          analysisData = { date: {}, formule: [] };
+        }
+        
+        console.log('[AI Analysis] JSON parsat cu succes');
+        console.log('[AI Analysis] Date extrase:', {
+          numarDate: Object.keys(analysisData.date || {}).length,
+          numarFormule: (analysisData.formule || []).length,
+          dateKeys: Object.keys(analysisData.date || {}),
+          formulePreview: (analysisData.formule || []).slice(0, 3)
+        });
+      } catch (parseError) {
+        // If parsing fails, try to extract data manually
+        console.error('[AI Analysis] Eroare la parsare JSON:', parseError);
+        console.log('[AI Analysis] Răspuns complet AI:', aiResponse);
+        
+        analysisData = {
+          date: {},
+          formule: []
+        };
+
+        // Funcție helper pentru a extrage obiectul JSON corect (gestionează acolade nested)
+        const extractJsonObject = (str, startKey) => {
+          const keyIndex = str.indexOf(`"${startKey}"`);
+          if (keyIndex === -1) return null;
+          
+          let braceCount = 0;
+          let bracketCount = 0;
+          let inString = false;
+          let escapeNext = false;
+          let startPos = -1;
+          let endPos = -1;
+          
+          // Găsește începutul obiectului/array-ului
+          for (let i = keyIndex; i < str.length; i++) {
+            const char = str[i];
+            
+            if (escapeNext) {
+              escapeNext = false;
+              continue;
+            }
+            
+            if (char === '\\') {
+              escapeNext = true;
+              continue;
+            }
+            
+            if (char === '"' && !escapeNext) {
+              inString = !inString;
+              continue;
+            }
+            
+            if (inString) continue;
+            
+            if (char === '{') {
+              if (startPos === -1) startPos = i;
+              braceCount++;
+            } else if (char === '}') {
+              braceCount--;
+              if (braceCount === 0 && startPos !== -1) {
+                endPos = i + 1;
+                break;
+              }
+            } else if (char === '[') {
+              if (startPos === -1) startPos = i;
+              bracketCount++;
+            } else if (char === ']') {
+              bracketCount--;
+              if (bracketCount === 0 && startPos !== -1) {
+                endPos = i + 1;
+                break;
+              }
+            }
+          }
+          
+          if (startPos !== -1 && endPos !== -1) {
+            return str.substring(startPos, endPos);
+          }
+          return null;
+        };
+
+        // Încearcă să extragă obiectul "date"
+        try {
+          const dateObjStr = extractJsonObject(aiResponse, 'date');
+          if (dateObjStr) {
+            console.log('[AI Analysis] Obiect date extras:', dateObjStr.substring(0, 200));
+            const dateObj = JSON.parse(dateObjStr);
+            if (dateObj && typeof dateObj === 'object') {
+              analysisData.date = dateObj;
+              console.log('[AI Analysis] Date parsate cu succes:', Object.keys(analysisData.date));
+            }
+          }
+        } catch (e) {
+          console.log('[AI Analysis] Nu s-au putut extrage date cu metoda avansată, se încearcă regex simplu');
+          // Fallback la regex simplu
+          const datePattern = /"date"\s*:\s*\{([^}]*)\}/;
+          const dateMatch = aiResponse.match(datePattern);
+          if (dateMatch) {
+            try {
+              const dateObjStr = '{' + dateMatch[1] + '}';
+              const dateObj = JSON.parse(dateObjStr);
+              analysisData.date = dateObj;
+            } catch (e2) {
+              // Încearcă să extragă perechi individuale
+              const pairs = dateMatch[1].match(/"([^"]+)"\s*:\s*"([^"]+)"/g);
+              if (pairs) {
+                pairs.forEach(pair => {
+                  const match = pair.match(/"([^"]+)"\s*:\s*"([^"]+)"/);
+                  if (match) {
+                    analysisData.date[match[1]] = match[2];
+                  }
+                });
+              }
+            }
+          }
+        }
+
+        // Încearcă să extragă array-ul "formule"
+        try {
+          const formuleArrayStr = extractJsonObject(aiResponse, 'formule');
+          if (formuleArrayStr) {
+            console.log('[AI Analysis] Array formule extras:', formuleArrayStr.substring(0, 200));
+            const formuleArray = JSON.parse(formuleArrayStr);
+            if (Array.isArray(formuleArray)) {
+              analysisData.formule = formuleArray;
+              console.log('[AI Analysis] Formule parsate cu succes:', analysisData.formule.length);
+            }
+          }
+        } catch (e) {
+          console.log('[AI Analysis] Nu s-au putut extrage formule cu metoda avansată, se încearcă regex simplu');
+          // Fallback la regex simplu
+          const formulePattern = /"formule"\s*:\s*\[([^\]]*)\]/;
+          const formuleMatch = aiResponse.match(formulePattern);
+          if (formuleMatch) {
+            try {
+              const formuleArrayStr = '[' + formuleMatch[1] + ']';
+              const formuleArray = JSON.parse(formuleArrayStr);
+              if (Array.isArray(formuleArray)) {
+                analysisData.formule = formuleArray;
+              }
+            } catch (e2) {
+              // Încearcă să extragă formule individuale
+              const formuleArray = formuleMatch[1].match(/"([^"]+)"/g);
+              if (formuleArray) {
+                analysisData.formule = formuleArray.map(f => {
+                  // Elimină ghilimelele și gestionează escape-urile
+                  return f.replace(/^"|"$/g, '').replace(/\\"/g, '"').replace(/\\\\/g, '\\');
+                });
+              }
+            }
+          }
+        }
+        
+        console.log('[AI Analysis] Fallback completat:', {
+          numarDate: Object.keys(analysisData.date).length,
+          numarFormule: analysisData.formule.length
+        });
+      }
+
+      // Update date pairs
+      if (analysisData.date && Object.keys(analysisData.date).length > 0) {
+        const newDatePairs = Object.entries(analysisData.date).map(([key, value]) => ({
+          key: key.trim(),
+          value: String(value).trim()
+        }));
+        console.log('[AI Analysis] Actualizare date pairs:', newDatePairs.length, 'perechi');
+        console.log('[AI Analysis] Date pairs:', newDatePairs);
+        setDatePairs(newDatePairs.length > 0 ? newDatePairs : [{ key: '', value: '' }]);
+      } else {
+        console.log('[AI Analysis] Nu s-au găsit date pentru actualizare');
+      }
+
+      // Update formulas
+      if (analysisData.formule && Array.isArray(analysisData.formule) && analysisData.formule.length > 0) {
+        const cleanedFormule = analysisData.formule
+          .map(f => f.trim())
+          .filter(f => f.length > 0);
+        console.log('[AI Analysis] Actualizare formule:', cleanedFormule.length, 'formule');
+        console.log('[AI Analysis] Formule:', cleanedFormule);
+        if (cleanedFormule.length > 0) {
+          setFormData(prev => ({
+            ...prev,
+            formule: cleanedFormule
+          }));
+        }
+      } else {
+        console.log('[AI Analysis] Nu s-au găsit formule pentru actualizare');
+      }
+
+      const totalTime = Date.now() - startTime;
+      console.log('[AI Analysis] Analiză completă în', totalTime, 'ms');
+      
+      if ((!analysisData.date || Object.keys(analysisData.date).length === 0) &&
+          (!analysisData.formule || analysisData.formule.length === 0)) {
+        console.warn('[AI Analysis] Nu s-au detectat date sau formule');
+        alert('AI-ul nu a putut detecta date sau formule în enunț. Te rugăm să le introduci manual.');
+      } else {
+        console.log('[AI Analysis] Analiză finalizată cu succes');
+      }
+    } catch (error) {
+      const totalTime = Date.now() - startTime;
+      console.error('[AI Analysis] Eroare la analiza problemei:', error);
+      console.error('[AI Analysis] Stack trace:', error.stack);
+      console.error('[AI Analysis] Timp până la eroare:', totalTime, 'ms');
+      alert('Eroare la analiza problemei cu AI. Te rugăm să încerci din nou sau să introduci datele manual.');
+    } finally {
+      setAiAnalyzing(false);
+      console.log('[AI Analysis] Stare analiză resetată');
+    }
   };
 
   const getDifficultyColorClass = (diff) => {
@@ -801,7 +1160,31 @@ const AdminDashboard = () => {
                     )}
 
                     <div className="form-group full-width">
-                      <label>Conținut/Enunț *</label>
+                      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '0.5rem' }}>
+                        <label>Conținut/Enunț *</label>
+                        <button
+                          type="button"
+                          onClick={handleAiAnalysis}
+                          disabled={updateStatus === 'loading' || aiAnalyzing || !formData.continut?.trim()}
+                          className="btn-ai-analyze"
+                          title="Folosește AI pentru a detecta automat datele și formulele din enunț"
+                        >
+                          {aiAnalyzing ? (
+                            <>
+                              <span className="spinner" style={{ width: '14px', height: '14px', borderWidth: '2px' }}></span>
+                              Analizează...
+                            </>
+                          ) : (
+                            <>
+                              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                                <path d="M12 2L2 7l10 5 10-5-10-5z" />
+                                <path d="M2 17l10 5 10-5M2 12l10 5 10-5" />
+                              </svg>
+                              Detectează date și formule cu AI
+                            </>
+                          )}
+                        </button>
+                      </div>
                       <textarea
                         value={formData.continut}
                         onChange={(e) => handleInputChange('continut', e.target.value)}
