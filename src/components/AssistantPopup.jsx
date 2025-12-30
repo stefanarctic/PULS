@@ -63,15 +63,66 @@ const MessageBubble = React.memo(({
   const isCopied = copiedMessageId === messageId;
   
   const preprocessTextForMarkdown = useCallback((text) => {
-    const markdownLinkRegex = /\[([^\]]+)\]\(([^)]+)\)/;
-    if (markdownLinkRegex.test(text)) {
-      return text;
+    if (!text) return text;
+    
+    // First, protect markdown links from being processed as math formulas
+    const markdownLinks = [];
+    const markdownLinkRegex = /\[([^\]]+)\]\(([^)]+)\)/g;
+    let linkMatch;
+    let protectedText = text;
+    let linkIndex = 0;
+    
+    // Replace markdown links with placeholders
+    while ((linkMatch = markdownLinkRegex.exec(text)) !== null) {
+      const placeholder = `__MARKDOWN_LINK_${linkIndex}__`;
+      markdownLinks.push(linkMatch[0]);
+      protectedText = protectedText.replace(linkMatch[0], placeholder);
+      linkIndex++;
     }
     
-    const urlRegex = /(https?:\/\/[^\s]+)/g;
-    return text.replace(urlRegex, (url) => {
-      return `[${url}](${url})`;
+    // Convert LaTeX formulas wrapped in square brackets [ ... ] to MathJax inline format \( ... \)
+    // Pattern: [ ... ] where content contains LaTeX commands (backslash, math symbols, etc.)
+    // Match non-greedy to avoid issues with multiple formulas on same line
+    protectedText = protectedText.replace(/\[([^\]]+)\]/g, (match, content) => {
+      // Skip if it looks like a markdown link placeholder
+      if (content.startsWith('__MARKDOWN_LINK_')) {
+        return match;
+      }
+      
+      // Trim whitespace from content
+      const trimmedContent = content.trim();
+      
+      // Check if content looks like LaTeX (contains backslash commands, math symbols, or common LaTeX patterns)
+      // More specific patterns to avoid false positives
+      const hasLatex = /\\[a-zA-Z]{2,}|\\[^a-zA-Z\s]|\\mathrm\{|\\frac\{|\\cdot|\\sin|\\cos|\\tan|\\sqrt|\\sum|\\int|\\alpha|\\beta|\\gamma|\\delta|\\theta|\\pi|\\mu|\\Delta|[\^_\{\}]/.test(trimmedContent);
+      
+      // Also check for common math patterns like =, +, -, *, / with variables
+      const hasMathOperators = /[A-Za-z]\s*[=+\-*/]\s*[A-Za-z0-9]/.test(trimmedContent);
+      
+      if (hasLatex || (hasMathOperators && trimmedContent.length > 3)) {
+        // Convert to MathJax inline format
+        return `\\(${trimmedContent}\\)`;
+      }
+      
+      return match;
     });
+    
+    // Restore markdown links
+    markdownLinks.forEach((link, index) => {
+      protectedText = protectedText.replace(`__MARKDOWN_LINK_${index}__`, link);
+    });
+    
+    // Handle URLs (convert to markdown links if not already)
+    const urlRegex = /(https?:\/\/[^\s]+)/g;
+    protectedText = protectedText.replace(urlRegex, (url) => {
+      // Only convert if it's not already a markdown link
+      if (!protectedText.includes(`[${url}](${url})`)) {
+        return `[${url}](${url})`;
+      }
+      return url;
+    });
+    
+    return protectedText;
   }, []);
 
   // Typeset MathJax doar când mesajul devine vizibil sau este ultimul mesaj AI (care trebuie formatat imediat)
