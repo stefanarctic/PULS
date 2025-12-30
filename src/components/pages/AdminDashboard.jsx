@@ -213,12 +213,14 @@ const AdminDashboard = () => {
     
     setDatePairs(pairs);
     
+    const isBac = problem.categorie === 'Bac' || (problem.categorie && normalizeString(problem.categorie).includes('bac'));
+    
     setFormData({
       titlu: problem.titlu || '',
       descriere: problem.descriere || '',
       categorie: problem.categorie || 'Mecanică',
       varianta: problem.varianta || '',
-      dificultate: problem.dificultate || 'ușor',
+      dificultate: isBac ? '' : (problem.dificultate || 'ușor'), // Nu setăm dificultate pentru BAC
       punctajTotal: problem.punctajTotal || 0,
       continut: problem.continut || '',
       formule: Array.isArray(problem.formule) && problem.formule.length > 0 ? problem.formule : [''],
@@ -231,6 +233,7 @@ const AdminDashboard = () => {
         year: problem.metadata?.year || null,
         variant: problem.metadata?.variant || null,
         type: problem.metadata?.type || '',
+        session: problem.metadata?.session || null, // Adăugăm session pentru BAC
         subjectArea: problem.metadata?.subjectArea || '',
         subjectCode: problem.metadata?.subjectCode || '',
         subjectNumber: problem.metadata?.subjectNumber || null
@@ -251,13 +254,16 @@ const AdminDashboard = () => {
       }
     });
     
+    const isBac = formData.categorie === 'Bac' || (formData.categorie && normalizeString(formData.categorie).includes('bac'));
+    
     // Prepare the problem data
     const problemData = {
       titlu: formData.titlu,
       descriere: formData.descriere,
       categorie: formData.categorie,
       varianta: formData.varianta,
-      dificultate: formData.dificultate,
+      // Nu includem dificultatea pentru problemele de BAC
+      ...(isBac ? {} : { dificultate: formData.dificultate }),
       continut: formData.continut,
       formule: formData.formule.filter(f => f.trim()),
       date: dateObject,
@@ -289,10 +295,25 @@ const AdminDashboard = () => {
   };
 
   const handleInputChange = (field, value) => {
-    setFormData(prev => ({
-      ...prev,
-      [field]: value
-    }));
+    setFormData(prev => {
+      const updated = {
+        ...prev,
+        [field]: value
+      };
+      
+      // Când categoria se schimbă la BAC, ștergem dificultatea
+      if (field === 'categorie') {
+        const isBac = value === 'Bac' || (value && normalizeString(value).includes('bac'));
+        if (isBac) {
+          updated.dificultate = '';
+        } else if (!updated.dificultate) {
+          // Dacă nu e BAC și nu are dificultate, setăm una default
+          updated.dificultate = 'ușor';
+        }
+      }
+      
+      return updated;
+    });
   };
 
   const handleSubpunctChange = (index, field, value) => {
@@ -619,10 +640,14 @@ const AdminDashboard = () => {
                     </div>
                   </div>
                   <div className="problem-card-footer">
-                    <div className={`problem-card-difficulty ${getDifficultyColorClass(problem.dificultate)}`}>
-                      {problem.dificultate}
-                    </div>
-                    {problem.punctajTotal && (
+                    {/* Nu afișăm dificultatea pentru problemele de BAC */}
+                    {(problem.categorie !== 'Bac' && !normalizeString(problem.categorie || '').includes('bac')) && problem.dificultate && (
+                      <div className={`problem-card-difficulty ${getDifficultyColorClass(problem.dificultate)}`}>
+                        {problem.dificultate}
+                      </div>
+                    )}
+                    {/* Nu afișăm punctajul pentru problemele de BAC */}
+                    {problem.punctajTotal && (problem.categorie !== 'Bac' && !normalizeString(problem.categorie || '').includes('bac')) && (
                       <div className="problem-card-points">
                         {problem.punctajTotal} puncte
                       </div>
@@ -691,21 +716,89 @@ const AdminDashboard = () => {
                         </select>
                       </div>
 
-                      <div className="form-group">
-                        <label>Dificultate *</label>
-                        <select
-                          value={formData.dificultate}
-                          onChange={(e) => handleInputChange('dificultate', e.target.value)}
-                          required
-                          disabled={updateStatus === 'loading'}
-                        >
-                          <option value="ușor">Ușor</option>
-                          <option value="mediu">Mediu</option>
-                          <option value="dificil">Dificil</option>
-                          <option value="concurs">Concurs</option>
-                        </select>
-                      </div>
+                      {/* Ascunde dificultatea pentru problemele de BAC */}
+                      {formData.categorie !== 'Bac' && !normalizeString(formData.categorie).includes('bac') && (
+                        <div className="form-group">
+                          <label>Dificultate *</label>
+                          <select
+                            value={formData.dificultate}
+                            onChange={(e) => handleInputChange('dificultate', e.target.value)}
+                            required
+                            disabled={updateStatus === 'loading'}
+                          >
+                            <option value="ușor">Ușor</option>
+                            <option value="mediu">Mediu</option>
+                            <option value="dificil">Dificil</option>
+                            <option value="concurs">Concurs</option>
+                          </select>
+                        </div>
+                      )}
                     </div>
+
+                    {/* Câmpuri specifice pentru problemele de BAC */}
+                    {(formData.categorie === 'Bac' || normalizeString(formData.categorie).includes('bac')) && (
+                      <div className="form-row">
+                        <div className="form-group">
+                          <label>Subiect</label>
+                          <select
+                            value={formData.metadata?.subjectNumber ? String(formData.metadata.subjectNumber) : ''}
+                            onChange={(e) => handleMetadataChange('subjectNumber', e.target.value ? parseInt(e.target.value) : null)}
+                            disabled={updateStatus === 'loading'}
+                          >
+                            <option value="">Selectează subiectul</option>
+                            <option value="1">Subiectul I</option>
+                            <option value="2">Subiectul II</option>
+                            <option value="3">Subiectul III</option>
+                          </select>
+                        </div>
+
+                        <div className="form-group">
+                          <label>An</label>
+                          <input
+                            type="number"
+                            value={formData.metadata?.year || ''}
+                            onChange={(e) => handleMetadataChange('year', e.target.value ? parseInt(e.target.value) : null)}
+                            placeholder="ex: 2024"
+                            min="2000"
+                            max="2100"
+                            disabled={updateStatus === 'loading'}
+                          />
+                        </div>
+                      </div>
+                    )}
+
+                    {(formData.categorie === 'Bac' || normalizeString(formData.categorie).includes('bac')) && (
+                      <div className="form-row">
+                        <div className="form-group">
+                          <label>Sesiune</label>
+                          <select
+                            value={formData.metadata?.session || ''}
+                            onChange={(e) => handleMetadataChange('session', e.target.value || null)}
+                            disabled={updateStatus === 'loading'}
+                          >
+                            <option value="">Selectează sesiunea</option>
+                            <option value="bac">Bac</option>
+                            <option value="model">Model</option>
+                            <option value="simulare">Simulare</option>
+                          </select>
+                        </div>
+
+                        <div className="form-group">
+                          <label>Categorie (Domeniu)</label>
+                          <select
+                            value={formData.metadata?.subjectArea || ''}
+                            onChange={(e) => handleMetadataChange('subjectArea', e.target.value || null)}
+                            disabled={updateStatus === 'loading'}
+                          >
+                            <option value="">Selectează categoria</option>
+                            <option value="Mecanică">Mecanică</option>
+                            <option value="Termodinamică">Termodinamică</option>
+                            <option value="Optică">Optică</option>
+                            <option value="Curent continuu">Curent continuu</option>
+                          </select>
+                        </div>
+                      </div>
+                    )}
 
                     <div className="form-group full-width">
                       <label>Conținut/Enunț *</label>
@@ -871,97 +964,130 @@ const AdminDashboard = () => {
                       </div>
                     </div>
 
-                    {/* Metadata Section for BAC */}
-                    <div className="form-group full-width">
-                      <label>Varianta (opțional)</label>
-                      <input
-                        type="text"
-                        value={formData.varianta}
-                        onChange={(e) => handleInputChange('varianta', e.target.value)}
-                        placeholder="ex: 2019 Var 2"
-                        disabled={updateStatus === 'loading'}
-                      />
-                    </div>
+                    {/* Metadata Section for BAC - doar pentru problemele non-BAC sau câmpuri suplimentare */}
+                    {formData.categorie !== 'Bac' && !normalizeString(formData.categorie).includes('bac') && (
+                      <>
+                        <div className="form-group full-width">
+                          <label>Varianta (opțional)</label>
+                          <input
+                            type="text"
+                            value={formData.varianta}
+                            onChange={(e) => handleInputChange('varianta', e.target.value)}
+                            placeholder="ex: 2019 Var 2"
+                            disabled={updateStatus === 'loading'}
+                          />
+                        </div>
 
-                    <div className="form-group full-width">
-                      <label style={{ fontWeight: 600, marginBottom: '0.75rem', display: 'block' }}>Metadata (BAC)</label>
-                      <div className="form-row">
-                        <div className="form-group">
-                          <label>An</label>
-                          <input
-                            type="number"
-                            value={formData.metadata?.year || ''}
-                            onChange={(e) => handleMetadataChange('year', e.target.value ? parseInt(e.target.value) : null)}
-                            placeholder="ex: 2019"
-                            disabled={updateStatus === 'loading'}
-                          />
+                        <div className="form-group full-width">
+                          <label style={{ fontWeight: 600, marginBottom: '0.75rem', display: 'block' }}>Metadata (opțional)</label>
+                          <div className="form-row">
+                            <div className="form-group">
+                              <label>An</label>
+                              <input
+                                type="number"
+                                value={formData.metadata?.year || ''}
+                                onChange={(e) => handleMetadataChange('year', e.target.value ? parseInt(e.target.value) : null)}
+                                placeholder="ex: 2019"
+                                disabled={updateStatus === 'loading'}
+                              />
+                            </div>
+                            <div className="form-group">
+                              <label>Varianta (număr)</label>
+                              <input
+                                type="number"
+                                value={formData.metadata?.variant || ''}
+                                onChange={(e) => handleMetadataChange('variant', e.target.value ? parseInt(e.target.value) : null)}
+                                placeholder="ex: 2"
+                                disabled={updateStatus === 'loading'}
+                              />
+                            </div>
+                          </div>
+                          <div className="form-row">
+                            <div className="form-group">
+                              <label>Tip</label>
+                              <input
+                                type="text"
+                                value={formData.metadata?.type || ''}
+                                onChange={(e) => handleMetadataChange('type', e.target.value)}
+                                placeholder="ex: teoretic"
+                                disabled={updateStatus === 'loading'}
+                              />
+                            </div>
+                            <div className="form-group">
+                              <label>Cod subiect</label>
+                              <input
+                                type="text"
+                                value={formData.metadata?.subjectCode || ''}
+                                onChange={(e) => handleMetadataChange('subjectCode', e.target.value)}
+                                placeholder="ex: A"
+                                disabled={updateStatus === 'loading'}
+                              />
+                            </div>
+                          </div>
+                          <div className="form-group">
+                            <label>Sursă</label>
+                            <input
+                              type="text"
+                              value={formData.metadata?.source || ''}
+                              onChange={(e) => handleMetadataChange('source', e.target.value)}
+                              placeholder="ex: 2019_E_d_fizica_teoretic_vocational_2019_var_02_LRO"
+                              disabled={updateStatus === 'loading'}
+                            />
+                          </div>
                         </div>
-                        <div className="form-group">
-                          <label>Varianta (număr)</label>
-                          <input
-                            type="number"
-                            value={formData.metadata?.variant || ''}
-                            onChange={(e) => handleMetadataChange('variant', e.target.value ? parseInt(e.target.value) : null)}
-                            placeholder="ex: 2"
-                            disabled={updateStatus === 'loading'}
-                          />
+                      </>
+                    )}
+
+                    {/* Câmpuri suplimentare pentru BAC */}
+                    {(formData.categorie === 'Bac' || normalizeString(formData.categorie).includes('bac')) && (
+                      <div className="form-group full-width">
+                        <label style={{ fontWeight: 600, marginBottom: '0.75rem', display: 'block' }}>Metadata suplimentare (BAC)</label>
+                        <div className="form-row">
+                          <div className="form-group">
+                            <label>Varianta (opțional)</label>
+                            <input
+                              type="text"
+                              value={formData.varianta}
+                              onChange={(e) => handleInputChange('varianta', e.target.value)}
+                              placeholder="ex: 2019 Var 2"
+                              disabled={updateStatus === 'loading'}
+                            />
+                          </div>
+                          <div className="form-group">
+                            <label>Varianta (număr)</label>
+                            <input
+                              type="number"
+                              value={formData.metadata?.variant || ''}
+                              onChange={(e) => handleMetadataChange('variant', e.target.value ? parseInt(e.target.value) : null)}
+                              placeholder="ex: 2"
+                              disabled={updateStatus === 'loading'}
+                            />
+                          </div>
+                        </div>
+                        <div className="form-row">
+                          <div className="form-group">
+                            <label>Cod subiect</label>
+                            <input
+                              type="text"
+                              value={formData.metadata?.subjectCode || ''}
+                              onChange={(e) => handleMetadataChange('subjectCode', e.target.value)}
+                              placeholder="ex: A"
+                              disabled={updateStatus === 'loading'}
+                            />
+                          </div>
+                          <div className="form-group">
+                            <label>Sursă</label>
+                            <input
+                              type="text"
+                              value={formData.metadata?.source || ''}
+                              onChange={(e) => handleMetadataChange('source', e.target.value)}
+                              placeholder="ex: 2019_E_d_fizica_teoretic_vocational_2019_var_02_LRO"
+                              disabled={updateStatus === 'loading'}
+                            />
+                          </div>
                         </div>
                       </div>
-                      <div className="form-row">
-                        <div className="form-group">
-                          <label>Tip</label>
-                          <input
-                            type="text"
-                            value={formData.metadata?.type || ''}
-                            onChange={(e) => handleMetadataChange('type', e.target.value)}
-                            placeholder="ex: teoretic"
-                            disabled={updateStatus === 'loading'}
-                          />
-                        </div>
-                        <div className="form-group">
-                          <label>Domeniu</label>
-                          <input
-                            type="text"
-                            value={formData.metadata?.subjectArea || ''}
-                            onChange={(e) => handleMetadataChange('subjectArea', e.target.value)}
-                            placeholder="ex: Mecanică"
-                            disabled={updateStatus === 'loading'}
-                          />
-                        </div>
-                      </div>
-                      <div className="form-row">
-                        <div className="form-group">
-                          <label>Cod subiect</label>
-                          <input
-                            type="text"
-                            value={formData.metadata?.subjectCode || ''}
-                            onChange={(e) => handleMetadataChange('subjectCode', e.target.value)}
-                            placeholder="ex: A"
-                            disabled={updateStatus === 'loading'}
-                          />
-                        </div>
-                        <div className="form-group">
-                          <label>Număr subiect</label>
-                          <input
-                            type="number"
-                            value={formData.metadata?.subjectNumber || ''}
-                            onChange={(e) => handleMetadataChange('subjectNumber', e.target.value ? parseInt(e.target.value) : null)}
-                            placeholder="ex: 2"
-                            disabled={updateStatus === 'loading'}
-                          />
-                        </div>
-                      </div>
-                      <div className="form-group">
-                        <label>Sursă</label>
-                        <input
-                          type="text"
-                          value={formData.metadata?.source || ''}
-                          onChange={(e) => handleMetadataChange('source', e.target.value)}
-                          placeholder="ex: 2019_E_d_fizica_teoretic_vocational_2019_var_02_LRO"
-                          disabled={updateStatus === 'loading'}
-                        />
-                      </div>
-                    </div>
+                    )}
                   </div>
 
                   <div className="modal-actions">
