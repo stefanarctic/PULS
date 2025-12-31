@@ -292,6 +292,35 @@ const AssistantPopup = ({ onClose, initialMessage }) => {
 
   // Nu creăm chat-uri automat - se creează doar când utilizatorul trimite primul mesaj
 
+  // Funcție helper pentru a extrage informații despre problemă din mesaj
+  // Mutată aici pentru a fi disponibilă înainte de useEffect-urile care o folosesc
+  const extractProblemInfo = useCallback((text) => {
+    if (!text) return null;
+    
+    // Caută pattern-ul "PROBLEMA #X: titlu" - poate fi pe orice linie
+    // Pattern îmbunătățit pentru a găsi "PROBLEMA #" urmat de număr și titlu
+    const problemPattern = /PROBLEMA\s*#\s*(\d+)\s*:\s*(.+?)(?:\n|$)/i;
+    const match = text.match(problemPattern);
+    
+    if (match) {
+      const problemNumber = match[1];
+      let problemTitle = match[2].trim();
+      // Elimină eventuale caractere suplimentare de la sfârșitul titlului
+      problemTitle = problemTitle.split('\n')[0].trim();
+      // Elimină spații multiple
+      problemTitle = problemTitle.replace(/\s+/g, ' ');
+      
+      console.log('✅ Problem info extracted:', { number: problemNumber, title: problemTitle });
+      return {
+        number: problemNumber,
+        title: problemTitle
+      };
+    }
+    
+    console.log('❌ No problem pattern found in text:', text.substring(0, 200));
+    return null;
+  }, []);
+
   // Setează chatMode bazat pe existența mesajelor
   useEffect(() => {
     if (currentChat && currentChat.messages && currentChat.messages.length > 0) {
@@ -318,10 +347,24 @@ const AssistantPopup = ({ onClose, initialMessage }) => {
     // Only send if we have an initialMessage, haven't sent it yet, user is logged in, and chats are loaded
     if (initialMessage && !initialMessageSentRef.current && user?.uid && !chatsLoading) {
       setInputValue(initialMessage);
+      
+      // Verifică dacă mesajul este despre o problemă și resetează currentChatId pentru a forța crearea unui chat nou
+      const problemInfo = extractProblemInfo(initialMessage);
+      if (problemInfo) {
+        console.log('🔍 Problem detected in initialMessage, resetting currentChatId to create new chat');
+        // Resetăm currentChatId sincron înainte de a trimite mesajul
+        setCurrentChatId(null);
+      }
+      
       // Use a delay to ensure popup is fully mounted and hooks are ready
       const timeoutId = setTimeout(() => {
         // Double-check that we still have the message and user is logged in before sending
         if (initialMessage && user?.uid) {
+          // Dacă este despre o problemă, forțăm resetarea din nou pentru a fi siguri
+          const problemInfoCheck = extractProblemInfo(initialMessage);
+          if (problemInfoCheck) {
+            setCurrentChatId(null);
+          }
           initialMessageSentRef.current = true;
           handleSend(null, initialMessage);
         }
@@ -330,7 +373,7 @@ const AssistantPopup = ({ onClose, initialMessage }) => {
       return () => clearTimeout(timeoutId);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [initialMessage, user?.uid, chatsLoading]);
+  }, [initialMessage, user?.uid, chatsLoading, extractProblemInfo]);
 
   // Block body scroll when popup is open
   React.useEffect(() => {
@@ -544,14 +587,41 @@ const AssistantPopup = ({ onClose, initialMessage }) => {
       return;
     }
 
+    // Verifică dacă mesajul este despre o problemă - dacă da, forțăm crearea unui chat nou
+    const problemInfo = extractProblemInfo(text);
+    const shouldForceNewChat = problemInfo !== null;
+    
     let activeChatId = currentChatId;
+    
+    // Dacă mesajul este despre o problemă, forțăm crearea unui chat nou chiar dacă există unul activ
+    if (shouldForceNewChat) {
+      console.log('🔍 Problem detected, forcing new chat creation');
+      activeChatId = null;
+    }
+    
     const isNewChat = !activeChatId;
     
     // Creează chat-ul nou cu titlul bazat pe primul mesaj
     if (isNewChat) {
       try {
-        const newTitle = text.length > 30 ? text.substring(0, 30) + '...' : text;
+        let newTitle;
+        
+        if (problemInfo) {
+          // Creează titlul în formatul "Rezolvarea problemei #X - titlul problemei"
+          newTitle = `Rezolvare #${problemInfo.number} - ${problemInfo.title}`;
+          // Limitează lungimea titlului dacă este prea lung
+          if (newTitle.length > 100) {
+            newTitle = newTitle.substring(0, 97) + '...';
+          }
+          console.log('📝 Creating chat with problem title:', newTitle);
+        } else {
+          // Titlu normal bazat pe primul mesaj
+          newTitle = text.length > 30 ? text.substring(0, 30) + '...' : text;
+          console.log('📝 Creating chat with default title:', newTitle);
+        }
+        
         activeChatId = await createChat(newTitle);
+        console.log('✅ Chat created with ID:', activeChatId, 'and title:', newTitle);
       } catch (error) {
         console.error('Error creating chat:', error);
         alert('Eroare la crearea chat-ului. Te rugăm să încerci din nou.');
