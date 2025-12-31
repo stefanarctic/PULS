@@ -14,14 +14,15 @@ const ProblemaIndividuala = () => {
   const problema = problemeData.find(problem => problem.index === parseInt(id));
   
   // Redirect if problem not found (use useEffect to avoid render-time navigation)
+  // Only redirect if problems have finished loading (succeeded or failed) and problem is not found
   useEffect(() => {
-    if (status !== 'loading' && !problema) {
+    if ((status === 'succeeded' || status === 'failed') && !problema) {
       navigate('/probleme');
     }
   }, [problema, status, navigate]);
   
-  // If problems are still loading, show loading state
-  if (status === 'loading') {
+  // If problems are still loading or haven't started loading yet, show loading state
+  if (status === 'loading' || status === 'idle') {
     return (
       <Layout>
         <div className="loading-container">
@@ -39,7 +40,7 @@ const ProblemaIndividuala = () => {
     );
   }
   
-  // If problem not found, show nothing (redirect is handled in useEffect)
+  // If problem not found after loading completed, show nothing (redirect is handled in useEffect)
   if (!problema) {
     return null;
   }
