@@ -11,6 +11,117 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="./css/style.css">
     <link rel="icon" type="image/png" href="/res/icons/New-logo.png">
+    <script>
+      // Apply dark mode synchronously before React renders to prevent flash
+      (function() {
+        const localStorageDarkMode = localStorage.getItem("darkMode");
+        const darkModeOn = localStorageDarkMode === "enabled";
+        
+        // Set body background immediately to prevent flash
+        if (darkModeOn) {
+          document.documentElement.style.setProperty('--primary-background-current-mode', 'rgb(18, 18, 18)');
+          document.documentElement.style.setProperty('--secondary-background-current-mode', 'rgb(26, 26, 26)');
+          document.documentElement.style.setProperty('--tertiary-background-current-mode', 'rgb(37, 37, 37)');
+          document.documentElement.style.setProperty('--quaternary-background-current-mode', 'rgb(45, 45, 45)');
+          document.documentElement.style.setProperty('--primary-color-current-mode', 'white');
+          document.documentElement.style.setProperty('--primary-background-inverse-mode', 'white');
+          document.documentElement.style.setProperty('--primary-color-inverse-mode', 'rgb(18, 18, 18)');
+          document.documentElement.style.setProperty('--muted-color-current-mode', '#a1a1aa');
+          document.documentElement.style.setProperty('--border-color-current-mode', '#374151');
+          document.documentElement.style.setProperty('--card-background-current-mode', '#111827');
+          document.documentElement.style.setProperty('--input-background-current-mode', '#1e293b');
+          document.documentElement.style.setProperty('--pill-background-current-mode', '#1e293b');
+          document.documentElement.style.setProperty('--pill-hover-background-current-mode', '#374151');
+          document.documentElement.style.setProperty('--profile-header-background-current-mode', '#202020');
+          document.documentElement.style.setProperty('--simulari-button-bg', '#1f1f1f');
+          document.documentElement.style.setProperty('--simulari-button-color', '#ffffff');
+          document.body.style.backgroundColor = 'rgb(18, 18, 18)';
+          document.body.style.color = 'white';
+        } else {
+          document.documentElement.style.setProperty('--primary-background-current-mode', 'white');
+          document.documentElement.style.setProperty('--secondary-background-current-mode', 'rgb(247, 247, 247)');
+          document.documentElement.style.setProperty('--tertiary-background-current-mode', 'transparent');
+          document.documentElement.style.setProperty('--quaternary-background-current-mode', 'rgb(240, 240, 240)');
+          document.documentElement.style.setProperty('--primary-color-current-mode', 'rgb(18, 18, 18)');
+          document.documentElement.style.setProperty('--primary-background-inverse-mode', 'rgb(18, 18, 18)');
+          document.documentElement.style.setProperty('--primary-color-inverse-mode', 'white');
+          document.documentElement.style.setProperty('--muted-color-current-mode', '#6b7280');
+          document.documentElement.style.setProperty('--border-color-current-mode', '#e5e7eb');
+          document.documentElement.style.setProperty('--card-background-current-mode', '#fff');
+          document.documentElement.style.setProperty('--input-background-current-mode', '#f3f4f6');
+          document.documentElement.style.setProperty('--pill-background-current-mode', '#f3f4f6');
+          document.documentElement.style.setProperty('--pill-hover-background-current-mode', '#e5e7eb');
+          document.documentElement.style.setProperty('--profile-header-background-current-mode', '#f7f7f7');
+          document.documentElement.style.setProperty('--simulari-button-bg', '#c6c6c6');
+          document.documentElement.style.setProperty('--simulari-button-color', '#000000');
+          document.body.style.backgroundColor = 'white';
+          document.body.style.color = 'rgb(18, 18, 18)';
+        }
+        
+        // Once CSS loads, update with proper variable references
+        function applyThemeFromCSS() {
+          const getVar = (name) => {
+            const value = getComputedStyle(document.documentElement).getPropertyValue(name).trim();
+            return value || '';
+          };
+          
+          const documentStyle = document.documentElement.style;
+          if (darkModeOn) {
+            const darkVars = {
+              '--primary-background-current-mode': getVar('--primary-background-dark-mode') || 'rgb(18, 18, 18)',
+              '--secondary-background-current-mode': getVar('--secondary-background-dark-mode') || 'rgb(26, 26, 26)',
+              '--tertiary-background-current-mode': getVar('--tertiary-background-dark-mode') || 'rgb(37, 37, 37)',
+              '--quaternary-background-current-mode': getVar('--quaternary-background-dark-mode') || 'rgb(45, 45, 45)',
+              '--primary-color-current-mode': getVar('--primary-color-dark-mode') || 'white',
+              '--primary-background-inverse-mode': getVar('--primary-background-white-mode') || 'white',
+              '--primary-color-inverse-mode': getVar('--primary-color-white-mode') || 'rgb(18, 18, 18)',
+              '--muted-color-current-mode': getVar('--muted-color-dark-mode') || '#a1a1aa',
+              '--border-color-current-mode': getVar('--border-color-dark-mode') || '#374151',
+              '--card-background-current-mode': getVar('--card-background-dark-mode') || '#111827',
+              '--input-background-current-mode': getVar('--input-background-dark-mode') || '#1e293b',
+              '--pill-background-current-mode': getVar('--pill-background-dark-mode') || '#1e293b',
+              '--pill-hover-background-current-mode': getVar('--pill-hover-background-dark-mode') || '#374151',
+              '--profile-header-background-current-mode': getVar('--profile-header-background-dark-mode') || '#202020',
+              '--simulari-button-bg': getVar('--button-bg-dark-mode') || '#1f1f1f',
+              '--simulari-button-color': getVar('--button-color-dark-mode') || '#ffffff'
+            };
+            Object.entries(darkVars).forEach(([key, value]) => {
+              if (value) documentStyle.setProperty(key, value);
+            });
+          } else {
+            const lightVars = {
+              '--primary-background-current-mode': getVar('--primary-background-white-mode') || 'white',
+              '--secondary-background-current-mode': getVar('--secondary-background-white-mode') || 'rgb(247, 247, 247)',
+              '--tertiary-background-current-mode': getVar('--tertiary-background-white-mode') || 'transparent',
+              '--quaternary-background-current-mode': getVar('--quaternary-background-white-mode') || 'rgb(240, 240, 240)',
+              '--primary-color-current-mode': getVar('--primary-color-white-mode') || 'rgb(18, 18, 18)',
+              '--primary-background-inverse-mode': getVar('--primary-background-dark-mode') || 'rgb(18, 18, 18)',
+              '--primary-color-inverse-mode': getVar('--primary-color-dark-mode') || 'white',
+              '--muted-color-current-mode': getVar('--muted-color-white-mode') || '#6b7280',
+              '--border-color-current-mode': getVar('--border-color-white-mode') || '#e5e7eb',
+              '--card-background-current-mode': getVar('--card-background-white-mode') || '#fff',
+              '--input-background-current-mode': getVar('--input-background-white-mode') || '#f3f4f6',
+              '--pill-background-current-mode': getVar('--pill-background-white-mode') || '#f3f4f6',
+              '--pill-hover-background-current-mode': getVar('--pill-hover-background-white-mode') || '#e5e7eb',
+              '--profile-header-background-current-mode': getVar('--profile-header-background-light-mode') || '#f7f7f7',
+              '--simulari-button-bg': getVar('--button-bg-white-mode') || '#c6c6c6',
+              '--simulari-button-color': getVar('--button-color-white-mode') || '#000000'
+            };
+            Object.entries(lightVars).forEach(([key, value]) => {
+              if (value) documentStyle.setProperty(key, value);
+            });
+          }
+        }
+        
+        // Apply theme once CSS is loaded
+        if (document.readyState === 'loading') {
+          document.addEventListener('DOMContentLoaded', applyThemeFromCSS);
+        } else {
+          // CSS might not be loaded yet, try after a short delay
+          setTimeout(applyThemeFromCSS, 10);
+        }
+      })();
+    </script>
     <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script> -->
     <!-- <script src="./js/script.js" defer></script> -->
     <!-- <script src="./js/testimonials.js" defer></script> -->

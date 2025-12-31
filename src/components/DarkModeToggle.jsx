@@ -2,25 +2,31 @@ import { Moon, Sun } from "lucide-react";
 import { useEffect, useState } from "react";
 
 const DarkModeToggle = () => {
+    // Initialize state from localStorage immediately to prevent flash
+    const getInitialDarkMode = () => {
+        const localStorageDarkMode = localStorage.getItem("darkMode");
+        return localStorageDarkMode === "enabled";
+    };
 
-    const [darkModeOn, setDarkModeOn] = useState(false);
+    const [darkModeOn, setDarkModeOn] = useState(getInitialDarkMode);
 
     const toggleDarkMode = () => {
         setDarkModeOn(value => !value);
     }
 
     useEffect(() => {
+        // Sync with localStorage (in case it changed externally)
         const localStorageDarkMode = localStorage.getItem("darkMode");
         console.log(`Dark mode preference from localStorage: ${localStorageDarkMode}`);
+        
         if(!localStorageDarkMode)
         {
             console.log("No dark mode preference found in localStorage, setting to default (disabled).");
             setDarkModeOn(false);
-            return;
+        } else {
+            console.log(`Setting dark mode based on localStorage: ${localStorageDarkMode}`);
+            setDarkModeOn(localStorageDarkMode === "enabled");
         }
-
-        console.log(`Setting dark mode based on localStorage: ${localStorageDarkMode}`);
-        setDarkModeOn(localStorageDarkMode === "enabled");
 
         // Get the dark-mode-toggle-link element and add click handler
         const darkModeToggleLink = document.querySelector('.dark-mode-toggle-link');
