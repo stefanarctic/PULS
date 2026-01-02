@@ -9,7 +9,8 @@
     "lint": "eslint .",
     "preview": "vite preview",
     "extract-bac": "node extract-bac-problems.js",
-    "upload-bac": "node upload-bac-problems.js"
+    "upload-bac": "node upload-bac-problems.js",
+    "backup-db": "node backup-database.js"
   },
   "dependencies": {
     "@mistralai/mistralai": "^1.11.0",
