@@ -203,7 +203,17 @@ const problemsSlice = createSlice({
       })
       .addCase(fetchProblems.fulfilled, (state, action) => {
         state.status = 'succeeded';
-        state.value = action.payload;
+        // Remove duplicates based on ID (keep first occurrence)
+        const seenIds = new Set();
+        const uniqueProblems = [];
+        for (const problem of action.payload) {
+          const problemId = problem.id;
+          if (problemId && !seenIds.has(problemId)) {
+            seenIds.add(problemId);
+            uniqueProblems.push(problem);
+          }
+        }
+        state.value = uniqueProblems;
       })
       .addCase(fetchProblems.rejected, (state, action) => {
         state.status = 'failed';
@@ -216,7 +226,14 @@ const problemsSlice = createSlice({
       })
       .addCase(addProblem.fulfilled, (state, action) => {
         state.addStatus = 'succeeded';
-        state.value.push(action.payload);
+        // Check if problem already exists before adding
+        const existingIndex = state.value.findIndex(p => p.id === action.payload.id);
+        if (existingIndex === -1) {
+          state.value.push(action.payload);
+        } else {
+          // Update existing problem instead of adding duplicate
+          state.value[existingIndex] = action.payload;
+        }
       })
       .addCase(addProblem.rejected, (state, action) => {
         state.addStatus = 'failed';

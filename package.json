@@ -12,7 +12,8 @@
     "upload-bac": "node upload-bac-problems.js",
     "backup-db": "node backup-database.js",
     "clean-problems": "node clean-problems-content.js",
-    "upload-cleaned": "node upload-cleaned-problems.js"
+    "upload-cleaned": "node upload-cleaned-problems.js",
+    "remove-duplicates": "node remove-duplicate-problems.js"
   },
   "dependencies": {
     "@mistralai/mistralai": "^1.11.0",

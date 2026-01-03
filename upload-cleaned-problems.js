@@ -122,7 +122,7 @@ console.log('✓ Firestore database conectat');
 console.log(`✓ Project ID: ${admin.app().options.projectId || 'N/A'}\n`);
 
 // Configuration
-const INPUT_FILE = path.join(__dirname, 'database-backup-cleaned.json');
+const INPUT_FILE = path.join(__dirname, 'database-backup.json'); // Folosim backup-ul original
 const BATCH_SIZE = 50; // Firestore allows max 500 operations per batch
 
 /**
@@ -136,21 +136,21 @@ function sleep(ms) {
  * Upload problems to Firestore
  */
 async function uploadCleanedProblems() {
-  console.log('\n🚀 Pornesc upload-ul problemelor curățate...\n');
+  console.log('\n🚀 Pornesc upload-ul problemelor din backup-ul original...\n');
   
   try {
-    // Read cleaned problems file
+    // Read backup file (original, before cleaning)
     console.log(`📖 Citesc fișierul: ${INPUT_FILE}`);
     if (!fs.existsSync(INPUT_FILE)) {
       console.error(`❌ Fișierul nu există: ${INPUT_FILE}`);
-      console.error('   Rulează mai întâi: npm run clean-problems');
+      console.error('   Rulează mai întâi: npm run backup-db');
       process.exit(1);
     }
     
     const fileContent = fs.readFileSync(INPUT_FILE, 'utf-8');
     const problems = JSON.parse(fileContent);
     
-    console.log(`✓ Găsite ${problems.length} probleme curățate\n`);
+    console.log(`✓ Găsite ${problems.length} probleme în backup-ul original\n`);
     
     // Filter problems that have an ID (some might not have one)
     const problemsWithId = problems.filter(problem => {
@@ -162,7 +162,49 @@ async function uploadCleanedProblems() {
       console.log(`⚠️  ${problemsWithoutId} probleme fără ID au fost filtrate\n`);
     }
     
-    console.log(`📤 Procesez ${problemsWithId.length} probleme...\n`);
+    // Remove duplicates based on ID (keep first occurrence)
+    // Also check for duplicates by index if ID is missing
+    const seenIds = new Set();
+    const seenIndexes = new Set();
+    const uniqueProblems = [];
+    let duplicateByIdCount = 0;
+    let duplicateByIndexCount = 0;
+    
+    for (const problem of problemsWithId) {
+      const problemId = String(problem.id);
+      const problemIndex = problem.index;
+      
+      // Check for duplicate by ID
+      if (seenIds.has(problemId)) {
+        duplicateByIdCount++;
+        console.log(`⚠️  Duplicat găsit și eliminat (ID): ID ${problemId} - "${problem.titlu || 'N/A'}"`);
+        continue;
+      }
+      
+      // Check for duplicate by index (if index exists and is valid)
+      if (problemIndex !== undefined && problemIndex !== null) {
+        if (seenIndexes.has(problemIndex)) {
+          duplicateByIndexCount++;
+          console.log(`⚠️  Duplicat găsit și eliminat (Index): Index ${problemIndex}, ID ${problemId} - "${problem.titlu || 'N/A'}"`);
+          continue;
+        }
+        seenIndexes.add(problemIndex);
+      }
+      
+      // Problem is unique, add it
+      seenIds.add(problemId);
+      uniqueProblems.push(problem);
+    }
+    
+    const totalDuplicates = duplicateByIdCount + duplicateByIndexCount;
+    if (totalDuplicates > 0) {
+      console.log(`\n⚠️  Duplicate eliminate:`);
+      console.log(`   - Duplicate pe ID: ${duplicateByIdCount}`);
+      console.log(`   - Duplicate pe Index: ${duplicateByIndexCount}`);
+      console.log(`   - Total duplicate: ${totalDuplicates}\n`);
+    }
+    
+    console.log(`📤 Procesez ${uniqueProblems.length} probleme unice...\n`);
     
     // Use same method as upload-bac-problems.js
     const problemsRef = db.collection('problems');
@@ -171,8 +213,8 @@ async function uploadCleanedProblems() {
     let errorCount = 0;
     
     // Process in chunks (same as upload-bac-problems.js)
-    for (let i = 0; i < problemsWithId.length; i += WRITE_BATCH_SIZE) {
-      const chunk = problemsWithId.slice(i, i + WRITE_BATCH_SIZE);
+    for (let i = 0; i < uniqueProblems.length; i += WRITE_BATCH_SIZE) {
+      const chunk = uniqueProblems.slice(i, i + WRITE_BATCH_SIZE);
       const batch = db.batch();
       
       try {
@@ -184,10 +226,10 @@ async function uploadCleanedProblems() {
           // Remove the id field before saving (Firestore uses document ID, not a field)
           const { id, ...problemData } = problem;
           
-          // Update existing document - use set with merge: true
-          // This will update existing documents or create them if they don't exist
+          // Replace document completely - use set without merge to restore exact state
+          // This will replace existing documents or create them if they don't exist
           const docRef = problemsRef.doc(problemId);
-          batch.set(docRef, problemData, { merge: true });
+          batch.set(docRef, problemData, { merge: false });
         });
         
         // Commit the batch
@@ -195,11 +237,11 @@ async function uploadCleanedProblems() {
         successCount += chunk.length;
         
         // Show progress
-        const processed = Math.min(i + WRITE_BATCH_SIZE, problemsWithId.length);
-        process.stdout.write(`  ✓ ${processed}/${problemsWithId.length} probleme procesate...\r`);
+        const processed = Math.min(i + WRITE_BATCH_SIZE, uniqueProblems.length);
+        process.stdout.write(`  ✓ ${processed}/${uniqueProblems.length} probleme procesate...\r`);
         
         // Small delay between batch commits to avoid rate limits
-        if (i + WRITE_BATCH_SIZE < problemsWithId.length) {
+        if (i + WRITE_BATCH_SIZE < uniqueProblems.length) {
           await sleep(100); // 100ms delay between batch commits
         }
       } catch (error) {
@@ -223,10 +265,12 @@ async function uploadCleanedProblems() {
     
     console.log(`\n✅ Upload completat!`);
     console.log(`\n📊 Statistici:`);
-    console.log(`   - Total probleme în fișier: ${problems.length}`);
+    console.log(`   - Total probleme în backup: ${problems.length}`);
     console.log(`   - Probleme cu ID: ${problemsWithId.length}`);
     console.log(`   - Probleme fără ID (filtrate): ${problemsWithoutId}`);
-    console.log(`   - Probleme salvate cu succes: ${successCount}`);
+    console.log(`   - Duplicate eliminate: ${totalDuplicates} (${duplicateByIdCount} pe ID, ${duplicateByIndexCount} pe Index)`);
+    console.log(`   - Probleme unice procesate: ${uniqueProblems.length}`);
+    console.log(`   - Probleme restaurate cu succes: ${successCount}`);
     console.log(`   - Erori: ${errorCount}`);
     
   } catch (error) {
