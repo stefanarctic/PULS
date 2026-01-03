@@ -30,12 +30,15 @@ const ExternalLinkIcon = () => (
 );
 
 // Problem Card Component
-const ProblemCard = ({ problem, isFavorite, onToggleFavorite, completionPercent }) => {
+const ProblemCard = ({ problem, isFavorite, onToggleFavorite, completionPercent, onBeforeNavigate }) => {
     const { index, titlu, dificultate, categorie, descriere, solved } = problem;
     const navigate = useNavigate();
     const isPerfectScore = completionPercent === 100;
     const isSolved = solved || isPerfectScore;
     const handleNavigate = () => {
+        if (onBeforeNavigate) {
+            onBeforeNavigate();
+        }
         navigate(`/probleme/${index}`);
     };
     const handleKeyDown = (event) => {
@@ -122,17 +125,36 @@ const ProblemCard = ({ problem, isFavorite, onToggleFavorite, completionPercent 
 };
 
 const PhysicsProblems = () => {
-    const [searchQuery, setSearchQuery] = useState("");
     const location = useLocation();
     const params = new URLSearchParams(location.search);
 
+    // Restore filters from sessionStorage only if coming back from a problem
+    const getStoredFilters = () => {
+        try {
+            const shouldRestore = sessionStorage.getItem('restoreProblemsFilters');
+            if (shouldRestore === 'true') {
+                const stored = sessionStorage.getItem('problemsFilters');
+                if (stored) {
+                    // Clear the flag after reading
+                    sessionStorage.removeItem('restoreProblemsFilters');
+                    return JSON.parse(stored);
+                }
+            }
+        } catch (e) {
+            console.error('Error loading filters from sessionStorage:', e);
+        }
+        return null;
+    };
+
+    const storedFilters = getStoredFilters();
+    const [searchQuery, setSearchQuery] = useState(storedFilters?.searchQuery || "");
     const [selectedDifficulty, setSelectedDifficulty] = useState(
-        params.get("difficulty") || "Toate"
+        params.get("difficulty") || storedFilters?.selectedDifficulty || "Toate"
     );
     const [selectedCategory, setSelectedCategory] = useState(
-        params.get("category") || "Toate"
+        params.get("category") || storedFilters?.selectedCategory || "Toate"
     );
-    const [sortBy, setSortBy] = useState("newest");
+    const [sortBy, setSortBy] = useState(storedFilters?.sortBy || "newest");
     
     // Paginare
     const [currentPage, setCurrentPage] = useState(1);
@@ -243,6 +265,7 @@ const PhysicsProblems = () => {
             if (!isNaN(problemIndex)) {
                 const problem = problemeData.find(p => p.index === problemIndex);
                 if (problem) {
+                    saveFiltersBeforeNavigate();
                     navigate(`/probleme/${problemIndex}`);
                     return;
                 }
@@ -273,6 +296,36 @@ const PhysicsProblems = () => {
     useEffect(() => {
         setCurrentPage(1);
     }, [searchQuery, selectedDifficulty, selectedCategory, sortBy]);
+
+    // Save filters to sessionStorage whenever they change (for back navigation)
+    useEffect(() => {
+        const filters = {
+            searchQuery,
+            selectedDifficulty,
+            selectedCategory,
+            sortBy
+        };
+        try {
+            sessionStorage.setItem('problemsFilters', JSON.stringify(filters));
+        } catch (e) {
+            console.error('Error saving filters to sessionStorage:', e);
+        }
+    }, [searchQuery, selectedDifficulty, selectedCategory, sortBy]);
+
+    // Function to save filters before navigating to a problem
+    const saveFiltersBeforeNavigate = () => {
+        try {
+            sessionStorage.setItem('problemsFilters', JSON.stringify({
+                searchQuery,
+                selectedDifficulty,
+                selectedCategory,
+                sortBy
+            }));
+            sessionStorage.setItem('restoreProblemsFilters', 'true');
+        } catch (e) {
+            console.error('Error saving filters:', e);
+        }
+    };
 
     // Check for addProblem parameter in URL and populate form
     useEffect(() => {
@@ -1404,6 +1457,7 @@ const PhysicsProblems = () => {
                                 isFavorite={favorites.includes(problem.id)}
                                 onToggleFavorite={toggleFavorite}
                                 completionPercent={getProblemCompletion(problem)}
+                                onBeforeNavigate={saveFiltersBeforeNavigate}
                             />
                         ))}
                     </div>

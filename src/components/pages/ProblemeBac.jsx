@@ -81,15 +81,68 @@ const ProblemeBac = () => {
     const [user, setUser] = useState(null);
     const [isAdmin, setIsAdmin] = useState(false);
     const [favorites, setFavorites] = useState([]);
-    const [searchQuery, setSearchQuery] = useState("");
-    const [selectedSubject, setSelectedSubject] = useState("Toate");
-    const [selectedYear, setSelectedYear] = useState("Toate");
-    const [selectedSession, setSelectedSession] = useState("Toate");
-    const [selectedCategory, setSelectedCategory] = useState("Toate");
-    const [sortBy, setSortBy] = useState("newest");
+    // Restore filters from sessionStorage only if coming back from a problem
+    const getStoredFilters = () => {
+        try {
+            const shouldRestore = sessionStorage.getItem('restoreBacFilters');
+            if (shouldRestore === 'true') {
+                const stored = sessionStorage.getItem('bacFilters');
+                if (stored) {
+                    // Clear the flag after reading
+                    sessionStorage.removeItem('restoreBacFilters');
+                    return JSON.parse(stored);
+                }
+            }
+        } catch (e) {
+            console.error('Error loading filters from sessionStorage:', e);
+        }
+        return null;
+    };
+
+    const storedFilters = getStoredFilters();
+    const [searchQuery, setSearchQuery] = useState(storedFilters?.searchQuery || "");
+    const [selectedSubject, setSelectedSubject] = useState(storedFilters?.selectedSubject || "Toate");
+    const [selectedYear, setSelectedYear] = useState(storedFilters?.selectedYear || "Toate");
+    const [selectedSession, setSelectedSession] = useState(storedFilters?.selectedSession || "Toate");
+    const [selectedCategory, setSelectedCategory] = useState(storedFilters?.selectedCategory || "Toate");
+    const [sortBy, setSortBy] = useState(storedFilters?.sortBy || "newest");
     const [showAddModal, setShowAddModal] = useState(false);
     const [pendingUrlData, setPendingUrlData] = useState(null);
     const { solvedProblems } = useSolvedProblems();
+
+    // Save filters to sessionStorage whenever they change (for back navigation)
+    useEffect(() => {
+        const filters = {
+            searchQuery,
+            selectedSubject,
+            selectedYear,
+            selectedSession,
+            selectedCategory,
+            sortBy
+        };
+        try {
+            sessionStorage.setItem('bacFilters', JSON.stringify(filters));
+        } catch (e) {
+            console.error('Error saving filters to sessionStorage:', e);
+        }
+    }, [searchQuery, selectedSubject, selectedYear, selectedSession, selectedCategory, sortBy]);
+
+    // Function to save filters before navigating to a problem
+    const saveFiltersBeforeNavigate = () => {
+        try {
+            sessionStorage.setItem('bacFilters', JSON.stringify({
+                searchQuery,
+                selectedSubject,
+                selectedYear,
+                selectedSession,
+                selectedCategory,
+                sortBy
+            }));
+            sessionStorage.setItem('restoreBacFilters', 'true');
+        } catch (e) {
+            console.error('Error saving filters:', e);
+        }
+    };
 
     // Filter only Bac problems
     const bacProblems = useMemo(() => {
@@ -319,6 +372,20 @@ const ProblemeBac = () => {
             if (!isNaN(problemIndex)) {
                 const problem = bacProblems.find(p => p.index === problemIndex);
                 if (problem) {
+                    // Save filters before navigating
+                    try {
+                        sessionStorage.setItem('bacFilters', JSON.stringify({
+                            searchQuery,
+                            selectedSubject,
+                            selectedYear,
+                            selectedSession,
+                            selectedCategory,
+                            sortBy
+                        }));
+                        sessionStorage.setItem('restoreBacFilters', 'true');
+                    } catch (e) {
+                        console.error('Error saving filters:', e);
+                    }
                     navigate(`/probleme/${problemIndex}`);
                     return;
                 }
@@ -1352,6 +1419,7 @@ const ProblemeBac = () => {
                                     isFavorite={favorites.includes(problem.id)}
                                     onToggleFavorite={toggleFavorite}
                                     completionPercent={getProblemCompletion(problem)}
+                                    onBeforeNavigate={saveFiltersBeforeNavigate}
                                 />
                             ))}
                         </div>
