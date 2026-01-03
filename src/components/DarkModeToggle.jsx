@@ -47,6 +47,8 @@ const DarkModeToggle = () => {
 
         const documentStyle = document.documentElement.style;
         if (darkModeOn) {
+            // Set data-theme attribute for CSS selectors
+            document.documentElement.setAttribute('data-theme', 'dark');
             // Turn on dark mode
             const getVar = (name) => getComputedStyle(document.documentElement).getPropertyValue(name).trim();
             documentStyle.setProperty('--primary-background-current-mode', getVar('--primary-background-dark-mode'));
@@ -75,6 +77,8 @@ const DarkModeToggle = () => {
             }
             document.querySelector('.footer').classList.add('dark-mode');
         } else {
+            // Set data-theme attribute for CSS selectors
+            document.documentElement.setAttribute('data-theme', 'light');
             // Turn on white mode
             const getVar = (name) => getComputedStyle(document.documentElement).getPropertyValue(name).trim();
             documentStyle.setProperty('--primary-background-current-mode', getVar('--primary-background-white-mode'));

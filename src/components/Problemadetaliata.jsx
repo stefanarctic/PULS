@@ -297,8 +297,8 @@ export const ProblemaDetaliata = ({ problema, onBack }) => {
     <div className="container">
       {/* Butonul de "Înapoi la probleme" a fost eliminat */}
       <div className="main">
-        <div>
-          <Card className="mb-6">
+        <div className="problema-detaliata">
+          <Card className="problema-detaliata-main-card mb-6">
             <CardHeader>
               <div className="card-header-container">
                 <div className="card-header-content">
@@ -499,7 +499,7 @@ export const ProblemaDetaliata = ({ problema, onBack }) => {
             </CardContent>
           </Card>
 
-          <Card>
+          <Card className="problema-detaliata-requirements-card">
             <CardHeader>
               <CardTitle className="text-xl">Cerințe</CardTitle>
             </CardHeader>
@@ -522,7 +522,7 @@ export const ProblemaDetaliata = ({ problema, onBack }) => {
         </div>
 
                     <div className="problema-sidebar sidebar">
-          <Card className="mb-6 sticky top-4">
+          <Card className="problema-detaliata-scores-card mb-6 sticky top-4">
             <CardHeader>
               <CardTitle className="text-lg">Punctaje</CardTitle>
             </CardHeader>
@@ -545,7 +545,7 @@ export const ProblemaDetaliata = ({ problema, onBack }) => {
             </CardContent>
           </Card>
 
-          <Card>
+          <Card className="problema-detaliata-ai-card">
             <CardHeader>
               <CardTitle className="text-lg">Ajutor AI</CardTitle>
             </CardHeader>
@@ -591,12 +591,13 @@ export const ProblemaDetaliata = ({ problema, onBack }) => {
         </div>
 
       {/* Mutat aici: Card Trimite o problemă */}
-      <Card className="mt-6">
+      <Card className="problema-detaliata-submit-card mt-6">
         <CardHeader>
           <CardTitle className="text-lg">Trimite o problemă</CardTitle>
         </CardHeader>
         <CardContent>
           <ProblemSubmit 
+            problem={problema}
             defaultProblemId={resolvedProblemId}
             defaultProblemTitle={resolvedProblemTitle}
           />

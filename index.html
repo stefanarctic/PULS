@@ -17,8 +17,9 @@
         const localStorageDarkMode = localStorage.getItem("darkMode");
         const darkModeOn = localStorageDarkMode === "enabled";
         
-        // Set body background immediately to prevent flash
+        // Set data-theme attribute and body background immediately to prevent flash
         if (darkModeOn) {
+          document.documentElement.setAttribute('data-theme', 'dark');
           document.documentElement.style.setProperty('--primary-background-current-mode', 'rgb(18, 18, 18)');
           document.documentElement.style.setProperty('--secondary-background-current-mode', 'rgb(26, 26, 26)');
           document.documentElement.style.setProperty('--tertiary-background-current-mode', 'rgb(37, 37, 37)');
@@ -38,6 +39,7 @@
           document.body.style.backgroundColor = 'rgb(18, 18, 18)';
           document.body.style.color = 'white';
         } else {
+          document.documentElement.setAttribute('data-theme', 'light');
           document.documentElement.style.setProperty('--primary-background-current-mode', 'white');
           document.documentElement.style.setProperty('--secondary-background-current-mode', 'rgb(247, 247, 247)');
           document.documentElement.style.setProperty('--tertiary-background-current-mode', 'transparent');
@@ -67,6 +69,7 @@
           
           const documentStyle = document.documentElement.style;
           if (darkModeOn) {
+            document.documentElement.setAttribute('data-theme', 'dark');
             const darkVars = {
               '--primary-background-current-mode': getVar('--primary-background-dark-mode') || 'rgb(18, 18, 18)',
               '--secondary-background-current-mode': getVar('--secondary-background-dark-mode') || 'rgb(26, 26, 26)',
@@ -89,6 +92,7 @@
               if (value) documentStyle.setProperty(key, value);
             });
           } else {
+            document.documentElement.setAttribute('data-theme', 'light');
             const lightVars = {
               '--primary-background-current-mode': getVar('--primary-background-white-mode') || 'white',
               '--secondary-background-current-mode': getVar('--secondary-background-white-mode') || 'rgb(247, 247, 247)',

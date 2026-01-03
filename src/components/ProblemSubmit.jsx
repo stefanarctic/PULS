@@ -5,6 +5,7 @@ import { Badge } from './badge';
 import { Button } from './Buttondet';
 import useDarkMode from '../hooks/useDarkMode';
 import { useSolvedProblems } from '../hooks/useSolvedProblems';
+import '../scss/components/_problem-submit.scss';
 
 const DEFAULT_MAX_SCORE = 10;
 
@@ -195,9 +196,8 @@ const normalizeApiResult = (result) => {
     };
 };
 
-const ProblemSubmit = ({ defaultProblemId = null, defaultProblemTitle = null }) => {
-    const [problemText, setProblemText] = useState('');
-    const [problemImageFile, setProblemImageFile] = useState(null);
+const ProblemSubmit = ({ problem = null, defaultProblemId = null, defaultProblemTitle = null }) => {
+    const [solutionText, setSolutionText] = useState('');
     const [solutionImageFiles, setSolutionImageFiles] = useState([]);
     const [apiResponse, setApiResponse] = useState(null);
     const [isLoading, setIsLoading] = useState(false);
@@ -205,8 +205,8 @@ const ProblemSubmit = ({ defaultProblemId = null, defaultProblemTitle = null }) 
     const isDarkMode = useDarkMode();
     const { saveSolvedProblem } = useSolvedProblems();
 
-    const problemInputRef = useRef(null);
     const solutionInputRef = useRef(null);
+    const solutionTextRef = useRef(null);
 
     const fileToDataUrl = (file) => {
         return new Promise((resolve, reject) => {
@@ -215,23 +215,6 @@ const ProblemSubmit = ({ defaultProblemId = null, defaultProblemTitle = null }) 
             reader.onerror = reject;
             reader.readAsDataURL(file);
         });
-    };
-
-    const handleProblemFileChange = async (e) => {
-        if (e.target.files && e.target.files[0]) {
-            const file = e.target.files[0];
-            try {
-                const previewUrl = await fileToDataUrl(file);
-                setProblemImageFile({ file, previewUrl });
-                setError(null);
-            } catch (err) {
-                console.error("Error reading problem file:", err);
-                const errorMsg = "A apărut o eroare la citirea imaginii problemei.";
-                setError(errorMsg);
-                alert(errorMsg);
-            }
-            if (problemInputRef.current) problemInputRef.current.value = '';
-        }
     };
 
     const handleSolutionFilesChange = async (e) => {
@@ -255,20 +238,52 @@ const ProblemSubmit = ({ defaultProblemId = null, defaultProblemTitle = null }) 
         }
     };
 
-    const removeProblemImage = () => setProblemImageFile(null);
     const removeSolutionImage = (index) => {
         setSolutionImageFiles(prev => prev.filter((_, i) => i !== index));
     };
 
+    // Extract problem text from problem data
+    const getProblemText = () => {
+        if (!problem) return '';
+        
+        // Build problem text from problem data
+        let text = '';
+        
+        if (problem.titlu) {
+            text += `${problem.titlu}\n\n`;
+        }
+        
+        if (problem.continut) {
+            text += problem.continut;
+        }
+        
+        if (problem.formule && problem.formule.length > 0) {
+            text += `\n\nFormule:\n${problem.formule.join('\n')}`;
+        }
+        
+        if (problem.date && Object.keys(problem.date).length > 0) {
+            text += `\n\nDate:\n${Object.entries(problem.date).map(([key, value]) => `${key} = ${value}`).join('\n')}`;
+        }
+        
+        if (problem.subpuncte && problem.subpuncte.length > 0) {
+            text += `\n\nCerințe:\n${problem.subpuncte.map((sub, idx) => `${sub.id || idx + 1}. ${sub.cerinta}`).join('\n')}`;
+        }
+        
+        return text.trim();
+    };
+
     const handleSubmit = async () => {
-        if (!problemText.trim() && !problemImageFile) {
-            const errorMsg = 'Te rog introdu textul problemei SAU încarcă o imagine a problemei.';
+        // Validate that we have problem data
+        if (!problem) {
+            const errorMsg = 'Nu există date despre problemă. Te rugăm să accesezi problema din listă.';
             setError(errorMsg);
             alert(errorMsg);
             return;
         }
-        if (solutionImageFiles.length === 0) {
-            const errorMsg = 'Te rog încarcă cel puțin o imagine cu rezolvarea.';
+        
+        // Validate that we have at least solution text or images
+        if (!solutionText.trim() && solutionImageFiles.length === 0) {
+            const errorMsg = 'Te rog introdu textul soluției SAU încarcă cel puțin o imagine cu rezolvarea.';
             setError(errorMsg);
             alert(errorMsg);
             return;
@@ -279,10 +294,12 @@ const ProblemSubmit = ({ defaultProblemId = null, defaultProblemTitle = null }) 
         setApiResponse(null);
 
         try {
+            const problemText = getProblemText();
+            
             const payload = {
-                problemText: problemText.trim() || undefined,
-                problemPhotoDataUri: problemImageFile?.previewUrl,
-                solutionPhotoDataUris: solutionImageFiles.map(img => img.previewUrl),
+                problemText: problemText || undefined,
+                solutionText: solutionText.trim() || undefined,
+                solutionPhotoDataUris: solutionImageFiles.length > 0 ? solutionImageFiles.map(img => img.previewUrl) : undefined,
             };
 
             const response = await fetch('https://puls-ai-two.vercel.app/api/analyze', {
@@ -313,22 +330,12 @@ const ProblemSubmit = ({ defaultProblemId = null, defaultProblemTitle = null }) 
             // Salvează automat problema rezolvată în Firebase
             try {
                 // Determină ID-ul sub care salvăm problema rezolvată
-                const generatedProblemId = defaultProblemId !== null && defaultProblemId !== undefined
-                    ? String(defaultProblemId)
+                const generatedProblemId = (problem?.index || problem?.id || defaultProblemId) !== null && (problem?.index || problem?.id || defaultProblemId) !== undefined
+                    ? String(problem?.index || problem?.id || defaultProblemId)
                     : `submitted_${Date.now()}`;
                 
-                // Extrage un titlu din contextul problemei sau din textul introdus
-                let problemTitle = defaultProblemTitle || 'Problema trimisă';
-                if (!defaultProblemTitle) {
-                    if (problemText.trim()) {
-                        const firstLine = problemText.trim().split('\n')[0];
-                        if (firstLine.length > 0) {
-                            problemTitle = firstLine.length > 50 ? firstLine.substring(0, 50) + '...' : firstLine;
-                        }
-                    } else if (problemImageFile) {
-                        problemTitle = 'Problema din imagine';
-                    }
-                }
+                // Extrage un titlu din contextul problemei
+                const problemTitle = problem?.titlu || defaultProblemTitle || 'Problema trimisă';
                 
                 console.log('API Response:', result);
                 console.log('Analiza normalizată:', normalizedResult);
@@ -353,22 +360,17 @@ const ProblemSubmit = ({ defaultProblemId = null, defaultProblemTitle = null }) 
 
     const triggerFileInput = (ref) => ref.current?.click();
 
-    // Highlight the textarea on mount
+    // Highlight the solution textarea on mount
     useEffect(() => {
-        if (problemInputRef.current) {
-            problemInputRef.current.focus();
-            problemInputRef.current.style.borderColor = '#3b82f6';
+        if (solutionTextRef.current) {
+            solutionTextRef.current.focus();
         }
     }, []);
 
     const renderSections = (sections, emptyMessage) => {
         if (!sections || sections.length === 0) {
             return (
-                <p style={{ 
-                    margin: 0, 
-                    color: 'var(--muted-color-current-mode)',
-                    whiteSpace: 'pre-wrap'
-                }}>
+                <p className="problem-submit-empty-message">
                     {emptyMessage}
                 </p>
             );
@@ -377,473 +379,186 @@ const ProblemSubmit = ({ defaultProblemId = null, defaultProblemTitle = null }) 
         return sections.map((section, index) => (
             <div 
                 key={`${section.title || 'section'}-${index}`} 
-                style={{ marginBottom: index === sections.length - 1 ? 0 : '1rem' }}
+                className="problem-submit-section"
             >
                 {section.title && (
-                    <p style={{ 
-                        margin: 0, 
-                        marginBottom: '0.35rem', 
-                        fontWeight: 600,
-                        color: 'var(--primary-color-current-mode)'
-                    }}>
+                    <p className="problem-submit-section-title">
                         {section.title}
                     </p>
                 )}
-                <p style={{ 
-                    margin: 0, 
-                    whiteSpace: 'pre-wrap',
-                    color: 'var(--primary-color-current-mode)'
-                }}>
+                <p className="problem-submit-section-text">
                     {section.text}
                 </p>
             </div>
         ));
     };
 
+    const problemText = getProblemText();
+
     return (
-            <div style={{ 
-                maxWidth: '1200px',
-                minWidth: '900px',
-                width: '500px',
-                margin: '0 auto', 
-                padding: '2rem',
-                backgroundColor: 'var(--primary-background-current-mode)',
-                color: 'var(--primary-color-current-mode)',
-                minHeight: '100vh',
-                display: 'flex',
-                flexDirection: 'column',
-            }}>
-                <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '2rem', alignItems: 'start', width: '100%' }}>
+        <div className="problem-submit">
+            {/* Solution Card */}
+            <Card className="problem-submit-card">
+                <CardHeader className="problem-submit-card-header">
+                    <CardTitle className="problem-submit-card-title">
+                        🔧 Soluție
+                        {solutionImageFiles.length > 0 && (
+                            <Badge className="problem-submit-badge">
+                                {solutionImageFiles.length} {solutionImageFiles.length === 1 ? 'imagine' : 'imagini'}
+                            </Badge>
+                        )}
+                    </CardTitle>
+                </CardHeader>
+                <CardContent className="problem-submit-card-content">
+                    {/* Solution Text Input */}
+                    <div className="problem-submit-form-group">
+                        <label className="problem-submit-label">
+                            Text Soluție:
+                        </label>
+                        <textarea
+                            ref={solutionTextRef}
+                            className="problem-submit-textarea"
+                            placeholder="Scrie soluția ta aici..."
+                            value={solutionText}
+                            onChange={(e) => setSolutionText(e.target.value)}
+                        />
+                    </div>
+
+                    {/* Divider */}
+                    <div className="problem-submit-divider">
+                        <span className="problem-submit-divider-text">
+                            SAU
+                        </span>
+                    </div>
+
+                    {/* Solution Image Upload */}
                     <div>
-                        <Card style={{ 
-                            marginBottom: '2rem', 
-                            border: '1px solid var(--border-color-current-mode)',
-                            borderRadius: '12px',
-                            boxShadow: '0 4px 6px rgba(0, 0, 0, 0.05)',
-                            backgroundColor: 'var(--secondary-background-current-mode)'
-                        }}>
-                            <CardHeader style={{ padding: '1.5rem', borderBottom: '1px solid var(--border-color-current-mode)' }}>
-                                <CardTitle style={{ 
-                                    fontSize: '1.5rem', 
-                                    color: 'var(--primary-color-current-mode)',
-                                    display: 'flex',
-                                    alignItems: 'center',
-                                    gap: '0.5rem'
-                                }}>
-                                    📝 Problemă
-                                </CardTitle>
-                            </CardHeader>
-                            <CardContent style={{ padding: '1.5rem', paddingRight: '1rem'}}>
-                                <div style={{ marginBottom: '1.5rem' }}>
-                                    <label style={{ 
-                                        display: 'block', 
-                                        marginBottom: '0.5rem', 
-                                        fontWeight: '600',
-                                        color: 'var(--primary-color-current-mode)'
-                                    }}>
-                                        Text Problemă:
-                                    </label>
-                                    <textarea
-                                        placeholder="Scrie enunțul problemei aici..."
-                                        value={problemText}
-                                        onChange={(e) => setProblemText(e.target.value)}
-                                        disabled={!!problemImageFile}
-                                        ref={problemInputRef}
-                                        style={{
-                                            width: '92%',
-                                            minHeight: '120px',
-                                            padding: '0.75rem',
-                                            paddingLeft: '1rem',
-                                            border: `2px solid ${isDarkMode ? '#6b7280' : 'var(--border-color-current-mode)'}`,
-                                            borderRadius: '8px',
-                                            fontSize: '1rem',
-                                            fontFamily: 'inherit',
-                                            resize: 'vertical',
-                                            transition: 'border-color 0.2s',
-                                            backgroundColor: problemImageFile ? 'var(--primary-background-current-mode)' : 'var(--secondary-background-current-mode)',
-                                            color: 'var(--primary-color-current-mode)'
-                                        }}
-                                        onFocus={(e) => e.target.style.borderColor = '#3b82f6'}
-                                        onBlur={(e) => {
-                                            e.target.style.borderColor = isDarkMode ? '#6b7280' : 'var(--border-color-current-mode)';
-                                        }}
-                                    />
-                                </div>
-                                <div style={{ textAlign: 'center', margin: '1.5rem 0', position: 'relative' }}>
-                                    <div style={{
-                                        position: 'absolute',
-                                        top: '50%',
-                                        left: '0',
-                                        right: '0',
-                                        height: '1px',
-                                        backgroundColor: 'var(--border-color-current-mode)'
-                                    }}></div>
-                                    <span style={{ 
-                                        backgroundColor: 'var(--secondary-background-current-mode)',
-                                        padding: '0 1rem',
-                                        color: 'var(--muted-color-current-mode)',
-                                        fontWeight: '500',
-                                        position: 'relative'
-                                    }}>
-                                        SAU
+                        <label className="problem-submit-label">
+                            Imagini Soluție:
+                        </label>
+                        <input 
+                            type="file" 
+                            accept="image/*" 
+                            multiple 
+                            ref={solutionInputRef} 
+                            onChange={handleSolutionFilesChange} 
+                            className="problem-submit-file-input"
+                        />
+                        <Button 
+                            type="button" 
+                            onClick={() => triggerFileInput(solutionInputRef)}
+                            className="problem-submit-upload-btn"
+                        >
+                            ➕ Adaugă Imagini Soluție
+                        </Button>
+                        {solutionImageFiles.length > 0 ? (
+                            <div className="problem-submit-images-grid">
+                                {solutionImageFiles.map((img, index) => (
+                                    <div key={index} className="problem-submit-image-preview">
+                                        <img 
+                                            src={img.previewUrl} 
+                                            alt={`Soluție ${index + 1}`} 
+                                            className="problem-submit-image"
+                                        />
+                                        <Button 
+                                            type="button" 
+                                            onClick={() => removeSolutionImage(index)}
+                                            className="problem-submit-remove-image-btn"
+                                        >
+                                            ✕
+                                        </Button>
+                                    </div>
+                                ))}
+                            </div>
+                        ) : (
+                            <div className="problem-submit-empty-state">
+                                📷 Nicio imagine cu soluția încărcată
+                            </div>
+                        )}
+                    </div>
+                </CardContent>
+            </Card>
+
+            {/* Error Message */}
+            {error && (
+                <div className="problem-submit-error">
+                    <strong>⚠️ Eroare:</strong> {error}
+                </div>
+            )}
+
+            {/* Submit Button */}
+            <Button
+                type="button"
+                onClick={handleSubmit}
+                disabled={isLoading || (!solutionText.trim() && solutionImageFiles.length === 0) || !problem}
+                className="problem-submit-submit-btn"
+            >
+                {isLoading ? '⏳ Se trimite la API...' : '🚀 Trimite la API'}
+            </Button>
+
+            {isLoading && (
+                <div className="problem-submit-loading">
+                    <p>⏳ Se apelează API-ul...</p>
+                </div>
+            )}
+
+            {/* API Response */}
+            {apiResponse && (
+                <div className="problem-submit-response">
+                    <Card className="problem-submit-score-card">
+                        <CardHeader className="problem-submit-score-header">
+                            <CardTitle className="problem-submit-score-title">
+                                ⭐ Punctaj
+                            </CardTitle>
+                        </CardHeader>
+                        <CardContent className="problem-submit-score-content">
+                            <div className="problem-submit-score-container">
+                                <div className="problem-submit-score-display">
+                                    <span className="problem-submit-score-value">
+                                        {apiResponse.score}
+                                    </span>
+                                    <span className="problem-submit-score-max">
+                                        / {apiResponse.maxScore}
                                     </span>
                                 </div>
-                                <div>
-                                    <label style={{ 
-                                        display: 'block', 
-                                        marginBottom: '0.5rem', 
-                                        fontWeight: '600',
-                                        color: 'var(--primary-color-current-mode)'
-                                    }}>
-                                        Imagine Problemă:
-                                    </label>
-                                    <input 
-                                        type="file" 
-                                        accept="image/*" 
-                                        ref={problemInputRef} 
-                                        onChange={handleProblemFileChange} 
-                                        style={{ display: 'none' }} 
-                                        disabled={!!problemText.trim()} 
-                                    />
-                                    <Button 
-                                        type="button" 
-                                        onClick={() => triggerFileInput(problemInputRef)} 
-                                        disabled={!!problemText.trim()}
-                                        style={{
-                                            width: '100%',
-                                            padding: '0.75rem',
-                                            marginRight: '0',
-                                            backgroundColor: problemText.trim() ? 'var(--border-color-current-mode)' : '#3b82f6',
-                                            
-                                            color: problemText.trim() ? 'var(--muted-color-current-mode)' : 'var(--secondary-background-current-mode)',
-                                            border: 'none',
-                                            borderRadius: '8px',
-                                            fontWeight: '500',
-                                            cursor: problemText.trim() ? 'not-allowed' : 'pointer',
-                                            transition: 'all 0.2s'
-                                        }}
-                                    >
-                                        📸 Încarcă Imagine Problemă
-                                    </Button>
-                                    {problemImageFile && (
-                                        <div style={{ 
-                                            marginTop: '1rem', 
-                                            position: 'relative',
-                                            padding: '1rem',
-                                            backgroundColor: 'var(--primary-background-current-mode)',
-                                            borderRadius: '8px',
-                                            textAlign: 'center'
-                                        }}>
-                                            <img 
-                                                src={problemImageFile.previewUrl} 
-                                                alt="Previzualizare problemă" 
-                                                style={{ 
-                                                    maxWidth: '100%', 
-                                                    maxHeight: '250px', 
-                                                    borderRadius: '8px',
-                                                    boxShadow: '0 2px 4px rgba(0, 0, 0, 0.1)'
-                                                }} 
-                                            />
-                                            <Button 
-                                                type="button" 
-                                                onClick={removeProblemImage}
-                                                style={{
-                                                    position: 'absolute',
-                                                    top: '0.5rem',
-                                                    right: '0.5rem',
-                                                    backgroundColor: '#ef4444',
-                                                    color: 'var(--secondary-background-current-mode)',
-                                                    border: 'none',
-                                                    borderRadius: '50%',
-                                                    width: '32px',
-                                                    height: '32px',
-                                                    display: 'flex',
-                                                    alignItems: 'center',
-                                                    justifyContent: 'center',
-                                                    cursor: 'pointer',
-                                                    fontSize: '14px',
-                                                    fontWeight: 'bold'
-                                                }}
-                                            >
-                                                ✕
-                                            </Button>
-                                        </div>
-                                    )}
-                                </div>
-                            </CardContent>
-                        </Card>
-                        <Card style={{ 
-                            border: '1px solid var(--border-color-current-mode)',
-                            borderRadius: '12px',
-                            boxShadow: '0 4px 6px rgba(0, 0, 0, 0.05)',
-                            backgroundColor: 'var(--secondary-background-current-mode)'
-                        }}>
-                            <CardHeader style={{ padding: '1.5rem', borderBottom: '1px solid var(--border-color-current-mode)' }}>
-                                <CardTitle style={{ 
-                                    fontSize: '1.5rem', 
-                                    color: 'var(--primary-color-current-mode)',
-                                    display: 'flex',
-                                    alignItems: 'center',
-                                    gap: '0.5rem'
-                                }}>
-                                    🔧 Soluție 
-                                    <Badge style={{ 
-                                        backgroundColor: 'var(--accent-color-current-mode)', 
-                                        color: '#1e40af',
-                                        padding: '0.25rem 0.5rem',
-                                        borderRadius: '12px',
-                                        fontSize: '0.875rem'
-                                    }}>
-                                        {solutionImageFiles.length}
-                                    </Badge>
-                                </CardTitle>
-                            </CardHeader>
-                            <CardContent style={{ padding: '1.5rem' }}>
-                                <label style={{ 
-                                    display: 'block', 
-                                    marginBottom: '0.5rem', 
-                                    fontWeight: '600',
-                                    color: 'var(--primary-color-current-mode)'
-                                }}>
-                                    Imagini Soluție *
-                                </label>
-                                <input 
-                                    type="file" 
-                                    accept="image/*" 
-                                    multiple 
-                                    ref={solutionInputRef} 
-                                    onChange={handleSolutionFilesChange} 
-                                    style={{ display: 'none' }} 
-                                />
-                                <Button 
-                                    type="button" 
-                                    onClick={() => triggerFileInput(solutionInputRef)}
-                                    style={{
-                                        width: '100%',
-                                        padding: '0.75rem',
-                                        backgroundColor: '#10b981',
-                                        color: 'var(--secondary-background-current-mode)',
-                                        border: 'none',
-                                        borderRadius: '8px',
-                                        fontWeight: '500',
-                                        cursor: 'pointer',
-                                        transition: 'all 0.2s'
-                                    }}
-                                >
-                                    ➕ Adaugă Imagini Soluție
-                                </Button>
-                                {solutionImageFiles.length > 0 ? (
-                                    <div style={{ 
-                                        marginTop: '1rem',
-                                        display: 'grid',
-                                        gridTemplateColumns: 'repeat(auto-fill, minmax(120px, 1fr))',
-                                        gap: '0.75rem'
-                                    }}>
-                                        {solutionImageFiles.map((img, index) => (
-                                            <div key={index} style={{ 
-                                                position: 'relative',
-                                                backgroundColor: 'var(--primary-background-current-mode)',
-                                                borderRadius: '8px',
-                                                padding: '0.5rem'
-                                            }}>
-                                                <img 
-                                                    src={img.previewUrl} 
-                                                    alt={`Soluție ${index + 1}`} 
-                                                    style={{ 
-                                                        width: '100%', 
-                                                        height: '100px',
-                                                        objectFit: 'contain',
-                                                        borderRadius: '4px'
-                                                    }} 
-                                                />
-                                                <Button 
-                                                    type="button" 
-                                                    onClick={() => removeSolutionImage(index)}
-                                                    style={{
-                                                        position: 'absolute',
-                                                        top: '0.25rem',
-                                                        right: '0.25rem',
-                                                        backgroundColor: '#ef4444',
-                                                        color: 'var(--secondary-background-current-mode)',
-                                                        border: 'none',
-                                                        borderRadius: '50%',
-                                                        width: '24px',
-                                                        height: '24px',
-                                                        display: 'flex',
-                                                        alignItems: 'center',
-                                                        justifyContent: 'center',
-                                                        cursor: 'pointer',
-                                                        fontSize: '12px'
-                                                    }}
-                                                >
-                                                    ✕
-                                                </Button>
-                                            </div>
-                                        ))}
-                                    </div>
-                                ) : (
-                                    <div style={{ 
-                                        marginTop: '1rem',
-                                        height: '120px',
-                                        border: '2px dashed var(--border-color-current-mode)',
-                                        borderRadius: '8px',
-                                        display: 'flex',
-                                        alignItems: 'center',
-                                        justifyContent: 'center',
-                                        color: 'var(--muted-color-current-mode)',
-                                        backgroundColor: 'var(--primary-background-current-mode)',
-                                        fontSize: '1rem'
-                                    }}>
-                                        📷 Nicio imagine cu soluția încărcată
-                                    </div>
-                                )}
-                            </CardContent>
-                        </Card>
-                        {error && (
-                            <div style={{ 
-                                marginTop: '1.5rem',
-                                padding: '1rem',
-                                backgroundColor: '#fef2f2',
-                                border: '1px solid #fecaca',
-                                borderRadius: '8px',
-                                color: '#dc2626'
-                            }}>
-                                <strong>⚠️ Eroare:</strong> {error}
                             </div>
-                        )}
-                        <Button
-                            type="button"
-                            onClick={handleSubmit}
-                            disabled={isLoading || solutionImageFiles.length === 0 || (!problemText.trim() && !problemImageFile)}
-                            style={{
-                                width: '100%',
-                                height: '60px',
-                                marginTop: '1.5rem',
-                                padding: '1rem !important',
-                                paddingBottom: '1.25rem !important',
-                                fontSize: '1.1rem',
-                                fontWeight: '600',
-                                backgroundColor: (isLoading || solutionImageFiles.length === 0 || (!problemText.trim() && !problemImageFile))
-                                    ? '#e5e7eb' // fixed disabled color for both modes
-                                    : '#8b5cf6',
-                                color: (isLoading || solutionImageFiles.length === 0 || (!problemText.trim() && !problemImageFile))
-                                    ? '#64748b' // fixed disabled text color for both modes
-                                    : 'var(--secondary-background-current-mode)',
-                                border: 'none',
-                                borderRadius: '8px',
-                                cursor: (isLoading || solutionImageFiles.length === 0 || (!problemText.trim() && !problemImageFile))
-                                    ? 'not-allowed' : 'pointer',
-                                transition: 'all 0.2s',
-                                marginBottom: '2.5rem',
-                            }}
-                        >
-                            {isLoading ? '⏳ Se trimite la API...' : '🚀 Trimite la API'}
-                        </Button>
-                        {isLoading && (
-                            <div style={{ 
-                                textAlign: 'center', 
-                                marginTop: '1rem',
-                                color: '#64748b',
-                                fontSize: '1rem'
-                            }}>
-                                <p>⏳ Se apelează API-ul...</p>
+                        </CardContent>
+                    </Card>
+                    <Card className="problem-submit-result-card">
+                        <CardHeader className="problem-submit-result-header">
+                            <CardTitle className="problem-submit-result-title">
+                                ✅ Soluție Corectă
+                            </CardTitle>
+                        </CardHeader>
+                        <CardContent className="problem-submit-result-content">
+                            <div className="problem-submit-result-content-inner">
+                                {renderSections(apiResponse.solutionSections, 'Nu am primit încă o soluție text.')}
                             </div>
-                        )}
-                    </div>
-                    <div>
-                        {apiResponse && (
-                            <div>
-                                <Card style={{ 
-                                    marginBottom: '1.5rem',
-                                    border: '1px solid #fbbf24',
-                                    borderRadius: '12px',
-                                    backgroundColor: '#fffbeb',
-                                    boxShadow: '0 4px 6px rgba(0, 0, 0, 0.05)'
-                                }}>
-                                    <CardHeader style={{ padding: '1.5rem', borderBottom: '1px solid #fde68a' }}>
-                                        <CardTitle style={{ color: '#92400e', fontSize: '1.25rem' }}>
-                                            ⭐ Punctaj
-                                        </CardTitle>
-                                    </CardHeader>
-                                    <CardContent style={{ padding: '1.5rem' }}>
-                                        <div style={{
-                                            display: 'flex',
-                                            flexDirection: 'column',
-                                            gap: '1rem'
-                                        }}>
-                                            <div style={{ display: 'flex', alignItems: 'baseline', gap: '0.5rem' }}>
-                                                <span style={{ fontSize: '2.75rem', fontWeight: 700, color: '#b45309' }}>
-                                                    {apiResponse.score}
-                                                </span>
-                                                <span style={{ fontSize: '1.25rem', color: '#92400e', fontWeight: 600 }}>
-                                                    / {apiResponse.maxScore}
-                                                </span>
-                                            </div>
-                                        </div>
-                                    </CardContent>
-                                </Card>
-                                <Card style={{ 
-                                    marginBottom: '1.5rem',
-                                    border: '1px solid var(--border-color-current-mode)',
-                                    borderRadius: '12px',
-                                    backgroundColor: 'var(--primary-background-current-mode)',
-                                    boxShadow: '0 4px 6px rgba(0, 0, 0, 0.05)'
-                                }}>
-                                    <CardHeader style={{ padding: '1.5rem', borderBottom: '1px solid var(--border-color-current-mode)' }}>
-                                        <CardTitle style={{ color: 'var(--primary-color-current-mode)', fontSize: '1.25rem' }}>
-                                            ✅ Soluție Corectă
-                                        </CardTitle>
-                                    </CardHeader>
-                                    <CardContent style={{ padding: '1.5rem' }}>
-                                        <div style={{ 
-                                            backgroundColor: 'var(--secondary-background-current-mode)',
-                                            padding: '1rem',
-                                            borderRadius: '8px'
-                                        }}>
-                                            {renderSections(apiResponse.solutionSections, 'Nu am primit încă o soluție text.')}
-                                        </div>
-                                    </CardContent>
-                                </Card>
-                                <Card style={{ 
-                                    border: '1px solid var(--border-color-current-mode)',
-                                    borderRadius: '12px',
-                                    backgroundColor: 'var(--secondary-background-current-mode)',
-                                    boxShadow: '0 4px 6px rgba(0, 0, 0, 0.05)'
-                                }}>
-                                    <CardHeader style={{ padding: '1.5rem', borderBottom: '1px solid var(--border-color-current-mode)' }}>
-                                        <CardTitle style={{ color: 'var(--primary-color-current-mode)', fontSize: '1.25rem' }}>
-                                            🔍 Analiză Erori & Feedback
-                                        </CardTitle>
-                                    </CardHeader>
-                                    <CardContent style={{ padding: '1.5rem' }}>
-                                        <div style={{ 
-                                            backgroundColor: 'var(--primary-background-current-mode)',
-                                            padding: '1rem',
-                                            borderRadius: '8px'
-                                        }}>
-                                            {renderSections(apiResponse.errorSections, 'Nu au fost găsite erori sau feedback suplimentar.')}
-                                        </div>
-                                    </CardContent>
-                                </Card>
+                        </CardContent>
+                    </Card>
+                    <Card className="problem-submit-result-card">
+                        <CardHeader className="problem-submit-result-header">
+                            <CardTitle className="problem-submit-result-title">
+                                🔍 Analiză Erori & Feedback
+                            </CardTitle>
+                        </CardHeader>
+                        <CardContent className="problem-submit-result-content">
+                            <div className="problem-submit-result-content-inner-alt">
+                                {renderSections(apiResponse.errorSections, 'Nu au fost găsite erori sau feedback suplimentar.')}
                             </div>
-                        )}
-                        {!apiResponse && (
-                            <div style={{
-                                padding: '3rem',
-                                textAlign: 'center',
-                                backgroundColor: 'var(--secondary-background-current-mode)',
-                                borderRadius: '12px',
-                                border: '2px dashed var(--border-color-current-mode)',
-                                color: 'var(--muted-color-current-mode)'
-                            }}>
-                                <div style={{ fontSize: '3rem', marginBottom: '1rem' }}>📊</div>
-                                <h3 style={{ fontSize: '1.25rem', marginBottom: '0.5rem' }}>Rezultatele vor apărea aici</h3>
-                                <p>Completează formularul și trimite la API pentru a vedea analiza</p>
-                            </div>
-                        )}
-                    </div>
+                        </CardContent>
+                    </Card>
                 </div>
-            </div>
+            )}
+
+            {!apiResponse && !isLoading && (
+                <div className="problem-submit-placeholder">
+                    <div className="problem-submit-placeholder-icon">📊</div>
+                    <h3 className="problem-submit-placeholder-title">Rezultatele vor apărea aici</h3>
+                    <p>Completează formularul și trimite la API pentru a vedea analiza</p>
+                </div>
+            )}
+        </div>
     );
 }
 

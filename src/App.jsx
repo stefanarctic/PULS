@@ -120,7 +120,6 @@ const App = () => {
           <Route path="/search" element={<SearchResults />} />
           <Route path="/profil" element={<Profile />} />
           <Route path="/admin" element={<AdminDashboard />} />
-          <Route path="/api-test" element={<ProblemSubmit />} />
         </Routes>
       </div>
       <AssistantAvatar />
