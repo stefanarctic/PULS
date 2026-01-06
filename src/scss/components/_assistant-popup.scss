@@ -1,4 +1,4 @@
-// Modern AI Assistant Popup Styles
+// Modern Profesorul Whiz Popup Styles
 // Inspired by ChatGPT, Claude, and other modern chatbots
 
 .assistant-popup-overlay {
@@ -515,6 +515,14 @@
   justify-content: center;
   color: #fff;
   box-shadow: 0 8px 24px rgba(96, 165, 250, 0.3);
+  overflow: hidden;
+  
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 50%;
+  }
 }
 
 .assistant-popup-prompts {

@@ -8,6 +8,7 @@ import {
 import { searchKnowledgeBase } from "../lib/assistant-knowledge-base.js";
 // MathJaxRender eliminat - fiecare mesaj gestionează propriul rendering prin Intersection Observer
 import { useChats } from "../hooks/useChats";
+import useDarkMode from "../hooks/useDarkMode";
 
 // Hook pentru Intersection Observer - detectează când mesajul devine vizibil
 const useIntersectionObserver = (ref, options = {}) => {
@@ -48,7 +49,8 @@ const MessageBubble = React.memo(({
   isLastAIMessage, 
   typingText, 
   typing, 
-  userProfilePic, 
+  userProfilePic,
+  professorWhizAvatar,
   onCopyMessage,
   copiedMessageId,
   formatTime
@@ -113,14 +115,17 @@ const MessageBubble = React.memo(({
     });
     
     // Handle URLs (convert to markdown links if not already)
-    const urlRegex = /(https?:\/\/[^\s]+)/g;
-    protectedText = protectedText.replace(urlRegex, (url) => {
-      // Only convert if it's not already a markdown link
-      if (!protectedText.includes(`[${url}](${url})`)) {
+    // Nu procesăm URL-uri care sunt deja în format markdown [text](url)
+    // Dacă textul conține deja link-uri markdown, nu procesăm URL-urile simple
+    const hasMarkdownLinks = /\[([^\]]+)\]\(([^)]+)\)/.test(protectedText);
+    
+    if (!hasMarkdownLinks) {
+      // Doar dacă nu există link-uri markdown, procesăm URL-urile simple
+      const urlRegex = /(https?:\/\/[^\s<>"'.!?;:)\]}]+)/g;
+      protectedText = protectedText.replace(urlRegex, (url) => {
         return `[${url}](${url})`;
-      }
-      return url;
-    });
+      });
+    }
     
     return protectedText;
   }, []);
@@ -153,7 +158,12 @@ const MessageBubble = React.memo(({
     >
       <div className="assistant-message-avatar">
         {msg.role === 'ai' ? (
-          <Bot size={20} />
+          <img 
+            src={professorWhizAvatar || "/Modele Asistent/professor-whiz-alb.png"} 
+            alt="Profesorul Whiz" 
+            className="assistant-message-avatar-img"
+            style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+          />
         ) : userProfilePic ? (
           <img 
             src={userProfilePic} 
@@ -226,6 +236,7 @@ const MessageBubble = React.memo(({
     prevProps.typingText === nextProps.typingText &&
     prevProps.typing === nextProps.typing &&
     prevProps.userProfilePic === nextProps.userProfilePic &&
+    prevProps.professorWhizAvatar === nextProps.professorWhizAvatar &&
     prevProps.copiedMessageId === nextProps.copiedMessageId
   );
 });
@@ -233,18 +244,17 @@ const MessageBubble = React.memo(({
 MessageBubble.displayName = 'MessageBubble';
 
 const PROMPTS = [
-  "Raportează o problemă",
-  "Am găsit un bug",
-  "Vreau să dau feedback",
-  "Unde găsesc resursele despre pendule?",
-  "Nu mă pot conecta",
-  "Am o sugestie",
-  "Ce probleme de mecanică aveți?",
-  "Cum te cheamă?"
+  "Explică-mi concepte de mecanică",
+  "Cum rezolv probleme de fizică?",
+  "Unde găsesc resurse despre oscilații?",
+  "Ajută-mă cu probleme de termodinamică",
+  "Ce formule trebuie să știu pentru BAC?",
+  "Explică-mi legile lui Newton",
+  "Cum funcționează energia mecanică?",
+  "Ce resurse recomanzi pentru pregătire?"
 ];
 
 const AssistantPopup = ({ onClose, initialMessage }) => {
-  const [selectedPrompt, setSelectedPrompt] = useState("");
   const [inputValue, setInputValue] = useState("");
   const [chatMode, setChatMode] = useState(false);
   const textareaRef = useRef(null);
@@ -256,6 +266,7 @@ const AssistantPopup = ({ onClose, initialMessage }) => {
   const modalRef = useRef(null);
   const [copiedMessageId, setCopiedMessageId] = useState(null);
   const messagesEndRef = useRef(null);
+  const darkModeOn = useDarkMode();
   
   // Chat management hook
   const {
@@ -270,6 +281,11 @@ const AssistantPopup = ({ onClose, initialMessage }) => {
     getCurrentChat,
     user
   } = useChats();
+  
+  // Professor Whiz avatar image based on dark mode
+  const professorWhizAvatar = darkModeOn 
+    ? "/Modele Asistent/professor-whiz-negru.png"
+    : "/Modele Asistent/professor-whiz-alb.png";
 
   // Funcție pentru a fixa URL-urile Google Profile Images
   const fixGoogleProfileImageUrl = (url) => {
@@ -417,14 +433,8 @@ const AssistantPopup = ({ onClose, initialMessage }) => {
   };
 
   const handlePromptClick = (prompt) => {
-    setSelectedPrompt(prompt);
-    setInputValue(prompt);
+    // Trimite direct mesajul fără să afișeze tag-ul de selecție
     handleSend(null, prompt);
-  };
-
-  const handleClearPrompt = () => {
-    setSelectedPrompt("");
-    setInputValue("");
   };
 
   // Copy message to clipboard - memoizat pentru performanță
@@ -464,16 +474,17 @@ const AssistantPopup = ({ onClose, initialMessage }) => {
     let currentText = "";
     let index = 0;
     let lastTypesetTime = Date.now();
-    const typesetInterval = 500; // Mărit de la 300ms pentru a reduce overhead
+    const typesetInterval = 200; // Redus pentru a formata MathJax mai des
     let animationFrameId = null;
     let lastUpdateTime = Date.now();
-    const minInterval = 20; // Minimum 20ms între actualizări (50 FPS max)
+    const minInterval = 15; // Viteză similară ChatGPT - foarte rapid
     
     const typeStep = () => {
       const now = Date.now();
       if (index < text.length && now - lastUpdateTime >= minInterval) {
-        // Adaugă mai multe caractere dacă textul este lung pentru a accelera
-        const chunkSize = text.length > 500 ? 3 : 1;
+        // Adaugă multe caractere odată pentru viteză ChatGPT-like
+        // ChatGPT adaugă rapid mai multe caractere simultan
+        const chunkSize = text.length > 1000 ? 15 : text.length > 500 ? 10 : text.length > 200 ? 6 : 3;
         const endIndex = Math.min(index + chunkSize, text.length);
         currentText = text.substring(0, endIndex);
         setTypingText(currentText);
@@ -583,7 +594,7 @@ const AssistantPopup = ({ onClose, initialMessage }) => {
     if (!text) return;
 
     if (!user?.uid) {
-      alert('Trebuie să fii logat pentru a folosi AI Assistant. Te rugăm să te conectezi.');
+      alert('Trebuie să fii logat pentru a folosi Profesorul Whiz. Te rugăm să te conectezi.');
       return;
     }
 
@@ -656,6 +667,13 @@ const AssistantPopup = ({ onClose, initialMessage }) => {
       const contentType = response.headers.get("content-type");
       const responseText = await response.text();
       
+      // Debug: printează output-ul primit de la AI
+      console.log("=== AI RESPONSE DEBUG ===");
+      console.log("Content-Type:", contentType);
+      console.log("Raw Response Text:", responseText);
+      console.log("Response Text Length:", responseText?.length);
+      console.log("=========================");
+      
       if (!response.ok) {
         let errorMessage = `Eroare ${response.status}: ${response.statusText}`;
         if (contentType && contentType.includes("application/json") && responseText) {
@@ -706,6 +724,12 @@ const AssistantPopup = ({ onClose, initialMessage }) => {
       } else {
         aiText = responseText;
       }
+      
+      // Debug: printează textul final procesat
+      console.log("=== AI TEXT FINAL ===");
+      console.log("AI Text:", aiText);
+      console.log("AI Text Length:", aiText?.length);
+      console.log("=====================");
       
       const aiMessage = { 
         role: "ai", 
@@ -855,8 +879,12 @@ const AssistantPopup = ({ onClose, initialMessage }) => {
         <div className="assistant-popup-header">
           <div className="assistant-popup-header-left">
             <div className="assistant-popup-logo">
-              <Sparkles size={20} />
-              <span>AI Assistant</span>
+              <img 
+                src={professorWhizAvatar} 
+                alt="Profesorul Whiz" 
+                style={{ width: '24px', height: '24px', borderRadius: '50%', objectFit: 'cover' }}
+              />
+              <span>Profesorul Whiz</span>
             </div>
           </div>
           <div className="assistant-popup-header-right">
@@ -901,7 +929,7 @@ const AssistantPopup = ({ onClose, initialMessage }) => {
                 <div className="assistant-popup-empty-state">
                   <MessageSquare size={32} />
                   <p>Trebuie să fii logat</p>
-                  <span>Conectează-te pentru a folosi AI Assistant</span>
+                  <span>Conectează-te pentru a folosi Profesorul Whiz</span>
                 </div>
               ) : chatsLoading ? (
                 <div className="assistant-popup-loading-state">
@@ -958,10 +986,14 @@ const AssistantPopup = ({ onClose, initialMessage }) => {
                 <div className="assistant-popup-welcome">
                   <div className="assistant-popup-welcome-header">
                     <div className="assistant-popup-avatar-large">
-                      <Bot size={32} />
+                      <img 
+                        src={professorWhizAvatar} 
+                        alt="Profesorul Whiz" 
+                        style={{ width: '100%', height: '100%', objectFit: 'cover', borderRadius: '50%' }}
+                      />
                     </div>
-                    <h2>AI Assistant</h2>
-                    <p>Trebuie să fii logat pentru a folosi AI Assistant</p>
+                    <h2>Profesorul Whiz</h2>
+                    <p>Trebuie să fii logat pentru a folosi Profesorul Whiz</p>
                     <p style={{ fontSize: '0.9rem', color: 'var(--muted-color-current-mode)', marginTop: '0.5rem' }}>
                       Conectează-te pentru a începe conversația
                     </p>
@@ -971,16 +1003,20 @@ const AssistantPopup = ({ onClose, initialMessage }) => {
                 <div className="assistant-popup-welcome">
                   <div className="assistant-popup-welcome-header">
                     <div className="assistant-popup-avatar-large">
-                      <Bot size={32} />
+                      <img 
+                        src={professorWhizAvatar} 
+                        alt="Profesorul Whiz" 
+                        style={{ width: '100%', height: '100%', objectFit: 'cover', borderRadius: '50%' }}
+                      />
                     </div>
-                    <h2>Bun venit la AI Assistant</h2>
+                    <h2>Bun venit la Profesorul Whiz</h2>
                     <p>Cu ce te pot ajuta astăzi?</p>
                   </div>
                   <div className="assistant-popup-prompts">
                     {PROMPTS.map((prompt, idx) => (
                       <button
                         key={idx}
-                        className={`assistant-popup-prompt-btn ${selectedPrompt === prompt ? 'selected' : ''}`}
+                        className="assistant-popup-prompt-btn"
                         onClick={() => handlePromptClick(prompt)}
                       >
                         {prompt}
@@ -988,18 +1024,6 @@ const AssistantPopup = ({ onClose, initialMessage }) => {
                     ))}
                   </div>
                   <form className="assistant-popup-form" onSubmit={handleSend}>
-                    {selectedPrompt && (
-                      <div className="assistant-popup-selected-prompt">
-                        <span>{selectedPrompt}</span>
-                        <button
-                          type="button"
-                          className="assistant-popup-clear-prompt"
-                          onClick={handleClearPrompt}
-                        >
-                          <X size={14} />
-                        </button>
-                      </div>
-                    )}
                     <div className="assistant-popup-input-container">
                       <textarea
                         ref={textareaRef}
@@ -1027,7 +1051,11 @@ const AssistantPopup = ({ onClose, initialMessage }) => {
                   <div className="assistant-popup-chat-window" ref={chatRef}>
                     {messages.length === 0 ? (
                       <div className="assistant-popup-empty-chat">
-                        <Bot size={48} />
+                        <img 
+                          src={professorWhizAvatar} 
+                          alt="Profesorul Whiz" 
+                          style={{ width: '48px', height: '48px', borderRadius: '50%', objectFit: 'cover' }}
+                        />
                         <p>Începe conversația</p>
                       </div>
                     ) : (
@@ -1043,6 +1071,7 @@ const AssistantPopup = ({ onClose, initialMessage }) => {
                             typingText={typingText}
                             typing={typing}
                             userProfilePic={userProfilePic}
+                            professorWhizAvatar={professorWhizAvatar}
                             onCopyMessage={handleCopyMessage}
                             copiedMessageId={copiedMessageId}
                             formatTime={formatTime}
@@ -1053,7 +1082,12 @@ const AssistantPopup = ({ onClose, initialMessage }) => {
                     {loading && (
                       <div className="assistant-message assistant-message--ai loading">
                         <div className="assistant-message-avatar">
-                          <Bot size={20} />
+                          <img 
+                            src={professorWhizAvatar} 
+                            alt="Profesorul Whiz" 
+                            className="assistant-message-avatar-img"
+                            style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+                          />
                         </div>
                         <div className="assistant-message-content-wrapper">
                           <div className="assistant-popup-typing-indicator">

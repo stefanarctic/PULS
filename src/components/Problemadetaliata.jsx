@@ -212,12 +212,12 @@ export const ProblemaDetaliata = ({ problema, onBack }) => {
       try {
         assistant.openWithMessage(msg);
       } catch (error) {
-        console.error('Error opening AI assistant:', error);
-        alert('Eroare la deschiderea asistentului AI. Te rugăm să încerci din nou.');
+        console.error('Error opening Profesorul Whiz:', error);
+        alert('Eroare la deschiderea Profesorului Whiz. Te rugăm să încerci din nou.');
       }
     } else {
-      console.warn('AI Assistant not available. Make sure the AssistantAvatar component is mounted.');
-      alert('Asistentul AI nu este disponibil momentan. Te rugăm să reîmprospătezi pagina.');
+      console.warn('Profesorul Whiz not available. Make sure the AssistantAvatar component is mounted.');
+      alert('Profesorul Whiz nu este disponibil momentan. Te rugăm să reîmprospătezi pagina.');
     }
   };
 
