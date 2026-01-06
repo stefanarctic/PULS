@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect } from 'react';
+import React, { useState, useRef, useEffect, useCallback } from 'react';
 import Layout from './Layout';
 import { Card, CardHeader, CardTitle, CardContent } from './card';
 import { Badge } from './badge';
@@ -300,6 +300,8 @@ const ProblemSubmit = ({ problem = null, defaultProblemId = null, defaultProblem
                 problemText: problemText || undefined,
                 solutionText: solutionText.trim() || undefined,
                 solutionPhotoDataUris: solutionImageFiles.length > 0 ? solutionImageFiles.map(img => img.previewUrl) : undefined,
+                outputFormat: 'mathjax',
+                instructions: 'IMPORTANT: Folosește DOAR formatul MathJax pentru toate expresiile matematice. Folosește delimitatorii \\( ... \\) pentru formule inline și \\[ ... \\] pentru formule pe linie separată. NU folosi delimitatori LaTeX precum $...$ sau alte formate.',
             };
 
             const response = await fetch('https://puls-ai-two.vercel.app/api/analyze', {
@@ -367,6 +369,98 @@ const ProblemSubmit = ({ problem = null, defaultProblemId = null, defaultProblem
         }
     }, []);
 
+    // Preprocess text for MathJax - same logic as AssistantPopup
+    const preprocessTextForMathJax = useCallback((text) => {
+        if (!text) return text;
+        
+        // First, protect markdown links from being processed as math formulas
+        const markdownLinks = [];
+        const markdownLinkRegex = /\[([^\]]+)\]\(([^)]+)\)/g;
+        let linkMatch;
+        let protectedText = text;
+        let linkIndex = 0;
+        
+        // Replace markdown links with placeholders
+        while ((linkMatch = markdownLinkRegex.exec(text)) !== null) {
+            const placeholder = `__MARKDOWN_LINK_${linkIndex}__`;
+            markdownLinks.push(linkMatch[0]);
+            protectedText = protectedText.replace(linkMatch[0], placeholder);
+            linkIndex++;
+        }
+        
+        // Convert $...$ to \( ... \)
+        protectedText = protectedText.replace(/\$(.+?)\$/g, (match, expr) => {
+            return `\\(${expr.trim()}\\)`;
+        });
+        
+        // Convert [ ... ] to \( ... \) if it looks like LaTeX
+        protectedText = protectedText.replace(/\[([^\]]+)\]/g, (match, content) => {
+            // Skip if it looks like a markdown link placeholder
+            if (content.startsWith('__MARKDOWN_LINK_')) {
+                return match;
+            }
+            
+            const trimmedContent = content.trim();
+            
+            // Check if content looks like LaTeX
+            const hasLatex = /\\[a-zA-Z]{2,}|\\[^a-zA-Z\s]|\\mathrm\{|\\frac\{|\\cdot|\\sin|\\cos|\\tan|\\sqrt|\\sum|\\int|\\alpha|\\beta|\\gamma|\\delta|\\theta|\\pi|\\mu|\\Delta|[\^_\{\}]/.test(trimmedContent);
+            const hasMathOperators = /[A-Za-z]\s*[=+\-*/]\s*[A-Za-z0-9]/.test(trimmedContent);
+            
+            if (hasLatex || (hasMathOperators && trimmedContent.length > 3)) {
+                return `\\(${trimmedContent}\\)`;
+            }
+            
+            return match;
+        });
+        
+        // Restore markdown links
+        markdownLinks.forEach((link, index) => {
+            protectedText = protectedText.replace(`__MARKDOWN_LINK_${index}__`, link);
+        });
+        
+        return protectedText;
+    }, []);
+
+    // Component for individual section with MathJax support
+    const SolutionSection = React.memo(({ section, index }) => {
+        const sectionRef = useRef(null);
+        const textRef = useRef(null);
+        
+        // Typeset MathJax when section is rendered - same as AssistantPopup
+        useEffect(() => {
+            if (textRef.current) {
+                const timeoutId = setTimeout(() => {
+                    if (window.MathJax) {
+                        if (window.MathJax.typesetPromise) {
+                            window.MathJax.typesetPromise([textRef.current]).catch(() => {});
+                        } else if (window.MathJax.typeset) {
+                            window.MathJax.typeset([textRef.current]);
+                        }
+                    }
+                }, 50);
+                return () => clearTimeout(timeoutId);
+            }
+        }, [section.text]);
+
+        return (
+            <div 
+                className="problem-submit-section"
+                ref={sectionRef}
+            >
+                {section.title && (
+                    <p className="problem-submit-section-title">
+                        {section.title}
+                    </p>
+                )}
+                <div 
+                    ref={textRef}
+                    className="problem-submit-section-text"
+                    dangerouslySetInnerHTML={{ __html: preprocessTextForMathJax(section.text) }}
+                />
+            </div>
+        );
+    });
+
     const renderSections = (sections, emptyMessage) => {
         if (!sections || sections.length === 0) {
             return (
@@ -377,19 +471,11 @@ const ProblemSubmit = ({ problem = null, defaultProblemId = null, defaultProblem
         }
 
         return sections.map((section, index) => (
-            <div 
-                key={`${section.title || 'section'}-${index}`} 
-                className="problem-submit-section"
-            >
-                {section.title && (
-                    <p className="problem-submit-section-title">
-                        {section.title}
-                    </p>
-                )}
-                <p className="problem-submit-section-text">
-                    {section.text}
-                </p>
-            </div>
+            <SolutionSection 
+                key={`${section.title || 'section'}-${index}`}
+                section={section}
+                index={index}
+            />
         ));
     };
 
