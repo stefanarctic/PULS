@@ -239,6 +239,31 @@ const AdminDashboard = () => {
     handleEdit(problem);
   };
 
+  // Funcție pentru a verifica dacă query-ul este un ID valid și deschide modalul de editare
+  const handleSearchSubmit = (e) => {
+    e.preventDefault();
+    if (searchQuery.trim()) {
+      const query = searchQuery.trim();
+      // Verifică dacă query-ul este un număr și dacă există o problemă cu acel index
+      const problemIndex = parseInt(query);
+      if (!isNaN(problemIndex)) {
+        const problem = problems.find(p => p.index === problemIndex);
+        if (problem) {
+          handleEdit(problem);
+          setSearchQuery(''); // Șterge query-ul după ce găsește problema
+          return;
+        }
+      }
+      // Dacă nu e număr, poate fi ID direct
+      const problemById = problems.find(p => p.id === query || p.id?.toString() === query);
+      if (problemById) {
+        handleEdit(problemById);
+        setSearchQuery(''); // Șterge query-ul după ce găsește problema
+        return;
+      }
+    }
+  };
+
   const handleEdit = (problem) => {
     setEditingProblem(problem.id);
     
@@ -847,7 +872,7 @@ Dacă nu găsești date sau formule, returnează obiecte goale. Răspunde DOAR c
           {/* Search and Filters - Similar to /probleme */}
           <div className="admin-filters-section">
             <div className="filters-row">
-              <form onSubmit={(e) => e.preventDefault()} className="search-container">
+              <form onSubmit={handleSearchSubmit} className="search-container">
                 <span className="search-icon"><SearchIcon /></span>
                 <input
                   type="text"
