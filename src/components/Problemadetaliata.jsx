@@ -54,6 +54,26 @@ export const ProblemaDetaliata = ({ problema, onBack }) => {
     return () => unsubscribe();
   }, []);
 
+  const handleEdit = () => {
+    // Check if user is authenticated before navigating
+    if (!auth.currentUser) {
+      alert('Trebuie să te conectezi pentru a edita probleme. Te rugăm să te autentifici mai întâi.');
+      return;
+    }
+
+    // Get the Firestore document ID
+    const problemId = problema.id;
+    
+    if (!problemId) {
+      console.error('Problem ID is missing:', problema);
+      alert('Eroare: Problema nu are un ID valid. Nu se poate edita.');
+      return;
+    }
+
+    // Navigate to admin dashboard with editId parameter
+    navigate(`/admin?editId=${problemId}`);
+  };
+
   const handleDelete = () => {
     // Check if user is authenticated before showing confirmation
     if (!auth.currentUser) {
@@ -560,7 +580,7 @@ export const ProblemaDetaliata = ({ problema, onBack }) => {
             </CardContent>
           </Card>
           {isAdmin && (
-            <div style={{ marginTop: 16, textAlign: 'center' }}>
+            <div style={{ marginTop: 16, textAlign: 'center', display: 'flex', flexDirection: 'column', gap: '12px' }}>
               {!isAuthenticated ? (
                 <div style={{ 
                   padding: '12px', 
@@ -570,21 +590,30 @@ export const ProblemaDetaliata = ({ problema, onBack }) => {
                   color: '#856404',
                   fontSize: '14px'
                 }}>
-                  ⚠️ Trebuie să te conectezi pentru a șterge probleme
+                  ⚠️ Trebuie să te conectezi pentru a edita sau șterge probleme
                 </div>
               ) : (
-                <button 
-                  className="problem-card-delete-btn" 
-                  onClick={handleDelete} 
-                  disabled={deleteStatus === 'loading'}
-                  title={deleteStatus === 'loading' ? 'Se șterge...' : 'Șterge problema'}
-                  style={{ 
-                    opacity: deleteStatus === 'loading' ? 0.6 : 1,
-                    cursor: deleteStatus === 'loading' ? 'not-allowed' : 'pointer'
-                  }}
-                >
-                  {deleteStatus === 'loading' ? '⏳ Se șterge...' : '🗑️ Șterge problema'}
-                </button>
+                <>
+                  <button 
+                    className="problem-card-edit-btn" 
+                    onClick={handleEdit}
+                    title="Editează problema"
+                  >
+                    ✏️ Editează problema
+                  </button>
+                  <button 
+                    className="problem-card-delete-btn" 
+                    onClick={handleDelete} 
+                    disabled={deleteStatus === 'loading'}
+                    title={deleteStatus === 'loading' ? 'Se șterge...' : 'Șterge problema'}
+                    style={{ 
+                      opacity: deleteStatus === 'loading' ? 0.6 : 1,
+                      cursor: deleteStatus === 'loading' ? 'not-allowed' : 'pointer'
+                    }}
+                  >
+                    {deleteStatus === 'loading' ? '⏳ Se șterge...' : '🗑️ Șterge problema'}
+                  </button>
+                </>
               )}
             </div>
           )}

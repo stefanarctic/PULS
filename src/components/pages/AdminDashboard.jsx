@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useMemo } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 import Layout from '../Layout';
 import { useAdmin } from '../../hooks/useAdmin';
 import { fetchProblems, updateProblem, deleteProblem, clearUpdateStatus, clearDeleteStatus } from '../../features/problems/problemsSlice';
@@ -19,12 +19,13 @@ const AdminDashboard = () => {
   const { isAdmin, loading: adminLoading, user } = useAdmin();
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const location = useLocation();
   const { value: problems, status, updateStatus, updateError, deleteStatus, deleteError } = useSelector(state => state.problems);
 
   const [searchQuery, setSearchQuery] = useState('');
   const [selectedDifficulty, setSelectedDifficulty] = useState('Toate');
   const [selectedCategory, setSelectedCategory] = useState('Toate');
-  const [isBacFilter, setIsBacFilter] = useState(false);
+  const [problemTypeFilter, setProblemTypeFilter] = useState('all'); // 'all', 'normal', 'bac'
   const [filterYear, setFilterYear] = useState('');
   const [filterVariant, setFilterVariant] = useState('');
   const [filterType, setFilterType] = useState('');
@@ -61,7 +62,7 @@ const AdminDashboard = () => {
 
   useEffect(() => {
     if (updateStatus === 'succeeded') {
-      setEditingProblem(null);
+      handleCloseModal();
       setFormData({
         titlu: '',
         descriere: '',
@@ -108,6 +109,24 @@ const AdminDashboard = () => {
     }
   }, [deleteStatus, dispatch]);
 
+  // Handle editId URL parameter to automatically open edit modal
+  useEffect(() => {
+    if (status === 'succeeded' && problems.length > 0 && !editingProblem) {
+      const searchParams = new URLSearchParams(location.search);
+      const editId = searchParams.get('editId');
+      
+      if (editId) {
+        const problemToEdit = problems.find(p => p.id === editId);
+        if (problemToEdit) {
+          handleEdit(problemToEdit);
+          // Remove editId from URL
+          // searchParams.delete('editId');
+          // navigate(`/admin${searchParams.toString() ? `?${searchParams.toString()}` : ''}`, { replace: true });
+        }
+      }
+    }
+  }, [status, problems, location.search, editingProblem, navigate]);
+
   const categories = useMemo(() => {
     const cats = [...new Set(problems.map(p => p.categorie).filter(Boolean))].sort();
     return ['Toate', ...cats];
@@ -148,8 +167,23 @@ const AdminDashboard = () => {
     return [...new Set(problems.map(p => p.metadata?.subjectArea).filter(Boolean))].sort();
   }, [problems]);
 
+  // Helper function to check if a problem is BAC
+  const isBacProblem = (problem) => {
+    const categorie = problem.categorie || '';
+    const normalizedCategorie = normalizeString(categorie);
+    return categorie === 'Bac' || normalizedCategorie.includes('bac');
+  };
+
   const filteredProblems = useMemo(() => {
     return problems.filter(problem => {
+      // Problem type filter (all, normal, bac)
+      if (problemTypeFilter === 'bac') {
+        if (!isBacProblem(problem)) return false;
+      } else if (problemTypeFilter === 'normal') {
+        if (isBacProblem(problem)) return false;
+      }
+      // If problemTypeFilter === 'all', show all problems
+
       // Search filter
       if (searchQuery) {
         const query = normalizeString(searchQuery);
@@ -175,12 +209,8 @@ const AdminDashboard = () => {
         return false;
       }
 
-      // BAC filters (only if BAC filter is enabled)
-      if (isBacFilter) {
-        const isBac = problem.categorie === 'Bac' || 
-                     (problem.categorie && normalizeString(problem.categorie).includes('bac'));
-        if (!isBac) return false;
-
+      // BAC-specific filters (only apply to BAC problems)
+      if (isBacProblem(problem)) {
         if (filterYear && problem.metadata?.year?.toString() !== filterYear && !problem.varianta?.includes(filterYear)) {
           return false;
         }
@@ -197,7 +227,13 @@ const AdminDashboard = () => {
 
       return true;
     });
-  }, [problems, searchQuery, selectedDifficulty, selectedCategory, isBacFilter, filterYear, filterVariant, filterType, filterSubjectArea]);
+  }, [problems, searchQuery, selectedDifficulty, selectedCategory, problemTypeFilter, filterYear, filterVariant, filterType, filterSubjectArea]);
+
+  const handleCloseModal = () => {
+    // setEditingProblem(null);
+    navigate('/admin', { replace: false });
+    setTimeout(() => setEditingProblem(null), 50);
+  };
 
   const handleProblemClick = (problem) => {
     handleEdit(problem);
@@ -779,12 +815,8 @@ Dacă nu găsești date sau formule, returnează obiecte goale. Răspunde DOAR c
     return (
       <Layout>
         <div className="admin-dashboard-loading">
-          <div className="container">
-            <div className="loading-spinner">
-              <div className="spinner"></div>
-              <p>Se verifică permisiunile...</p>
-            </div>
-          </div>
+          <div className="spinner"></div>
+          <p>Se verifică permisiunile...</p>
         </div>
       </Layout>
     );
@@ -828,6 +860,24 @@ Dacă nu găsești date sau formule, returnează obiecte goale. Răspunde DOAR c
               <div className="select-container">
                 <select
                   className="filter-select"
+                  value={problemTypeFilter}
+                  onChange={(e) => {
+                    setProblemTypeFilter(e.target.value);
+                    // Clear BAC-specific filters when switching away from BAC filter
+                    if (e.target.value !== 'bac') {
+                      setFilterYear('');
+                      setFilterVariant('');
+                      setFilterType('');
+                      setFilterSubjectArea('');
+                    }
+                  }}
+                >
+                  <option value="all">Toate</option>
+                  <option value="normal">Normale</option>
+                  <option value="bac">Bac</option>
+                </select>
+                <select
+                  className="filter-select"
                   value={selectedDifficulty}
                   onChange={(e) => setSelectedDifficulty(e.target.value)}
                 >
@@ -851,29 +901,8 @@ Dacă nu găsești date sau formule, returnează obiecte goale. Răspunde DOAR c
               </div>
             </div>
 
-            {/* BAC Filter Toggle */}
-            <div className="bac-filter-toggle">
-              <label className="bac-toggle-label">
-                <input
-                  type="checkbox"
-                  checked={isBacFilter}
-                  onChange={(e) => {
-                    setIsBacFilter(e.target.checked);
-                    if (!e.target.checked) {
-                      setFilterYear('');
-                      setFilterVariant('');
-                      setFilterType('');
-                      setFilterSubjectArea('');
-                    }
-                  }}
-                />
-                <GraduationCap size={16} />
-                <span>Filtrează problemele de BAC</span>
-              </label>
-            </div>
-
-            {/* BAC Specific Filters - Only show when BAC filter is enabled */}
-            {isBacFilter && (
+            {/* BAC Specific Filters - Only show when BAC filter is selected */}
+            {problemTypeFilter === 'bac' && (
               <div className="bac-filters-row">
                 <select
                   className="filter-select"
@@ -1019,11 +1048,11 @@ Dacă nu găsești date sau formule, returnează obiecte goale. Răspunde DOAR c
 
           {/* Edit Modal - Exact copy from AddProblemModal */}
           {editingProblem && (
-            <div className="modal-overlay" onClick={() => setEditingProblem(null)}>
+            <div className="modal-overlay" onClick={handleCloseModal}>
               <div className="modal-content" onClick={e => e.stopPropagation()}>
                 <div className="modal-header">
                   <h2>Editează problemă</h2>
-                  <button className="modal-close" onClick={() => setEditingProblem(null)}>×</button>
+                  <button className="modal-close" onClick={handleCloseModal}>×</button>
                 </div>
                 
                 {updateError && (
@@ -1484,7 +1513,7 @@ Dacă nu găsești date sau formule, returnează obiecte goale. Răspunde DOAR c
                     <button
                       type="button"
                       className="btn-secondary"
-                      onClick={() => setEditingProblem(null)}
+                      onClick={handleCloseModal}
                       disabled={updateStatus === 'loading'}
                     >
                       Anulează

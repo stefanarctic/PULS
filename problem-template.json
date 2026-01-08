@@ -1,0 +1,37 @@
+{
+  "titlu": "Pendul matematic - Determinarea perioadei și energiei mecanice",
+  "descriere": "Problema se referă la mișcarea unui pendul matematic și determinarea perioadei de oscilație și a energiei mecanice totale.",
+  "categorie": "Oscilații",
+  "dificultate": "mediu",
+  "continut": "Un pendul matematic este format dintr-o bilă de masă $m = 0.5$ kg suspendată de un fir inextensibil de lungime $l = 1.2$ m. Pendulul este deviat de la poziția de echilibru cu un unghi $\\theta_0 = 30°$ și apoi este lăsat liber.",
+  "formule": [
+    "$T = 2\\pi \\sqrt{\\frac{l}{g}}$",
+    "$E = E_c + E_p = \\frac{1}{2}mv^2 + mgh$",
+    "$v_{max} = \\sqrt{2gl(1 - \\cos\\theta_0)}$",
+    "$h = l(1 - \\cos\\theta)$",
+    "$E = mgl(1 - \\cos\\theta_0)$"
+  ],
+  "date": {
+    "m": "0.5 kg",
+    "l": "1.2 m",
+    "\\theta_0": "30°",
+    "g": "9.81 m/s²"
+  },
+  "subpuncte": [
+    {
+      "cerinta": "Determinați perioada de oscilație $T$ a pendulului.",
+      "punctaj": 3
+    },
+    {
+      "cerinta": "Calculați viteza maximă $v_{max}$ a bilei în timpul oscilației.",
+      "punctaj": 4
+    },
+    {
+      "cerinta": "Determinați energia mecanică totală $E$ a sistemului și verificați că se conservă.",
+      "punctaj": 3
+    }
+  ],
+  "punctajTotal": 10,
+  "poze": []
+}
+

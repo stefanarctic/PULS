@@ -621,3 +621,85 @@
   0% { transform: rotate(0deg); }
   100% { transform: rotate(360deg); }
 }
+
+.problem-card-edit-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5em;
+  width: 100%;
+  background-color: #3b82f6;
+  border: 1.5px solid #3b82f6;
+  color: #fff;
+  font-size: 1.03rem;
+  font-weight: 600;
+  padding: 0.5em 1.2em;
+  border-radius: 8px;
+  cursor: pointer;
+  margin-top: 0.5em;
+  box-shadow: 0 1px 4px rgba(59, 130, 246, 0.07);
+  transition: background 0.2s, color 0.2s, box-shadow 0.2s, border 0.2s;
+  outline: none;
+  
+  &:hover:not(:disabled), &:focus:not(:disabled) {
+    background-color: transparent;
+    color: #3b82f6;
+    border-color: #3b82f6;
+    box-shadow: 0 2px 8px rgba(59, 130, 246, 0.18);
+  }
+  
+  &:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+    background: #f5f5f5;
+    color: #999;
+    border-color: #ddd;
+    box-shadow: none;
+  }
+  
+  svg {
+    font-size: 1.2em;
+    margin-right: 0.3em;
+  }
+}
+
+.problem-card-delete-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5em;
+  width: 100%;
+  background-color: transparent;
+  border: 1.5px solid #e74c3c;
+  color: #e74c3c;
+  font-size: 1.05rem;
+  font-weight: 600;
+  padding: 0.5em 1.2em;
+  border-radius: 8px;
+  cursor: pointer;
+  margin-top: 0.5em;
+  box-shadow: 0 1px 4px rgba(231,76,60,0.07);
+  transition: background 0.2s, color 0.2s, box-shadow 0.2s, border 0.2s;
+  outline: none;
+  
+  &:hover:not(:disabled), &:focus:not(:disabled) {
+    background: #e74c3c;
+    color: #fff;
+    border-color: #c0392b;
+    box-shadow: 0 2px 8px rgba(231,76,60,0.18);
+  }
+  
+  &:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+    background: #f5f5f5;
+    color: #999;
+    border-color: #ddd;
+    box-shadow: none;
+  }
+  
+  svg {
+    font-size: 1.2em;
+    margin-right: 0.3em;
+  }
+}
