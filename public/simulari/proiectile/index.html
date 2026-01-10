@@ -1,0 +1,195 @@
+<!-- index.html -->
+<!doctype html>
+<html lang="ro">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Simulator BAC — Mișcarea Proiectilului</title>
+  <link rel="stylesheet" href="./styles.css" />
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand">
+      <div class="logo">↗</div>
+      <div>
+        <div class="title">Mișcarea Proiectilului</div>
+        <div class="subtitle">Simulator BAC</div>
+      </div>
+    </div>
+
+    <div class="actions">
+      <button class="btn" id="btnReset">Reset</button>
+      <button class="btn" id="btnFull">Full screen</button>
+      <button class="btn primary" id="btnPlay">Start</button>
+    </div>
+  </header>
+
+  <main class="shell" id="shell">
+    <!-- LEFT SIDEBAR -->
+    <aside class="sidebar left" id="leftPanel" aria-label="Rezultate și formule">
+      <div class="sideHead">
+        <div class="sideTitle">Rezultate</div>
+        <div class="sideActions">
+          <span class="pill" id="modePill">Fără aer (BAC)</span>
+          <button class="iconBtn" id="btnLeft" title="Retrage/Extinde panoul stâng" aria-label="Retrage panoul stâng">⟨</button>
+        </div>
+      </div>
+
+      <div class="sideBody">
+        <div class="card">
+          <div class="cardTitle">Rezultate cheie</div>
+          <div class="kvgrid">
+            <div class="kv"><span>T (timp zbor)</span><b id="outT">—</b></div>
+            <div class="kv"><span>R (bătaie)</span><b id="outR">—</b></div>
+            <div class="kv"><span>Hmax</span><b id="outHmax">—</b></div>
+            <div class="kv"><span>t↑ (până la vârf)</span><b id="outTup">—</b></div>
+            <div class="kv"><span>v impact</span><b id="outVimp">—</b></div>
+            <div class="kv"><span>ymax (live)</span><b id="outYmax">—</b></div>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="cardTitle">Live</div>
+          <div class="kvgrid">
+            <div class="kv"><span>t</span><b id="outt">—</b></div>
+            <div class="kv"><span>x</span><b id="outx">—</b></div>
+            <div class="kv"><span>y</span><b id="outy">—</b></div>
+            <div class="kv"><span>v</span><b id="outv">—</b></div>
+          </div>
+        </div>
+
+        <details class="details" open>
+          <summary>Formule BAC (fără aer)</summary>
+          <div class="formula">
+            <div><b>v₀x</b>=v₀cosα, <b>v₀y</b>=v₀sinα</div>
+            <div><b>x(t)</b>=v₀cosα·t</div>
+            <div><b>y(t)</b>=h₀+v₀sinα·t−(g·t²)/2</div>
+            <div><b>t↑</b>=v₀sinα/g</div>
+            <div><b>Hmax</b>=h₀+(v₀²sin²α)/(2g)</div>
+            <div><b>T</b> din y(T)=0, apoi <b>R</b>=v₀cosα·T</div>
+          </div>
+          <div class="note">
+            În modul <b>Cu aer</b> folosim integrare numerică.
+          </div>
+        </details>
+      </div>
+
+      <!-- collapsed rail button (visible only when collapsed) -->
+      <button class="railBtn left" id="btnLeftRail" title="Extinde panoul stâng" aria-label="Extinde panoul stâng">⟩</button>
+    </aside>
+
+    <!-- CENTER STAGE -->
+    <section class="center">
+      <div class="stageTop">
+        <div class="hint">
+          Zoom: rotița • Pan: <b>Space</b> + drag • Trage punctul verde ca să schimbi <b>h₀</b> (când e pauză)
+        </div>
+        <div class="status">
+          <span class="pill soft" id="statusPill">stop</span>
+        </div>
+      </div>
+
+      <div class="stageWrap">
+        <div class="stage" id="stage">
+          <canvas id="canvas" aria-label="Simulare proiectil"></canvas>
+          <div class="hud">
+            <span class="dot"></span>
+            <span id="hudText">Pregătit.</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="stageBottom">
+        <div class="mini">
+          <div class="miniTitle">Tip BAC</div>
+          <div class="miniText">
+            Compară <b>fără aer</b> (ideal) vs <b>cu aer</b> (real). Vezi cum scade bătaia și cum se modifică traiectoria.
+          </div>
+        </div>
+        <div class="mini">
+          <div class="miniTitle">Unități</div>
+          <div class="miniText">
+            metri (m), secunde (s), m/s. Axele sunt în metri; solul e y=0.
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- RIGHT SIDEBAR -->
+    <aside class="sidebar right" id="rightPanel" aria-label="Controale">
+      <div class="sideHead">
+        <div class="sideTitle">Controale</div>
+        <div class="sideActions">
+          <button class="iconBtn" id="btnRight" title="Retrage/Extinde panoul drept" aria-label="Retrage panoul drept">⟩</button>
+        </div>
+      </div>
+
+      <div class="sideBody">
+        <div class="card">
+          <div class="cardTitle">Moduri & afișare</div>
+          <div class="toggles">
+            <label class="toggle"><input type="checkbox" id="chkAir" /> Rezistența aerului</label>
+            <label class="toggle"><input type="checkbox" id="chkTrace" checked /> Urmă</label>
+            <label class="toggle"><input type="checkbox" id="chkVectors" checked /> Vectori</label>
+            <label class="toggle"><input type="checkbox" id="chkGrid" checked /> Grilă</label>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="cardTitle">Parametri (BAC)</div>
+
+          <div class="control">
+            <label>v₀ (m/s) <b id="labV0"></b></label>
+            <input id="v0" type="range" min="2" max="60" step="0.5" value="22" />
+          </div>
+
+          <div class="control">
+            <label>α (°) <b id="labAng"></b></label>
+            <input id="ang" type="range" min="1" max="89" step="1" value="45" />
+          </div>
+
+          <div class="control">
+            <label>h₀ (m) <b id="labH0"></b></label>
+            <input id="h0" type="range" min="0" max="30" step="0.1" value="0" />
+          </div>
+
+          <div class="control">
+            <label>g (m/s²) <b id="labG"></b></label>
+            <input id="g" type="range" min="1" max="20" step="0.1" value="9.8" />
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="cardTitle">Rulare</div>
+
+          <div class="control">
+            <label>Viteză rulare (x) <b id="labSpeed"></b></label>
+            <input id="speed" type="range" min="0.25" max="2.5" step="0.05" value="1" />
+          </div>
+
+          <div class="control">
+            <label>Calitate urmă <b id="labTrace"></b></label>
+            <input id="traceRes" type="range" min="8" max="60" step="1" value="22" />
+          </div>
+
+          <div class="control">
+            <label>k (aer) <b id="labK"></b></label>
+            <input id="k" type="range" min="0" max="0.25" step="0.005" value="0.06" />
+            <div class="sub">Model: <b>a = −k·|v|·v</b> + gravitație</div>
+          </div>
+
+          <div class="row">
+            <button class="btn soft" id="btnStep">Step</button>
+            <button class="btn soft danger" id="btnClear">Curăță urma</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- collapsed rail button (visible only when collapsed) -->
+      <button class="railBtn right" id="btnRightRail" title="Extinde panoul drept" aria-label="Extinde panoul drept">⟨</button>
+    </aside>
+  </main>
+
+  <script src="./app.js"></script>
+</body>
+</html>

@@ -166,6 +166,94 @@ export const simulationsConfig = [
     iframeSrc: "/simulari/Ciocnire/ciocnire.html",
     maxHeight: '100vh'
   },
+  {
+    id: 15,
+    slug: "circuite-electricitate",
+    route: "/simulare/circuite-electricitate",
+    title: "Circuite Electrice - Schematics",
+    description: "Simulator pentru circuite electrice cu legea lui Ohm și Kirchhoff.",
+    image: simulatorGraficeBasicImg, // Placeholder - va trebui înlocuit cu screenshot real
+    caption: "Circuite Electrice",
+    iframeSrc: "/simulari/electricity/index.html",
+    maxHeight: '90vh'
+  },
+  {
+    id: 16,
+    slug: "energie-circuite",
+    route: "/simulare/energie-circuite",
+    title: "Energia în Circuite",
+    description: "Simulează fluxul de energie în circuite electrice.",
+    image: simulatorGraficeBasicImg, // Placeholder - va trebui înlocuit cu screenshot real
+    caption: "Energia în Circuite",
+    iframeSrc: "/simulari/energie_circuite/index.html",
+    maxHeight: '90vh'
+  },
+  {
+    id: 17,
+    slug: "motoare-termice",
+    route: "/simulare/motoare-termice",
+    title: "Motoare Termice",
+    description: "Simulează ciclurile Otto, Diesel și Carnot cu diagrame p-V și T-s.",
+    image: termodinamicaImg, // Placeholder - va trebui înlocuit cu screenshot real
+    caption: "Motoare Termice",
+    iframeSrc: "/simulari/motoare/index.html",
+    maxHeight: '90vh'
+  },
+  {
+    id: 18,
+    slug: "pendule-multiple",
+    route: "/simulare/pendule-multiple",
+    title: "Penduluri Duble Multiple",
+    description: "Simulează penduluri duble multiple cu efecte haotice și urme.",
+    image: simulatorPendulTrasnitImg, // Placeholder - va trebui înlocuit cu screenshot real
+    caption: "Penduluri Multiple",
+    iframeSrc: "/simulari/pendule_multiple/index.html",
+    maxHeight: '90vh'
+  },
+  {
+    id: 19,
+    slug: "plan-inclinat",
+    route: "/simulare/plan-inclinat",
+    title: "Plan Înclinat",
+    description: "Simulează mișcarea pe plan înclinat cu frecare statică și cinetică.",
+    image: simulatorGraficeBasicImg, // Placeholder - va trebui înlocuit cu screenshot real
+    caption: "Plan Înclinat",
+    iframeSrc: "/simulari/plan-inclinat/index.html",
+    maxHeight: '90vh'
+  },
+  {
+    id: 20,
+    slug: "proiectile",
+    route: "/simulare/proiectile",
+    title: "Mișcarea Proiectilului",
+    description: "Simulator BAC pentru mișcarea proiectilului cu și fără rezistență aerului.",
+    image: simulatorGraficeBasicImg, // Placeholder - va trebui înlocuit cu screenshot real
+    caption: "Mișcarea Proiectilului",
+    iframeSrc: "/simulari/proiectile/index.html",
+    maxHeight: '90vh'
+  },
+  {
+    id: 21,
+    slug: "refractie-atmosferica",
+    route: "/simulare/refractie-atmosferica",
+    title: "Miraj în Deșert",
+    description: "Simulează refracția atmosferică și efectul de miraj în deșert.",
+    image: simulatorPrismaImg, // Placeholder - va trebui înlocuit cu screenshot real
+    caption: "Refracție Atmosferică",
+    iframeSrc: "/simulari/refractie_atmosferica/index.html",
+    maxHeight: '90vh'
+  },
+  {
+    id: 22,
+    slug: "lentila-subtire",
+    route: "/simulare/lentila-subtire",
+    title: "Lentilă Subțire",
+    description: "Simulator optică pentru lentile subțiri cu raze și imagini reale/virtuale.",
+    image: simulatorPrismaImg, // Placeholder - va trebui înlocuit cu screenshot real
+    caption: "Lentilă Subțire",
+    iframeSrc: "/simulari/simulator_optica/index.html",
+    maxHeight: '90vh'
+  },
 ];
 
 export default simulationsConfig;

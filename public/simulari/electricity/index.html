@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="ro">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <title>Simulator Circuite — Schematics (Ohm + Kirchhoff)</title>
+  <link rel="stylesheet" href="./styles.css" />
+</head>
+<body>
+  <div class="app">
+    <aside class="panel">
+      <div class="header">
+        <h1>Simulator Circuite — Schematics</h1>
+        <p class="sub">
+          Click pe canvas = nod (în tool Nod).
+          Pentru componente: click pe 2 noduri.
+          Voltmetrul e “probe” (nu intră în circuit).
+        </p>
+      </div>
+
+      <div class="card">
+        <div class="row">
+          <button id="toolSelect" class="primary">Select</button>
+          <button id="toolNode">Nod</button>
+          <button id="toolGnd">GND</button>
+          <button id="toolWire">Wire</button>
+        </div>
+        <div class="row" style="margin-top:8px">
+          <button id="toolR">Rezistor</button>
+          <button id="toolRh">Reostat</button>
+          <button id="toolBat">Sursă</button>
+          <button id="toolA">Ampermetru</button>
+          <button id="toolV">Voltmetru</button>
+        </div>
+
+        <div class="pill" style="margin-top:10px">
+          Tool curent: <strong id="toolLabel">Select</strong>
+          <span class="dot"></span>
+          <span class="small mono" id="pickHint">—</span>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="row">
+          <button id="solveBtn" class="good">Solve</button>
+          <button id="demoBtn">Demo</button>
+          <button id="clearBtn">Clear</button>
+        </div>
+        <div id="status" class="status ok">Status: ready.</div>
+      </div>
+
+      <div class="card">
+        <div class="row space">
+          <div>
+            <div class="small">Selectat</div>
+            <div class="mono" id="selInfo">—</div>
+          </div>
+          <button id="deleteBtn" class="danger" title="Șterge elementul/nodul selectat">Delete</button>
+        </div>
+
+        <div class="prop" id="propBox" hidden>
+          <label id="propLabel">Valoare</label>
+          <input id="propValue" type="number" step="1"/>
+          <div class="small" id="propHelp" style="margin-top:6px;">—</div>
+        </div>
+
+        <hr class="sep">
+
+        <div class="small">Rezultate noduri</div>
+        <pre class="mono out" id="nodeOut">—</pre>
+
+        <div class="small">Rezultate ramuri</div>
+        <pre class="mono out" id="branchOut">—</pre>
+      </div>
+
+      <div class="card">
+        <div class="small">
+          Tips:
+          <ul class="small" style="margin:8px 0 0 18px; padding:0; line-height:1.45">
+            <li>Setează un nod ca <span class="mono">GND</span>, altfel nu există referință.</li>
+            <li>Ampermetrul e ca o sârmă (aproape 0Ω) dar îl desenăm ca cerc cu A.</li>
+            <li>Voltmetrul doar măsoară <span class="mono">V(a)-V(b)</span>.</li>
+            <li>Selectează reostatul ca să-i schimbi valoarea din slider.</li>
+          </ul>
+        </div>
+      </div>
+    </aside>
+
+    <main class="canvasWrap">
+      <canvas id="c"></canvas>
+      <div class="hint">
+        <b>Mouse:</b> click = acțiune; în Select poți trage nodurile (drag).
+        <br><b>Legendă:</b> sursa: primul nod = <span class="mono">+</span>, al doilea = <span class="mono">−</span>.
+      </div>
+    </main>
+  </div>
+
+  <script src="./app.js"></script>
+</body>
+</html>

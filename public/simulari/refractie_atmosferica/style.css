@@ -1,0 +1,157 @@
+:root{
+    --bg:#f6f8ff;
+    --text:#0e1a2b;
+    --muted:#51607a;
+    --line:#e6ecf8;
+  
+    --shadow: 0 18px 50px rgba(15, 23, 42, .10);
+    --panelW: 380px;
+    --topbarH: 68px;
+  }
+  
+  *{box-sizing:border-box}
+  html,body{height:100%}
+  body{
+    margin:0;
+    font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial;
+    color:var(--text);
+    background:
+      radial-gradient(1200px 700px at 15% 10%, rgba(37,99,235,.10), transparent),
+      radial-gradient(900px 520px at 85% 30%, rgba(124,58,237,.10), transparent),
+      radial-gradient(900px 520px at 55% 85%, rgba(6,182,212,.08), transparent),
+      var(--bg);
+    overflow:hidden;
+  }
+  
+  .topbar{
+    height: var(--topbarH);
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    padding: 10px 14px;
+    border-bottom: 1px solid var(--line);
+    background: rgba(255,255,255,.75);
+    backdrop-filter: blur(8px);
+  }
+  .brand h1{margin:0;font-size:18px}
+  .brand p{margin:2px 0 0;font-size:12px;color:var(--muted)}
+  
+  .layout{
+    height: calc(100vh - var(--topbarH));
+    display:grid;
+    grid-template-columns: var(--panelW) 1fr var(--panelW);
+  }
+  
+  .panel{
+    background: linear-gradient(180deg, #ffffff, #fbfcff);
+    border:1px solid var(--line);
+    box-shadow: var(--shadow);
+    overflow:auto;
+    padding: 14px;
+  }
+  .panelHeader{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+  }
+  .panelHeader h2{margin:0;font-size:16px}
+  h3{margin:12px 0 8px; font-size:14px}
+  
+  .stage{ position:relative; width:100%; height:100%; background:#fff; }
+  canvas{
+    width:100%;
+    height:100%;
+    display:block;
+    background:#ffffff;
+  }
+  
+  .row{
+    display:grid;
+    grid-template-columns: 1fr 1fr 74px;
+    gap:10px;
+    align-items:center;
+    margin:12px 0;
+  }
+  .row label{color:var(--muted); font-size:13px}
+  .row input[type="range"]{width:100%}
+  .val{ text-align:right; font-variant-numeric: tabular-nums; }
+  
+  .btnRow{ display:grid; grid-template-columns:1fr 1fr; gap:10px; margin-top:12px; }
+  
+  .btn{
+    border:1px solid #dbe4ff;
+    background:#eef2ff;
+    color:var(--text);
+    padding:10px 12px;
+    border-radius:14px;
+    cursor:pointer;
+    font-weight:900;
+    transition: transform .08s ease, filter .2s ease;
+  }
+  .btn:hover{filter:brightness(.98)}
+  .btn:active{transform: translateY(1px)}
+  .btn.ghost{background:#f7f9ff}
+  
+  .divider{height:1px;background:var(--line); margin:14px 0}
+  
+  .toggles{
+    grid-column: 2 / 4;
+    display:grid;
+    gap:8px;
+    padding:10px 12px;
+    border:1px solid var(--line);
+    border-radius:14px;
+    background:#fbfcff;
+  }
+  .chk{font-size:13px; color:var(--muted); display:flex; gap:10px; align-items:center}
+  .chk input{transform: translateY(1px)}
+  
+  .stats{display:grid; gap:10px; margin-top:10px}
+  .stat{
+    display:flex; justify-content:space-between; align-items:center;
+    padding:10px 12px; border:1px solid var(--line); border-radius:14px; background:#fbfcff;
+  }
+  .stat span{color:var(--muted); font-size:13px}
+  .stat b{font-variant-numeric: tabular-nums}
+  
+  .formula{display:grid; gap:10px}
+  .f{
+    border:1px solid var(--line);
+    border-radius:14px;
+    padding:10px 12px;
+    background:#fbfcff;
+  }
+  .f span{display:block;color:var(--muted); font-size:13px; margin-bottom:6px}
+  .f code{
+    display:block;
+    padding:8px 10px;
+    border-radius:12px;
+    border:1px solid #e9eeff;
+    background:#f3f6ff;
+    font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace;
+    font-size:12.5px;
+    line-height:1.35;
+  }
+  .f small{display:block;color:var(--muted); margin-top:6px}
+  
+  .facts{
+    margin:10px 0 0;
+    padding-left:18px;
+    color:var(--muted);
+    line-height:1.45;
+    font-size:13px;
+  }
+  .status{
+    margin-top:12px;
+    border-radius:14px;
+    padding:10px 12px;
+    border:1px solid var(--line);
+    background:#fbfcff;
+    font-weight:900;
+  }
+  .status.ok{border-color: rgba(22,163,74,.25); background: rgba(22,163,74,.06)}
+  .status.warn{border-color: rgba(245,158,11,.35); background: rgba(245,158,11,.10)}
+  .status.bad{border-color: rgba(239,68,68,.35); background: rgba(239,68,68,.10)}
+  
+  .note{margin-top:10px; color:var(--muted); font-size:12.5px; line-height:1.45}
+  

@@ -1,0 +1,112 @@
+<!doctype html>
+<html lang="ro">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Energia în circuite – flux de energie</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand">
+      <h1>Energia în circuite</h1>
+    </div>
+
+  </header>
+
+  <main class="layout">
+    <!-- LEFT PANEL -->
+    <aside id="leftPanel" class="panel left">
+      <div class="panelHeader">
+        <h2>Control</h2>
+      </div>
+
+      <div class="row">
+        <label for="voltage">Tensiune <b>U</b> (V)</label>
+        <input id="voltage" type="range" min="0" max="60" step="0.1" value="9" />
+        <span id="voltageVal" class="val">9.0</span>
+      </div>
+
+      <div class="row">
+        <label for="resistance">Rezistență <b>R</b> (Ω)</label>
+        <input id="resistance" type="range" min="0.5" max="300" step="0.5" value="30" />
+        <span id="resistanceVal" class="val">30.0</span>
+      </div>
+
+      <div class="row">
+        <label for="pmax">Putere nominală <b>P<sub>max</sub></b> (W)</label>
+        <input id="pmax" type="range" min="0.25" max="50" step="0.25" value="2" />
+        <span id="pmaxVal" class="val">2.00</span>
+      </div>
+
+      <div class="row">
+        <label>Comutator</label>
+        <button id="switch" class="btn off">OPRIT</button>
+        <span class="val"></span>
+      </div>
+
+      <div class="btnRow">
+        <button id="resetEnergy" class="btn ghost">Reset energie</button>
+        <button id="resetAll" class="btn ghost">Reparare / Resetare</button>
+      </div>
+
+      <div class="divider"></div>
+
+      <h2>Valori în timp real</h2>
+      <div class="stats">
+        <div class="stat"><span>Curent I</span><b id="iVal">0.000 A</b></div>
+        <div class="stat"><span>Putere P</span><b id="pVal">0.000 W</b></div>
+        <div class="stat"><span>Energie E</span><b id="eVal">0.000 J</b></div>
+        <div class="stat"><span>Timp pornit</span><b id="tVal">0.000 s</b></div>
+        <div class="stat"><span>„Căldură” (model)</span><b id="heatVal">0%</b></div>
+      </div>
+    </aside>
+
+    <!-- CANVAS (FULL SCREEN AREA) -->
+    <section class="stage">
+      <canvas id="c" aria-label="canvas circuit"></canvas>
+    </section>
+
+    <!-- RIGHT PANEL -->
+    <aside id="rightPanel" class="panel right">
+      <div class="panelHeader">
+        <h2>Formule și informații</h2>
+      </div>
+
+      <h3>Formule + unități</h3>
+      <div class="formula">
+        <div class="f">
+          <span>Curent:</span>
+          <code>I = U / R</code>
+          <small>unități: <b>A</b> (amper)</small>
+        </div>
+        <div class="f">
+          <span>Putere:</span>
+          <code>P = U · I = U² / R = I² · R</code>
+          <small>unități: <b>W</b> (watt)</small>
+        </div>
+        <div class="f">
+          <span>Energie disipată:</span>
+          <code>E = ∫ P dt</code>
+          <small>unități: <b>J</b> (joule)</small>
+        </div>
+      </div>
+
+      <div class="divider"></div>
+
+      <h3>Informații rapide</h3>
+      <ul class="facts">
+        <li>Energia nu „se consumă” pe fire — este livrată către rezistor și se transformă în căldură.</li>
+        <li>Un rezistor are <b>putere nominală</b> (Pmax). Dacă <b>P &gt; Pmax</b> suficient timp → supraîncălzire → defect.</li>
+        <li>Dacă dublezi U (R constant), puterea crește de ~<b>4 ori</b>: <code>P = U²/R</code>.</li>
+      </ul>
+
+      <div class="divider"></div>
+
+      <div id="status" class="status ok">Status: gata.</div>
+    </aside>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>

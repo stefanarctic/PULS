@@ -1,0 +1,151 @@
+<!doctype html>
+<html lang="ro">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Simulator Optică — Lentilă subțire</title>
+    <link rel="stylesheet" href="./styles.css" />
+</head>
+
+<body>
+    <div class="layout" id="layout">
+        <aside class="sidebar" id="sidebar">
+            <div class="sidebar-top">
+                <button class="collapse-btn" id="collapseBtn" aria-label="Retrage panoul">
+                    ◀
+                </button>
+            </div>
+
+            <div class="sidebar-inner panel">
+                <aside class="panel">
+                    <header class="title">
+                        <div>
+                            <h1>Simulator Optică — Lentilă subțire (raze + imagine)</h1>
+                            <p>Trage obiectul pe canvas sau folosește controalele. Vezi automat imaginea
+                                (reală/virtuală).</p>
+                        </div>
+                        <div class="pill">drag & drop</div>
+                    </header>
+
+                    <section class="controls">
+                        <div class="group">
+                            <div class="row">
+                                <div class="label">Focala <b>f</b> (cm)</div>
+                                <div class="value" id="fVal">10.0</div>
+                            </div>
+                            <input id="fSlider" type="range" min="2" max="40" step="0.5" value="12" />
+
+                            <div class="row">
+                                <div class="label">Tip lentilă</div>
+                                <div class="value" id="lensType">Convergentă</div>
+                            </div>
+                        </div>
+
+                        <div class="group">
+                            <div class="row">
+                                <div class="label">Distanță obiect <b>d₀</b> (cm)</div>
+                                <div class="value" id="doVal">25.0</div>
+                            </div>
+                            <input id="doSlider" type="range" min="3" max="120" step="0.5" value="35" />
+
+                            <div class="row mt10">
+                                <div class="label">Înălțime obiect <b>h₀</b> (cm)</div>
+                                <div class="value" id="hoVal">6.0</div>
+                            </div>
+                            <input id="hoSlider" type="range" min="1" max="20" step="0.5" value="7" />
+                        </div>
+
+                        <div class="group">
+                            <div class="row">
+                                <div class="label">Zoom (px/cm)</div>
+                                <div class="value" id="scaleVal">10</div>
+                            </div>
+                            <input id="scaleSlider" type="range" min="6" max="16" step="1" value="10" />
+                        </div>
+
+                        <div class="toggles">
+                            <button class="btn primary" id="toggleRays">Raze: ON</button>
+                            <button class="btn primary" id="toggleLabels">Etichete: ON</button>
+                            <button class="btn good" id="reset">Reset</button>
+                        </div>
+
+                        <div class="readout">
+                            <div class="card">
+                                <h3>Rezultate</h3>
+                                <div class="kv">
+                                    <div>distanță imagine <b>dᵢ</b></div><b id="diOut">—</b>
+                                    <div>mărire <b>m = -dᵢ/d₀</b></div><b id="mOut">—</b>
+                                    <div>înălțime imagine <b>hᵢ</b></div><b id="hiOut">—</b>
+                                    <div>tip imagine</div><b id="typeOut">—</b>
+                                </div>
+                            </div>
+
+                            <div id="status" class="status">Trage obiectul sau schimbă slider-ele. 🧠</div>
+                        </div>
+                    </section>
+
+                    <section class="formula-rail">
+                        <div class="formula-card">
+                            <h4>Formule (lentilă subțire)</h4>
+                            <div class="formula">
+                                <span class="sym">1</span>
+                                <span class="eq">
+                                    <b>1/f = 1/d₀ + 1/dᵢ</b>
+                                </span>
+                            </div>
+                            <div class="formula">
+                                <span class="sym">2</span>
+                                <span class="eq">
+                                    <b>m = − dᵢ / d₀</b>
+                                </span>
+                            </div>
+                            <div class="formula">
+                                <span class="sym">3</span>
+                                <span class="eq">
+                                    <b>hᵢ = m · h₀</b>
+                                </span>
+                            </div>
+                        </div>
+                        <div class="formula-card">
+                            <h4>Unități</h4>
+                            <ul>
+                                <li><b>f</b>, <b>d₀</b>, <b>dᵢ</b> → centimetri (cm)</li>
+                                <li><b>h₀</b>, <b>hᵢ</b> → centimetri (cm)</li>
+                                <li><b>m</b> → fără unitate</li>
+                            </ul>
+                        </div>
+                        <div class="formula-card">
+                            <h4>Convenții de semn</h4>
+                            <ul>
+                                <li><b>d₀ &gt; 0</b> → obiect real</li>
+                                <li><b>dᵢ &gt; 0</b> → imagine reală</li>
+                                <li><b>dᵢ &lt; 0</b> → imagine virtuală</li>
+                                <li><b>m &lt; 0</b> → imagine răsturnată</li>
+                            </ul>
+                        </div>
+                    </section>
+                </aside>
+
+            </div>
+        </aside>
+        <main class="stageWrap" id="stageWrap">
+            <div class="stage panel" id="stage">
+                <canvas id="c"></canvas>
+                <div class="hint">
+                    <span>🖱️ Trage săgeata obiectului</span>
+                    <span>📌 Lentila e pe axa verticală din centru</span>
+                </div>
+
+                <!-- buton mic când sidebar e retras -->
+                <button class="peek-btn" id="peekBtn" aria-label="Arată panoul">
+                    ☰ Controale
+                </button>
+            </div>
+        </main>
+    </div>
+
+    <script src="./app.js"></script>
+</body>
+
+</html>

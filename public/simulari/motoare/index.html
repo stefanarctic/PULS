@@ -1,0 +1,267 @@
+<!doctype html>
+<html lang="ro">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Simulator motoare termice Otto / Diesel / Carnot</title>
+  <link rel="stylesheet" href="./styles.css" />
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand">
+      <!-- <div class="logo"></div> -->
+      <div>
+        <h1>Simulator motoare termice Otto / Diesel / Carnot</h1>
+        <p>p-V + T-s live • lucru • randament • IMEP • comparații</p>
+      </div>
+    </div>
+    <div class="pill" id="statusPill">ready</div>
+  </header>
+
+  <main class="layout">
+    <aside class="panel">
+      <div class="panel-header">
+        <h2>Setări</h2>
+        <div class="seg">
+          <button class="seg-btn active" data-cycle="otto" id="btnOtto">Otto</button>
+          <button class="seg-btn" data-cycle="diesel" id="btnDiesel">Diesel</button>
+          <button class="seg-btn" data-cycle="carnot" id="btnCarnot">Carnot</button>
+          <button class="seg-btn" data-cycle="compare" id="btnCompare">Comparație</button>
+        </div>
+      </div>
+
+      <!-- COMPARE SELECTORS -->
+      <section class="group hidden" id="compareGroup">
+        <h3>Comparație</h3>
+
+        <div class="note">
+          Implicit compari <b>2 cicluri</b>. Poți alege oricare cu oricare.
+          Bifează “arată și al 3-lea” ca să le vezi pe toate.
+        </div>
+
+        <div class="compareRow">
+          <div class="field">
+            <label for="cmpA">Ciclu A</label>
+            <select id="cmpA">
+              <option value="otto">Otto</option>
+              <option value="diesel">Diesel</option>
+              <option value="carnot">Carnot</option>
+            </select>
+          </div>
+
+          <div class="field">
+            <label for="cmpB">Ciclu B</label>
+            <select id="cmpB">
+              <option value="diesel">Diesel</option>
+              <option value="otto">Otto</option>
+              <option value="carnot">Carnot</option>
+            </select>
+          </div>
+        </div>
+
+        <label class="row row2">
+          <span>Arată și al 3-lea (toate 3)</span>
+          <input type="checkbox" id="cmpAll" />
+        </label>
+      </section>
+
+      <section class="group">
+        <h3>Condiții inițiale (starea 1)</h3>
+
+        <label class="row">
+          <span>P₁ (bar)</span>
+          <input type="range" min="0.8" max="2.0" step="0.01" value="1.00" id="p1" />
+          <output id="p1Out"></output>
+        </label>
+
+        <label class="row">
+          <span>T₁ (K)</span>
+          <input type="range" min="250" max="360" step="1" value="300" id="t1" />
+          <output id="t1Out"></output>
+        </label>
+
+        <label class="row">
+          <span>V₁ (L)</span>
+          <input type="range" min="0.4" max="1.2" step="0.01" value="0.80" id="v1" />
+          <output id="v1Out"></output>
+        </label>
+      </section>
+
+      <section class="group">
+        <h3>Parametri motor / gaz</h3>
+
+        <label class="row">
+          <span>Raport compresie r = V₁/V₂</span>
+          <input type="range" min="6" max="22" step="0.1" value="10" id="r" />
+          <output id="rOut"></output>
+        </label>
+
+        <label class="row">
+          <span>γ (Cp/Cv)</span>
+          <input type="range" min="1.25" max="1.42" step="0.01" value="1.35" id="gamma" />
+          <output id="gammaOut"></output>
+        </label>
+
+        <label class="row">
+          <span>n (mol) — cantitate gaz</span>
+          <input type="range" min="0.02" max="0.12" step="0.001" value="0.05" id="n" />
+          <output id="nOut"></output>
+        </label>
+      </section>
+
+      <!-- OTTO/DIESEL heat controls -->
+      <section class="group" id="heatGroup">
+        <h3>Ardere (fuel)</h3>
+
+        <div class="note">
+          <b>Otto:</b> încălzire la <i>V constant</i> → controlezi T₃.<br/>
+          <b>Diesel:</b> încălzire la <i>P constant</i> → controlezi cutoff ρ = V₃/V₂.
+        </div>
+
+        <div id="ottoControls">
+          <label class="row">
+            <span>T₃ (K)</span>
+            <input type="range" min="1200" max="3200" step="10" value="2200" id="t3" />
+            <output id="t3Out"></output>
+          </label>
+        </div>
+
+        <div id="dieselControls" class="hidden">
+          <label class="row">
+            <span>Cutoff ρ = V₃/V₂</span>
+            <input type="range" min="1.1" max="3.2" step="0.01" value="1.8" id="rho" />
+            <output id="rhoOut"></output>
+          </label>
+        </div>
+      </section>
+
+      <!-- CARNOT controls -->
+      <section class="group hidden" id="carnotGroup">
+        <h3>Carnot (surse de temperatură)</h3>
+        <div class="note">
+          Carnot are 2 izoterme (Tₕ și T𝒸) + 2 adiabate. Randament ideal: <b>η = 1 − T𝒸/Tₕ</b>.
+        </div>
+
+        <label class="row">
+          <span>Tₕ (K)</span>
+          <input type="range" min="600" max="2600" step="10" value="1500" id="th" />
+          <output id="thOut"></output>
+        </label>
+
+        <label class="row">
+          <span>T𝒸 (K)</span>
+          <input type="range" min="250" max="900" step="5" value="400" id="tc" />
+          <output id="tcOut"></output>
+        </label>
+
+        <label class="row">
+          <span>Raport izotermă α = V₂/V₁</span>
+          <input type="range" min="1.2" max="3.5" step="0.01" value="2.2" id="alpha" />
+          <output id="alphaOut"></output>
+        </label>
+      </section>
+
+      <section class="group">
+        <h3>Vizual</h3>
+
+        <label class="row">
+          <span>Rezoluție traseu</span>
+          <input type="range" min="60" max="400" step="1" value="180" id="res" />
+          <output id="resOut"></output>
+        </label>
+
+        <label class="row row2">
+          <span>Arată puncte de stare</span>
+          <input type="checkbox" id="showStates" checked />
+        </label>
+
+        <label class="row row2">
+          <span>Animație</span>
+          <input type="checkbox" id="animate" checked />
+        </label>
+
+        <div class="btns">
+          <button class="btn primary" id="btnRecalc">Recalculează</button>
+          <button class="btn" id="btnReset">Reset</button>
+        </div>
+      </section>
+    </aside>
+
+    <section class="stage">
+      <div class="cards">
+        <div class="card">
+          <div class="card-title">Diagrame</div>
+          <div class="charts">
+            <div class="chart-wrap">
+              <div class="chart-label">p-V</div>
+              <canvas id="pv" width="780" height="420"></canvas>
+            </div>
+            <div class="chart-wrap">
+              <div class="chart-label">T-s (relativ)</div>
+              <canvas id="ts" width="780" height="420"></canvas>
+            </div>
+          </div>
+
+          <div class="mini">
+            <div class="mini-item"><span>Stare curentă</span><b id="stateNow">—</b></div>
+            <div class="mini-item"><span>P (bar)</span><b id="pNow">—</b></div>
+            <div class="mini-item"><span>V (L)</span><b id="vNow">—</b></div>
+            <div class="mini-item"><span>T (K)</span><b id="tNow">—</b></div>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-title">Rezultate</div>
+          <div class="grid2">
+            <div class="kpi">
+              <span>Randament η</span>
+              <b id="eta">—</b>
+              <small id="etaHint">—</small>
+            </div>
+            <div class="kpi">
+              <span>Lucru net Wₙₑₜ (J)</span>
+              <b id="wnet">—</b>
+              <small>aria buclei p-V</small>
+            </div>
+            <div class="kpi">
+              <span>Căldură intrare Qᵢₙ (J)</span>
+              <b id="qin">—</b>
+              <small>model ideal (gaz perfect)</small>
+            </div>
+            <div class="kpi">
+              <span>IMEP (bar)</span>
+              <b id="imep">—</b>
+              <small>Wₙₑₜ / (V₁−V₂)</small>
+            </div>
+          </div>
+
+          <div class="tableWrap">
+            <table class="states">
+              <thead>
+                <tr>
+                  <th>Stare</th>
+                  <th>P (bar)</th>
+                  <th>V (L)</th>
+                  <th>T (K)</th>
+                  <th>s (rel.)</th>
+                </tr>
+              </thead>
+              <tbody id="statesBody"></tbody>
+            </table>
+          </div>
+
+          <div class="footnote">
+            Model: cicluri ideale. „s (rel.)” e față de starea 1 (nu absolută).
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <span>Tips: Otto → r↑ ⇒ η↑. Diesel → ρ↑ poate crește W, dar scade η. Carnot: η depinde doar de Tₕ și T𝒸.</span>
+  </footer>
+
+  <script src="./app.js"></script>
+</body>
+</html>

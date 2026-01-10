@@ -1,0 +1,185 @@
+<!doctype html>
+<html lang="ro">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Penduluri duble multiple – haos + urme</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand">
+      <h1>Penduluri duble (multiple)</h1>
+    </div>
+
+    <div class="topbarBtns">
+      <button id="toggleLeft" class="iconBtn" title="Arată/ascunde stânga">☰ Stânga</button>
+      <button id="toggleRight" class="iconBtn" title="Arată/ascunde dreapta">☰ Dreapta</button>
+    </div>
+  </header>
+
+  <main class="layout">
+    <!-- LEFT PANEL -->
+    <aside id="leftPanel" class="panel left">
+      <div class="panelHeader">
+        <h2>Controale</h2>
+        <button class="iconBtn small" id="collapseLeft" title="Ascunde">⟨</button>
+      </div>
+
+      <div class="row">
+        <label for="count">Număr penduluri (N)</label>
+        <input id="count" type="range" min="1" max="24" step="1" value="10" />
+        <span id="countVal" class="val">10</span>
+      </div>
+
+      <div class="row">
+        <label for="theta1">Unghi inițial θ₁ (°)</label>
+        <input id="theta1" type="range" min="-179" max="179" step="1" value="120" />
+        <span id="theta1Val" class="val">120</span>
+      </div>
+
+      <div class="row">
+        <label for="theta2">Unghi inițial θ₂ (°)</label>
+        <input id="theta2" type="range" min="-179" max="179" step="1" value="-20" />
+        <span id="theta2Val" class="val">-20</span>
+      </div>
+
+      <div class="row">
+        <label for="spread">Perturbare (°)</label>
+        <input id="spread" type="range" min="0" max="2" step="0.01" value="0.25" />
+        <span id="spreadVal" class="val">0.25</span>
+      </div>
+
+      <div class="divider"></div>
+
+      <div class="row">
+        <label for="L1">Lungime L₁ (m)</label>
+        <input id="L1" type="range" min="0.3" max="2.5" step="0.01" value="1.10" />
+        <span id="L1Val" class="val">1.10</span>
+      </div>
+
+      <div class="row">
+        <label for="L2">Lungime L₂ (m)</label>
+        <input id="L2" type="range" min="0.3" max="2.5" step="0.01" value="1.10" />
+        <span id="L2Val" class="val">1.10</span>
+      </div>
+
+      <div class="row">
+        <label for="m1">">Masă m₁ (kg)</label>
+        <input id="m1" type="range" min="0.2" max="5" step="0.1" value="1.0" />
+        <span id="m1Val" class="val">1.0</span>
+      </div>
+
+      <div class="row">
+        <label for="m2">Masă m₂ (kg)</label>
+        <input id="m2" type="range" min="0.2" max="5" step="0.1" value="1.0" />
+        <span id="m2Val" class="val">1.0</span>
+      </div>
+
+      <div class="row">
+        <label for="g">Gravitație g (m/s²)</label>
+        <input id="g" type="range" min="0" max="20" step="0.01" value="9.81" />
+        <span id="gVal" class="val">9.81</span>
+      </div>
+
+      <div class="row">
+        <label for="damp">Damping (1/s)</label>
+        <input id="damp" type="range" min="0" max="1.5" step="0.01" value="0.02" />
+        <span id="dampVal" class="val">0.02</span>
+      </div>
+
+      <div class="divider"></div>
+
+      <div class="row">
+        <label for="dt">Pas dt (s)</label>
+        <input id="dt" type="range" min="0.002" max="0.03" step="0.001" value="0.010" />
+        <span id="dtVal" class="val">0.010</span>
+      </div>
+
+      <div class="row">
+        <label for="trail">Lungime urmă</label>
+        <input id="trail" type="range" min="50" max="2500" step="10" value="900" />
+        <span id="trailVal" class="val">900</span>
+      </div>
+
+      <div class="row">
+        <label for="trailAlpha">Opacitate urmă</label>
+        <input id="trailAlpha" type="range" min="0.03" max="0.35" step="0.01" value="0.12" />
+        <span id="trailAlphaVal" class="val">0.12</span>
+      </div>
+
+      <div class="btnRow">
+        <button id="startPause" class="btn">Pornește</button>
+        <button id="reset" class="btn ghost">Resetează</button>
+      </div>
+
+      <div class="row">
+        <label>Opțiuni</label>
+        <div class="toggles">
+          <label class="chk"><input id="showRods" type="checkbox" checked> Funii/tije</label>
+          <label class="chk"><input id="showBobs" type="checkbox" checked> Bile</label>
+          <label class="chk"><input id="showTrace" type="checkbox" checked> Urme</label>
+          <label class="chk"><input id="showAll" type="checkbox" checked> Arată toate pendulurile</label>
+        </div>
+        <span class="val"></span>
+      </div>
+    </aside>
+
+    <!-- STAGE -->
+    <section class="stage">
+      <button id="dockLeft" class="dockBtn left" title="Deschide panoul stânga">⟩</button>
+      <button id="dockRight" class="dockBtn right" title="Deschide panoul dreapta">⟨</button>
+      <canvas id="c"></canvas>
+    </section>
+
+    <!-- RIGHT PANEL -->
+    <aside id="rightPanel" class="panel right">
+      <div class="panelHeader">
+        <button class="iconBtn small" id="collapseRight" title="Ascunde">⟩</button>
+        <h2>Informații</h2>
+      </div>
+
+      <h3>Ce vezi aici</h3>
+      <ul class="facts">
+        <li>Toate pendulurile pornesc aproape identic, dar cu o mică diferență <b>(perturbare)</b>.</li>
+        <li>După puțin timp, traiectoriile devin complet diferite → <b>haos determinist</b>.</li>
+        <li>Urmele sunt pentru bobul 2 (capătul pendulului dublu), de aceea arată „nebun".</li>
+      </ul>
+
+      <div class="divider"></div>
+
+      <h3>Model (pe scurt)</h3>
+      <div class="formula">
+        <div class="f">
+          <span>Coordonate:</span>
+          <code>
+x₁ = L₁ sinθ₁,  y₁ = L₁ cosθ₁<br/>
+x₂ = x₁ + L₂ sinθ₂,  y₂ = y₁ + L₂ cosθ₂
+          </code>
+        </div>
+        <div class="f">
+          <span>Integrăm numeric (RK4):</span>
+          <code>θ′ = ω,  ω′ = f(θ₁,θ₂,ω₁,ω₂)</code>
+          <small>dt = pas de timp (s)</small>
+        </div>
+      </div>
+
+      <div class="divider"></div>
+
+      <h3>În timp real</h3>
+      <div class="stats">
+        <div class="stat"><span>Timp simulat</span><b id="timeVal">0.00 s</b></div>
+        <div class="stat"><span>Status</span><b id="statusVal">PAUZĂ</b></div>
+        <div class="stat"><span>FPS (aprox.)</span><b id="fpsVal">—</b></div>
+      </div>
+
+      <div id="statusBox" class="status ok">Simulare oprită</div>
+      <p class="note">
+        Tip: pune N=16, perturbare=0.2°, dt=0.01 și lasă-l 10 secunde.
+      </p>
+    </aside>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>
