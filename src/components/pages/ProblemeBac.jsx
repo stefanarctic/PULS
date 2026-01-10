@@ -11,6 +11,7 @@ import { doc, getDoc, setDoc } from 'firebase/firestore';
 import { Plus } from 'lucide-react';
 import { addProblem, clearAddStatus } from '../../features/problems/problemsSlice';
 import { sendProblemSuggestion } from '../../lib/emailService';
+import SEO from '../SEO';
 import '../../scss/components/_probleme-bac.scss';
 
 // Icon components
@@ -1273,6 +1274,12 @@ const ProblemeBac = () => {
 
     return (
         <Layout>
+            <SEO
+                title="Probleme BAC Fizică | Examen Bacalaureat - PULS"
+                description="Probleme de fizică din examenele de bacalaureat. Colecție completă de probleme BAC organizate pe ani, sesiuni și subiecte. Rezolvări pas cu pas și autoevaluare cu feedback AI."
+                keywords="probleme BAC fizică, examen bacalaureat fizică, probleme BAC rezolvate, fizică BAC, subiecte BAC fizică, variante BAC fizică"
+                image="/res/icons/New-logo.png"
+            />
             <div className="problems-bac-page">
                 <div className="problems-bac-page-inner">
                     {/* Header Section */}

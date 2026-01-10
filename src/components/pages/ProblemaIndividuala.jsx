@@ -4,6 +4,7 @@ import Layout from '../Layout';
 import ProblemaDetaliata from '../Problemadetaliata';
 // import { problemeData } from '../problemedata';
 import { useSelector } from 'react-redux';
+import SEO from '../SEO';
 
 const ProblemaIndividuala = () => {
   const { id } = useParams();
@@ -54,8 +55,32 @@ const ProblemaIndividuala = () => {
     }
   };
 
+  const problemTitle = problema?.titlu || `Problema ${id}`;
+  const problemDescription = problema?.enunt 
+    ? `${problemTitle} - ${problema.enunt.substring(0, 150)}...` 
+    : `Rezolvă problema de fizică: ${problemTitle}. Vezi soluția completă și explicațiile pas cu pas.`;
+  
+  const structuredData = problema ? {
+    "@context": "https://schema.org",
+    "@type": "LearningResource",
+    "name": problemTitle,
+    "description": problemDescription,
+    "educationalLevel": "High School",
+    "learningResourceType": "Problem Set",
+    "subject": "Physics",
+    "inLanguage": "ro"
+  } : null;
+
   return (
     <Layout>
+      <SEO
+        title={`${problemTitle} | Problema de Fizică - PULS`}
+        description={problemDescription}
+        keywords={`problema fizică, ${problema?.categorie || ''}, ${problema?.dificultate || ''}, rezolvare fizică, exercițiu fizică`}
+        image="/res/icons/New-logo.png"
+        type="article"
+        structuredData={structuredData}
+      />
       <ProblemaDetaliata 
         problema={problema} 
         onBack={handleBack}

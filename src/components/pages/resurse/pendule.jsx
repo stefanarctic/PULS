@@ -10,6 +10,7 @@ import simulatorTrasnitPendulImg from "/res/screenshots/Trasnit_Screenshot.png";
 
 import VideoPendul from "/res/Videos/Pendul Video.mp4";
 import Layout from "../../Layout";
+import SEO from "../../SEO";
 
 const PendulePage = () => {
   const Images = [
@@ -23,6 +24,12 @@ const PendulePage = () => {
 
   return (
     <Layout>
+      <SEO
+        title="Resurse Pendule | Mișcarea Oscilatorie Armonică - PULS"
+        description="Învață despre mișcarea oscilatorie armonică și pendule. Materiale teoretice, formule, simulări interactive și video-uri educaționale pentru pendulul simplu, amortizat și neliniar."
+        keywords="pendule, mișcare oscilatorie, pendul simplu, pendul amortizat, oscilații armonice, fizică pendule"
+        image="/res/icons/New-logo.png"
+      />
       <div className="resurse-pagina min-h-screen flex flex-col">
         <div className="resurse-page-container">
           <main className="flex-grow container mx-auto px-4 py-10">

@@ -1,12 +1,19 @@
 import { useNavigate } from "react-router-dom";
 import Layout from "../Layout";
 import { simulationsConfig } from "@/data/simulations";
+import SEO from "../SEO";
 
 const SimulariPage = () => {
   const navigate = useNavigate();
 
   return (
     <Layout>
+      <SEO
+        title="Simulări Interactive Fizică | PULS - 22+ Simulări Educaționale"
+        description="Explorează fizica prin simulări interactive: pendule, unde, oscilații, termodinamică, mecanică, electricitate și optică. 22+ simulări educaționale pentru elevi și profesori."
+        keywords="simulări fizică, simulări interactive fizică, pendul simulare, unde simulare, oscilații simulare, termodinamică simulare, fizică interactivă"
+        image="/res/icons/New-logo.png"
+      />
       <div className="simulari-page">
         <main className="main-content">
           <h1>Simulări</h1>

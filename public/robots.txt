@@ -1,0 +1,22 @@
+# robots.txt pentru PULS - Platformă Educațională pentru Fizică
+
+User-agent: *
+Allow: /
+
+# Blochează paginile admin și API
+Disallow: /admin
+Disallow: /api/
+
+# Permite indexarea tuturor paginilor publice
+Allow: /probleme
+Allow: /simulari
+Allow: /resurse
+Allow: /simulare/
+Allow: /resurse/
+
+# Sitemap
+Sitemap: https://puls-fizica.ro/sitemap.xml
+
+# Crawl-delay (opțional, pentru a nu suprasolicita serverul)
+Crawl-delay: 1
+

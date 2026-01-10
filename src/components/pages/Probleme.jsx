@@ -12,6 +12,7 @@ import { onAuthStateChanged, getAuth } from 'firebase/auth';
 import { doc, getDoc, setDoc } from 'firebase/firestore';
 import { useSolvedProblems } from '../../hooks/useSolvedProblems';
 import { sendProblemSuggestion } from '../../lib/emailService';
+import SEO from '../SEO';
 
 // Icon components
 const SearchIcon = () => (
@@ -1361,6 +1362,12 @@ const PhysicsProblems = () => {
 
     return (
         <Layout>
+            <SEO
+                title="Probleme de Fizică | PULS - Probleme BAC și Exerciții cu Rezolvări"
+                description="Rezolvă probleme de fizică pentru bacalaureat și concursuri. Colecție completă de probleme cu rezolvări pas cu pas, organizate pe categorii și dificultate. Autoevaluare cu feedback AI."
+                keywords="probleme fizică, probleme BAC fizică, exerciții fizică, probleme rezolvate fizică, bacalaureat fizică, probleme concurs fizică"
+                image="/res/icons/New-logo.png"
+            />
             <div className="problems-page">
                 <div className="problems-page-inner">
                     {/* Title */}

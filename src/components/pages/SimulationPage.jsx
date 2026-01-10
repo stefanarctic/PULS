@@ -5,6 +5,7 @@ import { db } from "../../lib/firebase";
 import { auth } from "../../lib/firebase";
 import { onAuthStateChanged } from "firebase/auth";
 import { useAchievements } from "../../hooks/useAchievements";
+import SEO from "../SEO";
 
 const SimulationPage = ({
   id,
@@ -188,6 +189,13 @@ const SimulationPage = ({
 
   return (
     <Layout>
+      <SEO
+        title={`${title} | Simulare Interactivă Fizică - PULS`}
+        description={description || `Simulare interactivă pentru ${title}. Explorează concepte fizice prin simulări educaționale interactive.`}
+        keywords={`${title}, simulare fizică, simulare interactivă, fizică educațională, ${title.toLowerCase()}`}
+        image="/res/icons/New-logo.png"
+        type="article"
+      />
       <section className="simulation-page">
         <div className="simulation-content">
           <header className="simulation-header">

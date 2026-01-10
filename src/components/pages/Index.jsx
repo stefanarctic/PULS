@@ -10,6 +10,7 @@ import { auth, provider } from '../../lib/firebase';
 import { onAuthStateChanged, signInWithPopup } from 'firebase/auth';
 import { useState } from 'react';
 import ResourcesSection from "./ResourcesSection";
+import SEO from "../SEO";
 
 translate = () => {
     const texts = getTextNodes(document.body);
@@ -107,8 +108,50 @@ const Index = () => {
         console.log(JSON.stringify(translations, null, 2));
     }, [translations]);
     
+    const structuredData = {
+        "@context": "https://schema.org",
+        "@type": "EducationalOrganization",
+        "name": "PULS - Platformă Educațională pentru Fizică",
+        "description": "Platformă educațională modernă pentru studiul fizicii cu simulări interactive, probleme BAC și asistent AI",
+        "url": "https://puls-fizica.ro",
+        "logo": "https://puls-fizica.ro/res/icons/New-logo.png",
+        "sameAs": [
+            "https://github.com/Stefanarctic/PULS"
+        ],
+        "educationalCredentialAwarded": "Educational Content",
+        "hasOfferCatalog": {
+            "@type": "OfferCatalog",
+            "name": "Resurse Educaționale Fizică",
+            "itemListElement": [
+                {
+                    "@type": "Offer",
+                    "itemOffered": {
+                        "@type": "Course",
+                        "name": "Simulări Interactive Fizică",
+                        "description": "22+ simulări interactive pentru pendule, unde, oscilații, termodinamică și mai mult"
+                    }
+                },
+                {
+                    "@type": "Offer",
+                    "itemOffered": {
+                        "@type": "Course",
+                        "name": "Probleme BAC Fizică",
+                        "description": "Colecție completă de probleme din examenele de bacalaureat cu rezolvări"
+                    }
+                }
+            ]
+        }
+    };
+
     return (
         <Layout>
+            <SEO
+                title="PULS - Platformă Educațională pentru Fizică Interactivă | Simulări și Probleme BAC"
+                description="Platformă educațională modernă pentru studiul fizicii. 22+ simulări interactive, probleme BAC cu rezolvări, resurse teoretice și asistent AI pentru elevi și profesori."
+                keywords="fizică, educație, simulări fizică, probleme BAC fizică, pendule, unde, oscilații, termodinamică, mecanică, electricitate, optică, platformă educațională, învățare fizică, simulări interactive"
+                image="/res/icons/New-logo.png"
+                structuredData={structuredData}
+            />
             {/* Hero Section */}
             <header id="hero">
                 <main>

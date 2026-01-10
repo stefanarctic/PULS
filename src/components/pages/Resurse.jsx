@@ -18,6 +18,7 @@ import Layout from "../Layout";
 import { useEffect, useState } from "react";
 import VideoPopup from "../VideoPopup";
 import { useNavigate, useSearchParams } from "react-router-dom";
+import SEO from "../SEO";
 
 
 const lessonCards = [
@@ -335,6 +336,12 @@ const ResursePage = () => {
 
   return (
     <Layout>
+      <SEO
+        title="Resurse Educaționale Fizică | PULS - Materiale Teoretice și Video-uri"
+        description="Resurse educaționale complete pentru fizică: materiale teoretice, video-uri, formule și explicații pentru pendule, unde, oscilații, termodinamică, mecanică, electricitate și optică."
+        keywords="resurse fizică, materiale fizică, video fizică, formule fizică, teorie fizică, educație fizică"
+        image="/res/icons/New-logo.png"
+      />
       <div className="resurse-page page-section">
         <main>
           <h1 className="resurse-title">Resurse</h1>
