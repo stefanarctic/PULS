@@ -20,6 +20,8 @@ import Lissajous from "./components/pages/resurse/lissajous";
 import Seism from "./components/pages/resurse/seism";
 import TermodinamicaPage from "./components/pages/resurse/termodinamica";
 import MecanicaPage from "./components/pages/resurse/mecanica";
+import ElectricitatePage from "./components/pages/resurse/electricitate";
+import OpticaPage from "./components/pages/resurse/optica";
 import SimulationPage from "./components/pages/SimulationPage";
 import ScrollToTop from "./components/ScrollToTop";
 import Profile from "./components/pages/Profile";
@@ -109,6 +111,8 @@ const App = () => {
           <Route path="/resurse/seism" element={<Seism />} />
           <Route path='/resurse/termodinamica' element={<TermodinamicaPage />} />
           <Route path='/resurse/mecanica' element={<MecanicaPage />} />
+          <Route path='/resurse/electricitate' element={<ElectricitatePage />} />
+          <Route path='/resurse/optica' element={<OpticaPage />} />
           {simulationsConfig.map((simulation) => (
             <Route
               key={simulation.route}

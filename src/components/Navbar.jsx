@@ -368,6 +368,8 @@ const Navbar = () => {
                                             >
                                                 <Link to="/resurse/mecanica" className="dropdown-item navbar-dropdown-item" onClick={handleDropdownItemClick}>Mecanică</Link>
                                                 <Link to="/resurse/termodinamica" className="dropdown-item navbar-dropdown-item" onClick={handleDropdownItemClick}>Termodinamică</Link>
+                                                <Link to="/resurse/electricitate" className="dropdown-item navbar-dropdown-item" onClick={handleDropdownItemClick}>Electricitate</Link>
+                                                <Link to="/resurse/optica" className="dropdown-item navbar-dropdown-item" onClick={handleDropdownItemClick}>Optică</Link>
                                             </div>
                                         )}
                                     </div>
@@ -455,6 +457,18 @@ const Navbar = () => {
                                     </Link>
                                     <Link to="/resurse/seism" className="nav-link" onClick={handleMobileNavClick}>
                                         Seisme
+                                    </Link>
+                                    <Link to="/resurse/mecanica" className="nav-link" onClick={handleMobileNavClick}>
+                                        Mecanică
+                                    </Link>
+                                    <Link to="/resurse/termodinamica" className="nav-link" onClick={handleMobileNavClick}>
+                                        Termodinamică
+                                    </Link>
+                                    <Link to="/resurse/electricitate" className="nav-link" onClick={handleMobileNavClick}>
+                                        Electricitate
+                                    </Link>
+                                    <Link to="/resurse/optica" className="nav-link" onClick={handleMobileNavClick}>
+                                        Optică
                                     </Link>
                                 </div>
                             </div>

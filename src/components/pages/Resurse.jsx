@@ -57,6 +57,18 @@ const lessonCards = [
       "Învață despre mecanică, principiile și aplicațiile ei în fizică.",
     path: "/resurse/mecanica",
   },
+  {
+    title: "Electricitate",
+    description:
+      "Explorează circuitele electrice, legile lui Ohm și Kirchhoff, energia electrică și câmpurile electrice.",
+    path: "/resurse/electricitate",
+  },
+  {
+    title: "Optică",
+    description:
+      "Descoperă comportamentul luminii, refracția, reflexia, lentilele și fenomenele de interferență și difracție.",
+    path: "/resurse/optica",
+  },
 ];
 
 const ResursePage = () => {
@@ -175,6 +187,45 @@ const ResursePage = () => {
     { title: "Aria figurii (r = 1)", formula: "\\( A = \\pi A_1A_2|\\sin(\\Delta\\phi)| \\)" },
   ];
 
+  const electricitateFormulas = [
+    { title: "Legea lui Ohm", formula: "\\( U = RI \\)" },
+    { title: "Puterea electrică", formula: "\\( P = UI = RI^2 = \\frac{U^2}{R} \\)" },
+    { title: "Energia electrică", formula: "\\( W = UIt = RI^2t = \\frac{U^2}{R}t \\)" },
+    { title: "Rezistența echivalentă în serie", formula: "\\( R_{eq} = R_1 + R_2 + ... + R_n \\)" },
+    { title: "Rezistența echivalentă în paralel", formula: "\\( \\frac{1}{R_{eq}} = \\frac{1}{R_1} + \\frac{1}{R_2} + ... + \\frac{1}{R_n} \\)" },
+    { title: "Prima lege a lui Kirchhoff", formula: "\\( \\sum I_{intrare} = \\sum I_{iesire} \\)" },
+    { title: "A doua lege a lui Kirchhoff", formula: "\\( \\sum U = \\sum RI \\)" },
+    { title: "Rezistența unui conductor", formula: "\\( R = \\rho \\frac{l}{S} \\)" },
+    { title: "Curentul electric", formula: "\\( I = \\frac{q}{t} = nqvS \\)" },
+    { title: "Densitatea curentului", formula: "\\( j = \\frac{I}{S} = nqv \\)" },
+    { title: "Intensitatea câmpului electric", formula: "\\( \\vec{E} = \\frac{\\vec{F}}{q} \\)" },
+    { title: "Câmpul electric al unei sarcini punctiforme", formula: "\\( E = k \\frac{q}{r^2} = \\frac{1}{4\\pi\\varepsilon_0} \\frac{q}{r^2} \\)" },
+    { title: "Potențialul electric", formula: "\\( V = \\frac{W}{q} = k \\frac{q}{r} \\)" },
+    { title: "Tensiunea electrică", formula: "\\( U = V_1 - V_2 = Ed \\)" },
+    { title: "Capacitatea unui condensator plan", formula: "\\( C = \\frac{\\varepsilon_0 S}{d} \\)" },
+    { title: "Energia stocată într-un condensator", formula: "\\( W = \\frac{1}{2}CU^2 = \\frac{Q^2}{2C} \\)" },
+    { title: "Energia stocată într-o bobină", formula: "\\( W = \\frac{1}{2}LI^2 \\)" },
+  ];
+
+  const opticaFormulas = [
+    { title: "Formula lentilelor subțiri", formula: "\\( \\frac{1}{f} = \\frac{1}{x_1} + \\frac{1}{x_2} \\)" },
+    { title: "Mărirea liniară", formula: "\\( \\beta = \\frac{x_2}{x_1} = \\frac{y_2}{y_1} \\)" },
+    { title: "Convergența (puterea optică)", formula: "\\( C = \\frac{1}{f} \\)" },
+    { title: "Formula constructorului de lentile", formula: "\\( \\frac{1}{f} = (n - 1)\\left(\\frac{1}{R_1} - \\frac{1}{R_2}\\right) \\)" },
+    { title: "Indicele de refracție", formula: "\\( n = \\frac{c}{v} = \\frac{\\sin(i)}{\\sin(r)} \\)" },
+    { title: "Legea refracției (Snell)", formula: "\\( n_1 \\sin(\\theta_1) = n_2 \\sin(\\theta_2) \\)" },
+    { title: "Legea reflexiei", formula: "\\( \\theta_i = \\theta_r \\)" },
+    { title: "Unghiul critic pentru reflexie totală", formula: "\\( \\sin(\\theta_{crit}) = \\frac{n_2}{n_1} \\)" },
+    { title: "Viteza luminii în mediu", formula: "\\( v = \\frac{c}{n} \\)" },
+    { title: "Lungimea de undă în mediu", formula: "\\( \\lambda_n = \\frac{\\lambda_0}{n} \\)" },
+    { title: "Deviația minimă în prismă", formula: "\\( \\delta_{min} = (n - 1)A \\)" },
+    { title: "Unghiul de deviație", formula: "\\( \\delta = i_1 + i_2 - A \\)" },
+    { title: "Condiția pentru maxime de interferență", formula: "\\( \\Delta = k\\lambda = d\\sin(\\theta) \\)" },
+    { title: "Condiția pentru minime de interferență", formula: "\\( \\Delta = \\left(k + \\frac{1}{2}\\right)\\lambda = d\\sin(\\theta) \\)" },
+    { title: "Rețeaua de difracție", formula: "\\( d\\sin(\\theta) = m\\lambda \\)" },
+    { title: "Puterea de rezoluție a rețelei", formula: "\\( R = \\frac{\\lambda}{\\Delta\\lambda} = mN \\)" },
+  ];
+
   useEffect(() => {
     const tabParam = searchParams.get("tab");
     const formulaParam = searchParams.get("formula");
@@ -192,6 +243,8 @@ const ResursePage = () => {
         "prisma",
         "pendule",
         "lissajous",
+        "electricitate",
+        "optica",
       ];
       if (allowed.includes(formulaParam)) {
         setActiveFormulaTab(formulaParam);
@@ -217,6 +270,8 @@ const ResursePage = () => {
       prisma: prismaFormulas,
       pendule: penduleFormulas,
       lissajous: lissajousFormulas,
+      electricitate: electricitateFormulas,
+      optica: opticaFormulas,
     };
 
     const currentFormulas = formulasMap[activeFormulaTab] || [];
@@ -314,6 +369,8 @@ const ResursePage = () => {
                     <TabsTrigger value="prisma">Refracție</TabsTrigger>
                     <TabsTrigger value="pendule">Oscilații</TabsTrigger>
                     <TabsTrigger value="lissajous">Lissajous</TabsTrigger>
+                    <TabsTrigger value="electricitate">Electricitate</TabsTrigger>
+                    <TabsTrigger value="optica">Optică</TabsTrigger>
                   </TabsList>
 
                   <TabsContent value="mecanica">
@@ -426,6 +483,38 @@ const ResursePage = () => {
                       ))}
                     </div>
                     <MathJaxRender key={`lissajous-${visibleFormulasCount.lissajous || 0}`} />
+                  </TabsContent>
+
+                  <TabsContent value="electricitate">
+                    <div className="formula-grid mb-4">
+                      {electricitateFormulas
+                        .slice(0, visibleFormulasCount.electricitate || 5)
+                        .map((formula, index) => (
+                        <div key={index} className="formula-card">
+                          <div className="font-semibold mb-2">{formula.title}</div>
+                          <div className="text-lg font-mono">
+                            {formula.formula}
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+                    <MathJaxRender key={`electricitate-${visibleFormulasCount.electricitate || 0}`} />
+                  </TabsContent>
+
+                  <TabsContent value="optica">
+                    <div className="formula-grid mb-4">
+                      {opticaFormulas
+                        .slice(0, visibleFormulasCount.optica || 5)
+                        .map((formula, index) => (
+                        <div key={index} className="formula-card">
+                          <div className="font-semibold mb-2">{formula.title}</div>
+                          <div className="text-lg font-mono">
+                            {formula.formula}
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+                    <MathJaxRender key={`optica-${visibleFormulasCount.optica || 0}`} />
                   </TabsContent>
                 </Tabs>
               </div>

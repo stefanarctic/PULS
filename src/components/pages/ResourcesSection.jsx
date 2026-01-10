@@ -1,4 +1,4 @@
-import { BookOpen, Waves, Activity, Thermometer, Cog, Radio } from "lucide-react";
+import { BookOpen, Waves, Activity, Thermometer, Cog, Radio, Zap, Eye } from "lucide-react";
 import ResourceCard from "./ResourceCard";
 import useDarkMode from "../../hooks/useDarkMode";
 import pendulumLight from "/res/resources-section/pendule_light.webp";
@@ -13,6 +13,10 @@ import mechanicsLight from "/res/resources-section/mecanica_light.webp";
 import mechanicsDark from "/res/resources-section/mecanica_dark.webp";
 import seismicLight from "/res/resources-section/seism_light.webp";
 import seismicDark from "/res/resources-section/seism_dark.webp";
+import electricityLight from "/res/resources-section/mecanica_light.webp"; // Placeholder - va trebui înlocuit cu imagine reală
+import electricityDark from "/res/resources-section/mecanica_dark.webp"; // Placeholder - va trebui înlocuit cu imagine reală
+import opticsLight from "/res/resources-section/termodinamica_light.webp"; // Placeholder - va trebui înlocuit cu imagine reală
+import opticsDark from "/res/resources-section/termodinamica_dark.webp"; // Placeholder - va trebui înlocuit cu imagine reală
 import "/src/scss/components/_resources-section-landing.scss"; // Import the SCSS stylesheet
 
 const resources = [
@@ -75,6 +79,26 @@ const resources = [
     icon: <Activity className="resource-icon" />,
     experimentPath: "/resurse/seism",
     formulaCategory: "seism",
+  },
+  {
+    title: "Electricitate",
+    description:
+      "Explorează circuitele electrice, legile lui Ohm și Kirchhoff, energia electrică și câmpurile electrice.",
+    imageLight: electricityLight,
+    imageDark: electricityDark,
+    icon: <Zap className="resource-icon" />,
+    experimentPath: "/resurse/electricitate",
+    formulaCategory: "electricitate",
+  },
+  {
+    title: "Optică",
+    description:
+      "Descoperă comportamentul luminii, refracția, reflexia, lentilele și fenomenele de interferență și difracție.",
+    imageLight: opticsLight,
+    imageDark: opticsDark,
+    icon: <Eye className="resource-icon" />,
+    experimentPath: "/resurse/optica",
+    formulaCategory: "optica",
   },
 ];
 
