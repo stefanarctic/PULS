@@ -254,6 +254,28 @@ export const simulationsConfig = [
     iframeSrc: "/simulari/simulator_optica/index.html",
     maxHeight: '90vh'
   },
+  {
+    id: 23,
+    slug: "polarizare-circulara",
+    route: "/simulare/polarizare-circulara",
+    title: "Polarizare Circulară",
+    description: "Simulează polarizarea circulară a undelor electromagnetice cu vizualizări 3D și parametri Stokes.",
+    image: simulatorPrismaImg, // Placeholder - va trebui înlocuit cu screenshot real
+    caption: "Polarizare Circulară",
+    iframeSrc: "/simulari/polarizare-circulara/index.html",
+    maxHeight: '90vh'
+  },
+  {
+    id: 24,
+    slug: "reflexie-refractie",
+    route: "/simulare/reflexie-refractie",
+    title: "Reflexie și Refracție",
+    description: "Simulează reflexia și refracția luminii la interfața dintre două medii cu indici de refracție diferiți.",
+    image: simulatorPrismaImg, // Placeholder - va trebui înlocuit cu screenshot real
+    caption: "Reflexie și Refracție",
+    iframeSrc: "/simulari/reflexie-refractie/index.html",
+    maxHeight: '90vh'
+  },
 ];
 
 export default simulationsConfig;

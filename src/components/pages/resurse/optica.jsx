@@ -117,51 +117,61 @@ const OpticaPage = () => {
                   și indicii de refracție ai mediilor. Reflexia totală internă apare când lumina trece dintr-un mediu cu indice de refracție 
                   mai mare într-unul cu indice mai mic.
                 </p>
-                <div className="mt-8">
-                  <h3 className="text-xl font-semibold mb-4">Formule pentru refracție și reflexie:</h3>
-                  
-                  <h4 className="text-lg font-semibold mb-2">1. Indicele de refracție:</h4>
-                  <div className="formula-resurse text-lg font-mono mb-4">
-                    {"\\( n = \\frac{c}{v} = \\frac{\\sin(i)}{\\sin(r)} \\)"}
-                    <MathJaxRender />
+                <div className="mt-8 flex flex-col md:flex-row md:items-center justify-between gap-6">
+                  <div>
+                    <h3 className="text-xl font-semibold mb-4">Formule pentru refracție și reflexie:</h3>
+                    
+                    <h4 className="text-lg font-semibold mb-2">1. Indicele de refracție:</h4>
+                    <div className="formula-resurse text-lg font-mono mb-4">
+                      {"\\( n = \\frac{c}{v} = \\frac{\\sin(i)}{\\sin(r)} \\)"}
+                      <MathJaxRender />
+                    </div>
+                    
+                    <h4 className="text-lg font-semibold mb-2">2. Legea refracției (Snell):</h4>
+                    <div className="formula-resurse text-lg font-mono mb-4">
+                      {"\\( n_1 \\sin(\\theta_1) = n_2 \\sin(\\theta_2) \\)"}
+                      <MathJaxRender />
+                    </div>
+                    
+                    <h4 className="text-lg font-semibold mb-2">3. Legea reflexiei:</h4>
+                    <div className="formula-resurse text-lg font-mono mb-4">
+                      {"\\( \\theta_i = \\theta_r \\)"}
+                      <MathJaxRender />
+                    </div>
+                    
+                    <h4 className="text-lg font-semibold mb-2">4. Unghiul critic pentru reflexie totală:</h4>
+                    <div className="formula-resurse text-lg font-mono mb-4">
+                      {"\\( \\sin(\\theta_{crit}) = \\frac{n_2}{n_1} \\)"}
+                      <MathJaxRender />
+                    </div>
+                    
+                    <h4 className="text-lg font-semibold mb-2">5. Viteza luminii în mediu:</h4>
+                    <div className="formula-resurse text-lg font-mono mb-4">
+                      {"\\( v = \\frac{c}{n} \\)"}
+                      <MathJaxRender />
+                    </div>
+                    
+                    <h4 className="text-lg font-semibold mb-2">6. Lungimea de undă în mediu:</h4>
+                    <div className="formula-resurse text-lg font-mono mb-4">
+                      {"\\( \\lambda_n = \\frac{\\lambda_0}{n} \\)"}
+                      <MathJaxRender />
+                    </div>
+                    
+                    <p className="text-muted-foreground mt-4">
+                      Unde: n este indicele de refracție, c este viteza luminii în vid, v este viteza luminii în mediu, 
+                      i este unghiul de incidență, r este unghiul de refracție, θ₁ și θ₂ sunt unghiurile în cele două medii, 
+                      θᵢ și θᵣ sunt unghiurile de incidență și reflexie, θcrit este unghiul critic, 
+                      λ₀ este lungimea de undă în vid, λₙ este lungimea de undă în mediu.
+                    </p>
                   </div>
-                  
-                  <h4 className="text-lg font-semibold mb-2">2. Legea refracției (Snell):</h4>
-                  <div className="formula-resurse text-lg font-mono mb-4">
-                    {"\\( n_1 \\sin(\\theta_1) = n_2 \\sin(\\theta_2) \\)"}
-                    <MathJaxRender />
-                  </div>
-                  
-                  <h4 className="text-lg font-semibold mb-2">3. Legea reflexiei:</h4>
-                  <div className="formula-resurse text-lg font-mono mb-4">
-                    {"\\( \\theta_i = \\theta_r \\)"}
-                    <MathJaxRender />
-                  </div>
-                  
-                  <h4 className="text-lg font-semibold mb-2">4. Unghiul critic pentru reflexie totală:</h4>
-                  <div className="formula-resurse text-lg font-mono mb-4">
-                    {"\\( \\sin(\\theta_{crit}) = \\frac{n_2}{n_1} \\)"}
-                    <MathJaxRender />
-                  </div>
-                  
-                  <h4 className="text-lg font-semibold mb-2">5. Viteza luminii în mediu:</h4>
-                  <div className="formula-resurse text-lg font-mono mb-4">
-                    {"\\( v = \\frac{c}{n} \\)"}
-                    <MathJaxRender />
-                  </div>
-                  
-                  <h4 className="text-lg font-semibold mb-2">6. Lungimea de undă în mediu:</h4>
-                  <div className="formula-resurse text-lg font-mono mb-4">
-                    {"\\( \\lambda_n = \\frac{\\lambda_0}{n} \\)"}
-                    <MathJaxRender />
-                  </div>
-                  
-                  <p className="text-muted-foreground mt-4">
-                    Unde: n este indicele de refracție, c este viteza luminii în vid, v este viteza luminii în mediu, 
-                    i este unghiul de incidență, r este unghiul de refracție, θ₁ și θ₂ sunt unghiurile în cele două medii, 
-                    θᵢ și θᵣ sunt unghiurile de incidență și reflexie, θcrit este unghiul critic, 
-                    λ₀ este lungimea de undă în vid, λₙ este lungimea de undă în mediu.
-                  </p>
+                  <a
+                    href="/simulare/reflexie-refractie"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    style={{ textDecoration: "none" }}
+                  >
+                    <Button size="lg">Vezi simularea</Button>
+                  </a>
                 </div>
               </div>
 
@@ -297,6 +307,76 @@ const OpticaPage = () => {
                     d este distanța dintre surse sau fante, θ este unghiul, a este lățimea fantei, 
                     n₁ și n₂ sunt indicii de refracție, d₁ și d₂ sunt distanțele, R este puterea de rezoluție, N este numărul de linii.
                   </p>
+                </div>
+              </div>
+
+              {/* Polarizare Circulară */}
+              <div className="rounded-container">
+                <h2 className="text-2xl font-bold mb-4">Polarizare Circulară</h2>
+                <p className="text-muted-foreground mb-6">
+                  Polarizarea circulară este o stare de polarizare în care vectorul câmpului electric al unei unde electromagnetice 
+                  se rotește în cerc pe măsură ce unda se propagă. Vârful vectorului câmpului electric descrie o elice în spațiu.
+                </p>
+                <p className="text-muted-foreground mb-6">
+                  Există două tipuri principale de polarizare circulară: circulară dreapta (RCP) și circulară stânga (LCP), 
+                  în funcție de sensul de rotație. Polarizarea circulară are aplicații importante în spectroscopie, comunicații 
+                  prin satelit, cinema 3D și criptografie cuantică.
+                </p>
+                <div className="mt-8 flex flex-col md:flex-row md:items-center justify-between gap-6">
+                  <div>
+                    <h3 className="text-xl font-semibold mb-4">Formule pentru polarizare circulară:</h3>
+                    
+                    <h4 className="text-lg font-semibold mb-2">1. Componentele câmpului electric:</h4>
+                    <div className="formula-resurse text-lg font-mono mb-4">
+                      {"\\( E_x(z,t) = E_0 \\cos(kz - \\omega t) \\)"}
+                      <MathJaxRender />
+                    </div>
+                    <div className="formula-resurse text-lg font-mono mb-4">
+                      {"\\( E_y(z,t) = E_0 \\cos(kz - \\omega t + \\delta) \\)"}
+                      <MathJaxRender />
+                    </div>
+                    
+                    <h4 className="text-lg font-semibold mb-2">2. Condiția pentru polarizare circulară:</h4>
+                    <div className="formula-resurse text-lg font-mono mb-4">
+                      {"\\( \\delta = \\pm \\frac{\\pi}{2} \\) și \\( E_{0x} = E_{0y} \\)"}
+                      <MathJaxRender />
+                    </div>
+                    
+                    <h4 className="text-lg font-semibold mb-2">3. Vector Jones pentru polarizare circulară dreapta:</h4>
+                    <div className="formula-resurse text-lg font-mono mb-4">
+                      {"\\( \\frac{1}{\\sqrt{2}} \\begin{bmatrix} 1 \\\\ -i \\end{bmatrix} \\)"}
+                      <MathJaxRender />
+                    </div>
+                    
+                    <h4 className="text-lg font-semibold mb-2">4. Vector Jones pentru polarizare circulară stânga:</h4>
+                    <div className="formula-resurse text-lg font-mono mb-4">
+                      {"\\( \\frac{1}{\\sqrt{2}} \\begin{bmatrix} 1 \\\\ i \\end{bmatrix} \\)"}
+                      <MathJaxRender />
+                    </div>
+                    
+                    <h4 className="text-lg font-semibold mb-2">5. Parametrii Stokes:</h4>
+                    <div className="formula-resurse text-lg font-mono mb-4">
+                      {"\\( S_0 = |E_x|^2 + |E_y|^2 \\)"}
+                      <MathJaxRender />
+                    </div>
+                    <div className="formula-resurse text-lg font-mono mb-4">
+                      {"\\( S_3 = 2\\text{Im}(E_x E_y^*) \\)"}
+                      <MathJaxRender />
+                    </div>
+                    
+                    <p className="text-muted-foreground mt-4">
+                      Unde: Eₓ și Eᵧ sunt componentele câmpului electric, E₀ este amplitudinea, k este numărul de undă, 
+                      ω este frecvența unghiulară, δ este diferența de fază, S₀ și S₃ sunt parametrii Stokes.
+                    </p>
+                  </div>
+                  <a
+                    href="/simulare/polarizare-circulara"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    style={{ textDecoration: "none" }}
+                  >
+                    <Button size="lg">Vezi simularea</Button>
+                  </a>
                 </div>
               </div>
 
