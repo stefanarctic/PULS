@@ -305,11 +305,16 @@ nav.scrolled-white {
             }
         }
 
+        // background-color: red;
+
         #mobile-menu {
             position: fixed;
             top: 0;
             left: 0;
-            width: 100%;
+            margin: 0;
+            padding: 0;
+            // width: 100vw;
+            width: 360px !important;
             height: 100vh;
             background: var(--navbar-mobile-bg);
             backdrop-filter: blur(10px);
@@ -325,6 +330,8 @@ nav.scrolled-white {
             // margin: 0 !important;
             // padding: 0 !important;
             max-height: 100vh;
+            zoom: 1.15;
+            // background-color: red;
 
             .mobile-menu-close {
                 position: absolute;

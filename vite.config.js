@@ -8,9 +8,9 @@ export default defineConfig({
     port: 8000,
     allowedHosts: [
       'localhost',
-      '277e55960558.ngrok-free.app',
       'puls-fizica.vercel.app',
-      'puls-fizica.ro'
+      'puls-fizica.ro',
+      '68ac2456c47f.ngrok-free.app'
     ],
     proxy: {
       '/api/webhook': {
