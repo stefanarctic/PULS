@@ -27,6 +27,144 @@
       font-size: 1.125rem;
     }
 
+    .simulations-search {
+      margin-bottom: 2rem;
+      padding: 0 1rem;
+
+      .search-container {
+        position: relative;
+        max-width: 600px;
+        margin: 0 auto;
+        display: flex;
+        align-items: center;
+        background: var(--quaternary-background-current-mode);
+        border: 2px solid var(--border-color-current-mode);
+        border-radius: 2rem;
+        padding: 0.75rem 1rem;
+        transition: all 0.3s ease;
+
+        &:focus-within {
+          border-color: var(--accent-color-current-mode);
+          box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        .search-icon {
+          width: 20px;
+          height: 20px;
+          color: var(--secondary-color-current-mode);
+          margin-right: 0.75rem;
+          flex-shrink: 0;
+        }
+
+        .search-input {
+          flex: 1;
+          border: none;
+          background: transparent;
+          color: var(--primary-color-current-mode);
+          font-size: 1rem;
+          outline: none;
+          padding: 0;
+          width: 100%;
+
+          &::placeholder {
+            color: var(--secondary-color-current-mode);
+            opacity: 0.7;
+          }
+        }
+
+        .search-clear {
+          background: none;
+          border: none;
+          cursor: pointer;
+          padding: 0.25rem;
+          margin-left: 0.5rem;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          color: var(--secondary-color-current-mode);
+          transition: color 0.2s ease;
+          flex-shrink: 0;
+
+          svg {
+            width: 18px;
+            height: 18px;
+          }
+
+          &:hover {
+            color: var(--primary-color-current-mode);
+          }
+        }
+      }
+    }
+
+    .simulations-filters {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+      justify-content: center;
+      margin-bottom: 2rem;
+      padding: 1rem 0;
+
+      .filter-btn {
+        padding: 0.625rem 1.25rem;
+        border: 2px solid var(--border-color-current-mode);
+        border-radius: 2rem;
+        background: var(--quaternary-background-current-mode);
+        color: var(--primary-color-current-mode);
+        font-size: 0.95rem;
+        font-weight: 500;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+
+        &:hover {
+          transform: translateY(-2px);
+          box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+          border-color: var(--accent-color-current-mode);
+        }
+
+        &.active {
+          background: var(--accent-color-current-mode);
+          color: var(--primary-background-current-mode);
+          border-color: var(--accent-color-current-mode);
+          box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+        }
+
+        .filter-count {
+          font-size: 0.85rem;
+          opacity: 0.8;
+          font-weight: 400;
+        }
+
+        &.active .filter-count {
+          opacity: 1;
+        }
+      }
+    }
+
+    .simulations-results {
+      margin-bottom: 1.5rem;
+      text-align: center;
+
+      .results-count {
+        color: var(--secondary-color-current-mode);
+        font-size: 1rem;
+        margin: 0;
+      }
+
+      .no-results {
+        color: var(--secondary-color-current-mode);
+        font-size: 1rem;
+        margin-top: 1rem;
+        padding: 1.5rem;
+        background: var(--quaternary-background-current-mode);
+        border-radius: 1rem;
+        border: 1px solid var(--border-color-current-mode);
+      }
+    }
+
     .simulations-grid {
       display: grid;
       grid-template-columns: 1fr;
@@ -98,6 +236,19 @@
           font-size: 0.95rem;
           line-height: 1.5;
         }
+
+        .simulation-category {
+          display: inline-block;
+          padding: 0.25rem 0.75rem;
+          background: var(--accent-color-current-mode);
+          color: var(--primary-background-current-mode);
+          border-radius: 1rem;
+          font-size: 0.75rem;
+          font-weight: 600;
+          text-transform: uppercase;
+          letter-spacing: 0.05em;
+          margin-top: 0.5rem;
+        }
       }
 
       .image-container {
@@ -163,6 +314,39 @@
     max-width: 100vw !important;
     width: 100vw !important;
     box-sizing: border-box;
+
+    .simulations-search {
+      padding: 0 0.5rem;
+      margin-bottom: 1.5rem;
+
+      .search-container {
+        padding: 0.625rem 0.875rem;
+
+        .search-input {
+          font-size: 0.9rem;
+
+          &::placeholder {
+            font-size: 0.85rem;
+          }
+        }
+
+        .search-icon {
+          width: 18px;
+          height: 18px;
+          margin-right: 0.5rem;
+        }
+      }
+    }
+
+    .simulations-filters {
+      gap: 0.5rem;
+      padding: 0.5rem 0;
+
+      .filter-btn {
+        padding: 0.5rem 1rem;
+        font-size: 0.85rem;
+      }
+    }
   }
 
   .simulari-page {

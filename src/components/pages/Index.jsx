@@ -238,41 +238,38 @@ const Index = () => {
                 <h2 className="section-title hidden hidden-bottom">Explorează simulările noastre</h2>
                 <div className="simulations-grid hidden hidden-bottom">
                     <div className="simulation-card pendul">
-                        {/* <Link to="/resurse/pendul" className="simulation-content">
-                            <div className="simulation-content">
-                                <h3>Pendul</h3>
-                                <p>Mișcare oscilantă, forțe, energie cinetică și potențială, conservarea energiei</p>
-                                <button className="simulation-button">Explorează</button>
-                            </div>
-                        </Link> */}
                         <div className="simulation-content">
                             <h3>Pendul</h3>
                             <p>Mișcare oscilantă, forțe, energie cinetică și potențială, conservarea energiei</p>
-                            {/* <button className="simulation-button">Explorează</button> */}
-                            <Link to="/resurse/pendule" className="simulation-button">Explorează</Link>
+                            <Link to="/simulari?category=pendule" className="simulation-button">Explorează</Link>
                         </div>
                     </div>
                     <div className="simulation-card unde">
                         <div className="simulation-content">
                             <h3>Unde</h3>
                             <p>Unde mecanice, unde electromagnetice, interferență, difracție și propagare</p>
-                            <Link to="/resurse/unde" className="simulation-button">Explorează</Link>
+                            <Link to="/simulari?category=unde" className="simulation-button">Explorează</Link>
                         </div>
                     </div>
                     <div className="simulation-card lissajous">
                         <div className="simulation-content">
                             <h3>Lissajous</h3>
                             <p>Figuri parametrice, oscilații perpendiculare, frecvențe și faze</p>
-                            <Link to="/resurse/lissajous" className="simulation-button">Explorează</Link>
+                            <Link to="/simulari?search=lissajous" className="simulation-button">Explorează</Link>
                         </div>
                     </div>
                     <div className="simulation-card seism">
                         <div className="simulation-content">
                             <h3>Seism</h3>
                             <p>Unde seismice, propagare, reflexie, refracție și principii de seismologie</p>
-                            <Link to="/resurse/seism" className="simulation-button">Explorează</Link>
+                            <Link to="/simulari?search=seism" className="simulation-button">Explorează</Link>
                         </div>
                     </div>
+                </div>
+                <div className="simulations-cta hidden hidden-bottom">
+                    <Link to="/simulari" className="simulations-view-all-button">
+                        Vizualizează toate simulările
+                    </Link>
                 </div>
             </section>
 

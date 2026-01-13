@@ -23,7 +23,8 @@ export const simulationsConfig = [
     image: simulatorPendulSimpluImg,
     caption: "Oscilație armonică simplă",
     iframeSrc: "/simulari/Mix/Reprezentari3d.html",
-    maxHeight: '90vh'
+    maxHeight: '90vh',
+    category: "Pendule"
   },
   {
     id: 2,
@@ -34,7 +35,8 @@ export const simulationsConfig = [
     image: simulatorPendulAmortizatImg,
     caption: "Oscilație amortizată",
     iframeSrc: "/simulari/Mix/Oscilatie-amortizata.html",
-    maxHeight: '90vh'
+    maxHeight: '90vh',
+    category: "Pendule"
   },
   {
     id: 3,
@@ -45,7 +47,8 @@ export const simulationsConfig = [
     image: simulatorPendulTrasnitImg,
     caption: "Oscilație mecanică",
     iframeSrc: "/simulari/Mix/Pendul-amplitudine.html",
-    maxHeight: '90vh'
+    maxHeight: '90vh',
+    category: "Pendule"
   },
   {
     id: 4,
@@ -56,7 +59,8 @@ export const simulationsConfig = [
     image: simulatorUndeImg,
     caption: "Unde în apă",
     iframeSrc: "/simulari/Unde/simulator-unde.html",
-    maxHeight: '200vh'
+    maxHeight: '200vh',
+    category: "Unde"
   },
   {
     id: 5,
@@ -67,7 +71,8 @@ export const simulationsConfig = [
     image: simulatorLissajousImg,
     caption: "Figuri Lissajous",
     iframeSrc: "/simulari/Figuri-Lissajous/grafice.html",
-    maxHeight: '90vh'
+    maxHeight: '90vh',
+    category: "Unde"
   },
   {
     id: 6,
@@ -78,7 +83,8 @@ export const simulationsConfig = [
     image: simulatorGraficePendulImg,
     caption: "Grafice Pendule",
     iframeSrc: "/simulari/Grafice-Armonice/index.html",
-    maxHeight: '90vh'
+    maxHeight: '90vh',
+    category: "Grafice"
   },
   {
     id: 7,
@@ -89,7 +95,8 @@ export const simulationsConfig = [
     image: simulatorFunctiiImg,
     caption: "Grafice Funcții",
     iframeSrc: "/simulari/Functii/Functii/index.html",
-    maxHeight: '90vh'
+    maxHeight: '90vh',
+    category: "Grafice"
   },
   {
     id: 8,
@@ -100,7 +107,8 @@ export const simulationsConfig = [
     image: simulatorGraficeBasicImg,
     caption: "Grafice Simple",
     iframeSrc: "/simulari/Mix/grafice.html",
-    maxHeight: '90vh'
+    maxHeight: '90vh',
+    category: "Grafice"
   },
   {
     id: 9,
@@ -111,7 +119,8 @@ export const simulationsConfig = [
     image: simulatorSeismImg,
     caption: "Cutremur",
     iframeSrc: "/simulari/Mix/Cutremur.html",
-    maxHeight: '70vh'
+    maxHeight: '70vh',
+    category: "Unde"
   },
   {
     id: 10,
@@ -122,7 +131,8 @@ export const simulationsConfig = [
     image: simulatorPrismaImg,
     caption: "Prisma",
     iframeSrc: "/simulari/prisma/prisma-simulator.html",
-    maxHeight: '90vh'
+    maxHeight: '90vh',
+    category: "Optică"
   },
   {
     id: 11,
@@ -133,6 +143,7 @@ export const simulationsConfig = [
     image: termodinamicaImg,
     caption: "Termodinamică",
     iframeSrc: "/simulari/Termodinamica/index.html",
+    category: "Termodinamică"
   },
   {
     id: 12,
@@ -143,6 +154,7 @@ export const simulationsConfig = [
     image: simulatorOscilatieOXImg,
     caption: "Mișcări Oscilatorii pe OX",
     iframeSrc: "/simulari/Oscilatii elastice  pe OX/index.html",
+    category: "Oscilații"
   },
   {
     id: 13,
@@ -153,7 +165,8 @@ export const simulationsConfig = [
     image: simulatorOscilatieOYImg,
     caption: "Mișcări Oscilatorii pe OY",
     iframeSrc: "/simulari/Legea Hooke-oscilatii oy/index.html",
-    maxHeight: '90vh'
+    maxHeight: '90vh',
+    category: "Oscilații"
   },
   {
     id: 14,
@@ -164,7 +177,8 @@ export const simulationsConfig = [
     image: simulatorCiocnireImg,
     caption: "Coliziuni Inelastice",
     iframeSrc: "/simulari/Ciocnire/ciocnire.html",
-    maxHeight: '100vh'
+    maxHeight: '100vh',
+    category: "Mecanică"
   },
   {
     id: 15,
@@ -175,7 +189,8 @@ export const simulationsConfig = [
     image: simulatorGraficeBasicImg, // Placeholder - va trebui înlocuit cu screenshot real
     caption: "Circuite Electrice",
     iframeSrc: "/simulari/electricity/index.html",
-    maxHeight: '90vh'
+    maxHeight: '90vh',
+    category: "Electricitate"
   },
   {
     id: 16,
@@ -186,7 +201,8 @@ export const simulationsConfig = [
     image: simulatorGraficeBasicImg, // Placeholder - va trebui înlocuit cu screenshot real
     caption: "Energia în Circuite",
     iframeSrc: "/simulari/energie_circuite/index.html",
-    maxHeight: '90vh'
+    maxHeight: '90vh',
+    category: "Electricitate"
   },
   {
     id: 17,
@@ -197,7 +213,8 @@ export const simulationsConfig = [
     image: termodinamicaImg, // Placeholder - va trebui înlocuit cu screenshot real
     caption: "Motoare Termice",
     iframeSrc: "/simulari/motoare/index.html",
-    maxHeight: '90vh'
+    maxHeight: '90vh',
+    category: "Termodinamică"
   },
   {
     id: 18,
@@ -208,7 +225,8 @@ export const simulationsConfig = [
     image: simulatorPendulTrasnitImg, // Placeholder - va trebui înlocuit cu screenshot real
     caption: "Penduluri Multiple",
     iframeSrc: "/simulari/pendule_multiple/index.html",
-    maxHeight: '90vh'
+    maxHeight: '90vh',
+    category: "Pendule"
   },
   {
     id: 19,
@@ -219,7 +237,8 @@ export const simulationsConfig = [
     image: simulatorGraficeBasicImg, // Placeholder - va trebui înlocuit cu screenshot real
     caption: "Plan Înclinat",
     iframeSrc: "/simulari/plan-inclinat/index.html",
-    maxHeight: '90vh'
+    maxHeight: '90vh',
+    category: "Mecanică"
   },
   {
     id: 20,
@@ -230,7 +249,8 @@ export const simulationsConfig = [
     image: simulatorGraficeBasicImg, // Placeholder - va trebui înlocuit cu screenshot real
     caption: "Mișcarea Proiectilului",
     iframeSrc: "/simulari/proiectile/index.html",
-    maxHeight: '90vh'
+    maxHeight: '90vh',
+    category: "Mecanică"
   },
   {
     id: 21,
@@ -241,7 +261,8 @@ export const simulationsConfig = [
     image: simulatorPrismaImg, // Placeholder - va trebui înlocuit cu screenshot real
     caption: "Refracție Atmosferică",
     iframeSrc: "/simulari/refractie_atmosferica/index.html",
-    maxHeight: '90vh'
+    maxHeight: '90vh',
+    category: "Optică"
   },
   {
     id: 22,
@@ -252,7 +273,8 @@ export const simulationsConfig = [
     image: simulatorPrismaImg, // Placeholder - va trebui înlocuit cu screenshot real
     caption: "Lentilă Subțire",
     iframeSrc: "/simulari/simulator_optica/index.html",
-    maxHeight: '90vh'
+    maxHeight: '90vh',
+    category: "Optică"
   },
   {
     id: 23,
@@ -263,7 +285,8 @@ export const simulationsConfig = [
     image: simulatorPrismaImg, // Placeholder - va trebui înlocuit cu screenshot real
     caption: "Polarizare Circulară",
     iframeSrc: "/simulari/polarizare-circulara/index.html",
-    maxHeight: '90vh'
+    maxHeight: '90vh',
+    category: "Unde"
   },
   {
     id: 24,
@@ -274,7 +297,8 @@ export const simulationsConfig = [
     image: simulatorPrismaImg, // Placeholder - va trebui înlocuit cu screenshot real
     caption: "Reflexie și Refracție",
     iframeSrc: "/simulari/reflexie-refractie/index.html",
-    maxHeight: '90vh'
+    maxHeight: '90vh',
+    category: "Optică"
   },
 ];
 
