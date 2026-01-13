@@ -27,17 +27,6 @@ const DarkModeToggle = () => {
             console.log(`Setting dark mode based on localStorage: ${localStorageDarkMode}`);
             setDarkModeOn(localStorageDarkMode === "enabled");
         }
-
-        // Get the dark-mode-toggle-link element and add click handler
-        const darkModeToggleLink = document.querySelector('.dark-mode-toggle-link');
-        if (darkModeToggleLink) {
-            darkModeToggleLink.addEventListener('click', toggleDarkMode);
-            
-            // Cleanup function to remove event listener
-            return () => {
-                darkModeToggleLink.removeEventListener('click', toggleDarkMode);
-            };
-        }
     }, []);
 
     useEffect(() => {
@@ -110,7 +99,7 @@ const DarkModeToggle = () => {
     }, [darkModeOn]);
 
     return (
-        <div className="toggle-parent">
+        <div className="toggle-parent" onClick={toggleDarkMode} style={{ cursor: 'pointer' }}>
             { darkModeOn ?
                 <Sun size={25} strokeWidth={2.25} className="dark-mode-toggle"></Sun>
                 :

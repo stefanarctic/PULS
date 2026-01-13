@@ -395,6 +395,10 @@ nav.scrolled-white {
                     flex-direction: column;
                     align-items: center;
 
+                    *::-webkit-scrollbar {
+                        display: none;
+                    }
+
                     .mobile-dropdown-header {
                         width: 80%;
                         box-sizing: border-box;
@@ -430,6 +434,10 @@ nav.scrolled-white {
                         border-radius: 10px;
                         display: none;
                         flex-direction: column;
+                        // background-color: red !important;
+                        // display: flex;
+                        // justify-content: center;
+                        // align-items: center;
                         gap: 0.5rem;
                         max-height: 0;
                         overflow: hidden;
@@ -449,6 +457,11 @@ nav.scrolled-white {
                             background: transparent !important;
                             color: var(--navbar-mobile-color);
                             transition: background 0.2s, color 0.2s, transform 0.2s;
+                            // display: flex;
+                            // justify-content: center;
+                            // align-items: center;
+
+
                             &:hover {
                                 background-color: var(--navbar-mobile-dropdown-bg);
                                 color: var(--navbar-mobile-color);
