@@ -95,6 +95,11 @@
             margin-bottom: 2rem;
             border: 1px solid var(--border-color-current-mode, #35353f);
 
+            .tabs-list {
+                flex-wrap: wrap;
+                justify-content: flex-start;
+            }
+
             .resurse-section-title {
                 font-size: 2rem;
                 font-weight: bold;
