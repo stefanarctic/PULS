@@ -533,6 +533,15 @@
     font-size: 0.95rem;
   }
 
+  .card-title {
+    font-size: 1.5rem;
+    margin-bottom: 0;
+  }
+
+  .problema-favorite-btn {
+    margin-top: 2px !important;    
+  }
+
   .card-header-container {
     flex-direction: column;
     align-items: flex-start;
@@ -540,7 +549,7 @@
   }
 
   .copy-button {
-    width: 10%;
+    width: 13.5%;
     font-size: 0.85rem;
     padding: 10px;
   }
