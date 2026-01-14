@@ -10,7 +10,7 @@ export default defineConfig({
       'localhost',
       'puls-fizica.vercel.app',
       'puls-fizica.ro',
-      '68ac2456c47f.ngrok-free.app'
+      '0447bf6904b8.ngrok-free.app'
     ],
     proxy: {
       '/api/webhook': {

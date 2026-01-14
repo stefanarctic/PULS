@@ -503,6 +503,7 @@ const ProblemSubmit = ({ problem = null, defaultProblemId = null, defaultProblem
                         </label>
                         <textarea
                             ref={solutionTextRef}
+                            autoFocus={false}
                             className="problem-submit-textarea"
                             placeholder="Scrie soluția ta aici..."
                             value={solutionText}

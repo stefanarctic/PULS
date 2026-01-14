@@ -309,42 +309,55 @@
 }
 
 @media (max-width: 768px) {
-  .simulari-page .main-content {
-    padding: 0.7rem 0.3rem !important;
-    max-width: 100vw !important;
-    width: 100vw !important;
-    box-sizing: border-box;
+  .simulari-page {
+    // background-color: red !important;
+    // padding-right: 0px;
+    // margin-right: 0px;
+    zoom: 1.1;
+    .main-content {
+      padding: 0.7rem 0.3rem !important;
+      max-width: 100vw !important;
+      width: 100vw !important;
+      box-sizing: border-box;
 
-    .simulations-search {
-      padding: 0 0.5rem;
-      margin-bottom: 1.5rem;
+      .simulations-search {
+        padding: 0 0.5rem;
+        margin-bottom: 1.5rem;
 
-      .search-container {
-        padding: 0.625rem 0.875rem;
+        .search-container {
+          padding: 0.625rem 0.875rem;
 
-        .search-input {
-          font-size: 0.9rem;
+          .search-input {
+            font-size: 1rem;
+            padding: 0.7rem;
+            padding-left: 0px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            zoom: 0.9;
 
-          &::placeholder {
-            font-size: 0.85rem;
+            &::placeholder {
+              font-size: 0.85rem;
+            }
+          }
+
+          .search-icon {
+            width: 18px;
+            height: 18px;
+            margin-right: 0.5rem;
+            margin-left: 5px;
           }
         }
-
-        .search-icon {
-          width: 18px;
-          height: 18px;
-          margin-right: 0.5rem;
-        }
       }
-    }
 
-    .simulations-filters {
-      gap: 0.5rem;
-      padding: 0.5rem 0;
+      .simulations-filters {
+        gap: 0.5rem;
+        padding: 0.5rem 0;
 
-      .filter-btn {
-        padding: 0.5rem 1rem;
-        font-size: 0.85rem;
+        .filter-btn {
+          padding: 0.5rem 1rem;
+          font-size: 0.85rem;
+        }
       }
     }
   }
@@ -442,7 +455,7 @@
         height: 22px;
         fill: currentColor;
       }
-      
+
       &[data-active="true"] {
         background-color: rgba(15, 23, 42, 1);
       }

@@ -63,7 +63,7 @@ export const ProblemaDetaliata = ({ problema, onBack }) => {
 
     // Get the Firestore document ID
     const problemId = problema.id;
-    
+
     if (!problemId) {
       console.error('Problem ID is missing:', problema);
       alert('Eroare: Problema nu are un ID valid. Nu se poate edita.');
@@ -83,12 +83,12 @@ export const ProblemaDetaliata = ({ problema, onBack }) => {
 
     // Get the Firestore document ID - this MUST be the document ID from Firestore
     const problemId = problema.id;
-    
+
     console.log('Problem object:', problema);
     console.log('Problem ID to delete:', problemId);
     console.log('Problem index:', problema.index);
     console.log('Problem title:', problema.titlu);
-    
+
     if (!problemId) {
       console.error('Problem ID is missing:', problema);
       alert('Eroare: Problema nu are un ID valid. Nu se poate șterge.');
@@ -105,7 +105,7 @@ export const ProblemaDetaliata = ({ problema, onBack }) => {
   // Handle delete status changes
   useEffect(() => {
     console.log('Delete status changed:', { deleteStatus, deleteError });
-    
+
     if (deleteStatus === 'succeeded') {
       console.log('Delete succeeded, reloading problems and navigating away...');
       // Reload problems from Firestore to update the frontend
@@ -165,13 +165,13 @@ export const ProblemaDetaliata = ({ problema, onBack }) => {
     text += `Categorie: ${getCategoryName(problema.categorie)}\n`;
     text += `Dificultate: ${getDifficultyName(problema.dificultate)}\n`;
     text += `Punctaj total: ${problema.punctajTotal} puncte\n\n`;
-    
+
     text += `DESCRIERE:\n${problema.descriere}\n\n`;
-    
+
     if (problema.continut) {
       text += `CONTINUT:\n${stripMathJaxDelimiters(problema.continut)}\n\n`;
     }
-    
+
     if (problema.formule && problema.formule.length > 0) {
       text += `FORMULE RELEVANTE:\n`;
       problema.formule.forEach((formula, index) => {
@@ -179,7 +179,7 @@ export const ProblemaDetaliata = ({ problema, onBack }) => {
       });
       text += '\n';
     }
-    
+
     if (problema.date && Object.keys(problema.date).length > 0) {
       text += `DATE CUNOSCUTE:\n`;
       Object.entries(problema.date).forEach(([key, value]) => {
@@ -187,20 +187,20 @@ export const ProblemaDetaliata = ({ problema, onBack }) => {
       });
       text += '\n';
     }
-    
+
     if (problema.subpuncte && problema.subpuncte.length > 0) {
       text += `CERINTE:\n`;
       problema.subpuncte.forEach((subpunct, index) => {
         text += `${String.fromCharCode(97 + index)}) ${stripMathJaxDelimiters(subpunct.cerinta)} (${subpunct.punctaj}p)\n`;
       });
       text += '\n';
-      
+
       text += `BAREM:\n`;
       problema.subpuncte.forEach((subpunct, index) => {
         text += `${String.fromCharCode(97 + index)}) ${subpunct.punctaj} puncte\n`;
       });
     }
-    
+
     return text;
   };
 
@@ -311,7 +311,7 @@ export const ProblemaDetaliata = ({ problema, onBack }) => {
       setIsUpdatingFavorite(false);
     }
   };
-  
+
 
   return (
     <div className="container">
@@ -371,11 +371,11 @@ export const ProblemaDetaliata = ({ problema, onBack }) => {
               {problema.poze && Array.isArray(problema.poze) && problema.poze.length > 0 && (
                 <div className={`problema-imagine-container ${problema.poze.length === 2 ? 'dual-images' : ''}`}>
                   {problema.poze.map((imagine, index) => (
-                    <img 
-                      key={index} 
-                      src={imagine} 
-                      alt={`Ilustrație problemă ${index + 1}`} 
-                      className={`problema-imagine ${problema.poze.length === 2 ? 'dual-image' : ''}`} 
+                    <img
+                      key={index}
+                      src={imagine}
+                      alt={`Ilustrație problemă ${index + 1}`}
+                      className={`problema-imagine ${problema.poze.length === 2 ? 'dual-image' : ''}`}
                     />
                   ))}
                 </div>
@@ -408,12 +408,12 @@ export const ProblemaDetaliata = ({ problema, onBack }) => {
                     {problema.formule.map((formula, index) => {
                       // Curăță formula și asigură că este în format LaTeX valid
                       let cleanedFormula = formula.trim();
-                      
+
                       // Elimină delimitatori LaTeX dacă există deja
                       cleanedFormula = cleanedFormula.replace(/^\$+|\$+$/g, '');
                       cleanedFormula = cleanedFormula.replace(/^\\\(|\\\)$/g, '');
                       cleanedFormula = cleanedFormula.replace(/^\\\[|\\\]$/g, '');
-                      
+
                       // Corectează sintaxa LaTeX comună din răspunsurile AI
                       // Funcție helper pentru a verifica dacă un caracter la o poziție este precedat de backslash
                       const isEscaped = (str, pos) => {
@@ -423,7 +423,7 @@ export const ProblemaDetaliata = ({ problema, onBack }) => {
                         }
                         return backslashCount % 2 === 1;
                       };
-                      
+
                       // Corectează pattern-urile comune fără backslash
                       const patterns = [
                         { find: /\bcdot\b/g, replace: '\\cdot' },
@@ -437,7 +437,7 @@ export const ProblemaDetaliata = ({ problema, onBack }) => {
                         { find: /\btheta\b/g, replace: '\\theta' },
                         { find: /\bpi\b/g, replace: '\\pi' },
                       ];
-                      
+
                       // Aplică corecțiile doar dacă nu sunt deja escape-uite
                       patterns.forEach(({ find, replace }) => {
                         cleanedFormula = cleanedFormula.replace(find, (match, offset) => {
@@ -448,7 +448,7 @@ export const ProblemaDetaliata = ({ problema, onBack }) => {
                           return replace;
                         });
                       });
-                      
+
                       return (
                         <div key={index}>
                           <span
@@ -476,7 +476,7 @@ export const ProblemaDetaliata = ({ problema, onBack }) => {
                       // Dacă cheia conține backslash sau caractere matematice speciale, păstrează-o ca LaTeX
                       let formattedKey = key;
                       const hasLatex = key.includes('\\') || key.includes('$') || /[α-ωΑ-Ω]/.test(key);
-                      
+
                       if (!hasLatex) {
                         // Pentru chei simple precum "m_1", păstrăm underscore-ul pentru LaTeX
                         // Dacă cheia are format "m_1", o transformăm în "$m_1$"
@@ -490,17 +490,17 @@ export const ProblemaDetaliata = ({ problema, onBack }) => {
                         // Dacă are LaTeX dar nu are delimitatori, adaugă delimitatori
                         formattedKey = `$${formattedKey}$`;
                       }
-                      
+
                       // Pentru valoare, păstrăm formatarea exactă
                       let formattedValue = String(value);
                       const valueHasLatex = formattedValue.includes('\\') || formattedValue.includes('$') || /[α-ωΑ-Ω°]/.test(formattedValue);
-                      
+
                       if (!valueHasLatex && !formattedValue.includes('$') && !formattedValue.startsWith('\\(')) {
                         formattedValue = `$${formattedValue}$`;
                       } else if (valueHasLatex && !formattedValue.includes('$') && !formattedValue.startsWith('\\(')) {
                         formattedValue = `$${formattedValue}$`;
                       }
-                      
+
                       return (
                         <div key={key} className="flex justify-between items-center">
                           <span
@@ -541,7 +541,7 @@ export const ProblemaDetaliata = ({ problema, onBack }) => {
 
         </div>
 
-                    <div className="problema-sidebar sidebar">
+        <div className="problema-sidebar sidebar">
           <Card className="problema-detaliata-scores-card mb-6 sticky top-4">
             <CardHeader>
               <CardTitle className="text-lg">Punctaje</CardTitle>
@@ -582,10 +582,10 @@ export const ProblemaDetaliata = ({ problema, onBack }) => {
           {isAdmin && (
             <div style={{ marginTop: 16, textAlign: 'center', display: 'flex', flexDirection: 'column', gap: '12px' }}>
               {!isAuthenticated ? (
-                <div style={{ 
-                  padding: '12px', 
-                  backgroundColor: '#fff3cd', 
-                  border: '1px solid #ffeaa7', 
+                <div style={{
+                  padding: '12px',
+                  backgroundColor: '#fff3cd',
+                  border: '1px solid #ffeaa7',
                   borderRadius: '8px',
                   color: '#856404',
                   fontSize: '14px'
@@ -594,19 +594,19 @@ export const ProblemaDetaliata = ({ problema, onBack }) => {
                 </div>
               ) : (
                 <>
-                  <button 
-                    className="problem-card-edit-btn" 
+                  <button
+                    className="problem-card-edit-btn"
                     onClick={handleEdit}
                     title="Editează problema"
                   >
                     ✏️ Editează problema
                   </button>
-                  <button 
-                    className="problem-card-delete-btn" 
-                    onClick={handleDelete} 
+                  <button
+                    className="problem-card-delete-btn"
+                    onClick={handleDelete}
                     disabled={deleteStatus === 'loading'}
                     title={deleteStatus === 'loading' ? 'Se șterge...' : 'Șterge problema'}
-                    style={{ 
+                    style={{
                       opacity: deleteStatus === 'loading' ? 0.6 : 1,
                       cursor: deleteStatus === 'loading' ? 'not-allowed' : 'pointer'
                     }}
@@ -619,19 +619,19 @@ export const ProblemaDetaliata = ({ problema, onBack }) => {
           )}
         </div>
 
-      {/* Mutat aici: Card Trimite o problemă */}
-      <Card className="problema-detaliata-submit-card mt-6">
-        <CardHeader>
-          <CardTitle className="text-lg">Trimite o problemă</CardTitle>
-        </CardHeader>
-        <CardContent>
-          <ProblemSubmit 
-            problem={problema}
-            defaultProblemId={resolvedProblemId}
-            defaultProblemTitle={resolvedProblemTitle}
-          />
-        </CardContent>
-      </Card>
+        {/* Mutat aici: Card Trimite o problemă */}
+        <Card className="problema-detaliata-submit-card mt-6">
+          <CardHeader>
+            <CardTitle className="text-lg">Trimite o problemă</CardTitle>
+          </CardHeader>
+          <CardContent>
+            <ProblemSubmit
+              problem={problema}
+              defaultProblemId={resolvedProblemId}
+              defaultProblemTitle={resolvedProblemTitle}
+            />
+          </CardContent>
+        </Card>
 
       </div>
 
