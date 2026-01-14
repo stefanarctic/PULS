@@ -51,6 +51,9 @@ export const ProblemaDetaliata = ({ problema, onBack }) => {
         setFavorites([]);
       }
     });
+
+    // document.querySelector('nav').scrollIntoView();
+
     return () => unsubscribe();
   }, []);
 

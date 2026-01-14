@@ -365,7 +365,7 @@ const ProblemSubmit = ({ problem = null, defaultProblemId = null, defaultProblem
     // Highlight the solution textarea on mount
     useEffect(() => {
         if (solutionTextRef.current) {
-            solutionTextRef.current.focus();
+            // solutionTextRef.current.focus();
         }
     }, []);
 
