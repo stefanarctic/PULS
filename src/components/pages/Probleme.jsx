@@ -1360,18 +1360,67 @@ const PhysicsProblems = () => {
         );
     };
 
+    // Generate structured data for SEO
+    const structuredData = {
+        "@context": "https://schema.org",
+        "@type": "CollectionPage",
+        "name": "Probleme de Fizică - PULS",
+        "description": "Colecție completă de probleme de fizică pentru bacalaureat și concursuri. Rezolvări pas cu pas, organizate pe categorii și dificultate. Autoevaluare cu feedback AI.",
+        "url": "https://puls-fizica.ro/probleme",
+        "mainEntity": {
+            "@type": "ItemList",
+            "numberOfItems": sortedProblems.length,
+            "itemListElement": currentProblems.slice(0, 10).map((problem, index) => ({
+                "@type": "ListItem",
+                "position": startIndex + index + 1,
+                "item": {
+                    "@type": "EducationalContent",
+                    "@id": `https://puls-fizica.ro/probleme/${problem.index}`,
+                    "name": problem.titlu,
+                    "description": problem.descriere || problem.titlu,
+                    "educationalLevel": "High School",
+                    "learningResourceType": "Problem",
+                    "subject": "Physics",
+                    "about": problem.categorie,
+                    "difficulty": problem.dificultate
+                }
+            }))
+        },
+        "breadcrumb": {
+            "@type": "BreadcrumbList",
+            "itemListElement": [
+                {
+                    "@type": "ListItem",
+                    "position": 1,
+                    "name": "Acasă",
+                    "item": "https://puls-fizica.ro/"
+                },
+                {
+                    "@type": "ListItem",
+                    "position": 2,
+                    "name": "Probleme de Fizică",
+                    "item": "https://puls-fizica.ro/probleme"
+                }
+            ]
+        }
+    };
+
     return (
         <Layout>
             <SEO
-                title="Probleme de Fizică | PULS - Probleme BAC și Exerciții cu Rezolvări"
-                description="Rezolvă probleme de fizică pentru bacalaureat și concursuri. Colecție completă de probleme cu rezolvări pas cu pas, organizate pe categorii și dificultate. Autoevaluare cu feedback AI."
-                keywords="probleme fizică, probleme BAC fizică, exerciții fizică, probleme rezolvate fizică, bacalaureat fizică, probleme concurs fizică"
+                title="Probleme de Fizică | PULS - Probleme BAC și Exerciții cu Rezolvări Pas cu Pas"
+                description={`Rezolvă probleme de fizică pentru bacalaureat și concursuri. Colecție completă de probleme cu rezolvări pas cu pas, organizate pe categorii și dificultate. Autoevaluare cu feedback AI. Peste ${sortedProblems.length} probleme disponibile.`}
+                keywords="probleme fizică, probleme BAC fizică, exerciții fizică, probleme rezolvate fizică, bacalaureat fizică, probleme concurs fizică, probleme fizică rezolvate pas cu pas, probleme fizică clasa a 12-a, probleme fizică mecanică, probleme fizică termodinamică"
                 image="/res/icons/New-logo.png"
+                structuredData={structuredData}
             />
             <div className="problems-page">
                 <div className="problems-page-inner">
                     {/* Title */}
-                    <h1 className="problems-page-title">Probleme de fizică</h1>
+                    <h1 className="problems-page-title">Probleme de Fizică - Rezolvări Pas cu Pas</h1>
+                    <p className="problems-page-intro" style={{ marginTop: '1rem', fontSize: '1.1rem', color: 'var(--muted-color-current-mode)', maxWidth: '800px', marginBottom: '2rem' }}>
+                        Explorează o colecție completă de probleme de fizică pentru bacalaureat și concursuri. Fiecare problemă include rezolvări detaliate pas cu pas, formule necesare și autoevaluare cu feedback AI. Problemele sunt organizate pe categorii (Mecanică, Oscilații, Unde, Termodinamică) și dificultate (ușor, mediu, dificil, concurs).
+                    </p>
 
                     {/* Search and Filters */}
                     <div className="problems-page-filters">

@@ -1272,22 +1272,79 @@ const ProblemeBac = () => {
         );
     };
 
+    // Generate structured data for SEO
+    const structuredData = {
+        "@context": "https://schema.org",
+        "@type": "CollectionPage",
+        "name": "Probleme BAC Fizică - PULS",
+        "description": "Colecție completă de probleme de fizică din examenele de bacalaureat. Probleme BAC organizate pe ani, sesiuni și subiecte. Rezolvări pas cu pas și autoevaluare cu feedback AI.",
+        "url": "https://puls-fizica.ro/probleme/bac",
+        "mainEntity": {
+            "@type": "ItemList",
+            "numberOfItems": sortedProblems.length,
+            "itemListElement": sortedProblems.slice(0, 10).map((problem, index) => ({
+                "@type": "ListItem",
+                "position": index + 1,
+                "item": {
+                    "@type": "EducationalContent",
+                    "@id": `https://puls-fizica.ro/probleme/${problem.index}`,
+                    "name": problem.titlu,
+                    "description": problem.descriere || problem.titlu,
+                    "educationalLevel": "High School",
+                    "learningResourceType": "Exam Problem",
+                    "subject": "Physics",
+                    "about": problem.metadata?.subjectArea || problem.categorie,
+                    "educationalUse": "Exam Preparation",
+                    "audience": {
+                        "@type": "EducationalAudience",
+                        "educationalRole": "Student"
+                    },
+                    "dateCreated": problem.metadata?.year ? `${problem.metadata.year}-01-01` : undefined
+                }
+            }))
+        },
+        "breadcrumb": {
+            "@type": "BreadcrumbList",
+            "itemListElement": [
+                {
+                    "@type": "ListItem",
+                    "position": 1,
+                    "name": "Acasă",
+                    "item": "https://puls-fizica.ro/"
+                },
+                {
+                    "@type": "ListItem",
+                    "position": 2,
+                    "name": "Probleme",
+                    "item": "https://puls-fizica.ro/probleme"
+                },
+                {
+                    "@type": "ListItem",
+                    "position": 3,
+                    "name": "Probleme BAC",
+                    "item": "https://puls-fizica.ro/probleme/bac"
+                }
+            ]
+        }
+    };
+
     return (
         <Layout>
             <SEO
-                title="Probleme BAC Fizică | Examen Bacalaureat - PULS"
-                description="Probleme de fizică din examenele de bacalaureat. Colecție completă de probleme BAC organizate pe ani, sesiuni și subiecte. Rezolvări pas cu pas și autoevaluare cu feedback AI."
-                keywords="probleme BAC fizică, examen bacalaureat fizică, probleme BAC rezolvate, fizică BAC, subiecte BAC fizică, variante BAC fizică"
+                title="Probleme BAC Fizică | Examen Bacalaureat - Rezolvări Complete | PULS"
+                description={`Probleme de fizică din examenele de bacalaureat. Colecție completă de probleme BAC organizate pe ani, sesiuni și subiecte. Rezolvări pas cu pas și autoevaluare cu feedback AI. Peste ${sortedProblems.length} probleme BAC disponibile.`}
+                keywords="probleme BAC fizică, examen bacalaureat fizică, probleme BAC rezolvate, fizică BAC, subiecte BAC fizică, variante BAC fizică, probleme BAC 2024, probleme BAC 2023, probleme BAC 2022, subiecte BAC fizică rezolvate, examen BAC fizică, pregătire BAC fizică"
                 image="/res/icons/New-logo.png"
+                structuredData={structuredData}
             />
             <div className="problems-bac-page">
                 <div className="problems-bac-page-inner">
                     {/* Header Section */}
                     <div className="problems-bac-header">
                         <div className="header-content">
-                            <h1 className="problems-bac-page-title">Probleme de Bacalaureat</h1>
+                            <h1 className="problems-bac-page-title">Probleme de Bacalaureat Fizică - Rezolvări Complete</h1>
                             <p className="problems-bac-page-subtitle">
-                                Probleme organizate pe variante de examen din diferiți ani
+                                Colecție completă de probleme de fizică din examenele de bacalaureat. Probleme organizate pe variante de examen din diferiți ani, sesiuni (BAC, Model, Simulare) și subiecte (I, II, III). Fiecare problemă include rezolvări detaliate pas cu pas și autoevaluare cu feedback AI pentru pregătirea eficientă la examenul de bacalaureat.
                             </p>
                         </div>
                     </div>

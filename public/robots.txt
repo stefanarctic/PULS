@@ -7,8 +7,10 @@ Allow: /
 Disallow: /admin
 Disallow: /api/
 
-# Permite indexarea tuturor paginilor publice
+# Permite indexarea tuturor paginilor publice (prioritare pentru SEO)
 Allow: /probleme
+Allow: /probleme/
+Allow: /probleme/bac
 Allow: /simulari
 Allow: /resurse
 Allow: /simulare/

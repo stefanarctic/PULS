@@ -72,15 +72,22 @@ const SEO = ({
     }
     canonical.setAttribute('href', fullUrl);
 
-    // Add structured data
+    // Add structured data - support multiple structured data objects
     if (structuredData) {
-      let script = document.querySelector('script[type="application/ld+json"]');
-      if (!script) {
-        script = document.createElement('script');
+      // Remove existing structured data scripts
+      const existingScripts = document.querySelectorAll('script[type="application/ld+json"]');
+      existingScripts.forEach(script => script.remove());
+      
+      // Handle both single object and array of objects
+      const dataArray = Array.isArray(structuredData) ? structuredData : [structuredData];
+      
+      dataArray.forEach((data, index) => {
+        const script = document.createElement('script');
         script.setAttribute('type', 'application/ld+json');
+        script.setAttribute('data-seo-index', index.toString());
+        script.textContent = JSON.stringify(data);
         document.head.appendChild(script);
-      }
-      script.textContent = JSON.stringify(structuredData);
+      });
     }
   }, [title, description, keywords, ogImage, fullUrl, type, siteName, locale, structuredData]);
 
