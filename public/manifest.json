@@ -1,0 +1,33 @@
+{
+  "name": "PULS - Platformă Educațională pentru Fizică Interactivă",
+  "short_name": "PULS",
+  "description": "Platformă educațională modernă pentru studiul fizicii. Simulări interactive, probleme BAC cu rezolvări, resurse teoretice și asistent AI.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#1a1a1a",
+  "orientation": "portrait-primary",
+  "icons": [
+    {
+      "src": "/res/icons/New-logo.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/res/icons/New-logo.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/favicon.ico",
+      "sizes": "48x48",
+      "type": "image/x-icon"
+    }
+  ],
+  "categories": ["education", "science"],
+  "lang": "ro",
+  "dir": "ltr"
+}
+

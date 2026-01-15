@@ -16,6 +16,11 @@ Allow: /resurse
 Allow: /simulare/
 Allow: /resurse/
 
+# Permite accesul la favicon și manifest pentru indexare Google
+Allow: /favicon.ico
+Allow: /manifest.json
+Allow: /res/icons/
+
 # Sitemap
 Sitemap: https://puls-fizica.ro/sitemap.xml
 
