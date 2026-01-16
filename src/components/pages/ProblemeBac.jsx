@@ -1342,9 +1342,9 @@ const ProblemeBac = () => {
                     {/* Header Section */}
                     <div className="problems-bac-header">
                         <div className="header-content">
-                            <h1 className="problems-bac-page-title">Probleme de Bacalaureat Fizică - Rezolvări Complete</h1>
+                            <h1 className="problems-bac-page-title">Probleme de Bacalaureat</h1>
                             <p className="problems-bac-page-subtitle">
-                                Colecție completă de probleme de fizică din examenele de bacalaureat. Probleme organizate pe variante de examen din diferiți ani, sesiuni (BAC, Model, Simulare) și subiecte (I, II, III). Fiecare problemă include rezolvări detaliate pas cu pas și autoevaluare cu feedback AI pentru pregătirea eficientă la examenul de bacalaureat.
+                                Probleme organizate pe variante de examen din diferiți ani
                             </p>
                         </div>
                     </div>

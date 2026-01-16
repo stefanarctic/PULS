@@ -1417,10 +1417,10 @@ const PhysicsProblems = () => {
             <div className="problems-page">
                 <div className="problems-page-inner">
                     {/* Title */}
-                    <h1 className="problems-page-title">Probleme de Fizică - Rezolvări Pas cu Pas</h1>
-                    <p className="problems-page-intro" style={{ marginTop: '1rem', fontSize: '1.1rem', color: 'var(--muted-color-current-mode)', maxWidth: '800px', marginBottom: '2rem' }}>
+                    <h1 className="problems-page-title">Probleme de fizică</h1>
+                    {/* <p className="problems-page-intro" style={{ marginTop: '1rem', fontSize: '1.1rem', color: 'var(--muted-color-current-mode)', maxWidth: '800px', marginBottom: '2rem' }}>
                         Explorează o colecție completă de probleme de fizică pentru bacalaureat și concursuri. Fiecare problemă include rezolvări detaliate pas cu pas, formule necesare și autoevaluare cu feedback AI. Problemele sunt organizate pe categorii (Mecanică, Oscilații, Unde, Termodinamică) și dificultate (ușor, mediu, dificil, concurs).
-                    </p>
+                    </p> */}
 
                     {/* Search and Filters */}
                     <div className="problems-page-filters">
