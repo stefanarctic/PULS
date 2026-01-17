@@ -700,7 +700,6 @@
 
         .filter-select {
           width: 100%;
-          background-color: red !important;
         }
       }
     }
@@ -737,6 +736,50 @@
 
       button {
         width: 100%;
+      }
+    }
+  }
+
+  .modal-content {
+    // background-color: red !important;
+    // max-width: 90vw;
+    overflow-x: hidden;
+  }
+
+  .modal-form {
+    // max-width: 90vw !important;
+    * {
+      max-width: 80vw;
+    }
+  }
+
+  .enunt-container {
+    // background-color: red;
+    .enunt-header {
+      display: flex;
+      justify-content: space-between;
+      flex-direction: column;
+      gap: 15px;
+      align-items: center;
+      margin-bottom: 0.5rem;
+
+      .btn-ai-analyze {
+        // margin-top: 2rem !important;
+        top: 50%;
+      }
+    }
+  }
+
+  .date-pairs-container {
+    // background-color: red;
+    .date-pair-row {
+      // background-color: red;
+      overflow: scroll;
+
+      input {
+        // flex: 3 !important;
+        // width: fit-content;
+        width: 50%;
       }
     }
   }

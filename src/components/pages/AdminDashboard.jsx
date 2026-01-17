@@ -1213,8 +1213,8 @@ Dacă nu găsești date sau formule, returnează obiecte goale. Răspunde DOAR c
                       </div>
                     )}
 
-                    <div className="form-group full-width">
-                      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '0.5rem' }}>
+                    <div className="form-group full-width enunt-container">
+                      <div className="enunt-header">
                         <label>Conținut/Enunț *</label>
                         <button
                           type="button"
