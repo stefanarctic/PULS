@@ -763,11 +763,17 @@
 
     .profile-header {
         padding: 1.5rem;
+        padding-bottom: 5rem;
     }
 
     .admin-dashboard-btn {
         bottom: 1rem;
-        right: 1rem;
+        left: 0;
+        right: 0;
+        width: fit-content;
+        margin-inline: auto;
+        // right: 1rem;
+        // left: 1rem;
         padding: 0.625rem 1.25rem;
         font-size: 0.8125rem;
     }
