@@ -1,17 +1,18 @@
 import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react';
 import path from "path";
+import { allowedHosts } from './vite.allowed-hosts.js';
 
 export default defineConfig({
   plugins: [react()],
   server: {
     port: 8000,
-    allowedHosts: [
+    allowedHosts: (allowedHosts ? allowedHosts : [
       'localhost',
       'puls-fizica.vercel.app',
       'puls-fizica.ro',
-      '0447bf6904b8.ngrok-free.app'
-    ],
+      '4170170791aa.ngrok-free.app'
+    ]),
     proxy: {
       '/api/webhook': {
         target: 'http://13.61.39.82:5678',

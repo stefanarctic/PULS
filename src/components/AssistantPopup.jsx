@@ -281,6 +281,54 @@ const AssistantPopup = ({ onClose, initialMessage }) => {
     getCurrentChat,
     user
   } = useChats();
+
+  // Verifică și setează chat-ul corect la deschiderea popup-ului
+  useEffect(() => {
+    // Așteaptă până când chats sunt încărcate și utilizatorul este logat
+    if (!user?.uid || chatsLoading) return;
+    
+    // Nu aplică logica dacă există un initialMessage (se va gestiona în alt useEffect)
+    if (initialMessage) return;
+
+    const STORAGE_KEY = 'assistantPopupLastOpen';
+    const TWO_HOURS_MS = 2 * 60 * 60 * 1000; // 2 ore în milisecunde
+
+    // Obține timestamp-ul ultimei deschideri
+    const lastOpenTimestamp = localStorage.getItem(STORAGE_KEY);
+    const now = Date.now();
+
+    // Salvează timestamp-ul deschiderii curente
+    localStorage.setItem(STORAGE_KEY, now.toString());
+
+    // Verifică dacă au trecut mai mult de 2 ore sau dacă nu există timestamp
+    const shouldOpenNewChat = !lastOpenTimestamp || (now - parseInt(lastOpenTimestamp)) > TWO_HOURS_MS;
+
+    if (shouldOpenNewChat) {
+      // Deschide new chat (resetează currentChatId)
+      console.log('🆕 More than 2 hours passed or first time opening - opening new chat');
+      setCurrentChatId(null);
+      setChatMode(false);
+      setInputValue("");
+    } else {
+      // Deschide ultimul chat (cel mai recent - primul din listă)
+      if (chats.length > 0) {
+        const lastChatId = chats[0].id; // Primul chat este cel mai recent (sortat desc)
+        console.log('📱 Less than 2 hours passed - opening last chat:', lastChatId);
+        setCurrentChatId(lastChatId);
+      } else {
+        // Nu există chat-uri, deschide new chat
+        console.log('🆕 No chats available - opening new chat');
+        setCurrentChatId(null);
+        setChatMode(false);
+        setInputValue("");
+      }
+    }
+
+    // Pe mobil, închide sidebar-ul automat
+    if (window.innerWidth <= 1100) {
+      setSidebarOpen(false);
+    }
+  }, [user?.uid, chatsLoading, chats, setCurrentChatId, initialMessage]);
   
   // Professor Whiz avatar image based on dark mode
   const professorWhizAvatar = darkModeOn 
@@ -535,6 +583,11 @@ const AssistantPopup = ({ onClose, initialMessage }) => {
       // createChat deja setează currentChatId, nu trebuie să-l setăm din nou
       setChatMode(false);
       setInputValue("");
+      
+      // Pe mobil, închide sidebar-ul când se creează un chat nou
+      if (window.innerWidth <= 1100) {
+        setSidebarOpen(false);
+      }
     } catch (error) {
       console.error('Error creating new chat:', error);
     }
@@ -545,6 +598,11 @@ const AssistantPopup = ({ onClose, initialMessage }) => {
     setTyping(false);
     setTypingText("");
     setLoading(false);
+    
+    // Pe mobil, închide sidebar-ul când se selectează un chat
+    if (window.innerWidth <= 1100) {
+      setSidebarOpen(false);
+    }
     
     // Scroll instant la ultimul mesaj când se selectează un chat (fără delay)
     // Folosim requestAnimationFrame pentru a aștepta render-ul DOM
@@ -947,12 +1005,7 @@ const AssistantPopup = ({ onClose, initialMessage }) => {
                   <div
                     key={chat.id}
                     className={`assistant-popup-chat-item ${currentChatId === chat.id ? 'active' : ''}`}
-                    onClick={() => {
-                      handleChatSelect(chat.id);
-                      if (window.innerWidth <= 1100) {
-                        setSidebarOpen(false);
-                      }
-                    }}
+                    onClick={() => handleChatSelect(chat.id)}
                   >
                     <MessageSquare size={16} className="assistant-popup-chat-item-icon" />
                     <span className="assistant-popup-chat-item-title">
