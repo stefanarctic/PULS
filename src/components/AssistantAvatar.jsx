@@ -28,6 +28,7 @@ const AssistantAvatar = () => {
   const [startPosition, setStartPosition] = useState({ x: 0, y: 0 });
   const avatarRef = useRef(null);
   const holdTimerRef = useRef(null);
+  const scrollPositionRef = useRef({ top: 0, left: 0 });
     const darkModeOn = useDarkMode();
   const localRef = useRef({
     openWithMessage: (msg) => {
@@ -77,6 +78,42 @@ const AssistantAvatar = () => {
     window.addEventListener("resize", handleResize);
     return () => window.removeEventListener("resize", handleResize);
   }, [position]);
+
+  // Functions to disable/enable scroll
+  const disableScroll = () => {
+    // Get the current page scroll position
+    scrollPositionRef.current.top =
+      window.pageYOffset ||
+      document.documentElement.scrollTop;
+    scrollPositionRef.current.left =
+      window.pageXOffset ||
+      document.documentElement.scrollLeft;
+
+    document.body.style.overflow = 'hidden';
+    // if any scroll is attempted, set this to the previous value
+    window.onscroll = function () {
+      window.scrollTo(scrollPositionRef.current.left, scrollPositionRef.current.top);
+    };
+  };
+
+  const enableScroll = () => {
+    document.body.style.overflow = '';
+    window.onscroll = function () { };
+  };
+
+  useEffect(() => {
+    // Disable scroll when dragging is active
+    if (isDragging && dragEnabled) {
+      disableScroll();
+    } else {
+      enableScroll();
+    }
+
+    // Cleanup on unmount
+    return () => {
+      enableScroll();
+    };
+  }, [isDragging, dragEnabled]);
 
   const handleClose = () => {
     setOpen(false);
@@ -165,6 +202,9 @@ const AssistantAvatar = () => {
     const handleTouchMove = (e) => {
       // Only allow movement if dragging is enabled (after hold delay)
       if (!dragEnabled) return;
+      
+      // Prevent default scrolling behavior when dragging
+      e.preventDefault();
       
       const touch = e.touches[0];
       // Check if touch moved significantly (more than 5px) to consider it a drag
