@@ -266,6 +266,7 @@ const AssistantPopup = ({ onClose, initialMessage }) => {
   const modalRef = useRef(null);
   const [copiedMessageId, setCopiedMessageId] = useState(null);
   const messagesEndRef = useRef(null);
+  const hasScrolledOnOpenRef = useRef(false);
   const darkModeOn = useDarkMode();
   
   // Chat management hook
@@ -914,6 +915,69 @@ const AssistantPopup = ({ onClose, initialMessage }) => {
       }
     }
   }, [currentChatId]); // Doar când se schimbă chat-ul, nu la fiecare mesaj
+
+  // Funcție pentru a face scroll la ultimul mesaj
+  const scrollToLastMessage = useCallback(() => {
+    if (!chatRef.current || messages.length === 0) {
+      return false;
+    }
+
+    // Găsește ultimul mesaj din chat
+    const messageElements = chatRef.current.querySelectorAll('.assistant-message');
+    const lastMessage = messageElements[messageElements.length - 1];
+    
+    if (lastMessage) {
+      console.log('Scrolling to last message');
+      lastMessage.scrollIntoView({ 
+        behavior: 'instant', 
+        block: 'end' 
+      });
+      return true;
+    }
+    return false;
+  }, [messages.length]);
+
+  // Scroll la ultimul mesaj când se deschide popup-ul (după ce mesajele s-au încărcat complet)
+  useEffect(() => {
+    // Dacă chat-urile s-au încărcat și există mesaje, încearcă scroll
+    if (!chatsLoading && messages.length > 0 && !hasScrolledOnOpenRef.current) {
+      // Încearcă imediat
+      if (scrollToLastMessage()) {
+        hasScrolledOnOpenRef.current = true;
+      } else {
+        // Dacă nu funcționează imediat, încearcă după un delay
+        const timeoutId = setTimeout(() => {
+          if (scrollToLastMessage()) {
+            hasScrolledOnOpenRef.current = true;
+          }
+        }, 200);
+
+        return () => clearTimeout(timeoutId);
+      }
+    }
+  }, [chatsLoading, messages.length, currentChatId, scrollToLastMessage]);
+
+  // Verificare periodică când popup-ul se deschide pentru a face scroll după ce mesajele se încarcă
+  useEffect(() => {
+    // Reset ref când componenta se montează (popup-ul se deschide)
+    hasScrolledOnOpenRef.current = false;
+    
+    // Verifică periodic dacă mesajele sunt disponibile și face scroll
+    const checkInterval = setInterval(() => {
+      if (!chatsLoading && messages.length > 0 && !hasScrolledOnOpenRef.current) {
+        if (scrollToLastMessage()) {
+          hasScrolledOnOpenRef.current = true;
+          clearInterval(checkInterval);
+        }
+      }
+    }, 100);
+
+    // Cleanup când componenta se demontează (popup-ul se închide)
+    return () => {
+      clearInterval(checkInterval);
+      hasScrolledOnOpenRef.current = false;
+    };
+  }, []); // Rulează doar la mount/unmount
 
   return (
     <div 
