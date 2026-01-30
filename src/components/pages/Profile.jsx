@@ -819,6 +819,15 @@ const Profile = () => {
 
             // Extragem index-ul problemei pentru navigare (ruta folosește index-ul)
             const problemIndex = originalProblem ? originalProblem.index : null;
+            
+            // Pentru problemele vechi care nu au formatul corect, adăugăm indexul dacă există
+            // (problemele noi vor fi deja salvate cu formatul corect din ProblemSubmit.jsx)
+            if (problemIndex !== null && problemIndex !== undefined && !solvedProblem.problemId.startsWith('submitted_')) {
+                // Verificăm dacă titlul nu are deja formatul "PROBLEMA #index"
+                if (!problemTitle.match(/^PROBLEMA\s*#\d+/i)) {
+                    problemTitle = `PROBLEMA #${problemIndex}: ${problemTitle}`;
+                }
+            }
 
             return {
                 type: 'problem_solved',

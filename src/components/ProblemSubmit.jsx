@@ -337,7 +337,16 @@ const ProblemSubmit = ({ problem = null, defaultProblemId = null, defaultProblem
                     : `submitted_${Date.now()}`;
                 
                 // Extrage un titlu din contextul problemei
-                const problemTitle = problem?.titlu || defaultProblemTitle || 'Problema trimisă';
+                let problemTitle = problem?.titlu || defaultProblemTitle || 'Problema trimisă';
+                
+                // Adaugă indexul în titlu dacă există un index valid (nu pentru problemele submitate)
+                const problemIndex = problem?.index;
+                if (problemIndex !== null && problemIndex !== undefined && !generatedProblemId.startsWith('submitted_')) {
+                    // Verificăm dacă titlul nu are deja formatul cu ID
+                    if (!problemTitle.match(/^PROBLEMA\s*#\d+/i)) {
+                        problemTitle = `PROBLEMA #${problemIndex}: ${problemTitle}`;
+                    }
+                }
                 
                 console.log('API Response:', result);
                 console.log('Analiza normalizată:', normalizedResult);
