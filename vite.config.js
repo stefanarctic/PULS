@@ -7,13 +7,13 @@ export default defineConfig({
   plugins: [react()],
   server: {
     port: 8000,
-    allowedHosts: (allowedHosts ? allowedHosts : [
+    allowedHosts: [
       'localhost',
       'puls-fizica.vercel.app',
       'puls-fizica.ro',
       '.ngrok-free.app',
       '.ngrok-free.dev'
-    ]),
+    ],
     proxy: {
       '/api/webhook': {
         target: 'http://13.61.39.82:5678',
