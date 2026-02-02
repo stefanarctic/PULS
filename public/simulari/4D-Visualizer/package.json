@@ -1,0 +1,34 @@
+{
+  "name": "4d-visualizer",
+  "version": "1.0.0",
+  "description": "A 4D visualization tool using THREE.js to project 4-dimensional objects into 3D space",
+  "main": "index.html",
+  "scripts": {
+    "start": "python -m http.server 8000",
+    "serve": "python -m http.server 8000",
+    "dev": "python -m http.server 8000"
+  },
+  "keywords": [
+    "4d",
+    "visualization",
+    "threejs",
+    "mathematics",
+    "geometry",
+    "tesseract",
+    "hypersphere"
+  ],
+  "author": "4D Visualizer",
+  "license": "MIT",
+  "dependencies": {
+    "three": "^0.128.0"
+  },
+  "devDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/your-username/4d-visualizer.git"
+  },
+  "bugs": {
+    "url": "https://github.com/your-username/4d-visualizer/issues"
+  },
+  "homepage": "https://github.com/your-username/4d-visualizer#readme"
+}

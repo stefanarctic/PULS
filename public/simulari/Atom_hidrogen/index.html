@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Hidrogen – Spectru & Modele (Bohr / de Broglie / Schrödinger)</title>
+  <link rel="stylesheet" href="style.css" />
+  <script>
+    window.MathJax = {
+      tex: {
+        inlineMath: [['\\(', '\\)']],
+        displayMath: [['\\[', '\\]']],
+        processEscapes: true
+      },
+      options: {
+        skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
+        renderActions: { addMenu: [] }
+      }
+    };
+  </script>
+  <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
+</head>
+<body>
+  <div class="app">
+
+    <!-- LEFT PANEL -->
+    <aside class="panel left">
+      <div class="panelHeader pink">
+        <h2>Teorie & Unități</h2>
+        <p class="small">Hidrogen • Spectrometrie • Modele cuantice</p>
+      </div>
+
+      <div class="card">
+        <h3>Unități</h3>
+        <ul class="list">
+          <li><b>λ</b> (lungime de undă) – nm</li>
+          <li><b>f</b> (frecvență) – Hz</li>
+          <li><b>E</b> (energie foton) – eV / J</li>
+          <li><b>n</b> (nivel) – număr natural</li>
+          <li><b>R</b> (Rydberg) – m⁻¹</li>
+          <li><b>h</b> (constanta Planck) – Js</li>
+          <li><b>c</b> (viteza luminii) – m/s</li>
+          <li><b>eV</b> (electronvolt) – eV</li>
+          <li><b>J</b> (joule) – J</li>
+          <li><b>m</b> (metru) – m</li>
+          <li><b>s</b> (secundă) – s</li>
+          <li><b>Hz</b> (hertz) – Hz</li>
+          <li><b>nm</b> (nanometru) – nm</li>
+          <li><b>m⁻¹</b> (reciprocă a metrului) – m⁻¹</li>
+          <li><b>Js</b> (joule-secundă) – Js</li>
+        </ul>
+      </div>
+
+      <div class="card blue">
+        <h3>Formule cheie</h3>
+        <div class="formula">
+          <div><b>Bohr:</b>  \(E_n = -\dfrac{13.6}{n^2}\) eV</div>
+          <div>\(\Delta E = E_{n_f}-E_{n_i}\),  \(E_\gamma = |\Delta E|\)</div>
+          <div>\(\lambda = \dfrac{hc}{E_\gamma}\)</div>
+          <div>\(E_\gamma = hf\)</div>
+          <div>\(f = \dfrac{c}{\lambda}\)</div>
+          <hr/>
+          <div><b>Rydberg:</b>  \(\dfrac{1}{\lambda} = R\left(\dfrac{1}{n_f^2}-\dfrac{1}{n_i^2}\right)\)</div>
+          <div>\(R = 1.0973731568508 \times 10^7 m^{-1}\)</div>
+          <hr/>
+          <div><b>de Broglie:</b>  \(\lambda_{dB}=\dfrac{h}{p}\),  \(2\pi r = n\lambda_{dB}\)</div>
+          <div>\(p = mv\)</div>
+          <hr/>
+          <div><b>Schrödinger:</b>  \(|\psi|^2 \Rightarrow\) densitate de probabilitate</div>
+          <div>\(E = \dfrac{h^2}{8m}\nabla^2\psi + V\psi\)</div>
+          <div>\(V = -\dfrac{e^2}{4\pi\epsilon_0 r}\)</div>
+        </div>
+      </div>
+
+      <div class="card">
+        <h3>Legenda spectru</h3>
+        <div class="legend">
+          <span class="chip emit"></span> Emisie (linii luminoase)
+          <span class="chip abs"></span> Absorbție (linii întunecate)
+        </div>
+        <p class="small muted">
+          * Pentru vizual, folosim seriile principale (Balmer vizibil, Lyman UV, Paschen IR).
+        </p>
+      </div>
+    </aside>
+
+    <!-- CENTER STAGE -->
+    <main class="stage">
+      <div class="stageTop">
+        <h1>Hidrogen – Spectru & Modele</h1>
+        <div class="tabs" role="tablist">
+          <button class="tab active" data-view="bohr">Bohr</button>
+          <button class="tab" data-view="debroglie">de Broglie</button>
+          <button class="tab" data-view="schrodinger">Schrödinger</button>
+          <button class="tab" data-view="spectrometer">Spectrometru</button>
+        </div>
+      </div>
+
+      <div class="canvasWrap">
+        <canvas id="scene" width="1100" height="560"></canvas>
+        <div class="hint" id="hint">Click pe „Excită” ca să vezi tranziții & linii spectrale</div>
+      </div>
+
+      <div class="stageBottom">
+        <div class="badge" id="statusBadge">Status: Gata</div>
+        <div class="readouts">
+          <div><span class="k">Model:</span> <span id="modelName">Bohr</span></div>
+          <div><span class="k">Serie:</span> <span id="seriesName">Balmer</span></div>
+          <div><span class="k">Tranziție:</span> <span id="transitionTxt">–</span></div>
+          <div><span class="k">λ:</span> <span id="lambdaTxt">–</span></div>
+          <div><span class="k">E:</span> <span id="energyTxt">–</span></div>
+        </div>
+      </div>
+    </main>
+
+    <!-- RIGHT PANEL -->
+    <aside class="panel right">
+      <div class="panelHeader green">
+        <h2>Control</h2>
+        <p class="small">Simulare • Parametri • Spectru</p>
+      </div>
+
+      <div class="controls">
+        <div class="row">
+          <label>Viteză:</label>
+          <div class="inline">
+            <input id="speed" type="range" min="0.25" max="3" value="1" step="0.05"/>
+            <span class="pill" id="speedVal">1.00×</span>
+          </div>
+        </div>
+
+        <div class="row">
+          <label>Nivel inițial (nᵢ):</label>
+          <div class="inline">
+            <input id="ni" type="range" min="2" max="8" value="5" step="1"/>
+            <span class="pill" id="niVal">5</span>
+          </div>
+        </div>
+
+        <div class="row">
+          <label>Nivel final (nᶠ):</label>
+          <div class="inline">
+            <input id="nf" type="range" min="1" max="6" value="2" step="1"/>
+            <span class="pill" id="nfVal">2</span>
+          </div>
+          <div class="small muted">* nᶠ trebuie să fie mai mic decât nᵢ pentru emisie.</div>
+        </div>
+
+        <div class="row">
+          <label>Regim:</label>
+          <div class="btnGrid">
+            <button class="btn ghost active" id="modeEmission">Emisie</button>
+            <button class="btn ghost" id="modeAbsorption">Absorbție</button>
+          </div>
+        </div>
+
+        <div class="row">
+          <label>Fascicul lumină:</label>
+          <div class="btnGrid">
+            <button class="btn ghost active" id="beamWhite">Alb</button>
+            <button class="btn ghost" id="beamMono">Monocromatic</button>
+          </div>
+        </div>
+
+        <div class="row">
+          <label>λ (monocromatic):</label>
+          <div class="inline">
+            <input id="monoLambda" type="range" min="380" max="760" value="486" step="1"/>
+            <span class="pill" id="monoVal">486 nm</span>
+          </div>
+        </div>
+
+        <div class="row">
+          <label>Serie spectrală:</label>
+          <select id="series">
+            <option value="balmer" selected>Balmer (vizibil, nᶠ=2)</option>
+            <option value="lyman">Lyman (UV, nᶠ=1)</option>
+            <option value="paschen">Paschen (IR, nᶠ=3)</option>
+          </select>
+        </div>
+
+        <div class="row">
+          <label>Instrument:</label>
+          <select id="instrument">
+            <option value="grating" selected>Grilă de difracție</option>
+            <option value="prism">Prismă</option>
+          </select>
+        </div>
+
+        <div class="btnStack">
+          <button class="btn" id="startBtn">Start</button>
+          <button class="btn" id="pauseBtn">Pauză</button>
+          <button class="btn danger" id="stopBtn">Stop</button>
+          <button class="btn accent" id="exciteBtn">⚡ Excită</button>
+        </div>
+
+        <div class="card mini">
+          <h3>Observații</h3>
+          <div class="small" id="notes">
+            - În Bohr vezi orbite + sărituri.<br/>
+            - În de Broglie vezi unda „înfășurată”.<br/>
+            - În Schrödinger vezi norul de probabilitate.<br/>
+            - În Spectrometru vezi linii pe spectru.
+          </div>
+        </div>
+
+        <div class="card mini">
+          <h3>Spectru (ecran)</h3>
+          <canvas id="spectrum" width="360" height="150"></canvas>
+          <div class="small muted">* Banda color = continuu; liniile = tranziții H.</div>
+        </div>
+      </div>
+    </aside>
+
+  </div>
+
+  <script src="script.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      if (window.MathJax && window.MathJax.typesetPromise) {
+        MathJax.typesetPromise().catch(function(err) { console.warn('MathJax:', err); });
+      }
+    });
+  </script>
+</body>
+</html>

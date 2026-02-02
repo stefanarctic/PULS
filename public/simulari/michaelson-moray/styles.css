@@ -1,0 +1,130 @@
+:root {
+    --bg: #0d0d10;
+    --panel: #18181c;
+    --accent: #38bdf8;
+    --font: 'Segoe UI', sans-serif;
+  }
+  
+  body {
+    background: var(--bg);
+    color: #eee;
+    font-family: var(--font);
+    margin: 0;
+    padding: 20px;
+  }
+  
+  main {
+    max-width: 1000px;
+    margin: auto;
+    text-align: center;
+  }
+  
+  h1 {
+    color: var(--accent);
+    margin-bottom: 8px;
+  }
+  
+  .desc {
+    opacity: 0.8;
+    margin-bottom: 18px;
+  }
+  
+  .ui {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 14px;
+    background: var(--panel);
+    border-radius: 12px;
+    padding: 12px;
+    margin-bottom: 20px;
+  }
+  
+  .control {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-size: 0.9rem;
+  }
+  
+  .control input {
+    width: 160px;
+  }
+  
+  .buttons {
+    display: flex;
+    flex-direction: row;
+    gap: 8px;
+  }
+  
+  button {
+    background: #333;
+    border: none;
+    color: #eee;
+    padding: 8px 14px;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: 0.2s;
+  }
+  button:hover { background: #444; }
+  
+  .simulation {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 30px;
+    margin-bottom: 10px;
+  }
+  
+  .interferometer {
+    background: #111;
+    padding: 10px;
+    border-radius: 10px;
+  }
+  
+  canvas {
+    border: 2px solid #333;
+    border-radius: 10px;
+    background: black;
+  }
+  
+  .readouts {
+    display: flex;
+    justify-content: space-around;
+    margin-top: 10px;
+    font-size: 0.95rem;
+    opacity: 0.9;
+  }
+  
+  #graph {
+    margin-top: 20px;
+    border: 2px solid #333;
+    border-radius: 10px;
+    background: #060606;
+  }
+  
+  #theory {
+    text-align: left;
+    background: var(--panel);
+    border-radius: 12px;
+    padding: 14px 16px;
+    margin-top: 20px;
+  }
+  #theory h2 {
+    margin: 0 0 8px 0;
+    color: #e2e8f0;
+    font-size: 1.1rem;
+  }
+  #theory .facts {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 8px 16px;
+    margin: 10px 0 6px 0;
+    font-size: 0.95rem;
+  }
+  #theory .note {
+    opacity: 0.85;
+    font-size: 0.9rem;
+    margin-top: 6px;
+  }
+  

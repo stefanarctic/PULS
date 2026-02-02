@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Kepler Lab – 3 Legi (Simulator)</title>
+  <link rel="stylesheet" href="style.css"/>
+  <script>
+    window.MathJax = {
+      tex: {
+        inlineMath: [['\\(', '\\)']],
+        displayMath: [['\\[', '\\]']],
+        processEscapes: true
+      },
+      options: { skipHtmlTags: ['script', 'noscript', 'style'] }
+    };
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js" async></script>
+</head>
+<body>
+  <div class="app">
+
+    <!-- LEFT PANEL -->
+    <aside class="panel left">
+      <div class="panelHeader leftHdr">
+        <h2>Legile lui Kepler</h2>
+        <p class="small">3 legi • orbită • arii • perioadă</p>
+      </div>
+
+      <div class="card">
+        <h3>Unități (simple & „curate”)</h3>
+        <ul class="list">
+          <li><b>a</b> – UA (unități astronomice)</li>
+          <li><b>T</b> – ani</li>
+          <li><b>M</b> – mase solare</li>
+          <li><b>e</b> – excentricitate \(0 \ldots 0{,}9\)</li>
+          <li><b>μ</b> = \(4\pi^2 M\) (în UA³/an²)</li>
+          <li><b>Δt</b> – interval de timp (în zile)</li>
+          <li><b>Aria</b> – aria măturată (în UA²)</li>
+          <li><b>Perioada</b> – perioada de revoluție (în ani)</li>
+          <li><b>Excentricitate</b> – excentricitatea orbitei (în UA)</li>
+          <li><b>Masa centrală</b> – masa centrală (în mase solare)</li>
+          <li><b>Viteza</b> – viteza de revoluție (în UA/an)</li>
+          <li><b>Accelerație</b> – accelerația de revoluție (în UA/an²)</li>
+          <li><b>Forță</b> – forța de gravitație (în N)</li>
+          <li><b>Energie</b> – energia de revoluție (în J)</li>
+        </ul>
+        <p class="small muted">Așa, pentru \(M=1\) și \(a=1\), rezultă \(T \approx 1\) an (standard).</p>
+      </div>
+
+      <div class="card formulaCard">
+        <h3>Formule cheie</h3>
+        <div class="formula">
+          <div><b>Legea I:</b> orbită eliptică, Soarele într-un focar</div>
+          <div class="sp"></div>
+          <div><b>Legea II:</b> arii egale în timp egal</div>
+          <div class="small muted">Aria măturată într-un \(\Delta t\) fix ar trebui să fie aproape constantă.</div>
+          <hr/>
+          <div><b>Legea III:</b> \(T^2 \propto a^3\)</div>
+          <div class="small muted">Mai exact: \(T = 2\pi \sqrt{\dfrac{a^3}{\mu}}\), cu \(\mu=4\pi^2 M\).</div>
+          <div class="small muted">Deci: \(\dfrac{T^2}{a^3} \approx \dfrac{1}{M}\) (în unitățile noastre).</div>
+        </div>
+      </div>
+
+      <div class="card">
+        <h3>Observă vizual</h3>
+        <ul class="list">
+          <li>la \(e\) mic → orbită aproape cerc</li>
+          <li>la \(e\) mare → planetă „rupe viteza” la perihel</li>
+          <li>aria pentru același \(\Delta t\) rămâne similară</li>
+        </ul>
+      </div>
+    </aside>
+
+    <!-- CENTER STAGE -->
+    <main class="stage">
+      <div class="stageTop">
+        <h1>Legile lui Kepler – Simulator</h1>
+
+        <div class="toggles">
+          <label class="toggle">
+            <input type="checkbox" id="showEllipse" checked>
+            <span>Legea I</span>
+          </label>
+          <label class="toggle">
+            <input type="checkbox" id="showAreas" checked>
+            <span>Legea II</span>
+          </label>
+          <label class="toggle">
+            <input type="checkbox" id="showLaw3" checked>
+            <span>Legea III</span>
+          </label>
+          <label class="toggle">
+            <input type="checkbox" id="showFoci">
+            <span>Focare</span>
+          </label>
+          <label class="toggle">
+            <input type="checkbox" id="showTrail" checked>
+            <span>Urme</span>
+          </label>
+        </div>
+      </div>
+
+      <div class="canvasWrap">
+        <canvas id="scene" width="1200" height="620"></canvas>
+        <div class="hint" id="hint">
+          Trage de <b>a</b> și <b>e</b>, apoi apasă <b>Aria</b> ca să vezi „arii egale” în acțiune.
+        </div>
+      </div>
+
+      <div class="stageBottom">
+        <div class="badge" id="statusBadge">Status: Pornit</div>
+        <div class="readouts">
+          <div><span class="k">a:</span> <span id="aTxt">–</span></div>
+          <div><span class="k">e:</span> <span id="eTxt">–</span></div>
+          <div><span class="k">T:</span> <span id="tTxt">–</span></div>
+          <div><span class="k">T²/a³:</span> <span id="ratioTxt">–</span></div>
+          <div><span class="k">Aria(Δt):</span> <span id="areaTxt">–</span></div>
+        </div>
+      </div>
+    </main>
+
+    <!-- RIGHT PANEL -->
+    <aside class="panel right">
+      <div class="panelHeader rightHdr">
+        <h2>Control</h2>
+        <p class="small">parametri • timp • măsurători</p>
+      </div>
+
+      <div class="controls">
+
+        <div class="row">
+          <label>Viteză simulare:</label>
+          <div class="inline">
+            <input id="speed" type="range" min="0.1" max="10" value="1.2" step="0.1"/>
+            <span class="pill" id="speedVal">1.2×</span>
+          </div>
+        </div>
+
+        <div class="row">
+          <label>a (semiaxa majoră) [UA]:</label>
+          <div class="inline">
+            <input id="a" type="range" min="0.4" max="5" value="1.6" step="0.01"/>
+            <span class="pill" id="aVal">1.60</span>
+          </div>
+        </div>
+
+        <div class="row">
+          <label>e (excentricitate):</label>
+          <div class="inline">
+            <input id="e" type="range" min="0" max="0.9" value="0.35" step="0.01"/>
+            <span class="pill" id="eVal">0.35</span>
+          </div>
+        </div>
+
+        <div class="row">
+          <label>M (masa centrală) [M☉]:</label>
+          <div class="inline">
+            <input id="M" type="range" min="0.2" max="3" value="1" step="0.01"/>
+            <span class="pill" id="mVal">1.00</span>
+          </div>
+          <div class="small muted formulaInline">Influențează Legea III (\(\frac{T^2}{a^3} \approx \frac{1}{M}\)).</div>
+        </div>
+
+        <div class="row">
+          <label>Δt pentru arii (Legea II) [zile]:</label>
+          <div class="inline">
+            <input id="dtDays" type="range" min="2" max="60" value="15" step="1"/>
+            <span class="pill" id="dtVal">15d</span>
+          </div>
+        </div>
+
+        <div class="btnStack">
+          <button class="btn" id="startBtn">Start</button>
+          <button class="btn" id="pauseBtn">Pauză</button>
+          <button class="btn danger" id="resetBtn">Reset</button>
+          <button class="btn accent" id="impulseBtn">Aria</button>
+        </div>
+
+        <div class="card mini">
+          <h3>Legea II – ultimele arii</h3>
+          <div id="areasLog" class="log">–</div>
+          <div class="small muted">Ar trebui să fie apropiate dacă Δt e constant.</div>
+        </div>
+
+        <div class="card mini">
+          <h3>Legea III – plot (\(a^3\), \(T^2\))</h3>
+          <canvas id="law3Plot" width="360" height="140"></canvas>
+          <div class="btnGrid">
+            <button class="btn ghost" id="addPointBtn">+ Adaugă punct</button>
+            <button class="btn ghost" id="clearPlotBtn">Șterge plot</button>
+          </div>
+          <div class="small muted">Dacă M e constant, punctele stau pe o linie.</div>
+        </div>
+
+      </div>
+    </aside>
+
+  </div>
+
+  <script src="main.js"></script>
+</body>
+</html>
+ 

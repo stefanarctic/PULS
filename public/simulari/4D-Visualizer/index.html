@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>4D Visualizer</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div id="container">
+        <div id="canvas-container"></div>
+        
+        <button id="sidebarToggle" aria-label="Toggle controls">☰</button>
+        <aside id="sidebar" class="sidebar">
+        <div id="controls">
+            <h3 style="margin-top: 0; color: #4CAF50;">Controale pentru vizualizatorul 4D</h3>
+            
+            <div class="control-group">
+                <label for="model-select">Model 4D:</label>
+                <div class="custom-dropdown" id="model-dropdown">
+                    <div class="dropdown-selected" id="dropdown-selected">
+                        <span>Tesseract (Cub 4D)</span>
+                    </div>
+                    <div class="dropdown-options" id="dropdown-options">
+                        <div class="dropdown-option" data-value="tesseract">Tesseract (Cub 4D)</div>
+                        <div class="dropdown-option" data-value="hypersphere">Sferă 4D</div>
+                        <div class="dropdown-option" data-value="3-sphere">3-Sferă (Glome)</div>
+                        <div class="dropdown-option" data-value="calabi-yau">Calabi-Yau Manifold</div>
+                        <div class="dropdown-option" data-value="hopf-fibration">Proiecție Hopf (Hopf Fibration)</div>
+                        <div class="dropdown-option" data-value="clifford-torus">Sfera Clifford (Clifford Torus)</div>
+                        <div class="dropdown-option" data-value="hyperplane">Plan 4D</div>
+                        <div class="dropdown-option" data-value="klein-bottle">Bottle Klein</div>
+                        <div class="dropdown-option" data-value="pentachoron">Pentachoron</div>
+                        <div class="dropdown-option" data-value="16-cell">16-cell (Hexadecachoron)</div>
+                        <div class="dropdown-option" data-value="24-cell">24-cell (Icositetrachoron)</div>
+                        <div class="dropdown-option" data-value="24-cell-dual">24-cell Dual (F₄ Lattice)</div>
+                        <div class="dropdown-option" data-value="120-cell">120-cell (Hyperdodecahedron)</div>
+                        <div class="dropdown-option" data-value="600-cell">600-cell (Hexacosichoron)</div>
+                        <div class="dropdown-option" data-value="buckyball4d">Buckyball 4D (C60)</div>
+                        <div class="dropdown-option" data-value="hypertorus">Hypertorus (4D Torus)</div>
+                        <div class="dropdown-option" data-value="duoprism">Duoprismă (Duoprism)</div>
+                         <div class="dropdown-option" data-value="polychoron-prism">Prismă 4D (Polychoron-Prism)</div>
+                         <div class="dropdown-option" data-value="polychoron-antiprism">Antiprismă 4D (Polychoron-Antiprism)</div>
+                         <div class="dropdown-option" data-value="e4-hyperdiamond">E₄ Hyperdiamond (Rețea Diamant 4D)</div>
+                         <div class="dropdown-option" data-value="f4-root-polytope">F₄ Root Polytope (Grup Lie F₄)</div>
+                         <div class="dropdown-option" data-value="e8-lattice">E8 Lattice (Reticulă E8)</div>
+                    </div>
+                </div>
+                <!-- Hidden select for compatibility -->
+                <select id="model-select" style="display: none;">
+                    <option value="tesseract">Tesseract (Cub 4D)</option>
+                    <option value="hypersphere">Sferă 4D</option>
+                    <option value="3-sphere">3-Sferă (Glome)</option>
+                    <option value="calabi-yau">Calabi-Yau Manifold</option>
+                    <option value="hopf-fibration">Proiecție Hopf (Hopf Fibration)</option>
+                    <option value="clifford-torus">Sfera Clifford (Clifford Torus)</option>
+                    <option value="hyperplane">Plan 4D</option>
+                    <option value="klein-bottle">Bottle Klein</option>
+                    <option value="pentachoron">Pentachoron</option>
+                    <option value="16-cell">16-cell (Hexadecachoron)</option>
+                    <option value="24-cell">24-cell (Icositetrachoron)</option>
+                    <option value="24-cell-dual">24-cell Dual (F₄ Lattice)</option>
+                    <option value="120-cell">120-cell (Hyperdodecahedron)</option>
+                    <option value="600-cell">600-cell (Hexacosichoron)</option>
+                    <option value="buckyball4d">Buckyball 4D (C60)</option>
+                    <option value="hypertorus">Hypertorus (4D Torus)</option>
+                    <option value="duoprism">Duoprismă (Duoprism)</option>
+                     <option value="polychoron-prism">Prismă 4D (Polychoron-Prism)</option>
+                     <option value="polychoron-antiprism">Antiprismă 4D (Polychoron-Antiprism)</option>
+                     <option value="e4-hyperdiamond">E₄ Hyperdiamond (Rețea Diamant 4D)</option>
+                     <option value="f4-root-polytope">F₄ Root Polytope (Grup Lie F₄)</option>
+                     <option value="e8-lattice">E8 Lattice (Reticulă E8)</option>
+                </select>
+            </div>
+            
+            <div class="control-group">
+                <label for="rotation-x">Rotiți în jurul axei X: <span id="rot-x-value">0°</span></label>
+                <input type="range" id="rotation-x" min="0" max="360" value="0">
+            </div>
+            
+            <div class="control-group">
+                <label for="rotation-y">Rotiți în jurul axei Y: <span id="rot-y-value">0°</span></label>
+                <input type="range" id="rotation-y" min="0" max="360" value="0">
+            </div>
+            
+            <div class="control-group">
+                <label for="rotation-z">Rotiți în jurul axei Z: <span id="rot-z-value">0°</span></label>
+                <input type="range" id="rotation-z" min="0" max="360" value="0">
+            </div>
+            
+            <div class="control-group">
+                <label for="rotation-w">Rotiți în jurul axei W: <span id="rot-w-value">0°</span></label>
+                <input type="range" id="rotation-w" min="0" max="360" value="0">
+            </div>
+            
+            <div class="control-group">
+                <label for="projection">Tip proiecție:</label>
+                <select id="projection">
+                    <option value="perspective">Perspectivă</option>
+                    <option value="orthographic">Ortografică</option>
+                    <option value="stereographic">Stereografică</option>
+                </select>
+            </div>
+            
+            <div class="control-group">
+                <label for="animation-speed">Viteză animație: <span id="anim-speed-value">2.0</span></label>
+                <input type="range" id="animation-speed" min="0" max="3" step="0.1" value="2">
+            </div>
+            
+            <button id="auto-rotate">Pornește rotirea automată</button>
+            <button id="reset-view">Resetează vizualizarea</button>
+        </div>
+        </aside>
+        
+        <div id="info">
+            <button id="close-info" class="close-btn" onclick="document.getElementById('info').classList.add('hidden')">&times;</button>
+            <h4 style="margin-top: 0; color: #4CAF50;">Despre vizualizatorul 4D</h4>
+            <p>Vizualizatorul 4D proiectează obiecte 4D în spațiu 3D folosind transformări matematice. Axa W reprezintă a patra dimensiune.</p>
+            <p><strong>Controls:</strong> Folosiți reglajele pentru a roti obiectul 4D în jurul diferitelor axe. Rotările X, Y, Z funcționează ca în rotările 3D obișnuite, în timp ce rotarea W este rotarea în a patra dimensiune.</p>
+        </div>
+        
+        <div id="loading" class="loading">Se încarcă vizualizatorul 4D...</div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/controls/OrbitControls.js"></script>
+    <script src="js/4DGeometry.js"></script>
+    <script src="js/4DProjection.js"></script>
+    <script src="js/4DVisualizer.js"></script>
+    <script src="js/main.js"></script>
+    <script src="js/demo.js"></script>
+</body>
+</html>

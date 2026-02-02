@@ -300,6 +300,66 @@ export const simulationsConfig = [
     maxHeight: '90vh',
     category: "Optică"
   },
+  {
+    id: 25,
+    slug: "4D-Visualizer",
+    route: "/simulare/4d-Visualizer",
+    title: "Vizualizator 4D",
+    description: "Simulare vizualizator figuri 4D.",
+    image: simulatorPrismaImg, // Placeholder - va trebui înlocuit cu screenshot real
+    caption: "4D Visualizer",
+    iframeSrc: "/simulari/4D-Visualizer/index.html",
+    maxHeight: '90vh',
+    category: "4D"
+  },
+  {
+    id: 26,
+    slug: "reflexie-refractie",
+    route: "/simulare/Legi_Kepler",
+    title: "Legi Kepler",
+    description: "Simulează legile lui Kepler.",
+    image: simulatorPrismaImg, // Placeholder - va trebui înlocuit cu screenshot real
+    caption: "Legi Kepler",
+    iframeSrc: "/simulari/Legi_Kepler/index.html",
+    maxHeight: '90vh',
+    category: "Astronomie"
+  },
+  {
+    id: 27,
+    slug: "Atom_hidrogen",
+    route: "/simulare/Atom_hidrogen",
+    title: "Atom de hidrogen",
+    description: "Simulează atomul de hidrogen cu modelul Bohr, de Broglie și Schrödinger.",
+    image: simulatorPrismaImg, // Placeholder - va trebui înlocuit cu screenshot real
+    caption: "Atom de hidrogen",
+    iframeSrc: "/simulari/Atom_hidrogen/index.html",
+    maxHeight: '90vh',
+    category: "Atom"
+  },
+  {
+    id: 28,
+    slug: "reflexie-refractie",
+    route: "/simulare/michaelson-morley",
+    title: "Michaelson-Morley",
+    description: "Simulează experimentul Michaelson-Morley.",
+    image: simulatorPrismaImg, // Placeholder - va trebui înlocuit cu screenshot real
+    caption: "Michaelson-Morley",
+    iframeSrc: "/simulari/michaelson-moray/index.html",
+    maxHeight: '90vh',
+    category: "Fizică"
+  },
+  {
+    id: 29,
+    slug: "reflexie-refractie",
+    route: "/simulare/Lant",
+    title: "Lanturi",
+    description: "Simulează lanturile cu resorturi.",
+    image: simulatorPrismaImg, // Placeholder - va trebui înlocuit cu screenshot real
+    caption: "Lanturi",
+    iframeSrc: "/simulari/Lant/index.html",
+    maxHeight: '90vh',
+    category: "Mecanică"
+  },
 ];
 
 export default simulationsConfig;
