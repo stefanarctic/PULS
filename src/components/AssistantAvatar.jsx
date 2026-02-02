@@ -65,12 +65,15 @@ const AssistantAvatar = () => {
     const handleResize = () => {
       if (position.x !== null && position.y !== null) {
         const avatarSize = 75;
-        const maxX = window.innerWidth - avatarSize;
-        const maxY = window.innerHeight - avatarSize;
+        const scrollbarWidth = window.innerWidth - document.documentElement.clientWidth || 17;
+        const minX = -avatarSize;
+        const maxX = window.innerWidth + scrollbarWidth;
+        const minY = -avatarSize;
+        const maxY = window.innerHeight;
         
         setPosition(prev => ({
-          x: Math.max(0, Math.min(prev.x, maxX)),
-          y: Math.max(0, Math.min(prev.y, maxY)),
+          x: Math.max(minX, Math.min(prev.x, maxX)),
+          y: Math.max(minY, Math.min(prev.y, maxY)),
         }));
       }
     };
@@ -128,11 +131,11 @@ const AssistantAvatar = () => {
     setDragEnabled(false);
     setHasDragged(false);
     const rect = avatarRef.current.getBoundingClientRect();
-    // Calculate offset so that button center follows cursor
-    // Offset is half the button size so center aligns with cursor
+    // Calculate offset from top-left corner of avatar to the exact click point
+    // This ensures the avatar follows the cursor precisely at the click point
     const offset = {
-      x: rect.width / 2,
-      y: rect.height / 2,
+      x: e.clientX - rect.left,
+      y: e.clientY - rect.top,
     };
     setDragOffset(offset);
     setStartPosition({ x: e.clientX, y: e.clientY });
@@ -149,11 +152,11 @@ const AssistantAvatar = () => {
     setHasDragged(false);
     const touch = e.touches[0]; 
     const rect = avatarRef.current.getBoundingClientRect();
-    // Calculate offset so that button center follows touch
-    // Offset is half the button size so center aligns with touch
+    // Calculate offset from top-left corner of avatar to the exact touch point
+    // This ensures the avatar follows the touch precisely at the touch point
     const offset = {
-      x: rect.width / 2,
-      y: rect.height / 2,
+      x: touch.clientX - rect.left,
+      y: touch.clientY - rect.top,
     };
     setDragOffset(offset);
     setStartPosition({ x: touch.clientX, y: touch.clientY });
@@ -178,18 +181,20 @@ const AssistantAvatar = () => {
         setHasDragged(true);
       }
       
-      // Calculate position so center of button follows cursor
+      // Calculate position so the click point follows the cursor exactly
       const avatarSize = 75;
       let newX = e.clientX - dragOffset.x;
       let newY = e.clientY - dragOffset.y;
       
-      // Constrain to viewport bounds (keeping center within viewport)
-      const minX = 0;
-      const maxX = window.innerWidth - avatarSize;
-      const minY = 0;
-      const maxY = window.innerHeight - avatarSize;
+      // Constrain to viewport bounds, but allow partial off-screen positioning
+      // Allow avatar to go slightly beyond edges for better positioning flexibility
+      const scrollbarWidth = window.innerWidth - document.documentElement.clientWidth || 17;
+      const minX = -avatarSize; // Allow full avatar off-screen on left
+      const maxX = window.innerWidth + scrollbarWidth; // Allow going past right edge, accounting for scrollbar
+      const minY = -avatarSize; // Allow full avatar off-screen on top
+      const maxY = window.innerHeight; // Allow going to bottom edge
       
-      // Ensure center stays within bounds
+      // Ensure position stays within extended bounds
       newX = Math.max(minX, Math.min(newX, maxX));
       newY = Math.max(minY, Math.min(newY, maxY));
       
@@ -214,18 +219,20 @@ const AssistantAvatar = () => {
         setHasDragged(true);
       }
       
-      // Calculate position so center of button follows touch
+      // Calculate position so the touch point follows the cursor exactly
       const avatarSize = 75;
       let newX = touch.clientX - dragOffset.x;
       let newY = touch.clientY - dragOffset.y;
       
-      // Constrain to viewport bounds (keeping center within viewport)
-      const minX = 0;
-      const maxX = window.innerWidth - avatarSize;
-      const minY = 0;
-      const maxY = window.innerHeight - avatarSize;
+      // Constrain to viewport bounds, but allow partial off-screen positioning
+      // Allow avatar to go slightly beyond edges for better positioning flexibility
+      const scrollbarWidth = window.innerWidth - document.documentElement.clientWidth || 17;
+      const minX = -avatarSize; // Allow full avatar off-screen on left
+      const maxX = window.innerWidth + scrollbarWidth; // Allow going past right edge, accounting for scrollbar
+      const minY = -avatarSize; // Allow full avatar off-screen on top
+      const maxY = window.innerHeight; // Allow going to bottom edge
       
-      // Ensure center stays within bounds
+      // Ensure position stays within extended bounds
       newX = Math.max(minX, Math.min(newX, maxX));
       newY = Math.max(minY, Math.min(newY, maxY));
       
