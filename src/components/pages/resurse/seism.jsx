@@ -5,6 +5,7 @@ import MathJaxRender from "@/components/MathJaxRender";
 
 import seismicWaveAnimation from "/res/screenshots/Seism_Screenshot.png";
 import Layout from "../../Layout";
+import SEO from "../../SEO";
 
 const SeismePage = () => {
   const seismImages = [
@@ -13,6 +14,12 @@ const SeismePage = () => {
 
   return (
     <Layout>
+      <SEO
+        title="Resurse Seisme | Unde seismice - PULS"
+        description="Învață despre cutremure, unde seismice P și S, magnitudinea Richter și propagarea undelor. Teorie, formule și simulări."
+        keywords="seisme, cutremure, unde seismice, magnitudine Richter, PULS"
+        image="/res/icons/New-logo.png"
+      />
       <div className="resurse-pagina min-h-screen flex flex-col">
         <div className="resurse-page-container">
           <main className="flex-grow container mx-auto px-4 py-10">
@@ -68,8 +75,24 @@ const SeismePage = () => {
                         <MathJaxRender />
                       </div>
                       <p className="text-muted-foreground mt-2">
-                        unde d este distanta de la epicentru la  punctul de referinta, iar t timpul in care se propaga fiecare dintre cele doua unde.
+                        unde d este distanța de la epicentru la punctul de referință, iar t timpul în care se propagă fiecare dintre cele două unde.
                       </p>
+                      <h3 className="text-xl font-semibold mt-4 mb-2">Viteze în mediu elastic:</h3>
+                      <div className="formula-resurse text-lg font-mono mb-2">
+                        {"\\( v_P = \\sqrt{\\frac{K + \\frac{4}{3}G}{\\rho}} \\)"}
+                        <MathJaxRender />
+                      </div>
+                      <div className="formula-resurse text-lg font-mono mb-2">
+                        {"\\( v_S = \\sqrt{\\frac{G}{\\rho}} \\)"}
+                        <MathJaxRender />
+                      </div>
+                      <p className="text-muted-foreground mb-2">unde K este modulul de compresie, G modulul de forfecare, ρ densitatea.</p>
+                      <h3 className="text-xl font-semibold mt-4 mb-2">Magnitudinea Richter:</h3>
+                      <div className="formula-resurse text-lg font-mono mb-2">
+                        {"\\( M_L = \\log_{10} A - \\log_{10} A_0 \\)"}
+                        <MathJaxRender />
+                      </div>
+                      <p className="text-muted-foreground">A este amplitudinea maximă înregistrată, A₀ o amplitudine de referință.</p>
                     </div>
                   </div>
                   <a

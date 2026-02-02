@@ -70,6 +70,24 @@ const lessonCards = [
       "Descoperă comportamentul luminii, refracția, reflexia, lentilele și fenomenele de interferență și difracție.",
     path: "/resurse/optica",
   },
+  {
+    title: "Matematică",
+    description:
+      "Funcții, grafice și vizualizator 4D. Explorează reprezentarea grafică a funcțiilor și geometria în spațiul cu patru dimensiuni.",
+    path: "/resurse/matematica",
+  },
+  {
+    title: "Astronomie",
+    description:
+      "Legile lui Kepler: orbite eliptice, legea ariilor și relația perioadă–rază. Mișcarea planetelor și sateliților.",
+    path: "/resurse/astronomie",
+  },
+  {
+    title: "Michelson-Morley",
+    description:
+      "Experimentul Michelson-Morley, căutarea eterului și implicațiile pentru relativitatea restrânsă.",
+    path: "/resurse/michaelson-morley",
+  },
 ];
 
 const ResursePage = () => {
@@ -227,6 +245,38 @@ const ResursePage = () => {
     { title: "Puterea de rezoluție a rețelei", formula: "\\( R = \\frac{\\lambda}{\\Delta\\lambda} = mN \\)" },
   ];
 
+  const matematicaFormulas = [
+    { title: "Funcție liniară", formula: "\\( y = ax + b \\)" },
+    { title: "Funcție pătratică", formula: "\\( y = ax^2 + bx + c \\)" },
+    { title: "Derivată (definiție)", formula: "\\( f'(x) = \\lim_{h \\to 0} \\frac{f(x+h) - f(x)}{h} \\)" },
+    { title: "Derivata sinusului", formula: "\\( \\frac{d}{dx}\\sin(x) = \\cos(x) \\)" },
+    { title: "Derivata cosinusului", formula: "\\( \\frac{d}{dx}\\cos(x) = -\\sin(x) \\)" },
+    { title: "Derivata exponențialei", formula: "\\( \\frac{d}{dx}e^x = e^x \\)" },
+    { title: "Derivata logaritmului", formula: "\\( \\frac{d}{dx}\\ln(x) = \\frac{1}{x} \\)" },
+    { title: "Metrica Minkowski (spațiu-timp)", formula: "\\( ds^2 = c^2 dt^2 - dx^2 - dy^2 - dz^2 \\)" },
+  ];
+
+  const astronomieFormulas = [
+    { title: "Legea I Kepler – elipsa", formula: "\\( \\frac{x^2}{a^2} + \\frac{y^2}{b^2} = 1, \\quad b = a\\sqrt{1-e^2} \\)" },
+    { title: "Legea a II-a Kepler – ariile", formula: "\\( \\frac{dA}{dt} = \\frac{L}{2m} = \\text{const.} \\)" },
+    { title: "Legea a III-a Kepler", formula: "\\( T^2 = \\frac{4\\pi^2}{GM}\\, a^3 \\)" },
+    { title: "Viteza orbitală medie", formula: "\\( v = \\frac{2\\pi a}{T} \\)" },
+    { title: "Energia pe orbită eliptică", formula: "\\( E = -\\frac{GMm}{2a} \\)" },
+    { title: "Viteza la periheliu", formula: "\\( v_p = \\sqrt{\\frac{GM}{a}\\frac{1+e}{1-e}} \\)" },
+    { title: "Viteza la afeliu", formula: "\\( v_a = \\sqrt{\\frac{GM}{a}\\frac{1-e}{1+e}} \\)" },
+  ];
+
+  const relativitateFormulas = [
+    { title: "Viteza luminii (invariant)", formula: "\\( c = 299\\,792\\,458 \\,\\text{m/s} \\)" },
+    { title: "Dilatarea timpului", formula: "\\( \\Delta t' = \\gamma \\Delta t, \\quad \\gamma = \\frac{1}{\\sqrt{1-v^2/c^2}} \\)" },
+    { title: "Contracția lungimii", formula: "\\( L' = \\frac{L}{\\gamma} \\)" },
+    { title: "Transformări Lorentz (x, t)", formula: "\\( x' = \\gamma(x - vt), \\quad t' = \\gamma(t - vx/c^2) \\)" },
+    { title: "Adunarea relativistă a vitezelor", formula: "\\( u' = \\frac{u - v}{1 - uv/c^2} \\)" },
+    { title: "Energia relativistă", formula: "\\( E = \\gamma mc^2 \\)" },
+    { title: "Energia de repaus", formula: "\\( E_0 = mc^2 \\)" },
+    { title: "Impuls relativist", formula: "\\( p = \\gamma m v \\)" },
+  ];
+
   useEffect(() => {
     const tabParam = searchParams.get("tab");
     const formulaParam = searchParams.get("formula");
@@ -246,6 +296,9 @@ const ResursePage = () => {
         "lissajous",
         "electricitate",
         "optica",
+        "matematica",
+        "astronomie",
+        "relativitate",
       ];
       if (allowed.includes(formulaParam)) {
         setActiveFormulaTab(formulaParam);
@@ -273,6 +326,9 @@ const ResursePage = () => {
       lissajous: lissajousFormulas,
       electricitate: electricitateFormulas,
       optica: opticaFormulas,
+      matematica: matematicaFormulas,
+      astronomie: astronomieFormulas,
+      relativitate: relativitateFormulas,
     };
 
     const currentFormulas = formulasMap[activeFormulaTab] || [];
@@ -378,6 +434,9 @@ const ResursePage = () => {
                     <TabsTrigger value="lissajous">Lissajous</TabsTrigger>
                     <TabsTrigger value="electricitate">Electricitate</TabsTrigger>
                     <TabsTrigger value="optica">Optică</TabsTrigger>
+                    <TabsTrigger value="matematica">Matematică</TabsTrigger>
+                    <TabsTrigger value="astronomie">Astronomie</TabsTrigger>
+                    <TabsTrigger value="relativitate">Relativitate</TabsTrigger>
                   </TabsList>
 
                   <TabsContent value="mecanica">
@@ -522,6 +581,54 @@ const ResursePage = () => {
                       ))}
                     </div>
                     <MathJaxRender key={`optica-${visibleFormulasCount.optica || 0}`} />
+                  </TabsContent>
+
+                  <TabsContent value="matematica">
+                    <div className="formula-grid mb-4">
+                      {matematicaFormulas
+                        .slice(0, visibleFormulasCount.matematica || 5)
+                        .map((formula, index) => (
+                        <div key={index} className="formula-card">
+                          <div className="font-semibold mb-2">{formula.title}</div>
+                          <div className="text-lg font-mono">
+                            {formula.formula}
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+                    <MathJaxRender key={`matematica-${visibleFormulasCount.matematica || 0}`} />
+                  </TabsContent>
+
+                  <TabsContent value="astronomie">
+                    <div className="formula-grid mb-4">
+                      {astronomieFormulas
+                        .slice(0, visibleFormulasCount.astronomie || 5)
+                        .map((formula, index) => (
+                        <div key={index} className="formula-card">
+                          <div className="font-semibold mb-2">{formula.title}</div>
+                          <div className="text-lg font-mono">
+                            {formula.formula}
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+                    <MathJaxRender key={`astronomie-${visibleFormulasCount.astronomie || 0}`} />
+                  </TabsContent>
+
+                  <TabsContent value="relativitate">
+                    <div className="formula-grid mb-4">
+                      {relativitateFormulas
+                        .slice(0, visibleFormulasCount.relativitate || 5)
+                        .map((formula, index) => (
+                        <div key={index} className="formula-card">
+                          <div className="font-semibold mb-2">{formula.title}</div>
+                          <div className="text-lg font-mono">
+                            {formula.formula}
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+                    <MathJaxRender key={`relativitate-${visibleFormulasCount.relativitate || 0}`} />
                   </TabsContent>
                 </Tabs>
               </div>

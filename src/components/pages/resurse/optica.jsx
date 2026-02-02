@@ -1,12 +1,19 @@
 import Layout from "../../Layout";
 import { Button } from "../../Button";
 import MathJaxRender from "@/components/MathJaxRender";
+import SEO from "../../SEO";
 
 import simulatorPrismaImg from "/res/screenshots/Prisma_Screenshot.png";
 
 const OpticaPage = () => {
   return (
     <Layout>
+      <SEO
+        title="Resurse Optică | Lentile, reflexie, refracție - PULS"
+        description="Învață despre optică: lentile subțiri, reflexie, refracție, prismă, interferență, difracție și polarizare. Teorie și simulări."
+        keywords="optică, lentile, reflexie, refracție, Snell, prismă, interferență, difracție, PULS"
+        image="/res/icons/New-logo.png"
+      />
       <div className="resurse-pagina min-h-screen flex flex-col">
         <div style={{ paddingTop: "110px", flex: 1, display: "flex", flexDirection: "column" }}>
           <main className="flex-grow container mx-auto px-4 py-10">

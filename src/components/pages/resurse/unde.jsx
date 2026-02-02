@@ -16,6 +16,7 @@ import UndeVideo1 from "/res/Videos/Frecventa Undelor Video.mp4";
 import UndeThumbnail1 from "/res/Thumbnails/Unde Videoclip.png";
 import UndeThumbnail2 from "/res/Thumbnails/Frecventa Undelor Video.png";
 import Layout from "../../Layout";
+import SEO from "../../SEO";
 import VideoPopup from "../../VideoPopup";
 
 // import PrismaSImulation from "/Simulations/prisma/prisma-simulator.html";
@@ -53,6 +54,12 @@ const UndePage = () => {
 
   return (
     <Layout>
+      <SEO
+        title="Resurse Unde | Propagarea undelor - PULS"
+        description="Învață despre propagarea undelor mecanice și electromagnetice, tipuri de unde, formule și simulări interactive."
+        keywords="unde, unde mecanice, unde electromagnetice, propagare unde, fizică unde"
+        image="/res/icons/New-logo.png"
+      />
       <div className="resurse-pagina min-h-screen flex flex-col">
         <div className="resurse-page-container">
           <main className="flex-grow container mx-auto px-4 py-10">

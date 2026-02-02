@@ -6,6 +6,7 @@ import MathJaxRender from "@/components/MathJaxRender";
 import simulatorLissajousImg from "/res/screenshots/Lissajous_Screenshot.png";
 import simulatorGraficeBasicImg from "/res/screenshots/Grafice_Basic_Screenshot.png";
 import Layout from "../../Layout";
+import SEO from "../../SEO";
 
 const LissajousPage = () => {
 	const lissajousImages = [
@@ -15,6 +16,12 @@ const LissajousPage = () => {
 
 	return (
 		<Layout>
+			<SEO
+				title="Resurse Figuri Lissajous | Curbe parametrice - PULS"
+				description="Învață despre figurile Lissajous, ecuațiile parametrice și aplicațiile în fizică. Teorie, formule și simulări."
+				keywords="Lissajous, figuri Lissajous, oscilații perpendiculare, curbe parametrice"
+				image="/res/icons/New-logo.png"
+			/>
 			<div className="resurse-pagina min-h-screen flex flex-col">
 				<div className="resurse-page-container">
 					<main className="flex-grow container mx-auto px-4 py-10">
