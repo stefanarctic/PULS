@@ -13,7 +13,8 @@
     "backup-db": "node backup-database.js",
     "clean-problems": "node clean-problems-content.js",
     "upload-cleaned": "node upload-cleaned-problems.js",
-    "remove-duplicates": "node remove-duplicate-problems.js"
+    "remove-duplicates": "node remove-duplicate-problems.js",
+    "screenshot-simulations": "node scripts/screenshot-simulations.js"
   },
   "dependencies": {
     "@mistralai/mistralai": "^1.11.0",
@@ -35,6 +36,7 @@
     "recharts": "^2.12.0",
     "rehype-mathjax": "^7.1.0",
     "remark-math": "^6.0.0",
+    "save-dev": "^0.0.1-security",
     "sitemap-generator": "^8.5.1"
   },
   "devDependencies": {
@@ -48,6 +50,7 @@
     "eslint-plugin-react-hooks": "^5.0.0",
     "eslint-plugin-react-refresh": "^0.4.18",
     "globals": "^15.14.0",
+    "puppeteer": "^24.36.1",
     "sass-embedded": "^1.85.0",
     "vite": "^6.1.0"
   }
