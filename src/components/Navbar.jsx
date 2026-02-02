@@ -14,14 +14,20 @@ import { useEffect, useRef, useState } from "react";
 const Navbar = () => {
     const [pulsOpen, setPulsOpen] = useState(false);
     const [pulsForceOpen, setPulsForceOpen] = useState(false);
+    const [bacOpen, setBacOpen] = useState(false);
+    const [bacForceOpen, setBacForceOpen] = useState(false);
     const [searchValue, setSearchValue] = useState("");
     const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
     const [mobileDropdownOpen, setMobileDropdownOpen] = useState(false);
+    const [mobileBacDropdownOpen, setMobileBacDropdownOpen] = useState(false);
     const [submenuOpen, setSubmenuOpen] = useState(false);
     const dropdownRef = useRef(null);
     const dropdownMenuRef = useRef(null);
     const submenuRef = useRef(null);
+    const bacDropdownRef = useRef(null);
+    const bacDropdownMenuRef = useRef(null);
     const closeTimeoutRef = useRef(null);
+    const bacCloseTimeoutRef = useRef(null);
     const navigate = useNavigate();
     const darkModeOn = useDarkMode();
     const [burgerColor, setBurgerColor] = useState(darkModeOn ? 'white' : 'black');
@@ -45,6 +51,15 @@ const Navbar = () => {
                 setPulsForceOpen(false);
                 setSubmenuOpen(false);
             }
+            if (
+                bacDropdownRef.current &&
+                !bacDropdownRef.current.contains(event.target) &&
+                bacDropdownMenuRef.current &&
+                !bacDropdownMenuRef.current.contains(event.target)
+            ) {
+                setBacOpen(false);
+                setBacForceOpen(false);
+            }
         };
         document.addEventListener("mousedown", handleClickOutside);
         return () => {
@@ -65,9 +80,12 @@ const Navbar = () => {
         };
     }, []);
 
-    // Închide dropdown-ul mobil când se închide meniul mobil
+    // Închide dropdown-urile mobile când se închide meniul mobil
     useEffect(() => {
-        if (!mobileMenuOpen) setMobileDropdownOpen(false);
+        if (!mobileMenuOpen) {
+            setMobileDropdownOpen(false);
+            setMobileBacDropdownOpen(false);
+        }
     }, [mobileMenuOpen]);
 
     // Blochează scrollbarul body-ului când meniul mobil e deschis
@@ -174,6 +192,44 @@ const Navbar = () => {
         setPulsForceOpen(false);
         setPulsOpen(false);
         setSubmenuOpen(false);
+    };
+
+    // BAC dropdown – hover
+    const handleBacMouseEnter = () => {
+        if (bacCloseTimeoutRef.current) clearTimeout(bacCloseTimeoutRef.current);
+        if (!bacForceOpen) setBacOpen(true);
+    };
+
+    const handleBacMouseLeave = () => {
+        if (!bacForceOpen) {
+            bacCloseTimeoutRef.current = setTimeout(() => setBacOpen(false), 150);
+        }
+    };
+
+    const handleBacDropdownMenuMouseEnter = () => {
+        if (bacCloseTimeoutRef.current) clearTimeout(bacCloseTimeoutRef.current);
+    };
+
+    const handleBacDropdownMenuMouseLeave = () => {
+        if (!bacForceOpen) {
+            bacCloseTimeoutRef.current = setTimeout(() => {
+                setBacOpen(false);
+            }, 200);
+        }
+    };
+
+    const handleBacDropdownClick = (e) => {
+        e.preventDefault();
+        setBacForceOpen((prev) => {
+            const newState = !prev;
+            setBacOpen(newState);
+            return newState;
+        });
+    };
+
+    const handleBacDropdownItemClick = () => {
+        setBacForceOpen(false);
+        setBacOpen(false);
     };
 
     const handleSearchChange = (e) => {
@@ -366,16 +422,37 @@ const Navbar = () => {
                                                 onMouseEnter={handleSubmenuMouseEnter}
                                                 onMouseLeave={handleSubmenuMouseLeave}
                                             >
-                                                <Link to="/resurse/mecanica" className="dropdown-item navbar-dropdown-item" onClick={handleDropdownItemClick}>Mecanică</Link>
-                                                <Link to="/resurse/termodinamica" className="dropdown-item navbar-dropdown-item" onClick={handleDropdownItemClick}>Termodinamică</Link>
-                                                <Link to="/resurse/electricitate" className="dropdown-item navbar-dropdown-item" onClick={handleDropdownItemClick}>Electricitate</Link>
-                                                <Link to="/resurse/optica" className="dropdown-item navbar-dropdown-item" onClick={handleDropdownItemClick}>Optică</Link>
                                                 <Link to="/resurse/matematica" className="dropdown-item navbar-dropdown-item" onClick={handleDropdownItemClick}>Matematică</Link>
                                                 <Link to="/resurse/astronomie" className="dropdown-item navbar-dropdown-item" onClick={handleDropdownItemClick}>Astronomie</Link>
                                                 <Link to="/resurse/michaelson-morley" className="dropdown-item navbar-dropdown-item" onClick={handleDropdownItemClick}>Michelson-Morley</Link>
                                             </div>
                                         )}
                                     </div>
+                                </div>
+                            )}
+                        </div>
+                        <div
+                            className={`nav-link dropdown-toggle navbar-dropdown-toggle${(bacOpen || bacForceOpen) ? ' active' : ''}`}
+                            ref={bacDropdownRef}
+                            onMouseEnter={handleBacMouseEnter}
+                            onMouseLeave={handleBacMouseLeave}
+                            onClick={handleBacDropdownClick}
+                        >
+                            <span className="navbar-dropdown-span">
+                                <span>BAC</span>
+                                <ChevronDown className="nav-icon navbar-dropdown-icon" />
+                            </span>
+                            {(bacOpen || bacForceOpen) && (
+                                <div
+                                    ref={bacDropdownMenuRef}
+                                    className="dropdown-menu navbar-dropdown-menu"
+                                    onMouseEnter={handleBacDropdownMenuMouseEnter}
+                                    onMouseLeave={handleBacDropdownMenuMouseLeave}
+                                >
+                                    <Link to="/resurse/mecanica" className="dropdown-item navbar-dropdown-item" onClick={handleBacDropdownItemClick}>Mecanică</Link>
+                                    <Link to="/resurse/termodinamica" className="dropdown-item navbar-dropdown-item" onClick={handleBacDropdownItemClick}>Termodinamică</Link>
+                                    <Link to="/resurse/electricitate" className="dropdown-item navbar-dropdown-item" onClick={handleBacDropdownItemClick}>Electricitate</Link>
+                                    <Link to="/resurse/optica" className="dropdown-item navbar-dropdown-item" onClick={handleBacDropdownItemClick}>Optică</Link>
                                 </div>
                             )}
                         </div>
@@ -481,6 +558,27 @@ const Navbar = () => {
                                     </Link>
                                     <Link to="/resurse/michaelson-morley" className="nav-link" onClick={handleMobileNavClick}>
                                         Michelson-Morley
+                                    </Link>
+                                </div>
+                            </div>
+
+                            <div className="mobile-dropdown">
+                                <div className="mobile-dropdown-header" onClick={() => setMobileBacDropdownOpen(v => !v)}>
+                                    <span>BAC</span>
+                                    <ChevronDown className="nav-icon" style={{ transform: mobileBacDropdownOpen ? 'rotate(180deg)' : 'none', transition: 'transform 0.3s' }} />
+                                </div>
+                                <div className={`mobile-dropdown-content${mobileBacDropdownOpen ? ' open' : ''}`}>
+                                    <Link to="/resurse/mecanica" className="nav-link" onClick={handleMobileNavClick}>
+                                        Mecanică
+                                    </Link>
+                                    <Link to="/resurse/termodinamica" className="nav-link" onClick={handleMobileNavClick}>
+                                        Termodinamică
+                                    </Link>
+                                    <Link to="/resurse/electricitate" className="nav-link" onClick={handleMobileNavClick}>
+                                        Electricitate
+                                    </Link>
+                                    <Link to="/resurse/optica" className="nav-link" onClick={handleMobileNavClick}>
+                                        Optică
                                     </Link>
                                 </div>
                             </div>
