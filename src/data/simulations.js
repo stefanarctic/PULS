@@ -302,60 +302,60 @@ export const simulationsConfig = [
   },
   {
     id: 25,
-    slug: "4D-Visualizer",
-    route: "/simulare/4d-Visualizer",
+    slug: "Vizualizator-4d",
+    route: "/simulare/vizualizator-4d",
     title: "Vizualizator 4D",
-    description: "Simulare vizualizator figuri 4D.",
+    description: "Explorează și vizualizează obiecte geometrice 4D prin proiecții interactive, rotații în spațiul hiperdimensional și tranziții controlate în 4D.",
     image: simulatorPrismaImg, // Placeholder - va trebui înlocuit cu screenshot real
-    caption: "4D Visualizer",
+    caption: "Vizualizator 4D",
     iframeSrc: "/simulari/4D-Visualizer/index.html",
     maxHeight: '90vh',
     category: "4D"
   },
   {
     id: 26,
-    slug: "reflexie-refractie",
-    route: "/simulare/Legi_Kepler",
-    title: "Legi Kepler",
-    description: "Simulează legile lui Kepler.",
+    slug: "legi_Kepler",
+    route: "/simulare/legi_Kepler",
+    title: "Legile lui Kepler",
+    description: "Simulează mișcarea planetelor conform celor trei legi ale lui Kepler, cu orbite eliptice, variația vitezei și relația perioadă–rază orbitală.",
     image: simulatorPrismaImg, // Placeholder - va trebui înlocuit cu screenshot real
-    caption: "Legi Kepler",
+    caption: "Legile lui Kepler",
     iframeSrc: "/simulari/Legi_Kepler/index.html",
     maxHeight: '90vh',
     category: "Astronomie"
   },
   {
     id: 27,
-    slug: "Atom_hidrogen",
-    route: "/simulare/Atom_hidrogen",
-    title: "Atom de hidrogen",
-    description: "Simulează atomul de hidrogen cu modelul Bohr, de Broglie și Schrödinger.",
+    slug: "atom_hidrogen",
+    route: "/simulare/atom_hidrogen",
+    title: "Atomul de hidrogen",
+    description: "Simulează structura atomului de hidrogen folosind modelele Bohr, de Broglie și mecanica cuantică (Schrödinger), cu tranziții energetice și orbitale.",
     image: simulatorPrismaImg, // Placeholder - va trebui înlocuit cu screenshot real
-    caption: "Atom de hidrogen",
+    caption: "Atomul de hidrogen",
     iframeSrc: "/simulari/Atom_hidrogen/index.html",
     maxHeight: '90vh',
     category: "Atom"
   },
   {
     id: 28,
-    slug: "reflexie-refractie",
+    slug: "michaelson-morley",
     route: "/simulare/michaelson-morley",
-    title: "Michaelson-Morley",
-    description: "Simulează experimentul Michaelson-Morley.",
+    title: "Experimentul Michelson-Morley",
+    description: "Reproduce virtual experimentul Michelson–Morley și analizează interferența luminii pentru a evidenția absența eterului și implicațiile relativiste.",
     image: simulatorPrismaImg, // Placeholder - va trebui înlocuit cu screenshot real
-    caption: "Michaelson-Morley",
+    caption: "Experimentul Michelson-Morley",
     iframeSrc: "/simulari/michaelson-moray/index.html",
     maxHeight: '90vh',
     category: "Fizică"
   },
   {
     id: 29,
-    slug: "reflexie-refractie",
-    route: "/simulare/Lant",
-    title: "Lanturi",
-    description: "Simulează lanturile cu resorturi.",
+    slug: "lanturi-elastice",
+    route: "/simulare/lanturi-elastice",
+    title: "Lanțuri Elastice",
+    description: "Simulează dinamica lanțurilor elastice cu resorturi, propagarea undelor mecanice și comportamentul sistemelor oscilante interconectate.",
     image: simulatorPrismaImg, // Placeholder - va trebui înlocuit cu screenshot real
-    caption: "Lanturi",
+    caption: "Lanțuri Elastice",
     iframeSrc: "/simulari/Lant/index.html",
     maxHeight: '90vh',
     category: "Mecanică"
