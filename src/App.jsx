@@ -87,6 +87,7 @@ const App = () => {
 
   useEffect(() => {
     console.log('Website loaded...');
+    console.log(window.innerWidth, window.innerHeight);
   }, []);
 
   // useEffect(() => {
