@@ -1,6 +1,4 @@
 .problema-detaliata-submit-card {
-  .card-header {}
-
   .card-content {
 
     .problem-submit {
@@ -14,6 +12,8 @@
       flex-direction: column;
       border-radius: 0px;
       background-color: transparent;
+      min-height: fit-content;
+      max-width: 840px;
       //   background-color: red;
 
       &-card {
@@ -357,6 +357,341 @@
           font-size: 1.25rem;
           margin-bottom: 0.5rem;
         }
+      }
+
+      // Layout pentru formular
+      &-form-container {
+        width: 100%;
+        transition: max-height 0.3s ease-out, opacity 0.3s ease-out;
+        
+        &.problem-submit-form-collapsed {
+          max-height: 0;
+          overflow: hidden;
+          opacity: 0;
+          margin-bottom: 0;
+          padding: 0;
+        }
+      }
+
+      &-form-column {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+      }
+
+      &-additional-context {
+        margin-bottom: 1.5rem;
+      }
+
+      &-info {
+        padding: 0.75rem;
+        background-color: var(--secondary-background-current-mode);
+        border-radius: 8px;
+        margin-bottom: 1rem;
+        font-size: 0.9rem;
+        color: var(--primary-color-current-mode);
+
+        &-small {
+          font-size: 0.85rem;
+          color: var(--muted-color-current-mode);
+          margin-top: 0.25rem;
+        }
+      }
+
+      // Secțiuni de rezultate
+      &-results {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        gap: 1.5rem;
+      }
+    }
+  }
+}
+
+// Stiluri pentru prose (markdown rendering)
+.prose {
+  max-width: 100%;
+
+  p {
+    margin-top: 0;
+    margin-bottom: 1em;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    margin-top: 0;
+    margin-bottom: 0.5em;
+    font-weight: 600;
+  }
+
+  ul, ol {
+    margin-top: 0;
+    margin-bottom: 1em;
+    padding-left: 1.5em;
+  }
+
+  li {
+    margin-top: 0.25em;
+    margin-bottom: 0.25em;
+  }
+
+  code {
+    background-color: rgba(0, 0, 0, 0.1);
+    padding: 0.125em 0.25em;
+    border-radius: 0.25rem;
+    font-size: 0.9em;
+  }
+
+  pre {
+    background-color: rgba(0, 0, 0, 0.05);
+    padding: 1em;
+    border-radius: 0.5rem;
+    overflow-x: auto;
+    margin-top: 0;
+    margin-bottom: 1em;
+  }
+
+  a {
+    color: #3b82f6;
+    text-decoration: underline;
+
+    &:hover {
+      color: #2563eb;
+    }
+  }
+
+  blockquote {
+    border-left: 4px solid rgba(0, 0, 0, 0.1);
+    padding-left: 1em;
+    margin-left: 0;
+    margin-right: 0;
+    font-style: italic;
+  }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 0;
+    margin-bottom: 1em;
+  }
+
+  th, td {
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    padding: 0.5em;
+    text-align: left;
+  }
+
+  th {
+    font-weight: 600;
+    background-color: rgba(0, 0, 0, 0.05);
+  }
+
+  img {
+    max-width: 100%;
+    height: auto;
+  }
+}
+
+// Dark mode pentru prose
+html[data-theme="dark"],
+[data-theme="dark"] {
+  .prose {
+    code {
+      background-color: rgba(255, 255, 255, 0.1);
+    }
+
+    pre {
+      background-color: rgba(255, 255, 255, 0.05);
+    }
+
+    blockquote {
+      border-left-color: rgba(255, 255, 255, 0.2);
+    }
+
+    th, td {
+      border-color: rgba(255, 255, 255, 0.1);
+    }
+
+    th {
+      background-color: rgba(255, 255, 255, 0.05);
+    }
+  }
+}
+
+// Stiluri pentru secțiunile de analiză (în afara card-ului pentru a permite culorile exacte)
+.problem-analysis {
+  &-rating-section {
+    background-color: #fefce8; // bg-yellow-50
+    border: 1px solid #fef08a; // border-yellow-200
+    padding: 1rem;
+    border-radius: 0.5rem; // rounded-lg
+    margin-bottom: 1.5rem;
+
+    .problem-analysis-rating-title {
+      font-weight: 600;
+      margin-bottom: 0.75rem;
+      color: #854d0e; // text-yellow-800
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 1.125rem;
+    }
+
+    .problem-analysis-rating-content {
+      background-color: #ffffff; // bg-white
+      padding: 1rem;
+      border-radius: 0.25rem; // rounded
+      border: 1px solid #fef9c3; // border-yellow-100
+    }
+
+    .problem-analysis-rating-text {
+      font-size: 1.125rem; // text-lg
+      font-weight: 500; // font-medium
+      color: #713f12; // text-yellow-900
+    }
+  }
+
+  &-summaries-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+
+    @media (max-width: 768px) {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  &-summary-section {
+    background-color: #f8fafc; // bg-slate-50
+    border: 1px solid #e2e8f0; // border-slate-200
+    padding: 1rem;
+    border-radius: 0.5rem; // rounded-lg
+
+    .problem-analysis-summary-title {
+      font-weight: 600;
+      margin-bottom: 0.5rem;
+      color: #1e293b; // text-slate-800
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 1rem;
+    }
+
+    .problem-analysis-summary-content {
+      color: #0f172a; // text-slate-900
+    }
+  }
+
+  &-solution-section {
+    background-color: #eff6ff; // bg-blue-50
+    border: 1px solid #bfdbfe; // border-blue-200
+    padding: 1rem;
+    border-radius: 0.5rem; // rounded-lg
+    margin-bottom: 1.5rem;
+
+    .problem-analysis-solution-title {
+      font-weight: 600;
+      margin-bottom: 0.75rem;
+      color: #1e40af; // text-blue-800
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 1.125rem;
+    }
+
+    .problem-analysis-solution-content {
+      color: #1e3a8a; // text-blue-900
+    }
+  }
+
+  &-errors-section {
+    background-color: #f0fdf4; // bg-green-50
+    border: 1px solid #bbf7d0; // border-green-200
+    padding: 1rem;
+    border-radius: 0.5rem; // rounded-lg
+    margin-bottom: 1.5rem;
+
+    .problem-analysis-errors-title {
+      font-weight: 600;
+      margin-bottom: 0.75rem;
+      color: #166534; // text-green-800
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 1.125rem;
+    }
+
+    .problem-analysis-errors-content {
+      color: #14532d; // text-green-900
+    }
+  }
+
+  &-icon {
+    width: 1rem; // h-4
+    height: 1rem; // w-4
+    flex-shrink: 0;
+  }
+}
+
+// Dark mode adjustments pentru secțiunile de analiză
+html[data-theme="dark"],
+[data-theme="dark"] {
+  .problem-analysis {
+    &-rating-section {
+      background-color: rgba(254, 252, 232, 0.1);
+      border-color: rgba(254, 240, 138, 0.3);
+
+      .problem-analysis-rating-title {
+        color: #fef08a;
+      }
+
+      .problem-analysis-rating-content {
+        background-color: rgba(255, 255, 255, 0.05);
+        border-color: rgba(254, 249, 195, 0.2);
+      }
+
+      .problem-analysis-rating-text {
+        color: #fef08a;
+      }
+    }
+
+    &-summary-section {
+      background-color: rgba(248, 250, 252, 0.1);
+      border-color: rgba(226, 232, 240, 0.3);
+
+      .problem-analysis-summary-title {
+        color: #cbd5e1;
+      }
+
+      .problem-analysis-summary-content {
+        color: #e2e8f0;
+      }
+    }
+
+    &-solution-section {
+      background-color: rgba(239, 246, 255, 0.1);
+      border-color: rgba(191, 219, 254, 0.3);
+
+      .problem-analysis-solution-title {
+        color: #93c5fd;
+      }
+
+      .problem-analysis-solution-content {
+        color: #bfdbfe;
+      }
+    }
+
+    &-errors-section {
+      background-color: rgba(240, 253, 244, 0.1);
+      border-color: rgba(187, 247, 208, 0.3);
+
+      .problem-analysis-errors-title {
+        color: #86efac;
+      }
+
+      .problem-analysis-errors-content {
+        color: #bbf7d0;
       }
     }
   }
