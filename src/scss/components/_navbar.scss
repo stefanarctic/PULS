@@ -634,6 +634,12 @@ nav.scrolled-white {
   }
 }
 
+@media (max-width: 1700px) {
+    nav {
+        zoom: 0.9;
+    }
+}
+
 @media (max-width: 1500px) {
     nav {
         zoom: 0.95;
