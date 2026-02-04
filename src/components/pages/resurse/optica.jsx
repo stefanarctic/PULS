@@ -4,6 +4,9 @@ import MathJaxRender from "@/components/MathJaxRender";
 import SEO from "../../SEO";
 
 import simulatorPrismaImg from "/res/screenshots/Prisma_Screenshot.png";
+import lentilaSubtireImg from "/res/screenshots/Lentila_Subtire_Screenshot.png";
+import reflexieRefractieImg from "/res/screenshots/Reflexie_Refractie_Screenshot.png";
+import refractieAtmosfericaImg from "/res/screenshots/Refractie_Atmosferica_Screenshot.png";
 
 const OpticaPage = () => {
   return (
@@ -49,8 +52,8 @@ const OpticaPage = () => {
                 </p>
                 <div className="image-slider h-64 md:h-80 relative flex items-center justify-center mb-8">
                   <img
-                    src={simulatorPrismaImg}
-                    alt="Lentilă Subțire"
+                    src={lentilaSubtireImg}
+                    alt="Simulator Lentilă Subțire"
                     className="w-full h-full object-contain mx-auto my-auto"
                   />
                 </div>
@@ -103,7 +106,6 @@ const OpticaPage = () => {
                   </div>
                   <a
                     href="/simulare/lentila-subtire"
-                    target="_blank"
                     rel="noopener noreferrer"
                     style={{ textDecoration: "none" }}
                   >
@@ -122,8 +124,16 @@ const OpticaPage = () => {
                 <p className="text-muted-foreground mb-6">
                   Legea refracției, cunoscută și sub numele de legea lui Snell, descrie relația dintre unghiurile de incidență și refracție 
                   și indicii de refracție ai mediilor. Reflexia totală internă apare când lumina trece dintr-un mediu cu indice de refracție 
-                  mai mare într-unul cu indice mai mic.
+                  mai mare într-unul cu indice mai mic. Fenomene spectaculoase precum mirajul în deșert sau „îndoirea” aparentă a obiectelor 
+                  în apă pot fi explicate prin variația indicelui de refracție.
                 </p>
+                <div className="image-slider h-64 md:h-80 relative flex items-center justify-center mb-8">
+                  <img
+                    src={reflexieRefractieImg}
+                    alt="Simulator Reflexie și Refracție"
+                    className="w-full h-full object-contain mx-auto my-auto"
+                  />
+                </div>
                 <div className="mt-8 flex flex-col md:flex-row md:items-center justify-between gap-6">
                   <div>
                     <h3 className="text-xl font-semibold mb-4">Formule pentru refracție și reflexie:</h3>
@@ -173,7 +183,6 @@ const OpticaPage = () => {
                   </div>
                   <a
                     href="/simulare/reflexie-refractie"
-                    target="_blank"
                     rel="noopener noreferrer"
                     style={{ textDecoration: "none" }}
                   >
@@ -252,140 +261,9 @@ const OpticaPage = () => {
                 </div>
               </div>
 
-              {/* Interferență și Difracție */}
-              <div className="rounded-container">
-                <h2 className="text-2xl font-bold mb-4">Interferență și Difracție</h2>
-                <p className="text-muted-foreground mb-6">
-                  Interferența și difracția sunt fenomene caracteristice opticii fizice care demonstrează natura undelor a luminii. 
-                  Aceste fenomene apar când lumina întâlnește obstacole sau trece prin fante, creând modele caracteristice de intensitate.
-                </p>
-                <p className="text-muted-foreground mb-6">
-                  Interferența apare când două sau mai multe unde luminoase se suprapun, creând zone de intensitate maximă (maxime) 
-                  și minimă (minime). Difracția apare când lumina trece prin deschideri mici sau în jurul obstacolelor, 
-                  demonstrând că lumina se comportă ca o undă.
-                </p>
-                <div className="mt-8">
-                  <h3 className="text-xl font-semibold mb-4">Formule pentru interferență și difracție:</h3>
-                  
-                  <h4 className="text-lg font-semibold mb-2">1. Condiția pentru maxime de interferență:</h4>
-                  <div className="formula-resurse text-lg font-mono mb-4">
-                    {"\\( \\Delta = k\\lambda = d\\sin(\\theta) \\)"}
-                    <MathJaxRender />
-                  </div>
-                  
-                  <h4 className="text-lg font-semibold mb-2">2. Condiția pentru minime de interferență:</h4>
-                  <div className="formula-resurse text-lg font-mono mb-4">
-                    {"\\( \\Delta = \\left(k + \\frac{1}{2}\\right)\\lambda = d\\sin(\\theta) \\)"}
-                    <MathJaxRender />
-                  </div>
-                  
-                  <h4 className="text-lg font-semibold mb-2">3. Diferența de drum optic:</h4>
-                  <div className="formula-resurse text-lg font-mono mb-4">
-                    {"\\( \\Delta = n_2d_2 - n_1d_1 \\)"}
-                    <MathJaxRender />
-                  </div>
-                  
-                  <h4 className="text-lg font-semibold mb-2">4. Poziția maximelor în difracție pe o fantă:</h4>
-                  <div className="formula-resurse text-lg font-mono mb-4">
-                    {"\\( a\\sin(\\theta) = k\\lambda \\)"}
-                    <MathJaxRender />
-                  </div>
-                  
-                  <h4 className="text-lg font-semibold mb-2">5. Poziția minimelor în difracție pe o fantă:</h4>
-                  <div className="formula-resurse text-lg font-mono mb-4">
-                    {"\\( a\\sin(\\theta) = k\\lambda \\)"}
-                    <MathJaxRender />
-                  </div>
-                  
-                  <h4 className="text-lg font-semibold mb-2">6. Rețeaua de difracție:</h4>
-                  <div className="formula-resurse text-lg font-mono mb-4">
-                    {"\\( d\\sin(\\theta) = m\\lambda \\)"}
-                    <MathJaxRender />
-                  </div>
-                  
-                  <h4 className="text-lg font-semibold mb-2">7. Puterea de rezoluție a rețelei:</h4>
-                  <div className="formula-resurse text-lg font-mono mb-4">
-                    {"\\( R = \\frac{\\lambda}{\\Delta\\lambda} = mN \\)"}
-                    <MathJaxRender />
-                  </div>
-                  
-                  <p className="text-muted-foreground mt-4">
-                    Unde: Δ este diferența de drum optic, k și m sunt numere întregi, λ este lungimea de undă, 
-                    d este distanța dintre surse sau fante, θ este unghiul, a este lățimea fantei, 
-                    n₁ și n₂ sunt indicii de refracție, d₁ și d₂ sunt distanțele, R este puterea de rezoluție, N este numărul de linii.
-                  </p>
-                </div>
-              </div>
+              
 
-              {/* Polarizare Circulară */}
-              <div className="rounded-container">
-                <h2 className="text-2xl font-bold mb-4">Polarizare Circulară</h2>
-                <p className="text-muted-foreground mb-6">
-                  Polarizarea circulară este o stare de polarizare în care vectorul câmpului electric al unei unde electromagnetice 
-                  se rotește în cerc pe măsură ce unda se propagă. Vârful vectorului câmpului electric descrie o elice în spațiu.
-                </p>
-                <p className="text-muted-foreground mb-6">
-                  Există două tipuri principale de polarizare circulară: circulară dreapta (RCP) și circulară stânga (LCP), 
-                  în funcție de sensul de rotație. Polarizarea circulară are aplicații importante în spectroscopie, comunicații 
-                  prin satelit, cinema 3D și criptografie cuantică.
-                </p>
-                <div className="mt-8 flex flex-col md:flex-row md:items-center justify-between gap-6">
-                  <div>
-                    <h3 className="text-xl font-semibold mb-4">Formule pentru polarizare circulară:</h3>
-                    
-                    <h4 className="text-lg font-semibold mb-2">1. Componentele câmpului electric:</h4>
-                    <div className="formula-resurse text-lg font-mono mb-4">
-                      {"\\( E_x(z,t) = E_0 \\cos(kz - \\omega t) \\)"}
-                      <MathJaxRender />
-                    </div>
-                    <div className="formula-resurse text-lg font-mono mb-4">
-                      {"\\( E_y(z,t) = E_0 \\cos(kz - \\omega t + \\delta) \\)"}
-                      <MathJaxRender />
-                    </div>
-                    
-                    <h4 className="text-lg font-semibold mb-2">2. Condiția pentru polarizare circulară:</h4>
-                    <div className="formula-resurse text-lg font-mono mb-4">
-                      {"\\( \\delta = \\pm \\frac{\\pi}{2} \\) și \\( E_{0x} = E_{0y} \\)"}
-                      <MathJaxRender />
-                    </div>
-                    
-                    <h4 className="text-lg font-semibold mb-2">3. Vector Jones pentru polarizare circulară dreapta:</h4>
-                    <div className="formula-resurse text-lg font-mono mb-4">
-                      {"\\( \\frac{1}{\\sqrt{2}} \\begin{bmatrix} 1 \\\\ -i \\end{bmatrix} \\)"}
-                      <MathJaxRender />
-                    </div>
-                    
-                    <h4 className="text-lg font-semibold mb-2">4. Vector Jones pentru polarizare circulară stânga:</h4>
-                    <div className="formula-resurse text-lg font-mono mb-4">
-                      {"\\( \\frac{1}{\\sqrt{2}} \\begin{bmatrix} 1 \\\\ i \\end{bmatrix} \\)"}
-                      <MathJaxRender />
-                    </div>
-                    
-                    <h4 className="text-lg font-semibold mb-2">5. Parametrii Stokes:</h4>
-                    <div className="formula-resurse text-lg font-mono mb-4">
-                      {"\\( S_0 = |E_x|^2 + |E_y|^2 \\)"}
-                      <MathJaxRender />
-                    </div>
-                    <div className="formula-resurse text-lg font-mono mb-4">
-                      {"\\( S_3 = 2\\text{Im}(E_x E_y^*) \\)"}
-                      <MathJaxRender />
-                    </div>
-                    
-                    <p className="text-muted-foreground mt-4">
-                      Unde: Eₓ și Eᵧ sunt componentele câmpului electric, E₀ este amplitudinea, k este numărul de undă, 
-                      ω este frecvența unghiulară, δ este diferența de fază, S₀ și S₃ sunt parametrii Stokes.
-                    </p>
-                  </div>
-                  <a
-                    href="/simulare/polarizare-circulara"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    style={{ textDecoration: "none" }}
-                  >
-                    <Button size="lg">Vezi simularea</Button>
-                  </a>
-                </div>
-              </div>
+            
 
               {/* Refracție Atmosferică */}
               <div className="rounded-container">
@@ -399,9 +277,16 @@ const OpticaPage = () => {
                   Studiul refracției atmosferice este important pentru astronomie, navigație și meteorologie. 
                   Acest fenomen demonstrează cum proprietățile optice ale atmosferei pot afecta observațiile și măsurătorile.
                 </p>
+                <div className="image-slider h-64 md:h-80 relative flex items-center justify-center mb-8">
+                  <img
+                    src={refractieAtmosfericaImg}
+                    alt="Simulator Miraj în Deșert"
+                    className="w-full h-full object-contain mx-auto my-auto"
+                  />
+                </div>
                 <div className="mt-8 flex flex-col md:flex-row md:items-center justify-between gap-6">
                   <div>
-                    <h3 className="text-xl font-semibold mb-4">Formule pentru refracție atmosferică:</h3>
+                    <h3 className="text-xl font-semibold mb-4">Formule pentru refracție atmosferică și miraj:</h3>
                     
                     <h4 className="text-lg font-semibold mb-2">1. Indicele de refracție al aerului:</h4>
                     <div className="formula-resurse text-lg font-mono mb-4">
@@ -415,7 +300,7 @@ const OpticaPage = () => {
                       <MathJaxRender />
                     </div>
                     
-                    <h4 className="text-lg font-semibold mb-2">3. Corecția pentru refracție:</h4>
+                    <h4 className="text-lg font-semibold mb-2">3. Corecția pentru refracție la înălțimi mici deasupra orizontului:</h4>
                     <div className="formula-resurse text-lg font-mono mb-4">
                       {"\\( \\Delta\\theta = 0.00452 \\times \\frac{p}{T} \\times \\tan(z) \\)"}
                       <MathJaxRender />
@@ -429,7 +314,6 @@ const OpticaPage = () => {
                   </div>
                   <a
                     href="/simulare/refractie-atmosferica"
-                    target="_blank"
                     rel="noopener noreferrer"
                     style={{ textDecoration: "none" }}
                   >

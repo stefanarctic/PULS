@@ -10,8 +10,8 @@ body {
 
 // Custom global scrollbar – subțire, albastru, folosind accentul site-ului
 html {
-    scrollbar-width: thin; // Firefox
-    scrollbar-color: var(--accent-color-current-mode) transparent;
+    scrollbar-width: 50px; //Firefox
+    scrollbar-color: rgb(105, 105, 105) transparent;
 }
 
 body::-webkit-scrollbar {

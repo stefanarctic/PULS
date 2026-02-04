@@ -424,7 +424,7 @@ const Navbar = () => {
                                             >
                                                 <Link to="/resurse/matematica" className="dropdown-item navbar-dropdown-item" onClick={handleDropdownItemClick}>Matematică</Link>
                                                 <Link to="/resurse/astronomie" className="dropdown-item navbar-dropdown-item" onClick={handleDropdownItemClick}>Astronomie</Link>
-                                                <Link to="/resurse/michaelson-morley" className="dropdown-item navbar-dropdown-item" onClick={handleDropdownItemClick}>Michelson-Morley</Link>
+                                                <Link to="/resurse/fizica-cuantica" className="dropdown-item navbar-dropdown-item" onClick={handleDropdownItemClick}>Fizica Cuantică</Link>
                                             </div>
                                         )}
                                     </div>
@@ -538,26 +538,14 @@ const Navbar = () => {
                                     <Link to="/resurse/seism" className="nav-link" onClick={handleMobileNavClick}>
                                         Seisme
                                     </Link>
-                                    <Link to="/resurse/mecanica" className="nav-link" onClick={handleMobileNavClick}>
-                                        Mecanică
-                                    </Link>
-                                    <Link to="/resurse/termodinamica" className="nav-link" onClick={handleMobileNavClick}>
-                                        Termodinamică
-                                    </Link>
-                                    <Link to="/resurse/electricitate" className="nav-link" onClick={handleMobileNavClick}>
-                                        Electricitate
-                                    </Link>
-                                    <Link to="/resurse/optica" className="nav-link" onClick={handleMobileNavClick}>
-                                        Optică
-                                    </Link>
                                     <Link to="/resurse/matematica" className="nav-link" onClick={handleMobileNavClick}>
                                         Matematică
                                     </Link>
                                     <Link to="/resurse/astronomie" className="nav-link" onClick={handleMobileNavClick}>
                                         Astronomie
                                     </Link>
-                                    <Link to="/resurse/michaelson-morley" className="nav-link" onClick={handleMobileNavClick}>
-                                        Michelson-Morley
+                                    <Link to="/resurse/fizica-cuantica" className="nav-link" onClick={handleMobileNavClick}>
+                                        Fizica Cuantică
                                     </Link>
                                 </div>
                             </div>

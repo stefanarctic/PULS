@@ -6,7 +6,9 @@ import MathJaxRender from "@/components/MathJaxRender";
 import simulatorOscilatieOYImg from "/res/screenshots/Oscilatieoy_Screenshot.png";
 import simulatorOscilatieOXImg from "/res/screenshots/Oscilatieox_Screenshot.png";
 import simulatorCiocnireImg from "/res/screenshots/Ciocnire_Screenshot.png";
-// Nu exista imagine pentru plan inclinat
+import simulatorPlanInclinatImg from "/res/screenshots/Plan_Inclinat_Screenshot.png";
+import proiectileImg from "/res/screenshots/Proiectile_Screenshot.png";
+import lanturiElasticeImg from "/res/screenshots/Lanturi_Elastice_Screenshot.png";
 
 import Layout from "../../Layout";
 
@@ -92,8 +94,7 @@ const MecanicaPage = () => {
                     </p>
                   </div>
                   <a
-                    href="/simulari/Oscilatii elastice  pe OX/index.html"
-                    target="_blank"
+                    href="/simulare/oscillatii-ox"
                     rel="noopener noreferrer"
                     style={{ textDecoration: "none" }}
                   >
@@ -160,8 +161,7 @@ const MecanicaPage = () => {
                     </p>
                   </div>
                   <a
-                    href="/simulari/Legea Hooke-oscilatii oy/index.html"
-                    target="_blank"
+                    href="/simulare/oscillatii-oy"
                     rel="noopener noreferrer"
                     style={{ textDecoration: "none" }}
                   >
@@ -232,8 +232,7 @@ const MecanicaPage = () => {
                     </p>
                   </div>
                   <a
-                    href="/simulari/Ciocnire/ciocnire.html"
-                    target="_blank"
+                    href="/simulare/coliziuni-inelastice"
                     rel="noopener noreferrer"
                     style={{ textDecoration: "none" }}
                   >
@@ -254,8 +253,12 @@ const MecanicaPage = () => {
                   Studiul planului înclinat este esențial pentru înțelegerea conceptelor de forță, accelerație și energie potențială. 
                   Acesta oferă o bază solidă pentru analiza problemelor mai complexe din mecanică și inginerie.
                 </p>
-                <div className="image-slider h-64 md:h-80 relative flex items-center justify-center mb-8 bg-gray-200 text-gray-500">
-                  <span className="text-xl">Imagine în curând</span>
+                <div className="image-slider h-64 md:h-80 relative flex items-center justify-center mb-8">
+                  <img
+                    src={simulatorPlanInclinatImg}
+                    alt="Plan înclinat"
+                    className="w-full h-full object-contain mx-auto my-auto"
+                  />
                 </div>
                 <div className="mt-8 flex flex-col md:flex-row md:items-center justify-between gap-6">
                   <div>
@@ -303,8 +306,121 @@ const MecanicaPage = () => {
                     </p>
                   </div>
                   <a
-                    href="/simulari/Mix/plan-inclinat.html"
-                    target="_blank"
+                    href="/simulare/plan-inclinat"
+                    rel="noopener noreferrer"
+                    style={{ textDecoration: "none" }}
+                  >
+                    <Button size="lg">Vezi simularea</Button>
+                  </a>
+                </div>
+              </div>
+
+              {/* Mișcarea proiectilului */}
+              <div className="rounded-container">
+                <h2 className="text-2xl font-bold mb-4">Mișcarea proiectilului</h2>
+                <p className="text-muted-foreground mb-6">
+                  Mișcarea proiectilului descrie traiectoria unui corp aruncat cu o viteză inițială într-un câmp gravitațional
+                  uniform (de obicei neglijând rezistența aerului). Este un exemplu clasic de mișcare compusă: mișcare rectilinie
+                  uniformă pe orizontală și mișcare rectilinie uniform variată pe verticală.
+                </p>
+                <p className="text-muted-foreground mb-6">
+                  În funcție de viteza inițială și unghiul de lansare, proiectilul urmează o traiectorie parabolică. Simulatorul
+                  îți permite să modifici unghiul, viteza inițială și înălțimea de lansare pentru a observa cum se schimbă
+                  bătaia, înălțimea maximă și timpul de zbor.
+                </p>
+                <div className="image-slider h-64 md:h-80 relative flex items-center justify-center mb-8">
+                  <img
+                    src={proiectileImg}
+                    alt="Mișcarea proiectilului"
+                    className="w-full h-full object-contain mx-auto my-auto"
+                  />
+                </div>
+                <div className="mt-8 flex flex-col md:flex-row md:items-center justify-between gap-6">
+                  <div>
+                    <h3 className="text-xl font-semibold mb-4">Formule pentru mișcarea proiectilului (fără rezistența aerului):</h3>
+                    <h4 className="text-lg font-semibold mb-2">1. Descompunerea vitezei inițiale:</h4>
+                    <div className="formula-resurse text-lg font-mono mb-3">
+                      {"\\( v_{0x} = v_0 \\cos\\alpha, \\quad v_{0y} = v_0 \\sin\\alpha \\)"}
+                      <MathJaxRender />
+                    </div>
+                    <h4 className="text-lg font-semibold mb-2">2. Ecuațiile de mișcare:</h4>
+                    <div className="formula-resurse text-lg font-mono mb-3">
+                      {"\\( x(t) = v_{0x} t \\)"}
+                      <MathJaxRender />
+                    </div>
+                    <div className="formula-resurse text-lg font-mono mb-3">
+                      {"\\( y(t) = y_0 + v_{0y} t - \\frac{1}{2} g t^2 \\)"}
+                      <MathJaxRender />
+                    </div>
+                    <h4 className="text-lg font-semibold mb-2">3. Timpul de zbor (pentru lansare și cădere la aceeași înălțime):</h4>
+                    <div className="formula-resurse text-lg font-mono mb-3">
+                      {"\\( T = \\frac{2 v_0 \\sin\\alpha}{g} \\)"}
+                      <MathJaxRender />
+                    </div>
+                    <h4 className="text-lg font-semibold mb-2">4. Bătaia maximă:</h4>
+                    <div className="formula-resurse text-lg font-mono mb-3">
+                      {"\\( R = \\frac{v_0^2 \\sin(2\\alpha)}{g} \\)"}
+                      <MathJaxRender />
+                    </div>
+                    <p className="text-muted-foreground mt-4">
+                      Unde: {"\\(v_0\\)"} <MathJaxRender /> este viteza inițială, {"\\(\\alpha\\)"} <MathJaxRender /> unghiul de
+                      lansare față de orizontală, {"\\(g\\)"} <MathJaxRender /> accelerația gravitațională, {"\\(y_0\\)"}{" "}
+                      <MathJaxRender /> înălțimea inițială, {"\\(T\\)"} <MathJaxRender /> timpul de zbor, iar{" "}
+                      {"\\(R\\)"} <MathJaxRender /> bătaia (distanța orizontală parcursă).
+                    </p>
+                  </div>
+                  <a
+                    href="/simulare/proiectile"
+                    rel="noopener noreferrer"
+                    style={{ textDecoration: "none" }}
+                  >
+                    <Button size="lg">Vezi simularea</Button>
+                  </a>
+                </div>
+              </div>
+
+              {/* Lanțuri elastice */}
+              <div className="rounded-container">
+                <h2 className="text-2xl font-bold mb-4">Lanțuri elastice</h2>
+                <p className="text-muted-foreground mb-6">
+                  Un lanț elastic este format dintr-o serie de mase legate între ele prin resorturi (arcuri) care respectă
+                  legea lui Hooke. Acest tip de sistem modelează propagarea undelor mecanice într-un mediu discret și
+                  comportamentul colectiv al multor oscilatori cuplați.
+                </p>
+                <p className="text-muted-foreground mb-6">
+                  În simulare poți observa cum o perturbație inițială se propagă de-a lungul lanțului, cum apar reflexii la
+                  capete și cum energia se distribuie între oscilațiile diferitelor mase. Este un exemplu excelent pentru a
+                  înțelege legătura dintre modele discrete și undele din medii continue.
+                </p>
+                <div className="image-slider h-64 md:h-80 relative flex items-center justify-center mb-8">
+                  <img
+                    src={lanturiElasticeImg}
+                    alt="Lanțuri elastice"
+                    className="w-full h-full object-contain mx-auto my-auto"
+                  />
+                </div>
+                <div className="mt-8 flex flex-col md:flex-row md:items-center justify-between gap-6">
+                  <div>
+                    <h3 className="text-xl font-semibold mb-4">Formule de bază pentru un lanț elastic:</h3>
+                    <h4 className="text-lg font-semibold mb-2">1. Forța în resort (legea lui Hooke):</h4>
+                    <div className="formula-resurse text-lg font-mono mb-3">
+                      {"\\( F = -k \\Delta x \\)"}
+                      <MathJaxRender />
+                    </div>
+                    <h4 className="text-lg font-semibold mb-2">2. Ecuația de mișcare pentru o masă din lanț:</h4>
+                    <div className="formula-resurse text-lg font-mono mb-3">
+                      {"\\( m \\frac{d^2 x_i}{dt^2} = k(x_{i+1} - x_i) - k(x_i - x_{i-1}) \\)"}
+                      <MathJaxRender />
+                    </div>
+                    <p className="text-muted-foreground">
+                      Unde: {"\\(m\\)"} <MathJaxRender /> este masa fiecărui element, {"\\(k\\)"} <MathJaxRender /> constanta
+                      elastică a resorturilor, iar {"\\(x_i\\)"} <MathJaxRender /> este deplasarea masei a-i-a față de
+                      poziția de echilibru. Diferențele dintre pozițiile vecinilor generează forțele care duc la propagarea
+                      perturbațiilor de-a lungul lanțului.
+                    </p>
+                  </div>
+                  <a
+                    href="/simulare/lanturi-elastice"
                     rel="noopener noreferrer"
                     style={{ textDecoration: "none" }}
                   >

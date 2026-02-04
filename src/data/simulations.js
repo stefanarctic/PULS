@@ -27,6 +27,7 @@ import legiKeplerImg from "/res/screenshots/Legi_Kepler_Screenshot.png";
 import atomHidrogenImg from "/res/screenshots/Atom_Hidrogen_Screenshot.png";
 import michaelsonMorleyImg from "/res/screenshots/Michaelson_Morley_Screenshot.png";
 import lanturiElasticeImg from "/res/screenshots/Lanturi_Elastice_Screenshot.png";
+import miscarePlaneteImg from "/res/screenshots/Miscare_Planete_Screenshot.png";
 export const simulationsConfig = [
   {
     id: 1,
@@ -200,7 +201,7 @@ export const simulationsConfig = [
     route: "/simulare/circuite-electricitate",
     title: "Circuite Electrice - Schematics",
     description: "Simulator pentru circuite electrice cu legea lui Ohm și Kirchhoff.",
-    image: circuiteElectricitateImg, // Placeholder - va trebui înlocuit cu screenshot real
+    image: circuiteElectricitateImg, 
     caption: "Circuite Electrice",
     iframeSrc: "/simulari/electricity/index.html",
     maxHeight: '90vh',
@@ -212,7 +213,7 @@ export const simulationsConfig = [
     route: "/simulare/energie-circuite",
     title: "Energia în Circuite",
     description: "Simulează fluxul de energie în circuite electrice.",
-    image: energieCircuiteImg, // Placeholder - va trebui înlocuit cu screenshot real
+    image: energieCircuiteImg, 
     caption: "Energia în Circuite",
     iframeSrc: "/simulari/energie_circuite/index.html",
     maxHeight: '90vh',
@@ -224,7 +225,7 @@ export const simulationsConfig = [
     route: "/simulare/motoare-termice",
     title: "Motoare Termice",
     description: "Simulează ciclurile Otto, Diesel și Carnot cu diagrame p-V și T-s.",
-    image: motoareTermiceImg, // Placeholder - va trebui înlocuit cu screenshot real
+    image: motoareTermiceImg, 
     caption: "Motoare Termice",
     iframeSrc: "/simulari/motoare/index.html",
     maxHeight: '90vh',
@@ -236,7 +237,7 @@ export const simulationsConfig = [
     route: "/simulare/pendule-multiple",
     title: "Penduluri Duble Multiple",
     description: "Simulează penduluri duble multiple cu efecte haotice și urme.",
-    image: penduleMultipleImg, // Placeholder - va trebui înlocuit cu screenshot real
+    image: penduleMultipleImg, 
     caption: "Penduluri Multiple",
     iframeSrc: "/simulari/pendule_multiple/index.html",
     maxHeight: '90vh',
@@ -248,7 +249,7 @@ export const simulationsConfig = [
     route: "/simulare/plan-inclinat",
     title: "Plan Înclinat",
     description: "Simulează mișcarea pe plan înclinat cu frecare statică și cinetică.",
-    image: planInclinatImg, // Placeholder - va trebui înlocuit cu screenshot real
+    image: planInclinatImg, 
     caption: "Plan Înclinat",
     iframeSrc: "/simulari/plan-inclinat/index.html",
     maxHeight: '90vh',
@@ -260,7 +261,7 @@ export const simulationsConfig = [
     route: "/simulare/proiectile",
     title: "Mișcarea Proiectilului",
     description: "Simulator BAC pentru mișcarea proiectilului cu și fără rezistență aerului.",
-    image: proiectileImg, // Placeholder - va trebui înlocuit cu screenshot real
+    image: proiectileImg, 
     caption: "Mișcarea Proiectilului",
     iframeSrc: "/simulari/proiectile/index.html",
     maxHeight: '90vh',
@@ -272,7 +273,7 @@ export const simulationsConfig = [
     route: "/simulare/refractie-atmosferica",
     title: "Miraj în Deșert",
     description: "Simulează refracția atmosferică și efectul de miraj în deșert.",
-    image: refractieAtmosfericaImg, // Placeholder - va trebui înlocuit cu screenshot real
+    image: refractieAtmosfericaImg, 
     caption: "Refracție Atmosferică",
     iframeSrc: "/simulari/refractie_atmosferica/index.html",
     maxHeight: '90vh',
@@ -284,7 +285,7 @@ export const simulationsConfig = [
     route: "/simulare/lentila-subtire",
     title: "Lentilă Subțire",
     description: "Simulator optică pentru lentile subțiri cu raze și imagini reale/virtuale.",
-    image: lentilaSubtireImg, // Placeholder - va trebui înlocuit cu screenshot real
+    image: lentilaSubtireImg, 
     caption: "Lentilă Subțire",
     iframeSrc: "/simulari/simulator_optica/index.html",
     maxHeight: '90vh',
@@ -296,7 +297,7 @@ export const simulationsConfig = [
     route: "/simulare/polarizare-circulara",
     title: "Polarizare Circulară",
     description: "Simulează polarizarea circulară a undelor electromagnetice cu vizualizări 3D și parametri Stokes.",
-    image: polarizareCircularaImg, // Placeholder - va trebui înlocuit cu screenshot real
+    image: polarizareCircularaImg, 
     caption: "Polarizare Circulară",
     iframeSrc: "/simulari/polarizare-circulara/index.html",
     maxHeight: '90vh',
@@ -308,7 +309,7 @@ export const simulationsConfig = [
     route: "/simulare/reflexie-refractie",
     title: "Reflexie și Refracție",
     description: "Simulează reflexia și refracția luminii la interfața dintre două medii cu indici de refracție diferiți.",
-    image: reflexieRefractieImg, // Placeholder - va trebui înlocuit cu screenshot real
+    image: reflexieRefractieImg, 
     caption: "Reflexie și Refracție",
     iframeSrc: "/simulari/reflexie-refractie/index.html",
     maxHeight: '90vh',
@@ -320,7 +321,7 @@ export const simulationsConfig = [
     route: "/simulare/vizualizator-4d",
     title: "Vizualizator 4D",
     description: "Explorează și vizualizează obiecte geometrice 4D prin proiecții interactive, rotații în spațiul hiperdimensional și tranziții controlate în 4D.",
-    image: vizualizator4dImg, // Placeholder - va trebui înlocuit cu screenshot real
+    image: vizualizator4dImg, 
     caption: "Vizualizator 4D",
     iframeSrc: "/simulari/4D-Visualizer/index.html",
     maxHeight: '90vh',
@@ -332,7 +333,7 @@ export const simulationsConfig = [
     route: "/simulare/legi_Kepler",
     title: "Legile lui Kepler",
     description: "Simulează mișcarea planetelor conform celor trei legi ale lui Kepler, cu orbite eliptice, variația vitezei și relația perioadă–rază orbitală.",
-    image: legiKeplerImg, // Placeholder - va trebui înlocuit cu screenshot real
+    image: legiKeplerImg, 
     caption: "Legile lui Kepler",
     iframeSrc: "/simulari/Legi_Kepler/index.html",
     maxHeight: '90vh',
@@ -344,7 +345,7 @@ export const simulationsConfig = [
     route: "/simulare/atom_hidrogen",
     title: "Atomul de hidrogen",
     description: "Simulează structura atomului de hidrogen folosind modelele Bohr, de Broglie și mecanica cuantică (Schrödinger), cu tranziții energetice și orbitale.",
-    image: atomHidrogenImg, // Placeholder - va trebui înlocuit cu screenshot real
+    image: atomHidrogenImg, 
     caption: "Atomul de hidrogen",
     iframeSrc: "/simulari/Atom_hidrogen/index.html",
     maxHeight: '90vh',
@@ -356,7 +357,7 @@ export const simulationsConfig = [
     route: "/simulare/michaelson-morley",
     title: "Experimentul Michelson-Morley",
     description: "Reproduce virtual experimentul Michelson–Morley și analizează interferența luminii pentru a evidenția absența eterului și implicațiile relativiste.",
-    image: michaelsonMorleyImg, // Placeholder - va trebui înlocuit cu screenshot real
+    image: michaelsonMorleyImg, 
     caption: "Experimentul Michelson-Morley",
     iframeSrc: "/simulari/michaelson-moray/index.html",
     maxHeight: '90vh',
@@ -368,11 +369,23 @@ export const simulationsConfig = [
     route: "/simulare/lanturi-elastice",
     title: "Lanțuri Elastice",
     description: "Simulează dinamica lanțurilor elastice cu resorturi, propagarea undelor mecanice și comportamentul sistemelor oscilante interconectate.",
-    image: lanturiElasticeImg, // Placeholder - va trebui înlocuit cu screenshot real
+    image: lanturiElasticeImg, 
     caption: "Lanțuri Elastice",
     iframeSrc: "/simulari/Lant/index.html",
     maxHeight: '90vh',
     category: "Mecanică"
+  },
+  {
+    id: 30,
+    slug: "miscare-planete",
+    route: "/simulare/miscare-planete",
+    title: "Mișcarea Planetelor",
+    description: "Simulează mișcarea planetelor in sistemul solar, cu efecte de relativitate generala",
+    image: miscarePlaneteImg, 
+    caption: "Mișcarea Planetelor",
+    iframeSrc: "/simulari/miscare_planete/index.html",
+    maxHeight: '90vh',
+    category: "Astronomie"
   },
 ];
 

@@ -96,8 +96,7 @@ const SeismePage = () => {
                     </div>
                   </div>
                   <a
-                    href="/simulari/Mix/Cutremur.html"
-                    target="_blank"
+                    href="/simulare/seism"
                     rel="noopener noreferrer"
                     className="resurse-link"
                   >

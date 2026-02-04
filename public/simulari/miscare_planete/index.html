@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="ro">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Simulare: Planete (Three.js)</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+  <div id="app">
+    <canvas id="c"></canvas>
+
+    <header class="hud">
+      <div class="hud-left">
+        <div class="title">☉ Sistem Solar</div>
+        <div class="sub">Click pe o planetă → info în panou. Te poți plimba liber cu mouse-ul.</div>
+      </div>
+
+      <div class="hud-right">
+        <button id="btnPanel" class="btn">☰ Panou</button>
+        <button id="btnPause" class="btn">⏸ Pause</button>
+        <button id="btnReset" class="btn ghost">↺ Reset</button>
+      </div>
+    </header>
+
+    <aside id="panel" class="panel open">
+      <div class="panel-head">
+        <div class="panel-title-big">Panou</div>
+        <button id="btnClosePanel" class="btn tiny ghost">✕</button>
+      </div>
+
+      <section class="panel-section">
+        <div class="panel-title">Controale</div>
+
+        <label class="row">
+          <span>Viteza</span>
+          <input id="timeWarp" type="range" min="0.1" max="50" value="8" step="0.1" />
+          <span id="timeWarpVal" class="mono">8.0×</span>
+        </label>
+
+        <label class="row">
+          <span>Orbite</span>
+          <input id="toggleOrbits" type="checkbox" checked />
+        </label>
+
+        <label class="row">
+          <span>Urmărește</span>
+          <select id="followSelect"></select>
+        </label>
+
+        <div class="small note">
+          Mouse: drag = rotește, wheel = zoom, right-drag = pan
+        </div>
+      </section>
+
+      <section class="panel-section">
+        <div class="panel-title">Formule & unități</div>
+        <div class="math mono">
+          <div><b>Legea gravitației:</b> F = G · (M☉ · m) / r²</div>
+          <div><b>Accelerație:</b> a = F / m = G · M☉ / r²</div>
+          <div><b>Viteză orbitală (aprox. circular):</b> v ≈ √(G·M☉/r)</div>
+          <hr />
+          <div><b>Unități:</b></div>
+          <div>G = 6.67430×10⁻¹¹ N·m²/kg²</div>
+          <div>Forță: N (kg·m/s²)</div>
+          <div>r: m, v: m/s, a: m/s²</div>
+        </div>
+      </section>
+
+      <section class="panel-section">
+        <div class="panel-title">Selectat</div>
+        <div id="selectedName" class="selected-name">—</div>
+
+        <!-- etichetă doar pentru planeta selectată -->
+        <div id="selectedTag" class="selected-tag mono">Click pe o planetă…</div>
+
+        <div id="selectedStats" class="mono stats"></div>
+        <div id="selectedFacts" class="facts">—</div>
+
+        <div class="small note">
+          Notă: după ce selectezi o planetă, o poți urmări din dropdown.
+        </div>
+      </section>
+    </aside>
+
+    <div id="hint" class="hint">Click pe o planetă 👇</div>
+  </div>
+
+  <script type="importmap">
+    {
+      "imports": {
+        "three": "https://unpkg.com/three@0.161.0/build/three.module.js",
+        "three/addons/": "https://unpkg.com/three@0.161.0/examples/jsm/"
+      }
+    }
+  </script>
+
+  <script type="module" src="main.js"></script>
+</body>
+</html>

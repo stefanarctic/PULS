@@ -10,6 +10,7 @@ import UndeImage1 from "/res/screenshots/Unde_Screenshot2.png"
 
 import PrismaImage from "/res/screenshots/Prisma_Screenshot.png";
 import PrismaImage1 from "/res/screenshots/Prisma_Screenshot1.png";
+import PolarizareCircularaImg from "/res/screenshots/Polarizare_Circulara_Screenshot.png";
 
 import UndeVideo from "/res/Videos/Unde Videoclip.mp4";
 import UndeVideo1 from "/res/Videos/Frecventa Undelor Video.mp4";
@@ -117,7 +118,7 @@ const UndePage = () => {
                 <div className="experiment-card">
                 <h3 className="experiment-title">Unde Stationare in coarda vibranta</h3>
                     <p className="experiment-desc">
-                      Explorează formarea undelor stationare într-o coardă vibrată.
+                      Explorează formarea undelor stationare într-o coardă vibrată, fenomenul de interferență constructivă și distructivă.
                     </p>
                   <VideoPopup
                     src={undeVideos[1].src}
@@ -169,11 +170,17 @@ const UndePage = () => {
                       <p className="text-muted-foreground mt-2">
                         undele se caracterizează prin lungimea de undă {"\\(\\lambda\\)"}<MathJaxRender />, frecvența  {"\\(f\\)"}<MathJaxRender /> și viteza de propagare  {"\\(v\\)"}<MathJaxRender />.
                       </p>
+                      <h3 className="text-xl font-semibold mt-4 mb-2">Formule utile:</h3>
+                      <p className="text-muted-foreground mb-2">
+                        Lungimea de undă: {"\\(\\lambda = v \\cdot T\\)"}<MathJaxRender />, unde T este perioada undelor.
+                      </p>
+                      <p className="text-muted-foreground mb-2">
+                        Frecvența: {"\\(f = \\frac{1}{T}\\)"}<MathJaxRender />, unde T este perioada undelor.
+                      </p> 
                     </div>
                   </div>
                   <a
-                    href="/simulari/Unde/simulator-unde.html"
-                    target="_blank"
+                    href="/simulare/unde-apa"
                     rel="noopener noreferrer"
                     className="resurse-link"
                   >
@@ -242,8 +249,7 @@ const UndePage = () => {
                     </div>
                   </div>
                   <a
-                    href="/simulari/prisma/prisma-simulator.html"
-                    target="_blank"
+                    href="/simulare/prisma"
                     rel="noopener noreferrer"
                     className="resurse-link"
                   >
@@ -255,56 +261,65 @@ const UndePage = () => {
               </div>
             </div>
 
-            {/* Sketchfab 3D Model Embed */}
-            <div className="model-container mt-12">
-              <iframe
-                ref={modelFrameRef}
-                id="modelFrame"
-                src="https://sketchfab.com/models/a7e7f0e0b22d4828bbadf3717541d7d2/embed"
-                allowFullScreen
-                mozAllowFullScreen="true"
-                webkitAllowFullScreen="true"
-                allow="autoplay; fullscreen; xr-spatial-tracking"
-                xr-spatial-tracking="true"
-                execution-while-out-of-viewport="true"
-                execution-while-not-rendered="true"
-                web-share="true"
-                className="resurse-iframe"
-                title="Undă electromagnetică 3D"
-              ></iframe>
-              <div
-                ref={modelDescRef}
-                id="modelDescription"
-                className="sketchfab-info1 mt-2 text-muted-foreground"
-              >
-                ⚡ Undă electromagnetică<br />🔁 Poți roti și mări cu mouse-ul<br />🗨 Textul din model este în engleză
-              </div>
-            </div>
+            {/* Polarizare circulară */}
+            <div className="space-y-12 mt-12">
+              <div className="rounded-container">
+                <h2 className="text-2xl font-bold mb-4">Polarizarea circulară a undelor electromagnetice</h2>
+                <p className="text-muted-foreground mb-6">
+                  Lumina polarizată circular poate fi privită ca superpoziția a două unde plane polarizate liniar,
+                  perpendiculare între ele, cu aceeași amplitudine, dar defazate cu un sfert de perioadă
+                  (diferență de fază de {"\\(\\frac{\\pi}{2}\\)"} <MathJaxRender />). Vârful vectorului câmpului electric descrie
+                  astfel un cerc în planul perpendicular pe direcția de propagare.
+                </p>
 
-            {/* Model Switch Buttons BELOW the model */}
-            <div className="model-buttons overlap-buttons">
-              <Button
-                onClick={() =>
-                  changeModel(
-                    "a7e7f0e0b22d4828bbadf3717541d7d2",
-                    "⚡ Undă electromagnetică"
-                  )
-                }
-                variant="outline"
-              >
-                Undă electromagnetică&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1
-              </Button>
-              <Button
-                onClick={() =>
-                  changeModel(
-                    "0bf07181c0314a7c891cb6944a37ea97",
-                    "🌀 Polarizarea circulară a unei unde electromagnetice"
-                  )
-                }
-                variant="outline"
-              >
-                Polarizare circulară
-              </Button>
+                <div className="image-slider h-64 md:h-80 relative flex items-center justify-center mb-8">
+                  <img
+                    src={PolarizareCircularaImg}
+                    alt="Simulator Polarizare Circulară"
+                    className="w-full h-full object-contain mx-auto my-auto"
+                  />
+                </div>
+
+                <div className="mt-8 flex flex-col md:flex-row md:items-center justify-between gap-6">
+                  <div>
+                    <h3 className="text-xl font-semibold mb-2">Descriere matematică (polarizare circulară dreaptă):</h3>
+                    <p className="text-muted-foreground mb-2">
+                      Considerăm două componente ale câmpului electric, de-a lungul axelor {"\\(x\\)"} și {"\\(y\\)"}
+                      <MathJaxRender />, cu aceeași amplitudine {"\\(E_0\\)"} <MathJaxRender /> și o diferență de fază de
+                      {"\\(\\frac{\\pi}{2}\\)"} <MathJaxRender />:
+                    </p>
+                    <div className="formula-resurse text-lg font-mono mb-2">
+                      {"\\( E_x(t) = E_0 \\cos(\\omega t) \\)"}
+                      <MathJaxRender />
+                    </div>
+                    <div className="formula-resurse text-lg font-mono mb-3">
+                      {"\\( E_y(t) = E_0 \\sin(\\omega t) \\)"}
+                      <MathJaxRender />
+                    </div>
+                    <p className="text-muted-foreground mb-3">
+                      La orice moment, vectorul câmpului electric {"\\(\\vec{E}(t) = (E_x(t), E_y(t))\\)"} <MathJaxRender /> are
+                      modulul constant:
+                    </p>
+                    <div className="formula-resurse text-lg font-mono mb-3">
+                      {"\\( E_x^2 + E_y^2 = E_0^2 \\)"}
+                      <MathJaxRender />
+                    </div>
+                    <p className="text-muted-foreground">
+                      Aceasta înseamnă că vârful vectorului se deplasează pe un cerc de rază {"\\(E_0\\)"} <MathJaxRender />,
+                      ceea ce explică denumirea de polarizare circulară. Sensul de rotație (dreapta/stânga) depinde de
+                      semnul fazei relative dintre cele două componente.
+                    </p>
+                  </div>
+                  <a
+                    href="/simulare/polarizare-circulara"
+                    className="resurse-link"
+                  >
+                    <Button size="lg">
+                      Vezi simularea
+                    </Button>
+                  </a>
+                </div>
+              </div>
             </div>
 
           </main>

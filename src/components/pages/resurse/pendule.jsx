@@ -7,6 +7,7 @@ import simulatorPendulSimpluImg from "/res/screenshots/Simplu_Screenshot.png";
 import simulatorPendulAmortizatImg from "/res/screenshots/Amortizat_Screenshot.png";
 import simulatorGraficePendulImg from "/res/screenshots/Grafice_Pendule_Screenshot.png";
 import simulatorTrasnitPendulImg from "/res/screenshots/Trasnit_Screenshot.png";
+import penduleMultipleImg from "/res/screenshots/Pendule_Multiple_Screenshot.png";
 
 import VideoPendul from "/res/Videos/Pendul Video.mp4";
 import Layout from "../../Layout";
@@ -80,8 +81,7 @@ const PendulePage = () => {
                     </p>
                   </div>
                   <a
-                    href="/simulari/Grafice-Armonice/index.html"
-                    target="_blank"
+                    href="/simulare/grafice-pendule"
                     rel="noopener noreferrer"
                     className="resurse-link"
                   >
@@ -128,8 +128,7 @@ const PendulePage = () => {
                     </p>
                   </div>
                   <a
-                    href="/simulari/Mix/Reprezentari3d.html"
-                    target="_blank"
+                    href="/simulare/pendul-simplu"
                     rel="noopener noreferrer"
                     className="resurse-link"
                   >
@@ -170,8 +169,7 @@ const PendulePage = () => {
                     </ul>
                   </div>
                   <a
-                    href="/simulari/Mix/Oscilatie-amortizata.html"
-                    target="_blank"
+                    href="/simulare/pendul-amortizat"
                     rel="noopener noreferrer"
                     className="resurse-link"
                   >
@@ -208,9 +206,72 @@ const PendulePage = () => {
                     </p>
                   </div>
                   <a
-                    href="/simulari/Mix/Pendul-amplitudine.html"
-                    target="_blank"
+                    href="/simulare/pendul-neliniar"
                     rel="noopener noreferrer"
+                    className="resurse-link"
+                  >
+                    <Button size="lg">
+                      Vezi simularea
+                    </Button>
+                  </a>
+                </div>
+              </div>
+              {/* Pendule multiple */}
+              <div className="rounded-container">
+                <h2 className="text-2xl font-bold mb-4">Pendule multiple</h2>
+                <p className="text-muted-foreground mb-6">
+                  Simulatorul de pendule multiple permite observarea comportamentului haotic al mai multor pendule
+                  care pornesc din condiții inițiale foarte apropiate. Deși diferențele inițiale sunt mici, traiectoriile
+                  lor devin rapid complet diferite, un exemplu spectaculos de sensibilitate la condițiile inițiale
+                  (haos determinist).
+                </p>
+                <div className="image-slider h-64 md:h-80 relative flex items-center justify-center mb-8">
+                  <img
+                    src={penduleMultipleImg}
+                    alt="Simulator Pendule Multiple"
+                    className="w-full h-full object-contain mx-auto my-auto"
+                  />
+                </div>
+                <div className="mt-8 flex flex-col md:flex-row md:items-center justify-between gap-6">
+                  <div>
+                    <h3 className="text-xl font-semibold mb-2">Ce poți observa în simulare:</h3>
+                    <ul className="list-disc pl-5 space-y-1 text-muted-foreground">
+                      <li>
+                        Cum pendule duble aproape identice se desincronizează rapid datorită naturii neliniare a mișcării.
+                      </li>
+                      <li>
+                        Urmele colorate ale fiecărui pendul, care evidențiază traiectoriile complexe și aparent „dezordonate”.
+                      </li>
+                      <li>
+                        Tranziția de la mișcare „aproape periodică” la comportament haotic pentru anumite valori ale
+                        parametrilor.
+                      </li>
+                    </ul>
+                    <h3 className="text-xl font-semibold mt-4 mb-2">Formule utile:</h3>
+                    <p className="text-muted-foreground mb-2">
+                      Fiecare pendul individual urmează, în ipoteza idealizată (fără frecare), aceeași ecuație neliniară ca
+                      pendulul simplu, dar cu condiții inițiale ușor diferite:
+                    </p>
+                    <div className="formula-resurse text-lg font-mono mb-3">
+                      {"\\( \\frac{d^2\\theta_i}{dt^2} + \\frac{g}{l} \\sin\\theta_i = 0 \\)"}
+                      <MathJaxRender />
+                    </div>
+                    <p className="text-muted-foreground mb-2">
+                      Pentru unghiuri mici, fiecare pendul poate fi aproximat ca oscilator armonic:
+                    </p>
+                    <div className="formula-resurse text-lg font-mono mb-3">
+                      {"\\( \\frac{d^2\\theta_i}{dt^2} + \\omega_0^2 \\, \\theta_i = 0, \\quad \\omega_0 = \\sqrt{\\frac{g}{l}} \\)"}
+                      <MathJaxRender />
+                    </div>
+                    <p className="text-muted-foreground">
+                      Chiar dacă ecuațiile par simple, soluțiile pentru sisteme cu pendule multiple sunt extrem de
+                      sensibile la condițiile inițiale: o mică modificare a lui {"\\(\\theta_i(0)\\)"} <MathJaxRender /> sau
+                      {"\\(\\dot{\\theta}_i(0)\\)"} <MathJaxRender /> duce la traiectorii complet diferite în timp, exact
+                      ceea ce vezi în simulare.
+                    </p>
+                  </div>
+                  <a
+                    href="/simulare/pendule-multiple"
                     className="resurse-link"
                   >
                     <Button size="lg">

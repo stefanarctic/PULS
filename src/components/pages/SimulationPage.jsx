@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import Layout from "../Layout";
 import { doc, getDoc, updateDoc } from "firebase/firestore";
 import { db } from "../../lib/firebase";
@@ -19,6 +20,7 @@ const SimulationPage = ({
   const [isFullscreen, setIsFullscreen] = useState(false);
   const [user, setUser] = useState(null);
   const { checkAchievements } = useAchievements();
+  const navigate = useNavigate();
 
   // Monitorizează starea de autentificare
   useEffect(() => {
@@ -80,6 +82,15 @@ const SimulationPage = ({
 
     saveSimulationVisited();
   }, [user?.uid, id, title, checkAchievements]);
+
+  const handleBack = () => {
+    // Dacă există istoric de navigare, mergem înapoi, altfel revenim la lista de simulări
+    if (window.history.length > 2) {
+      navigate(-1);
+    } else {
+      navigate("/simulari");
+    }
+  };
 
   const handleToggleFullscreen = () => {
     const iframe = iframeRef.current;
@@ -198,6 +209,16 @@ const SimulationPage = ({
       />
       <section className="simulation-page">
         <div className="simulation-content">
+          <button
+            type="button"
+            className="simulation-back-btn"
+            onClick={handleBack}
+          >
+            <span className="icon" aria-hidden="true">
+              ←
+            </span>
+            <span className="label">Înapoi la simulări</span>
+          </button>
           <header className="simulation-header">
             {eyebrow && <p className="eyebrow">{eyebrow}</p>}
             <h1>{title}</h1>

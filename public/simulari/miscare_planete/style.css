@@ -1,0 +1,245 @@
+:root{
+  --bg: #000;
+  --panel: rgba(15, 15, 20, 0.72);
+  --panel2: rgba(15, 15, 20, 0.45);
+  --text: rgba(255,255,255,0.92);
+  --muted: rgba(255,255,255,0.65);
+  --line: rgba(255,255,255,0.12);
+  --accent: rgba(120, 190, 255, 0.95);
+  --glow: rgba(255, 220, 140, 0.18);
+}
+
+*{ box-sizing:border-box; }
+html, body{ height:100%; }
+body{
+  margin:0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial;
+  overflow:hidden;
+}
+
+#app{ position:relative; width:100%; height:100%; }
+#c{ width:100%; height:100%; display:block; }
+
+.hud{
+  position:fixed;
+  top:14px; left:14px; right:14px;
+  display:flex;
+  justify-content: space-between;
+  gap: 16px;
+  align-items:flex-start;
+  pointer-events:none;
+  z-index: 30;
+}
+
+.hud-left{
+  background: var(--panel2);
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  padding: 12px 14px;
+  backdrop-filter: blur(10px);
+  max-width: 760px;
+}
+
+.title{ font-weight: 800; letter-spacing:0.2px; }
+.sub{ margin-top: 6px; color: var(--muted); font-size: 13px; }
+
+.hud-right{
+  display:flex;
+  gap:10px;
+  pointer-events:auto;
+}
+
+.btn{
+  border: 1px solid var(--line);
+  background: rgba(255,255,255,0.08);
+  color: var(--text);
+  padding: 10px 12px;
+  border-radius: 12px;
+  cursor:pointer;
+  transition: transform .08s ease, background .15s ease;
+}
+.btn:hover{ background: rgba(255,255,255,0.12); }
+.btn:active{ transform: translateY(1px); }
+.btn.ghost{ background: transparent; }
+.btn.tiny{ padding: 6px 10px; border-radius: 10px; }
+
+.panel{
+  position:absolute;
+  right: 14px;
+  top: 70px;          
+  bottom: 14px;
+  width: 340px;
+  background: var(--panel);
+  border: 1px solid var(--line);
+  border-radius: 18px;
+  padding: 12px;
+  backdrop-filter: blur(12px);
+  display:flex;
+  flex-direction: column;
+  gap: 10px;
+  overflow:auto;
+  z-index: 9;
+
+  transform: translateX(0);
+  opacity: 1;
+  transition: transform .22s ease, opacity .22s ease;
+}
+
+.panel:not(.open){
+  transform: translateX(calc(100% + 20px));
+  opacity: 0;
+  pointer-events: none;
+}
+
+.panel-head{
+  display:flex;
+  justify-content: space-between;
+  align-items:center;
+  gap:10px;
+  padding-bottom: 4px;
+}
+
+.panel-title-big{
+  font-weight: 900;
+  font-size: 16px;
+  letter-spacing: 0.2px;
+}
+
+.panel-section{
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  padding: 12px;
+  background: rgba(0,0,0,0.22);
+}
+
+.panel-title{
+  font-weight: 800;
+  margin-bottom: 10px;
+}
+
+.row{
+  display:flex;
+  align-items:center;
+  justify-content: space-between;
+  gap:10px;
+  margin: 10px 0;
+  color: var(--muted);
+  font-size: 13px;
+}
+.row input[type="range"]{ width: 150px; }
+
+.row select{
+  width: 170px;
+  background: rgba(255,255,255,0.06);
+  color: var(--text);
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  padding: 8px 10px;
+  outline:none;
+}
+
+.small{ font-size: 12px; color: var(--muted); }
+.note{ margin-top: 8px; }
+
+.mono{ font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Courier New", monospace; }
+.math{ font-size: 12px; color: rgba(255,255,255,0.78); line-height: 1.45; }
+.math hr{ border:none; border-top: 1px solid var(--line); margin: 10px 0; }
+
+.selected-name{
+  font-size: 16px;
+  font-weight: 900;
+  margin-bottom: 8px;
+}
+
+.selected-tag{
+  display:inline-block;
+  margin-bottom: 10px;
+  padding: 6px 8px;
+  border-radius: 12px;
+  border: 1px solid rgba(255,255,255,0.14);
+  background: rgba(0,0,0,0.35);
+  color: rgba(255,255,255,0.86);
+}
+
+.stats{
+  white-space: pre-wrap;
+  font-size: 12px;
+  color: rgba(255,255,255,0.78);
+  line-height: 1.45;
+  margin-top: 6px;
+}
+
+.facts{
+  margin-top: 10px;
+  font-size: 13px;
+  color: rgba(255,255,255,0.86);
+  line-height: 1.45;
+}
+
+.panel-footer{
+  margin-top: auto;
+  padding: 6px 2px 0;
+  opacity: 0.9;
+}
+
+.hint{
+  position:absolute;
+  left: 14px;
+  bottom: 14px;
+  background: var(--panel2);
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  padding: 10px 12px;
+  color: var(--muted);
+  font-size: 13px;
+  backdrop-filter: blur(10px);
+  z-index: 10;
+}
+
+.panel{
+  scrollbar-width: none;   
+  -ms-overflow-style: none;   
+}
+.panel::-webkit-scrollbar{
+  width: 0;
+  height: 0;
+}
+.panel::-webkit-scrollbar-thumb{
+  background: transparent;
+}
+/* Dark dropdown, consistent in Chromium (Edge/Chrome) */
+.panel select{
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  background: rgba(255,255,255,0.06);
+  color: rgba(255,255,255,0.92);
+  border: 1px solid rgba(255,255,255,0.14);
+  border-radius: 12px;
+  padding: 10px 42px 10px 12px;
+  outline: none;
+  box-shadow: inset 0 0 0 1px rgba(0,0,0,0.15);
+  background-image:
+    linear-gradient(45deg, transparent 50%, rgba(255,255,255,0.75) 50%),
+    linear-gradient(135deg, rgba(255,255,255,0.75) 50%, transparent 50%),
+    linear-gradient(to right, transparent, transparent);
+  background-position:
+    calc(100% - 18px) calc(50% - 3px),
+    calc(100% - 12px) calc(50% - 3px),
+    0 0;
+  background-size: 6px 6px, 6px 6px, 100% 100%;
+  background-repeat: no-repeat;
+}
+
+.panel select:focus{
+  border-color: rgba(120,190,255,0.55);
+  box-shadow: 0 0 0 3px rgba(120,190,255,0.15);
+}
+
+/* Options: works for many Chromium builds */
+.panel select option{
+  background: #0b0b0f;
+  color: rgba(255,255,255,0.92);
+}

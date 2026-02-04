@@ -94,7 +94,6 @@ const MatematicaPage = () => {
                   </div>
                   <a
                     href="/simulare/grafice-functii"
-                    target="_blank"
                     rel="noopener noreferrer"
                     className="resurse-link"
                   >
@@ -148,7 +147,6 @@ const MatematicaPage = () => {
                   </div>
                   <a
                     href="/simulare/vizualizator-4d"
-                    target="_blank"
                     rel="noopener noreferrer"
                     className="resurse-link"
                   >

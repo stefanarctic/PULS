@@ -24,7 +24,7 @@ import ElectricitatePage from "./components/pages/resurse/electricitate";
 import OpticaPage from "./components/pages/resurse/optica";
 import MatematicaPage from "./components/pages/resurse/matematica";
 import AstronomiePage from "./components/pages/resurse/astronomie";
-import MichaelsonMorleyPage from "./components/pages/resurse/michaelson-morley";
+import FizicaCuanticaPage from "./components/pages/resurse/fizica-cuantica";
 import SimulationPage from "./components/pages/SimulationPage";
 import ScrollToTop from "./components/ScrollToTop";
 import Profile from "./components/pages/Profile";
@@ -119,7 +119,7 @@ const App = () => {
           <Route path='/resurse/optica' element={<OpticaPage />} />
           <Route path='/resurse/matematica' element={<MatematicaPage />} />
           <Route path='/resurse/astronomie' element={<AstronomiePage />} />
-          <Route path='/resurse/michaelson-morley' element={<MichaelsonMorleyPage />} />
+          <Route path='/resurse/fizica-cuantica' element={<FizicaCuanticaPage />} />
           {simulationsConfig.map((simulation) => (
             <Route
               key={simulation.route}

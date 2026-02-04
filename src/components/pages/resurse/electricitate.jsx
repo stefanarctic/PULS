@@ -2,7 +2,8 @@ import Layout from "../../Layout";
 import { Button } from "../../Button";
 import MathJaxRender from "@/components/MathJaxRender";
 
-import simulatorGraficeBasicImg from "/res/screenshots/Grafice_Basic_Screenshot.png";
+import circuiteElectricitateImg from "/res/screenshots/Circuite_Electricitate_Screenshot.png";
+import energieCircuiteImg from "/res/screenshots/Energie_Circuite_Screenshot.png";
 
 const ElectricitatePage = () => {
   return (
@@ -42,8 +43,8 @@ const ElectricitatePage = () => {
                 </p>
                 <div className="image-slider h-64 md:h-80 relative flex items-center justify-center mb-8">
                   <img
-                    src={simulatorGraficeBasicImg}
-                    alt="Circuite Electrice"
+                    src={circuiteElectricitateImg}
+                    alt="Simulator Circuite Electrice"
                     className="w-full h-full object-contain mx-auto my-auto"
                   />
                 </div>
@@ -119,7 +120,6 @@ const ElectricitatePage = () => {
                   </div>
                   <a
                     href="/simulare/circuite-electricitate"
-                    target="_blank"
                     rel="noopener noreferrer"
                     style={{ textDecoration: "none" }}
                   >
@@ -140,6 +140,13 @@ const ElectricitatePage = () => {
                   în sistemele electrice. Legea conservării energiei se aplică și în circuitele electrice, unde energia furnizată 
                   de surse este egală cu energia consumată de componente.
                 </p>
+                <div className="image-slider h-64 md:h-80 relative flex items-center justify-center mb-8">
+                  <img
+                    src={energieCircuiteImg}
+                    alt="Simulator Energie în Circuite"
+                    className="w-full h-full object-contain mx-auto my-auto"
+                  />
+                </div>
                 <div className="mt-8 flex flex-col md:flex-row md:items-center justify-between gap-6">
                   <div>
                     <h3 className="text-xl font-semibold mb-4">Formule pentru energia în circuite:</h3>
@@ -181,72 +188,11 @@ const ElectricitatePage = () => {
                   </div>
                   <a
                     href="/simulare/energie-circuite"
-                    target="_blank"
                     rel="noopener noreferrer"
                     style={{ textDecoration: "none" }}
                   >
                     <Button size="lg">Vezi simularea</Button>
                   </a>
-                </div>
-              </div>
-
-              {/* Câmp Electric */}
-              <div className="rounded-container">
-                <h2 className="text-2xl font-bold mb-4">Câmp Electric</h2>
-                <p className="text-muted-foreground mb-6">
-                  Câmpul electric este o mărime fizică vectorială care descrie forța exercitată asupra unei sarcini electrice 
-                  într-un anumit punct din spațiu. Câmpul electric este generat de sarcini electrice și poate fi reprezentat 
-                  prin linii de câmp care arată direcția și intensitatea câmpului.
-                </p>
-                <p className="text-muted-foreground mb-6">
-                  Studiul câmpului electric este fundamental pentru înțelegerea interacțiunilor electrice și a comportamentului 
-                  sarcinilor electrice în diferite configurații. Câmpul electric poate fi uniform sau neuniform, în funcție de 
-                  distribuția sarcinilor care îl generează.
-                </p>
-                <div className="mt-8">
-                  <h3 className="text-xl font-semibold mb-4">Formule pentru câmpul electric:</h3>
-                  
-                  <h4 className="text-lg font-semibold mb-2">1. Intensitatea câmpului electric:</h4>
-                  <div className="formula-resurse text-lg font-mono mb-4">
-                    {"\\( \\vec{E} = \\frac{\\vec{F}}{q} \\)"}
-                    <MathJaxRender />
-                  </div>
-                  
-                  <h4 className="text-lg font-semibold mb-2">2. Câmpul electric al unei sarcini punctiforme:</h4>
-                  <div className="formula-resurse text-lg font-mono mb-4">
-                    {"\\( E = k \\frac{q}{r^2} = \\frac{1}{4\\pi\\varepsilon_0} \\frac{q}{r^2} \\)"}
-                    <MathJaxRender />
-                  </div>
-                  
-                  <h4 className="text-lg font-semibold mb-2">3. Potențialul electric:</h4>
-                  <div className="formula-resurse text-lg font-mono mb-4">
-                    {"\\( V = \\frac{W}{q} = k \\frac{q}{r} \\)"}
-                    <MathJaxRender />
-                  </div>
-                  
-                  <h4 className="text-lg font-semibold mb-2">4. Tensiunea electrică:</h4>
-                  <div className="formula-resurse text-lg font-mono mb-4">
-                    {"\\( U = V_1 - V_2 = Ed \\)"}
-                    <MathJaxRender />
-                  </div>
-                  
-                  <h4 className="text-lg font-semibold mb-2">5. Capacitatea unui condensator plan:</h4>
-                  <div className="formula-resurse text-lg font-mono mb-4">
-                    {"\\( C = \\frac{\\varepsilon_0 S}{d} \\)"}
-                    <MathJaxRender />
-                  </div>
-                  
-                  <h4 className="text-lg font-semibold mb-2">6. Energia câmpului electric:</h4>
-                  <div className="formula-resurse text-lg font-mono mb-4">
-                    {"\\( W = \\frac{1}{2}\\varepsilon_0 E^2 V \\)"}
-                    <MathJaxRender />
-                  </div>
-                  
-                  <p className="text-muted-foreground mt-4">
-                    Unde: E este intensitatea câmpului electric, F este forța, q este sarcina, k este constanta Coulomb, 
-                    r este distanța, V este potențialul, W este energia, U este tensiunea, d este distanța, 
-                    ε₀ este permitivitatea vidului, S este suprafața, C este capacitatea.
-                  </p>
                 </div>
               </div>
             </div>

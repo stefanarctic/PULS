@@ -3,6 +3,7 @@ import { Button } from "../../Button";
 import MathJaxRender from "@/components/MathJaxRender";
 
 import termodinamicaImg from "/res/screenshots/Termodinamica_Screenshot.png";
+import motoareTermiceImg from "/res/screenshots/Motoare_Termice_Screenshot.png";
 
 const TermodinamicaPage = () => {
   return (
@@ -146,8 +147,74 @@ const TermodinamicaPage = () => {
                     </p>
                   </div>
                   <a
-                    href="/simulari/Termodinamica/index.html"
-                    target="_blank"
+                    href="/simulare/termodinamica"
+                    rel="noopener noreferrer"
+                    style={{ textDecoration: "none" }}
+                  >
+                    <Button size="lg">Vezi simularea</Button>
+                  </a>
+                </div>
+              </div>
+
+              {/* Motoare termice */}
+              <div className="rounded-container">
+                <h2 className="text-2xl font-bold mb-4">Motoare termice</h2>
+                <p className="text-muted-foreground mb-6">
+                  Motoarele termice transformă energia termică (căldura) primită de la o sursă caldă în lucru mecanic util,
+                  evacuând o parte din energie către o sursă rece. Exemple de motoare termice sunt motoarele cu ardere
+                  internă (Otto, Diesel), turbinele cu gaz sau abur și chiar mașina idealizată a lui Carnot.
+                </p>
+                <p className="text-muted-foreground mb-6">
+                  Simulatorul de motoare termice îți permite să vizualizezi ciclurile termodinamice pe diagrame p‑V și T‑s,
+                  să compari randamentul diferitelor motoare și să înțelegi rolul fiecărei faze: comprimare, ardere/încălzire,
+                  destindere și evacuare.
+                </p>
+                <div className="image-slider h-64 md:h-80 relative flex items-center justify-center mb-8">
+                  <img
+                    src={motoareTermiceImg}
+                    alt="Motoare termice"
+                    className="w-full h-full object-contain mx-auto my-auto"
+                  />
+                </div>
+                <div className="mt-8 flex flex-col md:flex-row md:items-center justify-between gap-6">
+                  <div>
+                    <h3 className="text-xl font-semibold mb-4">Formule importante pentru motoarele termice:</h3>
+
+                    <h4 className="text-lg font-semibold mb-2">1. Randamentul unui motor termic:</h4>
+                    <div className="formula-resurse text-lg font-mono mb-3">
+                      {"\\( \\eta = \\frac{L_{util}}{Q_H} = 1 - \\frac{Q_C}{Q_H} \\)"}
+                      <MathJaxRender />
+                    </div>
+
+                    <h4 className="text-lg font-semibold mb-2">2. Randamentul ideal (Carnot):</h4>
+                    <div className="formula-resurse text-lg font-mono mb-3">
+                      {"\\( \\eta_{\\text{Carnot}} = 1 - \\frac{T_C}{T_H} \\)"}
+                      <MathJaxRender />
+                    </div>
+
+                    <h4 className="text-lg font-semibold mb-2">3. Lucrul mecanic într-un ciclu:</h4>
+                    <div className="formula-resurse text-lg font-mono mb-3">
+                      {"\\( L = \\oint p \\, dV \\)"}
+                      <MathJaxRender />
+                    </div>
+
+                    <h4 className="text-lg font-semibold mb-2">4. Căldura schimbată într-un proces izobar:</h4>
+                    <div className="formula-resurse text-lg font-mono mb-3">
+                      {"\\( Q_{p} = n C_P \\Delta T \\)"}
+                      <MathJaxRender />
+                    </div>
+
+                    <p className="text-muted-foreground mt-4">
+                      Unde: {"\\(\\eta\\)"} <MathJaxRender /> este randamentul, {"\\(L_{util}\\)"} <MathJaxRender /> lucrul
+                      mecanic util pe ciclu, {"\\(Q_H\\)"} <MathJaxRender /> căldura primită de la sursa caldă,{" "}
+                      {"\\(Q_C\\)"} <MathJaxRender /> căldura cedată către sursa rece, {"\\(T_H\\)"} și {"\\(T_C\\)"}
+                      <MathJaxRender /> sunt temperaturile absolute ale sursei calde și reci, iar integralul{" "}
+                      {"\\(\\oint p\\,dV\\)"} <MathJaxRender /> reprezintă aria ciclului pe diagrama p‑V (lucrul mecanic
+                      produs de motor într-un ciclu complet.
+                    </p>
+                  </div>
+                  <a
+                    href="/simulare/motoare-termice"
                     rel="noopener noreferrer"
                     style={{ textDecoration: "none" }}
                   >
