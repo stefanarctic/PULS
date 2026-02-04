@@ -8,6 +8,27 @@ body {
     // min-height: 500px !important;
 }
 
+// Custom global scrollbar – subțire, albastru, folosind accentul site-ului
+html {
+    scrollbar-width: thin; // Firefox
+    scrollbar-color: var(--accent-color-current-mode) transparent;
+}
+
+body::-webkit-scrollbar {
+    width: 8px; // grosimea scroll-ului
+}
+
+body::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+body::-webkit-scrollbar-thumb {
+    background-color: var(--accent-color-current-mode); // albastru din site
+    border-radius: 999px;
+    border: 2px solid transparent; // să fie mai slim vizual
+    background-clip: padding-box;
+}
+
 #root {
     // zoom: 0.9;
     * {
