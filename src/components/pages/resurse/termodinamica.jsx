@@ -1,11 +1,96 @@
 import Layout from "../../Layout";
 import { Button } from "../../Button";
 import MathJaxRender from "@/components/MathJaxRender";
+import { useEffect, useState } from "react";
 
 import termodinamicaImg from "/res/screenshots/Termodinamica_Screenshot.png";
 import motoareTermiceImg from "/res/screenshots/Motoare_Termice_Screenshot.png";
 
 const TermodinamicaPage = () => {
+  const [visibleFormulasCount, setVisibleFormulasCount] = useState({});
+
+  // Definim formulele pentru fiecare secțiune
+  const termodinamicaFormulas = [
+    { formula: "\\( \\Delta U = Q - L \\)", title: "Prima lege a termodinamicii" },
+    { formula: "\\( pV = nRT \\)", title: "Ecuația de stare pentru gazul ideal" },
+    { formula: "\\( S = k_B \\ln \\Omega \\)", title: "Entropia (definiția Boltzmann)" },
+    { formula: "\\( \\Delta S \\geq \\frac{Q}{T} \\)", title: "A doua lege a termodinamicii" },
+    { formula: "\\( U = \\frac{f}{2}nRT \\)", title: "Energia internă pentru gazul ideal" },
+    { formula: "\\( L = \\int_{V_1}^{V_2} p \\, dV \\)", title: "Lucrul mecanic în procese reversibile" },
+    { formula: "\\( C_V = \\left(\\frac{\\partial U}{\\partial T}\\right)_V \\)", title: "Căldura specifică la volum constant" },
+    { formula: "\\( C_P = \\left(\\frac{\\partial H}{\\partial T}\\right)_P \\)", title: "Căldura specifică la presiune constantă" },
+    { formula: "\\( H = U + pV \\)", title: "Entalpia" },
+    { formula: "\\( F = U - TS \\)", title: "Energia liberă Helmholtz" },
+    { formula: "\\( G = H - TS \\)", title: "Energia liberă Gibbs" },
+    { formula: "\\( \\kappa = -\\frac{1}{V}\\left(\\frac{\\partial V}{\\partial p}\\right)_T \\)", title: "Coeficientul de compresibilitate" },
+    { formula: "\\( \\alpha = \\frac{1}{V}\\left(\\frac{\\partial V}{\\partial T}\\right)_p \\)", title: "Coeficientul de dilatare termică" },
+    { formula: "\\( \\eta = 1 - \\frac{T_C}{T_H} \\)", title: "Eficiența motorului Carnot" },
+  ];
+
+  const motoareFormulas = [
+    { formula: "\\( \\eta = \\frac{L_{util}}{Q_H} = 1 - \\frac{Q_C}{Q_H} \\)", title: "Randamentul unui motor termic" },
+    { formula: "\\( \\eta_{\\text{Carnot}} = 1 - \\frac{T_C}{T_H} \\)", title: "Randamentul ideal (Carnot)" },
+    { formula: "\\( L = \\oint p \\, dV \\)", title: "Lucrul mecanic într-un ciclu" },
+    { formula: "\\( Q_{p} = n C_P \\Delta T \\)", title: "Căldura schimbată într-un proces izobar" },
+  ];
+
+  // Algoritm de încărcare progresivă - versiune optimizată
+  useEffect(() => {
+    const sections = [
+      { key: 'termodinamica', formulas: termodinamicaFormulas },
+      { key: 'motoare', formulas: motoareFormulas },
+    ];
+
+    // Inițializăm toate secțiunile cu batch-ul inițial
+    setVisibleFormulasCount(prev => {
+      const newState = { ...prev };
+      sections.forEach(({ key, formulas }) => {
+        if (!newState[key] && formulas.length > 0) {
+          newState[key] = Math.min(5, formulas.length);
+        }
+      });
+      return newState;
+    });
+
+    // Folosim un singur interval simplu pentru toate secțiunile
+    let intervalId = null;
+
+    intervalId = setInterval(() => {
+      setVisibleFormulasCount(prev => {
+        const newState = { ...prev };
+        let hasMore = false;
+
+        sections.forEach(({ key, formulas }) => {
+          const currentVisible = newState[key] || 0;
+          const totalFormulas = formulas.length;
+          
+          if (currentVisible < totalFormulas) {
+            const batchSize = 5;
+            const newCount = Math.min(currentVisible + batchSize, totalFormulas);
+            newState[key] = newCount;
+            if (newCount < totalFormulas) {
+              hasMore = true;
+            }
+          }
+        });
+
+        // Oprim interval-ul dacă toate secțiunile sunt complete
+        if (!hasMore && intervalId) {
+          clearInterval(intervalId);
+          intervalId = null;
+        }
+
+        return newState;
+      });
+    }, 100); // Delay de 100ms între batch-uri
+
+    return () => {
+      if (intervalId) {
+        clearInterval(intervalId);
+      }
+    };
+  }, []);
+
   return (
     <Layout>
       <div className="resurse-pagina min-h-screen flex flex-col">
@@ -54,89 +139,19 @@ const TermodinamicaPage = () => {
                   <div>
                     <h3 className="text-xl font-semibold mb-4">Formule esențiale în termodinamică:</h3>
                     
-                    <h4 className="text-lg font-semibold mb-2">1. Prima lege a termodinamicii:</h4>
-                    <div className="formula-resurse text-lg font-mono mb-4">
-                      {"\\( \\Delta U = Q - L \\)"}
-                      <MathJaxRender />
-                    </div>
-                    
-                    <h4 className="text-lg font-semibold mb-2">2. Ecuația de stare pentru gazul ideal:</h4>
-                    <div className="formula-resurse text-lg font-mono mb-4">
-                      {"\\( pV = nRT \\)"}
-                      <MathJaxRender />
-                    </div>
-                    
-                    <h4 className="text-lg font-semibold mb-2">3. Entropia (definiția Boltzmann):</h4>
-                    <div className="formula-resurse text-lg font-mono mb-4">
-                      {"\\( S = k_B \\ln \\Omega \\)"}
-                      <MathJaxRender />
-                    </div>
-                    
-                    <h4 className="text-lg font-semibold mb-2">4. A doua lege a termodinamicii:</h4>
-                    <div className="formula-resurse text-lg font-mono mb-4">
-                      {"\\( \\Delta S \\geq \\frac{Q}{T} \\)"}
-                      <MathJaxRender />
-                    </div>
-                    
-                    <h4 className="text-lg font-semibold mb-2">5. Energia internă pentru gazul ideal:</h4>
-                    <div className="formula-resurse text-lg font-mono mb-4">
-                      {"\\( U = \\frac{f}{2}nRT \\)"}
-                      <MathJaxRender />
-                    </div>
-                    
-                    <h4 className="text-lg font-semibold mb-2">6. Lucrul mecanic în procese reversibile:</h4>
-                    <div className="formula-resurse text-lg font-mono mb-4">
-                      {"\\( L = \\int_{V_1}^{V_2} p \\, dV \\)"}
-                      <MathJaxRender />
-                    </div>
-                    
-                    <h4 className="text-lg font-semibold mb-2">7. Căldura specifică la volum constant:</h4>
-                    <div className="formula-resurse text-lg font-mono mb-4">
-                      {"\\( C_V = \\left(\\frac{\\partial U}{\\partial T}\\right)_V \\)"}
-                      <MathJaxRender />
-                    </div>
-                    
-                    <h4 className="text-lg font-semibold mb-2">8. Căldura specifică la presiune constantă:</h4>
-                    <div className="formula-resurse text-lg font-mono mb-4">
-                      {"\\( C_P = \\left(\\frac{\\partial H}{\\partial T}\\right)_P \\)"}
-                      <MathJaxRender />
-                    </div>
-                    
-                    <h4 className="text-lg font-semibold mb-2">9. Entalpia:</h4>
-                    <div className="formula-resurse text-lg font-mono mb-4">
-                      {"\\( H = U + pV \\)"}
-                      <MathJaxRender />
-                    </div>
-                    
-                    <h4 className="text-lg font-semibold mb-2">10. Energia liberă Helmholtz:</h4>
-                    <div className="formula-resurse text-lg font-mono mb-4">
-                      {"\\( F = U - TS \\)"}
-                      <MathJaxRender />
-                    </div>
-                    
-                    <h4 className="text-lg font-semibold mb-2">11. Energia liberă Gibbs:</h4>
-                    <div className="formula-resurse text-lg font-mono mb-4">
-                      {"\\( G = H - TS \\)"}
-                      <MathJaxRender />
-                    </div>
-                    
-                    <h4 className="text-lg font-semibold mb-2">12. Coeficientul de compresibilitate:</h4>
-                    <div className="formula-resurse text-lg font-mono mb-4">
-                      {"\\( \\kappa = -\\frac{1}{V}\\left(\\frac{\\partial V}{\\partial p}\\right)_T \\)"}
-                      <MathJaxRender />
-                    </div>
-                    
-                    <h4 className="text-lg font-semibold mb-2">13. Coeficientul de dilatare termică:</h4>
-                    <div className="formula-resurse text-lg font-mono mb-4">
-                      {"\\( \\alpha = \\frac{1}{V}\\left(\\frac{\\partial V}{\\partial T}\\right)_p \\)"}
-                      <MathJaxRender />
-                    </div>
-                    
-                    <h4 className="text-lg font-semibold mb-2">14. Eficiența motorului Carnot:</h4>
-                    <div className="formula-resurse text-lg font-mono mb-4">
-                      {"\\( \\eta = 1 - \\frac{T_C}{T_H} \\)"}
-                      <MathJaxRender />
-                    </div>
+                    {termodinamicaFormulas
+                      .slice(0, visibleFormulasCount.termodinamica || termodinamicaFormulas.length)
+                      .map((item, index) => (
+                        <div key={index}>
+                          <h4 className="text-lg font-semibold mb-2">{index + 1}. {item.title}:</h4>
+                          <div className="formula-resurse text-lg font-mono mb-4">
+                            {item.formula}
+                          </div>
+                        </div>
+                      ))}
+                    {visibleFormulasCount.termodinamica > 0 && (
+                      <MathJaxRender key={`termodinamica-${visibleFormulasCount.termodinamica || 0}`} />
+                    )}
                     
                     <p className="text-muted-foreground mt-6">
                       Unde: U este energia internă, Q este căldura, L este lucrul mecanic, p este presiunea, V este volumul, 
@@ -180,29 +195,19 @@ const TermodinamicaPage = () => {
                   <div>
                     <h3 className="text-xl font-semibold mb-4">Formule importante pentru motoarele termice:</h3>
 
-                    <h4 className="text-lg font-semibold mb-2">1. Randamentul unui motor termic:</h4>
-                    <div className="formula-resurse text-lg font-mono mb-3">
-                      {"\\( \\eta = \\frac{L_{util}}{Q_H} = 1 - \\frac{Q_C}{Q_H} \\)"}
-                      <MathJaxRender />
-                    </div>
-
-                    <h4 className="text-lg font-semibold mb-2">2. Randamentul ideal (Carnot):</h4>
-                    <div className="formula-resurse text-lg font-mono mb-3">
-                      {"\\( \\eta_{\\text{Carnot}} = 1 - \\frac{T_C}{T_H} \\)"}
-                      <MathJaxRender />
-                    </div>
-
-                    <h4 className="text-lg font-semibold mb-2">3. Lucrul mecanic într-un ciclu:</h4>
-                    <div className="formula-resurse text-lg font-mono mb-3">
-                      {"\\( L = \\oint p \\, dV \\)"}
-                      <MathJaxRender />
-                    </div>
-
-                    <h4 className="text-lg font-semibold mb-2">4. Căldura schimbată într-un proces izobar:</h4>
-                    <div className="formula-resurse text-lg font-mono mb-3">
-                      {"\\( Q_{p} = n C_P \\Delta T \\)"}
-                      <MathJaxRender />
-                    </div>
+                    {motoareFormulas
+                      .slice(0, visibleFormulasCount.motoare || motoareFormulas.length)
+                      .map((item, index) => (
+                        <div key={index}>
+                          <h4 className="text-lg font-semibold mb-2">{index + 1}. {item.title}:</h4>
+                          <div className="formula-resurse text-lg font-mono mb-3">
+                            {item.formula}
+                          </div>
+                        </div>
+                      ))}
+                    {visibleFormulasCount.motoare > 0 && (
+                      <MathJaxRender key={`motoare-${visibleFormulasCount.motoare || 0}`} />
+                    )}
 
                     <p className="text-muted-foreground mt-4">
                       Unde: {"\\(\\eta\\)"} <MathJaxRender /> este randamentul, {"\\(L_{util}\\)"} <MathJaxRender /> lucrul

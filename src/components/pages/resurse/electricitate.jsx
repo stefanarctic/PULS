@@ -1,11 +1,83 @@
 import Layout from "../../Layout";
 import { Button } from "../../Button";
 import MathJaxRender from "@/components/MathJaxRender";
+import { useEffect, useState } from "react";
 
 import circuiteElectricitateImg from "/res/screenshots/Circuite_Electricitate_Screenshot.png";
 import energieCircuiteImg from "/res/screenshots/Energie_Circuite_Screenshot.png";
 
 const ElectricitatePage = () => {
+  const [visibleFormulasCount, setVisibleFormulasCount] = useState({});
+
+  // Definim formulele pentru fiecare secțiune
+  const circuiteFormulas = [
+    { formula: "\\( U = RI \\)", title: "Legea lui Ohm" },
+    { formula: "\\( P = UI = RI^2 = \\frac{U^2}{R} \\)", title: "Puterea electrică" },
+    { formula: "\\( W = UIt = RI^2t = \\frac{U^2}{R}t \\)", title: "Energia electrică" },
+    { formula: "\\( R_{eq} = R_1 + R_2 + ... + R_n \\)", title: "Rezistența echivalentă în serie" },
+    { formula: "\\( \\frac{1}{R_{eq}} = \\frac{1}{R_1} + \\frac{1}{R_2} + ... + \\frac{1}{R_n} \\)", title: "Rezistența echivalentă în paralel" },
+    { formula: "\\( \\sum I_{intrare} = \\sum I_{iesire} \\)", title: "Prima lege a lui Kirchhoff" },
+    { formula: "\\( \\sum U = \\sum RI \\)", title: "A doua lege a lui Kirchhoff" },
+    { formula: "\\( R = \\rho \\frac{l}{S} \\)", title: "Rezistența unui conductor" },
+    { formula: "\\( I = \\frac{q}{t} = nqvS \\)", title: "Curentul electric" },
+    { formula: "\\( j = \\frac{I}{S} = nqv \\)", title: "Densitatea curentului" },
+  ];
+
+  const energieFormulas = [
+    { formula: "\\( W = RI^2t = \\frac{U^2}{R}t = UIt \\)", title: "Energia consumată de un rezistor" },
+    { formula: "\\( P(t) = U(t)I(t) \\)", title: "Puterea instantanee" },
+    { formula: "\\( W = \\frac{1}{2}CU^2 = \\frac{Q^2}{2C} \\)", title: "Energia stocată într-un condensator" },
+    { formula: "\\( W = \\frac{1}{2}LI^2 \\)", title: "Energia stocată într-o bobină" },
+    { formula: "\\( \\eta = \\frac{P_{utila}}{P_{totala}} \\times 100\\% \\)", title: "Randamentul unui circuit" },
+  ];
+
+  // Algoritm de încărcare progresivă
+  useEffect(() => {
+    const sections = [
+      { key: 'circuite', formulas: circuiteFormulas },
+      { key: 'energie', formulas: energieFormulas },
+    ];
+
+    sections.forEach(({ key, formulas }) => {
+      const totalFormulas = formulas.length;
+      if (totalFormulas === 0) return;
+
+      setVisibleFormulasCount(prev => {
+        const currentVisible = prev[key] || 0;
+        if (currentVisible >= totalFormulas) {
+          return prev;
+        }
+        const batchSize = 5;
+        const startCount = currentVisible > 0 ? currentVisible : Math.min(batchSize, totalFormulas);
+        return {
+          ...prev,
+          [key]: startCount
+        };
+      });
+
+      const intervalId = setInterval(() => {
+        setVisibleFormulasCount(prev => {
+          const currentVisible = prev[key] || 0;
+          if (currentVisible < totalFormulas) {
+            const batchSize = 5;
+            const newCount = Math.min(currentVisible + batchSize, totalFormulas);
+            if (newCount >= totalFormulas) {
+              clearInterval(intervalId);
+            }
+            return {
+              ...prev,
+              [key]: newCount
+            };
+          }
+          clearInterval(intervalId);
+          return prev;
+        });
+      }, 50);
+
+      return () => clearInterval(intervalId);
+    });
+  }, []);
+
   return (
     <Layout>
       <div className="resurse-pagina min-h-screen flex flex-col">
@@ -52,65 +124,18 @@ const ElectricitatePage = () => {
                   <div>
                     <h3 className="text-xl font-semibold mb-4">Formule esențiale pentru circuite electrice:</h3>
                     
-                    <h4 className="text-lg font-semibold mb-2">1. Legea lui Ohm:</h4>
-                    <div className="formula-resurse text-lg font-mono mb-4">
-                      {"\\( U = RI \\)"}
-                      <MathJaxRender />
-                    </div>
-                    
-                    <h4 className="text-lg font-semibold mb-2">2. Puterea electrică:</h4>
-                    <div className="formula-resurse text-lg font-mono mb-4">
-                      {"\\( P = UI = RI^2 = \\frac{U^2}{R} \\)"}
-                      <MathJaxRender />
-                    </div>
-                    
-                    <h4 className="text-lg font-semibold mb-2">3. Energia electrică:</h4>
-                    <div className="formula-resurse text-lg font-mono mb-4">
-                      {"\\( W = UIt = RI^2t = \\frac{U^2}{R}t \\)"}
-                      <MathJaxRender />
-                    </div>
-                    
-                    <h4 className="text-lg font-semibold mb-2">4. Rezistența echivalentă în serie:</h4>
-                    <div className="formula-resurse text-lg font-mono mb-4">
-                      {"\\( R_{eq} = R_1 + R_2 + ... + R_n \\)"}
-                      <MathJaxRender />
-                    </div>
-                    
-                    <h4 className="text-lg font-semibold mb-2">5. Rezistența echivalentă în paralel:</h4>
-                    <div className="formula-resurse text-lg font-mono mb-4">
-                      {"\\( \\frac{1}{R_{eq}} = \\frac{1}{R_1} + \\frac{1}{R_2} + ... + \\frac{1}{R_n} \\)"}
-                      <MathJaxRender />
-                    </div>
-                    
-                    <h4 className="text-lg font-semibold mb-2">6. Prima lege a lui Kirchhoff (conservarea sarcinii):</h4>
-                    <div className="formula-resurse text-lg font-mono mb-4">
-                      {"\\( \\sum I_{intrare} = \\sum I_{iesire} \\)"}
-                      <MathJaxRender />
-                    </div>
-                    
-                    <h4 className="text-lg font-semibold mb-2">7. A doua lege a lui Kirchhoff (conservarea energiei):</h4>
-                    <div className="formula-resurse text-lg font-mono mb-4">
-                      {"\\( \\sum U = \\sum RI \\)"}
-                      <MathJaxRender />
-                    </div>
-                    
-                    <h4 className="text-lg font-semibold mb-2">8. Rezistența unui conductor:</h4>
-                    <div className="formula-resurse text-lg font-mono mb-4">
-                      {"\\( R = \\rho \\frac{l}{S} \\)"}
-                      <MathJaxRender />
-                    </div>
-                    
-                    <h4 className="text-lg font-semibold mb-2">9. Curentul electric:</h4>
-                    <div className="formula-resurse text-lg font-mono mb-4">
-                      {"\\( I = \\frac{q}{t} = nqvS \\)"}
-                      <MathJaxRender />
-                    </div>
-                    
-                    <h4 className="text-lg font-semibold mb-2">10. Densitatea curentului:</h4>
-                    <div className="formula-resurse text-lg font-mono mb-4">
-                      {"\\( j = \\frac{I}{S} = nqv \\)"}
-                      <MathJaxRender />
-                    </div>
+                    {circuiteFormulas
+                      .slice(0, visibleFormulasCount.circuite || circuiteFormulas.length)
+                      .map((item, index) => (
+                        <div key={index}>
+                          <h4 className="text-lg font-semibold mb-2">{index + 1}. {item.title}:</h4>
+                          <div className="formula-resurse text-lg font-mono mb-4">
+                            {item.formula}
+                            <MathJaxRender />
+                          </div>
+                        </div>
+                      ))}
+                    <MathJaxRender key={`circuite-${visibleFormulasCount.circuite || 0}`} />
                     
                     <p className="text-muted-foreground mt-4">
                       Unde: U este tensiunea, I este intensitatea curentului, R este rezistența, P este puterea, W este energia, 
@@ -151,35 +176,18 @@ const ElectricitatePage = () => {
                   <div>
                     <h3 className="text-xl font-semibold mb-4">Formule pentru energia în circuite:</h3>
                     
-                    <h4 className="text-lg font-semibold mb-2">1. Energia consumată de un rezistor:</h4>
-                    <div className="formula-resurse text-lg font-mono mb-4">
-                      {"\\( W = RI^2t = \\frac{U^2}{R}t = UIt \\)"}
-                      <MathJaxRender />
-                    </div>
-                    
-                    <h4 className="text-lg font-semibold mb-2">2. Puterea instantanee:</h4>
-                    <div className="formula-resurse text-lg font-mono mb-4">
-                      {"\\( P(t) = U(t)I(t) \\)"}
-                      <MathJaxRender />
-                    </div>
-                    
-                    <h4 className="text-lg font-semibold mb-2">3. Energia stocată într-un condensator:</h4>
-                    <div className="formula-resurse text-lg font-mono mb-4">
-                      {"\\( W = \\frac{1}{2}CU^2 = \\frac{Q^2}{2C} \\)"}
-                      <MathJaxRender />
-                    </div>
-                    
-                    <h4 className="text-lg font-semibold mb-2">4. Energia stocată într-o bobină:</h4>
-                    <div className="formula-resurse text-lg font-mono mb-4">
-                      {"\\( W = \\frac{1}{2}LI^2 \\)"}
-                      <MathJaxRender />
-                    </div>
-                    
-                    <h4 className="text-lg font-semibold mb-2">5. Randamentul unui circuit:</h4>
-                    <div className="formula-resurse text-lg font-mono mb-4">
-                      {"\\( \\eta = \\frac{P_{utila}}{P_{totala}} \\times 100\\% \\)"}
-                      <MathJaxRender />
-                    </div>
+                    {energieFormulas
+                      .slice(0, visibleFormulasCount.energie || energieFormulas.length)
+                      .map((item, index) => (
+                        <div key={index}>
+                          <h4 className="text-lg font-semibold mb-2">{index + 1}. {item.title}:</h4>
+                          <div className="formula-resurse text-lg font-mono mb-4">
+                            {item.formula}
+                            <MathJaxRender />
+                          </div>
+                        </div>
+                      ))}
+                    <MathJaxRender key={`energie-${visibleFormulasCount.energie || 0}`} />
                     
                     <p className="text-muted-foreground mt-4">
                       Unde: W este energia, P este puterea, C este capacitatea condensatorului, L este inductanța bobinei, 

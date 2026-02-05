@@ -2,6 +2,7 @@ import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { Button } from "../../Button";
 import MathJaxRender from "@/components/MathJaxRender";
+import { useEffect, useState } from "react";
 
 import simulatorOscilatieOYImg from "/res/screenshots/Oscilatieoy_Screenshot.png";
 import simulatorOscilatieOXImg from "/res/screenshots/Oscilatieox_Screenshot.png";
@@ -13,6 +14,117 @@ import lanturiElasticeImg from "/res/screenshots/Lanturi_Elastice_Screenshot.png
 import Layout from "../../Layout";
 
 const MecanicaPage = () => {
+  const [visibleFormulasCount, setVisibleFormulasCount] = useState({});
+
+  // Definim formulele pentru fiecare secțiune
+  const oscilatieOXFormulas = [
+    { formula: "\\( x(t) = A \\sin(\\omega t + \\phi) \\)", title: "Legea mișcării" },
+    { formula: "\\( v(t) = \\omega A \\cos(\\omega t + \\phi) \\)", title: "Legea vitezei" },
+    { formula: "\\( a(t) = -\\omega^2 A \\sin(\\omega t + \\phi) \\)", title: "Legea accelerației" },
+    { formula: "\\( \\omega = \\sqrt{\\frac{k}{m}} \\)", title: "Viteza unghiulară" },
+    { formula: "\\( T = 2\\pi \\sqrt{\\frac{m}{k}} \\)", title: "Perioada oscilației" },
+  ];
+
+  const oscilatieOYFormulas = [
+    { formula: "\\( y_0 = \\frac{mg}{k} \\)", title: "Poziția de echilibru" },
+    { formula: "\\( y(t) = y_0 + A \\sin(\\omega t + \\phi) \\)", title: "Legea mișcării" },
+    { formula: "\\( v(t) = \\omega A \\cos(\\omega t + \\phi) \\)", title: "Legea vitezei" },
+    { formula: "\\( E = \\frac{1}{2}mv^2 + \\frac{1}{2}ky^2 + mgy \\)", title: "Energia totală" },
+    { formula: "\\( f = \\frac{1}{2\\pi} \\sqrt{\\frac{k}{m}} \\)", title: "Frecvența naturală" },
+  ];
+
+  const ciocnireFormulas = [
+    { formula: "\\( m_1 v_{1i} + m_2 v_{2i} = m_1 v_{1f} + m_2 v_{2f} \\)", title: "Conservarea impulsului" },
+    { formula: "\\( e = \\frac{v_{2f} - v_{1f}}{v_{1i} - v_{2i}} \\)", title: "Coeficientul de restituire" },
+    { formula: "\\( v_{1f} = \\frac{(m_1 - m_2)v_{1i} + 2m_2v_{2i}}{m_1 + m_2} \\)", title: "Viteza finală 1 (ciocnire elastică)" },
+    { formula: "\\( v_{2f} = \\frac{(m_2 - m_1)v_{2i} + 2m_1v_{1i}}{m_1 + m_2} \\)", title: "Viteza finală 2 (ciocnire elastică)" },
+    { formula: "\\( \\frac{1}{2}m_1v_{1i}^2 + \\frac{1}{2}m_2v_{2i}^2 = \\frac{1}{2}m_1v_{1f}^2 + \\frac{1}{2}m_2v_{2f}^2 \\)", title: "Energia cinetică în ciocniri elastice" },
+    { formula: "\\( \\vec{p} = m\\vec{v} \\)", title: "Impulsul total" },
+  ];
+
+  const planInclinatFormulas = [
+    { formula: "\\( F_{||} = mg \\sin(\\alpha) \\)", title: "Componenta paralelă a forței gravitaționale" },
+    { formula: "\\( F_{\\perp} = mg \\cos(\\alpha) \\)", title: "Componenta perpendiculară a forței gravitaționale" },
+    { formula: "\\( F_f = \\mu N = \\mu mg \\cos(\\alpha) \\)", title: "Forța de frecare" },
+    { formula: "\\( a = g(\\sin(\\alpha) - \\mu \\cos(\\alpha)) \\)", title: "Accelerația pe plan înclinat" },
+    { formula: "\\( v = \\sqrt{2gh(1 - \\mu \\cot(\\alpha))} \\)", title: "Viteza la baza planului" },
+    { formula: "\\( t = \\sqrt{\\frac{2h}{g(\\sin(\\alpha) - \\mu \\cos(\\alpha))}} \\)", title: "Timpul de coborâre" },
+  ];
+
+  const proiectilFormulas = [
+    { formula: "\\( v_{0x} = v_0 \\cos\\alpha, \\quad v_{0y} = v_0 \\sin\\alpha \\)", title: "Descompunerea vitezei inițiale" },
+    { formula: "\\( x(t) = v_{0x} t \\)", title: "Ecuația de mișcare pe OX" },
+    { formula: "\\( y(t) = y_0 + v_{0y} t - \\frac{1}{2} g t^2 \\)", title: "Ecuația de mișcare pe OY" },
+    { formula: "\\( T = \\frac{2 v_0 \\sin\\alpha}{g} \\)", title: "Timpul de zbor" },
+    { formula: "\\( R = \\frac{v_0^2 \\sin(2\\alpha)}{g} \\)", title: "Bătaia maximă" },
+  ];
+
+  const lanturiElasticeFormulas = [
+    { formula: "\\( F = -k \\Delta x \\)", title: "Forța în resort (legea lui Hooke)" },
+    { formula: "\\( m \\frac{d^2 x_i}{dt^2} = k(x_{i+1} - x_i) - k(x_i - x_{i-1}) \\)", title: "Ecuația de mișcare pentru o masă din lanț" },
+  ];
+
+  // Algoritm de încărcare progresivă - versiune simplificată
+  useEffect(() => {
+    const sections = [
+      { key: 'oscilatieOX', formulas: oscilatieOXFormulas },
+      { key: 'oscilatieOY', formulas: oscilatieOYFormulas },
+      { key: 'ciocnire', formulas: ciocnireFormulas },
+      { key: 'planInclinat', formulas: planInclinatFormulas },
+      { key: 'proiectil', formulas: proiectilFormulas },
+      { key: 'lanturiElastice', formulas: lanturiElasticeFormulas },
+    ];
+
+    // Inițializăm toate secțiunile cu batch-ul inițial
+    setVisibleFormulasCount(prev => {
+      const newState = { ...prev };
+      sections.forEach(({ key, formulas }) => {
+        if (!newState[key] && formulas.length > 0) {
+          newState[key] = Math.min(5, formulas.length);
+        }
+      });
+      return newState;
+    });
+
+    // Folosim un singur interval simplu pentru toate secțiunile
+    let intervalId = null;
+
+    intervalId = setInterval(() => {
+      setVisibleFormulasCount(prev => {
+        const newState = { ...prev };
+        let hasMore = false;
+
+        sections.forEach(({ key, formulas }) => {
+          const currentVisible = newState[key] || 0;
+          const totalFormulas = formulas.length;
+          
+          if (currentVisible < totalFormulas) {
+            const batchSize = 5;
+            const newCount = Math.min(currentVisible + batchSize, totalFormulas);
+            newState[key] = newCount;
+            if (newCount < totalFormulas) {
+              hasMore = true;
+            }
+          }
+        });
+
+        // Oprim interval-ul dacă toate secțiunile sunt complete
+        if (!hasMore && intervalId) {
+          clearInterval(intervalId);
+          intervalId = null;
+        }
+
+        return newState;
+      });
+    }, 100); // Delay de 100ms între batch-uri
+
+    return () => {
+      if (intervalId) {
+        clearInterval(intervalId);
+      }
+    };
+  }, []);
+
   return (
     <Layout>
       <div className="resurse-pagina min-h-screen flex flex-col">
@@ -58,35 +170,19 @@ const MecanicaPage = () => {
                   <div>
                     <h3 className="text-xl font-semibold mb-4">Ecuațiile mișcării oscilatorii pe OX:</h3>
                     
-                    <h4 className="text-lg font-semibold mb-2">1. Legea mișcării:</h4>
-                    <div className="formula-resurse text-lg font-mono mb-4">
-                      {"\\( x(t) = A \\sin(\\omega t + \\phi) \\)"}
-                      <MathJaxRender />
-                    </div>
-                    
-                    <h4 className="text-lg font-semibold mb-2">2. Legea vitezei:</h4>
-                    <div className="formula-resurse text-lg font-mono mb-4">
-                      {"\\( v(t) = \\omega A \\cos(\\omega t + \\phi) \\)"}
-                      <MathJaxRender />
-                    </div>
-                    
-                    <h4 className="text-lg font-semibold mb-2">3. Legea accelerației:</h4>
-                    <div className="formula-resurse text-lg font-mono mb-4">
-                      {"\\( a(t) = -\\omega^2 A \\sin(\\omega t + \\phi) \\)"}
-                      <MathJaxRender />
-                    </div>
-                    
-                    <h4 className="text-lg font-semibold mb-2">4. Viteza unghiulară:</h4>
-                    <div className="formula-resurse text-lg font-mono mb-4">
-                      {"\\( \\omega = \\sqrt{\\frac{k}{m}} \\)"}
-                      <MathJaxRender />
-                    </div>
-                    
-                    <h4 className="text-lg font-semibold mb-2">5. Perioada oscilației:</h4>
-                    <div className="formula-resurse text-lg font-mono mb-4">
-                      {"\\( T = 2\\pi \\sqrt{\\frac{m}{k}} \\)"}
-                      <MathJaxRender />
-                    </div>
+                    {oscilatieOXFormulas
+                      .slice(0, visibleFormulasCount.oscilatieOX || oscilatieOXFormulas.length)
+                      .map((item, index) => (
+                        <div key={index}>
+                          <h4 className="text-lg font-semibold mb-2">{index + 1}. {item.title}:</h4>
+                          <div className="formula-resurse text-lg font-mono mb-4">
+                            {item.formula}
+                          </div>
+                        </div>
+                      ))}
+                    {visibleFormulasCount.oscilatieOX > 0 && (
+                      <MathJaxRender key={`oscilatieOX-${visibleFormulasCount.oscilatieOX || 0}`} />
+                    )}
                     
                     <p className="text-muted-foreground mt-4">
                       Unde: A este amplitudinea, {"\\(\\omega\\)"} <MathJaxRender /> viteza unghiulară, {"\\(\\phi\\)"} <MathJaxRender /> faza inițială, 
@@ -125,35 +221,19 @@ const MecanicaPage = () => {
                   <div>
                     <h3 className="text-xl font-semibold mb-4">Ecuațiile mișcării oscilatorii pe OY:</h3>
                     
-                    <h4 className="text-lg font-semibold mb-2">1. Poziția de echilibru:</h4>
-                    <div className="formula-resurse text-lg font-mono mb-4">
-                      {"\\( y_0 = \\frac{mg}{k} \\)"}
-                      <MathJaxRender />
-                    </div>
-                    
-                    <h4 className="text-lg font-semibold mb-2">2. Legea mișcării:</h4>
-                    <div className="formula-resurse text-lg font-mono mb-4">
-                      {"\\( y(t) = y_0 + A \\sin(\\omega t + \\phi) \\)"}
-                      <MathJaxRender />
-                    </div>
-                    
-                    <h4 className="text-lg font-semibold mb-2">3. Legea vitezei:</h4>
-                    <div className="formula-resurse text-lg font-mono mb-4">
-                      {"\\( v(t) = \\omega A \\cos(\\omega t + \\phi) \\)"}
-                      <MathJaxRender />
-                    </div>
-                    
-                    <h4 className="text-lg font-semibold mb-2">4. Energia totală:</h4>
-                    <div className="formula-resurse text-lg font-mono mb-4">
-                      {"\\( E = \\frac{1}{2}mv^2 + \\frac{1}{2}ky^2 + mgy \\)"}
-                      <MathJaxRender />
-                    </div>
-                    
-                    <h4 className="text-lg font-semibold mb-2">5. Frecvența naturală:</h4>
-                    <div className="formula-resurse text-lg font-mono mb-4">
-                      {"\\( f = \\frac{1}{2\\pi} \\sqrt{\\frac{k}{m}} \\)"}
-                      <MathJaxRender />
-                    </div>
+                    {oscilatieOYFormulas
+                      .slice(0, visibleFormulasCount.oscilatieOY || oscilatieOYFormulas.length)
+                      .map((item, index) => (
+                        <div key={index}>
+                          <h4 className="text-lg font-semibold mb-2">{index + 1}. {item.title}:</h4>
+                          <div className="formula-resurse text-lg font-mono mb-4">
+                            {item.formula}
+                          </div>
+                        </div>
+                      ))}
+                    {visibleFormulasCount.oscilatieOY > 0 && (
+                      <MathJaxRender key={`oscilatieOY-${visibleFormulasCount.oscilatieOY || 0}`} />
+                    )}
                     
                     <p className="text-muted-foreground mt-4">
                       Unde: y₀ este poziția de echilibru, A este amplitudinea, {"\\(\\omega\\)"} <MathJaxRender /> viteza unghiulară, 
@@ -192,39 +272,20 @@ const MecanicaPage = () => {
                   <div>
                     <h3 className="text-xl font-semibold mb-4">Formule pentru ciocniri:</h3>
                     
-                    <h4 className="text-lg font-semibold mb-2">1. Conservarea impulsului:</h4>
-                    <div className="formula-resurse text-lg font-mono mb-4">
-                      {"\\( m_1 v_{1i} + m_2 v_{2i} = m_1 v_{1f} + m_2 v_{2f} \\)"}
-                      <MathJaxRender />
-                    </div>
-                    
-                    <h4 className="text-lg font-semibold mb-2">2. Coeficientul de restituire (ciocniri elastice):</h4>
-                    <div className="formula-resurse text-lg font-mono mb-4">
-                      {"\\( e = \\frac{v_{2f} - v_{1f}}{v_{1i} - v_{2i}} \\)"}
-                      <MathJaxRender />
-                    </div>
-                    
-                    <h4 className="text-lg font-semibold mb-2">3. Vitezele finale (ciocnire elastică):</h4>
-                    <div className="formula-resurse text-lg font-mono mb-4">
-                      {"\\( v_{1f} = \\frac{(m_1 - m_2)v_{1i} + 2m_2v_{2i}}{m_1 + m_2} \\)"}
-                      <MathJaxRender />
-                    </div>
-                    <div className="formula-resurse text-lg font-mono mb-4">
-                      {"\\( v_{2f} = \\frac{(m_2 - m_1)v_{2i} + 2m_1v_{1i}}{m_1 + m_2} \\)"}
-                      <MathJaxRender />
-                    </div>
-                    
-                    <h4 className="text-lg font-semibold mb-2">4. Energia cinetică în ciocniri elastice:</h4>
-                    <div className="formula-resurse text-lg font-mono mb-4">
-                      {"\\( \\frac{1}{2}m_1v_{1i}^2 + \\frac{1}{2}m_2v_{2i}^2 = \\frac{1}{2}m_1v_{1f}^2 + \\frac{1}{2}m_2v_{2f}^2 \\)"}
-                      <MathJaxRender />
-                    </div>
-                    
-                    <h4 className="text-lg font-semibold mb-2">5. Impulsul total:</h4>
-                    <div className="formula-resurse text-lg font-mono mb-4">
-                      {"\\( \\vec{p} = m\\vec{v} \\)"}
-                      <MathJaxRender />
-                    </div>
+                    {ciocnireFormulas
+                      .slice(0, visibleFormulasCount.ciocnire || ciocnireFormulas.length)
+                      .map((item, index) => (
+                        <div key={index}>
+                          {index === 2 && <h4 className="text-lg font-semibold mb-2">{index + 1}. Vitezele finale (ciocnire elastică):</h4>}
+                          {index !== 2 && <h4 className="text-lg font-semibold mb-2">{index + 1}. {item.title}:</h4>}
+                          <div className="formula-resurse text-lg font-mono mb-4">
+                            {item.formula}
+                          </div>
+                        </div>
+                      ))}
+                    {visibleFormulasCount.ciocnire > 0 && (
+                      <MathJaxRender key={`ciocnire-${visibleFormulasCount.ciocnire || 0}`} />
+                    )}
                     
                     <p className="text-muted-foreground mt-4">
                       Unde: m₁, m₂ sunt masele corpurilor, v₁ᵢ, v₂ᵢ sunt vitezele inițiale, v₁f, v₂f sunt vitezele finale, 
@@ -264,41 +325,19 @@ const MecanicaPage = () => {
                   <div>
                     <h3 className="text-xl font-semibold mb-4">Formule pentru planul înclinat:</h3>
                     
-                    <h4 className="text-lg font-semibold mb-2">1. Componenta paralelă a forței gravitaționale:</h4>
-                    <div className="formula-resurse text-lg font-mono mb-4">
-                      {"\\( F_{||} = mg \\sin(\\alpha) \\)"}
-                      <MathJaxRender />
-                    </div>
-                    
-                    <h4 className="text-lg font-semibold mb-2">2. Componenta perpendiculară a forței gravitaționale:</h4>
-                    <div className="formula-resurse text-lg font-mono mb-4">
-                      {"\\( F_{\\perp} = mg \\cos(\\alpha) \\)"}
-                      <MathJaxRender />
-                    </div>
-                    
-                    <h4 className="text-lg font-semibold mb-2">3. Forța de frecare:</h4>
-                    <div className="formula-resurse text-lg font-mono mb-4">
-                      {"\\( F_f = \\mu N = \\mu mg \\cos(\\alpha) \\)"}
-                      <MathJaxRender />
-                    </div>
-                    
-                    <h4 className="text-lg font-semibold mb-2">4. Accelerația pe plan înclinat:</h4>
-                    <div className="formula-resurse text-lg font-mono mb-4">
-                      {"\\( a = g(\\sin(\\alpha) - \\mu \\cos(\\alpha)) \\)"}
-                      <MathJaxRender />
-                    </div>
-                    
-                    <h4 className="text-lg font-semibold mb-2">5. Viteza la baza planului:</h4>
-                    <div className="formula-resurse text-lg font-mono mb-4">
-                      {"\\( v = \\sqrt{2gh(1 - \\mu \\cot(\\alpha))} \\)"}
-                      <MathJaxRender />
-                    </div>
-                    
-                    <h4 className="text-lg font-semibold mb-2">6. Timpul de coborâre:</h4>
-                    <div className="formula-resurse text-lg font-mono mb-4">
-                      {"\\( t = \\sqrt{\\frac{2h}{g(\\sin(\\alpha) - \\mu \\cos(\\alpha))}} \\)"}
-                      <MathJaxRender />
-                    </div>
+                    {planInclinatFormulas
+                      .slice(0, visibleFormulasCount.planInclinat || planInclinatFormulas.length)
+                      .map((item, index) => (
+                        <div key={index}>
+                          <h4 className="text-lg font-semibold mb-2">{index + 1}. {item.title}:</h4>
+                          <div className="formula-resurse text-lg font-mono mb-4">
+                            {item.formula}
+                          </div>
+                        </div>
+                      ))}
+                    {visibleFormulasCount.planInclinat > 0 && (
+                      <MathJaxRender key={`planInclinat-${visibleFormulasCount.planInclinat || 0}`} />
+                    )}
                     
                     <p className="text-muted-foreground mt-4">
                       Unde: m este masa corpului, g este accelerația gravitațională, {"\\(\\alpha\\)"} <MathJaxRender /> unghiul de înclinare, 
@@ -338,30 +377,20 @@ const MecanicaPage = () => {
                 <div className="mt-8 flex flex-col md:flex-row md:items-center justify-between gap-6">
                   <div>
                     <h3 className="text-xl font-semibold mb-4">Formule pentru mișcarea proiectilului (fără rezistența aerului):</h3>
-                    <h4 className="text-lg font-semibold mb-2">1. Descompunerea vitezei inițiale:</h4>
-                    <div className="formula-resurse text-lg font-mono mb-3">
-                      {"\\( v_{0x} = v_0 \\cos\\alpha, \\quad v_{0y} = v_0 \\sin\\alpha \\)"}
-                      <MathJaxRender />
-                    </div>
-                    <h4 className="text-lg font-semibold mb-2">2. Ecuațiile de mișcare:</h4>
-                    <div className="formula-resurse text-lg font-mono mb-3">
-                      {"\\( x(t) = v_{0x} t \\)"}
-                      <MathJaxRender />
-                    </div>
-                    <div className="formula-resurse text-lg font-mono mb-3">
-                      {"\\( y(t) = y_0 + v_{0y} t - \\frac{1}{2} g t^2 \\)"}
-                      <MathJaxRender />
-                    </div>
-                    <h4 className="text-lg font-semibold mb-2">3. Timpul de zbor (pentru lansare și cădere la aceeași înălțime):</h4>
-                    <div className="formula-resurse text-lg font-mono mb-3">
-                      {"\\( T = \\frac{2 v_0 \\sin\\alpha}{g} \\)"}
-                      <MathJaxRender />
-                    </div>
-                    <h4 className="text-lg font-semibold mb-2">4. Bătaia maximă:</h4>
-                    <div className="formula-resurse text-lg font-mono mb-3">
-                      {"\\( R = \\frac{v_0^2 \\sin(2\\alpha)}{g} \\)"}
-                      <MathJaxRender />
-                    </div>
+                    {proiectilFormulas
+                      .slice(0, visibleFormulasCount.proiectil || proiectilFormulas.length)
+                      .map((item, index) => (
+                        <div key={index}>
+                          {index === 1 && <h4 className="text-lg font-semibold mb-2">{index + 1}. Ecuațiile de mișcare:</h4>}
+                          {index !== 1 && <h4 className="text-lg font-semibold mb-2">{index === 0 ? index + 1 : index === 2 ? index + 1 : index + 1}. {item.title}:</h4>}
+                          <div className="formula-resurse text-lg font-mono mb-3">
+                            {item.formula}
+                          </div>
+                        </div>
+                      ))}
+                    {visibleFormulasCount.proiectil > 0 && (
+                      <MathJaxRender key={`proiectil-${visibleFormulasCount.proiectil || 0}`} />
+                    )}
                     <p className="text-muted-foreground mt-4">
                       Unde: {"\\(v_0\\)"} <MathJaxRender /> este viteza inițială, {"\\(\\alpha\\)"} <MathJaxRender /> unghiul de
                       lansare față de orizontală, {"\\(g\\)"} <MathJaxRender /> accelerația gravitațională, {"\\(y_0\\)"}{" "}
@@ -402,16 +431,19 @@ const MecanicaPage = () => {
                 <div className="mt-8 flex flex-col md:flex-row md:items-center justify-between gap-6">
                   <div>
                     <h3 className="text-xl font-semibold mb-4">Formule de bază pentru un lanț elastic:</h3>
-                    <h4 className="text-lg font-semibold mb-2">1. Forța în resort (legea lui Hooke):</h4>
-                    <div className="formula-resurse text-lg font-mono mb-3">
-                      {"\\( F = -k \\Delta x \\)"}
-                      <MathJaxRender />
-                    </div>
-                    <h4 className="text-lg font-semibold mb-2">2. Ecuația de mișcare pentru o masă din lanț:</h4>
-                    <div className="formula-resurse text-lg font-mono mb-3">
-                      {"\\( m \\frac{d^2 x_i}{dt^2} = k(x_{i+1} - x_i) - k(x_i - x_{i-1}) \\)"}
-                      <MathJaxRender />
-                    </div>
+                    {lanturiElasticeFormulas
+                      .slice(0, visibleFormulasCount.lanturiElastice || lanturiElasticeFormulas.length)
+                      .map((item, index) => (
+                        <div key={index}>
+                          <h4 className="text-lg font-semibold mb-2">{index + 1}. {item.title}:</h4>
+                          <div className="formula-resurse text-lg font-mono mb-3">
+                            {item.formula}
+                          </div>
+                        </div>
+                      ))}
+                    {visibleFormulasCount.lanturiElastice > 0 && (
+                      <MathJaxRender key={`lanturiElastice-${visibleFormulasCount.lanturiElastice || 0}`} />
+                    )}
                     <p className="text-muted-foreground">
                       Unde: {"\\(m\\)"} <MathJaxRender /> este masa fiecărui element, {"\\(k\\)"} <MathJaxRender /> constanta
                       elastică a resorturilor, iar {"\\(x_i\\)"} <MathJaxRender /> este deplasarea masei a-i-a față de
