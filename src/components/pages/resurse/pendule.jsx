@@ -2,6 +2,7 @@ import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { Button } from "../../Button";
 import MathJaxRender from "@/components/MathJaxRender";
+import { useEffect, useState } from "react";
 
 import simulatorPendulSimpluImg from "/res/screenshots/Simplu_Screenshot.png";
 import simulatorPendulAmortizatImg from "/res/screenshots/Amortizat_Screenshot.png";
@@ -14,6 +15,92 @@ import Layout from "../../Layout";
 import SEO from "../../SEO";
 
 const PendulePage = () => {
+  const [visibleFormulasCount, setVisibleFormulasCount] = useState({});
+
+  // Definim formulele pentru fiecare secțiune
+  const graficeFormulas = [
+    { formula: "\\( y(t) = A \\sin(\\omega t + \\phi) \\)", title: "Legea Mişcării" },
+    { formula: "\\( v(t) = \\omega A \\cos(\\omega t + \\phi) \\)", title: "Legea Vitezei" },
+    { formula: "\\( a(t) = -\\omega ^2 A \\sin(\\omega t + \\phi) \\)", title: "Legea Acceleratiei" },
+  ];
+
+  const pendulSimpluFormulas = [
+    { formula: "\\( T = 2\\pi \\cdot \\sqrt{\\frac{l}{g}} \\)", title: "Formula perioadei" },
+  ];
+
+  const pendulAmortizatFormulas = [
+    { formula: "\\( m\\frac{d^2x}{dt^2} + b\\frac{dx}{dt} + kx = 0 \\)", title: "Ecuația de mișcare" },
+  ];
+
+  const pendulNeliniarFormulas = [
+    { formula: "\\( \\frac{d^2\\theta}{dt^2} + \\frac{g}{l} \\sin\\theta = 0 \\)", title: "Ecuația de mișcare" },
+  ];
+
+  const penduleMultipleFormulas = [
+    { formula: "\\( \\frac{d^2\\theta_i}{dt^2} + \\frac{g}{l} \\sin\\theta_i = 0 \\)", title: "Ecuația pentru fiecare pendul" },
+    { formula: "\\( \\frac{d^2\\theta_i}{dt^2} + \\omega_0^2 \\, \\theta_i = 0, \\quad \\omega_0 = \\sqrt{\\frac{g}{l}} \\)", title: "Aproximare pentru unghiuri mici" },
+  ];
+
+  // Algoritm de încărcare progresivă - versiune optimizată
+  useEffect(() => {
+    const sections = [
+      { key: 'grafice', formulas: graficeFormulas },
+      { key: 'pendulSimplu', formulas: pendulSimpluFormulas },
+      { key: 'pendulAmortizat', formulas: pendulAmortizatFormulas },
+      { key: 'pendulNeliniar', formulas: pendulNeliniarFormulas },
+      { key: 'penduleMultiple', formulas: penduleMultipleFormulas },
+    ];
+
+    // Inițializăm toate secțiunile cu batch-ul inițial
+    setVisibleFormulasCount(prev => {
+      const newState = { ...prev };
+      sections.forEach(({ key, formulas }) => {
+        if (!newState[key] && formulas.length > 0) {
+          newState[key] = Math.min(5, formulas.length);
+        }
+      });
+      return newState;
+    });
+
+    // Folosim un singur interval simplu pentru toate secțiunile
+    let intervalId = null;
+
+    intervalId = setInterval(() => {
+      setVisibleFormulasCount(prev => {
+        const newState = { ...prev };
+        let hasMore = false;
+
+        sections.forEach(({ key, formulas }) => {
+          const currentVisible = newState[key] || 0;
+          const totalFormulas = formulas.length;
+          
+          if (currentVisible < totalFormulas) {
+            const batchSize = 5;
+            const newCount = Math.min(currentVisible + batchSize, totalFormulas);
+            newState[key] = newCount;
+            if (newCount < totalFormulas) {
+              hasMore = true;
+            }
+          }
+        });
+
+        // Oprim interval-ul dacă toate secțiunile sunt complete
+        if (!hasMore && intervalId) {
+          clearInterval(intervalId);
+          intervalId = null;
+        }
+
+        return newState;
+      });
+    }, 100); // Delay de 100ms între batch-uri
+
+    return () => {
+      if (intervalId) {
+        clearInterval(intervalId);
+      }
+    };
+  }, []);
+
   const Images = [
     { src: simulatorGraficePendulImg, alt: "Grafice Pendul" },
     { src: simulatorPendulSimpluImg, alt: "Pendulul Simplu" },
@@ -61,21 +148,19 @@ const PendulePage = () => {
                 <div className="mt-8 flex flex-col md:flex-row md:items-center justify-between gap-6">
                   <div>
                     <h3 className="text-xl font-semibold mb-2">Ecuațiile mișcării oscilatorii aduse la formă sinusoidală sunt:</h3>
-                    <h3 className="text-xl font-semibold mb-2">Legea Mişcării:</h3>
-                    <div className="formula-resurse text-lg font-mono">
-                      {"\\( y(t) = A \\sin(\\omega t + \\phi) \\)"}
-                      <MathJaxRender />
-                    </div>
-                    <h3 className="text-xl font-semibold mb-2">Legea Vitezei:</h3>
-                    <div className="formula-resurse text-lg font-mono">
-                      {"\\( v(t) = \\omega A \\cos(\\omega t + \\phi) \\)"}
-                      <MathJaxRender />
-                    </div>
-                    <h3 className="text-xl font-semibold mb-2">Legea Acceleratiei:</h3>
-                    <div className="formula-resurse text-lg font-mono">
-                      {"\\( a(t) = -\\omega ^2 A \\sin(\\omega t + \\phi) \\)"}
-                      <MathJaxRender />
-                    </div>
+                    {graficeFormulas
+                      .slice(0, visibleFormulasCount.grafice || graficeFormulas.length)
+                      .map((item, index) => (
+                        <div key={index}>
+                          <h3 className="text-xl font-semibold mb-2">{item.title}:</h3>
+                          <div className="formula-resurse text-lg font-mono">
+                            {item.formula}
+                          </div>
+                        </div>
+                      ))}
+                    {visibleFormulasCount.grafice > 0 && (
+                      <MathJaxRender key={`grafice-${visibleFormulasCount.grafice || 0}`} />
+                    )}
                     <p className="text-muted-foreground mt-2">
                       unde A este amplitudinea, {"\\(\\omega\\)"} <MathJaxRender /> este viteza unghiulară, {"\\(\\phi\\)"} <MathJaxRender /> este unghiul initial, iar t este perioada.
                     </p>
@@ -118,11 +203,19 @@ const PendulePage = () => {
                 </div>
                 <div className="mt-8 flex flex-col md:flex-row md:items-center justify-between gap-6">
                   <div>
-                    <h3 className="text-xl font-semibold mb-2">Formula perioadei:</h3>
-                    <div className="formula-resurse text-lg font-mono">
-                      {"\\( T = 2\\pi \\cdot \\sqrt{\\frac{l}{g}} \\)"}
-                      <MathJaxRender />
-                    </div>
+                    {pendulSimpluFormulas
+                      .slice(0, visibleFormulasCount.pendulSimplu || pendulSimpluFormulas.length)
+                      .map((item, index) => (
+                        <div key={index}>
+                          <h3 className="text-xl font-semibold mb-2">{item.title}:</h3>
+                          <div className="formula-resurse text-lg font-mono">
+                            {item.formula}
+                          </div>
+                        </div>
+                      ))}
+                    {visibleFormulasCount.pendulSimplu > 0 && (
+                      <MathJaxRender key={`pendulSimplu-${visibleFormulasCount.pendulSimplu || 0}`} />
+                    )}
                     <p className="text-muted-foreground mt-2">
                       unde l este lungimea pendulului, iar g este accelerația gravitațională.
                     </p>
@@ -161,12 +254,17 @@ const PendulePage = () => {
                       <li>Relația între forța de restabilire și viteza este liniară</li>
                       <li>Exemplu: pendul cu frecare</li>
                       <li>Ecuația de mișcare:</li>
-                      <div className="formula-resurse text-lg font-mono">
-                        {"\\( m\\frac{d^2x}{dt^2} + b\\frac{dx}{dt} + kx = 0 \\)"}
-                        <MathJaxRender />
-                      </div>
-
+                      {pendulAmortizatFormulas
+                        .slice(0, visibleFormulasCount.pendulAmortizat || pendulAmortizatFormulas.length)
+                        .map((item, index) => (
+                          <div key={index} className="formula-resurse text-lg font-mono">
+                            {item.formula}
+                          </div>
+                        ))}
                     </ul>
+                    {visibleFormulasCount.pendulAmortizat > 0 && (
+                      <MathJaxRender key={`pendulAmortizat-${visibleFormulasCount.pendulAmortizat || 0}`} />
+                    )}
                   </div>
                   <a
                     href="/simulare/pendul-amortizat"
@@ -197,10 +295,16 @@ const PendulePage = () => {
                   <div>
                     <h3 className="text-xl font-semibold mb-2">Formule:</h3>
                     Ecuația de mișcare pentru pendulul simplu neliniar este:
-                    <div className="formula-resurse text-lg font-mono mt-2">
-                      {"\\( \\frac{d^2\\theta}{dt^2} + \\frac{g}{l} \\sin\\theta = 0 \\)"}
-                      <MathJaxRender />
-                    </div>
+                    {pendulNeliniarFormulas
+                      .slice(0, visibleFormulasCount.pendulNeliniar || pendulNeliniarFormulas.length)
+                      .map((item, index) => (
+                        <div key={index} className="formula-resurse text-lg font-mono mt-2">
+                          {item.formula}
+                        </div>
+                      ))}
+                    {visibleFormulasCount.pendulNeliniar > 0 && (
+                      <MathJaxRender key={`pendulNeliniar-${visibleFormulasCount.pendulNeliniar || 0}`} />
+                    )}
                     <p className="text-muted-foreground mt-2">
                       unde {"\\(\\theta\\)"} <MathJaxRender /> este unghiul de deviație, l este lungimea firului și g este accelerația gravitațională.
                     </p>
@@ -252,17 +356,23 @@ const PendulePage = () => {
                       Fiecare pendul individual urmează, în ipoteza idealizată (fără frecare), aceeași ecuație neliniară ca
                       pendulul simplu, dar cu condiții inițiale ușor diferite:
                     </p>
-                    <div className="formula-resurse text-lg font-mono mb-3">
-                      {"\\( \\frac{d^2\\theta_i}{dt^2} + \\frac{g}{l} \\sin\\theta_i = 0 \\)"}
-                      <MathJaxRender />
-                    </div>
-                    <p className="text-muted-foreground mb-2">
-                      Pentru unghiuri mici, fiecare pendul poate fi aproximat ca oscilator armonic:
-                    </p>
-                    <div className="formula-resurse text-lg font-mono mb-3">
-                      {"\\( \\frac{d^2\\theta_i}{dt^2} + \\omega_0^2 \\, \\theta_i = 0, \\quad \\omega_0 = \\sqrt{\\frac{g}{l}} \\)"}
-                      <MathJaxRender />
-                    </div>
+                    {penduleMultipleFormulas
+                      .slice(0, visibleFormulasCount.penduleMultiple || penduleMultipleFormulas.length)
+                      .map((item, index) => (
+                        <div key={index}>
+                          {index === 1 && (
+                            <p className="text-muted-foreground mb-2">
+                              Pentru unghiuri mici, fiecare pendul poate fi aproximat ca oscilator armonic:
+                            </p>
+                          )}
+                          <div className="formula-resurse text-lg font-mono mb-3">
+                            {item.formula}
+                          </div>
+                        </div>
+                      ))}
+                    {visibleFormulasCount.penduleMultiple > 0 && (
+                      <MathJaxRender key={`penduleMultiple-${visibleFormulasCount.penduleMultiple || 0}`} />
+                    )}
                     <p className="text-muted-foreground">
                       Chiar dacă ecuațiile par simple, soluțiile pentru sisteme cu pendule multiple sunt extrem de
                       sensibile la condițiile inițiale: o mică modificare a lui {"\\(\\theta_i(0)\\)"} <MathJaxRender /> sau

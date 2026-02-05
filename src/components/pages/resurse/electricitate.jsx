@@ -31,51 +31,61 @@ const ElectricitatePage = () => {
     { formula: "\\( \\eta = \\frac{P_{utila}}{P_{totala}} \\times 100\\% \\)", title: "Randamentul unui circuit" },
   ];
 
-  // Algoritm de încărcare progresivă
+  // Algoritm de încărcare progresivă - versiune optimizată
   useEffect(() => {
     const sections = [
       { key: 'circuite', formulas: circuiteFormulas },
       { key: 'energie', formulas: energieFormulas },
     ];
 
-    sections.forEach(({ key, formulas }) => {
-      const totalFormulas = formulas.length;
-      if (totalFormulas === 0) return;
-
-      setVisibleFormulasCount(prev => {
-        const currentVisible = prev[key] || 0;
-        if (currentVisible >= totalFormulas) {
-          return prev;
+    // Inițializăm toate secțiunile cu batch-ul inițial
+    setVisibleFormulasCount(prev => {
+      const newState = { ...prev };
+      sections.forEach(({ key, formulas }) => {
+        if (!newState[key] && formulas.length > 0) {
+          newState[key] = Math.min(5, formulas.length);
         }
-        const batchSize = 5;
-        const startCount = currentVisible > 0 ? currentVisible : Math.min(batchSize, totalFormulas);
-        return {
-          ...prev,
-          [key]: startCount
-        };
       });
+      return newState;
+    });
 
-      const intervalId = setInterval(() => {
-        setVisibleFormulasCount(prev => {
-          const currentVisible = prev[key] || 0;
+    // Folosim un singur interval simplu pentru toate secțiunile
+    let intervalId = null;
+
+    intervalId = setInterval(() => {
+      setVisibleFormulasCount(prev => {
+        const newState = { ...prev };
+        let hasMore = false;
+
+        sections.forEach(({ key, formulas }) => {
+          const currentVisible = newState[key] || 0;
+          const totalFormulas = formulas.length;
+          
           if (currentVisible < totalFormulas) {
             const batchSize = 5;
             const newCount = Math.min(currentVisible + batchSize, totalFormulas);
-            if (newCount >= totalFormulas) {
-              clearInterval(intervalId);
+            newState[key] = newCount;
+            if (newCount < totalFormulas) {
+              hasMore = true;
             }
-            return {
-              ...prev,
-              [key]: newCount
-            };
           }
-          clearInterval(intervalId);
-          return prev;
         });
-      }, 50);
 
-      return () => clearInterval(intervalId);
-    });
+        // Oprim interval-ul dacă toate secțiunile sunt complete
+        if (!hasMore && intervalId) {
+          clearInterval(intervalId);
+          intervalId = null;
+        }
+
+        return newState;
+      });
+    }, 100); // Delay de 100ms între batch-uri
+
+    return () => {
+      if (intervalId) {
+        clearInterval(intervalId);
+      }
+    };
   }, []);
 
   return (
@@ -131,11 +141,12 @@ const ElectricitatePage = () => {
                           <h4 className="text-lg font-semibold mb-2">{index + 1}. {item.title}:</h4>
                           <div className="formula-resurse text-lg font-mono mb-4">
                             {item.formula}
-                            <MathJaxRender />
                           </div>
                         </div>
                       ))}
-                    <MathJaxRender key={`circuite-${visibleFormulasCount.circuite || 0}`} />
+                    {visibleFormulasCount.circuite > 0 && (
+                      <MathJaxRender key={`circuite-${visibleFormulasCount.circuite || 0}`} />
+                    )}
                     
                     <p className="text-muted-foreground mt-4">
                       Unde: U este tensiunea, I este intensitatea curentului, R este rezistența, P este puterea, W este energia, 
@@ -183,11 +194,12 @@ const ElectricitatePage = () => {
                           <h4 className="text-lg font-semibold mb-2">{index + 1}. {item.title}:</h4>
                           <div className="formula-resurse text-lg font-mono mb-4">
                             {item.formula}
-                            <MathJaxRender />
                           </div>
                         </div>
                       ))}
-                    <MathJaxRender key={`energie-${visibleFormulasCount.energie || 0}`} />
+                    {visibleFormulasCount.energie > 0 && (
+                      <MathJaxRender key={`energie-${visibleFormulasCount.energie || 0}`} />
+                    )}
                     
                     <p className="text-muted-foreground mt-4">
                       Unde: W este energia, P este puterea, C este capacitatea condensatorului, L este inductanța bobinei, 

@@ -2,7 +2,7 @@ import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { Button } from "../../Button";
 import MathJaxRender from "@/components/MathJaxRender";
-import React, { useRef } from "react";
+import React, { useRef, useEffect, useState } from "react";
 
 
 import UndeImage from "/res/screenshots/Unde_Screenshot.png"
@@ -23,6 +23,85 @@ import VideoPopup from "../../VideoPopup";
 // import PrismaSImulation from "/Simulations/prisma/prisma-simulator.html";
 
 const UndePage = () => {
+  const [visibleFormulasCount, setVisibleFormulasCount] = useState({});
+
+  // Definim formulele pentru fiecare secțiune
+  const undeFormulas = [
+    { formula: "\\( v = \\lambda \\cdot f\\)", title: "Formula generala a undelor" },
+    { formula: "\\(\\lambda = v \\cdot T\\)", title: "Lungimea de undă" },
+    { formula: "\\(f = \\frac{1}{T}\\)", title: "Frecvența" },
+  ];
+
+  const prismaFormulas = [
+    { formula: "\\( n_1 \\sin \\theta_1 = n_2 \\sin \\theta_2 \\)", title: "Legea refracției (Snell)" },
+    { formula: "\\( \\delta = (\\theta_1 + \\theta_2') - A \\)", title: "Unghiul de deviație în prismă" },
+    { formula: "\\( n = n(\\lambda) \\)", title: "Indicele de refracție" },
+  ];
+
+  const polarizareFormulas = [
+    { formula: "\\( E_x(t) = E_0 \\cos(\\omega t) \\)", title: "Componenta x a câmpului electric" },
+    { formula: "\\( E_y(t) = E_0 \\sin(\\omega t) \\)", title: "Componenta y a câmpului electric" },
+    { formula: "\\( E_x^2 + E_y^2 = E_0^2 \\)", title: "Modulul constant al vectorului câmp" },
+  ];
+
+  // Algoritm de încărcare progresivă - versiune optimizată
+  useEffect(() => {
+    const sections = [
+      { key: 'unde', formulas: undeFormulas },
+      { key: 'prisma', formulas: prismaFormulas },
+      { key: 'polarizare', formulas: polarizareFormulas },
+    ];
+
+    // Inițializăm toate secțiunile cu batch-ul inițial
+    setVisibleFormulasCount(prev => {
+      const newState = { ...prev };
+      sections.forEach(({ key, formulas }) => {
+        if (!newState[key] && formulas.length > 0) {
+          newState[key] = Math.min(5, formulas.length);
+        }
+      });
+      return newState;
+    });
+
+    // Folosim un singur interval simplu pentru toate secțiunile
+    let intervalId = null;
+
+    intervalId = setInterval(() => {
+      setVisibleFormulasCount(prev => {
+        const newState = { ...prev };
+        let hasMore = false;
+
+        sections.forEach(({ key, formulas }) => {
+          const currentVisible = newState[key] || 0;
+          const totalFormulas = formulas.length;
+          
+          if (currentVisible < totalFormulas) {
+            const batchSize = 5;
+            const newCount = Math.min(currentVisible + batchSize, totalFormulas);
+            newState[key] = newCount;
+            if (newCount < totalFormulas) {
+              hasMore = true;
+            }
+          }
+        });
+
+        // Oprim interval-ul dacă toate secțiunile sunt complete
+        if (!hasMore && intervalId) {
+          clearInterval(intervalId);
+          intervalId = null;
+        }
+
+        return newState;
+      });
+    }, 100); // Delay de 100ms între batch-uri
+
+    return () => {
+      if (intervalId) {
+        clearInterval(intervalId);
+      }
+    };
+  }, []);
+
   const undeImages = [
     { src: UndeImage, alt: "Simulare Unde" },
     { src: UndeImage1, alt: "Simulare Unde" }
@@ -162,21 +241,32 @@ const UndePage = () => {
                   <div>
 
                     <div className="mt-6">
-                      <h3 className="text-xl font-semibold mb-2">Formula generala a undelor:</h3>
-                      <div className="formula-resurse text-lg font-mono">
-                        {"\\( v = \\lambda \\cdot f\\)"}
-                        <MathJaxRender />
-                      </div>
-                      <p className="text-muted-foreground mt-2">
-                        undele se caracterizează prin lungimea de undă {"\\(\\lambda\\)"}<MathJaxRender />, frecvența  {"\\(f\\)"}<MathJaxRender /> și viteza de propagare  {"\\(v\\)"}<MathJaxRender />.
-                      </p>
-                      <h3 className="text-xl font-semibold mt-4 mb-2">Formule utile:</h3>
-                      <p className="text-muted-foreground mb-2">
-                        Lungimea de undă: {"\\(\\lambda = v \\cdot T\\)"}<MathJaxRender />, unde T este perioada undelor.
-                      </p>
-                      <p className="text-muted-foreground mb-2">
-                        Frecvența: {"\\(f = \\frac{1}{T}\\)"}<MathJaxRender />, unde T este perioada undelor.
-                      </p> 
+                      {undeFormulas
+                        .slice(0, visibleFormulasCount.unde || undeFormulas.length)
+                        .map((item, index) => (
+                          <div key={index}>
+                            {index === 0 && (
+                              <>
+                                <h3 className="text-xl font-semibold mb-2">{item.title}:</h3>
+                                <div className="formula-resurse text-lg font-mono">
+                                  {item.formula}
+                                </div>
+                                <p className="text-muted-foreground mt-2">
+                                  undele se caracterizează prin lungimea de undă {"\\(\\lambda\\)"}<MathJaxRender />, frecvența  {"\\(f\\)"}<MathJaxRender /> și viteza de propagare  {"\\(v\\)"}<MathJaxRender />.
+                                </p>
+                                <h3 className="text-xl font-semibold mt-4 mb-2">Formule utile:</h3>
+                              </>
+                            )}
+                            {index > 0 && (
+                              <p className="text-muted-foreground mb-2">
+                                {item.title}: {item.formula}<MathJaxRender />, unde T este perioada undelor.
+                              </p>
+                            )}
+                          </div>
+                        ))}
+                      {visibleFormulasCount.unde > 0 && (
+                        <MathJaxRender key={`unde-${visibleFormulasCount.unde || 0}`} />
+                      )}
                     </div>
                   </div>
                   <a
@@ -226,19 +316,17 @@ const UndePage = () => {
                     <div className="mt-6">
                       <h3 className="text-xl font-semibold mb-2">Formule pentru refracția luminii albe în prismă:</h3>
                       <div className="flex flex-col gap-2">
-                        <div className="formula-resurse text-lg font-mono">
-                          {"\\( n_1 \\sin \\theta_1 = n_2 \\sin \\theta_2 \\)"}
-                          <MathJaxRender />
-                        </div>
-                        <div className="formula-resurse text-lg font-mono">
-                          {"\\( \\delta = (\\theta_1 + \\theta_2') - A \\)"}
-                          <MathJaxRender />
-                        </div>
-                        <div className="formula-resurse text-lg font-mono">
-                          {"\\( n = n(\\lambda) \\)"}
-                          <MathJaxRender />
-                        </div>
+                        {prismaFormulas
+                          .slice(0, visibleFormulasCount.prisma || prismaFormulas.length)
+                          .map((item, index) => (
+                            <div key={index} className="formula-resurse text-lg font-mono">
+                              {item.formula}
+                            </div>
+                          ))}
                       </div>
+                      {visibleFormulasCount.prisma > 0 && (
+                        <MathJaxRender key={`prisma-${visibleFormulasCount.prisma || 0}`} />
+                      )}
                       <p className="text-muted-foreground mt-2">
                         <span>
                           Legea refracției (Snell): {"\\( n_1 \\sin \\theta_1 = n_2 \\sin \\theta_2 \\)"}<MathJaxRender />.<br />
@@ -288,22 +376,24 @@ const UndePage = () => {
                       <MathJaxRender />, cu aceeași amplitudine {"\\(E_0\\)"} <MathJaxRender /> și o diferență de fază de
                       {"\\(\\frac{\\pi}{2}\\)"} <MathJaxRender />:
                     </p>
-                    <div className="formula-resurse text-lg font-mono mb-2">
-                      {"\\( E_x(t) = E_0 \\cos(\\omega t) \\)"}
-                      <MathJaxRender />
-                    </div>
-                    <div className="formula-resurse text-lg font-mono mb-3">
-                      {"\\( E_y(t) = E_0 \\sin(\\omega t) \\)"}
-                      <MathJaxRender />
-                    </div>
-                    <p className="text-muted-foreground mb-3">
-                      La orice moment, vectorul câmpului electric {"\\(\\vec{E}(t) = (E_x(t), E_y(t))\\)"} <MathJaxRender /> are
-                      modulul constant:
-                    </p>
-                    <div className="formula-resurse text-lg font-mono mb-3">
-                      {"\\( E_x^2 + E_y^2 = E_0^2 \\)"}
-                      <MathJaxRender />
-                    </div>
+                    {polarizareFormulas
+                      .slice(0, visibleFormulasCount.polarizare || polarizareFormulas.length)
+                      .map((item, index) => (
+                        <div key={index}>
+                          {index === 2 && (
+                            <p className="text-muted-foreground mb-3">
+                              La orice moment, vectorul câmpului electric {"\\(\\vec{E}(t) = (E_x(t), E_y(t))\\)"} <MathJaxRender /> are
+                              modulul constant:
+                            </p>
+                          )}
+                          <div className="formula-resurse text-lg font-mono mb-2">
+                            {item.formula}
+                          </div>
+                        </div>
+                      ))}
+                    {visibleFormulasCount.polarizare > 0 && (
+                      <MathJaxRender key={`polarizare-${visibleFormulasCount.polarizare || 0}`} />
+                    )}
                     <p className="text-muted-foreground">
                       Aceasta înseamnă că vârful vectorului se deplasează pe un cerc de rază {"\\(E_0\\)"} <MathJaxRender />,
                       ceea ce explică denumirea de polarizare circulară. Sensul de rotație (dreapta/stânga) depinde de

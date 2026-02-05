@@ -2,12 +2,73 @@ import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { Button } from "../../Button";
 import MathJaxRender from "@/components/MathJaxRender";
+import { useEffect, useState } from "react";
 
 import seismicWaveAnimation from "/res/screenshots/Seism_Screenshot.png";
 import Layout from "../../Layout";
 import SEO from "../../SEO";
 
 const SeismePage = () => {
+  const [visibleFormulasCount, setVisibleFormulasCount] = useState({});
+
+  // Definim formulele pentru secțiunea seism
+  const seismFormulas = [
+    { formula: "\\( v_P = \\frac{d}{t_P}\\)", title: "Formula pentru viteza undelor P" },
+    { formula: "\\( v_S = \\frac{d}{t_S}\\)", title: "Formula pentru viteza undelor S" },
+    { formula: "\\( v_P = \\sqrt{\\frac{K + \\frac{4}{3}G}{\\rho}} \\)", title: "Viteza undelor P în mediu elastic" },
+    { formula: "\\( v_S = \\sqrt{\\frac{G}{\\rho}} \\)", title: "Viteza undelor S în mediu elastic" },
+    { formula: "\\( M_L = \\log_{10} A - \\log_{10} A_0 \\)", title: "Magnitudinea Richter" },
+  ];
+
+  // Algoritm de încărcare progresivă - versiune optimizată
+  useEffect(() => {
+    const totalFormulas = seismFormulas.length;
+    if (totalFormulas === 0) return;
+
+    // Inițializăm cu batch-ul inițial
+    setVisibleFormulasCount(prev => {
+      if (!prev.seism && totalFormulas > 0) {
+        return {
+          ...prev,
+          seism: Math.min(5, totalFormulas)
+        };
+      }
+      return prev;
+    });
+
+    // Folosim un interval simplu
+    let intervalId = null;
+
+    intervalId = setInterval(() => {
+      setVisibleFormulasCount(prev => {
+        const currentVisible = prev.seism || 0;
+        if (currentVisible < totalFormulas) {
+          const batchSize = 5;
+          const newCount = Math.min(currentVisible + batchSize, totalFormulas);
+          if (newCount >= totalFormulas && intervalId) {
+            clearInterval(intervalId);
+            intervalId = null;
+          }
+          return {
+            ...prev,
+            seism: newCount
+          };
+        }
+        if (intervalId) {
+          clearInterval(intervalId);
+          intervalId = null;
+        }
+        return prev;
+      });
+    }, 100); // Delay de 100ms între batch-uri
+
+    return () => {
+      if (intervalId) {
+        clearInterval(intervalId);
+      }
+    };
+  }, []);
+
   const seismImages = [
     { src: seismicWaveAnimation, alt: "Simulare Seisme" },
   ];
@@ -64,35 +125,59 @@ const SeismePage = () => {
                       <li>Undele S nu se propagă prin lichide, spre deosebire de undele P</li>
                     </ul>
                     <div className="mt-6">
-                      <h3 className="text-xl font-semibold mb-2"> Formula pentru viteza undelor P:</h3>
-                      <div className="formula-resurse text-lg font-mono">
-                        {"\\( v_P = \\frac{d}{t_P}\\)"}
-                        <MathJaxRender />
-                      </div>
-                      <h3 className="text-xl font-semibold mb-2"> Formula pentru viteza undelor S:</h3>
-                      <div className="formula-resurse text-lg font-mono">
-                        {"\\( v_S = \\frac{d}{t_S}\\)"}
-                        <MathJaxRender />
-                      </div>
-                      <p className="text-muted-foreground mt-2">
-                        unde d este distanța de la epicentru la punctul de referință, iar t timpul în care se propagă fiecare dintre cele două unde.
-                      </p>
-                      <h3 className="text-xl font-semibold mt-4 mb-2">Viteze în mediu elastic:</h3>
-                      <div className="formula-resurse text-lg font-mono mb-2">
-                        {"\\( v_P = \\sqrt{\\frac{K + \\frac{4}{3}G}{\\rho}} \\)"}
-                        <MathJaxRender />
-                      </div>
-                      <div className="formula-resurse text-lg font-mono mb-2">
-                        {"\\( v_S = \\sqrt{\\frac{G}{\\rho}} \\)"}
-                        <MathJaxRender />
-                      </div>
-                      <p className="text-muted-foreground mb-2">unde K este modulul de compresie, G modulul de forfecare, ρ densitatea.</p>
-                      <h3 className="text-xl font-semibold mt-4 mb-2">Magnitudinea Richter:</h3>
-                      <div className="formula-resurse text-lg font-mono mb-2">
-                        {"\\( M_L = \\log_{10} A - \\log_{10} A_0 \\)"}
-                        <MathJaxRender />
-                      </div>
-                      <p className="text-muted-foreground">A este amplitudinea maximă înregistrată, A₀ o amplitudine de referință.</p>
+                      {seismFormulas
+                        .slice(0, visibleFormulasCount.seism || seismFormulas.length)
+                        .map((item, index) => (
+                          <div key={index}>
+                            {index === 0 && (
+                              <>
+                                <h3 className="text-xl font-semibold mb-2">{item.title}:</h3>
+                                <div className="formula-resurse text-lg font-mono">
+                                  {item.formula}
+                                </div>
+                              </>
+                            )}
+                            {index === 1 && (
+                              <>
+                                <h3 className="text-xl font-semibold mb-2">{item.title}:</h3>
+                                <div className="formula-resurse text-lg font-mono">
+                                  {item.formula}
+                                </div>
+                                <p className="text-muted-foreground mt-2">
+                                  unde d este distanța de la epicentru la punctul de referință, iar t timpul în care se propagă fiecare dintre cele două unde.
+                                </p>
+                                <h3 className="text-xl font-semibold mt-4 mb-2">Viteze în mediu elastic:</h3>
+                              </>
+                            )}
+                            {index === 2 && (
+                              <>
+                                <div className="formula-resurse text-lg font-mono mb-2">
+                                  {item.formula}
+                                </div>
+                              </>
+                            )}
+                            {index === 3 && (
+                              <>
+                                <div className="formula-resurse text-lg font-mono mb-2">
+                                  {item.formula}
+                                </div>
+                                <p className="text-muted-foreground mb-2">unde K este modulul de compresie, G modulul de forfecare, ρ densitatea.</p>
+                                <h3 className="text-xl font-semibold mt-4 mb-2">{seismFormulas[4].title}:</h3>
+                              </>
+                            )}
+                            {index === 4 && (
+                              <>
+                                <div className="formula-resurse text-lg font-mono mb-2">
+                                  {item.formula}
+                                </div>
+                                <p className="text-muted-foreground">A este amplitudinea maximă înregistrată, A₀ o amplitudine de referință.</p>
+                              </>
+                            )}
+                          </div>
+                        ))}
+                      {visibleFormulasCount.seism > 0 && (
+                        <MathJaxRender key={`seism-${visibleFormulasCount.seism || 0}`} />
+                      )}
                     </div>
                   </div>
                   <a
