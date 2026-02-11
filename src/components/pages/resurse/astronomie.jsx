@@ -171,6 +171,20 @@ const AstronomiePage = () => {
                   <li>Viteza la afeliu (cea mai mică): {"\\( v_a = \\sqrt{\\frac{GM}{a}\\frac{1-e}{1+e}} \\)"} <MathJaxRender /></li>
                 </ul>
               </div>
+
+              <div className="rounded-container">
+                <h2 className="text-2xl font-bold mb-4">Simulare interactivă</h2>
+                <div className="w-full" style={{ minHeight: '600px' }}>
+                  <iframe
+                    src="http://simulare-sistemul-solar.s3-website.eu-north-1.amazonaws.com"
+                    width="100%"
+                    height="600"
+                    style={{ border: 'none', borderRadius: '8px' }}
+                    allowFullScreen={true}
+                    title="Simulare astronomie"
+                  ></iframe>
+                </div>
+              </div>
             </div>
           </main>
         </div>
