@@ -14,6 +14,7 @@
     "clean-problems": "node clean-problems-content.js",
     "upload-cleaned": "node upload-cleaned-problems.js",
     "remove-duplicates": "node remove-duplicate-problems.js",
+    "upload-grile": "node upload-grile.js",
     "screenshot-simulations": "node scripts/screenshot-simulations.js"
   },
   "dependencies": {

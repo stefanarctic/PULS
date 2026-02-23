@@ -67,6 +67,36 @@ The security rules ensure that:
 - **Create/Update/Delete**: 
   - Only admins can create, update, or delete problems
 
+### 4. `grile` Collection
+
+**Purpose**: Stores multiple choice questions (grile) for self-assessment
+
+**Document Structure**:
+```javascript
+{
+  index: number,           // Display order
+  intrebare: string,       // Question text (supports LaTeX with $...$)
+  variante: {
+    a: string,
+    b: string,
+    c: string,
+    d: string
+  },
+  raspunsCorect: 'a'|'b'|'c'|'d',
+  categorie: string,        // e.g. Mecanică, Termodinamică
+  dificultate?: string,    // ușor, mediu, dificil (optional)
+  explicatie?: string      // Explanation after answering (optional)
+}
+```
+
+**Rules**:
+- **Read**: 
+  - All users can read grile (public)
+- **Create**: 
+  - Anyone can create grile (pentru upload script)
+- **Update/Delete**: 
+  - Only admins can update or delete grile
+
 ## Helper Functions
 
 ### `isAuthenticated()`

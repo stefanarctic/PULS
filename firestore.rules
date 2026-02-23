@@ -108,6 +108,18 @@ service cloud.firestore {
       allow delete: if isAdmin();
     }
 
+    // Grile collection (multiple choice questions)
+    match /grile/{grilaId} {
+      // All users can read grile
+      allow read: if true;
+
+      // Anyone can create grile (pentru upload script și adăugare rapidă)
+      allow create: if true;
+
+      // Only admins can update or delete grile
+      allow update, delete: if isAdmin();
+    }
+
     // Deny all other access by default
     match /{document=**} {
       allow read, write: if false;

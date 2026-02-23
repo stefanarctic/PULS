@@ -12,6 +12,8 @@ import Index from "./components/pages/Index";
 import Probleme from "./components/pages/Probleme";
 import ProblemaIndividuala from "./components/pages/ProblemaIndividuala";
 import ProblemeBac from "./components/pages/ProblemeBac";
+import ProblemeGrile from "./components/pages/ProblemeGrile";
+import GrileIndividuala from "./components/pages/GrileIndividuala";
 import Simulari from "./components/pages/Simulari";
 import Resurse from "./components/pages/Resurse";
 import Pendule from "./components/pages/resurse/pendule";
@@ -106,6 +108,8 @@ const App = () => {
           <Route path="/" element={<Index />} />
           <Route path="/probleme" element={<Probleme />} />
           <Route path="/probleme/bac" element={<ProblemeBac />} />
+          <Route path="/probleme/grile" element={<ProblemeGrile />} />
+          <Route path="/probleme/grile/:id" element={<GrileIndividuala />} />
           <Route path="/probleme/:id" element={<ProblemaIndividuala />} />
           <Route path="/simulari" element={<Simulari />} />
           <Route path="/resurse" element={<Resurse />} />

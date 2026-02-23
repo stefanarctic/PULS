@@ -5,7 +5,7 @@ import { useNavigate } from 'react-router-dom';
 // import { problemeData } from '../problemedata';
 import { useSelector, useDispatch } from 'react-redux';
 import { fetchProblems, addProblem, clearAddStatus, deleteProblem } from '../../features/problems/problemsSlice';
-import { Plus, Check, GraduationCap, ExternalLink } from 'lucide-react';
+import { Plus, Check, GraduationCap, ExternalLink, ListChecks } from 'lucide-react';
 import { normalizeString } from '../../lib/normalizeString';
 import { auth, db } from '../../lib/firebase';
 import { onAuthStateChanged, getAuth } from 'firebase/auth';
@@ -1476,6 +1476,11 @@ const PhysicsProblems = () => {
                         <Link to="/probleme/bac" className="bac-category-button">
                             <GraduationCap size={16} />
                             <span>Bacalaureat</span>
+                            <ExternalLink size={12} />
+                        </Link>
+                        <Link to="/probleme/grile" className="bac-category-button">
+                            <ListChecks size={16} />
+                            <span>Grile</span>
                             <ExternalLink size={12} />
                         </Link>
                     </div>
