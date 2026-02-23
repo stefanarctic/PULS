@@ -1,0 +1,602 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>PULS — Descoperă fizica prin exerciții și simulări interactive</title>
+<meta name="description" content="Platformă educațională pentru fizică. Lucrează și învață prin probleme și simulări interactive."/>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+
+:root{
+  --bg:#1a1a1a;
+  --bg-card:#252525;
+  --bg-card-hover:#2a2a2a;
+  --border:rgba(255,255,255,0.08);
+  --blue:#007bff;
+  --blue-border:rgba(0,123,255,0.6);
+  --text:#ffffff;
+  --text-muted:#b0b0b0;
+  --purple:#8b5cf6;
+  --font:'Inter',-apple-system,sans-serif;
+}
+
+html{scroll-behavior:smooth;}
+body{background:var(--bg);color:var(--text);font-family:var(--font);font-size:16px;line-height:1.6;overflow-x:hidden;}
+
+/* ── HEADER ── */
+header{
+  position:fixed;top:0;left:0;right:0;z-index:200;
+  display:flex;align-items:center;justify-content:space-between;
+  padding:16px 40px;height:72px;
+  background:var(--bg);
+  border-bottom:1px solid var(--border);
+}
+.header-logo{
+  font-size:1.5rem;font-weight:700;color:var(--text);
+  text-decoration:none;display:flex;align-items:center;gap:8px;
+}
+.header-logo span{color:var(--blue);}
+
+.header-search{
+  flex:1;max-width:320px;margin:0 40px;
+  display:flex;align-items:center;
+  background:var(--bg-card);border:1px solid var(--border);
+  border-radius:8px;padding:10px 16px;
+}
+.header-search input{
+  flex:1;background:none;border:none;color:var(--text);
+  font-size:0.9rem;outline:none;
+}
+.header-search input::placeholder{color:var(--text-muted);}
+.header-search svg{width:18px;height:18px;color:var(--text-muted);margin-right:10px;flex-shrink:0;}
+
+.header-nav{
+  display:flex;align-items:center;gap:8px;
+}
+.header-nav a{
+  color:var(--text);font-size:0.9rem;font-weight:500;
+  text-decoration:none;padding:8px 14px;border-radius:6px;
+  transition:all .2s;
+}
+.header-nav a:hover{background:var(--bg-card);color:var(--blue);}
+.header-icons{
+  display:flex;align-items:center;gap:12px;margin-left:24px;
+}
+.header-icon{
+  width:40px;height:40px;border-radius:50%;
+  background:var(--purple);display:flex;align-items:center;justify-content:center;
+  color:#fff;text-decoration:none;font-size:1.1rem;
+  transition:opacity .2s;
+}
+.header-icon:hover{opacity:0.9;}
+.header-icon.profile{background:rgba(139,92,246,0.3);border:1px solid var(--purple);}
+
+/* ── HERO ── */
+#hero{
+  min-height:100vh;padding:120px 40px 80px;
+  display:flex;align-items:center;
+  max-width:1280px;margin:0 auto;
+}
+.hero-grid{
+  display:grid;grid-template-columns:1fr 1fr;gap:80px;
+  align-items:center;width:100%;
+}
+.hero-content h1{
+  font-size:clamp(2rem,4vw,3.2rem);
+  font-weight:700;line-height:1.15;margin-bottom:24px;
+  letter-spacing:-0.02em;
+}
+.hero-content p{
+  font-size:1.1rem;color:var(--text-muted);
+  line-height:1.7;margin-bottom:36px;max-width:520px;
+}
+.hero-buttons{display:flex;gap:16px;flex-wrap:wrap;}
+.btn{
+  display:inline-flex;align-items:center;gap:8px;
+  padding:14px 28px;border-radius:8px;
+  font-family:var(--font);font-size:1rem;font-weight:600;
+  text-decoration:none;transition:all .25s;cursor:pointer;border:2px solid transparent;
+}
+.btn-primary{
+  background:#fff;color:var(--bg);
+  border-color:#fff;
+}
+.btn-primary:hover{background:#f0f0f0;transform:translateY(-2px);}
+.btn-secondary{
+  background:transparent;color:var(--text);
+  border-color:var(--blue);
+}
+.btn-secondary:hover{background:rgba(0,123,255,0.1);transform:translateY(-2px);}
+
+.hero-visual{
+  background:var(--bg-card);border:1px solid var(--border);
+  border-radius:12px;overflow:hidden;
+  aspect-ratio:4/3;position:relative;
+}
+.hero-wave{
+  width:100%;height:100%;
+  display:flex;align-items:center;justify-content:center;
+  padding:48px;
+}
+.wave-graphic{
+  width:100%;height:100%;position:relative;
+}
+.wave-svg{
+  width:100%;height:100%;
+}
+.wave-svg path{
+  fill:none;stroke:var(--blue);stroke-width:2;
+  stroke-linecap:round;opacity:0.9;
+}
+.wave-svg path:nth-child(1){animation:wave1 2.5s ease-in-out infinite;}
+.wave-svg path:nth-child(2){animation:wave1 2.5s ease-in-out infinite 0.4s;}
+.wave-svg path:nth-child(3){animation:wave1 2.5s ease-in-out infinite 0.8s;}
+@keyframes wave1{
+  0%,100%{opacity:0.5;}
+  50%{opacity:1;}
+}
+.hero-visual-caption{
+  position:absolute;bottom:0;left:0;right:0;
+  padding:12px 20px;background:rgba(0,0,0,0.4);
+  font-size:0.85rem;color:var(--text-muted);
+}
+
+/* ── SECTIONS COMMON ── */
+section{padding:80px 40px;max-width:1280px;margin:0 auto;}
+.section-title{
+  font-size:clamp(1.75rem,3vw,2.25rem);
+  font-weight:700;text-align:center;margin-bottom:48px;
+  letter-spacing:-0.02em;
+}
+
+/* ── CE ÎȚI OFERĂ PULS ── */
+#features{}
+.features-grid{
+  display:grid;grid-template-columns:repeat(4,1fr);
+  gap:24px;
+}
+.feature-card{
+  background:var(--bg-card);border:1px solid var(--border);
+  border-radius:12px;padding:32px 24px;
+  text-align:center;transition:all .25s;
+}
+.feature-card:hover{background:var(--bg-card-hover);border-color:var(--blue-border);}
+.feature-icon{
+  width:56px;height:56px;margin:0 auto 20px;
+  border:2px solid var(--blue);border-radius:12px;
+  display:flex;align-items:center;justify-content:center;
+  font-size:1.5rem;color:var(--blue);
+}
+.feature-card h3{
+  font-size:1.1rem;font-weight:600;margin-bottom:12px;
+}
+.feature-card p{font-size:0.9rem;color:var(--text-muted);line-height:1.6;}
+
+/* ── SIMULĂRI ── */
+#simulations{background:var(--bg-card);margin:0;padding:80px 40px;}
+#simulations .section-inner{max-width:1280px;margin:0 auto;}
+.sims-grid{
+  display:grid;grid-template-columns:repeat(2,1fr);
+  gap:24px;margin-bottom:32px;
+}
+.sim-card{
+  background:var(--bg);border:1px solid var(--border);
+  border-radius:12px;overflow:hidden;
+  transition:all .25s;text-decoration:none;color:inherit;display:block;
+}
+.sim-card:hover{border-color:var(--blue-border);transform:translateY(-4px);}
+.sim-card-img{
+  height:180px;background:linear-gradient(135deg,rgba(0,123,255,0.15),rgba(0,123,255,0.05));
+  display:flex;align-items:center;justify-content:center;
+  font-size:4rem;
+}
+.sim-card-body{padding:24px;}
+.sim-card h3{font-size:1.15rem;font-weight:600;margin-bottom:8px;}
+.sim-card p{font-size:0.9rem;color:var(--text-muted);line-height:1.6;margin-bottom:16px;}
+.sim-card .btn{font-size:0.9rem;padding:10px 20px;}
+.sims-cta{text-align:center;}
+.sims-cta .btn{background:var(--blue);color:#fff;border-color:var(--blue);}
+.sims-cta .btn:hover{background:#0066dd;border-color:#0066dd;}
+
+/* ── PROBLEME ── */
+#problems{}
+.problems-grid{
+  display:grid;grid-template-columns:repeat(4,1fr);
+  gap:24px;
+}
+.problem-card{
+  background:var(--bg-card);border:1px solid var(--border);
+  border-radius:12px;padding:28px 24px;
+  transition:all .25s;
+}
+.problem-card:hover{border-color:var(--blue-border);}
+.problem-icon{
+  width:48px;height:48px;margin-bottom:16px;
+  border:2px solid var(--blue);border-radius:10px;
+  display:flex;align-items:center;justify-content:center;
+  font-size:1.2rem;color:var(--blue);
+}
+.problem-card h3{font-size:1rem;font-weight:600;margin-bottom:12px;}
+.problem-card p{font-size:0.85rem;color:var(--text-muted);line-height:1.5;margin-bottom:20px;}
+.problem-buttons{display:flex;gap:8px;flex-wrap:wrap;}
+.problem-buttons .btn{font-size:0.85rem;padding:8px 16px;}
+
+/* ── RESURSE ── */
+#resources{background:var(--bg-card);margin:0;padding:80px 40px;}
+#resources .section-inner{max-width:1280px;margin:0 auto;}
+.resources-grid{
+  display:grid;grid-template-columns:repeat(3,1fr);
+  gap:24px;margin-bottom:32px;
+}
+.resource-card{
+  background:var(--bg);border:1px solid var(--border);
+  border-radius:12px;overflow:hidden;
+  transition:all .25s;text-decoration:none;color:inherit;display:block;
+  position:relative;
+}
+.resource-card:hover{border-color:var(--blue-border);transform:translateY(-4px);}
+.resource-img{
+  height:160px;position:relative;overflow:hidden;
+  background:linear-gradient(135deg,rgba(0,123,255,0.2),rgba(139,92,246,0.1));
+}
+.resource-img::after{
+  content:'';position:absolute;inset:0;
+  background:linear-gradient(to top,rgba(0,0,0,0.8),transparent 50%);
+}
+.resource-img span{
+  position:absolute;bottom:16px;left:20px;right:20px;
+  font-size:1.1rem;font-weight:600;z-index:2;
+}
+.resource-body{padding:20px;}
+.resource-card .btn{font-size:0.9rem;padding:10px 20px;}
+.resources-cta{text-align:center;}
+.resources-cta .btn{background:var(--blue);color:#fff;border-color:var(--blue);}
+.resources-cta .btn:hover{background:#0066dd;border-color:#0066dd;}
+
+/* ── DESPRE NOI ── */
+#about{}
+.about-content{
+  max-width:720px;margin:0 auto 40px;
+  text-align:center;
+}
+.about-content p{
+  font-size:1.05rem;color:var(--text-muted);
+  line-height:1.8;margin-bottom:20px;
+}
+.about-cta{text-align:center;}
+.about-cta .btn{background:var(--blue);color:#fff;border-color:var(--blue);}
+.about-cta .btn:hover{background:#0066dd;border-color:#0066dd;}
+
+/* ── FOOTER ── */
+footer{
+  border-top:1px solid var(--border);
+  padding:48px 40px;
+  max-width:1280px;margin:0 auto;
+}
+.footer-grid{
+  display:grid;grid-template-columns:2fr 1fr 1fr 1fr;
+  gap:48px;margin-bottom:40px;
+}
+.footer-brand .logo{font-size:1.3rem;font-weight:700;margin-bottom:12px;display:block;}
+.footer-brand .logo span{color:var(--blue);}
+.footer-brand p{font-size:0.9rem;color:var(--text-muted);line-height:1.6;}
+.footer-col h4{
+  font-size:0.8rem;font-weight:600;text-transform:uppercase;
+  letter-spacing:0.08em;color:var(--text-muted);
+  margin-bottom:16px;
+}
+.footer-col a{
+  display:block;font-size:0.9rem;color:var(--text-muted);
+  text-decoration:none;margin-bottom:10px;
+  transition:color .2s;
+}
+.footer-col a:hover{color:var(--blue);}
+.footer-bottom{
+  display:flex;justify-content:space-between;align-items:center;
+  padding-top:24px;border-top:1px solid var(--border);
+  font-size:0.85rem;color:var(--text-muted);
+}
+.footer-social{display:flex;gap:12px;}
+.footer-social a{
+  width:36px;height:36px;border-radius:50%;
+  background:var(--bg-card);border:1px solid var(--border);
+  display:flex;align-items:center;justify-content:center;
+  color:var(--text-muted);text-decoration:none;
+  transition:all .2s;
+}
+.footer-social a:hover{color:var(--blue);border-color:var(--blue);}
+
+/* ── RESPONSIVE ── */
+@media(max-width:1024px){
+  .hero-grid{grid-template-columns:1fr;gap:48px;}
+  .hero-visual{max-width:500px;margin:0 auto;}
+  .features-grid{grid-template-columns:repeat(2,1fr);}
+  .problems-grid{grid-template-columns:repeat(2,1fr);}
+  .footer-grid{grid-template-columns:1fr 1fr;}
+}
+@media(max-width:768px){
+  header{padding:12px 20px;}
+  .header-search{display:none;}
+  .header-nav a{font-size:0.8rem;padding:6px 10px;}
+  #hero,section,footer{padding-left:20px;padding-right:20px;}
+  .hero-content h1{font-size:1.75rem;}
+  .features-grid{grid-template-columns:1fr;}
+  .sims-grid{grid-template-columns:1fr;}
+  .problems-grid{grid-template-columns:1fr;}
+  .resources-grid{grid-template-columns:1fr;}
+  .footer-grid{grid-template-columns:1fr;}
+  .footer-bottom{flex-direction:column;gap:16px;text-align:center;}
+}
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header>
+  <a href="https://puls-fizica.ro/" class="header-logo">PUL<span>S</span></a>
+  <div class="header-search">
+    <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
+    <input type="text" placeholder="Caută simulări, probleme..."/>
+  </div>
+  <nav class="header-nav">
+    <a href="https://puls-fizica.ro/about-us">Despre noi</a>
+    <a href="https://puls-fizica.ro/simulari">Simulări</a>
+    <a href="https://puls-fizica.ro/probleme">Probleme</a>
+    <a href="https://puls-fizica.ro/resurse">Resurse</a>
+    <a href="https://puls-fizica.ro/about-us#contact">Contact</a>
+  </nav>
+  <div class="header-icons">
+    <a href="#" class="header-icon" aria-label="Notificări">🔔</a>
+    <a href="https://puls-fizica.ro/profil" class="header-icon profile" aria-label="Profil">👤</a>
+  </div>
+</header>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-grid">
+    <div class="hero-content">
+      <h1>Descoperă fizica prin exerciții și simulări interactive</h1>
+      <p>PULS — Platforma educațională pentru studiul fizicii. Lucrează și învață prin probleme și simulări interactive. Înțelege fizica — nu o memora.</p>
+      <div class="hero-buttons">
+        <a href="https://puls-fizica.ro/probleme" class="btn btn-primary">Explorează problemele</a>
+        <a href="https://puls-fizica.ro/simulari" class="btn btn-secondary">Încearcă simulările</a>
+      </div>
+    </div>
+    <div class="hero-visual">
+      <div class="hero-wave">
+        <svg class="wave-svg" viewBox="0 0 400 200" preserveAspectRatio="xMidYMid meet">
+          <path d="M0,100 Q100,50 200,100 T400,100"/>
+          <path d="M0,120 Q100,70 200,120 T400,120"/>
+          <path d="M0,80 Q100,130 200,80 T400,80"/>
+        </svg>
+      </div>
+      <div class="hero-visual-caption">Simulare interactivă · Pendul, Unde, Lissajous</div>
+    </div>
+  </div>
+</section>
+
+<!-- CE ÎȚI OFERĂ PULS -->
+<section id="features">
+  <h2 class="section-title">Ce îți oferă PULS?</h2>
+  <div class="features-grid">
+    <div class="feature-card">
+      <div class="feature-icon">◫</div>
+      <h3>Probleme interactive</h3>
+      <p>Exerciții de fizică organizate pe nivel de dificultate și tematică pentru a-ți testa cunoștințele.</p>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon">∿</div>
+      <h3>Simulări vizuale</h3>
+      <p>Experimentează vizual concepte fizice: pendulul, undele sinusoidale și figurile Lissajous.</p>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon">○</div>
+      <h3>Resurse didactice</h3>
+      <p>Lecții teoretice și materiale educaționale care explică în detaliu conceptele fizice.</p>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon">⚡</div>
+      <h3>Progres monitorizat</h3>
+      <p>Urmărește evoluția și vizualizează statistici personalizate pe măsură ce rezolvi probleme.</p>
+    </div>
+  </div>
+</section>
+
+<!-- EXPLOREAZĂ SIMULĂRILE -->
+<section id="simulations">
+  <div class="section-inner">
+    <h2 class="section-title">Explorează simulările noastre</h2>
+    <div class="sims-grid">
+      <a href="https://puls-fizica.ro/simulari?category=pendule" class="sim-card">
+        <div class="sim-card-img">🔵</div>
+        <div class="sim-card-body">
+          <h3>Pendul</h3>
+          <p>Mișcare oscilantă, forțe, energie cinetică și potențială, conservarea energiei.</p>
+          <span class="btn btn-secondary">Încearcă</span>
+        </div>
+      </a>
+      <a href="https://puls-fizica.ro/simulari?category=unde" class="sim-card">
+        <div class="sim-card-img">🌊</div>
+        <div class="sim-card-body">
+          <h3>Unde</h3>
+          <p>Unde mecanice, electromagnetice, interferență, difracție și propagare.</p>
+          <span class="btn btn-secondary">Încearcă</span>
+        </div>
+      </a>
+      <a href="https://puls-fizica.ro/simulari?search=lissajous" class="sim-card">
+        <div class="sim-card-img">∞</div>
+        <div class="sim-card-body">
+          <h3>Lissajous</h3>
+          <p>Figuri parametrice, oscilații perpendiculare, frecvențe și faze.</p>
+          <span class="btn btn-secondary">Încearcă</span>
+        </div>
+      </a>
+      <a href="https://puls-fizica.ro/simulari?search=seism" class="sim-card">
+        <div class="sim-card-img">🌍</div>
+        <div class="sim-card-body">
+          <h3>Seism</h3>
+          <p>Unde seismice, propagare, reflexie, refracție și principii de seismologie.</p>
+          <span class="btn btn-secondary">Încearcă</span>
+        </div>
+      </a>
+    </div>
+    <div class="sims-cta">
+      <a href="https://puls-fizica.ro/simulari" class="btn">Vezi toate simulările</a>
+    </div>
+  </div>
+</section>
+
+<!-- PROBLEME INTERACTIVE -->
+<section id="problems">
+  <h2 class="section-title">Probleme interactive</h2>
+  <div class="problems-grid">
+    <div class="problem-card">
+      <div class="problem-icon">📐</div>
+      <h3>Începători</h3>
+      <p>Probleme simple pentru a înțelege conceptele de bază ale fizicii.</p>
+      <div class="problem-buttons">
+        <a href="https://puls-fizica.ro/probleme?difficulty=ușor" class="btn btn-primary">Încearcă</a>
+        <a href="https://puls-fizica.ro/probleme" class="btn btn-secondary">Detalii</a>
+      </div>
+    </div>
+    <div class="problem-card">
+      <div class="problem-icon">📖</div>
+      <h3>Intermediar</h3>
+      <p>Exerciții care combină mai multe concepte și necesită raționament.</p>
+      <div class="problem-buttons">
+        <a href="https://puls-fizica.ro/probleme?difficulty=mediu" class="btn btn-primary">Încearcă</a>
+        <a href="https://puls-fizica.ro/probleme" class="btn btn-secondary">Detalii</a>
+      </div>
+    </div>
+    <div class="problem-card">
+      <div class="problem-icon">💡</div>
+      <h3>Avansat</h3>
+      <p>Probleme complexe pentru pregătirea la olimpiade și examene.</p>
+      <div class="problem-buttons">
+        <a href="https://puls-fizica.ro/probleme?difficulty=dificil" class="btn btn-primary">Încearcă</a>
+        <a href="https://puls-fizica.ro/probleme" class="btn btn-secondary">Detalii</a>
+      </div>
+    </div>
+    <div class="problem-card">
+      <div class="problem-icon">🎯</div>
+      <h3>Concurs</h3>
+      <p>Probleme focusate pe teme specifice: pendul, unde, Lissajous, seism.</p>
+      <div class="problem-buttons">
+        <a href="https://puls-fizica.ro/probleme?difficulty=concurs" class="btn btn-primary">Încearcă</a>
+        <a href="https://puls-fizica.ro/probleme" class="btn btn-secondary">Detalii</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- RESURSE DIDACTICE -->
+<section id="resources">
+  <div class="section-inner">
+    <h2 class="section-title">Resurse didactice</h2>
+    <div class="resources-grid">
+      <a href="https://puls-fizica.ro/resurse/pendule" class="resource-card">
+        <div class="resource-img pendule"><span>Pendule</span></div>
+        <div class="resource-body">
+          <span class="btn btn-secondary">Explorează</span>
+        </div>
+      </a>
+      <a href="https://puls-fizica.ro/resurse/unde" class="resource-card">
+        <div class="resource-img unde"><span>Unde</span></div>
+        <div class="resource-body">
+          <span class="btn btn-secondary">Explorează</span>
+        </div>
+      </a>
+      <a href="https://puls-fizica.ro/resurse/lissajous" class="resource-card">
+        <div class="resource-img lissajous"><span>Figuri Lissajous</span></div>
+        <div class="resource-body">
+          <span class="btn btn-secondary">Explorează</span>
+        </div>
+      </a>
+      <a href="https://puls-fizica.ro/resurse/termodinamica" class="resource-card">
+        <div class="resource-img termodinamica"><span>Termodinamică</span></div>
+        <div class="resource-body">
+          <span class="btn btn-secondary">Explorează</span>
+        </div>
+      </a>
+      <a href="https://puls-fizica.ro/resurse/mecanica" class="resource-card">
+        <div class="resource-img mecanica"><span>Mecanică</span></div>
+        <div class="resource-body">
+          <span class="btn btn-secondary">Explorează</span>
+        </div>
+      </a>
+      <a href="https://puls-fizica.ro/resurse/optica" class="resource-card">
+        <div class="resource-img optica"><span>Optică</span></div>
+        <div class="resource-body">
+          <span class="btn btn-secondary">Explorează</span>
+        </div>
+      </a>
+    </div>
+    <div class="resources-cta">
+      <a href="https://puls-fizica.ro/resurse" class="btn">Vezi toate resursele</a>
+    </div>
+  </div>
+</section>
+
+<!-- DESPRE NOI -->
+<section id="about">
+  <h2 class="section-title">Despre noi</h2>
+  <div class="about-content">
+    <p>Suntem dedicați educației moderne și inovării în predarea fizicii. Platforma noastră oferă simulări interactive și exerciții pentru a transforma învățarea într-o experiență captivantă și practică.</p>
+    <p>Povestea noastră a început cu o simplă întrebare: cum putem face ca fenomenele oscilatorii să prindă viață și să devină mai ușor de înțeles? Noi, o echipă de elevi pasionați de știință, am simțit mereu că există o lume fascinantă dincolo de formule și definiții.</p>
+  </div>
+  <div class="about-cta">
+    <a href="https://puls-fizica.ro/about-us" class="btn">Află mai multe</a>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-grid">
+    <div class="footer-brand">
+      <a href="https://puls-fizica.ro/" class="logo">PUL<span>S</span></a>
+      <p>Platforma educațională pentru studiul fizicii prin simulări interactive și exerciții. Pendul, Unde, Lissajous, Seism.</p>
+    </div>
+    <div class="footer-col">
+      <h4>Platformă</h4>
+      <a href="https://puls-fizica.ro/">Acasă</a>
+      <a href="https://puls-fizica.ro/about-us">Despre noi</a>
+      <a href="https://puls-fizica.ro/probleme">Probleme</a>
+      <a href="https://puls-fizica.ro/simulari">Simulări</a>
+      <a href="https://puls-fizica.ro/resurse">Resurse</a>
+    </div>
+    <div class="footer-col">
+      <h4>Resurse</h4>
+      <a href="https://puls-fizica.ro/resurse/pendule">Pendule</a>
+      <a href="https://puls-fizica.ro/resurse/unde">Unde</a>
+      <a href="https://puls-fizica.ro/resurse/lissajous">Lissajous</a>
+      <a href="https://puls-fizica.ro/probleme/bac">BAC</a>
+    </div>
+    <div class="footer-col">
+      <h4>Legal</h4>
+      <a href="#">Termeni și condiții</a>
+      <a href="#">Politica de confidențialitate</a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2026 PULS. Toate drepturile rezervate. Realizat cu ❤ în România</span>
+    <div class="footer-social">
+      <a href="https://github.com/Stefanarctic/PULS" aria-label="GitHub">⌘</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+// Search redirect
+document.querySelector('.header-search input').addEventListener('keypress', function(e) {
+  if (e.key === 'Enter') {
+    const q = this.value.trim();
+    if (q) window.location.href = 'https://puls-fizica.ro/search?q=' + encodeURIComponent(q);
+  }
+});
+</script>
+</body>
+</html>

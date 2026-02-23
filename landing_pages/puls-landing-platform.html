@@ -1,0 +1,1044 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>PULS — Platformă Educațională pentru Fizică | Simulări și Probleme BAC</title>
+<meta name="description" content="Platformă educațională modernă pentru studiul fizicii. 30+ simulări interactive, probleme BAC cu rezolvări, resurse teoretice și Profesorul Whiz — asistent AI. 100% gratuit."/>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@400;600;700;900&family=Epilogue:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet"/>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+
+/* Culori și stiluri site PULS (dark mode) */
+:root{
+  --bg:rgb(18, 18, 18);
+  --bg2:rgb(26, 26, 26);
+  --bg3:rgb(37, 37, 37);
+  --bg4:#111827;
+  --border:#374151;
+  --border2:rgba(255,255,255,0.1);
+  --blue:#3b82f6;
+  --blue-hover:#2563eb;
+  --blue-light:#60a5fa;
+  --blue-dim:rgba(59,130,246,0.12);
+  --blue-glow:rgba(59,130,246,0.25);
+  --teal:#22d3ee;
+  --teal-dim:rgba(34,211,238,0.1);
+  --orange:#f97316;
+  --green:#22c55e;
+  --purple:#a855f7;
+  --text:#ffffff;
+  --muted:#a1a1aa;
+  --muted2:#9ca3af;
+  --font-h:'Unbounded',sans-serif;
+  --font-b:'Epilogue',sans-serif;
+}
+
+html{scroll-behavior:smooth;}
+body{background:var(--bg);color:var(--text);font-family:var(--font-b);font-size:16px;line-height:1.6;overflow-x:hidden;}
+
+/* ── NAV ── */
+nav{
+  position:fixed;top:0;left:0;right:0;z-index:200;
+  display:flex;align-items:center;justify-content:space-between;
+  padding:0 40px;height:64px;
+  background:var(--bg);
+  backdrop-filter:blur(16px);
+  border-bottom:1px solid var(--border);
+}
+.logo{
+  font-family:var(--font-h);font-size:1.5rem;font-weight:900;
+  letter-spacing:-0.04em;color:var(--text);text-decoration:none;
+  display:flex;align-items:center;gap:2px;
+}
+.logo .lu{color:var(--blue);}
+nav .links{display:flex;align-items:center;gap:6px;}
+nav .links a{
+  color:var(--muted2);font-size:0.82rem;font-weight:400;
+  text-decoration:none;padding:6px 12px;border-radius:6px;
+  transition:all .2s;
+}
+nav .links a:hover{color:var(--text);background:rgba(255,255,255,0.05);}
+.nav-btn{
+  background:var(--blue);color:#fff !important;
+  padding:8px 18px !important;border-radius:0.75rem;
+  font-weight:600 !important;border:2px solid var(--blue) !important;
+  transition:all .25s cubic-bezier(0.4,0,0.2,1) !important;
+}
+.nav-btn:hover{background:var(--blue-hover) !important;border-color:var(--blue-hover) !important;transform:translateY(-2px);box-shadow:0 4px 12px var(--blue-glow) !important;}
+
+/* ── HERO ── */
+#hero{
+  min-height:100vh;padding:100px 40px 60px;
+  display:flex;align-items:center;
+  position:relative;overflow:hidden;
+}
+.hero-inner{
+  max-width:1200px;margin:0 auto;width:100%;
+  display:grid;grid-template-columns:1fr 480px;gap:80px;align-items:center;
+  position:relative;z-index:2;
+}
+.hero-pill{
+  display:inline-flex;align-items:center;gap:8px;
+  background:var(--blue-dim);border:1px solid var(--blue);
+  padding:5px 14px;border-radius:100px;
+  font-size:0.75rem;font-weight:500;color:var(--blue-light);
+  letter-spacing:0.05em;text-transform:uppercase;
+  margin-bottom:28px;
+}
+.blink{width:7px;height:7px;background:var(--blue);border-radius:50%;animation:blink 1.6s ease-in-out infinite;}
+@keyframes blink{0%,100%{opacity:1;transform:scale(1);}50%{opacity:.3;transform:scale(.6);}}
+
+h1{
+  font-family:var(--font-h);
+  font-size:clamp(2.4rem,4.5vw,3.8rem);
+  font-weight:900;letter-spacing:-0.04em;line-height:1.04;
+  margin-bottom:24px;
+}
+h1 .accent{color:var(--blue);}
+h1 .accent2{color:var(--teal);}
+
+.hero-desc{
+  font-size:1.05rem;color:var(--muted2);font-weight:300;
+  line-height:1.75;max-width:480px;margin-bottom:36px;
+}
+.hero-actions{display:flex;gap:12px;flex-wrap:wrap;align-items:center;}
+.btn{
+  display:inline-flex;align-items:center;gap:8px;
+  padding:1rem 2rem;border-radius:0.75rem;
+  font-family:var(--font-b);font-size:0.95rem;font-weight:600;
+  cursor:pointer;text-decoration:none;transition:all .25s cubic-bezier(0.4,0,0.2,1);
+  border:2px solid transparent;
+}
+.btn-blue{
+  background:var(--blue);color:#fff;border-color:var(--blue);
+}
+.btn-blue:hover{background:var(--blue-hover);border-color:var(--blue-hover);transform:translateY(-2px);box-shadow:0 4px 12px var(--blue-glow);}
+.btn-outline{
+  background:transparent;color:var(--blue-light);border:2px solid var(--blue-light);
+}
+.btn-outline:hover{background:rgba(96,165,250,0.1);border-color:var(--blue);box-shadow:0 4px 12px rgba(96,165,250,0.25);}
+
+.hero-proof{
+  display:flex;gap:40px;margin-top:44px;
+  padding-top:32px;border-top:1px solid var(--border);
+  flex-wrap:wrap;
+}
+.proof-item .n{
+  font-family:var(--font-h);font-size:1.9rem;font-weight:900;
+  letter-spacing:-0.04em;color:var(--text);
+}
+.proof-item .n em{color:var(--blue);font-style:normal;}
+.proof-item .l{font-size:0.78rem;color:var(--muted);margin-top:2px;}
+
+/* ── HERO VISUAL ── */
+.hero-vis{position:relative;}
+.vis-main{
+  background:var(--bg4);
+  border:1px solid var(--border);
+  border-radius:16px;
+  overflow:hidden;
+  position:relative;
+}
+.vis-topbar{
+  display:flex;align-items:center;gap:8px;
+  padding:14px 18px;
+  border-bottom:1px solid var(--border);
+  background:rgba(255,255,255,0.02);
+}
+.dot{width:10px;height:10px;border-radius:50%;}
+.dot.r{background:#ef4444;}
+.dot.y{background:#eab308;}
+.dot.g{background:#22c55e;}
+.vis-title{font-size:0.75rem;color:var(--muted);margin-left:6px;font-family:monospace;}
+
+.sim-preview{
+  padding:20px;
+  background:var(--bg3);
+  position:relative;
+}
+canvas#pendulCanvas{display:block;margin:0 auto;}
+
+.sim-params{
+  padding:14px 18px;
+  display:grid;grid-template-columns:1fr 1fr;gap:8px;
+}
+.param{
+  background:var(--bg3);border:1px solid var(--border);
+  border-radius:8px;padding:10px 12px;
+}
+.param-label{font-size:0.68rem;color:var(--muted);text-transform:uppercase;letter-spacing:.06em;margin-bottom:4px;}
+.param-val{font-family:var(--font-h);font-size:1rem;font-weight:700;color:var(--text);}
+.param-val.blue{color:var(--blue);}
+.param-val.teal{color:var(--teal);}
+
+.fcard{
+  position:absolute;
+  background:rgba(17,18,21,0.92);
+  border:1px solid var(--border2);
+  border-radius:10px;padding:12px 14px;
+  backdrop-filter:blur(12px);
+  font-size:0.78rem;
+  box-shadow:0 20px 40px rgba(0,0,0,0.4);
+}
+.fcard .fc-top{color:var(--muted);margin-bottom:5px;font-size:0.7rem;text-transform:uppercase;letter-spacing:.06em;}
+.fcard .fc-val{font-family:var(--font-h);font-size:1rem;font-weight:700;}
+.fc-whiz{top:-18px;right:-16px;animation:floaty 3.5s ease-in-out infinite;display:flex;align-items:center;gap:8px;}
+.fc-score{bottom:10px;left:-20px;animation:floaty 4s ease-in-out infinite reverse;}
+@keyframes floaty{0%,100%{transform:translateY(0);}50%{transform:translateY(-8px);}}
+
+.bg-blob{
+  position:absolute;border-radius:50%;
+  filter:blur(120px);opacity:.07;pointer-events:none;
+}
+.b1{width:700px;height:700px;background:var(--blue);top:-200px;right:-100px;}
+.b2{width:500px;height:500px;background:var(--teal);bottom:-150px;left:-100px;}
+
+/* ── SECTION COMMON ── */
+section{padding:96px 40px;}
+.s-inner{max-width:1200px;margin:0 auto;}
+.s-tag{
+  font-size:0.72rem;text-transform:uppercase;letter-spacing:.12em;
+  color:var(--blue-light);font-weight:600;margin-bottom:14px;
+}
+h2{
+  font-family:var(--font-h);
+  font-size:clamp(1.8rem,3.5vw,2.8rem);
+  font-weight:900;letter-spacing:-0.04em;line-height:1.08;
+  margin-bottom:16px;
+}
+h2 em{font-style:normal;color:var(--blue-light);}
+.s-sub{font-size:1rem;color:var(--muted2);max-width:540px;line-height:1.7;font-weight:300;}
+
+/* ── SIMULĂRI ── */
+#sims{background:var(--bg2);}
+.sims-head{display:flex;justify-content:space-between;align-items:flex-end;margin-bottom:56px;flex-wrap:wrap;gap:24px;}
+.sims-grid{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:3px;
+  border-radius:16px;overflow:hidden;
+}
+.sim-card{
+  background:var(--bg);
+  padding:28px 24px 24px;
+  position:relative;overflow:hidden;
+  cursor:pointer;transition:background .25s;
+  border:1px solid transparent;
+  text-decoration:none;color:inherit;display:block;
+}
+.sim-card:hover{background:var(--blue-dim);border-color:var(--blue);}
+.sim-card::after{
+  content:'';position:absolute;inset:0;
+  background:linear-gradient(180deg,transparent 60%,rgba(59,130,246,0.06));
+  opacity:0;transition:opacity .3s;
+}
+.sim-card:hover::after{opacity:1;}
+.sim-icon{font-size:2rem;margin-bottom:16px;}
+.sim-cat{
+  font-size:0.68rem;text-transform:uppercase;letter-spacing:.08em;
+  color:var(--muted);margin-bottom:6px;
+}
+.sim-card h3{
+  font-family:var(--font-h);font-size:.9rem;font-weight:700;
+  letter-spacing:-.02em;margin-bottom:8px;line-height:1.3;
+}
+.sim-card p{font-size:0.8rem;color:var(--muted);line-height:1.6;}
+.sim-link{
+  display:inline-flex;align-items:center;gap:4px;
+  margin-top:16px;font-size:0.78rem;font-weight:500;color:var(--blue-light);
+  transition:gap .2s;
+}
+.sim-card:hover .sim-link{gap:8px;}
+
+/* ── PROBLEME ── */
+.prob-layout{
+  display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:start;
+  margin-top:56px;
+}
+.prob-filters{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:24px;}
+.ftag{
+  padding:5px 12px;border-radius:6px;font-size:0.78rem;font-weight:500;
+  border:1px solid var(--border2);background:transparent;color:var(--muted2);
+  cursor:pointer;transition:all .2s;text-decoration:none;display:inline-block;
+}
+.ftag:hover,.ftag.active{background:var(--blue-dim);border-color:var(--blue);color:var(--blue-light);}
+.ftag.orange{background:rgba(249,115,22,0.12);border-color:rgba(249,115,22,.3);color:var(--orange);}
+.ftag.purple{background:rgba(168,85,247,0.12);border-color:rgba(168,85,247,.3);color:var(--purple);}
+.prob-list{display:flex;flex-direction:column;gap:8px;}
+.prob-item{
+  background:var(--bg2);border:1px solid var(--border);
+  border-radius:10px;padding:16px 20px;
+  display:flex;align-items:center;justify-content:space-between;
+  gap:16px;cursor:pointer;transition:all .25s;
+  text-decoration:none;color:inherit;
+}
+.prob-item:hover{border-color:var(--blue);background:var(--blue-dim);}
+.prob-info{}
+.prob-num{font-size:0.7rem;color:var(--muted);margin-bottom:3px;}
+.prob-title{font-weight:500;font-size:0.9rem;color:var(--text);}
+.prob-cat{font-size:0.72rem;color:var(--muted);margin-top:2px;}
+.diff{
+  padding:4px 10px;border-radius:6px;font-size:0.7rem;
+  font-weight:600;flex-shrink:0;
+}
+.diff.usor{background:rgba(34,197,94,.12);color:var(--green);}
+.diff.mediu{background:rgba(234,179,8,.1);color:#eab308;}
+.diff.dificil{background:rgba(249,115,22,.12);color:var(--orange);}
+.diff.concurs{background:rgba(168,85,247,.12);color:var(--purple);}
+
+.prob-feature{
+  background:var(--bg2);border:1px solid var(--border);
+  border-radius:16px;padding:36px;
+  position:sticky;top:80px;
+}
+.prob-feature h3{
+  font-family:var(--font-h);font-size:1.2rem;font-weight:700;
+  letter-spacing:-.03em;margin-bottom:16px;
+}
+.feature-blocks{display:flex;flex-direction:column;gap:12px;margin-top:24px;}
+.feat-block{
+  background:var(--bg3);border:1px solid var(--border);
+  border-radius:10px;padding:16px;
+  display:flex;gap:12px;align-items:flex-start;
+}
+.feat-icon2{font-size:1.3rem;flex-shrink:0;margin-top:2px;}
+.feat-block h4{font-size:.88rem;font-weight:600;margin-bottom:4px;}
+.feat-block p{font-size:.8rem;color:var(--muted);line-height:1.55;}
+
+/* ── BAC SECTION ── */
+#bac{background:var(--bg2);}
+.bac-grid{
+  display:grid;grid-template-columns:1fr 1fr 1fr;gap:16px;
+  margin-top:56px;
+}
+.bac-card{
+  border:1px solid var(--border);border-radius:14px;
+  padding:28px 24px;transition:all .3s;cursor:pointer;
+  position:relative;overflow:hidden;
+  text-decoration:none;color:inherit;display:block;
+}
+.bac-card:hover{transform:translateY(-4px);border-color:var(--blue);}
+.bac-card.hero-bac{
+  grid-column:span 2;
+  background:linear-gradient(135deg,var(--blue-dim),rgba(34,211,238,.05));
+  border-color:var(--blue);
+}
+.bac-year{
+  font-family:var(--font-h);font-size:0.7rem;font-weight:700;
+  text-transform:uppercase;letter-spacing:.1em;
+  color:var(--blue-light);margin-bottom:12px;
+}
+.bac-card h3{
+  font-family:var(--font-h);font-size:1rem;font-weight:700;
+  letter-spacing:-.02em;margin-bottom:8px;line-height:1.3;
+}
+.bac-card p{font-size:.82rem;color:var(--muted);line-height:1.6;}
+.bac-meta{
+  display:flex;align-items:center;justify-content:space-between;
+  margin-top:20px;padding-top:16px;border-top:1px solid var(--border);
+}
+.bac-count{font-size:.78rem;color:var(--muted);}
+.bac-count strong{color:var(--text);font-weight:600;}
+.arrow{
+  width:30px;height:30px;border-radius:7px;
+  border:1px solid var(--border2);display:flex;align-items:center;justify-content:center;
+  font-size:.85rem;color:var(--muted);transition:all .2s;
+}
+.bac-card:hover .arrow{border-color:var(--blue);color:var(--blue-light);}
+
+/* ── RESURSE ── */
+.resurse-grid{
+  display:grid;grid-template-columns:repeat(3,1fr);gap:16px;
+  margin-top:48px;
+}
+.res-card{
+  background:var(--bg2);border:1px solid var(--border);
+  border-radius:12px;padding:24px 20px;
+  transition:all .25s;cursor:pointer;
+  text-decoration:none;color:inherit;display:block;
+}
+.res-card:hover{border-color:var(--blue);transform:translateY(-2px);}
+.res-card h4{font-family:var(--font-h);font-size:.88rem;font-weight:700;letter-spacing:-.02em;margin-bottom:8px;}
+.res-card p{font-size:.8rem;color:var(--muted);line-height:1.6;}
+.res-link{
+  display:inline-flex;align-items:center;gap:4px;
+  margin-top:14px;font-size:.78rem;color:var(--blue-light);font-weight:500;
+}
+
+/* ── WHIZ ── */
+#whiz{background:var(--bg2);}
+.whiz-layout{
+  display:grid;grid-template-columns:1fr 480px;gap:64px;align-items:center;
+}
+.whiz-chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:28px;}
+.chip{
+  padding:8px 16px;border-radius:8px;
+  background:var(--bg3);border:1px solid var(--border2);
+  font-size:.82rem;color:var(--muted2);cursor:pointer;
+  transition:all .2s;
+}
+.chip:hover{background:var(--blue-dim);border-color:var(--blue);color:var(--blue-light);}
+.whiz-ui{
+  background:var(--bg3);border:1px solid var(--border2);
+  border-radius:16px;overflow:hidden;
+}
+.whiz-header{
+  display:flex;align-items:center;gap:10px;
+  padding:16px 20px;border-bottom:1px solid var(--border);
+  background:rgba(255,255,255,0.02);
+}
+.whiz-avatar{
+  width:36px;height:36px;border-radius:50%;
+  background:linear-gradient(135deg,#3b82f6,#22d3ee);
+  display:flex;align-items:center;justify-content:center;
+  font-size:1.1rem;
+}
+.whiz-header strong{font-size:.9rem;font-weight:600;}
+.whiz-header span{font-size:.75rem;color:var(--green);display:block;}
+.whiz-body{padding:20px;display:flex;flex-direction:column;gap:10px;}
+.msg{
+  padding:12px 14px;border-radius:10px;font-size:.82rem;line-height:1.55;
+  max-width:88%;
+}
+.msg.bot{background:var(--bg);border:1px solid var(--border);color:var(--muted2);align-self:flex-start;}
+.msg.user{background:var(--blue-dim);border:1px solid var(--blue);color:var(--text);align-self:flex-end;}
+.whiz-input{
+  display:flex;gap:8px;padding:14px 16px;border-top:1px solid var(--border);
+}
+.whiz-input input{
+  flex:1;background:var(--bg);border:1px solid var(--border2);
+  color:var(--text);padding:10px 14px;border-radius:8px;
+  font-family:var(--font-b);font-size:.83rem;outline:none;
+}
+.whiz-input input::placeholder{color:var(--muted);}
+.whiz-send{
+  width:36px;height:36px;border-radius:8px;
+  background:var(--blue);border:none;cursor:pointer;
+  display:flex;align-items:center;justify-content:center;color:#fff;
+  font-size:1rem;transition:background .2s;
+}
+.whiz-send:hover{background:var(--blue-hover);}
+
+/* ── CTA ── */
+#cta{
+  text-align:center;position:relative;overflow:hidden;
+  padding:120px 40px;
+}
+.cta-glow{
+  position:absolute;inset:0;
+  background:radial-gradient(ellipse 70% 60% at 50% 50%,rgba(59,130,246,.1) 0%,transparent 70%);
+}
+#cta .s-inner{position:relative;z-index:2;}
+#cta h2{font-size:clamp(2.2rem,5vw,4rem);margin-bottom:20px;}
+#cta .s-sub{margin:0 auto 44px;font-size:1.1rem;}
+.cta-form{
+  display:flex;gap:10px;justify-content:center;flex-wrap:wrap;
+  max-width:440px;margin:0 auto 16px;
+}
+.cta-input{
+  flex:1;min-width:200px;
+  background:var(--bg2);border:1px solid var(--border2);
+  color:var(--text);padding:13px 16px;
+  border-radius:8px;font-family:var(--font-b);font-size:.95rem;outline:none;
+  transition:border-color .2s;
+}
+.cta-input:focus{border-color:var(--blue);outline:none;}
+.cta-input::placeholder{color:var(--muted);}
+.cta-note{font-size:.78rem;color:var(--muted);}
+.cta-free-badge{
+  display:inline-flex;align-items:center;gap:8px;
+  background:rgba(34,197,94,0.12);border:1px solid rgba(34,197,94,0.3);
+  padding:8px 16px;border-radius:8px;
+  font-size:.85rem;font-weight:600;color:var(--green);
+  margin-top:20px;
+}
+
+/* ── FOOTER ── */
+footer{
+  border-top:1px solid var(--border);
+  padding:48px 40px;
+}
+.footer-inner{
+  max-width:1200px;margin:0 auto;
+  display:grid;grid-template-columns:200px 1fr 1fr 1fr 1fr;gap:40px;
+}
+.footer-logo{font-family:var(--font-h);font-size:1.3rem;font-weight:900;letter-spacing:-.04em;margin-bottom:12px;}
+.footer-logo .lu{color:var(--blue);}
+.footer-desc{font-size:.82rem;color:var(--muted);line-height:1.6;}
+.foot-col h5{font-size:.78rem;font-weight:600;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);margin-bottom:14px;}
+.foot-col a{display:block;font-size:.83rem;color:var(--muted2);text-decoration:none;margin-bottom:8px;transition:color .2s;}
+.foot-col a:hover{color:var(--text);}
+.footer-bottom{
+  max-width:1200px;margin:32px auto 0;
+  padding-top:24px;border-top:1px solid var(--border);
+  display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px;
+  font-size:.78rem;color:var(--muted);
+}
+
+.reveal{opacity:0;transform:translateY(24px);transition:opacity .6s ease,transform .6s ease;}
+.reveal.in{opacity:1;transform:translateY(0);}
+
+@media(max-width:1024px){
+  .hero-inner{grid-template-columns:1fr;gap:48px;}
+  .hero-vis{display:none;}
+  .sims-grid{grid-template-columns:repeat(2,1fr);}
+  .bac-grid{grid-template-columns:1fr 1fr;}
+  .bac-card.hero-bac{grid-column:span 2;}
+  .whiz-layout{grid-template-columns:1fr;}
+  .footer-inner{grid-template-columns:1fr 1fr;}
+}
+@media(max-width:768px){
+  nav{padding:0 20px;}
+  nav .links{display:none;}
+  section,#hero,#cta,footer{padding-left:20px;padding-right:20px;}
+  h1{font-size:2.2rem;}
+  .sims-grid{grid-template-columns:1fr 1fr;}
+  .prob-layout{grid-template-columns:1fr;}
+  .prob-feature{display:none;}
+  .bac-grid{grid-template-columns:1fr;}
+  .bac-card.hero-bac{grid-column:span 1;}
+  .resurse-grid{grid-template-columns:1fr 1fr;}
+  .footer-inner{grid-template-columns:1fr 1fr;}
+}
+@media(max-width:480px){
+  .sims-grid{grid-template-columns:1fr;}
+  .resurse-grid{grid-template-columns:1fr;}
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a class="logo" href="https://puls-fizica.ro/">P<span class="lu">u</span>LS</a>
+  <div class="links">
+    <a href="https://puls-fizica.ro/#sims">Simulări</a>
+    <a href="https://puls-fizica.ro/#probleme">Probleme</a>
+    <a href="https://puls-fizica.ro/probleme/bac">BAC</a>
+    <a href="https://puls-fizica.ro/resurse">Resurse</a>
+    <a href="#whiz">Profesorul Whiz</a>
+    <a href="https://puls-fizica.ro/" class="nav-btn">Accesează platforma</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="bg-blob b1"></div>
+  <div class="bg-blob b2"></div>
+  <div class="hero-inner">
+    <div>
+      <div class="hero-pill"><span class="blink"></span>P.U.L.S. · Pendul, Unde, Lissajous, Seism</div>
+      <h1>Descoperă fizica prin<br><span class="accent">exerciții</span> și<br><span class="accent2">simulări interactive</span></h1>
+      <p class="hero-desc">PULS este platforma educațională pentru studiul conceptelor de Pendul, Unde, Lissajous și Seism prin probleme și simulări interactive. Înțelege fizica — nu o memora. 100% gratuit.</p>
+      <div class="hero-actions">
+        <a href="https://puls-fizica.ro/probleme" class="btn btn-blue">Explorează problemele →</a>
+        <a href="https://puls-fizica.ro/simulari" class="btn btn-outline">Încearcă simulările</a>
+      </div>
+      <div class="hero-proof">
+        <div class="proof-item">
+          <div class="n">30<em>+</em></div>
+          <div class="l">Simulări interactive</div>
+        </div>
+        <div class="proof-item">
+          <div class="n">1000<em>+</em></div>
+          <div class="l">Probleme BAC</div>
+        </div>
+        <div class="proof-item">
+          <div class="n">10<em>+</em></div>
+          <div class="l">Module de fizică</div>
+        </div>
+        <div class="proof-item">
+          <div class="n">100<em>%</em></div>
+          <div class="l">Gratuit</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="hero-vis">
+      <div class="vis-main">
+        <div class="vis-topbar">
+          <span class="dot r"></span><span class="dot y"></span><span class="dot g"></span>
+          <span class="vis-title">Pendul Gravitațional · Simulare</span>
+        </div>
+        <div class="sim-preview">
+          <canvas id="pendulCanvas" width="400" height="200"></canvas>
+        </div>
+        <div class="sim-params">
+          <div class="param"><div class="param-label">Lungime (m)</div><div class="param-val blue" id="pLen">1.20</div></div>
+          <div class="param"><div class="param-label">Perioadă (s)</div><div class="param-val teal" id="pPer">2.20</div></div>
+          <div class="param"><div class="param-label">Amplitudine (°)</div><div class="param-val" id="pAmp">30°</div></div>
+          <div class="param"><div class="param-label">T = 2π√(L/g)</div><div class="param-val blue">Formula</div></div>
+        </div>
+      </div>
+      <div class="fcard fc-whiz">
+        <div class="fc-top">Profesorul Whiz</div>
+        <div class="fc-val">🧙 Cu ce te pot ajuta?</div>
+      </div>
+      <div class="fcard fc-score">
+        <div class="fc-top">Ultima problemă</div>
+        <div class="fc-val" style="color:var(--green)">10/10 · 100% ✓</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SIMULĂRI -->
+<section id="sims">
+  <div class="s-inner">
+    <div class="sims-head reveal">
+      <div>
+        <div class="s-tag">Simulări interactive</div>
+        <h2>Explorează simulările<br><em>noastre</em></h2>
+      </div>
+      <p class="s-sub" style="max-width:320px;">Vizualizează fenomene fizice în timp real. Modifică parametri și observă efectele instantaneu.</p>
+    </div>
+    <div class="sims-grid">
+      <a href="https://puls-fizica.ro/simulari?category=pendule" class="sim-card reveal">
+        <div class="sim-icon">🔵</div>
+        <div class="sim-cat">Pendule</div>
+        <h3>Pendul Gravitațional</h3>
+        <p>Simulează mișcarea pendulului simplu, amortizat și neliniar. Studiază perioada, energia și amortizarea.</p>
+        <div class="sim-link">Explorează →</div>
+      </a>
+      <a href="https://puls-fizica.ro/simulari?category=unde" class="sim-card reveal" style="transition-delay:.07s">
+        <div class="sim-icon">🌊</div>
+        <div class="sim-cat">Unde</div>
+        <h3>Simulator de Undă</h3>
+        <p>Unde mecanice, electromagnetice, interferență și difracție. Tub sonor și undă staționară în coarda vibranta.</p>
+        <div class="sim-link">Explorează →</div>
+      </a>
+      <a href="https://puls-fizica.ro/simulari?search=lissajous" class="sim-card reveal" style="transition-delay:.14s">
+        <div class="sim-icon">∞</div>
+        <div class="sim-cat">Lissajous</div>
+        <h3>Figuri Lissajous</h3>
+        <p>Curbe generate din două oscilații perpendiculare. Explorează rapoartele de frecvență și diferența de fază.</p>
+        <div class="sim-link">Explorează →</div>
+      </a>
+      <a href="https://puls-fizica.ro/simulari?search=seism" class="sim-card reveal" style="transition-delay:.21s">
+        <div class="sim-icon">🌍</div>
+        <div class="sim-cat">Seismologie</div>
+        <h3>Simulator de Seism</h3>
+        <p>Animație a undelor seismice P, S, L și R generate în timpul unui cutremur. Magnitudinea Richter inclusă.</p>
+        <div class="sim-link">Explorează →</div>
+      </a>
+      <a href="https://puls-fizica.ro/simulari?category=termodinamica" class="sim-card reveal" style="transition-delay:.07s">
+        <div class="sim-icon">🔥</div>
+        <div class="sim-cat">Termodinamică</div>
+        <h3>Procese Termodinamice</h3>
+        <p>Procese izotermice, izobare, izocoare și adiabatice. Motoare termice și diagrama p-V.</p>
+        <div class="sim-link">Explorează →</div>
+      </a>
+      <a href="https://puls-fizica.ro/simulari?category=electricitate" class="sim-card reveal" style="transition-delay:.14s">
+        <div class="sim-icon">⚡</div>
+        <div class="sim-cat">Electricitate</div>
+        <h3>Circuite Electrice</h3>
+        <p>Construiește circuite cu rezistoare, condensatoare și bobine. Legile lui Ohm și Kirchhoff vizualizate.</p>
+        <div class="sim-link">Explorează →</div>
+      </a>
+      <a href="https://puls-fizica.ro/simulari?category=astronomie" class="sim-card reveal" style="transition-delay:.21s">
+        <div class="sim-icon">🔭</div>
+        <div class="sim-cat">Astronomie</div>
+        <h3>Mișcarea Planetelor</h3>
+        <p>Cele trei legi ale lui Kepler vizualizate. Simulare a orbitelor eliptice cu corecții relativiste.</p>
+        <div class="sim-link">Explorează →</div>
+      </a>
+      <a href="https://puls-fizica.ro/simulari?search=optică" class="sim-card reveal" style="transition-delay:.28s">
+        <div class="sim-icon">🔬</div>
+        <div class="sim-cat">Optică</div>
+        <h3>Reflexie și Refracție</h3>
+        <p>Lentile subțiri, reflexie, refracție, dispersia luminii și refracția atmosferică.</p>
+        <div class="sim-link">Explorează →</div>
+      </a>
+    </div>
+    <div style="text-align:center;margin-top:32px;" class="reveal">
+      <a href="https://puls-fizica.ro/simulari" class="btn btn-outline">Vizionează toate simulările</a>
+    </div>
+  </div>
+</section>
+
+<!-- PROBLEME -->
+<section id="probleme">
+  <div class="s-inner">
+    <div class="reveal">
+      <div class="s-tag">Probleme de fizică</div>
+      <h2>Probleme interactive<br><em>pentru fiecare nivel</em></h2>
+      <p class="s-sub">Rezolvă probleme de fizică cu feedback instant, scor și progres urmărit. De la exerciții ușoare până la probleme de olimpiadă.</p>
+    </div>
+    <div class="prob-layout">
+      <div>
+        <div class="prob-filters reveal" style="transition-delay:.1s">
+          <a href="https://puls-fizica.ro/probleme" class="ftag active">Toate</a>
+          <a href="https://puls-fizica.ro/probleme?difficulty=mediu" class="ftag">Mecanică</a>
+          <a href="https://puls-fizica.ro/probleme?difficulty=mediu" class="ftag">Oscilații</a>
+          <a href="https://puls-fizica.ro/probleme?difficulty=mediu" class="ftag">Unde</a>
+          <a href="https://puls-fizica.ro/probleme?difficulty=mediu" class="ftag">Lissajous</a>
+          <a href="https://puls-fizica.ro/probleme?difficulty=mediu" class="ftag">Seismologie</a>
+          <a href="https://puls-fizica.ro/probleme?difficulty=concurs" class="ftag orange">Concurs</a>
+          <a href="https://puls-fizica.ro/probleme-grile" class="ftag purple">Grile</a>
+        </div>
+        <div class="prob-list">
+          <a href="https://puls-fizica.ro/probleme" class="prob-item reveal" style="transition-delay:.1s">
+            <div class="prob-info">
+              <div class="prob-num">Oscilații</div>
+              <div class="prob-title">Pendul matematic — Determinarea perioadei și energiei mecanice</div>
+              <div class="prob-cat">Probleme interactive cu feedback</div>
+            </div>
+            <span class="diff mediu">mediu</span>
+          </a>
+          <a href="https://puls-fizica.ro/probleme" class="prob-item reveal" style="transition-delay:.15s">
+            <div class="prob-info">
+              <div class="prob-num">Unde</div>
+              <div class="prob-title">Undă mecanică pe coardă — Determinarea lungimii de undă</div>
+              <div class="prob-cat">Probleme interactive cu feedback</div>
+            </div>
+            <span class="diff mediu">mediu</span>
+          </a>
+          <a href="https://puls-fizica.ro/probleme" class="prob-item reveal" style="transition-delay:.2s">
+            <div class="prob-info">
+              <div class="prob-num">Oscilații</div>
+              <div class="prob-title">Rezonanța în oscilațiile forțate</div>
+              <div class="prob-cat">Probleme interactive cu feedback</div>
+            </div>
+            <span class="diff mediu">mediu</span>
+          </a>
+          <a href="https://puls-fizica.ro/probleme" class="prob-item reveal" style="transition-delay:.25s">
+            <div class="prob-info">
+              <div class="prob-num">Mecanică</div>
+              <div class="prob-title">Plan înclinat cu frecare</div>
+              <div class="prob-cat">Probleme interactive cu feedback</div>
+            </div>
+            <span class="diff mediu">mediu</span>
+          </a>
+          <a href="https://puls-fizica.ro/probleme?difficulty=concurs" class="prob-item reveal" style="transition-delay:.3s">
+            <div class="prob-info">
+              <div class="prob-num">Oscilații</div>
+              <div class="prob-title">Oscilatori liniari armonici</div>
+              <div class="prob-cat">Probleme de concurs</div>
+            </div>
+            <span class="diff concurs">concurs</span>
+          </a>
+          <a href="https://puls-fizica.ro/probleme?difficulty=concurs" class="prob-item reveal" style="transition-delay:.35s">
+            <div class="prob-info">
+              <div class="prob-num">Seismologie</div>
+              <div class="prob-title">Unde seismice — Viteza undelor P și S</div>
+              <div class="prob-cat">Probleme de concurs</div>
+            </div>
+            <span class="diff concurs">concurs</span>
+          </a>
+        </div>
+        <div style="text-align:center;margin-top:20px;" class="reveal">
+          <a href="https://puls-fizica.ro/probleme" class="btn btn-outline" style="font-size:.88rem;padding:10px 22px;">Vezi toate problemele</a>
+        </div>
+      </div>
+
+      <div class="prob-feature reveal">
+        <h3>De ce PULS pentru probleme?</h3>
+        <p style="font-size:.85rem;color:var(--muted);line-height:1.65;">Fiecare problemă vine cu sistem de scor, salvare și tracking al progresului tău.</p>
+        <div class="feature-blocks">
+          <div class="feat-block">
+            <div class="feat-icon2">✅</div>
+            <div>
+              <h4>Feedback instant</h4>
+              <p>Varianta corectă marcată imediat cu explicație detaliată pas cu pas.</p>
+            </div>
+          </div>
+          <div class="feat-block">
+            <div class="feat-icon2">⭐</div>
+            <div>
+              <h4>Probleme salvate</h4>
+              <p>Marchează problemele preferate și revin-ă oricând să le rerezolvi.</p>
+            </div>
+          </div>
+          <div class="feat-block">
+            <div class="feat-icon2">📊</div>
+            <div>
+              <h4>Statistici detaliate</h4>
+              <p>Urmărește scorul total, scorul mediu și progresul pe categorii.</p>
+            </div>
+          </div>
+          <div class="feat-block">
+            <div class="feat-icon2">🏆</div>
+            <div>
+              <h4>Realizări și badge-uri</h4>
+              <p>Câștigă trofee de la "Prima problemă rezolvată" la "Maestru al simulărilor".</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- BAC -->
+<section id="bac">
+  <div class="s-inner">
+    <div class="reveal">
+      <div class="s-tag">Bacalaureat</div>
+      <h2>Pregătire completă<br><em>pentru BAC</em></h2>
+      <p class="s-sub">Toate subiectele de fizică de la bacalaureat, organizate pe variante și ani. Rezolvări interactive și grile cu autoevaluare.</p>
+    </div>
+    <div class="bac-grid">
+      <a href="https://puls-fizica.ro/probleme/bac" class="bac-card hero-bac reveal">
+        <div class="bac-year">Arhivă completă · 2015–2025</div>
+        <h3>Subiecte BAC — Mecanică</h3>
+        <p>Subiectul II de Mecanică din toate variantele și simulările de bacalaureat. Probleme de forță, energie, oscilații și ciocniri.</p>
+        <div class="bac-meta">
+          <div class="bac-count"><strong>1000+</strong> probleme disponibile</div>
+          <div class="arrow">→</div>
+        </div>
+      </a>
+      <a href="https://puls-fizica.ro/probleme-grile" class="bac-card reveal" style="transition-delay:.1s">
+        <div class="bac-year">Autoevaluare</div>
+        <h3>Grile de Fizică</h3>
+        <p>Întrebări cu variante de răspuns organizate pe categorii și dificultate.</p>
+        <div class="bac-meta">
+          <div class="bac-count">Filtrabile pe temă</div>
+          <div class="arrow">→</div>
+        </div>
+      </a>
+      <a href="https://puls-fizica.ro/probleme/bac" class="bac-card reveal" style="transition-delay:.07s">
+        <div class="bac-year">Mecanică</div>
+        <h3>Sub II · Bac 2025</h3>
+        <p>Variante 1–6 disponibile integral cu rezolvări interactive și scor live.</p>
+        <div class="bac-meta">
+          <div class="bac-count"><strong>6</strong> variante</div>
+          <div class="arrow">→</div>
+        </div>
+      </a>
+      <a href="https://puls-fizica.ro/probleme/bac" class="bac-card reveal" style="transition-delay:.14s">
+        <div class="bac-year">Mecanică</div>
+        <h3>Sub II · Bac 2022</h3>
+        <p>Toate variantele oficiale și de simulare din 2022.</p>
+        <div class="bac-meta">
+          <div class="bac-count">Variante multiple</div>
+          <div class="arrow">→</div>
+        </div>
+      </a>
+      <a href="https://puls-fizica.ro/probleme/bac" class="bac-card reveal" style="transition-delay:.21s">
+        <div class="bac-year">Mecanică</div>
+        <h3>Sub II · Bac 2017</h3>
+        <p>Subiecte de simulare, inclusiv cele mai dificile variante din arhivă.</p>
+        <div class="bac-meta">
+          <div class="bac-count">Arhivă completă</div>
+          <div class="arrow">→</div>
+        </div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- RESURSE -->
+<section id="resurse">
+  <div class="s-inner">
+    <div class="reveal">
+      <div class="s-tag">Resurse</div>
+      <h2>Tot ce ai nevoie<br><em>într-un singur loc</em></h2>
+      <p class="s-sub">Lecții, formule esențiale, experimente video și bibliografie — organizate pe categorii de fizică.</p>
+    </div>
+
+    <div class="resurse-grid">
+      <a href="https://puls-fizica.ro/resurse/pendule" class="res-card reveal">
+        <h4>Pendule</h4>
+        <p>Mișcarea oscilatorie, formulele și simulări pentru pendulul simplu, amortizat și neliniar.</p>
+        <span class="res-link">Citește lecția →</span>
+      </a>
+      <a href="https://puls-fizica.ro/resurse/unde" class="res-card reveal" style="transition-delay:.07s">
+        <h4>Unde</h4>
+        <p>Propagarea undelor mecanice și electromagnetice, tipuri de unde și simulări interactive.</p>
+        <span class="res-link">Citește lecția →</span>
+      </a>
+      <a href="https://puls-fizica.ro/resurse/lissajous" class="res-card reveal" style="transition-delay:.14s">
+        <h4>Figuri Lissajous</h4>
+        <p>Curbele Lissajous, ecuațiile parametrice și aplicațiile lor în fizică.</p>
+        <span class="res-link">Citește lecția →</span>
+      </a>
+      <a href="https://puls-fizica.ro/resurse/termodinamica" class="res-card reveal" style="transition-delay:.07s">
+        <h4>Termodinamică</h4>
+        <p>Principiile termodinamicii, transformările gazelor și aplicațiile în motoare termice.</p>
+        <span class="res-link">Citește lecția →</span>
+      </a>
+      <a href="https://puls-fizica.ro/resurse/electricitate" class="res-card reveal" style="transition-delay:.14s">
+        <h4>Electricitate</h4>
+        <p>Circuite electrice, legile lui Ohm și Kirchhoff, energia electrică și câmpurile electrice.</p>
+        <span class="res-link">Citește lecția →</span>
+      </a>
+      <a href="https://puls-fizica.ro/resurse/optica" class="res-card reveal" style="transition-delay:.21s">
+        <h4>Optică</h4>
+        <p>Reflexie, refracție, lentile subțiri, dispersia luminii și refracția atmosferică.</p>
+        <span class="res-link">Citește lecția →</span>
+      </a>
+      <a href="https://puls-fizica.ro/resurse/mecanica" class="res-card reveal" style="transition-delay:.07s">
+        <h4>Mecanică</h4>
+        <p>Cinematică, dinamică, oscilații pe OX, coliziuni, plan înclinat și mișcarea proiectilului.</p>
+        <span class="res-link">Citește lecția →</span>
+      </a>
+      <a href="https://puls-fizica.ro/resurse/astronomie" class="res-card reveal" style="transition-delay:.14s">
+        <h4>Astronomie</h4>
+        <p>Legile lui Kepler, orbite eliptice, legea ariilor și relația perioadă-rază. Mișcarea sateliților.</p>
+        <span class="res-link">Citește lecția →</span>
+      </a>
+      <a href="https://puls-fizica.ro/resurse/seism" class="res-card reveal" style="transition-delay:.21s">
+        <h4>Seisme</h4>
+        <p>Unde seismice, propagare, magnitudinea Richter și principii de seismologie.</p>
+        <span class="res-link">Citește lecția →</span>
+      </a>
+    </div>
+    <div style="text-align:center;margin-top:32px;" class="reveal">
+      <a href="https://puls-fizica.ro/resurse" class="btn btn-outline">Vezi toate resursele</a>
+    </div>
+  </div>
+</section>
+
+<!-- PROFESORUL WHIZ -->
+<section id="whiz">
+  <div class="s-inner">
+    <div class="whiz-layout">
+      <div class="reveal">
+        <div class="s-tag">Asistent AI</div>
+        <h2>Profesorul<br><em>Whiz</em></h2>
+        <p class="s-sub">Asistentul tău personal de fizică, disponibil 24/7 pe platformă. Explică concepte, rezolvă probleme pas cu pas și te ghidează prin orice subiect.</p>
+        <div class="whiz-chips">
+          <span class="chip">Explică-mi concepte de mecanică</span>
+          <span class="chip">Cum rezolv probleme de fizică?</span>
+          <span class="chip">Ce formule trebuie să știu pentru BAC?</span>
+          <span class="chip">Unde găsesc resurse despre oscilații?</span>
+          <span class="chip">Cum funcționează energia mecanică?</span>
+          <span class="chip">Explică-mi legile lui Newton</span>
+        </div>
+        <a href="https://puls-fizica.ro/" class="btn btn-blue" style="margin-top:24px;display:inline-flex;">Deschide Profesorul Whiz pe platformă →</a>
+      </div>
+      <div class="reveal" style="transition-delay:.15s">
+        <div class="whiz-ui">
+          <div class="whiz-header">
+            <div class="whiz-avatar">🧙</div>
+            <div>
+              <strong>Profesorul Whiz</strong>
+              <span>● Online pe platformă</span>
+            </div>
+          </div>
+          <div class="whiz-body">
+            <div class="msg bot">Bun venit! Sunt Profesorul Whiz — asistentul tău de fizică. Cu ce te pot ajuta astăzi?</div>
+            <div class="msg user">Care e formula perioadei pentru pendul?</div>
+            <div class="msg bot">Perioada pendulului gravitațional este <strong>T = 2π√(L/g)</strong>, unde L este lungimea firului și g ≈ 9.8 m/s². Dacă L = 1m, atunci T ≈ 2.00 s. Vrei să explorez simularea interactivă?</div>
+          </div>
+          <div class="whiz-input">
+            <input type="text" placeholder="Scrie un mesaj pe platformă..."/>
+            <a href="https://puls-fizica.ro/" class="whiz-send" style="text-decoration:none;color:#fff;">➤</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section id="cta">
+  <div class="cta-glow"></div>
+  <div class="s-inner reveal">
+    <div class="s-tag">Hai să începem</div>
+    <h2>Înțelege fizica.<br><em>Nu o memora.</em></h2>
+    <p class="s-sub">Accesează imediat simulările, problemele și Profesorul Whiz. Totul este gratuit — fără card bancar, fără abonament.</p>
+    <div class="cta-form">
+      <a href="https://puls-fizica.ro/" class="btn btn-blue">Accesează platforma gratuit</a>
+    </div>
+    <div class="cta-free-badge">✓ 100% gratuit · ✓ Fără card bancar · ✓ Acces imediat</div>
+    <p class="cta-note" style="margin-top:24px;">Explorează direct → <a href="https://puls-fizica.ro/simulari" style="color:var(--blue-light);">Încearcă o simulare</a> · <a href="https://puls-fizica.ro/probleme" style="color:var(--blue-light);">Rezolvă o problemă</a></p>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div>
+      <div class="footer-logo">P<span class="lu">u</span>LS</div>
+      <p class="footer-desc">Platforma educațională pentru studiul fizicii prin simulări interactive și exerciții. Pendul, Unde, Lissajous, Seism.</p>
+    </div>
+    <div class="foot-col">
+      <h5>P.U.L.S.</h5>
+      <a href="https://puls-fizica.ro/resurse/pendule">Pendule</a>
+      <a href="https://puls-fizica.ro/resurse/unde">Unde</a>
+      <a href="https://puls-fizica.ro/resurse/lissajous">Lissajous</a>
+      <a href="https://puls-fizica.ro/resurse/seism">Seisme</a>
+    </div>
+    <div class="foot-col">
+      <h5>Platformă</h5>
+      <a href="https://puls-fizica.ro/">Acasă</a>
+      <a href="https://puls-fizica.ro/probleme">Probleme</a>
+      <a href="https://puls-fizica.ro/simulari">Simulări</a>
+      <a href="https://puls-fizica.ro/resurse">Resurse</a>
+    </div>
+    <div class="foot-col">
+      <h5>BAC</h5>
+      <a href="https://puls-fizica.ro/probleme/bac">Subiecte BAC</a>
+      <a href="https://puls-fizica.ro/probleme-grile">Grile</a>
+    </div>
+    <div class="foot-col">
+      <h5>Contact</h5>
+      <a href="https://puls-fizica.ro/about-us">Despre noi</a>
+      <a href="https://github.com/Stefanarctic/PULS">GitHub</a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2026 PULS. Toate drepturile rezervate.</span>
+    <span>Realizat cu ❤ în România · puls-fizica.ro</span>
+  </div>
+</footer>
+
+<script>
+// ── PENDULUM CANVAS ──
+const canvas = document.getElementById('pendulCanvas');
+if(canvas){
+  const ctx = canvas.getContext('2d');
+  let angle = Math.PI/6, omega = 0, dt = 0.016;
+  const L = 120, cx = 200, cy = 20, g = 9.8, scale = 120;
+
+  function drawPendulum(){
+    ctx.clearRect(0,0,canvas.width,canvas.height);
+    const bx = cx + scale * Math.sin(angle);
+    const by = cy + scale * Math.cos(angle);
+
+    ctx.beginPath();ctx.moveTo(cx,cy);ctx.lineTo(bx,by);
+    ctx.strokeStyle='rgba(59,130,246,0.6)';ctx.lineWidth=1.5;ctx.stroke();
+
+    ctx.beginPath();ctx.arc(cx,cy,4,0,Math.PI*2);
+    ctx.fillStyle='rgba(255,255,255,0.4)';ctx.fill();
+
+    const grad = ctx.createRadialGradient(bx-3,by-3,2,bx,by,16);
+    grad.addColorStop(0,'rgba(59,130,246,0.9)');
+    grad.addColorStop(1,'rgba(59,130,246,0.2)');
+    ctx.beginPath();ctx.arc(bx,by,14,0,Math.PI*2);
+    ctx.fillStyle=grad;ctx.fill();
+    ctx.strokeStyle='rgba(59,130,246,0.5)';ctx.lineWidth=1;ctx.stroke();
+
+    ctx.shadowBlur=20;ctx.shadowColor='rgba(59,130,246,0.4)';
+    ctx.beginPath();ctx.arc(bx,by,14,0,Math.PI*2);ctx.fillStyle='transparent';ctx.fill();
+    ctx.shadowBlur=0;
+
+    const alpha = -(g/1.2) * Math.sin(angle);
+    omega += alpha * dt;
+    omega *= 0.9995;
+    angle += omega * dt;
+
+    const period = (2*Math.PI*Math.sqrt(1.2/9.8)).toFixed(2);
+    const pPer = document.getElementById('pPer');
+    if(pPer) pPer.textContent = period;
+    const pAmp = document.getElementById('pAmp');
+    if(pAmp) pAmp.textContent = (Math.abs(angle)*180/Math.PI).toFixed(1)+'°';
+
+    requestAnimationFrame(drawPendulum);
+  }
+  drawPendulum();
+}
+
+// ── SCROLL REVEAL ──
+const revealEls = document.querySelectorAll('.reveal');
+const io = new IntersectionObserver(entries=>{
+  entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}});
+},{threshold:0.1});
+revealEls.forEach(el=>io.observe(el));
+</script>
+</body>
+</html>
