@@ -16,7 +16,7 @@ export default defineConfig({
     ],
     proxy: {
       '/api/webhook': {
-        target: 'http://13.61.39.82:5678',
+        target: 'https://automations.puls-fizica.ro',
         changeOrigin: true,
         secure: false,
         timeout: 30000,
