@@ -19,6 +19,7 @@ import { useEffect, useState } from "react";
 import VideoPopup from "../VideoPopup";
 import { useNavigate, useSearchParams } from "react-router-dom";
 import SEO from "../SEO";
+import { useAssistant } from "@/hooks/useAssistant";
 
 
 const lessonCards = [
@@ -92,6 +93,7 @@ const lessonCards = [
 
 const ResursePage = () => {
   const navigate = useNavigate();
+  const assistant = useAssistant();
 
   const [activeTab, setActiveTab] = useState("lectii");
   const [activeFormulaTab, setActiveFormulaTab] = useState("mecanica");
@@ -654,6 +656,19 @@ const ResursePage = () => {
             <div className="formula-popup-body">
               <div className="formula-popup-formula">{formulaPopup.formula}</div>
               <p className="formula-popup-explanation">{formulaPopup.explanation}</p>
+              <button
+                type="button"
+                className="formula-popup-ai-btn"
+                onClick={() => {
+                  const msg = `Explică-mi în detaliu formula „${formulaPopup.title}" din ${formulaPopup.section}. Vreau să înțeleg când și cum se aplică, cu exemple.`;
+                  setFormulaPopup(null);
+                  if (assistant?.openWithMessage) {
+                    assistant.openWithMessage(msg);
+                  }
+                }}
+              >
+                Întreabă Profesorul Whiz
+              </button>
             </div>
             <MathJaxRender key={`popup-${formulaPopup.title}`} />
           </div>

@@ -801,7 +801,27 @@
     font-size: 1rem;
     line-height: 1.65;
     color: var(--primary-color-current-mode);
-    margin: 0;
+    margin: 0 0 1.25rem 0;
+}
+
+.formula-popup-ai-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.6rem 1.25rem;
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: white;
+    background: var(--accent-color-current-mode, #60a5fa);
+    border: none;
+    border-radius: 0.5rem;
+    cursor: pointer;
+    transition: all 0.2s ease;
+
+    &:hover {
+        opacity: 0.9;
+        transform: translateY(-1px);
+    }
 }
 
 // Card clickable pentru formule cu explicație
