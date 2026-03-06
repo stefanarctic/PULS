@@ -96,6 +96,7 @@ const ResursePage = () => {
   const [activeTab, setActiveTab] = useState("lectii");
   const [activeFormulaTab, setActiveFormulaTab] = useState("mecanica");
   const [visibleFormulasCount, setVisibleFormulasCount] = useState({});
+  const [formulaPopup, setFormulaPopup] = useState(null); // { section, title, formula, explanation }
 
   const [searchParams] = useSearchParams();
 
@@ -109,35 +110,271 @@ const ResursePage = () => {
   ];
 
   const mecanicaFormulas = [
-    { title: "Legea a doua a lui Newton", formula: "\\( \\vec{F} = m\\vec{a} \\)" },
-    { title: "Forța de greutate", formula: "\\( G = mg \\)" },
-    { title: "Forța de frecare", formula: "\\( F_f = \\mu N \\)" },
-    { title: "Energia cinetică", formula: "\\( E_c = \\frac{1}{2}mv^2 \\)" },
-    { title: "Energia potențială gravitațională", formula: "\\( E_p = mgh \\)" },
-    { title: "Energia potențială elastică", formula: "\\( E_p = \\frac{1}{2}kx^2 \\)" },
-    { title: "Lucrul mecanic", formula: "\\( L = F \\cdot d \\cdot \\cos(\\alpha) \\)" },
-    { title: "Teorema variației energiei cinetice", formula: "\\( L = \\Delta E_c = \\frac{1}{2}mv_2^2 - \\frac{1}{2}mv_1^2 \\)" },
-    { title: "Conservarea energiei mecanice", formula: "\\( E_m = E_c + E_p = const. \\)" },
-    { title: "Impulsul", formula: "\\( \\vec{p} = m\\vec{v} \\)" },
-    { title: "Conservarea impulsului", formula: "\\( m_1 v_{1i} + m_2 v_{2i} = m_1 v_{1f} + m_2 v_{2f} \\)" },
-    { title: "Coeficientul de restituire", formula: "\\( e = \\frac{v_{2f} - v_{1f}}{v_{1i} - v_{2i}} \\)" },
-    { title: "Mișcare uniformă", formula: "\\( x(t) = x_0 + vt \\)" },
-    { title: "Mișcare uniform variată", formula: "\\( x(t) = x_0 + v_0t + \\frac{1}{2}at^2 \\)" },
-    { title: "Viteza în mișcare uniform variată", formula: "\\( v(t) = v_0 + at \\)" },
-    { title: "Ecuația lui Galilei", formula: "\\( v^2 = v_0^2 + 2a(x - x_0) \\)" },
-    { title: "Mișcare circulară uniformă - accelerația centripetă", formula: "\\( a_c = \\frac{v^2}{R} = \\omega^2 R \\)" },
-    { title: "Viteza unghiulară", formula: "\\( \\omega = \\frac{2\\pi}{T} = 2\\pi f \\)" },
-    { title: "Forța centripetă", formula: "\\( F_c = m\\frac{v^2}{R} = m\\omega^2 R \\)" },
-    { title: "Legea mișcării oscilatorii pe OX", formula: "\\( x(t) = A \\sin(\\omega t + \\phi) \\)" },
-    { title: "Legea vitezei oscilatorii", formula: "\\( v(t) = \\omega A \\cos(\\omega t + \\phi) \\)" },
-    { title: "Legea accelerației oscilatorii", formula: "\\( a(t) = -\\omega^2 A \\sin(\\omega t + \\phi) \\)" },
-    { title: "Viteza unghiulară (oscilator)", formula: "\\( \\omega = \\sqrt{\\frac{k}{m}} \\)" },
-    { title: "Perioada oscilației", formula: "\\( T = 2\\pi \\sqrt{\\frac{m}{k}} \\)" },
-    { title: "Perioada pendulului gravitațional", formula: "\\( T = 2\\pi \\sqrt{\\frac{l}{g}} \\)" },
-    { title: "Forța pe plan înclinat (componenta paralelă)", formula: "\\( F_{||} = mg \\sin(\\alpha) \\)" },
-    { title: "Forța pe plan înclinat (componenta perpendiculară)", formula: "\\( F_{\\perp} = mg \\cos(\\alpha) \\)" },
-    { title: "Accelerația pe plan înclinat", formula: "\\( a = g(\\sin(\\alpha) - \\mu \\cos(\\alpha)) \\)" },
-    { title: "Puterea mecanică", formula: "\\( P = \\frac{L}{t} = F \\cdot v \\)" },
+    {
+      section: "1. Mișcarea rectilinie uniformă",
+      formulas: [
+        {
+          title: "Viteza",
+          formula: "\\( v = \\frac{d}{t} \\)",
+          explanation: "În mișcarea rectilinie uniformă (MRU), corpul se deplasează pe o dreaptă cu viteză constantă. Viteza medie este egală cu viteza instantanee și se calculează ca raportul dintre distanța parcursă (d) și intervalul de timp (t). Unitatea de măsură în SI: m/s. Exemplu: un automobil care parcurge 120 km în 2 ore are viteza v = 120/2 = 60 km/h.",
+        },
+      ],
+    },
+    {
+      section: "2. Mișcarea rectilinie uniform variată",
+      formulas: [
+        {
+          title: "Viteza",
+          formula: "\\( v = v_0 + a \\cdot t \\)",
+          explanation: "Viteza la un moment dat în MRUV depinde de viteza inițială (v₀), accelerația constantă (a) și timpul (t). Dacă a > 0, corpul accelerează; dacă a < 0, corpul frânează. Această ecuație rezultă din definiția accelerației: a = Δv/Δt. Exemplu: un corp lansat cu v₀ = 5 m/s și a = 2 m/s² are după 3 s viteza v = 5 + 2·3 = 11 m/s.",
+        },
+        {
+          title: "Distanța",
+          formula: "\\( x = v_0 \\cdot t + \\frac{1}{2} a \\cdot t^2 \\)",
+          explanation: "Legea spațiului în MRUV: poziția (sau distanța parcursă) depinde de viteza inițială, timp și accelerație. Termenul v₀·t corespunde mișcării uniforme, iar ½·a·t² este contribuția accelerației. Graficul x(t) este o parabolă. La cădere liberă (v₀ = 0, a = g): x = ½·g·t².",
+        },
+        {
+          title: "Torricelli",
+          formula: "\\( v^2 = v_0^2 + 2 \\cdot a \\cdot x \\)",
+          explanation: "Ecuația lui Torricelli leagă viteza finală de viteza inițială, accelerația și spațiul parcurs, fără a depinde explicit de timp. Utilă când timpul nu este cunoscut. Se obține eliminând t din ecuațiile v = v₀ + at și x = v₀t + ½at². La cădere liberă: v² = 2gh.",
+        },
+        {
+          title: "Accelerația",
+          formula: "\\( a = \\frac{v - v_0}{t} \\)",
+          explanation: "Accelerația medie este variația vitezei pe unitatea de timp. În MRUV, accelerația este constantă. Unitatea SI: m/s². Accelerația gravitațională la suprafața Pământului: g ≈ 9,8 m/s². Semnul: a > 0 (accelerație), a < 0 (decelerație/frânare).",
+        },
+      ],
+    },
+    {
+      section: "3. Legile lui Newton",
+      formulas: [
+        {
+          title: "Legea I",
+          formula: "\\( \\Sigma F = 0 \\) — corp în repaus sau mișcare uniformă",
+          explanation: "Legea inerției: un corp rămâne în repaus sau în mișcare rectilinie uniformă atâta timp cât rezultanta forțelor care acționează asupra lui este zero. Inerția este proprietatea corpurilor de a-și menține starea de mișcare. Fără forțe exterioare, un corp nu-și schimbă viteza.",
+        },
+        {
+          title: "Legea a II-a",
+          formula: "\\( F = m \\cdot a \\)",
+          explanation: "Forța rezultantă care acționează asupra unui corp este egală cu produsul dintre masă și accelerație. Masa (m) măsoară inerția corpului: cu cât masa e mai mare, cu atât accelerația e mai mică pentru aceeași forță. Unități: F în N (newton), m în kg, a în m/s².",
+        },
+        {
+          title: "Legea a III-a",
+          formula: "\\( F_{12} = -F_{21} \\)",
+          explanation: "Legea acțiunii și reacțiunii: dacă corpul 1 acționează asupra corpului 2 cu forța F₁₂, atunci corpul 2 acționează asupra corpului 1 cu forța F₂₁ = −F₁₂. Forțele au același modul, aceeași direcție, dar sensuri opuse. Acționează asupra unor corpuri diferite.",
+        },
+        {
+          title: "Greutatea",
+          formula: "\\( G = m \\cdot g \\) (g ≈ 9,8 m/s²)",
+          explanation: "Greutatea este forța cu care Pământul atrage un corp. g este accelerația gravitațională la suprafața Pământului (variază ușor cu latitudinea și altitudinea). Unitate: N (newton). Exemplu: un corp de 10 kg are greutatea G = 10·9,8 = 98 N.",
+        },
+        {
+          title: "Forța normală",
+          formula: "\\( N = m \\cdot g \\cdot \\cos\\theta \\)",
+          explanation: "Forța normală este reacțiunea suprafeței de susținere, perpendiculară pe suprafață. Pe un plan înclinat cu unghiul θ, N = mg·cos θ. Ea echilibrează componenta perpendiculară a greutății. Pe plan orizontal: N = mg.",
+        },
+        {
+          title: "Forța de frecare",
+          formula: "\\( F_f = \\mu \\cdot N \\)",
+          explanation: "Forța de frecare la alunecare este proporțională cu forța normală. μ este coeficientul de frecare (adimensional, depinde de natura suprafețelor). Ff se opune mișcării. La frecare statică: Ff ≤ μ·N (până la valoarea maximă care permite mișcarea).",
+        },
+        {
+          title: "Forța pe plan înclinat",
+          formula: "\\( F_{\\parallel} = m \\cdot g \\cdot \\sin\\theta \\)",
+          explanation: "Componenta greutății paralelă cu planul înclinat, care produce alunecarea corpului. Cu cât unghiul θ e mai mare, cu atât F∥ e mai mare. La θ = 90° (cădere liberă): F∥ = mg. Această forță este responsabilă pentru accelerația corpului pe plan.",
+        },
+      ],
+    },
+    {
+      section: "4. Lucrul mecanic și energia",
+      formulas: [
+        {
+          title: "Lucrul mecanic",
+          formula: "\\( L = F \\cdot d \\cdot \\cos\\theta \\)",
+          explanation: "Lucrul mecanic este efectuat de o forță când punctul ei de aplicație se deplasează. θ este unghiul dintre forță și direcția deplasării. L = F·d când forța este paralelă cu deplasarea. L > 0 (forță motoare), L < 0 (forță rezistentă), L = 0 (forță perpendiculară). Unitate: J (jul).",
+        },
+        {
+          title: "Energia cinetică",
+          formula: "\\( E_c = \\frac{1}{2} m \\cdot v^2 \\)",
+          explanation: "Energia cinetică este energia datorată mișcării. Depinde de masă și de pătratul vitezei. Unitate: J. Un corp în repaus are Ec = 0. La dublarea vitezei, energia cinetică se mărește de 4 ori. E o mărime scalară, pozitivă.",
+        },
+        {
+          title: "Teorema lucrului mecanic",
+          formula: "\\( L = \\Delta E_c = E_{c2} - E_{c1} \\)",
+          explanation: "Lucrul mecanic al rezultantei forțelor este egal cu variația energiei cinetice. Dacă L > 0, corpul accelerează; dacă L < 0, corpul frânează. Această teoremă este o formă a teoremei energiei cinetice și se aplică în orice situație mecanică.",
+        },
+        {
+          title: "Energia potențială gravitațională",
+          formula: "\\( E_p = m \\cdot g \\cdot h \\)",
+          explanation: "Energia potențială gravitațională depinde de înălțimea h față de un nivel de referință (de obicei solul). Crește cu h. La cădere, Ep se transformă în Ec. Nivelul de referință este arbitrar; contează doar ΔEp. Unitate: J.",
+        },
+        {
+          title: "Conservarea energiei mecanice",
+          formula: "\\( E_c + E_p = const. \\)",
+          explanation: "În absența forțelor neconservative (frecare, rezistență), energia mecanică totală (cinetică + potențială) se conservă. Energia poate trece din Ec în Ep și invers, dar suma rămâne constantă. Exemplu: pendulul, căderea liberă fără frecare.",
+        },
+        {
+          title: "Puterea",
+          formula: "\\( P = \\frac{L}{t} = F \\cdot v \\)",
+          explanation: "Puterea măsoară rapiditatea cu care se efectuează lucrul mecanic. P = L/t (lucru pe unitatea de timp). Forma P = F·v este utilă când forța și viteza sunt constante și paralele. Unitate: W (watt) = J/s. 1 CP ≈ 735 W.",
+        },
+        {
+          title: "Randamentul",
+          formula: "\\( \\eta = \\frac{L_u}{L_c} \\) (η ≤ 1)",
+          explanation: "Randamentul este raportul dintre lucrul util (Lu) și lucrul consumat (Lc). η ≤ 1 întotdeauna; diferența se pierde prin frecări, căldură etc. η = 1 doar în sisteme ideale, fără pierderi. Se exprimă adesea în procente: η = 80% înseamnă η = 0,8.",
+        },
+      ],
+    },
+    {
+      section: "5. Impuls și cantitatea de mișcare",
+      formulas: [
+        {
+          title: "Cantitatea de mișcare",
+          formula: "\\( p = m \\cdot v \\)",
+          explanation: "Cantitatea de mișcare (impulsul mecanic) este un vector având direcția și sensul vitezei. Măsoară „inerția în mișcare”. Unitate: kg·m/s. În ciocniri, p total se conservă. Un camion are p mai mare decât o mașină la aceeași viteză datorită masei.",
+        },
+        {
+          title: "Teorema impuls–cantitate de mișcare",
+          formula: "\\( F \\cdot \\Delta t = \\Delta p \\)",
+          explanation: "Impulsul forței (F·Δt) este egal cu variația cantității de mișcare. Pentru o forță constantă: F·Δt = m·Δv. La ciocniri, forțele sunt mari și Δt mic, deci F poate fi foarte mare. Explică de ce airbag-urile măresc Δt și reduc F.",
+        },
+        {
+          title: "Conservarea cantității de mișcare",
+          formula: "\\( m_1 v_1 + m_2 v_2 = m_1 v_1' + m_2 v_2' \\)",
+          explanation: "Într-un sistem izolat (rezultanta forțelor exterioare = 0), cantitatea de mișcare totală se conservă. În ciocniri, suma m·v înainte este egală cu suma m·v după. v' sunt vitezele după ciocnire. Ecuația este vectorială; se aplică pe fiecare axă.",
+        },
+      ],
+    },
+    {
+      section: "6. Mișcarea circulară uniformă (MCU)",
+      formulas: [
+        {
+          title: "Perioada",
+          formula: "\\( T = \\frac{2\\pi}{\\omega} \\)",
+          explanation: "Perioada este timpul în care corpul parcurge o rotație completă (2π radiani). Unitate: s (secundă). T = 1/f, unde f este frecvența. Exemplu: minutele ceasului au T = 60 s, deci ω = 2π/60 rad/s.",
+        },
+        {
+          title: "Frecvența",
+          formula: "\\( f = \\frac{1}{T} \\)",
+          explanation: "Frecvența este numărul de rotații complete pe secundă. Unitate: Hz (hertz) = s⁻¹. f = ω/(2π). Exemplu: un disc care face 33 rotații/minut are f = 33/60 ≈ 0,55 Hz.",
+        },
+        {
+          title: "Viteza unghiulară",
+          formula: "\\( \\omega = 2\\pi \\cdot f \\)",
+          explanation: "Viteza unghiulară măsoară rapiditatea rotației în radiani pe secundă. ω = 2π/T = 2πf. În MCU, ω este constantă. Unitate: rad/s. Legătura cu perioada: cu cât T e mai mare, cu atât ω e mai mic.",
+        },
+        {
+          title: "Viteza liniară",
+          formula: "\\( v = \\omega \\cdot r = \\frac{2\\pi r}{T} \\)",
+          explanation: "Viteza liniară (tangențială) este perpendiculară pe rază. v = ω·r leagă viteza unghiulară de raza traiectoriei. Punctele mai depărtate de centru au v mai mare. v = 2πr/T = 2πrf. Direcția se schimbă continuu, dar modulul rămâne constant.",
+        },
+        {
+          title: "Accelerația centripetă",
+          formula: "\\( a_c = \\frac{v^2}{r} = \\omega^2 \\cdot r \\)",
+          explanation: "Accelerația centripetă este îndreptată spre centrul cercului și modifică doar direcția vitezei, nu modulul. ac = v²/r = ω²r. În MCU există doar accelerație centripetă, nu tangențială. Fără ac, corpul s-ar mișca rectiliniu.",
+        },
+        {
+          title: "Forța centripetă",
+          formula: "\\( F_c = m \\cdot \\frac{v^2}{r} = m \\cdot \\omega^2 \\cdot r \\)",
+          explanation: "Forța centripetă este rezultanta forțelor care țin corpul pe traiectorie circulară. Fc = m·ac. Exemple: tensiunea în fir (pendul conic), frecarea (mașina în viraj), gravitația (satelitul în orbită). E îndreptată spre centru.",
+        },
+      ],
+    },
+    {
+      section: "7. Gravitația universală",
+      formulas: [
+        {
+          title: "Legea lui Newton",
+          formula: "\\( F = G \\cdot \\frac{m_1 \\cdot m_2}{r^2} \\) (G = 6,674×10⁻¹¹ N·m²/kg²)",
+          explanation: "Două corpuri se atrag cu o forță proporțională cu produsul maselor și invers proporțională cu pătratul distanței dintre centre. G este constanta gravitațională universală. Legea se aplică pentru corpuri punctiforme sau sferice. Explică atât căderea corpurilor, cât și mișcarea planetelor.",
+        },
+        {
+          title: "Accelerația gravitațională",
+          formula: "\\( g = \\frac{G \\cdot M}{R^2} \\)",
+          explanation: "Accelerația gravitațională la suprafața unui corp ceresc de masă M și rază R. La Pământ: g ≈ 9,8 m/s². Scade cu altitudinea. Pe Lună, g este de ~6 ori mai mic. Permite calculul g pe alte planete cunoscând M și R.",
+        },
+        {
+          title: "Viteza de orbitare",
+          formula: "\\( v = \\sqrt{\\frac{G \\cdot M}{r}} \\)",
+          explanation: "Viteza pe care trebuie să o aibă un satelit pentru a orbita la distanța r de centrul planetei (masă M). Rezultă din egalarea forței gravitaționale cu forța centripetă. Cu cât orbita e mai înaltă, cu atât v e mai mic. Pentru ISS: v ≈ 7,7 km/s.",
+        },
+        {
+          title: "Legea a III-a a lui Kepler",
+          formula: "\\( \\frac{T^2}{r^3} = const. \\)",
+          explanation: "Pătratul perioadei de revoluție este proporțional cu cubul semiaxei mari a orbitei. Valabil pentru toate planetele care orbitează în jurul aceluiași corp (ex. Soare). Permite calculul distanțelor planetare sau al masei Soarelui.",
+        },
+      ],
+    },
+    {
+      section: "8. Dinamica rotației (corp rigid)",
+      formulas: [
+        {
+          title: "Momentul forței",
+          formula: "\\( M = F \\cdot d \\)",
+          explanation: "Momentul forței (cuplul) măsoară capacitatea forței de a produce rotație. d este brațul forței (distanța de la axa de rotație la linia de acțiune a forței). Unitate: N·m. M = 0 când forța trece prin axă. M = F·d·sin θ în general.",
+        },
+        {
+          title: "Condiție echilibru (translație)",
+          formula: "\\( \\Sigma F = 0 \\)",
+          explanation: "Pentru echilibru de translație, rezultanta forțelor trebuie să fie zero. Corpul nu se translatează. Prima condiție de echilibru pentru un corp rigid.",
+        },
+        {
+          title: "Condiție echilibru (rotație)",
+          formula: "\\( \\Sigma M = 0 \\)",
+          explanation: "Pentru echilibru de rotație, suma momentelor forțelor în jurul oricărei axe trebuie să fie zero. Corpul nu se rotește. A doua condiție de echilibru. Cele două condiții trebuie îndeplinite simultan pentru echilibru complet.",
+        },
+        {
+          title: "Legea fundamentală a rotației",
+          formula: "\\( M = I \\cdot \\alpha \\)",
+          explanation: "Analogul lui F = ma pentru rotație: momentul rezultant este egal cu produsul dintre momentul de inerție (I) și accelerația unghiulară (α). I depinde de forma corpului și de axa de rotație. Unitate pentru I: kg·m².",
+        },
+        {
+          title: "Momentul cinetic",
+          formula: "\\( L = I \\cdot \\omega \\)",
+          explanation: "Momentul cinetic (momentul impulsului) este analogul cantității de mișcare pentru rotație. L = I·ω. Se conservă în sisteme izolate (ex. patinatorul care-și strânge brațele rotește mai repede). Unitate: kg·m²/s.",
+        },
+        {
+          title: "Energia cinetică de rotație",
+          formula: "\\( E_{cr} = \\frac{1}{2} I \\cdot \\omega^2 \\)",
+          explanation: "Energia cinetică a unui corp care se rotește. Analogă cu Ec = ½mv² pentru translație. Un corp poate avea atât energie cinetică de translație, cât și de rotație (ex. roata care rulează).",
+        },
+      ],
+    },
+    {
+      section: "9. Oscilații mecanice",
+      formulas: [
+        {
+          title: "Legea lui Hooke",
+          formula: "\\( F = -k \\cdot x \\)",
+          explanation: "Forța elastică este proporțională cu deformarea x și îndreptată spre poziția de echilibru (semnul minus). k este constanta elastică a resortului (N/m). Cu cât resortul e mai rigid, cu atât k e mai mare. Forța este restabilitoare.",
+        },
+        {
+          title: "Energia potențială elastică",
+          formula: "\\( E_p = \\frac{1}{2} k \\cdot x^2 \\)",
+          explanation: "Energia stocată într-un resort comprimat sau întins cu deformarea x. E maximă la amplitudine (x = ±A), zero la echilibru. Se transformă în energie cinetică și invers în timpul oscilației. Formă similară cu Ec = ½mv².",
+        },
+        {
+          title: "Ecuația mișcării",
+          formula: "\\( x = A \\cdot \\cos(\\omega t + \\varphi) \\)",
+          explanation: "Legea de mișcare a oscilatorului armonic. A = amplitudinea, ω = pulsația, φ = faza inițială. Corpul oscilează între -A și +A. Cosinusul descrie mișcarea periodică. v = dx/dt = -Aω·sin(ωt + φ).",
+        },
+        {
+          title: "Perioada oscilatorului elastic",
+          formula: "\\( T = 2\\pi \\sqrt{\\frac{m}{k}} \\)",
+          explanation: "Perioada oscilatorului (resort–masă) depinde doar de m și k, nu de amplitudine (în limitele valabilității legii lui Hooke). Cu cât masa e mai mare sau k mai mic, cu atât T e mai mare. ω = √(k/m).",
+        },
+        {
+          title: "Perioada pendulului simplu",
+          formula: "\\( T = 2\\pi \\sqrt{\\frac{l}{g}} \\)",
+          explanation: "Perioada pendulului gravitațional depinde de lungimea firului (l) și de g. Nu depinde de masa pendulului. Valabilă pentru oscilații mici (θ < ~10°). Pendulul mai lung oscilează mai lent. Util pentru măsurarea lui g.",
+        },
+        {
+          title: "Viteza maximă",
+          formula: "\\( v_{max} = A \\cdot \\omega \\)",
+          explanation: "Viteza maximă se atinge la trecerea prin poziția de echilibru (x = 0), unde toată energia e cinetică. vmax = Aω. Depinde de amplitudine și pulsație. La oscilatorul elastic: vmax = A√(k/m).",
+        },
+      ],
+    },
   ];
 
   const termodinamicaFormulas = [
@@ -312,6 +549,18 @@ const ResursePage = () => {
     }
   }, []);
 
+  // Închide popup formula la Escape, blochează scroll pe body
+  useEffect(() => {
+    if (!formulaPopup) return;
+    const handleEscape = (e) => e.key === "Escape" && setFormulaPopup(null);
+    document.body.style.overflow = "hidden";
+    window.addEventListener("keydown", handleEscape);
+    return () => {
+      document.body.style.overflow = "";
+      window.removeEventListener("keydown", handleEscape);
+    };
+  }, [formulaPopup]);
+
   // Încărcare progresivă a formulelor pentru a evita blocajul
   useEffect(() => {
     if (activeTab !== "formule") return;
@@ -392,6 +641,24 @@ const ResursePage = () => {
 
   return (
     <Layout>
+      {formulaPopup && (
+        <div className="formula-popup-overlay" onClick={() => setFormulaPopup(null)}>
+          <div className="formula-popup-content" onClick={(e) => e.stopPropagation()}>
+            <div className="formula-popup-header">
+              <div className="formula-popup-header-left">
+                <h2 className="formula-popup-title">{formulaPopup.title}</h2>
+                <span className="formula-popup-section">{formulaPopup.section}</span>
+              </div>
+              <button type="button" className="formula-popup-close" onClick={() => setFormulaPopup(null)} aria-label="Închide">×</button>
+            </div>
+            <div className="formula-popup-body">
+              <div className="formula-popup-formula">{formulaPopup.formula}</div>
+              <p className="formula-popup-explanation">{formulaPopup.explanation}</p>
+            </div>
+            <MathJaxRender key={`popup-${formulaPopup.title}`} />
+          </div>
+        </div>
+      )}
       <SEO
         title="Resurse Educaționale Fizică | PULS - Materiale Teoretice și Video-uri"
         description="Resurse educaționale complete pentru fizică: materiale teoretice, video-uri, formule și explicații pentru pendule, unde, oscilații, termodinamică, mecanică, electricitate și optică."
@@ -440,19 +707,30 @@ const ResursePage = () => {
                   </TabsList>
 
                   <TabsContent value="mecanica">
-                    <div className="formula-grid mb-4">
-                      {mecanicaFormulas
-                        .slice(0, visibleFormulasCount.mecanica || 5)
-                        .map((formula, index) => (
-                        <div key={index} className="formula-card">
-                          <div className="font-semibold mb-2">{formula.title}</div>
-                          <div className="text-lg font-mono">
-                            {formula.formula}
+                    <p className="text-sm text-muted-foreground mb-4">Apasă pe o formulă pentru explicație detaliată.</p>
+                    <div className="mb-4 space-y-6">
+                      {mecanicaFormulas.map((sec, secIndex) => (
+                        <div key={secIndex}>
+                          <h3 className="text-lg font-semibold mb-3 text-foreground/90">{sec.section}</h3>
+                          <div className="formula-grid">
+                            {sec.formulas.map((formula, index) => (
+                              <div
+                                key={index}
+                                className="formula-card formula-card-clickable"
+                                role="button"
+                                tabIndex={0}
+                                onClick={() => formula.explanation && setFormulaPopup({ section: sec.section, ...formula })}
+                                onKeyDown={(e) => e.key === "Enter" && formula.explanation && setFormulaPopup({ section: sec.section, ...formula })}
+                              >
+                                <div className="font-semibold mb-2">{formula.title}</div>
+                                <div className="text-lg font-mono">{formula.formula}</div>
+                              </div>
+                            ))}
                           </div>
                         </div>
                       ))}
                     </div>
-                    <MathJaxRender key={`mecanica-${visibleFormulasCount.mecanica || 0}`} />
+                    <MathJaxRender key="mecanica" />
                   </TabsContent>
 
                   <TabsContent value="termodinamica">
