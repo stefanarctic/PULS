@@ -380,17 +380,176 @@ const ResursePage = () => {
   ];
 
   const termodinamicaFormulas = [
-    { title: "Prima lege a termodinamicii", formula: "\\( \\Delta U = Q - L \\)" },
-    { title: "Ecuația de stare pentru gazul ideal", formula: "\\( pV = nRT \\)" },
-    { title: "Entropia (Boltzmann)", formula: "\\( S = k_B \\ln \\Omega \\)" },
-    { title: "A doua lege a termodinamicii", formula: "\\( \\Delta S \\geq \\frac{Q}{T} \\)" },
-    { title: "Energia internă pentru gazul ideal", formula: "\\( U = \\frac{f}{2}nRT \\)" },
-    { title: "Lucrul mecanic în procese reversibile", formula: "\\( L = \\int_{V_1}^{V_2} p \\, dV \\)" },
-    { title: "Căldura specifică la volum constant", formula: "\\( C_V = \\left(\\frac{\\partial U}{\\partial T}\\right)_V \\)" },
-    { title: "Entalpia", formula: "\\( H = U + pV \\)" },
-    { title: "Energia liberă Helmholtz", formula: "\\( F = U - TS \\)" },
-    { title: "Energia liberă Gibbs", formula: "\\( G = H - TS \\)" },
-    { title: "Eficiența motorului Carnot", formula: "\\( \\eta = 1 - \\frac{T_C}{T_H} \\)" },
+    {
+      section: "1. Mărimi termice de bază",
+      formulas: [
+        {
+          title: "Conversia temperaturii",
+          formula: "\\( T = t + 273 \\) (Kelvin ↔ Celsius)",
+          explanation: "Pentru a trece din grade Celsius în Kelvin, adaugi 273. Exemplu: 25°C = 298 K. În fizică folosim Kelvin pentru că 0 K = cea mai mică temperatură posibilă.",
+        },
+        {
+          title: "Dilatarea liniară",
+          formula: "\\( l = l_0 \\cdot (1 + \\alpha \\cdot \\Delta t) \\)",
+          explanation: "Când un corp se încălzește, se lungesc. α spune cât de mult (e dat în probleme). l₀ = lungimea la început, Δt = cât s-a încălzit. Exemplu: șinele de cale ferată se dilată vara.",
+        },
+        {
+          title: "Dilatarea volumică",
+          formula: "\\( V = V_0 \\cdot (1 + \\gamma \\cdot \\Delta t) \\) (γ ≈ 3α)",
+          explanation: "La fel ca dilatarea liniară, dar pentru volum. γ e aproximativ de 3 ori α. Lichidele se dilată mai mult decât solidele.",
+        },
+      ],
+    },
+    {
+      section: "2. Gazul ideal — Legile gazelor",
+      formulas: [
+        {
+          title: "Ecuația de stare",
+          formula: "\\( p \\cdot V = \\nu \\cdot R \\cdot T \\) (R = 8,314 J/mol·K)",
+          explanation: "Ecuația principală pentru gaz ideal. ν = numărul de moli. Cu ea calculezi p, V sau T când știi celelalte. R e o constantă, o folosești direct.",
+        },
+        { 
+          title: "Relația generală pentru două stări",
+          formula: "\\( \\frac{p_1 V_1}{T_1} = \\frac{p_2 V_2}{T_2} \\)",
+          explanation: "Dacă știi p, V și T într-o stare, poți calcula oricare mărime în cealaltă stare. Toate temperaturile în Kelvin!",
+        },
+        {
+          title: "Izoterm (T constant): p și V",
+          formula: "\\( p \\cdot V = const. \\) → \\( p_1 V_1 = p_2 V_2 \\)",
+          explanation: "Când temperatura rămâne constantă: dacă comprimi gazul (V scade), presiunea crește. Și invers. Exemplu: seringa cu dop închis.",
+        },
+        {
+          title: "Izobar (p constant): V și T",
+          formula: "\\( \\frac{V}{T} = const. \\) → \\( \\frac{V_1}{T_1} = \\frac{V_2}{T_2} \\)",
+          explanation: "Când presiunea rămâne constantă: gazul se dilată la încălzire. Cu cât e mai cald, cu atât ocupă mai mult spațiu. T trebuie în Kelvin!",
+        },
+        {
+          title: "Izocor (V constant): p și T",
+          formula: "\\( \\frac{p}{T} = const. \\) → \\( \\frac{p_1}{T_1} = \\frac{p_2}{T_2} \\)",
+          explanation: "Când volumul rămâne constant: la încălzire, presiunea crește. Exemplu: butelie de gaz sau anvelopă de mașină la soare.",
+        },
+      ],
+    },
+    {
+      section: "3. Principiul I al termodinamicii",
+      formulas: [
+        {
+          title: "Legea conservării energiei",
+          formula: "\\( \\Delta U = Q + L \\)",
+          explanation: "Energia internă se schimbă când gazul primește sau cedează căldură (Q) și când face sau primește lucru mecanic (L). Q > 0 = primește căldură, L > 0 = e comprimat (primește lucru).",
+        },
+        {
+          title: "Energia internă",
+          formula: "\\( U = \\nu \\cdot C_v \\cdot T \\)",
+          explanation: "Energia internă a gazului depinde doar de temperatură. Cv e o constantă care depinde de tipul de gaz (e dată în probleme).",
+        },
+        {
+          title: "Variația energiei interne",
+          formula: "\\( \\Delta U = \\nu \\cdot C_v \\cdot \\Delta T \\)",
+          explanation: "Cât s-a schimbat energia internă? Depinde doar de cât s-a schimbat temperatura, nu de drumul parcurs. Folosești la orice proces.",
+        },
+      ],
+    },
+    {
+      section: "4. Procese termodinamice",
+      formulas: [
+        {
+          title: "Izocor — Lucrul mecanic",
+          formula: "\\( L = 0 \\)",
+          explanation: "La volum constant gazul nu face lucru (nu se mișcă nimic). Toată căldura primită duce la creșterea temperaturii.",
+        },
+        {
+          title: "Izocor — Căldura și energia",
+          formula: "\\( \\Delta U = Q = \\nu \\cdot C_v \\cdot \\Delta T \\)",
+          explanation: "În izocor, căldura = variația energiei interne (pentru că L = 0). Câtă căldură primește, atât crește U.",
+        },
+        {
+          title: "Izobar — Lucrul mecanic",
+          formula: "\\( L = p \\cdot \\Delta V = \\nu \\cdot R \\cdot \\Delta T \\)",
+          explanation: "La presiune constantă, gazul poate face lucru când se dilată. O parte din căldură devine lucru, restul mărește temperatura.",
+        },
+        {
+          title: "Izobar — Căldura",
+          formula: "\\( Q = \\nu \\cdot C_p \\cdot \\Delta T \\)",
+          explanation: "Căldura la presiune constantă. Cp e puțin mai mare decât Cv (Cp = Cv + R). E dat în tabele.",
+        },
+        {
+          title: "Izoterm — Lucrul mecanic",
+          formula: "\\( L = \\nu \\cdot R \\cdot T \\cdot \\ln\\frac{V_2}{V_1} \\)",
+          explanation: "Lucrul când gazul se destinde sau se comprimă la T constant. ln = logaritm natural. La comprimare (V₂ < V₁) lucrul e negativ.",
+        },
+        {
+          title: "Izoterm — Energia și căldura",
+          formula: "\\( \\Delta U = 0 \\) → \\( Q = L \\)",
+          explanation: "La temperatură constantă energia internă nu se schimbă. Toată căldura primită se transformă în lucru (sau invers la comprimare).",
+        },
+        {
+          title: "Adiabatic — Energia",
+          formula: "\\( \\Delta U = -L \\)",
+          explanation: "Adiabatic = fără schimb de căldură cu exteriorul. Orice lucru făcut de gaz vine din energia lui internă. La comprimare adiabatică, gazul se încălzește!",
+        },
+        {
+          title: "Adiabatic — Relația p–V",
+          formula: "\\( p \\cdot V^{\\gamma} = const. \\) (γ = Cp/Cv)",
+          explanation: "În adiabatică, p și V sunt legate prin această formulă. γ ≈ 1,4 pentru aer. Folosești când știi p și V într-o stare și vrei să afli în alta.",
+        },
+      ],
+    },
+    {
+      section: "5. Principiul II al termodinamicii",
+      formulas: [
+        {
+          title: "Randamentul motorului termic",
+          formula: "\\( \\eta = \\frac{L}{Q_1} = 1 - \\frac{Q_2}{Q_1} \\)",
+          explanation: "Randamentul = cât din căldura primită (Q₁) s-a transformat în lucru util (L). Q₂ = căldura pierdută. Randamentul e mereu sub 1 (sub 100%).",
+        },
+        {
+          title: "Randamentul maxim (Carnot)",
+          formula: "\\( \\eta = 1 - \\frac{T_2}{T_1} \\)",
+          explanation: "Randamentul maxim posibil între o sursă caldă (T₁) și una rece (T₂). Niciun motor real nu poate fi mai eficient. Temperaturile în Kelvin!",
+        },
+        {
+          title: "Variația de entropie",
+          formula: "\\( \\Delta S = \\frac{Q}{T} \\)",
+          explanation: "Entropia măsoară „dezordinea”. Când primești căldură, entropia crește. T trebuie în Kelvin. Se folosește la Principiul II.",
+        },
+      ],
+    },
+    {
+      section: "6. Căldura și calorimetria",
+      formulas: [
+        {
+          title: "Căldura la încălzire/răcire",
+          formula: "\\( Q = m \\cdot c \\cdot \\Delta T \\)",
+          explanation: "Câtă căldură trebuie pentru a încălzi o masă m cu ΔT grade? c = căldura specifică (e dată: apa are c ≈ 4200 J/(kg·K)).",
+        },
+        {
+          title: "Echilibrul termic",
+          formula: "\\( Q_{cedat} = Q_{primit} \\)",
+          explanation: "Când pui un corp cald în contact cu unul rece, căldura cedată de cel cald = căldura primită de cel rece. Până la echilibru, când au aceeași temperatură.",
+        },
+        {
+          title: "Căldura la schimbare de stare",
+          formula: "\\( Q = m \\cdot L \\)",
+          explanation: "La topire, vaporizare etc. temperatura rămâne constantă, dar trebuie căldură. L = căldura latentă (de topire sau vaporizare), e dată în tabele.",
+        },
+      ],
+    },
+    {
+      section: "7. Transmiterea căldurii",
+      formulas: [
+        {
+          title: "Conducția termică",
+          formula: "\\( \\frac{Q}{t} = \\frac{\\lambda \\cdot A \\cdot \\Delta T}{d} \\)",
+          explanation: "Câtă căldură trece prin perete într-o secundă? λ = conductivitatea materialului (metalul conduce bine, lemnul prost), A = aria, d = grosimea.",
+        },
+        {
+          title: "Radiația termică",
+          formula: "\\( P = \\sigma \\cdot \\varepsilon \\cdot A \\cdot T^4 \\) (σ = 5,67×10⁻⁸ W/m²K⁴)",
+          explanation: "Puterea radiată de un corp (fără contact). Corpurile calde radiază căldură. Cu cât e mai cald, cu atât radiază mult mai mult (T la puterea 4).",
+        },
+      ],
+    },
   ];
 
   const seismFormulas = [
@@ -749,19 +908,30 @@ const ResursePage = () => {
                   </TabsContent>
 
                   <TabsContent value="termodinamica">
-                    <div className="formula-grid mb-4">
-                      {termodinamicaFormulas
-                        .slice(0, visibleFormulasCount.termodinamica || 5)
-                        .map((formula, index) => (
-                        <div key={index} className="formula-card">
-                          <div className="font-semibold mb-2">{formula.title}</div>
-                          <div className="text-lg font-mono">
-                            {formula.formula}
+                    <p className="text-sm text-muted-foreground mb-4">Apasă pe o formulă pentru explicație detaliată.</p>
+                    <div className="mb-4 space-y-6">
+                      {termodinamicaFormulas.map((sec, secIndex) => (
+                        <div key={secIndex}>
+                          <h3 className="text-lg font-semibold mb-3 text-foreground/90">{sec.section}</h3>
+                          <div className="formula-grid">
+                            {sec.formulas.map((formula, index) => (
+                              <div
+                                key={index}
+                                className="formula-card formula-card-clickable"
+                                role="button"
+                                tabIndex={0}
+                                onClick={() => formula.explanation && setFormulaPopup({ section: sec.section, ...formula })}
+                                onKeyDown={(e) => e.key === "Enter" && formula.explanation && setFormulaPopup({ section: sec.section, ...formula })}
+                              >
+                                <div className="font-semibold mb-2">{formula.title}</div>
+                                <div className="text-lg font-mono">{formula.formula}</div>
+                              </div>
+                            ))}
                           </div>
                         </div>
                       ))}
                     </div>
-                    <MathJaxRender key={`termodinamica-${visibleFormulasCount.termodinamica || 0}`} />
+                    <MathJaxRender key="termodinamica" />
                   </TabsContent>
 
                   <TabsContent value="seism">
