@@ -848,22 +848,216 @@ const ResursePage = () => {
   ];
 
   const opticaFormulas = [
-    { title: "Formula lentilelor subțiri", formula: "\\( \\frac{1}{f} = \\frac{1}{x_1} + \\frac{1}{x_2} \\)" },
-    { title: "Mărirea liniară", formula: "\\( \\beta = \\frac{x_2}{x_1} = \\frac{y_2}{y_1} \\)" },
-    { title: "Convergența (puterea optică)", formula: "\\( C = \\frac{1}{f} \\)" },
-    { title: "Formula constructorului de lentile", formula: "\\( \\frac{1}{f} = (n - 1)\\left(\\frac{1}{R_1} - \\frac{1}{R_2}\\right) \\)" },
-    { title: "Indicele de refracție", formula: "\\( n = \\frac{c}{v} = \\frac{\\sin(i)}{\\sin(r)} \\)" },
-    { title: "Legea refracției (Snell)", formula: "\\( n_1 \\sin(\\theta_1) = n_2 \\sin(\\theta_2) \\)" },
-    { title: "Legea reflexiei", formula: "\\( \\theta_i = \\theta_r \\)" },
-    { title: "Unghiul critic pentru reflexie totală", formula: "\\( \\sin(\\theta_{crit}) = \\frac{n_2}{n_1} \\)" },
-    { title: "Viteza luminii în mediu", formula: "\\( v = \\frac{c}{n} \\)" },
-    { title: "Lungimea de undă în mediu", formula: "\\( \\lambda_n = \\frac{\\lambda_0}{n} \\)" },
-    { title: "Deviația minimă în prismă", formula: "\\( \\delta_{min} = (n - 1)A \\)" },
-    { title: "Unghiul de deviație", formula: "\\( \\delta = i_1 + i_2 - A \\)" },
-    { title: "Condiția pentru maxime de interferență", formula: "\\( \\Delta = k\\lambda = d\\sin(\\theta) \\)" },
-    { title: "Condiția pentru minime de interferență", formula: "\\( \\Delta = \\left(k + \\frac{1}{2}\\right)\\lambda = d\\sin(\\theta) \\)" },
-    { title: "Rețeaua de difracție", formula: "\\( d\\sin(\\theta) = m\\lambda \\)" },
-    { title: "Puterea de rezoluție a rețelei", formula: "\\( R = \\frac{\\lambda}{\\Delta\\lambda} = mN \\)" },
+    {
+      section: "1. Reflexia luminii",
+      formulas: [
+        {
+          title: "Legea reflexiei",
+          formula: "\\( i = r \\) (unghi de incidență = unghi de reflexie)",
+          explanation: "Raza incidentă și cea reflectată fac același unghi cu normala la suprafață. Simplu: cum intră, așa iese. Oglinda reflectă simetric.",
+        },
+        {
+          title: "Oglinda plană",
+          formula: "\\( d_i = d_o \\)",
+          explanation: "Imaginea e la aceeași distanță de oglindă ca obiectul. Dacă stai la 1 m de oglindă, imaginea ta e la 1 m în spatele ei. Imagine virtuală, simetrică.",
+        },
+      ],
+    },
+    {
+      section: "2. Refracția luminii",
+      formulas: [
+        {
+          title: "Legea refracției",
+          formula: "\\( n_1 \\cdot \\sin(i) = n_2 \\cdot \\sin(r) \\)",
+          explanation: "Când lumina trece dintr-un mediu în altul (ex: aer în apă), raza se frânge. n₁, n₂ = indici de refracție. Cu n mai mare, unghiul e mai mic.",
+        },
+        {
+          title: "Indicele de refracție",
+          formula: "\\( n = \\frac{c}{v} \\) (c = 3×10⁸ m/s)",
+          explanation: "n spune de câte ori e mai lentă lumina în mediu decât în vid. Aer: n ≈ 1. Apă: n ≈ 1,33. Sticlă: n ≈ 1,5. Cu n mai mare, lumina e mai lentă.",
+        },
+        {
+          title: "Unghiul limită (reflexie totală)",
+          formula: "\\( \\sin(i_{lim}) = \\frac{n_2}{n_1} \\) (când n₁ > n₂)",
+          explanation: "Când lumina vine din mediu cu n mai mare (ex: apă) spre unul cu n mai mic (aer), există un unghi peste care nu mai există refracție, doar reflexie. Folosit la fibre optice.",
+        },
+      ],
+    },
+    {
+      section: "3. Oglinzi sferice",
+      formulas: [
+        {
+          title: "Ecuația oglinzii",
+          formula: "\\( \\frac{1}{f} = \\frac{1}{d_o} + \\frac{1}{d_i} \\)",
+          explanation: "Leagă distanța focală (f), distanța obiectului (d_o) și a imaginii (d_i). La oglindă concavă poți obține imagini reale sau virtuale, în funcție de poziția obiectului.",
+        },
+        {
+          title: "Distanța focală",
+          formula: "\\( f = \\frac{R}{2} \\) (R = raza de curbură)",
+          explanation: "Focarul e la jumătatea razei. Oglindă cu R = 20 cm are f = 10 cm. f > 0 = oglindă concavă, f < 0 = oglindă convexă.",
+        },
+        {
+          title: "Mărirea liniară",
+          formula: "\\( m = -\\frac{d_i}{d_o} \\)",
+          explanation: "Cât de mare e imaginea față de obiect. m negativ = imagine răsturnată. m pozitiv = imagine dreaptă. |m| > 1 = imagine mărită.",
+        },
+        {
+          title: "Convenții de semn (oglinzi)",
+          formula: "d_o > 0 obiect real; d_i > 0 imagine reală; d_i < 0 imagine virtuală; f > 0 concavă, f < 0 convexă",
+          explanation: "d_o mereu pozitiv (obiectul e real). d_i > 0 când imaginea e în fața oglinzii (concavă), d_i < 0 când e în spate (virtuală). Convexă are f negativ.",
+        },
+      ],
+    },
+    {
+      section: "4. Lentile subțiri",
+      formulas: [
+        {
+          title: "Ecuația lentilei (Gauss)",
+          formula: "\\( \\frac{1}{f} = \\frac{1}{d_o} + \\frac{1}{d_i} \\)",
+          explanation: "La fel ca la oglinzi, dar convențiile sunt diferite. f > 0 = lentilă convergentă (convexă), f < 0 = divergentă (concavă).",
+        },
+        {
+          title: "Vergența (puterea optică)",
+          formula: "\\( D = \\frac{1}{f} \\) (dioptrii, δ)",
+          explanation: "Puterea lentilei în dioptrii. Lentilă de 2 δ are f = 0,5 m = 50 cm. Cu cât D e mai mare, cu atât lentila e mai puternică.",
+        },
+        {
+          title: "Mărirea liniară",
+          formula: "\\( m = \\frac{d_i}{d_o} \\)",
+          explanation: "La lentile, m = d_i/d_o (fără minus, spre deosebire de oglinzi). m > 0 = imagine dreaptă, m < 0 = imagine răsturnată.",
+        },
+        {
+          title: "Formula lentilei subțiri",
+          formula: "\\( \\frac{1}{f} = (n-1) \\cdot \\left(\\frac{1}{R_1} - \\frac{1}{R_2}\\right) \\)",
+          explanation: "Legătura între f, indicele n al sticlei și razele de curbură R₁, R₂. Lentilă convergentă: R₁ și R₂ au semne potrivite.",
+        },
+        {
+          title: "Convenții de semn (lentile)",
+          formula: "f > 0 convergentă; f < 0 divergentă; d_i > 0 imagine reală; d_i < 0 imagine virtuală",
+          explanation: "Imagine reală = de cealaltă parte a lentilei față de obiect (poate fi prinsă pe ecran). Imagine virtuală = de aceeași parte, nu poate fi prinsă.",
+        },
+        {
+          title: "Lentile în contact",
+          formula: "\\( D_{ec} = D_1 + D_2 \\)",
+          explanation: "Două lentile lipite au vergența totală = suma vergențelor. Două lentile de +2 δ și +3 δ dau +5 δ.",
+        },
+      ],
+    },
+    {
+      section: "5. Ochiul uman și defecte de vedere",
+      formulas: [
+        {
+          title: "Ochiul normal",
+          formula: "Vede clar între 10 cm (proxim) și infinit (remotum)",
+          explanation: "Ochiul sănătos poate focaliza de la 10 cm până la infinit. Sub 10 cm nu mai vedem clar.",
+        },
+        {
+          title: "Miopie",
+          formula: "Corecție cu lentilă divergentă (f < 0)",
+          explanation: "Miopul vede bine aproape, dar nu departe. Focalul e prea aproape. Ochelarii cu lentile concave (divergente) îndepărtează imaginea.",
+        },
+        {
+          title: "Hipermetropie",
+          formula: "Corecție cu lentilă convergentă (f > 0)",
+          explanation: "Hipermetropul vede bine departe, dar nu aproape. Ochelarii cu lentile convexe (convergente) aduc imaginea mai aproape.",
+        },
+        {
+          title: "Puterea de corecție",
+          formula: "\\( D_{corectie} = \\frac{1}{d_{remotum}} \\) (în metri, cu semn)",
+          explanation: "Pentru miopie: D negativ, d_remotum = distanța maximă la care vede clar (în m). Pentru hipermetropie: D pozitiv.",
+        },
+      ],
+    },
+    {
+      section: "6. Instrumente optice",
+      formulas: [
+        {
+          title: "Mărirea microscopului",
+          formula: "\\( M = m_{ob} \\cdot m_{oc} \\)",
+          explanation: "Mărirea totală = mărirea obiectivului × mărirea ocularului. Microscopul are două lentile: obiectiv (aproape de obiect) și ocular (aproape de ochi).",
+        },
+        {
+          title: "Mărirea lupei",
+          formula: "\\( M = \\frac{25 \\ \\text{cm}}{f} \\)",
+          explanation: "25 cm = distanța de vedere clară convențională. Lupă cu f = 5 cm mărește de 5 ori. Cu cât f e mai mic, cu atât mărirea e mai mare.",
+        },
+        {
+          title: "Mărirea lunetei/telescopului",
+          formula: "\\( M = \\frac{f_{ob}}{f_{oc}} \\)",
+          explanation: "Mărirea = raportul focalelor. Obiectivul are f mare (captează multă lumină), ocularul f mic. Telescop bun: f_ob mare, f_oc mic.",
+        },
+      ],
+    },
+    {
+      section: "7. Dispersia luminii",
+      formulas: [
+        {
+          title: "Spectrul vizibil",
+          formula: "ROGVAIV (roșu, oranj, galben, verde, albastru, indigo, violet)",
+          explanation: "Lumina albă (soare) conține toate culorile. Prisma le descompune: fiecare culoare are n diferit și se frânge diferit.",
+        },
+        {
+          title: "Indicele depinde de λ",
+          formula: "\\( n = n(\\lambda) \\)",
+          explanation: "n e mai mare pentru violet (λ mic) și mai mic pentru roșu (λ mare). Violetul se refractă mai mult, roșul mai puțin. De aia curcubeul.",
+        },
+      ],
+    },
+    {
+      section: "8. Interferența luminii",
+      formulas: [
+        {
+          title: "Maxim (franje luminoase)",
+          formula: "\\( \\Delta = k \\cdot \\lambda \\) (k = 0, ±1, ±2, ...)",
+          explanation: "Când diferența de drum (Δ) e multiplu de λ, undele se întăresc = franjă luminoasă. k = ordinul maximului.",
+        },
+        {
+          title: "Minim (franje întunecate)",
+          formula: "\\( \\Delta = (2k+1) \\cdot \\frac{\\lambda}{2} \\)",
+          explanation: "Când Δ e multiplu impar de λ/2, undele se anulează = franjă întunecată.",
+        },
+        {
+          title: "Distanța dintre franje (Young)",
+          formula: "\\( \\Delta y = \\frac{\\lambda \\cdot L}{d} \\)",
+          explanation: "L = distanța până la ecran, d = distanța dintre cele două fante. Cu λ mai mare sau L mai mare, franjele sunt mai depărtate.",
+        },
+      ],
+    },
+    {
+      section: "9. Difracția luminii",
+      formulas: [
+        {
+          title: "Minim la fantă simplă",
+          formula: "\\( a \\cdot \\sin(\\theta) = k \\cdot \\lambda \\)",
+          explanation: "a = lățimea fantei. Lumina se împrăștie când trece printr-o fantă îngustă. Primele minime la k = ±1.",
+        },
+        {
+          title: "Rețea de difracție — maxim",
+          formula: "\\( d \\cdot \\sin(\\theta) = k \\cdot \\lambda \\) (d = pasul rețelei)",
+          explanation: "Rețeaua are multe fante paralele la distanța d. Maximele sunt foarte ascuțite. Folosită la spectroscop pentru a separa culorile.",
+        },
+      ],
+    },
+    {
+      section: "10. Efectul fotoelectric",
+      formulas: [
+        {
+          title: "Energia fotonului",
+          formula: "\\( E = h \\cdot f = \\frac{h \\cdot c}{\\lambda} \\) (h = 6,626×10⁻³⁴ J·s)",
+          explanation: "Lumina e formată din fotoni. Fiecare foton are energia h·f. Cu frecvența mai mare (λ mai mic), fotonul e mai energic.",
+        },
+        {
+          title: "Ecuația lui Einstein",
+          formula: "\\( E_k = h \\cdot f - L \\) (L = lucrul de extracție)",
+          explanation: "Energia cinetică a electronului extras = energia fotonului minus lucrul de extracție (energia minimă pentru a scoate electronul).",
+        },
+        {
+          title: "Pragul fotoelectric",
+          formula: "\\( f_{min} = \\frac{L}{h} \\)",
+          explanation: "Frecvența minimă pentru care apare efect fotoelectric. Sub f_min, chiar dacă lumina e puternică, nu ies electroni. E o problemă de energie, nu de intensitate.",
+        },
+      ],
+    },
   ];
 
   const matematicaFormulas = [
@@ -1265,19 +1459,30 @@ const ResursePage = () => {
                   </TabsContent>
 
                   <TabsContent value="optica">
-                    <div className="formula-grid mb-4">
-                      {opticaFormulas
-                        .slice(0, visibleFormulasCount.optica || 5)
-                        .map((formula, index) => (
-                        <div key={index} className="formula-card">
-                          <div className="font-semibold mb-2">{formula.title}</div>
-                          <div className="text-lg font-mono">
-                            {formula.formula}
+                    <p className="text-sm text-muted-foreground mb-4">Apasă pe o formulă pentru explicație detaliată.</p>
+                    <div className="mb-4 space-y-6">
+                      {opticaFormulas.map((sec, secIndex) => (
+                        <div key={secIndex}>
+                          <h3 className="text-lg font-semibold mb-3 text-foreground/90">{sec.section}</h3>
+                          <div className="formula-grid">
+                            {sec.formulas.map((formula, index) => (
+                              <div
+                                key={index}
+                                className="formula-card formula-card-clickable"
+                                role="button"
+                                tabIndex={0}
+                                onClick={() => formula.explanation && setFormulaPopup({ section: sec.section, ...formula })}
+                                onKeyDown={(e) => e.key === "Enter" && formula.explanation && setFormulaPopup({ section: sec.section, ...formula })}
+                              >
+                                <div className="font-semibold mb-2">{formula.title}</div>
+                                <div className="text-lg font-mono">{formula.formula}</div>
+                              </div>
+                            ))}
                           </div>
                         </div>
                       ))}
                     </div>
-                    <MathJaxRender key={`optica-${visibleFormulasCount.optica || 0}`} />
+                    <MathJaxRender key="optica" />
                   </TabsContent>
 
                   <TabsContent value="matematica">
