@@ -261,12 +261,14 @@ const AssistantPopup = ({ onClose, initialMessage }) => {
   const chatRef = useRef(null);
   const [loading, setLoading] = useState(false);
   const [typing, setTyping] = useState(false);
+  const [typingText, setTypingText] = useState("");
   const [sidebarOpen, setSidebarOpen] = useState(true);
   const [isFullscreen, setIsFullscreen] = useState(false);
   const modalRef = useRef(null);
   const [copiedMessageId, setCopiedMessageId] = useState(null);
   const messagesEndRef = useRef(null);
   const hasScrolledOnOpenRef = useRef(false);
+  const shouldAutoScrollRef = useRef(true); // false când user-ul face scroll manual în sus
   const darkModeOn = useDarkMode();
   
   // Chat management hook
@@ -462,10 +464,30 @@ const AssistantPopup = ({ onClose, initialMessage }) => {
     };
   }, [onClose]);
 
-  // Scroll to bottom when messages change - DISABLED per user request
-  // useEffect(() => {
-  //   scrollToBottom();
-  // }, [messages, typing]);
+  // Detectează scroll manual - oprește auto-scroll când user-ul dă scroll în sus (ca ChatGPT)
+  useEffect(() => {
+    const el = chatRef.current;
+    if (!el) return;
+    const SCROLL_THRESHOLD = 5; // foarte mic - orice scroll în sus = disable
+    const handleScroll = () => {
+      const { scrollTop, scrollHeight, clientHeight } = el;
+      const distanceFromBottom = scrollHeight - scrollTop - clientHeight;
+      if (distanceFromBottom > SCROLL_THRESHOLD) {
+        shouldAutoScrollRef.current = false; // User a dat scroll în sus
+      } else {
+        shouldAutoScrollRef.current = true; // User s-a întors la bottom - reia auto-scroll
+      }
+    };
+    el.addEventListener('scroll', handleScroll, { passive: true });
+    return () => el.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  // Auto-scroll continuu când apare conținut nou (mesaje, typing) - până când user-ul dă scroll manual
+  useEffect(() => {
+    if (shouldAutoScrollRef.current && chatRef.current) {
+      chatRef.current.scrollTop = chatRef.current.scrollHeight;
+    }
+  }, [messages, typingText, typing, loading]);
 
   const scrollToBottom = () => {
     if (chatRef.current) {
@@ -515,8 +537,6 @@ const AssistantPopup = ({ onClose, initialMessage }) => {
       });
     } catch (_) {}
   };
-
-  const [typingText, setTypingText] = useState("");
 
   const simulateTyping = (text, callback) => {
     setTyping(true);
@@ -599,6 +619,7 @@ const AssistantPopup = ({ onClose, initialMessage }) => {
     setTyping(false);
     setTypingText("");
     setLoading(false);
+    shouldAutoScrollRef.current = true; // Reset la schimbarea chat-ului
     
     // Pe mobil, închide sidebar-ul când se selectează un chat
     if (window.innerWidth <= 1100) {
@@ -710,6 +731,7 @@ const AssistantPopup = ({ onClose, initialMessage }) => {
     
     setInputValue("");
     setLoading(true);
+    shouldAutoScrollRef.current = true; // Reia auto-scroll pentru noul răspuns (ca ChatGPT)
     
     // Scroll smooth la finalul chat-ului după trimiterea mesajului
     setTimeout(() => {
@@ -859,6 +881,9 @@ const AssistantPopup = ({ onClose, initialMessage }) => {
   // Cache pentru hidden div pentru a evita crearea/ștergerea repetată
   const hiddenDivRef = useRef(null);
   
+  // Înălțime minimă = o linie (ca ChatGPT - compact până când conținutul depășește)
+  const SINGLE_LINE_HEIGHT = 24;
+  
   const handleInput = (e) => {
     const textarea = e.target;
     const value = textarea.value;
@@ -880,7 +905,8 @@ const AssistantPopup = ({ onClose, initialMessage }) => {
       
       hiddenDivRef.current.textContent = value + '\n';
       const scrollHeight = hiddenDivRef.current.offsetHeight;
-      const newHeight = Math.min(Math.max(44, scrollHeight), 120);
+      // Crește doar când conținutul depășește o linie (wrap sau newline) - ca ChatGPT
+      const newHeight = Math.min(Math.max(SINGLE_LINE_HEIGHT, scrollHeight), 120);
       
       if (textarea.style.height !== newHeight + 'px') {
         textarea.style.height = newHeight + 'px';
@@ -888,6 +914,13 @@ const AssistantPopup = ({ onClose, initialMessage }) => {
     });
   };
   
+  // Reset height când inputul e golit (după trimitere) - revine la o linie
+  useEffect(() => {
+    if (inputValue === '' && textareaRef.current) {
+      textareaRef.current.style.height = '24px';
+    }
+  }, [inputValue]);
+
   // Cleanup pentru hidden div
   useEffect(() => {
     return () => {
