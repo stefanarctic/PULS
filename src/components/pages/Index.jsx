@@ -161,22 +161,22 @@ const Index = () => {
                             PULS - Platforma educațională pentru studiul conceptelor de Pendul, Unde, Lissajous și Seism prin probleme și simulări interactive.
                         </p>
                         <div className="buttons">
-                            {loading ? null : user ? (
-                                <>
-                                    <button className="filled">
-                                        <Link to="/probleme" className="index-link">Exploreaza problemele</Link>
-                                    </button>
-                                    <button>
-                                        <Link to="/simulari" className="index-link">Incearca simularile</Link>
-                                    </button>
-                                </>
-                            ) : (
+                            {loading || !user ? (
                                 <>
                                     <button className="profile-btn-big profile-btn-red filled" onClick={handleGoogleLogin}>
                                         Înregistrează-te
                                     </button>
                                     <button className="profile-btn-big profile-btn-blue" onClick={handleGoogleLogin}>
                                         Loghează-te
+                                    </button>
+                                </>
+                            ) : (
+                                <>
+                                    <button className="filled">
+                                        <Link to="/probleme" className="index-link">Exploreaza problemele</Link>
+                                    </button>
+                                    <button>
+                                        <Link to="/simulari" className="index-link">Incearca simularile</Link>
                                     </button>
                                 </>
                             )}
