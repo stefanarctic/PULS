@@ -605,23 +605,246 @@ const ResursePage = () => {
   ];
 
   const electricitateFormulas = [
-    { title: "Legea lui Ohm", formula: "\\( U = RI \\)" },
-    { title: "Puterea electrică", formula: "\\( P = UI = RI^2 = \\frac{U^2}{R} \\)" },
-    { title: "Energia electrică", formula: "\\( W = UIt = RI^2t = \\frac{U^2}{R}t \\)" },
-    { title: "Rezistența echivalentă în serie", formula: "\\( R_{eq} = R_1 + R_2 + ... + R_n \\)" },
-    { title: "Rezistența echivalentă în paralel", formula: "\\( \\frac{1}{R_{eq}} = \\frac{1}{R_1} + \\frac{1}{R_2} + ... + \\frac{1}{R_n} \\)" },
-    { title: "Prima lege a lui Kirchhoff", formula: "\\( \\sum I_{intrare} = \\sum I_{iesire} \\)" },
-    { title: "A doua lege a lui Kirchhoff", formula: "\\( \\sum U = \\sum RI \\)" },
-    { title: "Rezistența unui conductor", formula: "\\( R = \\rho \\frac{l}{S} \\)" },
-    { title: "Curentul electric", formula: "\\( I = \\frac{q}{t} = nqvS \\)" },
-    { title: "Densitatea curentului", formula: "\\( j = \\frac{I}{S} = nqv \\)" },
-    { title: "Intensitatea câmpului electric", formula: "\\( \\vec{E} = \\frac{\\vec{F}}{q} \\)" },
-    { title: "Câmpul electric al unei sarcini punctiforme", formula: "\\( E = k \\frac{q}{r^2} = \\frac{1}{4\\pi\\varepsilon_0} \\frac{q}{r^2} \\)" },
-    { title: "Potențialul electric", formula: "\\( V = \\frac{W}{q} = k \\frac{q}{r} \\)" },
-    { title: "Tensiunea electrică", formula: "\\( U = V_1 - V_2 = Ed \\)" },
-    { title: "Capacitatea unui condensator plan", formula: "\\( C = \\frac{\\varepsilon_0 S}{d} \\)" },
-    { title: "Energia stocată într-un condensator", formula: "\\( W = \\frac{1}{2}CU^2 = \\frac{Q^2}{2C} \\)" },
-    { title: "Energia stocată într-o bobină", formula: "\\( W = \\frac{1}{2}LI^2 \\)" },
+    {
+      section: "1. Curentul electric",
+      formulas: [
+        {
+          title: "Intensitatea curentului",
+          formula: "\\( I = \\frac{Q}{t} \\) (Q = sarcina, t = timpul)",
+          explanation: "Câtă sarcină electrică trece printr-un conductor într-o secundă. I = curentul în Amperi (A), Q în Coulombi (C), t în secunde. Exemplu: becul de 100 W la 220 V are I ≈ 0,45 A.",
+        },
+        {
+          title: "Sarcina electronului",
+          formula: "\\( e = 1{,}6 \\times 10^{-19} \\) C",
+          explanation: "Sarcina elementară — cea mai mică sarcină liberă din natură. Toate sarcinile sunt multipli de e. Electronul are −e, protonul +e. Folosești la probleme cu număr de electroni.",
+        },
+      ],
+    },
+    {
+      section: "2. Legea lui Ohm",
+      formulas: [
+        {
+          title: "Legea lui Ohm",
+          formula: "\\( U = R \\cdot I \\)",
+          explanation: "Tensiunea = rezistența × curentul. Căutați U? Înmulțiți R cu I. Căutați I? Împărțiți U la R. E fundamentală în orice circuit.",
+        },
+        {
+          title: "Rezistența unui conductor",
+          formula: "\\( R = \\rho \\cdot \\frac{l}{A} \\)",
+          explanation: "Rezistența depinde de material (ρ = rezistivitate), lungime (l) și secțiune (A). Fir mai lung = rezistență mai mare. Fir mai gros = rezistență mai mică. ρ e dat în tabele.",
+        },
+        {
+          title: "Rezistența cu temperatura",
+          formula: "\\( R = R_0 \\cdot (1 + \\alpha \\cdot \\Delta T) \\)",
+          explanation: "La metale, rezistența crește la încălzire. R₀ = rezistența la temperatura de referință, α = coeficient de temperatură (dat). La cărbune, rezistența scade!",
+        },
+      ],
+    },
+    {
+      section: "3. Circuite electrice — Rezistoare",
+      formulas: [
+        {
+          title: "Serie — Rezistența echivalentă",
+          formula: "\\( R_{ec} = R_1 + R_2 + R_3 + ... \\)",
+          explanation: "Rezistoarele în serie se adună. Rezistența totală e mai mare decât oricare. Curentul e același prin toate.",
+        },
+        {
+          title: "Serie — Curentul și tensiunea",
+          formula: "\\( I = I_1 = I_2 = I_3 \\) și \\( U = U_1 + U_2 + U_3 \\)",
+          explanation: "În serie, curentul e același peste tot. Tensiunea sursei se împarte între rezistoare: U = U₁ + U₂ + U₃.",
+        },
+        {
+          title: "Paralel — Rezistența echivalentă",
+          formula: "\\( \\frac{1}{R_{ec}} = \\frac{1}{R_1} + \\frac{1}{R_2} + \\frac{1}{R_3} \\)",
+          explanation: "În paralel, inversul rezistenței totale = suma inverselor. Rezistența totală e mai mică decât oricare!",
+        },
+        {
+          title: "Paralel — Curentul și tensiunea",
+          formula: "\\( U = U_1 = U_2 = U_3 \\) și \\( I = I_1 + I_2 + I_3 \\)",
+          explanation: "În paralel, tensiunea e aceeași la toate. Curentul total se împarte pe ramuri: I = I₁ + I₂ + I₃.",
+        },
+      ],
+    },
+    {
+      section: "4. Energia și puterea electrică",
+      formulas: [
+        {
+          title: "Puterea electrică",
+          formula: "\\( P = U \\cdot I = R \\cdot I^2 = \\frac{U^2}{R} \\)",
+          explanation: "Puterea consumată de un receptor. P = U·I e forma generală. Când știi doar R și I, folosești R·I². Când știi U și R, folosești U²/R. Unitate: Watt (W).",
+        },
+        {
+          title: "Energia electrică consumată",
+          formula: "\\( W = P \\cdot t = U \\cdot I \\cdot t \\)",
+          explanation: "Energia = puterea × timpul. Cât consumă un bec în 2 ore? W = P·t. Unitate: Jouli (J) sau kWh (1 kWh = 3,6×10⁶ J).",
+        },
+        {
+          title: "Efectul Joule (căldura disipată)",
+          formula: "\\( Q = R \\cdot I^2 \\cdot t \\)",
+          explanation: "Căldura degajată de un rezistor (ex: încălzitor, bec). Cu cât curentul e mai mare, cu atât se încălzește mai mult. La fel ca W, dar sub formă de căldură.",
+        },
+      ],
+    },
+    {
+      section: "5. Sursa electrică",
+      formulas: [
+        {
+          title: "Tensiunea electromotoare",
+          formula: "\\( \\varepsilon = U + u \\) (u = căderea internă)",
+          explanation: "Tensiunea sursei (ε) se împarte: o parte pe circuit (U = tensiune la borne), o parte pe rezistența internă (u).",
+        },
+        {
+          title: "Căderea de tensiune internă",
+          formula: "\\( u = r \\cdot I \\)",
+          explanation: "r = rezistența internă a sursei. Când curentul e mare, u crește și U la borne scade. Bateria se descarcă când furnizează curent.",
+        },
+        {
+          title: "Tensiunea la borne",
+          formula: "\\( U = \\varepsilon - r \\cdot I \\)",
+          explanation: "Tensiunea reală pe care o primește circuitul. E mai mică decât ε când e curent. La mers în gol (I = 0): U = ε.",
+        },
+        {
+          title: "Curentul de scurtcircuit",
+          formula: "\\( I_{sc} = \\frac{\\varepsilon}{r} \\)",
+          explanation: "Când bornele sunt conectate direct (fără rezistență externă). Curent foarte mare! Periculos — nu face asta în practică.",
+        },
+        {
+          title: "Puterea totală și utilă",
+          formula: "\\( P_{total} = \\varepsilon \\cdot I \\) și \\( P_{utila} = U \\cdot I \\)",
+          explanation: "Puterea totală = ce dă sursa. Puterea utilă = ce primește circuitul. Diferența se pierde în rezistența internă.",
+        },
+        {
+          title: "Randamentul sursei",
+          formula: "\\( \\eta = \\frac{P_{utila}}{P_{total}} = \\frac{U}{\\varepsilon} \\)",
+          explanation: "Cât din puterea sursei ajunge efectiv la circuit. η = 1 (100%) când r = 0. La baterii reale, η < 1.",
+        },
+      ],
+    },
+    {
+      section: "6. Legile lui Kirchhoff",
+      formulas: [
+        {
+          title: "Legea I (noduri)",
+          formula: "\\( \\Sigma I_{intrat} = \\Sigma I_{iesit} \\)",
+          explanation: "Într-un nod, curentul care intră = curentul care iese. Ce intră, iese. Nu se pierde curent în nod.",
+        },
+        {
+          title: "Legea a II-a (ochiuri)",
+          formula: "\\( \\Sigma \\varepsilon = \\Sigma R \\cdot I \\)",
+          explanation: "Pe un ochi (buclă) închisă: suma tensiunilor surselor = suma căderilor de tensiune pe rezistoare. Atenție la semne (sursa și curentul)!",
+        },
+      ],
+    },
+    {
+      section: "7. Condensatorul",
+      formulas: [
+        {
+          title: "Capacitatea electrică",
+          formula: "\\( C = \\frac{Q}{U} \\) (unitate: Farad, F)",
+          explanation: "Câtă sarcină poate stoca condensatorul la o tensiune dată. C mare = multă sarcină. 1 F = 1 C/V.",
+        },
+        {
+          title: "Capacitatea condensatorului plan",
+          formula: "\\( C = \\frac{\\varepsilon_0 \\cdot \\varepsilon_r \\cdot A}{d} \\)",
+          explanation: "C depinde de aria armăturilor (A), distanța dintre ele (d) și dielectricul (εr). Placă mai mare, mai apropiate = C mai mare.",
+        },
+        {
+          title: "Energia stocată",
+          formula: "\\( W = \\frac{1}{2} C \\cdot U^2 = \\frac{Q^2}{2C} \\)",
+          explanation: "Energia din condensatorul încărcat. Se folosește la descărcare (flash, defibrilator).",
+        },
+        {
+          title: "Condensatoare în serie",
+          formula: "\\( \\frac{1}{C_{ec}} = \\frac{1}{C_1} + \\frac{1}{C_2} \\)",
+          explanation: "În serie, capacitatea echivalentă e mai mică decât oricare. Ca inversul rezistențelor în paralel.",
+        },
+        {
+          title: "Condensatoare în paralel",
+          formula: "\\( C_{ec} = C_1 + C_2 \\)",
+          explanation: "În paralel, capacitățile se adună. Capacitatea totală crește.",
+        },
+      ],
+    },
+    {
+      section: "8. Câmpul electric",
+      formulas: [
+        {
+          title: "Forța Coulomb",
+          formula: "\\( F = k \\cdot \\frac{q_1 \\cdot q_2}{r^2} \\) (k = 9×10⁹ N·m²/C²)",
+          explanation: "Forța între două sarcini punctiforme. Sarcinile de același semn se resping, de semne opuse se atrag. r = distanța dintre ele.",
+        },
+        {
+          title: "Intensitatea câmpului electric",
+          formula: "\\( E = \\frac{F}{q} = k \\cdot \\frac{Q}{r^2} \\)",
+          explanation: "Câmpul creat de o sarcină Q. E spune cât e forța pe unitate de sarcină. Unitate: N/C sau V/m.",
+        },
+        {
+          title: "Tensiunea și câmpul uniform",
+          formula: "\\( U = E \\cdot d \\)",
+          explanation: "Într-un câmp uniform (ex: între două plăci paralele), tensiunea = câmpul × distanța. d = distanța între puncte.",
+        },
+        {
+          title: "Energia potențială electrică",
+          formula: "\\( E_p = q \\cdot U \\)",
+          explanation: "Energia unei sarcini q în punctul unde tensiunea e U. Când se mișcă, Ep se transformă în energie cinetică sau invers.",
+        },
+      ],
+    },
+    {
+      section: "9. Curentul alternativ (AC)",
+      formulas: [
+        {
+          title: "Valoarea efectivă a tensiunii",
+          formula: "\\( U_{ef} = \\frac{U_{max}}{\\sqrt{2}} \\)",
+          explanation: "Tensiunea efectivă e cea care produce același efect ca în curent continuu. La 220 V efectiv, U_max ≈ 311 V.",
+        },
+        {
+          title: "Valoarea efectivă a curentului",
+          formula: "\\( I_{ef} = \\frac{I_{max}}{\\sqrt{2}} \\)",
+          explanation: "La fel ca la tensiune. În priză avem 220 V efectiv, 50 Hz. Curentul și tensiunea variază sinusoidal.",
+        },
+        {
+          title: "Puterea în curent alternativ",
+          formula: "\\( P = U_{ef} \\cdot I_{ef} \\cdot \\cos\\varphi \\)",
+          explanation: "cos φ = factorul de putere. La rezistor pur, cos φ = 1. La motoare, cos φ < 1 (există putere reactivă).",
+        },
+        {
+          title: "Frecvența în România",
+          formula: "\\( f = 50 \\) Hz, \\( T = 0{,}02 \\) s",
+          explanation: "Tensiunea din priză oscilează cu 50 Hz. Perioada T = 1/f = 0,02 s. O dată la 0,02 s se repetă ciclul.",
+        },
+      ],
+    },
+    {
+      section: "10. Circuite RLC",
+      formulas: [
+        {
+          title: "Reactanța inductivă",
+          formula: "\\( X_L = \\omega \\cdot L = 2\\pi f \\cdot L \\)",
+          explanation: "Rezistența aparentă a bobinei la curent alternativ. Cu cât frecvența e mai mare, cu atât X_L e mai mare. L = inductanța (Henry).",
+        },
+        {
+          title: "Reactanța capacitivă",
+          formula: "\\( X_C = \\frac{1}{\\omega \\cdot C} \\)",
+          explanation: "Rezistența aparentă a condensatorului la AC. Cu cât frecvența e mai mare, cu atât X_C e mai mic. Opus față de bobină.",
+        },
+        {
+          title: "Impedanța",
+          formula: "\\( Z = \\sqrt{R^2 + (X_L - X_C)^2} \\)",
+          explanation: "Rezistența totală a circuitului RLC. Combină R, X_L și X_C. Când X_L = X_C, Z = R (rezonanță).",
+        },
+        {
+          title: "Legea lui Ohm pentru AC",
+          formula: "\\( I = \\frac{U}{Z} \\)",
+          explanation: "La fel ca în curent continuu, dar cu Z în loc de R. I și U sunt valori efective.",
+        },
+        {
+          title: "Frecvența de rezonanță",
+          formula: "\\( f_0 = \\frac{1}{2\\pi \\sqrt{L \\cdot C}} \\)",
+          explanation: "La această frecvență, X_L = X_C și Z = R (minim). Circuitul rezonează, curentul e maxim.",
+        },
+      ],
+    },
   ];
 
   const opticaFormulas = [
@@ -1015,19 +1238,30 @@ const ResursePage = () => {
                   </TabsContent>
 
                   <TabsContent value="electricitate">
-                    <div className="formula-grid mb-4">
-                      {electricitateFormulas
-                        .slice(0, visibleFormulasCount.electricitate || 5)
-                        .map((formula, index) => (
-                        <div key={index} className="formula-card">
-                          <div className="font-semibold mb-2">{formula.title}</div>
-                          <div className="text-lg font-mono">
-                            {formula.formula}
+                    <p className="text-sm text-muted-foreground mb-4">Apasă pe o formulă pentru explicație detaliată.</p>
+                    <div className="mb-4 space-y-6">
+                      {electricitateFormulas.map((sec, secIndex) => (
+                        <div key={secIndex}>
+                          <h3 className="text-lg font-semibold mb-3 text-foreground/90">{sec.section}</h3>
+                          <div className="formula-grid">
+                            {sec.formulas.map((formula, index) => (
+                              <div
+                                key={index}
+                                className="formula-card formula-card-clickable"
+                                role="button"
+                                tabIndex={0}
+                                onClick={() => formula.explanation && setFormulaPopup({ section: sec.section, ...formula })}
+                                onKeyDown={(e) => e.key === "Enter" && formula.explanation && setFormulaPopup({ section: sec.section, ...formula })}
+                              >
+                                <div className="font-semibold mb-2">{formula.title}</div>
+                                <div className="text-lg font-mono">{formula.formula}</div>
+                              </div>
+                            ))}
                           </div>
                         </div>
                       ))}
                     </div>
-                    <MathJaxRender key={`electricitate-${visibleFormulasCount.electricitate || 0}`} />
+                    <MathJaxRender key="electricitate" />
                   </TabsContent>
 
                   <TabsContent value="optica">
