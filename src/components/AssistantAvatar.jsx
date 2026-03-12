@@ -10,19 +10,29 @@ const AssistantAvatar = () => {
   const [isDragging, setIsDragging] = useState(false);
   const [dragEnabled, setDragEnabled] = useState(false);
   const [hasDragged, setHasDragged] = useState(false);
+  const avatarSize = 75;
+
   const [position, setPosition] = useState(() => {
     // Load saved position from localStorage or use default
     const saved = localStorage.getItem("assistantAvatarPosition");
     if (saved) {
       try {
-        const { x, y } = JSON.parse(saved);
-        return { x, y };
+        const parsed = JSON.parse(saved);
+        // Support both old format {x, y} and new format {right, y}
+        if (parsed.right !== undefined && parsed.y !== undefined) {
+          return { right: parsed.right, y: parsed.y };
+        }
+        if (parsed.x !== undefined && parsed.y !== undefined) {
+          // Convert old format: right = windowWidth - x - avatarSize
+          const w = typeof window !== "undefined" ? window.innerWidth : 1200;
+          return { right: w - parsed.x - avatarSize, y: parsed.y };
+        }
       } catch (e) {
         // If parsing fails, use default
       }
     }
     // Default position: right side, vertically centered
-    return { x: null, y: null }; // null means use CSS default
+    return { right: null, y: null }; // null means use CSS default
   });
   const [dragOffset, setDragOffset] = useState({ x: 0, y: 0 });
   const [startPosition, setStartPosition] = useState({ x: 0, y: 0 });
@@ -55,24 +65,19 @@ const AssistantAvatar = () => {
 
   useEffect(() => {
     // Save position to localStorage whenever it changes
-    if (position.x !== null && position.y !== null) {
+    if (position.right !== null && position.y !== null) {
       localStorage.setItem("assistantAvatarPosition", JSON.stringify(position));
     }
   }, [position]);
 
   useEffect(() => {
-    // Keep button within bounds on window resize
+    // On resize: keep distance from right (right stays same), clamp y to viewport
     const handleResize = () => {
-      if (position.x !== null && position.y !== null) {
-        const avatarSize = 75;
-        const scrollbarWidth = window.innerWidth - document.documentElement.clientWidth || 17;
-        const minX = -avatarSize;
-        const maxX = window.innerWidth + scrollbarWidth;
+      if (position.right !== null && position.y !== null) {
         const minY = -avatarSize;
         const maxY = window.innerHeight;
-        
         setPosition(prev => ({
-          x: Math.max(minX, Math.min(prev.x, maxX)),
+          right: prev.right, // distanța față de dreapta rămâne constantă
           y: Math.max(minY, Math.min(prev.y, maxY)),
         }));
       }
@@ -181,25 +186,22 @@ const AssistantAvatar = () => {
         setHasDragged(true);
       }
       
-      // Calculate position so the click point follows the cursor exactly
-      const avatarSize = 75;
+      // Calculate position: newX = left of avatar, newRight = distance from right
       let newX = e.clientX - dragOffset.x;
       let newY = e.clientY - dragOffset.y;
+      let newRight = window.innerWidth - newX - avatarSize;
       
-      // Constrain to viewport bounds, but allow partial off-screen positioning
-      // Allow avatar to go slightly beyond edges for better positioning flexibility
-      const scrollbarWidth = window.innerWidth - document.documentElement.clientWidth || 17;
-      const minX = -avatarSize; // Allow full avatar off-screen on left
-      const maxX = window.innerWidth + scrollbarWidth; // Allow going past right edge, accounting for scrollbar
-      const minY = -avatarSize; // Allow full avatar off-screen on top
-      const maxY = window.innerHeight; // Allow going to bottom edge
+      // Constrain to viewport bounds
+      const minRight = -avatarSize;
+      const maxRight = window.innerWidth;
+      const minY = -avatarSize;
+      const maxY = window.innerHeight;
       
-      // Ensure position stays within extended bounds
-      newX = Math.max(minX, Math.min(newX, maxX));
+      newRight = Math.max(minRight, Math.min(newRight, maxRight));
       newY = Math.max(minY, Math.min(newY, maxY));
       
       setPosition({
-        x: newX,
+        right: newRight,
         y: newY,
       });
     };
@@ -219,25 +221,22 @@ const AssistantAvatar = () => {
         setHasDragged(true);
       }
       
-      // Calculate position so the touch point follows the cursor exactly
-      const avatarSize = 75;
+      // Calculate position: newRight = distance from right
       let newX = touch.clientX - dragOffset.x;
       let newY = touch.clientY - dragOffset.y;
+      let newRight = window.innerWidth - newX - avatarSize;
       
-      // Constrain to viewport bounds, but allow partial off-screen positioning
-      // Allow avatar to go slightly beyond edges for better positioning flexibility
-      const scrollbarWidth = window.innerWidth - document.documentElement.clientWidth || 17;
-      const minX = -avatarSize; // Allow full avatar off-screen on left
-      const maxX = window.innerWidth + scrollbarWidth; // Allow going past right edge, accounting for scrollbar
-      const minY = -avatarSize; // Allow full avatar off-screen on top
-      const maxY = window.innerHeight; // Allow going to bottom edge
+      // Constrain to viewport bounds
+      const minRight = -avatarSize;
+      const maxRight = window.innerWidth;
+      const minY = -avatarSize;
+      const maxY = window.innerHeight;
       
-      // Ensure position stays within extended bounds
-      newX = Math.max(minX, Math.min(newX, maxX));
+      newRight = Math.max(minRight, Math.min(newRight, maxRight));
       newY = Math.max(minY, Math.min(newY, maxY));
       
       setPosition({
-        x: newX,
+        right: newRight,
         y: newY,
       });
     };
@@ -294,11 +293,11 @@ const AssistantAvatar = () => {
     ? "/Modele Asistent/professor-whiz-negru.png"
     : "/Modele Asistent/professor-whiz-alb.png";
 
-  const style = position.x !== null && position.y !== null
+  const style = position.right !== null && position.y !== null
     ? {
-        left: `${position.x}px`,
+        right: `${position.right}px`,
         top: `${position.y}px`,
-        right: "auto",
+        left: "auto",
         transform: "none",
       }
     : {};
