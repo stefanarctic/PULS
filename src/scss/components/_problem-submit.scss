@@ -632,6 +632,169 @@ html[data-theme="dark"],
     height: 1rem; // w-4
     flex-shrink: 0;
   }
+
+  &-reflection-section {
+    background-color: rgba(139, 92, 246, 0.08);
+    border: 1px solid rgba(167, 139, 250, 0.35);
+    padding: 1rem;
+    border-radius: 0.5rem;
+    margin-bottom: 1.5rem;
+
+    .problem-analysis-reflection-title {
+      font-weight: 600;
+      margin-bottom: 0.75rem;
+      color: #6d28d9;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 1.125rem;
+    }
+
+    .problem-analysis-reflection-content {
+      color: #4c1d95;
+    }
+  }
+
+  &-data-section {
+    background-color: rgba(14, 165, 233, 0.06);
+    border: 1px solid rgba(56, 189, 248, 0.35);
+    padding: 1rem;
+    border-radius: 0.5rem;
+    margin-bottom: 1.5rem;
+
+    &-title {
+      font-weight: 600;
+      margin-bottom: 0.75rem;
+      color: #0369a1;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 1.125rem;
+    }
+  }
+
+  &-data-table-wrap {
+    overflow-x: auto;
+    margin-bottom: 1rem;
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+
+  &-data-caption {
+    text-align: left;
+    font-weight: 600;
+    font-size: 0.9rem;
+    margin-bottom: 0.5rem;
+    color: var(--primary-color-current-mode);
+  }
+
+  &-data-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.95rem;
+
+    th,
+    td {
+      border: 1px solid rgba(0, 0, 0, 0.1);
+      padding: 0.5rem 0.75rem;
+      text-align: left;
+    }
+
+    th {
+      background-color: rgba(0, 0, 0, 0.04);
+      font-weight: 600;
+    }
+  }
+
+  &-formulas-section {
+    background-color: rgba(124, 58, 237, 0.06);
+    border: 1px solid rgba(167, 139, 250, 0.3);
+    padding: 1rem;
+    border-radius: 0.5rem;
+    margin-bottom: 1.5rem;
+
+    .problem-analysis-formulas-title {
+      font-weight: 600;
+      margin-bottom: 0.75rem;
+      color: #6d28d9;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 1.125rem;
+    }
+
+    .problem-analysis-formulas-list {
+      margin: 0;
+      padding-left: 1.25rem;
+      list-style: disc;
+    }
+
+    .problem-analysis-formula-item {
+      margin-bottom: 0.5rem;
+      padding: 0.35rem 0.5rem;
+      border-radius: 0.35rem;
+      background-color: rgba(255, 255, 255, 0.5);
+
+      .prose {
+        margin: 0;
+      }
+
+      .prose p {
+        margin-bottom: 0;
+      }
+    }
+  }
+
+  &-explanation-section {
+    background-color: rgba(234, 179, 8, 0.08);
+    border: 1px solid rgba(250, 204, 21, 0.35);
+    padding: 1rem;
+    border-radius: 0.5rem;
+    margin-bottom: 1.5rem;
+
+    .problem-analysis-explanation-title {
+      font-weight: 600;
+      margin-bottom: 0.75rem;
+      color: #a16207;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 1.125rem;
+    }
+
+    .problem-analysis-explanation-content {
+      color: #713f12;
+    }
+  }
+
+  &-final-section {
+    background: linear-gradient(
+      135deg,
+      rgba(251, 146, 60, 0.12) 0%,
+      rgba(249, 115, 22, 0.08) 100%
+    );
+    border: 2px solid rgba(251, 146, 60, 0.45);
+    padding: 1.25rem;
+    border-radius: 0.5rem;
+    margin-bottom: 1.5rem;
+
+    .problem-analysis-final-title {
+      font-weight: 600;
+      margin-bottom: 0.75rem;
+      color: #c2410c;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 1.125rem;
+    }
+
+    .problem-analysis-final-content {
+      color: #9a3412;
+      font-weight: 500;
+    }
+  }
 }
 
 // Dark mode adjustments pentru secțiunile de analiză
@@ -692,6 +855,77 @@ html[data-theme="dark"],
 
       .problem-analysis-errors-content {
         color: #bbf7d0;
+      }
+    }
+
+    &-reflection-section {
+      background-color: rgba(139, 92, 246, 0.12);
+      border-color: rgba(167, 139, 250, 0.35);
+
+      .problem-analysis-reflection-title {
+        color: #c4b5fd;
+      }
+
+      .problem-analysis-reflection-content {
+        color: #e9d5ff;
+      }
+    }
+
+    &-data-section {
+      background-color: rgba(14, 165, 233, 0.1);
+      border-color: rgba(56, 189, 248, 0.35);
+
+      &-title {
+        color: #7dd3fc;
+      }
+    }
+
+    &-data-table {
+      th,
+      td {
+        border-color: rgba(255, 255, 255, 0.12);
+      }
+
+      th {
+        background-color: rgba(255, 255, 255, 0.06);
+      }
+    }
+
+    &-formulas-section {
+      background-color: rgba(124, 58, 237, 0.1);
+      border-color: rgba(167, 139, 250, 0.35);
+
+      .problem-analysis-formulas-title {
+        color: #d8b4fe;
+      }
+
+      .problem-analysis-formula-item {
+        background-color: rgba(255, 255, 255, 0.06);
+      }
+    }
+
+    &-explanation-section {
+      background-color: rgba(234, 179, 8, 0.1);
+      border-color: rgba(250, 204, 21, 0.35);
+
+      .problem-analysis-explanation-title {
+        color: #fde047;
+      }
+
+      .problem-analysis-explanation-content {
+        color: #fef9c3;
+      }
+    }
+
+    &-final-section {
+      border-color: rgba(251, 146, 60, 0.45);
+
+      .problem-analysis-final-title {
+        color: #fdba74;
+      }
+
+      .problem-analysis-final-content {
+        color: #ffedd5;
       }
     }
   }
