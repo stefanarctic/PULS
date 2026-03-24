@@ -70,7 +70,10 @@ const SimulationPage = ({
         
         // Verifică achievements după ce s-a salvat simularea
         try {
-          await checkAchievements({ simulationsVisited: currentSimulationsVisited });
+          await checkAchievements({
+            simulationsVisited: currentSimulationsVisited,
+            preloadedUserData: snap.exists() ? snap.data() : null
+          });
         } catch (error) {
           console.error('Error checking achievements:', error);
           // Nu aruncăm eroarea pentru a nu afecta salvarea simulării

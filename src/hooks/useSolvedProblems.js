@@ -92,9 +92,12 @@ export const useSolvedProblems = () => {
       // Actualizează state-ul local
       setSolvedProblems(currentSolvedProblems);
       
-      // Verifică achievements după ce s-a salvat problema
+      // Verifică achievements după ce s-a salvat problema (preloadedUserData evită al doilea getDoc)
       try {
-        await checkAchievements({ solvedProblems: currentSolvedProblems });
+        await checkAchievements({
+          solvedProblems: currentSolvedProblems,
+          preloadedUserData: snap.exists() ? snap.data() : null
+        });
       } catch (error) {
         console.error('Error checking achievements:', error);
         // Nu aruncăm eroarea pentru a nu afecta salvarea problemei

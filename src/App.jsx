@@ -34,18 +34,20 @@ import ProblemSubmit from "./components/ProblemSubmit";
 import AdminDashboard from "./components/pages/AdminDashboard";
 import { useEffect } from "react";
 import uploadProblems from "./components/uploadProblems";
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { fetchProblems } from './features/problems/problemsSlice';
 import AssistantAvatar from "./components/AssistantAvatar";
 import { simulationsConfig } from "@/data/simulations";
 
 const App = () => {
   const dispatch = useDispatch();
+  const problemsStatus = useSelector((state) => state.problems.status);
 
-  // Fetch problems when app initializes
+  // Fetch problems when app initializes (skip duplicate dispatch while loading / after success — helps Strict Mode)
   useEffect(() => {
+    if (problemsStatus === 'loading' || problemsStatus === 'succeeded') return;
     dispatch(fetchProblems());
-  }, [dispatch]);
+  }, [dispatch, problemsStatus]);
 
   const toggleOverflow = () => {
     if (document.body.style.overflow === 'hidden')
