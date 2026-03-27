@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+    <meta charset="UTF-8">
+    <title>AC Simulator</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="layout">
+    
+        <!-- LEFT PANEL -->
+        <div class="panel left">
+            <div class="section">
+                <h3>Unități de măsură in S.I.</h3>
+                <div class="box">
+                    <p>U - V(Volt)</p>
+                    <p>I - A(Amper)</p>
+                    <p>f - Hz(Hertz)</p>
+                    <p>φ - rad(radian)</p>
+                </div>
+            </div>
+    
+            <div class="section">
+                <h3>Formule și măsurători</h3>
+                <div class="box">
+                    <div id="formula"></div>
+                    <div id="rms"></div>
+                    <div id="cosphi"></div>
+                    <div id="indicators">
+                </div>
+            </div>
+            </div>
+            <div id="analysis"></div>
+            <div class="section">
+                <h3>Energie</h3>
+                <div class="box" id="energy"></div>
+            </div>
+            <div class="section">
+                <h3>Fază</h3>
+                <div class="box" id="phaseInfo"></div>
+            </div>
+        </div>
+    
+        <!-- CENTER -->
+        <div class="center">
+            <canvas id="canvas"></canvas>
+        </div>
+    
+        <!-- RIGHT PANEL -->
+        <div class="panel right">
+    
+            <div class="section">
+                <h3>Control</h3>
+    
+                <label>Amplitudine U(t)
+                    <input type="range" id="ampU" min="10" max="200" value="100">
+                    <span id="ampUVal"></span>
+                </label>
+                
+                <label>Amplitudine I(t)
+                    <input type="range" id="ampI" min="10" max="200" value="100">
+                    <span id="ampIVal"></span>
+                </label>
+    
+                <label>Frecvență
+                    <input type="range" id="freq" min="1" max="100" value="20">
+                    <span id="freqVal"></span>
+                </label>
+    
+                <label>Viteză
+                    <input type="range" id="speed" min="1" max="100" value="50">
+                    <span id="speedVal"></span>
+                </label>
+    
+                <label>Fază
+                    <input type="range" id="phase" min="0" max="628" value="0">
+                    <span id="phaseVal"></span>
+                </label>
+    
+                <label>Mod
+                    <select id="mode">
+                        <option value="ac">AC</option>
+                        <option value="dc">DC</option>
+                    </select>
+                </label>
+            </div>
+    
+            <div class="section">
+                <h3>Măsurători</h3>
+                <div class="box">
+                    <div id="instant"></div>
+                    <div id="power"></div>
+                    <div id="impedance"></div>
+                </div>
+            </div>
+            
+            <div class="section">
+                <h3>Grafic mic</h3>
+                <canvas id="miniGraph"></canvas>
+                <div class="legend">
+                    <span class="u">U(t)</span>
+                    <span class="i">I(t)</span>
+                    <span class="p">P(t)</span>
+                </div>
+            </div>
+            <canvas id="phasor"></canvas>
+    
+        </div>
+    
+    </div>
+    
+    <script src="script.js"></script>
+    </body>
+</html> 

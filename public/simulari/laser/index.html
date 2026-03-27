@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+<meta charset="UTF-8">
+<title>Laser Lab</title>
+<link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<canvas id="canvas"></canvas>
+
+<div class="panel">
+
+<h2>Laser Device</h2>
+
+<label>Unghi</label>
+<input type="range" id="angle" min="-180" max="180" value="0">
+
+<label>Putere</label>
+<input type="range" id="power" min="1" max="15" value="8">
+
+<hr>
+
+<h2>Lasere</h2>
+
+<label>Laser activ</label>
+<select id="laserSelect"></select>
+
+<label>Tip laser</label>
+<select id="laserType"></select>
+
+<label>Culoare</label>
+<select id="laserColor"></select>
+
+<button id="addLaser">Adaugă laser</button>
+<button id="resetLaser">Reset laser</button>
+
+<hr>
+
+<h2>Optică</h2>
+
+<label>Element</label>
+<select id="tool">
+  <option value="mirror_flat">Oglindă plană</option>
+  <option value="mirror_concave">Oglindă concavă</option>
+  <option value="mirror_convex">Oglindă convexă</option>
+  <option value="prism">Prismă</option>
+  <option value="lens_converging">Lentilă convergentă</option>
+  <option value="lens_diverging">Lentilă divergentă</option>
+  <option value="beamsplitter">Beam splitter</option>
+  <option value="detector">Detector optic</option>
+  <option value="balloon_black">Balon negru</option>
+  <option value="balloon_red">Balon roșu</option>
+  <option value="balloon_blue">Balon albastru</option>
+  <option value="balloon_green">Balon verde</option>
+  <option value="balloon_yellow">Balon galben</option>
+  <option value="balloon_white">Balon alb</option>
+  <option value="firework">Artificiu</option>
+  <option value="protractor">Raportor</option>
+</select>
+
+<button id="add">Adaugă pe scenă</button>
+<div class="hint">Trage cu mouse-ul elementele ca să le muți.</div>
+
+<hr>
+
+<h2>Scenă</h2>
+<button id="deleteSelected">Șterge selectat</button>
+
+<div id="details" class="details"></div>
+
+</div>
+
+<script src="script.js"></script>
+
+</body>
+</html>
