@@ -5,6 +5,7 @@ import { useEffect, useState } from "react";
 
 import circuiteElectricitateImg from "/res/screenshots/Circuite_Electricitate_Screenshot.png";
 import energieCircuiteImg from "/res/screenshots/Energie_Circuite_Screenshot.png";
+import curentAlternativImg from "/res/screenshots/ac_Screenshot.png";
 
 const ElectricitatePage = () => {
   const [visibleFormulasCount, setVisibleFormulasCount] = useState({});
@@ -31,11 +32,23 @@ const ElectricitatePage = () => {
     { formula: "\\( \\eta = \\frac{P_{utila}}{P_{totala}} \\times 100\\% \\)", title: "Randamentul unui circuit" },
   ];
 
+  const curentAlternativFormulas = [
+    { formula: "\\( u(t) = U_{max}\\sin(\\omega t) \\)", title: "Tensiune sinusoidală" },
+    { formula: "\\( i(t) = I_{max}\\sin(\\omega t + \\varphi) \\)", title: "Curent sinusoidal (defazaj φ)" },
+    { formula: "\\( \\omega = 2\\pi f \\)", title: "Pulsația" },
+    { formula: "\\( U_{ef} = \\frac{U_{max}}{\\sqrt{2}} \\)", title: "Valoarea efectivă a tensiunii" },
+    { formula: "\\( I_{ef} = \\frac{I_{max}}{\\sqrt{2}} \\)", title: "Valoarea efectivă a curentului" },
+    { formula: "\\( X_L = \\omega L \\)", title: "Reactanța inductivă" },
+    { formula: "\\( X_C = \\frac{1}{\\omega C} \\)", title: "Reactanța capacitivă" },
+    { formula: "\\( P = U_{ef}I_{ef}\\cos\\varphi \\)", title: "Puterea activă în AC" },
+  ];
+
   // Algoritm de încărcare progresivă - versiune optimizată
   useEffect(() => {
     const sections = [
       { key: 'circuite', formulas: circuiteFormulas },
       { key: 'energie', formulas: energieFormulas },
+      { key: 'curent_alternativ', formulas: curentAlternativFormulas },
     ];
 
     // Inițializăm toate secțiunile cu batch-ul inițial
@@ -208,6 +221,54 @@ const ElectricitatePage = () => {
                   </div>
                   <a
                     href="/simulare/energie-circuite"
+                    rel="noopener noreferrer"
+                    style={{ textDecoration: "none" }}
+                  >
+                    <Button size="lg">Vezi simularea</Button>
+                  </a>
+                </div>
+              </div>
+
+              {/* Curent alternativ */}
+              <div className="rounded-container">
+                <h2 className="text-2xl font-bold mb-4">Curent alternativ (AC)</h2>
+                <p className="text-muted-foreground mb-6">
+                  În curent alternativ, tensiunea și curentul variază în timp (de obicei sinusoidal). În practică folosim valori
+                  efective (RMS), care produc același efect termic ca în curent continuu.
+                </p>
+                <div className="image-slider h-64 md:h-80 relative flex items-center justify-center mb-8">
+                  <img
+                    src={curentAlternativImg}
+                    alt="Curent alternativ"
+                    className="w-full h-full object-contain mx-auto my-auto"
+                  />
+                </div>
+                <div className="mt-8 flex flex-col md:flex-row md:items-center justify-between gap-6">
+                  <div>
+                    <h3 className="text-xl font-semibold mb-4">Formule esențiale (maxim 8):</h3>
+
+                    {curentAlternativFormulas
+                      .slice(0, visibleFormulasCount.curent_alternativ || curentAlternativFormulas.length)
+                      .map((item, index) => (
+                        <div key={index}>
+                          <h4 className="text-lg font-semibold mb-2">{index + 1}. {item.title}:</h4>
+                          <div className="formula-resurse text-lg font-mono mb-4">
+                            {item.formula}
+                          </div>
+                        </div>
+                      ))}
+                    {visibleFormulasCount.curent_alternativ > 0 && (
+                      <MathJaxRender key={`curent_alternativ-${visibleFormulasCount.curent_alternativ || 0}`} />
+                    )}
+
+                    <p className="text-muted-foreground mt-4">
+                      Unde: u(t), i(t) sunt mărimi instantanee, {"\\(U_{max}\\), \\(I_{max}\\)"} <MathJaxRender /> sunt amplitudini,
+                      f este frecvența, ω este pulsația, {"\\(U_{ef}\\), \\(I_{ef}\\)"} <MathJaxRender /> valori efective,
+                      L inductanța, C capacitatea, φ defazajul, cosφ factorul de putere.
+                    </p>
+                  </div>
+                  <a
+                    href="/simulare/curent-alternativ"
                     rel="noopener noreferrer"
                     style={{ textDecoration: "none" }}
                   >

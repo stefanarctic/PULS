@@ -5,6 +5,7 @@ import { useEffect, useState } from "react";
 
 import termodinamicaImg from "/res/screenshots/Termodinamica_Screenshot.png";
 import motoareTermiceImg from "/res/screenshots/Motoare_Termice_Screenshot.png";
+import tabelPeriodicImg from "/res/screenshots/Tabel_periodic_Screenshot.png";
 
 const TermodinamicaPage = () => {
   const [visibleFormulasCount, setVisibleFormulasCount] = useState({});
@@ -34,11 +35,23 @@ const TermodinamicaPage = () => {
     { formula: "\\( Q_{p} = n C_P \\Delta T \\)", title: "Căldura schimbată într-un proces izobar" },
   ];
 
+  const tabelPeriodicFormulas = [
+    { formula: "\\( Z = p \\)", title: "Numărul atomic (Z) = numărul de protoni" },
+    { formula: "\\( A = Z + N \\)", title: "Numărul de masă (A)" },
+    { formula: "\\( N = A - Z \\)", title: "Numărul de neutroni (N)" },
+    { formula: "\\( n = \\frac{m}{M} \\)", title: "Numărul de moli" },
+    { formula: "\\( m = nM \\)", title: "Masa unei substanțe (din moli)" },
+    { formula: "\\( N = nN_A \\)", title: "Numărul de particule" },
+    { formula: "\\( N_A \\approx 6{,}022\\times 10^{23}\\,\\text{mol}^{-1} \\)", title: "Constanta lui Avogadro" },
+    { formula: "\\( c = \\frac{n}{V} \\)", title: "Concentrația molară" },
+  ];
+
   // Algoritm de încărcare progresivă - versiune optimizată
   useEffect(() => {
     const sections = [
       { key: 'termodinamica', formulas: termodinamicaFormulas },
       { key: 'motoare', formulas: motoareFormulas },
+      { key: 'tabel_periodic', formulas: tabelPeriodicFormulas },
     ];
 
     // Inițializăm toate secțiunile cu batch-ul inițial
@@ -220,6 +233,52 @@ const TermodinamicaPage = () => {
                   </div>
                   <a
                     href="/simulare/motoare-termice"
+                    rel="noopener noreferrer"
+                    style={{ textDecoration: "none" }}
+                  >
+                    <Button size="lg">Vezi simularea</Button>
+                  </a>
+                </div>
+              </div>
+
+              {/* Tabel periodic */}
+              <div className="rounded-container">
+                <h2 className="text-2xl font-bold mb-4">Tabelul periodic (mărimi utile în probleme)</h2>
+                <p className="text-muted-foreground mb-6">
+                  Tabelul periodic este esențial când ai nevoie rapid de simbolul elementului, numărul atomic (Z) și, mai ales,
+                  de masa molară (M) pentru calcule cu moli, particule și concentrații. În termodinamică, aceste mărimi apar frecvent
+                  în problemele cu gaze (n), amestecuri, calorimetrie și ecuația gazului ideal.
+                </p>
+                <div className="image-slider h-64 md:h-80 relative flex items-center justify-center mb-8">
+                  <img
+                    src={tabelPeriodicImg}
+                    alt="Tabelul periodic"
+                    className="w-full h-full object-contain mx-auto my-auto"
+                  />
+                </div>
+                <div className="mt-8 flex flex-col md:flex-row md:items-center justify-between gap-6">
+                  <div>
+                    <h3 className="text-xl font-semibold mb-4">Formule/relatii rapide (maxim 8):</h3>
+                    {tabelPeriodicFormulas
+                      .slice(0, visibleFormulasCount.tabel_periodic || tabelPeriodicFormulas.length)
+                      .map((item, index) => (
+                        <div key={index}>
+                          <h4 className="text-lg font-semibold mb-2">{index + 1}. {item.title}:</h4>
+                          <div className="formula-resurse text-lg font-mono mb-4">
+                            {item.formula}
+                          </div>
+                        </div>
+                      ))}
+                    {visibleFormulasCount.tabel_periodic > 0 && (
+                      <MathJaxRender key={`tabel_periodic-${visibleFormulasCount.tabel_periodic || 0}`} />
+                    )}
+                    <p className="text-muted-foreground mt-6">
+                      Unde: Z = numărul de protoni, A = numărul de masă, N = numărul de neutroni, n = numărul de moli, m = masa,
+                      M = masa molară, {"\\(N_A\\)"} <MathJaxRender /> = constanta lui Avogadro, c = concentrația molară, V = volum.
+                    </p>
+                  </div>
+                  <a
+                    href="/simulare/tabel-periodic"
                     rel="noopener noreferrer"
                     style={{ textDecoration: "none" }}
                   >

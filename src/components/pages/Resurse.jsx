@@ -84,10 +84,10 @@ const lessonCards = [
     path: "/resurse/astronomie",
   },
   {
-    title: "Michelson-Morley",
+    title: "Fizică Cuantică",
     description:
-      "Experimentul Michelson-Morley, căutarea eterului și implicațiile pentru relativitatea restrânsă.",
-    path: "/resurse/michaelson-morley",
+      "Învață despre fizică cuantică, principiile și aplicațiile ei în fizică.",
+    path: "/resurse/fizica-cuantica",
   },
 ];
 
@@ -397,6 +397,51 @@ const ResursePage = () => {
           title: "Dilatarea volumică",
           formula: "\\( V = V_0 \\cdot (1 + \\gamma \\cdot \\Delta t) \\) (γ ≈ 3α)",
           explanation: "La fel ca dilatarea liniară, dar pentru volum. γ e aproximativ de 3 ori α. Lichidele se dilată mai mult decât solidele.",
+        },
+      ],
+    },
+    {
+      section: "1b. Tabelul periodic — mărimi utile",
+      formulas: [
+        {
+          title: "Numărul atomic",
+          formula: "\\( Z = p \\)",
+          explanation: "Z este numărul de protoni din nucleu (și, la atom neutru, numărul de electroni). Îl găsești direct în tabelul periodic.",
+        },
+        {
+          title: "Numărul de masă",
+          formula: "\\( A = Z + N \\)",
+          explanation: "A este suma dintre protoni (Z) și neutroni (N). În multe probleme, N se află cu N = A − Z (folosind izotopul dat).",
+        },
+        {
+          title: "Numărul de neutroni",
+          formula: "\\( N = A - Z \\)",
+          explanation: "Dacă știi izotopul (A) și numărul atomic (Z), afli rapid numărul de neutroni din nucleu.",
+        },
+        {
+          title: "Moli din masă",
+          formula: "\\( n = \\frac{m}{M} \\)",
+          explanation: "Masa molară M se ia din tabelul periodic (g/mol). Formula e esențială când treci de la masă la moli (ex: gaze, amestecuri).",
+        },
+        {
+          title: "Masă din moli",
+          formula: "\\( m = nM \\)",
+          explanation: "Inversul formulei de mai sus: dacă știi molii, obții masa substanței.",
+        },
+        {
+          title: "Numărul de particule",
+          formula: "\\( N = nN_A \\)",
+          explanation: "Leagă molii de numărul de particule (atomi/molecule). Apare des în probleme de gaz ideal și structură atomică.",
+        },
+        {
+          title: "Constanta lui Avogadro",
+          formula: "\\( N_A \\approx 6{,}022\\times 10^{23}\\,\\text{mol}^{-1} \\)",
+          explanation: "Numărul de particule dintr-un mol. Folosește-l pentru a trece între scară microscopică și macroscopică.",
+        },
+        {
+          title: "Concentrația molară",
+          formula: "\\( c = \\frac{n}{V} \\)",
+          explanation: "Concentrația (mol/L sau mol/m³) apare când lucrezi cu soluții sau distribuții de particule într-un volum V.",
         },
       ],
     },
@@ -804,6 +849,21 @@ const ResursePage = () => {
           explanation: "La fel ca la tensiune. În priză avem 220 V efectiv, 50 Hz. Curentul și tensiunea variază sinusoidal.",
         },
         {
+          title: "Tensiunea instantanee",
+          formula: "\\( u(t) = U_{max}\\sin(\\omega t) \\)",
+          explanation: "Modelul tipic pentru o tensiune alternativă sinusoidală. U_max este amplitudinea, iar ω = 2πf este pulsația.",
+        },
+        {
+          title: "Curentul instantaneu (defazaj)",
+          formula: "\\( i(t) = I_{max}\\sin(\\omega t + \\varphi) \\)",
+          explanation: "În circuite cu bobine/condensatoare, curentul poate fi defazat cu φ față de tensiune (nu sunt în fază).",
+        },
+        {
+          title: "Pulsația",
+          formula: "\\( \\omega = 2\\pi f \\)",
+          explanation: "Leagă frecvența (Hz) de pulsație (rad/s). În România, f = 50 Hz ⇒ ω ≈ 314 rad/s.",
+        },
+        {
           title: "Puterea în curent alternativ",
           formula: "\\( P = U_{ef} \\cdot I_{ef} \\cdot \\cos\\varphi \\)",
           explanation: "cos φ = factorul de putere. La rezistor pur, cos φ = 1. La motoare, cos φ < 1 (există putere reactivă).",
@@ -1055,6 +1115,81 @@ const ResursePage = () => {
           title: "Pragul fotoelectric",
           formula: "\\( f_{min} = \\frac{L}{h} \\)",
           explanation: "Frecvența minimă pentru care apare efect fotoelectric. Sub f_min, chiar dacă lumina e puternică, nu ies electroni. E o problemă de energie, nu de intensitate.",
+        },
+      ],
+    },
+    {
+      section: "11. Laser",
+      formulas: [
+        {
+          title: "Relația undă–frecvență",
+          formula: "\\( c = \\lambda f \\)",
+          explanation: "Leagă lungimea de undă și frecvența. Pentru lumină în vid, c ≈ 3×10⁸ m/s. Laserul e aproape monocromatic (λ bine definit).",
+        },
+        {
+          title: "Energia fotonului",
+          formula: "\\( E = hf = \\frac{hc}{\\lambda} \\)",
+          explanation: "Energia fotonilor crește când frecvența crește (λ scade). UV are fotoni mai energetici decât IR.",
+        },
+        {
+          title: "Impulsul fotonului",
+          formula: "\\( p = \\frac{h}{\\lambda} \\)",
+          explanation: "Chiar și lumina transportă impuls; apare în presiunea de radiație și în aplicații de optică cu laser (trapping).",
+        },
+        {
+          title: "Intensitatea",
+          formula: "\\( I = \\frac{P}{A} \\)",
+          explanation: "Laserul poate concentra puterea pe o arie mică, crescând intensitatea (W/m²).",
+        },
+        {
+          title: "Legea inversului pătrat",
+          formula: "\\( I(r) = \\frac{P}{4\\pi r^2} \\)",
+          explanation: "Valabilă pentru surse care radiază aproximativ sferic. Pentru fascicule colimate (laser) scăderea cu r poate fi mult mai lentă.",
+        },
+        {
+          title: "Divergență (aprox. gaussian)",
+          formula: "\\( \\theta \\approx \\frac{\\lambda}{\\pi w_0} \\)",
+          explanation: "Limita de difracție: cu cât fasciculul e mai îngust (w₀ mic), cu atât divergența crește.",
+        },
+        {
+          title: "Distanța Rayleigh",
+          formula: "\\( z_R = \\frac{\\pi w_0^2}{\\lambda} \\)",
+          explanation: "Până la zR fasciculul rămâne relativ colimat; după aceea începe să se lărgească vizibil.",
+        },
+      ],
+    },
+    {
+      section: "12. Spectrul electromagnetic",
+      formulas: [
+        {
+          title: "Relația undă–frecvență",
+          formula: "\\( c = \\lambda f \\)",
+          explanation: "Aceeași relație pentru toate undele electromagnetice (radio → gamma). Schimbă doar f și λ.",
+        },
+        {
+          title: "Energia fotonului",
+          formula: "\\( E = hf \\)",
+          explanation: "Fotonii de raze X și gamma au energii mult mai mari decât cei din vizibil.",
+        },
+        {
+          title: "Impulsul fotonului",
+          formula: "\\( p = \\frac{h}{\\lambda} \\)",
+          explanation: "Când λ scade (f crește), impulsul fotonului crește.",
+        },
+        {
+          title: "Legea Wien",
+          formula: "\\( \\lambda_{max}T = b \\)",
+          explanation: "Maximul spectrului de radiație al unui corp depinde de temperatură. T mai mare ⇒ λ_max mai mică (mai „albastru”).",
+        },
+        {
+          title: "Stefan–Boltzmann",
+          formula: "\\( P = \\sigma\\varepsilon AT^4 \\)",
+          explanation: "Puterea radiată crește foarte repede cu temperatura (T⁴). Explică de ce corpurile foarte fierbinți radiază intens.",
+        },
+        {
+          title: "Legea inversului pătrat",
+          formula: "\\( I(r) = \\frac{P}{4\\pi r^2} \\)",
+          explanation: "Intensitatea scade cu pătratul distanței pentru o sursă punctuală (ex: antenă isotropă ideală).",
         },
       ],
     },

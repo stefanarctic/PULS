@@ -28,6 +28,10 @@ import atomHidrogenImg from "/res/screenshots/Atom_Hidrogen_Screenshot.png";
 import michaelsonMorleyImg from "/res/screenshots/Michaelson_Morley_Screenshot.png";
 import lanturiElasticeImg from "/res/screenshots/Lanturi_Elastice_Screenshot.png";
 import miscarePlaneteImg from "/res/screenshots/Miscare_Planete_Screenshot.png";
+import curentAlternativImg from "/res/screenshots/ac_Screenshot.png";
+import spectruImg from "/res/screenshots/spectru_Screenshot.png";
+import laserImg from "/res/screenshots/laser_Screenshot.png";
+import tabelPeriodicImg from "/res/screenshots/Tabel_periodic_Screenshot.png";
 export const simulationsConfig = [
   {
     id: 1,
@@ -386,6 +390,54 @@ export const simulationsConfig = [
     iframeSrc: "/simulari/miscare_planete/index.html",
     maxHeight: '90vh',
     category: "Astronomie"
+  },
+  {
+    id: 31,
+    slug: "tabel-periodic",
+    route: "/simulare/tabel-periodic",
+    title: "Tabelul periodic",
+    description: "Explorează tabelul periodic: elemente, simboluri, număr atomic și proprietăți de bază.",
+    image: tabelPeriodicImg,
+    caption: "Tabel periodic",
+    iframeSrc: "/simulari/tabel_periodic/index.html",
+    maxHeight: "90vh",
+    category: "Atom"
+  },
+  {
+    id: 32,
+    slug: "laser",
+    route: "/simulare/laser",
+    title: "Laser",
+    description: "Simulare pentru fascicul laser și parametri optici (lungime de undă, intensitate, divergență).",
+    image: laserImg,
+    caption: "Laser",
+    iframeSrc: "/simulari/laser/index.html",
+    maxHeight: "90vh",
+    category: "Optică"
+  },
+  {
+    id: 33,
+    slug: "spectru-electromagnetic",
+    route: "/simulare/spectru-electromagnetic",
+    title: "Spectrul electromagnetic",
+    description: "Explorează spectrul electromagnetic: frecvență, lungime de undă și aplicații.",
+    image: spectruImg,
+    caption: "Spectrul electromagnetic",
+    iframeSrc: "/simulari/electromagnetic-spectrum.html",
+    maxHeight: "90vh",
+    category: "Optică"
+  },
+  {
+    id: 34,
+    slug: "curent-alternativ",
+    route: "/simulare/curent-alternativ",
+    title: "Curent alternativ",
+    description: "Simulare pentru tensiune/curent sinusoidal, frecvență și mărimi efective.",
+    image: curentAlternativImg,
+    caption: "Curent alternativ",
+    iframeSrc: "/simulari/curent-alternativ/index.html",
+    maxHeight: "90vh",
+    category: "Electricitate"
   },
 ];
 

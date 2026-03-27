@@ -7,6 +7,8 @@ import simulatorPrismaImg from "/res/screenshots/Prisma_Screenshot.png";
 import lentilaSubtireImg from "/res/screenshots/Lentila_Subtire_Screenshot.png";
 import reflexieRefractieImg from "/res/screenshots/Reflexie_Refractie_Screenshot.png";
 import refractieAtmosfericaImg from "/res/screenshots/Refractie_Atmosferica_Screenshot.png";
+import spectruImg from "/res/screenshots/spectru_Screenshot.png";
+import laserImg from "/res/screenshots/laser_Screenshot.png";
 
 const OpticaPage = () => {
   return (
@@ -314,6 +316,157 @@ const OpticaPage = () => {
                   </div>
                   <a
                     href="/simulare/refractie-atmosferica"
+                    rel="noopener noreferrer"
+                    style={{ textDecoration: "none" }}
+                  >
+                    <Button size="lg">Vezi simularea</Button>
+                  </a>
+                </div>
+              </div>
+
+              {/* Laser */}
+              <div className="rounded-container">
+                <h2 className="text-2xl font-bold mb-4">Laser</h2>
+                <p className="text-muted-foreground mb-6">
+                  Laserul produce un fascicul coerent, aproape monocromatic, cu divergență mică. În aplicații (telecomunicații,
+                  medicină, metrologie), contează legătura dintre lungimea de undă, frecvență, energie și intensitate.
+                </p>
+                <div className="image-slider h-64 md:h-80 relative flex items-center justify-center mb-8">
+                  <img
+                    src={laserImg}
+                    alt="Laser"
+                    className="w-full h-full object-contain mx-auto my-auto"
+                  />
+                </div>
+                <div className="mt-8 flex flex-col md:flex-row md:items-center justify-between gap-6">
+                  <div>
+                    <h3 className="text-xl font-semibold mb-4">Formule esențiale (maxim 8):</h3>
+
+                    <h4 className="text-lg font-semibold mb-2">1. Relația undă–frecvență:</h4>
+                    <div className="formula-resurse text-lg font-mono mb-4">
+                      {"\\( c = \\lambda f \\)"}
+                      <MathJaxRender />
+                    </div>
+
+                    <h4 className="text-lg font-semibold mb-2">2. Energia fotonului:</h4>
+                    <div className="formula-resurse text-lg font-mono mb-4">
+                      {"\\( E = hf = \\frac{hc}{\\lambda} \\)"}
+                      <MathJaxRender />
+                    </div>
+
+                    <h4 className="text-lg font-semibold mb-2">3. Impulsul fotonului:</h4>
+                    <div className="formula-resurse text-lg font-mono mb-4">
+                      {"\\( p = \\frac{E}{c} = \\frac{h}{\\lambda} \\)"}
+                      <MathJaxRender />
+                    </div>
+
+                    <h4 className="text-lg font-semibold mb-2">4. Intensitatea (putere pe suprafață):</h4>
+                    <div className="formula-resurse text-lg font-mono mb-4">
+                      {"\\( I = \\frac{P}{A} \\)"}
+                      <MathJaxRender />
+                    </div>
+
+                    <h4 className="text-lg font-semibold mb-2">5. Legea inversului pătrat (surse punctiforme):</h4>
+                    <div className="formula-resurse text-lg font-mono mb-4">
+                      {"\\( I(r) = \\frac{P}{4\\pi r^2} \\)"}
+                      <MathJaxRender />
+                    </div>
+
+                    <h4 className="text-lg font-semibold mb-2">6. Divergența minimă (aprox. fascicul gaussian):</h4>
+                    <div className="formula-resurse text-lg font-mono mb-4">
+                      {"\\( \\theta \\approx \\frac{\\lambda}{\\pi w_0} \\)"}
+                      <MathJaxRender />
+                    </div>
+
+                    <h4 className="text-lg font-semibold mb-2">7. Distanța Rayleigh:</h4>
+                    <div className="formula-resurse text-lg font-mono mb-4">
+                      {"\\( z_R = \\frac{\\pi w_0^2}{\\lambda} \\)"}
+                      <MathJaxRender />
+                    </div>
+
+                    <p className="text-muted-foreground mt-4">
+                      Unde: c = viteza luminii, λ = lungimea de undă, f = frecvența, h = constanta lui Planck, E = energia,
+                      p = impulsul, P = puterea, A = aria, r = distanța, θ = divergența, w₀ = raza „waist”-ului, zR = distanța Rayleigh.
+                    </p>
+                  </div>
+                  <a
+                    href="/simulare/laser"
+                    rel="noopener noreferrer"
+                    style={{ textDecoration: "none" }}
+                  >
+                    <Button size="lg">Vezi simularea</Button>
+                  </a>
+                </div>
+              </div>
+
+              {/* Spectrul electromagnetic */}
+              <div className="rounded-container">
+                <h2 className="text-2xl font-bold mb-4">Spectrul electromagnetic</h2>
+                <p className="text-muted-foreground mb-6">
+                  Undele electromagnetice se descriu prin frecvență și lungime de undă, iar energia asociată fotonilor crește odată cu frecvența.
+                  Spectrul include radio, microunde, infraroșu, vizibil, UV, raze X și gamma.
+                </p>
+                <div className="image-slider h-64 md:h-80 relative flex items-center justify-center mb-8">
+                  <img
+                    src={spectruImg}
+                    alt="Spectrul electromagnetic"
+                    className="w-full h-full object-contain mx-auto my-auto"
+                  />
+                </div>
+                <div className="mt-8 flex flex-col md:flex-row md:items-center justify-between gap-6">
+                  <div>
+                    <h3 className="text-xl font-semibold mb-4">Formule esențiale (maxim 8):</h3>
+
+                    <h4 className="text-lg font-semibold mb-2">1. Relația undă–frecvență:</h4>
+                    <div className="formula-resurse text-lg font-mono mb-4">
+                      {"\\( c = \\lambda f \\)"}
+                      <MathJaxRender />
+                    </div>
+
+                    <h4 className="text-lg font-semibold mb-2">2. Energia fotonului:</h4>
+                    <div className="formula-resurse text-lg font-mono mb-4">
+                      {"\\( E = hf \\)"}
+                      <MathJaxRender />
+                    </div>
+
+                    <h4 className="text-lg font-semibold mb-2">3. Impulsul fotonului:</h4>
+                    <div className="formula-resurse text-lg font-mono mb-4">
+                      {"\\( p = \\frac{h}{\\lambda} \\)"}
+                      <MathJaxRender />
+                    </div>
+
+                    <h4 className="text-lg font-semibold mb-2">4. Intensitatea (undă plană):</h4>
+                    <div className="formula-resurse text-lg font-mono mb-4">
+                      {"\\( I = \\frac{P}{A} \\)"}
+                      <MathJaxRender />
+                    </div>
+
+                    <h4 className="text-lg font-semibold mb-2">5. Legea inversului pătrat (propagare sferică):</h4>
+                    <div className="formula-resurse text-lg font-mono mb-4">
+                      {"\\( I(r) = \\frac{P}{4\\pi r^2} \\)"}
+                      <MathJaxRender />
+                    </div>
+
+                    <h4 className="text-lg font-semibold mb-2">6. Legea Wien (radiație termică):</h4>
+                    <div className="formula-resurse text-lg font-mono mb-4">
+                      {"\\( \\lambda_{max} T = b \\) (b \\approx 2{,}898\\times 10^{-3}\\,\\text{m·K})"}
+                      <MathJaxRender />
+                    </div>
+
+                    <h4 className="text-lg font-semibold mb-2">7. Stefan–Boltzmann (putere radiată):</h4>
+                    <div className="formula-resurse text-lg font-mono mb-4">
+                      {"\\( P = \\sigma \\varepsilon A T^4 \\)"}
+                      <MathJaxRender />
+                    </div>
+
+                    <p className="text-muted-foreground mt-4">
+                      Unde: c = viteza luminii, λ = lungimea de undă, f = frecvența, h = constanta lui Planck, E = energia fotonului,
+                      p = impulsul, P = puterea, A = aria, r = distanța, {"\\(\\lambda_{max}\\)"} <MathJaxRender /> = lungimea de undă la maxim,
+                      T = temperatura absolută, b = constanta Wien, σ = constanta Stefan–Boltzmann, ε = emisivitatea.
+                    </p>
+                  </div>
+                  <a
+                    href="/simulare/spectru-electromagnetic"
                     rel="noopener noreferrer"
                     style={{ textDecoration: "none" }}
                   >
