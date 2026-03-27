@@ -17,6 +17,7 @@ const SimulationPage = ({
   maxHeight
 }) => {
   const iframeRef = useRef(null);
+  const frameRef = useRef(null);
   const previewHeightBeforeFullscreenRef = useRef("");
   const [isFullscreen, setIsFullscreen] = useState(false);
   const [user, setUser] = useState(null);
@@ -99,15 +100,16 @@ const SimulationPage = ({
 
   const handleToggleFullscreen = () => {
     const iframe = iframeRef.current;
-    if (!iframe) return;
+    const frame = frameRef.current;
+    if (!iframe || !frame) return;
 
     if (!isFullscreen) {
       previewHeightBeforeFullscreenRef.current = iframe.style.height;
       const requestFullscreen =
-        iframe.requestFullscreen ||
-        iframe.webkitRequestFullscreen ||
-        iframe.mozRequestFullscreen ||
-        iframe.msRequestFullscreen;
+        frame.requestFullscreen ||
+        frame.webkitRequestFullscreen ||
+        frame.mozRequestFullscreen ||
+        frame.msRequestFullscreen;
 
       if (requestFullscreen) {
         requestFullscreen.call(iframe);
@@ -138,7 +140,9 @@ const SimulationPage = ({
       const nowFullscreen = Boolean(fullscreenElement);
       setIsFullscreen(nowFullscreen);
 
-      if (!nowFullscreen && iframeRef.current) {
+      if (nowFullscreen && iframeRef.current) {
+        iframeRef.current.style.height = "100%";
+      } else if (iframeRef.current) {
         if (previewHeightBeforeFullscreenRef.current) {
           iframeRef.current.style.height = previewHeightBeforeFullscreenRef.current;
         } else {
@@ -187,14 +191,14 @@ const SimulationPage = ({
             {description && <p>{description}</p>}
           </header>
 
-          <div className="simulation-frame">
+          <div className="simulation-frame" ref={frameRef}>
             <iframe
               ref={iframeRef}
               src={iframeSrc}
               title={title}
               loading="lazy"
               allow="fullscreen"
-              scrolling="no"
+              scrolling="auto"
               style={{ height: previewHeight }}
             />
             <button

@@ -175,6 +175,12 @@ body {
     min-height: 0;
 }
 
+@media (max-width: 1400px) {
+    .main-content {
+        grid-template-columns: 250px 1fr 280px;
+    }
+}
+
 /* ===== Panels ===== */
 .panel {
     background: var(--bg-secondary);
@@ -986,7 +992,7 @@ input[type="range"]::-moz-range-thumb {
 
 @media (max-width: 1200px) {
     .main-content {
-        grid-template-columns: 260px 1fr 300px;
+        grid-template-columns: 220px 1fr 240px;
     }
     
     .visualization-info {
