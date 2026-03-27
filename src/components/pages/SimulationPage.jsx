@@ -17,10 +17,12 @@ const SimulationPage = ({
   maxHeight
 }) => {
   const iframeRef = useRef(null);
+  const previewHeightBeforeFullscreenRef = useRef("");
   const [isFullscreen, setIsFullscreen] = useState(false);
   const [user, setUser] = useState(null);
   const { checkAchievements } = useAchievements();
   const navigate = useNavigate();
+  const previewHeight = maxHeight || "90vh";
 
   // Monitorizează starea de autentificare
   useEffect(() => {
@@ -100,6 +102,7 @@ const SimulationPage = ({
     if (!iframe) return;
 
     if (!isFullscreen) {
+      previewHeightBeforeFullscreenRef.current = iframe.style.height;
       const requestFullscreen =
         iframe.requestFullscreen ||
         iframe.webkitRequestFullscreen ||
@@ -124,56 +127,7 @@ const SimulationPage = ({
   useEffect(() => {
     const iframe = iframeRef.current;
     if (!iframe) return;
-
-    let mutationObserver;
-    let resizeObserver;
-
-    const resizeIframe = () => {
-      try {
-        const doc = iframe.contentDocument || iframe.contentWindow?.document;
-        if (!doc) return;
-
-        const { body, documentElement } = doc;
-        const height = Math.max(
-          body?.scrollHeight || 0,
-          body?.offsetHeight || 0,
-          documentElement?.clientHeight || 0,
-          documentElement?.scrollHeight || 0,
-          documentElement?.offsetHeight || 0
-        );
-
-        if (height) {
-          iframe.style.height = `${height}px`;
-        }
-      } catch (error) {
-        console.warn("Nu pot ajusta înălțimea iframe-ului:", error);
-      }
-    };
-
-    const handleLoad = () => {
-      resizeIframe();
-
-      const doc = iframe.contentDocument || iframe.contentWindow?.document;
-      const body = doc?.body;
-      if (!body) return;
-
-      mutationObserver = new MutationObserver(resizeIframe);
-      mutationObserver.observe(body, {
-        childList: true,
-        subtree: true,
-        attributes: true,
-        characterData: true,
-      });
-
-      if ("ResizeObserver" in window) {
-        resizeObserver = new ResizeObserver(resizeIframe);
-        resizeObserver.observe(body);
-      }
-
-      iframe.contentWindow?.addEventListener("resize", resizeIframe);
-    };
-
-    iframe.addEventListener("load", handleLoad);
+    iframe.style.height = previewHeight;
 
     const handleFullscreenChange = () => {
       const fullscreenElement =
@@ -181,7 +135,16 @@ const SimulationPage = ({
         document.webkitFullscreenElement ||
         document.mozFullScreenElement ||
         document.msFullscreenElement;
-      setIsFullscreen(Boolean(fullscreenElement));
+      const nowFullscreen = Boolean(fullscreenElement);
+      setIsFullscreen(nowFullscreen);
+
+      if (!nowFullscreen && iframeRef.current) {
+        if (previewHeightBeforeFullscreenRef.current) {
+          iframeRef.current.style.height = previewHeightBeforeFullscreenRef.current;
+        } else {
+          iframeRef.current.style.height = previewHeight;
+        }
+      }
     };
 
     document.addEventListener("fullscreenchange", handleFullscreenChange);
@@ -190,16 +153,12 @@ const SimulationPage = ({
     document.addEventListener("MSFullscreenChange", handleFullscreenChange);
 
     return () => {
-      iframe.removeEventListener("load", handleLoad);
-      iframe.contentWindow?.removeEventListener("resize", resizeIframe);
-      mutationObserver?.disconnect();
-      resizeObserver?.disconnect();
       document.removeEventListener("fullscreenchange", handleFullscreenChange);
       document.removeEventListener("webkitfullscreenchange", handleFullscreenChange);
       document.removeEventListener("mozfullscreenchange", handleFullscreenChange);
       document.removeEventListener("MSFullscreenChange", handleFullscreenChange);
     };
-  }, [iframeSrc]);
+  }, [iframeSrc, previewHeight]);
 
   return (
     <Layout>
@@ -236,7 +195,7 @@ const SimulationPage = ({
               loading="lazy"
               allow="fullscreen"
               scrolling="no"
-              style={{maxHeight: maxHeight ? maxHeight : '150vh'}}
+              style={{ height: previewHeight }}
             />
             <button
               type="button"

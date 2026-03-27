@@ -78,7 +78,7 @@ export const simulationsConfig = [
     image: simulatorUndeImg,
     caption: "Unde în apă",
     iframeSrc: "/simulari/Unde/simulator-unde.html",
-    maxHeight: '200vh',
+    maxHeight: '90vh',
     category: "Unde"
   },
   {
@@ -365,7 +365,7 @@ export const simulationsConfig = [
     caption: "Experimentul Michelson-Morley",
     iframeSrc: "/simulari/michaelson-moray/index.html",
     maxHeight: '90vh',
-    category: "Fizică"
+    category: "Fizică Cuantica"
   },
   {
     id: 29,

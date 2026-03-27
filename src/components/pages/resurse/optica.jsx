@@ -215,31 +215,25 @@ const OpticaPage = () => {
                   <div>
                     <h3 className="text-xl font-semibold mb-4">Formule pentru prismă și dispersie:</h3>
                     
-                    <h4 className="text-lg font-semibold mb-2">1. Deviația minimă în prismă:</h4>
-                    <div className="formula-resurse text-lg font-mono mb-4">
-                      {"\\( \\delta_{min} = (n - 1)A \\)"}
-                      <MathJaxRender />
-                    </div>
-                    
-                    <h4 className="text-lg font-semibold mb-2">2. Unghiul de deviație:</h4>
+                    <h4 className="text-lg font-semibold mb-2">1. Unghiul de deviație:</h4>
                     <div className="formula-resurse text-lg font-mono mb-4">
                       {"\\( \\delta = i_1 + i_2 - A \\)"}
                       <MathJaxRender />
                     </div>
                     
-                    <h4 className="text-lg font-semibold mb-2">3. Dispersia unghiulară:</h4>
+                    <h4 className="text-lg font-semibold mb-2">2. Dispersia unghiulară:</h4>
                     <div className="formula-resurse text-lg font-mono mb-4">
                       {"\\( D = \\frac{d\\delta}{d\\lambda} \\)"}
                       <MathJaxRender />
                     </div>
                     
-                    <h4 className="text-lg font-semibold mb-2">4. Puterea dispersivă:</h4>
+                    <h4 className="text-lg font-semibold mb-2">3. Puterea dispersivă:</h4>
                     <div className="formula-resurse text-lg font-mono mb-4">
                       {"\\( P = \\frac{n_F - n_C}{n_D - 1} \\)"}
                       <MathJaxRender />
                     </div>
                     
-                    <h4 className="text-lg font-semibold mb-2">5. Formula Cauchy pentru indicele de refracție:</h4>
+                    <h4 className="text-lg font-semibold mb-2">4. Formula Cauchy pentru indicele de refracție:</h4>
                     <div className="formula-resurse text-lg font-mono mb-4">
                       {"\\( n(\\lambda) = A + \\frac{B}{\\lambda^2} + \\frac{C}{\\lambda^4} \\)"}
                       <MathJaxRender />
@@ -340,7 +334,7 @@ const OpticaPage = () => {
                 </div>
                 <div className="mt-8 flex flex-col md:flex-row md:items-center justify-between gap-6">
                   <div>
-                    <h3 className="text-xl font-semibold mb-4">Formule esențiale (maxim 8):</h3>
+                    <h3 className="text-xl font-semibold mb-4">Formule esențiale:</h3>
 
                     <h4 className="text-lg font-semibold mb-2">1. Relația undă–frecvență:</h4>
                     <div className="formula-resurse text-lg font-mono mb-4">
@@ -415,7 +409,7 @@ const OpticaPage = () => {
                 </div>
                 <div className="mt-8 flex flex-col md:flex-row md:items-center justify-between gap-6">
                   <div>
-                    <h3 className="text-xl font-semibold mb-4">Formule esențiale (maxim 8):</h3>
+                    <h3 className="text-xl font-semibold mb-4">Formule esențiale:</h3>
 
                     <h4 className="text-lg font-semibold mb-2">1. Relația undă–frecvență:</h4>
                     <div className="formula-resurse text-lg font-mono mb-4">
