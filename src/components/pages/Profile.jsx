@@ -2,14 +2,14 @@ import React, { useState, useEffect, useMemo } from 'react';
 import Layout from '../Layout';
 import { auth, provider, db, storage, createUserWithEmailAndPassword, signInWithEmailAndPassword } from '../../lib/firebase';
 import { signInWithPopup, signOut, onAuthStateChanged } from 'firebase/auth';
-import { doc, setDoc, getDoc, updateDoc, collection, query, where, getDocs, onSnapshot } from 'firebase/firestore';
+import { doc, setDoc, getDoc, collection, query, where, getDocs, onSnapshot } from 'firebase/firestore';
 import { useDispatch, useSelector } from 'react-redux';
 import { problemeData } from '../problemedata';
 import { ProblemCard } from './Probleme.jsx';
 import { Link } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
 import '../../scss/components/_probleme.scss';
-import { Check, ShieldCheck, Star } from 'lucide-react';
+import { Check, ShieldCheck, Star, GraduationCap, School } from 'lucide-react';
 import RecentActivity from '../RecentActivity';
 import Achievements from '../Achievements';
 import Statistics from '../Statistics';
@@ -184,6 +184,7 @@ const Profile = () => {
     const [descriptionInput, setDescriptionInput] = useState('');
     const [descriptionError, setDescriptionError] = useState('');
     const [isAdmin, setIsAdmin] = useState(false);
+    const [teacherStatus, setTeacherStatus] = useState('none');
 
     const fileInputRef = React.useRef();
     const dispatch = useDispatch();
@@ -263,6 +264,7 @@ const Profile = () => {
                         profilePic: firebaseUser.photoURL || '',
                         description: '',
                         isAdmin: ADMIN_EMAILS.includes(firebaseUser.email),
+                        teacherStatus: 'none',
                     });
                     setAlias('');
                     setName(defaultName);
@@ -270,6 +272,7 @@ const Profile = () => {
                     setProfilePic(fixGoogleProfileImageUrl(profilePicUrl));
                     setDescription('');
                     setIsAdmin(ADMIN_EMAILS.includes(firebaseUser.email));
+                    setTeacherStatus('none');
                 } else {
                     const userData = userSnap.data();
 
@@ -279,6 +282,7 @@ const Profile = () => {
                     setProfilePic(fixGoogleProfileImageUrl(profilePicUrl));
                     setDescription(userData.description || '');
                     setIsAdmin(userData.isAdmin || ADMIN_EMAILS.includes(firebaseUser.email));
+                    setTeacherStatus(userData.teacherStatus || 'none');
                     setFavorites(normalizeFavoriteIds(userData.favorites || []));
                 }
                 setUser({
@@ -294,6 +298,7 @@ const Profile = () => {
                 setProfilePic('');
                 setDescription('');
                 setIsAdmin(false);
+                setTeacherStatus('none');
                 setFavorites([]);
             }
             setLoading(false);
@@ -498,6 +503,7 @@ const Profile = () => {
                     profilePic: '',
                     description: '',
                     isAdmin: ADMIN_EMAILS.includes(userCredential.user.email),
+                    teacherStatus: 'none',
                 });
             } else {
                 // Sign in
@@ -1212,12 +1218,24 @@ const Profile = () => {
                                 Deconectează-te
                             </button>
                         </div>
-                        {isAdmin && (
-                            <button className="admin-dashboard-btn" onClick={() => navigate('/admin')}>
-                                <ShieldCheck size={18} />
-                                <span>Panou Admin</span>
-                            </button>
-                        )}
+                        <div className="profile-floating-stack">
+                            {isAdmin && (
+                                <button type="button" className="admin-dashboard-btn profile-floating-btn" onClick={() => navigate('/admin')}>
+                                    <ShieldCheck size={18} />
+                                    <span>Panou Admin</span>
+                                </button>
+                            )}
+                            <Link to="/clasa" className="admin-dashboard-btn profile-floating-btn" style={{ textDecoration: 'none' }}>
+                                <School size={18} />
+                                <span>Clasele mele</span>
+                            </Link>
+                            {teacherStatus === 'approved' && (
+                                <button type="button" className="admin-dashboard-btn profile-floating-btn" onClick={() => navigate('/profesor')}>
+                                    <GraduationCap size={18} />
+                                    <span>Panou profesor</span>
+                                </button>
+                            )}
+                        </div>
                     </div>
                 </div>
                 {showEditModal && (

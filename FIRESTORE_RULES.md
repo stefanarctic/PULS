@@ -28,6 +28,7 @@ The security rules ensure that:
   profilePic: string,     // URL to profile picture
   description: string,    // User bio/description
   isAdmin: boolean,       // Admin status (only admins can modify)
+  teacherStatus: string,  // 'none' | 'pending' | 'approved' | 'rejected' — doar admin poate seta approved/rejected
   favorites: array,       // Array of favorite problem IDs
   solvedProblems: array   // Array of solved problem objects
 }
@@ -96,6 +97,18 @@ The security rules ensure that:
   - Anyone can create grile (pentru upload script)
 - **Update/Delete**: 
   - Only admins can update or delete grile
+
+### 5. Profesori, clase, teme
+
+**`classJoinCodes/{joinCode}`** — mapare cod scurt → `classId`. Citire pentru utilizatori autentificați; creare/ștergere doar de profesorul care deține clasa.
+
+**`classes/{classId}`** — `teacherId`, `name`, `description`, `joinCode`, `createdAt`. Citire pentru profesorul clasei și membri; CRUD clasă doar pentru profesorul aprobat (`teacherStatus == 'approved'`).
+
+**`classes/{classId}/members/{studentUid}`** — `joinedAt`, `studentUid`, `studentName`; elevul se poate înscrie cu cod valid (verificat prin `classJoinCodes`). Profesorul poate citi membrii; elevul își poate șterge înscrierea.
+
+**`classes/{classId}/assignments/{assignmentId}`** — teme cu `title`, `items` (blocuri problemă / grilă / simulare / text), `teacherId`, `createdAt`, opțional `dueDate`. CRUD doar profesorul clasei; citire pentru membrii clasei.
+
+**Indexe**: vezi `firestore.indexes.json` (ex. `classes` după `teacherId` + `createdAt`; collection group `members` după `studentUid` + `joinedAt`).
 
 ## Helper Functions
 

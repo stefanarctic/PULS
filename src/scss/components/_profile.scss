@@ -281,6 +281,24 @@
 }
 
 
+.profile-floating-stack {
+    position: absolute;
+    bottom: 1.5rem;
+    right: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0.5rem;
+    z-index: 2;
+    max-width: calc(100% - 3rem);
+
+    .profile-floating-btn {
+        position: static !important;
+        bottom: auto !important;
+        right: auto !important;
+    }
+}
+
 .admin-dashboard-btn {
     display: flex;
     align-items: center;

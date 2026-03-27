@@ -32,6 +32,11 @@ import ScrollToTop from "./components/ScrollToTop";
 import Profile from "./components/pages/Profile";
 import ProblemSubmit from "./components/ProblemSubmit";
 import AdminDashboard from "./components/pages/AdminDashboard";
+import TeacherDashboard from "./components/pages/TeacherDashboard";
+import TeacherClassPage from "./components/pages/TeacherClassPage";
+import ClassJoinPage from "./components/pages/ClassJoinPage";
+import StudentClassesPage from "./components/pages/StudentClassesPage";
+import StudentClassPage from "./components/pages/StudentClassPage";
 import { useEffect } from "react";
 import uploadProblems from "./components/uploadProblems";
 import { useDispatch, useSelector } from 'react-redux';
@@ -137,6 +142,11 @@ const App = () => {
           <Route path="/search" element={<SearchResults />} />
           <Route path="/profil" element={<Profile />} />
           <Route path="/admin" element={<AdminDashboard />} />
+          <Route path="/profesor" element={<TeacherDashboard />} />
+          <Route path="/profesor/clasa/:classId" element={<TeacherClassPage />} />
+          <Route path="/clasa/intra" element={<ClassJoinPage />} />
+          <Route path="/clasa" element={<StudentClassesPage />} />
+          <Route path="/clasa/:classId" element={<StudentClassPage />} />
         </Routes>
       </div>
       <AssistantAvatar />

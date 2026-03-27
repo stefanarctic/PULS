@@ -1,3 +1,81 @@
+.admin-teacher-requests {
+  margin-bottom: 2rem;
+  padding: 1rem 1.25rem;
+  border: 1px solid var(--border-color-current-mode);
+  border-radius: 10px;
+  background: var(--secondary-background-current-mode);
+
+  .admin-teacher-requests-title {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 1.2rem;
+    margin: 0 0 1rem;
+  }
+
+  .admin-teacher-requests-empty {
+    margin: 0;
+    color: var(--muted-color-current-mode);
+    font-size: 0.95rem;
+  }
+
+  .admin-teacher-requests-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  .admin-teacher-requests-item {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.75rem;
+    padding: 0.75rem 0;
+    border-bottom: 1px solid var(--border-color-current-mode);
+
+    &:last-child {
+      border-bottom: none;
+    }
+  }
+
+  .admin-teacher-requests-info {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+  }
+
+  .admin-teacher-requests-email {
+    font-size: 0.9rem;
+    color: var(--muted-color-current-mode);
+  }
+
+  .admin-teacher-requests-actions {
+    display: flex;
+    gap: 0.5rem;
+  }
+
+  .admin-teacher-btn {
+    padding: 0.45rem 0.85rem;
+    border-radius: 8px;
+    border: 1px solid var(--border-color-current-mode);
+    cursor: pointer;
+    font-size: 0.9rem;
+
+    &.approve {
+      background: #1b5e20;
+      color: #fff;
+      border-color: #1b5e20;
+    }
+
+    &.reject {
+      background: transparent;
+      color: #c62828;
+      border-color: #c62828;
+    }
+  }
+}
+
 .admin-dashboard {
   min-height: 100vh;
   background-color: transparent;

@@ -6,6 +6,8 @@ import { useAdmin } from '../../hooks/useAdmin';
 import { fetchProblems, updateProblem, deleteProblem, clearUpdateStatus, clearDeleteStatus } from '../../features/problems/problemsSlice';
 import { Trash2, Search, X, AlertCircle, GraduationCap } from 'lucide-react';
 import { normalizeString } from '../../lib/normalizeString';
+import { collection, query, where, getDocs, updateDoc, doc } from 'firebase/firestore';
+import { db } from '../../lib/firebase';
 import '../../scss/components/_admin-dashboard.scss';
 
 const SearchIcon = () => (
@@ -47,12 +49,54 @@ const AdminDashboard = () => {
   });
   const [datePairs, setDatePairs] = useState([{ key: '', value: '' }]);
   const [aiAnalyzing, setAiAnalyzing] = useState(false);
+  const [pendingTeachers, setPendingTeachers] = useState([]);
+  const [teacherApprovalsLoading, setTeacherApprovalsLoading] = useState(false);
 
   useEffect(() => {
     if (!adminLoading && !isAdmin) {
       navigate('/');
     }
   }, [isAdmin, adminLoading, navigate]);
+
+  useEffect(() => {
+    if (!isAdmin) return;
+    let cancelled = false;
+    setTeacherApprovalsLoading(true);
+    const q = query(collection(db, 'users'), where('teacherStatus', '==', 'pending'));
+    getDocs(q)
+      .then((snap) => {
+        if (!cancelled) {
+          setPendingTeachers(snap.docs.map((d) => ({ id: d.id, ...d.data() })));
+        }
+      })
+      .catch((err) => console.error('Pending teachers:', err))
+      .finally(() => {
+        if (!cancelled) setTeacherApprovalsLoading(false);
+      });
+    return () => {
+      cancelled = true;
+    };
+  }, [isAdmin]);
+
+  const approveTeacher = async (uid) => {
+    try {
+      await updateDoc(doc(db, 'users', uid), { teacherStatus: 'approved' });
+      setPendingTeachers((prev) => prev.filter((p) => p.id !== uid));
+    } catch (e) {
+      console.error(e);
+      alert('Nu s-a putut aproba.');
+    }
+  };
+
+  const rejectTeacher = async (uid) => {
+    try {
+      await updateDoc(doc(db, 'users', uid), { teacherStatus: 'rejected' });
+      setPendingTeachers((prev) => prev.filter((p) => p.id !== uid));
+    } catch (e) {
+      console.error(e);
+      alert('Nu s-a putut respinge.');
+    }
+  };
 
   useEffect(() => {
     if (isAdmin) {
@@ -868,6 +912,37 @@ Dacă nu găsești date sau formule, returnează obiecte goale. Răspunde DOAR c
       <div className="admin-dashboard">
         <div className="admin-dashboard-inner">
           <h1 className="admin-dashboard-title">Panou de administrare</h1>
+
+          <section className="admin-teacher-requests" aria-label="Cereri profesor">
+            <h2 className="admin-teacher-requests-title">
+              <GraduationCap size={22} aria-hidden />
+              Cereri cont profesor
+            </h2>
+            {teacherApprovalsLoading ? (
+              <p className="admin-teacher-requests-empty">Se încarcă...</p>
+            ) : pendingTeachers.length === 0 ? (
+              <p className="admin-teacher-requests-empty">Nicio cerere în așteptare.</p>
+            ) : (
+              <ul className="admin-teacher-requests-list">
+                {pendingTeachers.map((t) => (
+                  <li key={t.id} className="admin-teacher-requests-item">
+                    <div className="admin-teacher-requests-info">
+                      <strong>{t.name || '—'}</strong>
+                      <span className="admin-teacher-requests-email">{t.email || ''}</span>
+                    </div>
+                    <div className="admin-teacher-requests-actions">
+                      <button type="button" className="admin-teacher-btn approve" onClick={() => approveTeacher(t.id)}>
+                        Aprobă
+                      </button>
+                      <button type="button" className="admin-teacher-btn reject" onClick={() => rejectTeacher(t.id)}>
+                        Respinge
+                      </button>
+                    </div>
+                  </li>
+                ))}
+              </ul>
+            )}
+          </section>
 
           {/* Search and Filters - Similar to /probleme */}
           <div className="admin-filters-section">

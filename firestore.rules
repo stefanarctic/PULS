@@ -4,123 +4,179 @@ service cloud.firestore {
 
   match /databases/{database}/documents {
 
-    // Helper function to check if user is authenticated
     function isAuthenticated() {
       return request.auth != null;
     }
 
-    // Helper function to check if user is the owner of a document
     function isOwner(userId) {
       return isAuthenticated() && request.auth.uid == userId;
     }
 
-    // Helper function to check if user is admin
-    // Note: This requires reading the user document first, which may have limitations
-    // For better security, consider using Firebase Custom Claims instead
-    // This function checks if the authenticated user's document exists and has isAdmin = true
     function isAdmin() {
-      return isAuthenticated() && 
+      return isAuthenticated() &&
              exists(/databases/$(database)/documents/users/$(request.auth.uid)) &&
              get(/databases/$(database)/documents/users/$(request.auth.uid)).data.isAdmin == true;
     }
 
-    // Users collection rules
-    match /users/{userId} {
-      // Allow users to read their own document completely
-      allow read: if isOwner(userId);
+    function isApprovedTeacher() {
+      return isAuthenticated() &&
+             exists(/databases/$(database)/documents/users/$(request.auth.uid)) &&
+             get(/databases/$(database)/documents/users/$(request.auth.uid)).data.teacherStatus == 'approved';
+    }
 
-      // Allow users to read other users' documents for alias checking
-      // Limit to public fields only for privacy
+    function classTeacherId(classId) {
+      return get(/databases/$(database)/documents/classes/$(classId)).data.teacherId;
+    }
+
+    function isClassTeacher(classId) {
+      return isAuthenticated() && exists(/databases/$(database)/documents/classes/$(classId)) &&
+             classTeacherId(classId) == request.auth.uid;
+    }
+
+    function isClassMember(classId) {
+      return isAuthenticated() &&
+             exists(/databases/$(database)/documents/classes/$(classId)/members/$(request.auth.uid));
+    }
+
+    function canReadClass(classId) {
+      return isClassTeacher(classId) || isClassMember(classId);
+    }
+
+    function teacherStatusValidOnCreate() {
+      return !('teacherStatus' in request.resource.data) ||
+             request.resource.data.teacherStatus == 'none';
+    }
+
+    function teacherStatusOkForUser() {
+      return !('teacherStatus' in request.resource.data) ||
+             request.resource.data.teacherStatus == resource.data.teacherStatus ||
+             (
+               request.resource.data.teacherStatus == 'pending' &&
+               resource.data.teacherStatus in ['none', 'rejected']
+             ) ||
+             (
+               resource.data.teacherStatus == 'approved' &&
+               request.resource.data.teacherStatus == 'approved'
+             );
+    }
+
+    match /users/{userId} {
+      allow read: if isOwner(userId);
       allow read: if isAuthenticated();
 
-      // Allow users to create their own document
-      allow create: if isOwner(userId) && 
-                       // Ensure they cannot set themselves as admin
-                       (!('isAdmin' in request.resource.data) || 
+      allow create: if isOwner(userId) &&
+                       (!('isAdmin' in request.resource.data) ||
                         request.resource.data.isAdmin == false) &&
-                       // Validate required fields
+                       teacherStatusValidOnCreate() &&
                        'email' in request.resource.data &&
                        'name' in request.resource.data &&
                        'joinedDate' in request.resource.data;
 
-      // Allow users to update their own document
-      allow update: if isOwner(userId) && 
-                       // Prevent users from promoting themselves to admin
-                       (!('isAdmin' in request.resource.data) || 
+      allow update: if isOwner(userId) &&
+                       (!('isAdmin' in request.resource.data) ||
                         request.resource.data.isAdmin == resource.data.isAdmin) &&
-                       // Prevent users from changing their email
-                       (!('email' in request.resource.data) || 
+                       (!('email' in request.resource.data) ||
                         request.resource.data.email == resource.data.email) &&
-                       // Prevent users from changing their joinedDate
-                       (!('joinedDate' in request.resource.data) || 
-                        request.resource.data.joinedDate == resource.data.joinedDate);
+                       (!('joinedDate' in request.resource.data) ||
+                        request.resource.data.joinedDate == resource.data.joinedDate) &&
+                       teacherStatusOkForUser();
 
-      // Allow admins to update any user document (including isAdmin field)
       allow update: if isAdmin();
 
-      // Allow admins to delete user documents (use with caution)
       allow delete: if isAdmin();
 
-      // User problems subcollection
       match /userProblems/{problemId} {
-        // Users can only read/write their own problems
         allow read, write: if isOwner(userId);
-
-        // Admins can read all user problems
         allow read: if isAdmin();
       }
 
-      // Chats subcollection - pentru chat-urile AI assistant
       match /chats/{chatId} {
-        // Users can read their own chats
-        allow read: if isOwner(userId);
-
-        // Users can create their own chats
-        allow create: if isOwner(userId);
-
-        // Users can update their own chats
-        allow update: if isOwner(userId);
-
-        // Users can delete their own chats
-        allow delete: if isOwner(userId);
+        allow read, create, update, delete: if isOwner(userId);
       }
     }
 
-    // Problems collection rules
+    match /classJoinCodes/{joinCode} {
+      allow read: if isAuthenticated();
+      // Clasa trebuie să existe deja; get() vede documentul după setDoc (scriere secvențială, nu în aceeași tranzacție cu codul).
+      allow create: if isApprovedTeacher() &&
+                       request.resource.data.keys().hasOnly(['classId']) &&
+                       get(/databases/$(database)/documents/classes/$(request.resource.data.classId)).data.teacherId == request.auth.uid;
+      allow delete: if isApprovedTeacher() &&
+                       exists(/databases/$(database)/documents/classJoinCodes/$(joinCode)) &&
+                       classTeacherId(get(/databases/$(database)/documents/classJoinCodes/$(joinCode)).data.classId) == request.auth.uid;
+    }
+
+    match /classes/{classId} {
+      allow read: if canReadClass(classId);
+
+      allow create: if isApprovedTeacher() &&
+                       request.resource.data.teacherId == request.auth.uid &&
+                       request.resource.data.keys().hasAll(['teacherId', 'name', 'joinCode', 'createdAt']) &&
+                       request.resource.data.name is string &&
+                       request.resource.data.joinCode is string &&
+                       request.resource.data.joinCode.size() >= 4 &&
+                       request.resource.data.joinCode.size() <= 32;
+
+      allow update: if isClassTeacher(classId) &&
+                       request.resource.data.teacherId == resource.data.teacherId;
+
+      allow delete: if isClassTeacher(classId);
+
+      match /members/{studentUid} {
+        allow read: if isClassTeacher(classId) || isOwner(studentUid);
+
+        allow create: if isAuthenticated() &&
+                         request.auth.uid == studentUid &&
+                         request.resource.data.studentUid == studentUid &&
+                         exists(/databases/$(database)/documents/classJoinCodes/$(request.resource.data.joinCode)) &&
+                         get(/databases/$(database)/documents/classJoinCodes/$(request.resource.data.joinCode)).data.classId == classId &&
+                         request.resource.data.keys().hasAll(['joinedAt', 'joinCode', 'studentUid']) &&
+                         request.resource.data.joinedAt is timestamp;
+
+        allow update: if isAuthenticated() && request.auth.uid == studentUid &&
+                         request.resource.data.studentUid == studentUid &&
+                         request.resource.data.keys().hasOnly(['joinedAt', 'studentName', 'studentUid']) &&
+                         !('joinCode' in request.resource.data) &&
+                         resource.data.keys().hasAny(['joinCode']);
+
+        allow delete: if isClassTeacher(classId) || (isAuthenticated() && request.auth.uid == studentUid);
+      }
+
+      match /assignments/{assignmentId} {
+        allow read: if canReadClass(classId);
+
+        allow create: if isClassTeacher(classId) &&
+                         request.resource.data.teacherId == request.auth.uid &&
+                         request.resource.data.keys().hasAll(['title', 'createdAt', 'teacherId', 'items']) &&
+                         request.resource.data.title is string &&
+                         request.resource.data.items is list;
+
+        allow update: if isClassTeacher(classId) &&
+                         request.resource.data.teacherId == resource.data.teacherId;
+
+        allow delete: if isClassTeacher(classId);
+      }
+    }
+
     match /problems/{problemId} {
-      // All users can read problems
       allow read: if true;
 
-      // Only admins can create problems
       allow create: if isAdmin() &&
-                       // Validate required fields
                        'titlu' in request.resource.data &&
                        'categorie' in request.resource.data &&
                        'continut' in request.resource.data &&
-                       // dificultate is required for non-Bac problems, optional for Bac problems
-                       (request.resource.data.categorie == 'Bac' || 
+                       (request.resource.data.categorie == 'Bac' ||
                         'dificultate' in request.resource.data);
 
-      // Only admins can update problems
-      allow update: if isAdmin();
-
-      // Only admins can delete problems
-      allow delete: if isAdmin();
-    }
-
-    // Grile collection (multiple choice questions)
-    match /grile/{grilaId} {
-      // All users can read grile
-      allow read: if true;
-
-      // Anyone can create grile (pentru upload script și adăugare rapidă)
-      allow create: if true;
-
-      // Only admins can update or delete grile
       allow update, delete: if isAdmin();
     }
 
-    // Deny all other access by default
+    match /grile/{grilaId} {
+      allow read: if true;
+      allow create: if true;
+      allow update, delete: if isAdmin();
+    }
+
     match /{document=**} {
       allow read, write: if false;
     }
