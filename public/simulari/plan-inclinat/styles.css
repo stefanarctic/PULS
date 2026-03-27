@@ -170,6 +170,12 @@ body::before {
     }
 }
 
+@media (max-width: 1400px) and (min-width: 1025px) {
+    .grid3 {
+        grid-template-columns: 300px minmax(0, 1fr) 320px;
+    }
+}
+
 .leftCol,
 .rightCol {
     display: flex;
@@ -311,7 +317,7 @@ canvas {
     align-self: start;
 }
 
-@media (max-width: 1200px) {
+@media (max-width: 1024px) {
     .sticky {
         position: static;
     }

@@ -27,7 +27,7 @@
   
   .app{
     display:grid;
-    grid-template-columns: 340px 1fr 380px;
+    grid-template-columns: 300px minmax(0, 1fr) 320px;
     height:100vh;
     min-height:0;
   }
@@ -312,7 +312,7 @@
   }
   .controls .small{ font-size:11px; margin-top:4px; }
   
-  @media (max-width: 1200px){
+  @media (max-width: 1024px){
     body{ overflow:auto; }
     .app{ grid-template-columns: 1fr; height:auto; }
     .stage{ min-height: 620px; }
