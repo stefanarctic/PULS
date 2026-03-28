@@ -12,77 +12,61 @@ import {
   updateDoc,
   writeBatch,
   Timestamp,
-  deleteField,
-  collectionGroup,
+  arrayUnion,
+  arrayRemove,
 } from 'firebase/firestore';
 import { db } from './firebase';
 
-function randomJoinCode(length = 6) {
-  const chars = 'ABCDEFGHJKLMNPQRSTUVWXYZ23456789';
-  let s = '';
-  for (let i = 0; i < length; i++) {
-    s += chars[Math.floor(Math.random() * chars.length)];
-  }
-  return s;
-}
-
 export async function createClass(teacherId, name, description = '') {
-  const maxAttempts = 8;
-  for (let attempt = 0; attempt < maxAttempts; attempt++) {
-    const joinCode = randomJoinCode(6);
-    const codeRef = doc(db, 'classJoinCodes', joinCode);
-    const codeSnap = await getDoc(codeRef);
-    if (codeSnap.exists()) {
-      continue;
-    }
+  const classRef = doc(collection(db, 'classes'));
+  const newClassId = classRef.id;
 
-    const classRef = doc(collection(db, 'classes'));
-    const newClassId = classRef.id;
-
-    try {
-      await setDoc(classRef, {
-        teacherId,
-        name: String(name).trim(),
-        description: String(description || '').trim(),
-        joinCode,
-        createdAt: Timestamp.now(),
-      });
-      await setDoc(codeRef, { classId: newClassId });
-      return { classId: newClassId, joinCode };
-    } catch (e) {
-      try {
-        await deleteDoc(classRef);
-      } catch (_) {
-        /* ignore cleanup failure */
-      }
-      if (e?.code === 'permission-denied') {
-        throw new Error(
-          'Permisiuni insuficiente. Verifică în Firebase că regulile pentru classes și classJoinCodes sunt publicate și că ai teacherStatus „approved”.'
-        );
-      }
-      throw e;
-    }
-  }
-  throw new Error('Nu s-a putut genera un cod unic de clasă. Încearcă din nou.');
-}
-
-export async function fetchTeacherClasses(teacherId) {
-  const q = query(
-    collection(db, 'classes'),
-    where('teacherId', '==', teacherId),
-    orderBy('createdAt', 'desc')
-  );
   try {
-    const snap = await getDocs(q);
-    return snap.docs.map((d) => ({ id: d.id, ...d.data() }));
+    await setDoc(classRef, {
+      teacherId,
+      name: String(name).trim(),
+      description: String(description || '').trim(),
+      createdAt: Timestamp.now(),
+    });
+
+    await updateDoc(doc(db, 'users', teacherId), {
+      ownedClasses: arrayUnion(newClassId),
+    });
   } catch (e) {
-    if (e?.code === 'failed-precondition') {
+    try {
+      await deleteDoc(classRef);
+    } catch (_) {
+      /* ignore */
+    }
+    if (e?.code === 'permission-denied') {
       throw new Error(
-        'Index Firestore lipsă pentru clase (teacherId + createdAt). Rulează deploy la indexe sau creează indexul din linkul din consola Firebase.'
+        'Permisiuni insuficiente. Verifică regulile Firestore și că ai teacherStatus „approved”.'
       );
     }
     throw e;
   }
+
+  return { classId: newClassId };
+}
+
+function sortClassesByCreatedAtDesc(rows) {
+  return [...rows].sort((a, b) => {
+    const ta =
+      a.createdAt?.toMillis?.() ??
+      (typeof a.createdAt?.seconds === 'number' ? a.createdAt.seconds * 1000 : 0);
+    const tb =
+      b.createdAt?.toMillis?.() ??
+      (typeof b.createdAt?.seconds === 'number' ? b.createdAt.seconds * 1000 : 0);
+    return tb - ta;
+  });
+}
+
+/** Doar where(teacherId) — fără index compus; sortare createdAt în client. */
+export async function fetchTeacherClasses(teacherId) {
+  const q = query(collection(db, 'classes'), where('teacherId', '==', teacherId));
+  const snap = await getDocs(q);
+  const rows = snap.docs.map((d) => ({ id: d.id, ...d.data() }));
+  return sortClassesByCreatedAtDesc(rows);
 }
 
 export async function fetchClass(classId) {
@@ -92,9 +76,23 @@ export async function fetchClass(classId) {
   return { id: snap.id, ...snap.data() };
 }
 
+/** Elevi cu joinedClasses care conțin această clasă (fără profesorul clasei în listă). */
 export async function fetchClassMembers(classId) {
-  const snap = await getDocs(collection(db, 'classes', classId, 'members'));
-  return snap.docs.map((d) => ({ id: d.id, ...d.data() }));
+  const classSnap = await getDoc(doc(db, 'classes', classId));
+  const teacherId = classSnap.exists() ? classSnap.data().teacherId : null;
+
+  const q = query(collection(db, 'users'), where('joinedClasses', 'array-contains', classId));
+  const snap = await getDocs(q);
+  return snap.docs
+    .filter((d) => d.id !== teacherId)
+    .map((d) => {
+      const data = d.data();
+      return {
+        id: d.id,
+        studentUid: d.id,
+        studentName: data.name || data.alias || d.id,
+      };
+    });
 }
 
 export async function fetchClassAssignments(classId) {
@@ -107,46 +105,43 @@ export async function fetchClassAssignments(classId) {
 }
 
 export async function fetchStudentEnrollments(studentUid) {
-  const q = query(
-    collectionGroup(db, 'members'),
-    where('studentUid', '==', studentUid),
-    orderBy('joinedAt', 'desc')
-  );
-  const snap = await getDocs(q);
-  return snap.docs.map((d) => {
-    const classId = d.ref.parent.parent.id;
-    return { classId, memberId: d.id, ...d.data() };
-  });
+  const userRef = doc(db, 'users', studentUid);
+  const snap = await getDoc(userRef);
+  if (!snap.exists()) return [];
+  const joined = snap.data().joinedClasses;
+  if (!Array.isArray(joined) || joined.length === 0) return [];
+  return joined.map((classId) => ({
+    classId,
+    joinedAt: null,
+  }));
 }
 
-export async function joinClassWithCode(userId, joinCodeRaw, studentName) {
-  const joinCode = String(joinCodeRaw).trim().toUpperCase();
-  if (joinCode.length < 4) {
+/**
+ * Token = ID document Firestore al clasei.
+ */
+export async function joinClassWithCode(userId, tokenRaw, _studentName) {
+  const classId = String(tokenRaw).trim();
+  if (classId.length < 4) {
     throw new Error('Codul prea scurt.');
   }
-  const codeRef = doc(db, 'classJoinCodes', joinCode);
-  const codeSnap = await getDoc(codeRef);
-  if (!codeSnap.exists()) {
+  const classSnap = await getDoc(doc(db, 'classes', classId));
+  if (!classSnap.exists()) {
     throw new Error('Cod invalid sau clasă inexistentă.');
   }
-  const { classId } = codeSnap.data();
-  const memberRef = doc(db, 'classes', classId, 'members', userId);
-  const existing = await getDoc(memberRef);
-  if (existing.exists()) {
+  const { teacherId } = classSnap.data();
+  if (teacherId === userId) {
+    throw new Error('Ești profesorul acestei clase; nu te poți înscrie ca elev.');
+  }
+
+  const userRef = doc(db, 'users', userId);
+  const userSnap = await getDoc(userRef);
+  const existing = userSnap.exists() ? userSnap.data().joinedClasses : [];
+  if (Array.isArray(existing) && existing.includes(classId)) {
     throw new Error('Ești deja înscris la această clasă.');
   }
-  await setDoc(memberRef, {
-    joinedAt: Timestamp.now(),
-    joinCode,
-    studentUid: userId,
-    studentName: String(studentName || '').trim(),
-  });
 
-  await updateDoc(memberRef, {
-    joinCode: deleteField(),
-    studentUid: userId,
-    joinedAt: Timestamp.now(),
-    studentName: String(studentName || '').trim(),
+  await updateDoc(userRef, {
+    joinedClasses: arrayUnion(classId),
   });
   return classId;
 }
@@ -186,16 +181,49 @@ export async function updateClassMeta(classId, { name, description }) {
 }
 
 export async function removeMember(classId, studentUid) {
-  await deleteDoc(doc(db, 'classes', classId, 'members', studentUid));
+  await updateDoc(doc(db, 'users', studentUid), {
+    joinedClasses: arrayRemove(classId),
+  });
 }
 
-export async function deleteClassCascade(classId, joinCode) {
-  const membersSnap = await getDocs(collection(db, 'classes', classId, 'members'));
+export async function deleteClassCascade(classId) {
+  const classRef = doc(db, 'classes', classId);
+  const classSnap = await getDoc(classRef);
+  if (!classSnap.exists()) return;
+  const teacherId = classSnap.data().teacherId;
+
   const assignmentsSnap = await getDocs(collection(db, 'classes', classId, 'assignments'));
-  const batch = writeBatch(db);
-  membersSnap.forEach((d) => batch.delete(d.ref));
-  assignmentsSnap.forEach((d) => batch.delete(d.ref));
-  batch.delete(doc(db, 'classes', classId));
-  batch.delete(doc(db, 'classJoinCodes', joinCode));
+  let batch = writeBatch(db);
+  let n = 0;
+  for (const d of assignmentsSnap.docs) {
+    batch.delete(d.ref);
+    n++;
+    if (n >= 450) {
+      await batch.commit();
+      batch = writeBatch(db);
+      n = 0;
+    }
+  }
+  batch.delete(classRef);
   await batch.commit();
+
+  const usersSnap = await getDocs(
+    query(collection(db, 'users'), where('joinedClasses', 'array-contains', classId))
+  );
+  let ub = writeBatch(db);
+  let k = 0;
+  for (const u of usersSnap.docs) {
+    ub.update(u.ref, { joinedClasses: arrayRemove(classId) });
+    k++;
+    if (k >= 450) {
+      await ub.commit();
+      ub = writeBatch(db);
+      k = 0;
+    }
+  }
+  if (k > 0) await ub.commit();
+
+  await updateDoc(doc(db, 'users', teacherId), {
+    ownedClasses: arrayRemove(classId),
+  });
 }

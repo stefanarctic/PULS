@@ -265,6 +265,8 @@ const Profile = () => {
                         description: '',
                         isAdmin: ADMIN_EMAILS.includes(firebaseUser.email),
                         teacherStatus: 'none',
+                        joinedClasses: [],
+                        ownedClasses: [],
                     });
                     setAlias('');
                     setName(defaultName);
@@ -504,6 +506,8 @@ const Profile = () => {
                     description: '',
                     isAdmin: ADMIN_EMAILS.includes(userCredential.user.email),
                     teacherStatus: 'none',
+                    joinedClasses: [],
+                    ownedClasses: [],
                 });
             } else {
                 // Sign in
@@ -1196,45 +1200,47 @@ const Profile = () => {
                                 )}
                             </div>
                         </div>
-                        <div className="profile-actions">
-                            <button className="edit-profile-btn" onClick={() => {
-                                setNameInput(name || user.name);
-                                setAliasInput(alias);
-                                setProfilePicInput(profilePic);
-                                setDescriptionInput(description);
-                                // Reset selected image when opening modal
-                                setSelectedImageFile(null);
-                                setSelectedImagePreview(null);
-                                // Reset errors
-                                setAliasError('');
-                                setNameError('');
-                                setDescriptionError('');
-                                setSaveError('');
-                                setShowEditModal(true);
-                            }}>
-                                Editează profilul
-                            </button>
-                            <button className="logout-btn" onClick={handleLogout}>
-                                Deconectează-te
-                            </button>
-                        </div>
-                        <div className="profile-floating-stack">
-                            {isAdmin && (
-                                <button type="button" className="admin-dashboard-btn profile-floating-btn" onClick={() => navigate('/admin')}>
-                                    <ShieldCheck size={18} />
-                                    <span>Panou Admin</span>
+                        <div className="profile-header-actions">
+                            <div className="profile-actions">
+                                <button className="edit-profile-btn" onClick={() => {
+                                    setNameInput(name || user.name);
+                                    setAliasInput(alias);
+                                    setProfilePicInput(profilePic);
+                                    setDescriptionInput(description);
+                                    // Reset selected image when opening modal
+                                    setSelectedImageFile(null);
+                                    setSelectedImagePreview(null);
+                                    // Reset errors
+                                    setAliasError('');
+                                    setNameError('');
+                                    setDescriptionError('');
+                                    setSaveError('');
+                                    setShowEditModal(true);
+                                }}>
+                                    Editează profilul
                                 </button>
-                            )}
-                            <Link to="/clasa" className="admin-dashboard-btn profile-floating-btn" style={{ textDecoration: 'none' }}>
-                                <School size={18} />
-                                <span>Clasele mele</span>
-                            </Link>
-                            {teacherStatus === 'approved' && (
-                                <button type="button" className="admin-dashboard-btn profile-floating-btn" onClick={() => navigate('/profesor')}>
-                                    <GraduationCap size={18} />
-                                    <span>Panou profesor</span>
+                                <button className="logout-btn" onClick={handleLogout}>
+                                    Deconectează-te
                                 </button>
-                            )}
+                            </div>
+                            <div className="profile-floating-stack">
+                                {isAdmin && (
+                                    <button type="button" className="admin-dashboard-btn profile-floating-btn" onClick={() => navigate('/admin')}>
+                                        <ShieldCheck size={18} />
+                                        <span>Panou Admin</span>
+                                    </button>
+                                )}
+                                <Link to="/clasa" className="admin-dashboard-btn profile-floating-btn" style={{ textDecoration: 'none' }}>
+                                    <School size={18} />
+                                    <span>Clasele mele</span>
+                                </Link>
+                                {teacherStatus === 'approved' && (
+                                    <button type="button" className="admin-dashboard-btn profile-floating-btn" onClick={() => navigate('/profesor')}>
+                                        <GraduationCap size={18} />
+                                        <span>Panou profesor</span>
+                                    </button>
+                                )}
+                            </div>
                         </div>
                     </div>
                 </div>

@@ -21,6 +21,8 @@ const StudentClassPage = () => {
   const [loading, setLoading] = useState(true);
   const [classData, setClassData] = useState(null);
   const [assignments, setAssignments] = useState([]);
+  const [resolvedIndices, setResolvedIndices] = useState({});
+  const [legacyIndicesDone, setLegacyIndicesDone] = useState(true);
   const [error, setError] = useState('');
 
   useEffect(() => {
@@ -41,9 +43,11 @@ const StudentClassPage = () => {
       setLoading(true);
       setError('');
       try {
-        const memberRef = doc(db, 'classes', classId, 'members', user.uid);
-        const memberSnap = await getDoc(memberRef);
-        if (!memberSnap.exists()) {
+        const userRef = doc(db, 'users', user.uid);
+        const userSnap = await getDoc(userRef);
+        const joined = userSnap.exists() ? userSnap.data().joinedClasses : [];
+        const isInClass = Array.isArray(joined) && joined.includes(classId);
+        if (!isInClass) {
           if (!cancelled) {
             setError('Nu ești înscris la această clasă.');
             setClassData(null);
@@ -66,6 +70,66 @@ const StudentClassPage = () => {
       cancelled = true;
     };
   }, [user, classId]);
+
+  /** Teme vechi: items cu problemId/grilaId (ID Firestore); rutele folosesc index numeric. */
+  useEffect(() => {
+    if (!assignments.length) {
+      setResolvedIndices({});
+      setLegacyIndicesDone(true);
+      return;
+    }
+    const needP = new Set();
+    const needG = new Set();
+    for (const as of assignments) {
+      for (const it of as.items || []) {
+        if (it.type === 'problem' && typeof it.index !== 'number' && it.problemId != null) {
+          needP.add(String(it.problemId).trim());
+        }
+        if (it.type === 'grila' && typeof it.index !== 'number' && it.grilaId != null) {
+          needG.add(String(it.grilaId).trim());
+        }
+      }
+    }
+    if (needP.size === 0 && needG.size === 0) {
+      setResolvedIndices({});
+      setLegacyIndicesDone(true);
+      return;
+    }
+    let cancelled = false;
+    setLegacyIndicesDone(false);
+    (async () => {
+      const next = {};
+      for (const id of needP) {
+        try {
+          const snap = await getDoc(doc(db, 'problems', id));
+          if (snap.exists()) {
+            const idx = snap.data().index;
+            if (typeof idx === 'number') next[`p:${id}`] = idx;
+          }
+        } catch (_) {
+          /* ignore */
+        }
+      }
+      for (const id of needG) {
+        try {
+          const snap = await getDoc(doc(db, 'grile', id));
+          if (snap.exists()) {
+            const idx = snap.data().index;
+            if (typeof idx === 'number') next[`g:${id}`] = idx;
+          }
+        } catch (_) {
+          /* ignore */
+        }
+      }
+      if (!cancelled) {
+        setResolvedIndices(next);
+        setLegacyIndicesDone(true);
+      }
+    })();
+    return () => {
+      cancelled = true;
+    };
+  }, [assignments]);
 
   if (authLoading) {
     return (
@@ -138,16 +202,42 @@ const StudentClassPage = () => {
                   <ol className="teacher-dashboard-assignment-items">
                     {(as.items || []).map((it, idx) => (
                       <li key={idx}>
-                        {it.type === 'problem' && (
-                          <Link to={`/probleme/${it.problemId}`}>
-                            Problemă <ExternalLink size={14} />
-                          </Link>
-                        )}
-                        {it.type === 'grila' && (
-                          <Link to={`/probleme/grile/${it.grilaId}`}>
-                            Grilă <ExternalLink size={14} />
-                          </Link>
-                        )}
+                        {it.type === 'problem' && (() => {
+                          const idx =
+                            typeof it.index === 'number'
+                              ? it.index
+                              : resolvedIndices[`p:${String(it.problemId ?? '').trim()}`];
+                          if (idx == null) {
+                            return (
+                              <span className="teacher-dashboard-muted">
+                                {legacyIndicesDone ? 'Problemă indisponibilă.' : 'Problemă (se încarcă…)'}
+                              </span>
+                            );
+                          }
+                          return (
+                            <Link to={`/probleme/${idx}`}>
+                              Problemă <ExternalLink size={14} />
+                            </Link>
+                          );
+                        })()}
+                        {it.type === 'grila' && (() => {
+                          const idx =
+                            typeof it.index === 'number'
+                              ? it.index
+                              : resolvedIndices[`g:${String(it.grilaId ?? '').trim()}`];
+                          if (idx == null) {
+                            return (
+                              <span className="teacher-dashboard-muted">
+                                {legacyIndicesDone ? 'Grilă indisponibilă.' : 'Grilă (se încarcă…)'}
+                              </span>
+                            );
+                          }
+                          return (
+                            <Link to={`/probleme/grile/${idx}`}>
+                              Grilă <ExternalLink size={14} />
+                            </Link>
+                          );
+                        })()}
                         {it.type === 'simulation' && (
                           <Link to={simulationRouteForSlug(it.slug)}>
                             Simulare: {simulationsConfig.find((s) => s.slug === it.slug)?.title || it.slug}{' '}

@@ -79,7 +79,7 @@ const ClassJoinPage = () => {
               Intră în clasă
             </h1>
             <p className="class-join-lead">
-              Introdu codul pe care ți l-a dat profesorul. Trebuie să fii autentificat cu cont PULS (din profil).
+              Introdu codul de acces al clasei (este ID-ul clasei din Firestore, îl vezi în panoul profesorului). Trebuie să fii autentificat cu cont PULS (din profil).
             </p>
           </header>
 
@@ -96,21 +96,20 @@ const ClassJoinPage = () => {
           ) : (
             <form className="class-join-panel class-join-form" onSubmit={handleSubmit}>
               <label className="class-join-label" htmlFor="class-code-input">
-                Cod clasă
+                Cod / ID clasă
               </label>
               <input
                 id="class-code-input"
                 className="class-join-input"
                 type="text"
                 value={code}
-                onChange={(e) => setCode(e.target.value.toUpperCase())}
-                placeholder="ex. ABC123"
+                onChange={(e) => setCode(e.target.value.trim())}
+                placeholder="lipește exact codul (ID-ul documentului)"
                 autoComplete="off"
-                maxLength={32}
-                autoCapitalize="characters"
+                maxLength={64}
                 spellCheck={false}
               />
-              <p className="class-join-hint">Litere și cifre — fără spații.</p>
+              <p className="class-join-hint">ID-ul este sensibil la litere mari/mici — lipește-l exact cum ți l-a trimis profesorul.</p>
               {error && <p className="class-join-error">{error}</p>}
               {success && <p className="class-join-success">{success}</p>}
               <button

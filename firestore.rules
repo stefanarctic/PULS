@@ -33,13 +33,14 @@ service cloud.firestore {
              classTeacherId(classId) == request.auth.uid;
     }
 
-    function isClassMember(classId) {
-      return isAuthenticated() &&
-             exists(/databases/$(database)/documents/classes/$(classId)/members/$(request.auth.uid));
+    function userJoinedClass(classId) {
+      let u = get(/databases/$(database)/documents/users/$(request.auth.uid)).data;
+      return 'joinedClasses' in u && u.joinedClasses is list &&
+             u.joinedClasses.hasAny([classId]);
     }
 
     function canReadClass(classId) {
-      return isClassTeacher(classId) || isClassMember(classId);
+      return isClassTeacher(classId) || userJoinedClass(classId) || isAdmin();
     }
 
     function teacherStatusValidOnCreate() {
@@ -83,6 +84,12 @@ service cloud.firestore {
 
       allow update: if isAdmin();
 
+      allow update: if isApprovedTeacher() && request.auth.uid != userId &&
+                       request.resource.data.diff(resource.data).changedKeys().hasOnly(['joinedClasses']) &&
+                       resource.data.joinedClasses is list &&
+                       request.resource.data.joinedClasses is list &&
+                       resource.data.joinedClasses.size() == request.resource.data.joinedClasses.size() + 1;
+
       allow delete: if isAdmin();
 
       match /userProblems/{problemId} {
@@ -91,56 +98,26 @@ service cloud.firestore {
       }
 
       match /chats/{chatId} {
-        allow read, create, update, delete: if isOwner(userId);
+        allow read: if isOwner(userId) || isAdmin();
+        allow create, update, delete: if isOwner(userId);
       }
     }
 
-    match /classJoinCodes/{joinCode} {
-      allow read: if isAuthenticated();
-      // Clasa trebuie să existe deja; get() vede documentul după setDoc (scriere secvențială, nu în aceeași tranzacție cu codul).
-      allow create: if isApprovedTeacher() &&
-                       request.resource.data.keys().hasOnly(['classId']) &&
-                       get(/databases/$(database)/documents/classes/$(request.resource.data.classId)).data.teacherId == request.auth.uid;
-      allow delete: if isApprovedTeacher() &&
-                       exists(/databases/$(database)/documents/classJoinCodes/$(joinCode)) &&
-                       classTeacherId(get(/databases/$(database)/documents/classJoinCodes/$(joinCode)).data.classId) == request.auth.uid;
-    }
-
     match /classes/{classId} {
-      allow read: if canReadClass(classId);
+      // Citire metadata clasă: profesor, membri, admin — sau orice user autentificat care știe ID-ul (pentru înscriere cu cod).
+      // Temele rămân în subcolecția assignments, doar pentru membri.
+      allow read: if canReadClass(classId) || isAuthenticated();
 
       allow create: if isApprovedTeacher() &&
                        request.resource.data.teacherId == request.auth.uid &&
-                       request.resource.data.keys().hasAll(['teacherId', 'name', 'joinCode', 'createdAt']) &&
+                       request.resource.data.keys().hasAll(['teacherId', 'name', 'createdAt']) &&
                        request.resource.data.name is string &&
-                       request.resource.data.joinCode is string &&
-                       request.resource.data.joinCode.size() >= 4 &&
-                       request.resource.data.joinCode.size() <= 32;
+                       !('joinCode' in request.resource.data);
 
       allow update: if isClassTeacher(classId) &&
                        request.resource.data.teacherId == resource.data.teacherId;
 
-      allow delete: if isClassTeacher(classId);
-
-      match /members/{studentUid} {
-        allow read: if isClassTeacher(classId) || isOwner(studentUid);
-
-        allow create: if isAuthenticated() &&
-                         request.auth.uid == studentUid &&
-                         request.resource.data.studentUid == studentUid &&
-                         exists(/databases/$(database)/documents/classJoinCodes/$(request.resource.data.joinCode)) &&
-                         get(/databases/$(database)/documents/classJoinCodes/$(request.resource.data.joinCode)).data.classId == classId &&
-                         request.resource.data.keys().hasAll(['joinedAt', 'joinCode', 'studentUid']) &&
-                         request.resource.data.joinedAt is timestamp;
-
-        allow update: if isAuthenticated() && request.auth.uid == studentUid &&
-                         request.resource.data.studentUid == studentUid &&
-                         request.resource.data.keys().hasOnly(['joinedAt', 'studentName', 'studentUid']) &&
-                         !('joinCode' in request.resource.data) &&
-                         resource.data.keys().hasAny(['joinCode']);
-
-        allow delete: if isClassTeacher(classId) || (isAuthenticated() && request.auth.uid == studentUid);
-      }
+      allow delete: if isClassTeacher(classId) || isAdmin();
 
       match /assignments/{assignmentId} {
         allow read: if canReadClass(classId);
@@ -154,7 +131,7 @@ service cloud.firestore {
         allow update: if isClassTeacher(classId) &&
                          request.resource.data.teacherId == resource.data.teacherId;
 
-        allow delete: if isClassTeacher(classId);
+        allow delete: if isClassTeacher(classId) || isAdmin();
       }
     }
 

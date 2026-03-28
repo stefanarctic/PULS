@@ -24,7 +24,9 @@ import {
   Plus,
   X,
   GripVertical,
+  Copy,
 } from 'lucide-react';
+import { copyToClipboard } from '../../lib/copyToClipboard';
 import '../../scss/components/_teacher-dashboard.scss';
 
 const emptyItem = (type) => {
@@ -64,7 +66,24 @@ const TeacherClassPage = () => {
   const [assignmentDraft, setAssignmentDraft] = useState(null);
   const [assignmentSaving, setAssignmentSaving] = useState(false);
   const [deleting, setDeleting] = useState(false);
+  const [codeCopied, setCodeCopied] = useState(false);
   const assignmentPanelRef = useRef(null);
+  const copyFeedbackTimerRef = useRef(null);
+
+  const handleCopyClassCode = async () => {
+    if (!classId) return;
+    const ok = await copyToClipboard(classId);
+    if (!ok) return;
+    if (copyFeedbackTimerRef.current) clearTimeout(copyFeedbackTimerRef.current);
+    setCodeCopied(true);
+    copyFeedbackTimerRef.current = setTimeout(() => setCodeCopied(false), 2000);
+  };
+
+  useEffect(() => {
+    return () => {
+      if (copyFeedbackTimerRef.current) clearTimeout(copyFeedbackTimerRef.current);
+    };
+  }, []);
 
   const loadAll = useCallback(async () => {
     if (!classId || !user?.uid) return;
@@ -133,11 +152,23 @@ const TeacherClassPage = () => {
     const due = a.dueDate?.toDate
       ? a.dueDate.toDate().toISOString().slice(0, 16)
       : '';
+    const rawItems = Array.isArray(a.items) ? [...a.items] : [];
+    const items = rawItems.map((it) => {
+      if (it.type === 'problem' && typeof it.index === 'number' && !String(it.problemId || '').trim()) {
+        const p = sortedProblems.find((x) => x.index === it.index);
+        return p ? { ...it, problemId: p.id } : it;
+      }
+      if (it.type === 'grila' && typeof it.index === 'number' && !String(it.grilaId || '').trim()) {
+        const g = grile.find((x) => x.index === it.index);
+        return g ? { ...it, grilaId: g.id } : it;
+      }
+      return it;
+    });
     setAssignmentDraft({
       id: a.id,
       title: a.title || '',
       dueDate: due,
-      items: Array.isArray(a.items) ? [...a.items] : [],
+      items,
     });
   };
 
@@ -179,7 +210,6 @@ const TeacherClassPage = () => {
   };
 
   const handleDeleteClass = async () => {
-    if (!classData?.joinCode) return;
     if (
       !window.confirm(
         'Ștergi definitiv această clasă? Toate temele și înscrierile vor fi eliminate. Acțiunea nu poate fi anulată.'
@@ -189,7 +219,7 @@ const TeacherClassPage = () => {
     }
     setDeleting(true);
     try {
-      await deleteClassCascade(classId, classData.joinCode);
+      await deleteClassCascade(classId);
       navigate('/profesor');
     } catch (err) {
       console.error(err);
@@ -232,9 +262,21 @@ const TeacherClassPage = () => {
 
           <header className="teacher-dashboard-header">
             <h1 className="teacher-dashboard-title">{classData.name}</h1>
-            <p className="teacher-dashboard-code">
-              Cod intrare elevi: <strong>{classData.joinCode}</strong>
-            </p>
+            <div className="teacher-dashboard-code teacher-dashboard-code--with-copy">
+              <span className="teacher-dashboard-code-label">Cod intrare elevi (ID clasă):</span>
+              <span className="teacher-dashboard-code-value">
+                <code className="teacher-dashboard-code-id">{classId}</code>
+                <button
+                  type="button"
+                  className="teacher-dashboard-copy-btn"
+                  onClick={handleCopyClassCode}
+                  aria-label="Copiază codul clasei în clipboard"
+                >
+                  <Copy size={18} strokeWidth={2} />
+                </button>
+                {codeCopied && <span className="teacher-dashboard-code-copied">Copiat!</span>}
+              </span>
+            </div>
           </header>
 
           <section className="teacher-dashboard-card">
@@ -414,8 +456,18 @@ function AssignmentEditorPanel({
 
   const validateItems = () => {
     for (const it of items) {
-      if (it.type === 'problem' && !String(it.problemId || '').trim()) return 'Completează ID-ul problemei.';
-      if (it.type === 'grila' && !String(it.grilaId || '').trim()) return 'Completează ID-ul grilei.';
+      if (it.type === 'problem') {
+        const pid = String(it.problemId || '').trim();
+        if (!pid) return 'Alege o problemă.';
+        const p = sortedProblems.find((x) => String(x.id) === pid);
+        if (!p || typeof p.index !== 'number') return 'Problemă invalidă (lipsește indexul în date).';
+      }
+      if (it.type === 'grila') {
+        const gid = String(it.grilaId || '').trim();
+        if (!gid) return 'Alege o grilă.';
+        const g = grile.find((x) => String(x.id) === gid);
+        if (!g || typeof g.index !== 'number') return 'Grilă invalidă (lipsește indexul în date).';
+      }
       if (it.type === 'simulation' && !String(it.slug || '').trim()) return 'Alege o simulare.';
       if (it.type === 'text' && !String(it.body || '').trim()) return 'Textul nu poate fi gol.';
     }
@@ -433,8 +485,14 @@ function AssignmentEditorPanel({
       return;
     }
     const cleanItems = items.map((it) => {
-      if (it.type === 'problem') return { type: 'problem', problemId: String(it.problemId).trim() };
-      if (it.type === 'grila') return { type: 'grila', grilaId: String(it.grilaId).trim() };
+      if (it.type === 'problem') {
+        const p = sortedProblems.find((x) => String(x.id) === String(it.problemId).trim());
+        return { type: 'problem', index: p.index };
+      }
+      if (it.type === 'grila') {
+        const g = grile.find((x) => String(x.id) === String(it.grilaId).trim());
+        return { type: 'grila', index: g.index };
+      }
       if (it.type === 'simulation') return { type: 'simulation', slug: String(it.slug).trim() };
       return { type: 'text', body: String(it.body).trim() };
     });

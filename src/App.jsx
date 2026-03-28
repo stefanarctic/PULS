@@ -148,8 +148,9 @@ const App = () => {
           <Route path="/clasa" element={<StudentClassesPage />} />
           <Route path="/clasa/:classId" element={<StudentClassPage />} />
         </Routes>
+        {/* În interiorul .App ca să se poată suprapune corect peste avatar (z-index) cu linkuri din pagini */}
+        <AssistantAvatar />
       </div>
-      <AssistantAvatar />
     </Router>
   )
 }

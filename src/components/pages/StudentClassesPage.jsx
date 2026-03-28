@@ -55,6 +55,7 @@ const StudentClassesPage = () => {
         const enriched = await Promise.all(
           enrollments.map(async (e) => {
             const c = await fetchClass(e.classId);
+            if (c?.teacherId === user.uid) return null;
             return {
               classId: e.classId,
               joinedAt: e.joinedAt,
@@ -62,7 +63,7 @@ const StudentClassesPage = () => {
             };
           })
         );
-        if (!cancelled) setRows(enriched);
+        if (!cancelled) setRows(enriched.filter(Boolean));
       } catch (e) {
         console.error(e);
         if (!cancelled) setRows([]);

@@ -1,9 +1,10 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import Layout from '../Layout';
 import { useTeacher } from '../../hooks/useTeacher';
 import { fetchTeacherClasses, createClass } from '../../lib/teacherClasses';
-import { GraduationCap, Plus, ChevronRight } from 'lucide-react';
+import { copyToClipboard } from '../../lib/copyToClipboard';
+import { GraduationCap, Plus, ChevronRight, Copy } from 'lucide-react';
 import '../../scss/components/_teacher-dashboard.scss';
 
 const TeacherDashboard = () => {
@@ -16,6 +17,22 @@ const TeacherDashboard = () => {
   const [creating, setCreating] = useState(false);
   const [formError, setFormError] = useState('');
   const [listError, setListError] = useState('');
+  const [copiedClassId, setCopiedClassId] = useState(null);
+  const copyFeedbackTimerRef = useRef(null);
+
+  const handleCopyClassCode = async (classId) => {
+    const ok = await copyToClipboard(classId);
+    if (!ok) return;
+    if (copyFeedbackTimerRef.current) clearTimeout(copyFeedbackTimerRef.current);
+    setCopiedClassId(classId);
+    copyFeedbackTimerRef.current = setTimeout(() => setCopiedClassId(null), 2000);
+  };
+
+  useEffect(() => {
+    return () => {
+      if (copyFeedbackTimerRef.current) clearTimeout(copyFeedbackTimerRef.current);
+    };
+  }, []);
 
   useEffect(() => {
     if (!loading && !isApprovedTeacher) {
@@ -137,11 +154,26 @@ const TeacherDashboard = () => {
               <ul className="teacher-dashboard-class-list">
                 {classes.map((c) => (
                   <li key={c.id}>
-                    <Link to={`/profesor/clasa/${c.id}`} className="teacher-dashboard-class-link">
-                      <span className="teacher-dashboard-class-name">{c.name}</span>
-                      <span className="teacher-dashboard-class-code">Cod: {c.joinCode}</span>
-                      <ChevronRight size={20} />
-                    </Link>
+                    <div className="teacher-dashboard-class-row">
+                      <Link to={`/profesor/clasa/${c.id}`} className="teacher-dashboard-class-link">
+                        <span className="teacher-dashboard-class-name">{c.name}</span>
+                        <span className="teacher-dashboard-class-code">
+                          Cod: {c.id}
+                          {copiedClassId === c.id && (
+                            <span className="teacher-dashboard-code-copied"> Copiat!</span>
+                          )}
+                        </span>
+                        <ChevronRight size={20} />
+                      </Link>
+                      <button
+                        type="button"
+                        className="teacher-dashboard-copy-btn teacher-dashboard-copy-btn--row"
+                        onClick={() => handleCopyClassCode(c.id)}
+                        aria-label={`Copiază codul clasei ${c.name || c.id}`}
+                      >
+                        <Copy size={18} strokeWidth={2} />
+                      </button>
+                    </div>
                   </li>
                 ))}
               </ul>
