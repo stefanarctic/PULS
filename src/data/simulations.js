@@ -353,7 +353,7 @@ export const simulationsConfig = [
     caption: "Atomul de hidrogen",
     iframeSrc: "/simulari/Atom_hidrogen/index.html",
     maxHeight: '90vh',
-    category: "Atom"
+    category: "Atomul"
   },
   {
     id: 28,
@@ -365,7 +365,7 @@ export const simulationsConfig = [
     caption: "Experimentul Michelson-Morley",
     iframeSrc: "/simulari/michaelson-moray/index.html",
     maxHeight: '90vh',
-    category: "Fizică Cuantica"
+    category: "Astronomie"
   },
   {
     id: 29,
@@ -401,7 +401,7 @@ export const simulationsConfig = [
     caption: "Tabel periodic",
     iframeSrc: "/simulari/tabel_periodic/index.html",
     maxHeight: "90vh",
-    category: "Atom"
+    category: "Atomul"
   },
   {
     id: 32,

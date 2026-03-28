@@ -6,6 +6,7 @@ import { useEffect, useState } from "react";
 import termodinamicaImg from "/res/screenshots/Termodinamica_Screenshot.png";
 import motoareTermiceImg from "/res/screenshots/Motoare_Termice_Screenshot.png";
 import tabelPeriodicImg from "/res/screenshots/Tabel_periodic_Screenshot.png";
+import { tabelPeriodicFormulas } from "@/data/tabelPeriodicFormulas";
 
 const TermodinamicaPage = () => {
   const [visibleFormulasCount, setVisibleFormulasCount] = useState({});
@@ -33,17 +34,6 @@ const TermodinamicaPage = () => {
     { formula: "\\( \\eta_{\\text{Carnot}} = 1 - \\frac{T_C}{T_H} \\)", title: "Randamentul ideal (Carnot)" },
     { formula: "\\( L = \\oint p \\, dV \\)", title: "Lucrul mecanic într-un ciclu" },
     { formula: "\\( Q_{p} = n C_P \\Delta T \\)", title: "Căldura schimbată într-un proces izobar" },
-  ];
-
-  const tabelPeriodicFormulas = [
-    { formula: "\\( Z = p \\)", title: "Numărul atomic (Z) = numărul de protoni" },
-    { formula: "\\( A = Z + N \\)", title: "Numărul de masă (A)" },
-    { formula: "\\( N = A - Z \\)", title: "Numărul de neutroni (N)" },
-    { formula: "\\( n = \\frac{m}{M} \\)", title: "Numărul de moli" },
-    { formula: "\\( m = nM \\)", title: "Masa unei substanțe (din moli)" },
-    { formula: "\\( N = nN_A \\)", title: "Numărul de particule" },
-    { formula: "\\( N_A \\approx 6{,}022\\times 10^{23}\\,\\text{mol}^{-1} \\)", title: "Constanta lui Avogadro" },
-    { formula: "\\( c = \\frac{n}{V} \\)", title: "Concentrația molară" },
   ];
 
   // Algoritm de încărcare progresivă - versiune optimizată
@@ -258,7 +248,7 @@ const TermodinamicaPage = () => {
                 </div>
                 <div className="mt-8 flex flex-col md:flex-row md:items-center justify-between gap-6">
                   <div>
-                    <h3 className="text-xl font-semibold mb-4">Formule/relatii rapide (maxim 8):</h3>
+                    <h3 className="text-xl font-semibold mb-4">Formule/relatii utile:</h3>
                     {tabelPeriodicFormulas
                       .slice(0, visibleFormulasCount.tabel_periodic || tabelPeriodicFormulas.length)
                       .map((item, index) => (

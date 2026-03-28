@@ -5,20 +5,21 @@ import SEO from "../../SEO";
 
 import legiKeplerImg from "/res/screenshots/Legi_Kepler_Screenshot.png";
 import miscarePlaneteImg from "/res/screenshots/Miscare_Planete_Screenshot.png";
+import michaelsonMorleyImg from "/res/screenshots/Michaelson_Morley_Screenshot.png";
 
 const AstronomiePage = () => {
   return (
     <Layout>
       <SEO
-        title="Astronomie | Legile lui Kepler - PULS"
-        description="Învață despre legile lui Kepler care guvernează mișcarea planetelor: orbite eliptice, viteza variabilă și relația perioadă–rază. Teorie, formule și simulare interactivă."
-        keywords="astronomie, legile lui Kepler, orbite eliptice, mișcare planetară, PULS"
+        title="Astronomie | Kepler, mișcarea planetelor, Michelson–Morley - PULS"
+        description="Legile lui Kepler, mișcarea planetelor și experimentul Michelson–Morley (viteza luminii și eterul): teorie, formule și simulări interactive."
+        keywords="astronomie, legile lui Kepler, Michelson-Morley, orbite, mișcare planetară, relativitate, PULS"
         image="/res/icons/New-logo.png"
       />
       <div className="resurse-pagina min-h-screen flex flex-col">
         <div className="resurse-page-container">
           <main className="flex-grow container mx-auto px-4 py-10">
-            <h1 className="text-4xl md:text-5xl font-bold mb-6">Astronomie – Mișcarea planetelor</h1>
+            <h1 className="text-4xl md:text-5xl font-bold mb-6">Astronomie</h1>
 
             <div className="max-w-4xl mb-8">
               <p className="text-lg text-muted-foreground mb-4">
@@ -158,6 +159,61 @@ const AstronomiePage = () => {
                     className="resurse-link"
                   >
                     <Button size="lg">Vezi simularea</Button>
+                  </a>
+                </div>
+              </div>
+
+              <div className="rounded-container">
+                <h2 className="text-2xl font-bold mb-4">Experimentul Michelson–Morley</h2>
+                <p className="text-muted-foreground mb-4">
+                  La sfârșitul secolului XIX se presupunea că lumina se propagă printr-un mediu invizibil numit „eter luminifer”.
+                  Dacă acest eter ar fi existat, mișcarea Pământului prin el ar fi produs un „vânt de eter” care să modifice
+                  viteza aparentă a luminii pe diferite direcții.
+                </p>
+                <p className="text-muted-foreground mb-4">
+                  Experimentul lui Albert A. Michelson și Edward W. Morley (1887) a comparat timpii de propagare ai luminii pe
+                  două direcții perpendiculare într-un interferometru. Nu s-a măsurat diferența așteptată — viteza luminii
+                  părea aceeași în toate direcțiile. Acest rezultat a pregătit relativitatea restrânsă (Einstein, 1905), cu
+                  implicații și pentru observațiile astronomice care folosesc lumină și interferență.
+                </p>
+                <p className="text-muted-foreground mb-6">
+                  Interferometrul împarte un fascicul în două brațe perpendiculare de lungime {"\\(L\\)"} <MathJaxRender />,
+                  reflectă în oglinzi și recombină fasciculele. Dacă ar exista „vânt de eter” cu viteza {"\\(v\\)"}{" "}
+                  <MathJaxRender />, timpii de propagare ar diferi ușor; în realitate, în limita preciziei experimentului,
+                  diferența a fost zero — nu putem vorbi de un eter privilegiat.
+                </p>
+                <div className="image-slider h-64 md:h-80 relative flex items-center justify-center mb-8">
+                  <img
+                    src={michaelsonMorleyImg}
+                    alt="Experimentul Michelson-Morley"
+                    className="w-full h-full object-contain mx-auto my-auto"
+                  />
+                </div>
+                <div className="mt-4 flex flex-col md:flex-row md:items-start justify-between gap-6">
+                  <div className="max-w-3xl">
+                    <h3 className="text-xl font-semibold mb-4">Idei în formule ({"\\(v \\ll c\\)"} <MathJaxRender />)</h3>
+                    <p className="text-muted-foreground mb-3">Braț paralel cu „vântul de eter”:</p>
+                    <div className="formula-resurse text-lg font-mono mb-4">
+                      {"\\( t_{\\parallel} \\approx \\frac{2L}{c}\\left(1 + \\frac{v^2}{c^2}\\right) \\)"}
+                      <MathJaxRender />
+                    </div>
+                    <p className="text-muted-foreground mb-3">Braț perpendicular:</p>
+                    <div className="formula-resurse text-lg font-mono mb-4">
+                      {"\\( t_{\\perp} \\approx \\frac{2L}{c}\\left(1 + \\frac{v^2}{2c^2}\\right) \\)"}
+                      <MathJaxRender />
+                    </div>
+                    <p className="text-muted-foreground mb-3">Diferența de timp așteptată (absentă în experiment):</p>
+                    <div className="formula-resurse text-lg font-mono mb-4">
+                      {"\\( \\Delta t \\approx \\frac{Lv^2}{c^3} \\)"}
+                      <MathJaxRender />
+                    </div>
+                  </div>
+                  <a
+                    href="/simulare/michaelson-morley"
+                    rel="noopener noreferrer"
+                    className="resurse-link shrink-0"
+                  >
+                    <Button size="lg">Simulare: Michelson–Morley</Button>
                   </a>
                 </div>
               </div>

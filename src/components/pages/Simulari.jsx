@@ -12,6 +12,21 @@ const normalizeDiacritics = (str) => {
     .toLowerCase();
 };
 
+/** Ordine stabilă pentru filtre (frecvență mică → frecvență mare în curriculum), nu alfabetică. */
+const SIMULATION_CATEGORY_ORDER = [
+  "Mecanică",
+  "Pendule",
+  "Oscilații",
+  "Unde",
+  "Grafice",
+  "Termodinamică",
+  "Electricitate",
+  "Optică",
+  "Astronomie",
+  "Atomul",
+  "4D",
+];
+
 const SimulariPage = () => {
   const navigate = useNavigate();
   const location = useLocation();
@@ -32,9 +47,12 @@ const SimulariPage = () => {
 
   // Obține toate categoriile unice din simulări
   const categories = useMemo(() => {
-    const cats = ["Toate"];
-    const uniqueCats = new Set(simulationsConfig.map(sim => sim.category));
-    return [...cats, ...Array.from(uniqueCats).sort()];
+    const uniqueCats = [...new Set(simulationsConfig.map((sim) => sim.category))];
+    const ordered = SIMULATION_CATEGORY_ORDER.filter((c) => uniqueCats.includes(c));
+    const rest = uniqueCats
+      .filter((c) => !SIMULATION_CATEGORY_ORDER.includes(c))
+      .sort((a, b) => a.localeCompare(b, "ro"));
+    return ["Toate", ...ordered, ...rest];
   }, []);
 
   // Sincronizează state-ul cu URL-ul când se schimbă state-ul

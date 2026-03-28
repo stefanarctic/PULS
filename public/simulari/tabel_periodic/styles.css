@@ -118,6 +118,11 @@ body {
   .element.category-metal-alcalin { background: rgba(255, 102, 0, 0.55); }
   .element.category-metal-alcalin-pamantos { background: rgba(255, 200, 0, 0.55); }
   .element.category-metal-de-tranzitie { background: rgba(255, 80, 80, 0.55); }
+  /* Nuanțe subtile pe perioadă (metale de tranziție d) */
+  .element.category-metal-de-tranzitie[data-period="4"] { background: rgba(255, 92, 88, 0.52); }
+  .element.category-metal-de-tranzitie[data-period="5"] { background: rgba(248, 72, 118, 0.52); }
+  .element.category-metal-de-tranzitie[data-period="6"] { background: rgba(238, 88, 128, 0.5); }
+  .element.category-metal-de-tranzitie[data-period="7"] { background: rgba(255, 68, 98, 0.52); }
   .element.category-metal-post-tranzitie { background: rgba(140, 180, 220, 0.55); }
   .element.category-lantanid { background: rgba(255, 160, 200, 0.55); }
   .element.category-actinid { background: rgba(255, 120, 180, 0.55); }
@@ -389,6 +394,32 @@ body {
     padding: 8px 12px;
     border-radius: 6px;
     margin: 6px 0;
+  }
+
+  .config-aufbau-hint {
+    font-size: 12px;
+    color: rgba(255, 255, 255, 0.62);
+    line-height: 1.45;
+    margin-bottom: 8px;
+  }
+
+  .config-note {
+    font-size: 12px;
+    color: rgba(220, 235, 255, 0.95);
+    line-height: 1.5;
+    margin-top: 10px;
+    padding: 10px 12px;
+    background: rgba(59, 130, 246, 0.12);
+    border-radius: 6px;
+    border-left: 3px solid rgba(96, 165, 250, 0.75);
+    text-align: left;
+  }
+
+  .quantum-clarification {
+    font-size: 12px;
+    color: rgba(255, 255, 255, 0.78);
+    margin-bottom: 10px;
+    line-height: 1.45;
   }
 
   .shells-list {

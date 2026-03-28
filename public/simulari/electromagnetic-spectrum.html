@@ -102,24 +102,25 @@
     position: relative;
     height: 48px;
     border-radius: 4px;
+    /* Stânga = frecvență mică (radio), dreapta = frecvență mare (gamma); vizibil: roșu → violet */
     background: linear-gradient(to right,
-      #cc00ff 0%,        /* gamma */
-      #8800ff 8%,        /* X-ray */
-      #4400ff 16%,       /* UV far */
-      #7700ff 22%,       /* UV */
-      #4466ff 26%,       /* violet */
-      #0044ff 30%,       /* blue */
-      #00aaff 34%,       /* cyan */
-      #00ff88 40%,       /* green */
-      #aaff00 46%,       /* yellow-green */
+      #020205 0%,        /* radio */
+      #050510 8%,
+      #110022 18%,       /* microwave */
+      #330000 28%,       /* IR far */
+      #880000 36%,       /* IR near */
+      #ff4400 42%,       /* red */
+      #ffaa00 46%,       /* orange */
       #ffff00 50%,       /* yellow */
-      #ffaa00 54%,       /* orange */
-      #ff4400 58%,       /* red */
-      #880000 64%,       /* IR near */
-      #330000 72%,       /* IR far */
-      #110022 82%,       /* microwave */
-      #050510 92%,       /* radio */
-      #020205 100%
+      #aaff00 54%,       /* yellow-green */
+      #00ff88 60%,       /* green */
+      #00aaff 66%,       /* cyan */
+      #0044ff 70%,       /* blue */
+      #4466ff 74%,       /* violet */
+      #7700ff 78%,       /* UV */
+      #4400ff 84%,       /* UV far */
+      #8800ff 92%,       /* X-ray */
+      #cc00ff 100%       /* gamma */
     );
     cursor: crosshair;
     border: 1px solid rgba(255,255,255,0.1);

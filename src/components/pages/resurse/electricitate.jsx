@@ -245,7 +245,7 @@ const ElectricitatePage = () => {
                 </div>
                 <div className="mt-8 flex flex-col md:flex-row md:items-center justify-between gap-6">
                   <div>
-                    <h3 className="text-xl font-semibold mb-4">Formule esențiale (maxim 8):</h3>
+                    <h3 className="text-xl font-semibold mb-4">Formule esențiale:</h3>
 
                     {curentAlternativFormulas
                       .slice(0, visibleFormulasCount.curent_alternativ || curentAlternativFormulas.length)

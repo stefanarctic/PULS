@@ -20,6 +20,7 @@ import VideoPopup from "../VideoPopup";
 import { useNavigate, useSearchParams } from "react-router-dom";
 import SEO from "../SEO";
 import { useAssistant } from "@/hooks/useAssistant";
+import { tabelPeriodicFormulas } from "@/data/tabelPeriodicFormulas";
 
 
 const lessonCards = [
@@ -80,14 +81,14 @@ const lessonCards = [
   {
     title: "Astronomie",
     description:
-      "Legile lui Kepler: orbite eliptice, legea ariilor și relația perioadă–rază. Mișcarea planetelor și sateliților.",
+      "Legile lui Kepler, mișcarea planetelor, gravitația — și experimentul Michelson–Morley (lumină, eter, interferență).",
     path: "/resurse/astronomie",
   },
   {
-    title: "Fizică Cuantică",
+    title: "Atomul",
     description:
-      "Învață despre fizică cuantică, principiile și aplicațiile ei în fizică.",
-    path: "/resurse/fizica-cuantica",
+      "Atomul de hidrogen (Bohr, Schrödinger, spectru) și tabelul periodic al elementelor — teorie și simulări.",
+    path: "/resurse/atomul",
   },
 ];
 
@@ -1214,6 +1215,19 @@ const ResursePage = () => {
     { title: "Energia pe orbită eliptică", formula: "\\( E = -\\frac{GMm}{2a} \\)" },
     { title: "Viteza la periheliu", formula: "\\( v_p = \\sqrt{\\frac{GM}{a}\\frac{1+e}{1-e}} \\)" },
     { title: "Viteza la afeliu", formula: "\\( v_a = \\sqrt{\\frac{GM}{a}\\frac{1-e}{1+e}} \\)" },
+    { title: "Gravitație universală", formula: "\\( F_G = G \\frac{Mm}{r^2} \\)" },
+    { title: "Michelson – timp braț paralel (aprox.)", formula: "\\( t_{\\parallel} \\approx \\frac{2L}{c}\\left(1 + \\frac{v^2}{c^2}\\right) \\)" },
+    { title: "Michelson – timp braț perpendicular (aprox.)", formula: "\\( t_{\\perp} \\approx \\frac{2L}{c}\\left(1 + \\frac{v^2}{2c^2}\\right) \\)" },
+    { title: "Michelson – diferență de timp așteptată (eter)", formula: "\\( \\Delta t \\approx \\frac{Lv^2}{c^3} \\)" },
+  ];
+
+  const atomulFormulas = [
+    { title: "Energie nivel Bohr (hidrogen)", formula: "\\( E_n = - \\frac{13{,}6\\ \\text{eV}}{n^2} \\)" },
+    { title: "Formula lui Rydberg", formula: "\\( \\frac{1}{\\lambda} = R_H \\left( \\frac{1}{n^2} - \\frac{1}{m^2} \\right) \\)" },
+    { title: "Foton – legătura energie–frecvență", formula: "\\( E = h\\nu = \\frac{hc}{\\lambda} \\)" },
+    { title: "Longitudine de undă de Broglie", formula: "\\( \\lambda = \\frac{h}{p} \\)" },
+    { title: "Principiul incertitudinii Heisenberg", formula: "\\( \\Delta x \\, \\Delta p \\gtrsim \\frac{\\hbar}{2} \\)" },
+    ...tabelPeriodicFormulas.map(({ title, formula }) => ({ title, formula })),
   ];
 
   const relativitateFormulas = [
@@ -1248,6 +1262,7 @@ const ResursePage = () => {
         "optica",
         "matematica",
         "astronomie",
+        "atomul",
         "relativitate",
       ];
       if (allowed.includes(formulaParam)) {
@@ -1290,6 +1305,7 @@ const ResursePage = () => {
       optica: opticaFormulas,
       matematica: matematicaFormulas,
       astronomie: astronomieFormulas,
+      atomul: atomulFormulas,
       relativitate: relativitateFormulas,
     };
 
@@ -1417,18 +1433,19 @@ const ResursePage = () => {
                 </p>
 
                 <Tabs defaultValue="mecanica" value={activeFormulaTab} onValueChange={setActiveFormulaTab}>
-                  <TabsList className="mb-4 flex flex-wrap">
+                  <TabsList className="mb-4 flex flex-wrap gap-1">
                     <TabsTrigger value="mecanica">Mecanică</TabsTrigger>
                     <TabsTrigger value="termodinamica">Termodinamică</TabsTrigger>
-                    <TabsTrigger value="seism">Seism</TabsTrigger>
-                    <TabsTrigger value="unde">Unde</TabsTrigger>
-                    <TabsTrigger value="prisma">Refracție</TabsTrigger>
                     <TabsTrigger value="pendule">Oscilații</TabsTrigger>
+                    <TabsTrigger value="unde">Unde</TabsTrigger>
                     <TabsTrigger value="lissajous">Lissajous</TabsTrigger>
-                    <TabsTrigger value="electricitate">Electricitate</TabsTrigger>
+                    <TabsTrigger value="seism">Seisme</TabsTrigger>
                     <TabsTrigger value="optica">Optică</TabsTrigger>
+                    <TabsTrigger value="prisma">Refracție</TabsTrigger>
+                    <TabsTrigger value="electricitate">Electricitate</TabsTrigger>
                     <TabsTrigger value="matematica">Matematică</TabsTrigger>
                     <TabsTrigger value="astronomie">Astronomie</TabsTrigger>
+                    <TabsTrigger value="atomul">Atomul</TabsTrigger>
                     <TabsTrigger value="relativitate">Relativitate</TabsTrigger>
                   </TabsList>
 
@@ -1650,6 +1667,25 @@ const ResursePage = () => {
                       ))}
                     </div>
                     <MathJaxRender key={`astronomie-${visibleFormulasCount.astronomie || 0}`} />
+                  </TabsContent>
+
+                  <TabsContent value="atomul">
+                    <p className="text-sm text-muted-foreground mb-4">
+                      Atom, spectru și tabel periodic — aliniat lecției „Atomul” și simulărilor din aceeași categorie.
+                    </p>
+                    <div className="formula-grid mb-4">
+                      {atomulFormulas
+                        .slice(0, visibleFormulasCount.atomul || 5)
+                        .map((formula, index) => (
+                        <div key={index} className="formula-card">
+                          <div className="font-semibold mb-2">{formula.title}</div>
+                          <div className="text-lg font-mono">
+                            {formula.formula}
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+                    <MathJaxRender key={`atomul-${visibleFormulasCount.atomul || 0}`} />
                   </TabsContent>
 
                   <TabsContent value="relativitate">

@@ -60,6 +60,84 @@ function parseSublevels(fullConfig) {
   return result;
 }
 
+/** Regula Madelung / ordinea Aufbau la scriere: 1s 2s 2p … 4s înainte de 3d, etc. */
+function madelungSortKey(sl) {
+  const lNum = { s: 0, p: 1, d: 2, f: 3 }[sl.letter];
+  return (sl.n + lNum) * 100 + sl.n;
+}
+
+function sortSublevelsAufbau(sublevels) {
+  return [...sublevels].sort((a, b) => madelungSortKey(a) - madelungSortKey(b));
+}
+
+function formatSublevelsToString(sublevels) {
+  return sublevels.map(({ n, letter, electrons }) => `${n}${letter}${electrons}`).join(" ");
+}
+
+/** Configurație completă expandată, sortată Aufbau (ex: … 4s¹ 3d¹⁰, nu 3d¹⁰ 4s¹). */
+function formatFullConfigAufbauDisplay(shortRaw) {
+  const full = getFullConfig(shortRaw);
+  const sorted = sortSublevelsAufbau(parseSublevels(full));
+  return formatSublevelsToString(sorted);
+}
+
+/** Varianta prescurtată: păstrează gazul nobil, sortează restul (ex: [Ar] 4s¹ 3d¹⁰). */
+function formatShortConfigAufbau(shortRaw) {
+  const s = String(shortRaw).trim();
+  const m = s.match(/^(\[[^\]]+\])\s*(.*)$/);
+  if (m) {
+    const noble = m[1];
+    const rest = m[2].trim();
+    if (!rest) return s.replace(/\s+/g, " ");
+    const sorted = sortSublevelsAufbau(parseSublevels(rest));
+    return `${noble} ${formatSublevelsToString(sorted)}`.replace(/\s+/g, " ").trim();
+  }
+  const sorted = sortSublevelsAufbau(parseSublevels(s));
+  return formatSublevelsToString(sorted);
+}
+
+/** Explicații pentru configurații excepționale la metale de tranziție (scriere Aufbau + stabilitate d⁵ / d¹⁰ etc.). */
+const CONFIG_EXCEPTION_SHELL_NOTES = {
+  Cr: `Scriere standard (Aufbau): <strong>4s¹ 3d⁵</strong>. Excepție clasică: subnivelul <strong>d</strong> semicomplet (d⁵) cu un singur electron pe <strong>4s</strong> este mai stabil. Ultimul electron care completează subnivelul d până la d⁵ este în <strong>3d</strong>. Distribuția pe straturi (n=3 → 13 e⁻, n=4 → 1 e⁻) reflectă această anomalie.`,
+  Mo: `Scriere standard (Aufbau): <strong>5s¹ 4d⁵</strong> — același tip de excepție ca la crom: <strong>d⁵</strong> semicomplet cu <strong>5s¹</strong>. Ultimul electron care umple d până la 4d⁵ este în <strong>4d</strong>.`,
+  Cu: `Scriere standard (Aufbau): <strong>4s¹ 3d¹⁰</strong> — subnivelul 4s se scrie înaintea lui 3d. Ultimul electron care completează subnivelul 3d este în <strong>3d</strong> (electron diferențiator pentru grupă). Distribuția pe straturi (n=3 → 18 e⁻, n=4 → 1 e⁻) reflectă excepția: un electron de pe 4s participă la umplerea stabilă a lui 3d¹⁰.`,
+  Ag: `Scriere standard (Aufbau): <strong>5s¹ 4d¹⁰</strong> — același tip de excepție ca la cupru: subnivelul <strong>d</strong> plin (4d¹⁰) cu <strong>5s¹</strong>. Ultimul electron care finalizează 4d¹⁰ este în <strong>4d</strong>.`,
+  Au: `Scriere standard (Aufbau): <strong>6s¹ 4f¹⁴ 5d¹⁰</strong> (ordinea Madelung). Excepție ca la Ag/Cu: <strong>5d¹⁰</strong> plin cu <strong>6s¹</strong>. Ultimul electron care completează 5d¹⁰ este în <strong>5d</strong>.`,
+  Nb: `Scriere standard (Aufbau): <strong>5s¹ 4d⁴</strong>. Configurație excepțională (ns¹ (n−1)d<sup>x</sup>): stabilitate crescută prin aranjamentul pe d și un singur electron pe s. Ultimul electron plasat în ordinea Aufbau este în subnivelul <strong>d</strong>.`,
+  Ru: `Scriere standard (Aufbau): <strong>5s¹ 4d⁷</strong>. Excepție față de umplerea „standard”; ultimul electron care contribuie la configurarea valenței este tratat în manuale pe subnivelul <strong>d</strong> (vezi și parametrii cuantici).`,
+  Rh: `Scriere standard (Aufbau): <strong>5s¹ 4d⁸</strong>. Excepție similară altor metale din seria 4d: un electron pe <strong>5s</strong> și aranjament particular pe <strong>4d</strong>; ultimul electron în ordinea Aufbau pe subnivelul <strong>d</strong>.`,
+  Pt: `Scriere standard (Aufbau): <strong>6s¹ 4f¹⁴ 5d⁹</strong>. Excepție (5d incomplet cu 6s¹); ultimul electron care completează treptat 5d este descris în subnivelul <strong>5d</strong>.`,
+  Pd: `Excepție majoră: <strong>[Kr] 4d¹⁰</strong> — <em>fără</em> electroni pe 5s. Subnivelul <strong>4d</strong> plin este mai stabil decât varianta cu 5s²; distribuția pe straturi reflectă absența electronilor pe stratul 5s.`,
+};
+
+function shellInterpretationNote(el) {
+  const inner = CONFIG_EXCEPTION_SHELL_NOTES[el.symbol];
+  return inner ? `<p class="config-note">${inner}</p>` : "";
+}
+
+/** Text după eticheta subnivelului în blocul „Parametri cuantici”. */
+function getQuantumFoot(el) {
+  const sym = el.symbol;
+  if (sym === "Cr" || sym === "Mo") {
+    const name = sym === "Cr" ? "crom" : "molibden";
+    return ` — la ${name}, ultimul electron care umple subnivelul d până la configurația d⁵ este în <strong>d</strong> (parametrii de mai jos corespund ultimului electron din subnivelul d).`;
+  }
+  if (sym === "Cu" || sym === "Ag" || sym === "Au") {
+    const name = sym === "Cu" ? "cupru" : sym === "Ag" ? "argint" : "aur";
+    return ` — la ${name}, ultimul electron care finalizează subnivelul d plin (d¹⁰) este în <strong>d</strong> (parametrii corespund acestui electron).`;
+  }
+  if (sym === "Nb" || sym === "Ru" || sym === "Rh") {
+    return ` — configurație excepțională; ultimul electron plasat în ordinea Aufbau este în subnivelul <strong>d</strong> (vezi nota de mai sus).`;
+  }
+  if (sym === "Pt") {
+    return ` — la platină, ultimul electron care completează subnivelul 5d este în <strong>5d</strong> (parametrii corespund acestui electron).`;
+  }
+  if (sym === "Pd") {
+    return ` — paladiu nu are electroni pe 5s; parametrii corespund ultimului electron din subnivelul <strong>4d</strong>.`;
+  }
+  return ".";
+}
+
 function generateOrbitals(l, electrons) {
   const orbitals = 2 * l + 1;
   const slots = [];
@@ -309,8 +387,10 @@ function buildOrbitalHTML(l, electrons, label) {
 
 function renderModal(el) {
   const fullConfig = getFullConfig(el.electronConfiguration);
-  const sublevels = parseSublevels(fullConfig);
+  const sublevels = sortSublevelsAufbau(parseSublevels(fullConfig));
   const lastEl = getLastElectron(sublevels);
+  const lastSubForLabel = sublevels.length ? sublevels[sublevels.length - 1] : null;
+  const lastSubLabel = lastSubForLabel ? `${lastSubForLabel.n}${lastSubForLabel.letter}` : "";
   const mass = Number(el.atomicMass);
   const massStr = mass === Math.round(mass) ? mass : mass.toFixed(3);
   const ox = el.oxidationStates || [];
@@ -348,8 +428,8 @@ function renderModal(el) {
     </div>
   `;
 
-  const fullSup = toSuperscript(fullConfig.replace(/\s+/g, " "));
-  const shortSup = toSuperscript(el.electronConfiguration.replace(/\s+/g, " "));
+  const fullSup = toSuperscript(formatFullConfigAufbauDisplay(el.electronConfiguration).replace(/\s+/g, " "));
+  const shortSup = toSuperscript(formatShortConfigAufbau(el.electronConfiguration).replace(/\s+/g, " "));
 
   let shellsHTML = "";
   (el.shells || []).forEach((count, i) => {
@@ -375,10 +455,11 @@ function renderModal(el) {
 
   let quantumHTML = "";
   if (lastEl) {
-    const lVal = lastEl.l;
+    const quantumFoot = getQuantumFoot(el);
     quantumHTML = `
       <div class="modal-section">
-        <h3>Parametri cuantici (ultimul electron)</h3>
+        <h3>Parametri cuantici (ultimul electron plasat)</h3>
+        <p class="quantum-clarification">Subnivelul completat ultimul în ordinea Aufbau: <strong>${lastSubLabel}</strong>${quantumFoot}</p>
         <div class="quantum-params">
           <span><strong>n</strong> = ${lastEl.n}</span>
           <span><strong>l</strong> = ${lastEl.l}</span>
@@ -392,6 +473,7 @@ function renderModal(el) {
   panelElectronic.innerHTML = `
     <div class="modal-section">
       <h3>Configurație electronică</h3>
+      <p class="config-aufbau-hint">Subnivelurile sunt afișate în <strong>ordinea Aufbau</strong> (ex. 4s înainte de 3d), ca în manualele de chimie.</p>
       <p><strong>Varianta completă:</strong></p>
       <div class="config-full">${fullSup}</div>
       <p><strong>Varianta prescurtată:</strong></p>
@@ -400,6 +482,7 @@ function renderModal(el) {
     <div class="modal-section">
       <h3>Distribuția pe nivele (n)</h3>
       <ul class="shells-list">${shellsHTML}</ul>
+      ${shellInterpretationNote(el)}
     </div>
     <div class="modal-section">
       <h3>Distribuția pe subnivele (orbitali)</h3>
@@ -532,6 +615,7 @@ function activateCosmicMode() {
 elements.forEach(el => {
   const div = document.createElement("div");
   div.classList.add("element", categoryToClass(el.category), "block-" + (el.block || "s"));
+  if (el.period != null) div.dataset.period = String(el.period);
   if (isRadioactive(el)) div.classList.add("radioactive");
   div.style.gridColumn = el.group;
   div.style.gridRow = el.period;
