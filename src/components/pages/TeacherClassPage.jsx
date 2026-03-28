@@ -27,6 +27,7 @@ import {
   Copy,
 } from 'lucide-react';
 import { copyToClipboard } from '../../lib/copyToClipboard';
+import { fetchSubmissionsMapForAssignment, studentAssignmentDueStatus } from '../../lib/assignmentProgress';
 import '../../scss/components/_teacher-dashboard.scss';
 
 const emptyItem = (type) => {
@@ -67,6 +68,7 @@ const TeacherClassPage = () => {
   const [assignmentSaving, setAssignmentSaving] = useState(false);
   const [deleting, setDeleting] = useState(false);
   const [codeCopied, setCodeCopied] = useState(false);
+  const [submissionsByAssignment, setSubmissionsByAssignment] = useState({});
   const assignmentPanelRef = useRef(null);
   const copyFeedbackTimerRef = useRef(null);
 
@@ -112,6 +114,28 @@ const TeacherClassPage = () => {
       setLoading(false);
     }
   }, [classId, user?.uid]);
+
+  useEffect(() => {
+    if (!classId || !assignments.length) {
+      setSubmissionsByAssignment({});
+      return;
+    }
+    let cancelled = false;
+    (async () => {
+      const out = {};
+      try {
+        for (const a of assignments) {
+          out[a.id] = await fetchSubmissionsMapForAssignment(classId, a.id);
+        }
+        if (!cancelled) setSubmissionsByAssignment(out);
+      } catch (e) {
+        console.error(e);
+      }
+    })();
+    return () => {
+      cancelled = true;
+    };
+  }, [classId, assignments]);
 
   useEffect(() => {
     if (authLoading) return;
@@ -367,37 +391,69 @@ const TeacherClassPage = () => {
               <p className="teacher-dashboard-muted">Nicio temă încă.</p>
             ) : assignments.length > 0 ? (
               <ul className="teacher-dashboard-assignment-list">
-                {assignments.map((a) => (
-                  <li key={a.id}>
-                    <div>
-                      <strong>{a.title}</strong>
-                      {a.dueDate?.toDate && (
-                        <span className="teacher-dashboard-muted">
-                          {' '}
-                          · Termen: {a.dueDate.toDate().toLocaleString('ro-RO')}
-                        </span>
+                {assignments.map((a) => {
+                  const subsMap = submissionsByAssignment[a.id] || {};
+                  const itemCount = (a.items || []).length;
+                  return (
+                    <li key={a.id}>
+                      <div>
+                        <strong>{a.title}</strong>
+                        {a.dueDate?.toDate && (
+                          <span className="teacher-dashboard-muted">
+                            {' '}
+                            · Termen: {a.dueDate.toDate().toLocaleString('ro-RO')}
+                          </span>
+                        )}
+                      </div>
+                      <div className="teacher-dashboard-assignment-actions">
+                        <button
+                          type="button"
+                          className="teacher-dashboard-link-btn"
+                          onClick={() => openEditAssignment(a)}
+                          disabled={!!assignmentDraft}
+                        >
+                          Editează
+                        </button>
+                        <button
+                          type="button"
+                          className="teacher-dashboard-link-btn danger"
+                          onClick={() => handleDeleteAssignment(a.id)}
+                          disabled={!!assignmentDraft}
+                        >
+                          Șterge
+                        </button>
+                      </div>
+                      {members.length > 0 && (
+                        <div className="teacher-hw-progress">
+                          <p className="teacher-hw-progress-title">Progres elevi</p>
+                          <ul className="teacher-hw-progress-list">
+                            {members.map((m) => {
+                              const sub = subsMap[m.studentUid];
+                              const st = studentAssignmentDueStatus({
+                                dueDate: a.dueDate,
+                                submission: sub,
+                                itemCount,
+                              });
+                              const avg =
+                                sub?.allDone && sub.averageScore10 != null
+                                  ? `Medie: ${sub.averageScore10}/10`
+                                  : '';
+                              return (
+                                <li key={m.id} className="teacher-hw-progress-item">
+                                  <span className="teacher-hw-progress-name">{m.studentName || m.id}</span>
+                                  <span className="teacher-hw-progress-meta">
+                                    {st.label}
+                                    {avg ? ` · ${avg}` : ''}
+                                  </span>
+                                </li>
+                              );
+                            })}
+                          </ul>
+                        </div>
                       )}
-                    </div>
-                    <div className="teacher-dashboard-assignment-actions">
-                      <button
-                        type="button"
-                        className="teacher-dashboard-link-btn"
-                        onClick={() => openEditAssignment(a)}
-                        disabled={!!assignmentDraft}
-                      >
-                        Editează
-                      </button>
-                      <button
-                        type="button"
-                        className="teacher-dashboard-link-btn danger"
-                        onClick={() => handleDeleteAssignment(a.id)}
-                        disabled={!!assignmentDraft}
-                      >
-                        Șterge
-                      </button>
-                    </div>
-                  </li>
-                ))}
+                    </li>
+                  );
+                })}
               </ul>
             ) : null}
           </section>

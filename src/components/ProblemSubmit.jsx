@@ -23,6 +23,9 @@ import {
     extractRatingFromJson,
 } from '../lib/analyzeApiContract';
 import { transformAnalyzeResponseForMathJax } from '../lib/groqLatexMathjax';
+import { auth } from '../lib/firebase';
+import { Timestamp } from 'firebase/firestore';
+import { recordAssignmentItemProgress, score10FromObtainedMax } from '../lib/assignmentProgress';
 import '../scss/components/_problem-submit.scss';
 
 /** @param {{ rows: Array<{ label: string, value: string, unit?: string }>, caption: string }} props */
@@ -153,7 +156,12 @@ const MarkdownContent = React.memo(({ content, className = '' }) => {
 
 MarkdownContent.displayName = 'MarkdownContent';
 
-const ProblemSubmit = ({ problem = null, defaultProblemId = null, defaultProblemTitle = null }) => {
+const ProblemSubmit = ({
+    problem = null,
+    defaultProblemId = null,
+    defaultProblemTitle = null,
+    assignmentContext = null,
+}) => {
     const [solutionText, setSolutionText] = useState('');
     const [solutionImageFiles, setSolutionImageFiles] = useState([]);
     const solutionImageInputRef = useRef(null);
@@ -303,9 +311,10 @@ const ProblemSubmit = ({ problem = null, defaultProblemId = null, defaultProblem
                     const n = normalizeAnalyzeResponse(/** @type {Record<string, unknown>} */ (resultForUi));
                     let scoreObtained = n.ratingScore?.obtained ?? 0;
                     let maxScore = n.ratingScore?.max ?? DEFAULT_MAX_SCORE;
+                    let legacyStr = null;
 
                     if (!n.ratingScore) {
-                        const legacyStr =
+                        legacyStr =
                             extractRatingFromJson(
                                 typeof resultForUi.solution === 'string' ? resultForUi.solution : '',
                             ) ||
@@ -323,6 +332,37 @@ const ProblemSubmit = ({ problem = null, defaultProblemId = null, defaultProblem
                                 scoreObtained = parseFloat(m[1]);
                                 maxScore = parseFloat(m[2]) || DEFAULT_MAX_SCORE;
                             }
+                        }
+                    }
+
+                    let score10 = null;
+                    if (n.ratingScore) {
+                        score10 = score10FromObtainedMax(n.ratingScore.obtained, n.ratingScore.max);
+                    } else if (legacyStr && /(\d+(?:\.\d+)?)\s*\/\s*(\d+)/.test(legacyStr)) {
+                        score10 = score10FromObtainedMax(scoreObtained, maxScore);
+                    }
+
+                    if (
+                        assignmentContext &&
+                        auth.currentUser &&
+                        score10 !== null &&
+                        Number.isFinite(score10)
+                    ) {
+                        try {
+                            await recordAssignmentItemProgress({
+                                classId: assignmentContext.classId,
+                                assignmentId: assignmentContext.assignmentId,
+                                studentUid: auth.currentUser.uid,
+                                itemIndex: assignmentContext.itemIndex,
+                                itemType: 'problem',
+                                patch: {
+                                    done: true,
+                                    score10,
+                                    gradedAt: Timestamp.now(),
+                                },
+                            });
+                        } catch (hwErr) {
+                            console.error('Temă: nu s-a putut salva progresul.', hwErr);
                         }
                     }
 

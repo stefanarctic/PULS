@@ -1,3 +1,24 @@
+.admin-debug-teacher-role {
+  .admin-debug-teacher-role-lead {
+    margin: 0 0 0.75rem;
+    font-size: 0.95rem;
+    color: var(--muted-color-current-mode);
+    line-height: 1.45;
+
+    code {
+      font-size: 0.85em;
+    }
+  }
+
+  .admin-debug-teacher-role-actions {
+    flex-wrap: wrap;
+  }
+
+  .admin-debug-teacher-role-status {
+    color: var(--text-color-current-mode, inherit);
+  }
+}
+
 .admin-teacher-requests {
   margin-bottom: 2rem;
   padding: 1rem 1.25rem;

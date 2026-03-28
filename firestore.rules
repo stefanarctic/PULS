@@ -132,6 +132,17 @@ service cloud.firestore {
                          request.resource.data.teacherId == resource.data.teacherId;
 
         allow delete: if isClassTeacher(classId) || isAdmin();
+
+        match /submissions/{studentUid} {
+          allow read: if canReadClass(classId);
+          allow create: if isAuthenticated() && request.auth.uid == studentUid &&
+                           request.resource.data.keys().hasAll(['studentUid', 'updatedAt']) &&
+                           request.resource.data.studentUid == studentUid;
+          allow update: if isAuthenticated() && request.auth.uid == studentUid &&
+                           resource.data.studentUid == studentUid &&
+                           request.resource.data.studentUid == studentUid;
+          allow delete: if isClassTeacher(classId) || isAdmin();
+        }
       }
     }
 

@@ -1305,3 +1305,133 @@
     transform: rotate(360deg);
   }
 }
+
+.student-assignment-card-header {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 0.75rem;
+  align-items: flex-start;
+  margin-bottom: 0.75rem;
+}
+
+.student-assignment-summary {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 0.35rem;
+  text-align: right;
+}
+
+.student-assignment-status {
+  font-size: 0.85rem;
+  font-weight: 600;
+  padding: 0.25rem 0.6rem;
+  border-radius: 8px;
+}
+
+.student-assignment-status--done {
+  background: rgba(34, 197, 94, 0.2);
+  color: #4ade80;
+}
+
+.student-assignment-status--overdue {
+  background: rgba(239, 68, 68, 0.2);
+  color: #f87171;
+}
+
+.student-assignment-status--pending {
+  background: rgba(148, 163, 184, 0.2);
+  color: var(--muted-color-current-mode);
+}
+
+.student-assignment-average {
+  font-size: 0.9rem;
+  color: var(--muted-color-current-mode);
+}
+
+.student-assignment-items {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.student-assignment-item-row {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.65rem;
+  margin-bottom: 0.75rem;
+}
+
+.assignment-check-icon {
+  flex-shrink: 0;
+  width: 28px;
+  height: 28px;
+  border-radius: 6px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid var(--border-color-current-mode);
+  box-sizing: border-box;
+}
+
+.assignment-check-icon--empty {
+  border-style: dashed;
+  opacity: 0.85;
+}
+
+.student-assignment-item-body {
+  flex: 1;
+  min-width: 0;
+}
+
+.student-assignment-text-wrap {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  align-items: flex-start;
+}
+
+.student-assignment-resolve-btn {
+  margin-top: 0.25rem;
+}
+
+.teacher-hw-progress {
+  margin-top: 0.85rem;
+  padding-top: 0.85rem;
+  border-top: 1px solid var(--border-color-current-mode);
+}
+
+.teacher-hw-progress-title {
+  font-size: 0.9rem;
+  font-weight: 600;
+  margin: 0 0 0.5rem;
+  color: var(--muted-color-current-mode);
+}
+
+.teacher-hw-progress-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.teacher-hw-progress-item {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 0.5rem;
+  font-size: 0.9rem;
+}
+
+.teacher-hw-progress-name {
+  font-weight: 500;
+}
+
+.teacher-hw-progress-meta {
+  font-size: 0.85rem;
+  color: var(--muted-color-current-mode);
+}

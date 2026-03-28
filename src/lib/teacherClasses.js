@@ -170,6 +170,21 @@ export async function updateAssignment(classId, assignmentId, payload) {
 }
 
 export async function deleteAssignment(classId, assignmentId) {
+  const subsSnap = await getDocs(
+    collection(db, 'classes', classId, 'assignments', assignmentId, 'submissions')
+  );
+  let batch = writeBatch(db);
+  let n = 0;
+  for (const s of subsSnap.docs) {
+    batch.delete(s.ref);
+    n++;
+    if (n >= 450) {
+      await batch.commit();
+      batch = writeBatch(db);
+      n = 0;
+    }
+  }
+  if (n > 0) await batch.commit();
   await deleteDoc(doc(db, 'classes', classId, 'assignments', assignmentId));
 }
 
@@ -196,6 +211,16 @@ export async function deleteClassCascade(classId) {
   let batch = writeBatch(db);
   let n = 0;
   for (const d of assignmentsSnap.docs) {
+    const subsSnap = await getDocs(collection(db, 'classes', classId, 'assignments', d.id, 'submissions'));
+    for (const s of subsSnap.docs) {
+      batch.delete(s.ref);
+      n++;
+      if (n >= 450) {
+        await batch.commit();
+        batch = writeBatch(db);
+        n = 0;
+      }
+    }
     batch.delete(d.ref);
     n++;
     if (n >= 450) {

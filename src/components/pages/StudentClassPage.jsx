@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import { doc, getDoc } from 'firebase/firestore';
 import Layout from '../Layout';
@@ -7,11 +7,29 @@ import { auth, db } from '../../lib/firebase';
 import { fetchClass, fetchClassAssignments } from '../../lib/teacherClasses';
 import { simulationsConfig } from '@/data/simulations';
 import { ArrowLeft, ExternalLink } from 'lucide-react';
+import {
+  homeworkQueryString,
+  fetchAssignmentSubmission,
+  checkTierFromScore10,
+  studentAssignmentDueStatus,
+} from '../../lib/assignmentProgress';
+import { AssignmentCheckIcon } from '../AssignmentCheckIcon';
+import HomeworkTextSubmitModal from '../HomeworkTextSubmitModal';
 import '../../scss/components/_teacher-dashboard.scss';
 
 function simulationRouteForSlug(slug) {
   const s = simulationsConfig.find((x) => x.slug === slug);
   return s?.route || '/simulari';
+}
+
+function itemDisplayTier(itemType, itemState) {
+  if (!itemState?.done) return 'empty';
+  if (itemType === 'simulation') return 'sim';
+  if (itemType === 'grila') {
+    if (itemState.score10 >= 10) return 'good';
+    return 'fail';
+  }
+  return checkTierFromScore10(itemState.score10);
 }
 
 const StudentClassPage = () => {
@@ -24,6 +42,20 @@ const StudentClassPage = () => {
   const [resolvedIndices, setResolvedIndices] = useState({});
   const [legacyIndicesDone, setLegacyIndicesDone] = useState(true);
   const [error, setError] = useState('');
+  const [submissionsByAssignment, setSubmissionsByAssignment] = useState({});
+  const [textModal, setTextModal] = useState(null);
+
+  const refreshSubmissions = useCallback(async () => {
+    if (!user?.uid || !classId || !assignments.length) return;
+    const next = {};
+    await Promise.all(
+      assignments.map(async (a) => {
+        const sub = await fetchAssignmentSubmission(classId, a.id, user.uid);
+        next[a.id] = sub;
+      }),
+    );
+    setSubmissionsByAssignment(next);
+  }, [user?.uid, classId, assignments]);
 
   useEffect(() => {
     const unsub = onAuthStateChanged(auth, (u) => {
@@ -70,6 +102,27 @@ const StudentClassPage = () => {
       cancelled = true;
     };
   }, [user, classId]);
+
+  useEffect(() => {
+    let cancelled = false;
+    if (!assignments.length || !user?.uid || !classId) {
+      if (!assignments.length && user?.uid) setSubmissionsByAssignment({});
+      return;
+    }
+    (async () => {
+      const next = {};
+      await Promise.all(
+        assignments.map(async (a) => {
+          const sub = await fetchAssignmentSubmission(classId, a.id, user.uid);
+          if (!cancelled) next[a.id] = sub;
+        }),
+      );
+      if (!cancelled) setSubmissionsByAssignment(next);
+    })();
+    return () => {
+      cancelled = true;
+    };
+  }, [assignments, user?.uid, classId]);
 
   /** Teme vechi: items cu problemId/grilaId (ID Firestore); rutele folosesc index numeric. */
   useEffect(() => {
@@ -189,68 +242,147 @@ const StudentClassPage = () => {
             <p className="teacher-dashboard-muted">Nicio temă încă.</p>
           ) : (
             <div className="teacher-dashboard-student-assignments">
-              {assignments.map((as) => (
-                <article key={as.id} className="teacher-dashboard-card student-assignment-card">
-                  <header>
-                    <h3>{as.title}</h3>
-                    {as.dueDate?.toDate && (
-                      <p className="teacher-dashboard-due">
-                        Termen: {as.dueDate.toDate().toLocaleString('ro-RO')}
-                      </p>
-                    )}
-                  </header>
-                  <ol className="teacher-dashboard-assignment-items">
-                    {(as.items || []).map((it, idx) => (
-                      <li key={idx}>
-                        {it.type === 'problem' && (() => {
-                          const idx =
-                            typeof it.index === 'number'
-                              ? it.index
-                              : resolvedIndices[`p:${String(it.problemId ?? '').trim()}`];
-                          if (idx == null) {
-                            return (
-                              <span className="teacher-dashboard-muted">
-                                {legacyIndicesDone ? 'Problemă indisponibilă.' : 'Problemă (se încarcă…)'}
-                              </span>
-                            );
-                          }
-                          return (
-                            <Link to={`/probleme/${idx}`}>
-                              Problemă <ExternalLink size={14} />
-                            </Link>
-                          );
-                        })()}
-                        {it.type === 'grila' && (() => {
-                          const idx =
-                            typeof it.index === 'number'
-                              ? it.index
-                              : resolvedIndices[`g:${String(it.grilaId ?? '').trim()}`];
-                          if (idx == null) {
-                            return (
-                              <span className="teacher-dashboard-muted">
-                                {legacyIndicesDone ? 'Grilă indisponibilă.' : 'Grilă (se încarcă…)'}
-                              </span>
-                            );
-                          }
-                          return (
-                            <Link to={`/probleme/grile/${idx}`}>
-                              Grilă <ExternalLink size={14} />
-                            </Link>
-                          );
-                        })()}
-                        {it.type === 'simulation' && (
-                          <Link to={simulationRouteForSlug(it.slug)}>
-                            Simulare: {simulationsConfig.find((s) => s.slug === it.slug)?.title || it.slug}{' '}
-                            <ExternalLink size={14} />
-                          </Link>
+              {assignments.map((as) => {
+                const sub = submissionsByAssignment[as.id];
+                const itemCount = (as.items || []).length;
+                const dueSt = studentAssignmentDueStatus({
+                  dueDate: as.dueDate,
+                  submission: sub,
+                  itemCount,
+                });
+                return (
+                  <article key={as.id} className="teacher-dashboard-card student-assignment-card">
+                    <header className="student-assignment-card-header">
+                      <div>
+                        <h3>{as.title}</h3>
+                        {as.dueDate?.toDate && (
+                          <p className="teacher-dashboard-due">
+                            Termen: {as.dueDate.toDate().toLocaleString('ro-RO')}
+                          </p>
                         )}
-                        {it.type === 'text' && <div className="teacher-dashboard-text-block">{it.body}</div>}
-                      </li>
-                    ))}
-                  </ol>
-                </article>
-              ))}
+                      </div>
+                      <div className="student-assignment-summary">
+                        <span
+                          className={`student-assignment-status student-assignment-status--${dueSt.variant}`}
+                        >
+                          {dueSt.label}
+                        </span>
+                        {sub?.allDone && sub.averageScore10 != null && (
+                          <span className="student-assignment-average">
+                            Medie temă: <strong>{sub.averageScore10}</strong> / 10
+                            {dueSt.lateDone ? ' (după termen)' : ''}
+                          </span>
+                        )}
+                      </div>
+                    </header>
+                    <ol className="teacher-dashboard-assignment-items student-assignment-items">
+                      {(as.items || []).map((it, idx) => {
+                        const itemState = sub?.items?.[String(idx)];
+                        const tier = itemDisplayTier(it.type, itemState);
+                        const hwQs = homeworkQueryString(classId, as.id, idx);
+                        const tierTitle =
+                          it.type === 'simulation'
+                            ? itemState?.done
+                              ? 'Vizitat'
+                              : 'Nevizitat'
+                            : it.type === 'grila'
+                              ? itemState?.done
+                                ? itemState.score10 >= 10
+                                  ? 'Corect'
+                                  : 'Greșit'
+                                : 'Nerezolvată'
+                              : itemState?.done && itemState.score10 != null
+                                ? `Notă ${itemState.score10}/10`
+                                : 'Neevaluată';
+
+                        return (
+                          <li key={idx} className="student-assignment-item-row">
+                            <AssignmentCheckIcon tier={tier} title={tierTitle} className="student-assignment-check" />
+                            <span className="student-assignment-item-body">
+                              {it.type === 'problem' &&
+                                (() => {
+                                  const pidx =
+                                    typeof it.index === 'number'
+                                      ? it.index
+                                      : resolvedIndices[`p:${String(it.problemId ?? '').trim()}`];
+                                  if (pidx == null) {
+                                    return (
+                                      <span className="teacher-dashboard-muted">
+                                        {legacyIndicesDone ? 'Problemă indisponibilă.' : 'Problemă (se încarcă…)'}
+                                      </span>
+                                    );
+                                  }
+                                  return (
+                                    <Link to={`/probleme/${pidx}?${hwQs}`}>
+                                      Problemă <ExternalLink size={14} />
+                                    </Link>
+                                  );
+                                })()}
+                              {it.type === 'grila' &&
+                                (() => {
+                                  const gidx =
+                                    typeof it.index === 'number'
+                                      ? it.index
+                                      : resolvedIndices[`g:${String(it.grilaId ?? '').trim()}`];
+                                  if (gidx == null) {
+                                    return (
+                                      <span className="teacher-dashboard-muted">
+                                        {legacyIndicesDone ? 'Grilă indisponibilă.' : 'Grilă (se încarcă…)'}
+                                      </span>
+                                    );
+                                  }
+                                  return (
+                                    <Link to={`/probleme/grile/${gidx}?${hwQs}`}>
+                                      Grilă <ExternalLink size={14} />
+                                    </Link>
+                                  );
+                                })()}
+                              {it.type === 'simulation' && (
+                                <Link to={`${simulationRouteForSlug(it.slug)}?${hwQs}`}>
+                                  Simulare:{' '}
+                                  {simulationsConfig.find((s) => s.slug === it.slug)?.title || it.slug}{' '}
+                                  <ExternalLink size={14} />
+                                </Link>
+                              )}
+                              {it.type === 'text' && (
+                                <div className="student-assignment-text-wrap">
+                                  <div className="teacher-dashboard-text-block">{it.body}</div>
+                                  <button
+                                    type="button"
+                                    className="teacher-dashboard-link-btn student-assignment-resolve-btn"
+                                    onClick={() =>
+                                      setTextModal({
+                                        assignmentId: as.id,
+                                        itemIndex: idx,
+                                        body: it.body || '',
+                                      })
+                                    }
+                                  >
+                                    Rezolvă (trimite la AI)
+                                  </button>
+                                </div>
+                              )}
+                            </span>
+                          </li>
+                        );
+                      })}
+                    </ol>
+                  </article>
+                );
+              })}
             </div>
+          )}
+
+          {textModal && (
+            <HomeworkTextSubmitModal
+              open
+              teacherText={textModal.body}
+              classId={classId}
+              assignmentId={textModal.assignmentId}
+              itemIndex={textModal.itemIndex}
+              onClose={() => setTextModal(null)}
+              onSaved={refreshSubmissions}
+            />
           )}
         </div>
       </div>

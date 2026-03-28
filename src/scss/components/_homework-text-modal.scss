@@ -1,0 +1,248 @@
+// Aliniat cu tema PULS: în dark folosește aceleași fundaluri ca restul site-ului (ex. assistant popup = secondary-background)
+.homework-text-modal-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 10050;
+  background: rgba(0, 0, 0, 0.55);
+  backdrop-filter: blur(4px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+}
+
+// În dark, border-color-current-mode e adesea transparent pe document — completăm cu contur discret
+@mixin homework-modal-border {
+  border: 1px solid var(--border-color-current-mode);
+}
+
+.homework-text-modal {
+  width: 100%;
+  max-width: 560px;
+  max-height: 90vh;
+  overflow-y: auto;
+  // Ca .assistant-popup-modal: fundal secundar site (rgb 26,26,26 în dark), nu card slate
+  background: var(--secondary-background-current-mode);
+  @include homework-modal-border;
+  border-radius: 12px;
+  padding: 1.25rem;
+  color: var(--primary-color-current-mode);
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.15);
+}
+
+html[data-theme='dark'] .homework-text-modal {
+  border-color: rgba(255, 255, 255, 0.1);
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.45);
+}
+
+.homework-text-modal-head {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 0.75rem;
+  margin-bottom: 1rem;
+
+  h2 {
+    margin: 0;
+    font-size: 1.1rem;
+    line-height: 1.3;
+    color: var(--primary-color-current-mode);
+  }
+}
+
+.homework-text-modal-close {
+  background: var(--quaternary-background-current-mode);
+  @include homework-modal-border;
+  border-radius: 8px;
+  color: var(--primary-color-current-mode);
+  cursor: pointer;
+  padding: 6px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0.9;
+
+  &:hover {
+    opacity: 1;
+    background: var(--pill-hover-background-current-mode);
+  }
+}
+
+html[data-theme='dark'] .homework-text-modal-close {
+  border-color: rgba(255, 255, 255, 0.1);
+}
+
+.homework-text-modal-enunt {
+  margin-bottom: 1rem;
+  font-size: 0.95rem;
+  color: var(--primary-color-current-mode);
+
+  strong {
+    color: var(--primary-color-current-mode);
+  }
+
+  .homework-text-modal-enunt-body {
+    margin-top: 0.5rem;
+    padding: 0.75rem;
+    border-radius: 8px;
+    @include homework-modal-border;
+    background: var(--input-background-current-mode);
+    color: var(--primary-color-current-mode);
+    white-space: pre-wrap;
+    max-height: 200px;
+    overflow-y: auto;
+  }
+}
+
+html[data-theme='dark'] .homework-text-modal-enunt .homework-text-modal-enunt-body {
+  border-color: rgba(255, 255, 255, 0.08);
+  background: var(--quaternary-background-current-mode);
+}
+
+.homework-text-modal-label {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  margin-bottom: 0.75rem;
+  font-size: 0.9rem;
+  color: var(--primary-color-current-mode);
+
+  textarea {
+    padding: 0.6rem;
+    border-radius: 8px;
+    @include homework-modal-border;
+    background: var(--input-background-current-mode);
+    color: var(--primary-color-current-mode);
+    font-family: inherit;
+  }
+
+  input[type='file'] {
+    font-size: 0.85rem;
+    color: var(--primary-color-current-mode);
+    max-width: 100%;
+  }
+
+  input[type='file']::file-selector-button {
+    margin-right: 0.75rem;
+    padding: 0.45rem 0.85rem;
+    border-radius: 8px;
+    font-family: inherit;
+    font-size: 0.85rem;
+    font-weight: 600;
+    cursor: pointer;
+    border: 1px solid var(--border-color-current-mode);
+    background: var(--quaternary-background-current-mode);
+    color: var(--primary-color-current-mode);
+  }
+
+  input[type='file']::file-selector-button:hover {
+    background: var(--pill-hover-background-current-mode);
+  }
+}
+
+html[data-theme='dark'] .homework-text-modal-label {
+  textarea {
+    border-color: rgba(255, 255, 255, 0.1);
+    background: var(--quaternary-background-current-mode);
+  }
+
+  input[type='file']::file-selector-button {
+    border-color: rgba(255, 255, 255, 0.12);
+    background: var(--quaternary-background-current-mode);
+    color: var(--primary-color-current-mode);
+  }
+}
+
+.homework-text-modal-previews {
+  margin-bottom: 0.75rem;
+}
+
+.homework-text-modal-preview-row {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.homework-text-modal-thumb {
+  width: 56px;
+  height: 56px;
+  object-fit: cover;
+  border-radius: 6px;
+  border: 1px solid var(--border-color-current-mode);
+}
+
+html[data-theme='dark'] .homework-text-modal-thumb {
+  border-color: rgba(255, 255, 255, 0.1);
+}
+
+.homework-text-modal-error {
+  color: #b91c1c;
+  font-size: 0.9rem;
+  margin: 0 0 0.75rem;
+}
+
+html[data-theme='dark'] .homework-text-modal-error {
+  color: #f87171;
+}
+
+.homework-text-modal-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.homework-text-modal-btn {
+  padding: 0.5rem 1rem;
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 0.95rem;
+  cursor: pointer;
+  border: 1px solid transparent;
+  font-family: inherit;
+  transition: background 0.15s ease, border-color 0.15s ease, opacity 0.15s ease;
+
+  &:disabled {
+    opacity: 0.55;
+    cursor: not-allowed;
+  }
+
+  &--primary {
+    background: var(--accent-color-current-mode);
+    color: #ffffff;
+    border-color: transparent;
+
+    &:hover:not(:disabled) {
+      filter: brightness(1.05);
+    }
+  }
+
+  &--secondary {
+    background: var(--quaternary-background-current-mode);
+    color: var(--primary-color-current-mode);
+    border-color: var(--border-color-current-mode);
+
+    &:hover:not(:disabled) {
+      background: var(--pill-hover-background-current-mode);
+    }
+  }
+
+  &--link {
+    padding: 0.25rem 0.5rem;
+    background: transparent;
+    color: var(--accent-color-current-mode);
+    border: none;
+    font-weight: 600;
+    text-decoration: underline;
+    text-underline-offset: 2px;
+
+    &:hover:not(:disabled) {
+      filter: brightness(1.1);
+    }
+  }
+}
+
+html[data-theme='dark'] .homework-text-modal-btn--secondary {
+  border-color: rgba(255, 255, 255, 0.12);
+}

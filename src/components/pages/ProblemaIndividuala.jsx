@@ -1,14 +1,17 @@
 import React, { useEffect } from 'react';
-import { useParams, useNavigate } from 'react-router-dom';
+import { useParams, useNavigate, useSearchParams } from 'react-router-dom';
 import Layout from '../Layout';
 import ProblemaDetaliata from '../Problemadetaliata';
 // import { problemeData } from '../problemedata';
 import { useSelector } from 'react-redux';
 import SEO from '../SEO';
+import { parseHomeworkParams } from '../../lib/assignmentProgress';
 
 const ProblemaIndividuala = () => {
   const { id } = useParams();
   const navigate = useNavigate();
+  const [searchParams] = useSearchParams();
+  const homeworkContext = parseHomeworkParams(searchParams);
   const { value: problemeData, status } = useSelector(state => state.problems);
   
   // Find the problem by index (the id parameter is actually the index)
@@ -84,6 +87,7 @@ const ProblemaIndividuala = () => {
       <ProblemaDetaliata 
         problema={problema} 
         onBack={handleBack}
+        homeworkContext={homeworkContext}
       />
     </Layout>
   );

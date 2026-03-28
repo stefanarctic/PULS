@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { useParams, useNavigate } from 'react-router-dom';
+import { useParams, useNavigate, useSearchParams } from 'react-router-dom';
 import Layout from '../Layout';
 import { useSelector, useDispatch } from 'react-redux';
 import { fetchGrile } from '../../features/grile/grileSlice';
@@ -7,6 +7,10 @@ import { ArrowLeft, Check, X } from 'lucide-react';
 import MathJaxRender from '../MathJaxRender';
 import SEO from '../SEO';
 import '../../scss/components/_probleme-grile.scss';
+import { auth } from '../../lib/firebase';
+import { onAuthStateChanged } from 'firebase/auth';
+import { Timestamp } from 'firebase/firestore';
+import { parseHomeworkParams, recordAssignmentItemProgress } from '../../lib/assignmentProgress';
 
 function convertDollarToInlineMathJax(str) {
     if (!str) return str;
@@ -17,19 +21,51 @@ const GrileIndividuala = () => {
     const { id } = useParams();
     const navigate = useNavigate();
     const dispatch = useDispatch();
+    const [searchParams] = useSearchParams();
+    const homeworkContext = parseHomeworkParams(searchParams);
     const { value: grileData, status } = useSelector(state => state.grile);
 
     const [selectedAnswer, setSelectedAnswer] = useState(null);
     const [hasChecked, setHasChecked] = useState(false);
+    const [firebaseUser, setFirebaseUser] = useState(null);
 
     const grilaIndex = parseInt(id, 10);
     const grila = grileData.find(g => g.index === grilaIndex);
+    const correctAnswer = grila ? (grila.raspunsCorect || 'a').toLowerCase() : '';
+    const isCorrect = !!(hasChecked && selectedAnswer !== null && selectedAnswer === correctAnswer);
+
+    useEffect(() => {
+        const unsub = onAuthStateChanged(auth, setFirebaseUser);
+        return () => unsub();
+    }, []);
 
     useEffect(() => {
         if (grileData.length === 0) {
             dispatch(fetchGrile());
         }
     }, [dispatch, grileData.length]);
+
+    useEffect(() => {
+        if (!hasChecked || !homeworkContext || !firebaseUser?.uid) return;
+        (async () => {
+            try {
+                await recordAssignmentItemProgress({
+                    classId: homeworkContext.classId,
+                    assignmentId: homeworkContext.assignmentId,
+                    studentUid: firebaseUser.uid,
+                    itemIndex: homeworkContext.itemIndex,
+                    itemType: 'grila',
+                    patch: {
+                        done: true,
+                        score10: isCorrect ? 10 : 0,
+                        gradedAt: Timestamp.now(),
+                    },
+                });
+            } catch (e) {
+                console.error('Temă grilă:', e);
+            }
+        })();
+    }, [hasChecked, homeworkContext, firebaseUser?.uid, isCorrect]);
 
     useEffect(() => {
         if (hasChecked && window.MathJax?.typesetPromise) {
@@ -75,8 +111,6 @@ const GrileIndividuala = () => {
 
     const variante = grila.variante || {};
     const options = ['a', 'b', 'c', 'd'].filter(k => variante[k]);
-    const correctAnswer = (grila.raspunsCorect || 'a').toLowerCase();
-    const isCorrect = hasChecked && selectedAnswer === correctAnswer;
 
     const title = grila.intrebare?.substring(0, 60) || `Grilă #${grilaIndex}`;
     const description = `Întrebare cu variante de răspuns: ${title}...`;

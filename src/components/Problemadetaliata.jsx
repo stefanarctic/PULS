@@ -16,7 +16,7 @@ import { doc, getDoc, setDoc } from 'firebase/firestore';
 import { useAssistant } from '../hooks/useAssistant';
 import useDarkMode from '../hooks/useDarkMode';
 
-export const ProblemaDetaliata = ({ problema, onBack }) => {
+export const ProblemaDetaliata = ({ problema, onBack, homeworkContext = null }) => {
   const navigate = useNavigate();
   const [copied, setCopied] = useState(false);
   const [isAdmin, setIsAdmin] = useState(false);
@@ -632,6 +632,7 @@ export const ProblemaDetaliata = ({ problema, onBack }) => {
               problem={problema}
               defaultProblemId={resolvedProblemId}
               defaultProblemTitle={resolvedProblemTitle}
+              assignmentContext={homeworkContext}
             />
           </CardContent>
         </Card>

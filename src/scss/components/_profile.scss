@@ -302,6 +302,23 @@
 }
 
 
+.profile-teacher-hint {
+    font-size: 0.875rem;
+    line-height: 1.4;
+    color: var(--muted-color-current-mode, #6b7280);
+    margin: 0;
+    max-width: 20rem;
+    text-align: left;
+
+    @media (min-width: 768px) {
+        text-align: right;
+    }
+
+    &.profile-teacher-hint--warn {
+        color: #b45309;
+    }
+}
+
 .profile-floating-stack {
     display: flex;
     flex-direction: column;

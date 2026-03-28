@@ -2,7 +2,7 @@ import React, { useState, useEffect, useMemo } from 'react';
 import Layout from '../Layout';
 import { auth, provider, db, storage, createUserWithEmailAndPassword, signInWithEmailAndPassword } from '../../lib/firebase';
 import { signInWithPopup, signOut, onAuthStateChanged } from 'firebase/auth';
-import { doc, setDoc, getDoc, collection, query, where, getDocs, onSnapshot } from 'firebase/firestore';
+import { doc, setDoc, getDoc, updateDoc, collection, query, where, getDocs, onSnapshot } from 'firebase/firestore';
 import { useDispatch, useSelector } from 'react-redux';
 import { problemeData } from '../problemedata';
 import { ProblemCard } from './Probleme.jsx';
@@ -166,6 +166,21 @@ const Profile = () => {
         window.scrollTo({ top: 0 });
     };
 
+    const handleRequestTeacher = async () => {
+        if (!user?.uid) return;
+        if (!['none', 'rejected'].includes(teacherStatus)) return;
+        setTeacherRequestLoading(true);
+        try {
+            await updateDoc(doc(db, 'users', user.uid), { teacherStatus: 'pending' });
+            setTeacherStatus('pending');
+        } catch (e) {
+            console.error(e);
+            alert('Nu s-a putut trimite cererea. Încearcă din nou.');
+        } finally {
+            setTeacherRequestLoading(false);
+        }
+    };
+
     const [user, setUser] = useState(null);
     const [alias, setAlias] = useState('');
     const [aliasInput, setAliasInput] = useState('');
@@ -185,6 +200,7 @@ const Profile = () => {
     const [descriptionError, setDescriptionError] = useState('');
     const [isAdmin, setIsAdmin] = useState(false);
     const [teacherStatus, setTeacherStatus] = useState('none');
+    const [teacherRequestLoading, setTeacherRequestLoading] = useState(false);
 
     const fileInputRef = React.useRef();
     const dispatch = useDispatch();
@@ -1239,6 +1255,27 @@ const Profile = () => {
                                         <GraduationCap size={18} />
                                         <span>Panou profesor</span>
                                     </button>
+                                )}
+                                {['none', 'rejected'].includes(teacherStatus) && (
+                                    <button
+                                        type="button"
+                                        className="admin-dashboard-btn profile-floating-btn"
+                                        onClick={handleRequestTeacher}
+                                        disabled={teacherRequestLoading}
+                                    >
+                                        <GraduationCap size={18} />
+                                        <span>{teacherRequestLoading ? 'Se trimite...' : 'Cere cont profesor'}</span>
+                                    </button>
+                                )}
+                                {teacherStatus === 'pending' && (
+                                    <p className="profile-teacher-hint">
+                                        Cererea ta pentru cont profesor este în așteptare. Un administrator o va revizui în curând.
+                                    </p>
+                                )}
+                                {teacherStatus === 'rejected' && (
+                                    <p className="profile-teacher-hint profile-teacher-hint--warn">
+                                        Cererea anterioară a fost respinsă. Poți trimite o cerere nouă cu butonul de mai sus.
+                                    </p>
                                 )}
                             </div>
                         </div>

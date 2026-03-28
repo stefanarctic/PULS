@@ -4,9 +4,9 @@ import { useNavigate, useLocation } from 'react-router-dom';
 import Layout from '../Layout';
 import { useAdmin } from '../../hooks/useAdmin';
 import { fetchProblems, updateProblem, deleteProblem, clearUpdateStatus, clearDeleteStatus } from '../../features/problems/problemsSlice';
-import { Trash2, Search, X, AlertCircle, GraduationCap } from 'lucide-react';
+import { Trash2, Search, X, AlertCircle, GraduationCap, User } from 'lucide-react';
 import { normalizeString } from '../../lib/normalizeString';
-import { collection, query, where, getDocs, updateDoc, doc } from 'firebase/firestore';
+import { collection, query, where, getDocs, getDoc, updateDoc, doc } from 'firebase/firestore';
 import { db } from '../../lib/firebase';
 import '../../scss/components/_admin-dashboard.scss';
 
@@ -51,12 +51,31 @@ const AdminDashboard = () => {
   const [aiAnalyzing, setAiAnalyzing] = useState(false);
   const [pendingTeachers, setPendingTeachers] = useState([]);
   const [teacherApprovalsLoading, setTeacherApprovalsLoading] = useState(false);
+  const [selfTeacherStatus, setSelfTeacherStatus] = useState(null);
+  const [selfTeacherRoleSaving, setSelfTeacherRoleSaving] = useState(false);
 
   useEffect(() => {
     if (!adminLoading && !isAdmin) {
       navigate('/');
     }
   }, [isAdmin, adminLoading, navigate]);
+
+  useEffect(() => {
+    if (!isAdmin || !user?.uid) {
+      setSelfTeacherStatus(null);
+      return;
+    }
+    let cancelled = false;
+    getDoc(doc(db, 'users', user.uid))
+      .then((snap) => {
+        if (cancelled || !snap.exists()) return;
+        setSelfTeacherStatus(snap.data().teacherStatus || 'none');
+      })
+      .catch((err) => console.error('Self teacher status:', err));
+    return () => {
+      cancelled = true;
+    };
+  }, [isAdmin, user?.uid]);
 
   useEffect(() => {
     if (!isAdmin) return;
@@ -95,6 +114,20 @@ const AdminDashboard = () => {
     } catch (e) {
       console.error(e);
       alert('Nu s-a putut respinge.');
+    }
+  };
+
+  const setDebugTeacherRole = async (status) => {
+    if (!user?.uid) return;
+    setSelfTeacherRoleSaving(true);
+    try {
+      await updateDoc(doc(db, 'users', user.uid), { teacherStatus: status });
+      setSelfTeacherStatus(status);
+    } catch (e) {
+      console.error(e);
+      alert('Nu s-a putut actualiza rolul.');
+    } finally {
+      setSelfTeacherRoleSaving(false);
     }
   };
 
@@ -912,6 +945,36 @@ Dacă nu găsești date sau formule, returnează obiecte goale. Răspunde DOAR c
       <div className="admin-dashboard">
         <div className="admin-dashboard-inner">
           <h1 className="admin-dashboard-title">Panou de administrare</h1>
+
+          <section className="admin-teacher-requests admin-debug-teacher-role" aria-label="Rol cont pentru testare">
+            <h2 className="admin-teacher-requests-title">
+              <User size={22} aria-hidden />
+              Rol cont (testare)
+            </h2>
+            <p className="admin-debug-teacher-role-lead">
+              Stare curentă:{' '}
+              <strong className="admin-debug-teacher-role-status">{selfTeacherStatus ?? '…'}</strong>
+              . Ca elev (<code>none</code>) nu poți crea clase; ca profesor (<code>approved</code>) ai acces la panoul profesor.
+            </p>
+            <div className="admin-teacher-requests-actions admin-debug-teacher-role-actions">
+              <button
+                type="button"
+                className="admin-teacher-btn approve"
+                disabled={selfTeacherRoleSaving || selfTeacherStatus == null || selfTeacherStatus === 'approved'}
+                onClick={() => setDebugTeacherRole('approved')}
+              >
+                Simulează profesor
+              </button>
+              <button
+                type="button"
+                className="admin-teacher-btn reject"
+                disabled={selfTeacherRoleSaving || selfTeacherStatus == null || selfTeacherStatus === 'none'}
+                onClick={() => setDebugTeacherRole('none')}
+              >
+                Simulează elev
+              </button>
+            </div>
+          </section>
 
           <section className="admin-teacher-requests" aria-label="Cereri profesor">
             <h2 className="admin-teacher-requests-title">

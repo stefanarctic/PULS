@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useSearchParams } from "react-router-dom";
 import Layout from "../Layout";
 import { doc, getDoc, updateDoc } from "firebase/firestore";
 import { db } from "../../lib/firebase";
@@ -7,9 +7,12 @@ import { auth } from "../../lib/firebase";
 import { onAuthStateChanged } from "firebase/auth";
 import { useAchievements } from "../../hooks/useAchievements";
 import SEO from "../SEO";
+import { parseHomeworkParams, recordAssignmentItemProgress } from "../../lib/assignmentProgress";
+import { Timestamp } from "firebase/firestore";
 
 const SimulationPage = ({
   id,
+  slug,
   title,
   description,
   iframeSrc,
@@ -23,6 +26,7 @@ const SimulationPage = ({
   const [user, setUser] = useState(null);
   const { checkAchievements } = useAchievements();
   const navigate = useNavigate();
+  const [searchParams] = useSearchParams();
   const previewHeight = maxHeight || "90vh";
 
   // Monitorizează starea de autentificare
@@ -70,7 +74,24 @@ const SimulationPage = ({
         // Salvează în Firebase
         await updateDoc(userRef, { simulationsVisited: currentSimulationsVisited });
         console.log('✅ Simulation visited saved to Firebase');
-        
+
+        const hw = parseHomeworkParams(searchParams);
+        if (hw && slug && user.uid) {
+          try {
+            await recordAssignmentItemProgress({
+              classId: hw.classId,
+              assignmentId: hw.assignmentId,
+              studentUid: user.uid,
+              itemIndex: hw.itemIndex,
+              itemType: "simulation",
+              patch: { done: true, visitedAt: Timestamp.now() },
+              expectedSimulationSlug: slug,
+            });
+          } catch (hwErr) {
+            console.warn("Temă simulare:", hwErr);
+          }
+        }
+
         // Verifică achievements după ce s-a salvat simularea
         try {
           await checkAchievements({
@@ -87,7 +108,7 @@ const SimulationPage = ({
     };
 
     saveSimulationVisited();
-  }, [user?.uid, id, title, checkAchievements]);
+  }, [user?.uid, id, title, checkAchievements, searchParams.toString(), slug]);
 
   const handleBack = () => {
     // Dacă există istoric de navigare, mergem înapoi, altfel revenim la lista de simulări
