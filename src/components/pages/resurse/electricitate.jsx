@@ -6,6 +6,7 @@ import { useEffect, useState } from "react";
 import circuiteElectricitateImg from "/res/screenshots/Circuite_Electricitate_Screenshot.png";
 import energieCircuiteImg from "/res/screenshots/Energie_Circuite_Screenshot.png";
 import curentAlternativImg from "/res/screenshots/ac_Screenshot.png";
+import kirchhoffSimulatorImg from "/res/screenshots/kirchoff_Screenshot.png";
 
 const ElectricitatePage = () => {
   const [visibleFormulasCount, setVisibleFormulasCount] = useState({});
@@ -32,6 +33,14 @@ const ElectricitatePage = () => {
     { formula: "\\( \\eta = \\frac{P_{utila}}{P_{totala}} \\times 100\\% \\)", title: "Randamentul unui circuit" },
   ];
 
+  const kirchhoffFormulas = [
+    { formula: "\\( \\sum_{k} I_k = 0 \\)", title: "Prima lege (KCL) la un nod" },
+    { formula: "\\( \\sum I_{\\text{intră}} = \\sum I_{\\text{iese}} \\)", title: "KCL — bilanțul curenților" },
+    { formula: "\\( \\sum_{m} U_m = 0 \\)", title: "A doua lege (KVL) pe un ochi închis" },
+    { formula: "\\( \\sum (\\pm R_i I_i) = \\sum (\\pm E_j) \\)", title: "KVL — tensiuni pe rezistențe și surse" },
+    { formula: "\\( U_{AB} = V_A - V_B \\)", title: "Tensiunea între două noduri" },
+  ];
+
   const curentAlternativFormulas = [
     { formula: "\\( u(t) = U_{max}\\sin(\\omega t) \\)", title: "Tensiune sinusoidală" },
     { formula: "\\( i(t) = I_{max}\\sin(\\omega t + \\varphi) \\)", title: "Curent sinusoidal (defazaj φ)" },
@@ -47,6 +56,7 @@ const ElectricitatePage = () => {
   useEffect(() => {
     const sections = [
       { key: 'circuite', formulas: circuiteFormulas },
+      { key: 'kirchhoff', formulas: kirchhoffFormulas },
       { key: 'energie', formulas: energieFormulas },
       { key: 'curent_alternativ', formulas: curentAlternativFormulas },
     ];
@@ -169,6 +179,54 @@ const ElectricitatePage = () => {
                   </div>
                   <a
                     href="/simulare/circuite-electricitate"
+                    rel="noopener noreferrer"
+                    style={{ textDecoration: "none" }}
+                  >
+                    <Button size="lg">Vezi simularea</Button>
+                  </a>
+                </div>
+              </div>
+
+              {/* Legile lui Kirchhoff — simulator */}
+              <div className="rounded-container">
+                <h2 className="text-2xl font-bold mb-4">Legile lui Kirchhoff</h2>
+                <p className="text-muted-foreground mb-6">
+                  Pentru circuite mai complexe (mai multe noduri și ochiuri), legile lui Ohm nu sunt suficiente singure. Prima lege a lui Kirchhoff (KCL) exprimă conservarea sarcinii la fiecare nod; a doua lege (KVL) exprimă conservarea energiei pe fiecare ochi închis al circuitului.
+                </p>
+                <p className="text-muted-foreground mb-6">
+                  Simulatorul de mai jos îți permite să construiești și să analizezi astfel de circuite interactiv.
+                </p>
+                <div className="image-slider h-64 md:h-80 relative flex items-center justify-center mb-8">
+                  <img
+                    src={kirchhoffSimulatorImg}
+                    alt="Simulator legile lui Kirchhoff"
+                    className="w-full h-full object-contain mx-auto my-auto"
+                  />
+                </div>
+                <div className="mt-8 flex flex-col md:flex-row md:items-center justify-between gap-6">
+                  <div>
+                    <h3 className="text-xl font-semibold mb-4">Formule esențiale (KCL și KVL):</h3>
+
+                    {kirchhoffFormulas
+                      .slice(0, visibleFormulasCount.kirchhoff || kirchhoffFormulas.length)
+                      .map((item, index) => (
+                        <div key={index}>
+                          <h4 className="text-lg font-semibold mb-2">{index + 1}. {item.title}:</h4>
+                          <div className="formula-resurse text-lg font-mono mb-4">
+                            {item.formula}
+                          </div>
+                        </div>
+                      ))}
+                    {visibleFormulasCount.kirchhoff > 0 && (
+                      <MathJaxRender key={`kirchhoff-${visibleFormulasCount.kirchhoff || 0}`} />
+                    )}
+
+                    <p className="text-muted-foreground mt-4">
+                      Unde: curenții se iau cu semn conform unei convenții alese la nod; tensiunile se parcurg pe ochi în sens consistent; R și I sunt rezistențe și curenți pe ramuri, E sunt t.e.m. ale surselor, V la noduri sunt potențiale electrice.
+                    </p>
+                  </div>
+                  <a
+                    href="/simulare/kirchhoff"
                     rel="noopener noreferrer"
                     style={{ textDecoration: "none" }}
                   >

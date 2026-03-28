@@ -29,6 +29,7 @@ import michaelsonMorleyImg from "/res/screenshots/Michaelson_Morley_Screenshot.p
 import lanturiElasticeImg from "/res/screenshots/Lanturi_Elastice_Screenshot.png";
 import miscarePlaneteImg from "/res/screenshots/Miscare_Planete_Screenshot.png";
 import curentAlternativImg from "/res/screenshots/ac_Screenshot.png";
+import kirchhoffImg from "/res/screenshots/kirchoff_Screenshot.png";
 import spectruImg from "/res/screenshots/spectru_Screenshot.png";
 import laserImg from "/res/screenshots/laser_Screenshot.png";
 import tabelPeriodicImg from "/res/screenshots/Tabel_periodic_Screenshot.png";
@@ -436,6 +437,18 @@ export const simulationsConfig = [
     image: curentAlternativImg,
     caption: "Curent alternativ",
     iframeSrc: "/simulari/curent-alternativ/index.html",
+    maxHeight: "90vh",
+    category: "Electricitate"
+  },
+  {
+    id: 35,
+    slug: "kirchhoff",
+    route: "/simulare/kirchhoff",
+    title: "Legile lui Kirchhoff",
+    description: "Construiește și analizează circuite electrice: noduri, ochiuri, surse și rezistențe cu KCL și KVL.",
+    image: kirchhoffImg,
+    caption: "Simulator Kirchhoff",
+    iframeSrc: "https://kirchoff.vercel.app/",
     maxHeight: "90vh",
     category: "Electricitate"
   },
