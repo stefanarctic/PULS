@@ -24,6 +24,7 @@ const SIMULATION_CATEGORY_ORDER = [
   "Optică",
   "Astronomie",
   "Atomul",
+  "Fizică cuantică",
   "4D",
 ];
 

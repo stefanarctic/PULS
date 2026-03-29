@@ -81,13 +81,19 @@ const lessonCards = [
   {
     title: "Astronomie",
     description:
-      "Legile lui Kepler, mișcarea planetelor, gravitația — și experimentul Michelson–Morley (lumină, eter, interferență).",
+      "Legile lui Kepler, mișcarea planetelor, gravitația și experimentul Michelson–Morley (lumină, eter, interferență).",
     path: "/resurse/astronomie",
+  },
+  {
+    title: "Fizică cuantică",
+    description:
+      "Dublă fantă (interferență și probabilitate) și tunelare cuantică lecție, formule și simulatoare interactive.",
+    path: "/resurse/fizica-cuantica",
   },
   {
     title: "Atomul",
     description:
-      "Atomul de hidrogen (Bohr, Schrödinger, spectru) și tabelul periodic al elementelor — teorie și simulări.",
+      "Atomul de hidrogen (Bohr, Schrödinger, spectru) și tabelul periodic al elementelor, teorie și simulări.",
     path: "/resurse/atomul",
   },
 ];
@@ -1230,6 +1236,69 @@ const ResursePage = () => {
     ...tabelPeriodicFormulas.map(({ title, formula }) => ({ title, formula })),
   ];
 
+  const fizicaCuanticaFormulas = [
+    {
+      section: "1. Dublă fantă și interferență",
+      formulas: [
+        {
+          title: "Diferența de drum și maxime",
+          formula:
+            "\\( \\Delta L = d\\sin\\theta \\approx m\\lambda \\) — interferență constructivă (ordin \\(m\\))",
+          explanation:
+            "Pentru două fante la distanța d, diferența de drum spre un punct de pe ecran depinde de unghiul față de axa de simetrie. Maximele de intensitate apar când această diferență este un multiplu întreg al lungimii de undă.",
+        },
+        {
+          title: "Distanța între franje (Young, unghi mic)",
+          formula: "\\( \\Delta y \\approx \\frac{\\lambda L}{d} \\)",
+          explanation:
+            "Pe un ecran la distanța L de fante, distanța aproximativă între două maxime folosește aproximația unghiurilor mici pentru sin și tang.",
+        },
+        {
+          title: "Superpoziția amplitudinilor",
+          formula: "\\( \\psi = \\psi_1 + \\psi_2 \\)",
+          explanation:
+            "În descrierea cuantică liniară, amplitudinea înainte de măsurare este suma contribuțiilor asociate celor două căi. Faza relativă decide dacă undele se întăresc sau se slăbesc.",
+        },
+        {
+          title: "Regula Born (probabilitate)",
+          formula: "\\( P \\propto |\\psi|^2 \\)",
+          explanation:
+            "Probabilitatea de a detecta particula într-o zonă este proporțională cu pătratul modulului funcției de undă în acea zonă.",
+        },
+      ],
+    },
+    {
+      section: "2. Tunelare prin barieră",
+      formulas: [
+        {
+          title: "Schrödinger staționar 1D",
+          formula: "\\( -\\dfrac{\\hbar^2}{2m} \\dfrac{d^2\\psi}{dx^2} + V(x)\\psi = E\\psi \\)",
+          explanation:
+            "Ecuația pentru stări cu energie E bine definită. În fiecare zonă unde potențialul V este constant, soluția este combinație de exponențiale reale sau complexe, după cum energia este mai mare sau mai mică decât V.",
+        },
+        {
+          title: "Parametri k și κ (barieră, E sub V₀)",
+          formula:
+            "\\( k = \\dfrac{\\sqrt{2mE}}{\\hbar}, \\quad \\kappa = \\dfrac{\\sqrt{2m(V_0-E)}}{\\hbar} \\)",
+          explanation:
+            "k descrie oscilația spațială în zona permisă clasic; κ măsoară cât de repede scade modulul undei în interiorul barierei (regiune interzisă clasic).",
+        },
+        {
+          title: "Transmisie (comportare tipică, barieră groasă)",
+          formula: "\\( T \\sim e^{-2\\kappa a} \\)",
+          explanation:
+            "Pentru o barieră de lățime a, probabilitatea de tunelare scade exponențial cu produsul κ·a. Factorii din față depind de modelul exact al barierei.",
+        },
+        {
+          title: "Principiul incertitudinii energie–timp",
+          formula: "\\( \\Delta E\\,\\Delta t \\gtrsim \\dfrac{\\hbar}{2} \\)",
+          explanation:
+            "Stări cu durată de viață finită (de exemplu tunelarea dintr-un nivel meta-stabil) au o lățime în energie legată de timpul caracteristic al procesului.",
+        },
+      ],
+    },
+  ];
+
   const relativitateFormulas = [
     { title: "Viteza luminii (invariant)", formula: "\\( c = 299\\,792\\,458 \\,\\text{m/s} \\)" },
     { title: "Dilatarea timpului", formula: "\\( \\Delta t' = \\gamma \\Delta t, \\quad \\gamma = \\frac{1}{\\sqrt{1-v^2/c^2}} \\)" },
@@ -1263,6 +1332,7 @@ const ResursePage = () => {
         "matematica",
         "astronomie",
         "atomul",
+        "fizica_cuantica",
         "relativitate",
       ];
       if (allowed.includes(formulaParam)) {
@@ -1306,6 +1376,7 @@ const ResursePage = () => {
       matematica: matematicaFormulas,
       astronomie: astronomieFormulas,
       atomul: atomulFormulas,
+      fizica_cuantica: fizicaCuanticaFormulas,
       relativitate: relativitateFormulas,
     };
 
@@ -1446,6 +1517,7 @@ const ResursePage = () => {
                     <TabsTrigger value="matematica">Matematică</TabsTrigger>
                     <TabsTrigger value="astronomie">Astronomie</TabsTrigger>
                     <TabsTrigger value="atomul">Atomul</TabsTrigger>
+                    <TabsTrigger value="fizica_cuantica">Fizică cuantică</TabsTrigger>
                     <TabsTrigger value="relativitate">Relativitate</TabsTrigger>
                   </TabsList>
 
@@ -1686,6 +1758,37 @@ const ResursePage = () => {
                       ))}
                     </div>
                     <MathJaxRender key={`atomul-${visibleFormulasCount.atomul || 0}`} />
+                  </TabsContent>
+
+                  <TabsContent value="fizica_cuantica">
+                    <p className="text-sm text-muted-foreground mb-4">
+                      Dublă fantă și tunelare — aliniat lecției „Fizică cuantică” și simulărilor din aceeași categorie. Apasă pe o formulă pentru explicație.
+                    </p>
+                    <div className="mb-4 space-y-6">
+                      {fizicaCuanticaFormulas.map((sec, secIndex) => (
+                        <div key={secIndex}>
+                          <h3 className="text-lg font-semibold mb-3 text-foreground/90">{sec.section}</h3>
+                          <div className="formula-grid">
+                            {sec.formulas.map((formula, index) => (
+                              <div
+                                key={index}
+                                className="formula-card formula-card-clickable"
+                                role="button"
+                                tabIndex={0}
+                                onClick={() => formula.explanation && setFormulaPopup({ section: sec.section, ...formula })}
+                                onKeyDown={(e) =>
+                                  e.key === "Enter" && formula.explanation && setFormulaPopup({ section: sec.section, ...formula })
+                                }
+                              >
+                                <div className="font-semibold mb-2">{formula.title}</div>
+                                <div className="text-lg font-mono">{formula.formula}</div>
+                              </div>
+                            ))}
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+                    <MathJaxRender key="fizica_cuantica" />
                   </TabsContent>
 
                   <TabsContent value="relativitate">

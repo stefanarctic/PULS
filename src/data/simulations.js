@@ -31,6 +31,8 @@ import miscarePlaneteImg from "/res/screenshots/Miscare_Planete_Screenshot.png";
 import curentAlternativImg from "/res/screenshots/ac_Screenshot.png";
 import kirchhoffImg from "/res/screenshots/kirchoff_Screenshot.png";
 import spectruImg from "/res/screenshots/spectru_Screenshot.png";
+import dublaFantaImg from "/res/screenshots/dubla_fanta_Screenshot.png";
+import tunelareCuanticaImg from "/res/screenshots/tunelare_Screenshot.png";
 import laserImg from "/res/screenshots/laser_Screenshot.png";
 import tabelPeriodicImg from "/res/screenshots/Tabel_periodic_Screenshot.png";
 export const simulationsConfig = [
@@ -451,6 +453,30 @@ export const simulationsConfig = [
     iframeSrc: "https://kirchoff.vercel.app/",
     maxHeight: "90vh",
     category: "Electricitate"
+  },
+  {
+    id: 36,
+    slug: "dubla-fanta",
+    route: "/simulare/dubla-fanta",
+    title: "Dubla fantă (cuantic)",
+    description: "Interferență și probabilitate în experimentul cu două fante: regim undă–particulă și pattern pe ecran.",
+    image: dublaFantaImg,
+    caption: "Dubla fantă",
+    iframeSrc: "/simulari/dubla_fanta/index.html",
+    maxHeight: "90vh",
+    category: "Fizică cuantică"
+  },
+  {
+    id: 37,
+    slug: "tunelare-cuantica",
+    route: "/simulare/tunelare-cuantica",
+    title: "Tunelare cuantică",
+    description: "Penetrarea unei bariere de potențial când energia particulei este sub înălțimea barierei — undă evanescentă și coeficient de transmisie.",
+    image: tunelareCuanticaImg,
+    caption: "Tunelare cuantică",
+    iframeSrc: "/simulari/tunelare/index.html",
+    maxHeight: "90vh",
+    category: "Fizică cuantică"
   },
 ];
 
