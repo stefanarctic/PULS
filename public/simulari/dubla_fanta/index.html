@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="ro">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Dubla Fantă - Simulator Cuantic</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <div class="container">
+
+        <h1>⚛️ Dubla Fantă (Quantum)</h1>
+
+        <div class="controls">
+            <label>
+                Lungime de undă (λ)
+                <input type="range" id="lambda" min="1" max="50" value="20">
+            </label>
+
+            <label>
+                Distanță fante (d)
+                <input type="range" id="distance" min="10" max="200" value="80">
+            </label>
+
+            <label>
+                Distanță ecran (D)
+                <input type="range" id="screenDist" min="50" max="300" value="150">
+            </label>
+            <label>
+                Detector
+                <input type="checkbox" id="detector">
+            </label>
+            <button id="reset">Reset</button>
+        </div>
+
+        <canvas id="canvas"></canvas>
+        <div class="info-panel">
+
+            <h2>Ce se întâmplă aici?</h2>
+            <p>
+                Acest simulator arată experimentul dublei fante în regim cuantic.
+                Particulele (electroni sau fotoni) nu au o poziție exactă, ci sunt descrise
+                de o funcție de undă care indică probabilitatea de apariție.
+            </p>
+
+            <h3>Funcția de undă</h3>
+            <p>
+                Unda nu reprezintă materia, ci informația despre unde poate apărea particula.
+                Zonele mai intense indică probabilitate mai mare.
+            </p>
+
+            <h3>Interferența</h3>
+            <p>
+                Când unda trece prin două fante, ea interferează cu ea însăși.
+                Acest lucru creează benzi de probabilitate ridicată și scăzută.
+            </p>
+
+            <h3>Rolul detectorului</h3>
+            <p>
+                Când activăm detectorul, aflăm prin ce fantă trece particula.
+                Acest lucru distruge interferența și rezultatul devine clasic:
+                două benzi simple.
+            </p>
+
+            <h3>Ce reprezintă culorile</h3>
+            <p>
+                Heatmap-ul arată probabilitatea (ψ²):
+                roșu = probabilitate mare,
+                albastru = probabilitate mică.
+            </p>
+
+            <h3>De ce este important?</h3>
+            <p>
+                Acest fenomen stă la baza fizicii cuantice și explică:
+                electronii din atomi, legăturile chimice și tehnologia modernă.
+            </p>
+            <h3>Experimentează</h3>
+            <ul>
+                Dezactivează detectorul → vezi interferența
+                Activează detectorul → dispar benzile</li>
+                Mărește λ → benzile devin mai largi</li>
+                Mărește distanța dintre fante → benzile se apropie</li>
+            </ul>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
