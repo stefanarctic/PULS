@@ -341,6 +341,7 @@ const TeacherClassPage = () => {
                     className="teacher-dashboard-copy-btn"
                     onClick={handleCopyClassCode}
                     aria-label="Copiază codul clasei în clipboard"
+                    title="Copiază codul clasei (ID pentru intrare)"
                   >
                     <Copy size={18} strokeWidth={2} />
                   </button>
@@ -356,7 +357,9 @@ const TeacherClassPage = () => {
                 </span>
                 {(codeCopied || linkCopied) && (
                   <span className="teacher-dashboard-code-copied">
-                    {codeCopied ? 'Copiat!' : 'Link copiat!'}
+                    {codeCopied
+                      ? 'Codul clasei a fost copiat în clipboard.'
+                      : 'Linkul de invitație a fost copiat în clipboard.'}
                   </span>
                 )}
               </span>
@@ -507,32 +510,34 @@ const TeacherClassPage = () => {
                   const itemCount = (a.items || []).length;
                   return (
                     <li key={a.id}>
-                      <div>
-                        <strong>{a.title}</strong>
-                        {a.dueDate?.toDate && (
-                          <span className="teacher-dashboard-muted">
-                            {' '}
-                            · Termen: {a.dueDate.toDate().toLocaleString('ro-RO')}
-                          </span>
-                        )}
-                      </div>
-                      <div className="teacher-dashboard-assignment-actions">
-                        <button
-                          type="button"
-                          className="teacher-dashboard-link-btn"
-                          onClick={() => openEditAssignment(a)}
-                          disabled={!!assignmentDraft}
-                        >
-                          Editează
-                        </button>
-                        <button
-                          type="button"
-                          className="teacher-dashboard-link-btn danger"
-                          onClick={() => handleDeleteAssignment(a.id)}
-                          disabled={!!assignmentDraft}
-                        >
-                          Șterge
-                        </button>
+                      <div className="teacher-dashboard-assignment-main">
+                        <div className="teacher-dashboard-assignment-title-block">
+                          <strong>{a.title}</strong>
+                          {a.dueDate?.toDate && (
+                            <span className="teacher-dashboard-muted">
+                              {' '}
+                              · Termen: {a.dueDate.toDate().toLocaleString('ro-RO')}
+                            </span>
+                          )}
+                        </div>
+                        <div className="teacher-dashboard-assignment-actions">
+                          <button
+                            type="button"
+                            className="teacher-dashboard-link-btn"
+                            onClick={() => openEditAssignment(a)}
+                            disabled={!!assignmentDraft}
+                          >
+                            Editează
+                          </button>
+                          <button
+                            type="button"
+                            className="teacher-dashboard-link-btn danger"
+                            onClick={() => handleDeleteAssignment(a.id)}
+                            disabled={!!assignmentDraft}
+                          >
+                            Șterge
+                          </button>
+                        </div>
                       </div>
                       {members.length > 0 && (
                         <div className="teacher-hw-progress">
