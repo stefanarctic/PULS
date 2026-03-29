@@ -6,6 +6,7 @@ import {
   Copy, Check, Bot, User, Sparkles, Loader2
 } from "lucide-react";
 import { searchKnowledgeBase } from "../lib/assistant-knowledge-base.js";
+import { fetchAssistantReply } from "../lib/assistantChatApi.js";
 // MathJaxRender eliminat - fiecare mesaj gestionează propriul rendering prin Intersection Observer
 import { useChats } from "../hooks/useChats";
 import useDarkMode from "../hooks/useDarkMode";
@@ -739,78 +740,7 @@ const AssistantPopup = ({ onClose, initialMessage }) => {
     }, 100);
 
     try {
-      const response = await fetch("/api/webhook/chat", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ message: text, sessionId: activeChatId }),
-      });
-      
-      const contentType = response.headers.get("content-type");
-      const responseText = await response.text();
-      
-      // Debug: printează output-ul primit de la AI
-      console.log("=== AI RESPONSE DEBUG ===");
-      console.log("Content-Type:", contentType);
-      console.log("Raw Response Text:", responseText);
-      console.log("Response Text Length:", responseText?.length);
-      console.log("=========================");
-      
-      if (!response.ok) {
-        let errorMessage = `Eroare ${response.status}: ${response.statusText}`;
-        if (contentType && contentType.includes("application/json") && responseText) {
-          try {
-            const errorData = JSON.parse(responseText);
-            errorMessage = errorData.message || errorData.error || errorMessage;
-          } catch (e) {
-            errorMessage = responseText || errorMessage;
-          }
-        } else if (responseText) {
-          errorMessage = responseText.substring(0, 200);
-        }
-        throw new Error(errorMessage);
-      }
-      
-      let data;
-      if (!responseText || responseText.trim().length === 0) {
-        throw new Error("Serverul a returnat un răspuns gol.");
-      }
-      
-      let aiText;
-      
-      if (contentType && contentType.includes("application/json")) {
-        try {
-          data = JSON.parse(responseText);
-          
-          if (typeof data === 'string') {
-            aiText = data;
-          } else if (Array.isArray(data)) {
-            if (data.length > 0) {
-              const firstItem = data[0];
-              aiText = firstItem.message || firstItem.reply || firstItem.output || firstItem.text || 
-                       firstItem.response || firstItem.answer || 
-                       (typeof firstItem === 'string' ? firstItem : String(firstItem));
-            } else {
-              aiText = "(Răspunsul nu a putut fi preluat - array gol)";
-            }
-          } else if (typeof data === 'object' && data !== null) {
-            aiText = data.message || data.reply || data.output || data.text || data.response || data.answer || 
-                     (data.json && (data.json.message || data.json.output)) ||
-                     "(Răspunsul nu a putut fi preluat)";
-          } else {
-            aiText = String(data);
-          }
-        } catch (e) {
-          aiText = responseText;
-        }
-      } else {
-        aiText = responseText;
-      }
-      
-      // Debug: printează textul final procesat
-      console.log("=== AI TEXT FINAL ===");
-      console.log("AI Text:", aiText);
-      console.log("AI Text Length:", aiText?.length);
-      console.log("=====================");
+      const aiText = await fetchAssistantReply(text, activeChatId);
       
       const aiMessage = { 
         role: "ai", 
