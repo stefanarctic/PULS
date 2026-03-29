@@ -7,6 +7,9 @@ import {
   fetchClass,
   fetchClassMembers,
   fetchClassAssignments,
+  fetchJoinRequests,
+  approveJoinRequest,
+  rejectJoinRequest,
   updateClassMeta,
   deleteClassCascade,
   removeMember,
@@ -14,6 +17,7 @@ import {
   updateAssignment,
   deleteAssignment,
 } from '../../lib/teacherClasses';
+import { getClassInviteUrl } from '../../lib/classInviteUrl';
 import { fetchGrile } from '../../features/grile/grileSlice';
 import { simulationsConfig } from '@/data/simulations';
 import {
@@ -25,6 +29,8 @@ import {
   X,
   GripVertical,
   Copy,
+  Share2,
+  UserPlus,
 } from 'lucide-react';
 import { copyToClipboard } from '../../lib/copyToClipboard';
 import { fetchSubmissionsMapForAssignment, studentAssignmentDueStatus } from '../../lib/assignmentProgress';
@@ -68,22 +74,38 @@ const TeacherClassPage = () => {
   const [assignmentSaving, setAssignmentSaving] = useState(false);
   const [deleting, setDeleting] = useState(false);
   const [codeCopied, setCodeCopied] = useState(false);
+  const [linkCopied, setLinkCopied] = useState(false);
+  const [joinRequests, setJoinRequests] = useState([]);
   const [submissionsByAssignment, setSubmissionsByAssignment] = useState({});
   const assignmentPanelRef = useRef(null);
   const copyFeedbackTimerRef = useRef(null);
+  const shareFeedbackTimerRef = useRef(null);
 
   const handleCopyClassCode = async () => {
     if (!classId) return;
     const ok = await copyToClipboard(classId);
     if (!ok) return;
     if (copyFeedbackTimerRef.current) clearTimeout(copyFeedbackTimerRef.current);
+    setLinkCopied(false);
     setCodeCopied(true);
     copyFeedbackTimerRef.current = setTimeout(() => setCodeCopied(false), 2000);
+  };
+
+  const handleShareInviteLink = async () => {
+    if (!classId) return;
+    const url = getClassInviteUrl(classId);
+    const ok = await copyToClipboard(url);
+    if (!ok) return;
+    if (shareFeedbackTimerRef.current) clearTimeout(shareFeedbackTimerRef.current);
+    setCodeCopied(false);
+    setLinkCopied(true);
+    shareFeedbackTimerRef.current = setTimeout(() => setLinkCopied(false), 2000);
   };
 
   useEffect(() => {
     return () => {
       if (copyFeedbackTimerRef.current) clearTimeout(copyFeedbackTimerRef.current);
+      if (shareFeedbackTimerRef.current) clearTimeout(shareFeedbackTimerRef.current);
     };
   }, []);
 
@@ -92,10 +114,11 @@ const TeacherClassPage = () => {
     setLoading(true);
     setLoadError('');
     try {
-      const [c, m, a] = await Promise.all([
+      const [c, m, a, jr] = await Promise.all([
         fetchClass(classId),
         fetchClassMembers(classId),
         fetchClassAssignments(classId),
+        fetchJoinRequests(classId),
       ]);
       if (!c || c.teacherId !== user?.uid) {
         setLoadError('Clasa nu există sau nu ai permisiune.');
@@ -107,6 +130,7 @@ const TeacherClassPage = () => {
       setEditDesc(c.description || '');
       setMembers(m);
       setAssignments(a);
+      setJoinRequests(jr);
     } catch (e) {
       console.error(e);
       setLoadError('Eroare la încărcare.');
@@ -253,6 +277,27 @@ const TeacherClassPage = () => {
     }
   };
 
+  const handleApproveJoin = async (studentUid) => {
+    try {
+      await approveJoinRequest(classId, studentUid);
+      await loadAll();
+    } catch (err) {
+      console.error(err);
+      alert('Nu s-a putut aproba cererea.');
+    }
+  };
+
+  const handleRejectJoin = async (studentUid) => {
+    if (!window.confirm('Respingi această cerere de intrare?')) return;
+    try {
+      await rejectJoinRequest(classId, studentUid);
+      await loadAll();
+    } catch (err) {
+      console.error(err);
+      alert('Nu s-a putut respinge cererea.');
+    }
+  };
+
   if (authLoading || loading) {
     return (
       <Layout>
@@ -290,15 +335,30 @@ const TeacherClassPage = () => {
               <span className="teacher-dashboard-code-label">Cod intrare elevi (ID clasă):</span>
               <span className="teacher-dashboard-code-value">
                 <code className="teacher-dashboard-code-id">{classId}</code>
-                <button
-                  type="button"
-                  className="teacher-dashboard-copy-btn"
-                  onClick={handleCopyClassCode}
-                  aria-label="Copiază codul clasei în clipboard"
-                >
-                  <Copy size={18} strokeWidth={2} />
-                </button>
-                {codeCopied && <span className="teacher-dashboard-code-copied">Copiat!</span>}
+                <span className="teacher-dashboard-code-actions">
+                  <button
+                    type="button"
+                    className="teacher-dashboard-copy-btn"
+                    onClick={handleCopyClassCode}
+                    aria-label="Copiază codul clasei în clipboard"
+                  >
+                    <Copy size={18} strokeWidth={2} />
+                  </button>
+                  <button
+                    type="button"
+                    className="teacher-dashboard-copy-btn"
+                    onClick={handleShareInviteLink}
+                    aria-label="Copiază linkul de invitație în clasă"
+                    title="Link invitație (elevii trimit cerere)"
+                  >
+                    <Share2 size={18} strokeWidth={2} />
+                  </button>
+                </span>
+                {(codeCopied || linkCopied) && (
+                  <span className="teacher-dashboard-code-copied">
+                    {codeCopied ? 'Copiat!' : 'Link copiat!'}
+                  </span>
+                )}
               </span>
             </div>
           </header>
@@ -332,10 +392,61 @@ const TeacherClassPage = () => {
 
           <section className="teacher-dashboard-card">
             <h2>
+              <UserPlus size={22} /> Cereri de intrare ({joinRequests.length})
+            </h2>
+            {joinRequests.length === 0 ? (
+              <p className="teacher-dashboard-muted">Nicio cerere în așteptare.</p>
+            ) : (
+              <ul className="teacher-dashboard-join-request-list">
+                {joinRequests.map((r) => {
+                  const ts = r.requestedAt?.toDate
+                    ? r.requestedAt.toDate()
+                    : r.requestedAt?.seconds
+                      ? new Date(r.requestedAt.seconds * 1000)
+                      : null;
+                  const when = ts
+                    ? ts.toLocaleString('ro-RO', { dateStyle: 'short', timeStyle: 'short' })
+                    : '';
+                  return (
+                    <li key={r.studentUid} className="teacher-dashboard-join-request-row">
+                      <div>
+                        <span className="teacher-dashboard-join-request-name">{r.studentName || r.studentUid}</span>
+                        {when ? (
+                          <span className="teacher-dashboard-muted teacher-dashboard-join-request-when">
+                            {' '}
+                            · {when}
+                          </span>
+                        ) : null}
+                      </div>
+                      <div className="teacher-dashboard-join-request-actions">
+                        <button
+                          type="button"
+                          className="teacher-dashboard-btn primary small"
+                          onClick={() => handleApproveJoin(r.studentUid)}
+                        >
+                          Aprobă
+                        </button>
+                        <button
+                          type="button"
+                          className="teacher-dashboard-btn danger small"
+                          onClick={() => handleRejectJoin(r.studentUid)}
+                        >
+                          Respinge
+                        </button>
+                      </div>
+                    </li>
+                  );
+                })}
+              </ul>
+            )}
+          </section>
+
+          <section className="teacher-dashboard-card">
+            <h2>
               <Users size={22} /> Elevi ({members.length})
             </h2>
             {members.length === 0 ? (
-              <p className="teacher-dashboard-muted">Niciun elev încă. Distribuie codul de mai sus.</p>
+              <p className="teacher-dashboard-muted">Niciun elev încă. Distribuie codul sau linkul de mai sus.</p>
             ) : (
               <ul className="teacher-dashboard-member-list">
                 {members.map((m) => (

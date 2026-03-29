@@ -201,11 +201,94 @@ export async function removeMember(classId, studentUid) {
   });
 }
 
+export async function getJoinRequestForUser(classId, userId) {
+  const snap = await getDoc(doc(db, 'classes', classId, 'joinRequests', userId));
+  if (!snap.exists()) return null;
+  return { studentUid: snap.id, ...snap.data() };
+}
+
+export async function fetchJoinRequests(classId) {
+  const q = query(
+    collection(db, 'classes', classId, 'joinRequests'),
+    orderBy('requestedAt', 'desc')
+  );
+  const snap = await getDocs(q);
+  return snap.docs.map((d) => ({
+    studentUid: d.id,
+    ...d.data(),
+  }));
+}
+
+/**
+ * Cerere de intrare în clasă (pending până aprobă profesorul).
+ */
+export async function requestJoinClass(userId, classId, studentName) {
+  const cid = String(classId).trim();
+  if (cid.length < 4) {
+    throw new Error('Codul prea scurt.');
+  }
+  const classSnap = await getDoc(doc(db, 'classes', cid));
+  if (!classSnap.exists()) {
+    throw new Error('Cod invalid sau clasă inexistentă.');
+  }
+  const { teacherId } = classSnap.data();
+  if (teacherId === userId) {
+    throw new Error('Ești profesorul acestei clase; nu poți trimite cerere ca elev.');
+  }
+
+  const userRef = doc(db, 'users', userId);
+  const userSnap = await getDoc(userRef);
+  const existing = userSnap.exists() ? userSnap.data().joinedClasses : [];
+  if (Array.isArray(existing) && existing.includes(cid)) {
+    throw new Error('Ești deja înscris la această clasă.');
+  }
+
+  const reqRef = doc(db, 'classes', cid, 'joinRequests', userId);
+  const reqSnap = await getDoc(reqRef);
+  if (reqSnap.exists()) {
+    throw new Error('Ai deja o cerere în așteptare pentru această clasă.');
+  }
+
+  const name = String(studentName || '').trim() || 'Elev';
+  await setDoc(reqRef, {
+    requestedAt: Timestamp.now(),
+    studentName: name,
+  });
+  return cid;
+}
+
+export async function approveJoinRequest(classId, studentUid) {
+  const batch = writeBatch(db);
+  batch.update(doc(db, 'users', studentUid), {
+    joinedClasses: arrayUnion(classId),
+  });
+  batch.delete(doc(db, 'classes', classId, 'joinRequests', studentUid));
+  await batch.commit();
+}
+
+export async function rejectJoinRequest(classId, studentUid) {
+  await deleteDoc(doc(db, 'classes', classId, 'joinRequests', studentUid));
+}
+
 export async function deleteClassCascade(classId) {
   const classRef = doc(db, 'classes', classId);
   const classSnap = await getDoc(classRef);
   if (!classSnap.exists()) return;
   const teacherId = classSnap.data().teacherId;
+
+  const joinReqSnap = await getDocs(collection(db, 'classes', classId, 'joinRequests'));
+  let jbatch = writeBatch(db);
+  let jn = 0;
+  for (const jr of joinReqSnap.docs) {
+    jbatch.delete(jr.ref);
+    jn++;
+    if (jn >= 450) {
+      await jbatch.commit();
+      jbatch = writeBatch(db);
+      jn = 0;
+    }
+  }
+  if (jn > 0) await jbatch.commit();
 
   const assignmentsSnap = await getDocs(collection(db, 'classes', classId, 'assignments'));
   let batch = writeBatch(db);

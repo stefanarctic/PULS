@@ -4,7 +4,8 @@ import Layout from '../Layout';
 import { useTeacher } from '../../hooks/useTeacher';
 import { fetchTeacherClasses, createClass } from '../../lib/teacherClasses';
 import { copyToClipboard } from '../../lib/copyToClipboard';
-import { GraduationCap, Plus, ChevronRight, Copy } from 'lucide-react';
+import { getClassInviteUrl } from '../../lib/classInviteUrl';
+import { GraduationCap, Plus, ChevronRight, Copy, Share2 } from 'lucide-react';
 import '../../scss/components/_teacher-dashboard.scss';
 
 const TeacherDashboard = () => {
@@ -18,19 +19,35 @@ const TeacherDashboard = () => {
   const [formError, setFormError] = useState('');
   const [listError, setListError] = useState('');
   const [copiedClassId, setCopiedClassId] = useState(null);
+  const [sharedLinkClassId, setSharedLinkClassId] = useState(null);
   const copyFeedbackTimerRef = useRef(null);
+  const shareFeedbackTimerRef = useRef(null);
 
   const handleCopyClassCode = async (classId) => {
     const ok = await copyToClipboard(classId);
     if (!ok) return;
     if (copyFeedbackTimerRef.current) clearTimeout(copyFeedbackTimerRef.current);
+    if (shareFeedbackTimerRef.current) clearTimeout(shareFeedbackTimerRef.current);
+    setSharedLinkClassId(null);
     setCopiedClassId(classId);
     copyFeedbackTimerRef.current = setTimeout(() => setCopiedClassId(null), 2000);
+  };
+
+  const handleShareInviteLink = async (classId) => {
+    const url = getClassInviteUrl(classId);
+    const ok = await copyToClipboard(url);
+    if (!ok) return;
+    if (shareFeedbackTimerRef.current) clearTimeout(shareFeedbackTimerRef.current);
+    if (copyFeedbackTimerRef.current) clearTimeout(copyFeedbackTimerRef.current);
+    setCopiedClassId(null);
+    setSharedLinkClassId(classId);
+    shareFeedbackTimerRef.current = setTimeout(() => setSharedLinkClassId(null), 2000);
   };
 
   useEffect(() => {
     return () => {
       if (copyFeedbackTimerRef.current) clearTimeout(copyFeedbackTimerRef.current);
+      if (shareFeedbackTimerRef.current) clearTimeout(shareFeedbackTimerRef.current);
     };
   }, []);
 
@@ -162,17 +179,31 @@ const TeacherDashboard = () => {
                           {copiedClassId === c.id && (
                             <span className="teacher-dashboard-code-copied"> Copiat!</span>
                           )}
+                          {sharedLinkClassId === c.id && copiedClassId !== c.id && (
+                            <span className="teacher-dashboard-code-copied"> Link copiat!</span>
+                          )}
                         </span>
                         <ChevronRight size={20} />
                       </Link>
-                      <button
-                        type="button"
-                        className="teacher-dashboard-copy-btn teacher-dashboard-copy-btn--row"
-                        onClick={() => handleCopyClassCode(c.id)}
-                        aria-label={`Copiază codul clasei ${c.name || c.id}`}
-                      >
-                        <Copy size={18} strokeWidth={2} />
-                      </button>
+                      <span className="teacher-dashboard-code-actions teacher-dashboard-code-actions--row">
+                        <button
+                          type="button"
+                          className="teacher-dashboard-copy-btn teacher-dashboard-copy-btn--row"
+                          onClick={() => handleCopyClassCode(c.id)}
+                          aria-label={`Copiază codul clasei ${c.name || c.id}`}
+                        >
+                          <Copy size={18} strokeWidth={2} />
+                        </button>
+                        <button
+                          type="button"
+                          className="teacher-dashboard-copy-btn teacher-dashboard-copy-btn--row"
+                          onClick={() => handleShareInviteLink(c.id)}
+                          aria-label={`Copiază linkul de invitație pentru ${c.name || c.id}`}
+                          title="Link invitație"
+                        >
+                          <Share2 size={18} strokeWidth={2} />
+                        </button>
+                      </span>
                     </div>
                   </li>
                 ))}

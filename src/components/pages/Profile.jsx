@@ -6,8 +6,7 @@ import { doc, setDoc, getDoc, updateDoc, collection, query, where, getDocs, onSn
 import { useDispatch, useSelector } from 'react-redux';
 import { problemeData } from '../problemedata';
 import { ProblemCard } from './Probleme.jsx';
-import { Link } from 'react-router-dom';
-import { useNavigate } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import '../../scss/components/_probleme.scss';
 import { Check, ShieldCheck, Star, GraduationCap, School } from 'lucide-react';
 import RecentActivity from '../RecentActivity';
@@ -160,6 +159,7 @@ const normalizeFavoriteIds = (ids = []) => Array.from(new Set((ids || []).filter
 
 const Profile = () => {
     const navigate = useNavigate();
+    const location = useLocation();
 
     // Helper function to scroll to top
     const scrollToTop = () => {
@@ -323,6 +323,17 @@ const Profile = () => {
         });
         return () => unsubscribe();
     }, []);
+
+    useEffect(() => {
+        if (loading) return;
+        if (!user?.uid) return;
+        const ret = location.state?.returnTo;
+        if (typeof ret !== 'string') return;
+        const trimmed = ret.trim();
+        if (!trimmed.startsWith('/') || trimmed.startsWith('//')) return;
+        if (trimmed.includes('://')) return;
+        navigate(trimmed, { replace: true });
+    }, [loading, user?.uid, location.state?.returnTo, navigate]);
 
     useEffect(() => {
         if (user && user.uid) {

@@ -138,6 +138,48 @@
     min-width: 2.75rem;
   }
 
+  .teacher-dashboard-code-actions {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    flex-shrink: 0;
+  }
+
+  .teacher-dashboard-join-request-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  .teacher-dashboard-join-request-row {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.75rem;
+    padding: 0.65rem 0;
+    border-bottom: 1px solid var(--border-color-current-mode);
+
+    &:last-child {
+      border-bottom: none;
+    }
+  }
+
+  .teacher-dashboard-join-request-name {
+    font-weight: 600;
+  }
+
+  .teacher-dashboard-join-request-when {
+    font-weight: 400;
+    font-size: 0.875rem;
+  }
+
+  .teacher-dashboard-join-request-actions {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
   .teacher-dashboard-code-copied {
     font-size: 0.875rem;
     font-weight: 600;
@@ -1104,6 +1146,9 @@
   max-width: 26rem;
   margin: 0 auto;
   padding: 0 1rem;
+  min-width: 0;
+  width: 100%;
+  box-sizing: border-box;
 }
 
 .class-join-back {
@@ -1131,6 +1176,14 @@
 .class-join-hero {
   text-align: center;
   margin-bottom: 1.75rem;
+
+  &--teacher {
+    margin-bottom: 1.25rem;
+  }
+
+  &--compact {
+    margin-bottom: 1rem;
+  }
 }
 
 .class-join-badge {
@@ -1147,6 +1200,12 @@
   background: rgba(96, 165, 250, 0.12);
   border: 1px solid rgba(96, 165, 250, 0.28);
   margin-bottom: 1.1rem;
+
+  &--teacher {
+    color: var(--primary-color-current-mode);
+    background: rgba(127, 127, 127, 0.1);
+    border-color: var(--border-color-current-mode);
+  }
 }
 
 .class-join-title {
@@ -1172,6 +1231,15 @@
   background: linear-gradient(145deg, rgba(96, 165, 250, 0.2), rgba(96, 165, 250, 0.06));
   border: 1px solid rgba(96, 165, 250, 0.25);
   color: var(--accent-color-current-mode);
+
+  &--teacher {
+    background: rgba(96, 165, 250, 0.12);
+    border-color: rgba(96, 165, 250, 0.35);
+  }
+}
+
+.class-join-title--solo {
+  margin-bottom: 0.5rem;
 }
 
 .class-join-lead {
@@ -1180,6 +1248,15 @@
   font-size: 1rem;
   line-height: 1.55;
   color: var(--muted-color-current-mode);
+
+  &--teacher {
+    max-width: 26rem;
+  }
+
+  &--solo {
+    margin: 0 auto;
+    max-width: 20rem;
+  }
 }
 
 .class-join-panel {
@@ -1188,13 +1265,54 @@
   border: 1px solid var(--border-color-current-mode);
   background: var(--secondary-background-current-mode);
   box-shadow: 0 8px 28px rgba(0, 0, 0, 0.06);
+  box-sizing: border-box;
+  min-width: 0;
+  overflow: hidden;
 
   html[data-theme='dark'] & {
     box-shadow: 0 8px 28px rgba(0, 0, 0, 0.22);
   }
 
+  /* Butonul e inline-flex + width 100% — fără asta depășește cardul pe unele viewport-uri */
+  .student-classes-btn--primary {
+    display: flex;
+    box-sizing: border-box;
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
+    margin-top: 0.25rem;
+    justify-content: center;
+    text-align: center;
+    white-space: normal;
+    line-height: 1.35;
+
+    &:hover {
+      transform: none;
+    }
+  }
+
   &--guest {
     text-align: center;
+  }
+
+  &--teacher {
+    text-align: center;
+    padding: 1.5rem 1.25rem 1.75rem;
+
+    .student-classes-btn--primary {
+      margin: 0;
+    }
+  }
+}
+
+.class-join-loading-inline {
+  display: flex;
+  justify-content: center;
+  padding: 0.5rem 0 0.25rem;
+
+  .spinner {
+    width: 2rem;
+    height: 2rem;
   }
 }
 
@@ -1258,9 +1376,18 @@
   color: #4ade80;
 }
 
-.class-join-form .student-classes-btn--primary {
-  width: 100%;
-  margin-top: 0.25rem;
+.class-join-invite-lead {
+  margin: 0 0 1rem;
+  font-size: 1.05rem;
+  line-height: 1.5;
+}
+
+.class-join-muted {
+  display: block;
+  margin-top: 0.35rem;
+  font-size: 0.95rem;
+  font-weight: 400;
+  color: var(--muted-color-current-mode);
 }
 
 .class-join-footer {

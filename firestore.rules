@@ -43,6 +43,21 @@ service cloud.firestore {
       return isClassTeacher(classId) || userJoinedClass(classId) || isAdmin();
     }
 
+    function userNotInJoinedClass(classId, uid) {
+      let u = get(/databases/$(database)/documents/users/$(uid)).data;
+      return !('joinedClasses' in u && u.joinedClasses is list && u.joinedClasses.hasAny([classId]));
+    }
+
+    function joinRequestCreateValid(classId, studentUid) {
+      return exists(/databases/$(database)/documents/classes/$(classId)) &&
+             classTeacherId(classId) != studentUid &&
+             request.resource.data.keys().hasAll(['requestedAt', 'studentName']) &&
+             request.resource.data.requestedAt is timestamp &&
+             request.resource.data.studentName is string &&
+             request.resource.data.studentName.size() >= 1 &&
+             request.resource.data.studentName.size() <= 200;
+    }
+
     function teacherStatusValidOnCreate() {
       return !('teacherStatus' in request.resource.data) ||
              request.resource.data.teacherStatus == 'none';
@@ -118,6 +133,17 @@ service cloud.firestore {
                        request.resource.data.teacherId == resource.data.teacherId;
 
       allow delete: if isClassTeacher(classId) || isAdmin();
+
+      match /joinRequests/{studentUid} {
+        allow read: if isClassTeacher(classId) || isAdmin() ||
+                        (isAuthenticated() && request.auth.uid == studentUid);
+        allow create: if isAuthenticated() && request.auth.uid == studentUid &&
+                         joinRequestCreateValid(classId, studentUid) &&
+                         userNotInJoinedClass(classId, studentUid);
+        allow delete: if isClassTeacher(classId) || isAdmin() ||
+                         (isAuthenticated() && request.auth.uid == studentUid);
+        allow update: if false;
+      }
 
       match /assignments/{assignmentId} {
         allow read: if canReadClass(classId);
