@@ -4,11 +4,7 @@ import { onAuthStateChanged } from 'firebase/auth';
 import { doc, getDoc } from 'firebase/firestore';
 import Layout from '../Layout';
 import { auth, db } from '../../lib/firebase';
-import {
-  fetchClass,
-  requestJoinClass,
-  getJoinRequestForUser,
-} from '../../lib/teacherClasses';
+import { fetchClass, requestJoinClass } from '../../lib/teacherClasses';
 import { ArrowLeft, GraduationCap, KeyRound, LogIn, Sparkles, UserPlus } from 'lucide-react';
 import '../../scss/components/_teacher-dashboard.scss';
 
@@ -52,11 +48,16 @@ const ClassJoinPage = () => {
       setUserIsMember(false);
       setUserIsTeacher(false);
       setHasPendingRequest(false);
+      setSuccess('');
+      setError('');
       return;
     }
     let cancelled = false;
     setLoadingInvite(true);
     setInviteLoadError('');
+    setHasPendingRequest(false);
+    setSuccess('');
+    setError('');
     (async () => {
       try {
         const c = await fetchClass(inviteId);
@@ -69,12 +70,10 @@ const ClassJoinPage = () => {
         const userSnap = await getDoc(doc(db, 'users', user.uid));
         const joined = userSnap.exists() ? userSnap.data().joinedClasses : [];
         const isIn = Array.isArray(joined) && joined.includes(inviteId);
-        const req = await getJoinRequestForUser(inviteId, user.uid);
         if (cancelled) return;
         setInviteClass(c);
         setUserIsMember(isIn);
         setUserIsTeacher(c.teacherId === user.uid);
-        setHasPendingRequest(!!req);
       } catch (e) {
         console.error(e);
         if (!cancelled) setInviteLoadError('Nu s-a putut încărca invitația.');
@@ -123,9 +122,13 @@ const ClassJoinPage = () => {
       setSuccess(
         'Cererea ta e în așteptare. Când profesorul te acceptă, vei vedea clasa la „Clasele mele”.'
       );
-      setHasPendingRequest(true);
     } catch (err) {
-      setError(err.message || 'Eroare la trimiterea cererii.');
+      const msg = err?.message || '';
+      if (msg.includes('Ai deja o cerere')) {
+        setHasPendingRequest(true);
+      } else {
+        setError(msg || 'Eroare la trimiterea cererii.');
+      }
     } finally {
       setSubmitting(false);
     }
@@ -286,10 +289,20 @@ const ClassJoinPage = () => {
                   </>
                 ) : hasPendingRequest ? (
                   <>
-                    <p>
+                    <p className="class-join-pending-lead">
                       Ai deja o cerere în așteptare pentru{' '}
-                      <strong>{inviteClass.name}</strong>. Profesorul te va accepta când e gata.
+                      <strong>{inviteClass.name}</strong>.
                     </p>
+                    <Link to="/clasa" className="student-classes-btn student-classes-btn--primary">
+                      Vezi clasele mele
+                    </Link>
+                  </>
+                ) : success ? (
+                  <>
+                    <p className="class-join-invite-lead">
+                      Ești invitat în clasa <strong>{inviteClass.name}</strong>.
+                    </p>
+                    <p className="class-join-success">{success}</p>
                     <Link to="/clasa" className="student-classes-btn student-classes-btn--primary">
                       Vezi clasele mele
                     </Link>
@@ -303,7 +316,6 @@ const ClassJoinPage = () => {
                       ) : null}
                     </p>
                     {error && <p className="class-join-error">{error}</p>}
-                    {success && <p className="class-join-success">{success}</p>}
                     <button
                       type="button"
                       className="student-classes-btn student-classes-btn--primary"
@@ -311,7 +323,7 @@ const ClassJoinPage = () => {
                       onClick={handleSubmitInviteRequest}
                     >
                       <UserPlus size={18} />
-                      {submitting ? 'Se trimite...' : 'Trimite cererea de intrare'}
+                      {submitting ? 'Se trimite...' : 'Trimite cerere de intrare'}
                     </button>
                   </>
                 )}

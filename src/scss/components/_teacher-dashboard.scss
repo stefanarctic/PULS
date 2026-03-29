@@ -1395,6 +1395,7 @@
 
 .class-join-panel {
   padding: 1.75rem 1.5rem;
+  padding-top: 1rem;
   border-radius: 18px;
   border: 1px solid var(--border-color-current-mode);
   background: var(--secondary-background-current-mode);
@@ -1505,15 +1506,26 @@
 }
 
 .class-join-success {
-  margin: 0 0 0.75rem;
+  margin: 0 0;
   font-size: 0.9rem;
   color: #4ade80;
+  text-align: center;
+  margin-bottom: 1.25rem;
 }
 
 .class-join-invite-lead {
   margin: 0 0 1rem;
   font-size: 1.05rem;
+  text-align: center;
   line-height: 1.5;
+}
+
+/* Centrare orizontală a textului (nu verticală în card) */
+.class-join-pending-lead {
+  margin: 0 0;
+  margin-bottom: 1rem;
+  text-align: center;
+  line-height: 1.55;
 }
 
 .class-join-muted {
