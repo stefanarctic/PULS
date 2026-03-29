@@ -173,7 +173,7 @@ export const simulationsConfig = [
     description: "Simulează mișcările oscilatorii pe OX.",
     image: simulatorOscilatieOXImg,
     caption: "Mișcări Oscilatorii pe OX",
-    iframeSrc: "/simulari/Oscilatii elastice  pe OX/index.html",
+    iframeSrc: "/simulari/Oscilatii-ox/index.html",
     category: "Oscilații"
   },
   {
@@ -184,7 +184,7 @@ export const simulationsConfig = [
     description: "Simulează mișcările oscilatorii pe OY.",
     image: simulatorOscilatieOYImg,
     caption: "Mișcări Oscilatorii pe OY",
-    iframeSrc: "/simulari/Legea Hooke-oscilatii oy/index.html",
+    iframeSrc: "/simulari/Oscilatii-oy/index.html",
     maxHeight: '90vh',
     category: "Oscilații"
   },
