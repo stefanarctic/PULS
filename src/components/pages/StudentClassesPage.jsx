@@ -2,7 +2,8 @@ import React, { useState, useEffect, useMemo } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import Layout from '../Layout';
 import { onAuthStateChanged } from 'firebase/auth';
-import { auth } from '../../lib/firebase';
+import { doc, getDoc } from 'firebase/firestore';
+import { auth, db } from '../../lib/firebase';
 import { fetchStudentEnrollments, fetchClass } from '../../lib/teacherClasses';
 import {
   ArrowRight,
@@ -33,6 +34,7 @@ const StudentClassesPage = () => {
   const navigate = useNavigate();
   const [user, setUser] = useState(null);
   const [authLoading, setAuthLoading] = useState(true);
+  const [teacherStatus, setTeacherStatus] = useState(null);
   const [loading, setLoading] = useState(true);
   const [rows, setRows] = useState([]);
 
@@ -40,13 +42,39 @@ const StudentClassesPage = () => {
     const unsub = onAuthStateChanged(auth, (u) => {
       setUser(u);
       setAuthLoading(false);
-      if (!u) setLoading(false);
+      if (!u) {
+        setLoading(false);
+        setTeacherStatus(null);
+      }
     });
     return () => unsub();
   }, []);
 
   useEffect(() => {
     if (!user?.uid) return;
+    let cancelled = false;
+    (async () => {
+      try {
+        const snap = await getDoc(doc(db, 'users', user.uid));
+        const ts = snap.exists() ? snap.data().teacherStatus || 'none' : 'none';
+        if (!cancelled) setTeacherStatus(ts);
+      } catch (e) {
+        console.error(e);
+        if (!cancelled) setTeacherStatus('none');
+      }
+    })();
+    return () => {
+      cancelled = true;
+    };
+  }, [user]);
+
+  useEffect(() => {
+    if (teacherStatus !== 'approved') return;
+    navigate('/profesor', { replace: true });
+  }, [teacherStatus, navigate]);
+
+  useEffect(() => {
+    if (!user?.uid || teacherStatus === null || teacherStatus === 'approved') return;
     let cancelled = false;
     (async () => {
       setLoading(true);
@@ -74,7 +102,7 @@ const StudentClassesPage = () => {
     return () => {
       cancelled = true;
     };
-  }, [user]);
+  }, [user, teacherStatus]);
 
   const hasClasses = rows.length > 0;
   const sortedRows = useMemo(
@@ -111,6 +139,32 @@ const StudentClassesPage = () => {
                 <ArrowRight size={18} />
               </Link>
             </div>
+          </div>
+        </div>
+      </Layout>
+    );
+  }
+
+  if (teacherStatus === null) {
+    return (
+      <Layout>
+        <div className="teacher-dashboard student-classes-page">
+          <div className="student-classes-loading">
+            <div className="spinner" />
+            <p>Se încarcă...</p>
+          </div>
+        </div>
+      </Layout>
+    );
+  }
+
+  if (teacherStatus === 'approved') {
+    return (
+      <Layout>
+        <div className="teacher-dashboard student-classes-page">
+          <div className="student-classes-loading">
+            <div className="spinner" />
+            <p>Redirecționare la panoul profesor...</p>
           </div>
         </div>
       </Layout>
