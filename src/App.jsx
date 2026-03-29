@@ -38,6 +38,7 @@ import TeacherClassPage from "./components/pages/TeacherClassPage";
 import ClassJoinPage from "./components/pages/ClassJoinPage";
 import StudentClassesPage from "./components/pages/StudentClassesPage";
 import StudentClassPage from "./components/pages/StudentClassPage";
+import InviteTeacherPage from "./components/pages/InviteTeacherPage";
 import { useEffect } from "react";
 import uploadProblems from "./components/uploadProblems";
 import { useDispatch, useSelector } from 'react-redux';
@@ -143,6 +144,7 @@ const App = () => {
           <Route path="/about-us" element={<About />} />
           <Route path="/search" element={<SearchResults />} />
           <Route path="/profil" element={<Profile />} />
+          <Route path="/invite-teacher" element={<InviteTeacherPage />} />
           <Route path="/admin" element={<AdminDashboard />} />
           <Route path="/profesor" element={<TeacherDashboard />} />
           <Route path="/profesor/clasa/:classId" element={<TeacherClassPage />} />

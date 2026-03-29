@@ -311,13 +311,26 @@ const Profile = () => {
     useEffect(() => {
         if (loading) return;
         if (!user?.uid) return;
+        const params = new URLSearchParams(location.search);
+        const redirectParam = params.get('redirect');
+        if (redirectParam) {
+            try {
+                const path = decodeURIComponent(redirectParam);
+                if (path.startsWith('/') && !path.includes('://') && !path.startsWith('//')) {
+                    navigate(path, { replace: true });
+                    return;
+                }
+            } catch {
+                return;
+            }
+        }
         const ret = location.state?.returnTo;
         if (typeof ret !== 'string') return;
         const trimmed = ret.trim();
         if (!trimmed.startsWith('/') || trimmed.startsWith('//')) return;
         if (trimmed.includes('://')) return;
         navigate(trimmed, { replace: true });
-    }, [loading, user?.uid, location.state?.returnTo, navigate]);
+    }, [loading, user?.uid, location.search, location.state?.returnTo, navigate]);
 
     useEffect(() => {
         if (user && user.uid) {

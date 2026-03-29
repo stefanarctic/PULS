@@ -4,9 +4,10 @@ import { useNavigate, useLocation } from 'react-router-dom';
 import Layout from '../Layout';
 import { useAdmin } from '../../hooks/useAdmin';
 import { fetchProblems, updateProblem, deleteProblem, clearUpdateStatus, clearDeleteStatus } from '../../features/problems/problemsSlice';
-import { Trash2, Search, X, AlertCircle, GraduationCap, User } from 'lucide-react';
+import { Trash2, Search, X, AlertCircle, GraduationCap, User, UserPlus, ChevronDown } from 'lucide-react';
 import { normalizeString } from '../../lib/normalizeString';
 import { collection, query, where, getDocs, getDoc, updateDoc, doc } from 'firebase/firestore';
+import { createTeacherInvite } from '../../lib/teacherInvite';
 import { db } from '../../lib/firebase';
 import '../../scss/components/_admin-dashboard.scss';
 
@@ -53,6 +54,10 @@ const AdminDashboard = () => {
   const [teacherApprovalsLoading, setTeacherApprovalsLoading] = useState(false);
   const [selfTeacherStatus, setSelfTeacherStatus] = useState(null);
   const [selfTeacherRoleSaving, setSelfTeacherRoleSaving] = useState(false);
+  const [teacherInviteLoading, setTeacherInviteLoading] = useState(false);
+  const [teacherInviteUrl, setTeacherInviteUrl] = useState('');
+  const [teacherInviteError, setTeacherInviteError] = useState('');
+  const [teacherInviteCopied, setTeacherInviteCopied] = useState(false);
 
   useEffect(() => {
     if (!adminLoading && !isAdmin) {
@@ -114,6 +119,33 @@ const AdminDashboard = () => {
     } catch (e) {
       console.error(e);
       alert('Nu s-a putut respinge.');
+    }
+  };
+
+  const handleGenerateTeacherInvite = async () => {
+    if (!user?.uid) return;
+    setTeacherInviteLoading(true);
+    setTeacherInviteError('');
+    setTeacherInviteCopied(false);
+    try {
+      const { url } = await createTeacherInvite(user.uid);
+      setTeacherInviteUrl(url);
+    } catch (e) {
+      console.error(e);
+      setTeacherInviteError('Nu s-a putut genera invitația. Verifică regulile Firestore și că ești admin.');
+    } finally {
+      setTeacherInviteLoading(false);
+    }
+  };
+
+  const copyTeacherInviteUrl = async () => {
+    if (!teacherInviteUrl) return;
+    try {
+      await navigator.clipboard.writeText(teacherInviteUrl);
+      setTeacherInviteCopied(true);
+      setTimeout(() => setTeacherInviteCopied(false), 2000);
+    } catch {
+      setTeacherInviteError('Nu s-a putut copia în clipboard.');
     }
   };
 
@@ -1006,6 +1038,50 @@ Dacă nu găsești date sau formule, returnează obiecte goale. Răspunde DOAR c
               </ul>
             )}
           </section>
+
+          <details className="admin-teacher-invite" aria-label="Invitație profesor">
+            <summary className="admin-teacher-invite-summary">
+              <span className="admin-teacher-invite-summary-text">
+                <UserPlus size={22} aria-hidden className="admin-teacher-invite-summary-icon" />
+                <span className="admin-teacher-invite-heading">Invitație profesor</span>
+              </span>
+              <ChevronDown size={22} className="admin-teacher-invite-chevron" aria-hidden />
+            </summary>
+            <div className="admin-teacher-invite-body">
+              <p className="admin-teacher-invite-lead">
+                Generează un link unic și trimite-l persoanei care trebuie să poată cere cont de profesor. După ce trimite
+                cererea, o vezi mai sus și o aprobi sau respingi manual.
+              </p>
+              <div className="admin-teacher-invite-actions">
+                <button
+                  type="button"
+                  className="admin-teacher-btn approve"
+                  disabled={teacherInviteLoading}
+                  onClick={handleGenerateTeacherInvite}
+                >
+                  {teacherInviteLoading ? 'Se generează...' : 'Generează link nou'}
+                </button>
+                {teacherInviteUrl ? (
+                  <button
+                    type="button"
+                    className="admin-teacher-btn reject"
+                    onClick={copyTeacherInviteUrl}
+                  >
+                    {teacherInviteCopied ? 'Copiat în clipboard' : 'Copiază linkul'}
+                  </button>
+                ) : null}
+              </div>
+              {teacherInviteError ? <p className="admin-teacher-invite-err">{teacherInviteError}</p> : null}
+              {teacherInviteUrl ? (
+                <div className="admin-teacher-invite-url-box">
+                  <span className="admin-teacher-invite-url-label">Link generat</span>
+                  <code className="admin-teacher-invite-url" title={teacherInviteUrl}>
+                    {teacherInviteUrl}
+                  </code>
+                </div>
+              ) : null}
+            </div>
+          </details>
 
           {/* Search and Filters - Similar to /probleme */}
           <div className="admin-filters-section">

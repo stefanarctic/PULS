@@ -75,25 +75,194 @@
     display: flex;
     gap: 0.5rem;
   }
+}
 
-  .admin-teacher-btn {
-    padding: 0.45rem 0.85rem;
-    border-radius: 8px;
-    border: 1px solid var(--border-color-current-mode);
-    cursor: pointer;
-    font-size: 0.9rem;
+// Butoane comune: cereri profesor + invitație (înainte erau doar în .admin-teacher-requests)
+.admin-teacher-requests .admin-teacher-btn,
+.admin-teacher-invite .admin-teacher-btn {
+  padding: 0.5rem 1rem;
+  border-radius: 8px;
+  border: 1px solid var(--border-color-current-mode);
+  cursor: pointer;
+  font-size: 0.9rem;
+  font-weight: 500;
+  transition: background 0.15s ease, color 0.15s ease, border-color 0.15s ease, transform 0.1s ease;
 
-    &.approve {
-      background: #1b5e20;
-      color: #fff;
-      border-color: #1b5e20;
+  &:disabled {
+    opacity: 0.55;
+    cursor: not-allowed;
+  }
+
+  &:not(:disabled):active {
+    transform: translateY(1px);
+  }
+
+  &.approve {
+    background: #1b5e20;
+    color: #fff;
+    border-color: #2e7d32;
+
+    &:not(:disabled):hover {
+      background: #2e7d32;
+      border-color: #43a047;
     }
+  }
 
-    &.reject {
-      background: transparent;
-      color: #c62828;
+  &.reject {
+    background: rgba(198, 40, 40, 0.12);
+    color: #e57373;
+    border-color: rgba(198, 40, 40, 0.45);
+
+    &:not(:disabled):hover {
+      background: rgba(198, 40, 40, 0.2);
       border-color: #c62828;
     }
+  }
+}
+
+details.admin-teacher-invite {
+  margin-bottom: 2rem;
+  border: 1px solid var(--border-color-current-mode);
+  border-radius: 12px;
+  background: var(--secondary-background-current-mode);
+  box-shadow: 0 1px 0 rgba(255, 255, 255, 0.04) inset;
+  position: relative;
+  overflow: hidden;
+
+  &::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 4px;
+    border-radius: 12px 0 0 12px;
+    background: linear-gradient(180deg, #2e7d32 0%, #1b5e20 100%);
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  &[open] .admin-teacher-invite-chevron {
+    transform: rotate(180deg);
+  }
+
+  .admin-teacher-invite-summary {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    padding: 1.1rem 1.35rem;
+    padding-left: 1.25rem;
+    cursor: pointer;
+    list-style: none;
+    user-select: none;
+    font-weight: 600;
+    color: var(--text-color-current-mode, var(--primary-color-current-mode));
+    position: relative;
+    z-index: 1;
+
+    &::-webkit-details-marker,
+    &::marker {
+      display: none;
+    }
+  }
+
+  .admin-teacher-invite-summary-text {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    min-width: 0;
+  }
+
+  .admin-teacher-invite-summary-icon {
+    flex-shrink: 0;
+    color: #66bb6a;
+  }
+
+  .admin-teacher-invite-heading {
+    font-size: 1.2rem;
+    line-height: 1.3;
+  }
+
+  .admin-teacher-invite-chevron {
+    flex-shrink: 0;
+    color: var(--muted-color-current-mode);
+    transition: transform 0.2s ease;
+  }
+
+  .admin-teacher-invite-body {
+    padding: 0 1.35rem 1.25rem;
+    padding-left: 1.25rem;
+    border-top: 1px solid var(--border-color-current-mode);
+    animation: admin-teacher-invite-open 0.2s ease;
+  }
+
+  .admin-teacher-invite-lead {
+    margin: 0 0 1.15rem;
+    padding-top: 1rem;
+    padding-left: 0.35rem;
+    font-size: 0.95rem;
+    line-height: 1.55;
+    color: var(--muted-color-current-mode);
+    max-width: 52rem;
+  }
+
+  .admin-teacher-invite-actions {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.65rem;
+    padding-left: 0.35rem;
+    margin-bottom: 0.25rem;
+  }
+
+  .admin-teacher-invite-err {
+    margin: 0.75rem 0 0;
+    padding-left: 0.35rem;
+    font-size: 0.9rem;
+    color: #ef9a9a;
+  }
+
+  .admin-teacher-invite-url-box {
+    margin-top: 1rem;
+    padding: 0.85rem 1rem;
+    border-radius: 8px;
+    border: 1px solid var(--border-color-current-mode);
+    background: linear-gradient(
+      145deg,
+      rgba(46, 125, 50, 0.12) 0%,
+      rgba(0, 0, 0, 0.06) 100%
+    );
+  }
+
+  .admin-teacher-invite-url-label {
+    display: block;
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: var(--muted-color-current-mode);
+    margin-bottom: 0.45rem;
+  }
+
+  .admin-teacher-invite-url {
+    display: block;
+    font-size: 0.8rem;
+    line-height: 1.5;
+    word-break: break-all;
+    color: var(--text-color-current-mode, inherit);
+    font-family: ui-monospace, 'Cascadia Code', 'Segoe UI Mono', monospace;
+    opacity: 0.92;
+  }
+}
+
+@keyframes admin-teacher-invite-open {
+  from {
+    opacity: 0.85;
+  }
+
+  to {
+    opacity: 1;
   }
 }
 
