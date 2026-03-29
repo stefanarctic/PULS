@@ -253,6 +253,79 @@
     }
   }
 
+  .teacher-dashboard-student-class-head {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.75rem 1rem;
+    margin-bottom: 1.25rem;
+
+    .teacher-dashboard-back {
+      margin-bottom: 0;
+    }
+  }
+
+  /* Roșu ca la vechiul hover: #dc2626, bordură și fundal rgba(220,38,38,…). */
+  .teacher-dashboard-leave-class-btn {
+    position: relative;
+    z-index: 1100;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-bottom: 0;
+    padding: 0.55rem 1.1rem 0.55rem 0.75rem;
+    border-radius: 9999px;
+    border: 1px solid rgba(220, 38, 38, 0.45);
+    background: rgba(220, 38, 38, 0.06);
+    color: #dc2626;
+    font-weight: 600;
+    font-size: 0.95rem;
+    letter-spacing: 0.01em;
+    cursor: pointer;
+    transition:
+      background 0.2s ease,
+      border-color 0.2s ease,
+      box-shadow 0.2s ease,
+      transform 0.15s ease,
+      color 0.2s ease;
+
+    svg {
+      flex-shrink: 0;
+      pointer-events: none;
+    }
+
+    &:hover:not(:disabled) {
+      background: rgba(220, 38, 38, 0.18);
+      border-color: rgba(220, 38, 38, 0.55);
+      box-shadow: 0 4px 16px rgba(220, 38, 38, 0.18);
+      color: #dc2626;
+      transform: translateX(3px);
+    }
+
+    &:disabled {
+      opacity: 0.65;
+      cursor: not-allowed;
+    }
+
+    &:focus-visible {
+      outline: 2px solid #dc2626;
+      outline-offset: 3px;
+    }
+
+    html[data-theme='light'] & {
+      border-color: rgba(220, 38, 38, 0.45);
+      background: rgba(220, 38, 38, 0.06);
+      color: #dc2626;
+
+      &:hover:not(:disabled) {
+        background: rgba(220, 38, 38, 0.12);
+        border-color: rgba(220, 38, 38, 0.5);
+        color: #dc2626;
+      }
+    }
+  }
+
   .teacher-dashboard-card {
     background: var(--secondary-background-current-mode);
     border: 1px solid var(--border-color-current-mode);
@@ -327,6 +400,24 @@
     &.danger {
       border-color: #c62828;
       color: #c62828;
+      background: transparent;
+      transition:
+        background 0.18s ease,
+        color 0.18s ease,
+        border-color 0.18s ease,
+        box-shadow 0.18s ease;
+
+      &:hover:not(:disabled) {
+        background: #c62828;
+        color: #fff;
+        border-color: #c62828;
+        box-shadow: 0 2px 12px rgba(198, 40, 40, 0.35);
+      }
+
+      &:focus-visible {
+        outline: 2px solid #c62828;
+        outline-offset: 2px;
+      }
     }
 
     &:disabled {

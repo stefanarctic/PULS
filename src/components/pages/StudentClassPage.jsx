@@ -1,12 +1,12 @@
 import React, { useState, useEffect, useCallback } from 'react';
-import { Link, useParams } from 'react-router-dom';
+import { Link, useNavigate, useParams } from 'react-router-dom';
 import { doc, getDoc } from 'firebase/firestore';
 import Layout from '../Layout';
 import { onAuthStateChanged } from 'firebase/auth';
 import { auth, db } from '../../lib/firebase';
-import { fetchClass, fetchClassAssignments } from '../../lib/teacherClasses';
+import { fetchClass, fetchClassAssignments, leaveStudentClass } from '../../lib/teacherClasses';
 import { simulationsConfig } from '@/data/simulations';
-import { ArrowLeft, ExternalLink } from 'lucide-react';
+import { ArrowLeft, ExternalLink, UserMinus } from 'lucide-react';
 import {
   homeworkQueryString,
   fetchAssignmentSubmission,
@@ -34,6 +34,7 @@ function itemDisplayTier(itemType, itemState) {
 
 const StudentClassPage = () => {
   const { classId } = useParams();
+  const navigate = useNavigate();
   const [user, setUser] = useState(null);
   const [authLoading, setAuthLoading] = useState(true);
   const [loading, setLoading] = useState(true);
@@ -44,6 +45,7 @@ const StudentClassPage = () => {
   const [error, setError] = useState('');
   const [submissionsByAssignment, setSubmissionsByAssignment] = useState({});
   const [textModal, setTextModal] = useState(null);
+  const [leavingClass, setLeavingClass] = useState(false);
 
   const refreshSubmissions = useCallback(async () => {
     if (!user?.uid || !classId || !assignments.length) return;
@@ -184,6 +186,24 @@ const StudentClassPage = () => {
     };
   }, [assignments]);
 
+  const handleLeaveClass = async () => {
+    if (!user?.uid || !classId) return;
+    const ok = window.confirm(
+      'Sigur vrei să ieși din această clasă? Nu vei mai vedea temele aici; poți reintra mai târziu cu codul de la profesor.'
+    );
+    if (!ok) return;
+    setLeavingClass(true);
+    try {
+      await leaveStudentClass(user.uid, classId);
+      navigate('/clasa');
+    } catch (e) {
+      console.error(e);
+      window.alert('Nu s-a putut ieși din clasă. Încearcă din nou.');
+    } finally {
+      setLeavingClass(false);
+    }
+  };
+
   if (authLoading) {
     return (
       <Layout>
@@ -230,10 +250,21 @@ const StudentClassPage = () => {
     <Layout>
       <div className="teacher-dashboard">
         <div className="teacher-dashboard-inner">
-          <Link to="/clasa" className="teacher-dashboard-back">
-            <ArrowLeft size={18} />
-            Clasele mele
-          </Link>
+          <div className="teacher-dashboard-student-class-head">
+            <Link to="/clasa" className="teacher-dashboard-back">
+              <ArrowLeft size={18} />
+              Clasele mele
+            </Link>
+            <button
+              type="button"
+              className="teacher-dashboard-leave-class-btn"
+              disabled={leavingClass}
+              onClick={handleLeaveClass}
+            >
+              <UserMinus size={18} aria-hidden />
+              {leavingClass ? 'Se iese…' : 'Ieși din clasă'}
+            </button>
+          </div>
           <h1 className="teacher-dashboard-title">{classData.name}</h1>
           {classData.description ? <p className="teacher-dashboard-muted">{classData.description}</p> : null}
 

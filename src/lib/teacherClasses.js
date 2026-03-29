@@ -201,6 +201,11 @@ export async function removeMember(classId, studentUid) {
   });
 }
 
+/** Elevul iese singur din clasă (elimină classId din joinedClasses). */
+export async function leaveStudentClass(userId, classId) {
+  return removeMember(classId, userId);
+}
+
 export async function getJoinRequestForUser(classId, userId) {
   const snap = await getDoc(doc(db, 'classes', classId, 'joinRequests', userId));
   if (!snap.exists()) return null;
