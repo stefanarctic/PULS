@@ -220,8 +220,7 @@ const SearchResults = () => {
                     </h2>
                     {totalLinks === 0 ? (
                         <p className="search-results-empty">
-                            Niciun link potrivit pe site pentru acest text. Răspunsul de mai sus (dacă ești logat) te poate ajuta
-                            totuși.
+                            Niciun link potrivit pe site pentru acest text.
                         </p>
                     ) : (
                         <ul className="search-results-list">
