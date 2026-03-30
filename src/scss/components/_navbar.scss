@@ -787,6 +787,9 @@ nav.scrolled-white {
             }
 
             #mobile-menu {
+                width: 100vw !important;
+                height: 100vh !important;
+                zoom: 1.2;
                 .nav-list {
                     gap: 1.5rem;
                     padding: 1.5rem;
