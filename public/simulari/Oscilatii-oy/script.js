@@ -15,6 +15,10 @@ const masoaraBtn = document.getElementById('masoaraBtn');
 const frecareSlider = document.getElementById('frecare');
 const frecareValue = document.getElementById('frecareValue');
 const zeroFrictionBtn = document.getElementById('zeroFrictionBtn');
+const sidebarLeft = document.getElementById('sidebar-left');
+const sidebarRight = document.getElementById('sidebar-right');
+const toggleLeftSidebar = document.getElementById('toggleLeftSidebar');
+const toggleRightSidebar = document.getElementById('toggleRightSidebar');
 // Measurements
 const lungimeDisplay = document.getElementById('lungimeDisplay');
 const amplitudineDisplay = document.getElementById('amplitudineDisplay');
@@ -41,6 +45,10 @@ let x = 0;
 let v = 0;
 let timeElapsed = 0;
 let isMeasuring = false;
+
+function isMobileViewport() {
+    return window.matchMedia('(max-width: 900px)').matches;
+}
 
 // Theme switching
 let isDark = true;
@@ -250,6 +258,43 @@ zeroFrictionBtn.addEventListener('click', () => {
     }
 });
 
+function updateSidebarButtons() {
+    if (toggleLeftSidebar && sidebarLeft) {
+        toggleLeftSidebar.textContent = '\u2630';
+    }
+    if (toggleRightSidebar && sidebarRight) {
+        toggleRightSidebar.textContent = '\u2630';
+    }
+}
+
+function initializeSidebarToggles() {
+    if (!sidebarLeft || !sidebarRight || !toggleLeftSidebar || !toggleRightSidebar) return;
+
+    toggleLeftSidebar.addEventListener('click', () => {
+        sidebarLeft.classList.toggle('hidden');
+        updateSidebarButtons();
+    });
+
+    toggleRightSidebar.addEventListener('click', () => {
+        sidebarRight.classList.toggle('hidden');
+        updateSidebarButtons();
+    });
+
+    window.addEventListener('resize', updateSidebarButtons);
+    updateSidebarButtons();
+}
+
+function applyInitialSidebarState() {
+    if (!sidebarLeft || !sidebarRight) return;
+    if (isMobileViewport()) {
+        sidebarLeft.classList.add('hidden');
+        sidebarRight.classList.add('hidden');
+    } else {
+        sidebarLeft.classList.remove('hidden');
+        sidebarRight.classList.remove('hidden');
+    }
+}
+
 // Update animation loop to use k value and friction
 function animate(timestamp) {
     if (!running || paused) return;
@@ -458,6 +503,9 @@ stopBtn.addEventListener('click', stopSim);
 masoaraBtn.addEventListener('click', masoara);
 
 // Initial setup
+initializeSidebarToggles();
+applyInitialSidebarState();
+updateSidebarButtons();
 createChart();
 const initialMass = parseFloat(masaSlider.value);
 amplitudineValue.textContent = (amplitudine / 100).toFixed(2) + 'm';
@@ -465,3 +513,4 @@ vitezaValue.textContent = viteza + 'x';
 masaValue.textContent = initialMass.toFixed(1) + 'kg';
 frecareValue.textContent = frecareSlider.value;
 drawSpring(0, initialMass); 
+

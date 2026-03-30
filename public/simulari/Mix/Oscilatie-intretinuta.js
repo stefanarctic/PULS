@@ -235,7 +235,7 @@ function updateSidebarTogglePosition() {
     const sidebarWidth = sidebar.offsetWidth || 300;
     const isHidden = sidebar.classList.contains("hidden");
     toggleSidebar.style.right = isHidden ? "-6px" : `${sidebarWidth + 10}px`;
-    toggleSidebar.textContent = isHidden ? "<" : ">";
+    toggleSidebar.textContent = "\u2630";
 }
 
 function updateUniformTogglePosition() {
@@ -246,7 +246,7 @@ function updateUniformTogglePosition() {
     const uniformbarWidth = uniformbar.offsetWidth || 370;
     const isHidden = uniformbar.classList.contains("hidden");
     toggleUniformbar.style.left = isHidden ? "-6px" : `${uniformbarWidth + 10}px`;
-    toggleUniformbar.textContent = isHidden ? ">" : "<";
+    toggleUniformbar.textContent = "\u2630";
 }
 
 function isMobileViewport() {
@@ -259,8 +259,13 @@ function applyResponsivePanelState(forceMobileClosed = false) {
     if (!sidebar || !uniformbar) return;
 
     if (forceMobileClosed) {
-        sidebar.classList.add("hidden");
-        uniformbar.classList.add("hidden");
+        if (isMobileViewport()) {
+            sidebar.classList.add("hidden");
+            uniformbar.classList.add("hidden");
+        } else {
+            sidebar.classList.remove("hidden");
+            uniformbar.classList.remove("hidden");
+        }
         return;
     }
 
@@ -335,3 +340,7 @@ window.onload = function() {
     document.getElementById("beta-value").textContent = initialBeta.toFixed(2) + " s^-1";
     document.getElementById("measured-beta").textContent = initialBeta.toFixed(2) + " s^-1";
 };
+
+
+
+

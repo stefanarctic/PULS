@@ -1,10 +1,13 @@
+* { box-sizing: border-box; }
+
 body, html {
-    height: 100vh;
+    height: 100dvh;
     margin: 0;
     padding: 0;
     font-family: Arial, sans-serif;
     background: #333;
     color: #fff;
+    overflow: hidden;
 }
 
 body.light-theme {
@@ -15,22 +18,14 @@ body.light-theme {
 .sidebar {
     position: fixed;
     top: 0;
-    height: 100vh;
+    height: 100dvh;
     overflow-y: auto;
     z-index: 10;
     display: flex;
     flex-direction: column;
     padding: 0;
     color: #222;
-}
-
-.toggle-btn {
-    display: none;
-}
-
-.sidebar.left .toggle-btn,
-.sidebar.right .toggle-btn {
-    display: none;
+    transition: transform 0.3s ease-in-out;
 }
 
 .sidebar.left {
@@ -53,6 +48,38 @@ body.light-theme {
     flex: 1;
     display: flex;
     flex-direction: column;
+}
+
+.sidebar.left.hidden {
+    transform: translateX(-100%);
+}
+
+.sidebar.right.hidden {
+    transform: translateX(100%);
+}
+
+.sidebar-toggle {
+    position: fixed;
+    top: 8px;
+    z-index: 220;
+    border: none;
+    border-radius: 8px;
+    padding: 8px 10px;
+    font-size: 18px;
+    background: rgb(111, 53, 247);
+    color: #fff;
+    cursor: pointer;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
+}
+
+.sidebar-toggle.left {
+    left: 8px;
+}
+
+.sidebar-toggle.right {
+    right: 8px;
+    background: #7ed9d9;
+    color: #222;
 }
 .unitati-box {
     background: rgb(241, 145, 66);
@@ -99,9 +126,12 @@ body.light-theme {
 }
 
 .main-sim-area {
-    margin-left: 320px;
-    margin-right: 340px;
-    min-height: 100vh;
+    box-sizing: border-box;
+    width: 100%;
+    min-height: 100dvh;
+    padding: 58px 12px 12px;
+    height: 100dvh;
+    overflow: hidden;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -132,6 +162,7 @@ body.light-theme h1 {
     margin-top: 10px;
     overflow: visible;
     position: relative;
+    width: 100%;
 }
 #springSVG {
     width: 400px;
@@ -292,10 +323,7 @@ body.light-theme h1 {
     .sidebar.right {
         width: 300px;
     }
-    .main-sim-area {
-        margin-left: 320px;
-        margin-right: 320px;
-    }
+    .main-sim-area { padding-top: 58px; }
     #springSVG {
         width: 350px;
     }
@@ -313,10 +341,7 @@ body.light-theme h1 {
     .sidebar.right {
         width: 370px;
     }
-    .main-sim-area {
-        margin-left: 370px;
-        margin-right: 370px;
-    }
+    .main-sim-area { padding-top: 58px; }
     #springSVG {
         width: 400px;
     }
@@ -329,15 +354,9 @@ body.light-theme h1 {
 }
 @media (max-width: 900px) {
     .sidebar.left, .sidebar.right {
-        position: static;
-        width: 250px;
-        height: auto;
-        border: none;
+        width: min(86vw, 320px);
     }
-    .main-sim-area {
-        margin-left: 260px;
-        margin-right: 260px;
-    }
+    .main-sim-area { padding-top: 62px; }
     #springSVG {
         width: 300px;
     }
@@ -346,5 +365,29 @@ body.light-theme h1 {
         margin-top: 15px;
         padding: 0 10px;
         letter-spacing: 1px;
+        width: 100%;
+        text-align: center;
     }
 } 
+
+@media (max-width: 640px) {
+    .spring-visual {
+        min-height: 330px;
+        height: 330px;
+    }
+    #springSVG {
+        width: min(360px, 94vw);
+        left: 50%;
+        transform: translateX(-50%);
+    }
+    h1 {
+        font-size: 1.95em;
+        margin-top: 14px;
+    }
+}
+
+
+
+
+
+

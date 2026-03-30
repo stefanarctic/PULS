@@ -11,6 +11,10 @@ const masoaraBtn = document.getElementById('masoaraBtn');
 const frecareSlider = document.getElementById('frecare');
 const frecareValue = document.getElementById('frecareValue');
 const zeroFrictionBtn = document.getElementById('zeroFrictionBtn');
+const sidebarLeft = document.getElementById('sidebar-left');
+const sidebarRight = document.getElementById('sidebar-right');
+const toggleLeftSidebar = document.getElementById('toggleLeftSidebar');
+const toggleRightSidebar = document.getElementById('toggleRightSidebar');
 const kSlider = document.getElementById('k');
 const kValue = document.getElementById('kValue');
 
@@ -39,6 +43,17 @@ let x = 0;  // Spring displacement on OX
 let vx = 0; // Velocity 
 let timeElapsed = 0;
 let isMeasuring = false;
+
+function isMobileViewport() {
+    return window.matchMedia('(max-width: 900px)').matches;
+}
+
+function getVisualConfig() {
+    if (isMobileViewport()) {
+        return { startX: 80, endXBase: 240, scale: 55 };
+    }
+    return { startX: 50, endXBase: 350, scale: 80 };
+}
 
 // Theme switching
 let isDark = true;
@@ -157,8 +172,9 @@ function createChart() {
 function drawSpring(xPx, mass) {
     springSVG.innerHTML = '';
     const centerY = 200;
-    const startX = 50;
-    const endX = 350 + xPx; // Ball moves from 350 + xPx
+    const visual = getVisualConfig();
+    const startX = visual.startX;
+    const endX = visual.endXBase + xPx;
     const coilRadius = 25;
     const numCoils = 10;
     const points = 80;
@@ -281,7 +297,7 @@ function initializeEventListeners() {
                 masaValue.textContent = masa.toFixed(1) + ' kg';
                 console.log('Mass changed:', masa);
                 if (!running) {
-                    drawSpring(x * 80, masa);
+                    drawSpring(x * getVisualConfig().scale, masa);
                 }
             } catch (error) {
                 console.error('Error updating mass:', error);
@@ -335,6 +351,43 @@ function initializeEventListeners() {
     }
 }
 
+function updateSidebarButtons() {
+    if (toggleLeftSidebar && sidebarLeft) {
+        toggleLeftSidebar.textContent = '\u2630';
+    }
+    if (toggleRightSidebar && sidebarRight) {
+        toggleRightSidebar.textContent = '\u2630';
+    }
+}
+
+function initializeSidebarToggles() {
+    if (!sidebarLeft || !sidebarRight || !toggleLeftSidebar || !toggleRightSidebar) return;
+
+    toggleLeftSidebar.addEventListener('click', () => {
+        sidebarLeft.classList.toggle('hidden');
+        updateSidebarButtons();
+    });
+
+    toggleRightSidebar.addEventListener('click', () => {
+        sidebarRight.classList.toggle('hidden');
+        updateSidebarButtons();
+    });
+
+    window.addEventListener('resize', updateSidebarButtons);
+    updateSidebarButtons();
+}
+
+function applyInitialSidebarState() {
+    if (!sidebarLeft || !sidebarRight) return;
+    if (isMobileViewport()) {
+        sidebarLeft.classList.add('hidden');
+        sidebarRight.classList.add('hidden');
+    } else {
+        sidebarLeft.classList.remove('hidden');
+        sidebarRight.classList.remove('hidden');
+    }
+}
+
 // Update animation loop
 function animate(timestamp) {
     if (!running || paused) return;
@@ -375,7 +428,7 @@ function animate(timestamp) {
     }
     
     // Draw spring and ball
-    drawSpring(x * 80, masa);
+    drawSpring(x * getVisualConfig().scale, masa);
     animationFrame = requestAnimationFrame(animate);
 }
 
@@ -447,7 +500,7 @@ function startSim() {
     }
     
     // Force initial draw
-    drawSpring(x * 80, masa);
+    drawSpring(x * getVisualConfig().scale, masa);
     
     // Start animation loop
     console.log('Starting animation loop with initial conditions:', { x, vx, masa });
@@ -545,6 +598,9 @@ document.addEventListener('DOMContentLoaded', () => {
     
     console.log('All elements found, initializing...');
     initializeEventListeners();
+    initializeSidebarToggles();
+    applyInitialSidebarState();
+    updateSidebarButtons();
     createChart();
     
     // Set initial values
@@ -558,3 +614,4 @@ document.addEventListener('DOMContentLoaded', () => {
     
     console.log('Initialization complete!');
 }); 
+

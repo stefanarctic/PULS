@@ -4,23 +4,57 @@
     <meta charset="UTF-8">
     <title>Simulator Gaze Ideale - Un Vas</title>
     <style>
+        * { box-sizing: border-box; }
         body { font-family: Arial, sans-serif; background: #f0f2f5; margin: 0; padding: 0; }
-        .container { max-width: 900px; margin: 30px auto; background: #fff; border-radius: 12px; box-shadow: 0 0 12px #bbb; padding: 24px; }
-        h1 { text-align: center; margin-bottom: 20px; }
-        .flex { display: flex; gap: 32px; }
-        .sliders { flex: 1; }
-        .sliders h3 { text-align: center; }
-        .slider-group { margin-bottom: 18px; }
-        .slider-group label { display: flex; justify-content: space-between; }
-        .sim-area { flex: 2; display: flex; flex-direction: column; align-items: center; }
-        #mainCanvas { background: #eaf2fb; border: 2px solid #444; border-radius: 16px; display: block; margin-bottom: 12px; }
+        .container {
+            width: min(100% - 24px, 980px);
+            margin: 16px auto;
+            background: #fff;
+            border-radius: 12px;
+            box-shadow: 0 0 12px #bbb;
+            padding: 16px;
+        }
+        h1 { text-align: center; margin-bottom: 16px; font-size: clamp(1.15rem, 3.8vw, 1.8rem); }
+        .flex { display: flex; gap: 16px; align-items: flex-start; }
+        .sliders { flex: 1; min-width: 200px; }
+        .sliders h3 { text-align: center; margin: 8px 0 12px; }
+        .slider-group { margin-bottom: 14px; }
+        .slider-group label { display: flex; justify-content: space-between; gap: 8px; font-size: 0.95rem; }
+        .slider-group input[type="range"] { width: 100%; }
+        .sim-area { flex: 2; min-width: 0; display: flex; flex-direction: column; align-items: center; }
+        .canvas-wrap { position: relative; width: min(100%, 420px); }
+        #mainCanvas {
+            width: 100%;
+            height: auto;
+            background: #eaf2fb;
+            border: 2px solid #444;
+            border-radius: 16px;
+            display: block;
+            margin-bottom: 12px;
+        }
         #divider { position: absolute; left: 50%; top: 0; width: 4px; height: 100%; background: rgba(100,100,100,0.18); z-index: 3; pointer-events: none; transition: height 0.2s; }
-        .controls { text-align: center; margin: 18px 0; }
-        button { padding: 10px 24px; font-size: 18px; border-radius: 6px; border: none; background: #705dbb; color: #fff; cursor: pointer; }
+        .controls { text-align: center; margin: 12px 0; display: flex; flex-wrap: wrap; gap: 10px; justify-content: center; }
+        button { padding: 9px 16px; font-size: 1rem; border-radius: 6px; border: none; background: #705dbb; color: #fff; cursor: pointer; }
         button:hover { background: #624bbd; }
         table { width: 100%; border-collapse: collapse; margin-top: 10px; }
         th, td { border: 1px solid #aaa; padding: 6px 10px; text-align: center; }
         th { background: #f5f5f5; }
+
+        @media (max-width: 900px) {
+            .flex { flex-wrap: wrap; }
+            .sim-area { order: 1; flex: 1 1 100%; }
+            .sliders { flex: 1 1 calc(50% - 8px); min-width: 0; }
+            .container { padding: 14px; }
+        }
+
+        @media (max-width: 640px) {
+            .container { width: 100%; margin: 0; border-radius: 0; padding: 12px; }
+            .flex { gap: 10px; }
+            .sliders { flex: 1 1 100%; }
+            th, td { font-size: 0.85rem; padding: 5px 6px; }
+            .slider-group label { font-size: 0.88rem; }
+            button { width: 100%; max-width: 320px; }
+        }
     </style>
 </head>
 <body>
@@ -43,7 +77,7 @@
             </div>
         </div>
         <div class="sim-area">
-            <div style="position:relative;">
+            <div class="canvas-wrap">
                 <canvas id="mainCanvas" width="400" height="300"></canvas>
                 <div id="divider"></div>
             </div>
