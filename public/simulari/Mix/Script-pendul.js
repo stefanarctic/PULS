@@ -216,56 +216,75 @@ function toggleMeasuringTool() {
 //     document.getElementById("measured-acceleration").textContent = (-gravity * Math.sin(angle * Math.PI / 180)).toFixed(2) + "m/s²";
 // });
 
+function updateSidebarTogglePosition() {
+    const sidebar = document.querySelector(".sidebar");
+    const toggleSidebar = document.getElementById("toggleSidebar");
+    if (!sidebar || !toggleSidebar) return;
+
+    const sidebarWidth = sidebar.offsetWidth || 300;
+    const isHidden = sidebar.classList.contains("hidden");
+    toggleSidebar.style.right = isHidden ? "-6px" : `${sidebarWidth + 10}px`;
+    toggleSidebar.textContent = isHidden ? "<" : ">";
+}
+
+function updateUniformTogglePosition() {
+    const uniformbar = document.querySelector(".unitform-container");
+    const toggleUniformbar = document.getElementById("toggleUniformbar");
+    if (!uniformbar || !toggleUniformbar) return;
+
+    const uniformbarWidth = uniformbar.offsetWidth || 370;
+    const isHidden = uniformbar.classList.contains("hidden");
+    toggleUniformbar.style.left = isHidden ? "-6px" : `${uniformbarWidth + 10}px`;
+    toggleUniformbar.textContent = isHidden ? ">" : "<";
+}
+
+function isMobileViewport() {
+    return window.matchMedia("(max-width: 1024px)").matches;
+}
+
+function applyResponsivePanelState(forceMobileClosed = false) {
+    const sidebar = document.querySelector(".sidebar");
+    const uniformbar = document.querySelector(".unitform-container");
+    if (!sidebar || !uniformbar) return;
+
+    if (forceMobileClosed) {
+        sidebar.classList.add("hidden");
+        uniformbar.classList.add("hidden");
+        return;
+    }
+
+    if (!isMobileViewport()) {
+        // Pe desktop păstrăm starea curentă (nu forțăm deschiderea).
+        return;
+    }
+}
+
 document.getElementById("toggleSidebar").addEventListener("click", function() {
-    let sidebar = document.querySelector(".sidebar");
-    let screenWidth = window.innerWidth;
+    const sidebar = document.querySelector(".sidebar");
+    const uniformbar = document.querySelector(".unitform-container");
     sidebar.classList.toggle("hidden");
-    if(screenWidth < 2350)
-    {
-    if (sidebar.classList.contains("hidden")) {
-        this.style.right = "-6px";  // Butonul se lipește de marginea paginii
-        this.textContent = "<";    // Simbol săgeată dreapta
-    } else {
-        this.style.right = "313px"; // Butonul revine lângă meniu
-        this.textContent = ">";    // Simbol meniului
+    if (isMobileViewport() && !sidebar.classList.contains("hidden") && uniformbar) {
+        uniformbar.classList.add("hidden");
     }
-    }
-    else {
-            if (sidebar.classList.contains("hidden")) {
-                this.style.right = "-6px";  // Butonul se lipește de marginea paginii
-                this.textContent = "<";    // Simbol săgeată dreapta
-            } else {
-                this.style.right = "510px"; // Butonul revine lângă meniu
-                this.textContent = ">";    // Simbol meniului
-            }
-    }
+    updateSidebarTogglePosition();
+    updateUniformTogglePosition();
 });
 
 document.getElementById("toggleUniformbar").addEventListener("click", function() {
-    let uniformbar = document.querySelector(".unitform-container");
+    const uniformbar = document.querySelector(".unitform-container");
+    const sidebar = document.querySelector(".sidebar");
     uniformbar.classList.toggle("hidden");
-    let screenWidth = window.innerWidth;
-    if(screenWidth < 2350)
-    {
-    if (uniformbar.classList.contains("hidden")) {
-        this.style.left = "-6px";  // Butonul se lipește de marginea paginii
-        this.textContent = ">";    // Simbol săgeată dreapta
-    } else {
-        this.style.left = "333px"; // Butonul revine lângă meniu
-        this.textContent = "<";    // Simbol meniului
+    if (isMobileViewport() && !uniformbar.classList.contains("hidden") && sidebar) {
+        sidebar.classList.add("hidden");
     }
-    }
-    else 
-    {
-        if (uniformbar.classList.contains("hidden")) {
-            this.style.left = "-6px";  // Butonul se lipește de marginea paginii
-            this.textContent = ">";    // Simbol săgeată dreapta
-        } else {
-            this.style.left = "520px"; // Butonul revine lângă meniu
-            this.textContent = "<";    // Simbol meniului
-        }
-    }
-    
+    updateSidebarTogglePosition();
+    updateUniformTogglePosition();
+});
+
+window.addEventListener("resize", function () {
+    applyResponsivePanelState(false);
+    updateSidebarTogglePosition();
+    updateUniformTogglePosition();
 });
 document.addEventListener("DOMContentLoaded", function () {
     const lengthSlider = document.getElementById("lengthSlider");
@@ -292,4 +311,7 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     lengthSlider.addEventListener("input", updatePendulumLength);
+    applyResponsivePanelState(true);
+    updateSidebarTogglePosition();
+    updateUniformTogglePosition();
 });

@@ -256,11 +256,6 @@ const OpticaPage = () => {
                   </a>
                 </div>
               </div>
-
-              
-
-            
-
               {/* Refracție Atmosferică */}
               <div className="rounded-container">
                 <h2 className="text-2xl font-bold mb-4">Refracție Atmosferică</h2>
