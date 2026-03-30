@@ -1,5 +1,8 @@
 (() => {
     // ========= DOM =========
+    const appRoot = document.querySelector('.app');
+    const panel = document.querySelector('.panel');
+    const togglePanelBtn = document.getElementById('togglePanel');
     const canvas = document.getElementById('c');
     const ctx = canvas.getContext('2d');
   
@@ -55,6 +58,16 @@
     let lastSolution = null;
   
     // ========= Utilities =========
+    function isMobileViewport() {
+      return window.matchMedia('(max-width: 1024px)').matches;
+    }
+
+    function applyPanelResponsiveState() {
+      if (!appRoot || !panel || !togglePanelBtn) return;
+      appRoot.classList.toggle('panel-open', !isMobileViewport());
+      togglePanelBtn.textContent = '\u2630';
+    }
+
     function setStatus(text, kind = 'ok') {
       statusEl.textContent = text;
       statusEl.classList.toggle('ok', kind === 'ok');
@@ -993,6 +1006,15 @@
     function init() {
       fit();
       window.addEventListener('resize', () => { fit(); draw(); });
+      window.addEventListener('resize', applyPanelResponsiveState);
+
+      if (togglePanelBtn && appRoot) {
+        togglePanelBtn.addEventListener('click', () => {
+          appRoot.classList.toggle('panel-open');
+          togglePanelBtn.textContent = '\u2630';
+        });
+      }
+      applyPanelResponsiveState();
   
       setTool(Tools.SELECT);
       setStatus('Ready. Începe cu Nod + GND + Wire/Rezistoare.', 'ok');
