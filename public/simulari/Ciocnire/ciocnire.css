@@ -1,17 +1,30 @@
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  height: 100dvh;
+  overflow: hidden;
+}
+
 body {
   font-family: Arial, sans-serif;
   text-align: center;
   background: #f0f0f0;
-  overflow-y:hidden;
+  margin: 0;
+  padding: 10px 16px 16px;
 }
 
 #simulator {
-  width: 800px;
-  height: 400px;
+  width: min(800px, calc(100vw - 32px));
+  height: min(420px, 50dvh);
+  min-height: 260px;
   border: 2px solid #333;
   position: relative;
-  margin: 20px auto;
+  margin: 14px auto;
   background-color: #f0f0f0;
+  z-index: 1;
 }
 
 .ball {
@@ -19,7 +32,8 @@ body {
   height: 80px;
   border-radius: 50%;
   position: absolute;
-  top: 160px;
+  top: 50%;
+  transform: translateY(-50%);
   color: white;
   font-size: 24px;
   text-align: center;
@@ -52,7 +66,7 @@ button {
 
 #toggleSidebar {
     position: fixed;
-    top: 10px;
+    top: 8px;
     right: 10px;
     background: #13c79a;
     border: none;
@@ -60,12 +74,12 @@ button {
     font-size: 24px;
     cursor: pointer;
     color: white;
-    border-radius: 5px;
-    z-index: 1100;
+    border-radius: 10px;
+    z-index: 1200;
 }
 #toggleSidebarleft {
     position: fixed;
-    top: 10px;
+    top: 8px;
     left: 10px;
     background: #c75513;
     border: none;
@@ -73,15 +87,15 @@ button {
     font-size: 24px;
     cursor: pointer;
     color: white;
-    border-radius: 5px;
-    z-index: 1100;
+    border-radius: 10px;
+    z-index: 1200;
 }
 .sidebar {
-    width: 300px;
+    width: 320px;
     padding: 20px;
     background: #13c79a;
-    height: auto; /* Schimbă height: 100vh; în height: auto; */
-    max-height: 95vh; /* Adaugă o înălțime maximă pentru a nu depăși ecranul */
+    height: 100dvh;
+    max-height: none;
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
@@ -92,7 +106,7 @@ button {
     gap: 15px;
     overflow-y: auto; 
     position: fixed;
-    right: -300px;
+    right: -320px;
     top: 0;
     -webkit-transition: right 0.3s ease-in-out;
     transition: right 0.3s ease-in-out;
@@ -126,11 +140,11 @@ button {
     background-color: #FAEDCD;
 }
 .sidebarleft {
-  width: 300px;
+  width: 320px;
   padding: 20px;
   background: #c75513;
-  height: auto; /* Schimbă height: 100vh; în height: auto; */
-  max-height: 95vh; /* Adaugă o înălțime maximă pentru a nu depăși ecranul */
+  height: 100dvh;
+  max-height: none;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -141,10 +155,10 @@ button {
   gap: 15px;
   overflow-y: auto; 
   position: fixed;
-  left: -300px;
+  left: -320px;
   top: 0;
-  -webkit-transition: right 0.3s ease-in-out;
-  transition: right 0.3s ease-in-out;
+  -webkit-transition: left 0.3s ease-in-out;
+  transition: left 0.3s ease-in-out;
   z-index: 1000;
   -webkit-box-shadow: -5px 0 10px rgba(0, 0, 0, 0.3);
   box-shadow: -5px 0 10px rgba(0, 0, 0, 0.3);
@@ -197,8 +211,8 @@ button {
     display: flex;
     justify-content: center;
     gap: 10px;
-    margin: 32px auto 24px auto;
-    max-width: 900px;
+    margin: 12px auto 0;
+    max-width: min(900px, calc(100vw - 32px));
     position: relative;
     z-index: 1;
 }
@@ -309,4 +323,64 @@ button {
         line-height: 70px;
         font-size: 20px;
     }
+}
+
+@media (max-width: 1024px) {
+  h1 {
+    margin: 6px 36px 4px;
+    font-size: clamp(30px, 7vw, 50px);
+    line-height: 1.1;
+  }
+
+  #simulator {
+    width: min(100%, 760px);
+    height: min(48dvh, 400px);
+  }
+
+  .sidebar,
+  .sidebarleft {
+    width: min(82vw, 320px);
+    padding: 14px;
+  }
+
+  .sidebar {
+    right: calc(min(82vw, 320px) * -1);
+  }
+
+  .sidebarleft {
+    left: calc(min(82vw, 320px) * -1);
+  }
+
+  #chenare-info {
+    width: min(100%, 760px);
+    flex-wrap: wrap;
+  }
+
+  .chenar-mic,
+  .chenar-mic-1 {
+    width: 100%;
+  }
+}
+
+@media (max-width: 640px) {
+  body {
+    padding: 8px 10px 10px;
+  }
+
+  #simulator {
+    height: min(44dvh, 330px);
+    min-height: 220px;
+  }
+
+  .ball {
+    width: 62px;
+    height: 62px;
+    font-size: 20px;
+  }
+
+  #toggleSidebar,
+  #toggleSidebarleft {
+    padding: 8px 10px;
+    font-size: 22px;
+  }
 }

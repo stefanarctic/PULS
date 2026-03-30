@@ -4,13 +4,36 @@ document.addEventListener("DOMContentLoaded", function () {
     const sidebarleft = document.getElementById("sidebarleft");
     const toggleSidebarleft = document.getElementById("toggleSidebarleft");
 
+    function isMobileViewport() {
+        return window.matchMedia('(max-width: 1024px)').matches;
+    }
+
+    function applyInitialSidebarState() {
+        if (isMobileViewport()) {
+            sidebar.classList.remove("visible");
+            sidebarleft.classList.remove("visible");
+        } else {
+            sidebar.classList.add("visible");
+            sidebarleft.classList.add("visible");
+        }
+    }
+
     toggleSidebar.addEventListener("click", function () {
+        if (isMobileViewport()) {
+            sidebarleft.classList.remove("visible");
+        }
         sidebar.classList.toggle("visible");
     });
 
     toggleSidebarleft.addEventListener("click", function () {
+        if (isMobileViewport()) {
+            sidebar.classList.remove("visible");
+        }
         sidebarleft.classList.toggle("visible");
     });
+
+    window.addEventListener("resize", applyInitialSidebarState);
+    applyInitialSidebarState();
 
     // Initializare valori slidere
     document.getElementById('m1Value').innerText = document.getElementById('m1').value;
