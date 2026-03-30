@@ -7,6 +7,7 @@ import Services from "@/components/Services";
 import Testimonials from "@/components/Testimonials";
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import SearchResults from "./components/pages/searchresults";
+import AssistantEntryPage from "./components/pages/AssistantEntryPage";
 import './scss/style.scss';
 import Index from "./components/pages/Index";
 import Probleme from "./components/pages/Probleme";
@@ -143,6 +144,7 @@ const App = () => {
           ))}
           <Route path="/about-us" element={<About />} />
           <Route path="/search" element={<SearchResults />} />
+          <Route path="/asistent" element={<AssistantEntryPage />} />
           <Route path="/profil" element={<Profile />} />
           <Route path="/invite-teacher" element={<InviteTeacherPage />} />
           <Route path="/admin" element={<AdminDashboard />} />

@@ -1,12 +1,17 @@
 import React, { useState, useRef, useEffect } from "react";
+import { useLocation, useNavigate } from "react-router-dom";
 import "../scss/components/_assistant-avatar.scss";
 import AssistantPopup from "./AssistantPopup";
 import useDarkMode from "../hooks/useDarkMode";
 import { setAssistantRef } from "../hooks/useAssistant";
 
 const AssistantAvatar = () => {
+  const location = useLocation();
+  const navigate = useNavigate();
   const [open, setOpen] = useState(false);
   const [initialMessage, setInitialMessage] = useState("");
+  /** true când mesajul vine din /asistent?q= — forțează chat nou în AssistantPopup */
+  const [initialMessageInNewChat, setInitialMessageInNewChat] = useState(false);
   const [isDragging, setIsDragging] = useState(false);
   const [dragEnabled, setDragEnabled] = useState(false);
   const [hasDragged, setHasDragged] = useState(false);
@@ -38,17 +43,22 @@ const AssistantAvatar = () => {
   const [startPosition, setStartPosition] = useState({ x: 0, y: 0 });
   const avatarRef = useRef(null);
   const holdTimerRef = useRef(null);
+  const asistentDeepLinkConsumedRef = useRef(false);
   const scrollPositionRef = useRef({ top: 0, left: 0 });
     const darkModeOn = useDarkMode();
   const localRef = useRef({
     openWithMessage: (msg) => {
+      setInitialMessageInNewChat(false);
       setInitialMessage(msg);
       setOpen(true);
     },
     close: () => {
       setOpen(false);
       // Clear initialMessage when closing to prevent resending
-      setTimeout(() => setInitialMessage(""), 100);
+      setTimeout(() => {
+        setInitialMessage("");
+        setInitialMessageInNewChat(false);
+      }, 100);
     },
   });
 
@@ -62,6 +72,26 @@ const AssistantAvatar = () => {
       }
     };
   }, []);
+
+  /** Deschidere din link /asistent?q=… (ex. filă nouă din pagina de căutare). */
+  useEffect(() => {
+    if (location.pathname !== "/asistent") {
+      asistentDeepLinkConsumedRef.current = false;
+      return;
+    }
+    const params = new URLSearchParams(location.search);
+    const q = params.get("q")?.trim();
+    if (!q) {
+      asistentDeepLinkConsumedRef.current = false;
+      return;
+    }
+    if (asistentDeepLinkConsumedRef.current) return;
+    asistentDeepLinkConsumedRef.current = true;
+    setInitialMessageInNewChat(true);
+    setInitialMessage(q);
+    setOpen(true);
+    navigate("/asistent", { replace: true });
+  }, [location.pathname, location.search, navigate]);
 
   useEffect(() => {
     // Save position to localStorage whenever it changes
@@ -125,8 +155,10 @@ const AssistantAvatar = () => {
 
   const handleClose = () => {
     setOpen(false);
-    // Clear initialMessage when closing to prevent resending
-    setTimeout(() => setInitialMessage(""), 100);
+    setTimeout(() => {
+      setInitialMessage("");
+      setInitialMessageInNewChat(false);
+    }, 100);
   };
 
   const handleMouseDown = (e) => {
@@ -315,7 +347,13 @@ const AssistantAvatar = () => {
       >
         <img src={avatarSrc} alt="Asistent Virtual" />
       </div>
-      {open && <AssistantPopup onClose={handleClose} initialMessage={initialMessage} />}
+      {open && (
+        <AssistantPopup
+          onClose={handleClose}
+          initialMessage={initialMessage}
+          initialMessageInNewChat={initialMessageInNewChat}
+        />
+      )}
     </>
   );
 };

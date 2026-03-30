@@ -255,7 +255,7 @@ const PROMPTS = [
   "Ce resurse recomanzi pentru pregătire?"
 ];
 
-const AssistantPopup = ({ onClose, initialMessage }) => {
+const AssistantPopup = ({ onClose, initialMessage, initialMessageInNewChat = false }) => {
   const [inputValue, setInputValue] = useState("");
   const [chatMode, setChatMode] = useState(false);
   const textareaRef = useRef(null);
@@ -416,32 +416,31 @@ const AssistantPopup = ({ onClose, initialMessage }) => {
     if (initialMessage && !initialMessageSentRef.current && user?.uid && !chatsLoading) {
       setInputValue(initialMessage);
       
-      // Verifică dacă mesajul este despre o problemă și resetează currentChatId pentru a forța crearea unui chat nou
+      // Problemă sau deschidere din căutare (/asistent): chat nou, nu continuă conversația anterioară
       const problemInfo = extractProblemInfo(initialMessage);
-      if (problemInfo) {
-        console.log('🔍 Problem detected in initialMessage, resetting currentChatId to create new chat');
-        // Resetăm currentChatId sincron înainte de a trimite mesajul
+      if (problemInfo || initialMessageInNewChat) {
         setCurrentChatId(null);
       }
-      
+
       // Use a delay to ensure popup is fully mounted and hooks are ready
       const timeoutId = setTimeout(() => {
         // Double-check that we still have the message and user is logged in before sending
         if (initialMessage && user?.uid) {
-          // Dacă este despre o problemă, forțăm resetarea din nou pentru a fi siguri
           const problemInfoCheck = extractProblemInfo(initialMessage);
-          if (problemInfoCheck) {
+          if (problemInfoCheck || initialMessageInNewChat) {
             setCurrentChatId(null);
           }
           initialMessageSentRef.current = true;
-          handleSend(null, initialMessage);
+          handleSend(null, initialMessage, {
+            forceNewChat: Boolean(problemInfoCheck) || initialMessageInNewChat,
+          });
         }
       }, 500);
       
       return () => clearTimeout(timeoutId);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [initialMessage, user?.uid, chatsLoading, extractProblemInfo]);
+  }, [initialMessage, user?.uid, chatsLoading, extractProblemInfo, initialMessageInNewChat]);
 
   // Block body scroll when popup is open
   React.useEffect(() => {
@@ -669,7 +668,7 @@ const AssistantPopup = ({ onClose, initialMessage }) => {
     return date.toLocaleDateString('ro-RO', { day: 'numeric', month: 'short' });
   }, []);
 
-  const handleSend = async (e, prompt = null) => {
+  const handleSend = async (e, prompt = null, sendOptions = {}) => {
     if (e) e.preventDefault();
     const text = prompt || inputValue.trim();
     if (!text) return;
@@ -681,7 +680,7 @@ const AssistantPopup = ({ onClose, initialMessage }) => {
 
     // Verifică dacă mesajul este despre o problemă - dacă da, forțăm crearea unui chat nou
     const problemInfo = extractProblemInfo(text);
-    const shouldForceNewChat = problemInfo !== null;
+    const shouldForceNewChat = problemInfo !== null || sendOptions.forceNewChat === true;
     
     let activeChatId = currentChatId;
     
