@@ -369,6 +369,20 @@ function runBohrAnimation(canvas, shells) {
   bohrAnimationId = requestAnimationFrame(frame);
 }
 
+/** Canvas Bohr la lățimea containerului (mobil). */
+function sizeBohrCanvas(canvas, el) {
+  if (!canvas || !el?.shells?.length) return;
+  const container = canvas.closest(".bohr-container");
+  const rawW = container ? container.clientWidth : 320;
+  const logical = Math.floor(Math.min(420, Math.max(220, Math.min(rawW, 420))));
+  const dpr = Math.min(2, window.devicePixelRatio || 1);
+  const px = Math.floor(logical * dpr);
+  canvas.width = px;
+  canvas.height = px;
+  canvas.style.width = `${logical}px`;
+  canvas.style.height = `${logical}px`;
+}
+
 function buildOrbitalHTML(l, electrons, label) {
   const slots = generateOrbitals(l, electrons);
   const mValues = [];
@@ -495,7 +509,7 @@ function renderModal(el) {
     <div class="modal-section">
       <h3>Model Bohr – straturi și electroni</h3>
       <div class="bohr-container">
-        <canvas id="bohrCanvas" width="420" height="420"></canvas>
+        <canvas id="bohrCanvas"></canvas>
       </div>
     </div>
     <div class="modal-section">
@@ -507,7 +521,10 @@ function renderModal(el) {
   modal.style.display = "flex";
   requestAnimationFrame(() => {
     const canvas = document.getElementById("bohrCanvas");
-    if (canvas && el.shells && el.shells.length) runBohrAnimation(canvas, el.shells);
+    if (canvas && el.shells && el.shells.length) {
+      sizeBohrCanvas(canvas, el);
+      runBohrAnimation(canvas, el.shells);
+    }
   });
 }
 
@@ -562,7 +579,29 @@ document.querySelectorAll(".tab-btn").forEach(btn => {
     btn.classList.add("active");
     const panelId = tab === "general" ? "panelGeneral" : tab === "electronic" ? "panelElectronic" : "panelVisual";
     document.getElementById(panelId).classList.add("active");
+    if (tab === "visual") {
+      requestAnimationFrame(() => {
+        const canvas = document.getElementById("bohrCanvas");
+        if (canvas && currentModalElement?.shells?.length) {
+          sizeBohrCanvas(canvas, currentModalElement);
+          runBohrAnimation(canvas, currentModalElement.shells);
+        }
+      });
+    }
   });
+});
+
+let bohrResizeTimer = null;
+window.addEventListener("resize", () => {
+  if (modal.style.display !== "flex") return;
+  clearTimeout(bohrResizeTimer);
+  bohrResizeTimer = setTimeout(() => {
+    const canvas = document.getElementById("bohrCanvas");
+    if (canvas && currentModalElement?.shells?.length) {
+      sizeBohrCanvas(canvas, currentModalElement);
+      runBohrAnimation(canvas, currentModalElement.shells);
+    }
+  }, 120);
 });
 
 closeBtn.addEventListener("click", () => {

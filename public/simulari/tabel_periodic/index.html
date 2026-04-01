@@ -2,6 +2,7 @@
 <html lang="ro">
 <head>
   <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
   <title>Tabel Periodic Interactiv</title>
   <link rel="stylesheet" href="styles.css" />
 </head>
@@ -18,8 +19,11 @@
   </div>
 
   <h1>Tabelul Periodic Interactiv</h1>
+  <p class="mobile-table-hint">Pe ecran mic: glisează cu degetul pentru a vedea tot tabelul.</p>
 
-  <div class="periodic-table" id="periodicTable"></div>
+  <div class="periodic-table-scroll" id="periodicTableScroll">
+    <div class="periodic-table" id="periodicTable"></div>
+  </div>
 
   <div class="legend">
     <div class="legend-title">Legendă – categorii de elemente (apasă pentru a evidenția)</div>
