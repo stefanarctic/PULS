@@ -1,4 +1,9 @@
 :root{
+    --atom-pl-w: 300px;
+    --atom-pr-w: 320px;
+    --atom-stage-ml: 300px;
+    --atom-stage-mr: 320px;
+
     --bg0:#1f1f22;
     --bg1:#2a2a2f;
     --card:#fbf0cf;
@@ -26,27 +31,81 @@
   }
   
   .app{
-    display:grid;
-    grid-template-columns: 300px minmax(0, 1fr) 320px;
+    position:relative;
     height:100vh;
+    height:100dvh;
     min-height:0;
   }
-  
+
   .panel{
+    position:fixed;
+    top:0;
+    bottom:0;
+    height:100vh;
+    height:100dvh;
     overflow-y:auto;
     overflow-x:hidden;
     padding:10px 12px;
     min-height:0;
+    z-index:150;
+    transition:transform 0.28s ease;
+    -webkit-overflow-scrolling:touch;
   }
-  
+
   .panel.left{
+    left:0;
+    width:var(--atom-pl-w);
+    transform:translateX(0);
     background: #f69697;
     border-right: 2px solid rgba(255,255,255,.25);
+    box-shadow: 8px 0 28px rgba(0,0,0,.22);
   }
-  
+
   .panel.right{
+    right:0;
+    width:var(--atom-pr-w);
+    transform:translateX(0);
     background: #5dbb64;
     border-left: 2px solid rgba(255,255,255,.25);
+    box-shadow: -8px 0 28px rgba(0,0,0,.22);
+  }
+
+  .panel.left.hidden{
+    transform:translateX(-100%);
+    pointer-events:none;
+  }
+  .panel.right.hidden{
+    transform:translateX(100%);
+    pointer-events:none;
+  }
+
+  .atom-toggle{
+    position:fixed;
+    z-index:210;
+    top:max(10px, env(safe-area-inset-top, 0px));
+    width:44px;
+    height:44px;
+    padding:0;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    border-radius:10px;
+    border:2px solid rgba(255,255,255,.45);
+    cursor:pointer;
+    font-size:20px;
+    line-height:1;
+    font-weight:800;
+    box-shadow:0 4px 18px rgba(0,0,0,.35);
+    transition:left 0.28s ease, right 0.28s ease, transform 0.15s ease;
+  }
+  .atom-toggle:hover{ transform:translateY(-1px); }
+  .atom-toggle-left{
+    background:linear-gradient(180deg, #ff9aa2, #e86870);
+    color:#111;
+  }
+  .atom-toggle-right{
+    background:linear-gradient(180deg, #6fcf7a, #3fa84a);
+    color:#111;
   }
   
   .panelHeader{
@@ -74,7 +133,7 @@
     border: 2px solid rgba(255,255,255,.35);
   }
   .card.blue{
-    background: f5e4c8;
+    background: #f5e4c8;
     color:#000000;
   }
   .card.mini{ padding:10px 12px; }
@@ -110,6 +169,12 @@
   .chip.abs{ background: rgba(0,0,0,.55); }
   
   .stage{
+    margin-left:var(--atom-stage-ml);
+    margin-right:var(--atom-stage-mr);
+    height:100vh;
+    height:100dvh;
+    transition:margin-left 0.28s ease, margin-right 0.28s ease;
+    box-sizing:border-box;
     background: radial-gradient(1100px 700px at 50% 25%, rgba(90,90,120,.25), transparent 60%),
                 linear-gradient(180deg, var(--bg1), var(--bg0));
     display:flex;
@@ -156,6 +221,52 @@
     background: rgba(251,240,207,.92);
     color:#111;
     border-color: rgba(255,255,255,.35);
+  }
+
+  /* Mobil / ecran îngust: titlu pe un rând (nu sub butoanele ☰), taburi pe rândul 2 */
+  @media (max-width: 1024px){
+    .stageTop{
+      flex-direction:column;
+      align-items:stretch;
+      gap:10px;
+      padding:6px 0 10px 0;
+    }
+    .stageTop h1{
+      order:0;
+      width:100%;
+      max-width:100%;
+      padding:0 54px;
+      box-sizing:border-box;
+      text-align:center;
+      font-size:clamp(0.82rem, 3.4vw, 1.05rem);
+      line-height:1.25;
+      white-space:nowrap;
+      overflow:hidden;
+      text-overflow:ellipsis;
+    }
+    .tabs{
+      order:1;
+      width:100%;
+      justify-content:center;
+      flex-wrap:wrap;
+      gap:8px;
+    }
+    .tab{
+      flex:1 1 calc(50% - 6px);
+      min-width:min(140px, 42vw);
+      text-align:center;
+      padding:8px 10px;
+      font-size:0.78rem;
+    }
+    .stageBottom{
+      flex-direction:column;
+      align-items:flex-start;
+      gap:8px;
+    }
+    .readouts{
+      justify-content:flex-start;
+      width:100%;
+    }
   }
   
   .canvasWrap{
@@ -313,8 +424,18 @@
   .controls .small{ font-size:11px; margin-top:4px; }
   
   @media (max-width: 1024px){
-    body{ overflow:auto; }
-    .app{ grid-template-columns: 1fr; height:auto; }
-    .stage{ min-height: 620px; }
+    :root{
+      --atom-pl-w: min(86vw, 320px);
+      --atom-pr-w: min(86vw, 320px);
+    }
+    .stage .canvasWrap{
+      min-height:min(52vh, 480px);
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce){
+    .panel,
+    .stage,
+    .atom-toggle{ transition:none; }
   }
   

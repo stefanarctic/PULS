@@ -21,10 +21,12 @@
   <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
 </head>
 <body>
-  <div class="app">
+  <div class="app" id="atomApp">
+
+    <button type="button" id="toggleAtomLeft" class="atom-toggle atom-toggle-left" aria-controls="atomPanelLeft" aria-expanded="true" aria-label="Panou teorie (unități & formule)">☰</button>
 
     <!-- LEFT PANEL -->
-    <aside class="panel left">
+    <aside class="panel left" id="atomPanelLeft">
       <div class="panelHeader pink">
         <h2>Teorie & Unități</h2>
         <p class="small">Hidrogen • Spectrometrie • Modele cuantice</p>
@@ -114,7 +116,7 @@
     </main>
 
     <!-- RIGHT PANEL -->
-    <aside class="panel right">
+    <aside class="panel right" id="atomPanelRight">
       <div class="panelHeader green">
         <h2>Control</h2>
         <p class="small">Simulare • Parametri • Spectru</p>
@@ -211,6 +213,8 @@
         </div>
       </div>
     </aside>
+
+    <button type="button" id="toggleAtomRight" class="atom-toggle atom-toggle-right" aria-controls="atomPanelRight" aria-expanded="true" aria-label="Panou control simulare">☰</button>
 
   </div>
 

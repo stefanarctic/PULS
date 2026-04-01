@@ -948,6 +948,97 @@ function drawStarfield(w,h){
 }
 
 // =====================
+// Panouri retractabile (același model ca Legi Kepler / oscilator)
+// =====================
+const atomLeftPanel = document.getElementById("atomPanelLeft");
+const atomRightPanel = document.getElementById("atomPanelRight");
+const atomToggleLeft = document.getElementById("toggleAtomLeft");
+const atomToggleRight = document.getElementById("toggleAtomRight");
+
+function isAtomMobileViewport(){
+  return window.matchMedia("(max-width: 1024px)").matches;
+}
+
+function syncAtomStageMargins(){
+  const lw = atomLeftPanel?.offsetWidth || 300;
+  const rw = atomRightPanel?.offsetWidth || 320;
+  const leftOn = atomLeftPanel && !atomLeftPanel.classList.contains("hidden");
+  const rightOn = atomRightPanel && !atomRightPanel.classList.contains("hidden");
+  document.documentElement.style.setProperty("--atom-stage-ml", leftOn ? `${lw}px` : "0px");
+  document.documentElement.style.setProperty("--atom-stage-mr", rightOn ? `${rw}px` : "0px");
+}
+
+function updateAtomTogglePositions(){
+  if (!atomToggleLeft || !atomToggleRight) return;
+  const lw = atomLeftPanel?.offsetWidth || 300;
+  const rw = atomRightPanel?.offsetWidth || 320;
+  const leftHidden = atomLeftPanel?.classList.contains("hidden");
+  const rightHidden = atomRightPanel?.classList.contains("hidden");
+
+  atomToggleLeft.style.left = leftHidden ? "10px" : `${lw + 10}px`;
+  atomToggleLeft.style.right = "auto";
+
+  atomToggleRight.style.right = rightHidden ? "10px" : `${rw + 10}px`;
+  atomToggleRight.style.left = "auto";
+}
+
+function syncAtomToggleAria(){
+  const lOpen = atomLeftPanel && !atomLeftPanel.classList.contains("hidden");
+  const rOpen = atomRightPanel && !atomRightPanel.classList.contains("hidden");
+  atomToggleLeft?.setAttribute("aria-expanded", String(!!lOpen));
+  atomToggleRight?.setAttribute("aria-expanded", String(!!rOpen));
+}
+
+function syncAtomPanelsUi(){
+  syncAtomStageMargins();
+  updateAtomTogglePositions();
+  syncAtomToggleAria();
+}
+
+function applyAtomInitialPanels(){
+  if (!atomLeftPanel || !atomRightPanel) return;
+  if (isAtomMobileViewport()){
+    atomLeftPanel.classList.add("hidden");
+    atomRightPanel.classList.add("hidden");
+  } else {
+    atomLeftPanel.classList.remove("hidden");
+    atomRightPanel.classList.remove("hidden");
+  }
+  syncAtomPanelsUi();
+}
+
+function onAtomResize(){
+  if (!isAtomMobileViewport()){
+    atomLeftPanel?.classList.remove("hidden");
+    atomRightPanel?.classList.remove("hidden");
+  }
+  syncAtomPanelsUi();
+  drawSpectrum();
+}
+
+if (atomToggleLeft && atomLeftPanel){
+  atomToggleLeft.addEventListener("click", () => {
+    atomLeftPanel.classList.toggle("hidden");
+    if (isAtomMobileViewport() && !atomLeftPanel.classList.contains("hidden") && atomRightPanel){
+      atomRightPanel.classList.add("hidden");
+    }
+    syncAtomPanelsUi();
+  });
+}
+
+if (atomToggleRight && atomRightPanel){
+  atomToggleRight.addEventListener("click", () => {
+    atomRightPanel.classList.toggle("hidden");
+    if (isAtomMobileViewport() && !atomRightPanel.classList.contains("hidden") && atomLeftPanel){
+      atomLeftPanel.classList.add("hidden");
+    }
+    syncAtomPanelsUi();
+  });
+}
+
+window.addEventListener("resize", onAtomResize);
+
+// =====================
 // init
 // =====================
 function init(){
@@ -986,4 +1077,5 @@ function init(){
   requestAnimationFrame(loop);
 }
 
+applyAtomInitialPanels();
 init();
