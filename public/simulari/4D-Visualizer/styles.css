@@ -95,9 +95,14 @@ body {
     box-shadow: 0 6px 18px rgba(43,191,90,0.25);
 }
 
-/* When sidebar is open, move toggle to sit at its outer edge */
+/* When sidebar is open, move toggle to sit at its outer edge. Cap left so the
+   button never leaves the viewport (otherwise on narrow widths / near-full-width
+   sidebar the user cannot see the control to retract the panel). */
 body:not(.sidebar-collapsed) #sidebarToggle {
-    left: calc(var(--sidebar-width) + var(--sidebar-gap));
+    left: min(
+        calc(var(--sidebar-width) + var(--sidebar-gap)),
+        calc(100vw - 44px - 8px)
+    );
 }
 
 @media (max-width: 420px) {
