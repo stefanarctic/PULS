@@ -533,16 +533,25 @@ function drawOrbitAndPlanet(){
     drawTextGlow(`Legea II: aria(Δt=${daysShown}d) ~ constantă`, 18, 62, 14, "left");
   }
 
-  // Law III overlay
+  // Law III overlay — pe lățimi mici, caseta sus-dreapta acoperă textele Lege I/II (stânga sus);
+  // o mutăm deasupra benzii de jos, centrată orizontal.
   if (els.showLaw3.checked){
     const T = period();
     const ratio = ratioT2a3();
     const expected = 1/Mstar;
 
-    const boxX = w - 410;
-    const boxY = 18;
-    const bw = 392;
     const bh = 96;
+    const bottomBarH = 52;
+    const pad = 12;
+    const bw = Math.min(392, Math.max(160, w - 2 * pad));
+    const boxXTopRight = Math.max(pad, w - bw - pad);
+    /* Dacă caseta ar începe prea la stânga, se suprapune cu etichetele Lege I/II (x≈18). */
+    const overlapsLeftLabels = boxXTopRight < 220;
+    const useBottom = w < 780 || overlapsLeftLabels;
+    const boxX = useBottom ? Math.max(pad, (w - bw) * 0.5) : boxXTopRight;
+    const boxY = useBottom
+      ? Math.max(18, h - bottomBarH - bh - 14)
+      : 18;
 
     ctx.save();
     ctx.fillStyle = "rgba(0,0,0,.36)";
@@ -605,5 +614,96 @@ function init(){
 
   setBadge("Status: Pornit");
 }
+
+// —— Panouri retractabile (design ca la oscilatorul simplu / Mix) ——
+const keplerLeftPanel = document.getElementById("keplerPanelLeft");
+const keplerRightPanel = document.getElementById("keplerPanelRight");
+const keplerToggleLeft = document.getElementById("toggleLeftPanel");
+const keplerToggleRight = document.getElementById("toggleRightPanel");
+
+function isKeplerMobileViewport(){
+  return window.matchMedia("(max-width: 1024px)").matches;
+}
+
+function syncKeplerStageMargins(){
+  const lw = keplerLeftPanel?.offsetWidth || 300;
+  const rw = keplerRightPanel?.offsetWidth || 320;
+  const leftOn = keplerLeftPanel && !keplerLeftPanel.classList.contains("hidden");
+  const rightOn = keplerRightPanel && !keplerRightPanel.classList.contains("hidden");
+  document.documentElement.style.setProperty("--kepler-stage-ml", leftOn ? `${lw}px` : "0px");
+  document.documentElement.style.setProperty("--kepler-stage-mr", rightOn ? `${rw}px` : "0px");
+}
+
+function updateKeplerTogglePositions(){
+  if (!keplerToggleLeft || !keplerToggleRight) return;
+  const lw = keplerLeftPanel?.offsetWidth || 300;
+  const rw = keplerRightPanel?.offsetWidth || 320;
+  const leftHidden = keplerLeftPanel?.classList.contains("hidden");
+  const rightHidden = keplerRightPanel?.classList.contains("hidden");
+
+  keplerToggleLeft.style.left = leftHidden ? "10px" : `${lw + 10}px`;
+  keplerToggleLeft.style.right = "auto";
+
+  keplerToggleRight.style.right = rightHidden ? "10px" : `${rw + 10}px`;
+  keplerToggleRight.style.left = "auto";
+}
+
+function syncKeplerToggleAria(){
+  const lOpen = keplerLeftPanel && !keplerLeftPanel.classList.contains("hidden");
+  const rOpen = keplerRightPanel && !keplerRightPanel.classList.contains("hidden");
+  keplerToggleLeft?.setAttribute("aria-expanded", String(!!lOpen));
+  keplerToggleRight?.setAttribute("aria-expanded", String(!!rOpen));
+}
+
+function syncKeplerPanelsUi(){
+  syncKeplerStageMargins();
+  updateKeplerTogglePositions();
+  syncKeplerToggleAria();
+}
+
+function applyKeplerInitialPanels(){
+  if (!keplerLeftPanel || !keplerRightPanel) return;
+  if (isKeplerMobileViewport()){
+    keplerLeftPanel.classList.add("hidden");
+    keplerRightPanel.classList.add("hidden");
+  } else {
+    keplerLeftPanel.classList.remove("hidden");
+    keplerRightPanel.classList.remove("hidden");
+  }
+  syncKeplerPanelsUi();
+}
+
+function onKeplerResize(){
+  if (!isKeplerMobileViewport()){
+    keplerLeftPanel?.classList.remove("hidden");
+    keplerRightPanel?.classList.remove("hidden");
+  }
+  syncKeplerPanelsUi();
+  drawPlot();
+}
+
+if (keplerToggleLeft && keplerLeftPanel){
+  keplerToggleLeft.addEventListener("click", () => {
+    keplerLeftPanel.classList.toggle("hidden");
+    if (isKeplerMobileViewport() && !keplerLeftPanel.classList.contains("hidden") && keplerRightPanel){
+      keplerRightPanel.classList.add("hidden");
+    }
+    syncKeplerPanelsUi();
+  });
+}
+
+if (keplerToggleRight && keplerRightPanel){
+  keplerToggleRight.addEventListener("click", () => {
+    keplerRightPanel.classList.toggle("hidden");
+    if (isKeplerMobileViewport() && !keplerRightPanel.classList.contains("hidden") && keplerLeftPanel){
+      keplerLeftPanel.classList.add("hidden");
+    }
+    syncKeplerPanelsUi();
+  });
+}
+
+window.addEventListener("resize", onKeplerResize);
+
+applyKeplerInitialPanels();
 init();
  

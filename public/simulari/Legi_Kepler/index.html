@@ -18,10 +18,12 @@
   <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js" async></script>
 </head>
 <body>
-  <div class="app">
+  <div class="app" id="keplerApp">
+
+    <button type="button" id="toggleLeftPanel" class="kepler-toggle kepler-toggle-left" aria-controls="keplerPanelLeft" aria-expanded="true" aria-label="Panou teorie (legile lui Kepler)">☰</button>
 
     <!-- LEFT PANEL -->
-    <aside class="panel left">
+    <aside class="panel left" id="keplerPanelLeft">
       <div class="panelHeader leftHdr">
         <h2>Legile lui Kepler</h2>
         <p class="small">3 legi • orbită • arii • perioadă</p>
@@ -121,7 +123,7 @@
     </main>
 
     <!-- RIGHT PANEL -->
-    <aside class="panel right">
+    <aside class="panel right" id="keplerPanelRight">
       <div class="panelHeader rightHdr">
         <h2>Control</h2>
         <p class="small">parametri • timp • măsurători</p>
@@ -195,6 +197,8 @@
 
       </div>
     </aside>
+
+    <button type="button" id="toggleRightPanel" class="kepler-toggle kepler-toggle-right" aria-controls="keplerPanelRight" aria-expanded="true" aria-label="Panou control simulare">☰</button>
 
   </div>
 
