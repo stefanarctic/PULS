@@ -4,28 +4,34 @@
 
 ### Secțiunea I.1. Tehnologii folosite
 
-- **Frontend:** React (JSX) + Vite, SASS pentru stilizare modulară
-- **Librării externe:** Chart.js, D3.js, MathJax (pentru grafice și formule), Lucide React (iconițe)
-- **Backend/AI:** OpenAI API (pentru asistentul AI)
-- **Hosting:** Vercel
-- **Alte resurse:** Simulări Unity integrate prin iframe, fișiere statice HTML/JS pentru simulări
+- **Frontend:** React 19, Vite 6, React Router 7, Redux Toolkit, Sass (SCSS), Lucide React
+- **Grafice și formule:** Recharts, MathJax (remark-math / rehype-mathjax), conținut Markdown cu `react-markdown`
+- **3D (asistent):** Three.js prin `@react-three/fiber` și `@react-three/drei`
+- **Date și autentificare:** Firebase (Authentication, Firestore); opțional `firebase-admin` pentru mentenanță date
+- **Inteligență artificială:** (1) **Automatizare n8n** pe domeniul de automatizări al proiectului — chat asistent cu **Groq** și model **Llama 4 Scout**; workflow-ul poate include context static (documentație, README, sitemap) și poate delega către **Puls AI**. (2) **Puls AI** — API separat pentru fizică, cu endpoint-uri de **analiză** (ex. soluție trimisă la review din site) și **rezolvare** (când utilizatorul sau conversația cere rezolvarea unei probleme, orchestrarea poate folosi acest API în locul răspunsului „general”).
+- **Media:** Cloudinary și ImageKit (opțional, pentru optimizarea imaginilor)
+- **Hosting și API:** Vercel; funcții serverless în `api/` (ex. proxy `/api/webhook/chat` către n8n)
+- **Simulări:** aplicații web statice (HTML/CSS/JavaScript) în `public/simulari`, integrate prin iframe în pagini dedicate (`SimulationPage`, config în `src/data/simulations.js`)
+- **Calitate:** ESLint 9; versionare cu Git pe GitHub
 
 **Justificare:**  
-Tehnologiile moderne asigură o interfață rapidă, scalabilă și ușor de întreținut, cu suport pentru simulări grafice complexe și integrare AI.
+Stiva asigură performanță bună (Vite), o experiență de învățare bogată (simulări + grafice + formule), persistență și colaborare în clasă prin Firebase, și un lanț AI flexibil: **n8n** orchestrează conversația cu **Groq (Llama 4 Scout)**, iar **Puls AI** se concentrează pe analiză și rezolvare de probleme de fizică acolo unde este cazul, fără a compromite portabilitatea în browser.
 
 ### Secțiunea I.2. Proiectarea arhitecturală
 
 - **Structură modulară:** Componente React pentru fiecare secțiune (Navbar, Footer, pagini, carduri, etc.)
-- **Separarea responsabilităților:** Pagini dedicate pentru probleme, simulări, resurse, profil, etc.
-- **Datele pentru probleme** sunt gestionate într-un fișier JS (`problemedata.js`), iar resursele și simulările sunt organizate pe categorii.
-- **Internaționalizare:** Suport pentru traduceri (RO/EN) prin fișiere dedicate.
-- **Paradigme:** Programare orientată pe obiect și funcțională, cu accent pe reutilizare și extensibilitate.
+- **Separarea responsabilităților:** Pagini dedicate pentru probleme (inclusiv BAC și grile), simulări, resurse pe domenii, profil, admin, profesor și clase elevi
+- **Probleme:** încărcare din **Firebase Firestore**, gestionare în **Redux** (`features/problems`); pot exista și date auxiliare în fișiere JS locale
+- **Simulări:** lista și rutele sunt centralizate în `src/data/simulations.js`; conținutul iframe din `public/simulari`
+- **Clase și profesori:** fluxuri pentru dashboard profesor, pagină clasă, invitații și alăturare elev (`ClassJoinPage`, `TeacherDashboard`, etc.)
+- **Internaționalizare:** Suport pentru traduceri (RO/EN) prin fișiere dedicate
+- **Paradigme:** Programare orientată pe obiect și funcțională, cu accent pe reutilizare și extensibilitate
 
 ### Secțiunea I.3. Portabilitate
 
 - Aplicația rulează pe orice dispozitiv cu browser modern (desktop, tabletă, mobil).
-- Simulările Unity sunt accesibile direct din browser, fără instalare suplimentară.
-- Codul este portabil și poate fi rulat local sau pe orice platformă de hosting web.
+- Simulările rulează în browser (iframe), fără instalare de plugin-uri sau aplicații native.
+- Codul este portabil și poate fi rulat local (ex. `npm run dev` pe portul 8000) sau deployat pe infrastructură web (Vercel).
 
 ---
 
@@ -79,19 +85,20 @@ Tehnologiile moderne asigură o interfață rapidă, scalabilă și ușor de în
 
 ### Secțiunea IV.1. Funcționalitate, utilitate și interactivitate
 
-- Simulări interactive pentru pendul, unde, figuri Lissajous, seisme.
-- Probleme de fizică organizate pe teme și dificultate, cu feedback instant.
+- Simulări interactive pentru pendule, unde, figuri Lissajous, seisme, optică, termodinamică, mecanică, electricitate și subiecte avansate (ex. tunelare cuantică, spectru electromagnetic), în total peste 30 de simulări configurate în aplicație.
+- Probleme de fizică (inclusiv BAC și grile), organizate și filtrabile, cu feedback și urmărire progres.
 - Experimente virtuale și resurse teoretice.
 
 ### Secțiunea IV.2. Evaluare și feedback
 
 - Sistem de autoevaluare cu punctaj și feedback personalizat.
-- Asistent AI care corectează probleme și explică soluții pas cu pas.
+- La trimiterea unei soluții la **review**, se folosește **Puls AI** (endpoint de analiză). Asistentul din chat rulează în principal prin **n8n** și **Groq (Llama 4 Scout)**; pentru rezolvare sau verificare „de fizică” la cerere, fluxul poate apela **Puls AI** (endpoint de rezolvare).
 
 ### Secțiunea IV.3. Posibilitatea de a actualiza și gestiona conținutul
 
-- Problemele și resursele pot fi extinse ușor prin adăugarea de noi fișiere sau editarea celor existente.
-- Structura modulară permite actualizarea rapidă a conținutului.
+- Problemele pot fi actualizate în **Firestore** (inclusiv prin panoul admin). Uneltele de import din linia de comandă (proiect) sunt opționale pentru echipa de conținut.
+- Simulările noi se pot adăuga prin extinderea `simulations.js` și a fișierelor din `public/simulari`.
+- Paginile de resurse și componentele asociate permit extinderea pe categorii fără a restrânge arhitectura.
 
 ### Secțiunea IV.4. Corectitudinea informațiilor științifice
 
@@ -104,8 +111,8 @@ Tehnologiile moderne asigură o interfață rapidă, scalabilă și ușor de în
 
 ### Secțiunea V.1. Originalitatea ideii sau inovații față de soluții existente
 
-- Integrarea simulărilor Unity direct în platformă web.
-- Asistent AI pentru corectarea și explicarea problemelor de fizică.
+- Integrarea unui număr mare de simulări web într-o singură platformă cu rută și prezentare unitară.
+- Lanț AI compus: **n8n** + **Groq (Llama 4 Scout)** pentru conversație contextuală și **Puls AI** pentru analiză și rezolvare de probleme de fizică; avatar 3D pentru prezentarea asistentului.
 - Gamificare prin sistem de punctaj și realizări.
 - Interfață adaptivă și resurse multimedia (video, animații, grafice interactive).
 
@@ -143,7 +150,7 @@ Tehnologiile moderne asigură o interfață rapidă, scalabilă și ușor de în
 
 #### Justificarea tehnologiilor alese
 
-- Vezi Secțiunea I.1 pentru motivația alegerii React, Vite, SASS, Chart.js, D3.js, MathJax și integrarea AI.
+- Vezi Secțiunea I.1 pentru motivația alegerii React, Vite, Sass, Redux, Firebase, Recharts, MathJax, Three.js (R3F), automatizarea n8n cu Groq și API-ul Puls AI.
 
 ---
 

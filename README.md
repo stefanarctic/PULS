@@ -4,7 +4,7 @@
 
 ## 🌟 Caracteristici principale
 
-### 🔬 Simulări interactive (22+ simulări)
+### 🔬 Simulări interactive (37 simulări)
 - **Pendule**: Pendul simplu, pendul amortizat, pendul neliniar, penduluri multiple
 - **Oscilații**: Mișcări oscilatorii pe OX și OY, grafice armonice
 - **Unde**: Unde în apă, propagarea undelor
@@ -15,9 +15,11 @@
 - **Termodinamică**: Gaz ideal, motoare termice (ciclu Otto, Diesel, Carnot)
 - **Mecanică**: Plan înclinat, coliziuni inelastice, mișcarea proiectilului
 - **Grafice**: Funcții matematice, grafice simple și complexe
+- **Modernă / avansat**: Vizualizator 4D, legi Kepler, atomul de hidrogen, experiența Michelson–Morley, interferență (dublă fantă), tunelare cuantică, spectrul electromagnetic, curent alternativ, Kirchhoff, laser, tabel periodic
 
 ### 📚 Probleme de fizică
 - **Probleme BAC**: Colecție completă de probleme din examenele de bacalaureat
+- **Grile**: Întrebări tip grilă cu pagină dedicată și navigare pe item
 - **Probleme individuale**: Probleme detaliate cu rezolvări pas cu pas
 - **Auto-evaluare**: Sistem de corectare automată cu feedback instant
 - **Tracking progres**: Urmărire a problemelor rezolvate per utilizator
@@ -25,9 +27,9 @@
 
 ### 🤖 Asistent AI 3D integrat
 - **Asistent vizual**: Avatar 3D interactiv (Three.js/React Three Fiber)
-- **Corectare probleme**: AI-ul corectează și explică soluțiile pas cu pas
-- **Sugestii personalizate**: Feedback adaptat pentru fiecare utilizator
-- **Integrare Mistral AI**: Pentru interpretarea și explicarea problemelor
+- **Chat (flux principal)**: Mesajele merg către o **automatizare n8n** găzduită la `automations.puls-fizica.ro`; workflow-ul folosește **Groq** cu modelul **Llama 4 Scout** (`meta-llama/llama-4-scout-17b-18b-instruct`) și poate injecta context din documentație, README și sitemap al site-ului pentru răspunsuri mai precise.
+- **Puls AI (API separat, specializat pe fizică)**: Serviciu antrenat/orientat pe fizică, cu endpoint-uri precum **analiză** și **rezolvare**. Când utilizatorul trimite o lucrare la **review** (ex. din formularul de trimitere soluție), aplicația apelează endpoint-ul de **analiză**. Când conversația sau acțiunea utilizatorului vizează **rezolvarea** unei probleme, automatizarea n8n poate delega către **Puls AI** (inclusiv endpoint-ul de rezolvare), astfel încât explicațiile de fizică să vină de la motorul dedicat, nu de la modelul general al chat-ului.
+- **Separare clară**: Chat-ul obișnuit rulează prin n8n/Groq; verificarea și rezolvarea „la carte” de fizică trec prin **Puls AI** când fluxul o cere.
 
 ### 🎮 Gamificare și realizări
 - **Sistem de realizări (Achievements)**: Badge-uri pentru progres
@@ -36,7 +38,7 @@
 
 ### 📖 Resurse educaționale
 - **Resurse teoretice**: Formule, explicații, video-uri
-- **Categorii**: Pendule, unde, lissajous, seism, termodinamică, mecanică, electricitate, optică
+- **Categorii**: Pendule, unde, lissajous, seism, termodinamică, mecanică, electricitate, optică, matematică, astronomie, atom, fizică cuantică
 - **Conținut multimedia**: Video-uri, animații, grafice interactive
 
 ### 🌐 Funcționalități platformă
@@ -46,6 +48,7 @@
 - **Căutare**: Sistem de căutare pentru probleme și resurse
 - **Profil utilizator**: Autentificare și gestionare cont (Firebase Auth)
 - **Admin Dashboard**: Panou de administrare pentru gestionarea conținutului
+- **Clase (profesor & elev)**: Dashboard profesor, pagină clasă, invitații, alăturare cu cod/link; elevi văd cursurile lor din `/clasa`
 
 ## 🛠️ Stack tehnologic
 
@@ -65,8 +68,9 @@
 
 ### Backend & Services
 - **Firebase** - Autentificare și Firestore (bază de date)
-- **Firebase Admin** - Operări server-side
-- **Mistral AI** - Asistent AI pentru corectare probleme
+- **Firebase Admin** - Operări server-side (inclusiv scripturi de mentenanță date)
+- **Automatizare n8n** (`automations.puls-fizica.ro`) - orchestrare chat asistent; model **Groq** Llama 4 Scout
+- **Puls AI API** - analiză și rezolvare probleme de fizică (apelat din site la review și, prin workflow, la rezolvare)
 - **Cloudinary** - Gestionare imagini
 - **ImageKit** - Optimizare și delivery imagini
 
@@ -120,9 +124,9 @@ PULS/
 │   ├── res/               # Resurse (imagini, video)
 │   ├── translations/      # Fișiere traduceri (ro.json, en.json)
 │   └── ...
-├── api/                   # Serverless API endpoints (Vercel)
+├── api/                   # Serverless API (Vercel): proxy chat → n8n, etc.
 │   ├── assistant/
-│   └── webhook/
+│   └── webhook/           # ex. chat → https://automations.puls-fizica.ro/webhook/chat
 ├── extracted_problems/    # Probleme extrase (JSON)
 └── ...
 ```
@@ -132,8 +136,9 @@ PULS/
 ### Cerințe
 - Node.js 18+ și npm
 - Cont Firebase (pentru autentificare și bază de date)
-- Cont Mistral AI (pentru asistent AI)
 - Cont Cloudinary/ImageKit (opțional, pentru imagini)
+
+*Scripturile Node din root (extragere/upload probleme BAC, grile, backup etc.) sunt unelte opționale pentru mentenanța conținutului și a bazei de date; nu sunt necesare pentru a rula aplicația în mod normal.*
 
 ### Instalare
 
@@ -164,9 +169,6 @@ VITE_FIREBASE_STORAGE_BUCKET=your_storage_bucket
 VITE_FIREBASE_MESSAGING_SENDER_ID=your_sender_id
 VITE_FIREBASE_APP_ID=your_app_id
 
-# Mistral AI
-VITE_MISTRAL_API_KEY=your_mistral_api_key
-
 # Cloudinary (opțional)
 VITE_CLOUDINARY_CLOUD_NAME=your_cloud_name
 VITE_CLOUDINARY_API_KEY=your_api_key
@@ -195,13 +197,15 @@ npm run build            # Construiește pentru producție
 npm run preview          # Preview build producție
 npm run lint             # Rulează ESLint
 
-# Scripturi utilitare pentru probleme
+# Opțional — mentenanță conținut / date (dezvoltatori)
 npm run extract-bac      # Extrage probleme BAC
 npm run upload-bac       # Încarcă probleme BAC în Firebase
 npm run backup-db        # Backup bază de date Firebase
 npm run clean-problems   # Curăță conținut probleme
 npm run upload-cleaned   # Încarcă probleme curățate
 npm run remove-duplicates # Elimină duplicate
+npm run upload-grile      # Încarcă grile în Firebase
+npm run screenshot-simulations # Capturi ecran simulări (Puppeteer)
 ```
 
 ## 🗺️ Routing
@@ -211,9 +215,11 @@ Principalele rute ale aplicației:
 - `/` - Pagina principală (Index)
 - `/probleme` - Lista probleme
 - `/probleme/bac` - Probleme BAC
+- `/probleme/grile` - Grile
+- `/probleme/grile/:id` - Grilă individuală
 - `/probleme/:id` - Problemă individuală
 - `/simulari` - Lista simulări
-- `/simulare/:slug` - Simulare individuală (22+ simulări)
+- `/simulare/:slug` - Simulare individuală (37 simulări)
 - `/resurse` - Resurse educaționale
 - `/resurse/pendule` - Resurse pendule
 - `/resurse/unde` - Resurse unde
@@ -223,7 +229,18 @@ Principalele rute ale aplicației:
 - `/resurse/mecanica` - Resurse mecanică
 - `/resurse/electricitate` - Resurse electricitate
 - `/resurse/optica` - Resurse optică
+- `/resurse/matematica` - Resurse matematică
+- `/resurse/astronomie` - Resurse astronomie
+- `/resurse/atomul` - Resurse atom
+- `/resurse/fizica-cuantica` - Resurse fizică cuantică
+- `/asistent` - Intrare asistent AI
 - `/profil` - Profil utilizator
+- `/invite-teacher` - Invitație profesor
+- `/profesor` - Dashboard profesor
+- `/profesor/clasa/:classId` - Gestionare clasă (profesor)
+- `/clasa/intra` - Alăturare clasă (cod/link)
+- `/clasa` - Clasele mele (elev)
+- `/clasa/:classId` - Detalii clasă (elev)
 - `/admin` - Dashboard admin
 - `/search` - Rezultate căutare
 - `/about-us` - Despre noi
@@ -239,12 +256,11 @@ Principalele rute ale aplicației:
 
 ### Asistent AI
 - Avatar 3D interactiv (Three.js)
-- Integrare Mistral AI pentru corectare
-- Chat interface pentru întrebări
-- Explicații pas cu pas
+- Chat prin proxy `/api/webhook/chat` către automatizarea **n8n** (Groq, Llama 4 Scout), cu context din documentație/site
+- **Puls AI** pentru analiza soluțiilor trimise la review și pentru rezolvare/verificare fizică când workflow-ul o selectează
 
 ### Simulări
-- 22+ simulări interactive
+- 37 simulări interactive
 - Integrare prin iframe
 - Simulări HTML/JS/CSS standalone
 - Control parametri în timp real
@@ -287,7 +303,6 @@ Acest proiect este dezvoltat în scop educațional.
 ## 🔗 Link-uri utile
 
 - **Repository**: [GitHub](https://github.com/Stefanarctic/PULS)
-- **Deployment**: [Vercel](https://puls-fizica.vercel.app)
 - **Website**: [puls-fizica.ro](https://puls-fizica.ro)
 
 ---
