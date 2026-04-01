@@ -21,12 +21,14 @@
     color:var(--ink);
     background:
       radial-gradient(1200px 700px at 70% -10%, rgba(122,167,255,.28), transparent 55%),
-      /* radial-gradient(900px 600px at 10% 110%, rgba(62,233,138,.20), transparent 55%), */
       linear-gradient(180deg, var(--bg), #070a14 70%);
-    min-height:100%;
+    min-height: 100%;
+    min-height: 100dvh;
+    min-height: -webkit-fill-available;
     display:flex;
+    flex-direction: column;
     align-items:stretch;
-    justify-content:center;
+    width: 100%;
     padding:0;
   }
   
@@ -196,15 +198,6 @@
   .status.warn{border-color: rgba(255,204,102,.28); background: rgba(255,204,102,.08)}
   .status.bad{border-color: rgba(255,95,109,.28); background: rgba(255,95,109,.08)}
   
-  .stage{
-    position:relative;
-    overflow:hidden;
-    padding:0;
-    height: 70vh;      /* FIX */
-    min-height: 520px; /* ca să nu fie mic pe ecrane mici */
-  }
-  
-  
   canvas{
     width:100%;
     height:100%;
@@ -218,11 +211,12 @@
     bottom:12px;
     right:12px;
     display:flex;
-    justify-content:space-between;
-    gap:10px;
+    flex-wrap:wrap;
+    justify-content:flex-start;
+    gap:8px;
     pointer-events:none;
     color: rgba(234,240,255,.85);
-    font-size:12px;
+    font-size:11px;
   }
   
   .hint span{
@@ -233,26 +227,23 @@
     backdrop-filter: blur(10px);
   }
   
-  @media (max-width: 980px){
-    .app{grid-template-columns: 1fr;}
-    .stage{min-height: 56vh;}
-  }
   /* Layout full screen */
-html, body { height: 100%; }
-
-body{
-  padding: 0; /* ca să fie full */
+html, body {
+  height: 100%;
+  min-height: 100dvh;
+  min-height: -webkit-fill-available;
 }
 
 /* container mare */
 .layout{
   width: 100%;
-  min-height: 100%;
-  height: auto;
+  flex: 1 1 auto;
+  min-height: 100dvh;
   display: grid;
   grid-template-columns: 280px 1fr;
   gap: 14px;
   padding: 12px;
+  box-sizing: border-box;
 }
 
 /* Sidebar */
@@ -292,12 +283,16 @@ body{
 /* Stage wrapper */
 .stageWrap{
   min-width: 0;
-  min-height: 62vh;
+  min-height: 0;
   height: 100%;
+  display: flex;
+  flex-direction: column;
 }
 
 /* Stage (canvas) pe toată înălțimea */
 .stage{
+  flex: 1 1 auto;
+  min-height: 0;
   height: 100%;
   padding: 0;
   position: relative;
@@ -309,7 +304,13 @@ canvas{
   height: 100%;
   display: block;
   border-radius: var(--radius);
-  background: #070a14; 
+  background: #070a14;
+  touch-action: none;
+  cursor: grab;
+}
+
+canvas:active{
+  cursor: grabbing;
 }
 
 /* Peek button când panoul e retras */
@@ -328,9 +329,15 @@ canvas{
   display: none; /* apare doar când sidebar e retras */
 }
 
-/* collapsed state */
+/* collapsed state (desktop) */
 .layout.is-collapsed{
   grid-template-columns: 0px 1fr;
+}
+
+@media (max-width: 980px){
+  .layout.is-collapsed{
+    grid-template-columns: 1fr;
+  }
 }
 
 .layout.is-collapsed .sidebar{
@@ -346,15 +353,50 @@ canvas{
   display: inline-flex;
 }
 
-/* Mobile: sidebar sub canvas (dar tot retractabil) */
+/* Mobile: canvas sus, ocupă tot spațiul până la panou; panou scrollabil jos */
 @media (max-width: 980px){
   .layout{
     grid-template-columns: 1fr;
-    grid-template-rows: auto 1fr;
+    grid-template-rows: minmax(0, 1fr) auto;
+    min-height: 100dvh;
+    min-height: 100svh;
+    padding: 8px;
+    gap: 10px;
+  }
+
+  /* DOM: sidebar, stageWrap — pe mobil vrem scena sus */
+  .stageWrap{
+    grid-row: 1;
+    min-height: 0;
+    height: 100%;
+    flex: 1 1 auto;
+  }
+
+  .sidebar{
+    grid-row: 2;
+    min-height: 0;
+    max-height: min(42vh, 520px);
+  }
+
+  .sidebar-inner{
+    max-height: min(38vh, 480px);
   }
 
   .layout.is-collapsed{
-    grid-template-rows: 0px 1fr;
+    grid-template-rows: minmax(0, 1fr) 0px;
+  }
+
+  .layout.is-collapsed .sidebar{
+    width: auto;
+    max-height: 0;
+    overflow: hidden;
+    padding: 0;
+    border: none;
+  }
+
+  .layout.is-collapsed .sidebar-inner{
+    max-height: 0;
+    overflow: hidden;
   }
 
   .sidebar-top{
@@ -362,8 +404,10 @@ canvas{
     left: auto;
   }
 
-  .stageWrap{
-    min-height: 56vh;
+  .stage{
+    flex: 1 1 auto;
+    min-height: 0;
+    height: 100%;
   }
 }
 /* Formula rail (în sidebar) */

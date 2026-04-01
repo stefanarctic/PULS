@@ -73,9 +73,18 @@
     let d0 = +doSlider.value; // cm (positive)
     let h0 = +hoSlider.value; // cm
 
-    // Dragging
+    // Dragging obiect
     let dragging = false;
     let dragOffset = { x: 0, y: 0 };
+
+    // Pan vedere (px ecran logic, ca clientWidth)
+    let viewPanX = 0;
+    let viewPanY = 0;
+    let panning = false;
+    let panStartX = 0;
+    let panStartY = 0;
+    let panViewX0 = 0;
+    let panViewY0 = 0;
 
     function resize() {
         const rect = stage.getBoundingClientRect();
@@ -127,13 +136,19 @@
     function worldToScreen(x, y) {
         const cx = canvas.clientWidth / 2;
         const cy = canvas.clientHeight / 2;
-        return { x: cx + x * pxPerCm, y: cy - y * pxPerCm };
+        return {
+            x: cx + x * pxPerCm + viewPanX,
+            y: cy - y * pxPerCm + viewPanY,
+        };
     }
 
     function screenToWorld(sx, sy) {
         const cx = canvas.clientWidth / 2;
         const cy = canvas.clientHeight / 2;
-        return { x: (sx - cx) / pxPerCm, y: (cy - sy) / pxPerCm };
+        return {
+            x: (sx - cx - viewPanX) / pxPerCm,
+            y: (cy - sy + viewPanY) / pxPerCm,
+        };
     }
 
     function lensFormula(f, d0) {
@@ -450,21 +465,40 @@
     }
 
     function onPointerDown(e) {
+        if (e.pointerType === "mouse" && e.button !== 0) return;
+
         const rect = canvas.getBoundingClientRect();
         const sx = e.clientX - rect.left;
         const sy = e.clientY - rect.top;
 
-        if (!hitTestObject(sx, sy)) return;
+        if (hitTestObject(sx, sy)) {
+            panning = false;
+            dragging = true;
+            canvas.setPointerCapture?.(e.pointerId);
 
-        dragging = true;
+            const wpos = screenToWorld(sx, sy);
+            dragOffset.x = wpos.x - (-d0);
+            dragOffset.y = wpos.y - (h0);
+            return;
+        }
+
+        dragging = false;
+        panning = true;
+        panStartX = e.clientX;
+        panStartY = e.clientY;
+        panViewX0 = viewPanX;
+        panViewY0 = viewPanY;
         canvas.setPointerCapture?.(e.pointerId);
-
-        const wpos = screenToWorld(sx, sy);
-        dragOffset.x = wpos.x - (-d0);
-        dragOffset.y = wpos.y - (h0);
+        canvas.style.cursor = "grabbing";
     }
 
     function onPointerMove(e) {
+        if (panning) {
+            viewPanX = panViewX0 + (e.clientX - panStartX);
+            viewPanY = panViewY0 + (e.clientY - panStartY);
+            draw();
+            return;
+        }
         if (!dragging) return;
 
         const rect = canvas.getBoundingClientRect();
@@ -488,6 +522,10 @@
     }
 
     function onPointerUp(e) {
+        if (panning) {
+            panning = false;
+            canvas.style.cursor = "";
+        }
         dragging = false;
         try { canvas.releasePointerCapture?.(e.pointerId); } catch { }
     }
@@ -513,6 +551,9 @@
         doSlider.value = d0;
         hoSlider.value = h0;
         scaleSlider.value = pxPerCm;
+
+        viewPanX = 0;
+        viewPanY = 0;
 
         showRays = true;
         showLabels = true;
