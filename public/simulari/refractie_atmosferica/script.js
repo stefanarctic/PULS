@@ -1,5 +1,83 @@
 (() => {
     const $ = (id) => document.getElementById(id);
+
+    const leftPanel = $("leftPanel");
+    const rightPanel = $("rightPanel");
+    const toggleRafLeft = $("toggleRafLeft");
+    const toggleRafRight = $("toggleRafRight");
+
+    function isRafMobileViewport(){
+      return window.matchMedia("(max-width: 1024px)").matches;
+    }
+
+    function updateRafTogglePositions(){
+      if (!toggleRafLeft || !toggleRafRight) return;
+      const lw = leftPanel?.offsetWidth || 280;
+      const rw = rightPanel?.offsetWidth || 280;
+      const leftHidden = leftPanel?.classList.contains("hidden");
+      const rightHidden = rightPanel?.classList.contains("hidden");
+
+      toggleRafLeft.style.left = leftHidden ? "10px" : `${lw + 10}px`;
+      toggleRafLeft.style.right = "auto";
+
+      toggleRafRight.style.right = rightHidden ? "10px" : `${rw + 10}px`;
+      toggleRafRight.style.left = "auto";
+    }
+
+    function syncRafToggleAria(){
+      const lOpen = leftPanel && !leftPanel.classList.contains("hidden");
+      const rOpen = rightPanel && !rightPanel.classList.contains("hidden");
+      toggleRafLeft?.setAttribute("aria-expanded", String(!!lOpen));
+      toggleRafRight?.setAttribute("aria-expanded", String(!!rOpen));
+    }
+
+    function syncRafPanelsUi(){
+      updateRafTogglePositions();
+      syncRafToggleAria();
+      resizeCanvas();
+    }
+
+    function applyRafInitialPanels(){
+      if (!leftPanel || !rightPanel) return;
+      if (isRafMobileViewport()){
+        leftPanel.classList.add("hidden");
+        rightPanel.classList.add("hidden");
+      } else {
+        leftPanel.classList.remove("hidden");
+        rightPanel.classList.remove("hidden");
+      }
+      syncRafPanelsUi();
+    }
+
+    function onRafResize(){
+      if (!isRafMobileViewport()){
+        leftPanel?.classList.remove("hidden");
+        rightPanel?.classList.remove("hidden");
+      }
+      syncRafPanelsUi();
+    }
+
+    if (toggleRafLeft && leftPanel){
+      toggleRafLeft.addEventListener("click", () => {
+        leftPanel.classList.toggle("hidden");
+        if (isRafMobileViewport() && !leftPanel.classList.contains("hidden") && rightPanel){
+          rightPanel.classList.add("hidden");
+        }
+        syncRafPanelsUi();
+      });
+    }
+
+    if (toggleRafRight && rightPanel){
+      toggleRafRight.addEventListener("click", () => {
+        rightPanel.classList.toggle("hidden");
+        if (isRafMobileViewport() && !rightPanel.classList.contains("hidden") && leftPanel){
+          leftPanel.classList.add("hidden");
+        }
+        syncRafPanelsUi();
+      });
+    }
+
+    window.addEventListener("resize", onRafResize);
   
     // UI
     const dist = $("dist");
@@ -52,7 +130,6 @@
       canvas.width = Math.floor(rect.width * dpr);
       canvas.height = Math.floor(rect.height * dpr);
     }
-    window.addEventListener("resize", resizeCanvas);
   
     // World mapping
     function worldParams(){
@@ -480,7 +557,7 @@
     }
   
     // init
-    resizeCanvas();
+    applyRafInitialPanels();
     syncUI();
     setStatus("ok", "Pornit");
     statusVal.textContent = "RULEAZĂ";

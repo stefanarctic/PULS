@@ -13,7 +13,9 @@
     </div>
   </header>
 
-  <main class="layout">
+  <main class="layout" id="rafLayout">
+    <button type="button" id="toggleRafLeft" class="raf-toggle raf-toggle-left" aria-controls="leftPanel" aria-expanded="true" aria-label="Panou control">☰</button>
+
     <!-- PANOU STÂNGA -->
     <aside id="leftPanel" class="panel left">
       <div class="panelHeader">
@@ -100,10 +102,12 @@
       </div>
     </aside>
 
+    <div class="rafStageShell">
     <!-- CANVAS FULL -->
     <section class="stage">
       <canvas id="c"></canvas>
     </section>
+    </div>
 
     <!-- PANOU DREAPTA -->
     <aside id="rightPanel" class="panel right">
@@ -153,6 +157,8 @@
         Tip: gradient 0.7–0.9 + strat 1–2m + tremur 0.3 → efect „apă” pe sol.
       </p>
     </aside>
+
+    <button type="button" id="toggleRafRight" class="raf-toggle raf-toggle-right" aria-controls="rightPanel" aria-expanded="true" aria-label="Panou formule">☰</button>
   </main>
 
   <script src="script.js"></script>
