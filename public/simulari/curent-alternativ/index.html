@@ -2,33 +2,44 @@
 <html lang="ro">
 <head>
     <meta charset="UTF-8">
-    <title>AC Simulator</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Curent alternativ (AC)</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div class="layout">
-    
+    <header class="topbar">
+        <div class="brand">
+            <h1>Curent alternativ</h1>
+            <p>Simulator AC / DC — tensiune, curent, fază, fazor</p>
+        </div>
+    </header>
+
+    <main class="layout" id="caLayout">
+        <button type="button" id="toggleCaLeft" class="ca-toggle ca-toggle-left" aria-controls="leftPanel" aria-expanded="true" aria-label="Panou formule și măsurători">☰</button>
+
         <!-- LEFT PANEL -->
-        <div class="panel left">
+        <aside id="leftPanel" class="panel left">
+            <div class="panelHeader">
+                <h2>Formule &amp; măsurători</h2>
+            </div>
             <div class="section">
-                <h3>Unități de măsură in S.I.</h3>
+                <h3>Unități de măsură în S.I.</h3>
                 <div class="box">
-                    <p>U - V(Volt)</p>
-                    <p>I - A(Amper)</p>
-                    <p>f - Hz(Hertz)</p>
-                    <p>φ - rad(radian)</p>
+                    <p>U — V (volt)</p>
+                    <p>I — A (amper)</p>
+                    <p>f — Hz (hertz)</p>
+                    <p>φ — rad (radian)</p>
                 </div>
             </div>
-    
+
             <div class="section">
                 <h3>Formule și măsurători</h3>
                 <div class="box">
                     <div id="formula"></div>
                     <div id="rms"></div>
                     <div id="cosphi"></div>
-                    <div id="indicators">
+                    <div id="indicators"></div>
                 </div>
-            </div>
             </div>
             <div id="analysis"></div>
             <div class="section">
@@ -39,44 +50,48 @@
                 <h3>Fază</h3>
                 <div class="box" id="phaseInfo"></div>
             </div>
+        </aside>
+
+        <div class="caStageShell">
+            <div class="center">
+                <canvas id="canvas"></canvas>
+            </div>
         </div>
-    
-        <!-- CENTER -->
-        <div class="center">
-            <canvas id="canvas"></canvas>
-        </div>
-    
+
         <!-- RIGHT PANEL -->
-        <div class="panel right">
-    
+        <aside id="rightPanel" class="panel right">
+            <div class="panelHeader">
+                <h2>Control</h2>
+            </div>
+
             <div class="section">
-                <h3>Control</h3>
-    
+                <h3>Parametri</h3>
+
                 <label>Amplitudine U(t)
                     <input type="range" id="ampU" min="10" max="200" value="100">
                     <span id="ampUVal"></span>
                 </label>
-                
+
                 <label>Amplitudine I(t)
                     <input type="range" id="ampI" min="10" max="200" value="100">
                     <span id="ampIVal"></span>
                 </label>
-    
+
                 <label>Frecvență
                     <input type="range" id="freq" min="1" max="100" value="20">
                     <span id="freqVal"></span>
                 </label>
-    
+
                 <label>Viteză
                     <input type="range" id="speed" min="1" max="100" value="50">
                     <span id="speedVal"></span>
                 </label>
-    
+
                 <label>Fază
                     <input type="range" id="phase" min="0" max="628" value="0">
                     <span id="phaseVal"></span>
                 </label>
-    
+
                 <label>Mod
                     <select id="mode">
                         <option value="ac">AC</option>
@@ -84,7 +99,7 @@
                     </select>
                 </label>
             </div>
-    
+
             <div class="section">
                 <h3>Măsurători</h3>
                 <div class="box">
@@ -93,7 +108,7 @@
                     <div id="impedance"></div>
                 </div>
             </div>
-            
+
             <div class="section">
                 <h3>Grafic mic</h3>
                 <canvas id="miniGraph"></canvas>
@@ -104,11 +119,11 @@
                 </div>
             </div>
             <canvas id="phasor"></canvas>
-    
-        </div>
-    
-    </div>
-    
+        </aside>
+
+        <button type="button" id="toggleCaRight" class="ca-toggle ca-toggle-right" aria-controls="rightPanel" aria-expanded="true" aria-label="Panou control">☰</button>
+    </main>
+
     <script src="script.js"></script>
-    </body>
-</html> 
+</body>
+</html>

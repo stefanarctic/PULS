@@ -1,13 +1,80 @@
 const canvas = document.getElementById("canvas");
 const ctx = canvas.getContext("2d");
 
+const leftPanel = document.getElementById("leftPanel");
+const rightPanel = document.getElementById("rightPanel");
+const toggleCaLeft = document.getElementById("toggleCaLeft");
+const toggleCaRight = document.getElementById("toggleCaRight");
+
+function isCaMobileViewport() {
+    return window.matchMedia("(max-width: 1024px)").matches;
+}
+
 function resizeCanvas() {
     canvas.width = canvas.clientWidth;
     canvas.height = canvas.clientHeight;
 }
 
-window.addEventListener("resize", resizeCanvas);
-resizeCanvas();
+function updateCaTogglePositions() {
+    if (!toggleCaLeft || !toggleCaRight) return;
+    /* Colțuri fixe — butoanele rămân îndepărtate (nu se aduc spre centru când panoul e deschis). */
+    toggleCaLeft.style.left = "max(14px, env(safe-area-inset-left, 0px))";
+    toggleCaLeft.style.right = "auto";
+
+    toggleCaRight.style.right = "max(14px, env(safe-area-inset-right, 0px))";
+    toggleCaRight.style.left = "auto";
+}
+
+function syncCaToggleAria() {
+    const lOpen = leftPanel && !leftPanel.classList.contains("hidden");
+    const rOpen = rightPanel && !rightPanel.classList.contains("hidden");
+    toggleCaLeft?.setAttribute("aria-expanded", String(!!lOpen));
+    toggleCaRight?.setAttribute("aria-expanded", String(!!rOpen));
+}
+
+function syncCaPanelsUi() {
+    updateCaTogglePositions();
+    syncCaToggleAria();
+    resizeCanvas();
+    resizePhasor();
+    resizeMini();
+}
+
+function applyCaInitialPanels() {
+    if (!leftPanel || !rightPanel) return;
+    if (isCaMobileViewport()) {
+        leftPanel.classList.add("hidden");
+        rightPanel.classList.add("hidden");
+    } else {
+        leftPanel.classList.remove("hidden");
+        rightPanel.classList.remove("hidden");
+    }
+    syncCaPanelsUi();
+}
+
+function onCaResize() {
+    if (!isCaMobileViewport()) {
+        leftPanel?.classList.remove("hidden");
+        rightPanel?.classList.remove("hidden");
+    }
+    syncCaPanelsUi();
+}
+
+if (toggleCaLeft && leftPanel) {
+    toggleCaLeft.addEventListener("click", () => {
+        leftPanel.classList.toggle("hidden");
+        syncCaPanelsUi();
+    });
+}
+
+if (toggleCaRight && rightPanel) {
+    toggleCaRight.addEventListener("click", () => {
+        rightPanel.classList.toggle("hidden");
+        syncCaPanelsUi();
+    });
+}
+
+window.addEventListener("resize", onCaResize);
 
 let t = 0;
 
@@ -42,15 +109,13 @@ function resizePhasor() {
     phasorCanvas.width = phasorCanvas.clientWidth;
     phasorCanvas.height = phasorCanvas.clientHeight;
 }
-resizePhasor();
-window.addEventListener("resize", resizePhasor);
 
 function resizeMini() {
     miniCanvas.width = miniCanvas.clientWidth;
     miniCanvas.height = miniCanvas.clientHeight;
 }
-resizeMini();
-window.addEventListener("resize", resizeMini);
+
+applyCaInitialPanels();
 
 let phase = 0; // în radiani
 
