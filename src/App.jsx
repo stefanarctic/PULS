@@ -10,6 +10,7 @@ import SearchResults from "./components/pages/searchresults";
 import AssistantEntryPage from "./components/pages/AssistantEntryPage";
 import './scss/style.scss';
 import Index from "./components/pages/Index";
+import Index2 from "./components/pages/Index2";
 import Probleme from "./components/pages/Probleme";
 import ProblemaIndividuala from "./components/pages/ProblemaIndividuala";
 import ProblemeBac from "./components/pages/ProblemeBac";
@@ -116,6 +117,7 @@ const App = () => {
       <div className="App">
         <Routes>
           <Route path="/" element={<Index />} />
+          <Route path="/landing-custom" element={<Index2 />} />
           <Route path="/probleme" element={<Probleme />} />
           <Route path="/probleme/bac" element={<ProblemeBac />} />
           <Route path="/probleme/grile" element={<ProblemeGrile />} />
