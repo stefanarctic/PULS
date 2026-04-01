@@ -38,6 +38,11 @@
     let offsetX = 0;
     let offsetY = 0;
   
+    /* Pe mobil încadrăm o zonă mai mică din spațiul „world” (circuit + HUD + etichete),
+       nu tot dreptunghiul 980×560 → scală mai mare, circuit mai vizibil. */
+    const MOBILE_VIEW_PAD = 0.94;
+    const MOBILE_VIEW = { cx0: 8, cx1: 872, cy0: 16, cy1: 472 };
+
     function resizeCanvas(){
       const rect = canvas.getBoundingClientRect();
       const dpr = window.devicePixelRatio || 1;
@@ -45,17 +50,115 @@
       canvas.width = Math.floor(rect.width * dpr);
       canvas.height = Math.floor(rect.height * dpr);
   
-      // compute scale to fit BASE into current canvas
       const w = canvas.width;
       const h = canvas.height;
-      const s = Math.min(w / BASE_W, h / BASE_H);
-  
+      const mobile = window.matchMedia("(max-width: 1024px)").matches;
+
+      let s;
+      let ox;
+      let oy;
+      if (mobile){
+        const cw = MOBILE_VIEW.cx1 - MOBILE_VIEW.cx0;
+        const ch = MOBILE_VIEW.cy1 - MOBILE_VIEW.cy0;
+        s = Math.min(w * MOBILE_VIEW_PAD / cw, h * MOBILE_VIEW_PAD / ch);
+        ox = (w - cw * s) / 2 - MOBILE_VIEW.cx0 * s;
+        oy = (h - ch * s) / 2 - MOBILE_VIEW.cy0 * s;
+      } else {
+        s = Math.min(w / BASE_W, h / BASE_H);
+        ox = (w - BASE_W * s) * 0.5;
+        oy = (h - BASE_H * s) * 0.5;
+      }
+
       scale = s;
-      offsetX = (w - BASE_W * s) * 0.5;
-      offsetY = (h - BASE_H * s) * 0.5;
+      offsetX = ox;
+      offsetY = oy;
     }
   
-    window.addEventListener("resize", resizeCanvas);
+    const toggleEcLeft = $("toggleEcLeft");
+    const toggleEcRight = $("toggleEcRight");
+
+    function isEcMobileViewport(){
+      return window.matchMedia("(max-width: 1024px)").matches;
+    }
+
+    function syncEcStageMargins(){
+      const lw = leftPanel?.offsetWidth || 250;
+      const rw = rightPanel?.offsetWidth || 250;
+      const leftOn = leftPanel && !leftPanel.classList.contains("hidden");
+      const rightOn = rightPanel && !rightPanel.classList.contains("hidden");
+      document.documentElement.style.setProperty("--ec-stage-ml", leftOn ? `${lw}px` : "0px");
+      document.documentElement.style.setProperty("--ec-stage-mr", rightOn ? `${rw}px` : "0px");
+    }
+
+    function updateEcTogglePositions(){
+      if (!toggleEcLeft || !toggleEcRight) return;
+      const lw = leftPanel?.offsetWidth || 250;
+      const rw = rightPanel?.offsetWidth || 250;
+      const leftHidden = leftPanel?.classList.contains("hidden");
+      const rightHidden = rightPanel?.classList.contains("hidden");
+
+      toggleEcLeft.style.left = leftHidden ? "10px" : `${lw + 10}px`;
+      toggleEcLeft.style.right = "auto";
+
+      toggleEcRight.style.right = rightHidden ? "10px" : `${rw + 10}px`;
+      toggleEcRight.style.left = "auto";
+    }
+
+    function syncEcToggleAria(){
+      const lOpen = leftPanel && !leftPanel.classList.contains("hidden");
+      const rOpen = rightPanel && !rightPanel.classList.contains("hidden");
+      toggleEcLeft?.setAttribute("aria-expanded", String(!!lOpen));
+      toggleEcRight?.setAttribute("aria-expanded", String(!!rOpen));
+    }
+
+    function syncEcPanelsUi(){
+      syncEcStageMargins();
+      updateEcTogglePositions();
+      syncEcToggleAria();
+      resizeCanvas();
+    }
+
+    function applyEcInitialPanels(){
+      if (!leftPanel || !rightPanel) return;
+      if (isEcMobileViewport()){
+        leftPanel.classList.add("hidden");
+        rightPanel.classList.add("hidden");
+      } else {
+        leftPanel.classList.remove("hidden");
+        rightPanel.classList.remove("hidden");
+      }
+      syncEcPanelsUi();
+    }
+
+    function onEcResize(){
+      if (!isEcMobileViewport()){
+        leftPanel?.classList.remove("hidden");
+        rightPanel?.classList.remove("hidden");
+      }
+      syncEcPanelsUi();
+    }
+
+    if (toggleEcLeft && leftPanel){
+      toggleEcLeft.addEventListener("click", () => {
+        leftPanel.classList.toggle("hidden");
+        if (isEcMobileViewport() && !leftPanel.classList.contains("hidden") && rightPanel){
+          rightPanel.classList.add("hidden");
+        }
+        syncEcPanelsUi();
+      });
+    }
+
+    if (toggleEcRight && rightPanel){
+      toggleEcRight.addEventListener("click", () => {
+        rightPanel.classList.toggle("hidden");
+        if (isEcMobileViewport() && !rightPanel.classList.contains("hidden") && leftPanel){
+          leftPanel.classList.add("hidden");
+        }
+        syncEcPanelsUi();
+      });
+    }
+
+    window.addEventListener("resize", onEcResize);
   
     // ======= State =======
     let isOn = false;
@@ -452,7 +555,7 @@
     // Init
     refreshSwitchUI();
     setStatus("ok", "gata.");
-    resizeCanvas();
+    applyEcInitialPanels();
     requestAnimationFrame(tick);
   })();
   
