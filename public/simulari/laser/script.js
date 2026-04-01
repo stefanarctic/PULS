@@ -8,6 +8,31 @@ function resize(){
 resize()
 window.addEventListener("resize", resize)
 
+const laserPanel = document.getElementById("laserPanel")
+const panelToggle = document.getElementById("panelToggle")
+const mqMobilePanel = window.matchMedia("(max-width: 767px)")
+
+function syncLaserPanelUi() {
+  if (!laserPanel || !panelToggle) return
+  const collapsed = laserPanel.classList.contains("collapsed")
+  document.body.classList.toggle("panel-collapsed", collapsed)
+  panelToggle.setAttribute("aria-expanded", String(!collapsed))
+  panelToggle.setAttribute(
+    "aria-label",
+    collapsed ? "Deschide panoul de controale" : "Închide panoul de controale"
+  )
+}
+
+if (laserPanel && mqMobilePanel.matches) {
+  laserPanel.classList.add("collapsed")
+}
+syncLaserPanelUi()
+
+panelToggle?.addEventListener("click", () => {
+  laserPanel?.classList.toggle("collapsed")
+  syncLaserPanelUi()
+})
+
 const angleSlider = document.getElementById("angle")
 const powerSlider = document.getElementById("power")
 const toolSelect = document.getElementById("tool")

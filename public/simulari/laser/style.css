@@ -8,36 +8,113 @@ body{
     canvas{
     display:block;
     }
+
+    #panelToggle{
+    position:fixed;
+    z-index:1001;
+    width:44px;
+    height:44px;
+    padding:0;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    border-radius:10px;
+    border:1px solid #da6666;
+    background:rgba(20,28,22,0.95);
+    color:#e8ffe8;
+    font-size:18px;
+    font-weight:700;
+    cursor:pointer;
+    box-shadow:0 2px 12px rgba(0,0,0,0.45);
+    transition:transform 0.2s ease, bottom 0.28s ease, right 0.28s ease, top 0.28s ease, left 0.28s ease;
+    }
+
+    #panelToggle:hover{
+    transform:translateY(-1px);
+    border-color:#da6666;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+    #panelToggle{ transition:none; }
+    .panel{ transition:none !important; }
+    }
     
     .panel{
-    
     position:fixed;
-    right:20px;
-    bottom:20px;
-    
+    z-index:1000;
     background:#111;
     border:1px solid #333;
-    
     padding:15px;
     border-radius:10px;
-    
     color:white;
-    width:320px;
-    max-height: calc(100vh - 40px);
     overflow:auto;
-    
+    transition:transform 0.28s ease;
+    box-sizing:border-box;
+    }
+
+    @media (min-width: 768px) {
+    .panel{
+    right:20px;
+    bottom:20px;
+    left:auto;
+    width:320px;
+    max-height:calc(100vh - 40px);
+    transform:translateX(0);
+    }
+    .panel.collapsed{
+    transform:translateX(calc(100% + 28px));
+    pointer-events:none;
+    }
+    body.panel-collapsed #panelToggle{
+    right:20px;
+    bottom:20px;
+    top:auto;
+    left:auto;
+    }
+    body:not(.panel-collapsed) #panelToggle{
+    right:min(calc(320px + 40px), calc(100vw - 44px - 8px));
+    bottom:20px;
+    top:auto;
+    left:auto;
+    }
+    }
+
+    /* Mobil: butonul rămâne sus-dreapta mereu. Jos-dreapta e acoperit de butonul
+       fullscreen al paginii părinte (iframe), deci ☰ nu era vizibil. */
+    @media (max-width: 767px) {
+    .panel{
+    left:12px;
+    right:12px;
+    bottom:12px;
+    width:auto;
+    max-height:min(68vh, 560px);
+    border-radius:12px 12px 10px 10px;
+    transform:translateY(0);
+    }
+    .panel.collapsed{
+    transform:translateY(calc(100% + 20px));
+    pointer-events:none;
+    }
+    body.panel-collapsed #panelToggle,
+    body:not(.panel-collapsed) #panelToggle{
+    top:max(12px, env(safe-area-inset-top, 0px));
+    right:max(12px, env(safe-area-inset-right, 0px));
+    bottom:auto;
+    left:auto;
+    }
     }
     
     input{
     width:100%;
     }
 
-    select, button{
+    select,
+    .panel button{
     width:100%;
     margin-top:8px;
     }
 
-    button{
+    .panel button{
     background:#1b1b1b;
     color:#fff;
     border:1px solid #333;
@@ -46,7 +123,7 @@ body{
     cursor:pointer;
     }
 
-    button:hover{
+    .panel button:hover{
     border-color:#555;
     }
 
