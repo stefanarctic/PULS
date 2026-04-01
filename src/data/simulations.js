@@ -35,6 +35,7 @@ import dublaFantaImg from "/res/screenshots/dubla_fanta_Screenshot.png";
 import tunelareCuanticaImg from "/res/screenshots/tunelare_Screenshot.png";
 import laserImg from "/res/screenshots/laser_Screenshot.png";
 import tabelPeriodicImg from "/res/screenshots/Tabel_periodic_Screenshot.png";
+import legaturiAtomiImg from "/res/screenshots/legaturi_atomi_Screenshot.png";
 export const simulationsConfig = [
   {
     id: 1,
@@ -475,6 +476,19 @@ export const simulationsConfig = [
     image: tunelareCuanticaImg,
     caption: "Tunelare cuantică",
     iframeSrc: "/simulari/tunelare/index.html",
+    maxHeight: "90vh",
+    category: "Fizică cuantică"
+  },
+  {
+    id: 38,
+    slug: "legaturi-atomi",
+    route: "/simulare/legaturi-atomi",
+    title: "Legături între atomi",
+    description:
+      "Vizualizează legături chimice (σ, π), orbitali moleculari de legătură/antilegătură și distribuția densității de probabilitate între nuclee.",
+    image: legaturiAtomiImg,
+    caption: "Legături între atomi",
+    iframeSrc: "/simulari/legaturi_atomi/index.html",
     maxHeight: "90vh",
     category: "Fizică cuantică"
   },

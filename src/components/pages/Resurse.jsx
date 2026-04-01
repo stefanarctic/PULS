@@ -1297,6 +1297,39 @@ const ResursePage = () => {
         },
       ],
     },
+    {
+      section: "3. Legături între atomi și orbitali moleculari",
+      formulas: [
+        {
+          title: "Combinarea orbitalilor atomici (MO de legătură/antilegătură)",
+          formula:
+            "\\( \\psi_{\\text{leg}} = c_1 \\psi_A + c_2 \\psi_B, \\quad \\psi_{\\text{anti}} = c_1 \\psi_A - c_2 \\psi_B \\)",
+          explanation:
+            "Două funcții de undă atomice (de exemplu doi orbitali 1s) se pot combina liniar pentru a da un orbital molecular de legătură (simetric) și unul de antilegătură (antisimetric).",
+        },
+        {
+          title: "Energie de legătură",
+          formula:
+            "\\( E_{\\text{leg}} = E_{\\text{atomi separați}} - E_{\\text{moleculă}} \\)",
+          explanation:
+            "Energia de legătură este energia necesară pentru a separa atomii unei molecule până la infinit (stare de atomi liberi).",
+        },
+        {
+          title: "Forță aproximativă de legătură (model oscilator)",
+          formula:
+            "\\( F \\approx -k (r - r_0) \\)",
+          explanation:
+            "În jurul distanței de echilibru r₀ dintre nuclee, potențialul de legătură poate fi aproximat printr-un potențial de oscilator armonic, cu constantă efectivă k.",
+        },
+        {
+          title: "Densitate de probabilitate în zona de legătură",
+          formula:
+            "\\( \\rho(\\vec{r}) = |\\psi_{\\text{leg}}(\\vec{r})|^2 \\)",
+          explanation:
+            "Probabilitatea de a găsi electronii în zona dintre nuclee este dată de pătratul modulului funcției de undă de legătură; o densitate mai mare între nuclee corespunde legăturii covalente.",
+        },
+      ],
+    },
   ];
 
   const relativitateFormulas = [

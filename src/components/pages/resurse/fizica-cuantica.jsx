@@ -5,6 +5,7 @@ import SEO from "../../SEO";
 
 import dublaFantaImg from "/res/screenshots/dubla_fanta_Screenshot.png";
 import tunelareImg from "/res/screenshots/tunelare_Screenshot.png";
+import legaturiAtomiImg from "/res/screenshots/legaturi_atomi_Screenshot.png";
 
 const FizicaCuanticaPage = () => {
   return (
@@ -24,11 +25,7 @@ const FizicaCuanticaPage = () => {
               <p className="text-lg text-muted-foreground mb-4">
                 Introducem două fenomene de bază: superpoziția amplitudinilor la dublă fantă (interferență și probabilitate) și
                 penetrarea unei bariere de potențial (tunelare). Mai jos, sub fiecare simulare, găsești formulele folosite des în
-                probleme, cu explicații scurte. Lista completă, pe categorii, e și în{" "}
-                <a href="/resurse?tab=formule&formula=fizica_cuantica" className="resurse-link">
-                  Resurse → Formule → Fizică cuantică
-                </a>
-                .
+                probleme, cu explicații scurte.
               </p>
             </div>
 
@@ -104,7 +101,6 @@ const FizicaCuanticaPage = () => {
                 </div>
               </div>
             </div>
-
             <div className="space-y-12">
               <div className="rounded-container">
                 <h2 className="text-2xl font-bold mb-4">Tunelarea cuantică</h2>
@@ -193,6 +189,94 @@ const FizicaCuanticaPage = () => {
                 <div className="flex flex-col md:flex-row md:items-center justify-end gap-6">
                   <a href="/simulare/tunelare-cuantica" rel="noopener noreferrer" className="resurse-link">
                     <Button size="lg">Simulare: tunelare cuantică</Button>
+                  </a>
+                </div>
+              </div>
+            </div>
+
+            <div className="space-y-12 mt-12">
+              <div className="rounded-container">
+                <h2 className="text-2xl font-bold mb-4">Legături între atomi și orbitali moleculari</h2>
+                <p className="text-muted-foreground mb-4">
+                  Dincolo de atomul izolat, mecanica cuantică explică de ce atomii se pot lega în molecule stabile:
+                  combinația liniară a orbitalilor atomici duce la orbitali moleculari de legătură și antilegătură.
+                  Densitatea de probabilitate crescută între nuclee corespunde unei energii totale mai mici decât
+                  suma energiilor atomilor separați.
+                </p>
+                <div className="image-slider h-64 md:h-80 relative flex items-center justify-center mb-8">
+                  <img
+                    src={legaturiAtomiImg}
+                    alt="Simulator legături între atomi"
+                    className="w-full h-full object-contain mx-auto my-auto"
+                  />
+                </div>
+
+                <h3 className="text-xl font-semibold mb-3">Formule esențiale (legături între atomi)</h3>
+
+                <h4 className="text-lg font-semibold mb-2">1. Combinarea orbitalilor atomici (MO de legătură / antilegătură)</h4>
+                <p className="text-muted-foreground mb-3">
+                  În modelul foarte simplificat al moleculei {"\\(\\text{H}_2\\)"} <MathJaxRender />, doi orbitali{" "}
+                  {"\\(1s\\)"} <MathJaxRender /> se pot combina într-un orbital de legătură (simetric) și unul de
+                  antilegătură (antisimetric):
+                </p>
+                <div className="formula-resurse text-lg font-mono mb-4">
+                  {"\\( \\psi_{\\text{leg}} = c_1 \\psi_A + c_2 \\psi_B, \\quad \\psi_{\\text{anti}} = c_1 \\psi_A - c_2 \\psi_B \\)"}
+                  <MathJaxRender />
+                </div>
+                <p className="text-muted-foreground mb-4">
+                  În orbitalul de legătură, densitatea de probabilitate{" "}
+                  {"\\( |\\psi_{\\text{leg}}|^2 \\)"} <MathJaxRender /> este mai mare între nuclee, ceea ce duce la o
+                  energie totală mai mică decât pentru atomii separați.
+                </p>
+
+                <h4 className="text-lg font-semibold mb-2">2. Energie de legătură</h4>
+                <p className="text-muted-foreground mb-3">
+                  Energia de legătură se definește ca diferența dintre energia atomilor separați și energia moleculei:
+                </p>
+                <div className="formula-resurse text-lg font-mono mb-4">
+                  {"\\( E_{\\text{leg}} = E_{\\text{atomi separați}} - E_{\\text{moleculă}} \\)"}
+                  <MathJaxRender />
+                </div>
+                <p className="text-muted-foreground mb-4">
+                  Cu cât{" "}
+                  {"\\(E_{\\text{leg}}\\)"} <MathJaxRender /> este mai mare, cu atât legătura este mai puternică și
+                  molecula mai stabilă.
+                </p>
+
+                <h4 className="text-lg font-semibold mb-2">3. Forță de legătură – aproximația oscilatorului</h4>
+                <p className="text-muted-foreground mb-3">
+                  În jurul distanței de echilibru{" "}
+                  {"\\(r_0\\)"} <MathJaxRender /> dintre nuclee, potențialul de legătură poate fi aproximat printr-un
+                  oscilator armonic:
+                </p>
+                <div className="formula-resurse text-lg font-mono mb-4">
+                  {"\\( F \\approx -k (r - r_0) \\)"}
+                  <MathJaxRender />
+                </div>
+                <p className="text-muted-foreground mb-4">
+                  Constanta efectivă{" "}
+                  {"\\(k\\)"} <MathJaxRender /> se corelează cu „rigiditatea” legăturii; frecvența vibrațională depinde
+                  de{" "}
+                  {"\\(k\\)"} <MathJaxRender /> și de masa redusă a celor doi atomi.
+                </p>
+
+                <h4 className="text-lg font-semibold mb-2">4. Densitate de probabilitate pe legătură</h4>
+                <p className="text-muted-foreground mb-3">
+                  Probabilitatea de a găsi electronii într-un punct{" "}
+                  {"\\(\\vec{r}\\)"} <MathJaxRender /> este dată de densitatea de probabilitate:
+                </p>
+                <div className="formula-resurse text-lg font-mono mb-4">
+                  {"\\( \\rho(\\vec{r}) = |\\psi_{\\text{leg}}(\\vec{r})|^2 \\)"}
+                  <MathJaxRender />
+                </div>
+                <p className="text-muted-foreground mb-4">
+                  O densitate mare între nuclee este semnătura unei legături covalente; în orbitalul de antilegătură
+                  această densitate este mică sau nulă în zona dintre nuclee.
+                </p>
+
+                <div className="flex flex-col md:flex-row md:items-center justify-end gap-6">
+                  <a href="/simulare/legaturi-atomi" rel="noopener noreferrer" className="resurse-link">
+                    <Button size="lg">Simulare: legături între atomi</Button>
                   </a>
                 </div>
               </div>

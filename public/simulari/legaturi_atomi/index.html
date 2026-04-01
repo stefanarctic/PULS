@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Simulator de Legaturi Atomice</title>
+  <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+  <div id="app">
+    <button id="leftPanelToggle" class="panel-toggle panel-toggle--left" type="button" aria-label="Toggle control panel">
+      <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M7 4l6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    </button>
+
+    <aside id="leftPanel" class="control-panel">
+      <div class="panel-scroll">
+        <div class="panel-header">
+          <h1>Legaturi Atomice</h1>
+          <p>Misca atomii si urmareste cum se schimba distributia electronilor.</p>
+        </div>
+
+        <section class="control-group">
+          <h2>Atomi</h2>
+          <label>
+            Focus Atom A
+            <select id="atomASelect"></select>
+          </label>
+          <label>
+            Focus Atom B
+            <select id="atomBSelect"></select>
+          </label>
+          <label>
+            Add Atom
+            <select id="newAtomSelect"></select>
+          </label>
+          <div class="button-row">
+            <button id="addAtomButton" class="mode-button" type="button">Add Atom</button>
+            <button id="removeAtomButton" class="mode-button" type="button">Remove Selected</button>
+          </div>
+          <div class="info-row compact-row">
+            <span>Total atomi</span>
+            <strong id="atomCountValue">2</strong>
+          </div>
+          <div class="info-row compact-row">
+            <span>Selectat</span>
+            <strong id="selectedAtomValue">Atom 1</strong>
+          </div>
+        </section>
+
+        <section class="control-group">
+          <h2>Energie</h2>
+          <label for="energySlider">Excitare electronica</label>
+          <input id="energySlider" type="range" min="0" max="100" value="35">
+          <div class="range-labels">
+            <span>Stabil</span>
+            <span id="energyValue">35%</span>
+            <span>Excitat</span>
+          </div>
+        </section>
+
+        <section class="control-group">
+          <h2>Control Fizica</h2>
+          <label class="checkbox-row">
+            <input id="deltaOverrideToggle" type="checkbox">
+            <span>Override manual pentru Delta EN</span>
+          </label>
+          <label for="deltaEnOverrideSlider">Delta EN manual</label>
+          <input id="deltaEnOverrideSlider" type="range" min="0" max="3.5" step="0.01" value="0.96">
+          <div class="range-labels">
+            <span>0.00</span>
+            <span id="deltaEnOverrideValue">0.96</span>
+            <span>3.50</span>
+          </div>
+
+          <label for="timeScaleSlider">Slow motion</label>
+          <input id="timeScaleSlider" type="range" min="20" max="120" value="100">
+          <div class="range-labels">
+            <span>Lent</span>
+            <span id="timeScaleValue">100%</span>
+            <span>Rapid</span>
+          </div>
+        </section>
+
+        <section class="control-group">
+          <h2>Vizualizare</h2>
+          <div class="view-toggle" role="group" aria-label="Mod de vizualizare">
+            <button id="classicModeButton" class="mode-button is-active" type="button">Classic</button>
+            <button id="quantumModeButton" class="mode-button" type="button">Quantum</button>
+          </div>
+        </section>
+
+        <section class="control-group info-group">
+          <h2>Stare simulare</h2>
+          <div class="info-row">
+            <span>Legatura</span>
+            <strong id="bondTypeBadge" class="bond-badge none">none</strong>
+          </div>
+          <div class="info-row">
+            <span>Distanta</span>
+            <strong id="distanceValue">0.00</strong>
+          </div>
+          <div class="info-row">
+            <span>Delta EN</span>
+            <strong id="deltaEnValue">0.00</strong>
+          </div>
+          <div class="info-row">
+            <span>Intensitate</span>
+            <strong id="bondStrengthValue">0%</strong>
+          </div>
+          <div class="info-row">
+            <span>Sarcini</span>
+            <strong id="chargeValue">0 / 0</strong>
+          </div>
+          <div class="info-row">
+            <span>Sugestie</span>
+            <strong id="comboSuggestionValue">Alege o pereche interesanta</strong>
+          </div>
+          <p id="bondDescription" class="bond-description">
+            Apropie atomii pentru a vedea aparitia legaturii.
+          </p>
+        </section>
+
+        <section class="control-group legend-group">
+          <h2>Legenda</h2>
+          <ul>
+            <li>Trage un nucleu pentru a schimba distanta dintre atomi.</li>
+            <li>Modul classic afiseaza orbite simplificate si legatura.</li>
+            <li>Modul quantum afiseaza un nor de probabilitate intre atomi.</li>
+          </ul>
+        </section>
+
+        <div class="panel-footer">
+          <button id="resetButton" class="reset-button" type="button">Reset pozitie</button>
+        </div>
+      </div>
+    </aside>
+
+    <main class="viewport-shell">
+      <div id="sceneContainer" class="scene-container"></div>
+      <div id="atomTooltip" class="atom-tooltip is-hidden"></div>
+      <div class="scene-hint">Click si drag pe un atom pentru a-l muta pe plan.</div>
+    </main>
+
+    <aside id="rightPanel" class="reference-panel">
+      <div class="panel-scroll">
+        <div class="panel-header">
+          <h1>Formule &amp; Unitati</h1>
+        </div>
+
+        <section class="control-group ref-section">
+          <h2>Clasificare legatura</h2>
+          <div class="formula-card">
+            <div class="formula-expr">ΔEN = |EN<sub>A</sub> − EN<sub>B</sub>|</div>
+            <table class="ref-table">
+              <thead><tr><th>ΔEN</th><th>Tip legatura</th></tr></thead>
+              <tbody>
+                <tr><td>0 – 0.4</td><td class="ref-covalent">Covalenta</td></tr>
+                <tr><td>0.4 – 1.7</td><td class="ref-polar">Polar covalenta</td></tr>
+                <tr><td>&gt; 1.7</td><td class="ref-ionic">Ionica</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </section>
+
+        <section class="control-group ref-section">
+          <h2>Legea lui Coulomb</h2>
+          <div class="formula-card">
+            <div class="formula-expr">F = k · |q<sub>1</sub> · q<sub>2</sub>| / r²</div>
+            <div class="formula-detail">
+              <span>k = 8.99 × 10⁹ N·m²/C²</span>
+              <span>q = sarcina electrica (C)</span>
+              <span>r = distanta dintre sarcini (m)</span>
+            </div>
+          </div>
+        </section>
+
+        <section class="control-group ref-section">
+          <h2>Energie de legatura</h2>
+          <div class="formula-card">
+            <div class="formula-expr">E = −k · q₁ · q₂ / r</div>
+            <div class="formula-detail">
+              <span>E se masoara in eV sau kJ/mol</span>
+              <span>1 eV = 1.602 × 10⁻¹⁹ J</span>
+              <span>1 eV/particula ≈ 96.49 kJ/mol</span>
+            </div>
+          </div>
+        </section>
+
+        <section class="control-group ref-section">
+          <h2>Unitati de masura</h2>
+          <div class="formula-card">
+            <table class="ref-table">
+              <thead><tr><th>Marime</th><th>Unitate</th></tr></thead>
+              <tbody>
+                <tr><td>Distanta</td><td>Å (Angstrom) = 10⁻¹⁰ m</td></tr>
+                <tr><td>Electronegativitate</td><td>Pauling (adimensional)</td></tr>
+                <tr><td>Sarcina</td><td>e (sarcina elementara)</td></tr>
+                <tr><td>Energie</td><td>eV (electronvolt)</td></tr>
+                <tr><td>Raza atomica</td><td>pm (picometru) = 10⁻¹² m</td></tr>
+                <tr><td>Forta</td><td>N (Newton)</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </section>
+
+        <section class="control-group ref-section">
+          <h2>Scala Pauling (selectie)</h2>
+          <div class="formula-card">
+            <table class="ref-table ref-table--compact">
+              <thead><tr><th>Element</th><th>EN</th><th>Tip</th></tr></thead>
+              <tbody>
+                <tr><td>F</td><td>3.98</td><td>Cel mai electronegativ</td></tr>
+                <tr><td>O</td><td>3.44</td><td>Nemetal</td></tr>
+                <tr><td>Cl</td><td>3.16</td><td>Halogen</td></tr>
+                <tr><td>N</td><td>3.04</td><td>Nemetal</td></tr>
+                <tr><td>C</td><td>2.55</td><td>Nemetal</td></tr>
+                <tr><td>H</td><td>2.20</td><td>Nemetal</td></tr>
+                <tr><td>Si</td><td>1.90</td><td>Semiconductor</td></tr>
+                <tr><td>Fe</td><td>1.83</td><td>Metal tranzitie</td></tr>
+                <tr><td>Ca</td><td>1.00</td><td>Alcalino-pamantOs</td></tr>
+                <tr><td>Na</td><td>0.93</td><td>Metal alcalin</td></tr>
+                <tr><td>K</td><td>0.82</td><td>Metal alcalin</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </section>
+
+        <section class="control-group ref-section">
+          <h2>Regula octetului</h2>
+          <div class="formula-card">
+            <div class="formula-detail">
+              <span>Atomii tind sa aiba 8 electroni pe ultimul nivel energetic (exceptie: H → 2e⁻).</span>
+              <span>Legaturile chimice se formeaza pentru a atinge aceasta configuratie stabila.</span>
+            </div>
+          </div>
+        </section>
+      </div>
+    </aside>
+
+    <button id="rightPanelToggle" class="panel-toggle panel-toggle--right" type="button" aria-label="Toggle reference panel">
+      <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M13 4l-6 6 6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    </button>
+  </div>
+
+  <script type="module" src="./script.js"></script>
+</body>
+</html>
