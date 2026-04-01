@@ -81,15 +81,6 @@
       return window.matchMedia("(max-width: 1024px)").matches;
     }
 
-    function syncEcStageMargins(){
-      const lw = leftPanel?.offsetWidth || 250;
-      const rw = rightPanel?.offsetWidth || 250;
-      const leftOn = leftPanel && !leftPanel.classList.contains("hidden");
-      const rightOn = rightPanel && !rightPanel.classList.contains("hidden");
-      document.documentElement.style.setProperty("--ec-stage-ml", leftOn ? `${lw}px` : "0px");
-      document.documentElement.style.setProperty("--ec-stage-mr", rightOn ? `${rw}px` : "0px");
-    }
-
     function updateEcTogglePositions(){
       if (!toggleEcLeft || !toggleEcRight) return;
       const lw = leftPanel?.offsetWidth || 250;
@@ -112,7 +103,6 @@
     }
 
     function syncEcPanelsUi(){
-      syncEcStageMargins();
       updateEcTogglePositions();
       syncEcToggleAria();
       resizeCanvas();

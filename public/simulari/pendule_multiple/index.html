@@ -11,19 +11,15 @@
     <div class="brand">
       <h1>Penduluri duble (multiple)</h1>
     </div>
-
-    <div class="topbarBtns">
-      <button id="toggleLeft" class="iconBtn" title="Arată/ascunde stânga">☰ Stânga</button>
-      <button id="toggleRight" class="iconBtn" title="Arată/ascunde dreapta">☰ Dreapta</button>
-    </div>
   </header>
 
-  <main class="layout">
+  <main class="layout" id="pmLayout">
+    <button type="button" id="togglePmLeft" class="pm-toggle pm-toggle-left" aria-controls="leftPanel" aria-expanded="true" aria-label="Panou controale">☰</button>
+
     <!-- LEFT PANEL -->
     <aside id="leftPanel" class="panel left">
       <div class="panelHeader">
         <h2>Controale</h2>
-        <button class="iconBtn small" id="collapseLeft" title="Ascunde">⟨</button>
       </div>
 
       <div class="row">
@@ -65,7 +61,7 @@
       </div>
 
       <div class="row">
-        <label for="m1">">Masă m₁ (kg)</label>
+        <label for="m1">Masă m₁ (kg)</label>
         <input id="m1" type="range" min="0.2" max="5" step="0.1" value="1.0" />
         <span id="m1Val" class="val">1.0</span>
       </div>
@@ -125,17 +121,16 @@
       </div>
     </aside>
 
+    <div class="pmStageShell">
     <!-- STAGE -->
     <section class="stage">
-      <button id="dockLeft" class="dockBtn left" title="Deschide panoul stânga">⟩</button>
-      <button id="dockRight" class="dockBtn right" title="Deschide panoul dreapta">⟨</button>
       <canvas id="c"></canvas>
     </section>
+    </div>
 
     <!-- RIGHT PANEL -->
     <aside id="rightPanel" class="panel right">
       <div class="panelHeader">
-        <button class="iconBtn small" id="collapseRight" title="Ascunde">⟩</button>
         <h2>Informații</h2>
       </div>
 
@@ -178,6 +173,8 @@ x₂ = x₁ + L₂ sinθ₂,  y₂ = y₁ + L₂ cosθ₂
         Tip: pune N=16, perturbare=0.2°, dt=0.01 și lasă-l 10 secunde.
       </p>
     </aside>
+
+    <button type="button" id="togglePmRight" class="pm-toggle pm-toggle-right" aria-controls="rightPanel" aria-expanded="true" aria-label="Panou informații">☰</button>
   </main>
 
   <script src="script.js"></script>

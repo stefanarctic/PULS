@@ -18,8 +18,6 @@
     --topbarH: 56px;
     --ec-pl-w: 250px;
     --ec-pr-w: 250px;
-    --ec-stage-ml: 250px;
-    --ec-stage-mr: 250px;
   }
   
   *{box-sizing:border-box}
@@ -161,9 +159,6 @@
     flex:1;
     min-height:0;
     width: 100%;
-    margin-left:var(--ec-stage-ml);
-    margin-right:var(--ec-stage-mr);
-    transition:margin-left 0.28s ease, margin-right 0.28s ease;
     background: #ffffff;
   }
   canvas{

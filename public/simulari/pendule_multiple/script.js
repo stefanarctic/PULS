@@ -1,37 +1,83 @@
 (() => {
     const $ = (id) => document.getElementById(id);
   
-    // Panels
-    const layout = document.querySelector(".layout");
     const leftPanel = $("leftPanel");
     const rightPanel = $("rightPanel");
-  
-    const toggleLeft = $("toggleLeft");
-    const toggleRight = $("toggleRight");
-    const collapseLeft = $("collapseLeft");
-    const collapseRight = $("collapseRight");
-    const dockLeft = $("dockLeft");
-    const dockRight = $("dockRight");
-  
-    function setLeftCollapsed(c){
-      leftPanel.classList.toggle("collapsed", c);
-      layout.classList.toggle("left-collapsed", c);
+    const togglePmLeft = $("togglePmLeft");
+    const togglePmRight = $("togglePmRight");
+
+    function isPmMobileViewport(){
+      return window.matchMedia("(max-width: 1024px)").matches;
+    }
+
+    function updatePmTogglePositions(){
+      if (!togglePmLeft || !togglePmRight) return;
+      const lw = leftPanel?.offsetWidth || 250;
+      const rw = rightPanel?.offsetWidth || 250;
+      const leftHidden = leftPanel?.classList.contains("hidden");
+      const rightHidden = rightPanel?.classList.contains("hidden");
+
+      togglePmLeft.style.left = leftHidden ? "10px" : `${lw + 10}px`;
+      togglePmLeft.style.right = "auto";
+
+      togglePmRight.style.right = rightHidden ? "10px" : `${rw + 10}px`;
+      togglePmRight.style.left = "auto";
+    }
+
+    function syncPmToggleAria(){
+      const lOpen = leftPanel && !leftPanel.classList.contains("hidden");
+      const rOpen = rightPanel && !rightPanel.classList.contains("hidden");
+      togglePmLeft?.setAttribute("aria-expanded", String(!!lOpen));
+      togglePmRight?.setAttribute("aria-expanded", String(!!rOpen));
+    }
+
+    function syncPmPanelsUi(){
+      updatePmTogglePositions();
+      syncPmToggleAria();
       resizeCanvas();
     }
-    function setRightCollapsed(c){
-      rightPanel.classList.toggle("collapsed", c);
-      layout.classList.toggle("right-collapsed", c);
-      resizeCanvas();
+
+    function applyPmInitialPanels(){
+      if (!leftPanel || !rightPanel) return;
+      if (isPmMobileViewport()){
+        leftPanel.classList.add("hidden");
+        rightPanel.classList.add("hidden");
+      } else {
+        leftPanel.classList.remove("hidden");
+        rightPanel.classList.remove("hidden");
+      }
+      syncPmPanelsUi();
     }
-    const isLeftCollapsed = () => leftPanel.classList.contains("collapsed");
-    const isRightCollapsed = () => rightPanel.classList.contains("collapsed");
-  
-    toggleLeft.addEventListener("click", () => setLeftCollapsed(!isLeftCollapsed()));
-    toggleRight.addEventListener("click", () => setRightCollapsed(!isRightCollapsed()));
-    collapseLeft.addEventListener("click", () => setLeftCollapsed(true));
-    collapseRight.addEventListener("click", () => setRightCollapsed(true));
-    dockLeft.addEventListener("click", () => setLeftCollapsed(false));
-    dockRight.addEventListener("click", () => setRightCollapsed(false));
+
+    function onPmResize(){
+      if (!isPmMobileViewport()){
+        leftPanel?.classList.remove("hidden");
+        rightPanel?.classList.remove("hidden");
+      }
+      syncPmPanelsUi();
+    }
+
+    if (togglePmLeft && leftPanel){
+      togglePmLeft.addEventListener("click", () => {
+        leftPanel.classList.toggle("hidden");
+        if (isPmMobileViewport() && !leftPanel.classList.contains("hidden") && rightPanel){
+          rightPanel.classList.add("hidden");
+        }
+        syncPmPanelsUi();
+      });
+    }
+
+    if (togglePmRight && rightPanel){
+      togglePmRight.addEventListener("click", () => {
+        rightPanel.classList.toggle("hidden");
+        if (isPmMobileViewport() && !rightPanel.classList.contains("hidden") && leftPanel){
+          leftPanel.classList.add("hidden");
+        }
+        syncPmPanelsUi();
+      });
+    }
+
+    window.addEventListener("resize", onPmResize);
   
     // UI inputs
     const count = $("count");
@@ -86,8 +132,6 @@
       canvas.width = Math.floor(rect.width * dpr);
       canvas.height = Math.floor(rect.height * dpr);
     }
-    window.addEventListener("resize", resizeCanvas);
-  
     // Helpers
     const TAU = Math.PI * 2;
     const deg2rad = (d) => (d * Math.PI) / 180;
@@ -445,10 +489,6 @@
       }
     });
   
-    // Fix that accidental bug line in collapseRight (if you copy/paste)
-    // (we won't rely on it; just ensure it collapses)
-    collapseRight.addEventListener("click", () => setRightCollapsed(true));
-  
     // Main loop
     let last = performance.now();
     function loop(now){
@@ -482,22 +522,10 @@
   
     // Init
     syncUI();
-    resizeCanvas();
+    applyPmInitialPanels();
     buildPendulums();
     statusVal.textContent = "PAUZĂ";
     fpsVal.textContent = "—";
-  
-    // Panel dock init (optional)
-    dockLeft.style.display = "none";
-    dockRight.style.display = "none";
-  
-    // Show dock buttons only when collapsed
-    const observer = new MutationObserver(() => {
-      dockLeft.style.display = isLeftCollapsed() ? "block" : "none";
-      dockRight.style.display = isRightCollapsed() ? "block" : "none";
-    });
-    observer.observe(leftPanel, { attributes:true, attributeFilter:["class"] });
-    observer.observe(rightPanel, { attributes:true, attributeFilter:["class"] });
   
     requestAnimationFrame(loop);
   })();
