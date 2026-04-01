@@ -136,4 +136,23 @@
     font-size: 0.9rem;
     margin-top: 6px;
   }
+
+  /* Michelson diagram + fringes: stack on narrow viewports */
+  @media (max-width: 768px) {
+    .simulation {
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .interferometer {
+      width: 100%;
+      max-width: 280px;
+      margin-inline: auto;
+      box-sizing: border-box;
+    }
+
+    #fringes {
+      width: 100%;
+    }
+  }
   
