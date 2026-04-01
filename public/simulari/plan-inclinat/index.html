@@ -8,68 +8,61 @@
 </head>
 
 <body>
-  <div class="app">
-    <header class="top card">
-      <div class="topL">
-        <h1>Planul înclinat</h1>
-        <p>Static vs. cinetic • vectori forță • formule + rezultate • scenă mare. Sens pozitiv: <b>în jos pe plan</b>.</p>
+  <header class="topbar">
+    <div class="brand">
+      <h1>Planul înclinat</h1>
+      <p>Static vs. cinetic • vectori forță • formule + rezultate • scenă mare. Sens pozitiv: <b>în jos pe plan</b>.</p>
+    </div>
+    <div class="topbarMeta">
+      <div class="chip">
+        <span class="dot" id="statusDot"></span>
+        <span id="statusText">READY</span>
       </div>
-      <div class="topR">
-        <div class="chip">
-          <span class="dot" id="statusDot"></span>
-          <span id="statusText">READY</span>
+      <div class="mini">
+        <div class="mk">θ</div>
+        <div class="mv" id="miniAngle">—</div>
+      </div>
+      <div class="mini">
+        <div class="mk">a</div>
+        <div class="mv" id="miniA">—</div>
+      </div>
+    </div>
+  </header>
+
+  <main class="layout" id="piLayout">
+    <button type="button" id="togglePiLeft" class="pi-toggle pi-toggle-left" aria-controls="leftPanel" aria-expanded="true" aria-label="Panou formule și rezultate">☰</button>
+
+    <aside id="leftPanel" class="panel left">
+      <div class="panelHeader">
+        <h2>Formule</h2>
+      </div>
+      <div class="panelPad">
+        <div class="formula">
+          <div class="row2"><span class="k">G</span><span class="mono">m·g</span></div>
+          <div class="row2"><span class="k">Gt</span><span class="mono">m·g·sinθ</span></div>
+          <div class="row2"><span class="k">Gn</span><span class="mono">m·g·cosθ</span></div>
+          <div class="row2"><span class="k">N</span><span class="mono">m·g·cosθ</span></div>
+          <div class="row2"><span class="k">Static</span><span class="mono">Gt ≤ μs·N</span></div>
+          <div class="row2"><span class="k">Cinetic</span><span class="mono">Ff = μk·N</span></div>
+          <div class="row2"><span class="k">Fr</span><span class="mono">Gt − Ff</span></div>
+          <div class="row2"><span class="k">a</span><span class="mono">(Gt − Ff)/m</span></div>
         </div>
-        <div class="mini">
-          <div class="mk">θ</div>
-          <div class="mv" id="miniAngle">—</div>
-        </div>
-        <div class="mini">
-          <div class="mk">a</div>
-          <div class="mv" id="miniA">—</div>
+        <div class="callout">
+          <b>Hint:</b> unghiul critic (pornire) când <span class="mono">tanθ = μs</span>.
         </div>
       </div>
-    </header>
 
-    <main class="grid3">
-      <!-- LEFT: Formule + Rezultate -->
-      <aside class="leftCol">
-        <section class="card">
-          <div class="bar">
-            <div class="barTitle"><span class="emoji">📌</span><b>Formule</b></div>
-            <span class="hint">rapid</span>
-          </div>
-          <div class="pad">
-            <div class="formula">
-              <div class="row2"><span class="k">G</span><span class="mono">m·g</span></div>
-              <div class="row2"><span class="k">Gt</span><span class="mono">m·g·sinθ</span></div>
-              <div class="row2"><span class="k">Gn</span><span class="mono">m·g·cosθ</span></div>
-              <div class="row2"><span class="k">N</span><span class="mono">m·g·cosθ</span></div>
-              <div class="row2"><span class="k">Static</span><span class="mono">Gt ≤ μs·N</span></div>
-              <div class="row2"><span class="k">Cinetic</span><span class="mono">Ff = μk·N</span></div>
-              <div class="row2"><span class="k">Fr</span><span class="mono">Gt − Ff</span></div>
-              <div class="row2"><span class="k">a</span><span class="mono">(Gt − Ff)/m</span></div>
-            </div>
+      <div class="panelHeader panelHeaderSpaced">
+        <h2>Rezultate</h2>
+      </div>
+      <div class="panelPad">
+        <div class="stats" id="stats"></div>
+      </div>
+    </aside>
 
-            <div class="callout">
-              <b>Hint:</b> unghiul critic (pornire) când <span class="mono">tanθ = μs</span>.
-            </div>
-          </div>
-        </section>
-
-        <section class="card">
-          <div class="bar">
-            <div class="barTitle"><span class="emoji">🧾</span><b>Rezultate</b></div>
-            <span class="hint">instant</span>
-          </div>
-          <div class="pad">
-            <div class="stats" id="stats"></div>
-          </div>
-        </section>
-      </aside>
-
-      <!-- CENTER: Scene -->
-      <section class="card sceneCard">
-        <div class="bar">
+    <div class="piStageShell">
+      <section class="stage sceneStage">
+        <div class="sceneBar">
           <div class="barTitle"><span class="emoji">🧊</span><b>Scenă</b></div>
           <div class="tools">
             <button class="iconbtn on" id="toggleVectors" title="Vectori">↗</button>
@@ -92,79 +85,76 @@
           </div>
         </div>
       </section>
+    </div>
 
-      <!-- RIGHT: Controls -->
-      <aside class="rightCol">
-        <section class="card sticky">
-          <div class="bar">
-            <div class="barTitle"><span class="emoji">🎛</span><b>Controale</b></div>
-            <span class="hint">slidere</span>
+    <aside id="rightPanel" class="panel right">
+      <div class="panelHeader">
+        <h2>Controale</h2>
+      </div>
+      <div class="panelPad">
+        <div class="control">
+          <label>Masă <span class="mono">m</span> <span class="unit">(kg)</span></label>
+          <div class="controlRow">
+            <input id="mass" type="range" min="0.2" max="50" step="0.1" value="5" />
+            <input id="massNum" type="number" min="0.2" max="50" step="0.1" value="5" />
           </div>
+        </div>
 
-          <div class="pad">
-            <div class="control">
-              <label>Masă <span class="mono">m</span> <span class="unit">(kg)</span></label>
-              <div class="controlRow">
-                <input id="mass" type="range" min="0.2" max="50" step="0.1" value="5" />
-                <input id="massNum" type="number" min="0.2" max="50" step="0.1" value="5" />
-              </div>
-            </div>
-
-            <div class="control">
-              <label>Unghi <span class="mono">θ</span> <span class="unit">(°)</span></label>
-              <div class="controlRow">
-                <input id="angle" type="range" min="0" max="60" step="0.5" value="25" />
-                <input id="angleNum" type="number" min="0" max="60" step="0.5" value="25" />
-              </div>
-            </div>
-
-            <div class="control">
-              <label>Frecare statică <span class="mono">μs</span> <span class="unit">(—)</span></label>
-              <div class="controlRow">
-                <input id="muS" type="range" min="0" max="1.2" step="0.01" value="0.45" />
-                <input id="muSNum" type="number" min="0" max="1.2" step="0.01" value="0.45" />
-              </div>
-            </div>
-
-            <div class="control">
-              <label>Frecare cinetică <span class="mono">μk</span> <span class="unit">(—)</span></label>
-              <div class="controlRow">
-                <input id="muK" type="range" min="0" max="1.2" step="0.01" value="0.35" />
-                <input id="muKNum" type="number" min="0" max="1.2" step="0.01" value="0.35" />
-              </div>
-            </div>
-
-            <div class="control">
-              <label>Gravitație <span class="mono">g</span> <span class="unit">(m/s²)</span></label>
-              <div class="controlRow">
-                <input id="g" type="range" min="1" max="20" step="0.01" value="9.81" />
-                <input id="gNum" type="number" min="1" max="20" step="0.01" value="9.81" />
-              </div>
-            </div>
-
-            <div class="control">
-              <label>Zoom <span class="mono">z</span> <span class="unit">(×)</span></label>
-              <div class="controlRow">
-                <input id="zoom" type="range" min="0.8" max="2.2" step="0.01" value="1.2" />
-                <input id="zoomNum" type="number" min="0.8" max="2.2" step="0.01" value="1.2" />
-              </div>
-            </div>
-
-            <div class="btnRow">
-              <button class="btn primary" id="toggleRun">▶ Pornește</button>
-              <button class="btn" id="reset">⟲ Reset</button>
-            </div>
-
-            <div class="sep"></div>
-
-            <div class="smallMuted">
-              Tip: mărește θ până când <span class="mono">Gt</span> depășește <span class="mono">μs·N</span>.
-            </div>
+        <div class="control">
+          <label>Unghi <span class="mono">θ</span> <span class="unit">(°)</span></label>
+          <div class="controlRow">
+            <input id="angle" type="range" min="0" max="60" step="0.5" value="25" />
+            <input id="angleNum" type="number" min="0" max="60" step="0.5" value="25" />
           </div>
-        </section>
-      </aside>
-    </main>
-  </div>
+        </div>
+
+        <div class="control">
+          <label>Frecare statică <span class="mono">μs</span> <span class="unit">(—)</span></label>
+          <div class="controlRow">
+            <input id="muS" type="range" min="0" max="1.2" step="0.01" value="0.45" />
+            <input id="muSNum" type="number" min="0" max="1.2" step="0.01" value="0.45" />
+          </div>
+        </div>
+
+        <div class="control">
+          <label>Frecare cinetică <span class="mono">μk</span> <span class="unit">(—)</span></label>
+          <div class="controlRow">
+            <input id="muK" type="range" min="0" max="1.2" step="0.01" value="0.35" />
+            <input id="muKNum" type="number" min="0" max="1.2" step="0.01" value="0.35" />
+          </div>
+        </div>
+
+        <div class="control">
+          <label>Gravitație <span class="mono">g</span> <span class="unit">(m/s²)</span></label>
+          <div class="controlRow">
+            <input id="g" type="range" min="1" max="20" step="0.01" value="9.81" />
+            <input id="gNum" type="number" min="1" max="20" step="0.01" value="9.81" />
+          </div>
+        </div>
+
+        <div class="control">
+          <label>Zoom <span class="mono">z</span> <span class="unit">(×)</span></label>
+          <div class="controlRow">
+            <input id="zoom" type="range" min="0.8" max="2.2" step="0.01" value="1.2" />
+            <input id="zoomNum" type="number" min="0.8" max="2.2" step="0.01" value="1.2" />
+          </div>
+        </div>
+
+        <div class="btnRow">
+          <button class="btn primary" id="toggleRun">▶ Pornește</button>
+          <button class="btn" id="reset">⟲ Reset</button>
+        </div>
+
+        <div class="sep"></div>
+
+        <div class="smallMuted">
+          Tip: mărește θ până când <span class="mono">Gt</span> depășește <span class="mono">μs·N</span>.
+        </div>
+      </div>
+    </aside>
+
+    <button type="button" id="togglePiRight" class="pi-toggle pi-toggle-right" aria-controls="rightPanel" aria-expanded="true" aria-label="Panou controale">☰</button>
+  </main>
 
   <script src="./script.js"></script>
 </body>

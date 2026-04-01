@@ -37,6 +37,93 @@ const el = {
   sceneWrap: document.getElementById("sceneWrap"),
 };
 
+const leftPanel = document.getElementById("leftPanel");
+const rightPanel = document.getElementById("rightPanel");
+const togglePiLeft = document.getElementById("togglePiLeft");
+const togglePiRight = document.getElementById("togglePiRight");
+const topbarEl = document.querySelector(".topbar");
+
+function isPiMobileViewport(){
+  return window.matchMedia("(max-width: 1024px)").matches;
+}
+
+function syncPiPanelTop(){
+  if (topbarEl){
+    const h = Math.ceil(topbarEl.getBoundingClientRect().height);
+    document.documentElement.style.setProperty("--pi-panel-top", `${h}px`);
+  }
+}
+
+function updatePiTogglePositions(){
+  if (!togglePiLeft || !togglePiRight) return;
+  const lw = leftPanel?.offsetWidth || 300;
+  const rw = rightPanel?.offsetWidth || 300;
+  const leftHidden = leftPanel?.classList.contains("hidden");
+  const rightHidden = rightPanel?.classList.contains("hidden");
+
+  togglePiLeft.style.left = leftHidden ? "10px" : `${lw + 10}px`;
+  togglePiLeft.style.right = "auto";
+
+  togglePiRight.style.right = rightHidden ? "10px" : `${rw + 10}px`;
+  togglePiRight.style.left = "auto";
+}
+
+function syncPiToggleAria(){
+  const lOpen = leftPanel && !leftPanel.classList.contains("hidden");
+  const rOpen = rightPanel && !rightPanel.classList.contains("hidden");
+  togglePiLeft?.setAttribute("aria-expanded", String(!!lOpen));
+  togglePiRight?.setAttribute("aria-expanded", String(!!rOpen));
+}
+
+function syncPiPanelsUi(){
+  syncPiPanelTop();
+  updatePiTogglePositions();
+  syncPiToggleAria();
+  queueResize();
+}
+
+function applyPiInitialPanels(){
+  if (!leftPanel || !rightPanel) return;
+  if (isPiMobileViewport()){
+    leftPanel.classList.add("hidden");
+    rightPanel.classList.add("hidden");
+  } else {
+    leftPanel.classList.remove("hidden");
+    rightPanel.classList.remove("hidden");
+  }
+  syncPiPanelsUi();
+}
+
+function onPiResize(){
+  if (!isPiMobileViewport()){
+    leftPanel?.classList.remove("hidden");
+    rightPanel?.classList.remove("hidden");
+  }
+  syncPiPanelsUi();
+}
+
+if (togglePiLeft && leftPanel){
+  togglePiLeft.addEventListener("click", () => {
+    leftPanel.classList.toggle("hidden");
+    if (isPiMobileViewport() && !leftPanel.classList.contains("hidden") && rightPanel){
+      rightPanel.classList.add("hidden");
+    }
+    syncPiPanelsUi();
+  });
+}
+
+if (togglePiRight && rightPanel){
+  togglePiRight.addEventListener("click", () => {
+    rightPanel.classList.toggle("hidden");
+    if (isPiMobileViewport() && !rightPanel.classList.contains("hidden") && leftPanel){
+      leftPanel.classList.add("hidden");
+    }
+    syncPiPanelsUi();
+  });
+}
+
+window.addEventListener("resize", onPiResize);
+
 function clamp(v,a,b){ return Math.max(a, Math.min(b, v)); }
 function rad(deg){ return (deg * Math.PI) / 180; }
 function nice(n,d=2){ return Number.isFinite(n) ? n.toFixed(d) : "—"; }
@@ -522,7 +609,7 @@ el.toggleGrid.addEventListener("click", ()=>toggleIcon(el.toggleGrid, ()=>showGr
 
 // fullscreen
 el.fullscreenBtn.addEventListener("click", async ()=>{
-  const target = document.querySelector(".sceneCard");
+  const target = document.querySelector(".sceneStage");
   if(!document.fullscreenElement){
     await target.requestFullscreen?.();
   }else{
@@ -613,6 +700,7 @@ canvas.addEventListener("wheel", (e) => {
 }, { passive: false });
 
 // init
+applyPiInitialPanels();
 queueResize();
 resetSim();
 requestAnimationFrame(loop);
