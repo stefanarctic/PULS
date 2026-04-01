@@ -24,18 +24,15 @@
     </div>
   </header>
 
-  <main class="shell" id="shell">
-    <!-- LEFT SIDEBAR -->
-    <aside class="sidebar left" id="leftPanel" aria-label="Rezultate și formule">
-      <div class="sideHead">
-        <div class="sideTitle">Rezultate</div>
-        <div class="sideActions">
-          <span class="pill" id="modePill">Fără aer (BAC)</span>
-          <button class="iconBtn" id="btnLeft" title="Retrage/Extinde panoul stâng" aria-label="Retrage panoul stâng">⟨</button>
-        </div>
-      </div>
+  <main class="layout" id="projLayout">
+    <button type="button" id="toggleProjLeft" class="proj-toggle proj-toggle-left" aria-controls="leftPanel" aria-expanded="true" aria-label="Panou rezultate și formule">☰</button>
 
-      <div class="sideBody">
+    <aside id="leftPanel" class="panel left" aria-label="Rezultate și formule">
+      <div class="panelHeader">
+        <h2>Rezultate</h2>
+        <span class="pill" id="modePill">Fără aer (BAC)</span>
+      </div>
+      <div class="panelPad">
         <div class="card">
           <div class="cardTitle">Rezultate cheie</div>
           <div class="kvgrid">
@@ -73,58 +70,51 @@
           </div>
         </details>
       </div>
-
-      <!-- collapsed rail button (visible only when collapsed) -->
-      <button class="railBtn left" id="btnLeftRail" title="Extinde panoul stâng" aria-label="Extinde panoul stâng">⟩</button>
     </aside>
 
-    <!-- CENTER STAGE -->
-    <section class="center">
-      <div class="stageTop">
-        <div class="hint">
-          Zoom: rotița • Pan: <b>Space</b> + drag • Trage punctul verde ca să schimbi <b>h₀</b> (când e pauză)
-        </div>
-        <div class="status">
-          <span class="pill soft" id="statusPill">stop</span>
-        </div>
-      </div>
-
-      <div class="stageWrap">
-        <div class="stage" id="stage">
-          <canvas id="canvas" aria-label="Simulare proiectil"></canvas>
-          <div class="hud">
-            <span class="dot"></span>
-            <span id="hudText">Pregătit.</span>
+    <div class="projStageShell">
+      <section class="center">
+        <div class="stageTop">
+          <div class="hint">
+            Zoom: rotița • Pan: <b>Space</b> + drag • Trage punctul verde ca să schimbi <b>h₀</b> (când e pauză)
+          </div>
+          <div class="status">
+            <span class="pill soft" id="statusPill">stop</span>
           </div>
         </div>
-      </div>
 
-      <div class="stageBottom">
-        <div class="mini">
-          <div class="miniTitle">Tip BAC</div>
-          <div class="miniText">
-            Compară <b>fără aer</b> (ideal) vs <b>cu aer</b> (real). Vezi cum scade bătaia și cum se modifică traiectoria.
+        <div class="stageWrap">
+          <div class="stage" id="stage">
+            <canvas id="canvas" aria-label="Simulare proiectil"></canvas>
+            <div class="hud">
+              <span class="dot"></span>
+              <span id="hudText">Pregătit.</span>
+            </div>
           </div>
         </div>
-        <div class="mini">
-          <div class="miniTitle">Unități</div>
-          <div class="miniText">
-            metri (m), secunde (s), m/s. Axele sunt în metri; solul e y=0.
+
+        <div class="stageBottom">
+          <div class="mini">
+            <div class="miniTitle">Tip BAC</div>
+            <div class="miniText">
+              Compară <b>fără aer</b> (ideal) vs <b>cu aer</b> (real). Vezi cum scade bătaia și cum se modifică traiectoria.
+            </div>
+          </div>
+          <div class="mini">
+            <div class="miniTitle">Unități</div>
+            <div class="miniText">
+              metri (m), secunde (s), m/s. Axele sunt în metri; solul e y=0.
+            </div>
           </div>
         </div>
-      </div>
-    </section>
+      </section>
+    </div>
 
-    <!-- RIGHT SIDEBAR -->
-    <aside class="sidebar right" id="rightPanel" aria-label="Controale">
-      <div class="sideHead">
-        <div class="sideTitle">Controale</div>
-        <div class="sideActions">
-          <button class="iconBtn" id="btnRight" title="Retrage/Extinde panoul drept" aria-label="Retrage panoul drept">⟩</button>
-        </div>
+    <aside id="rightPanel" class="panel right" aria-label="Controale">
+      <div class="panelHeader">
+        <h2>Controale</h2>
       </div>
-
-      <div class="sideBody">
+      <div class="panelPad">
         <div class="card">
           <div class="cardTitle">Moduri & afișare</div>
           <div class="toggles">
@@ -184,10 +174,9 @@
           </div>
         </div>
       </div>
-
-      <!-- collapsed rail button (visible only when collapsed) -->
-      <button class="railBtn right" id="btnRightRail" title="Extinde panoul drept" aria-label="Extinde panoul drept">⟨</button>
     </aside>
+
+    <button type="button" id="toggleProjRight" class="proj-toggle proj-toggle-right" aria-controls="rightPanel" aria-expanded="true" aria-label="Panou controale">☰</button>
   </main>
 
   <script src="./app.js"></script>

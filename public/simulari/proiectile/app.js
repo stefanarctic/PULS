@@ -1,47 +1,94 @@
-// app.js — 3 coloane + retractabile + proiectil BAC + fullscreen
+// app.js — panouri fixe + toggle ☰ + proiectil BAC + fullscreen
 (() => {
     const $ = (id) => document.getElementById(id);
   
-    // Layout controls
-    const shell = $("shell");
     const leftPanel = $("leftPanel");
     const rightPanel = $("rightPanel");
-    const btnLeft = $("btnLeft");
-    const btnRight = $("btnRight");
-    const btnLeftRail = $("btnLeftRail");
-    const btnRightRail = $("btnRightRail");
-  
-    function setCollapsed(side, collapsed) {
-      const key = side === "left" ? "proj_leftCollapsed" : "proj_rightCollapsed";
-      const panel = side === "left" ? leftPanel : rightPanel;
-      const cls = side === "left" ? "left-collapsed" : "right-collapsed";
-  
-      if (collapsed) {
-        shell.classList.add(cls);
-        panel.classList.add("collapsed");
-        localStorage.setItem(key, "1");
-      } else {
-        shell.classList.remove(cls);
-        panel.classList.remove("collapsed");
-        localStorage.setItem(key, "0");
+    const toggleProjLeft = $("toggleProjLeft");
+    const toggleProjRight = $("toggleProjRight");
+    const topbarEl = document.querySelector(".topbar");
+
+    function isProjMobileViewport(){
+      return window.matchMedia("(max-width: 1024px)").matches;
+    }
+
+    function syncProjPanelTop(){
+      if (topbarEl){
+        const h = Math.ceil(topbarEl.getBoundingClientRect().height);
+        document.documentElement.style.setProperty("--proj-panel-top", `${h}px`);
       }
-  
-      // important: after layout change, resize canvas
-      setTimeout(() => resize(), 50);
     }
-  
-    function initCollapsed() {
-      const l = localStorage.getItem("proj_leftCollapsed") === "1";
-      const r = localStorage.getItem("proj_rightCollapsed") === "1";
-      setCollapsed("left", l);
-      setCollapsed("right", r);
+
+    function updateProjTogglePositions(){
+      if (!toggleProjLeft || !toggleProjRight) return;
+      const lw = leftPanel?.offsetWidth || 300;
+      const rw = rightPanel?.offsetWidth || 320;
+      const leftHidden = leftPanel?.classList.contains("hidden");
+      const rightHidden = rightPanel?.classList.contains("hidden");
+
+      toggleProjLeft.style.left = leftHidden ? "10px" : `${lw + 10}px`;
+      toggleProjLeft.style.right = "auto";
+
+      toggleProjRight.style.right = rightHidden ? "10px" : `${rw + 10}px`;
+      toggleProjRight.style.left = "auto";
     }
-  
-    btnLeft.addEventListener("click", () => setCollapsed("left", !leftPanel.classList.contains("collapsed")));
-    btnRight.addEventListener("click", () => setCollapsed("right", !rightPanel.classList.contains("collapsed")));
-    btnLeftRail.addEventListener("click", () => setCollapsed("left", false));
-    btnRightRail.addEventListener("click", () => setCollapsed("right", false));
-  
+
+    function syncProjToggleAria(){
+      const lOpen = leftPanel && !leftPanel.classList.contains("hidden");
+      const rOpen = rightPanel && !rightPanel.classList.contains("hidden");
+      toggleProjLeft?.setAttribute("aria-expanded", String(!!lOpen));
+      toggleProjRight?.setAttribute("aria-expanded", String(!!rOpen));
+    }
+
+    function syncProjPanelsUi(){
+      syncProjPanelTop();
+      updateProjTogglePositions();
+      syncProjToggleAria();
+      resize();
+    }
+
+    function applyProjInitialPanels(){
+      if (!leftPanel || !rightPanel) return;
+      if (isProjMobileViewport()){
+        leftPanel.classList.add("hidden");
+        rightPanel.classList.add("hidden");
+      } else {
+        leftPanel.classList.remove("hidden");
+        rightPanel.classList.remove("hidden");
+      }
+      syncProjPanelsUi();
+    }
+
+    function onProjResize(){
+      if (!isProjMobileViewport()){
+        leftPanel?.classList.remove("hidden");
+        rightPanel?.classList.remove("hidden");
+      }
+      syncProjPanelsUi();
+    }
+
+    if (toggleProjLeft && leftPanel){
+      toggleProjLeft.addEventListener("click", () => {
+        leftPanel.classList.toggle("hidden");
+        if (isProjMobileViewport() && !leftPanel.classList.contains("hidden") && rightPanel){
+          rightPanel.classList.add("hidden");
+        }
+        syncProjPanelsUi();
+      });
+    }
+
+    if (toggleProjRight && rightPanel){
+      toggleProjRight.addEventListener("click", () => {
+        rightPanel.classList.toggle("hidden");
+        if (isProjMobileViewport() && !rightPanel.classList.contains("hidden") && leftPanel){
+          leftPanel.classList.add("hidden");
+        }
+        syncProjPanelsUi();
+      });
+    }
+
+    window.addEventListener("resize", onProjResize);
+
     // Elements
     const canvas = $("canvas");
     const ctx = canvas.getContext("2d");
@@ -602,11 +649,10 @@
   
     // Init
     function init() {
-      initCollapsed();
+      applyProjInitialPanels();
       buildPredicted();
       resetSim(false);
       resize();
-      window.addEventListener("resize", resize);
       if (!raf) raf = requestAnimationFrame(loop);
     }
     init();
