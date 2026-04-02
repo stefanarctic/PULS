@@ -158,7 +158,7 @@ const Index = () => {
                     <div id="hero-text-container" className="hidden hidden-left">
                         <h1>Descoperă fizica prin exerciții și simulări interactive</h1>
                         <p>
-                            PULS - Platforma educațională pentru studiul conceptelor de Pendul, Unde, Lissajous și Seism prin probleme și simulări interactive.
+                            PULS - platforma educațională cu 35+ simulări interactive, resurse educaționale, probleme de BAC rezolvate, grile și un asistent care te ghidează pas cu pas.
                         </p>
                         <div className="buttons">
                             {loading || !user ? (
