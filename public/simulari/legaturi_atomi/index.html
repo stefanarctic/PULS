@@ -3,39 +3,39 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Simulator de Legaturi Atomice</title>
+  <title>Simulator de Legături Atomice</title>
   <link rel="stylesheet" href="./style.css">
 </head>
 <body>
   <div id="app">
-    <button id="leftPanelToggle" class="panel-toggle panel-toggle--left" type="button" aria-label="Toggle control panel">
+    <button id="leftPanelToggle" class="panel-toggle panel-toggle--left" type="button" aria-label="Comută panoul de control">
       <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M7 4l6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
     </button>
 
     <aside id="leftPanel" class="control-panel">
       <div class="panel-scroll">
         <div class="panel-header">
-          <h1>Legaturi Atomice</h1>
-          <p>Misca atomii si urmareste cum se schimba distributia electronilor.</p>
+          <h1>Legături Atomice</h1>
+          <p>Mișcă atomii și urmărește cum se schimbă distribuția electronilor.</p>
         </div>
 
         <section class="control-group">
           <h2>Atomi</h2>
           <label>
-            Focus Atom A
+            Atom A 
             <select id="atomASelect"></select>
           </label>
           <label>
-            Focus Atom B
+            Atom B 
             <select id="atomBSelect"></select>
           </label>
           <label>
-            Add Atom
+            Adaugă atom
             <select id="newAtomSelect"></select>
           </label>
           <div class="button-row">
-            <button id="addAtomButton" class="mode-button" type="button">Add Atom</button>
-            <button id="removeAtomButton" class="mode-button" type="button">Remove Selected</button>
+            <button id="addAtomButton" class="mode-button" type="button">Adaugă atom</button>
+            <button id="removeAtomButton" class="mode-button" type="button">Elimină ato</button>
           </div>
           <div class="info-row compact-row">
             <span>Total atomi</span>
@@ -49,7 +49,7 @@
 
         <section class="control-group">
           <h2>Energie</h2>
-          <label for="energySlider">Excitare electronica</label>
+          <label for="energySlider">Excitare electronică</label>
           <input id="energySlider" type="range" min="0" max="100" value="35">
           <div class="range-labels">
             <span>Stabil</span>
@@ -59,12 +59,12 @@
         </section>
 
         <section class="control-group">
-          <h2>Control Fizica</h2>
+          <h2>Control fizic</h2>
           <label class="checkbox-row">
             <input id="deltaOverrideToggle" type="checkbox">
-            <span>Override manual pentru Delta EN</span>
+            <span>Suprascrie manual pentru ΔEN</span>
           </label>
-          <label for="deltaEnOverrideSlider">Delta EN manual</label>
+          <label for="deltaEnOverrideSlider">ΔEN manual</label>
           <input id="deltaEnOverrideSlider" type="range" min="0" max="3.5" step="0.01" value="0.96">
           <div class="range-labels">
             <span>0.00</span>
@@ -72,7 +72,7 @@
             <span>3.50</span>
           </div>
 
-          <label for="timeScaleSlider">Slow motion</label>
+          <label for="timeScaleSlider">Mișcare lentă</label>
           <input id="timeScaleSlider" type="range" min="20" max="120" value="100">
           <div class="range-labels">
             <span>Lent</span>
@@ -84,19 +84,19 @@
         <section class="control-group">
           <h2>Vizualizare</h2>
           <div class="view-toggle" role="group" aria-label="Mod de vizualizare">
-            <button id="classicModeButton" class="mode-button is-active" type="button">Classic</button>
-            <button id="quantumModeButton" class="mode-button" type="button">Quantum</button>
+            <button id="classicModeButton" class="mode-button is-active" type="button">Clasic</button>
+            <button id="quantumModeButton" class="mode-button" type="button">Cuantic</button>
           </div>
         </section>
 
         <section class="control-group info-group">
           <h2>Stare simulare</h2>
           <div class="info-row">
-            <span>Legatura</span>
-            <strong id="bondTypeBadge" class="bond-badge none">none</strong>
+            <span>Legătură</span>
+            <strong id="bondTypeBadge" class="bond-badge none">Fără legătură</strong>
           </div>
           <div class="info-row">
-            <span>Distanta</span>
+            <span>Distanța</span>
             <strong id="distanceValue">0.00</strong>
           </div>
           <div class="info-row">
@@ -116,21 +116,21 @@
             <strong id="comboSuggestionValue">Alege o pereche interesanta</strong>
           </div>
           <p id="bondDescription" class="bond-description">
-            Apropie atomii pentru a vedea aparitia legaturii.
+            Apropie atomii pentru a vedea apariția legăturii.
           </p>
         </section>
 
         <section class="control-group legend-group">
           <h2>Legenda</h2>
           <ul>
-            <li>Trage un nucleu pentru a schimba distanta dintre atomi.</li>
-            <li>Modul classic afiseaza orbite simplificate si legatura.</li>
-            <li>Modul quantum afiseaza un nor de probabilitate intre atomi.</li>
+            <li>Trage un nucleu pentru a schimba distanța dintre atomi.</li>
+            <li>Modul clasic afișează orbite simplificate și legătura.</li>
+            <li>Modul cuantic afișează un nor de probabilitate între atomi.</li>
           </ul>
         </section>
 
         <div class="panel-footer">
-          <button id="resetButton" class="reset-button" type="button">Reset pozitie</button>
+          <button id="resetButton" class="reset-button" type="button">Resetează poziția</button>
         </div>
       </div>
     </aside>
@@ -138,25 +138,25 @@
     <main class="viewport-shell">
       <div id="sceneContainer" class="scene-container"></div>
       <div id="atomTooltip" class="atom-tooltip is-hidden"></div>
-      <div class="scene-hint">Click si drag pe un atom pentru a-l muta pe plan.</div>
+      <div class="scene-hint">Click și glisează pe un atom pentru a-l muta pe plan.</div>
     </main>
 
     <aside id="rightPanel" class="reference-panel">
       <div class="panel-scroll">
         <div class="panel-header">
-          <h1>Formule &amp; Unitati</h1>
+          <h1>Formule &amp; Unități</h1>
         </div>
 
         <section class="control-group ref-section">
-          <h2>Clasificare legatura</h2>
+          <h2>Clasificarea legăturii</h2>
           <div class="formula-card">
             <div class="formula-expr">ΔEN = |EN<sub>A</sub> − EN<sub>B</sub>|</div>
             <table class="ref-table">
-              <thead><tr><th>ΔEN</th><th>Tip legatura</th></tr></thead>
+              <thead><tr><th>ΔEN</th><th>Tip legătură</th></tr></thead>
               <tbody>
-                <tr><td>0 – 0.4</td><td class="ref-covalent">Covalenta</td></tr>
-                <tr><td>0.4 – 1.7</td><td class="ref-polar">Polar covalenta</td></tr>
-                <tr><td>&gt; 1.7</td><td class="ref-ionic">Ionica</td></tr>
+                <tr><td>0 – 0.4</td><td class="ref-covalent">Covalentă</td></tr>
+                <tr><td>0.4 – 1.7</td><td class="ref-polar">Covalentă polară</td></tr>
+                <tr><td>&gt; 1.7</td><td class="ref-ionic">Ionică</td></tr>
               </tbody>
             </table>
           </div>
@@ -168,18 +168,18 @@
             <div class="formula-expr">F = k · |q<sub>1</sub> · q<sub>2</sub>| / r²</div>
             <div class="formula-detail">
               <span>k = 8.99 × 10⁹ N·m²/C²</span>
-              <span>q = sarcina electrica (C)</span>
-              <span>r = distanta dintre sarcini (m)</span>
+              <span>q = sarcina electrică (C)</span>
+              <span>r = distanța dintre sarcini (m)</span>
             </div>
           </div>
         </section>
 
         <section class="control-group ref-section">
-          <h2>Energie de legatura</h2>
+          <h2>Energia de legătură</h2>
           <div class="formula-card">
             <div class="formula-expr">E = −k · q₁ · q₂ / r</div>
             <div class="formula-detail">
-              <span>E se masoara in eV sau kJ/mol</span>
+              <span>E se măsoară în eV sau kJ/mol</span>
               <span>1 eV = 1.602 × 10⁻¹⁹ J</span>
               <span>1 eV/particula ≈ 96.49 kJ/mol</span>
             </div>
@@ -187,24 +187,24 @@
         </section>
 
         <section class="control-group ref-section">
-          <h2>Unitati de masura</h2>
+          <h2>Unități de măsură</h2>
           <div class="formula-card">
             <table class="ref-table">
               <thead><tr><th>Marime</th><th>Unitate</th></tr></thead>
               <tbody>
-                <tr><td>Distanta</td><td>Å (Angstrom) = 10⁻¹⁰ m</td></tr>
+                <tr><td>Distanța</td><td>Å (Angstrom) = 10⁻¹⁰ m</td></tr>
                 <tr><td>Electronegativitate</td><td>Pauling (adimensional)</td></tr>
-                <tr><td>Sarcina</td><td>e (sarcina elementara)</td></tr>
+                <tr><td>Sarcina</td><td>e (sarcină elementară)</td></tr>
                 <tr><td>Energie</td><td>eV (electronvolt)</td></tr>
-                <tr><td>Raza atomica</td><td>pm (picometru) = 10⁻¹² m</td></tr>
-                <tr><td>Forta</td><td>N (Newton)</td></tr>
+                <tr><td>Raza atomică</td><td>pm (picometru) = 10⁻¹² m</td></tr>
+                <tr><td>Forță</td><td>N (Newton)</td></tr>
               </tbody>
             </table>
           </div>
         </section>
 
         <section class="control-group ref-section">
-          <h2>Scala Pauling (selectie)</h2>
+          <h2>Scala Pauling (selecție)</h2>
           <div class="formula-card">
             <table class="ref-table ref-table--compact">
               <thead><tr><th>Element</th><th>EN</th><th>Tip</th></tr></thead>
@@ -216,8 +216,8 @@
                 <tr><td>C</td><td>2.55</td><td>Nemetal</td></tr>
                 <tr><td>H</td><td>2.20</td><td>Nemetal</td></tr>
                 <tr><td>Si</td><td>1.90</td><td>Semiconductor</td></tr>
-                <tr><td>Fe</td><td>1.83</td><td>Metal tranzitie</td></tr>
-                <tr><td>Ca</td><td>1.00</td><td>Alcalino-pamantOs</td></tr>
+                <tr><td>Fe</td><td>1.83</td><td>Metal de tranziție</td></tr>
+                <tr><td>Ca</td><td>1.00</td><td>Alcalino-pământos</td></tr>
                 <tr><td>Na</td><td>0.93</td><td>Metal alcalin</td></tr>
                 <tr><td>K</td><td>0.82</td><td>Metal alcalin</td></tr>
               </tbody>
@@ -229,15 +229,15 @@
           <h2>Regula octetului</h2>
           <div class="formula-card">
             <div class="formula-detail">
-              <span>Atomii tind sa aiba 8 electroni pe ultimul nivel energetic (exceptie: H → 2e⁻).</span>
-              <span>Legaturile chimice se formeaza pentru a atinge aceasta configuratie stabila.</span>
+              <span>Atomii tind să aibă 8 electroni pe ultimul nivel energetic (excepție: H → 2e⁻).</span>
+              <span>Legăturile chimice se formează pentru a atinge această configurație stabilă.</span>
             </div>
           </div>
         </section>
       </div>
     </aside>
 
-    <button id="rightPanelToggle" class="panel-toggle panel-toggle--right" type="button" aria-label="Toggle reference panel">
+    <button id="rightPanelToggle" class="panel-toggle panel-toggle--right" type="button" aria-label="Comută panoul de referințe">
       <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M13 4l-6 6 6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
     </button>
   </div>

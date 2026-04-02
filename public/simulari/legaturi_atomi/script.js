@@ -2,30 +2,43 @@ import * as THREE from "https://unpkg.com/three@0.164.0/build/three.module.js";
 
 (function () {
   const ELEMENT_DATA = {
-    H: { name: "Hydrogen", atomicNumber: 1, valence: 1, electronegativity: 2.2, radius: 0.56, color: 0x8fd3ff, kind: "nonmetal", category: "basic" },
-    O: { name: "Oxygen", atomicNumber: 8, valence: 6, electronegativity: 3.44, radius: 0.82, color: 0xff6b99, kind: "nonmetal", category: "basic" },
+    H: { name: "Hidrogen", atomicNumber: 1, valence: 1, electronegativity: 2.2, radius: 0.56, color: 0x8fd3ff, kind: "nonmetal", category: "basic" },
+    O: { name: "Oxigen", atomicNumber: 8, valence: 6, electronegativity: 3.44, radius: 0.82, color: 0xff6b99, kind: "nonmetal", category: "basic" },
     C: { name: "Carbon", atomicNumber: 6, valence: 4, electronegativity: 2.55, radius: 0.77, color: 0xb8c3d6, kind: "nonmetal", category: "basic" },
-    N: { name: "Nitrogen", atomicNumber: 7, valence: 5, electronegativity: 3.04, radius: 0.74, color: 0x7db1ff, kind: "nonmetal", category: "basic" },
-    Cl: { name: "Chlorine", atomicNumber: 17, valence: 7, electronegativity: 3.16, radius: 0.9, color: 0x98ff87, kind: "nonmetal", category: "halogens" },
-    F: { name: "Fluorine", atomicNumber: 9, valence: 7, electronegativity: 3.98, radius: 0.72, color: 0xb8ffcb, kind: "nonmetal", category: "halogens" },
-    Na: { name: "Sodium", atomicNumber: 11, valence: 1, electronegativity: 0.93, radius: 0.92, color: 0xffc76d, kind: "metal", category: "alkali" },
-    K: { name: "Potassium", atomicNumber: 19, valence: 1, electronegativity: 0.82, radius: 1.02, color: 0xcba7ff, kind: "metal", category: "alkali" },
-    Ca: { name: "Calcium", atomicNumber: 20, valence: 2, electronegativity: 1.0, radius: 1.0, color: 0xffd7a4, kind: "metal", category: "alkaline_earth" },
-    Fe: { name: "Iron", atomicNumber: 26, valence: 2, electronegativity: 1.83, radius: 0.94, color: 0xc48a74, kind: "metal", category: "transition_metals" },
-    Cu: { name: "Copper", atomicNumber: 29, valence: 1, electronegativity: 1.9, radius: 0.9, color: 0xffa45e, kind: "metal", category: "transition_metals" },
-    Si: { name: "Silicon", atomicNumber: 14, valence: 4, electronegativity: 1.9, radius: 0.88, color: 0x9ad2d9, kind: "semiconductor", category: "special" },
-    S: { name: "Sulfur", atomicNumber: 16, valence: 6, electronegativity: 2.58, radius: 0.86, color: 0xffe37c, kind: "nonmetal", category: "special" },
-    He: { name: "Helium", atomicNumber: 2, valence: 2, electronegativity: 0, radius: 0.48, color: 0xdff8ff, kind: "noble_gas", category: "special" }
+    N: { name: "Azot", atomicNumber: 7, valence: 5, electronegativity: 3.04, radius: 0.74, color: 0x7db1ff, kind: "nonmetal", category: "basic" },
+    Cl: { name: "Clor", atomicNumber: 17, valence: 7, electronegativity: 3.16, radius: 0.9, color: 0x98ff87, kind: "nonmetal", category: "halogens" },
+    F: { name: "Fluor", atomicNumber: 9, valence: 7, electronegativity: 3.98, radius: 0.72, color: 0xb8ffcb, kind: "nonmetal", category: "halogens" },
+    Na: { name: "Sodiu", atomicNumber: 11, valence: 1, electronegativity: 0.93, radius: 0.92, color: 0xffc76d, kind: "metal", category: "alkali" },
+    K: { name: "Potasiu", atomicNumber: 19, valence: 1, electronegativity: 0.82, radius: 1.02, color: 0xcba7ff, kind: "metal", category: "alkali" },
+    Ca: { name: "Calciu", atomicNumber: 20, valence: 2, electronegativity: 1.0, radius: 1.0, color: 0xffd7a4, kind: "metal", category: "alkaline_earth" },
+    Fe: { name: "Fier", atomicNumber: 26, valence: 2, electronegativity: 1.83, radius: 0.94, color: 0xc48a74, kind: "metal", category: "transition_metals" },
+    Cu: { name: "Cupru", atomicNumber: 29, valence: 1, electronegativity: 1.9, radius: 0.9, color: 0xffa45e, kind: "metal", category: "transition_metals" },
+    Si: { name: "Siliciu", atomicNumber: 14, valence: 4, electronegativity: 1.9, radius: 0.88, color: 0x9ad2d9, kind: "semiconductor", category: "special" },
+    S: { name: "Sulf", atomicNumber: 16, valence: 6, electronegativity: 2.58, radius: 0.86, color: 0xffe37c, kind: "nonmetal", category: "special" },
+    He: { name: "Heliu", atomicNumber: 2, valence: 2, electronegativity: 0, radius: 0.48, color: 0xdff8ff, kind: "noble_gas", category: "special" }
   };
 
   const ELEMENT_CATEGORIES = [
-    { id: "basic", label: "Basic" },
-    { id: "halogens", label: "Halogens" },
-    { id: "alkali", label: "Alkali metals" },
-    { id: "alkaline_earth", label: "Alkaline earth metals" },
-    { id: "transition_metals", label: "Transition metals" },
-    { id: "special", label: "Special" }
+    { id: "basic", label: "Nemetale" },
+    { id: "halogens", label: "Halogeni" },
+    { id: "alkali", label: "Metale alcaline" },
+    { id: "alkaline_earth", label: "Metale alcalino-pământoase" },
+    { id: "transition_metals", label: "Metale de tranziție" },
+    { id: "special", label: "Elemente speciale" }
   ];
+
+  const BOND_TYPE_LABELS = {
+    none: "Fără legătură",
+    covalent: "Covalentă",
+    polar_covalent: "Covalentă polară",
+    ionic: "Ionică",
+    semiconductor: "Semiconductoare",
+    metallic: "Metalică"
+  };
+
+  function getBondTypeLabel(bondType) {
+    return BOND_TYPE_LABELS[bondType] || bondType;
+  }
 
   const COMBO_SUGGESTIONS = {
     "C|H": "Perechea este baza pentru CH4 si molecule organice simple.",
@@ -38,7 +51,7 @@ import * as THREE from "https://unpkg.com/three@0.164.0/build/three.module.js";
     "Na|Cl": "Poti forma NaCl si urmari transferul aproape complet de electron.",
     "O|H": "Perechea e baza pentru H2O; adaugand inca un H obtii molecula apei.",
     "Ca|Cl": "Poti porni spre CaCl2; mai trebuie inca un atom de Cl pentru formula completa.",
-    "Fe|Cu": "Poti compara doua metale si ideea de electron sea.",
+    "Fe|Cu": "Poti compara doua metale si ideea de mare de electroni.",
     "Si|Si": "Poti explora un inceput de retea semiconductoare cu Si."
   };
 
@@ -297,7 +310,7 @@ import * as THREE from "https://unpkg.com/three@0.164.0/build/three.module.js";
       } else if (isMetallicPair) {
         bondType = "metallic";
         chargeTransfer = 0.08 * bondStrength;
-        description = "Electronii devin delocalizati si curg printr-un nor comun de tip electron sea.";
+        description = "Electronii devin delocalizați și curg printr-un nor comun de tip mare de electroni.";
       } else if (usedDeltaEN < 0.4) {
         bondType = "covalent";
         chargeTransfer = 0.12 * bondStrength;
@@ -309,7 +322,7 @@ import * as THREE from "https://unpkg.com/three@0.164.0/build/three.module.js";
       } else {
         bondType = "ionic";
         chargeTransfer = lerp(0.68, 0.96, clamp(usedDeltaEN / 3.5, 0, 1)) * bondStrength;
-        description = "Momentul de bonding impinge electronul spre acceptor si separa clar donatorul de acceptor.";
+        description = "Momentul formării legăturii împinge electronul spre acceptor și separă clar donatorul de acceptor.";
       }
     }
 
@@ -894,7 +907,7 @@ import * as THREE from "https://unpkg.com/three@0.164.0/build/three.module.js";
 
       const rect = dom.sceneContainer.getBoundingClientRect();
       dom.atomTooltip.classList.remove("is-hidden");
-      dom.atomTooltip.innerHTML = `<strong>${atom.type} · ${atom.data.name}</strong><span>Z = ${atom.data.atomicNumber}</span><span>Valenta = ${atom.data.valence}</span><span>EN = ${atom.data.electronegativity.toFixed(2)}</span><span>Electroni activi = ${atom.electronCount.toFixed(2)}</span>`;
+      dom.atomTooltip.innerHTML = `<strong>${atom.type} · ${atom.data.name}</strong><span>Z = ${atom.data.atomicNumber}</span><span>Valență = ${atom.data.valence}</span><span>EN = ${atom.data.electronegativity.toFixed(2)}</span><span>Electroni activi = ${atom.electronCount.toFixed(2)}</span>`;
       dom.atomTooltip.style.left = `${event.clientX - rect.left + 16}px`;
       dom.atomTooltip.style.top = `${event.clientY - rect.top + 16}px`;
     }
@@ -963,11 +976,11 @@ import * as THREE from "https://unpkg.com/three@0.164.0/build/three.module.js";
     }
 
     function updateUI() {
-      dom.bondTypeBadge.textContent = state.bondType;
+      dom.bondTypeBadge.textContent = getBondTypeLabel(state.bondType);
       dom.bondTypeBadge.className = `bond-badge ${state.bondType}`;
       dom.distanceValue.textContent = state.distance.toFixed(2);
       dom.deltaEnValue.textContent = state.deltaENOverrideEnabled
-        ? `${state.deltaEN.toFixed(2)} manual`
+        ? `${state.deltaEN.toFixed(2)} (manual)`
         : state.deltaEN.toFixed(2);
       dom.bondStrengthValue.textContent = `${Math.round(state.bondStrength * 100)}%`;
       dom.comboSuggestionValue.textContent = state.comboSuggestion;
@@ -976,7 +989,7 @@ import * as THREE from "https://unpkg.com/three@0.164.0/build/three.module.js";
       const selectedAtom = getAtomById(state, state.selectedAtomId);
       dom.selectedAtomValue.textContent = selectedAtom
         ? `${selectedAtom.type} #${state.atoms.findIndex((atom) => atom.id === selectedAtom.id) + 1}`
-        : "none";
+        : "Niciun atom";
 
       const activeCharges = state.activeBond
         ? state.activeBond.atomIds.map((atomId) => formatSignedCharge(state.atomCharges.get(atomId) || 0))
@@ -984,8 +997,8 @@ import * as THREE from "https://unpkg.com/three@0.164.0/build/three.module.js";
       dom.chargeValue.textContent = `${activeCharges[0]} / ${activeCharges[1]}`;
 
       const modeText = state.viewMode === "classic"
-        ? "Mod classic: electron narativ, transfer vizibil si miscari pe orbite."
-        : "Mod quantum: shader cu noise, pulsatie, snap de bonding si deformare in apropiere.";
+        ? "Mod clasic: electroni pe orbite, transfer vizibil și mișcări pe orbite."
+        : "Mod cuantic: nor de probabilitate (program de umbrire cu zgomot), pulsație, formare de legătură și deformare la apropiere.";
       dom.bondDescription.textContent = `${state.description} ${modeText}`;
 
       updateControlStates();
