@@ -1,5 +1,7 @@
 import React, { useState, useRef, useEffect, useMemo, useCallback } from "react";
 import ReactMarkdown from "react-markdown";
+import remarkMath from "remark-math";
+import rehypeMathjaxBrowser from "rehype-mathjax/browser";
 import "../scss/components/_assistant-popup.scss";
 import { 
   X, Send, Plus, Trash2, MessageSquare, Maximize2, Minimize2, 
@@ -7,6 +9,7 @@ import {
 } from "lucide-react";
 import { searchKnowledgeBase } from "../lib/assistant-knowledge-base.js";
 import { fetchAssistantReply } from "../lib/assistantChatApi.js";
+import { ensureRomanian } from "../lib/ensureRomanianTranslation.js";
 // MathJaxRender eliminat - fiecare mesaj gestionează propriul rendering prin Intersection Observer
 import { useChats } from "../hooks/useChats";
 import useDarkMode from "../hooks/useDarkMode";
@@ -195,6 +198,8 @@ const MessageBubble = React.memo(({
         <div className="assistant-message-content">
           {msg.role === 'ai' ? (
             <ReactMarkdown
+              remarkPlugins={[remarkMath]}
+              rehypePlugins={[rehypeMathjaxBrowser]}
               components={{
                 a: ({node, ...props}) => (
                   <a {...props} className="assistant-link" target="_self" rel="noopener noreferrer" />
@@ -739,7 +744,8 @@ const AssistantPopup = ({ onClose, initialMessage, initialMessageInNewChat = fal
     }, 100);
 
     try {
-      const aiText = await fetchAssistantReply(text, activeChatId);
+      const rawAiText = await fetchAssistantReply(text, activeChatId);
+      const aiText = await ensureRomanian(rawAiText);
       
       const aiMessage = { 
         role: "ai", 
