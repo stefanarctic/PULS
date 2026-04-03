@@ -18,44 +18,13 @@ import {
 import { useSolvedProblems } from '../hooks/useSolvedProblems';
 import {
     normalizeAnalyzeResponse,
-    PULS_AI_ANALYZE_URL,
     DEFAULT_MAX_SCORE,
-    extractRatingFromJson,
 } from '../lib/analyzeApiContract';
-import { transformAnalyzeResponseForMathJax } from '../lib/groqLatexMathjax';
+import { groqEvaluate } from '../lib/groqEvaluate';
 import { auth } from '../lib/firebase';
 import { Timestamp } from 'firebase/firestore';
 import { recordAssignmentItemProgress, score10FromObtainedMax } from '../lib/assignmentProgress';
 import '../scss/components/_problem-submit.scss';
-
-/** @param {{ rows: Array<{ label: string, value: string, unit?: string }>, caption: string }} props */
-const AnalyzeDataTable = ({ rows, caption }) => {
-    if (!rows?.length) return null;
-    const showUnit = rows.some((r) => r.unit);
-    return (
-        <div className="problem-analysis-data-table-wrap" role="region" aria-label={caption}>
-            <table className="problem-analysis-data-table">
-                <caption className="problem-analysis-data-caption">{caption}</caption>
-                <thead>
-                    <tr>
-                        <th scope="col">Mărime</th>
-                        <th scope="col">Valoare</th>
-                        {showUnit ? <th scope="col">Unitate</th> : null}
-                    </tr>
-                </thead>
-                <tbody>
-                    {rows.map((row, i) => (
-                        <tr key={`${row.label}-${i}`}>
-                            <td>{row.label}</td>
-                            <td>{row.value}</td>
-                            {showUnit ? <td>{row.unit || '—'}</td> : null}
-                        </tr>
-                    ))}
-                </tbody>
-            </table>
-        </div>
-    );
-};
 
 // Funcție pentru conversie File → Data URI
 const fileToDataUri = (file) => {
@@ -156,6 +125,35 @@ const MarkdownContent = React.memo(({ content, className = '' }) => {
 
 MarkdownContent.displayName = 'MarkdownContent';
 
+/** @param {{ rows: Array<{ label: string, value: string, unit?: string }>, caption: string }} props */
+const AnalyzeDataTable = ({ rows, caption }) => {
+    if (!rows?.length) return null;
+    const showUnit = rows.some((r) => r.unit);
+    return (
+        <div className="problem-analysis-data-table-wrap" role="region" aria-label={caption}>
+            <table className="problem-analysis-data-table">
+                <caption className="problem-analysis-data-caption">{caption}</caption>
+                <thead>
+                    <tr>
+                        <th scope="col">Mărime</th>
+                        <th scope="col">Valoare</th>
+                        {showUnit ? <th scope="col">Unitate</th> : null}
+                    </tr>
+                </thead>
+                <tbody>
+                    {rows.map((row, i) => (
+                        <tr key={`${row.label}-${i}`}>
+                            <td><MarkdownContent content={row.label} /></td>
+                            <td><MarkdownContent content={row.value} /></td>
+                            {showUnit ? <td><MarkdownContent content={row.unit || '—'} /></td> : null}
+                        </tr>
+                    ))}
+                </tbody>
+            </table>
+        </div>
+    );
+};
+
 const ProblemSubmit = ({
     problem = null,
     defaultProblemId = null,
@@ -255,38 +253,15 @@ const ProblemSubmit = ({
             const solutionPhotoDataUris =
                 solutionImageFiles.length > 0 ? solutionImageFiles.map((img) => img.previewUrl) : undefined;
 
-            const payload = {
+            const result = await groqEvaluate({
                 problemText: finalProblemText,
+                problem,
                 solutionText: solutionText.trim() || undefined,
                 solutionPhotoDataUris,
-            };
-
-            const response = await fetch(PULS_AI_ANALYZE_URL, {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify(payload),
             });
 
-            let result;
-            const contentType = response.headers.get('content-type');
-            if (contentType && contentType.includes('application/json')) {
-                result = await response.json();
-            } else {
-                result = { error: await response.text() };
-            }
-
-            if (!response.ok) {
-                throw new Error(result.error || `Request failed with status ${response.status}`);
-            }
-
-            const resultForUi = await transformAnalyzeResponseForMathJax(
-                /** @type {Record<string, unknown>} */ (result),
-            );
-
-            setApiResponse(resultForUi);
-            console.log('Analiza a fost primită.', resultForUi);
+            setApiResponse(result);
+            console.log('Analiza a fost primită.', result);
 
             if (problem) {
                 try {
@@ -308,39 +283,13 @@ const ProblemSubmit = ({
                         }
                     }
 
-                    const n = normalizeAnalyzeResponse(/** @type {Record<string, unknown>} */ (resultForUi));
-                    let scoreObtained = n.ratingScore?.obtained ?? 0;
-                    let maxScore = n.ratingScore?.max ?? DEFAULT_MAX_SCORE;
-                    let legacyStr = null;
+                    const n = normalizeAnalyzeResponse(/** @type {Record<string, unknown>} */ (result));
+                    const scoreObtained = n.ratingScore?.obtained ?? 0;
+                    const maxScore = n.ratingScore?.max ?? DEFAULT_MAX_SCORE;
 
-                    if (!n.ratingScore) {
-                        legacyStr =
-                            extractRatingFromJson(
-                                typeof resultForUi.solution === 'string' ? resultForUi.solution : '',
-                            ) ||
-                            extractRatingFromJson(
-                                typeof resultForUi.errorAnalysis === 'string'
-                                    ? resultForUi.errorAnalysis
-                                    : '',
-                            ) ||
-                            (typeof resultForUi.rating === 'string' && resultForUi.rating.trim()
-                                ? resultForUi.rating.trim()
-                                : null);
-                        if (legacyStr) {
-                            const m = legacyStr.match(/(\d+(?:\.\d+)?)\s*\/\s*(\d+)/);
-                            if (m) {
-                                scoreObtained = parseFloat(m[1]);
-                                maxScore = parseFloat(m[2]) || DEFAULT_MAX_SCORE;
-                            }
-                        }
-                    }
-
-                    let score10 = null;
-                    if (n.ratingScore) {
-                        score10 = score10FromObtainedMax(n.ratingScore.obtained, n.ratingScore.max);
-                    } else if (legacyStr && /(\d+(?:\.\d+)?)\s*\/\s*(\d+)/.test(legacyStr)) {
-                        score10 = score10FromObtainedMax(scoreObtained, maxScore);
-                    }
+                    const score10 = n.ratingScore
+                        ? score10FromObtainedMax(n.ratingScore.obtained, n.ratingScore.max)
+                        : null;
 
                     if (
                         assignmentContext &&
@@ -477,12 +426,12 @@ const ProblemSubmit = ({
                     disabled={isLoading}
                     className="problem-submit-submit-btn"
                 >
-                    {isLoading ? '⏳ Se trimite la Puls-AI…' : '🚀 Analizează Soluția'}
+                    {isLoading ? '⏳ Se analizează soluția…' : '🚀 Analizează Soluția'}
                 </Button>
 
                 {isLoading && (
                     <div className="problem-submit-loading">
-                        <p>⏳ Se trimite la Puls-AI…</p>
+                        <p>⏳ Se analizează soluția…</p>
                     </div>
                 )}
             </div>

@@ -1,23 +1,14 @@
 /**
- * Singurul punct de legătură cu Puls-AI din acest repo: HTTP POST la URL-ul de mai jos.
- * Nu există cod server Puls-AI aici — doar clientul web.
- */
-export const PULS_AI_ANALYZE_URL = 'https://puls-ai-two.vercel.app/api/analyze';
-
-/**
- * Contract unificat pentru răspunsul POST /api/analyze (puls-ai-two).
- * Documentație pentru aliniere cu backend; normalizare + fallback legacy în PULS.
+ * Contract de normalizare pentru răspunsul evaluării (Groq pipeline).
  *
  * Câmpuri așteptate (JSON):
- * - rating: string ("8/10 puncte") | { obtained: number, max: number }
+ * - rating: { obtained: number, max: number }
  * - problemSummary, feedbackSummary: string (markdown ok)
  * - studentWorkReflection?: string
  * - givenData?: Array<{ label: string, value: string, unit?: string }>
  * - numericalResults?: Array<{ label: string, value: string, unit?: string }>
  * - formulasUsed?: string | string[]
  * - explanation, correctSolution, errorAnalysis, finalAnswer?: string (markdown)
- *
- * Legacy: solution, errorAnalysis (text liber; poate conține JSON înglobat)
  */
 
 const DEFAULT_MAX_SCORE = 10;

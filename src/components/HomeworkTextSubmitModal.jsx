@@ -1,12 +1,7 @@
 import React, { useState, useRef } from 'react';
 import { X } from 'lucide-react';
-import {
-  normalizeAnalyzeResponse,
-  PULS_AI_ANALYZE_URL,
-  DEFAULT_MAX_SCORE,
-  extractRatingFromJson,
-} from '../lib/analyzeApiContract';
-import { transformAnalyzeResponseForMathJax } from '../lib/groqLatexMathjax';
+import { normalizeAnalyzeResponse } from '../lib/analyzeApiContract';
+import { groqEvaluate } from '../lib/groqEvaluate';
 import { auth } from '../lib/firebase';
 import { Timestamp } from 'firebase/firestore';
 import { recordAssignmentItemProgress, score10FromObtainedMax } from '../lib/assignmentProgress';
@@ -74,56 +69,15 @@ const HomeworkTextSubmitModal = ({
       const problemText =
         `Cerință (profesor):\n\n${teacherText}\n\n` +
         'Evaluează rezolvarea elevului la această cerință și acordă o notă de la 0 la 10.';
-      const payload = {
+      const result = await groqEvaluate({
         problemText,
         solutionText: solutionText.trim() || undefined,
         solutionPhotoDataUris: images.length ? images.map((x) => x.previewUrl) : undefined,
-      };
-      const response = await fetch(PULS_AI_ANALYZE_URL, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(payload),
       });
-      let result;
-      const contentType = response.headers.get('content-type');
-      if (contentType && contentType.includes('application/json')) {
-        result = await response.json();
-      } else {
-        result = { error: await response.text() };
-      }
-      if (!response.ok) {
-        throw new Error(result.error || `Eroare ${response.status}`);
-      }
-      const resultForUi = await transformAnalyzeResponseForMathJax(
-        /** @type {Record<string, unknown>} */ (result),
-      );
-      const n = normalizeAnalyzeResponse(/** @type {Record<string, unknown>} */ (resultForUi));
-      let scoreObtained = n.ratingScore?.obtained ?? 0;
-      let maxScore = n.ratingScore?.max ?? DEFAULT_MAX_SCORE;
-      let legacyStr = null;
-      if (!n.ratingScore) {
-        legacyStr =
-          extractRatingFromJson(typeof resultForUi.solution === 'string' ? resultForUi.solution : '') ||
-          extractRatingFromJson(
-            typeof resultForUi.errorAnalysis === 'string' ? resultForUi.errorAnalysis : '',
-          ) ||
-          (typeof resultForUi.rating === 'string' && resultForUi.rating.trim()
-            ? resultForUi.rating.trim()
-            : null);
-        if (legacyStr) {
-          const m = legacyStr.match(/(\d+(?:\.\d+)?)\s*\/\s*(\d+)/);
-          if (m) {
-            scoreObtained = parseFloat(m[1]);
-            maxScore = parseFloat(m[2]) || DEFAULT_MAX_SCORE;
-          }
-        }
-      }
-      let score10 = null;
-      if (n.ratingScore) {
-        score10 = score10FromObtainedMax(n.ratingScore.obtained, n.ratingScore.max);
-      } else if (legacyStr && /(\d+(?:\.\d+)?)\s*\/\s*(\d+)/.test(legacyStr)) {
-        score10 = score10FromObtainedMax(scoreObtained, maxScore);
-      }
+      const n = normalizeAnalyzeResponse(/** @type {Record<string, unknown>} */ (result));
+      const score10 = n.ratingScore
+        ? score10FromObtainedMax(n.ratingScore.obtained, n.ratingScore.max)
+        : null;
       if (score10 === null || !Number.isFinite(score10)) {
         throw new Error('Nu s-a putut citi nota din răspunsul AI. Încearcă din nou.');
       }
