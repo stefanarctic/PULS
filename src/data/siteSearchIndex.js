@@ -104,7 +104,7 @@ const STATIC_SITE_ENTRIES = [
   {
     title: "Resurse — Astronomie",
     path: "/resurse/astronomie",
-    keywords: ["astronomie", "planetă", "stea", "cosmos"],
+    keywords: ["astronomie", "constelații", "constelații pe cer", "planetă", "stea", "Kepler", "cosmos"],
   },
   {
     title: "Resurse — Atomul",

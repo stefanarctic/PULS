@@ -23,6 +23,7 @@ import lentilaSubtireImg from "/res/screenshots/Lentila_Subtire_Screenshot.png";
 import polarizareCircularaImg from "/res/screenshots/Polarizare_Circulara_Screenshot.png";
 import reflexieRefractieImg from "/res/screenshots/Reflexie_Refractie_Screenshot.png";
 import vizualizator4dImg from "/res/screenshots/Vizualizator_4d_Screenshot.png";
+import constelatiiImg from "/res/screenshots/Constelatii_Screenshot.png";
 import legiKeplerImg from "/res/screenshots/Legi_Kepler_Screenshot.png";
 import atomHidrogenImg from "/res/screenshots/Atom_Hidrogen_Screenshot.png";
 import michaelsonMorleyImg from "/res/screenshots/Michaelson_Morley_Screenshot.png";
@@ -334,6 +335,19 @@ export const simulationsConfig = [
     iframeSrc: "/simulari/4D-Visualizer/index.html",
     maxHeight: '90vh',
     category: "4D"
+  },
+  {
+    id: 39,
+    slug: "constelatii",
+    route: "/simulare/constelatii",
+    title: "Constelații pe cer",
+    description:
+      "Hartă interactivă a cerului: recunoaștere constelații, orientare după Steaua polară, povești scurte și legătura cu coordonatele astronomice.",
+    image: constelatiiImg,
+    caption: "Constelații pe cer",
+    iframeSrc: "/simulari/constelatii/index.html",
+    maxHeight: "90vh",
+    category: "Astronomie",
   },
   {
     id: 26,

@@ -605,55 +605,258 @@ const ResursePage = () => {
   ];
 
   const seismFormulas = [
-    { title: "Viteza undei P (Seism)", formula: "\\( v_P = \\sqrt{\\frac{K + \\frac{4}{3}G}{\\rho}} \\)" },
-    { title: "Viteza undei S (Seism)", formula: "\\( v_S = \\sqrt{\\frac{G}{\\rho}} \\)" },
-    { title: "Magnitudinea Richter", formula: "\\( M_L = \\log_{10} A - \\log_{10} A_0 \\)" },
-    { title: "Magnitudinea moment seismic", formula: "\\( M_w = \\frac{2}{3} \\log_{10} M_0 - 10.7 \\)" },
-    { title: "Momentul seismic", formula: "\\( M_0 = \\mu A D \\)" },
-    { title: "Energia seismică eliberată", formula: "\\( E = 10^{1.5M + 4.8} \\)" },
+    {
+      section: "Seismologie",
+      formulas: [
+        {
+          title: "Viteza undei P",
+          formula: "\\( v_P = \\sqrt{\\frac{K + \\frac{4}{3}G}{\\rho}} \\)",
+          explanation:
+            "Unda P (primară) este longitudinală; se propagă prin sol și fluide. Depinde de modulul de compresibilitate K, modulul de forfecare G și densitatea ρ. În mod uzual v_P > v_S.",
+        },
+        {
+          title: "Viteza undei S",
+          formula: "\\( v_S = \\sqrt{\\frac{G}{\\rho}} \\)",
+          explanation:
+            "Unda S (secundară) este transversală — particulele oscilează perpendicular pe direcția de propagare. Nu traversează fluidul ideal. v_S depinde de rigiditatea medului (G) și densitate.",
+        },
+        {
+          title: "Magnitudinea Richter (locală)",
+          formula: "\\( M_L = \\log_{10} A - \\log_{10} A_0 \\)",
+          explanation:
+            "Scala logaritmică bazată pe amplitudinea undei înregistrate la un seismograf, raportată la o amplitudine etalon A₀ (depinde de distanță și instrumental). Nu mai e singura scală folosită în practică.",
+        },
+        {
+          title: "Magnitudinea moment (scală moment)",
+          formula: "\\( M_w = \\frac{2}{3} \\log_{10} M_0 - 10.7 \\)",
+          explanation:
+            "Mw se leagă de momentul seismic M₀ (în N·m). Este mai stabilă pentru cutremure mari decât magnitudinile doar din amplitudine.",
+        },
+        {
+          title: "Momentul seismic",
+          formula: "\\( M_0 = \\mu A D \\)",
+          explanation:
+            "μ este rigiditatea mediului pe suprafața de ruptură A, D este alunecarea medie. M₀ măsoară „cât de mult” s-a eliberat energie prin deplasarea peste o suprafață.",
+        },
+        {
+          title: "Energia seismică (formulă empirică)",
+          formula: "\\( E = 10^{1.5M + 4.8} \\)",
+          explanation:
+            "Relație orientativă între magnitudine și energia eliberată (în J, în forme uzual citate în literatură). Este aproximativă: energia reală depinde de geometria ruperii și de mediu.",
+        },
+      ],
+    },
   ];
 
   const undeFormulas = [
-    { title: "Formula generală a undelor", formula: "\\( v = \\lambda \\cdot f \\)" },
-    { title: "Viteza de propagare", formula: "\\( v = \\sqrt{\\frac{T}{\\mu}} \\)" },
-    { title: "Ecuația undei progresive", formula: "\\( y(x,t) = A \\sin(kx - \\omega t + \\phi) \\)" },
-    { title: "Numărul de undă", formula: "\\( k = \\frac{2\\pi}{\\lambda} \\)" },
-    { title: "Energia undei", formula: "\\( E = \\frac{1}{2}\\mu A^2\\omega^2 \\)" },
-    { title: "Intensitatea undei", formula: "\\( I = \\frac{P}{A} = \\frac{1}{2}\\rho v A^2\\omega^2 \\)" },
+    {
+      section: "Unde",
+      formulas: [
+        {
+          title: "Relația fundamentală",
+          formula: "\\( v = \\lambda \\cdot f \\)",
+          explanation: "Viteza de fază este produsul dintre lungimea de undă λ și frecvența f. Leagă parametrii spațiali și temporari ai undei.",
+        },
+        {
+          title: "Viteza pe coardă",
+          formula: "\\( v = \\sqrt{\\frac{T}{\\mu}} \\)",
+          explanation:
+            "Pe o coardă ideală, v crește cu tensiunea T și scade cu masa liniară μ (kg/m). Explică de ce coarda mai întinsă sau mai subțire sună mai ascuțit.",
+        },
+        {
+          title: "Undă progresivă sinusoidală",
+          formula: "\\( y(x,t) = A \\sin(kx - \\omega t + \\phi) \\)",
+          explanation:
+            "Deplasarea la poziția x și timpul t pentru o undă care se propagă. k este numărul de undă, ω pulsția; φ este faza inițială. Semnul din argument decide sensul propagării.",
+        },
+        {
+          title: "Numărul de undă",
+          formula: "\\( k = \\frac{2\\pi}{\\lambda} \\)",
+          explanation: "Legătura dintre λ și k: într-un spațiu de o lungime de undă încap 2π radiani de fază spațială.",
+        },
+        {
+          title: "Energia undei pe coardă (model)",
+          formula: "\\( E = \\frac{1}{2}\\mu A^2\\omega^2 \\)",
+          explanation:
+            "Energia totală proporțională cu pătratul amplitudinii și al pulsției într-un model simplu (undă pe coardă). Cu cât oscilația e mai viguroasă, cu atât energia e mai mare.",
+        },
+        {
+          title: "Intensitatea undei",
+          formula: "\\( I = \\frac{P}{A} = \\frac{1}{2}\\rho v A^2\\omega^2 \\)",
+          explanation:
+            "Puterea medie pe unitatea de suprafață. A doua formă (undă în mediu) leagă I de densitatea ρ, viteza v, amplitudinea undei și ω. Intensitatea scade departe de sursă (geometrie + absorbție).",
+        },
+      ],
+    },
   ];
 
   const prismaFormulas = [
-    { title: "Legea refracției (Snell)", formula: "\\( n_1 \\sin(\\theta_1) = n_2 \\sin(\\theta_2) \\)" },
-    { title: "Unghiul de deviație în prismă", formula: "\\( \\delta = (\\theta_1 + \\theta_2') - A \\)" },
-    { title: "Indicele de refracție", formula: "\\( n = n(\\lambda) \\)" },
-    { title: "Formula Cauchy pentru dispersie", formula: "\\( n(\\lambda) = A + \\frac{B}{\\lambda^2} + \\frac{C}{\\lambda^4} \\)" },
-    { title: "Unghiul de deviație minimă", formula: "\\( \\delta_{min} = 2\\arcsin(n\\sin\\frac{A}{2}) - A \\)" },
-    { title: "Puterea de dispersie", formula: "\\( P = \\frac{n_F - n_C}{n_D - 1} \\)" },
+    {
+      section: "Prismă și dispersie",
+      formulas: [
+        {
+          title: "Legea lui Snell",
+          formula: "\\( n_1 \\sin(\\theta_1) = n_2 \\sin(\\theta_2) \\)",
+          explanation:
+            "La trecerea între medii, produsul n·sin θ rămâne constant pe interfață (incidență). Unghiurile se măsoară față de normală.",
+        },
+        {
+          title: "Unghiul de deviație în prismă",
+          formula: "\\( \\delta = (\\theta_1 + \\theta_2') - A \\)",
+          explanation:
+            "δ este unghiul cu care fasciculul emergent este deviat față de cel incident; A este unghiul prismei; θ₂′ este unghiul de emergență pe a doua față.",
+        },
+        {
+          title: "Indice de refracție spectrale",
+          formula: "\\( n = n(\\lambda) \\)",
+          explanation:
+            "n depinde de lungimea de undă — motivul pentru care prisma descompune lumina albă (dispersie). Violetul și roșul au indici diferiți.",
+        },
+        {
+          title: "Formula lui Cauchy (dispersie)",
+          formula: "\\( n(\\lambda) = A + \\frac{B}{\\lambda^2} + \\frac{C}{\\lambda^4} \\)",
+          explanation:
+            "Model empiric pentru n(λ) în vizibil; A, B, C se potrivesc cu măsurători. λ mic (violet) → n mai mare, în general.",
+        },
+        {
+          title: "Deviație minimă",
+          formula: "\\( \\delta_{min} = 2\\arcsin(n\\sin\\frac{A}{2}) - A \\)",
+          explanation:
+            "În configurația simetrică a prismei apare deviația minimă; relație utilă pentru a determina experimental n al materialului.",
+        },
+        {
+          title: "Puterea de dispersie (Abbe)",
+          formula: "\\( P = \\frac{n_F - n_C}{n_D - 1} \\)",
+          explanation:
+            "Măsură a cât de mult se separă culorile (linii Fraunhofer F, D, C). Materiale cu P mare dispersă mai puternic.",
+        },
+      ],
+    },
   ];
 
   const penduleFormulas = [
-    { title: "Legea mișcării oscilatorii", formula: "\\( y(t) = A \\sin(\\omega t + \\phi) \\)" },
-    { title: "Legea vitezei", formula: "\\( v(t) = \\omega A \\cos(\\omega t + \\phi) \\)" },
-    { title: "Legea accelerației", formula: "\\( a(t) = -\\omega^2 A \\sin(\\omega t + \\phi) \\)" },
-    { title: "Perioada pendulului gravitațional", formula: "\\( T = 2\\pi \\sqrt{\\frac{l}{g}} \\)" },
-    { title: "Ecuația pendulului amortizat", formula: "\\( m\\frac{d^2x}{dt^2} + b\\frac{dx}{dt} + kx = 0 \\)" },
-    { title: "Coeficientul de amortizare", formula: "\\( \\gamma = \\frac{b}{2m} \\)" },
-    { title: "Frecvența amortizată", formula: "\\( \\omega_d = \\sqrt{\\omega_0^2 - \\gamma^2} \\)" },
-    { title: "Decrementul logaritmic", formula: "\\( \\delta = \\ln\\frac{A_n}{A_{n+1}} = \\gamma T_d \\)" },
-    { title: "Factorul de calitate", formula: "\\( Q = \\frac{\\omega_0}{2\\gamma} = \\frac{\\pi}{\\delta} \\)" },
-    { title: "Ecuația pendulului simplu neliniar", formula: "\\( \\frac{d^2\\phi}{dt^2} + \\frac{g}{l} \\sin\\phi = 0 \\)" },
-    { title: "Perioada pentru oscilații mari", formula: "\\( T = 4\\sqrt{\\frac{l}{g}}K(k) \\)" },
+    {
+      section: "Oscilații și pendule",
+      formulas: [
+        {
+          title: "Legea mișcării (harmonic)",
+          formula: "\\( y(t) = A \\sin(\\omega t + \\phi) \\)",
+          explanation: "Mișcare periodică cu amplitudine A, pulsație ω și fază inițială φ. Valori extreme ±A.",
+        },
+        {
+          title: "Viteza",
+          formula: "\\( v(t) = \\omega A \\cos(\\omega t + \\phi) \\)",
+          explanation: "Derivata deplasării; viteza e maximă la trecerea prin echilibru (sin=0, cos=±1).",
+        },
+        {
+          title: "Accelerația",
+          formula: "\\( a(t) = -\\omega^2 A \\sin(\\omega t + \\phi) \\)",
+          explanation: "Accelerația e opusă deplasării (restabilire spre centru) — semnul minus caracterizează oscilatorul armonic.",
+        },
+        {
+          title: "Perioada pendulului gravitațional",
+          formula: "\\( T = 2\\pi \\sqrt{\\frac{l}{g}} \\)",
+          explanation:
+            "Pentru unghiuri mici; depinde de lungimea l și de g. Nu depinde de masă (în modelul ideal). Perioada crește cu √l.",
+        },
+        {
+          title: "Ecuația pendulului amortizat",
+          formula: "\\( m\\frac{d^2x}{dt^2} + b\\frac{dx}{dt} + kx = 0 \\)",
+          explanation:
+            "Termenul b dx/dt modelează frecarea vâscoasă; energia se disipă, amplitudinea scade în timp.",
+        },
+        {
+          title: "Coeficient de amortizare",
+          formula: "\\( \\gamma = \\frac{b}{2m} \\)",
+          explanation:
+            "Parametru care cuantifică cât de repede pierde sistemul energie față de oscilația proprie neamortizată.",
+        },
+        {
+          title: "Pulsația amortizată",
+          formula: "\\( \\omega_d = \\sqrt{\\omega_0^2 - \\gamma^2} \\)",
+          explanation:
+            "Dacă γ < ω₀, sistemul oscilează cu frecvență ușor mai mică decât ω₀. Dacă γ ≥ ω₀, mișcarea devine aperiodică (critică sau supraamortizată).",
+        },
+        {
+          title: "Decrement logaritmic",
+          formula: "\\( \\delta = \\ln\\frac{A_n}{A_{n+1}} = \\gamma T_d \\)",
+          explanation:
+            "Raportul consecutiv al amplitudinilor pe două oscilații; legat de pierderea de energie pe ciclu. T_d e perioada amortizată.",
+        },
+        {
+          title: "Factor de calitate Q",
+          formula: "\\( Q = \\frac{\\omega_0}{2\\gamma} = \\frac{\\pi}{\\delta} \\)",
+          explanation:
+            "Oscilator cu Q mare pierde greu energie (rezonanță îngustă în aplicații). Q mic → amortizare puternică.",
+        },
+        {
+          title: "Pendul neliniar (cu modelul corect)",
+          formula: "\\( \\frac{d^2\\phi}{dt^2} + \\frac{g}{l} \\sin\\phi = 0 \\)",
+          explanation:
+            "Forma exactă: forța restabilitoare ∝ sin φ, nu φ. La unghiți mari perioada depinde de amplitudine.",
+        },
+        {
+          title: "Perioadă pentru oscilații mari",
+          formula: "\\( T = 4\\sqrt{\\frac{l}{g}}K(k) \\)",
+          explanation:
+            "K este integrală eliptică completă; depindee de amplitudine. Generalizează formula mică T = 2π√(l/g).",
+        },
+      ],
+    },
   ];
 
   const lissajousFormulas = [
-    { title: "Ecuația parametrică x", formula: "\\( x(t) = A_1 \\sin(\\omega_1 t + \\phi_1) \\)" },
-    { title: "Ecuația parametrică y", formula: "\\( y(t) = A_2 \\sin(\\omega_2 t + \\phi_2) \\)" },
-    { title: "Raportul frecvențelor", formula: "\\( r = \\frac{\\omega_1}{\\omega_2} = \\frac{f_1}{f_2} \\)" },
-    { title: "Diferența de fază", formula: "\\( \\Delta\\phi = \\phi_1 - \\phi_2 \\)" },
-    { title: "Ecuația implicită (r = 1)", formula: "\\( \\frac{x^2}{A_1^2} + \\frac{y^2}{A_2^2} - \\frac{2xy}{A_1A_2}\\cos(\\Delta\\phi) = \\sin^2(\\Delta\\phi) \\)" },
-    { title: "Perioada figurii", formula: "\\( T = \\frac{2\\pi}{\\gcd(\\omega_1, \\omega_2)} \\)" },
-    { title: "Energia totală", formula: "\\( E = \\frac{1}{2}m(A_1^2\\omega_1^2 + A_2^2\\omega_2^2) \\)" },
-    { title: "Aria figurii (r = 1)", formula: "\\( A = \\pi A_1A_2|\\sin(\\Delta\\phi)| \\)" },
+    {
+      section: "Figuri Lissajous",
+      formulas: [
+        {
+          title: "Componenta x(t)",
+          formula: "\\( x(t) = A_1 \\sin(\\omega_1 t + \\phi_1) \\)",
+          explanation: "Oscilație armonică pe axa x; amplitudine A₁, frecvență ω₁, fază φ₁.",
+        },
+        {
+          title: "Componenta y(t)",
+          formula: "\\( y(t) = A_2 \\sin(\\omega_2 t + \\phi_2) \\)",
+          explanation: "Oscilație independentă pe axa y. Traiectoria (x, y) este curba Lissajous.",
+        },
+        {
+          title: "Raportul frecvențelor",
+          formula: "\\( r = \\frac{\\omega_1}{\\omega_2} = \\frac{f_1}{f_2} \\)",
+          explanation:
+            "Dacă r e rațional (ex. 2/3), figura este închisă și periodică. Raporturi simple dau forme recognoscibile.",
+        },
+        {
+          title: "Diferența de fază",
+          formula: "\\( \\Delta\\phi = \\phi_1 - \\phi_2 \\)",
+          explanation:
+            "Controlează forma și orientarea figurii când raportul frecvențelor e fix (ex. 1:1 dă elipse sau drepte când Δφ = 0 sau π/2).",
+        },
+        {
+          title: "Relație implicită (r = 1)",
+          formula: "\\( \\frac{x^2}{A_1^2} + \\frac{y^2}{A_2^2} - \\frac{2xy}{A_1A_2}\\cos(\\Delta\\phi) = \\sin^2(\\Delta\\phi) \\)",
+          explanation:
+            "Eliminând timpul când ω₁ = ω₂, obții conica traced de vârf; pentru faze diferite apare o elipsă în general.",
+        },
+        {
+          title: "Perioada figurii",
+          formula: "\\( T = \\frac{2\\pi}{\\gcd(\\omega_1, \\omega_2)} \\)",
+          explanation:
+            "Timpul după care traiectoria se repetă exact, când pulsațiile sunt comensurabile (interpretare cu cel mai mic multiplu al perioadelor).",
+        },
+        {
+          title: "Energie (oscilator 2D ideal)",
+          formula: "\\( E = \\frac{1}{2}m(A_1^2\\omega_1^2 + A_2^2\\omega_2^2) \\)",
+          explanation:
+            "Suma energiilor cinetice maxime pe cele două direcții într-un model simplu cu aceeași masă m (ordin de mărime).",
+        },
+        {
+          title: "Aria (caz r = 1)",
+          formula: "\\( A = \\pi A_1A_2|\\sin(\\Delta\\phi)| \\)",
+          explanation:
+            "Aria elipsei Lissajous când frecvențele sunt egale; devine zero când fazele sunt aliniate (mișcare pe o dreaptă).",
+        },
+      ],
+    },
   ];
 
   const electricitateFormulas = [
@@ -1203,37 +1406,233 @@ const ResursePage = () => {
   ];
 
   const matematicaFormulas = [
-    { title: "Funcție liniară", formula: "\\( y = ax + b \\)" },
-    { title: "Funcție pătratică", formula: "\\( y = ax^2 + bx + c \\)" },
-    { title: "Derivată (definiție)", formula: "\\( f'(x) = \\lim_{h \\to 0} \\frac{f(x+h) - f(x)}{h} \\)" },
-    { title: "Derivata sinusului", formula: "\\( \\frac{d}{dx}\\sin(x) = \\cos(x) \\)" },
-    { title: "Derivata cosinusului", formula: "\\( \\frac{d}{dx}\\cos(x) = -\\sin(x) \\)" },
-    { title: "Derivata exponențialei", formula: "\\( \\frac{d}{dx}e^x = e^x \\)" },
-    { title: "Derivata logaritmului", formula: "\\( \\frac{d}{dx}\\ln(x) = \\frac{1}{x} \\)" },
-    { title: "Metrica Minkowski (spațiu-timp)", formula: "\\( ds^2 = c^2 dt^2 - dx^2 - dy^2 - dz^2 \\)" },
+    {
+      section: "Funcții și analiză",
+      formulas: [
+        {
+          title: "Funcție liniară",
+          formula: "\\( y = ax + b \\)",
+          explanation: "Dreaptă cu pantă a și ordonată la origine b. Model de creștere uniformă; a = Δy/Δx pe orice interval.",
+        },
+        {
+          title: "Funcție pătratică",
+          formula: "\\( y = ax^2 + bx + c \\)",
+          explanation: "Parabolă. Semnul lui a spune dacă ramurile sunt în sus sau în jos; vârf la x = −b/(2a) (derivata nulă).",
+        },
+        {
+          title: "Derivată (definiție)",
+          formula: "\\( f'(x) = \\lim_{h \\to 0} \\frac{f(x+h) - f(x)}{h} \\)",
+          explanation: "Panta tangentei la graficul lui f în x — rata instantanee de schimbare. Fundamentală pentru toate regulile de derivare.",
+        },
+        {
+          title: "Derivata sinusului",
+          formula: "\\( \\frac{d}{dx}\\sin(x) = \\cos(x) \\)",
+          explanation: "Folosită des în oscilații și unde; derivata cosinusului urmează cu semn schimbat.",
+        },
+        {
+          title: "Derivata cosinusului",
+          formula: "\\( \\frac{d}{dx}\\cos(x) = -\\sin(x) \\)",
+          explanation: "Cupla cu sinusul; semnul minus reflectă defazajul de π/2 între sin și cos.",
+        },
+        {
+          title: "Derivata exponențialei",
+          formula: "\\( \\frac{d}{dx}e^x = e^x \\)",
+          explanation: "e^x este propria sa derivată — motiv pentru care apare în creștere exponențială și ecuații diferențiale.",
+        },
+        {
+          title: "Derivata logaritmului natural",
+          formula: "\\( \\frac{d}{dx}\\ln(x) = \\frac{1}{x} \\)",
+          explanation: "Valabilă pentru x > 0. Leagă creșteri relative: d(ln x) = dx/x.",
+        },
+      ],
+    },
+    {
+      section: "Relativitate (formalism spațiu-timp)",
+      formulas: [
+        {
+          title: "Metrica Minkowski",
+          formula: "\\( ds^2 = c^2 dt^2 - dx^2 - dy^2 - dz^2 \\)",
+          explanation:
+            "Intervalul invariabil în relativitatea restrânsă (semnatura +−−−). Distanța „reală” între evenimente în spațiu-timp nu depinde de observatorul inertial.",
+        },
+      ],
+    },
   ];
 
   const astronomieFormulas = [
-    { title: "Legea I Kepler – elipsa", formula: "\\( \\frac{x^2}{a^2} + \\frac{y^2}{b^2} = 1, \\quad b = a\\sqrt{1-e^2} \\)" },
-    { title: "Legea a II-a Kepler – ariile", formula: "\\( \\frac{dA}{dt} = \\frac{L}{2m} = \\text{const.} \\)" },
-    { title: "Legea a III-a Kepler", formula: "\\( T^2 = \\frac{4\\pi^2}{GM}\\, a^3 \\)" },
-    { title: "Viteza orbitală medie", formula: "\\( v = \\frac{2\\pi a}{T} \\)" },
-    { title: "Energia pe orbită eliptică", formula: "\\( E = -\\frac{GMm}{2a} \\)" },
-    { title: "Viteza la periheliu", formula: "\\( v_p = \\sqrt{\\frac{GM}{a}\\frac{1+e}{1-e}} \\)" },
-    { title: "Viteza la afeliu", formula: "\\( v_a = \\sqrt{\\frac{GM}{a}\\frac{1-e}{1+e}} \\)" },
-    { title: "Gravitație universală", formula: "\\( F_G = G \\frac{Mm}{r^2} \\)" },
-    { title: "Michelson – timp braț paralel (aprox.)", formula: "\\( t_{\\parallel} \\approx \\frac{2L}{c}\\left(1 + \\frac{v^2}{c^2}\\right) \\)" },
-    { title: "Michelson – timp braț perpendicular (aprox.)", formula: "\\( t_{\\perp} \\approx \\frac{2L}{c}\\left(1 + \\frac{v^2}{2c^2}\\right) \\)" },
-    { title: "Michelson – diferență de timp așteptată (eter)", formula: "\\( \\Delta t \\approx \\frac{Lv^2}{c^3} \\)" },
+    {
+      section: "Cer, stele și coordonate",
+      formulas: [
+        {
+          title: "Ascensiune rectă și declinație (notație)",
+          formula: "\\( \\alpha \\ \\text{(AR)}, \\quad \\delta \\ \\text{(Dec)} \\)",
+          explanation:
+            "Coordonate ecuatoriale pe sfera cerească: α măsurată în ore/min/sec de-a lungul ecuatorului ceresc, δ ca unghi față de ecuator (similar latitudinii).",
+        },
+        {
+          title: "Distanță unghiulară pe sfera cerească",
+          formula:
+            "\\( \\cos\\theta = \\sin\\delta_1\\sin\\delta_2 + \\cos\\delta_1\\cos\\delta_2\\cos(\\alpha_1-\\alpha_2) \\)",
+          explanation:
+            "Unghiul θ dintre două direcții spre stele din coordonate (α₁,δ₁) și (α₂,δ₂). Folosit pentru separări pe boltă și condiții de observație.",
+        },
+        {
+          title: "Magnitudine aparentă (Pogson)",
+          formula: "\\( m_1 - m_2 = -2{,}5\\,\\log_{10}\\!\\left(\\frac{F_1}{F_2}\\right) \\)",
+          explanation:
+            "Scala logaritmică: steaua cu m mai mic pare mai strălucitoare. Diferență de 5 magnitudini ≈ factor 100 în flux.",
+        },
+        {
+          title: "Distanță din paralaxă (parsec)",
+          formula: "\\( d\\,[\\mathrm{pc}] = \\dfrac{1}{p\\,[\\mathrm{arcsec}]} \\)",
+          explanation:
+            "Paralaxa heliocentrică p (în secunde de arc) dă distanța în parseci. Baza este raza orbitei Pământului (~1 UA).",
+        },
+      ],
+    },
+    {
+      section: "Legile lui Kepler și gravitație",
+      formulas: [
+        {
+          title: "Legea I Kepler – elipsa",
+          formula: "\\( \\frac{x^2}{a^2} + \\frac{y^2}{b^2} = 1, \\quad b = a\\sqrt{1-e^2} \\)",
+          explanation: "Orbita e o elipsă; Soarele într-un focar. a = semiaxa mare, e = excentricitatea, b = semiaxa mică.",
+        },
+        {
+          title: "Legea a II-a Kepler – ariile",
+          formula: "\\( \\frac{dA}{dt} = \\frac{L}{2m} = \\text{const.} \\)",
+          explanation:
+            "Raza vectoare mătură arii egale în timpi egali — planeta merge mai repede la periheliu, mai încet la afeliu.",
+        },
+        {
+          title: "Legea a III-a Kepler",
+          formula: "\\( T^2 = \\frac{4\\pi^2}{GM}\\, a^3 \\)",
+          explanation:
+            "Perioada T este legată de semiaxa mare a; pentru același corp central M, raportul T²/a³ e același pentru toți sateliții.",
+        },
+        {
+          title: "Viteza orbitală medie",
+          formula: "\\( v = \\frac{2\\pi a}{T} \\)",
+          explanation: "Lungimea medie a orbitei (≈ 2πa pentru orbită aproape circulară) împărțită la perioadă.",
+        },
+        {
+          title: "Energia pe orbită eliptică",
+          formula: "\\( E = -\\frac{GMm}{2a} \\)",
+          explanation:
+            "Energia totală a sistemului masă mică m pe orbită legată e negativă și depinde doar de semiaxa mare, nu de excentricitate.",
+        },
+        {
+          title: "Viteza la periheliu",
+          formula: "\\( v_p = \\sqrt{\\frac{GM}{a}\\frac{1+e}{1-e}} \\)",
+          explanation: "Viteza maximă pe elipsă, la distanța minimă de stea (când excentricitatea e > 0).",
+        },
+        {
+          title: "Viteza la afeliu",
+          formula: "\\( v_a = \\sqrt{\\frac{GM}{a}\\frac{1-e}{1+e}} \\)",
+          explanation: "Viteza minimă pe elipsă, la distanța maximă de stea.",
+        },
+        {
+          title: "Gravitație universală",
+          formula: "\\( F_G = G \\frac{Mm}{r^2} \\)",
+          explanation:
+            "Forța dintre două mase punctiforme sau sfere (centrul lor). Legea lui Newton pentru atracție la distanță.",
+        },
+      ],
+    },
+    {
+      section: "Mișcarea planetelor",
+      formulas: [
+        {
+          title: "Forță gravitațională (Newton)",
+          formula: "\\( F_G = G \\frac{Mm}{r^2} \\)",
+          explanation:
+            "În simulatorul de mișcare planetară, fiecare planetă e trasă spre stea cu această forță; dă accelerația centripetă necesară orbitei.",
+        },
+        {
+          title: "Viteză pe orbită circulară",
+          formula: "\\( v = \\sqrt{\\frac{GM}{r}} \\)",
+          explanation:
+            "Condiție de echilibru între gravitație și mișcarea circulară: cu cât r e mai mare, cu atât v orbital e mai mic.",
+        },
+        {
+          title: "Energie mecanică specifică (orbită eliptică)",
+          formula: "\\( \\varepsilon = -\\frac{GM}{2a} \\)",
+          explanation:
+            "Energia pe unitatea de masă pentru orbită legată; legată direct de semiaxa mare a (aceeași idee ca E totală, dar per masă).",
+        },
+        {
+          title: "Precesia periheliului (relativitate generală, idee simplificată)",
+          formula: "\\( \\Delta \\varphi \\approx \\frac{6\\pi GM}{a c^2 (1-e^2)} \\)",
+          explanation:
+            "Unghiul cu care se rotește axa elipsei per revoluție în RG — foarte mic pentru majoritatea planetelor, măsurabil pentru Mercur; depinde de M, a, e.",
+        },
+      ],
+    },
+    {
+      section: "Michelson–Morley",
+      formulas: [
+        {
+          title: "Timp braț paralel (aprox., v ≪ c)",
+          formula: "\\( t_{\\parallel} \\approx \\frac{2L}{c}\\left(1 + \\frac{v^2}{c^2}\\right) \\)",
+          explanation:
+            "În modelul cu eter și v mic față de c, timpul dus-întors pe brațul paralel cu „vântul de eter” conține o corecție de ordin v²/c².",
+        },
+        {
+          title: "Timp braț perpendicular (aprox.)",
+          formula: "\\( t_{\\perp} \\approx \\frac{2L}{c}\\left(1 + \\frac{v^2}{2c^2}\\right) \\)",
+          explanation:
+            "Pe brațul perpendicular, drumul în sistemul eterului e ușor diferit, deci și corecția de ordin v²/c² diferă de brațul paralel.",
+        },
+        {
+          title: "Diferență de timp așteptată (model cu eter)",
+          formula: "\\( \\Delta t \\approx \\frac{Lv^2}{c^3} \\)",
+          explanation:
+            "Ar fi produs defazaj în interferometru dacă exista eter absolut; experimentul nu a găsit efectul — susține invarianta vitezei luminii.",
+        },
+      ],
+    },
   ];
 
   const atomulFormulas = [
-    { title: "Energie nivel Bohr (hidrogen)", formula: "\\( E_n = - \\frac{13{,}6\\ \\text{eV}}{n^2} \\)" },
-    { title: "Formula lui Rydberg", formula: "\\( \\frac{1}{\\lambda} = R_H \\left( \\frac{1}{n^2} - \\frac{1}{m^2} \\right) \\)" },
-    { title: "Foton – legătura energie–frecvență", formula: "\\( E = h\\nu = \\frac{hc}{\\lambda} \\)" },
-    { title: "Longitudine de undă de Broglie", formula: "\\( \\lambda = \\frac{h}{p} \\)" },
-    { title: "Principiul incertitudinii Heisenberg", formula: "\\( \\Delta x \\, \\Delta p \\gtrsim \\frac{\\hbar}{2} \\)" },
-    ...tabelPeriodicFormulas.map(({ title, formula }) => ({ title, formula })),
+    {
+      section: "Atomul de hidrogen și cuantic",
+      formulas: [
+        {
+          title: "Energie nivel Bohr (hidrogen)",
+          formula: "\\( E_n = - \\frac{13{,}6\\ \\text{eV}}{n^2} \\)",
+          explanation:
+            "Niveluri cantificate pentru electron în modelul lui Bohr: n = 1 e fundamentul (–13,6 eV); n → ∞ corespunde ionizării (0 eV).",
+        },
+        {
+          title: "Formula lui Rydberg",
+          formula: "\\( \\frac{1}{\\lambda} = R_H \\left( \\frac{1}{n^2} - \\frac{1}{m^2} \\right) \\)",
+          explanation:
+            "Lungimile de undă ale spectraliilor de emisie/absorbție la H: tranziții de la nivelul m la n (m > n în emisie). R_H ≈ 1,097×10⁷ m⁻¹.",
+        },
+        {
+          title: "Foton – energie și frecvență",
+          formula: "\\( E = h\\nu = \\frac{hc}{\\lambda} \\)",
+          explanation:
+            "Cuantă de lumină: energia legată de frecvența undei electromagnetice; explică spectrele atomice și efectul fotoelectric.",
+        },
+        {
+          title: "Longitudine de undă de Broglie",
+          formula: "\\( \\lambda = \\frac{h}{p} \\)",
+          explanation:
+            "Particulele au și comportament de undă; λ scade când impulsul p crește — folosit în difracție de electroni.",
+        },
+        {
+          title: "Principiul incertitudinii Heisenberg",
+          formula: "\\( \\Delta x \\, \\Delta p \\gtrsim \\frac{\\hbar}{2} \\)",
+          explanation:
+            "Nu poți cunoaște simultan poziția și impulsul cu precizie arbitrară; limită fundamentală în mecanica cuantică.",
+        },
+      ],
+    },
+    {
+      section: "Tabel periodic și cantitate de substanță",
+      formulas: tabelPeriodicFormulas.map(({ title, formula, explanation }) => ({ title, formula, explanation })),
+    },
   ];
 
   const fizicaCuanticaFormulas = [
@@ -1333,14 +1732,59 @@ const ResursePage = () => {
   ];
 
   const relativitateFormulas = [
-    { title: "Viteza luminii (invariant)", formula: "\\( c = 299\\,792\\,458 \\,\\text{m/s} \\)" },
-    { title: "Dilatarea timpului", formula: "\\( \\Delta t' = \\gamma \\Delta t, \\quad \\gamma = \\frac{1}{\\sqrt{1-v^2/c^2}} \\)" },
-    { title: "Contracția lungimii", formula: "\\( L' = \\frac{L}{\\gamma} \\)" },
-    { title: "Transformări Lorentz (x, t)", formula: "\\( x' = \\gamma(x - vt), \\quad t' = \\gamma(t - vx/c^2) \\)" },
-    { title: "Adunarea relativistă a vitezelor", formula: "\\( u' = \\frac{u - v}{1 - uv/c^2} \\)" },
-    { title: "Energia relativistă", formula: "\\( E = \\gamma mc^2 \\)" },
-    { title: "Energia de repaus", formula: "\\( E_0 = mc^2 \\)" },
-    { title: "Impuls relativist", formula: "\\( p = \\gamma m v \\)" },
+    {
+      section: "Relativitatea restrânsă",
+      formulas: [
+        {
+          title: "Viteza luminii (invariantă în vid)",
+          formula: "\\( c = 299\\,792\\,458 \\,\\text{m/s} \\)",
+          explanation:
+            "Valoare exactă în SI din definiție; toți observatorii inerțiali măsoară aceeași c pentru lumină în vid, indiferent de viteza sursei.",
+        },
+        {
+          title: "Dilatarea timpului",
+          formula: "\\( \\Delta t' = \\gamma \\Delta t, \\quad \\gamma = \\frac{1}{\\sqrt{1-v^2/c^2}} \\)",
+          explanation:
+            "Ceasul în mișcare față de observator pare să meargă mai lent: intervalele Δt (în repaus în sistemul ceasului) par mai lungi cu factor γ în alt sistem.",
+        },
+        {
+          title: "Contracția lungimii",
+          formula: "\\( L' = \\frac{L}{\\gamma} \\)",
+          explanation:
+            "Lungimea măsurată în direcția mișcării e scurtată cu 1/γ față de lungimea în repaus (efect mic până la viteze comparabile cu c).",
+        },
+        {
+          title: "Transformări Lorentz (x, t)",
+          formula: "\\( x' = \\gamma(x - vt), \\quad t' = \\gamma(t - vx/c^2) \\)",
+          explanation:
+            "Leagă coordonatele spațiu-timp între două referințiale inerțiale în mișcare relativă cu viteza v; înlocuiesc transformările galileene la viteze mari.",
+        },
+        {
+          title: "Compuștia relativistă a vitezelor",
+          formula: "\\( u' = \\frac{u - v}{1 - uv/c^2} \\)",
+          explanation:
+            "Adunarea vitezelor nu mai este liniară; rezultatul nu depășește niciodată c, chiar dacă u și v sunt aproape de c.",
+        },
+        {
+          title: "Energia relativistă totală",
+          formula: "\\( E = \\gamma mc^2 \\)",
+          explanation:
+            "Energia totală a particulei cu masă de repaus m inclusiv energia cinetică; pentru v mic se regăsește aproximativ Ec ≈ ½mv² + mc².",
+        },
+        {
+          title: "Energia de repaus",
+          formula: "\\( E_0 = mc^2 \\)",
+          explanation:
+            "Energie echivalentă masei chiar în repaus — celebrul E = mc²: masă și energie sunt aspecte ale aceleiași mărimi.",
+        },
+        {
+          title: "Impuls relativist",
+          formula: "\\( p = \\gamma m v \\)",
+          explanation:
+            "Generalizarea p = mv: factorul γ asigură conservarea impulsului și energiei în coliziuni la orice viteză.",
+        },
+      ],
+    },
   ];
 
   useEffect(() => {
@@ -1609,83 +2053,138 @@ const ResursePage = () => {
                   </TabsContent>
 
                   <TabsContent value="seism">
-                    <div className="formula-grid mb-4">
-                      {seismFormulas
-                        .slice(0, visibleFormulasCount.seism || 5)
-                        .map((formula, index) => (
-                        <div key={index} className="formula-card">
-                          <div className="font-semibold mb-2">{formula.title}</div>
-                          <div className="text-lg font-mono">
-                            {formula.formula}
+                    <p className="text-sm text-muted-foreground mb-4">Apasă pe o formulă pentru explicație detaliată.</p>
+                    <div className="mb-4 space-y-6">
+                      {seismFormulas.map((sec, secIndex) => (
+                        <div key={secIndex}>
+                          <h3 className="text-lg font-semibold mb-3 text-foreground/90">{sec.section}</h3>
+                          <div className="formula-grid">
+                            {sec.formulas.map((formula, index) => (
+                              <div
+                                key={index}
+                                className="formula-card formula-card-clickable"
+                                role="button"
+                                tabIndex={0}
+                                onClick={() => formula.explanation && setFormulaPopup({ section: sec.section, ...formula })}
+                                onKeyDown={(e) => e.key === "Enter" && formula.explanation && setFormulaPopup({ section: sec.section, ...formula })}
+                              >
+                                <div className="font-semibold mb-2">{formula.title}</div>
+                                <div className="text-lg font-mono">{formula.formula}</div>
+                              </div>
+                            ))}
                           </div>
                         </div>
                       ))}
                     </div>
-                    <MathJaxRender key={`seism-${visibleFormulasCount.seism || 0}`} />
+                    <MathJaxRender key="seism" />
                   </TabsContent>
 
                   <TabsContent value="unde">
-                    <div className="formula-grid mb-4">
-                      {undeFormulas
-                        .slice(0, visibleFormulasCount.unde || 5)
-                        .map((formula, index) => (
-                        <div key={index} className="formula-card">
-                          <div className="font-semibold mb-2">{formula.title}</div>
-                          <div className="text-lg font-mono">
-                            {formula.formula}
+                    <p className="text-sm text-muted-foreground mb-4">Apasă pe o formulă pentru explicație detaliată.</p>
+                    <div className="mb-4 space-y-6">
+                      {undeFormulas.map((sec, secIndex) => (
+                        <div key={secIndex}>
+                          <h3 className="text-lg font-semibold mb-3 text-foreground/90">{sec.section}</h3>
+                          <div className="formula-grid">
+                            {sec.formulas.map((formula, index) => (
+                              <div
+                                key={index}
+                                className="formula-card formula-card-clickable"
+                                role="button"
+                                tabIndex={0}
+                                onClick={() => formula.explanation && setFormulaPopup({ section: sec.section, ...formula })}
+                                onKeyDown={(e) => e.key === "Enter" && formula.explanation && setFormulaPopup({ section: sec.section, ...formula })}
+                              >
+                                <div className="font-semibold mb-2">{formula.title}</div>
+                                <div className="text-lg font-mono">{formula.formula}</div>
+                              </div>
+                            ))}
                           </div>
                         </div>
                       ))}
                     </div>
-                    <MathJaxRender key={`unde-${visibleFormulasCount.unde || 0}`} />
+                    <MathJaxRender key="unde" />
                   </TabsContent>
 
                   <TabsContent value="prisma">
-                    <div className="formula-grid mb-4">
-                      {prismaFormulas
-                        .slice(0, visibleFormulasCount.prisma || 5)
-                        .map((formula, index) => (
-                        <div key={index} className="formula-card">
-                          <div className="font-semibold mb-2">{formula.title}</div>
-                          <div className="text-lg font-mono">
-                            {formula.formula}
+                    <p className="text-sm text-muted-foreground mb-4">Apasă pe o formulă pentru explicație detaliată.</p>
+                    <div className="mb-4 space-y-6">
+                      {prismaFormulas.map((sec, secIndex) => (
+                        <div key={secIndex}>
+                          <h3 className="text-lg font-semibold mb-3 text-foreground/90">{sec.section}</h3>
+                          <div className="formula-grid">
+                            {sec.formulas.map((formula, index) => (
+                              <div
+                                key={index}
+                                className="formula-card formula-card-clickable"
+                                role="button"
+                                tabIndex={0}
+                                onClick={() => formula.explanation && setFormulaPopup({ section: sec.section, ...formula })}
+                                onKeyDown={(e) => e.key === "Enter" && formula.explanation && setFormulaPopup({ section: sec.section, ...formula })}
+                              >
+                                <div className="font-semibold mb-2">{formula.title}</div>
+                                <div className="text-lg font-mono">{formula.formula}</div>
+                              </div>
+                            ))}
                           </div>
                         </div>
                       ))}
                     </div>
-                    <MathJaxRender key={`prisma-${visibleFormulasCount.prisma || 0}`} />
+                    <MathJaxRender key="prisma" />
                   </TabsContent>
 
                   <TabsContent value="pendule">
-                    <div className="formula-grid mb-4">
-                      {penduleFormulas
-                        .slice(0, visibleFormulasCount.pendule || 5)
-                        .map((formula, index) => (
-                        <div key={index} className="formula-card">
-                          <div className="font-semibold mb-2">{formula.title}</div>
-                          <div className="text-lg font-mono">
-                            {formula.formula}
+                    <p className="text-sm text-muted-foreground mb-4">Apasă pe o formulă pentru explicație detaliată.</p>
+                    <div className="mb-4 space-y-6">
+                      {penduleFormulas.map((sec, secIndex) => (
+                        <div key={secIndex}>
+                          <h3 className="text-lg font-semibold mb-3 text-foreground/90">{sec.section}</h3>
+                          <div className="formula-grid">
+                            {sec.formulas.map((formula, index) => (
+                              <div
+                                key={index}
+                                className="formula-card formula-card-clickable"
+                                role="button"
+                                tabIndex={0}
+                                onClick={() => formula.explanation && setFormulaPopup({ section: sec.section, ...formula })}
+                                onKeyDown={(e) => e.key === "Enter" && formula.explanation && setFormulaPopup({ section: sec.section, ...formula })}
+                              >
+                                <div className="font-semibold mb-2">{formula.title}</div>
+                                <div className="text-lg font-mono">{formula.formula}</div>
+                              </div>
+                            ))}
                           </div>
                         </div>
                       ))}
                     </div>
-                    <MathJaxRender key={`pendule-${visibleFormulasCount.pendule || 0}`} />
+                    <MathJaxRender key="pendule" />
                   </TabsContent>
 
                   <TabsContent value="lissajous">
-                    <div className="formula-grid mb-4">
-                      {lissajousFormulas
-                        .slice(0, visibleFormulasCount.lissajous || 5)
-                        .map((formula, index) => (
-                        <div key={index} className="formula-card">
-                          <div className="font-semibold mb-2">{formula.title}</div>
-                          <div className="text-lg font-mono">
-                            {formula.formula}
+                    <p className="text-sm text-muted-foreground mb-4">Apasă pe o formulă pentru explicație detaliată.</p>
+                    <div className="mb-4 space-y-6">
+                      {lissajousFormulas.map((sec, secIndex) => (
+                        <div key={secIndex}>
+                          <h3 className="text-lg font-semibold mb-3 text-foreground/90">{sec.section}</h3>
+                          <div className="formula-grid">
+                            {sec.formulas.map((formula, index) => (
+                              <div
+                                key={index}
+                                className="formula-card formula-card-clickable"
+                                role="button"
+                                tabIndex={0}
+                                onClick={() => formula.explanation && setFormulaPopup({ section: sec.section, ...formula })}
+                                onKeyDown={(e) => e.key === "Enter" && formula.explanation && setFormulaPopup({ section: sec.section, ...formula })}
+                              >
+                                <div className="font-semibold mb-2">{formula.title}</div>
+                                <div className="text-lg font-mono">{formula.formula}</div>
+                              </div>
+                            ))}
                           </div>
                         </div>
                       ))}
                     </div>
-                    <MathJaxRender key={`lissajous-${visibleFormulasCount.lissajous || 0}`} />
+                    <MathJaxRender key="lissajous" />
                   </TabsContent>
 
                   <TabsContent value="electricitate">
@@ -1743,60 +2242,88 @@ const ResursePage = () => {
                   </TabsContent>
 
                   <TabsContent value="matematica">
-                    <div className="formula-grid mb-4">
-                      {matematicaFormulas
-                        .slice(0, visibleFormulasCount.matematica || 5)
-                        .map((formula, index) => (
-                        <div key={index} className="formula-card">
-                          <div className="font-semibold mb-2">{formula.title}</div>
-                          <div className="text-lg font-mono">
-                            {formula.formula}
+                    <p className="text-sm text-muted-foreground mb-4">Apasă pe o formulă pentru explicație detaliată.</p>
+                    <div className="mb-4 space-y-6">
+                      {matematicaFormulas.map((sec, secIndex) => (
+                        <div key={secIndex}>
+                          <h3 className="text-lg font-semibold mb-3 text-foreground/90">{sec.section}</h3>
+                          <div className="formula-grid">
+                            {sec.formulas.map((formula, index) => (
+                              <div
+                                key={index}
+                                className="formula-card formula-card-clickable"
+                                role="button"
+                                tabIndex={0}
+                                onClick={() => formula.explanation && setFormulaPopup({ section: sec.section, ...formula })}
+                                onKeyDown={(e) => e.key === "Enter" && formula.explanation && setFormulaPopup({ section: sec.section, ...formula })}
+                              >
+                                <div className="font-semibold mb-2">{formula.title}</div>
+                                <div className="text-lg font-mono">{formula.formula}</div>
+                              </div>
+                            ))}
                           </div>
                         </div>
                       ))}
                     </div>
-                    <MathJaxRender key={`matematica-${visibleFormulasCount.matematica || 0}`} />
+                    <MathJaxRender key="matematica" />
                   </TabsContent>
 
                   <TabsContent value="astronomie">
-                    <div className="formula-grid mb-4">
-                      {astronomieFormulas
-                        .slice(0, visibleFormulasCount.astronomie || 5)
-                        .map((formula, index) => (
-                        <div key={index} className="formula-card">
-                          <div className="font-semibold mb-2">{formula.title}</div>
-                          <div className="text-lg font-mono">
-                            {formula.formula}
+                    <p className="text-sm text-muted-foreground mb-4">Apasă pe o formulă pentru explicație detaliată.</p>
+                    <div className="mb-4 space-y-6">
+                      {astronomieFormulas.map((sec, secIndex) => (
+                        <div key={secIndex}>
+                          <h3 className="text-lg font-semibold mb-3 text-foreground/90">{sec.section}</h3>
+                          <div className="formula-grid">
+                            {sec.formulas.map((formula, index) => (
+                              <div
+                                key={index}
+                                className="formula-card formula-card-clickable"
+                                role="button"
+                                tabIndex={0}
+                                onClick={() => formula.explanation && setFormulaPopup({ section: sec.section, ...formula })}
+                                onKeyDown={(e) => e.key === "Enter" && formula.explanation && setFormulaPopup({ section: sec.section, ...formula })}
+                              >
+                                <div className="font-semibold mb-2">{formula.title}</div>
+                                <div className="text-lg font-mono">{formula.formula}</div>
+                              </div>
+                            ))}
                           </div>
                         </div>
                       ))}
                     </div>
-                    <MathJaxRender key={`astronomie-${visibleFormulasCount.astronomie || 0}`} />
+                    <MathJaxRender key="astronomie-sections" />
                   </TabsContent>
 
                   <TabsContent value="atomul">
-                    <p className="text-sm text-muted-foreground mb-4">
-                      Atom, spectru și tabel periodic — aliniat lecției „Atomul” și simulărilor din aceeași categorie.
-                    </p>
-                    <div className="formula-grid mb-4">
-                      {atomulFormulas
-                        .slice(0, visibleFormulasCount.atomul || 5)
-                        .map((formula, index) => (
-                        <div key={index} className="formula-card">
-                          <div className="font-semibold mb-2">{formula.title}</div>
-                          <div className="text-lg font-mono">
-                            {formula.formula}
+                    <p className="text-sm text-muted-foreground mb-4">Apasă pe o formulă pentru explicație detaliată.</p>
+                    <div className="mb-4 space-y-6">
+                      {atomulFormulas.map((sec, secIndex) => (
+                        <div key={secIndex}>
+                          <h3 className="text-lg font-semibold mb-3 text-foreground/90">{sec.section}</h3>
+                          <div className="formula-grid">
+                            {sec.formulas.map((formula, index) => (
+                              <div
+                                key={index}
+                                className="formula-card formula-card-clickable"
+                                role="button"
+                                tabIndex={0}
+                                onClick={() => formula.explanation && setFormulaPopup({ section: sec.section, ...formula })}
+                                onKeyDown={(e) => e.key === "Enter" && formula.explanation && setFormulaPopup({ section: sec.section, ...formula })}
+                              >
+                                <div className="font-semibold mb-2">{formula.title}</div>
+                                <div className="text-lg font-mono">{formula.formula}</div>
+                              </div>
+                            ))}
                           </div>
                         </div>
                       ))}
                     </div>
-                    <MathJaxRender key={`atomul-${visibleFormulasCount.atomul || 0}`} />
+                    <MathJaxRender key="atomul-sections" />
                   </TabsContent>
 
                   <TabsContent value="fizica_cuantica">
-                    <p className="text-sm text-muted-foreground mb-4">
-                      Dublă fantă și tunelare — aliniat lecției „Fizică cuantică” și simulărilor din aceeași categorie. Apasă pe o formulă pentru explicație.
-                    </p>
+                    <p className="text-sm text-muted-foreground mb-4">Apasă pe o formulă pentru explicație detaliată.</p>
                     <div className="mb-4 space-y-6">
                       {fizicaCuanticaFormulas.map((sec, secIndex) => (
                         <div key={secIndex}>
@@ -1825,19 +2352,30 @@ const ResursePage = () => {
                   </TabsContent>
 
                   <TabsContent value="relativitate">
-                    <div className="formula-grid mb-4">
-                      {relativitateFormulas
-                        .slice(0, visibleFormulasCount.relativitate || 5)
-                        .map((formula, index) => (
-                        <div key={index} className="formula-card">
-                          <div className="font-semibold mb-2">{formula.title}</div>
-                          <div className="text-lg font-mono">
-                            {formula.formula}
+                    <p className="text-sm text-muted-foreground mb-4">Apasă pe o formulă pentru explicație detaliată.</p>
+                    <div className="mb-4 space-y-6">
+                      {relativitateFormulas.map((sec, secIndex) => (
+                        <div key={secIndex}>
+                          <h3 className="text-lg font-semibold mb-3 text-foreground/90">{sec.section}</h3>
+                          <div className="formula-grid">
+                            {sec.formulas.map((formula, index) => (
+                              <div
+                                key={index}
+                                className="formula-card formula-card-clickable"
+                                role="button"
+                                tabIndex={0}
+                                onClick={() => formula.explanation && setFormulaPopup({ section: sec.section, ...formula })}
+                                onKeyDown={(e) => e.key === "Enter" && formula.explanation && setFormulaPopup({ section: sec.section, ...formula })}
+                              >
+                                <div className="font-semibold mb-2">{formula.title}</div>
+                                <div className="text-lg font-mono">{formula.formula}</div>
+                              </div>
+                            ))}
                           </div>
                         </div>
                       ))}
                     </div>
-                    <MathJaxRender key={`relativitate-${visibleFormulasCount.relativitate || 0}`} />
+                    <MathJaxRender key="relativitate" />
                   </TabsContent>
                 </Tabs>
               </div>

@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="ro">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Constelații pe cer</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <canvas id="c"></canvas>
+    <div
+      id="north-compass"
+      class="north-compass"
+      title="Acul indică Steaua polară (Polul Nord ceresc). Dubhe–Merak din Carul Mare → Polaris → nord."
+    >
+      <div class="north-compass-dial">
+        <div class="north-compass-needle" aria-hidden="true"></div>
+        <span class="north-compass-n">N</span>
+      </div>
+    </div>
+    <div id="sky-label" class="sky-label" hidden>
+      <p class="learn-kicker">Învață</p>
+      <h2 class="learn-title"></h2>
+      <p class="learn-myth"></p>
+      <p class="learn-find"><span class="learn-find-label">Pe cer:</span> <span class="learn-find-text"></span></p>
+    </div>
+    <script type="module" src="script.js"></script>
+  </body>
+</html>
