@@ -195,8 +195,16 @@ const SeismePage = () => {
             <h2 className="top-1 p3">Seism prezentat printr-un joc</h2>
             <p className="row"><span>&#9734;<b>Apasa sageata dreapta, sageata stanga pentru a te misca in jurul obiectului 3d.</b></span></p>
             <p className="row"><span>&#9734;<b>Apasa Enter pentru a te duce la urmatorul eveniment.</b></span></p>
-            <div className="model-container">
-              <iframe id="modelFrame" src="https://stefanarctic.github.io/Cutremure-Unity/" width="960" height="700" className="resurse-seism-iframe" allowFullScreen={true}></iframe>
+            <div className="model-container resurse-model-stack">
+              <div className="resurse-embed-frame resurse-embed-frame--seism">
+                <iframe
+                  id="modelFrame"
+                  src="https://stefanarctic.github.io/Cutremure-Unity/"
+                  className="resurse-embed-frame__iframe resurse-seism-iframe"
+                  allowFullScreen={true}
+                  title="Joc interactiv seism — Cutremure Unity"
+                />
+              </div>
               <div id="modelDescription" className="sketchfab-info1">
                 🌀🌏〰Reprezentare Seism<br />🔁 Poți apasa stanga drepta pentru a te misca<br />🔁Poti apasa Enter pentru a vedea urmatoarea figura
               </div>

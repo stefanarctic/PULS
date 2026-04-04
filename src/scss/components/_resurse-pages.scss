@@ -28,6 +28,78 @@
   border: none;
 }
 
+// Jocuri/simulări încapsulate: lățime 100%, viewport „mobil” pe ecran îngust (fără overflow orizontal)
+.resurse-embed-frame {
+  width: 100%;
+  max-width: 100%;
+  position: relative;
+  overflow: hidden;
+  border-radius: 8px;
+  background: #0c0c0f;
+  margin-inline: auto;
+  isolation: isolate;
+}
+
+.resurse-embed-frame--seism {
+  aspect-ratio: 960 / 700;
+  max-height: 85dvh;
+}
+
+.resurse-embed-frame--astronomie {
+  aspect-ratio: 16 / 10;
+  min-height: 240px;
+  max-height: min(85dvh, 720px);
+
+  @media (min-width: 768px) {
+    min-height: 380px;
+  }
+
+  // Pe mobil: fără bare de scroll pe iframe (conținutul rămâne în zona vizibilă)
+  @media (max-width: 767px) {
+    overscroll-behavior: contain;
+    touch-action: manipulation;
+
+    .resurse-embed-frame__iframe {
+      overflow: hidden;
+      scrollbar-width: none;
+      -ms-overflow-style: none;
+
+      &::-webkit-scrollbar,
+      &::-webkit-scrollbar-thumb {
+        display: none;
+        width: 0;
+        height: 0;
+        background: transparent;
+      }
+    }
+  }
+}
+
+.resurse-embed-frame__iframe {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  border: none;
+  border-radius: 8px;
+  display: block;
+}
+
+.resurse-model-stack {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  max-width: 100%;
+
+  @media (max-width: 767px) {
+    .sketchfab-info1 {
+      position: static;
+      align-self: stretch;
+      margin-top: 0.5rem;
+    }
+  }
+}
+
 .resurse-pagina {
   .min-h-screen.flex.flex-col {
     min-height: 100vh;
@@ -255,7 +327,7 @@
   .model-container {
     position: relative;
     width: 100%;
-    max-width: 1400px;
+    max-width: 100%;
     margin-bottom: 40px;
   }
 
@@ -312,14 +384,6 @@
 
   .model-buttons button:hover {
     background-color: #357ABD !important;
-  }
-
-  iframe {
-    width: 100%;
-    width: 1000px;
-    height: 650px;
-    border: none;
-    border-radius: 8px;
   }
 
   .formula-resurse {

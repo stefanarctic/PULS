@@ -311,15 +311,14 @@ const AstronomiePage = () => {
 
               <div className="rounded-container">
                 <h2 className="text-2xl font-bold mb-4">Simulare interactivă</h2>
-                <div className="w-full" style={{ minHeight: '600px' }}>
+                <div className="resurse-embed-frame resurse-embed-frame--astronomie">
                   <iframe
                     src="http://simulare-sistemul-solar.s3-website.eu-north-1.amazonaws.com"
-                    width="100%"
-                    height="600"
-                    style={{ border: 'none', borderRadius: '8px' }}
+                    className="resurse-embed-frame__iframe"
                     allowFullScreen={true}
-                    title="Simulare astronomie"
-                  ></iframe>
+                    title="Simulare astronomie — sistem solar"
+                    scrolling="no"
+                  />
                 </div>
               </div>
             </div>
