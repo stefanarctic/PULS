@@ -389,5 +389,28 @@
   .formula-resurse {
     background-color: var(--primary-background-current-mode);
     color: var(--primary-color-current-mode);
+    overflow-x: auto;
+    overflow-y: hidden;
+    -webkit-overflow-scrolling: touch;
+
+    mjx-container,
+    .MathJax {
+      min-width: max-content;
+    }
+  }
+
+  @media (max-width: 640px) {
+    .container {
+      padding: 0 1rem;
+    }
+
+    .rounded-container {
+      padding: 1.25rem;
+    }
+
+    h1 {
+      font-size: 2rem;
+      line-height: 1.15;
+    }
   }
 }
