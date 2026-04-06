@@ -1,0 +1,1188 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Laser × Materie — Simulator</title>
+<link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Syne:wght@400;700;800&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0a0a0a;
+    --panel: #121212;
+    --panel-soft: #1a1a1a;
+    --border: #2a2a2a;
+    --text: #d3d7dd;
+    --dim: #7d838c;
+    --accent: #00d9ff;
+    --laser: #ff3a6e;
+    --hot: #ff7a00;
+    --ion: #b44fff;
+    --green: #39ff7a;
+    --glow: 0 0 20px currentColor;
+    --panel-w-left: 304px;
+    --panel-w-right: 276px;
+    --panel-pad-x: 22px;
+    --panel-pad-y: 26px;
+    --panel-edge: 2px;
+    --header-h: 56px;
+    --mobile-break: 900px;
+  }
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Space Mono', monospace;
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+
+  /* ── HEADER ── */
+  header {
+    min-height: var(--header-h);
+    padding: calc(10px + env(safe-area-inset-top, 0px)) 14px 10px 10px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    border-bottom: var(--panel-edge) solid var(--border);
+    background: var(--panel);
+    flex-wrap: wrap;
+  }
+  .header-brand {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    min-width: 0;
+    flex: 1;
+  }
+  .logo-icon { font-size: 26px; flex-shrink: 0; }
+  header h1 {
+    font-family: 'Syne', sans-serif;
+    font-size: clamp(1rem, 4vw, 1.35rem);
+    font-weight: 800;
+    letter-spacing: -0.5px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  header h1 span { color: var(--accent); }
+  .badge {
+    font-size: 0.6rem;
+    background: var(--panel-soft);
+    border: 1px solid var(--border);
+    padding: 4px 9px;
+    border-radius: 4px;
+    color: var(--dim);
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    display: none;
+  }
+  @media (min-width: 520px) {
+    .badge { display: inline-block; margin-left: auto; }
+  }
+
+  /* Hamburger / panel toggles */
+  .panel-hamburger {
+    flex-shrink: 0;
+    width: 44px;
+    height: 44px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--panel-soft);
+    border: var(--panel-edge) solid var(--border);
+    border-radius: 8px;
+    cursor: pointer;
+    color: var(--text);
+    padding: 0;
+    transition: border-color 0.2s, background 0.2s, color 0.2s;
+  }
+  .panel-hamburger:hover {
+    border-color: var(--accent);
+    color: var(--accent);
+  }
+  .panel-hamburger svg {
+    display: block;
+    pointer-events: none;
+  }
+  .panel-hamburger.is-active {
+    border-color: var(--accent);
+    color: var(--accent);
+    background: #141c21;
+  }
+
+  /* ── LAYOUT ── */
+  .main {
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    gap: 0;
+    height: calc(100vh - var(--header-h));
+    min-height: 0;
+  }
+
+  /* ── SIDEBAR LEFT ── */
+  .sidebar {
+    width: var(--panel-w-left);
+    box-sizing: border-box;
+    background: var(--panel);
+    border-right: var(--panel-edge) solid var(--border);
+    padding: var(--panel-pad-y) var(--panel-pad-x);
+    display: flex;
+    flex-direction: column;
+    gap: 22px;
+    overflow-y: auto;
+    overflow-x: hidden;
+    transition: width 0.28s ease, padding 0.28s ease, opacity 0.2s ease, border-width 0.28s ease;
+    min-height: 0;
+  }
+  .section-label {
+    font-size: 0.6rem;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--dim);
+    margin-bottom: 8px;
+  }
+
+  /* Mode buttons */
+  .mode-btn {
+    width: 100%;
+    padding: 12px 14px;
+    border: 1px solid var(--border);
+    background: transparent;
+    color: var(--text);
+    font-family: 'Space Mono', monospace;
+    font-size: 0.75rem;
+    cursor: pointer;
+    border-radius: 6px;
+    text-align: left;
+    transition: all 0.2s;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .mode-btn:hover { border-color: var(--accent); color: var(--accent); background: #151b1f; }
+  .mode-btn.active { border-color: var(--accent); background: #141c21; }
+  .mode-btn.active .mode-icon { color: var(--accent); }
+  .mode-btn[data-mode="heat"].active { border-color: var(--hot); background: #1b140d; }
+  .mode-btn[data-mode="heat"].active .mode-icon { color: var(--hot); }
+  .mode-btn[data-mode="ionize"].active { border-color: var(--ion); background: #1a1221; }
+  .mode-btn[data-mode="ionize"].active .mode-icon { color: var(--ion); }
+  .mode-icon { font-size: 1.1rem; width: 22px; text-align: center; }
+  .mode-name { font-family: 'Syne', sans-serif; font-weight: 700; font-size: 0.8rem; }
+  .mode-sub { font-size: 0.6rem; color: var(--dim); display: block; margin-top: 2px; }
+
+  /* Sliders */
+  .slider-group { display: flex; flex-direction: column; gap: 12px; }
+  .slider-row { display: flex; flex-direction: column; gap: 5px; }
+  .slider-label { display: flex; justify-content: space-between; font-size: 0.65rem; }
+  .slider-label span:first-child { color: var(--dim); }
+  .slider-label span:last-child { color: var(--accent); }
+  input[type=range] {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 100%;
+    height: 3px;
+    background: var(--border);
+    border-radius: 2px;
+    outline: none;
+    cursor: pointer;
+  }
+  input[type=range]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    width: 13px; height: 13px;
+    background: var(--accent);
+    border-radius: 50%;
+    box-shadow: 0 0 8px var(--accent);
+  }
+
+  /* Material selector */
+  .mat-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 6px; }
+  .mat-btn {
+    padding: 8px 6px;
+    border: 1px solid var(--border);
+    background: transparent;
+    color: var(--dim);
+    font-family: 'Space Mono', monospace;
+    font-size: 0.65rem;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: all 0.2s;
+  }
+  .mat-btn:hover, .mat-btn.active { border-color: var(--green); color: var(--green); background: #111a14; }
+
+  /* Fire button */
+  .fire-btn {
+    width: 100%;
+    padding: 14px;
+    background: linear-gradient(135deg, #cc1f42, #d45a1a);
+    border: none;
+    color: white;
+    font-family: 'Syne', sans-serif;
+    font-size: 1rem;
+    font-weight: 800;
+    cursor: pointer;
+    border-radius: 8px;
+    letter-spacing: 1px;
+    box-shadow: 0 0 14px #cc1f4260;
+    transition: all 0.15s;
+  }
+  .fire-btn:hover { transform: scale(1.02); box-shadow: 0 0 20px #cc1f4275; }
+  .fire-btn:active { transform: scale(0.98); }
+
+  /* ── CANVAS AREA ── */
+  .canvas-wrap {
+    position: relative;
+    background: var(--bg);
+    overflow: hidden;
+    min-height: 0;
+  }
+  canvas { display: block; width: 100%; height: 100%; }
+  .canvas-overlay {
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    pointer-events: none;
+  }
+  .crosshair {
+    position: absolute;
+    width: 24px; height: 24px;
+    border: 1.5px solid var(--laser);
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    pointer-events: none;
+    box-shadow: 0 0 12px var(--laser);
+    display: none;
+  }
+  .crosshair::before, .crosshair::after {
+    content: '';
+    position: absolute;
+    background: var(--laser);
+  }
+  .crosshair::before { width: 1px; height: 8px; left: 50%; top: -10px; transform: translateX(-50%); }
+  .crosshair::after { width: 8px; height: 1px; top: 50%; left: -10px; transform: translateY(-50%); }
+
+  /* Mode watermark */
+  .mode-watermark {
+    position: absolute;
+    top: 16px; left: 50%; transform: translateX(-50%);
+    font-family: 'Syne', sans-serif;
+    font-size: 0.7rem;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    opacity: 0.3;
+    pointer-events: none;
+  }
+
+  /* ── SIDEBAR RIGHT ── */
+  .info-panel {
+    width: var(--panel-w-right);
+    box-sizing: border-box;
+    background: var(--panel);
+    border-left: var(--panel-edge) solid var(--border);
+    padding: var(--panel-pad-y) calc(var(--panel-pad-x) - 2px);
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    overflow-y: auto;
+    overflow-x: hidden;
+    transition: width 0.28s ease, padding 0.28s ease, opacity 0.2s ease, border-width 0.28s ease;
+    min-height: 0;
+  }
+
+  /* Desktop: collapse columns */
+  body.panel-left-collapsed .sidebar {
+    width: 0;
+    min-width: 0;
+    padding-left: 0;
+    padding-right: 0;
+    border-right-width: 0;
+    opacity: 0;
+    pointer-events: none;
+  }
+  body.panel-right-collapsed .info-panel {
+    width: 0;
+    min-width: 0;
+    padding-left: 0;
+    padding-right: 0;
+    border-left-width: 0;
+    opacity: 0;
+    pointer-events: none;
+  }
+
+  /* Mobile: full-width canvas, drawers */
+  .panel-backdrop {
+    display: none;
+    position: fixed;
+    inset: 0;
+    top: var(--header-h);
+    background: rgba(0, 0, 0, 0.55);
+    z-index: 180;
+    backdrop-filter: blur(2px);
+    cursor: pointer;
+  }
+  body.panel-mobile-open .panel-backdrop {
+    display: block;
+  }
+
+  @media (max-width: 900px) {
+    header {
+      padding-right: 10px;
+    }
+    .badge {
+      display: none;
+    }
+    .main {
+      display: block;
+      position: relative;
+      height: calc(100vh - var(--header-h));
+    }
+    .sidebar,
+    .info-panel {
+      position: fixed;
+      top: var(--header-h);
+      bottom: 0;
+      z-index: 200;
+      width: min(92vw, 360px);
+      max-width: 100%;
+      opacity: 1;
+      pointer-events: auto;
+      box-shadow: 0 0 0 1px var(--border), 8px 0 32px rgba(0, 0, 0, 0.45);
+      transition: transform 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+      padding-bottom: calc(var(--panel-pad-y) + env(safe-area-inset-bottom, 0px));
+    }
+    .sidebar {
+      left: 0;
+      transform: translateX(-105%);
+      border-right: var(--panel-edge) solid var(--border);
+    }
+    .info-panel {
+      left: auto;
+      right: 0;
+      transform: translateX(105%);
+      border-left: var(--panel-edge) solid var(--border);
+      border-right: none;
+      box-shadow: 0 0 0 1px var(--border), -8px 0 32px rgba(0, 0, 0, 0.45);
+    }
+    body.panel-left-open .sidebar {
+      transform: translateX(0);
+    }
+    body.panel-right-open .info-panel {
+      transform: translateX(0);
+    }
+    /* Mobile: ignore desktop collapsed width */
+    body.panel-left-collapsed .sidebar,
+    body.panel-right-collapsed .info-panel {
+      width: min(92vw, 360px);
+      opacity: 1;
+    }
+    .canvas-wrap {
+      height: 100%;
+      min-height: 220px;
+    }
+    body.panel-mobile-open {
+      overflow: hidden;
+      touch-action: none;
+    }
+  }
+  .stat-block { display: flex; flex-direction: column; gap: 6px; }
+  .stat-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    font-size: 0.65rem;
+    padding: 6px 0;
+    border-bottom: 1px solid var(--border);
+  }
+  .stat-row:last-child { border-bottom: none; }
+  .stat-key { color: var(--dim); }
+  .stat-val { color: var(--accent); font-weight: 700; }
+
+  .formula-box {
+    background: var(--panel-soft);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 12px;
+    font-size: 0.65rem;
+    line-height: 1.8;
+  }
+  .formula-box .f-title { color: var(--accent); font-family: 'Syne', sans-serif; font-size: 0.7rem; font-weight: 700; margin-bottom: 6px; }
+  .formula { color: #adb6c2; font-size: 0.7rem; letter-spacing: 0.5px; }
+  .formula em { color: var(--green); font-style: normal; }
+
+  .event-log {
+    flex: 1;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+  .log-entry {
+    font-size: 0.6rem;
+    color: var(--dim);
+    padding: 4px 6px;
+    border-left: 2px solid var(--border);
+    animation: fadeIn 0.3s ease;
+  }
+  .log-entry.photo { border-color: var(--accent); color: var(--text); }
+  .log-entry.heat { border-color: var(--hot); color: #ffb060; }
+  .log-entry.ion { border-color: var(--ion); color: #c880ff; }
+
+  @keyframes fadeIn { from { opacity:0; transform:translateX(6px); } to { opacity:1; transform:none; } }
+
+  /* Energy bar */
+  .energy-bar-bg {
+    height: 6px;
+    background: var(--border);
+    border-radius: 3px;
+    overflow: hidden;
+    margin-top: 4px;
+  }
+  .energy-bar-fill {
+    height: 100%;
+    border-radius: 3px;
+    background: var(--accent);
+    transition: width 0.3s ease;
+    box-shadow: 0 0 8px var(--accent);
+  }
+
+  /* tooltip */
+  .tooltip {
+    position: absolute;
+    background: var(--panel-soft);
+    border: 1px solid var(--accent);
+    color: var(--accent);
+    font-size: 0.6rem;
+    padding: 4px 8px;
+    border-radius: 4px;
+    pointer-events: none;
+    white-space: nowrap;
+    display: none;
+  }
+
+  ::-webkit-scrollbar { width: 4px; }
+  ::-webkit-scrollbar-track { background: transparent; }
+  ::-webkit-scrollbar-thumb { background: var(--border); border-radius: 2px; }
+</style>
+</head>
+<body>
+
+<header>
+  <button type="button" class="panel-hamburger" id="btn-panel-left" aria-controls="panel-left" aria-expanded="false" aria-label="Panou control (stânga)">
+    <svg width="22" height="18" viewBox="0 0 22 18" aria-hidden="true"><path fill="currentColor" d="M0 1h22v2H0zm0 7h22v2H0zm0 7h22v2H0z"/></svg>
+  </button>
+  <div class="header-brand">
+    <span class="logo-icon">⚡</span>
+    <h1>Laser <span>×</span> Materie</h1>
+  </div>
+  <span class="badge">Simulator Fizică</span>
+  <button type="button" class="panel-hamburger" id="btn-panel-right" aria-controls="panel-right" aria-expanded="false" aria-label="Panou date (dreapta)">
+    <svg width="22" height="18" viewBox="0 0 22 18" aria-hidden="true"><path fill="currentColor" d="M0 1h22v2H0zm0 7h22v2H0zm0 7h22v2H0z"/></svg>
+  </button>
+</header>
+
+<div class="panel-backdrop" id="panel-backdrop" role="presentation" aria-hidden="true"></div>
+
+<div class="main" id="main-layout">
+
+  <!-- LEFT SIDEBAR -->
+  <aside class="sidebar" id="panel-left">
+    <div>
+      <div class="section-label">Mod de interacție</div>
+      <div style="display:flex;flex-direction:column;gap:6px;">
+        <button class="mode-btn active" data-mode="photo" onclick="setMode('photo',this)">
+          <span class="mode-icon">⚡</span>
+          <div>
+            <div class="mode-name">Efect Fotoelectric</div>
+            <span class="mode-sub">foton → electron liber</span>
+          </div>
+        </button>
+        <button class="mode-btn" data-mode="heat" onclick="setMode('heat',this)">
+          <span class="mode-icon">🔥</span>
+          <div>
+            <div class="mode-name">Încălzire</div>
+            <span class="mode-sub">vibrații → căldură</span>
+          </div>
+        </button>
+        <button class="mode-btn" data-mode="ionize" onclick="setMode('ionize',this)">
+          <span class="mode-icon">💜</span>
+          <div>
+            <div class="mode-name">Ionizare</div>
+            <span class="mode-sub">electron complet eliminat</span>
+          </div>
+        </button>
+      </div>
+    </div>
+
+    <div>
+      <div class="section-label">Parametri laser</div>
+      <div class="slider-group">
+        <div class="slider-row">
+          <div class="slider-label">
+            <span>Frecvență (ν)</span>
+            <span id="freq-val">5.0 × 10¹⁴ Hz</span>
+          </div>
+          <input type="range" id="freq" min="1" max="10" step="0.1" value="5" oninput="updateParams()">
+        </div>
+        <div class="slider-row">
+          <div class="slider-label">
+            <span>Intensitate (I)</span>
+            <span id="int-val">50%</span>
+          </div>
+          <input type="range" id="intensity" min="10" max="100" value="50" oninput="updateParams()">
+        </div>
+        <div class="slider-row">
+          <div class="slider-label">
+            <span>Durată puls (τ)</span>
+            <span id="dur-val">100 fs</span>
+          </div>
+          <input type="range" id="duration" min="10" max="500" value="100" oninput="updateParams()">
+        </div>
+      </div>
+    </div>
+
+    <div>
+      <div class="section-label">Material</div>
+      <div class="mat-grid">
+        <button class="mat-btn active" data-mat="sodium" onclick="setMaterial('sodium',this)">Na (sodiu)<br><span style="color:#556">φ=2.3 eV</span></button>
+        <button class="mat-btn" data-mat="copper" onclick="setMaterial('copper',this)">Cu (cupru)<br><span style="color:#556">φ=4.7 eV</span></button>
+        <button class="mat-btn" data-mat="gold" onclick="setMaterial('gold',this)">Au (aur)<br><span style="color:#556">φ=5.1 eV</span></button>
+        <button class="mat-btn" data-mat="silicon" onclick="setMaterial('silicon',this)">Si (siliciu)<br><span style="color:#556">φ=4.0 eV</span></button>
+      </div>
+    </div>
+
+    <button class="fire-btn" onclick="fireLaser()">⚡ TRAGE LASER</button>
+    <button style="width:100%;padding:10px;background:transparent;border:var(--panel-edge) solid var(--border);color:var(--dim);font-family:'Space Mono',monospace;font-size:0.65rem;cursor:pointer;border-radius:6px;" onclick="resetSim()">↺ Resetează</button>
+  </aside>
+
+  <!-- CANVAS -->
+  <div class="canvas-wrap" id="canvas-wrap">
+    <canvas id="sim"></canvas>
+    <div class="canvas-overlay">
+      <div class="crosshair" id="crosshair"></div>
+      <div class="mode-watermark" id="mode-wm">EFECT FOTOELECTRIC</div>
+      <div class="tooltip" id="tooltip"></div>
+    </div>
+  </div>
+
+  <!-- RIGHT PANEL -->
+  <aside class="info-panel" id="panel-right">
+
+    <div>
+      <div class="section-label">Live Stats</div>
+      <div class="stat-block">
+        <div class="stat-row"><span class="stat-key">Energie foton</span><span class="stat-val" id="s-ephoton">—</span></div>
+        <div class="stat-row"><span class="stat-key">Funcție de lucru</span><span class="stat-val" id="s-phi">—</span></div>
+        <div class="stat-row"><span class="stat-key">Ec max electron</span><span class="stat-val" id="s-ekin">—</span></div>
+        <div class="stat-row"><span class="stat-key">e⁻ emiși</span><span class="stat-val" id="s-emitted">0</span></div>
+        <div class="stat-row"><span class="stat-key">Temperatură</span><span class="stat-val" id="s-temp">300 K</span></div>
+      </div>
+    </div>
+
+    <div class="energy-bar-wrap">
+      <div class="section-label">Energie relativă</div>
+      <div style="font-size:0.6rem;color:var(--dim);margin-bottom:2px;">hν vs φ</div>
+      <div class="energy-bar-bg"><div class="energy-bar-fill" id="energy-bar" style="width:50%"></div></div>
+    </div>
+
+    <div class="formula-box" id="formula-box">
+      <div class="f-title">⚡ Efect Fotoelectric</div>
+      <div class="formula">Ec = <em>hν</em> − <em>φ</em></div>
+      <div class="formula" style="margin-top:4px;">h = 6.626×10⁻³⁴ J·s</div>
+      <div style="font-size:0.58rem;color:var(--dim);margin-top:8px;line-height:1.6;">
+        Un foton cu energie <em>hν</em> eliberează un electron doar dacă <em>hν > φ</em>. Energia în exces devine energie cinetică.
+      </div>
+    </div>
+
+    <div>
+      <div class="section-label">Jurnal evenimente</div>
+      <div class="event-log" id="event-log">
+        <div class="log-entry">Simulator inițializat.</div>
+        <div class="log-entry">Alege modul și trage laserul.</div>
+      </div>
+    </div>
+
+  </aside>
+</div>
+
+<script>
+// ── STATE ──────────────────────────────────────────────────
+const state = {
+  mode: 'photo',
+  material: 'sodium',
+  freq: 5.0,
+  intensity: 50,
+  duration: 100,
+  emitted: 0,
+  temperature: 300,
+  firing: false,
+};
+
+const MATERIALS = {
+  sodium:  { phi: 2.3, color: '#ffcc44', label: 'Sodiu' },
+  copper:  { phi: 4.7, color: '#b87333', label: 'Cupru' },
+  gold:    { phi: 5.1, color: '#ffd700', label: 'Aur' },
+  silicon: { phi: 4.0, color: '#aabbcc', label: 'Siliciu' },
+};
+
+const MODE_FORMULAS = {
+  photo: {
+    title: '⚡ Efect Fotoelectric',
+    formula: 'Ec = hν − φ',
+    desc: 'Un foton cu energie <em>hν</em> eliberează un electron doar dacă <em>hν > φ</em>. Energia în exces devine energie cinetică.',
+  },
+  heat: {
+    title: '🔥 Încălzire (absorbție)',
+    formula: 'ΔE = n·hν → ΔT',
+    desc: 'Fotonii transferă energie rețelei cristaline. Electronii vibrează mai intens → temperatura crește.',
+  },
+  ionize: {
+    title: '💜 Ionizare prin laser',
+    formula: 'hν ≫ φ → e⁻ + ion⁺',
+    desc: 'La intensități mari, electronii sunt complet smulși din atom, formând o plasmă.',
+  },
+};
+
+// ── CANVAS SETUP ───────────────────────────────────────────
+const canvas = document.getElementById('sim');
+const ctx = canvas.getContext('2d');
+let W, H;
+let atoms = [];
+let particles = []; // free electrons, photons, etc.
+let laserBeams = [];
+let animId;
+
+function resize() {
+  const wrap = document.getElementById('canvas-wrap');
+  W = canvas.width = wrap.clientWidth;
+  H = canvas.height = wrap.clientHeight;
+  buildAtoms();
+}
+
+// ── ATOM LATTICE ───────────────────────────────────────────
+function buildAtoms() {
+  atoms = [];
+  const cols = 9, rows = 5;
+  const spacingX = Math.min(W * 0.6 / cols, 70);
+  const spacingY = Math.min(H * 0.55 / rows, 60);
+  const startX = (W - spacingX * (cols - 1)) / 2;
+  const startY = H * 0.3;
+  for (let r = 0; r < rows; r++) {
+    for (let c = 0; c < cols; c++) {
+      const x = startX + c * spacingX + (r % 2) * spacingX * 0.5;
+      const y = startY + r * spacingY;
+      // each atom has 1-2 outer electrons shown
+      const numE = 1 + (Math.random() < 0.4 ? 1 : 0);
+      const electrons = [];
+      for (let i = 0; i < numE; i++) {
+        electrons.push({
+          angle: Math.random() * Math.PI * 2,
+          speed: 0.025 + Math.random() * 0.015,
+          radius: 16 + i * 6,
+          excited: 0,
+          free: false,
+          vx: 0, vy: 0,
+          x: 0, y: 0,
+        });
+      }
+      atoms.push({ x, y, r: 8, electrons, vibX: 0, vibY: 0, vibAmp: 0 });
+    }
+  }
+}
+
+// ── PARTICLES ──────────────────────────────────────────────
+function addPhoton(x, y, tx, ty) {
+  const angle = Math.atan2(ty - y, tx - x);
+  particles.push({
+    type: 'photon',
+    x, y, vx: Math.cos(angle) * 6, vy: Math.sin(angle) * 6,
+    life: 1, decay: 0.02,
+    color: state.mode === 'photo' ? '#00e5ff' : state.mode === 'heat' ? '#ff7a00' : '#b44fff',
+  });
+}
+
+function addFreeElectron(x, y, vx, vy) {
+  particles.push({
+    type: 'electron',
+    x, y, vx, vy,
+    life: 1, decay: 0.008,
+    trail: [],
+  });
+  state.emitted++;
+  document.getElementById('s-emitted').textContent = state.emitted;
+}
+
+function addSpark(x, y, color, n = 8) {
+  for (let i = 0; i < n; i++) {
+    const a = Math.random() * Math.PI * 2;
+    const s = 1 + Math.random() * 3;
+    particles.push({
+      type: 'spark',
+      x, y, vx: Math.cos(a) * s, vy: Math.sin(a) * s,
+      life: 1, decay: 0.04 + Math.random() * 0.03,
+      color,
+    });
+  }
+}
+
+// ── LASER FIRE ─────────────────────────────────────────────
+function fireLaser() {
+  if (state.firing) return;
+  state.firing = true;
+
+  const h = 6.626e-34, eV = 1.6e-19;
+  const nu = state.freq * 1e14;
+  const Ephoton = (h * nu / eV).toFixed(2);
+  const phi = MATERIALS[state.material].phi;
+  const Ekin = (Ephoton - phi).toFixed(2);
+
+  document.getElementById('s-ephoton').textContent = Ephoton + ' eV';
+  document.getElementById('s-phi').textContent = phi + ' eV';
+
+  const ratio = Math.min((Ephoton / phi), 2);
+  document.getElementById('energy-bar').style.width = Math.min(ratio * 50, 100) + '%';
+  document.getElementById('energy-bar').style.background =
+    Ephoton >= phi ? 'var(--green)' : 'var(--laser)';
+
+  const numPhotons = Math.round(state.intensity / 10);
+
+  if (state.mode === 'photo') {
+    document.getElementById('s-ekin').textContent = Ekin > 0 ? Ekin + ' eV' : '0 eV (blocat)';
+    if (Ephoton >= phi) {
+      logEvent(`hν=${Ephoton}eV > φ=${phi}eV → Ec=${Ekin}eV`, 'photo');
+      atoms.forEach((a, idx) => {
+        if (Math.random() < state.intensity / 120) {
+          setTimeout(() => {
+            a.electrons.forEach(e => {
+              if (!e.free && Math.random() < 0.6) {
+                e.free = true;
+                e.vx = (Math.random() - 0.5) * 3;
+                e.vy = -2 - Math.random() * 2;
+                addFreeElectron(a.x + Math.cos(e.angle) * e.radius,
+                                a.y + Math.sin(e.angle) * e.radius,
+                                e.vx, e.vy);
+                addSpark(a.x, a.y, '#00e5ff', 5);
+              }
+            });
+          }, idx * 20);
+        }
+      });
+    } else {
+      logEvent(`hν=${Ephoton}eV < φ=${phi}eV — niciun electron emis`, 'photo');
+      // electrons get briefly excited but return
+      atoms.forEach(a => {
+        a.electrons.forEach(e => { e.excited = 1; });
+      });
+    }
+  } else if (state.mode === 'heat') {
+    document.getElementById('s-ekin').textContent = '— (vibrații)';
+    const dT = Math.round(state.intensity * state.freq * 0.8);
+    state.temperature += dT;
+    document.getElementById('s-temp').textContent = state.temperature + ' K';
+    logEvent(`ΔT = +${dT} K → T = ${state.temperature} K`, 'heat');
+    atoms.forEach(a => {
+      a.vibAmp = 4 + state.intensity * 0.08;
+      addSpark(a.x, a.y, '#ff7a00', 3);
+    });
+  } else if (state.mode === 'ionize') {
+    document.getElementById('s-ekin').textContent = '≫ 0 eV (plasma)';
+    logEvent(`Ionizare! e⁻ complet eliberat + ion⁺ format`, 'ion');
+    atoms.forEach((a, idx) => {
+      setTimeout(() => {
+        a.electrons.forEach(e => {
+          e.free = true;
+          const a2 = Math.random() * Math.PI * 2;
+          const s = 2 + Math.random() * 4;
+          e.vx = Math.cos(a2) * s; e.vy = Math.sin(a2) * s;
+          addFreeElectron(a.x, a.y, e.vx, e.vy);
+        });
+        addSpark(a.x, a.y, '#b44fff', 12);
+      }, idx * 15);
+    });
+  }
+
+  // Laser beam visual
+  laserBeams.push({ life: 1, decay: 0.03, mode: state.mode });
+
+  // shoot photon particles
+  for (let i = 0; i < numPhotons; i++) {
+    setTimeout(() => {
+      const targetAtom = atoms[Math.floor(Math.random() * atoms.length)];
+      if (targetAtom) {
+        addPhoton(0, H * 0.2 + Math.random() * H * 0.2,
+                  targetAtom.x, targetAtom.y);
+      }
+    }, i * 30);
+  }
+
+  setTimeout(() => { state.firing = false; }, 600);
+}
+
+// ── DRAW ───────────────────────────────────────────────────
+function draw() {
+  ctx.clearRect(0, 0, W, H);
+
+  // background grid
+  ctx.strokeStyle = '#0d1726';
+  ctx.lineWidth = 0.5;
+  for (let x = 0; x < W; x += 40) {
+    ctx.beginPath(); ctx.moveTo(x, 0); ctx.lineTo(x, H); ctx.stroke();
+  }
+  for (let y = 0; y < H; y += 40) {
+    ctx.beginPath(); ctx.moveTo(0, y); ctx.lineTo(W, y); ctx.stroke();
+  }
+
+  // laser beam
+  laserBeams.forEach((b, i) => {
+    const col = b.mode === 'photo' ? '#00e5ff' : b.mode === 'heat' ? '#ff7a00' : '#b44fff';
+    const grad = ctx.createLinearGradient(0, H * 0.3, W * 0.5, H * 0.5);
+    grad.addColorStop(0, col + Math.floor(b.life * 88).toString(16).padStart(2, '0'));
+    grad.addColorStop(1, 'transparent');
+    ctx.beginPath();
+    ctx.moveTo(0, H * 0.28);
+    ctx.lineTo(W * 0.7, H * 0.55);
+    ctx.strokeStyle = grad;
+    ctx.lineWidth = 3 * b.life;
+    ctx.shadowColor = col;
+    ctx.shadowBlur = 20 * b.life;
+    ctx.stroke();
+    ctx.shadowBlur = 0;
+    b.life -= b.decay;
+    if (b.life <= 0) laserBeams.splice(i, 1);
+  });
+
+  const matColor = MATERIALS[state.material].color;
+  const now = Date.now() / 1000;
+
+  // atoms
+  atoms.forEach(a => {
+    // vibration
+    if (a.vibAmp > 0) {
+      a.vibX = (Math.random() - 0.5) * a.vibAmp;
+      a.vibY = (Math.random() - 0.5) * a.vibAmp;
+      a.vibAmp *= 0.97;
+    } else {
+      a.vibX *= 0.9; a.vibY *= 0.9;
+    }
+    const ax = a.x + a.vibX, ay = a.y + a.vibY;
+
+    // nucleus glow
+    ctx.beginPath();
+    ctx.arc(ax, ay, a.r + 4, 0, Math.PI * 2);
+    ctx.fillStyle = matColor + '18';
+    ctx.fill();
+
+    // nucleus
+    ctx.beginPath();
+    ctx.arc(ax, ay, a.r, 0, Math.PI * 2);
+    ctx.fillStyle = matColor;
+    ctx.shadowColor = matColor;
+    ctx.shadowBlur = 8;
+    ctx.fill();
+    ctx.shadowBlur = 0;
+
+    // bonds to neighbors (simple)
+    atoms.forEach(b => {
+      const dx = b.x - a.x, dy = b.y - a.y;
+      const dist = Math.sqrt(dx * dx + dy * dy);
+      if (dist > 0 && dist < 75) {
+        ctx.beginPath();
+        ctx.moveTo(ax, ay); ctx.lineTo(b.x + b.vibX, b.y + b.vibY);
+        ctx.strokeStyle = matColor + '22';
+        ctx.lineWidth = 0.5;
+        ctx.stroke();
+      }
+    });
+
+    // electrons
+    a.electrons.forEach(e => {
+      if (e.free) return;
+      e.angle += e.speed * (1 + state.temperature / 3000);
+      const ex = ax + Math.cos(e.angle) * e.radius;
+      const ey = ay + Math.sin(e.angle) * e.radius;
+      e.x = ex; e.y = ey;
+
+      if (e.excited > 0) {
+        e.excited = Math.max(0, e.excited - 0.02);
+        const excR = e.radius + e.excited * 10;
+        const eEx = ax + Math.cos(e.angle) * excR;
+        const eEy = ay + Math.sin(e.angle) * excR;
+        ctx.beginPath();
+        ctx.arc(eEx, eEy, 3.5, 0, Math.PI * 2);
+        ctx.fillStyle = '#ffff00';
+        ctx.shadowColor = '#ffff00';
+        ctx.shadowBlur = 10;
+        ctx.fill();
+        ctx.shadowBlur = 0;
+      } else {
+        ctx.beginPath();
+        ctx.arc(ex, ey, 3, 0, Math.PI * 2);
+        ctx.fillStyle = '#00e5ff';
+        ctx.shadowColor = '#00e5ff';
+        ctx.shadowBlur = 6;
+        ctx.fill();
+        ctx.shadowBlur = 0;
+      }
+
+      // orbit ring (faint)
+      ctx.beginPath();
+      ctx.arc(ax, ay, e.radius, 0, Math.PI * 2);
+      ctx.strokeStyle = '#00e5ff14';
+      ctx.lineWidth = 0.5;
+      ctx.stroke();
+    });
+  });
+
+  // particles
+  particles.forEach((p, i) => {
+    if (p.type === 'photon') {
+      ctx.beginPath();
+      ctx.arc(p.x, p.y, 4, 0, Math.PI * 2);
+      ctx.fillStyle = p.color;
+      ctx.shadowColor = p.color;
+      ctx.shadowBlur = 12;
+      ctx.fill();
+      ctx.shadowBlur = 0;
+      // wave trail
+      ctx.beginPath();
+      for (let t = 0; t < 12; t++) {
+        const tx = p.x - p.vx * t;
+        const ty = p.y - p.vy * t + Math.sin(t * 0.8) * 3;
+        if (t === 0) ctx.moveTo(tx, ty); else ctx.lineTo(tx, ty);
+      }
+      ctx.strokeStyle = p.color + '55';
+      ctx.lineWidth = 1;
+      ctx.stroke();
+
+      p.x += p.vx; p.y += p.vy;
+      p.life -= p.decay;
+
+    } else if (p.type === 'electron') {
+      p.trail.push({ x: p.x, y: p.y });
+      if (p.trail.length > 12) p.trail.shift();
+
+      // trail
+      p.trail.forEach((t, j) => {
+        ctx.beginPath();
+        ctx.arc(t.x, t.y, 1.5, 0, Math.PI * 2);
+        ctx.fillStyle = `rgba(0,229,255,${j / p.trail.length * 0.4})`;
+        ctx.fill();
+      });
+
+      ctx.beginPath();
+      ctx.arc(p.x, p.y, 3.5, 0, Math.PI * 2);
+      ctx.fillStyle = '#00e5ff';
+      ctx.shadowColor = '#00e5ff';
+      ctx.shadowBlur = 14;
+      ctx.fill();
+      ctx.shadowBlur = 0;
+
+      p.x += p.vx; p.y += p.vy;
+      p.vy += 0.05; // gravity
+      p.life -= p.decay;
+
+    } else if (p.type === 'spark') {
+      ctx.beginPath();
+      ctx.arc(p.x, p.y, 2 * p.life, 0, Math.PI * 2);
+      ctx.fillStyle = p.color + Math.floor(p.life * 255).toString(16).padStart(2, '0');
+      ctx.shadowColor = p.color;
+      ctx.shadowBlur = 6;
+      ctx.fill();
+      ctx.shadowBlur = 0;
+
+      p.x += p.vx; p.y += p.vy;
+      p.vx *= 0.95; p.vy *= 0.95;
+      p.life -= p.decay;
+    }
+
+    if (p.life <= 0) particles.splice(i, 1);
+  });
+
+  // Temperature heat haze overlay
+  if (state.temperature > 600) {
+    const alpha = Math.min((state.temperature - 600) / 2000, 0.15);
+    ctx.fillStyle = `rgba(255,120,0,${alpha})`;
+    ctx.fillRect(0, 0, W, H);
+  }
+
+  animId = requestAnimationFrame(draw);
+}
+
+// ── CONTROLS ───────────────────────────────────────────────
+function setMode(mode, btn) {
+  state.mode = mode;
+  document.querySelectorAll('.mode-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  const wmTexts = { photo: 'EFECT FOTOELECTRIC', heat: 'ÎNCĂLZIRE', ionize: 'IONIZARE' };
+  document.getElementById('mode-wm').textContent = wmTexts[mode];
+  const f = MODE_FORMULAS[mode];
+  document.getElementById('formula-box').innerHTML = `
+    <div class="f-title">${f.title}</div>
+    <div class="formula">${f.formula}</div>
+    <div style="font-size:0.58rem;color:var(--dim);margin-top:8px;line-height:1.6;">${f.desc}</div>
+  `;
+  updateParams();
+}
+
+function setMaterial(mat, btn) {
+  state.material = mat;
+  document.querySelectorAll('.mat-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  updateParams();
+}
+
+function updateParams() {
+  state.freq = parseFloat(document.getElementById('freq').value);
+  state.intensity = parseInt(document.getElementById('intensity').value);
+  state.duration = parseInt(document.getElementById('duration').value);
+
+  document.getElementById('freq-val').textContent = state.freq.toFixed(1) + ' × 10¹⁴ Hz';
+  document.getElementById('int-val').textContent = state.intensity + '%';
+  document.getElementById('dur-val').textContent = state.duration + ' fs';
+
+  const h = 6.626e-34, eV = 1.6e-19;
+  const nu = state.freq * 1e14;
+  const Ephoton = (h * nu / eV).toFixed(2);
+  const phi = MATERIALS[state.material].phi;
+  const Ekin = (Ephoton - phi).toFixed(2);
+
+  document.getElementById('s-ephoton').textContent = Ephoton + ' eV';
+  document.getElementById('s-phi').textContent = phi + ' eV';
+  document.getElementById('s-ekin').textContent = state.mode === 'photo'
+    ? (Ekin > 0 ? Ekin + ' eV' : '0 eV (blocat)')
+    : '—';
+
+  const ratio = Ephoton / phi;
+  document.getElementById('energy-bar').style.width = Math.min(ratio * 50, 100) + '%';
+  document.getElementById('energy-bar').style.background = Ephoton >= phi ? 'var(--green)' : 'var(--laser)';
+}
+
+function resetSim() {
+  state.emitted = 0;
+  state.temperature = 300;
+  particles.length = 0;
+  laserBeams.length = 0;
+  document.getElementById('s-emitted').textContent = '0';
+  document.getElementById('s-temp').textContent = '300 K';
+  buildAtoms();
+  logEvent('Simulator resetat.', '');
+}
+
+function logEvent(msg, type) {
+  const log = document.getElementById('event-log');
+  const entry = document.createElement('div');
+  entry.className = 'log-entry' + (type ? ' ' + type : '');
+  const time = new Date().toLocaleTimeString('ro-RO', { hour: '2-digit', minute: '2-digit', second: '2-digit' });
+  entry.textContent = `[${time}] ${msg}`;
+  log.insertBefore(entry, log.firstChild);
+  while (log.children.length > 20) log.removeChild(log.lastChild);
+}
+
+// Mouse hover crosshair
+const wrap = document.getElementById('canvas-wrap');
+const crosshair = document.getElementById('crosshair');
+wrap.addEventListener('mousemove', e => {
+  const rect = wrap.getBoundingClientRect();
+  const mx = e.clientX - rect.left;
+  const my = e.clientY - rect.top;
+  crosshair.style.display = 'block';
+  crosshair.style.left = mx + 'px';
+  crosshair.style.top = my + 'px';
+});
+wrap.addEventListener('mouseleave', () => { crosshair.style.display = 'none'; });
+wrap.addEventListener('click', fireLaser);
+
+// ── RESPONSIVE PANELS (drawers + desktop collapse) ─────────
+function isMobileLayout() {
+  return window.matchMedia('(max-width: 900px)').matches;
+}
+let lastMobileLayout = isMobileLayout();
+
+function syncPanelUi() {
+  const mobile = isMobileLayout();
+  const leftBtn = document.getElementById('btn-panel-left');
+  const rightBtn = document.getElementById('btn-panel-right');
+  const backdrop = document.getElementById('panel-backdrop');
+  const leftOn = mobile
+    ? document.body.classList.contains('panel-left-open')
+    : !document.body.classList.contains('panel-left-collapsed');
+  const rightOn = mobile
+    ? document.body.classList.contains('panel-right-open')
+    : !document.body.classList.contains('panel-right-collapsed');
+  leftBtn.classList.toggle('is-active', leftOn);
+  rightBtn.classList.toggle('is-active', rightOn);
+  leftBtn.setAttribute('aria-expanded', String(leftOn));
+  rightBtn.setAttribute('aria-expanded', String(rightOn));
+  const drawerOpen = mobile && (document.body.classList.contains('panel-left-open') || document.body.classList.contains('panel-right-open'));
+  document.body.classList.toggle('panel-mobile-open', drawerOpen);
+  if (backdrop) {
+    backdrop.setAttribute('aria-hidden', String(!drawerOpen));
+  }
+}
+
+function toggleLeftPanel() {
+  if (isMobileLayout()) {
+    const willOpen = !document.body.classList.contains('panel-left-open');
+    document.body.classList.toggle('panel-left-open', willOpen);
+    if (willOpen) document.body.classList.remove('panel-right-open');
+  } else {
+    document.body.classList.toggle('panel-left-collapsed');
+  }
+  syncPanelUi();
+  resize();
+}
+
+function toggleRightPanel() {
+  if (isMobileLayout()) {
+    const willOpen = !document.body.classList.contains('panel-right-open');
+    document.body.classList.toggle('panel-right-open', willOpen);
+    if (willOpen) document.body.classList.remove('panel-left-open');
+  } else {
+    document.body.classList.toggle('panel-right-collapsed');
+  }
+  syncPanelUi();
+  resize();
+}
+
+function onLayoutModeChange() {
+  const mobile = isMobileLayout();
+  if (mobile !== lastMobileLayout) {
+    lastMobileLayout = mobile;
+    if (mobile) {
+      document.body.classList.remove('panel-left-collapsed', 'panel-right-collapsed');
+      document.body.classList.remove('panel-left-open', 'panel-right-open');
+    } else {
+      document.body.classList.remove('panel-left-open', 'panel-right-open');
+    }
+    syncPanelUi();
+  }
+}
+
+function initPanels() {
+  document.getElementById('btn-panel-left').addEventListener('click', toggleLeftPanel);
+  document.getElementById('btn-panel-right').addEventListener('click', toggleRightPanel);
+  document.getElementById('panel-backdrop').addEventListener('click', () => {
+    document.body.classList.remove('panel-left-open', 'panel-right-open');
+    syncPanelUi();
+    resize();
+  });
+  document.addEventListener('keydown', (e) => {
+    if (e.key !== 'Escape') return;
+    if (!isMobileLayout()) return;
+    if (!document.body.classList.contains('panel-left-open') && !document.body.classList.contains('panel-right-open')) return;
+    document.body.classList.remove('panel-left-open', 'panel-right-open');
+    syncPanelUi();
+    resize();
+  });
+  syncPanelUi();
+}
+
+// ── INIT ───────────────────────────────────────────────────
+initPanels();
+window.addEventListener('resize', () => {
+  onLayoutModeChange();
+  resize();
+});
+resize();
+updateParams();
+draw();
+</script>
+</body>
+</html>

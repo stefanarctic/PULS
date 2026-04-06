@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ELI-NP – Lovește Ținta</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- ===== HEADER ===== -->
+  <header>
+    <div class="header-inner">
+      <div class="logo-block">
+        <span class="logo-eli">ELI-NP</span>
+        <span class="logo-sub">Infrastructura Luminii Extreme · Fizică Nucleară</span>
+      </div>
+      <h1 class="sim-title">⚡ Lovește Ținta <span class="sim-sub">– Simulare Fascicul Laser</span></h1>
+    </div>
+  </header>
+
+  <!-- ===== MAIN LAYOUT ===== -->
+  <main>
+
+    <!-- LEFT: Controls -->
+    <aside class="controls-panel" id="controlsPanel">
+
+      <div class="panel-section">
+        <h2 class="panel-title">Parametri Laser</h2>
+
+        <!-- Putere -->
+        <div class="control-group">
+          <label for="sliderPower">
+            Putere
+            <span class="unit" id="labelPower">1.0 PW</span>
+          </label>
+          <input type="range" id="sliderPower" min="0.01" max="10" step="0.01" value="1" />
+          <div class="hint">1 PW = 10<sup>15</sup> W</div>
+        </div>
+
+        <!-- Focalizare -->
+        <div class="control-group">
+          <label for="sliderFocus">
+            Focalizare (diametru spot)
+            <span class="unit" id="labelFocus">10 µm</span>
+          </label>
+          <input type="range" id="sliderFocus" min="1" max="100" step="1" value="10" />
+          <div class="hint">Mai mic = mai concentrat</div>
+        </div>
+
+        <!-- Distanță -->
+        <div class="control-group">
+          <label for="sliderDist">
+            Distanță țintă
+            <span class="unit" id="labelDist">1.0 m</span>
+          </label>
+          <input type="range" id="sliderDist" min="0.1" max="5" step="0.1" value="1" />
+          <div class="hint">Afectează divergența fasciculului</div>
+        </div>
+
+        <!-- Material -->
+        <div class="control-group">
+          <label for="selectMaterial">Material țintă</label>
+          <select id="selectMaterial">
+            <option value="metal">Metal (Aur)</option>
+            <option value="plastic">Plastic (CH₂)</option>
+            <option value="plasma">Plasmă pre-ionizată</option>
+          </select>
+        </div>
+      </div>
+
+      <!-- ELI MODE -->
+      <div class="panel-section eli-section">
+        <h2 class="panel-title eli-title">⚡ Mod ELI</h2>
+        <div class="toggle-row">
+          <label class="toggle-label" for="toggleELI">Pulsuri ultra-scurte (fs)</label>
+          <label class="switch">
+            <input type="checkbox" id="toggleELI" />
+            <span class="slider-toggle"></span>
+          </label>
+        </div>
+        <div id="eliParams" class="eli-params hidden">
+          <div class="control-group">
+            <label for="sliderPulse">
+              Durată puls
+              <span class="unit" id="labelPulse">25 fs</span>
+            </label>
+            <input type="range" id="sliderPulse" min="1" max="200" step="1" value="25" />
+            <div class="hint">1 fs = 10<sup>-15</sup> s</div>
+          </div>
+          <div class="control-group">
+            <label for="sliderRep">
+              Rată repetiție
+              <span class="unit" id="labelRep">1 Hz</span>
+            </label>
+            <input type="range" id="sliderRep" min="1" max="100" step="1" value="1" />
+          </div>
+        </div>
+      </div>
+
+      <!-- FIRE BUTTON -->
+      <div class="panel-section fire-section">
+        <button id="btnFire" class="btn-fire">🔴 PORNEȘTE LASERUL</button>
+        <button id="btnReset" class="btn-reset">↺ Resetează</button>
+      </div>
+
+    </aside>
+
+    <!-- CENTER: Canvas simulation -->
+    <section class="canvas-section">
+      <canvas id="simCanvas"></canvas>
+      <div id="overlayMsg" class="overlay-msg hidden"></div>
+    </section>
+
+    <!-- RIGHT: Physics readout -->
+    <aside class="readout-panel">
+      <h2 class="panel-title">Date Fizice</h2>
+
+      <div class="readout-block">
+        <div class="readout-label">Intensitate</div>
+        <div class="readout-value" id="rdIntensity">—</div>
+        <div class="readout-unit">W/cm²</div>
+      </div>
+
+      <div class="readout-block">
+        <div class="readout-label">Temperatură spot</div>
+        <div class="readout-value" id="rdTemp">—</div>
+        <div class="readout-unit">K</div>
+      </div>
+
+      <div class="readout-block">
+        <div class="readout-label">Grad ionizare</div>
+        <div class="readout-value" id="rdIoniz">—</div>
+        <div class="readout-unit">%</div>
+      </div>
+
+      <div class="readout-block">
+        <div class="readout-label">Presiune radiație</div>
+        <div class="readout-value" id="rdPressure">—</div>
+        <div class="readout-unit">GPa</div>
+      </div>
+
+      <div class="readout-block" id="rdEliBlock" style="display:none">
+        <div class="readout-label">Intensitate de vârf (ELI)</div>
+        <div class="readout-value" id="rdPeakInt">—</div>
+        <div class="readout-unit">W/cm²</div>
+      </div>
+
+      <div class="readout-block">
+        <div class="readout-label">Stare țintă</div>
+        <div class="readout-value state-val" id="rdState">Intactă</div>
+      </div>
+
+      <!-- Scala de regim -->
+      <div class="regime-bar-wrap">
+        <div class="regime-title">Regim fizic</div>
+        <div class="regime-bar">
+          <div class="regime-fill" id="regimeFill"></div>
+        </div>
+        <div class="regime-labels">
+          <span>Termic</span>
+          <span>Ablație</span>
+          <span>Plasmă</span>
+          <span>Relativ.</span>
+        </div>
+      </div>
+
+      <!-- Info box -->
+      <div class="info-box" id="infoBox">
+        <p>Ajustați parametrii și apăsați <strong>PORNEȘTE LASERUL</strong> pentru a lansa simularea.</p>
+      </div>
+    </aside>
+
+  </main>
+
+  <!-- ===== FOOTER ===== -->
+  <footer>
+    <span>ELI-NP Măgurele · Simulare educațională · Fizica laserilor de mare putere</span>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
