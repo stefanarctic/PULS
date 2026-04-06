@@ -64,7 +64,7 @@
         <h2 class="panel-title">Fracție D₂O în lichid</h2>
         <p class="panel-desc">
           În organism, apa participă ca solvent și ca sursă de hidrogen în reacții enzimatice. D₂O are proprietăți fizice apropiate de H₂O, dar legăturile O–D sunt mai „grele” decât O–H:
-          unele viteze de reacție scad (efect cinetic izotopic), iar la fracții foarte mari de D₂O apar efecte fiziologice grave. În apă naturală, deuteriul reprezintă aproximativ <strong>0,015%</strong> din atomii de hidrogen (ordin de mărime: o parte D la ~6000–7000 părți H).
+          unele viteze de reacție scad (efect cinetic izotopic), iar la fracții foarte mari de D₂O apar efecte fiziologice grave. În apă naturală, deuteriul este prezent în ordin de mărime de <strong>140 ppm</strong> (aprox. <strong>0,014%</strong> din atomii de hidrogen, adică circa o parte D la ~7000 părți H).
         </p>
         <p class="panel-desc">
           Sliderul setează o <strong>fracție molară fictivă</strong> de D₂O într-un lichid model; grila de celule arată propagarea vizuală, nu un diagnostic.
@@ -73,12 +73,13 @@
         <div class="body-sim glass">
           <div class="body-head">
             <span class="body-badge" id="body-badge">OK</span>
-            <span class="body-pct"><strong id="body-pct-val">0</strong>% D₂O</span>
+            <span class="body-pct"><strong id="body-pct-val">0,014</strong>% D₂O</span>
           </div>
           <label class="body-slider-label" for="body-d2o">Fracție D₂O</label>
-          <input type="range" id="body-d2o" min="0" max="100" value="0" />
+          <input type="range" id="body-d2o" min="0" max="100" step="0.001" value="0.014" />
           <div class="cell-grid" id="cell-grid" aria-hidden="true"></div>
           <p class="body-story" id="body-story"></p>
+          <p class="body-disclaimer">Referință naturală de deuteriu: ~140 ppm (~0,014%).</p>
           <p class="body-disclaimer">Demonstrație educativă. Nu consuma apă grea.</p>
         </div>
       </section>
@@ -174,7 +175,7 @@
           </div>
           <div class="info-card">
             <h4>Abundență</h4>
-            <p>Deuteriu natural: ~0,015% din hidrogen; apă „normală” conține urme de D₂O.</p>
+            <p>Deuteriu natural: ~140 ppm (~0,014%) din hidrogen; apa „normală” conține doar urme de D₂O.</p>
           </div>
           <div class="info-card">
             <h4>Radioactivitate</h4>

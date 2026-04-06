@@ -389,6 +389,9 @@ function buildCellGrid() {
 }
 
 function getBodyStory(pct) {
+  if (pct <= 0.05) {
+    return "Valoare foarte mică, apropiată de fondul natural al deuteriului din apă (~140 ppm). În model, efectul vizual rămâne practic nul.";
+  }
   if (pct <= 10) {
     return "Fracție mică: aproape toate moleculele sunt încă H₂O; în realitate, organismul tolerează urme de D₂O fără efecte vizibile.";
   }
@@ -420,6 +423,20 @@ function updateBodyBadge(badge, pct) {
   }
 }
 
+function formatBodyPct(pct) {
+  var text;
+  if (pct === 0) {
+    text = "0";
+  } else if (pct < 1) {
+    text = pct.toFixed(3).replace(/0+$/, "").replace(/\.$/, "");
+  } else if (Math.abs(pct - Math.round(pct)) < 0.000001) {
+    text = String(Math.round(pct));
+  } else {
+    text = pct.toFixed(1).replace(/\.0$/, "");
+  }
+  return text.replace(".", ",");
+}
+
 function setupBodySim() {
   var slider = document.getElementById("body-d2o");
   var story = document.getElementById("body-story");
@@ -431,8 +448,8 @@ function setupBodySim() {
   var cells = grid.querySelectorAll(".cell");
 
   function update() {
-    var pct = parseInt(slider.value, 10);
-    pctVal.textContent = String(pct);
+    var pct = parseFloat(slider.value);
+    pctVal.textContent = formatBodyPct(pct);
     story.textContent = getBodyStory(pct);
     updateBodyBadge(badge, pct);
 
