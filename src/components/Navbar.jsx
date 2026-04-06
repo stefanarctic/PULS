@@ -426,6 +426,7 @@ const Navbar = () => {
                                                 <Link to="/resurse/astronomie" className="dropdown-item navbar-dropdown-item" onClick={handleDropdownItemClick}>Astronomie</Link>
                                                 <Link to="/resurse/atomul" className="dropdown-item navbar-dropdown-item" onClick={handleDropdownItemClick}>Atomul</Link>
                                                 <Link to="/resurse/fizica-cuantica" className="dropdown-item navbar-dropdown-item" onClick={handleDropdownItemClick}>Fizică cuantică</Link>
+                                                <Link to="/resurse/fizica-nucleara" className="dropdown-item navbar-dropdown-item" onClick={handleDropdownItemClick}>Fizică nucleară</Link>
                                             </div>
                                         )}
                                     </div>
@@ -550,6 +551,9 @@ const Navbar = () => {
                                     </Link>
                                     <Link to="/resurse/fizica-cuantica" className="nav-link" onClick={handleMobileNavClick}>
                                         Fizică cuantică
+                                    </Link>
+                                    <Link to="/resurse/fizica-nucleara" className="nav-link" onClick={handleMobileNavClick}>
+                                        Fizică nucleară
                                     </Link>
                                 </div>
                             </div>

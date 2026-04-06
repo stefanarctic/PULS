@@ -37,6 +37,7 @@ import tunelareCuanticaImg from "/res/screenshots/tunelare_Screenshot.png";
 import laserImg from "/res/screenshots/laser_Screenshot.png";
 import tabelPeriodicImg from "/res/screenshots/Tabel_periodic_Screenshot.png";
 import legaturiAtomiImg from "/res/screenshots/legaturi_atomi_Screenshot.png";
+import apaGreaImg from "/res/screenshots/apa_grea_1.png";
 export const simulationsConfig = [
   {
     id: 1,
@@ -505,6 +506,19 @@ export const simulationsConfig = [
     iframeSrc: "/simulari/legaturi_atomi/index.html",
     maxHeight: "90vh",
     category: "Fizică cuantică"
+  },
+  {
+    id: 40,
+    slug: "apa-grea",
+    route: "/simulare/apa-grea",
+    title: "D₂O vs H₂O",
+    description:
+      "Compară D₂O cu H₂O: fracție în lichid, efecte biologice orientative, densitate, puncte de fierbere/îngheț și mod de moderare în reactor.",
+    image: apaGreaImg,
+    caption: "Simulator apă grea",
+    iframeSrc: "/simulari/apa_grea/index.html",
+    maxHeight: "90vh",
+    category: "Fizică nucleară"
   },
 ];
 

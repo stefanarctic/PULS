@@ -96,6 +96,12 @@ const lessonCards = [
       "Atomul de hidrogen (Bohr, Schrödinger, spectru) și tabelul periodic al elementelor, teorie și simulări.",
     path: "/resurse/atomul",
   },
+  {
+    title: "Fizică nucleară",
+    description:
+      "Reacții nucleare, defect de masă, radioactivitate și rolul apei grele ca moderator. Lecție + simulator interactiv.",
+    path: "/resurse/fizica-nucleara",
+  },
 ];
 
 const ResursePage = () => {
@@ -1731,6 +1737,78 @@ const ResursePage = () => {
     },
   ];
 
+  const fizicaNuclearaFormulas = [
+    {
+      section: "1. Compoziție D₂O/H₂O în amestec (model Corp)",
+      formulas: [
+        {
+          title: "Fracția molară de D₂O",
+          formula: "\\( x_{D_2O} = \\dfrac{n_{D_2O}}{n_{D_2O}+n_{H_2O}} \\)",
+          explanation:
+            "Exprimă ponderea molară a apei grele în amestec. În simulator, sliderul afișează această pondere în procente, ca model educațional.",
+        },
+        {
+          title: "Procent D₂O",
+          formula: "\\( x_{D_2O}(\\%) = 100\\,x_{D_2O} \\)",
+          explanation:
+            "Conversie directă a fracției molare în procente. Valoarea este folosită în simulator pentru codurile vizuale OK / Atenție / Ridicat / Critic.",
+        },
+        {
+          title: "Concentrație orientativă",
+          formula: "\\( c_{D_2O} = \\dfrac{n_{D_2O}}{V} \\)",
+          explanation:
+            "Relație utilă când vrei să legi cantitatea de D₂O de volum. În simulator nu se face calcul clinic, doar o reprezentare didactică a compoziției.",
+        },
+      ],
+    },
+    {
+      section: "2. Proprietăți fizice H₂O vs D₂O",
+      formulas: [
+        {
+          title: "Diferență de punct de fierbere",
+          formula: "\\( \\Delta T_b = T_b(D_2O)-T_b(H_2O) \\)",
+          explanation:
+            "La 1 atm, simulatorul evidențiază valorile orientative 100,0°C (H₂O) și 101,4°C (D₂O), deci ΔTb este pozitivă.",
+        },
+        {
+          title: "Diferență de punct de îngheț",
+          formula: "\\( \\Delta T_f = T_f(D_2O)-T_f(H_2O) \\)",
+          explanation:
+            "În datele orientative din simulator, D₂O îngheață mai sus (~3,8°C) decât H₂O (~0°C), astfel ΔTf > 0.",
+        },
+        {
+          title: "Raport de densitate",
+          formula: "\\( \\dfrac{\\rho_{D_2O}}{\\rho_{H_2O}} \\approx 1{,}11 \\)",
+          explanation:
+            "Simulatorul folosește valori orientative ~1,00 g/cm³ pentru H₂O și ~1,11 g/cm³ pentru D₂O. De aici rezultă că același volum de D₂O este mai greu.",
+        },
+      ],
+    },
+    {
+      section: "3. Izotopi și efecte (Fizică + Reactor)",
+      formulas: [
+        {
+          title: "Raportul frecvențelor vibraționale",
+          formula: "\\( f \\propto \\dfrac{1}{\\sqrt{\\mu}},\\quad \\dfrac{f_{D_2O}}{f_{H_2O}}\\approx\\sqrt{\\dfrac{\\mu_{H_2O}}{\\mu_{D_2O}}} \\)",
+          explanation:
+            "Când masa redusă crește (de la H₂O la D₂O), frecvența caracteristică scade. Exact această tendință este ilustrată în experimentul de slider din simulator.",
+        },
+        {
+          title: "Abundență naturală a deuteriului",
+          formula: "\\( x_D \\approx 0{,}015\\% \\approx 1,5\\times10^{-4} \\)",
+          explanation:
+            "În apă naturală, deuteriu este o fracție mică din totalul atomilor de hidrogen. De aceea apa obișnuită conține doar urme de D₂O.",
+        },
+        {
+          title: "Model simplificat de încetinire neutroni",
+          formula: "\\( E_n \\approx E_0 e^{-\\xi n} \\)",
+          explanation:
+            "Partea Reactor folosește o schemă conceptuală: mai multe ciocniri => energie mai mică a neutronilor. În model, D₂O păstrează mai mulți neutroni disponibili decât H₂O.",
+        },
+      ],
+    },
+  ];
+
   const relativitateFormulas = [
     {
       section: "Relativitatea restrânsă",
@@ -1810,6 +1888,7 @@ const ResursePage = () => {
         "astronomie",
         "atomul",
         "fizica_cuantica",
+        "fizica_nucleara",
         "relativitate",
       ];
       if (allowed.includes(formulaParam)) {
@@ -1854,6 +1933,7 @@ const ResursePage = () => {
       astronomie: astronomieFormulas,
       atomul: atomulFormulas,
       fizica_cuantica: fizicaCuanticaFormulas,
+      fizica_nucleara: fizicaNuclearaFormulas,
       relativitate: relativitateFormulas,
     };
 
@@ -1995,6 +2075,7 @@ const ResursePage = () => {
                     <TabsTrigger value="astronomie">Astronomie</TabsTrigger>
                     <TabsTrigger value="atomul">Atomul</TabsTrigger>
                     <TabsTrigger value="fizica_cuantica">Fizică cuantică</TabsTrigger>
+                    <TabsTrigger value="fizica_nucleara">Fizică nucleară</TabsTrigger>
                     <TabsTrigger value="relativitate">Relativitate</TabsTrigger>
                   </TabsList>
 
@@ -2349,6 +2430,35 @@ const ResursePage = () => {
                       ))}
                     </div>
                     <MathJaxRender key="fizica_cuantica" />
+                  </TabsContent>
+
+                  <TabsContent value="fizica_nucleara">
+                    <p className="text-sm text-muted-foreground mb-4">Apasă pe o formulă pentru explicație detaliată.</p>
+                    <div className="mb-4 space-y-6">
+                      {fizicaNuclearaFormulas.map((sec, secIndex) => (
+                        <div key={secIndex}>
+                          <h3 className="text-lg font-semibold mb-3 text-foreground/90">{sec.section}</h3>
+                          <div className="formula-grid">
+                            {sec.formulas.map((formula, index) => (
+                              <div
+                                key={index}
+                                className="formula-card formula-card-clickable"
+                                role="button"
+                                tabIndex={0}
+                                onClick={() => formula.explanation && setFormulaPopup({ section: sec.section, ...formula })}
+                                onKeyDown={(e) =>
+                                  e.key === "Enter" && formula.explanation && setFormulaPopup({ section: sec.section, ...formula })
+                                }
+                              >
+                                <div className="font-semibold mb-2">{formula.title}</div>
+                                <div className="text-lg font-mono">{formula.formula}</div>
+                              </div>
+                            ))}
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+                    <MathJaxRender key="fizica_nucleara" />
                   </TabsContent>
 
                   <TabsContent value="relativitate">

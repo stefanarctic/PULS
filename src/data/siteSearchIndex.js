@@ -117,6 +117,11 @@ const STATIC_SITE_ENTRIES = [
     keywords: ["cuantică", "cuantic", "quantum", "schrodinger", "foton"],
   },
   {
+    title: "Resurse — Fizică nucleară",
+    path: "/resurse/fizica-nucleara",
+    keywords: ["fizică nucleară", "nuclear", "apa grea", "moderator", "fisiune", "radioactivitate"],
+  },
+  {
     title: "Profil",
     path: "/profil",
     keywords: ["profil", "cont", "setări utilizator"],
