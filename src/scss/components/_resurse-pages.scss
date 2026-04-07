@@ -389,13 +389,15 @@
   .formula-resurse {
     background-color: var(--primary-background-current-mode);
     color: var(--primary-color-current-mode);
-    overflow-x: auto;
+    overflow-x: hidden;
     overflow-y: hidden;
-    -webkit-overflow-scrolling: touch;
+    text-align: center;
 
     mjx-container,
     .MathJax {
-      min-width: max-content;
+      min-width: 0 !important;
+      max-width: 100%;
+      width: auto !important;
     }
   }
 

@@ -35,6 +35,8 @@ import spectruImg from "/res/screenshots/spectru_Screenshot.png";
 import dublaFantaImg from "/res/screenshots/dubla_fanta_Screenshot.png";
 import tunelareCuanticaImg from "/res/screenshots/tunelare_Screenshot.png";
 import laserImg from "/res/screenshots/laser_Screenshot.png";
+import laserSimulatorImg from "/res/screenshots/Laser_Simulator_Screenshot.png";
+import eliNpLaserImg from "/res/screenshots/Eli_Np_Laser_Screenshot.png";
 import tabelPeriodicImg from "/res/screenshots/Tabel_periodic_Screenshot.png";
 import legaturiAtomiImg from "/res/screenshots/legaturi_atomi_Screenshot.png";
 import apaGreaImg from "/res/screenshots/apa_grea_1.png";
@@ -433,6 +435,34 @@ export const simulationsConfig = [
     iframeSrc: "/simulari/laser/index.html",
     maxHeight: "90vh",
     category: "Optică"
+  },
+  {
+    id: 41,
+    slug: "laser-interactie",
+    route: "/simulare/laser-interactie",
+    title: "Laser vs materie",
+    description:
+      "Explorează cum influențează intensitatea, materialul și focalizarea încălzirea, ionizarea și interacția dintre fascicul și țintă.",
+    image: laserSimulatorImg,
+    caption: "Interacție laser-materie",
+    iframeSrc: "/simulari/laser_simulator.html",
+    maxHeight: "90vh",
+    category: "Lasere",
+    eyebrow: "Lasere | Simulare interactivă"
+  },
+  {
+    id: 42,
+    slug: "eli-np-laser",
+    route: "/simulare/eli-np-laser",
+    title: "ELI-NP Photon Sniper",
+    description:
+      "Simulator inspirat de contextul ELI-NP: pulsuri ultra-scurte, focalizare strânsă, intensitate de vârf și răspunsul materialului țintă.",
+    image: eliNpLaserImg,
+    caption: "ELI-NP și pulsuri ultra-scurte",
+    iframeSrc: "/simulari/eli-np-laser/index.html",
+    maxHeight: "95vh",
+    category: "Lasere",
+    eyebrow: "ELI-NP | Simulare interactivă"
   },
   {
     id: 33,

@@ -31,6 +31,7 @@ import AstronomiePage from "./components/pages/resurse/astronomie";
 import FizicaCuanticaPage from "./components/pages/resurse/fizica-cuantica";
 import AtomulPage from "./components/pages/resurse/atomul";
 import FizicaNuclearaPage from "./components/pages/resurse/fizica-nucleara";
+import LaserePage from "./components/pages/resurse/lasere";
 import SimulationPage from "./components/pages/SimulationPage";
 import ScrollToTop from "./components/ScrollToTop";
 import Profile from "./components/pages/Profile";
@@ -139,6 +140,7 @@ const App = () => {
           <Route path='/resurse/atomul' element={<AtomulPage />} />
           <Route path='/resurse/fizica-cuantica' element={<FizicaCuanticaPage />} />
           <Route path='/resurse/fizica-nucleara' element={<FizicaNuclearaPage />} />
+          <Route path='/resurse/lasere' element={<LaserePage />} />
           {simulationsConfig.map((simulation) => (
             <Route
               key={simulation.route}

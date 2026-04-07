@@ -73,6 +73,12 @@ const lessonCards = [
     path: "/resurse/optica",
   },
   {
+    title: "Lasere",
+    description:
+      "Principii de funcționare, formule pentru fascicule și pulsuri, context ELI-NP și două simulatoare interactive dedicate laserelor.",
+    path: "/resurse/lasere",
+  },
+  {
     title: "Matematică",
     description:
       "Funcții, grafice și vizualizator 4D. Explorează reprezentarea grafică a funcțiilor și geometria în spațiul cu patru dimensiuni.",
@@ -1411,6 +1417,90 @@ const ResursePage = () => {
     },
   ];
 
+  const lasereFormulas = [
+    {
+      section: "1. Proprietățile de bază ale fasciculului",
+      formulas: [
+        {
+          title: "Relația undă-frecvență",
+          formula: "\\( c = \\lambda f \\)",
+          explanation:
+            "Leagă lungimea de undă și frecvența pentru propagarea în vid. Dacă λ scade, frecvența crește, iar fotonii devin mai energetici.",
+        },
+        {
+          title: "Energia fotonului",
+          formula: "\\( E = hf = \\dfrac{hc}{\\lambda} \\)",
+          explanation:
+            "Un laser cu lungime de undă mai mică transportă fotoni mai energetici. Formula este esențială când compari lasere IR, vizibile sau UV.",
+        },
+        {
+          title: "Impulsul fotonului",
+          formula: "\\( p = \\dfrac{h}{\\lambda} \\)",
+          explanation:
+            "Chiar dacă nu are masă de repaus, fotonul transportă impuls. De aici apar presiunea de radiație și efectele de transfer de impuls către materie.",
+        },
+      ],
+    },
+    {
+      section: "2. Putere, intensitate și focalizare",
+      formulas: [
+        {
+          title: "Intensitatea fasciculului",
+          formula: "\\( I = \\dfrac{P}{A} \\)",
+          explanation:
+            "Pentru aceeași putere totală, o arie mai mică în spot înseamnă intensitate mai mare. De aceea focalizarea este atât de importantă în experimente.",
+        },
+        {
+          title: "Aria spotului circular",
+          formula: "\\( A = \\pi w_0^2 \\)",
+          explanation:
+            "Aproximație pentru aria spotului în jurul razei caracteristice w₀. Micșorarea lui w₀ crește rapid intensitatea.",
+        },
+        {
+          title: "Divergența gaussiană",
+          formula: "\\( \\theta \\approx \\dfrac{\\lambda}{\\pi w_0} \\)",
+          explanation:
+            "Fasciculele foarte strânse în focar tind să se deschidă mai repede după focalizare. Relația exprimă limita impusă de difracție.",
+        },
+        {
+          title: "Distanța Rayleigh",
+          formula: "\\( z_R = \\dfrac{\\pi w_0^2}{\\lambda} \\)",
+          explanation:
+            "Pe o distanță de ordinul lui zR, fasciculul rămâne relativ bine colimat în jurul focarului. Dincolo de această zonă, diametrul crește vizibil.",
+        },
+      ],
+    },
+    {
+      section: "3. Pulsuri ultra-scurte și regim ELI-NP",
+      formulas: [
+        {
+          title: "Puterea de vârf a pulsului",
+          formula: "\\( P_{peak} \\approx \\dfrac{E_{pulse}}{\\tau} \\)",
+          explanation:
+            "Dacă aceeași energie a pulsului este comprimată într-un timp foarte scurt, puterea instantanee crește enorm. Acesta este unul dintre principiile-cheie ale laserelor ultra-rapide.",
+        },
+        {
+          title: "Intensitatea de vârf",
+          formula: "\\( I_{peak} \\approx \\dfrac{P_{peak}}{A} \\)",
+          explanation:
+            "Combină puterea de vârf cu aria spotului. Intensitățile mari sunt cele care pot produce ablație, plasmă sau ionizare avansată.",
+        },
+        {
+          title: "Presiunea de radiație",
+          formula: "\\( p_{rad} \\approx \\dfrac{I}{c} \\) sau \\( \\dfrac{2I}{c} \\) la reflexie",
+          explanation:
+            "Lumina exercită presiune prin transfer de impuls. Pentru o suprafață perfect reflectantă, efectul este aproximativ dublu față de cazul absorbției.",
+        },
+        {
+          title: "Densitatea de energie",
+          formula: "\\( u = \\dfrac{I}{c} \\)",
+          explanation:
+            "Arată câtă energie electromagnetică există pe unitatea de volum într-un fascicul care se propagă. Relația ajută la interpretarea regimurilor extreme.",
+        },
+      ],
+    },
+  ];
+
   const matematicaFormulas = [
     {
       section: "Funcții și analiză",
@@ -1884,6 +1974,7 @@ const ResursePage = () => {
         "lissajous",
         "electricitate",
         "optica",
+        "lasere",
         "matematica",
         "astronomie",
         "atomul",
@@ -1929,6 +2020,7 @@ const ResursePage = () => {
       lissajous: lissajousFormulas,
       electricitate: electricitateFormulas,
       optica: opticaFormulas,
+      lasere: lasereFormulas,
       matematica: matematicaFormulas,
       astronomie: astronomieFormulas,
       atomul: atomulFormulas,
@@ -2069,6 +2161,7 @@ const ResursePage = () => {
                     <TabsTrigger value="lissajous">Lissajous</TabsTrigger>
                     <TabsTrigger value="seism">Seisme</TabsTrigger>
                     <TabsTrigger value="optica">Optică</TabsTrigger>
+                    <TabsTrigger value="lasere">Lasere</TabsTrigger>
                     <TabsTrigger value="prisma">Refracție</TabsTrigger>
                     <TabsTrigger value="electricitate">Electricitate</TabsTrigger>
                     <TabsTrigger value="matematica">Matematică</TabsTrigger>
@@ -2320,6 +2413,33 @@ const ResursePage = () => {
                       ))}
                     </div>
                     <MathJaxRender key="optica" />
+                  </TabsContent>
+
+                  <TabsContent value="lasere">
+                    <p className="text-sm text-muted-foreground mb-4">Apasă pe o formulă pentru explicație detaliată.</p>
+                    <div className="mb-4 space-y-6">
+                      {lasereFormulas.map((sec, secIndex) => (
+                        <div key={secIndex}>
+                          <h3 className="text-lg font-semibold mb-3 text-foreground/90">{sec.section}</h3>
+                          <div className="formula-grid">
+                            {sec.formulas.map((formula, index) => (
+                              <div
+                                key={index}
+                                className="formula-card formula-card-clickable"
+                                role="button"
+                                tabIndex={0}
+                                onClick={() => formula.explanation && setFormulaPopup({ section: sec.section, ...formula })}
+                                onKeyDown={(e) => e.key === "Enter" && formula.explanation && setFormulaPopup({ section: sec.section, ...formula })}
+                              >
+                                <div className="font-semibold mb-2">{formula.title}</div>
+                                <div className="text-lg font-mono">{formula.formula}</div>
+                              </div>
+                            ))}
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+                    <MathJaxRender key="lasere" />
                   </TabsContent>
 
                   <TabsContent value="matematica">

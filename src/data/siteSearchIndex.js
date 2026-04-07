@@ -122,6 +122,11 @@ const STATIC_SITE_ENTRIES = [
     keywords: ["fizică nucleară", "nuclear", "apa grea", "moderator", "fisiune", "radioactivitate"],
   },
   {
+    title: "Resurse — Lasere",
+    path: "/resurse/lasere",
+    keywords: ["laser", "lasere", "eli-np", "magurele", "foton", "laser-materie", "optică laser"],
+  },
+  {
     title: "Profil",
     path: "/profil",
     keywords: ["profil", "cont", "setări utilizator"],
