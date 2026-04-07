@@ -128,7 +128,7 @@ const Index = () => {
                     "itemOffered": {
                         "@type": "Course",
                         "name": "Simulări Interactive Fizică",
-                        "description": "24+ simulări interactive pentru pendule, unde, oscilații, termodinamică și mai mult"
+                        "description": "40+ simulări interactive pentru pendule, unde, oscilații, termodinamică și mai mult"
                     }
                 },
                 {
@@ -147,7 +147,7 @@ const Index = () => {
         <Layout>
             <SEO
                 title="PULS - Platformă Educațională pentru Fizică Interactivă | Simulări și Probleme BAC"
-                description="Platformă educațională modernă pentru studiul fizicii. 24+ simulări interactive, probleme BAC cu rezolvări, resurse teoretice și asistent AI pentru elevi și profesori."
+                description="Platformă educațională modernă pentru studiul fizicii. 40+ simulări interactive, probleme BAC cu rezolvări, resurse teoretice și asistent AI pentru elevi și profesori."
                 keywords="fizică, educație, simulări fizică, probleme BAC fizică, pendule, unde, oscilații, termodinamică, mecanică, electricitate, optică, platformă educațională, învățare fizică, simulări interactive"
                 image="/res/icons/New-logo.png"
                 structuredData={structuredData}
@@ -158,7 +158,7 @@ const Index = () => {
                     <div id="hero-text-container" className="hidden hidden-left">
                         <h1>Descoperă fizica prin exerciții și simulări interactive</h1>
                         <p>
-                            PULS - platforma educațională cu 35+ simulări interactive, resurse educaționale, probleme de BAC rezolvate, grile și un asistent care te ghidează pas cu pas.
+                            PULS - platforma educațională cu 40+ simulări interactive, resurse educaționale, probleme de BAC rezolvate, grile și un asistent care te ghidează pas cu pas.
                         </p>
                         <div className="buttons">
                             {loading || !user ? (

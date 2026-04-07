@@ -146,8 +146,8 @@ const SimulariPage = () => {
   return (
     <Layout>
       <SEO
-        title="Simulări Interactive Fizică | PULS - 42+ Simulări Educaționale"
-        description="Explorează fizica prin simulări interactive: pendule, unde, oscilații, termodinamică, mecanică, electricitate, optică, lasere, fizică cuantică, atomul, astronomie și mai multe. 42+ simulări educaționale pentru elevi și profesori."
+        title="Simulări Interactive Fizică | PULS - 40+ Simulări Educaționale"
+        description="Explorează fizica prin simulări interactive: pendule, unde, oscilații, termodinamică, mecanică, electricitate, optică, lasere, fizică cuantică, atomul, astronomie și mai multe. 40+ simulări educaționale pentru elevi și profesori."
         keywords="simulări fizică, simulări interactive fizică, pendul simulare, unde simulare, oscilații simulare, termodinamică simulare, fizică interactivă, fizică cuantică simulare, atomul simulare, astronomie simulare"
         image="/res/icons/New-logo.png"
       />
