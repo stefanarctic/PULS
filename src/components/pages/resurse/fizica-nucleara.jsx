@@ -32,6 +32,26 @@ const FizicaNuclearaPage = () => {
 
             <div className="space-y-8 md:space-y-12">
               <div className="rounded-container px-4 py-5 sm:p-8">
+                <h2 className="text-xl sm:text-2xl font-bold mb-4">Scurt istoric și context românesc</h2>
+                <p className="text-sm sm:text-base leading-7 text-muted-foreground mb-4">
+                  În România, discuția despre apă grea este legată de dezvoltarea infrastructurii nucleare și de etapa
+                  în care au fost construite instalații proprii pentru separarea izotopică a deuteriului. În acest
+                  context apare și numele fizicianului <strong>Dorel Mihai Constantinescu</strong>, asociat cu modelarea
+                  proceselor de fabricație pentru D₂O.
+                </p>
+                <p className="text-sm sm:text-base leading-7 text-muted-foreground mb-4">
+                  În anii 1970, la <strong>Uzina G din Râmnicu Vâlcea</strong>, el a lucrat în zona de calcul și simulare
+                  a proceselor implicate în obținerea apei grele, contribuind la etapa în care România a trecut de la
+                  idee și proiectare la rezultate experimentale concrete.
+                </p>
+                <p className="text-sm sm:text-base leading-7 text-muted-foreground mb-0">
+                  Pentru elevi, această legătură este utilă fiindcă arată că apa grea nu ține doar de formule sau
+                  definiții, ci și de istoria tehnologiei nucleare din România, de rolul moderatorului în reactor și de
+                  modul în care cercetarea, ingineria și simularea au lucrat împreună.
+                </p>
+              </div>
+
+              <div className="rounded-container px-4 py-5 sm:p-8">
                 <h2 className="text-xl sm:text-2xl font-bold mb-4">Ce compară simulatorul D₂O vs H₂O</h2>
                 <p className="text-sm sm:text-base leading-7 text-muted-foreground mb-4">
                   În cod, secțiunea „Corp” folosește un <strong>slider de fracție molară fictivă</strong> pentru D₂O și
