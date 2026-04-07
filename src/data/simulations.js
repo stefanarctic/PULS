@@ -40,6 +40,7 @@ import eliNpLaserImg from "/res/screenshots/Eli_Np_Laser_Screenshot.png";
 import tabelPeriodicImg from "/res/screenshots/Tabel_periodic_Screenshot.png";
 import legaturiAtomiImg from "/res/screenshots/legaturi_atomi_Screenshot.png";
 import apaGreaImg from "/res/screenshots/apa_grea_1.png";
+import instalatieSchimbIzotopicImg from "/res/screenshots/apa_grea_simulator.png";
 export const simulationsConfig = [
   {
     id: 1,
@@ -549,6 +550,20 @@ export const simulationsConfig = [
     iframeSrc: "/simulari/apa_grea/index.html",
     maxHeight: "90vh",
     category: "Fizică nucleară"
+  },
+  {
+    id: 43,
+    slug: "instalatie-schimb-izotopic",
+    route: "/simulare/instalatie-schimb-izotopic",
+    title: "Instalație de schimb izotopic (D₂O)",
+    description:
+      "Simulează principiile de separare izotopică pentru apă grea: etaje, transfer de masă, concentrație și eficiența procesului.",
+    image: instalatieSchimbIzotopicImg,
+    caption: "Instalație de schimb izotopic",
+    iframeSrc: "/simulari/instalatie_schimb_izotopic/index.html",
+    maxHeight: "92vh",
+    category: "Fizică nucleară",
+    eyebrow: "Fizică nucleară | Simulare interactivă"
   },
 ];
 

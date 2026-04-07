@@ -1897,6 +1897,35 @@ const ResursePage = () => {
         },
       ],
     },
+    {
+      section: "4. Instalație de schimb izotopic (D₂O)",
+      formulas: [
+        {
+          title: "Factor de separare",
+          formula: "\\( \\alpha = \\dfrac{(x_D/(1-x_D))_{A}}{(x_D/(1-x_D))_{B}} \\)",
+          explanation:
+            "Măsoară eficiența separării izotopice între două faze (sau două curente aflate în echilibru). În simulatoarele didactice, creșterea lui α accelerează îmbogățirea în deuteriu.",
+        },
+        {
+          title: "Bilanț de masă pentru deuteriu",
+          formula: "\\( F\\,x_F = P\\,x_P + W\\,x_W \\)",
+          explanation:
+            "Conservarea deuteriu într-o unitate de separare: ce intră cu alimentarea (F) se regăsește în produs (P) și reziduu (W).",
+        },
+        {
+          title: "Îmbogățire pe etaje (aprox.)",
+          formula: "\\( x_D^{(n)} \\approx x_D^{(0)}\\,\\alpha^n \\)",
+          explanation:
+            "Model simplificat pentru a ilustra tendința: mai multe etaje utile n și un factor de separare mai bun duc la concentrații mai mari de D₂O.",
+        },
+        {
+          title: "Randament global",
+          formula: "\\( \\eta = \\dfrac{m_{D_2O,\\,produs}}{m_{D_2O,\\,alimentare}} \\times 100\\% \\)",
+          explanation:
+            "Arată cât din deuteriu ajunge efectiv în curentul de produs. În practică depinde de reflux, pierderi și eficiența etapelor de contact.",
+        },
+      ],
+    },
   ];
 
   const relativitateFormulas = [

@@ -4,6 +4,7 @@ import MathJaxRender from "@/components/MathJaxRender";
 import SEO from "../../SEO";
 
 import apaGreaImg from "/res/screenshots/apa_grea_1.png";
+import instalatieSchimbIzotopicImg from "/res/screenshots/apa_grea_simulator.png";
 
 const FizicaNuclearaPage = () => {
   return (
@@ -121,6 +122,89 @@ const FizicaNuclearaPage = () => {
                   <a href="/simulare/apa-grea" rel="noopener noreferrer" className="resurse-link w-full sm:w-auto">
                     <Button size="lg" className="w-full sm:w-auto">
                       Simulare: D₂O vs H₂O
+                    </Button>
+                  </a>
+                </div>
+              </div>
+
+              <div className="rounded-container px-4 py-5 sm:p-8">
+                <h2 className="text-xl sm:text-2xl font-bold mb-4">Instalație de schimb izotopic (D₂O)</h2>
+                <p className="text-sm sm:text-base leading-7 text-muted-foreground mb-4">
+                  Acest simulator ilustrează pe scurt cum funcționează o instalație de <strong>schimb izotopic</strong>&nbsp;
+                  pentru creșterea concentrației de deuteriu în apă. În loc să urmărești doar formula finală, vezi și
+                  efectul etapelor de proces, al transferului de masă și al eficienței globale.
+                </p>
+                <p className="text-sm sm:text-base leading-7 text-muted-foreground mb-6">
+                  Modelul este educațional: te ajută să înțelegi tendințele principale din separarea izotopică, nu să
+                  proiectezi industrial o instalație reală.
+                </p>
+                <p className="text-sm sm:text-base leading-7 text-muted-foreground mb-6">
+                  În contextul istoriei tehnologiei românești, <strong>Dorel Mihai Constantinescu</strong> a explicat în
+                  detaliu de ce separarea apei grele este dificilă: proprietățile chimice ale H₂O și D₂O sunt foarte
+                  apropiate, diferențele utile sunt în principal fizice, iar trecerea de la abundența naturală (aprox.
+                  140 ppm) la concentrații nucleare de 99,8% cere instalații extinse și consum energetic mare.
+                </p>
+
+                <div className="image-slider h-52 sm:h-64 md:h-80 relative flex items-center justify-center mb-6 md:mb-8">
+                  <img
+                    src={instalatieSchimbIzotopicImg}
+                    alt="Simulator instalație de schimb izotopic pentru apă grea"
+                    className="w-full h-full object-contain mx-auto my-auto"
+                  />
+                </div>
+
+                <h3 className="text-lg sm:text-xl font-semibold mb-3">
+                  Formule utile pentru interpretarea simulatorului
+                </h3>
+
+                <h4 className="text-base sm:text-lg font-semibold mb-2">1. Factor de separare izotopică</h4>
+                <div className="formula-resurse text-sm sm:text-base md:text-lg font-mono mb-4">
+                  {"\\( \\alpha = \\dfrac{(x_D/(1-x_D))_{faza\\,A}}{(x_D/(1-x_D))_{faza\\,B}} \\)"}
+                  <MathJaxRender />
+                </div>
+                <p className="text-sm sm:text-base leading-7 text-muted-foreground mb-5">
+                  Factorul {"\\(\\alpha\\)"} <MathJaxRender /> arată cât de bine se separă izotopii între două faze la
+                  echilibru. Cu {"\\(\\alpha\\)"} <MathJaxRender /> mai mare, separarea e mai eficientă pe fiecare etapă.
+                </p>
+
+                <h4 className="text-base sm:text-lg font-semibold mb-2">2. Bilanț de masă pentru deuteriu</h4>
+                <div className="formula-resurse text-sm sm:text-base md:text-lg font-mono mb-4">
+                  {"\\( F\\,x_F = P\\,x_P + W\\,x_W \\)"}
+                  <MathJaxRender />
+                </div>
+                <p className="text-sm sm:text-base leading-7 text-muted-foreground mb-5">
+                  Relația leagă debitul de alimentare {"\\(F\\)"} <MathJaxRender /> și concentrația {"\\(x_F\\)"}{" "}
+                  <MathJaxRender /> de curenții de produs {"\\(P\\)"} <MathJaxRender /> și reziduu {"\\(W\\)"}{" "}
+                  <MathJaxRender />.
+                </p>
+
+                <h4 className="text-base sm:text-lg font-semibold mb-2">3. Îmbogățire pe etaje (model simplificat)</h4>
+                <div className="formula-resurse text-sm sm:text-base md:text-lg font-mono mb-5">
+                  {"\\( x_D^{(n)} \\approx x_D^{(0)}\\,\\alpha^{n} \\) (aprox. didactică)"}
+                  <MathJaxRender />
+                </div>
+                <p className="text-sm sm:text-base leading-7 text-muted-foreground mb-6">
+                  Formula arată ideea-cheie: mai multe etaje utile {"\\(n\\)"} <MathJaxRender /> pot crește concentrația
+                  de deuteriu, mai ales când fiecare etapă contribuie cu o separare netă.
+                </p>
+
+                <h4 className="text-base sm:text-lg font-semibold mb-2">4. Structura tehnologică pe două trepte</h4>
+                <p className="text-sm sm:text-base leading-7 text-muted-foreground mb-4">
+                  Contribuția tehnică descrisă pentru Uzina G evidențiază două zone:{" "}
+                  <strong>îmbogățire primară</strong> (debite mari, concentrații mici, pondere majoră în consum) și{" "}
+                  <strong>finisare</strong> (debite mici, concentrații mari până la 99,8% D₂O).
+                </p>
+                <p className="text-sm sm:text-base leading-7 text-muted-foreground mb-4">
+                  Schema clasică cuplează schimbul izotopic <strong>H₂O-H₂S</strong> în etaje bitermice
+                  (coloană rece + coloană caldă) cu <strong>distilarea/rectificarea sub vid</strong> pentru etapa finală.
+                  Simulatorul reproduce didactic această logică de cascadă și importanța optimizării raportului
+                  lichid-gaz.
+                </p>
+
+                <div className="flex flex-col sm:flex-row sm:items-center sm:justify-end gap-4 sm:gap-6">
+                  <a href="/simulare/instalatie-schimb-izotopic" rel="noopener noreferrer" className="resurse-link w-full sm:w-auto">
+                    <Button size="lg" className="w-full sm:w-auto">
+                      Simulare: instalație schimb izotopic
                     </Button>
                   </a>
                 </div>

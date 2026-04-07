@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simulator de Apă Grea | Procesul GS</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <h1>🧪 SIMULATOR DE APĂ GREA</h1>
+        <p>Procesul Girdler-Sulfide (H₂O – H₂S) • Schimb Izotopic Biterm</p>
+        <button id="panelToggleBtn" class="panel-toggle-btn" type="button" aria-label="Deschide panoul de control">
+            Parametri
+        </button>
+    </header>
+
+    <main>
+        <section class="simulation-area">
+            <div id="overlay" class="game-overlay">
+                <h2>Misiunea Ta: 99.8% Deuteriu</h2>
+                <p>
+                    Începi de la 140 ppm (apă naturală).<br>
+                    Treci mai întâi prin îmbogățirea primară cu schimb izotopic H₂O-H₂S, apoi prin finisare prin distilare sub vid.
+                </p>
+                <button id="startBtn" class="btn">ÎNCEPE PROCESUL</button>
+            </div>
+
+            <div class="columns-container">
+                <div class="column cold-col">
+                    <div id="coldColumnLabel" class="column-label">COLOANĂ RECE (30°C)</div>
+                    <canvas id="coldCanvas"></canvas>
+                    <div class="flow-indicator flow-down">↓ LICHID</div>
+                    <div class="flow-indicator flow-up">↑ GAZ</div>
+                </div>
+                <div class="column hot-col">
+                    <div id="hotColumnLabel" class="column-label">COLOANĂ CALDĂ (130°C)</div>
+                    <canvas id="hotCanvas"></canvas>
+                    <div class="flow-indicator flow-down">↓ LICHID</div>
+                    <div class="flow-indicator flow-up">↑ GAZ</div>
+                </div>
+            </div>
+
+            <div class="concentration-bar">
+                <div id="concFill" class="concentration-fill" style="height: 0.1%;"></div>
+            </div>
+
+            <div id="successOverlay" class="game-overlay hidden">
+                <h2>Felicitări! Ai atins ținta de puritate.</h2>
+                <p>
+                    Simulatorul a ajuns la nivelul necesar pentru apă grea de puritate ridicată.
+                    Mai jos ai un rezumat al parametrilor și al procesului care a dus la rezultat.
+                </p>
+                <div id="successSummary" class="success-summary"></div>
+                <div class="success-actions">
+                    <button id="continueBtn" class="btn secondary-btn">Continuă simularea</button>
+                    <button id="restartBtn" class="btn">Repornește</button>
+                </div>
+            </div>
+        </section>
+
+        <aside id="controlsPanel" class="controls-panel">
+            <button id="panelCloseBtn" class="panel-close-btn" type="button" aria-label="Închide panoul de control">×</button>
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <span class="stat-label">Concentrație</span>
+                    <span id="ppmDisplay" class="stat-value">140</span>
+                    <span class="stat-label">PPM D₂O</span>
+                </div>
+                <div class="stat-card">
+                    <span class="stat-label">Puritate</span>
+                    <span id="percentDisplay" class="stat-value">0.0140%</span>
+                    <span class="stat-label">D₂O / H₂O</span>
+                </div>
+            </div>
+
+            <div class="stage-box">
+                <span class="stat-label">Etapa Curentă</span>
+                <span id="stageDisplay" class="stage-value">Îmbogățire primară</span>
+                <p id="stageHint" class="stage-hint">
+                    Ținta etapei: ridică amestecul la cel puțin 10% deuteriu pentru a putea trimite produsul către instalația de finisare.
+                </p>
+            </div>
+
+            <div class="section-title">Etapa 1: Schimb izotopic H₂O-H₂S</div>
+
+            <div class="control-group">
+                <label for="coldTempSlider">Temperatură Coloană Rece: <span id="coldTempVal">30°C</span></label>
+                <div class="control-row">
+                    <input type="range" id="coldTempSlider" min="10" max="50" value="30">
+                    <input type="number" id="coldTempInput" min="10" max="50" step="1" value="30">
+                </div>
+            </div>
+
+            <div class="control-group">
+                <label for="hotTempSlider">Temperatură Coloană Caldă: <span id="hotTempVal">130°C</span></label>
+                <div class="control-row">
+                    <input type="range" id="hotTempSlider" min="100" max="160" value="130">
+                    <input type="number" id="hotTempInput" min="100" max="160" step="1" value="130">
+                </div>
+            </div>
+
+            <div class="control-group">
+                <label for="lgRatioSlider">Raport L/G (Lichid/Gaz): <span id="lgRatioVal">1.00</span></label>
+                <div class="control-row">
+                    <input type="range" id="lgRatioSlider" min="0.5" max="3.5" step="0.01" value="1.0">
+                    <input type="number" id="lgRatioInput" min="0.5" max="3.5" step="0.01" value="1.00">
+                </div>
+            </div>
+
+            <div class="section-title">Etapa 2: Finisare prin rectificare sub vid</div>
+
+            <div class="control-group">
+                <label for="vacuumSlider">Presiune de lucru: <span id="vacuumVal">55 mbar</span></label>
+                <div class="control-row">
+                    <input type="range" id="vacuumSlider" min="20" max="80" step="1" value="55" disabled>
+                    <input type="number" id="vacuumInput" min="20" max="80" step="1" value="55" disabled>
+                </div>
+            </div>
+
+            <div class="control-group">
+                <label for="refluxSlider">Raport de reflux: <span id="refluxVal">4.00</span></label>
+                <div class="control-row">
+                    <input type="range" id="refluxSlider" min="2" max="8" step="0.01" value="4.00" disabled>
+                    <input type="number" id="refluxInput" min="2" max="8" step="0.01" value="4.00" disabled>
+                </div>
+            </div>
+
+            <div class="graph-container">
+                <canvas id="graphCanvas"></canvas>
+            </div>
+
+            <div class="info-box" style="font-size: 0.8rem; background: rgba(0,0,0,0.2); padding: 10px; border-radius: 5px; margin-top: 10px;">
+                <strong>💡 Pont Industrial:</strong> 
+                În instalația primară, deuteriul trece în lichid la rece și în gaz la cald. 
+                După atingerea unei concentrații de ordinul 10-30%, produsul merge la finisare, unde vidul și refluxul trebuie ținute aproape de punctul optim pentru a ajunge exact la 99.8%.
+            </div>
+        </aside>
+    </main>
+    <div id="panelBackdrop" class="panel-backdrop"></div>
+
+    <script src="script.js"></script>
+</body>
+</html>
