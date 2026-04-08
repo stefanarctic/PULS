@@ -555,9 +555,9 @@ export const simulationsConfig = [
     id: 43,
     slug: "instalatie-schimb-izotopic",
     route: "/simulare/instalatie-schimb-izotopic",
-    title: "Instalație de schimb izotopic (D₂O)",
+    title: "Instalație de schimb izotopic (H₂S - H₂O)",
     description:
-      "Simulează principiile de separare izotopică pentru apă grea: etaje, transfer de masă, concentrație și eficiența procesului.",
+      "Simulează procesele de separare izotopică pentru apă grea: etaje, schimb izotopic, evoluția concentrației și eficiența procesului.",
     image: instalatieSchimbIzotopicImg,
     caption: "Instalație de schimb izotopic",
     iframeSrc: "/simulari/instalatie_schimb_izotopic/index.html",

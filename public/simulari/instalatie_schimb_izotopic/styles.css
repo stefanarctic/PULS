@@ -42,27 +42,391 @@ main {
     gap: 10px;
     background: rgba(0,0,0,0.3);
     border-radius: 8px;
-    padding: 15px;
+    padding: 12px;
     position: relative;
+    min-height: 0;
+    overflow: auto;
+}
+
+.etaje-row {
+    display: flex;
+    flex-direction: row;
+    align-items: stretch;
+    justify-content: flex-start;
+    gap: 12px;
+    flex: 1;
+    min-height: 0;
+    overflow-x: auto;
+    padding-bottom: 4px;
+}
+
+.etaj-unit {
+    position: relative;
+    flex: 0 0 auto;
+    width: min(340px, 92vw);
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    padding: 8px;
+    border-radius: 12px;
+    border: 2px solid rgba(255,255,255,0.12);
+    background: rgba(0,0,0,0.2);
+    transition: border-color 0.2s, box-shadow 0.2s;
+    cursor: pointer;
+    outline: none;
+}
+
+.etaj-unit:focus-visible {
+    box-shadow: 0 0 0 2px rgba(46, 204, 113, 0.5);
+}
+
+.etaj-unit.etaj-active {
+    border-color: rgba(46, 204, 113, 0.55);
+    box-shadow: 0 0 18px rgba(46, 204, 113, 0.18);
+}
+
+.etaj-unit.etaj-locked {
+    cursor: not-allowed;
+    opacity: 0.88;
+}
+
+.etaj-heading {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    text-align: center;
+}
+
+.etaj-name {
+    font-weight: 800;
+    font-size: 0.95rem;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: var(--heavy-gold);
+}
+
+.etaj-target {
+    font-size: 0.72rem;
+    color: #aeb8c2;
+}
+
+.etaj-hypothesis-note {
+    margin: 0;
+    font-size: 0.65rem;
+    line-height: 1.35;
+    color: #9aa5b1;
+    text-align: center;
+    font-style: italic;
+}
+
+.etaj-lock-overlay {
+    position: absolute;
+    inset: 0;
+    z-index: 40;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(12, 14, 18, 0.72);
+    border-radius: 12px;
+    backdrop-filter: blur(2px);
+}
+
+.etaj-lock-overlay.hidden {
+    display: none;
+}
+
+.lock-icon {
+    font-size: 2.4rem;
+    line-height: 1;
+    filter: grayscale(1);
+    opacity: 0.85;
+    user-select: none;
+}
+
+.rupere-teorie {
+    font-size: 0.62rem;
+    line-height: 1.45;
+    color: #b8c2cc;
+    padding: 6px 8px;
+    border-radius: 8px;
+    background: rgba(0,0,0,0.25);
+    border: 1px solid rgba(255,255,255,0.08);
+    margin-top: 4px;
+}
+
+.info-box-note {
+    font-size: 0.78rem;
+    background: rgba(0,0,0,0.2);
+    padding: 10px;
+    border-radius: 5px;
+    line-height: 1.45;
 }
 
 .columns-container {
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     justify-content: center;
-    align-items: center;
-    flex-grow: 1;
-    gap: 26px;
-    max-width: 420px;
-    margin: 0 auto;
+    align-items: stretch;
+    flex: 1;
+    gap: 0;
+    min-height: 220px;
     position: relative;
 }
 
+.columns-container:not(.columns-container--legacy) {
+    overflow: visible;
+}
+
+/* Etaj 1 — aspect original: coloană rece deasupra, coloană caldă dedesubt, țevi la mijloc */
+.etaj-unit--legacy {
+    width: min(340px, 94vw);
+}
+
+.columns-container--legacy {
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 26px;
+    width: 100%;
+    max-width: 320px;
+    margin: 0 auto;
+    min-height: 0;
+    position: relative;
+}
+
+.columns-container--legacy .column {
+    width: 100%;
+    max-width: 300px;
+    min-height: 300px;
+    flex: 0 0 auto;
+}
+
+.columns-container--legacy .loop-pipes {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    width: min(300px, 100%);
+    height: 140px;
+    transform: translate(-50%, -50%);
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: center;
+    align-items: stretch;
+    gap: 10px;
+    z-index: 9;
+}
+
+.columns-container--legacy .pipe {
+    position: relative;
+    top: 0;
+    left: auto;
+    width: 20px;
+    height: 100%;
+    min-height: 0;
+    flex: 0 0 20px;
+}
+
+.columns-container--legacy .pipe-top,
+.columns-container--legacy .pipe-bottom {
+    left: auto;
+}
+
+.columns-container--legacy .pipe-label {
+    left: 50%;
+    top: 50%;
+    bottom: auto;
+    transform: translate(-50%, -50%);
+    width: 120px;
+    font-size: 0.58rem;
+    text-align: center;
+}
+
+.columns-container--legacy .pipe::before {
+    background: repeating-linear-gradient(
+        to bottom,
+        rgba(255,255,255,0.0) 0px,
+        rgba(255,255,255,0.0) 10px,
+        rgba(255,255,255,0.5) 10px,
+        rgba(255,255,255,0.5) 18px
+    );
+    animation: flowPipeY 1.2s linear infinite;
+}
+
+.columns-container--legacy .hot-col .column-label {
+    top: auto;
+    bottom: 10px;
+}
+
+.columns-container--legacy .hot-col .column-conc-label {
+    top: auto;
+    bottom: 46px;
+}
+
+.columns-container--legacy .flow-down {
+    left: 20%;
+    top: 20%;
+    font-size: 1.5rem;
+}
+
+.columns-container--legacy .flow-up {
+    right: 20%;
+    bottom: 20%;
+    font-size: 1.5rem;
+}
+
+.columns-with-liquid {
+    position: relative;
+    padding-top: 18px;
+    padding-bottom: 18px;
+}
+
+.liquid-pipes-bridge {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    z-index: 8;
+    pointer-events: none;
+}
+
+/* Țevi mai scurte = mai departe de marginile vaselor; lichid/gaz vizibil prin „sticlă” */
+.liquid-pipe {
+    position: absolute;
+    left: 26%;
+    right: 26%;
+    height: 12px;
+    border-radius: 999px;
+    border: 1.5px solid rgba(255, 255, 255, 0.42);
+    background:
+        linear-gradient(180deg, rgba(255, 255, 255, 0.38) 0%, rgba(160, 220, 255, 0.22) 35%, rgba(40, 120, 190, 0.35) 100%);
+    box-shadow:
+        inset 0 2px 6px rgba(255, 255, 255, 0.45),
+        inset 0 -3px 10px rgba(0, 60, 120, 0.35),
+        0 0 14px rgba(100, 200, 255, 0.35);
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.liquid-pipe::before {
+    content: "";
+    position: absolute;
+    inset: 3px;
+    border-radius: inherit;
+    background: repeating-linear-gradient(
+        90deg,
+        rgba(255, 255, 255, 0) 0px,
+        rgba(255, 255, 255, 0) 8px,
+        rgba(255, 255, 255, 0.22) 8px,
+        rgba(255, 255, 255, 0.22) 11px
+    );
+    animation: liquidStream 1.25s linear infinite;
+    opacity: 0.95;
+}
+
+.liquid-pipe::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    background:
+        radial-gradient(ellipse 5px 4px at 18% 50%, rgba(255, 255, 255, 0.95) 0%, transparent 65%),
+        radial-gradient(ellipse 4px 3px at 48% 50%, rgba(220, 245, 255, 0.75) 0%, transparent 60%),
+        radial-gradient(ellipse 5px 4px at 78% 50%, rgba(255, 255, 255, 0.85) 0%, transparent 65%);
+    background-size: 140% 100%;
+    animation: liquidBubbles 2.1s linear infinite;
+    opacity: 0.9;
+    pointer-events: none;
+}
+
+.liquid-pipe--gas {
+    background:
+        linear-gradient(180deg, rgba(255, 240, 220, 0.35) 0%, rgba(255, 160, 110, 0.22) 45%, rgba(200, 70, 40, 0.28) 100%);
+    box-shadow:
+        inset 0 2px 5px rgba(255, 230, 200, 0.35),
+        inset 0 -3px 8px rgba(120, 40, 20, 0.35),
+        0 0 12px rgba(255, 150, 90, 0.28);
+}
+
+.liquid-pipe--gas::before {
+    background: repeating-linear-gradient(
+        90deg,
+        rgba(255, 255, 255, 0) 0px,
+        rgba(255, 255, 255, 0) 6px,
+        rgba(255, 220, 180, 0.28) 6px,
+        rgba(255, 220, 180, 0.28) 9px
+    );
+    animation: liquidStream 1.4s linear infinite reverse;
+}
+
+.liquid-pipe--gas::after {
+    background:
+        radial-gradient(ellipse 4px 3px at 22% 50%, rgba(255, 255, 255, 0.75) 0%, transparent 60%),
+        radial-gradient(ellipse 3px 2px at 58% 45%, rgba(255, 200, 160, 0.55) 0%, transparent 55%),
+        radial-gradient(ellipse 4px 3px at 82% 52%, rgba(255, 240, 220, 0.65) 0%, transparent 58%);
+    animation: gasBubbles 1.8s linear infinite reverse;
+}
+
+.liquid-pipe-label {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 0.52rem;
+    letter-spacing: 0.03em;
+    color: rgba(255, 255, 255, 0.88);
+    text-transform: uppercase;
+    white-space: nowrap;
+    text-shadow: 0 0 6px rgba(0, 0, 0, 0.75);
+    z-index: 2;
+    pointer-events: none;
+}
+
+.liquid-pipe-top .liquid-pipe-label {
+    bottom: calc(100% + 6px);
+    top: auto;
+}
+
+.liquid-pipe-bottom .liquid-pipe-label {
+    top: calc(100% + 6px);
+    bottom: auto;
+}
+
+.liquid-pipe-top {
+    top: 8px;
+}
+
+.liquid-pipe-bottom {
+    bottom: 8px;
+}
+
+@keyframes liquidStream {
+    from { transform: translateX(-14px); }
+    to { transform: translateX(14px); }
+}
+
+@keyframes liquidBubbles {
+    from { transform: translateX(-8%); }
+    to { transform: translateX(8%); }
+}
+
+@keyframes gasBubbles {
+    from { transform: translateX(6%); }
+    to { transform: translateX(-6%); }
+}
+
 .column {
-    width: 300px;
-    min-height: 360px;
+    width: 118px;
+    min-width: 96px;
+    min-height: 220px;
+    flex: 1 1 118px;
+    max-width: 140px;
     border: 2px solid #555;
-    border-radius: 15px;
+    border-radius: 12px;
     position: relative;
     overflow: hidden;
     background: linear-gradient(to bottom, #222, #111);
@@ -100,8 +464,7 @@ main {
 }
 
 .hot-col .column-conc-label {
-    top: auto;
-    bottom: 46px;
+    top: 48px;
 }
 
 .cold-col { border-color: var(--cold-blue); }
@@ -109,8 +472,7 @@ main {
 .hot-col { border-color: var(--hot-red); }
 .hot-col .column-label { background: var(--hot-red); }
 .hot-col .column-label {
-    top: auto;
-    bottom: 10px;
+    top: 10px;
 }
 
 .simulation-area.moment-flash {
@@ -195,8 +557,8 @@ body.gold-mode .column {
 }
 
 .hot-col .tray-stack {
-    justify-content: space-around;
-    inset: 86px 16px 84px;
+    justify-content: space-evenly;
+    inset: 48px 14px 28px;
 }
 
 .process-state {
@@ -505,29 +867,39 @@ input[type="number"]:disabled {
     animation: flowPulse 1.2s ease-in-out infinite;
 }
 
-.flow-down { left: 20%; top: 20%; }
-.flow-up { right: 20%; bottom: 20%; }
+.flow-down { left: 12%; top: 22%; font-size: 1rem; }
+.flow-up { right: 12%; bottom: 22%; font-size: 1rem; }
 
+/* Etaj 2–3: țevi de legătură ORIZONTALE între coloane (intră vizual în ambele vase) */
 .loop-pipes {
-    position: absolute;
-    left: 50%;
-    width: 120px;
-    top: 50%;
-    height: 140px;
-    transform: translate(-50%, -50%);
+    position: relative;
+    width: 92px;
+    min-width: 88px;
+    flex-shrink: 0;
+    align-self: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: stretch;
+    gap: 16px;
+    margin-left: -18px;
+    margin-right: -18px;
+    padding: 0 6px;
     pointer-events: none;
-    z-index: 9;
+    z-index: 12;
 }
 
 .pipe {
-    position: absolute;
-    top: 0;
-    width: 20px;
-    height: 100%;
-    border-radius: 999px;
+    position: relative;
+    flex: 0 0 auto;
+    height: 16px;
+    width: 100%;
+    min-height: 16px;
+    margin: 0;
+    border-radius: 8px;
     border: 1px solid rgba(255,255,255,0.35);
     background:
-        linear-gradient(180deg, rgba(255,255,255,0) 0%, rgba(255,255,255,0.25) 50%, rgba(255,255,255,0) 100%);
+        linear-gradient(90deg, rgba(255,255,255,0) 0%, rgba(255,255,255,0.22) 50%, rgba(255,255,255,0) 100%);
     overflow: hidden;
 }
 
@@ -536,21 +908,21 @@ input[type="number"]:disabled {
     position: absolute;
     inset: 0;
     background: repeating-linear-gradient(
-        to bottom,
+        to right,
         rgba(255,255,255,0.0) 0px,
         rgba(255,255,255,0.0) 10px,
         rgba(255,255,255,0.5) 10px,
         rgba(255,255,255,0.5) 18px
     );
-    animation: flowPipeY 1.2s linear infinite;
+    animation: flowPipeX 1.15s linear infinite;
 }
 
 .pipe-top {
-    left: calc(50% - 34px);
+    left: auto;
 }
 
 .pipe-bottom {
-    left: calc(50% + 14px);
+    left: auto;
 }
 
 .pipe-left::before {
@@ -559,16 +931,25 @@ input[type="number"]:disabled {
 
 .pipe-label {
     position: absolute;
-    left: 28px;
-    top: 50%;
-    transform: translateY(-50%);
-    color: rgba(255,255,255,0.75);
-    font-size: 0.6rem;
+    left: 50%;
+    bottom: calc(100% + 4px);
+    top: auto;
+    transform: translateX(-50%);
+    color: rgba(255,255,255,0.78);
+    font-size: 0.42rem;
     font-weight: 700;
-    letter-spacing: 0.03em;
+    letter-spacing: 0.02em;
     white-space: nowrap;
     text-transform: uppercase;
-    text-shadow: 0 0 8px rgba(0,0,0,0.5);
+    text-shadow: 0 0 8px rgba(0,0,0,0.55);
+    width: 96px;
+    text-align: center;
+    line-height: 1.1;
+}
+
+@keyframes flowPipeX {
+    from { transform: translateX(0); }
+    to { transform: translateX(18px); }
 }
 
 @keyframes flowPipeY {
@@ -606,22 +987,35 @@ input[type="number"]:disabled {
         padding: 10px;
     }
 
-    .columns-container {
-        gap: 10px;
-        max-width: none;
+    .etaje-row {
+        flex-direction: column;
+        align-items: center;
+        overflow-x: visible;
     }
 
-    .loop-pipes { display: none; }
+    .etaj-unit {
+        width: min(96vw, 380px);
+    }
 
-    .column-label {
-        font-size: 0.72rem;
-        padding: 4px 8px;
-        white-space: nowrap;
+    .columns-container {
+        gap: 0;
+        min-height: 200px;
     }
 
     .column {
-        width: min(70vw, 280px);
-        min-height: 280px;
+        min-height: 200px;
+        max-width: none;
+    }
+
+    .columns-container--legacy .column {
+        min-height: 240px;
+        max-width: min(300px, 92vw);
+    }
+
+    .column-label {
+        font-size: 0.65rem;
+        padding: 4px 8px;
+        white-space: nowrap;
     }
 
     .flow-indicator {
