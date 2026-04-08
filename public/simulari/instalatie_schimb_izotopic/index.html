@@ -28,16 +28,37 @@
 
             <div class="columns-container">
                 <div class="column cold-col">
-                    <div id="coldColumnLabel" class="column-label">COLOANĂ RECE (30°C)</div>
+                    <div id="coldColumnLabel" class="column-label">COLOANĂ RECE (35°C)</div>
+                    <div id="coldConcLabel" class="column-conc-label">D₂O concentration: 0.0140%</div>
                     <canvas id="coldCanvas"></canvas>
+                    <div class="tray-stack" aria-hidden="true">
+                        <div class="tray"></div>
+                        <div class="tray"></div>
+                        <div class="tray"></div>
+                        <div class="tray"></div>
+                        <div class="tray"></div>
+                    </div>
                     <div class="flow-indicator flow-down">↓ LICHID</div>
                     <div class="flow-indicator flow-up">↑ GAZ</div>
                 </div>
                 <div class="column hot-col">
                     <div id="hotColumnLabel" class="column-label">COLOANĂ CALDĂ (130°C)</div>
+                    <div id="hotConcLabel" class="column-conc-label">D₂O concentration: 0.0140%</div>
                     <canvas id="hotCanvas"></canvas>
+                    <div class="tray-stack" aria-hidden="true">
+                        <div class="tray"></div>
+                        <div class="tray"></div>
+                    </div>
                     <div class="flow-indicator flow-down">↓ LICHID</div>
                     <div class="flow-indicator flow-up">↑ GAZ</div>
+                </div>
+                <div class="loop-pipes" aria-hidden="true">
+                    <div class="pipe pipe-top pipe-right">
+                        <span class="pipe-label">Rece ↓ Cald</span>
+                    </div>
+                    <div class="pipe pipe-bottom pipe-left">
+                        <span class="pipe-label">Cald ↑ Rece</span>
+                    </div>
                 </div>
             </div>
 
@@ -78,17 +99,27 @@
                 <span class="stat-label">Etapa Curentă</span>
                 <span id="stageDisplay" class="stage-value">Îmbogățire primară</span>
                 <p id="stageHint" class="stage-hint">
-                    Ținta etapei: ridică amestecul la cel puțin 10% deuteriu pentru a putea trimite produsul către instalația de finisare.
+                    Ținta etapei: ridică amestecul la 5% deuteriu pentru a debloca etapa de finisare.
                 </p>
+            </div>
+
+            <div id="processState" class="process-state process-idle">Process idle</div>
+
+            <div class="control-group">
+                <label for="simSpeedSlider">Viteză simulator: <span id="simSpeedVal">1.0x</span></label>
+                <div class="control-row">
+                    <input type="range" id="simSpeedSlider" min="1" max="30" step="0.1" value="1.0">
+                    <input type="number" id="simSpeedInput" min="1" max="30" step="0.1" value="1.0">
+                </div>
             </div>
 
             <div class="section-title">Etapa 1: Schimb izotopic H₂O-H₂S</div>
 
             <div class="control-group">
-                <label for="coldTempSlider">Temperatură Coloană Rece: <span id="coldTempVal">30°C</span></label>
+                <label for="coldTempSlider">Temperatură Coloană Rece: <span id="coldTempVal">35°C</span></label>
                 <div class="control-row">
-                    <input type="range" id="coldTempSlider" min="10" max="50" value="30">
-                    <input type="number" id="coldTempInput" min="10" max="50" step="1" value="30">
+                    <input type="range" id="coldTempSlider" min="20" max="50" value="35">
+                    <input type="number" id="coldTempInput" min="20" max="50" step="1" value="35">
                 </div>
             </div>
 
@@ -101,10 +132,10 @@
             </div>
 
             <div class="control-group">
-                <label for="lgRatioSlider">Raport L/G (Lichid/Gaz): <span id="lgRatioVal">1.00</span></label>
+                <label for="lgRatioSlider">Raport L/G (Lichid/Gaz): <span id="lgRatioVal">0.50</span></label>
                 <div class="control-row">
-                    <input type="range" id="lgRatioSlider" min="0.5" max="3.5" step="0.01" value="1.0">
-                    <input type="number" id="lgRatioInput" min="0.5" max="3.5" step="0.01" value="1.00">
+                    <input type="range" id="lgRatioSlider" min="0.45" max="0.55" step="0.001" value="0.5">
+                    <input type="number" id="lgRatioInput" min="0.45" max="0.55" step="0.001" value="0.500">
                 </div>
             </div>
 
