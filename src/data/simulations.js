@@ -41,6 +41,7 @@ import tabelPeriodicImg from "/res/screenshots/Tabel_periodic_Screenshot.png";
 import legaturiAtomiImg from "/res/screenshots/legaturi_atomi_Screenshot.png";
 import apaGreaImg from "/res/screenshots/apa_grea_1.png";
 import instalatieSchimbIzotopicImg from "/res/screenshots/apa_grea_simulator.png";
+import frecareAerImg from "/res/screenshots/Frecare_Aer_Screenshot.png";
 export const simulationsConfig = [
   {
     id: 1,
@@ -564,6 +565,19 @@ export const simulationsConfig = [
     maxHeight: "92vh",
     category: "Fizică nucleară",
     eyebrow: "Fizică nucleară | Simulare interactivă"
+  },
+  {
+    id: 44,
+    slug: "frecare-aer",
+    route: "/simulare/frecare-aer",
+    title: "Frecare cu aerul",
+    description:
+      "Compară căderea a două corpuri sub gravitație cu rezistența aerului: viteză terminală, masă, profil și arie (ex. foaie întinsă vs. mototolită).",
+    image: frecareAerImg,
+    caption: "Rezistența aerului la cădere",
+    iframeSrc: "/simulari/Simulator-Frecare-Aer/index.html",
+    maxHeight: "90vh",
+    category: "Mecanică"
   },
 ];
 
