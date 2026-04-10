@@ -10,6 +10,7 @@ import simulatorCiocnireImg from "/res/screenshots/Ciocnire_Screenshot.png";
 import simulatorPlanInclinatImg from "/res/screenshots/Plan_Inclinat_Screenshot.png";
 import proiectileImg from "/res/screenshots/Proiectile_Screenshot.png";
 import lanturiElasticeImg from "/res/screenshots/Lanturi_Elastice_Screenshot.png";
+import frecareAerImg from "/res/screenshots/Frecare_Aer_Screenshot.png";
 
 import Layout from "../../Layout";
 
@@ -64,6 +65,15 @@ const MecanicaPage = () => {
     { formula: "\\( m \\frac{d^2 x_i}{dt^2} = k(x_{i+1} - x_i) - k(x_i - x_{i-1}) \\)", title: "Ecuația de mișcare pentru o masă din lanț" },
   ];
 
+  const frecareAerFormulas = [
+    { formula: "\\( F_d = \\frac{1}{2}\\, C_d \\, \\rho \\, A \\, v^2 \\)", title: "Forța de rezistență a aerului (drag)" },
+    { formula: "\\( ma = mg - \\frac{1}{2}\\, C_d \\, \\rho \\, A \\, v^2 \\)", title: "Ecuația mișcării în cădere cu rezistență" },
+    { formula: "\\( v_t = \\sqrt{\\frac{2mg}{C_d \\, \\rho \\, A}} \\)", title: "Viteza terminală" },
+    { formula: "\\( v(t) = v_t \\tanh\\!\\left(\\frac{g\\,t}{v_t}\\right) \\)", title: "Viteza în funcție de timp" },
+    { formula: "\\( y(t) = \\frac{v_t^2}{g} \\ln\\!\\left(\\cosh\\!\\left(\\frac{g\\,t}{v_t}\\right)\\right) \\)", title: "Poziția în funcție de timp" },
+    { formula: "\\( \\text{Re} = \\frac{\\rho \\, v \\, L}{\\mu} \\)", title: "Numărul Reynolds" },
+  ];
+
   // Algoritm de încărcare progresivă - versiune simplificată
   useEffect(() => {
     const sections = [
@@ -73,6 +83,7 @@ const MecanicaPage = () => {
       { key: 'planInclinat', formulas: planInclinatFormulas },
       { key: 'proiectil', formulas: proiectilFormulas },
       { key: 'lanturiElastice', formulas: lanturiElasticeFormulas },
+      { key: 'frecareAer', formulas: frecareAerFormulas },
     ];
 
     // Inițializăm toate secțiunile cu batch-ul inițial
@@ -453,6 +464,69 @@ const MecanicaPage = () => {
                   </div>
                   <a
                     href="/simulare/lanturi-elastice"
+                    rel="noopener noreferrer"
+                    style={{ textDecoration: "none" }}
+                  >
+                    <Button size="lg">Vezi simularea</Button>
+                  </a>
+                </div>
+              </div>
+
+              {/* Frecarea cu aerul */}
+              <div className="rounded-container">
+                <h2 className="text-2xl font-bold mb-4">Frecarea cu aerul (rezistența aerodinamică)</h2>
+                <p className="text-muted-foreground mb-6">
+                  Atunci când un corp se deplasează printr-un fluid (aer, apă etc.), fluidul exercită asupra lui o forță de rezistență 
+                  numită <strong>drag</strong>. Această forță se opune mereu direcției de mișcare și crește rapid odată cu viteza — 
+                  mai exact, proporțional cu pătratul vitezei în regimul turbulent obișnuit.
+                </p>
+                <p className="text-muted-foreground mb-6">
+                  Forma corpului, aria secțiunii transversale și densitatea fluidului determină cât de mare este rezistența. 
+                  De exemplu, o foaie de hârtie întinsă cade mult mai încet decât aceeași foaie mototolită într-o bilă, 
+                  deși masa este identică — diferența vine din aria efectivă și coeficientul de drag. 
+                  Când forța de drag echilibrează greutatea, corpul atinge <strong>viteza terminală</strong> și nu mai accelerează.
+                </p>
+                <p className="text-muted-foreground mb-6">
+                  Înțelegerea rezistenței aerului este esențială în ingineria aeronautică, balistică, sporturi extreme și chiar în 
+                  proiectarea vehiculelor eficiente energetic. Numărul Reynolds indică dacă curgerea din jurul corpului este laminară 
+                  sau turbulentă, influențând direct valoarea coeficientului de drag.
+                </p>
+                <div className="image-slider h-64 md:h-80 relative flex items-center justify-center mb-8">
+                  <img
+                    src={frecareAerImg}
+                    alt="Simulare frecare cu aerul"
+                    className="w-full h-full object-contain mx-auto my-auto"
+                  />
+                </div>
+                <div className="mt-8 flex flex-col md:flex-row md:items-center justify-between gap-6">
+                  <div>
+                    <h3 className="text-xl font-semibold mb-4">Formule pentru rezistența aerului:</h3>
+                    
+                    {frecareAerFormulas
+                      .slice(0, visibleFormulasCount.frecareAer || frecareAerFormulas.length)
+                      .map((item, index) => (
+                        <div key={index}>
+                          <h4 className="text-lg font-semibold mb-2">{index + 1}. {item.title}:</h4>
+                          <div className="formula-resurse text-lg font-mono mb-4">
+                            {item.formula}
+                          </div>
+                        </div>
+                      ))}
+                    {visibleFormulasCount.frecareAer > 0 && (
+                      <MathJaxRender key={`frecareAer-${visibleFormulasCount.frecareAer || 0}`} />
+                    )}
+                    
+                    <p className="text-muted-foreground mt-4">
+                      Unde: {"\\(C_d\\)"} <MathJaxRender /> este coeficientul de drag (adimensional, depinde de forma corpului), 
+                      {"\\(\\rho\\)"} <MathJaxRender /> densitatea fluidului (≈ 1.225 kg/m³ pentru aer la nivel de mare), 
+                      {"\\(A\\)"} <MathJaxRender /> aria secțiunii transversale, {"\\(v\\)"} <MathJaxRender /> viteza corpului, 
+                      {"\\(m\\)"} <MathJaxRender /> masa, {"\\(g\\)"} <MathJaxRender /> accelerația gravitațională, 
+                      {"\\(v_t\\)"} <MathJaxRender /> viteza terminală, {"\\(\\text{Re}\\)"} <MathJaxRender /> numărul Reynolds, 
+                      {"\\(L\\)"} <MathJaxRender /> lungimea caracteristică, iar {"\\(\\mu\\)"} <MathJaxRender /> vâscozitatea dinamică a fluidului.
+                    </p>
+                  </div>
+                  <a
+                    href="/simulare/frecare-aer"
                     rel="noopener noreferrer"
                     style={{ textDecoration: "none" }}
                   >

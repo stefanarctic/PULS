@@ -396,6 +396,41 @@ const ResursePage = () => {
         },
       ],
     },
+    {
+      section: "10. Rezistența aerului (drag aerodinamic)",
+      formulas: [
+        {
+          title: "Forța de drag",
+          formula: "\\( F_d = \\frac{1}{2}\\, C_d \\, \\rho \\, A \\, v^2 \\)",
+          explanation: "Forța de rezistență a aerului (drag) este proporțională cu pătratul vitezei, aria secțiunii transversale (A), densitatea fluidului (ρ) și coeficientul de drag (C_d). C_d depinde de forma corpului: ~0,47 pentru o sferă, ~1,0–1,3 pentru o suprafață plană. Formulă valabilă în regim turbulent (Re > ~1000).",
+        },
+        {
+          title: "Ecuația mișcării în cădere cu rezistență",
+          formula: "\\( m a = m g - \\frac{1}{2}\\, C_d \\, \\rho \\, A \\, v^2 \\)",
+          explanation: "La căderea prin aer, corpul este supus gravitației (mg, în jos) și forței de drag (în sus, opusă mișcării). Accelerația scade pe măsură ce viteza crește, până când drag-ul echilibrează greutatea și a = 0.",
+        },
+        {
+          title: "Viteza terminală",
+          formula: "\\( v_t = \\sqrt{\\frac{2 m g}{C_d \\, \\rho \\, A}} \\)",
+          explanation: "Viteza terminală este viteza maximă atinsă în cădere, când forța de drag egalează greutatea (a = 0). Depinde de masă, formă și arie. Exemplu: un parașutist atinge ~55 m/s cu brațele desfăcute, ~90 m/s în poziție aerodinamică. O foaie de hârtie întinsă are v_t mult mai mic decât aceeași foaie mototolită.",
+        },
+        {
+          title: "Viteza în funcție de timp (cădere)",
+          formula: "\\( v(t) = v_t \\tanh\\!\\left(\\frac{g\\,t}{v_t}\\right) \\)",
+          explanation: "La timpi mici, tanh ≈ gt/v_t, deci v ≈ gt (cădere liberă). La timpi mari, tanh → 1, deci v → v_t (viteza terminală). Tranziția este graduală; corpul atinge ~99% din v_t după un timp t ≈ 5 v_t/g.",
+        },
+        {
+          title: "Poziția în funcție de timp (cădere)",
+          formula: "\\( y(t) = \\frac{v_t^2}{g} \\ln\\!\\left(\\cosh\\!\\left(\\frac{g\\,t}{v_t}\\right)\\right) \\)",
+          explanation: "Distanța parcursă în cădere cu rezistență. La timpi mici: y ≈ ½gt² (cădere liberă). La timpi mari: y ≈ v_t·t (mișcare uniformă cu viteza terminală). Graficul y(t) pornește parabolic și devine liniar.",
+        },
+        {
+          title: "Numărul Reynolds",
+          formula: "\\( \\text{Re} = \\frac{\\rho \\, v \\, L}{\\mu} \\)",
+          explanation: "Numărul Reynolds (adimensional) indică regimul de curgere: Re < ~2000 → laminar (drag ∝ v), Re > ~4000 → turbulent (drag ∝ v²). ρ = densitatea fluidului, v = viteza, L = lungimea caracteristică a corpului, μ = vâscozitatea dinamică. În majoritatea cazurilor practice (bile, parașute, vehicule), Re este mare și se folosește formula cu v².",
+        },
+      ],
+    },
   ];
 
   const termodinamicaFormulas = [
