@@ -8,9 +8,11 @@ import { fetchClass, fetchClassAssignments, fetchClassMembers, leaveStudentClass
 import { simulationsConfig } from '@/data/simulations';
 import {
   ArrowLeft,
+  Calendar,
+  ChevronRight,
   ClipboardList,
-  ExternalLink,
   GraduationCap,
+  Sparkles,
   UserMinus,
   Users,
 } from 'lucide-react';
@@ -425,32 +427,47 @@ const StudentClassPage = () => {
                 return (
                   <article
                     key={as.id}
-                    className="teacher-dashboard-card student-assignment-card student-classroom-work-card"
+                    className="teacher-dashboard-card student-assignment-card student-classroom-work-card student-classroom-assignment"
                   >
-                    <header className="student-assignment-card-header">
-                      <div>
-                        <h3>{as.title}</h3>
-                        {as.dueDate?.toDate && (
-                          <p className="teacher-dashboard-due">
-                            Termen: {as.dueDate.toDate().toLocaleString('ro-RO')}
-                          </p>
-                        )}
+                    <header className="student-classroom-assignment-head">
+                      <div className="student-classroom-assignment-head-main">
+                        <h3 className="student-classroom-assignment-title">{as.title}</h3>
+                        <div className="student-classroom-assignment-meta">
+                          {as.dueDate?.toDate && (
+                            <span className="student-classroom-assignment-due">
+                              <Calendar size={15} strokeWidth={2} aria-hidden />
+                              <span>
+                                Termen:{' '}
+                                <time dateTime={as.dueDate.toDate().toISOString()}>
+                                  {as.dueDate.toDate().toLocaleString('ro-RO')}
+                                </time>
+                              </span>
+                            </span>
+                          )}
+                          {sub?.allDone && sub.averageScore10 != null ? (
+                            <span
+                              className={`student-classroom-assignment-score${dueSt.lateDone ? ' student-classroom-assignment-score--late' : ''}`}
+                            >
+                              Notă: <strong>{sub.averageScore10}</strong>
+                              <span className="student-classroom-assignment-score-denom">/10</span>
+                              {dueSt.lateDone ? (
+                                <span className="student-classroom-assignment-late-tag">După termen</span>
+                              ) : null}
+                            </span>
+                          ) : null}
+                        </div>
                       </div>
-                      <div className="student-assignment-summary">
+                      <div className="student-classroom-assignment-head-status">
                         <span
                           className={`student-assignment-status student-assignment-status--${dueSt.variant}`}
                         >
                           {dueSt.label}
                         </span>
-                        {sub?.allDone && sub.averageScore10 != null && (
-                          <span className="student-assignment-average">
-                            Medie temă: <strong>{sub.averageScore10}</strong> / 10
-                            {dueSt.lateDone ? ' (după termen)' : ''}
-                          </span>
-                        )}
                       </div>
                     </header>
-                    <ol className="teacher-dashboard-assignment-items student-assignment-items">
+                    <div className="student-classroom-assignment-body">
+                      <p className="student-classroom-assignment-body-label">Activități de îndeplinit</p>
+                      <ol className="teacher-dashboard-assignment-items student-assignment-items student-classroom-assignment-tasks">
                       {(as.items || []).map((it, idx) => {
                         const itemState = sub?.items?.[String(idx)];
                         const tier = itemDisplayTier(it.type, itemState);
@@ -471,9 +488,12 @@ const StudentClassPage = () => {
                                 : 'Neevaluată';
 
                         return (
-                          <li key={idx} className="student-assignment-item-row">
+                          <li key={idx} className="student-assignment-item-row student-classroom-task-row">
+                            <span className="student-classroom-task-num" aria-hidden>
+                              {idx + 1}
+                            </span>
                             <AssignmentCheckIcon tier={tier} title={tierTitle} className="student-assignment-check" />
-                            <span className="student-assignment-item-body">
+                            <div className="student-assignment-item-body student-classroom-task-main">
                               {it.type === 'problem' &&
                                 (() => {
                                   const pidx =
@@ -482,14 +502,15 @@ const StudentClassPage = () => {
                                       : resolvedIndices[`p:${String(it.problemId ?? '').trim()}`];
                                   if (pidx == null) {
                                     return (
-                                      <span className="teacher-dashboard-muted">
+                                      <span className="teacher-dashboard-muted student-classroom-task-muted">
                                         {legacyIndicesDone ? 'Problemă indisponibilă.' : 'Problemă (se încarcă…)'}
                                       </span>
                                     );
                                   }
                                   return (
-                                    <Link to={`/probleme/${pidx}?${hwQs}`}>
-                                      Problemă <ExternalLink size={14} />
+                                    <Link to={`/probleme/${pidx}?${hwQs}`} className="student-classroom-task-link">
+                                      <span>Deschide problema</span>
+                                      <ChevronRight size={18} strokeWidth={2} aria-hidden />
                                     </Link>
                                   );
                                 })()}
@@ -501,30 +522,38 @@ const StudentClassPage = () => {
                                       : resolvedIndices[`g:${String(it.grilaId ?? '').trim()}`];
                                   if (gidx == null) {
                                     return (
-                                      <span className="teacher-dashboard-muted">
+                                      <span className="teacher-dashboard-muted student-classroom-task-muted">
                                         {legacyIndicesDone ? 'Grilă indisponibilă.' : 'Grilă (se încarcă…)'}
                                       </span>
                                     );
                                   }
                                   return (
-                                    <Link to={`/probleme/grile/${gidx}?${hwQs}`}>
-                                      Grilă <ExternalLink size={14} />
+                                    <Link to={`/probleme/grile/${gidx}?${hwQs}`} className="student-classroom-task-link">
+                                      <span>Deschide grila</span>
+                                      <ChevronRight size={18} strokeWidth={2} aria-hidden />
                                     </Link>
                                   );
                                 })()}
                               {it.type === 'simulation' && (
-                                <Link to={`${simulationRouteForSlug(it.slug)}?${hwQs}`}>
-                                  Simulare:{' '}
-                                  {simulationsConfig.find((s) => s.slug === it.slug)?.title || it.slug}{' '}
-                                  <ExternalLink size={14} />
+                                <Link
+                                  to={`${simulationRouteForSlug(it.slug)}?${hwQs}`}
+                                  className="student-classroom-task-link"
+                                >
+                                  <span>
+                                    Simulare:{' '}
+                                    {simulationsConfig.find((s) => s.slug === it.slug)?.title || it.slug}
+                                  </span>
+                                  <ChevronRight size={18} strokeWidth={2} aria-hidden />
                                 </Link>
                               )}
                               {it.type === 'text' && (
-                                <div className="student-assignment-text-wrap">
-                                  <div className="teacher-dashboard-text-block">{it.body}</div>
+                                <div className="student-assignment-text-wrap student-classroom-task-text">
+                                  <div className="teacher-dashboard-text-block student-classroom-enunt">
+                                    {it.body}
+                                  </div>
                                   <button
                                     type="button"
-                                    className="teacher-dashboard-link-btn student-assignment-resolve-btn"
+                                    className="student-classroom-ai-btn"
                                     onClick={() =>
                                       setTextModal({
                                         assignmentId: as.id,
@@ -533,15 +562,17 @@ const StudentClassPage = () => {
                                       })
                                     }
                                   >
-                                    Rezolvă (trimite la AI)
+                                    <Sparkles size={17} strokeWidth={2} aria-hidden />
+                                    Evaluează tema
                                   </button>
                                 </div>
                               )}
-                            </span>
+                            </div>
                           </li>
                         );
                       })}
                     </ol>
+                    </div>
                   </article>
                 );
               })}
@@ -621,11 +652,15 @@ const StudentClassPage = () => {
 
           {textModal && (
             <HomeworkTextSubmitModal
+              key={`${textModal.assignmentId}-${textModal.itemIndex}`}
               open
               teacherText={textModal.body}
               classId={classId}
               assignmentId={textModal.assignmentId}
               itemIndex={textModal.itemIndex}
+              itemSubmission={
+                submissionsByAssignment[textModal.assignmentId]?.items?.[String(textModal.itemIndex)] ?? null
+              }
               onClose={() => setTextModal(null)}
               onSaved={refreshSubmissions}
             />

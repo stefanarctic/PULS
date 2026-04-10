@@ -1,5 +1,4 @@
 import React, { useState, useRef, useEffect, useMemo } from 'react';
-import ReactMarkdown from 'react-markdown';
 import { Card, CardHeader, CardTitle, CardContent } from './card';
 import { Badge } from './badge';
 import { Button } from './Buttondet';
@@ -25,6 +24,7 @@ import { auth } from '../lib/firebase';
 import { Timestamp } from 'firebase/firestore';
 import { recordAssignmentItemProgress, score10FromObtainedMax } from '../lib/assignmentProgress';
 import '../scss/components/_problem-submit.scss';
+import MathJaxMarkdownBlock from './MathJaxMarkdownBlock';
 
 // Funcție pentru conversie File → Data URI
 const fileToDataUri = (file) => {
@@ -35,95 +35,6 @@ const fileToDataUri = (file) => {
         reader.readAsDataURL(file);
     });
 };
-
-// Component pentru renderizare markdown cu MathJax
-const MarkdownContent = React.memo(({ content, className = '' }) => {
-    const contentRef = useRef(null);
-
-    const fixMathJaxOverflow = (container) => {
-        if (!container) return;
-
-        const mathContainers = container.querySelectorAll('mjx-container, .MathJax, .MathJax_Display');
-
-        mathContainers.forEach((mathEl) => {
-            const parent = mathEl.parentElement;
-            if (!parent) return;
-
-            const parentWidth = parent.offsetWidth || parent.clientWidth;
-            const mathWidth = mathEl.offsetWidth || mathEl.scrollWidth;
-
-            if (mathWidth > parentWidth - 10) {
-                mathEl.style.maxWidth = '100%';
-                mathEl.style.overflowX = 'auto';
-                mathEl.style.overflowY = 'hidden';
-                mathEl.style.display = 'block';
-                mathEl.style.wordBreak = 'break-all';
-
-                const mathContent = mathEl.querySelector('mjx-math');
-                if (mathContent && mathContent.getAttribute('display') === 'false') {
-                    mathEl.style.display = 'block';
-                    mathEl.style.width = '100%';
-                }
-            }
-        });
-    };
-
-    useEffect(() => {
-        if (contentRef.current) {
-            const timeoutId = setTimeout(() => {
-                if (window.MathJax) {
-                    const typesetPromise = window.MathJax.typesetPromise
-                        ? window.MathJax.typesetPromise([contentRef.current])
-                        : Promise.resolve().then(() => {
-                              if (window.MathJax.typeset) {
-                                  window.MathJax.typeset([contentRef.current]);
-                              }
-                          });
-
-                    typesetPromise
-                        .then(() => {
-                            setTimeout(() => {
-                                fixMathJaxOverflow(contentRef.current);
-                            }, 100);
-                        })
-                        .catch(() => {
-                            setTimeout(() => {
-                                fixMathJaxOverflow(contentRef.current);
-                            }, 200);
-                        });
-                }
-            }, 50);
-            return () => clearTimeout(timeoutId);
-        }
-    }, [content]);
-
-    useEffect(() => {
-        const handleResize = () => {
-            if (contentRef.current) {
-                setTimeout(() => {
-                    fixMathJaxOverflow(contentRef.current);
-                }, 100);
-            }
-        };
-
-        window.addEventListener('resize', handleResize);
-        return () => window.removeEventListener('resize', handleResize);
-    }, [content]);
-
-    return (
-        <div ref={contentRef} className={`prose max-w-none ${className}`}>
-            <ReactMarkdown
-                components={{
-                    a: ({ node, ...props }) => <a {...props} target="_self" rel="noopener noreferrer" />,
-                }}
-            >
-                {content}
-            </ReactMarkdown>
-        </div>
-    );
-});
-
-MarkdownContent.displayName = 'MarkdownContent';
 
 /** @param {{ rows: Array<{ label: string, value: string, unit?: string }>, caption: string }} props */
 const AnalyzeDataTable = ({ rows, caption }) => {
@@ -143,9 +54,9 @@ const AnalyzeDataTable = ({ rows, caption }) => {
                 <tbody>
                     {rows.map((row, i) => (
                         <tr key={`${row.label}-${i}`}>
-                            <td><MarkdownContent content={row.label} /></td>
-                            <td><MarkdownContent content={row.value} /></td>
-                            {showUnit ? <td><MarkdownContent content={row.unit || '—'} /></td> : null}
+                            <td><MathJaxMarkdownBlock content={row.label} mathJaxify /></td>
+                            <td><MathJaxMarkdownBlock content={row.value} mathJaxify /></td>
+                            {showUnit ? <td><MathJaxMarkdownBlock content={row.unit || '—'} mathJaxify /></td> : null}
                         </tr>
                     ))}
                 </tbody>
@@ -446,7 +357,7 @@ const ProblemSubmit = ({
                             </h3>
                             <div className="problem-analysis-rating-content">
                                 <div className="problem-analysis-rating-text">
-                                    <MarkdownContent content={normalized.ratingDisplay} />
+                                    <MathJaxMarkdownBlock content={normalized.ratingDisplay} />
                                 </div>
                             </div>
                         </div>
@@ -461,7 +372,7 @@ const ProblemSubmit = ({
                                         Rezumat problemă
                                     </h3>
                                     <div className="problem-analysis-summary-content">
-                                        <MarkdownContent content={normalized.problemSummary} />
+                                        <MathJaxMarkdownBlock content={normalized.problemSummary} />
                                     </div>
                                 </div>
                             )}
@@ -472,7 +383,7 @@ const ProblemSubmit = ({
                                         Rezumat feedback
                                     </h3>
                                     <div className="problem-analysis-summary-content">
-                                        <MarkdownContent content={normalized.feedbackSummary} />
+                                        <MathJaxMarkdownBlock content={normalized.feedbackSummary} />
                                     </div>
                                 </div>
                             )}
@@ -486,7 +397,7 @@ const ProblemSubmit = ({
                                 Ce am înțeles din soluția ta
                             </h3>
                             <div className="problem-analysis-reflection-content">
-                                <MarkdownContent content={normalized.studentWorkReflection} />
+                                <MathJaxMarkdownBlock content={normalized.studentWorkReflection} />
                             </div>
                         </div>
                     )}
@@ -518,7 +429,7 @@ const ProblemSubmit = ({
                             <ul className="problem-analysis-formulas-list">
                                 {normalized.formulasUsed.map((f, i) => (
                                     <li key={i} className="problem-analysis-formula-item">
-                                        <MarkdownContent content={f} />
+                                        <MathJaxMarkdownBlock content={f} mathJaxify />
                                     </li>
                                 ))}
                             </ul>
@@ -532,7 +443,7 @@ const ProblemSubmit = ({
                                 Explicație
                             </h3>
                             <div className="problem-analysis-explanation-content">
-                                <MarkdownContent content={normalized.explanation} />
+                                <MathJaxMarkdownBlock content={normalized.explanation} />
                             </div>
                         </div>
                     )}
@@ -544,7 +455,7 @@ const ProblemSubmit = ({
                                 Pașii rezolvării
                             </h3>
                             <div className="problem-analysis-solution-content">
-                                <MarkdownContent content={normalized.correctSolution} />
+                                <MathJaxMarkdownBlock content={normalized.correctSolution} />
                             </div>
                         </div>
                     )}
@@ -556,7 +467,7 @@ const ProblemSubmit = ({
                                 Analiza erorilor și îmbunătățiri
                             </h3>
                             <div className="problem-analysis-errors-content">
-                                <MarkdownContent content={normalized.errorAnalysis} />
+                                <MathJaxMarkdownBlock content={normalized.errorAnalysis} />
                             </div>
                         </div>
                     )}
@@ -568,7 +479,7 @@ const ProblemSubmit = ({
                                 Răspuns final
                             </h3>
                             <div className="problem-analysis-final-content">
-                                <MarkdownContent content={normalized.finalAnswer} />
+                                <MathJaxMarkdownBlock content={normalized.finalAnswer} />
                             </div>
                         </div>
                     )}

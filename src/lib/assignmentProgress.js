@@ -121,11 +121,53 @@ export async function recordAssignmentItemProgress({
   const itemKey = String(itemIndex);
   const existing = prev.items?.[itemKey] && typeof prev.items[itemKey] === 'object' ? prev.items[itemKey] : {};
 
-  const mergedItem = {
+  const attemptLog = patch.attemptLog;
+  const patchForMerge = { ...patch };
+  delete patchForMerge.attemptLog;
+
+  let mergedItem = {
     ...existing,
     type: itemType,
-    ...patch,
+    ...patchForMerge,
   };
+
+  if (itemType === 'text') {
+    let attempts = Array.isArray(existing.attempts) ? [...existing.attempts] : [];
+    if (attemptLog && typeof attemptLog === 'object') {
+      const entry = {
+        score10: attemptLog.score10,
+        gradedAt: attemptLog.gradedAt || Timestamp.now(),
+        solutionPreview:
+          typeof attemptLog.solutionPreview === 'string' ? attemptLog.solutionPreview.slice(0, 600) : '',
+        imageCount: typeof attemptLog.imageCount === 'number' ? attemptLog.imageCount : 0,
+      };
+      if (attemptLog.ratingDisplay && typeof attemptLog.ratingDisplay === 'string') {
+        entry.ratingDisplay = attemptLog.ratingDisplay.slice(0, 500);
+      }
+      attempts = [...attempts, entry];
+    }
+
+    const scoreCandidates = [];
+    for (const a of attempts) {
+      if (Number.isFinite(a.score10)) scoreCandidates.push(a.score10);
+    }
+    if (Number.isFinite(existing.score10)) scoreCandidates.push(existing.score10);
+    if (Number.isFinite(patchForMerge.score10)) scoreCandidates.push(patchForMerge.score10);
+
+    const bestScore10 =
+      scoreCandidates.length > 0
+        ? Math.max(...scoreCandidates)
+        : Number.isFinite(patchForMerge.score10)
+          ? patchForMerge.score10
+          : existing.score10;
+
+    mergedItem = {
+      ...mergedItem,
+      attempts,
+      score10: Number.isFinite(bestScore10) ? bestScore10 : mergedItem.score10,
+      done: true,
+    };
+  }
 
   prevItems[itemKey] = mergedItem;
 

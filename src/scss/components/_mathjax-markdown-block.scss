@@ -1,0 +1,43 @@
+// Randare formulă fără parser Markdown (păstrează \( \) pentru MathJax)
+.mj-plain-math-root {
+  min-height: 1.25em;
+  max-width: 100%;
+  overflow-x: hidden;
+  overflow-y: hidden;
+
+  .mj-plain-math-tex {
+    display: inline-block;
+    max-width: 100%;
+    overflow: hidden;
+    font-size: 1.02em;
+    line-height: 1.45;
+    letter-spacing: 0.01em;
+  }
+
+  mjx-container,
+  .mjx-container {
+    max-width: 100% !important;
+    overflow-x: hidden !important;
+    overflow-y: hidden !important;
+  }
+}
+
+.problem-analysis-formulas-list .mj-plain-math-root,
+.problem-analysis-formula-item .mj-plain-math-root {
+  overflow-x: hidden;
+}
+
+.problem-analysis-data-table {
+  td {
+    overflow-x: hidden;
+  }
+
+  td .mj-plain-math-root {
+    vertical-align: middle;
+  }
+
+  .mjx-container,
+  mjx-container {
+    vertical-align: middle;
+  }
+}
