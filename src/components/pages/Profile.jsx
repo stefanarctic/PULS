@@ -8,7 +8,7 @@ import { problemeData } from '../problemedata';
 import { ProblemCard } from './Probleme.jsx';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import '../../scss/components/_probleme.scss';
-import { Check, ShieldCheck, Star, GraduationCap, School } from 'lucide-react';
+import { Check, ShieldCheck, Star, GraduationCap, School, Users } from 'lucide-react';
 import RecentActivity from '../RecentActivity';
 import Achievements from '../Achievements';
 import Statistics from '../Statistics';
@@ -16,6 +16,10 @@ import AchievementNotification from '../AchievementNotification';
 import { useSolvedProblems } from '../../hooks/useSolvedProblems';
 import { useAchievements } from '../../hooks/useAchievements';
 import { uploadToCloudinary } from '../../lib/cloudinary';
+import { useCommunityStats } from '../../hooks/useCommunity';
+import XPBar from '../community/XPBar';
+import StreakCounter from '../community/StreakCounter';
+import CategoryBadges from '../community/CategoryBadges';
 
 // FavoriteProblemCard definit aici
 const ExternalLinkIcon = () => (
@@ -195,6 +199,7 @@ const Profile = () => {
     const [userProblems, setUserProblems] = useState([]);
     const { solvedProblems, saveSolvedProblem, clearTestProblems, clearAllSolvedProblems } = useSolvedProblems();
     const { achievements, checkAchievements, loadAchievements, newAchievements, clearNewAchievements } = useAchievements();
+    const { stats: communityStats, badges: communityBadges, refresh: refreshCommunityStats } = useCommunityStats();
 
     const solvedProblemsMap = useMemo(() => {
         return solvedProblems.reduce((acc, entry) => {
@@ -909,7 +914,12 @@ const Profile = () => {
         setStatistics(stats);
     }, [user, userProblems, alias, allProblems, solvedProblems]);
 
-    // Încarcă achievements când se deschide tab-ul de realizări
+    useEffect(() => {
+        if (user?.uid && allProblems?.length > 0) {
+            refreshCommunityStats(allProblems);
+        }
+    }, [user?.uid, allProblems?.length]);
+
     useEffect(() => {
         if (activeTab === 'realizari' && user?.uid) {
             loadAchievements();
@@ -1266,6 +1276,10 @@ const Profile = () => {
                                         <span>Panou profesor</span>
                                     </button>
                                 )}
+                                <Link to="/comunitate" className="admin-dashboard-btn profile-floating-btn" style={{ textDecoration: 'none' }}>
+                                    <Users size={18} />
+                                    <span>Comunitate</span>
+                                </Link>
                                 {teacherStatus === 'pending' && (
                                     <p className="profile-teacher-hint">
                                         Cererea ta pentru cont profesor este în așteptare. Un administrator o va revizui în curând.
@@ -1279,6 +1293,37 @@ const Profile = () => {
                             </div>
                         </div>
                     </div>
+                    {communityStats && (
+                        <div className="profile-community-section">
+                            <div className="profile-community-section__header">
+                                <h3>Progres comunitate</h3>
+                                {alias && (
+                                    <Link to={`/profil/${alias}`} className="profile-community-section__public-link">
+                                        Vezi profilul public
+                                    </Link>
+                                )}
+                            </div>
+                            <div className="profile-community-section__body">
+                                <XPBar
+                                    xp={communityStats.xp || 0}
+                                    level={communityStats.level || 1}
+                                    rank={communityStats.rank || 'bronze'}
+                                />
+                                <div className="profile-community-section__row">
+                                    <StreakCounter
+                                        current={communityStats.streak?.current || 0}
+                                        longest={communityStats.streak?.longest || 0}
+                                    />
+                                </div>
+                                {communityBadges && communityBadges.length > 0 && (
+                                    <div className="profile-community-section__badges">
+                                        <h4>Badge-uri categorii</h4>
+                                        <CategoryBadges badges={communityBadges} compact />
+                                    </div>
+                                )}
+                            </div>
+                        </div>
+                    )}
                 </div>
                 {showEditModal && (
                     <div className="profile-edit-modal">
@@ -1414,6 +1459,7 @@ const Profile = () => {
                         </div>
                     </div>
                 )}
+
                 <div className="profile-tabs">
                     <div className="tabs-list">
                         <button
