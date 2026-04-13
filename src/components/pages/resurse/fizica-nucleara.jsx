@@ -5,6 +5,7 @@ import SEO from "../../SEO";
 
 import apaGreaImg from "/res/screenshots/apa_grea_1.png";
 import instalatieSchimbIzotopicImg from "/res/screenshots/schimb_izotopic_Screenshot.png";
+import distilareD2oFractionataResurseImg from "/res/screenshots/Distilare_D2o_Fractionata_Resurse.png";
 
 const FizicaNuclearaPage = () => {
   return (
@@ -205,6 +206,105 @@ const FizicaNuclearaPage = () => {
                   <a href="/simulare/instalatie-schimb-izotopic" rel="noopener noreferrer" className="resurse-link w-full sm:w-auto">
                     <Button size="lg" className="w-full sm:w-auto">
                       Simulare: instalație schimb izotopic
+                    </Button>
+                  </a>
+                </div>
+              </div>
+
+              <div className="rounded-container px-4 py-5 sm:p-8">
+                <h2 className="text-xl sm:text-2xl font-bold mb-4">Distilare fracționată: de la ~20% la apă grea finisată</h2>
+                <p className="text-sm sm:text-base leading-7 text-muted-foreground mb-4">
+                  După ce concentrația urcă în zona zecilor de procente prin schimb izotopic, separarea fină se bazează pe
+                  diferența mică dintre punctele de fierbere ale H₂O și D₂O (~1,4&nbsp;°C): o coloană de rectificare cu
+                  multe etaje, reflux mare și reboiler jos concentrează D₂O la baza coloanei, iar vapori mai bogați în
+                  H₂O ies spre condensator.
+                </p>
+                <p className="text-sm sm:text-base leading-7 text-muted-foreground mb-6">
+                  Simulatorul urmărește schematic puritatea în timp, efectul refluxului și al numărului de etaje — util
+                  pentru înțelegerea de ce ultimii procenti spre 99,8% sunt cei mai costisitori. În aplicație, această
+                  etapă rămâne blocată până finalizezi simularea de schimb izotopic (progres salvat local în browser).
+                </p>
+
+                <div className="image-slider h-52 sm:h-64 md:h-80 relative flex items-center justify-center mb-6 md:mb-8">
+                  <img
+                    src={distilareD2oFractionataResurseImg}
+                    alt="Simulator distilare fracționată H₂O–D₂O: coloană, reflux și grafic de puritate"
+                    className="w-full h-full object-contain mx-auto my-auto"
+                  />
+                </div>
+
+                <h3 className="text-lg sm:text-xl font-semibold mb-3">
+                  Formule utile pentru rectificarea H₂O / D₂O
+                </h3>
+
+                <h4 className="text-base sm:text-lg font-semibold mb-2">1. Volatilitate relativă (componentă ușoară față de grea)</h4>
+                <p className="text-sm sm:text-base leading-7 text-muted-foreground mb-3">
+                  Notând cu L componenta mai volatilă (H₂O) și H pe cea mai puțin volatilă (D₂O), la echilibru:
+                </p>
+                <div className="formula-resurse overflow-x-auto max-w-full text-sm sm:text-base md:text-lg font-mono mb-4">
+                  {"\\( \\alpha_{L/H} = \\dfrac{(y_L/x_L)}{(y_H/x_H)} \\)"}
+                  <MathJaxRender />
+                </div>
+                <p className="text-sm sm:text-base leading-7 text-muted-foreground mb-5">
+                  Pentru H₂O/D₂O, {"\\(\\alpha_{L/H}\\)"} <MathJaxRender /> este aproape de 1 (în simulator ~1,06), deci
+                  fiecare etaj separă puțin — de aceea sunt necesare multe trepte și reflux ridicat.
+                </p>
+
+                <h4 className="text-base sm:text-lg font-semibold mb-2">2. Echilibru vapori–lichid (fracție molară a componentei ușoare)</h4>
+                <p className="text-sm sm:text-base leading-7 text-muted-foreground mb-3">
+                  Cu {"\\(x\\)"} <MathJaxRender /> și {"\\(y\\)"} <MathJaxRender /> fracțiile molare ale H₂O în lichid,
+                  respectiv în vapori, și {"\\(\\alpha\\)"} <MathJaxRender /> constant (model didactic):
+                </p>
+                <div className="formula-resurse overflow-x-auto max-w-full text-sm sm:text-base md:text-lg font-mono mb-4">
+                  {"\\( y = \\dfrac{\\alpha\\,x}{1+(\\alpha-1)\\,x} \\)"}
+                  <MathJaxRender />
+                </div>
+                <p className="text-sm sm:text-base leading-7 text-muted-foreground mb-5">
+                  Concentrația D₂O în lichid este {"\\(1-x\\)"} <MathJaxRender />; la baza coloanei, prin rectificare,
+                  {"\\(x\\)"} <MathJaxRender /> scade și fracția de D₂O crește.
+                </p>
+
+                <h4 className="text-base sm:text-lg font-semibold mb-2">3. Refluxul intern</h4>
+                <div className="formula-resurse overflow-x-auto max-w-full text-sm sm:text-base md:text-lg font-mono mb-4">
+                  {"\\( R = \\dfrac{L}{D} \\)"}
+                  <MathJaxRender />
+                </div>
+                <p className="text-sm sm:text-base leading-7 text-muted-foreground mb-5">
+                  {"\\(L\\)"} <MathJaxRender /> este debitul molar de lichid care revine în coloană (reflux),{" "}
+                  {"\\(D\\)"} <MathJaxRender /> debitul de produs preluat de sus. {"\\(R\\)"} <MathJaxRender /> mare
+                  îmbunătățește separarea, dar reduce debitul de produs ușor și prelungește timpul spre purități foarte
+                  mari jos.
+                </p>
+
+                <h4 className="text-base sm:text-lg font-semibold mb-2">4. Număr minim de trepte (Fenske, volatilitate relativă constantă)</h4>
+                <p className="text-sm sm:text-base leading-7 text-muted-foreground mb-3">
+                  Estimare didactică pentru câte trepte ar fi necesare la reflux total, între fracțiile molare ale
+                  componentei ușoare în distillat {"\\(x_D\\)"} <MathJaxRender /> și în reziduu {"\\(x_B\\)"}{" "}
+                  <MathJaxRender />:
+                </p>
+                <div className="formula-resurse overflow-x-auto max-w-full text-sm sm:text-base md:text-lg font-mono mb-4">
+                  {"\\( N_{\\min} = \\dfrac{\\ln\\!\\left(\\dfrac{x_D/(1-x_D)}{x_B/(1-x_B)}\\right)}{\\ln \\alpha} \\)"}
+                  <MathJaxRender />
+                </div>
+                <p className="text-sm sm:text-base leading-7 text-muted-foreground mb-5">
+                  În practică, refluxul finit și eficiența etajelor măresc numărul real de trepte față de{" "}
+                  {"\\(N_{\\min}\\)"} <MathJaxRender />; formula arată totuși de ce un {"\\(\\alpha\\)"}{" "}
+                  <MathJaxRender /> aproape de 1 duce la {"\\(N\\)"} <MathJaxRender /> foarte mare pentru separare
+                  pronunțată.
+                </p>
+
+                <h4 className="text-base sm:text-lg font-semibold mb-2">5. Legătură cu diferența de fierbere</h4>
+                <p className="text-sm sm:text-base leading-7 text-muted-foreground mb-3">
+                  Separarea prin distilare folosește direct faptul că temperaturile de fierbere diferă; pentru
+                  discuție calitativă, în pagină avem deja{" "}
+                  {"\\(\\Delta T_b = T_b(D_2O)-T_b(H_2O)\\)"} <MathJaxRender /> (orientativ ~1,4&nbsp;°C), ceea ce se
+                  traduce într-o volatilitate relativă foarte apropiată de 1.
+                </p>
+
+                <div className="flex flex-col sm:flex-row sm:items-center sm:justify-end gap-4 sm:gap-6">
+                  <a href="/simulare/distilare-d2o-fractionata" rel="noopener noreferrer" className="resurse-link w-full sm:w-auto">
+                    <Button size="lg" className="w-full sm:w-auto">
+                      Simulare: distilare fracționată D₂O
                     </Button>
                   </a>
                 </div>

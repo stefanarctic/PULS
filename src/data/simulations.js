@@ -41,6 +41,7 @@ import tabelPeriodicImg from "/res/screenshots/Tabel_periodic_Screenshot.png";
 import legaturiAtomiImg from "/res/screenshots/legaturi_atomi_Screenshot.png";
 import apaGreaImg from "/res/screenshots/apa_grea_1.png";
 import instalatieSchimbIzotopicImg from "/res/screenshots/schimb_izotopic_Screenshot.png";
+import distilareD2oFractionataImg from "/res/screenshots/Distilare_D2o_Fractionata_Resurse.png";
 import frecareAerImg from "/res/screenshots/Frecare_Aer_Screenshot.png";
 export const simulationsConfig = [
   {
@@ -565,6 +566,20 @@ export const simulationsConfig = [
     maxHeight: "92vh",
     category: "Fizică nucleară",
     eyebrow: "Fizică nucleară | Simulare interactivă"
+  },
+  {
+    id: 45,
+    slug: "distilare-d2o-fractionata",
+    route: "/simulare/distilare-d2o-fractionata",
+    title: "Distilare fracționată D₂O (rectificare)",
+    description:
+      "Coloană unică cu reboiler și condensator: reflux, etaje teoretice, volatilitate redusă (α ~ 1,06) și grafic puritate vs timp după schimbul izotopic (~20% D₂O).",
+    image: distilareD2oFractionataImg,
+    caption: "Distilare fracționată apă grea",
+    iframeSrc: "/simulari/distilare_d2o_fractionata/index.html",
+    maxHeight: "92vh",
+    category: "Fizică nucleară",
+    eyebrow: "Fizică nucleară | După schimb izotopic"
   },
   {
     id: 44,

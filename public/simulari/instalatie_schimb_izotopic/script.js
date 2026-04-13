@@ -699,6 +699,12 @@ class Simulation {
         this.completed = true;
         this.running = false;
 
+        try {
+            localStorage.setItem('puls_izotopic_gs_complete', '1');
+        } catch (_) {
+            /* ignore private mode / blocked storage */
+        }
+
         document.getElementById('ppmDisplay').innerText = CONFIG.PPM_ETAJ3_MAX.toFixed(0);
         document.getElementById('percentDisplay').innerText = '30.0000%';
         document.getElementById('concFill').style.height = '100%';

@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+    <title>Distilare fracționată D₂O | Etaj final</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header class="site-header">
+        <h1>Distilare fracționată H₂O – D₂O</h1>
+        <p class="tagline">După schimbul izotopic (~20% D₂O) — separare fină pe puncte de fierbere · model educațional</p>
+        <p class="science-bite">Diferență punct de fierbere: ~1,4&nbsp;°C între H₂O și D₂O — de aceea separarea e extrem de lentă și cere multe etaje.</p>
+        <button id="panelToggleBtn" class="panel-toggle-btn" type="button" aria-label="Deschide panoul de control">
+            Parametri
+        </button>
+    </header>
+
+    <main class="layout">
+        <section class="simulation-area" id="simulationArea" aria-label="Vizualizare coloană">
+            <div id="gsLockOverlay" class="overlay gs-lock-overlay hidden" aria-hidden="true">
+                <span class="gs-lock-icon" aria-hidden="true">&#128274;</span>
+                <p class="hook">Rectificarea este blocată</p>
+                <p>
+                    Mai întâi finalizează simularea <strong>Instalație de schimb izotopic (H₂S – H₂O)</strong> până la
+                    ecranul de succes (~30% D₂O). Abia după aceea poți continua cu distilarea fracționată — în practică,
+                    etapa GS aduce concentrația în zona zecilor de procente; rectificarea finisează spre purități nucleare.
+                </p>
+                <a
+                    id="gsLockLink"
+                    class="btn-primary gs-lock-link"
+                    href="/simulare/instalatie-schimb-izotopic"
+                    target="_top"
+                    rel="noopener noreferrer"
+                >Deschide simularea de schimb izotopic</a>
+            </div>
+
+            <div id="introOverlay" class="overlay">
+                <p class="hook">Ai dus apa grea până la 20%… dar adevărata luptă abia începe.</p>
+                <p>
+                    H₂O fierbe la ~100&nbsp;°C, D₂O la ~101,4&nbsp;°C — diferență mică, deci <strong>multe etaje</strong>,
+                    <strong>reflux mare</strong> și <strong>coloană înaltă</strong>. O singură coloană: condensator sus,
+                    reboiler jos; vapori ↑ (mai bogați în H₂O), lichid &#8595; (D₂O se concentrează jos).
+                </p>
+                <button id="startBtn" type="button" class="btn-primary">Pornește rectificarea</button>
+            </div>
+
+            <div class="column-wrap">
+                <div class="condenser" aria-hidden="true">
+                    <span class="unit-label">Condensator</span>
+                    <span class="flow flow--up">↑ vapori</span>
+                    <div class="product product--top">
+                        <span>Produs sus</span>
+                        <strong id="distPurity">—</strong>
+                        <small>lichid ușor (H₂O) — D₂O mai slab decât jos</small>
+                    </div>
+                </div>
+
+                <div class="reflux-bridge" aria-hidden="true">
+                    <svg class="reflux-svg" viewBox="0 0 120 52" preserveAspectRatio="xMidYMid meet">
+                        <defs>
+                            <linearGradient id="refluxGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                                <stop offset="0%" stop-color="#b8dcff" stop-opacity="0.95"/>
+                                <stop offset="100%" stop-color="#f1c40f" stop-opacity="0.85"/>
+                            </linearGradient>
+                        </defs>
+                        <path
+                            class="reflux-path"
+                            fill="none"
+                            stroke="url(#refluxGrad)"
+                            stroke-width="2.2"
+                            stroke-linecap="round"
+                            stroke-dasharray="7 5"
+                            d="M60 6 L60 16 Q 102 26 96 40 L 78 46"
+                        />
+                    </svg>
+                    <span class="reflux-caption">Reflux: lichid condensat revine în coloană</span>
+                </div>
+
+                <div class="reflux-drip-column" id="refluxDripColumn" aria-hidden="true">
+                    <div class="reflux-drip-track"></div>
+                    <div class="reflux-droplets">
+                        <span class="reflux-droplet"></span>
+                        <span class="reflux-droplet"></span>
+                        <span class="reflux-droplet"></span>
+                        <span class="reflux-droplet"></span>
+                        <span class="reflux-droplet"></span>
+                        <span class="reflux-droplet"></span>
+                    </div>
+                    <span class="reflux-drip-cta">Lichid condensat &#8595; înapoi în coloană</span>
+                </div>
+
+                <div class="column-shell" id="columnShell">
+                    <div class="column-gradient"></div>
+                    <canvas id="flowParticles" class="flow-particles" aria-hidden="true"></canvas>
+                    <div class="trays" id="traysContainer" role="list" aria-label="Etaje teoretice"></div>
+                    <div class="flow-legend">
+                        <span class="flow-legend__item flow-legend__item--up">&#8593; H<sub>2</sub>O: rapid, ușor, transparent</span>
+                        <span class="flow-legend__item flow-legend__item--down">&#8595; D<sub>2</sub>O: lent, „greu”, dens</span>
+                    </div>
+                </div>
+
+                <div class="reboiler" aria-hidden="true">
+                    <div class="product product--bottom">
+                        <span>Reziduu / apă grea</span>
+                        <strong id="bottomPurity">20.0% D₂O</strong>
+                        <small>țintă didactică ~99,8%</small>
+                    </div>
+                    <span class="unit-label">Reboiler</span>
+                    <span class="temp-badge" id="reboilerBadge">100.5 °C</span>
+                </div>
+            </div>
+
+            <div class="readouts">
+                <div
+                    class="readout readout--tip"
+                    title="Prea jos: puțină vaporizare, coloana „nu lucrează”. Prea sus: risc de pierderi / model didactic simplificat."
+                >
+                    <span class="readout__label">T reboiler</span>
+                    <span class="readout__value" id="readoutT">100.5 °C</span>
+                </div>
+                <div
+                    class="readout readout--tip"
+                    title="Mai multe tăvi echivalente = mai multe contacte vapori–lichid. Cu puține etaje, separarea e lentă sau slabă."
+                >
+                    <span class="readout__label">Etaje (teoretice)</span>
+                    <span class="readout__value" id="readoutN">40</span>
+                </div>
+                <div
+                    class="readout readout--tip"
+                    title="R = L/D: cât lichid se întoarce în coloană față de produsul extras. Reflux mare îmbunătățește separarea, dar încetinește debitul de produs."
+                >
+                    <span class="readout__label">R reflux (L/D)</span>
+                    <span class="readout__value" id="readoutR">4.0</span>
+                </div>
+                <div
+                    class="readout readout--tip"
+                    title="α aproape de 1 (ex.1,05–1,07) înseamnă separare foarte dificilă: fiecare etaj separă puțin, de aceea ai nevoie de multe trepte și reflux."
+                >
+                    <span class="readout__label">α relativ (model)</span>
+                    <span class="readout__value" id="readoutAlpha">1.066</span>
+                </div>
+            </div>
+
+            <div id="processBanner" class="process-banner process-banner--hidden" role="status" aria-live="polite"></div>
+
+            <div id="nuclearMilestone" class="nuclear-milestone" hidden>
+                <span class="nuclear-milestone__glow"></span>
+                <p class="nuclear-milestone__title">Puritate nucleară atinsă</p>
+                <p class="nuclear-milestone__sub">~99,8% D₂O în reboiler (țintă didactică)</p>
+            </div>
+        </section>
+
+        <aside id="controlsPanel" class="controls-panel">
+            <button id="panelCloseBtn" class="panel-close-btn" type="button" aria-label="Închide panoul">×</button>
+
+            <div class="panel-section">
+                <h2 class="panel-heading">Control proces</h2>
+                <div class="preset-row" role="group" aria-label="Preseturi simulare">
+                    <button type="button" class="preset-btn preset-btn--rapid" id="presetRapid" title="Puține etaje, reflux mic: separare rapidă dar slabă">
+                        Rapid
+                    </button>
+                    <button type="button" class="preset-btn preset-btn--balanced" id="presetBalanced" title="Setare echilibrată pentru demo">
+                        Echilibrat
+                    </button>
+                    <button type="button" class="preset-btn preset-btn--industrial" id="presetIndustrial" title="Multe etaje și reflux mare: drum spre înaltă puritate (încet)">
+                        Industrial
+                    </button>
+                </div>
+                <div class="control-group">
+                    <label
+                        for="reboilerSlider"
+                        title="Sub ~100 °C, vaporizarea efectivă scade; reboilerul trebuie în fereastra H₂O–D₂O."
+                    >Temperatură reboiler: <span id="reboilerVal">100.5</span> °C</label>
+                    <input type="range" id="reboilerSlider" min="99.5" max="101.8" step="0.05" value="100.5">
+                    <p id="tempWarning" class="temp-warning temp-warning--hidden" role="status"></p>
+                </div>
+                <div class="control-group">
+                    <label
+                        for="stagesSlider"
+                        title="Fiecare etaj teoretic echivalează, în model, cu o tavă de distilare (contact vapori–lichid)."
+                    >Număr etaje (teoretice), echivalent cu tăvi de distilare: <span id="stagesVal">40</span></label>
+                    <input type="range" id="stagesSlider" min="8" max="100" step="1" value="40">
+                </div>
+                <p class="alpha-hint">Cu <span class="alpha-char">&alpha;</span> &asymp; 1,066 (H<sub>2</sub>O mai volatil dec&acirc;t D<sub>2</sub>O): separarea e dificil&#259; &mdash; trebuie multe etaje &#537;i reflux mare ca s&#259; te apropii de 99,8% D<sub>2</sub>O jos.</p>
+                <div class="control-group">
+                    <label for="refluxSlider" title="R mare = mai mult lichid care se întoarce în coloană; îmbunătățește separarea.">Rata reflux R = L/D: <span id="refluxVal">4.0</span></label>
+                    <input type="range" id="refluxSlider" min="0.5" max="12" step="0.1" value="4">
+                </div>
+                <div class="control-group">
+                    <label for="speedSlider">Viteză simulare: <span id="speedVal">1.0</span>×</label>
+                    <input type="range" id="speedSlider" min="0.25" max="8" step="0.25" value="1">
+                </div>
+            </div>
+
+            <div class="panel-section">
+                <h2 class="panel-heading">Puritate reziduu vs timp</h2>
+                <p class="panel-note">Axa X: timp simulat · Axa Y: % D₂O în lichidul din reboiler (jos). Ultimii procenti spre țintă sunt cei mai lenți (platou) — „ultimii 5% sunt iadul”.</p>
+                <div class="chart-wrap">
+                    <canvas id="purityChart" width="640" height="220" aria-label="Grafic puritate"></canvas>
+                </div>
+                <div class="chart-actions">
+                    <button type="button" id="resetRunBtn" class="btn-secondary">Reset măsurători grafic</button>
+                    <button type="button" id="pauseBtn" class="btn-secondary">Pauză</button>
+                </div>
+            </div>
+
+            <div class="info-box">
+                <strong>Notă:</strong> Modelul este <em>schematic</em> — ilustrează rolul etajelor, refluxului și temperaturii într-o rectificare cu volatilitate redusă (α aproape de 1). Nu înlocuiește proiectarea industrială sau
+                distilarea sub vid din instalații reale.
+                <span class="info-box__extra">Separarea H₂O/D₂O este una dintre cele mai dificile din ingineria chimică: proprietăți apropiate, deci consum mare de energie și echipamente foarte înalte pentru purități nucleare.</span>
+            </div>
+        </aside>
+    </main>
+    <div id="panelBackdrop" class="panel-backdrop" hidden></div>
+
+    <script src="script.js"></script>
+</body>
+</html>
