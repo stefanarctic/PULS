@@ -331,7 +331,7 @@ class Simulation {
             stageHint.innerText = t;
         } else {
             stageHint.innerText =
-                'Ținta: 30% D₂O — „rupere de pântă”. Etaj ipotetic: vizual ai și ocoluri de lichid între coloane (plan nerealizat). Parametrii rămân aceiași ca la etajele 1–2.';
+                'Ținta: 30% D₂O — „rupere de pântă”. Etaj ipotetic: vizual ai și legături de lichid între coloane (plan nerealizat). Parametrii rămân aceiași ca la etajele 1–2.';
         }
     }
 
@@ -418,6 +418,15 @@ class Simulation {
             col.classList.toggle('lg-optimal', validLg);
             col.classList.toggle('lg-off', !validLg);
         });
+
+        this.updateInterStageConnectors(active);
+    }
+
+    updateInterStageConnectors(flowOptimal) {
+        document.querySelectorAll('.etaje-connector').forEach((el) => {
+            el.classList.toggle('etaje-connector--optimal', flowOptimal);
+            el.classList.toggle('etaje-connector--stalled', this.running && !flowOptimal);
+        });
     }
 
     triggerMoment(type) {
@@ -442,7 +451,6 @@ class Simulation {
         const simFactor = Math.pow(this.simSpeed, 1.2);
         if (this.etajUnlockTicks > 0) this.etajUnlockTicks -= simFactor;
 
-        const concentrationRatio = Math.min(1, this.currentPpm / CONFIG.PPM_ETAJ3_MAX);
         const validLg = this.lgRatio >= CONFIG.LG_MIN_VALID && this.lgRatio <= CONFIG.LG_MAX_VALID;
         const tempsOk = this.coldTemp >= 30;
         const cap = this.getCapForEtaj(this.activeEtaj);
@@ -459,6 +467,13 @@ class Simulation {
 
         this.tryUnlockNextEtaj();
 
+        const flowOk = validLg && tempsOk && this.primaryScore > 0.1;
+        if (!flowOk) {
+            const fl = this.getFloorForEtaj(this.activeEtaj);
+            this.currentPpm = Math.max(fl, this.currentPpm - 0.12 * simFactor);
+        }
+
+        const concentrationRatio = Math.min(1, this.currentPpm / CONFIG.PPM_ETAJ3_MAX);
         const displayPercentNum = this.currentPpm / 10000;
         this.refreshPanelStats();
 
