@@ -64,20 +64,6 @@
                     </div>
                 </div>
 
-                <!-- Legături Etaj 2 ↔ Etaj 1: lichid ↓ spre RECE; gaz ↑ spre CALD -->
-                <div class="etaje-connector" data-link="2-1" aria-label="Între Etaj 2 și Etaj 1: lichid coboară, gaz urcă">
-                    <div class="etaje-connector-pipe etaje-connector-pipe--liquid" title="Lichid: Etaj 2 → Etaj 1 (intră sus în coloana RECE)">
-                        <span class="etaje-connector-label">Lichid ↓</span>
-                        <span class="etaje-connector-hint">2→1 · RECE</span>
-                        <div class="etaje-connector-flow etaje-connector-flow--down" aria-hidden="true"></div>
-                    </div>
-                    <div class="etaje-connector-pipe etaje-connector-pipe--gas" title="Gaz: Etaj 1 → Etaj 2 (intră jos în coloana CALDĂ)">
-                        <span class="etaje-connector-label">Gaz ↑</span>
-                        <span class="etaje-connector-hint">1→2 · CALD</span>
-                        <div class="etaje-connector-flow etaje-connector-flow--up" aria-hidden="true"></div>
-                    </div>
-                </div>
-
                 <!-- Etaj 2 -->
                 <div class="etaj-unit etaj-locked" data-etaj="2" tabindex="-1" role="group" aria-label="Etaj 2 blocat">
                     <div class="etaj-heading">
@@ -95,10 +81,6 @@
                             <div class="flow-indicator flow-down">↓</div>
                             <div class="flow-indicator flow-up">↑</div>
                         </div>
-                        <div class="loop-pipes" aria-hidden="true">
-                            <div class="pipe pipe-top pipe-right"><span class="pipe-label">Rece ↓ Cald</span></div>
-                            <div class="pipe pipe-bottom pipe-left"><span class="pipe-label">Cald ↑ Rece</span></div>
-                        </div>
                         <div class="column hot-col" data-side="hot">
                             <div class="column-label">CALD (130°C)</div>
                             <div class="column-conc-label">D₂O: 0.0101%</div>
@@ -115,19 +97,6 @@
                     </div>
                 </div>
 
-                <!-- Legături Etaj 3 ↔ Etaj 2: lichid ↓ spre RECE; gaz ↑ spre CALD -->
-                <div class="etaje-connector" data-link="3-2" aria-label="Între Etaj 3 și Etaj 2: lichid coboară, gaz urcă">
-                    <div class="etaje-connector-pipe etaje-connector-pipe--liquid" title="Lichid: Etaj 3 → Etaj 2 (intră sus în coloana RECE)">
-                        <span class="etaje-connector-label">Lichid ↓</span>
-                        <span class="etaje-connector-hint">3→2 · RECE</span>
-                        <div class="etaje-connector-flow etaje-connector-flow--down" aria-hidden="true"></div>
-                    </div>
-                    <div class="etaje-connector-pipe etaje-connector-pipe--gas" title="Gaz: Etaj 2 → Etaj 3 (intră jos în coloana CALDĂ)">
-                        <span class="etaje-connector-label">Gaz ↑</span>
-                        <span class="etaje-connector-hint">2→3 · CALD</span>
-                        <div class="etaje-connector-flow etaje-connector-flow--up" aria-hidden="true"></div>
-                    </div>
-                </div>
 
                 <!-- Etaj 3 (ipoteză) -->
                 <div class="etaj-unit etaj-locked etaj-hypothesis" data-etaj="3" tabindex="-1" role="group" aria-label="Etaj 3 blocat">
@@ -137,14 +106,6 @@
                     </div>
                     <p class="etaj-hypothesis-note">Scenariu ipotetic (plan nerealizat): circulație suplimentară de lichid între coloane.</p>
                     <div class="columns-container columns-with-liquid">
-                        <div class="liquid-pipes-bridge" aria-hidden="true">
-                            <div class="liquid-pipe liquid-pipe-top">
-                                <span class="liquid-pipe-label">Lichid rece → cald</span>
-                            </div>
-                            <div class="liquid-pipe liquid-pipe-bottom liquid-pipe--gas">
-                                <span class="liquid-pipe-label">Gaz cald → rece</span>
-                            </div>
-                        </div>
                         <div class="column cold-col" data-side="cold">
                             <div class="column-label">RECE (35°C)</div>
                             <div class="column-conc-label">D₂O: 0.0140%</div>
@@ -154,10 +115,6 @@
                             </div>
                             <div class="flow-indicator flow-down">↓</div>
                             <div class="flow-indicator flow-up">↑</div>
-                        </div>
-                        <div class="loop-pipes" aria-hidden="true">
-                            <div class="pipe pipe-top pipe-right"><span class="pipe-label">Rece ↓ Cald</span></div>
-                            <div class="pipe pipe-bottom pipe-left"><span class="pipe-label">Cald ↑ Rece</span></div>
                         </div>
                         <div class="column hot-col" data-side="hot">
                             <div class="column-label">CALD (130°C)</div>
