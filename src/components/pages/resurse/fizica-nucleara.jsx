@@ -128,7 +128,7 @@ const FizicaNuclearaPage = () => {
               </div>
 
               <div className="rounded-container px-4 py-5 sm:p-8">
-                <h2 className="text-xl sm:text-2xl font-bold mb-4">Instalație de schimb izotopic (D₂O)</h2>
+                <h2 className="text-xl sm:text-2xl font-bold mb-4">Instalație de schimb izotopic (H₂S - H₂O)</h2>
                 <p className="text-sm sm:text-base leading-7 text-muted-foreground mb-4">
                   Acest simulator ilustrează pe scurt cum funcționează o instalație de <strong>schimb izotopic</strong>&nbsp;
                   pentru creșterea concentrației de deuteriu în apă. În loc să urmărești doar formula finală, vezi și
