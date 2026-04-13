@@ -40,7 +40,7 @@ import eliNpLaserImg from "/res/screenshots/Eli_Np_Laser_Screenshot.png";
 import tabelPeriodicImg from "/res/screenshots/Tabel_periodic_Screenshot.png";
 import legaturiAtomiImg from "/res/screenshots/legaturi_atomi_Screenshot.png";
 import apaGreaImg from "/res/screenshots/apa_grea_1.png";
-import instalatieSchimbIzotopicImg from "/res/screenshots/apa_grea_simulator.png";
+import instalatieSchimbIzotopicImg from "/res/screenshots/schimb_izotopic_Screenshot.png";
 import frecareAerImg from "/res/screenshots/Frecare_Aer_Screenshot.png";
 export const simulationsConfig = [
   {

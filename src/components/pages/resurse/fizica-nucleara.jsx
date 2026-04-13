@@ -4,7 +4,7 @@ import MathJaxRender from "@/components/MathJaxRender";
 import SEO from "../../SEO";
 
 import apaGreaImg from "/res/screenshots/apa_grea_1.png";
-import instalatieSchimbIzotopicImg from "/res/screenshots/apa_grea_simulator.png";
+import instalatieSchimbIzotopicImg from "/res/screenshots/schimb_izotopic_Screenshot.png";
 
 const FizicaNuclearaPage = () => {
   return (
