@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="ro">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, viewport-fit=cover"
+    />
+    <title>Simulator criogenie — pV = nRT</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="shell" id="shell">
+      <div class="edge edge--left">
+        <button
+          type="button"
+          class="edge__toggle"
+          id="toggle-left"
+          aria-controls="drawer-left"
+          aria-expanded="true"
+          title="Ascunde / arată explicațiile"
+        >
+          <span class="edge__icon edge__icon--collapse" aria-hidden="true">&#x00AB;</span>
+          <span class="edge__icon edge__icon--expand" aria-hidden="true">&#x00BB;</span>
+        </button>
+      </div>
+
+      <aside
+        class="drawer drawer--left panel"
+        id="drawer-left"
+        aria-label="Explicații"
+      >
+        <div class="drawer__scroll">
+          <div class="info-card info-card--aha">
+            <h2 class="info-card__title">Moment „aha”</h2>
+            <p class="insight-dynamic" id="insight-dynamic">
+              Mișcă temperatura sau volumul — aici apare legătura cu presiunea și starea.
+            </p>
+          </div>
+
+          <div class="info-card">
+            <h2 class="info-card__title">Ideea de bază</h2>
+            <p class="info-card__text">
+              Vezi cum se mișcă „moleculele” când schimbi temperatura și volumul.
+              Model simplu: energia cinetică crește cu <strong>T</strong> — particulele
+              mai calde sunt mai rapide (culoarea tinde spre roșu).
+            </p>
+          </div>
+
+          <div class="info-card">
+            <h2 class="info-card__title">pV = nRT</h2>
+            <p class="info-card__text">
+              La același număr de particule, dacă <strong>micșorezi volumul</strong> sau
+              <strong>crești temperatura</strong>, presiunea efectivă crește. Urmărește
+              indicația de presiune mai jos.
+            </p>
+          </div>
+
+          <div class="info-card">
+            <h2 class="info-card__title">Stări &amp; material</h2>
+            <p class="info-card__text">
+              <strong>Gaz</strong> — haos, fără ordine. <strong>Lichid</strong> — se
+              aglomerează dar curg. <strong>Solid</strong> — rețea ordonată, vibrații mici.
+              Fiecare material are praguri diferite (ex.: heliu aproape nu „îngheață” la
+              temperaturile de aici).
+            </p>
+          </div>
+
+          <div class="info-card info-card--live">
+            <h2 class="info-card__title">Live</h2>
+            <p class="pressure-line" id="pressure-label">Pressure: Low</p>
+            <p class="state-line">
+              Stare: <strong id="state-label">&#x1F4A7; Liquid (fluid)</strong>
+            </p>
+            <p class="hint" id="state-hint">
+              Atracție ușoară între vecini: se grupează dar încă curg.
+            </p>
+            <p class="zero-warning" id="zero-warning" hidden>
+              &#x26A0;&#xFE0F; Absolute zero cannot be reached
+            </p>
+          </div>
+
+          <div class="info-card">
+            <h2 class="info-card__title">Provocări</h2>
+            <p class="challenge-item" id="challenge-freeze-status">
+              Coboară T până la solid pentru materialul ales.
+            </p>
+            <p class="challenge-item" id="challenge-pressure-status">
+              Micșorează volumul fără să crești temperatura (presiune mare).
+            </p>
+          </div>
+        </div>
+      </aside>
+
+      <div class="main-fill">
+        <header class="header">
+          <h1>Simulator criogenie</h1>
+          <p class="tagline">Temperatură, volum, presiune — stările materiei</p>
+        </header>
+
+        <div class="stage" id="stage">
+          <canvas id="canvas"></canvas>
+        </div>
+      </div>
+
+      <aside
+        class="drawer drawer--right panel"
+        id="drawer-right"
+        aria-label="Grafic și controale"
+      >
+        <div class="drawer__scroll">
+          <div class="chart-panel">
+            <h2 class="chart-panel__title">Distribuția vitezelor</h2>
+            <p class="chart-panel__caption">
+              Barele = simulare; <strong>curba portocalie</strong> = distribuție teoretică Rayleigh (2D),
+              același tip ca modulul vitezei din Maxwell–Boltzmann pentru gaz ideal în plan.
+            </p>
+            <div class="chart-wrap" id="chart-wrap">
+              <canvas id="chart-canvas" width="280" height="220"></canvas>
+            </div>
+            <p class="chart-axis-label">viteză relativă →</p>
+          </div>
+
+          <div class="controls controls--sidebar">
+            <h2 class="controls__heading">Controale</h2>
+            <div class="control-row">
+              <label class="temp-label" for="material-select">Material</label>
+              <select id="material-select" class="select-input">
+                <option value="water" selected>Apă</option>
+                <option value="helium">Heliu</option>
+                <option value="iron">Fier</option>
+                <option value="nitrogen">Azot</option>
+              </select>
+            </div>
+
+            <label class="temp-label" for="temp-slider">
+              Temperatură: <span id="temp-value">300</span> K
+            </label>
+            <div class="range-field">
+              <input
+                id="temp-slider"
+                type="range"
+                min="50"
+                max="400"
+                value="300"
+                step="1"
+              />
+            </div>
+
+            <label class="temp-label" for="volume-slider">
+              Volum (cutie): <span id="volume-value">100%</span>
+            </label>
+            <div class="range-field">
+              <input
+                id="volume-slider"
+                type="range"
+                min="26"
+                max="100"
+                value="100"
+                step="1"
+              />
+            </div>
+
+            <div class="experiment-block">
+              <h3 class="experiment-block__title">Experiment mode</h3>
+              <p class="experiment-block__goal" id="experiment-title">
+                Presiune mare, fără T mai mare
+              </p>
+              <p class="experiment-block__desc" id="experiment-desc">
+                Obține Pressure: High fără să crești temperatura față de momentul Start.
+              </p>
+              <div class="experiment-block__actions">
+                <button type="button" class="btn btn--primary" id="btn-exp-start">
+                  Start experiment
+                </button>
+                <button type="button" class="btn btn--ghost" id="btn-exp-next">
+                  Alt experiment
+                </button>
+              </div>
+              <button type="button" class="btn btn--capture" id="btn-capture">
+                &#x1F4F8; Capture experiment
+              </button>
+            </div>
+          </div>
+        </div>
+      </aside>
+
+      <div class="edge edge--right">
+        <button
+          type="button"
+          class="edge__toggle"
+          id="toggle-right"
+          aria-controls="drawer-right"
+          aria-expanded="true"
+          title="Ascunde / arată graficul și sliderele"
+        >
+          <span class="edge__icon edge__icon--collapse" aria-hidden="true">&#x00BB;</span>
+          <span class="edge__icon edge__icon--expand" aria-hidden="true">&#x00AB;</span>
+        </button>
+      </div>
+    </div>
+
+    <div class="toast-root" id="toast-root" aria-live="polite"></div>
+
+    <script type="module" src="main.js"></script>
+  </body>
+</html>
