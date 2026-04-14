@@ -11,6 +11,22 @@ const CONC_TOP_INIT = 0.17;
 const TARGET_NOTE = 99.8;
 const ALPHA_BASE = 1.066;
 
+/** R = L/D — domeniu fix didactic (coloana D₂O). */
+const REFLUX_R_MIN = 1;
+const REFLUX_R_MAX = 1.5;
+const REFLUX_R_DEFAULT = 1.25;
+
+function clampRefluxR(r) {
+  const x = Number(r);
+  if (!Number.isFinite(x)) return REFLUX_R_DEFAULT;
+  return Math.min(REFLUX_R_MAX, Math.max(REFLUX_R_MIN, x));
+}
+
+/** 0..1 pentru R în [REFLUX_R_MIN, REFLUX_R_MAX] (animații / intensitate). */
+function refluxFlowFactor() {
+  return Math.min(1, Math.max(0, (refluxR - REFLUX_R_MIN) / (REFLUX_R_MAX - REFLUX_R_MIN)));
+}
+
 /** Setat la succes în simularea „Instalație de schimb izotopic”. */
 const GS_COMPLETE_KEY = "puls_izotopic_gs_complete";
 
@@ -78,7 +94,7 @@ let concTop = CONC_TOP_INIT;
 let xLiquid;
 let numStages = 40;
 let reboilerT = 100.5;
-let refluxR = 4;
+let refluxR = REFLUX_R_DEFAULT;
 let simSpeed = 1;
 let simTime = 0;
 let running = false;
@@ -155,7 +171,7 @@ function syncStagesFromUI() {
 }
 
 /**
- * efficiency = (etaje * reflux) / 1000; delta mic daca etaje sau reflux mici.
+ * efficiency = (talere teoretice * reflux) / 1000; delta mic daca talere teoretice sau reflux mici.
  * concBottom += delta * (1 - concBottom); concTop -= delta * concTop;
  */
 function applyKinetics(dt) {
@@ -170,7 +186,7 @@ function applyKinetics(dt) {
 }
 
 /**
- * Relaxare usoara pe etaje: transfer mic intre vecini + tinta profil (vapori–lichid simplificat).
+ * Relaxare usoara pe talere teoretice: transfer mic intre vecini + tinta profil (vapori–lichid simplificat).
  */
 function stepTrayMixing(dt, boil) {
   const n = xLiquid.length;
@@ -250,7 +266,7 @@ function updateProcessMessage(boil) {
   }
   if (boil < 0.18) {
     el.textContent =
-      "Temperatur\u0103 prea mic\u0103: nu se produce vaporizare eficient\u0103 \u00een reboiler.";
+      "Temperatur\u0103 prea mic\u0103: nu se produce vaporizare eficient\u0103 \u00een blaz.";
     return;
   }
   let msg = "";
@@ -275,7 +291,7 @@ function updateTempWarning(boil) {
   if (!el) return;
   if (boil < 0.2) {
     el.textContent =
-      "Nu se produce vaporizare eficient\u0103 la aceast\u0103 temperatur\u0103 \u2014 ridic\u0103 u\u0219or reboilerul.";
+      "Nu se produce vaporizare eficient\u0103 la aceast\u0103 temperatur\u0103 \u2014 ridic\u0103 u\u0219or blazul.";
     el.classList.remove("temp-warning--hidden");
   } else {
     el.textContent = "";
@@ -285,10 +301,11 @@ function updateTempWarning(boil) {
 
 function updateRefluxDripVisual(boil) {
   const drip = document.getElementById("refluxDripColumn");
-  const live = running && !paused && boil > 0.08 && refluxR > 0.45;
+  const live = running && !paused && boil > 0.08 && refluxR >= REFLUX_R_MIN;
   drip?.classList.toggle("reflux-drip-column--live", live);
   if (drip && live) {
-    const spd = Math.min(1.25, 0.62 + (refluxR / 12) * 0.55);
+    const f = refluxFlowFactor();
+    const spd = Math.min(1.25, 0.62 + f * 0.55);
     drip.style.setProperty("--drip-period", `${1.28 / spd}s`);
   }
 }
@@ -314,7 +331,7 @@ function updateReadouts(alpha, boil) {
   const ra = document.getElementById("readoutAlpha");
   if (rt) rt.textContent = `${reboilerT.toFixed(2)} °C`;
   if (rn) rn.textContent = String(n);
-  if (rr) rr.textContent = refluxR.toFixed(1);
+  if (rr) rr.textContent = refluxR.toFixed(2);
   if (ra) ra.textContent = alpha.toFixed(3);
 
   void boil;
@@ -324,7 +341,7 @@ function updateRefluxVisual() {
   const bridge = document.querySelector(".reflux-bridge");
   const path = document.querySelector(".reflux-path");
   if (!path) return;
-  const t = Math.min(1, refluxR / 12);
+  const t = refluxFlowFactor();
   path.style.opacity = String(0.15 + 0.72 * t);
   if (bridge) bridge.style.setProperty("--reflux-flow", String(0.25 + 0.85 * t));
 }
@@ -389,7 +406,7 @@ function tickParticles(dt, boil) {
 
   if (!running || paused || boil < 0.03) return;
 
-  const refluxF = Math.min(1, refluxR / 12);
+  const refluxF = refluxFlowFactor();
   const inten = boil * (0.55 + 0.45 * refluxF);
 
   for (const p of flowParticles) {
@@ -494,12 +511,12 @@ function drawChart() {
   ctx.fillStyle = "#9ca3af";
   ctx.font = "11px Segoe UI,sans-serif";
   ctx.textAlign = "center";
-  ctx.fillText("t (s sim.)", padL + gw / 2, h - 10);
+  ctx.fillText("t (h sim.)", padL + gw / 2, h - 10);
 
   ctx.save();
   ctx.translate(12, padT + gh / 2);
   ctx.rotate(-Math.PI / 2);
-  ctx.fillText("% D₂O (reboiler)", 0, 0);
+  ctx.fillText("% D₂O (blaz)", 0, 0);
   ctx.restore();
 
   if (purityHistory.length < 2) return;
@@ -533,7 +550,10 @@ function loop(ts) {
   updateProcessMessage(boil);
   updateRefluxDripVisual(boil);
   const bridge = document.querySelector(".reflux-bridge");
-  bridge?.classList.toggle("reflux-bridge--obvious", running && !paused && boil > 0.1 && refluxR > 1.6);
+  bridge?.classList.toggle(
+    "reflux-bridge--obvious",
+    running && !paused && boil > 0.1 && refluxFlowFactor() >= 0.75
+  );
 
   if (running && !paused) {
     if (dt > 0) simulationTick(dt);
@@ -574,17 +594,17 @@ function startSimulation() {
 function applyPreset(preset) {
   if (preset === "rapid") {
     numStages = 14;
-    refluxR = 1.2;
+    refluxR = REFLUX_R_MIN;
     simSpeed = 3.5;
     reboilerT = 100.42;
   } else if (preset === "industrial") {
     numStages = 88;
-    refluxR = 10;
+    refluxR = REFLUX_R_MAX;
     simSpeed = 0.85;
     reboilerT = 100.58;
   } else {
     numStages = 40;
-    refluxR = 4;
+    refluxR = REFLUX_R_DEFAULT;
     simSpeed = 1;
     reboilerT = 100.5;
   }
@@ -602,7 +622,7 @@ function applyPreset(preset) {
   const rx = document.getElementById("refluxSlider");
   const rxv = document.getElementById("refluxVal");
   if (rx) rx.value = String(refluxR);
-  if (rxv) rxv.textContent = refluxR.toFixed(1);
+  if (rxv) rxv.textContent = refluxR.toFixed(2);
 
   const sp = document.getElementById("speedSlider");
   const spv = document.getElementById("speedVal");
@@ -646,9 +666,11 @@ function wireControls() {
   }
   if (refluxSlider) {
     refluxSlider.addEventListener("input", () => {
-      refluxR = parseFloat(refluxSlider.value);
-      if (refluxVal) refluxVal.textContent = refluxR.toFixed(1);
+      refluxR = clampRefluxR(refluxSlider.value);
+      if (refluxVal) refluxVal.textContent = refluxR.toFixed(2);
       updateRefluxVisual();
+      const a = alphaFromT(reboilerT);
+      updateReadouts(a, boilStrength(reboilerT));
     });
   }
   if (speedSlider) {
@@ -728,7 +750,7 @@ function init() {
     }
   });
 
-  refluxR = parseFloat(document.getElementById("refluxSlider")?.value || "4");
+  refluxR = clampRefluxR(document.getElementById("refluxSlider")?.value || String(REFLUX_R_DEFAULT));
   reboilerT = parseFloat(document.getElementById("reboilerSlider")?.value || "100.5");
   simSpeed = parseFloat(document.getElementById("speedSlider")?.value || "1");
   concBottom = X_FEED;

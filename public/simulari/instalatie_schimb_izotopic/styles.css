@@ -818,6 +818,17 @@ input[type="number"]:disabled {
     justify-content: center;
 }
 
+.success-actions .btn {
+    margin-top: 0;
+}
+
+a.btn {
+    text-decoration: none;
+    display: inline-block;
+    text-align: center;
+    line-height: normal;
+}
+
 .btn {
     background: var(--accent);
     color: white;
