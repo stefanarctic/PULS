@@ -119,7 +119,20 @@ const STATIC_SITE_ENTRIES = [
   {
     title: "Resurse — Fizică nucleară",
     path: "/resurse/fizica-nucleara",
-    keywords: ["fizică nucleară", "nuclear", "apa grea", "moderator", "fisiune", "radioactivitate"],
+    keywords: [
+      "fizică nucleară",
+      "nuclear",
+      "apa grea",
+      "moderator",
+      "fisiune",
+      "fuziune",
+      "deuteriu",
+      "tritiu",
+      "reactor",
+      "D-T",
+      "17.6 MeV",
+      "radioactivitate",
+    ],
   },
   {
     title: "Resurse — Lasere",

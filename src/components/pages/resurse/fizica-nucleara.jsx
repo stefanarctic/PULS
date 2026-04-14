@@ -6,33 +6,120 @@ import SEO from "../../SEO";
 import apaGreaImg from "/res/screenshots/apa_grea_1.png";
 import instalatieSchimbIzotopicImg from "/res/screenshots/schimb_izotopic_Screenshot.png";
 import distilareD2oFractionataResurseImg from "/res/screenshots/Distilare_D2o_Fractionata_Resurse.png";
+import reactorFuziuneDtImg from "/res/screenshots/Reactor_Fuziune_Dt_Screenshot.png";
 
 const FizicaNuclearaPage = () => {
   return (
     <Layout>
       <SEO
-        title="Fizică nucleară | D₂O vs H₂O și apă grea - PULS"
-        description="Comparație D₂O vs H₂O: fracție de apă grea în lichid (model educațional), efecte biologice orientative, densitate, puncte de fierbere/îngheț și moderare neutroni."
-        keywords="fizica nucleara, apa grea, D2O vs H2O, deuteriu, densitate apa grea, punct de fierbere D2O, moderator"
+        title="Fizică nucleară | Apă grea, separare izotopică, model fuziune D–T - PULS"
+        description="Resurse: D₂O vs H₂O, instalații de schimb izotopic și distilare fracționată; model educativ de fuziune deuteriu–tritiu cu energie ~17,6 MeV per reacție și simulator interactiv."
+        keywords="fizica nucleara, apa grea, D2O, fuziune, deuteriu, tritiu, reactor, model educativ, schimb izotopic, moderator"
         image="/res/icons/New-logo.png"
       />
       <div className="resurse-pagina min-h-screen flex flex-col">
         <div className="resurse-page-container">
           <main className="flex-grow container mx-auto px-4 sm:px-6 py-8 md:py-10">
             <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold leading-tight mb-5 md:mb-6">
-              Fizică nucleară: D₂O vs H₂O
+              Fizică nucleară
             </h1>
 
             <div className="max-w-4xl mb-8 md:mb-10">
               <p className="text-base sm:text-lg leading-7 text-muted-foreground mb-4">
-                Simulatorul compară apă ușoară și apă grea în trei moduri: <strong>Corp</strong> (fracție D₂O într-un
-                lichid model), <strong>Reactor</strong> (rol de moderator) și <strong>Fizică</strong> (masă moleculară,
-                densitate, puncte de fierbere/îngheț, frecvențe vibraționale). Accentul este pe diferențele D₂O vs H₂O,
-                nu pe un model medical sau clinic.
+                Pagina grupează materiale despre <strong>apa grea</strong> și separarea deuteriului, plus un{" "}
+                <strong>model educativ de fuziune D–T</strong> (deuteriu + tritiu) cu energie orientativă eliberată
+                per reacție. Simulatoarele nu înlocuiesc cursuri de inginerie nucleară sau dosare de siguranță; sunt
+                pentru intuiție și legătura cu programa de liceu.
+              </p>
+              <p className="text-base sm:text-lg leading-7 text-muted-foreground mb-0">
+                Mai jos: fuziunea D–T în simulator, apoi D₂O vs H₂O, schimb izotopic și rectificare pentru D₂O.
               </p>
             </div>
 
             <div className="space-y-8 md:space-y-12">
+              <div className="rounded-container px-4 py-5 sm:p-8">
+                <h2 className="text-xl sm:text-2xl font-bold mb-4">Simulator: reactor fuziune D–T</h2>
+                <p className="text-sm sm:text-base leading-7 text-muted-foreground mb-4">
+                  În codul simulatorului, fiecare eveniment de „fuziune” lângă nucleu adaugă o energie de{" "}
+                  <strong>17,6&nbsp;MeV</strong>, valoare standard citată pentru reacția dintre un nucleu de deuteriu și
+                  unul de tritiu. Controalele (temperatură, presiune, flux de neutroni) modifică viteza particulelor,
+                  probabilitatea de întâlnire în zona nucleului și stabilitatea afișată; peste un prag critic, aplicația
+                  trece într-un scenariu vizual de <strong>meltdown</strong>, exclusiv demonstrativ.
+                </p>
+                <p className="text-sm sm:text-base leading-7 text-muted-foreground mb-6">
+                  <strong>Parametri în interfață:</strong> temperatura (0–1000&nbsp;K), presiunea (0–100, scală
+                  relativă), flux neutroni (0–10). În script, zona de fuziune se extinde ușor cu energia cumulată;
+                  meltdown se declanșează dacă fluxul depășește ~8,5 și temperatura ~850&nbsp;K simultan.
+                </p>
+
+                <div className="image-slider h-52 sm:h-64 md:h-80 relative flex items-center justify-center mb-6 md:mb-8">
+                  <img
+                    src={reactorFuziuneDtImg}
+                    alt="Simulator educativ reactor fuziune D–T: nucleu, particule, controale și grafic energie"
+                    className="w-full h-full object-contain mx-auto my-auto"
+                  />
+                </div>
+
+                <h3 className="text-lg sm:text-xl font-semibold mb-3">Formule legate de modelul din simulator</h3>
+
+                <h4 className="text-base sm:text-lg font-semibold mb-2">1. Reacția de fuziune D + T</h4>
+                <p className="text-sm sm:text-base leading-7 text-muted-foreground mb-3">
+                  Schematic (particule emise și energie eliberată orientativă):
+                </p>
+                <div className="formula-resurse overflow-x-auto max-w-full text-sm sm:text-base md:text-lg font-mono mb-4">
+                  {"\\( {}^2_1\\mathrm{H} + {}^3_1\\mathrm{H} \\rightarrow {}^4_2\\mathrm{He} + {}^1_0\\mathrm{n} + 17{,}6\\ \\mathrm{MeV} \\)"}
+                  <MathJaxRender />
+                </div>
+                <p className="text-sm sm:text-base leading-7 text-muted-foreground mb-5">
+                  Tritiul ({"\\({}^3_1\\mathrm{H}\\)"} <MathJaxRender />) este instabil ({"\\(\\beta^-\\)"}{" "}
+                  <MathJaxRender />
+                  ), de aceea în practică trebuie produs sau regenerat într-un lanț de reacții; simulatorul nu
+                  detaliază acest lanț, doar folosește energia per eveniment ca reper didactic.
+                </p>
+
+                <h4 className="text-base sm:text-lg font-semibold mb-2">2. Energia cumulată afișată</h4>
+                <p className="text-sm sm:text-base leading-7 text-muted-foreground mb-3">
+                  Cu {"\\(N\\)"} <MathJaxRender /> numărul de evenimente de fuziune numărate în simulare:
+                </p>
+                <div className="formula-resurse overflow-x-auto max-w-full text-sm sm:text-base md:text-lg font-mono mb-4">
+                  {"\\( E_{\\mathrm{tot}} = N \\cdot 17{,}6\\ \\mathrm{MeV} \\)"}
+                  <MathJaxRender />
+                </div>
+                <p className="text-sm sm:text-base leading-7 text-muted-foreground mb-5">
+                  Graficul „Energie în timp” urmărește {"\\(E_{\\mathrm{tot}}\\)"} <MathJaxRender /> eșantionat în bucla
+                  de animație; rata „Fuziuni / secundă” estimează evenimentele din ultima secundă (timestamps în cod).
+                </p>
+
+                <h4 className="text-base sm:text-lg font-semibold mb-2">3. Defect de masă și energie de reacție (Q)</h4>
+                <p className="text-sm sm:text-base leading-7 text-muted-foreground mb-3">
+                  În nucleu, energia eliberată se leagă de diferența dintre masa reactanților și cea a produsilor:
+                </p>
+                <div className="formula-resurse overflow-x-auto max-w-full text-sm sm:text-base md:text-lg font-mono mb-4">
+                  {"\\( Q = \\bigl(m_D + m_T - m_{\\mathrm{He}} - m_n\\bigr)\\,c^2 \\)"}
+                  <MathJaxRender />
+                </div>
+                <p className="text-sm sm:text-base leading-7 text-muted-foreground mb-5">
+                  Valoarea {"\\(Q \\approx 17{,}6\\ \\mathrm{MeV}\\)"} <MathJaxRender /> pentru D–T este cea folosită
+                  în simulator ca energie per eveniment; într-un reactor real energia se împarte între particule și
+                  structură, iar confinarea plasmei sau materialele nu sunt modelate aici.
+                </p>
+
+                <h4 className="text-base sm:text-lg font-semibold mb-2">4. Stabilitate și prag critic (doar în simulare)</h4>
+                <p className="text-sm sm:text-base leading-7 text-muted-foreground mb-3">
+                  Aplicația afișează stări de tip OK / instabil înainte de meltdown; condiția de declanșare din cod este
+                  echivalentă cu „flux mare și temperatură mare” simultan. Nu există o formulă fizică unică aici — este
+                  un prag pedagogic pentru a discuta <em>feedback</em>-ul puterii și al răcirii într-un curs real de fizică sau inginerie.
+                </p>
+
+                <div className="flex flex-col sm:flex-row sm:items-center sm:justify-end gap-4 sm:gap-6">
+                  <a href="/simulare/reactor-fuziune-dt" rel="noopener noreferrer" className="resurse-link w-full sm:w-auto">
+                    <Button size="lg" className="w-full sm:w-auto">
+                      Simulare: reactor fuziune D–T
+                    </Button>
+                  </a>
+                </div>
+              </div>
+
               <div className="rounded-container px-4 py-5 sm:p-8">
                 <h2 className="text-xl sm:text-2xl font-bold mb-4">Scurt istoric și context românesc</h2>
                 <p className="text-sm sm:text-base leading-7 text-muted-foreground mb-4">
@@ -54,7 +141,7 @@ const FizicaNuclearaPage = () => {
               </div>
 
               <div className="rounded-container px-4 py-5 sm:p-8">
-                <h2 className="text-xl sm:text-2xl font-bold mb-4">Ce compară simulatorul D₂O vs H₂O</h2>
+                <h2 className="text-xl sm:text-2xl font-bold mb-4">Ce compară simulatorul D₂O vs H₂O (apă grea)</h2>
                 <p className="text-sm sm:text-base leading-7 text-muted-foreground mb-4">
                   În cod, secțiunea „Corp” folosește un <strong>slider de fracție molară fictivă</strong> pentru D₂O și
                   o grilă vizuală (status OK/Atenție/Ridicat/Critic), cu mesaj explicit că este doar demonstrație

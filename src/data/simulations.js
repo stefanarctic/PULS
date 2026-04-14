@@ -43,6 +43,7 @@ import apaGreaImg from "/res/screenshots/apa_grea_1.png";
 import instalatieSchimbIzotopicImg from "/res/screenshots/schimb_izotopic_Screenshot.png";
 import distilareD2oFractionataImg from "/res/screenshots/Distilare_D2o_Fractionata_Resurse.png";
 import frecareAerImg from "/res/screenshots/Frecare_Aer_Screenshot.png";
+import reactorFuziuneDtImg from "/res/screenshots/Reactor_Fuziune_Dt_Screenshot.png";
 export const simulationsConfig = [
   {
     id: 1,
@@ -593,6 +594,20 @@ export const simulationsConfig = [
     iframeSrc: "/simulari/Simulator-Frecare-Aer/index.html",
     maxHeight: "90vh",
     category: "Mecanică"
+  },
+  {
+    id: 46,
+    slug: "reactor-fuziune-dt",
+    route: "/simulare/reactor-fuziune-dt",
+    title: "Reactor fuziune D–T (model educativ)",
+    description:
+      "Simulator educativ pentru reactor fuziune D–T, simulare de fuziune și meltdown, model educativ pentru fuziune deuteriu-tritiu.",
+    image: reactorFuziuneDtImg,
+    caption: "Fuziune deuteriu–tritiu (model)",
+    iframeSrc: "/simulari/reactor/index.html",
+    maxHeight: "92vh",
+    category: "Fizică nucleară",
+    eyebrow: "Fizică nucleară | Simulare interactivă"
   },
 ];
 

@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simulator reactor — fuziune D–T (educativ)</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="app">
+    <header class="header">
+      <h1>Simulator reactor — fuziune D–T</h1>
+      <p>Control parametri, energie cumulativă (~17,6 MeV / fuziune) și stabilitate (model educativ, nu inginerie de reactor)</p>
+    </header>
+  
+    <main class="container">
+      
+      <section class="simulator">
+        <canvas id="reactorCanvas"></canvas>
+        <div class="sim-hints" aria-label="Indici educaționale">
+          <p>Temperatura crește → particulele se mișcă mai rapid.</p>
+          <p>Flux mare → crește probabilitatea de fuziune lângă nucleu (~17.6 MeV / eveniment).</p>
+          <p>Energia afișată = numărul de reacții × 17.6 MeV (model educativ D–T).</p>
+        </div>
+        <div id="meltdownExplain" class="meltdown-explain" aria-live="polite" hidden>
+          <h4>Meltdown — ce s-a întâmplat?</h4>
+          <p>
+            Tritiul este un izotop radioactiv al hidrogenului. În condiții extreme, reacțiile scapă de sub control,
+            iar energia eliberată devine instabilă. În scenariul de mai sus, reactorul a intrat în meltdown: pierdere
+            a controlului, eliberare brutală de energie, apoi dispersie de „nor” radioactiv (vizualizare educativă).
+          </p>
+        </div>
+      </section>
+  
+      <section class="controls">
+        <div class="control">
+          <label>Temperatură (K)</label>
+          <input type="range" min="0" max="1000" />
+        </div>
+  
+        <div class="control">
+          <label>Presiune</label>
+          <input type="range" min="0" max="100" />
+        </div>
+  
+        <div class="control">
+          <label>Flux neutroni</label>
+          <input type="range" min="0" max="10" step="0.1"/>
+        </div>
+
+        <button type="button" id="resetBtn" class="reset-btn" hidden>Reset reactor</button>
+
+        <div class="energy-chart" aria-label="Grafic energie în timp">
+          <h3 class="chart-title">Energie în timp (MeV)</h3>
+          <canvas id="chartCanvas"></canvas>
+        </div>
+      </section>
+  
+      <section class="stats">
+        <div class="card">
+          <h3>Energie</h3>
+          <p id="energy">0 MeV</p>
+        </div>
+  
+        <div class="card">
+          <h3>Fuziuni / secundă</h3>
+          <p id="rate">0</p>
+        </div>
+  
+        <div class="card">
+          <h3>Stabilitate</h3>
+          <p id="stability">OK</p>
+        </div>
+      </section>
+  
+    </main>
+  </div>
+  <script src="script.js"></script>
+  </body>
+  </html>

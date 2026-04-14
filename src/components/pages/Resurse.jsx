@@ -105,7 +105,7 @@ const lessonCards = [
   {
     title: "Fizică nucleară",
     description:
-      "Reacții nucleare, defect de masă, radioactivitate și rolul apei grele ca moderator. Lecție + simulator interactiv.",
+      "Model educativ de fuziune D–T (~17,6 MeV), apă grea D₂O vs H₂O, schimb izotopic și distilare fracționată — lecții, formule și simulatoare.",
     path: "/resurse/fizica-nucleara",
   },
 ];
