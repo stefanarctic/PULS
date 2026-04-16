@@ -5,6 +5,7 @@ import SEO from "../../SEO";
 
 import laserSimulatorImg from "/res/screenshots/Laser_Simulator_Screenshot.png";
 import eliNpLaserImg from "/res/screenshots/Eli_Np_Laser_Screenshot.png";
+import acceleratorLaserImg from "/res/screenshots/Accelerator_Laser_Screenshot.png";
 
 const simulatorSections = [
   {
@@ -79,6 +80,46 @@ const simulatorSections = [
       "ELI-NP este legat de cercetarea laserelor extreme de la Măgurele",
       "durata pulsului influențează direct puterea de vârf",
       "focalizarea și dimensiunea spotului controlează regimul fizic observat",
+    ],
+  },
+  {
+    title: "Simulator 3: Accelerator laser wakefield",
+    intro:
+      "Al treilea simulator arată pe scurt principiul LWFA (Laser WakeField Acceleration): pulsul laser generează o undă de plasmă, iar electronul poate fi prins în faza potrivită și accelerat pe distanțe scurte.",
+    image: acceleratorLaserImg,
+    alt: "Screenshot simulator accelerator laser wakefield",
+    href: "/simulare/accelerator-laser",
+    cta: "Deschide simulatorul LWFA",
+    formulas: [
+      {
+        title: "Unda de plasmă (model simplificat)",
+        formula: "\\( y(x,t) = A\\sin(kx-\\omega t) \\)",
+        explanation:
+          "Unda wakefield este reprezentată aici printr-un profil sinusoidal: amplitudinea A crește odată cu intensitatea laserului, iar frecvența spațială depinde de densitatea plasmei.",
+      },
+      {
+        title: "Intensitatea fasciculului",
+        formula: "\\( I = \\dfrac{P}{A_{spot}} \\)",
+        explanation:
+          "Pentru aceeași putere P, focalizarea pe o arie mai mică A_spot duce la intensitate mai mare și la câmpuri de accelerație mai puternice în plasmă.",
+      },
+      {
+        title: "Factorul Lorentz al electronului",
+        formula: "\\( \\gamma = \\dfrac{1}{\\sqrt{1-v^2/c^2}} \\)",
+        explanation:
+          "Pe măsură ce viteza electronului v se apropie de viteza luminii c, factorul gamma crește rapid și evidențiază regimul relativist din accelerator.",
+      },
+      {
+        title: "Energia relativistă",
+        formula: "\\( E = \\gamma m_e c^2 \\)",
+        explanation:
+          "Această relație leagă direct creșterea lui gamma de energia electronului. În simulare, creșterea energiei apare când electronul rămâne sincronizat cu unda de plasmă.",
+      },
+    ],
+    facts: [
+      "mărirea intensității crește amplitudinea wakefield-ului și accelerația electronului",
+      "densitatea plasmei schimbă perioada undei și condițiile de capturare",
+      "dacă electronul iese din faza acceleratoare, câștigul energetic scade",
     ],
   },
 ];

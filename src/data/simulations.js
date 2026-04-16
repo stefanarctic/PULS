@@ -37,6 +37,7 @@ import tunelareCuanticaImg from "/res/screenshots/tunelare_Screenshot.png";
 import laserImg from "/res/screenshots/laser_Screenshot.png";
 import laserSimulatorImg from "/res/screenshots/Laser_Simulator_Screenshot.png";
 import eliNpLaserImg from "/res/screenshots/Eli_Np_Laser_Screenshot.png";
+import acceleratorLaserImg from "/res/screenshots/Accelerator_Laser_Screenshot.png";
 import tabelPeriodicImg from "/res/screenshots/Tabel_periodic_Screenshot.png";
 import legaturiAtomiImg from "/res/screenshots/legaturi_atomi_Screenshot.png";
 import apaGreaImg from "/res/screenshots/apa_grea_1.png";
@@ -467,6 +468,20 @@ export const simulationsConfig = [
     maxHeight: "95vh",
     category: "Lasere",
     eyebrow: "ELI-NP | Simulare interactivă"
+  },
+  {
+    id: 47,
+    slug: "accelerator-laser",
+    route: "/simulare/accelerator-laser",
+    title: "Accelerare de electroni cu laser (LWFA)",
+    description:
+      "Simulare de accelerare laser wakefield: observi cum intensitatea pulsului si densitatea plasmei controleaza capturarea electronului si cresterea factorului Lorentz.",
+    image: acceleratorLaserImg,
+    caption: "Accelerare laser wakefield",
+    iframeSrc: "/simulari/accelerator_laser/index.html",
+    maxHeight: "95vh",
+    category: "Lasere",
+    eyebrow: "Lasere | Accelerator wakefield"
   },
   {
     id: 33,

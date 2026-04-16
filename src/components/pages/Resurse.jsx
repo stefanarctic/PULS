@@ -75,7 +75,7 @@ const lessonCards = [
   {
     title: "Lasere",
     description:
-      "Principii de funcționare, formule pentru fascicule și pulsuri, context ELI-NP și două simulatoare interactive dedicate laserelor.",
+      "Principii de funcționare, formule pentru fascicule și pulsuri, context ELI-NP și trei simulatoare interactive dedicate laserelor.",
     path: "/resurse/lasere",
   },
   {
@@ -1531,6 +1531,35 @@ const ResursePage = () => {
           formula: "\\( u = \\dfrac{I}{c} \\)",
           explanation:
             "Arată câtă energie electromagnetică există pe unitatea de volum într-un fascicul care se propagă. Relația ajută la interpretarea regimurilor extreme.",
+        },
+      ],
+    },
+    {
+      section: "4. Accelerare laser wakefield (LWFA)",
+      formulas: [
+        {
+          title: "Model simplificat pentru unda de plasmă",
+          formula: "\\( y(x,t) = A\\sin(kx-\\omega t) \\)",
+          explanation:
+            "În modelul educațional, pulsul laser creează o undă de plasmă (wakefield). Amplitudinea A este legată de intensitate, iar numărul de undă k de densitatea plasmei.",
+        },
+        {
+          title: "Intensitatea focalizată în spot",
+          formula: "\\( I = \\dfrac{P}{A_{spot}} \\)",
+          explanation:
+            "Cu aceeași putere laser P, un spot mai mic dă o intensitate mai mare. În simulator, creșterea intensității duce la câmpuri de accelerație mai puternice.",
+        },
+        {
+          title: "Factorul Lorentz",
+          formula: "\\( \\gamma = \\dfrac{1}{\\sqrt{1-v^2/c^2}} \\)",
+          explanation:
+            "Arată intrarea în regim relativist: când viteza electronului v se apropie de c, valoarea lui γ crește rapid și energia particulei crește semnificativ.",
+        },
+        {
+          title: "Energia relativistă a electronului",
+          formula: "\\( E = \\gamma m_e c^2 \\)",
+          explanation:
+            "Formula leagă direct energia electronului de factorul Lorentz. Când electronul rămâne sincronizat cu faza acceleratoare a wakefield-ului, E crește mai eficient.",
         },
       ],
     },
