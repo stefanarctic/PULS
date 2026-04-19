@@ -91,6 +91,16 @@ const resources = [
     formulaCategory: "electricitate",
   },
   {
+    title: "Electromagnetism",
+    description:
+      "Câmp electric și magnetic, inducție, forța Lorentz și efectul Meissner prin simulări interactive.",
+    imageLight: electricityLight,
+    imageDark: electricityDark,
+    icon: <Zap className="resource-icon" />,
+    experimentPath: "/resurse/electromagnetism",
+    formulaCategory: "electromagnetism",
+  },
+  {
     title: "Optică",
     description:
       "Descoperă comportamentul luminii, refracția, reflexia, lentilele și fenomenele de interferență și difracție.",

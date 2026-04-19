@@ -21,6 +21,7 @@ const SIMULATION_CATEGORY_ORDER = [
   "Grafice",
   "Termodinamică",
   "Electricitate",
+  "Electromagnetism",
   "Optică",
   "Lasere",
   "Astronomie",

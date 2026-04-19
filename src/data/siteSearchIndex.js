@@ -92,6 +92,11 @@ const STATIC_SITE_ENTRIES = [
     keywords: ["electricitate", "curent", "ohm", "kirchhoff", "circuit"],
   },
   {
+    title: "Resurse — Electromagnetism",
+    path: "/resurse/electromagnetism",
+    keywords: ["electromagnetism", "camp electric", "camp magnetic", "meissner", "supraconductivitate", "inductie", "lorentz"],
+  },
+  {
     title: "Resurse — Optică",
     path: "/resurse/optica",
     keywords: ["optică", "lumină", "lentile", "refracție", "reflexie"],

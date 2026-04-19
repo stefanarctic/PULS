@@ -45,6 +45,8 @@ import instalatieSchimbIzotopicImg from "/res/screenshots/schimb_izotopic_Screen
 import distilareD2oFractionataImg from "/res/screenshots/Distilare_D2o_Fractionata_Resurse.png";
 import frecareAerImg from "/res/screenshots/Frecare_Aer_Screenshot.png";
 import reactorFuziuneDtImg from "/res/screenshots/Reactor_Fuziune_Dt_Screenshot.png";
+import criogenieImg from "/res/screenshots/Criogenie_Screenshot.png";
+import supraconductivitateImg from "/res/screenshots/Supraconductivitate_Screenshot.png";
 export const simulationsConfig = [
   {
     id: 1,
@@ -623,6 +625,34 @@ export const simulationsConfig = [
     maxHeight: "92vh",
     category: "Fizică nucleară",
     eyebrow: "Fizică nucleară | Simulare interactivă"
+  },
+  {
+    id: 48,
+    slug: "criogenie",
+    route: "/simulare/criogenie",
+    title: "Criogenie și stări de agregare",
+    description:
+      "Explorează regimuri de temperatură joasă: legătura pV = nRT, dinamica particulelor și tranzițiile dintre gaz, lichid și solid pentru materiale diferite.",
+    image: criogenieImg,
+    caption: "Simulator criogenie",
+    iframeSrc: "/simulari/criogenie/index.html",
+    maxHeight: "95vh",
+    category: "Termodinamică",
+    eyebrow: "Termodinamică | Criogenie"
+  },
+  {
+    id: 49,
+    slug: "supraconductivitate",
+    route: "/simulare/supraconductivitate",
+    title: "Supraconductivitate și efectul Meissner",
+    description:
+      "Simulează condiția T < Tc, levitația magnetică și tranziția spre stare normală când temperatura depășește temperatura critică.",
+    image: supraconductivitateImg,
+    caption: "Supraconductivitate",
+    iframeSrc: "/simulari/supraconductivitate/index.html",
+    maxHeight: "95vh",
+    category: "Electromagnetism",
+    eyebrow: "Electromagnetism | tag: Cuantică"
   },
 ];
 

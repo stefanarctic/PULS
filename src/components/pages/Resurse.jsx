@@ -67,6 +67,12 @@ const lessonCards = [
     path: "/resurse/electricitate",
   },
   {
+    title: "Electromagnetism",
+    description:
+      "Câmp electric și magnetic, inducție, forța Lorentz, efectul Meissner și superconductivitate în simulări interactive.",
+    path: "/resurse/electromagnetism",
+  },
+  {
     title: "Optică",
     description:
       "Descoperă comportamentul luminii, refracția, reflexia, lentilele și fenomenele de interferență și difracție.",
@@ -649,6 +655,47 @@ const ResursePage = () => {
         },
       ],
     },
+    {
+      section: "8. Criogenie (temperaturi joase)",
+      formulas: [
+        {
+          title: "Definiția criogenică (prag uzual)",
+          formula: "\\( T_{cryo} \\lesssim 120\\,\\text{K} \\)",
+          explanation:
+            "În practică inginerească, criogenia acoperă temperaturi foarte joase (de ordinul zecilor-sutelor de kelvini). În această zonă proprietățile termice și de transport se schimbă puternic.",
+        },
+        {
+          title: "Ecuația gazului ideal (model de bază)",
+          formula: "\\( pV = nRT \\)",
+          explanation:
+            "Pentru același număr de particule n, scăderea temperaturii T tinde să scadă presiunea p dacă volumul rămâne fix. În simulator vezi direct legătura dintre T, V și presiunea efectivă.",
+        },
+        {
+          title: "Energie cinetică medie moleculară",
+          formula: "\\( \\langle E_k \\rangle = \\frac{3}{2}k_B T \\)",
+          explanation:
+            "Temperatura controlează direct energia medie a particulelor. La T mai mică, particulele se mișcă mai lent, ceea ce favorizează condensarea și ordonarea locală.",
+        },
+        {
+          title: "Viteza medie quadratică (RMS)",
+          formula: "\\( v_{rms} = \\sqrt{\\frac{3k_B T}{m}} \\)",
+          explanation:
+            "Arată dependența vitezei de temperatură și masă moleculară m. În regim criogenic, scăderea lui T reduce puternic viteza RMS.",
+        },
+        {
+          title: "Conducție termică staționară (1D)",
+          formula: "\\( \\dot{Q} = \\frac{kA\\Delta T}{L} \\)",
+          explanation:
+            "Fluxul de căldură prin pereți/izolații criogenice depinde de conductivitate k, arie A, grosime L și gradientul termic. Formula explică de ce izolația bună este critică în vasele criogenice.",
+        },
+        {
+          title: "Model simplu de răcire (legea lui Newton)",
+          formula: "\\( T(t)=T_{amb} + (T_0-T_{amb})e^{-t/\\tau} \\)",
+          explanation:
+            "Descrie relaxarea temperaturii spre mediul ambiant cu o constantă de timp \\(\\tau\\). Este util pentru estimări rapide ale timpului de răcire/încălzire.",
+        },
+      ],
+    },
   ];
 
   const seismFormulas = [
@@ -1159,6 +1206,50 @@ const ResursePage = () => {
           title: "Frecvența de rezonanță",
           formula: "\\( f_0 = \\frac{1}{2\\pi \\sqrt{L \\cdot C}} \\)",
           explanation: "La această frecvență, X_L = X_C și Z = R (minim). Circuitul rezonează, curentul e maxim.",
+        },
+      ],
+    },
+  ];
+
+  const electromagnetismFormulas = [
+    {
+      section: "Superconductivitate și efectul Meissner",
+      formulas: [
+        {
+          title: "Condiția de fază superconductoare",
+          formula: "\\( T < T_c \\)",
+          explanation:
+            "Sub temperatura critică \\(T_c\\), materialul intră în stare superconductoare și răspunsul magnetic se schimbă radical.",
+        },
+        {
+          title: "Rezistivitate efectivă în stare superconductoare",
+          formula: "\\( \\rho \\approx 0 \\)",
+          explanation:
+            "În modelul ideal, curentul poate circula fără pierderi Joule semnificative sub \\(T_c\\).",
+        },
+        {
+          title: "Model educativ de levitație magnetică",
+          formula: "\\( F_m \\propto \\dfrac{B^2}{h^2} \\)",
+          explanation:
+            "În simulator, forța de respingere crește cu \\(B^2\\) și scade cu pătratul distanței față de suprafața superconductoare.",
+        },
+        {
+          title: "Echilibru pe verticală",
+          formula: "\\( F_m - mg = m a_y \\)",
+          explanation:
+            "Legea dinamicii pe verticală: levitația cvasi-statică apare când \\(F_m\\) compensează greutatea \\(mg\\).",
+        },
+        {
+          title: "Ecuația London (formă compactă)",
+          formula: "\\( \\nabla \\times \\vec{J}_s = -\\dfrac{n_s e^2}{m}\\vec{B} \\)",
+          explanation:
+            "Relație de bază pentru ecranarea câmpului magnetic în supraconductori; stă la baza interpretării efectului Meissner.",
+        },
+        {
+          title: "Adâncimea de penetrare London",
+          formula: "\\( \\lambda_L = \\sqrt{\\dfrac{m}{\\mu_0 n_s e^2}} \\)",
+          explanation:
+            "Câmpul magnetic pătrunde în suprafața supraconductorului doar pe o distanță caracteristică \\(\\lambda_L\\), apoi este ecranat eficient.",
         },
       ],
     },
@@ -2066,6 +2157,7 @@ const ResursePage = () => {
         "pendule",
         "lissajous",
         "electricitate",
+        "electromagnetism",
         "optica",
         "lasere",
         "matematica",
@@ -2112,6 +2204,7 @@ const ResursePage = () => {
       pendule: penduleFormulas,
       lissajous: lissajousFormulas,
       electricitate: electricitateFormulas,
+      electromagnetism: electromagnetismFormulas,
       optica: opticaFormulas,
       lasere: lasereFormulas,
       matematica: matematicaFormulas,
@@ -2216,8 +2309,8 @@ const ResursePage = () => {
       )}
       <SEO
         title="Resurse Educaționale Fizică | PULS - Materiale Teoretice și Video-uri"
-        description="Resurse educaționale complete pentru fizică: materiale teoretice, video-uri, formule și explicații pentru pendule, unde, oscilații, termodinamică, mecanică, electricitate și optică."
-        keywords="resurse fizică, materiale fizică, video fizică, formule fizică, teorie fizică, educație fizică"
+        description="Resurse educaționale complete pentru fizică: materiale teoretice, video-uri, formule și explicații pentru mecanică, termodinamică, electricitate, electromagnetism, optică, lasere și multe altele."
+        keywords="resurse fizica, formule fizica, electromagnetism, superconductivitate, meissner, termodinamica, mecanica, optica, lasere"
         image="/res/icons/New-logo.png"
       />
       <div className="resurse-page page-section">
@@ -2257,6 +2350,7 @@ const ResursePage = () => {
                     <TabsTrigger value="lasere">Lasere</TabsTrigger>
                     <TabsTrigger value="prisma">Refracție</TabsTrigger>
                     <TabsTrigger value="electricitate">Electricitate</TabsTrigger>
+                    <TabsTrigger value="electromagnetism">Electromagnetism</TabsTrigger>
                     <TabsTrigger value="matematica">Matematică</TabsTrigger>
                     <TabsTrigger value="astronomie">Astronomie</TabsTrigger>
                     <TabsTrigger value="atomul">Atomul</TabsTrigger>
@@ -2479,6 +2573,33 @@ const ResursePage = () => {
                       ))}
                     </div>
                     <MathJaxRender key="electricitate" />
+                  </TabsContent>
+
+                  <TabsContent value="electromagnetism">
+                    <p className="text-sm text-muted-foreground mb-4">Apasă pe o formulă pentru explicație detaliată.</p>
+                    <div className="mb-4 space-y-6">
+                      {electromagnetismFormulas.map((sec, secIndex) => (
+                        <div key={secIndex}>
+                          <h3 className="text-lg font-semibold mb-3 text-foreground/90">{sec.section}</h3>
+                          <div className="formula-grid">
+                            {sec.formulas.map((formula, index) => (
+                              <div
+                                key={index}
+                                className="formula-card formula-card-clickable"
+                                role="button"
+                                tabIndex={0}
+                                onClick={() => formula.explanation && setFormulaPopup({ section: sec.section, ...formula })}
+                                onKeyDown={(e) => e.key === "Enter" && formula.explanation && setFormulaPopup({ section: sec.section, ...formula })}
+                              >
+                                <div className="font-semibold mb-2">{formula.title}</div>
+                                <div className="text-lg font-mono">{formula.formula}</div>
+                              </div>
+                            ))}
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+                    <MathJaxRender key="electromagnetism" />
                   </TabsContent>
 
                   <TabsContent value="optica">
