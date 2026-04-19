@@ -3,23 +3,24 @@ import { Button } from "../../Button";
 import MathJaxRender from "@/components/MathJaxRender";
 import SEO from "../../SEO";
 
-import superconductivitateImg from "/res/screenshots/Supraconductivitate_Screenshot.png";
+import supraconductivitateImg from "/res/screenshots/Supraconductivitate_Screenshot.png";
+import fuelCellImg from "/res/screenshots/Fuel_Cell_Screenshot.png";
 
 const electromagnetismSections = [
   {
-    title: "Superconductivitate și efectul Meissner",
+    title: "Supraconductivitate și efectul Meissner",
     intro:
       "Aici vezi partea de electromagnetism observabilă direct: câmp magnetic, levitație și tranziția la stare normală când temperatura depășește Tc.",
-    image: superconductivitateImg,
-    alt: "Simulator superconductivitate și Meissner",
+    image: supraconductivitateImg,
+    alt: "Simulator supraconductivitate și Meissner",
     href: "/simulare/supraconductivitate",
     cta: "Deschide simulatorul Meissner",
     formulas: [
       {
-        title: "Condiția de superconductivitate",
+        title: "Condiția de supraconductivitate",
         formula: "\\( T < T_c \\)",
         explanation:
-          "Sub temperatura critică \\(T_c\\), materialul intră în fază superconductoare și apare ecranarea câmpului magnetic.",
+          "Sub temperatura critică \\(T_c\\), materialul intră în fază supraconductoare și apare ecranarea câmpului magnetic.",
       },
       {
         title: "Forță magnetică (model educativ)",
@@ -37,7 +38,42 @@ const electromagnetismSections = [
         title: "Adâncimea de penetrare London",
         formula: "\\( \\lambda_L = \\sqrt{\\dfrac{m}{\\mu_0 n_s e^2}} \\)",
         explanation:
-          "Descrie scara pe care câmpul magnetic pătrunde în superconductori înainte să fie ecranat.",
+          "Descrie scara pe care câmpul magnetic pătrunde în supraconductori înainte să fie ecranat.",
+      },
+    ],
+  },
+  {
+    title: "Pilă cu combustibil (PEM)",
+    intro:
+      "Celula cu membrană schimbatoare de protoni transformă energia chimică a hidrogenului și oxigenului în curent electric: la anod H₂ se oxidează, electronii merg prin circuitul exterior, iar H⁺ traversează membrana spre catod unde se reduce O₂ și se formează apă.",
+    image: fuelCellImg,
+    alt: "Simulator fuel cell PEM",
+    href: "/simulare/fuel-cell",
+    cta: "Deschide simulatorul fuel cell",
+    formulas: [
+      {
+        title: "Reacția globală (model educativ)",
+        formula: "\\( 2\\mathrm{H}_2 + \\mathrm{O}_2 \\rightarrow 2\\mathrm{H}_2\\mathrm{O} + \\text{energie} \\)",
+        explanation:
+          "Este bilanțul chimic al pilei cu hidrogen: hidrogenul și oxigenul se consumă, se produce apă, iar o parte din energia eliberată apare ca lucru electric în circuit.",
+      },
+      {
+        title: "Puterea electrică livrată sarcinii",
+        formula: "\\( P = U I \\)",
+        explanation:
+          "Puterea utilă la borne este produsul dintre tensiunea \\(U\\) și curentul \\(I\\). În simulator, creșterea debitelor sau scăderea rezistenței becului măresc \\(I\\) și deci \\(P\\).",
+      },
+      {
+        title: "Legea lui Ohm (sarcină simplă)",
+        formula: "\\( I \\approx \\dfrac{U}{R} \\)",
+        explanation:
+          "Pentru o sarcină rezistivă \\(R\\), curentul este legat de tensiunea disponibilă. Modelul didactic limitează curentul și la debitul de reactanți.",
+      },
+      {
+        title: "Randament (definiție orientativă)",
+        formula: "\\( \\eta \\approx \\dfrac{P_{\\text{electric}}}{P_{\\text{chimic disponibil}}} \\)",
+        explanation:
+          "Randamentul compară puterea electrică obținută cu puterea asociată fluxului chimic de reactanți. Dezechilibrul H₂/O₂ sau pierderile interne scad \\(\\eta\\).",
       },
     ],
   },
@@ -47,9 +83,9 @@ const ElectromagnetismPage = () => {
   return (
     <Layout>
       <SEO
-        title="Electromagnetism | Superconductivitate și efect Meissner - PULS"
-        description="Resursă dedicată superconductivității în electromagnetism: efectul Meissner, levitație magnetică, condiția T<Tc și formule explicate pentru simulatorul interactiv."
-        keywords="electromagnetism, superconductivitate, efect meissner, levitatie magnetica, temperatura critica, tc, camp magnetic"
+        title="Electromagnetism | Supraconductivitate, Meissner și fuel cell - PULS"
+        description="Electromagnetism aplicat: efectul Meissner și supraconductivitate, plus pilă cu combustibil PEM — reacție H₂/O₂, tensiune, curent, putere și eficiență, cu simulări interactive."
+        keywords="electromagnetism, supraconductivitate, efect meissner, fuel cell, pila cu combustibil, hidrogen, pem, tensiune, curent"
         image="/res/icons/New-logo.png"
       />
       <div className="resurse-pagina min-h-screen flex flex-col">
@@ -65,8 +101,8 @@ const ElectromagnetismPage = () => {
                 electromagnetice. Este unul dintre pilonii fizicii moderne și baza tehnologiei electrice actuale.
               </p>
               <p className="text-base sm:text-lg leading-7 text-muted-foreground">
-                În această pagină păstrăm focusul pe superconductivitate: efectul Meissner, levitația magnetică și
-                tranziția către starea normală când temperatura depășește pragul critic.
+                Găsești supraconductivitatea (Meissner, levitație) și o pilă cu combustibil PEM: cum H₂ și O₂ produc
+                curent prin separarea sarcinilor și circulația electronilor în circuitul exterior.
               </p>
             </div>
 

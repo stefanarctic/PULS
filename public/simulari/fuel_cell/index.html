@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Fuel Cell Simulator</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand">
+      <span class="logo-dot"></span>
+      <h1>Fuel Cell <span class="accent">Simulator</span></h1>
+    </div>
+    <p class="tagline">Bagi hidrogen + oxigen → iese curent și apă</p>
+  </header>
+
+  <main class="layout">
+    <!-- LEFT PANEL: CONTROLS -->
+    <aside class="panel panel-left">
+      <h2>Controale</h2>
+
+      <div class="control">
+        <div class="control-head">
+          <label for="flowH2">
+            <span class="pill pill-h2">H₂</span>
+            Debit Hidrogen
+          </label>
+          <output id="flowH2Val">60</output>
+        </div>
+        <input type="range" id="flowH2" min="0" max="100" value="60" />
+      </div>
+
+      <div class="control">
+        <div class="control-head">
+          <label for="flowO2">
+            <span class="pill pill-o2">O₂</span>
+            Debit Oxigen
+          </label>
+          <output id="flowO2Val">60</output>
+        </div>
+        <input type="range" id="flowO2" min="0" max="100" value="60" />
+      </div>
+
+      <div class="control">
+        <div class="control-head">
+          <label for="temp">
+            <span class="pill pill-t">T°</span>
+            Temperatură
+          </label>
+          <output id="tempVal">65 °C</output>
+        </div>
+        <input type="range" id="temp" min="20" max="90" value="65" />
+      </div>
+
+      <div class="control">
+        <div class="control-head">
+          <label for="resistance">
+            <span class="pill pill-r">Ω</span>
+            Rezistență bec
+          </label>
+          <output id="resistanceVal">10 Ω</output>
+        </div>
+        <input type="range" id="resistance" min="2" max="40" value="10" />
+      </div>
+
+      <div class="readouts">
+        <div class="readout">
+          <span class="readout-label">Curent</span>
+          <span class="readout-value" id="currentOut">0.0 A</span>
+        </div>
+        <div class="readout">
+          <span class="readout-label">Tensiune</span>
+          <span class="readout-value" id="voltageOut">0.00 V</span>
+        </div>
+        <div class="readout">
+          <span class="readout-label">Putere</span>
+          <span class="readout-value" id="powerOut">0.0 W</span>
+        </div>
+        <div class="readout">
+          <span class="readout-label">Eficiență</span>
+          <span class="readout-value" id="effOut">0 %</span>
+        </div>
+      </div>
+    </aside>
+
+    <!-- CENTER: SIMULATOR -->
+    <section class="stage">
+      <div class="canvas-wrap">
+        <canvas id="scene"></canvas>
+        <div id="tooltip" class="tooltip" hidden></div>
+      </div>
+
+      <div class="legend">
+        <span class="legend-item"><i class="dot dot-e"></i>Electroni</span>
+        <span class="legend-item"><i class="dot dot-p"></i>Protoni (H⁺)</span>
+        <span class="legend-item"><i class="dot dot-h"></i>H₂</span>
+        <span class="legend-item"><i class="dot dot-o"></i>O₂</span>
+        <span class="legend-item"><i class="dot dot-w"></i>H₂O</span>
+      </div>
+    </section>
+
+    <!-- RIGHT PANEL: INFO -->
+    <aside class="panel panel-right">
+      <h2>Cum funcționează</h2>
+
+      <div class="info-card">
+        <div class="step">
+          <span class="step-num">1</span>
+          <div>
+            <h3>Anod (stânga)</h3>
+            <p>H₂ se sparge în <b>protoni</b> + <b>electroni</b>.</p>
+          </div>
+        </div>
+        <div class="step">
+          <span class="step-num">2</span>
+          <div>
+            <h3>Electronii</h3>
+            <p>Merg pe fir → aprind becul ⚡</p>
+          </div>
+        </div>
+        <div class="step">
+          <span class="step-num">3</span>
+          <div>
+            <h3>Membrana (PEM)</h3>
+            <p>Lasă doar <b>protonii</b> să treacă spre dreapta.</p>
+          </div>
+        </div>
+        <div class="step">
+          <span class="step-num">4</span>
+          <div>
+            <h3>Catod (dreapta)</h3>
+            <p>Protoni + electroni + O₂ → <b>apă</b> 💧</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="formula-card">
+        <div class="formula">2H₂ + O₂ → 2H₂O + energie</div>
+        <div class="hint" id="hintMsg">Crește debitele pentru a vedea reacția.</div>
+      </div>
+
+      <div class="tips">
+        <h4>Încercă:</h4>
+        <ul>
+          <li>Setează <b>H₂ = 0</b> → becul se stinge</li>
+          <li>Dezechilibru → <b>eficiență ↓</b></li>
+          <li>Rezistență mică → <b>curent ↑</b></li>
+          <li>Hover pe anod / membrană / catod</li>
+        </ul>
+      </div>
+    </aside>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>

@@ -47,6 +47,7 @@ import frecareAerImg from "/res/screenshots/Frecare_Aer_Screenshot.png";
 import reactorFuziuneDtImg from "/res/screenshots/Reactor_Fuziune_Dt_Screenshot.png";
 import criogenieImg from "/res/screenshots/Criogenie_Screenshot.png";
 import supraconductivitateImg from "/res/screenshots/Supraconductivitate_Screenshot.png";
+import fuelCellImg from "/res/screenshots/Fuel_Cell_Screenshot.png";
 export const simulationsConfig = [
   {
     id: 1,
@@ -653,6 +654,20 @@ export const simulationsConfig = [
     maxHeight: "95vh",
     category: "Electromagnetism",
     eyebrow: "Electromagnetism | tag: Cuantică"
+  },
+  {
+    id: 50,
+    slug: "fuel-cell",
+    route: "/simulare/fuel-cell",
+    title: "Pilă cu combustibil (PEM)",
+    description:
+      "Simulare educativă: H₂ și O₂ alimentează celula, electronii circulă prin circuit, protonii prin membrană — tensiune, curent, putere și eficiență în funcție de debit și sarcină.",
+    image: fuelCellImg,
+    caption: "Fuel cell PEM",
+    iframeSrc: "/simulari/fuel_cell/index.html",
+    maxHeight: "95vh",
+    category: "Electromagnetism",
+    eyebrow: "Electromagnetism | Pilă cu combustibil"
   },
 ];
 

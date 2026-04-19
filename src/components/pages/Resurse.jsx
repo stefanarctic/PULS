@@ -69,7 +69,7 @@ const lessonCards = [
   {
     title: "Electromagnetism",
     description:
-      "Câmp electric și magnetic, inducție, forța Lorentz, efectul Meissner și superconductivitate în simulări interactive.",
+      "Câmp electric și magnetic, inducție, forța Lorentz, efectul Meissner și supraconductivitate în simulări interactive.",
     path: "/resurse/electromagnetism",
   },
   {
@@ -1213,16 +1213,16 @@ const ResursePage = () => {
 
   const electromagnetismFormulas = [
     {
-      section: "Superconductivitate și efectul Meissner",
+      section: "Supraconductivitate și efectul Meissner",
       formulas: [
         {
-          title: "Condiția de fază superconductoare",
+          title: "Condiția de fază supraconductoare",
           formula: "\\( T < T_c \\)",
           explanation:
-            "Sub temperatura critică \\(T_c\\), materialul intră în stare superconductoare și răspunsul magnetic se schimbă radical.",
+            "Sub temperatura critică \\(T_c\\), materialul intră în stare supraconductoare și răspunsul magnetic se schimbă radical.",
         },
         {
-          title: "Rezistivitate efectivă în stare superconductoare",
+          title: "Rezistivitate efectivă în stare supraconductoare",
           formula: "\\( \\rho \\approx 0 \\)",
           explanation:
             "În modelul ideal, curentul poate circula fără pierderi Joule semnificative sub \\(T_c\\).",
@@ -1231,7 +1231,7 @@ const ResursePage = () => {
           title: "Model educativ de levitație magnetică",
           formula: "\\( F_m \\propto \\dfrac{B^2}{h^2} \\)",
           explanation:
-            "În simulator, forța de respingere crește cu \\(B^2\\) și scade cu pătratul distanței față de suprafața superconductoare.",
+            "În simulator, forța de respingere crește cu \\(B^2\\) și scade cu pătratul distanței față de suprafața supraconductoare.",
         },
         {
           title: "Echilibru pe verticală",
@@ -1250,6 +1250,35 @@ const ResursePage = () => {
           formula: "\\( \\lambda_L = \\sqrt{\\dfrac{m}{\\mu_0 n_s e^2}} \\)",
           explanation:
             "Câmpul magnetic pătrunde în suprafața supraconductorului doar pe o distanță caracteristică \\(\\lambda_L\\), apoi este ecranat eficient.",
+        },
+      ],
+    },
+    {
+      section: "Pilă cu combustibil (PEM)",
+      formulas: [
+        {
+          title: "Reacția globală",
+          formula: "\\( 2\\mathrm{H}_2 + \\mathrm{O}_2 \\rightarrow 2\\mathrm{H}_2\\mathrm{O} \\)",
+          explanation:
+            "Hidrogenul și oxigenul reacționează; energia chimică este parțial convertită în energie electrică prin separarea sarcinilor la electrozi.",
+        },
+        {
+          title: "Puterea electrică",
+          formula: "\\( P = U I \\)",
+          explanation:
+            "Puterea livrată circuitului exterior este produsul tensiunii la borne și a curentului prin sarcină.",
+        },
+        {
+          title: "Legea lui Ohm (sarcină)",
+          formula: "\\( I = \\dfrac{U}{R} \\)",
+          explanation:
+            "Pentru un bec modelat ca rezistor \\(R\\), curentul crește când tensiunea crește sau rezistența scade (în limitele impuse de alimentarea cu reactanți).",
+        },
+        {
+          title: "Randament orientativ",
+          formula: "\\( \\eta = \\dfrac{P_{\\text{out}}}{P_{\\text{in}}} \\)",
+          explanation:
+            "Raport între puterea electrică utilă și puterea asociată debitului chimic disponibil; dezechilibrul H₂/O₂ sau temperatura afectează eficiența în model.",
         },
       ],
     },
@@ -2310,7 +2339,7 @@ const ResursePage = () => {
       <SEO
         title="Resurse Educaționale Fizică | PULS - Materiale Teoretice și Video-uri"
         description="Resurse educaționale complete pentru fizică: materiale teoretice, video-uri, formule și explicații pentru mecanică, termodinamică, electricitate, electromagnetism, optică, lasere și multe altele."
-        keywords="resurse fizica, formule fizica, electromagnetism, superconductivitate, meissner, termodinamica, mecanica, optica, lasere"
+        keywords="resurse fizica, formule fizica, electromagnetism, supraconductivitate, meissner, termodinamica, mecanica, optica, lasere"
         image="/res/icons/New-logo.png"
       />
       <div className="resurse-page page-section">
