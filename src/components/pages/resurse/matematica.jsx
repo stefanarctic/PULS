@@ -1,12 +1,13 @@
 import Layout from "../../Layout";
 import { Button } from "../../Button";
-import MathJaxRender from "@/components/MathJaxRender";
 import SEO from "../../SEO";
+import { useMathJaxTypesetRoot } from "@/hooks/useMathJaxTypesetRoot";
 
 import simulatorFunctiiImg from "/res/screenshots/Functii_Screenshot.png";
 import vizualizator4dImg from "/res/screenshots/Vizualizator_4d_Screenshot.png";
 
 const MatematicaPage = () => {
+  const mathRootRef = useMathJaxTypesetRoot();
   return (
     <Layout>
       <SEO
@@ -17,7 +18,7 @@ const MatematicaPage = () => {
       />
       <div className="resurse-pagina min-h-screen flex flex-col">
         <div className="resurse-page-container">
-          <main className="flex-grow container mx-auto px-4 py-10">
+          <main ref={mathRootRef} className="flex-grow container mx-auto px-4 py-10 tex2jax_process">
             <h1 className="text-4xl md:text-5xl font-bold mb-6">Matematică – Funcții și Vizualizator 4D</h1>
 
             <div className="max-w-4xl mb-8">
@@ -55,37 +56,37 @@ const MatematicaPage = () => {
                     <h4 className="text-lg font-semibold mb-2">1. Funcție liniară:</h4>
                     <div className="formula-resurse text-lg font-mono mb-4">
                       {"\\( y = ax + b \\)"}
-                      <MathJaxRender />
+
                     </div>
 
                     <h4 className="text-lg font-semibold mb-2">2. Funcție pătratică:</h4>
                     <div className="formula-resurse text-lg font-mono mb-4">
                       {"\\( y = ax^2 + bx + c \\)"}
-                      <MathJaxRender />
+
                     </div>
 
                     <h4 className="text-lg font-semibold mb-2">3. Funcții trigonometrice:</h4>
                     <div className="formula-resurse text-lg font-mono mb-4">
                       {"\\( y = \\sin(x), \\quad y = \\cos(x), \\quad y = \\tan(x) \\)"}
-                      <MathJaxRender />
+
                     </div>
 
                     <h4 className="text-lg font-semibold mb-2">4. Funcție exponențială:</h4>
                     <div className="formula-resurse text-lg font-mono mb-4">
                       {"\\( y = e^x, \\quad y = a^x \\)"}
-                      <MathJaxRender />
+
                     </div>
 
                     <h4 className="text-lg font-semibold mb-2">5. Funcție logaritmică:</h4>
                     <div className="formula-resurse text-lg font-mono mb-4">
                       {"\\( y = \\ln(x), \\quad y = \\log_a(x) \\)"}
-                      <MathJaxRender />
+
                     </div>
 
                     <h4 className="text-lg font-semibold mb-2">6. Derivată (pantă):</h4>
                     <div className="formula-resurse text-lg font-mono mb-4">
                       {"\\( f'(x) = \\lim_{h \\to 0} \\frac{f(x+h) - f(x)}{h} \\)"}
-                      <MathJaxRender />
+
                     </div>
 
                     <p className="text-muted-foreground mt-4">
@@ -139,7 +140,7 @@ const MatematicaPage = () => {
                     <h4 className="text-lg font-semibold mb-2">4. Spațiu-timp (Minkowski):</h4>
                     <div className="formula-resurse text-lg font-mono mb-4">
                       {"\\( ds^2 = c^2 dt^2 - dx^2 - dy^2 - dz^2 \\)"}
-                      <MathJaxRender />
+
                     </div>
                     <p className="text-muted-foreground mt-2">
                       În relativitate, a patra dimensiune este timpul; metrica Minkowski descrie distanța în spațiu-timp.

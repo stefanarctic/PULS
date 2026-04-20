@@ -1,7 +1,7 @@
 import Layout from "../../Layout";
 import { Button } from "../../Button";
-import MathJaxRender from "@/components/MathJaxRender";
 import { useEffect, useState } from "react";
+import { useMathJaxTypesetRoot } from "@/hooks/useMathJaxTypesetRoot";
 
 import termodinamicaImg from "/res/screenshots/Termodinamica_Screenshot.png";
 import motoareTermiceImg from "/res/screenshots/Motoare_Termice_Screenshot.png";
@@ -10,6 +10,7 @@ import { tabelPeriodicFormulas } from "@/data/tabelPeriodicFormulas";
 
 const TermodinamicaPage = () => {
   const [visibleFormulasCount, setVisibleFormulasCount] = useState({});
+  const mathRootRef = useMathJaxTypesetRoot(JSON.stringify(visibleFormulasCount));
 
   // Definim formulele pentru fiecare secțiune
   const termodinamicaFormulas = [
@@ -98,7 +99,7 @@ const TermodinamicaPage = () => {
     <Layout>
       <div className="resurse-pagina min-h-screen flex flex-col">
         <div style={{ paddingTop: "110px", flex: 1, display: "flex", flexDirection: "column" }}>
-          <main className="flex-grow container mx-auto px-4 py-10">
+          <main ref={mathRootRef} className="flex-grow container mx-auto px-4 py-10 tex2jax_process">
             <h1 className="text-4xl md:text-5xl font-bold mb-6">Termodinamică</h1>
             
             <div className="max-w-4xl mb-8">
@@ -152,9 +153,6 @@ const TermodinamicaPage = () => {
                           </div>
                         </div>
                       ))}
-                    {visibleFormulasCount.termodinamica > 0 && (
-                      <MathJaxRender key={`termodinamica-${visibleFormulasCount.termodinamica || 0}`} />
-                    )}
                     
                     <p className="text-muted-foreground mt-6">
                       Unde: U este energia internă, Q este căldura, L este lucrul mecanic, p este presiunea, V este volumul, 
@@ -208,16 +206,13 @@ const TermodinamicaPage = () => {
                           </div>
                         </div>
                       ))}
-                    {visibleFormulasCount.motoare > 0 && (
-                      <MathJaxRender key={`motoare-${visibleFormulasCount.motoare || 0}`} />
-                    )}
 
                     <p className="text-muted-foreground mt-4">
-                      Unde: {"\\(\\eta\\)"} <MathJaxRender /> este randamentul, {"\\(L_{util}\\)"} <MathJaxRender /> lucrul
-                      mecanic util pe ciclu, {"\\(Q_H\\)"} <MathJaxRender /> căldura primită de la sursa caldă,{" "}
-                      {"\\(Q_C\\)"} <MathJaxRender /> căldura cedată către sursa rece, {"\\(T_H\\)"} și {"\\(T_C\\)"}
-                      <MathJaxRender /> sunt temperaturile absolute ale sursei calde și reci, iar integralul{" "}
-                      {"\\(\\oint p\\,dV\\)"} <MathJaxRender /> reprezintă aria ciclului pe diagrama p‑V (lucrul mecanic
+                      Unde: {"\\(\\eta\\)"} este randamentul, {"\\(L_{util}\\)"} lucrul
+                      mecanic util pe ciclu, {"\\(Q_H\\)"} căldura primită de la sursa caldă,{" "}
+                      {"\\(Q_C\\)"} căldura cedată către sursa rece, {"\\(T_H\\)"} și {"\\(T_C\\)"}
+ sunt temperaturile absolute ale sursei calde și reci, iar integralul{" "}
+                      {"\\(\\oint p\\,dV\\)"} reprezintă aria ciclului pe diagrama p‑V (lucrul mecanic
                       produs de motor într-un ciclu complet.
                     </p>
                   </div>
@@ -259,12 +254,9 @@ const TermodinamicaPage = () => {
                           </div>
                         </div>
                       ))}
-                    {visibleFormulasCount.tabel_periodic > 0 && (
-                      <MathJaxRender key={`tabel_periodic-${visibleFormulasCount.tabel_periodic || 0}`} />
-                    )}
                     <p className="text-muted-foreground mt-6">
                       Unde: Z = numărul de protoni, A = numărul de masă, N = numărul de neutroni, n = numărul de moli, m = masa,
-                      M = masa molară, {"\\(N_A\\)"} <MathJaxRender /> = constanta lui Avogadro, c = concentrația molară, V = volum.
+                      M = masa molară, {"\\(N_A\\)"} = constanta lui Avogadro, c = concentrația molară, V = volum.
                     </p>
                   </div>
                   <a

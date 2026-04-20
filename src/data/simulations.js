@@ -48,6 +48,7 @@ import reactorFuziuneDtImg from "/res/screenshots/Reactor_Fuziune_Dt_Screenshot.
 import criogenieImg from "/res/screenshots/Criogenie_Screenshot.png";
 import supraconductivitateImg from "/res/screenshots/Supraconductivitate_Screenshot.png";
 import fuelCellImg from "/res/screenshots/Fuel_Cell_Screenshot.png";
+import fisiuneNuclearaImg from "/res/screenshots/Fisiune_Nucleara_Screenshot.png";
 export const simulationsConfig = [
   {
     id: 1,
@@ -626,6 +627,20 @@ export const simulationsConfig = [
     maxHeight: "92vh",
     category: "Fizică nucleară",
     eyebrow: "Fizică nucleară | Simulare interactivă"
+  },
+  {
+    id: 51,
+    slug: "fisiune-nucleara",
+    route: "/simulare/fisiune-nucleara",
+    title: "Fisiune nucleară în lanț (U-235)",
+    description:
+      "Neutron → fisiune în U-235, 2–3 neutroni noi, ~200 MeV per eveniment, factor k și bare de control — model vizual educativ (nu proiect de reactor).",
+    image: fisiuneNuclearaImg,
+    caption: "Reacție în lanț și factor k",
+    iframeSrc: "/simulari/fisiune/index.html",
+    maxHeight: "95vh",
+    category: "Fizică nucleară",
+    eyebrow: "Fizică nucleară | Fisiune în lanț"
   },
   {
     id: 48,

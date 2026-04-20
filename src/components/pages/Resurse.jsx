@@ -111,7 +111,7 @@ const lessonCards = [
   {
     title: "Fizică nucleară",
     description:
-      "Model educativ de fuziune D–T (~17,6 MeV), apă grea D₂O vs H₂O, schimb izotopic și distilare fracționată — lecții, formule și simulatoare.",
+      "Fisiune în lanț (U-235, factor k), model educativ de fuziune D–T (~17,6 MeV), apă grea D₂O vs H₂O, schimb izotopic și distilare fracționată — lecții, formule și simulatoare.",
     path: "/resurse/fizica-nucleara",
   },
 ];
@@ -2107,6 +2107,43 @@ const ResursePage = () => {
           formula: "\\( \\eta = \\dfrac{m_{D_2O,\\,produs}}{m_{D_2O,\\,alimentare}} \\times 100\\% \\)",
           explanation:
             "Arată cât din deuteriu ajunge efectiv în curentul de produs. În practică depinde de reflux, pierderi și eficiența etapelor de contact.",
+        },
+      ],
+    },
+    {
+      section: "5. Fisiune nucleară (U-235) și reacție în lanț",
+      formulas: [
+        {
+          title: "Fisiune indusă (formă simbolică)",
+          formula:
+            "\\( {}^{235}_{92}\\mathrm{U} + {}^1_0\\mathrm{n} \\rightarrow {}^{A_1}_{Z_1}\\mathrm{X} + {}^{A_2}_{Z_2}\\mathrm{Y} + \\nu\\,{}^1_0\\mathrm{n} + \\gamma \\)",
+          explanation:
+            "Neutronul este captat; nucleul se scindează în două fragmente majore, emite ν neutroni și radiație γ. Canalele concrete (mase, Z) variază; conservă numărul de masă și sarcina.",
+        },
+        {
+          title: "Conservare masă și sarcină",
+          formula: "\\( 235 + 1 = A_1 + A_2 + \\nu, \\qquad 92 = Z_1 + Z_2 \\)",
+          explanation:
+            "În modelul cu două fragmente majore și ν neutroni, suma numerelor de masă și suma numerelor atomice rămân cele ale reactanților.",
+        },
+        {
+          title: "Energie cumulată (reper didactic în simulator)",
+          formula: "\\( E_{\\mathrm{tot}} \\approx N\\,\\langle E\\rangle, \\quad \\langle E\\rangle \\approx 200\\ \\mathrm{MeV} \\)",
+          explanation:
+            "N este numărul de fisiuni; simulatorul folosește ~200 MeV per eveniment ca ordin de mărime pentru energia eliberată (nu include detalii de structură a reactorului).",
+        },
+        {
+          title: "Defect de masă și Q",
+          formula:
+            "\\( Q = \\bigl(m_{\\mathrm{U}} + m_n - m_{\\mathrm{frag1}} - m_{\\mathrm{frag2}} - \\nu m_n\\bigr)\\,c^2 \\)",
+          explanation:
+            "Energia eliberată provine din diferența de masă între starea inițială și produși (inclusiv neutronii emiși), conform E = Δm·c².",
+        },
+        {
+          title: "Factor de multiplicare (idee simplificată)",
+          formula: "\\( k = \\dfrac{N_{i+1}}{N_i} \\)",
+          explanation:
+            "Raport între neutronii utili din generația următoare și cei din generația curentă. În simulator, k este estimat empiric din ratele de fisiune, nu din calcule de criticitate detaliate.",
         },
       ],
     },

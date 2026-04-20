@@ -1,7 +1,7 @@
 import Layout from "../../Layout";
 import { Button } from "../../Button";
-import MathJaxRender from "@/components/MathJaxRender";
 import SEO from "../../SEO";
+import { useMathJaxTypesetRoot } from "@/hooks/useMathJaxTypesetRoot";
 
 import supraconductivitateImg from "/res/screenshots/Supraconductivitate_Screenshot.png";
 import fuelCellImg from "/res/screenshots/Fuel_Cell_Screenshot.png";
@@ -80,6 +80,7 @@ const electromagnetismSections = [
 ];
 
 const ElectromagnetismPage = () => {
+  const mathRootRef = useMathJaxTypesetRoot();
   return (
     <Layout>
       <SEO
@@ -90,7 +91,7 @@ const ElectromagnetismPage = () => {
       />
       <div className="resurse-pagina min-h-screen flex flex-col">
         <div className="resurse-page-container">
-          <main className="flex-grow container mx-auto px-4 sm:px-6 py-8 md:py-10">
+          <main ref={mathRootRef} className="flex-grow container mx-auto px-4 sm:px-6 py-8 md:py-10 tex2jax_process">
             <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold leading-tight mb-6">
               Electromagnetism: câmpuri, forțe și aplicații moderne
             </h1>
@@ -125,7 +126,7 @@ const ElectromagnetismPage = () => {
                     </div>
                   ))}
 
-                  <MathJaxRender key={section.href} />
+
 
                   <div className="flex flex-col sm:flex-row sm:items-center sm:justify-end gap-4 sm:gap-6 mt-6">
                     <a href={section.href} className="resurse-link w-full sm:w-auto">
@@ -137,7 +138,7 @@ const ElectromagnetismPage = () => {
                 </section>
               ))}
             </div>
-            <MathJaxRender />
+
           </main>
         </div>
       </div>

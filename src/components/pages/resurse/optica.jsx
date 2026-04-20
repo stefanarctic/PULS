@@ -1,7 +1,7 @@
 import Layout from "../../Layout";
 import { Button } from "../../Button";
-import MathJaxRender from "@/components/MathJaxRender";
 import SEO from "../../SEO";
+import { useMathJaxTypesetRoot } from "@/hooks/useMathJaxTypesetRoot";
 
 import simulatorPrismaImg from "/res/screenshots/Prisma_Screenshot.png";
 import lentilaSubtireImg from "/res/screenshots/Lentila_Subtire_Screenshot.png";
@@ -21,7 +21,7 @@ const OpticaPage = () => {
       />
       <div className="resurse-pagina min-h-screen flex flex-col">
         <div style={{ paddingTop: "110px", flex: 1, display: "flex", flexDirection: "column" }}>
-          <main className="flex-grow container mx-auto px-4 py-10">
+          <main ref={mathRootRef} className="flex-grow container mx-auto px-4 py-10 tex2jax_process">
             <h1 className="text-4xl md:text-5xl font-bold mb-6">Optică</h1>
             
             <div className="max-w-4xl mb-8">
@@ -66,37 +66,37 @@ const OpticaPage = () => {
                     <h4 className="text-lg font-semibold mb-2">1. Formula lentilelor subțiri:</h4>
                     <div className="formula-resurse text-lg font-mono mb-4">
                       {"\\( \\frac{1}{f} = \\frac{1}{x_1} + \\frac{1}{x_2} \\)"}
-                      <MathJaxRender />
+
                     </div>
                     
                     <h4 className="text-lg font-semibold mb-2">2. Mărirea liniară:</h4>
                     <div className="formula-resurse text-lg font-mono mb-4">
                       {"\\( \\beta = \\frac{x_2}{x_1} = \\frac{y_2}{y_1} \\)"}
-                      <MathJaxRender />
+
                     </div>
                     
                     <h4 className="text-lg font-semibold mb-2">3. Convergența (puterea optică):</h4>
                     <div className="formula-resurse text-lg font-mono mb-4">
                       {"\\( C = \\frac{1}{f} \\)"}
-                      <MathJaxRender />
+
                     </div>
                     
                     <h4 className="text-lg font-semibold mb-2">4. Formula constructorului de lentile:</h4>
                     <div className="formula-resurse text-lg font-mono mb-4">
                       {"\\( \\frac{1}{f} = (n - 1)\\left(\\frac{1}{R_1} - \\frac{1}{R_2}\\right) \\)"}
-                      <MathJaxRender />
+
                     </div>
                     
                     <h4 className="text-lg font-semibold mb-2">5. Convergența sistemului de lentile:</h4>
                     <div className="formula-resurse text-lg font-mono mb-4">
                       {"\\( C_{total} = C_1 + C_2 + ... + C_n \\)"}
-                      <MathJaxRender />
+
                     </div>
                     
                     <h4 className="text-lg font-semibold mb-2">6. Mărirea unghiulară:</h4>
                     <div className="formula-resurse text-lg font-mono mb-4">
                       {"\\( \\gamma = \\frac{\\alpha_2}{\\alpha_1} \\)"}
-                      <MathJaxRender />
+
                     </div>
                     
                     <p className="text-muted-foreground mt-4">
@@ -143,37 +143,37 @@ const OpticaPage = () => {
                     <h4 className="text-lg font-semibold mb-2">1. Indicele de refracție:</h4>
                     <div className="formula-resurse text-lg font-mono mb-4">
                       {"\\( n = \\frac{c}{v} = \\frac{\\sin(i)}{\\sin(r)} \\)"}
-                      <MathJaxRender />
+
                     </div>
                     
                     <h4 className="text-lg font-semibold mb-2">2. Legea refracției (Snell):</h4>
                     <div className="formula-resurse text-lg font-mono mb-4">
                       {"\\( n_1 \\sin(\\theta_1) = n_2 \\sin(\\theta_2) \\)"}
-                      <MathJaxRender />
+
                     </div>
                     
                     <h4 className="text-lg font-semibold mb-2">3. Legea reflexiei:</h4>
                     <div className="formula-resurse text-lg font-mono mb-4">
                       {"\\( \\theta_i = \\theta_r \\)"}
-                      <MathJaxRender />
+
                     </div>
                     
                     <h4 className="text-lg font-semibold mb-2">4. Unghiul critic pentru reflexie totală:</h4>
                     <div className="formula-resurse text-lg font-mono mb-4">
                       {"\\( \\sin(\\theta_{crit}) = \\frac{n_2}{n_1} \\)"}
-                      <MathJaxRender />
+
                     </div>
                     
                     <h4 className="text-lg font-semibold mb-2">5. Viteza luminii în mediu:</h4>
                     <div className="formula-resurse text-lg font-mono mb-4">
                       {"\\( v = \\frac{c}{n} \\)"}
-                      <MathJaxRender />
+
                     </div>
                     
                     <h4 className="text-lg font-semibold mb-2">6. Lungimea de undă în mediu:</h4>
                     <div className="formula-resurse text-lg font-mono mb-4">
                       {"\\( \\lambda_n = \\frac{\\lambda_0}{n} \\)"}
-                      <MathJaxRender />
+
                     </div>
                     
                     <p className="text-muted-foreground mt-4">
@@ -218,25 +218,25 @@ const OpticaPage = () => {
                     <h4 className="text-lg font-semibold mb-2">1. Unghiul de deviație:</h4>
                     <div className="formula-resurse text-lg font-mono mb-4">
                       {"\\( \\delta = i_1 + i_2 - A \\)"}
-                      <MathJaxRender />
+
                     </div>
                     
                     <h4 className="text-lg font-semibold mb-2">2. Dispersia unghiulară:</h4>
                     <div className="formula-resurse text-lg font-mono mb-4">
                       {"\\( D = \\frac{d\\delta}{d\\lambda} \\)"}
-                      <MathJaxRender />
+
                     </div>
                     
                     <h4 className="text-lg font-semibold mb-2">3. Puterea dispersivă:</h4>
                     <div className="formula-resurse text-lg font-mono mb-4">
                       {"\\( P = \\frac{n_F - n_C}{n_D - 1} \\)"}
-                      <MathJaxRender />
+
                     </div>
                     
                     <h4 className="text-lg font-semibold mb-2">4. Formula Cauchy pentru indicele de refracție:</h4>
                     <div className="formula-resurse text-lg font-mono mb-4">
                       {"\\( n(\\lambda) = A + \\frac{B}{\\lambda^2} + \\frac{C}{\\lambda^4} \\)"}
-                      <MathJaxRender />
+
                     </div>
                     
                     <p className="text-muted-foreground mt-4">
@@ -282,19 +282,19 @@ const OpticaPage = () => {
                     <h4 className="text-lg font-semibold mb-2">1. Indicele de refracție al aerului:</h4>
                     <div className="formula-resurse text-lg font-mono mb-4">
                       {"\\( n_{aer} = 1 + \\frac{77.6}{T}\\left(p + \\frac{4810e}{T}\\right) \\times 10^{-6} \\)"}
-                      <MathJaxRender />
+
                     </div>
                     
                     <h4 className="text-lg font-semibold mb-2">2. Unghiul de refracție atmosferică:</h4>
                     <div className="formula-resurse text-lg font-mono mb-4">
                       {"\\( \\theta_r = \\theta_i - \\Delta\\theta \\)"}
-                      <MathJaxRender />
+
                     </div>
                     
                     <h4 className="text-lg font-semibold mb-2">3. Corecția pentru refracție la înălțimi mici deasupra orizontului:</h4>
                     <div className="formula-resurse text-lg font-mono mb-4">
                       {"\\( \\Delta\\theta = 0.00452 \\times \\frac{p}{T} \\times \\tan(z) \\)"}
-                      <MathJaxRender />
+
                     </div>
                     
                     <p className="text-muted-foreground mt-4">
@@ -334,43 +334,43 @@ const OpticaPage = () => {
                     <h4 className="text-lg font-semibold mb-2">1. Relația undă–frecvență:</h4>
                     <div className="formula-resurse text-lg font-mono mb-4">
                       {"\\( c = \\lambda f \\)"}
-                      <MathJaxRender />
+
                     </div>
 
                     <h4 className="text-lg font-semibold mb-2">2. Energia fotonului:</h4>
                     <div className="formula-resurse text-lg font-mono mb-4">
                       {"\\( E = hf = \\frac{hc}{\\lambda} \\)"}
-                      <MathJaxRender />
+
                     </div>
 
                     <h4 className="text-lg font-semibold mb-2">3. Impulsul fotonului:</h4>
                     <div className="formula-resurse text-lg font-mono mb-4">
                       {"\\( p = \\frac{E}{c} = \\frac{h}{\\lambda} \\)"}
-                      <MathJaxRender />
+
                     </div>
 
                     <h4 className="text-lg font-semibold mb-2">4. Intensitatea (putere pe suprafață):</h4>
                     <div className="formula-resurse text-lg font-mono mb-4">
                       {"\\( I = \\frac{P}{A} \\)"}
-                      <MathJaxRender />
+
                     </div>
 
                     <h4 className="text-lg font-semibold mb-2">5. Legea inversului pătrat (surse punctiforme):</h4>
                     <div className="formula-resurse text-lg font-mono mb-4">
                       {"\\( I(r) = \\frac{P}{4\\pi r^2} \\)"}
-                      <MathJaxRender />
+
                     </div>
 
                     <h4 className="text-lg font-semibold mb-2">6. Divergența minimă (aprox. fascicul gaussian):</h4>
                     <div className="formula-resurse text-lg font-mono mb-4">
                       {"\\( \\theta \\approx \\frac{\\lambda}{\\pi w_0} \\)"}
-                      <MathJaxRender />
+
                     </div>
 
                     <h4 className="text-lg font-semibold mb-2">7. Distanța Rayleigh:</h4>
                     <div className="formula-resurse text-lg font-mono mb-4">
                       {"\\( z_R = \\frac{\\pi w_0^2}{\\lambda} \\)"}
-                      <MathJaxRender />
+
                     </div>
 
                     <p className="text-muted-foreground mt-4">
@@ -409,48 +409,48 @@ const OpticaPage = () => {
                     <h4 className="text-lg font-semibold mb-2">1. Relația undă–frecvență:</h4>
                     <div className="formula-resurse text-lg font-mono mb-4">
                       {"\\( c = \\lambda f \\)"}
-                      <MathJaxRender />
+
                     </div>
 
                     <h4 className="text-lg font-semibold mb-2">2. Energia fotonului:</h4>
                     <div className="formula-resurse text-lg font-mono mb-4">
                       {"\\( E = hf \\)"}
-                      <MathJaxRender />
+
                     </div>
 
                     <h4 className="text-lg font-semibold mb-2">3. Impulsul fotonului:</h4>
                     <div className="formula-resurse text-lg font-mono mb-4">
                       {"\\( p = \\frac{h}{\\lambda} \\)"}
-                      <MathJaxRender />
+
                     </div>
 
                     <h4 className="text-lg font-semibold mb-2">4. Intensitatea (undă plană):</h4>
                     <div className="formula-resurse text-lg font-mono mb-4">
                       {"\\( I = \\frac{P}{A} \\)"}
-                      <MathJaxRender />
+
                     </div>
 
                     <h4 className="text-lg font-semibold mb-2">5. Legea inversului pătrat (propagare sferică):</h4>
                     <div className="formula-resurse text-lg font-mono mb-4">
                       {"\\( I(r) = \\frac{P}{4\\pi r^2} \\)"}
-                      <MathJaxRender />
+
                     </div>
 
                     <h4 className="text-lg font-semibold mb-2">6. Legea Wien (radiație termică):</h4>
                     <div className="formula-resurse text-lg font-mono mb-4">
                       {"\\( \\lambda_{max} T = b \\) (b \\approx 2{,}898\\times 10^{-3}\\,\\text{m·K})"}
-                      <MathJaxRender />
+
                     </div>
 
                     <h4 className="text-lg font-semibold mb-2">7. Stefan–Boltzmann (putere radiată):</h4>
                     <div className="formula-resurse text-lg font-mono mb-4">
                       {"\\( P = \\sigma \\varepsilon A T^4 \\)"}
-                      <MathJaxRender />
+
                     </div>
 
                     <p className="text-muted-foreground mt-4">
                       Unde: c = viteza luminii, λ = lungimea de undă, f = frecvența, h = constanta lui Planck, E = energia fotonului,
-                      p = impulsul, P = puterea, A = aria, r = distanța, {"\\(\\lambda_{max}\\)"} <MathJaxRender /> = lungimea de undă la maxim,
+                      p = impulsul, P = puterea, A = aria, r = distanța, {"\\(\\lambda_{max}\\)"} = lungimea de undă la maxim,
                       T = temperatura absolută, b = constanta Wien, σ = constanta Stefan–Boltzmann, ε = emisivitatea.
                     </p>
                   </div>

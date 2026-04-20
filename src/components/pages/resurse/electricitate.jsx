@@ -1,7 +1,7 @@
 import Layout from "../../Layout";
 import { Button } from "../../Button";
-import MathJaxRender from "@/components/MathJaxRender";
 import { useEffect, useState } from "react";
+import { useMathJaxTypesetRoot } from "@/hooks/useMathJaxTypesetRoot";
 
 import circuiteElectricitateImg from "/res/screenshots/Circuite_Electricitate_Screenshot.png";
 import energieCircuiteImg from "/res/screenshots/Energie_Circuite_Screenshot.png";
@@ -10,6 +10,7 @@ import kirchhoffSimulatorImg from "/res/screenshots/kirchoff_Screenshot.png";
 
 const ElectricitatePage = () => {
   const [visibleFormulasCount, setVisibleFormulasCount] = useState({});
+  const mathRootRef = useMathJaxTypesetRoot(JSON.stringify(visibleFormulasCount));
 
   // Definim formulele pentru fiecare secțiune
   const circuiteFormulas = [
@@ -115,7 +116,7 @@ const ElectricitatePage = () => {
     <Layout>
       <div className="resurse-pagina min-h-screen flex flex-col">
         <div style={{ paddingTop: "110px", flex: 1, display: "flex", flexDirection: "column" }}>
-          <main className="flex-grow container mx-auto px-4 py-10">
+          <main ref={mathRootRef} className="flex-grow container mx-auto px-4 py-10 tex2jax_process">
             <h1 className="text-4xl md:text-5xl font-bold mb-6">Electricitate</h1>
             
             <div className="max-w-4xl mb-8">
@@ -167,9 +168,6 @@ const ElectricitatePage = () => {
                           </div>
                         </div>
                       ))}
-                    {visibleFormulasCount.circuite > 0 && (
-                      <MathJaxRender key={`circuite-${visibleFormulasCount.circuite || 0}`} />
-                    )}
                     
                     <p className="text-muted-foreground mt-4">
                       Unde: U este tensiunea, I este intensitatea curentului, R este rezistența, P este puterea, W este energia, 
@@ -217,9 +215,6 @@ const ElectricitatePage = () => {
                           </div>
                         </div>
                       ))}
-                    {visibleFormulasCount.kirchhoff > 0 && (
-                      <MathJaxRender key={`kirchhoff-${visibleFormulasCount.kirchhoff || 0}`} />
-                    )}
 
                     <p className="text-muted-foreground mt-4">
                       Unde: curenții se iau cu semn conform unei convenții alese la nod; tensiunile se parcurg pe ochi în sens consistent; R și I sunt rezistențe și curenți pe ramuri, E sunt t.e.m. ale surselor, V la noduri sunt potențiale electrice.
@@ -268,9 +263,6 @@ const ElectricitatePage = () => {
                           </div>
                         </div>
                       ))}
-                    {visibleFormulasCount.energie > 0 && (
-                      <MathJaxRender key={`energie-${visibleFormulasCount.energie || 0}`} />
-                    )}
                     
                     <p className="text-muted-foreground mt-4">
                       Unde: W este energia, P este puterea, C este capacitatea condensatorului, L este inductanța bobinei, 
@@ -315,13 +307,10 @@ const ElectricitatePage = () => {
                           </div>
                         </div>
                       ))}
-                    {visibleFormulasCount.curent_alternativ > 0 && (
-                      <MathJaxRender key={`curent_alternativ-${visibleFormulasCount.curent_alternativ || 0}`} />
-                    )}
 
                     <p className="text-muted-foreground mt-4">
-                      Unde: u(t), i(t) sunt mărimi instantanee, {"\\(U_{max}\\), \\(I_{max}\\)"} <MathJaxRender /> sunt amplitudini,
-                      f este frecvența, ω este pulsația, {"\\(U_{ef}\\), \\(I_{ef}\\)"} <MathJaxRender /> valori efective,
+                      Unde: u(t), i(t) sunt mărimi instantanee, {"\\(U_{max}\\), \\(I_{max}\\)"} sunt amplitudini,
+                      f este frecvența, ω este pulsația, {"\\(U_{ef}\\), \\(I_{ef}\\)"} valori efective,
                       L inductanța, C capacitatea, φ defazajul, cosφ factorul de putere.
                     </p>
                   </div>

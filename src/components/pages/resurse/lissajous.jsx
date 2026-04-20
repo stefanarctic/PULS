@@ -1,7 +1,7 @@
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { Button } from "../../Button";
-import MathJaxRender from "@/components/MathJaxRender";
+import { useMathJaxTypesetRoot } from "@/hooks/useMathJaxTypesetRoot";
 
 import simulatorLissajousImg from "/res/screenshots/Lissajous_Screenshot.png";
 import simulatorGraficeBasicImg from "/res/screenshots/Grafice_Basic_Screenshot.png";
@@ -9,6 +9,7 @@ import Layout from "../../Layout";
 import SEO from "../../SEO";
 
 const LissajousPage = () => {
+	const mathRootRef = useMathJaxTypesetRoot();
 	const lissajousImages = [
 		{ src: simulatorLissajousImg, alt: "Figuri Lissajous" },
 		{ src: simulatorGraficeBasicImg, alt: "Grafice Lissajous" },
@@ -24,7 +25,7 @@ const LissajousPage = () => {
 			/>
 			<div className="resurse-pagina min-h-screen flex flex-col">
 				<div className="resurse-page-container">
-					<main className="flex-grow container mx-auto px-4 py-10">
+					<main ref={mathRootRef} className="flex-grow container mx-auto px-4 py-10 tex2jax_process">
 						<h1 className="text-4xl md:text-5xl font-bold mb-6">
 							Figuri Lissajous
 						</h1>
@@ -85,10 +86,10 @@ const LissajousPage = () => {
 										</h3>
 										<div className="formula-resurse text-lg font-mono">
 											{"\\( x(t) = A_1 \\cdot \\sin(\\omega_1 \\cdot t) \\)"}
-											<MathJaxRender />
+
 											<br />
 											{"\\( y(t) = A_2 \\cdot \\sin(\\omega_2 \\cdot t + \\phi) \\)"}
-											<MathJaxRender />
+
 										</div>
 										<p className="text-muted-foreground mt-2">
 											unde <strong>A₁</strong> și <strong>A₂</strong> sunt amplitudinile,
@@ -130,10 +131,10 @@ const LissajousPage = () => {
 										</h3>
 										<div className="formula-resurse text-lg font-mono">
 											{"\\( x(t) = A_1 \\cdot \\sin(\\omega_1 \\cdot t) \\)"}
-											<MathJaxRender />
+
 											<br />
 											{"\\( y(t) = A_2 \\cdot \\sin(\\omega_2 \\cdot t + \\phi) \\)"}
-											<MathJaxRender />
+
 										</div>
 										<p className="text-muted-foreground mt-2">
 											unde <strong>A₁</strong> și <strong>A₂</strong> sunt amplitudinile,

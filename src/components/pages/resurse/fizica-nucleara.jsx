@@ -1,42 +1,135 @@
 import Layout from "../../Layout";
 import { Button } from "../../Button";
-import MathJaxRender from "@/components/MathJaxRender";
 import SEO from "../../SEO";
+import { useMathJaxTypesetRoot } from "@/hooks/useMathJaxTypesetRoot";
 
 import apaGreaImg from "/res/screenshots/apa_grea_1.png";
 import instalatieSchimbIzotopicImg from "/res/screenshots/schimb_izotopic_Screenshot.png";
 import distilareD2oFractionataResurseImg from "/res/screenshots/Distilare_D2o_Fractionata_Resurse.png";
 import reactorFuziuneDtImg from "/res/screenshots/Reactor_Fuziune_Dt_Screenshot.png";
+import fisiuneNuclearaImg from "/res/screenshots/Fisiune_Nucleara_Screenshot.png";
 
 const FizicaNuclearaPage = () => {
+  const mathRootRef = useMathJaxTypesetRoot();
+
   return (
     <Layout>
       <SEO
-        title="Fizică nucleară | Apă grea, separare izotopică, model fuziune D–T - PULS"
-        description="Resurse: D₂O vs H₂O, instalații de schimb izotopic și distilare fracționată; model educativ de fuziune deuteriu–tritiu cu energie ~17,6 MeV per reacție și simulator interactiv."
-        keywords="fizica nucleara, apa grea, D2O, fuziune, deuteriu, tritiu, reactor, model educativ, schimb izotopic, moderator"
+        title="Fizică nucleară | Fisiune U-235, apă grea, fuziune D–T - PULS"
+        description="Resurse: fisiune nucleară în lanț (U-235, factor k), D₂O vs H₂O, schimb izotopic, distilare fracționată și model educativ de fuziune D–T (~17,6 MeV per reacție), cu simulatoare interactive."
+        keywords="fizica nucleara, fisiune, U-235, factor k, apa grea, D2O, fuziune, deuteriu, tritiu, reactor, model educativ, schimb izotopic, moderator"
         image="/res/icons/New-logo.png"
       />
       <div className="resurse-pagina min-h-screen flex flex-col">
         <div className="resurse-page-container">
-          <main className="flex-grow container mx-auto px-4 sm:px-6 py-8 md:py-10">
+          <main
+            ref={mathRootRef}
+            className="flex-grow container mx-auto px-4 sm:px-6 py-8 md:py-10 tex2jax_process"
+          >
             <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold leading-tight mb-5 md:mb-6">
               Fizică nucleară
             </h1>
 
             <div className="max-w-4xl mb-8 md:mb-10">
               <p className="text-base sm:text-lg leading-7 text-muted-foreground mb-4">
-                Pagina grupează materiale despre <strong>apa grea</strong> și separarea deuteriului, plus un{" "}
-                <strong>model educativ de fuziune D–T</strong> (deuteriu + tritiu) cu energie orientativă eliberată
-                per reacție. Simulatoarele nu înlocuiesc cursuri de inginerie nucleară sau dosare de siguranță; sunt
-                pentru intuiție și legătura cu programa de liceu.
+                Pagina grupează materiale despre <strong>fisiunea indusă</strong> în uraniu fisionabil,{" "}
+                <strong>apa grea</strong> și separarea deuteriului, plus un{" "}
+                <strong>model educativ de fuziune D–T</strong> (deuteriu + tritiu) cu energie orientativă eliberată per
+                reacție. Simulatoarele nu înlocuiesc cursuri de inginerie nucleară sau dosare de siguranță; sunt pentru
+                intuiție și legătura cu programa de liceu.
               </p>
               <p className="text-base sm:text-lg leading-7 text-muted-foreground mb-0">
-                Mai jos: fuziunea D–T în simulator, apoi D₂O vs H₂O, schimb izotopic și rectificare pentru D₂O.
+                Mai jos: fisiune în lanț (U-235), apoi fuziunea D–T, D₂O vs H₂O, schimb izotopic și rectificare pentru D₂O.
               </p>
             </div>
 
             <div className="space-y-8 md:space-y-12">
+              <div className="rounded-container px-4 py-5 sm:p-8">
+                <h2 className="text-xl sm:text-2xl font-bold mb-4">Simulator: fisiune nucleară în lanț (U-235)</h2>
+                <p className="text-sm sm:text-base leading-7 text-muted-foreground mb-4">
+                  Un neutron termic poate fi captat de un nucleu de <strong>U-235</strong> (
+                  {"\\({}^{235}_{92}\\mathrm{U}\\)"}
+                  ); compusul intermediar se descompune în <strong>fragmente de fisiune</strong>, neutroni noi (în medie
+                  2–3 per fisiune pentru
+                  U-235) și radiații γ. Dacă, în medie, dintr-o generație de neutroni se produce mai mult de un neutron
+                  util pentru noi fisiuni, <strong>factorul de multiplicare efectiv</strong> depășește 1 și puterea
+                  crește — principiul din spatele <strong>reacției în lanț</strong> controlate cu bare și moderator.
+                </p>
+                <p className="text-sm sm:text-base leading-7 text-muted-foreground mb-4">
+                  În codul simulatorului, fiecare fisiune adaugă orientativ <strong>200&nbsp;MeV</strong> la energia
+                  cumulată (valoare de reper didactică pentru energia eliberată per eveniment). Factorul{" "}
+                  <strong>k</strong> afișat este un <em>raport empiric</em> între ratele de fisiune pe intervale
+                  consecutive, ca să poți discuta subcritic / critic / supercritic fără a pretinde un model de reactor
+                  complet.
+                </p>
+
+                <div className="image-slider h-52 sm:h-64 md:h-80 relative flex items-center justify-center mb-6 md:mb-8">
+                  <img
+                    src={fisiuneNuclearaImg}
+                    alt="Simulator fisiune nucleară U-235: neutroni, nuclei, factor k și energie cumulată"
+                    className="w-full h-full object-contain mx-auto my-auto"
+                  />
+                </div>
+
+                <h3 className="text-lg sm:text-xl font-semibold mb-3">Formule legate de modelul din simulator</h3>
+
+                <h4 className="text-base sm:text-lg font-semibold mb-2">1. Fisiune indusă (schematic)</h4>
+                <p className="text-sm sm:text-base leading-7 text-muted-foreground mb-3">
+                  Captură de neutron și fragmente (ν = număr de neutroni emiși; valorile concrete ale maselor și Z depind
+                  de canalul de fisiune):
+                </p>
+                <div className="formula-resurse overflow-x-auto max-w-full text-sm sm:text-base md:text-lg font-mono mb-4">
+                  {
+                    "\\( {}^{235}_{92}\\mathrm{U} + {}^1_0\\mathrm{n} \\rightarrow {}^{A_1}_{Z_1}\\mathrm{X} + {}^{A_2}_{Z_2}\\mathrm{Y} + \\nu\\,{}^1_0\\mathrm{n} + \\gamma \\)"
+                  }
+                </div>
+                <p className="text-sm sm:text-base leading-7 text-muted-foreground mb-5">
+                  Condiția de conservare: {"\\(235 + 1 = A_1 + A_2 + \\nu\\)"} și{" "}
+                  {"\\(92 = Z_1 + Z_2\\)"}.
+                </p>
+
+                <h4 className="text-base sm:text-lg font-semibold mb-2">2. Energie cumulată (reper în simulare)</h4>
+                <p className="text-sm sm:text-base leading-7 text-muted-foreground mb-3">
+                  Cu {"\\(N\\)"} numărul de fisiuni numărate și {"\\(\\langle E\\rangle\\)"} energie medie eliberată per
+                  fisiune (în aplicație {"\\(\\langle E\\rangle = 200\\ \\mathrm{MeV}\\)"}):
+                </p>
+                <div className="formula-resurse overflow-x-auto max-w-full text-sm sm:text-base md:text-lg font-mono mb-4">
+                  {"\\( E_{\\mathrm{tot}} \\approx N\\,\\langle E\\rangle \\)"}
+                </div>
+
+                <h4 className="text-base sm:text-lg font-semibold mb-2">3. Defect de masă și energie de reacție (Q)</h4>
+                <div className="formula-resurse overflow-x-auto max-w-full text-sm sm:text-base md:text-lg font-mono mb-4">
+                  {"\\( Q = \\bigl(m_{\\mathrm{U}} + m_n - m_{\\mathrm{frag1}} - m_{\\mathrm{frag2}} - \\nu m_n\\bigr)\\,c^2 \\)"}
+                </div>
+                <p className="text-sm sm:text-base leading-7 text-muted-foreground mb-5">
+                  Ordin de mărime tipic: {"\\(Q\\)"} de zeci de MeV per nucleon eliberați în fragmente;
+                  total per fisiune de ordinul sutelor de MeV — de aceea modelul didactic rotunjește la ~200&nbsp;MeV.
+                </p>
+
+                <h4 className="text-base sm:text-lg font-semibold mb-2">4. Factorul k (idee în simulator)</h4>
+                <p className="text-sm sm:text-base leading-7 text-muted-foreground mb-3">
+                  Într-o descriere pe generații de neutroni, factorul de multiplicare se scrie simbolic ca raport între
+                  neutronii utili din generația următoare și cei din generația curentă. Aplicația estimează un{" "}
+                  <strong>k empiric</strong> din evoluția ratei de fisiune, nu din secțiuni eficace microscopice:
+                </p>
+                <div className="formula-resurse overflow-x-auto max-w-full text-sm sm:text-base md:text-lg font-mono mb-4">
+                  {"\\( k = \\dfrac{N_{i+1}}{N_i} \\quad (\\text{model simplificat}) \\)"}
+                </div>
+                <p className="text-sm sm:text-base leading-7 text-muted-foreground mb-6">
+                  {"\\(k < 1\\)"} subcritic, {"\\(k \\approx 1\\)"} critic (în medie
+                  stabil), {"\\(k > 1\\)"} supercritic — creștere a puterii dacă nu intervine
+                  răcirea/absorbția (bare SCRAM în simulare).
+                </p>
+
+                <div className="flex flex-col sm:flex-row sm:items-center sm:justify-end gap-4 sm:gap-6">
+                  <a href="/simulare/fisiune-nucleara" rel="noopener noreferrer" className="resurse-link w-full sm:w-auto">
+                    <Button size="lg" className="w-full sm:w-auto">
+                      Simulare: fisiune nucleară în lanț
+                    </Button>
+                  </a>
+                </div>
+              </div>
+
               <div className="rounded-container px-4 py-5 sm:p-8">
                 <h2 className="text-xl sm:text-2xl font-bold mb-4">Simulator: reactor fuziune D–T</h2>
                 <p className="text-sm sm:text-base leading-7 text-muted-foreground mb-4">
@@ -68,25 +161,21 @@ const FizicaNuclearaPage = () => {
                 </p>
                 <div className="formula-resurse overflow-x-auto max-w-full text-sm sm:text-base md:text-lg font-mono mb-4">
                   {"\\( {}^2_1\\mathrm{H} + {}^3_1\\mathrm{H} \\rightarrow {}^4_2\\mathrm{He} + {}^1_0\\mathrm{n} + 17{,}6\\ \\mathrm{MeV} \\)"}
-                  <MathJaxRender />
                 </div>
                 <p className="text-sm sm:text-base leading-7 text-muted-foreground mb-5">
-                  Tritiul ({"\\({}^3_1\\mathrm{H}\\)"} <MathJaxRender />) este instabil ({"\\(\\beta^-\\)"}{" "}
-                  <MathJaxRender />
-                  ), de aceea în practică trebuie produs sau regenerat într-un lanț de reacții; simulatorul nu
+                  Tritiul ({"\\({}^3_1\\mathrm{H}\\)"}) este instabil ({"\\(\\beta^-\\)"}), de aceea în practică trebuie produs sau regenerat într-un lanț de reacții; simulatorul nu
                   detaliază acest lanț, doar folosește energia per eveniment ca reper didactic.
                 </p>
 
                 <h4 className="text-base sm:text-lg font-semibold mb-2">2. Energia cumulată afișată</h4>
                 <p className="text-sm sm:text-base leading-7 text-muted-foreground mb-3">
-                  Cu {"\\(N\\)"} <MathJaxRender /> numărul de evenimente de fuziune numărate în simulare:
+                  Cu {"\\(N\\)"} numărul de evenimente de fuziune numărate în simulare:
                 </p>
                 <div className="formula-resurse overflow-x-auto max-w-full text-sm sm:text-base md:text-lg font-mono mb-4">
                   {"\\( E_{\\mathrm{tot}} = N \\cdot 17{,}6\\ \\mathrm{MeV} \\)"}
-                  <MathJaxRender />
                 </div>
                 <p className="text-sm sm:text-base leading-7 text-muted-foreground mb-5">
-                  Graficul „Energie în timp” urmărește {"\\(E_{\\mathrm{tot}}\\)"} <MathJaxRender /> eșantionat în bucla
+                  Graficul „Energie în timp” urmărește {"\\(E_{\\mathrm{tot}}\\)"} eșantionat în bucla
                   de animație; rata „Fuziuni / secundă” estimează evenimentele din ultima secundă (timestamps în cod).
                 </p>
 
@@ -96,10 +185,9 @@ const FizicaNuclearaPage = () => {
                 </p>
                 <div className="formula-resurse overflow-x-auto max-w-full text-sm sm:text-base md:text-lg font-mono mb-4">
                   {"\\( Q = \\bigl(m_D + m_T - m_{\\mathrm{He}} - m_n\\bigr)\\,c^2 \\)"}
-                  <MathJaxRender />
                 </div>
                 <p className="text-sm sm:text-base leading-7 text-muted-foreground mb-5">
-                  Valoarea {"\\(Q \\approx 17{,}6\\ \\mathrm{MeV}\\)"} <MathJaxRender /> pentru D–T este cea folosită
+                  Valoarea {"\\(Q \\approx 17{,}6\\ \\mathrm{MeV}\\)"} pentru D–T este cea folosită
                   în simulator ca energie per eveniment; într-un reactor real energia se împarte între particule și
                   structură, iar confinarea plasmei sau materialele nu sunt modelate aici.
                 </p>
@@ -166,7 +254,6 @@ const FizicaNuclearaPage = () => {
                 </p>
                 <div className="formula-resurse overflow-x-auto max-w-full text-sm sm:text-base md:text-lg font-mono mb-4">
                   {"\\( x_{D_2O}(\\%) = 100 \\cdot \\dfrac{n_{D_2O}}{n_{D_2O}+n_{H_2O}} \\)"}
-                  <MathJaxRender />
                 </div>
                 <p className="text-sm sm:text-base leading-7 text-muted-foreground mb-5">
                   În pagină este o fracție <em>fictivă</em> pentru înțelegere vizuală; nu este instrument medical și nu
@@ -181,7 +268,6 @@ const FizicaNuclearaPage = () => {
                 </p>
                 <div className="formula-resurse overflow-x-auto max-w-full text-sm sm:text-base md:text-lg font-mono mb-4">
                   {"\\( f \\propto \\dfrac{1}{\\sqrt{\\mu}}, \\qquad \\dfrac{f_{D_2O}}{f_{H_2O}} \\approx \\sqrt{\\dfrac{\\mu_{H_2O}}{\\mu_{D_2O}}} \\)"}
-                  <MathJaxRender />
                 </div>
                 <p className="text-sm sm:text-base leading-7 text-muted-foreground mb-5">
                   În simulator, sliderul de raport al masei reduse folosește exact această idee: masă mai mare pentru
@@ -196,14 +282,13 @@ const FizicaNuclearaPage = () => {
                 </p>
                 <div className="formula-resurse overflow-x-auto max-w-full text-sm sm:text-base md:text-lg font-mono mb-5">
                   {"\\( \\Delta T_b = T_b(D_2O)-T_b(H_2O), \\qquad \\Delta T_f = T_f(D_2O)-T_f(H_2O) \\)"}
-                  <MathJaxRender />
                 </div>
                 <p className="text-sm sm:text-base leading-7 text-muted-foreground mb-6">
                   Pagina folosește valori orientative din simulator:{" "}
-                  {"\\(T_b(H_2O)\\approx100.0^\\circ C\\)"} <MathJaxRender /> și{" "}
-                  {"\\(T_b(D_2O)\\approx101.4^\\circ C\\)"} <MathJaxRender />, respectiv îngheț în jur de{" "}
-                  {"\\(0^\\circ C\\)"} <MathJaxRender /> vs{" "}
-                  {"\\(3.8^\\circ C\\)"} <MathJaxRender />.
+                  {"\\(T_b(H_2O)\\approx100.0^\\circ C\\)"} și{" "}
+                  {"\\(T_b(D_2O)\\approx101.4^\\circ C\\)"}, respectiv îngheț în jur de{" "}
+                  {"\\(0^\\circ C\\)"} vs{" "}
+                  {"\\(3.8^\\circ C\\)"}.
                 </p>
 
                 <div className="flex flex-col sm:flex-row sm:items-center sm:justify-end gap-4 sm:gap-6">
@@ -248,31 +333,27 @@ const FizicaNuclearaPage = () => {
                 <h4 className="text-base sm:text-lg font-semibold mb-2">1. Factor de separare izotopică</h4>
                 <div className="formula-resurse text-sm sm:text-base md:text-lg font-mono mb-4">
                   {"\\( \\alpha = \\dfrac{(x_D/(1-x_D))_{faza\\,A}}{(x_D/(1-x_D))_{faza\\,B}} \\)"}
-                  <MathJaxRender />
                 </div>
                 <p className="text-sm sm:text-base leading-7 text-muted-foreground mb-5">
-                  Factorul {"\\(\\alpha\\)"} <MathJaxRender /> arată cât de bine se separă izotopii între două faze la
-                  echilibru. Cu {"\\(\\alpha\\)"} <MathJaxRender /> mai mare, separarea e mai eficientă pe fiecare etapă.
+                  Factorul {"\\(\\alpha\\)"} arată cât de bine se separă izotopii între două faze la
+                  echilibru. Cu {"\\(\\alpha\\)"} mai mare, separarea e mai eficientă pe fiecare etapă.
                 </p>
 
                 <h4 className="text-base sm:text-lg font-semibold mb-2">2. Bilanț de masă pentru deuteriu</h4>
                 <div className="formula-resurse text-sm sm:text-base md:text-lg font-mono mb-4">
                   {"\\( F\\,x_F = P\\,x_P + W\\,x_W \\)"}
-                  <MathJaxRender />
                 </div>
                 <p className="text-sm sm:text-base leading-7 text-muted-foreground mb-5">
-                  Relația leagă debitul de alimentare {"\\(F\\)"} <MathJaxRender /> și concentrația {"\\(x_F\\)"}{" "}
-                  <MathJaxRender /> de curenții de produs {"\\(P\\)"} <MathJaxRender /> și reziduu {"\\(W\\)"}{" "}
-                  <MathJaxRender />.
+                  Relația leagă debitul de alimentare {"\\(F\\)"} și concentrația {"\\(x_F\\)"} de curenții de produs{" "}
+                  {"\\(P\\)"} și reziduu {"\\(W\\)"}.
                 </p>
 
                 <h4 className="text-base sm:text-lg font-semibold mb-2">3. Îmbogățire pe etaje (model simplificat)</h4>
                 <div className="formula-resurse text-sm sm:text-base md:text-lg font-mono mb-5">
                   {"\\( x_D^{(n)} \\approx x_D^{(0)}\\,\\alpha^{n} \\) (aprox. didactică)"}
-                  <MathJaxRender />
                 </div>
                 <p className="text-sm sm:text-base leading-7 text-muted-foreground mb-6">
-                  Formula arată ideea-cheie: mai multe etaje utile {"\\(n\\)"} <MathJaxRender /> pot crește concentrația
+                  Formula arată ideea-cheie: mai multe etaje utile {"\\(n\\)"} pot crește concentrația
                   de deuteriu, mai ales când fiecare etapă contribuie cu o separare netă.
                 </p>
 
@@ -330,35 +411,32 @@ const FizicaNuclearaPage = () => {
                 </p>
                 <div className="formula-resurse overflow-x-auto max-w-full text-sm sm:text-base md:text-lg font-mono mb-4">
                   {"\\( \\alpha_{L/H} = \\dfrac{(y_L/x_L)}{(y_H/x_H)} \\)"}
-                  <MathJaxRender />
                 </div>
                 <p className="text-sm sm:text-base leading-7 text-muted-foreground mb-5">
-                  Pentru H₂O/D₂O, {"\\(\\alpha_{L/H}\\)"} <MathJaxRender /> este aproape de 1 (în simulator ~1,06), deci
+                  Pentru H₂O/D₂O, {"\\(\\alpha_{L/H}\\)"} este aproape de 1 (în simulator ~1,06), deci
                   fiecare etaj separă puțin — de aceea sunt necesare multe trepte și reflux ridicat.
                 </p>
 
                 <h4 className="text-base sm:text-lg font-semibold mb-2">2. Echilibru vapori–lichid (fracție molară a componentei ușoare)</h4>
                 <p className="text-sm sm:text-base leading-7 text-muted-foreground mb-3">
-                  Cu {"\\(x\\)"} <MathJaxRender /> și {"\\(y\\)"} <MathJaxRender /> fracțiile molare ale H₂O în lichid,
-                  respectiv în vapori, și {"\\(\\alpha\\)"} <MathJaxRender /> constant (model didactic):
+                  Cu {"\\(x\\)"} și {"\\(y\\)"} fracțiile molare ale H₂O în lichid,
+                  respectiv în vapori, și {"\\(\\alpha\\)"} constant (model didactic):
                 </p>
                 <div className="formula-resurse overflow-x-auto max-w-full text-sm sm:text-base md:text-lg font-mono mb-4">
                   {"\\( y = \\dfrac{\\alpha\\,x}{1+(\\alpha-1)\\,x} \\)"}
-                  <MathJaxRender />
                 </div>
                 <p className="text-sm sm:text-base leading-7 text-muted-foreground mb-5">
-                  Concentrația D₂O în lichid este {"\\(1-x\\)"} <MathJaxRender />; la baza coloanei, prin rectificare,
-                  {"\\(x\\)"} <MathJaxRender /> scade și fracția de D₂O crește.
+                  Concentrația D₂O în lichid este {"\\(1-x\\)"}; la baza coloanei, prin rectificare,
+                  {"\\(x\\)"} scade și fracția de D₂O crește.
                 </p>
 
                 <h4 className="text-base sm:text-lg font-semibold mb-2">3. Refluxul intern</h4>
                 <div className="formula-resurse overflow-x-auto max-w-full text-sm sm:text-base md:text-lg font-mono mb-4">
                   {"\\( R = \\dfrac{L}{D} \\)"}
-                  <MathJaxRender />
                 </div>
                 <p className="text-sm sm:text-base leading-7 text-muted-foreground mb-5">
-                  {"\\(L\\)"} <MathJaxRender /> este debitul molar de lichid care revine în coloană (reflux),{" "}
-                  {"\\(D\\)"} <MathJaxRender /> debitul de produs preluat de sus. {"\\(R\\)"} <MathJaxRender /> mare
+                  {"\\(L\\)"} este debitul molar de lichid care revine în coloană (reflux),{" "}
+                  {"\\(D\\)"} debitul de produs preluat de sus. {"\\(R\\)"} mare
                   îmbunătățește separarea, dar reduce debitul de produs ușor și prelungește timpul spre purități foarte
                   mari jos.
                 </p>
@@ -366,25 +444,22 @@ const FizicaNuclearaPage = () => {
                 <h4 className="text-base sm:text-lg font-semibold mb-2">4. Număr minim de trepte (Fenske, volatilitate relativă constantă)</h4>
                 <p className="text-sm sm:text-base leading-7 text-muted-foreground mb-3">
                   Estimare didactică pentru câte trepte ar fi necesare la reflux total, între fracțiile molare ale
-                  componentei ușoare în distillat {"\\(x_D\\)"} <MathJaxRender /> și în reziduu {"\\(x_B\\)"}{" "}
-                  <MathJaxRender />:
+                  componentei ușoare în distillat {"\\(x_D\\)"} și în reziduu {"\\(x_B\\)"}:
                 </p>
                 <div className="formula-resurse overflow-x-auto max-w-full text-sm sm:text-base md:text-lg font-mono mb-4">
                   {"\\( N_{\\min} = \\dfrac{\\ln\\!\\left(\\dfrac{x_D/(1-x_D)}{x_B/(1-x_B)}\\right)}{\\ln \\alpha} \\)"}
-                  <MathJaxRender />
                 </div>
                 <p className="text-sm sm:text-base leading-7 text-muted-foreground mb-5">
                   În practică, refluxul finit și eficiența etajelor măresc numărul real de trepte față de{" "}
-                  {"\\(N_{\\min}\\)"} <MathJaxRender />; formula arată totuși de ce un {"\\(\\alpha\\)"}{" "}
-                  <MathJaxRender /> aproape de 1 duce la {"\\(N\\)"} <MathJaxRender /> foarte mare pentru separare
-                  pronunțată.
+                  {"\\(N_{\\min}\\)"}; formula arată totuși de ce un {"\\(\\alpha\\)"} aproape de 1 duce la {"\\(N\\)"}{" "}
+                  foarte mare pentru separare pronunțată.
                 </p>
 
                 <h4 className="text-base sm:text-lg font-semibold mb-2">5. Legătură cu diferența de fierbere</h4>
                 <p className="text-sm sm:text-base leading-7 text-muted-foreground mb-3">
                   Separarea prin distilare folosește direct faptul că temperaturile de fierbere diferă; pentru
                   discuție calitativă, în pagină avem deja{" "}
-                  {"\\(\\Delta T_b = T_b(D_2O)-T_b(H_2O)\\)"} <MathJaxRender /> (orientativ ~1,4&nbsp;°C), ceea ce se
+                  {"\\(\\Delta T_b = T_b(D_2O)-T_b(H_2O)\\)"} (orientativ ~1,4&nbsp;°C), ceea ce se
                   traduce într-o volatilitate relativă foarte apropiată de 1.
                 </p>
 

@@ -1,8 +1,8 @@
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { Button } from "../../Button";
-import MathJaxRender from "@/components/MathJaxRender";
 import { useEffect, useState } from "react";
+import { useMathJaxTypesetRoot } from "@/hooks/useMathJaxTypesetRoot";
 
 import seismicWaveAnimation from "/res/screenshots/Seism_Screenshot.png";
 import Layout from "../../Layout";
@@ -10,6 +10,7 @@ import SEO from "../../SEO";
 
 const SeismePage = () => {
   const [visibleFormulasCount, setVisibleFormulasCount] = useState({});
+  const mathRootRef = useMathJaxTypesetRoot(JSON.stringify(visibleFormulasCount));
 
   // Definim formulele pentru secțiunea seism
   const seismFormulas = [
@@ -83,7 +84,7 @@ const SeismePage = () => {
       />
       <div className="resurse-pagina min-h-screen flex flex-col">
         <div className="resurse-page-container">
-          <main className="flex-grow container mx-auto px-4 py-10">
+          <main ref={mathRootRef} className="flex-grow container mx-auto px-4 py-10 tex2jax_process">
             <h1 className="text-4xl md:text-5xl font-bold mb-6">Seisme</h1>
             <div className="max-w-3xl mb-10">
               <p className="text-lg text-muted-foreground mb-4">
@@ -175,9 +176,6 @@ const SeismePage = () => {
                             )}
                           </div>
                         ))}
-                      {visibleFormulasCount.seism > 0 && (
-                        <MathJaxRender key={`seism-${visibleFormulasCount.seism || 0}`} />
-                      )}
                     </div>
                   </div>
                   <a

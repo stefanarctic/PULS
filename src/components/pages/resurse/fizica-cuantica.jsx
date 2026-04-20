@@ -1,13 +1,14 @@
 import Layout from "../../Layout";
 import { Button } from "../../Button";
-import MathJaxRender from "@/components/MathJaxRender";
 import SEO from "../../SEO";
+import { useMathJaxTypesetRoot } from "@/hooks/useMathJaxTypesetRoot";
 
 import dublaFantaImg from "/res/screenshots/dubla_fanta_Screenshot.png";
 import tunelareImg from "/res/screenshots/tunelare_Screenshot.png";
 import legaturiAtomiImg from "/res/screenshots/legaturi_atomi_Screenshot.png";
 
 const FizicaCuanticaPage = () => {
+  const mathRootRef = useMathJaxTypesetRoot();
   return (
     <Layout>
       <SEO
@@ -18,7 +19,7 @@ const FizicaCuanticaPage = () => {
       />
       <div className="resurse-pagina min-h-screen flex flex-col">
         <div className="resurse-page-container">
-          <main className="flex-grow container mx-auto px-4 py-10">
+          <main ref={mathRootRef} className="flex-grow container mx-auto px-4 py-10 tex2jax_process">
             <h1 className="text-4xl md:text-5xl font-bold mb-6">Fizică cuantică</h1>
 
             <div className="max-w-4xl mb-10">
@@ -51,32 +52,32 @@ const FizicaCuanticaPage = () => {
                 <h4 className="text-lg font-semibold mb-2">1. Maxime de interferență</h4>
                 <p className="text-muted-foreground mb-3">
                   Pentru două fante la distanța{" "}
-                  {"\\(d\\)"} <MathJaxRender /> și lungime de undă{" "}
-                  {"\\(\\lambda\\)"} <MathJaxRender />, la unghiul{" "}
-                  {"\\(\\theta\\)"} <MathJaxRender /> față de axa de simetrie, diferența de drum este aproximativ{" "}
-                  {"\\(d\\sin\\theta\\)"} <MathJaxRender />. Interferență constructivă (maxime de intensitate) când această diferență
+                  {"\\(d\\)"} și lungime de undă{" "}
+                  {"\\(\\lambda\\)"}, la unghiul{" "}
+                  {"\\(\\theta\\)"} față de axa de simetrie, diferența de drum este aproximativ{" "}
+                  {"\\(d\\sin\\theta\\)"}. Interferență constructivă (maxime de intensitate) când această diferență
                   este un multiplu întreg de lungimi de undă:
                 </p>
                 <div className="formula-resurse text-lg font-mono mb-6">
                   {"\\( d\\sin\\theta = m\\lambda, \\quad m = 0, \\pm 1, \\pm 2, \\ldots \\)"}
-                  <MathJaxRender />
+
                 </div>
 
                 <h4 className="text-lg font-semibold mb-2">2. Distanța între franje (Young, unghi mic)</h4>
                 <p className="text-muted-foreground mb-3">
                   Pe un ecran la distanța{" "}
-                  {"\\(L \\gg d\\)"} <MathJaxRender /> de fante, în aproximația unghiurilor mici{" "}
-                  {"\\(\\sin\\theta \\approx y/L\\)"} <MathJaxRender />, distanța între două maxime consecutive de ordin{" "}
-                  {"\\(m\\)"} <MathJaxRender /> și{" "}
-                  {"\\(m+1\\)"} <MathJaxRender /> pe ecran este aproximativ:
+                  {"\\(L \\gg d\\)"} de fante, în aproximația unghiurilor mici{" "}
+                  {"\\(\\sin\\theta \\approx y/L\\)"}, distanța între două maxime consecutive de ordin{" "}
+                  {"\\(m\\)"} și{" "}
+                  {"\\(m+1\\)"} pe ecran este aproximativ:
                 </p>
                 <div className="formula-resurse text-lg font-mono mb-6">
                   {"\\( \\Delta y \\approx \\frac{\\lambda L}{d} \\)"}
-                  <MathJaxRender />
+
                 </div>
                 <p className="text-muted-foreground mb-4">
                   Cu cât fantele sunt mai apropiate (
-                  {"\\(d\\)"} <MathJaxRender /> mic) sau lungimea de undă mai mare, cu atât franjele sunt mai depărtate pe ecran.
+                  {"\\(d\\)"} mic) sau lungimea de undă mai mare, cu atât franjele sunt mai depărtate pe ecran.
                 </p>
 
                 <h4 className="text-lg font-semibold mb-2">3. Regula lui Born (probabilitate)</h4>
@@ -86,12 +87,12 @@ const FizicaCuanticaPage = () => {
                 </p>
                 <div className="formula-resurse text-lg font-mono mb-6">
                   {"\\( P \\propto |\\psi|^2 \\)"}
-                  <MathJaxRender />
+
                 </div>
                 <p className="text-muted-foreground mb-6">
                   De aceea „se vede” interferență: termenii care se adună în{" "}
-                  {"\\(\\psi\\)"} <MathJaxRender /> pot produce maxime sau minime ale lui{" "}
-                  {"\\(|\\psi|^2\\)"} <MathJaxRender />, nu doar o sumă de intensități independente.
+                  {"\\(\\psi\\)"} pot produce maxime sau minime ale lui{" "}
+                  {"\\(|\\psi|^2\\)"}, nu doar o sumă de intensități independente.
                 </p>
 
                 <div className="flex flex-col md:flex-row md:items-center justify-end gap-6">
@@ -106,7 +107,7 @@ const FizicaCuanticaPage = () => {
                 <h2 className="text-2xl font-bold mb-4">Tunelarea cuantică</h2>
                 <p className="text-muted-foreground mb-4">
                   În regiuni unde clasic ar avea energie cinetică negativă{" "}
-                  {"\\(E < V(x)\\)"} <MathJaxRender />, funcția de undă nu dispare brusc: în barieră apare o parte care scade
+                  {"\\(E < V(x)\\)"}, funcția de undă nu dispare brusc: în barieră apare o parte care scade
                   exponențial, astfel încât există probabilitate nenulă ca particula să fie găsită dincolo de barieră — fenomenul de
                   tunelare. Apare în diode tunel, microscoape cu efect tunel (STM) și în multe modele nucleare și chimice.
                 </p>
@@ -123,51 +124,51 @@ const FizicaCuanticaPage = () => {
                 <h4 className="text-lg font-semibold mb-2">1. Ecuația lui Schrödinger staționară (1D)</h4>
                 <p className="text-muted-foreground mb-3">
                   Pentru o stare cu energie{" "}
-                  {"\\(E\\)"} <MathJaxRender /> bine definită, forma independentă de timp în o dimensiune este:
+                  {"\\(E\\)"} bine definită, forma independentă de timp în o dimensiune este:
                 </p>
                 <div className="formula-resurse text-lg font-mono mb-6">
                   {"\\( -\\dfrac{\\hbar^2}{2m} \\dfrac{d^2\\psi}{dx^2} + V(x)\\,\\psi = E\\,\\psi \\)"}
-                  <MathJaxRender />
+
                 </div>
                 <p className="text-muted-foreground mb-4">
                   În fiecare zonă unde{" "}
-                  {"\\(V\\)"} <MathJaxRender /> este aproximativ constant, soluția este combinație de exponențiale (oscilatorii dacă{" "}
-                  {"\\(E > V\\)"} <MathJaxRender />, crescătoare/scăzătoare dacă{" "}
-                  {"\\(E < V\\)"} <MathJaxRender />).
+                  {"\\(V\\)"} este aproximativ constant, soluția este combinație de exponențiale (oscilatorii dacă{" "}
+                  {"\\(E > V\\)"}, crescătoare/scăzătoare dacă{" "}
+                  {"\\(E < V\\)"}).
                 </p>
 
                 <h4 className="text-lg font-semibold mb-2">2. Număr de undă în zona permisă și decay în barieră</h4>
                 <p className="text-muted-foreground mb-3">
                   Pentru o barieră rectangulară de înălțime{" "}
-                  {"\\(V_0\\)"} <MathJaxRender /> și{" "}
-                  {"\\(E < V_0\\)"} <MathJaxRender />, în interiorul barierei (unde clasic nu ar trece particula) soluția evanescentă
+                  {"\\(V_0\\)"} și{" "}
+                  {"\\(E < V_0\\)"}, în interiorul barierei (unde clasic nu ar trece particula) soluția evanescentă
                   implică parametrul{" "}
-                  {"\\(\\kappa\\)"} <MathJaxRender />:
+                  {"\\(\\kappa\\)"}:
                 </p>
                 <div className="formula-resurse text-lg font-mono mb-4">
                   {"\\( \\kappa = \\dfrac{\\sqrt{2m(V_0 - E)}}{\\hbar} \\)"}
-                  <MathJaxRender />
+
                 </div>
                 <p className="text-muted-foreground mb-6">
                   Cu cât bariera e mai „înaltă” față de{" "}
-                  {"\\(E\\)"} <MathJaxRender /> (adică{" "}
-                  {"\\(V_0 - E\\)"} <MathJaxRender /> mai mare), cu atât{" "}
-                  {"\\(\\kappa\\)"} <MathJaxRender /> e mai mare și unda scade mai rapid în barieră.
+                  {"\\(E\\)"} (adică{" "}
+                  {"\\(V_0 - E\\)"} mai mare), cu atât{" "}
+                  {"\\(\\kappa\\)"} e mai mare și unda scade mai rapid în barieră.
                 </p>
 
                 <h4 className="text-lg font-semibold mb-2">3. Transmisie la barieră groasă (idee)</h4>
                 <p className="text-muted-foreground mb-3">
                   Pentru o barieră suficient de lată{" "}
-                  {"\\(a\\)"} <MathJaxRender />, coeficientul de transmisie (probabilitatea de a trece) scade foarte rapid cu
+                  {"\\(a\\)"}, coeficientul de transmisie (probabilitatea de a trece) scade foarte rapid cu
                   grosimea, adesea dominant fiind un factor de tipul:
                 </p>
                 <div className="formula-resurse text-lg font-mono mb-6">
                   {"\\( T \\sim e^{-2\\kappa a} \\)"}
-                  <MathJaxRender />
+
                 </div>
                 <p className="text-muted-foreground mb-4">
                   Factorii numerici exacti depind de forma barierei (treaptă, netedă etc.), dar dependența exponențială de{" "}
-                  {"\\(\\kappa a\\)"} <MathJaxRender /> explică de ce tunelarea e sensibilă la câțiva angstromi în STM sau la grosimea
+                  {"\\(\\kappa a\\)"} explică de ce tunelarea e sensibilă la câțiva angstromi în STM sau la grosimea
                   stratului în dispozitive reale.
                 </p>
 
@@ -175,11 +176,11 @@ const FizicaCuanticaPage = () => {
                 <p className="text-muted-foreground mb-3">
                   O stare care nu trăiește la nesfârșit (de exemplu un nivel meta-stabil) are o incertitudine în energie legată de
                   durata sa caracteristică{" "}
-                  {"\\(\\Delta t\\)"} <MathJaxRender />:
+                  {"\\(\\Delta t\\)"}:
                 </p>
                 <div className="formula-resurse text-lg font-mono mb-6">
                   {"\\( \\Delta E\\,\\Delta t \\gtrsim \\dfrac{\\hbar}{2} \\)"}
-                  <MathJaxRender />
+
                 </div>
                 <p className="text-muted-foreground mb-6">
                   Utilă când estimezi lățimea nivelurilor sau timpii de viață în procese care implică tunelare dintr-o stare
@@ -215,17 +216,17 @@ const FizicaCuanticaPage = () => {
 
                 <h4 className="text-lg font-semibold mb-2">1. Combinarea orbitalilor atomici (MO de legătură / antilegătură)</h4>
                 <p className="text-muted-foreground mb-3">
-                  În modelul foarte simplificat al moleculei {"\\(\\text{H}_2\\)"} <MathJaxRender />, doi orbitali{" "}
-                  {"\\(1s\\)"} <MathJaxRender /> se pot combina într-un orbital de legătură (simetric) și unul de
+                  În modelul foarte simplificat al moleculei {"\\(\\text{H}_2\\)"}, doi orbitali{" "}
+                  {"\\(1s\\)"} se pot combina într-un orbital de legătură (simetric) și unul de
                   antilegătură (antisimetric):
                 </p>
                 <div className="formula-resurse text-lg font-mono mb-4">
                   {"\\( \\psi_{\\text{leg}} = c_1 \\psi_A + c_2 \\psi_B, \\quad \\psi_{\\text{anti}} = c_1 \\psi_A - c_2 \\psi_B \\)"}
-                  <MathJaxRender />
+
                 </div>
                 <p className="text-muted-foreground mb-4">
                   În orbitalul de legătură, densitatea de probabilitate{" "}
-                  {"\\( |\\psi_{\\text{leg}}|^2 \\)"} <MathJaxRender /> este mai mare între nuclee, ceea ce duce la o
+                  {"\\( |\\psi_{\\text{leg}}|^2 \\)"} este mai mare între nuclee, ceea ce duce la o
                   energie totală mai mică decât pentru atomii separați.
                 </p>
 
@@ -235,39 +236,39 @@ const FizicaCuanticaPage = () => {
                 </p>
                 <div className="formula-resurse text-lg font-mono mb-4">
                   {"\\( E_{\\text{leg}} = E_{\\text{atomi separați}} - E_{\\text{moleculă}} \\)"}
-                  <MathJaxRender />
+
                 </div>
                 <p className="text-muted-foreground mb-4">
                   Cu cât{" "}
-                  {"\\(E_{\\text{leg}}\\)"} <MathJaxRender /> este mai mare, cu atât legătura este mai puternică și
+                  {"\\(E_{\\text{leg}}\\)"} este mai mare, cu atât legătura este mai puternică și
                   molecula mai stabilă.
                 </p>
 
                 <h4 className="text-lg font-semibold mb-2">3. Forță de legătură – aproximația oscilatorului</h4>
                 <p className="text-muted-foreground mb-3">
                   În jurul distanței de echilibru{" "}
-                  {"\\(r_0\\)"} <MathJaxRender /> dintre nuclee, potențialul de legătură poate fi aproximat printr-un
+                  {"\\(r_0\\)"} dintre nuclee, potențialul de legătură poate fi aproximat printr-un
                   oscilator armonic:
                 </p>
                 <div className="formula-resurse text-lg font-mono mb-4">
                   {"\\( F \\approx -k (r - r_0) \\)"}
-                  <MathJaxRender />
+
                 </div>
                 <p className="text-muted-foreground mb-4">
                   Constanta efectivă{" "}
-                  {"\\(k\\)"} <MathJaxRender /> se corelează cu „rigiditatea” legăturii; frecvența vibrațională depinde
+                  {"\\(k\\)"} se corelează cu „rigiditatea” legăturii; frecvența vibrațională depinde
                   de{" "}
-                  {"\\(k\\)"} <MathJaxRender /> și de masa redusă a celor doi atomi.
+                  {"\\(k\\)"} și de masa redusă a celor doi atomi.
                 </p>
 
                 <h4 className="text-lg font-semibold mb-2">4. Densitate de probabilitate pe legătură</h4>
                 <p className="text-muted-foreground mb-3">
                   Probabilitatea de a găsi electronii într-un punct{" "}
-                  {"\\(\\vec{r}\\)"} <MathJaxRender /> este dată de densitatea de probabilitate:
+                  {"\\(\\vec{r}\\)"} este dată de densitatea de probabilitate:
                 </p>
                 <div className="formula-resurse text-lg font-mono mb-4">
                   {"\\( \\rho(\\vec{r}) = |\\psi_{\\text{leg}}(\\vec{r})|^2 \\)"}
-                  <MathJaxRender />
+
                 </div>
                 <p className="text-muted-foreground mb-4">
                   O densitate mare între nuclee este semnătura unei legături covalente; în orbitalul de antilegătură

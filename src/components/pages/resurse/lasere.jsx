@@ -1,6 +1,6 @@
 import Layout from "../../Layout";
 import { Button } from "../../Button";
-import MathJaxRender from "@/components/MathJaxRender";
+import { useMathJaxTypesetRoot } from "@/hooks/useMathJaxTypesetRoot";
 import SEO from "../../SEO";
 
 import laserSimulatorImg from "/res/screenshots/Laser_Simulator_Screenshot.png";
@@ -125,6 +125,7 @@ const simulatorSections = [
 ];
 
 const LaserePage = () => {
+  const mathRootRef = useMathJaxTypesetRoot();
   return (
     <Layout>
       <SEO
@@ -135,7 +136,7 @@ const LaserePage = () => {
       />
       <div className="resurse-pagina min-h-screen flex flex-col">
         <div className="resurse-page-container">
-          <main className="flex-grow container mx-auto px-4 sm:px-6 py-8 md:py-10">
+          <main ref={mathRootRef} className="flex-grow container mx-auto px-4 sm:px-6 py-8 md:py-10 tex2jax_process">
             <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold leading-tight mb-5 md:mb-6">
               Lasere: de la fotoni la impulsuri extreme
             </h1>
@@ -223,7 +224,7 @@ const LaserePage = () => {
                     </div>
                   </div>
 
-                  <MathJaxRender key={simulator.href} />
+
 
                   <div className="flex flex-col sm:flex-row sm:items-center sm:justify-end gap-4 sm:gap-6 mt-6">
                     <a href={simulator.href} className="resurse-link w-full sm:w-auto">
@@ -235,7 +236,7 @@ const LaserePage = () => {
                 </section>
               ))}
             </div>
-            <MathJaxRender />
+
           </main>
         </div>
       </div>

@@ -1,8 +1,8 @@
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { Button } from "../../Button";
-import MathJaxRender from "@/components/MathJaxRender";
 import { useEffect, useState } from "react";
+import { useMathJaxTypesetRoot } from "@/hooks/useMathJaxTypesetRoot";
 
 import simulatorPendulSimpluImg from "/res/screenshots/Simplu_Screenshot.png";
 import simulatorPendulAmortizatImg from "/res/screenshots/Amortizat_Screenshot.png";
@@ -16,6 +16,7 @@ import SEO from "../../SEO";
 
 const PendulePage = () => {
   const [visibleFormulasCount, setVisibleFormulasCount] = useState({});
+  const mathRootRef = useMathJaxTypesetRoot(JSON.stringify(visibleFormulasCount));
 
   // Definim formulele pentru fiecare secțiune
   const graficeFormulas = [
@@ -120,7 +121,7 @@ const PendulePage = () => {
       />
       <div className="resurse-pagina min-h-screen flex flex-col">
         <div className="resurse-page-container">
-          <main className="flex-grow container mx-auto px-4 py-10">
+          <main ref={mathRootRef} className="flex-grow container mx-auto px-4 py-10 tex2jax_process">
             <h1 className="text-4xl md:text-5xl font-bold mb-6">Mișcarea oscilatorie armonică. </h1>
             <div className="max-w-3xl mb-10 mx-auto">
               <h1 className="text-4xl md:text-5xl font-bold mb-6">Proprietățile mișcării oscilatorii armonice. </h1>
@@ -158,11 +159,8 @@ const PendulePage = () => {
                           </div>
                         </div>
                       ))}
-                    {visibleFormulasCount.grafice > 0 && (
-                      <MathJaxRender key={`grafice-${visibleFormulasCount.grafice || 0}`} />
-                    )}
                     <p className="text-muted-foreground mt-2">
-                      unde A este amplitudinea, {"\\(\\omega\\)"} <MathJaxRender /> este viteza unghiulară, {"\\(\\phi\\)"} <MathJaxRender /> este unghiul initial, iar t este perioada.
+                      unde A este amplitudinea, {"\\(\\omega\\)"} este viteza unghiulară, {"\\(\\phi\\)"} este unghiul initial, iar t este perioada.
                     </p>
                   </div>
                   <a
@@ -213,9 +211,6 @@ const PendulePage = () => {
                           </div>
                         </div>
                       ))}
-                    {visibleFormulasCount.pendulSimplu > 0 && (
-                      <MathJaxRender key={`pendulSimplu-${visibleFormulasCount.pendulSimplu || 0}`} />
-                    )}
                     <p className="text-muted-foreground mt-2">
                       unde l este lungimea pendulului, iar g este accelerația gravitațională.
                     </p>
@@ -262,9 +257,6 @@ const PendulePage = () => {
                           </div>
                         ))}
                     </ul>
-                    {visibleFormulasCount.pendulAmortizat > 0 && (
-                      <MathJaxRender key={`pendulAmortizat-${visibleFormulasCount.pendulAmortizat || 0}`} />
-                    )}
                   </div>
                   <a
                     href="/simulare/pendul-amortizat"
@@ -302,11 +294,8 @@ const PendulePage = () => {
                           {item.formula}
                         </div>
                       ))}
-                    {visibleFormulasCount.pendulNeliniar > 0 && (
-                      <MathJaxRender key={`pendulNeliniar-${visibleFormulasCount.pendulNeliniar || 0}`} />
-                    )}
                     <p className="text-muted-foreground mt-2">
-                      unde {"\\(\\theta\\)"} <MathJaxRender /> este unghiul de deviație, l este lungimea firului și g este accelerația gravitațională.
+                      unde {"\\(\\theta\\)"} este unghiul de deviație, l este lungimea firului și g este accelerația gravitațională.
                     </p>
                   </div>
                   <a
@@ -370,13 +359,10 @@ const PendulePage = () => {
                           </div>
                         </div>
                       ))}
-                    {visibleFormulasCount.penduleMultiple > 0 && (
-                      <MathJaxRender key={`penduleMultiple-${visibleFormulasCount.penduleMultiple || 0}`} />
-                    )}
                     <p className="text-muted-foreground">
                       Chiar dacă ecuațiile par simple, soluțiile pentru sisteme cu pendule multiple sunt extrem de
-                      sensibile la condițiile inițiale: o mică modificare a lui {"\\(\\theta_i(0)\\)"} <MathJaxRender /> sau
-                      {"\\(\\dot{\\theta}_i(0)\\)"} <MathJaxRender /> duce la traiectorii complet diferite în timp, exact
+                      sensibile la condițiile inițiale: o mică modificare a lui {"\\(\\theta_i(0)\\)"} sau
+                      {"\\(\\dot{\\theta}_i(0)\\)"} duce la traiectorii complet diferite în timp, exact
                       ceea ce vezi în simulare.
                     </p>
                   </div>

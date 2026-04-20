@@ -1,8 +1,8 @@
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { Button } from "../../Button";
-import MathJaxRender from "@/components/MathJaxRender";
 import React, { useRef, useEffect, useState } from "react";
+import { useMathJaxTypesetRoot } from "@/hooks/useMathJaxTypesetRoot";
 
 
 import UndeImage from "/res/screenshots/Unde_Screenshot.png"
@@ -24,6 +24,7 @@ import VideoPopup from "../../VideoPopup";
 
 const UndePage = () => {
   const [visibleFormulasCount, setVisibleFormulasCount] = useState({});
+  const mathRootRef = useMathJaxTypesetRoot(JSON.stringify(visibleFormulasCount));
 
   // Definim formulele pentru fiecare secțiune
   const undeFormulas = [
@@ -142,7 +143,7 @@ const UndePage = () => {
       />
       <div className="resurse-pagina min-h-screen flex flex-col">
         <div className="resurse-page-container">
-          <main className="flex-grow container mx-auto px-4 py-10">
+          <main ref={mathRootRef} className="flex-grow container mx-auto px-4 py-10 tex2jax_process">
             <h1 className="text-4xl md:text-5xl font-bold mb-6">Unde</h1>
             <div className="max-w-3xl mb-10">
               <p className="text-lg text-muted-foreground mb-4">
@@ -252,21 +253,18 @@ const UndePage = () => {
                                   {item.formula}
                                 </div>
                                 <p className="text-muted-foreground mt-2">
-                                  undele se caracterizează prin lungimea de undă {"\\(\\lambda\\)"}<MathJaxRender />, frecvența  {"\\(f\\)"}<MathJaxRender /> și viteza de propagare  {"\\(v\\)"}<MathJaxRender />.
+                                  undele se caracterizează prin lungimea de undă {"\\(\\lambda\\)"}, frecvența  {"\\(f\\)"} și viteza de propagare  {"\\(v\\)"}.
                                 </p>
                                 <h3 className="text-xl font-semibold mt-4 mb-2">Formule utile:</h3>
                               </>
                             )}
                             {index > 0 && (
                               <p className="text-muted-foreground mb-2">
-                                {item.title}: {item.formula}<MathJaxRender />, unde T este perioada undelor.
+                                {item.title}: {item.formula}, unde T este perioada undelor.
                               </p>
                             )}
                           </div>
                         ))}
-                      {visibleFormulasCount.unde > 0 && (
-                        <MathJaxRender key={`unde-${visibleFormulasCount.unde || 0}`} />
-                      )}
                     </div>
                   </div>
                   <a
@@ -324,14 +322,11 @@ const UndePage = () => {
                             </div>
                           ))}
                       </div>
-                      {visibleFormulasCount.prisma > 0 && (
-                        <MathJaxRender key={`prisma-${visibleFormulasCount.prisma || 0}`} />
-                      )}
                       <p className="text-muted-foreground mt-2">
                         <span>
-                          Legea refracției (Snell): {"\\( n_1 \\sin \\theta_1 = n_2 \\sin \\theta_2 \\)"}<MathJaxRender />.<br />
-                          Unghiul de deviație în prismă: {"\\( \\delta = (\\theta_1 + \\theta_2') - A \\)"}<MathJaxRender />, unde <b>A</b> este unghiul prismului.<br />
-                          Indicele de refracție depinde de lungimea de undă: {"\\( n = n(\\lambda) \\)"}<MathJaxRender />, ceea ce duce la dispersia luminii albe.
+                          Legea refracției (Snell): {"\\( n_1 \\sin \\theta_1 = n_2 \\sin \\theta_2 \\)"}.<br />
+                          Unghiul de deviație în prismă: {"\\( \\delta = (\\theta_1 + \\theta_2') - A \\)"}, unde <b>A</b> este unghiul prismului.<br />
+                          Indicele de refracție depinde de lungimea de undă: {"\\( n = n(\\lambda) \\)"}, ceea ce duce la dispersia luminii albe.
                         </span>
                       </p>
                     </div>
@@ -356,7 +351,7 @@ const UndePage = () => {
                 <p className="text-muted-foreground mb-6">
                   Lumina polarizată circular poate fi privită ca superpoziția a două unde plane polarizate liniar,
                   perpendiculare între ele, cu aceeași amplitudine, dar defazate cu un sfert de perioadă
-                  (diferență de fază de {"\\(\\frac{\\pi}{2}\\)"} <MathJaxRender />). Vârful vectorului câmpului electric descrie
+                  (diferență de fază de {"\\(\\frac{\\pi}{2}\\)"}). Vârful vectorului câmpului electric descrie
                   astfel un cerc în planul perpendicular pe direcția de propagare.
                 </p>
 
@@ -373,8 +368,8 @@ const UndePage = () => {
                     <h3 className="text-xl font-semibold mb-2">Descriere matematică (polarizare circulară dreaptă):</h3>
                     <p className="text-muted-foreground mb-2">
                       Considerăm două componente ale câmpului electric, de-a lungul axelor {"\\(x\\)"} și {"\\(y\\)"}
-                      <MathJaxRender />, cu aceeași amplitudine {"\\(E_0\\)"} <MathJaxRender /> și o diferență de fază de
-                      {"\\(\\frac{\\pi}{2}\\)"} <MathJaxRender />:
+, cu aceeași amplitudine {"\\(E_0\\)"} și o diferență de fază de
+                      {"\\(\\frac{\\pi}{2}\\)"}:
                     </p>
                     {polarizareFormulas
                       .slice(0, visibleFormulasCount.polarizare || polarizareFormulas.length)
@@ -382,7 +377,7 @@ const UndePage = () => {
                         <div key={index}>
                           {index === 2 && (
                             <p className="text-muted-foreground mb-3">
-                              La orice moment, vectorul câmpului electric {"\\(\\vec{E}(t) = (E_x(t), E_y(t))\\)"} <MathJaxRender /> are
+                              La orice moment, vectorul câmpului electric {"\\(\\vec{E}(t) = (E_x(t), E_y(t))\\)"} are
                               modulul constant:
                             </p>
                           )}
@@ -391,11 +386,8 @@ const UndePage = () => {
                           </div>
                         </div>
                       ))}
-                    {visibleFormulasCount.polarizare > 0 && (
-                      <MathJaxRender key={`polarizare-${visibleFormulasCount.polarizare || 0}`} />
-                    )}
                     <p className="text-muted-foreground">
-                      Aceasta înseamnă că vârful vectorului se deplasează pe un cerc de rază {"\\(E_0\\)"} <MathJaxRender />,
+                      Aceasta înseamnă că vârful vectorului se deplasează pe un cerc de rază {"\\(E_0\\)"},
                       ceea ce explică denumirea de polarizare circulară. Sensul de rotație (dreapta/stânga) depinde de
                       semnul fazei relative dintre cele două componente.
                     </p>

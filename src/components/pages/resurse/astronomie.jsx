@@ -1,7 +1,7 @@
 import Layout from "../../Layout";
 import { Button } from "../../Button";
-import MathJaxRender from "@/components/MathJaxRender";
 import SEO from "../../SEO";
+import { useMathJaxTypesetRoot } from "@/hooks/useMathJaxTypesetRoot";
 
 import constelatiiImg from "/res/screenshots/Constelatii_Screenshot.png";
 import legiKeplerImg from "/res/screenshots/Legi_Kepler_Screenshot.png";
@@ -9,6 +9,7 @@ import miscarePlaneteImg from "/res/screenshots/Miscare_Planete_Screenshot.png";
 import michaelsonMorleyImg from "/res/screenshots/Michaelson_Morley_Screenshot.png";
 
 const AstronomiePage = () => {
+  const mathRootRef = useMathJaxTypesetRoot();
   return (
     <Layout>
       <SEO
@@ -19,7 +20,7 @@ const AstronomiePage = () => {
       />
       <div className="resurse-pagina min-h-screen flex flex-col">
         <div className="resurse-page-container">
-          <main className="flex-grow container mx-auto px-4 py-10">
+          <main ref={mathRootRef} className="flex-grow container mx-auto px-4 py-10 tex2jax_process">
             <h1 className="text-4xl md:text-5xl font-bold mb-6">Astronomie</h1>
 
             <div className="max-w-4xl mb-8">
@@ -41,8 +42,8 @@ const AstronomiePage = () => {
                 <p className="text-muted-foreground mb-4">
                   Constelațiile sunt regiuni și pattern-uri de stele recunoscute de multe culturi; astronomia modernă folosește 88 de
                   constelații oficiale. Pe hartă, stelele au poziții date de{" "}
-                  <strong>ascensiunea rectă</strong> {"\\(\\alpha\\)"} <MathJaxRender /> (ca „longitudinea” pe ecuatorul ceresc, măsurată
-                  în ore, minute, secunde) și <strong>declinația</strong> {"\\(\\delta\\)"} <MathJaxRender /> (unghi față de ecuatorul
+                  <strong>ascensiunea rectă</strong> {"\\(\\alpha\\)"} (ca „longitudinea” pe ecuatorul ceresc, măsurată
+                  în ore, minute, secunde) și <strong>declinația</strong> {"\\(\\delta\\)"} (unghi față de ecuatorul
                   ceresc, ca latitudinea). Simulatorul îți permite să explorezi cerul, legende scurte și indicii practice de orientare
                   (de ex. spre Steaua polară).
                 </p>
@@ -63,32 +64,32 @@ const AstronomiePage = () => {
 
                 <h4 className="text-lg font-semibold mb-2">1. Distanță unghiulară între două direcții pe sferă</h4>
                 <p className="text-muted-foreground mb-3">
-                  Pentru două puncte cu coordonate ecuatoriale {"\\((\\alpha_1,\\delta_1)\\)"} <MathJaxRender /> și{" "}
-                  {"\\((\\alpha_2,\\delta_2)\\)"} <MathJaxRender />, unghiul {"\\(\\theta\\)"} <MathJaxRender /> dintre ele satisface:
+                  Pentru două puncte cu coordonate ecuatoriale {"\\((\\alpha_1,\\delta_1)\\)"} și{" "}
+                  {"\\((\\alpha_2,\\delta_2)\\)"}, unghiul {"\\(\\theta\\)"} dintre ele satisface:
                 </p>
                 <div className="formula-resurse text-lg font-mono mb-4">
                   {"\\( \\cos\\theta = \\sin\\delta_1\\sin\\delta_2 + \\cos\\delta_1\\cos\\delta_2\\cos(\\alpha_1-\\alpha_2) \\)"}
-                  <MathJaxRender />
+
                 </div>
 
                 <h4 className="text-lg font-semibold mb-2">2. Scala magnitudinilor aparente (Pogson)</h4>
                 <p className="text-muted-foreground mb-3">
-                  Cu cât magnitudinea {"\\(m\\)"} <MathJaxRender /> e mai mică numeric, cu atât obiectul pare mai strălucitor. O
-                  diferență de o magnitudine corespunde unui raport al fluxurilor {"\\(\\approx 2{,}512\\)"} <MathJaxRender />:
+                  Cu cât magnitudinea {"\\(m\\)"} e mai mică numeric, cu atât obiectul pare mai strălucitor. O
+                  diferență de o magnitudine corespunde unui raport al fluxurilor {"\\(\\approx 2{,}512\\)"}:
                 </p>
                 <div className="formula-resurse text-lg font-mono mb-4">
                   {"\\( m_1 - m_2 = -2{,}5\\,\\log_{10}\\!\\left(\\frac{F_1}{F_2}\\right) \\)"}
-                  <MathJaxRender />
+
                 </div>
 
                 <h4 className="text-lg font-semibold mb-2">3. Parsec din paralaxă</h4>
                 <p className="text-muted-foreground mb-3">
-                  Paralaxa {"\\(p\\)"} <MathJaxRender /> (în secunde unghiulare) măsoară „săgeata” poziției unei stele văzute din
+                  Paralaxa {"\\(p\\)"} (în secunde unghiulare) măsoară „săgeata” poziției unei stele văzute din
                   poziții diferite pe orbita Pământului. Distanța în parseci:
                 </p>
                 <div className="formula-resurse text-lg font-mono mb-6">
                   {"\\( d\\,[\\mathrm{pc}] = \\dfrac{1}{p\\,[\\mathrm{arcsec}]} \\)"}
-                  <MathJaxRender />
+
                 </div>
 
                 <div className="flex flex-col md:flex-row md:items-center justify-between gap-6">
@@ -119,12 +120,12 @@ const AstronomiePage = () => {
                   <div>
                     <h3 className="text-xl font-semibold mb-4">Legea I – Orbitele sunt elipse</h3>
                     <p className="text-muted-foreground mb-4">
-                      Planetele se mișcă pe orbite eliptice, Soarele ocupând unul din focare. Semiaxa mare este {"\\(a\\)"} <MathJaxRender />,
-                      excentricitatea {"\\(e\\)"} <MathJaxRender /> măsoară „aplatizarea” elipsei.
+                      Planetele se mișcă pe orbite eliptice, Soarele ocupând unul din focare. Semiaxa mare este {"\\(a\\)"},
+                      excentricitatea {"\\(e\\)"} măsoară „aplatizarea” elipsei.
                     </p>
                     <div className="formula-resurse text-lg font-mono mb-4">
                       {"\\( \\frac{x^2}{a^2} + \\frac{y^2}{b^2} = 1, \\quad b = a\\sqrt{1-e^2} \\)"}
-                      <MathJaxRender />
+
                     </div>
 
                     <h3 className="text-xl font-semibold mb-2 mt-6">Legea a II-a – Legea ariilor</h3>
@@ -134,23 +135,23 @@ const AstronomiePage = () => {
                     </p>
                     <div className="formula-resurse text-lg font-mono mb-4">
                       {"\\( \\frac{dA}{dt} = \\frac{L}{2m} = \\text{const.} \\)"}
-                      <MathJaxRender />
+
                     </div>
                     <p className="text-muted-foreground mb-2">
-                      unde {"\\(L\\)"} <MathJaxRender /> este momentul cinetic, {"\\(m\\)"} <MathJaxRender /> masa planetei.
+                      unde {"\\(L\\)"} este momentul cinetic, {"\\(m\\)"} masa planetei.
                     </p>
 
                     <h3 className="text-xl font-semibold mb-2 mt-6">Legea a III-a – Perioada și semiaxa mare</h3>
                     <p className="text-muted-foreground mb-4">
                       Pătratul perioadei de revoluție este proporțional cu cubul semiaxei mari a elipsei. Raportul
-                      {"\\(T^2 / a^3\\)"} <MathJaxRender /> este același pentru toate planetele din sistemul solar.
+                      {"\\(T^2 / a^3\\)"} este același pentru toate planetele din sistemul solar.
                     </p>
                     <div className="formula-resurse text-lg font-mono mb-4">
                       {"\\( T^2 = \\frac{4\\pi^2}{GM}\\, a^3 \\)"}
-                      <MathJaxRender />
+
                     </div>
                     <p className="text-muted-foreground mt-2">
-                      Unde: {"\\(T\\)"} <MathJaxRender /> perioada, {"\\(a\\)"} <MathJaxRender /> semiaxa mare, {"\\(G\\)"} <MathJaxRender /> constanta gravitațională, {"\\(M\\)"} <MathJaxRender /> masa Soarelui.
+                      Unde: {"\\(T\\)"} perioada, {"\\(a\\)"} semiaxa mare, {"\\(G\\)"} constanta gravitațională, {"\\(M\\)"} masa Soarelui.
                     </p>
                   </div>
                   <a
@@ -184,34 +185,34 @@ const AstronomiePage = () => {
                     <h4 className="text-lg font-semibold mb-2">1. Legea gravitației universale (Newton):</h4>
                     <div className="formula-resurse text-lg font-mono mb-3">
                       {"\\( F_G = G \\frac{Mm}{r^2} \\)"}
-                      <MathJaxRender />
+
                     </div>
                     <p className="text-muted-foreground mb-3">
-                      Unde: {"\\(M\\)"} <MathJaxRender /> este masa stelei, {"\\(m\\)"} <MathJaxRender /> masa planetei,{" "}
-                      {"\\(r\\)"} <MathJaxRender /> distanța dintre centre, iar {"\\(G\\)"} <MathJaxRender /> constanta
+                      Unde: {"\\(M\\)"} este masa stelei, {"\\(m\\)"} masa planetei,{" "}
+                      {"\\(r\\)"} distanța dintre centre, iar {"\\(G\\)"} constanta
                       gravitațională. Această forță este centripetă și ține planeta pe orbită.
                     </p>
 
                     <h4 className="text-lg font-semibold mb-2">2. Ecuația vitezei orbitale pe o orbită circulară:</h4>
                     <div className="formula-resurse text-lg font-mono mb-3">
                       {"\\( v = \\sqrt{\\frac{GM}{r}} \\)"}
-                      <MathJaxRender />
+
                     </div>
 
                     <h4 className="text-lg font-semibold mb-2">3. Energia mecanică specifică pe orbită eliptică:</h4>
                     <div className="formula-resurse text-lg font-mono mb-3">
                       {"\\( \\varepsilon = -\\frac{GM}{2a} \\)"}
-                      <MathJaxRender />
+
                     </div>
                     <p className="text-muted-foreground mb-3">
-                      Unde {"\\(a\\)"} <MathJaxRender /> este semiaxa mare a orbitei. Toate orbitele legate (elipse) pentru aceeași
+                      Unde {"\\(a\\)"} este semiaxa mare a orbitei. Toate orbitele legate (elipse) pentru aceeași
                       stea au energie negativă; cu cât planeta este mai legată (orbita mai mică), cu atât energia este mai mică.
                     </p>
 
                     <h4 className="text-lg font-semibold mb-2">4. Corecție relativistă (precesia periheliului, idee simplificată):</h4>
                     <div className="formula-resurse text-lg font-mono mb-3">
                       {"\\( \\Delta \\varphi \\approx \\frac{6\\pi GM}{a c^2 (1-e^2)} \\)"}
-                      <MathJaxRender />
+
                     </div>
                     <p className="text-muted-foreground">
                       Această expresie (în radiani pe orbită) arată cât de mult se rotește axa mare a elipsei la fiecare tur în
@@ -243,9 +244,9 @@ const AstronomiePage = () => {
                   implicații și pentru observațiile astronomice care folosesc lumină și interferență.
                 </p>
                 <p className="text-muted-foreground mb-6">
-                  Interferometrul împarte un fascicul în două brațe perpendiculare de lungime {"\\(L\\)"} <MathJaxRender />,
+                  Interferometrul împarte un fascicul în două brațe perpendiculare de lungime {"\\(L\\)"},
                   reflectă în oglinzi și recombină fasciculele. Dacă ar exista „vânt de eter” cu viteza {"\\(v\\)"}{" "}
-                  <MathJaxRender />, timpii de propagare ar diferi ușor; în realitate, în limita preciziei experimentului,
+, timpii de propagare ar diferi ușor; în realitate, în limita preciziei experimentului,
                   diferența a fost zero, nu putem vorbi de un eter privilegiat.
                 </p>
                 <div className="image-slider h-64 md:h-80 relative flex items-center justify-center mb-8">
@@ -257,21 +258,21 @@ const AstronomiePage = () => {
                 </div>
                 <div className="mt-4 flex flex-col md:flex-row md:items-start justify-between gap-6">
                   <div className="max-w-3xl">
-                    <h3 className="text-xl font-semibold mb-4">Idei în formule ({"\\(v \\ll c\\)"} <MathJaxRender />)</h3>
+                    <h3 className="text-xl font-semibold mb-4">Idei în formule ({"\\(v \\ll c\\)"})</h3>
                     <p className="text-muted-foreground mb-3">Braț paralel cu „vântul de eter”:</p>
                     <div className="formula-resurse text-lg font-mono mb-4">
                       {"\\( t_{\\parallel} \\approx \\frac{2L}{c}\\left(1 + \\frac{v^2}{c^2}\\right) \\)"}
-                      <MathJaxRender />
+
                     </div>
                     <p className="text-muted-foreground mb-3">Braț perpendicular:</p>
                     <div className="formula-resurse text-lg font-mono mb-4">
                       {"\\( t_{\\perp} \\approx \\frac{2L}{c}\\left(1 + \\frac{v^2}{2c^2}\\right) \\)"}
-                      <MathJaxRender />
+
                     </div>
                     <p className="text-muted-foreground mb-3">Diferența de timp așteptată (absentă în experiment):</p>
                     <div className="formula-resurse text-lg font-mono mb-4">
                       {"\\( \\Delta t \\approx \\frac{Lv^2}{c^3} \\)"}
-                      <MathJaxRender />
+
                     </div>
                   </div>
                   <a
@@ -293,19 +294,19 @@ const AstronomiePage = () => {
                   <li>
                     Distanță unghiulară pe sferă (RA/Dec):{" "}
                     {"\\( \\cos\\theta = \\sin\\delta_1\\sin\\delta_2 + \\cos\\delta_1\\cos\\delta_2\\cos(\\alpha_1-\\alpha_2) \\)"}{" "}
-                    <MathJaxRender />
+
                   </li>
                   <li>
                     Magnitudine (Pogson): {"\\( m_1 - m_2 = -2{,}5\\,\\log_{10}(F_1/F_2) \\)"}{" "}
-                    <MathJaxRender />
+
                   </li>
                   <li>
-                    Parsec: {"\\( d\\,[\\mathrm{pc}] = 1/p\\,[\\mathrm{arcsec}] \\)"} <MathJaxRender />
+                    Parsec: {"\\( d\\,[\\mathrm{pc}] = 1/p\\,[\\mathrm{arcsec}] \\)"}
                   </li>
-                  <li>Viteza orbitală medie: {"\\( v = \\frac{2\\pi a}{T} \\)"} <MathJaxRender /></li>
-                  <li>Energia mecanică pe orbită eliptică: {"\\( E = -\\frac{GMm}{2a} \\)"} <MathJaxRender /></li>
-                  <li>Viteza la periheliu (cea mai mare): {"\\( v_p = \\sqrt{\\frac{GM}{a}\\frac{1+e}{1-e}} \\)"} <MathJaxRender /></li>
-                  <li>Viteza la afeliu (cea mai mică): {"\\( v_a = \\sqrt{\\frac{GM}{a}\\frac{1-e}{1+e}} \\)"} <MathJaxRender /></li>
+                  <li>Viteza orbitală medie: {"\\( v = \\frac{2\\pi a}{T} \\)"}</li>
+                  <li>Energia mecanică pe orbită eliptică: {"\\( E = -\\frac{GMm}{2a} \\)"}</li>
+                  <li>Viteza la periheliu (cea mai mare): {"\\( v_p = \\sqrt{\\frac{GM}{a}\\frac{1+e}{1-e}} \\)"}</li>
+                  <li>Viteza la afeliu (cea mai mică): {"\\( v_a = \\sqrt{\\frac{GM}{a}\\frac{1-e}{1+e}} \\)"}</li>
                 </ul>
               </div>
 

@@ -1,8 +1,8 @@
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { Button } from "../../Button";
-import MathJaxRender from "@/components/MathJaxRender";
 import { useEffect, useState } from "react";
+import { useMathJaxTypesetRoot } from "@/hooks/useMathJaxTypesetRoot";
 
 import simulatorOscilatieOYImg from "/res/screenshots/Oscilatieoy_Screenshot.png";
 import simulatorOscilatieOXImg from "/res/screenshots/Oscilatieox_Screenshot.png";
@@ -16,6 +16,7 @@ import Layout from "../../Layout";
 
 const MecanicaPage = () => {
   const [visibleFormulasCount, setVisibleFormulasCount] = useState({});
+  const mathRootRef = useMathJaxTypesetRoot(JSON.stringify(visibleFormulasCount));
 
   // Definim formulele pentru fiecare secțiune
   const oscilatieOXFormulas = [
@@ -140,7 +141,7 @@ const MecanicaPage = () => {
     <Layout>
       <div className="resurse-pagina min-h-screen flex flex-col">
         <div style={{ paddingTop: "110px", flex: 1, display: "flex", flexDirection: "column" }}>
-          <main className="flex-grow container mx-auto px-4 py-10">
+          <main ref={mathRootRef} className="flex-grow container mx-auto px-4 py-10 tex2jax_process">
             <h1 className="text-4xl md:text-5xl font-bold mb-6">Mecanică - Mișcări Oscilatorii și Coliziuni</h1>
             
             <div className="max-w-4xl mb-8">
@@ -191,12 +192,9 @@ const MecanicaPage = () => {
                           </div>
                         </div>
                       ))}
-                    {visibleFormulasCount.oscilatieOX > 0 && (
-                      <MathJaxRender key={`oscilatieOX-${visibleFormulasCount.oscilatieOX || 0}`} />
-                    )}
                     
                     <p className="text-muted-foreground mt-4">
-                      Unde: A este amplitudinea, {"\\(\\omega\\)"} <MathJaxRender /> viteza unghiulară, {"\\(\\phi\\)"} <MathJaxRender /> faza inițială, 
+                      Unde: A este amplitudinea, {"\\(\\omega\\)"} viteza unghiulară, {"\\(\\phi\\)"} faza inițială, 
                       k este constanta elastică, m este masa corpului, iar t este timpul.
                     </p>
                   </div>
@@ -242,13 +240,10 @@ const MecanicaPage = () => {
                           </div>
                         </div>
                       ))}
-                    {visibleFormulasCount.oscilatieOY > 0 && (
-                      <MathJaxRender key={`oscilatieOY-${visibleFormulasCount.oscilatieOY || 0}`} />
-                    )}
                     
                     <p className="text-muted-foreground mt-4">
-                      Unde: y₀ este poziția de echilibru, A este amplitudinea, {"\\(\\omega\\)"} <MathJaxRender /> viteza unghiulară, 
-                      {"\\(\\phi\\)"} <MathJaxRender /> faza inițială, k este constanta elastică, m este masa, g este accelerația gravitațională.
+                      Unde: y₀ este poziția de echilibru, A este amplitudinea, {"\\(\\omega\\)"} viteza unghiulară, 
+                      {"\\(\\phi\\)"} faza inițială, k este constanta elastică, m este masa, g este accelerația gravitațională.
                     </p>
                   </div>
                   <a
@@ -294,9 +289,6 @@ const MecanicaPage = () => {
                           </div>
                         </div>
                       ))}
-                    {visibleFormulasCount.ciocnire > 0 && (
-                      <MathJaxRender key={`ciocnire-${visibleFormulasCount.ciocnire || 0}`} />
-                    )}
                     
                     <p className="text-muted-foreground mt-4">
                       Unde: m₁, m₂ sunt masele corpurilor, v₁ᵢ, v₂ᵢ sunt vitezele inițiale, v₁f, v₂f sunt vitezele finale, 
@@ -346,13 +338,10 @@ const MecanicaPage = () => {
                           </div>
                         </div>
                       ))}
-                    {visibleFormulasCount.planInclinat > 0 && (
-                      <MathJaxRender key={`planInclinat-${visibleFormulasCount.planInclinat || 0}`} />
-                    )}
                     
                     <p className="text-muted-foreground mt-4">
-                      Unde: m este masa corpului, g este accelerația gravitațională, {"\\(\\alpha\\)"} <MathJaxRender /> unghiul de înclinare, 
-                      {"\\(\\mu\\)"} <MathJaxRender /> coeficientul de frecare, h este înălțimea planului, N este forța normală.
+                      Unde: m este masa corpului, g este accelerația gravitațională, {"\\(\\alpha\\)"} unghiul de înclinare, 
+                      {"\\(\\mu\\)"} coeficientul de frecare, h este înălțimea planului, N este forța normală.
                     </p>
                   </div>
                   <a
@@ -399,14 +388,11 @@ const MecanicaPage = () => {
                           </div>
                         </div>
                       ))}
-                    {visibleFormulasCount.proiectil > 0 && (
-                      <MathJaxRender key={`proiectil-${visibleFormulasCount.proiectil || 0}`} />
-                    )}
                     <p className="text-muted-foreground mt-4">
-                      Unde: {"\\(v_0\\)"} <MathJaxRender /> este viteza inițială, {"\\(\\alpha\\)"} <MathJaxRender /> unghiul de
-                      lansare față de orizontală, {"\\(g\\)"} <MathJaxRender /> accelerația gravitațională, {"\\(y_0\\)"}{" "}
-                      <MathJaxRender /> înălțimea inițială, {"\\(T\\)"} <MathJaxRender /> timpul de zbor, iar{" "}
-                      {"\\(R\\)"} <MathJaxRender /> bătaia (distanța orizontală parcursă).
+                      Unde: {"\\(v_0\\)"} este viteza inițială, {"\\(\\alpha\\)"} unghiul de
+                      lansare față de orizontală, {"\\(g\\)"} accelerația gravitațională, {"\\(y_0\\)"}{" "}
+ înălțimea inițială, {"\\(T\\)"} timpul de zbor, iar{" "}
+                      {"\\(R\\)"} bătaia (distanța orizontală parcursă).
                     </p>
                   </div>
                   <a
@@ -452,12 +438,9 @@ const MecanicaPage = () => {
                           </div>
                         </div>
                       ))}
-                    {visibleFormulasCount.lanturiElastice > 0 && (
-                      <MathJaxRender key={`lanturiElastice-${visibleFormulasCount.lanturiElastice || 0}`} />
-                    )}
                     <p className="text-muted-foreground">
-                      Unde: {"\\(m\\)"} <MathJaxRender /> este masa fiecărui element, {"\\(k\\)"} <MathJaxRender /> constanta
-                      elastică a resorturilor, iar {"\\(x_i\\)"} <MathJaxRender /> este deplasarea masei a-i-a față de
+                      Unde: {"\\(m\\)"} este masa fiecărui element, {"\\(k\\)"} constanta
+                      elastică a resorturilor, iar {"\\(x_i\\)"} este deplasarea masei a-i-a față de
                       poziția de echilibru. Diferențele dintre pozițiile vecinilor generează forțele care duc la propagarea
                       perturbațiilor de-a lungul lanțului.
                     </p>
@@ -512,17 +495,14 @@ const MecanicaPage = () => {
                           </div>
                         </div>
                       ))}
-                    {visibleFormulasCount.frecareAer > 0 && (
-                      <MathJaxRender key={`frecareAer-${visibleFormulasCount.frecareAer || 0}`} />
-                    )}
                     
                     <p className="text-muted-foreground mt-4">
-                      Unde: {"\\(C_d\\)"} <MathJaxRender /> este coeficientul de drag (adimensional, depinde de forma corpului), 
-                      {"\\(\\rho\\)"} <MathJaxRender /> densitatea fluidului (≈ 1.225 kg/m³ pentru aer la nivel de mare), 
-                      {"\\(A\\)"} <MathJaxRender /> aria secțiunii transversale, {"\\(v\\)"} <MathJaxRender /> viteza corpului, 
-                      {"\\(m\\)"} <MathJaxRender /> masa, {"\\(g\\)"} <MathJaxRender /> accelerația gravitațională, 
-                      {"\\(v_t\\)"} <MathJaxRender /> viteza terminală, {"\\(\\text{Re}\\)"} <MathJaxRender /> numărul Reynolds, 
-                      {"\\(L\\)"} <MathJaxRender /> lungimea caracteristică, iar {"\\(\\mu\\)"} <MathJaxRender /> vâscozitatea dinamică a fluidului.
+                      Unde: {"\\(C_d\\)"} este coeficientul de drag (adimensional, depinde de forma corpului), 
+                      {"\\(\\rho\\)"} densitatea fluidului (≈ 1.225 kg/m³ pentru aer la nivel de mare), 
+                      {"\\(A\\)"} aria secțiunii transversale, {"\\(v\\)"} viteza corpului, 
+                      {"\\(m\\)"} masa, {"\\(g\\)"} accelerația gravitațională, 
+                      {"\\(v_t\\)"} viteza terminală, {"\\(\\text{Re}\\)"} numărul Reynolds, 
+                      {"\\(L\\)"} lungimea caracteristică, iar {"\\(\\mu\\)"} vâscozitatea dinamică a fluidului.
                     </p>
                   </div>
                   <a
