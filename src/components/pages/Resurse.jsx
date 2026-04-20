@@ -111,7 +111,7 @@ const lessonCards = [
   {
     title: "Fizică nucleară",
     description:
-      "Fisiune în lanț (U-235, factor k), model educativ de fuziune D–T (~17,6 MeV), apă grea D₂O vs H₂O, schimb izotopic și distilare fracționată — lecții, formule și simulatoare.",
+      "Izotopii uraniului (patru izotopi și harta celor 26), fisiune în lanț (U-235, factor k), model educativ de fuziune D–T (~17,6 MeV), apă grea D₂O vs H₂O, schimb izotopic și distilare fracționată — lecții, formule și simulatoare.",
     path: "/resurse/fizica-nucleara",
   },
 ];
@@ -2144,6 +2144,42 @@ const ResursePage = () => {
           formula: "\\( k = \\dfrac{N_{i+1}}{N_i} \\)",
           explanation:
             "Raport între neutronii utili din generația următoare și cei din generația curentă. În simulator, k este estimat empiric din ratele de fisiune, nu din calcule de criticitate detaliate.",
+        },
+      ],
+    },
+    {
+      section: "6. Izotopi uraniului — notație, dezintegrări, radioactivitate",
+      formulas: [
+        {
+          title: "Număr de masă și neutroni",
+          formula: "\\( {}^A_Z\\mathrm{X}, \\quad A = Z + N \\)",
+          explanation:
+            "A este numărul de nucleoni (protoni + neutroni). Pentru uraniu, Z = 92; izotopul se identifică prin A (ex. 235 pentru U-235).",
+        },
+        {
+          title: "Dezintegrare α",
+          formula:
+            "\\( {}^{A}_{Z}\\mathrm{X} \\rightarrow {}^{A-4}_{Z-2}\\mathrm{Y} + {}^{4}_{2}\\alpha \\quad (\\alpha = {}^{4}_{2}\\mathrm{He}) \\)",
+          explanation:
+            "Nucleul emite un cluster de două protoni și doi neutroni legat ca heliu-4; fiul are Z cu 2 și A cu 4 mai mic decât părintele.",
+        },
+        {
+          title: "Constantă de dezintegrare",
+          formula: "\\( \\lambda = \\dfrac{\\ln 2}{T_{1/2}} = \\dfrac{1}{\\tau \\ln 2} \\)",
+          explanation:
+            "T₁/₂ este timpul în care supraviețuiește jumătate din nucleii unui tip; τ (viață medie) este legată de λ prin τ = 1/λ.",
+        },
+        {
+          title: "Legea dezintegrării (număr de nuclee rămase)",
+          formula: "\\( N(t) = N_0\\,e^{-\\lambda t} \\)",
+          explanation:
+            "Procesul Poisson la nivel de nucleu individual dă o scădere exponențială a populației macroscopice N(t); aceeași formă pentru fiecare izotop, cu λ diferit.",
+        },
+        {
+          title: "Forma cu înjumătățiri",
+          formula: "\\( N(t) = N_0\\left(\\dfrac{1}{2}\\right)^{t/T_{1/2}} \\)",
+          explanation:
+            "Echivalentă cu exp(-λt); utilă când se numără câte perioade T₁/₂ au trecut (în simulări didactice de „timp”).",
         },
       ],
     },

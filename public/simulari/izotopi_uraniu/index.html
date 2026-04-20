@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Laborator Nuclear · Izotopii Uraniului</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="bg-grid"></div>
+  <div class="bg-glow"></div>
+
+  <header class="hero">
+    <div class="badge">
+      <span class="dot"></span> LABORATOR NUCLEAR · INTERACTIV
+    </div>
+    <h1>
+      Izotopii <span class="accent">Uraniului</span>
+    </h1>
+    <p class="subtitle">
+      Explorează nucleul, declanșează dezintegrări α, simulează fisiunea și rulează milioane de ani într-o secundă.
+    </p>
+    <nav class="nav-pills">
+      <a href="#info" class="pill">① Info rapid</a>
+      <a href="#simulator" class="pill">② Simulator nucleu</a>
+      <a href="#lab" class="pill">③ Fisiune &amp; Timp</a>
+      <a href="#teorie" class="pill">④ Teorie</a>
+    </nav>
+  </header>
+
+  <!-- ============ 1. INFO RAPID ============ -->
+  <section id="info" class="section">
+    <div class="section-head">
+      <span class="step">01</span>
+      <h2>Info rapid · cei 4 izotopi care contează</h2>
+      <p>92 protoni mereu. Ce-i diferențiază? <b>Numărul de neutroni.</b></p>
+    </div>
+
+    <div class="cards" id="isotopeCards">
+      <!-- populated by JS -->
+    </div>
+  </section>
+
+  <!-- ============ 2. SIMULATOR NUCLEU ============ -->
+  <section id="simulator" class="section">
+    <div class="section-head">
+      <span class="step">02</span>
+      <h2>Simulator de nucleu</h2>
+      <p>Schimbă izotopul, vezi raportul n/p, declanșează o dezintegrare α.</p>
+    </div>
+
+    <div class="simulator-grid">
+      <div class="canvas-wrap">
+        <canvas id="nucleusCanvas" width="560" height="560"></canvas>
+        <div class="canvas-overlay">
+          <div class="iso-tag" id="isoTag">U-235</div>
+          <div class="legend">
+            <span><i class="proton"></i> proton</span>
+            <span><i class="neutron"></i> neutron</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="controls">
+        <div class="control-block">
+          <label>Alege izotopul</label>
+          <div class="iso-selector" id="isoSelector">
+            <button data-iso="U-233">U-233</button>
+            <button data-iso="U-234">U-234</button>
+            <button data-iso="U-235" class="active">U-235</button>
+            <button data-iso="U-238">U-238</button>
+          </div>
+        </div>
+
+        <div class="stats">
+          <div class="stat">
+            <span class="stat-label">Protoni (Z)</span>
+            <span class="stat-value" id="statP">92</span>
+          </div>
+          <div class="stat">
+            <span class="stat-label">Neutroni (N)</span>
+            <span class="stat-value" id="statN">143</span>
+          </div>
+          <div class="stat">
+            <span class="stat-label">Masa (A)</span>
+            <span class="stat-value" id="statA">235</span>
+          </div>
+          <div class="stat">
+            <span class="stat-label">Raport N/Z</span>
+            <span class="stat-value" id="statRatio">1.554</span>
+          </div>
+        </div>
+
+        <div class="stability">
+          <div class="stability-head">
+            <span>Stabilitate</span>
+            <span id="stabilityText">Moderată</span>
+          </div>
+          <div class="stability-bar">
+            <div class="stability-fill" id="stabilityFill" style="width: 70%"></div>
+          </div>
+          <small id="halfLifeText">T½ ≈ 703.8 milioane de ani</small>
+        </div>
+
+        <div class="actions">
+          <button class="btn btn-primary" id="btnDecay">
+            ☢️ Dezintegrare α
+          </button>
+          <button class="btn btn-ghost" id="btnReset">
+            ↺ Reset
+          </button>
+        </div>
+
+        <p class="note" id="decayNote">
+          La dezintegrarea α: <span class="nuclide"><span class="nums"><sup>A</sup><sub>Z</sub></span>X</span> →
+          <span class="nuclide"><span class="nums"><sup>A-4</sup><sub>Z-2</sub></span>Y</span> +
+          <span class="nuclide"><span class="nums"><sup>4</sup><sub>2</sub></span>He</span>.
+          Ex: <span class="nuclide"><span class="nums"><sup>235</sup><sub>92</sub></span>U</span> →
+          <span class="nuclide"><span class="nums"><sup>231</sup><sub>90</sub></span>Th</span> + α.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 3. FISIUNE + TIMP ============ -->
+  <section id="lab" class="section">
+    <div class="section-head">
+      <span class="step">03</span>
+      <h2>Modulul WOW · Fisiune &amp; Timp</h2>
+      <p>Aici se sparge lumea. Lovește U-235 cu un neutron, sau rulează miliarde de ani.</p>
+    </div>
+
+    <div class="lab-grid">
+
+      <!-- FISIUNE -->
+      <div class="lab-card">
+        <div class="lab-head">
+          <h3>💥 Fisiune nucleară (U-235)</h3>
+          <p>Un neutron lent lovește nucleul → fragmente + 2-3 neutroni + energie.</p>
+        </div>
+
+        <div class="canvas-wrap small">
+          <canvas id="fissionCanvas" width="500" height="340"></canvas>
+        </div>
+
+        <div class="fission-formula">
+          <div class="formula">
+            <span class="nuclide"><span class="nums"><sup>235</sup><sub>92</sub></span>U</span>
+            +
+            <span class="nuclide"><span class="nums"><sup>1</sup><sub>0</sub></span>n</span>
+            →
+            <span class="nuclide"><span class="nums"><sup>141</sup><sub>56</sub></span>Ba</span>
+            +
+            <span class="nuclide"><span class="nums"><sup>92</sup><sub>36</sub></span>Kr</span>
+            +
+            3<span class="nuclide"><span class="nums"><sup>1</sup><sub>0</sub></span>n</span>
+            +
+            <b class="energy">E</b>
+          </div>
+
+          <div class="conservation">
+            <span class="cons-row"><b>A:</b> 235 + 1 = 141 + 92 + 3·1 <span class="check">✓ 236</span></span>
+            <span class="cons-row"><b>Z:</b> 92 + 0 = 56 + 36 + 3·0 <span class="check">✓ 92</span></span>
+          </div>
+
+          <div class="formula big">
+            E = Δm · c²
+          </div>
+          <small>Diferența de masă se transformă în energie. ~200 MeV per fisiune.</small>
+        </div>
+
+        <button class="btn btn-danger" id="btnFission">⚡ Simulează fisiune</button>
+      </div>
+
+      <!-- COMPARAȚIE -->
+      <div class="lab-card">
+        <div class="lab-head">
+          <h3>⚖️ U-235 vs U-238</h3>
+          <p>De ce unul e combustibil, celălalt nu?</p>
+        </div>
+
+        <table class="compare">
+          <thead>
+            <tr><th></th><th class="col-235">U-235</th><th class="col-238">U-238</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>Abundență naturală</td><td>0.72%</td><td>99.27%</td></tr>
+            <tr><td>Fisionabil cu n lent</td><td class="yes">DA</td><td class="no">NU</td></tr>
+            <tr><td>Timp de înjumătățire</td><td>704 mil. ani</td><td>4.47 mld. ani</td></tr>
+            <tr><td>Utilizare</td><td>Reactor / armă</td><td>Combustibil fertil</td></tr>
+            <tr><td>Tip dezintegrare</td><td>α</td><td>α</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- TIMP -->
+      <div class="lab-card wide">
+        <div class="lab-head">
+          <h3>⏳ Mașina timpului · dezintegrare radioactivă</h3>
+          <p>1000 de atomi. Apasă play și vezi cum scad în timp. Curba este exponențială: N(t) = N₀ · (½)<sup>t/T½</sup></p>
+        </div>
+
+        <div class="time-grid">
+          <div class="atoms-wrap">
+            <canvas id="atomsCanvas" width="500" height="260"></canvas>
+            <div class="atoms-overlay">
+              <div><span class="atoms-label">Atomi rămași</span><span class="atoms-value" id="atomsLeft">1000</span></div>
+              <div><span class="atoms-label">Timp scurs</span><span class="atoms-value" id="timeElapsed">0 ani</span></div>
+            </div>
+          </div>
+
+          <div class="time-controls">
+            <div class="control-block">
+              <label>Izotop</label>
+              <div class="iso-selector compact" id="timeIsoSelector">
+                <button data-iso="U-233">U-233</button>
+                <button data-iso="U-234">U-234</button>
+                <button data-iso="U-235" class="active">U-235</button>
+                <button data-iso="U-238">U-238</button>
+              </div>
+            </div>
+
+            <div class="control-block">
+              <label>Viteză de simulare: <span id="speedVal">1×</span></label>
+              <input type="range" id="speedSlider" min="1" max="7" value="4" />
+              <div class="speed-labels">
+                <span>mii ani</span><span>miliarde ani</span>
+              </div>
+            </div>
+
+            <div class="time-actions">
+              <button class="btn btn-primary" id="btnPlay">▶ Play</button>
+              <button class="btn btn-ghost" id="btnTimeReset">↺ Reset</button>
+            </div>
+
+            <div class="half-life-info">
+              <span>T½ actual:</span>
+              <b id="timeHalfLife">703.8 mil. ani</b>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <section id="teorie" class="section theory-embed">
+    <div class="section-head">
+      <span class="step">04</span>
+      <h2>Teorie · formule utile</h2>
+      <p>Reper rapid pentru nucleu, α și modulul de timp; detalii și tab-ul Formule pe site.</p>
+    </div>
+    <ul class="theory-list">
+      <li>
+        <strong>Notație:</strong> <span class="theory-mono">A = Z + N</span> — pentru uraniu, Z = 92.
+      </li>
+      <li>
+        <strong>Dezintegrare α:</strong> nucleul pierde un <span class="theory-mono">⁴₂He</span>; fiul are Z − 2, A − 4.
+      </li>
+      <li>
+        <strong>Radioactivitate:</strong> <span class="theory-mono">N(t) = N₀·e<sup>−λt</sup></span>,
+        <span class="theory-mono">λ = ln(2)/T<sub>½</sub></span> (aceeași structură ca în harta „toți izotopii”).
+      </li>
+    </ul>
+    <p class="theory-more">
+      <a href="/resurse/fizica-nucleara">Resurse PULS — fizică nucleară (lecții și formule)</a>
+    </p>
+  </section>
+
+  <script src="script.js"></script>
+</body>
+</html>

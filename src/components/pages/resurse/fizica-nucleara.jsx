@@ -8,6 +8,8 @@ import instalatieSchimbIzotopicImg from "/res/screenshots/schimb_izotopic_Screen
 import distilareD2oFractionataResurseImg from "/res/screenshots/Distilare_D2o_Fractionata_Resurse.png";
 import reactorFuziuneDtImg from "/res/screenshots/Reactor_Fuziune_Dt_Screenshot.png";
 import fisiuneNuclearaImg from "/res/screenshots/Fisiune_Nucleara_Screenshot.png";
+import izotopiUraniuImg from "/res/screenshots/Izotopi_Uraniu_Screenshot.png";
+import totiIzotopiiImg from "/res/screenshots/Toti_Izotopii_Screenshot.png";
 
 const FizicaNuclearaPage = () => {
   const mathRootRef = useMathJaxTypesetRoot();
@@ -15,9 +17,9 @@ const FizicaNuclearaPage = () => {
   return (
     <Layout>
       <SEO
-        title="Fizică nucleară | Fisiune U-235, apă grea, fuziune D–T - PULS"
-        description="Resurse: fisiune nucleară în lanț (U-235, factor k), D₂O vs H₂O, schimb izotopic, distilare fracționată și model educativ de fuziune D–T (~17,6 MeV per reacție), cu simulatoare interactive."
-        keywords="fizica nucleara, fisiune, U-235, factor k, apa grea, D2O, fuziune, deuteriu, tritiu, reactor, model educativ, schimb izotopic, moderator"
+        title="Fizică nucleară | Izotopi U, fisiune U-235, apă grea, fuziune D–T - PULS"
+        description="Resurse: izotopii uraniului (model de nucleu, α, harta celor 26 de izotopi), fisiune în lanț (U-235, factor k), D₂O vs H₂O, schimb izotopic, distilare fracționată și model educativ de fuziune D–T (~17,6 MeV), cu simulatoare interactive."
+        keywords="fizica nucleara, izotopi uraniu, harta nuclidelor, dezintegrare alfa, fisiune, U-235, factor k, apa grea, D2O, fuziune, deuteriu, tritiu, reactor, schimb izotopic, moderator"
         image="/res/icons/New-logo.png"
       />
       <div className="resurse-pagina min-h-screen flex flex-col">
@@ -32,14 +34,15 @@ const FizicaNuclearaPage = () => {
 
             <div className="max-w-4xl mb-8 md:mb-10">
               <p className="text-base sm:text-lg leading-7 text-muted-foreground mb-4">
-                Pagina grupează materiale despre <strong>fisiunea indusă</strong> în uraniu fisionabil,{" "}
-                <strong>apa grea</strong> și separarea deuteriului, plus un{" "}
-                <strong>model educativ de fuziune D–T</strong> (deuteriu + tritiu) cu energie orientativă eliberată per
-                reacție. Simulatoarele nu înlocuiesc cursuri de inginerie nucleară sau dosare de siguranță; sunt pentru
-                intuiție și legătura cu programa de liceu.
+                Pagina grupează materiale despre <strong>fisiunea indusă</strong> în U-235, un{" "}
+                <strong>model educativ de fuziune D–T</strong>, <strong>apa grea</strong> și separarea deuteriului
+                (schimb izotopic, distilare), apoi — la final — două simulări despre <strong>izotopii uraniului</strong>{" "}
+                (patru izotopi esențiali și harta celor 26). Simulatoarele nu înlocuiesc cursuri de inginerie nucleară sau
+                dosare de siguranță; sunt pentru intuiție și legătura cu programa de liceu.
               </p>
               <p className="text-base sm:text-lg leading-7 text-muted-foreground mb-0">
-                Mai jos: fisiune în lanț (U-235), apoi fuziunea D–T, D₂O vs H₂O, schimb izotopic și rectificare pentru D₂O.
+                Mai jos: fisiune în lanț (U-235), fuziunea D–T, D₂O vs H₂O, schimb izotopic și distilare fracționată; la
+                final, două simulări despre <strong>izotopii uraniului</strong> (patru izotopi esențiali și harta celor 26).
               </p>
             </div>
 
@@ -467,6 +470,90 @@ const FizicaNuclearaPage = () => {
                   <a href="/simulare/distilare-d2o-fractionata" rel="noopener noreferrer" className="resurse-link w-full sm:w-auto">
                     <Button size="lg" className="w-full sm:w-auto">
                       Simulare: distilare fracționată D₂O
+                    </Button>
+                  </a>
+                </div>
+              </div>
+
+              <div className="rounded-container px-4 py-5 sm:p-8">
+                <h2 className="text-xl sm:text-2xl font-bold mb-4">Simulator: izotopii uraniului (nucleu, α, fisiune, timp)</h2>
+                <p className="text-sm sm:text-base leading-7 text-muted-foreground mb-4">
+                  Uraniul are mereu <strong>Z = 92</strong> protoni; izotopii diferă prin numărul de neutroni{" "}
+                  {"\\(N\\)"} și deci prin <strong>numărul de masă</strong> {"\\(A = Z + N\\)"}. Simulatorul pune în
+                  evidență patru izotopi frecvent întâlniți în cursuri (U-233 … U-238): vizualizare schematică a
+                  nucleului, <strong>dezintegrare α</strong> (pierdere de nucleu de heliu-4), un exemplu de{" "}
+                  <strong>fisiune</strong> pe U-235 și o „mașină a timpului” care aplică legea dezintegrării radioactive
+                  cu {"\\(T_{1/2}\\)"} specific fiecărui izotop.
+                </p>
+                <div className="image-slider h-52 sm:h-64 md:h-80 relative flex items-center justify-center mb-6 md:mb-8">
+                  <img
+                    src={izotopiUraniuImg}
+                    alt="Simulator izotopii uraniului: nucleu, raport N/Z, dezintegrare alfa și evoluție în timp"
+                    className="w-full h-full object-contain mx-auto my-auto"
+                  />
+                </div>
+                <h3 className="text-lg sm:text-xl font-semibold mb-3">Formule legate de model</h3>
+                <h4 className="text-base sm:text-lg font-semibold mb-2">1. Notație și neutroni</h4>
+                <div className="formula-resurse overflow-x-auto max-w-full text-sm sm:text-base md:text-lg font-mono mb-4">
+                  {"\\( {}^A_Z\\mathrm{X}, \\quad A = Z + N \\)"}
+                </div>
+                <p className="text-sm sm:text-base leading-7 text-muted-foreground mb-5">
+                  Pentru uraniu, {"\\(Z = 92\\)"}; izotopul se notează uzual U-A (ex. {"\\({}^{235}_{92}\\mathrm{U}\\)"}).
+                </p>
+                <h4 className="text-base sm:text-lg font-semibold mb-2">2. Dezintegrare α (schematic)</h4>
+                <div className="formula-resurse overflow-x-auto max-w-full text-sm sm:text-base md:text-lg font-mono mb-4">
+                  {
+                    "\\( {}^{A}_{Z}\\mathrm{X} \\rightarrow {}^{A-4}_{Z-2}\\mathrm{Y} + {}^{4}_{2}\\mathrm{He} \\)"
+                  }
+                </div>
+                <p className="text-sm sm:text-base leading-7 text-muted-foreground mb-5">
+                  În simulare, după α, nucleul fiu are cu doi protoni și patru nucleoni mai puțin decât părintele.
+                </p>
+                <h4 className="text-base sm:text-lg font-semibold mb-2">3. Radioactivitate — același exponent ca în modulul „timp”</h4>
+                <div className="formula-resurse overflow-x-auto max-w-full text-sm sm:text-base md:text-lg font-mono mb-4">
+                  {"\\( N(t) = N_0\\,e^{-\\lambda t}, \\quad \\lambda = \\dfrac{\\ln 2}{T_{1/2}} \\)"}
+                </div>
+                <p className="text-sm sm:text-base leading-7 text-muted-foreground mb-6">
+                  Interfața poate folosi și forma cu puteri de ½: {"\\(N(t) = N_0\\,(1/2)^{t/T_{1/2}}\\)"}.
+                </p>
+                <div className="flex flex-col sm:flex-row sm:items-center sm:justify-end gap-4 sm:gap-6">
+                  <a href="/simulare/izotopi-uraniu" rel="noopener noreferrer" className="resurse-link w-full sm:w-auto">
+                    <Button size="lg" className="w-full sm:w-auto">
+                      Simulare: izotopii uraniului
+                    </Button>
+                  </a>
+                </div>
+              </div>
+
+              <div className="rounded-container px-4 py-5 sm:p-8">
+                <h2 className="text-xl sm:text-2xl font-bold mb-4">Simulator: harta celor 26 de izotopi ai uraniului</h2>
+                <p className="text-sm sm:text-base leading-7 text-muted-foreground mb-4">
+                  Experimental sunt cunoscuți <strong>26 de izotopi</strong> ai uraniului (domenii tipice ale lui{" "}
+                  {"\\(A\\)"} între 217 și 242). În natură, în proporții semnificative, apar doar{" "}
+                  <strong>U-234, U-235 și U-238</strong>; ceilalți sunt produși în laborator sau apar tranzitoriu în lanțuri
+                  de dezintegrare. Harta din simulator colorează modul dominant de dezintegrare (α,{" "}
+                  {"\\(\\beta^-\\)"}, captură electronică / {"\\(\\beta^+\\)"}) și oferă detalii la selectarea fiecărui
+                  izotop, plus o vedere a legii {"\\(N(t)\\)"} cu {"\\(\\lambda\\)"} calculat din {"\\(T_{1/2}\\)"}.
+                </p>
+                <div className="image-slider h-52 sm:h-64 md:h-80 relative flex items-center justify-center mb-6 md:mb-8">
+                  <img
+                    src={totiIzotopiiImg}
+                    alt="Harta izotopilor uraniului: celule pe rândul Z egal cu 92, legendă moduri de dezintegrare"
+                    className="w-full h-full object-contain mx-auto my-auto"
+                  />
+                </div>
+                <h3 className="text-lg sm:text-xl font-semibold mb-3">Formule utile (aceeași lege pentru fiecare izotop)</h3>
+                <div className="formula-resurse overflow-x-auto max-w-full text-sm sm:text-base md:text-lg font-mono mb-4">
+                  {"\\( \\lambda = \\dfrac{\\ln 2}{T_{1/2}}, \\qquad N(t) = N_0\\,e^{-\\lambda t} \\)"}
+                </div>
+                <p className="text-sm sm:text-base leading-7 text-muted-foreground mb-6">
+                  Luminozitatea celulelor în hartă reflectă stabilitatea relativă (viață medie / T½); valorile afișate sunt
+                  repere educative din date publice agregate, nu substitute pentru tabele nucleare oficiale.
+                </p>
+                <div className="flex flex-col sm:flex-row sm:items-center sm:justify-end gap-4 sm:gap-6">
+                  <a href="/simulare/toti-izotopii" rel="noopener noreferrer" className="resurse-link w-full sm:w-auto">
+                    <Button size="lg" className="w-full sm:w-auto">
+                      Simulare: toți izotopii uraniului
                     </Button>
                   </a>
                 </div>

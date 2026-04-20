@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Harta Izotopilor · Uraniu</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="bg-grid"></div>
+  <div class="bg-glow"></div>
+
+  <!-- ============ HERO ============ -->
+  <header class="hero">
+    <div class="badge">
+      <span class="dot"></span> EXPLORATOR NUCLEAR · Z = 92
+    </div>
+    <h1>
+      Harta completă a<br/>
+      <span class="accent">izotopilor uraniului</span>
+    </h1>
+    <p class="subtitle">
+      26 de izotopi, de la microsecunde la miliarde de ani. Același nucleu, aceleași 92 de protoni — doar neutronii schimbă totul.
+    </p>
+    <div class="hero-stats">
+      <div><b>26</b><span>izotopi</span></div>
+      <div class="divider"></div>
+      <div><b>217→242</b><span>număr de masă</span></div>
+      <div class="divider"></div>
+        <div><b>10<sup>24</sup></b><span>raport T½ max/min</span></div>
+    </div>
+  </header>
+
+  <!-- ============ 1. TIMELINE ============ -->
+  <section class="section timeline-section">
+    <div class="section-head">
+      <span class="step">01 · istorie</span>
+      <h2>De la descoperire la hartă nucleară</h2>
+    </div>
+
+    <div class="timeline">
+      <div class="tl-item">
+        <div class="tl-year">1789</div>
+        <div class="tl-dot"></div>
+        <div class="tl-body">
+          <h4>Descoperire</h4>
+          <p>Martin Heinrich Klaproth izolează uraniul din pechblendă și îi dă numele planetei Uranus.</p>
+        </div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-year">1896</div>
+        <div class="tl-dot"></div>
+        <div class="tl-body">
+          <h4>Radioactivitatea</h4>
+          <p>Henri Becquerel observă emisia spontană de radiații din sărurile de uraniu. Naște o știință nouă.</p>
+        </div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-year">1913</div>
+        <div class="tl-dot"></div>
+        <div class="tl-body">
+          <h4>Conceptul de izotop</h4>
+          <p>Frederick Soddy arată că atomi ai aceluiași element pot avea mase diferite. Uraniul va avea zeci.</p>
+        </div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-year">1938</div>
+        <div class="tl-dot"></div>
+        <div class="tl-body">
+          <h4>Fisiunea U-235</h4>
+          <p>Hahn &amp; Strassmann sparg nucleul. U-235 devine cel mai important izotop industrial din istorie.</p>
+        </div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-year">azi</div>
+        <div class="tl-dot live"></div>
+        <div class="tl-body">
+          <h4>26 izotopi cunoscuți</h4>
+          <p>De la U-217 (26 ms) la U-242 (17 min). Doar 3 există natural: U-234, U-235, U-238.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 2. NUCLIDE CHART ============ -->
+  <section class="section chart-section">
+    <div class="section-head">
+      <span class="step">02 · harta</span>
+      <h2>Harta nuclidelor <span class="accent">· rândul Z = 92</span></h2>
+      <p>Fiecare celulă = un izotop. Culoarea = tipul de dezintegrare. Luminozitatea = stabilitatea. Dă click sau navighează.</p>
+    </div>
+
+    <div class="chart-panel">
+      <div class="chart-axes">
+        <div class="axis-y">
+          <span class="axis-label">Z</span>
+          <span class="axis-value">92</span>
+        </div>
+        <div class="chart-scroll">
+          <div class="chart-grid" id="chartGrid"><!-- JS fills --></div>
+          <div class="axis-x">
+            <span>N = 125</span>
+            <span class="axis-label">neutroni →</span>
+            <span>N = 150</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="chart-legend">
+        <span><i style="background:#ff8a4a"></i> α (alfa)</span>
+        <span><i style="background:#4ea9ff"></i> β⁻</span>
+        <span><i style="background:#c77bff"></i> CE / β⁺</span>
+        <span class="legend-sep"></span>
+        <span class="legend-note">intensitatea culorii = stabilitatea relativă</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 3. EXPLORER ============ -->
+  <section class="section explorer-section">
+    <div class="section-head">
+      <span class="step">03 · explorator</span>
+      <h2>Un izotop la un moment dat</h2>
+      <p>Mișcă sliderul sau apasă o celulă de mai sus.</p>
+    </div>
+
+    <div class="slider-wrap">
+      <div class="slider-labels">
+        <span>A = <b id="sliderMin">217</b></span>
+        <span class="slider-current">U-<b id="sliderCurrent">235</b></span>
+        <span>A = <b id="sliderMax">242</b></span>
+      </div>
+      <input type="range" id="isoSlider" min="217" max="242" value="235" step="1" />
+    </div>
+
+    <div class="explorer-grid">
+      <!-- BIG ISOTOPE CARD -->
+      <div class="iso-card-big" id="isoBigCard">
+        <div class="iso-card-top">
+          <div class="iso-symbol">
+            <span class="nuclide big">
+              <span class="nums"><sup id="bigA">235</sup><sub>92</sub></span>U
+            </span>
+          </div>
+          <div class="iso-tags" id="isoTags">
+            <!-- JS: natural/artificial, fissile, etc. -->
+          </div>
+        </div>
+
+        <div class="iso-stats-grid">
+          <div class="stat-cell">
+            <span class="stat-k">Protoni</span>
+            <span class="stat-v">92</span>
+          </div>
+          <div class="stat-cell">
+            <span class="stat-k">Neutroni</span>
+            <span class="stat-v" id="cellN">143</span>
+          </div>
+          <div class="stat-cell">
+            <span class="stat-k">Masă (A)</span>
+            <span class="stat-v" id="cellA">235</span>
+          </div>
+          <div class="stat-cell">
+            <span class="stat-k">Raport N/Z</span>
+            <span class="stat-v" id="cellNZ">1.554</span>
+          </div>
+        </div>
+
+        <div class="halflife-block">
+          <div class="hl-head">
+            <span>Timp de înjumătățire</span>
+            <b id="hlText">704 milioane ani</b>
+          </div>
+          <div class="stability-bar">
+            <div class="stability-fill" id="stabFill"></div>
+          </div>
+          <div class="hl-foot">
+            <span>instabil</span>
+            <span id="stabText">stabilitate moderată</span>
+            <span>longeviv</span>
+          </div>
+        </div>
+
+        <div class="decay-line">
+          <span class="dl-k">Mod de dezintegrare</span>
+          <span class="dl-chip" id="decayChip">α · alfa</span>
+          <span class="dl-arrow">→</span>
+          <span class="nuclide" id="daughterNuclide">
+            <span class="nums"><sup>231</sup><sub>90</sub></span>Th
+          </span>
+        </div>
+      </div>
+
+      <!-- WHY IT MATTERS -->
+      <div class="matters-card">
+        <h3>De ce contează acest izotop?</h3>
+        <div class="matters-rows">
+          <div class="mrow">
+            <span class="mrow-k">Origine</span>
+            <span class="mrow-v" id="mOrigin">natural</span>
+          </div>
+          <div class="mrow">
+            <span class="mrow-k">Abundență</span>
+            <span class="mrow-v" id="mAbund">0.720 %</span>
+          </div>
+          <div class="mrow">
+            <span class="mrow-k">Fisionabil</span>
+            <span class="mrow-v" id="mFissile">DA · cu neutroni lenți</span>
+          </div>
+          <div class="mrow">
+            <span class="mrow-k">Utilizări</span>
+            <span class="mrow-v" id="mUses">Reactor · armă</span>
+          </div>
+        </div>
+        <p class="matters-desc" id="mDesc">
+          Singurul izotop fisionabil cu neutroni termici găsit în natură. Combustibilul primar al reactoarelor nucleare și materialul fisil din armele nucleare.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 4. DECAY SIMULATOR ============ -->
+  <section class="section decay-section">
+    <div class="section-head">
+      <span class="step">04 · timp</span>
+      <h2>Viața izotopului în timp</h2>
+      <p>Legea dezintegrării radioactive: <b>N(t) = N₀ · e<sup>−λt</sup></b>. Aceeași formulă pentru fiecare izotop, doar λ se schimbă.</p>
+    </div>
+
+    <div class="decay-grid">
+      <div class="decay-canvas-wrap">
+        <canvas id="decayCanvas"></canvas>
+        <div class="decay-overlay">
+          <div class="d-stat">
+            <span>Rămas</span>
+            <b id="dRemaining">100.0 %</b>
+          </div>
+          <div class="d-stat">
+            <span>Timp scurs</span>
+            <b id="dElapsed">0</b>
+          </div>
+          <div class="d-stat">
+            <span>Perioade T½</span>
+            <b id="dPeriods">0.00</b>
+          </div>
+        </div>
+      </div>
+
+      <div class="decay-controls">
+        <div class="control-block">
+          <label>Timp <span id="tRatioVal">0.0 × T½</span></label>
+          <input type="range" id="timeSlider" min="0" max="500" value="0" step="1" />
+          <div class="speed-labels">
+            <span>0</span><span>5 × T½</span>
+          </div>
+        </div>
+
+        <div class="formula-card">
+          <div class="formula-main">
+            N(t) = N<sub>0</sub> · e<sup>−λt</sup>
+          </div>
+          <div class="formula-sub">
+            λ = ln(2) / T½ · constanta de dezintegrare
+          </div>
+          <div class="formula-current">
+            <span>pentru <b id="fIso">U-235</b></span>
+            <span class="mono">λ ≈ <b id="fLambda">3.12·10⁻¹⁷</b> s⁻¹</span>
+          </div>
+        </div>
+
+        <div class="extremes-block">
+          <h4>Extremele hărții</h4>
+          <div class="extremes-row">
+            <button class="extreme-btn longest" id="btnLongest">
+              <span class="ex-label">cel mai longeviv</span>
+              <span class="ex-value">U-238 · 4.47 mld. ani</span>
+            </button>
+            <button class="extreme-btn shortest" id="btnShortest">
+              <span class="ex-label">cel mai instabil</span>
+              <span class="ex-value" id="shortestVal">U-220 · &lt; 1 μs</span>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="teorie" class="section theory-embed">
+    <div class="section-head">
+      <span class="step">03 · teorie</span>
+      <h2>Formule legate de hartă</h2>
+      <p>Același Z = 92 pentru toți izotopii; diferă N și A. Stabilitatea și modul de dezintegrare depind de poziția față de „valea de stabilitate”.</p>
+    </div>
+    <ul class="theory-list">
+      <li><strong>Număr de masă:</strong> <span class="theory-mono">A = Z + N = 92 + N</span>.</li>
+      <li>
+        <strong>Legea radioactive:</strong> <span class="theory-mono">N(t) = N₀·e<sup>−λt</sup></span>,
+        <span class="theory-mono">λ = ln(2)/T<sub>½</sub></span> — folosită în panoul din dreapta când alegi un izotop.
+      </li>
+      <li><strong>Naturali:</strong> în rocă/reele tipice domină U-238 (~99,3%), U-235 (~0,72%), U-234 în urmă (lanț din U-238).</li>
+    </ul>
+    <p class="theory-more">
+      <a href="/resurse/fizica-nucleara">Resurse PULS — fizică nucleară</a>
+    </p>
+  </section>
+
+  <footer>
+    <p>Datele sunt estimări actuale pentru izotopii uraniului cunoscuți experimental (A = 217 → 242).</p>
+  </footer>
+
+  <!-- TOOLTIP -->
+  <div class="chart-tooltip" id="chartTooltip"></div>
+
+  <script src="script.js"></script>
+</body>
+</html>

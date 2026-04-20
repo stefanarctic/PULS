@@ -49,6 +49,8 @@ import criogenieImg from "/res/screenshots/Criogenie_Screenshot.png";
 import supraconductivitateImg from "/res/screenshots/Supraconductivitate_Screenshot.png";
 import fuelCellImg from "/res/screenshots/Fuel_Cell_Screenshot.png";
 import fisiuneNuclearaImg from "/res/screenshots/Fisiune_Nucleara_Screenshot.png";
+import izotopiUraniuImg from "/res/screenshots/Izotopi_Uraniu_Screenshot.png";
+import totiIzotopiiImg from "/res/screenshots/Toti_Izotopii_Screenshot.png";
 export const simulationsConfig = [
   {
     id: 1,
@@ -641,6 +643,34 @@ export const simulationsConfig = [
     maxHeight: "95vh",
     category: "Fizică nucleară",
     eyebrow: "Fizică nucleară | Fisiune în lanț"
+  },
+  {
+    id: 52,
+    slug: "izotopi-uraniu",
+    route: "/simulare/izotopi-uraniu",
+    title: "Izotopii uraniului (nucleu, α, fisiune, timp)",
+    description:
+      "Patru izotopi esențiali (U-233 … U-238): model de nucleu, dezintegrare α, scenariu de fisiune U-235 și mașina timpului cu N(t) pe baza T½ — educativ.",
+    image: izotopiUraniuImg,
+    caption: "Izotopi uraniului — nucleu și dezintegrare",
+    iframeSrc: "/simulari/izotopi_uraniu/index.html",
+    maxHeight: "95vh",
+    category: "Fizică nucleară",
+    eyebrow: "Fizică nucleară | Izotopi"
+  },
+  {
+    id: 53,
+    slug: "toti-izotopii",
+    route: "/simulare/toti-izotopii",
+    title: "Harta celor 26 de izotopi ai uraniului",
+    description:
+      "Linie Z = 92 în harta nuclidelor: toți izotopii cunoscuți (A = 217–242), moduri de dezintegrare, timeline istoric și legea radioactivă N(t) cu λ(T½).",
+    image: totiIzotopiiImg,
+    caption: "Harta izotopilor uraniului",
+    iframeSrc: "/simulari/toti_izotopii/index.html",
+    maxHeight: "95vh",
+    category: "Fizică nucleară",
+    eyebrow: "Fizică nucleară | Hartă nucleară"
   },
   {
     id: 48,
