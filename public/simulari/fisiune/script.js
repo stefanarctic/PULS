@@ -38,6 +38,12 @@
     const kTooltip = document.getElementById('kTooltip');
 
     const AMBIENT_TEMP = 20;
+    /** Plafon dur — evită lag când reacția explodează (resize/fullscreen, lanțuri mari). */
+    const MAX_NEUTRONS = 550;
+    /** După resize: păstrăm doar atâția neutroni ca să nu „explodeze” simularea când nucleii se regenerează. */
+    const NEUTRONS_AFTER_RESIZE = 160;
+    /** Ignoră click-uri pe canvas imediat după redimensionare (unele browsere trimit evenimente fantomă la ieșire din fullscreen). */
+    let pointerIgnoreUntil = 0;
 
     const state = {
         width: 0,
@@ -69,6 +75,12 @@
         line: 'rgba(0, 0, 0, 0.06)',
     };
 
+    function trimNeutronPopulation(maxCount) {
+        if (state.neutrons.length <= maxCount) return;
+        // Păstrăm cei mai recenți (sfârșitul array-ului) — mai puțin haotic vizual
+        state.neutrons.splice(0, state.neutrons.length - maxCount);
+    }
+
     // --- Resizing with DPR ---
     function resize() {
         const rect = canvas.getBoundingClientRect();
@@ -79,7 +91,14 @@
         canvas.width = Math.floor(rect.width * state.dpr);
         canvas.height = Math.floor(rect.height * state.dpr);
         ctx.setTransform(state.dpr, 0, 0, state.dpr, 0, 0);
-        if (!sameSize) populateNuclei();
+        if (!sameSize) {
+            populateNuclei();
+            // Regenerarea nucleilor îi face pe toți „proaspeți” → cu mulți neutroni vechi apare un vârf uriaș de fisiuni (lag).
+            trimNeutronPopulation(NEUTRONS_AFTER_RESIZE);
+            pointerIgnoreUntil = performance.now() + 320;
+            // Evită un singur cadru cu dt fals după pauză tab/fullscreen
+            state.lastTime = 0;
+        }
     }
 
     // --- Entities ---
@@ -237,6 +256,8 @@
         }
 
         collideNeutronsWithNuclei();
+
+        trimNeutronPopulation(MAX_NEUTRONS);
 
         // Delayed neutrons
         for (let i = state.delayedQueue.length - 1; i >= 0; i--) {
@@ -424,7 +445,9 @@
 
     // --- Loop ---
     function loop(time) {
-        const dt = Math.min(0.033, (time - state.lastTime) / 1000 || 0);
+        let rawDt = (time - state.lastTime) / 1000 || 0;
+        if (state.lastTime === 0) rawDt = 0;
+        const dt = Math.min(0.033, rawDt);
         state.lastTime = time;
         if (!state.paused) update(dt);
         draw();
@@ -541,6 +564,8 @@
     }
     function onCanvasPointer(evt) {
         evt.preventDefault();
+        if (performance.now() < pointerIgnoreUntil) return;
+        if (evt.button != null && evt.button !== 0) return;
         const { x, y } = getPointerPos(evt);
         launchNeutron(x, y);
     }
@@ -700,10 +725,19 @@
         kTooltip.hidden = !kTooltip.hidden;
     });
 
-    // --- Init ---
-    window.addEventListener('resize', resize);
+    // --- Init: debounce resize (fullscreen → multe evenimente; altfel populateNuclei + neutroni = spike) ---
+    let resizeRaf = null;
+    function scheduleResize() {
+        if (resizeRaf != null) return;
+        resizeRaf = requestAnimationFrame(() => {
+            resizeRaf = null;
+            resize();
+        });
+    }
+
+    window.addEventListener('resize', scheduleResize, { passive: true });
     if (typeof ResizeObserver !== 'undefined') {
-        const ro = new ResizeObserver(() => resize());
+        const ro = new ResizeObserver(() => scheduleResize());
         ro.observe(canvas);
     }
     resize();

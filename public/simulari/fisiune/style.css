@@ -136,8 +136,11 @@ body {
     padding: clamp(16px, 2vw, 22px);
     display: flex;
     flex-direction: column;
-    height: 100%;
-    min-height: 560px;
+    /* Nu umple înălțimea rândului din grid — evită canvas-ul uriaș lângă panourile laterale */
+    height: auto;
+    min-height: 0;
+    align-self: start;
+    width: 100%;
 }
 
 .stage-header {
@@ -293,7 +296,7 @@ body {
     .preset { padding: 6px 10px; }
 }
 
-/* CANVAS */
+/* CANVAS — înălțime limitată; nu mai „împinge” pagina în jos */
 .canvas-wrap {
     position: relative;
     border-radius: var(--radius-lg);
@@ -302,17 +305,24 @@ body {
         radial-gradient(ellipse at top, #ffffff, #f0f0f5 70%),
         #f2f2f7;
     border: 1px solid var(--line);
-    flex: 1;
-    min-height: 420px;
+    flex: 0 0 auto;
+    width: 100%;
+    height: clamp(260px, 48vh, 480px);
 }
 
 @media (max-width: 760px) {
     .canvas-wrap {
+        height: auto;
+        max-height: min(70vh, 520px);
         aspect-ratio: 4 / 5;
-        flex: none;
-        min-height: 0;
+        min-height: 240px;
     }
-    .stage-card { min-height: 0; }
+}
+
+@media (max-width: 520px) {
+    .canvas-wrap {
+        max-height: min(65vh, 440px);
+    }
 }
 
 canvas {
