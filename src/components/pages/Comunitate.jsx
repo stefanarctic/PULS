@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import Layout from '../Layout';
 import Leaderboard from '../community/Leaderboard';
@@ -10,7 +10,7 @@ import { useSelector } from 'react-redux';
 import { Trophy, Activity, Zap } from 'lucide-react';
 
 const Comunitate = () => {
-  const { activities, loading: feedLoading, refresh: refreshFeed } = useActivityFeed(50);
+  const { activities, loading: feedLoading } = useActivityFeed(50);
   const { stats, user, loading: statsLoading, refresh: refreshStats } = useCommunityStats();
   const allProblems = useSelector(state => state.problems.items);
 
@@ -22,7 +22,7 @@ const Comunitate = () => {
 
   return (
     <Layout>
-      <div className="comunitate-page">
+      <div className="page-section profile-container comunitate-page">
         <div className="comunitate-page__header">
           <h1 className="comunitate-page__title">
             <Trophy size={28} /> Comunitate

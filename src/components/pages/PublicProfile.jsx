@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import Layout from '../Layout';
 import XPBar from '../community/XPBar';
@@ -15,11 +15,12 @@ const PublicProfile = () => {
   const { alias } = useParams();
   const { profile, loading, notFound } = usePublicProfile(alias);
   const { activities, loading: activitiesLoading } = useUserActivities(profile?.uid);
+  const [activeTab, setActiveTab] = useState('activitate');
 
   if (loading) {
     return (
       <Layout>
-        <div className="public-profile">
+        <div className="page-section profile-container public-profile">
           <div className="loading-container" style={{ minHeight: 400 }}>
             <div className="loading-spinner">
               <div className="spinner"></div>
@@ -34,7 +35,7 @@ const PublicProfile = () => {
   if (notFound || !profile) {
     return (
       <Layout>
-        <div className="public-profile public-profile--not-found">
+        <div className="page-section profile-container public-profile public-profile--not-found">
           <h2>Utilizator negăsit</h2>
           <p>Nu există un profil cu alias-ul <strong>{alias}</strong>.</p>
           <Link to="/comunitate" className="public-profile__back-link">
@@ -52,80 +53,123 @@ const PublicProfile = () => {
 
   return (
     <Layout>
-      <div className="public-profile">
+      <div className="page-section profile-container public-profile">
         <Link to="/comunitate" className="public-profile__back-link">
           <ArrowLeft size={16} /> Comunitate
         </Link>
 
-        <div className="public-profile__header">
-          <div className="public-profile__avatar-section">
-            {profile.profilePic ? (
-              <img
-                src={profile.profilePic}
-                alt={profile.alias}
-                className="public-profile__avatar"
-                {...(profile.profilePic.includes('googleusercontent.com') && { crossOrigin: 'anonymous', referrerPolicy: 'no-referrer' })}
-              />
-            ) : (
-              <div className="public-profile__avatar public-profile__avatar--placeholder">
-                {(profile.alias || '?')[0].toUpperCase()}
+        <div className="profile-header">
+          <div className="profile-header-content">
+            <div className="profile-avatar">
+              {profile.profilePic ? (
+                <img
+                  src={profile.profilePic}
+                  alt={profile.alias}
+                  className="profile-avatar-img"
+                  {...(profile.profilePic.includes('googleusercontent.com') && { crossOrigin: 'anonymous', referrerPolicy: 'no-referrer' })}
+                />
+              ) : (
+                <div style={{ fontSize: '2.5rem', fontWeight: 'bold' }}>
+                  {(profile.alias || '?')[0].toUpperCase()}
+                </div>
+              )}
+            </div>
+            <div className="profile-info">
+              <h1 className="profile-name">{profile.alias}</h1>
+              <div className="public-profile__rank-row">
+                <RankBadge rank={stats?.rank} size="lg" />
               </div>
-            )}
-            <div className="public-profile__identity">
-              <h1 className="public-profile__alias">{profile.alias}</h1>
-              <RankBadge rank={stats.rank} size="lg" />
               {joinedFormatted && (
-                <span className="public-profile__joined">
-                  <Calendar size={14} /> Membru din {joinedFormatted}
-                </span>
+                <div className="profile-stats">
+                  <div className="stat-item">
+                    <span className="stat-icon">
+                      <Calendar size={18} strokeWidth={2} />
+                    </span>
+                    <span className="stat-text">Membru din {joinedFormatted}</span>
+                  </div>
+                </div>
               )}
-              {profile.description && (
-                <p className="public-profile__bio">{profile.description}</p>
-              )}
+              {profile.description && <p className="public-profile__bio">{profile.description}</p>}
             </div>
           </div>
 
-          <div className="public-profile__xp-section">
-            <XPBar
-              xp={stats.xp || 0}
-              level={stats.level || 1}
-              rank={stats.rank || 'bronze'}
-            />
-          </div>
+          {stats && (
+            <div className="profile-community-section">
+              <div className="profile-community-section__header">
+                <h3>Progres comunitate</h3>
+              </div>
+              <div className="profile-community-section__body">
+                <XPBar
+                  xp={stats.xp || 0}
+                  level={stats.level || 1}
+                  rank={stats.rank || 'bronze'}
+                />
+                <div className="profile-community-section__row">
+                  <StreakCounter
+                    current={stats.streak?.current || 0}
+                    longest={stats.streak?.longest || 0}
+                  />
+                </div>
+                {badges && badges.length > 0 && (
+                  <div className="profile-community-section__badges">
+                    <h4>Badge-uri categorii</h4>
+                    <CategoryBadges badges={badges} compact />
+                  </div>
+                )}
+              </div>
+            </div>
+          )}
         </div>
 
-        <UserStatsGrid stats={stats} />
-
-        <div className="public-profile__sections">
-          <div className="public-profile__section">
-            <h2 className="public-profile__section-title">Streak</h2>
-            <StreakCounter
-              current={stats.streak?.current || 0}
-              longest={stats.streak?.longest || 0}
-            />
+        <div className="profile-tabs public-profile__tabs">
+          <div className="tabs-list">
+            <button
+              type="button"
+              className={`tab-trigger ${activeTab === 'activitate' ? 'active' : ''}`}
+              onClick={() => setActiveTab('activitate')}
+            >
+              Activitate recentă
+            </button>
+            <button
+              type="button"
+              className={`tab-trigger ${activeTab === 'realizari' ? 'active' : ''}`}
+              onClick={() => setActiveTab('realizari')}
+            >
+              Realizări
+            </button>
+            <button
+              type="button"
+              className={`tab-trigger ${activeTab === 'statistici' ? 'active' : ''}`}
+              onClick={() => setActiveTab('statistici')}
+            >
+              Statistici
+            </button>
           </div>
-
-          {badges && badges.length > 0 && (
-            <div className="public-profile__section">
-              <h2 className="public-profile__section-title">Badge-uri categorii</h2>
-              <CategoryBadges badges={badges} />
-            </div>
-          )}
-
-          {achievements && achievements.length > 0 && (
-            <div className="public-profile__section">
-              <h2 className="public-profile__section-title">Realizări</h2>
-              <Achievements achievements={achievements} />
-            </div>
-          )}
-
-          <div className="public-profile__section">
-            <h2 className="public-profile__section-title">Activitate recentă</h2>
-            <ActivityFeed
-              activities={activities}
-              loading={activitiesLoading}
-              showAvatar={false}
-            />
+          <div className="tab-content">
+            {activeTab === 'activitate' && (
+              <div className="activity-tab-content public-profile__tab-panel">
+                {activitiesLoading ? (
+                  <div className="loading-container" style={{ minHeight: 200 }}>
+                    <div className="loading-spinner">
+                      <div className="spinner"></div>
+                      <h3>Se încarcă activitatea...</h3>
+                    </div>
+                  </div>
+                ) : (
+                  <ActivityFeed activities={activities} loading={false} showAvatar={false} />
+                )}
+              </div>
+            )}
+            {activeTab === 'realizari' && (
+              <div className="achievements-tab-content public-profile__tab-panel">
+                <Achievements achievements={achievements || []} />
+              </div>
+            )}
+            {activeTab === 'statistici' && (
+              <div className="statistics-tab-content public-profile__tab-panel public-profile__stats-tab">
+                <UserStatsGrid stats={stats || {}} />
+              </div>
+            )}
           </div>
         </div>
       </div>

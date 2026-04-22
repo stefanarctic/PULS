@@ -185,6 +185,7 @@ export async function updateCommunityStats(userId, { problemId, scoreObtained, m
     userAvatar,
     type: 'solved_problem',
     data: {
+      problemId,
       problemTitle: problemTitle || `Problema #${problemId}`,
       score: scoreObtained,
       maxScore,
@@ -352,20 +353,53 @@ export async function fetchActivityFeed(maxResults = 50) {
   }));
 }
 
+/**
+ * Activități pentru profilul public, cele mai recente întâi.
+ * - Rezolvări: din `users/{uid}.solvedProblems` (sursă completă chiar dacă `activities` e goală sau incompletă).
+ * - Altele (rank up, badge, streak): din feed-ul global `activities`, filtrat pe user.
+ */
 export async function fetchUserActivities(userId, maxResults = 20) {
-  const q = query(
-    collection(db, 'activities'),
-    where('userId', '==', userId),
-    orderBy('createdAt', 'desc'),
-    limit(maxResults)
-  );
+  const userAliasFallback = 'Anonim';
 
-  const snapshot = await getDocs(q);
-  return snapshot.docs.map(d => ({
-    id: d.id,
-    ...d.data(),
-    createdAt: d.data().createdAt?.toDate?.() || new Date(),
-  }));
+  let solvedRows = [];
+  try {
+    const userRef = doc(db, 'users', userId);
+    const snap = await getDoc(userRef);
+    if (snap.exists()) {
+      const userData = snap.data();
+      const alias = userData.alias || userData.name || userAliasFallback;
+      const avatar = userData.profilePic || '';
+      solvedRows = (userData.solvedProblems || []).map((sp, idx) => ({
+        id: `sp-${userId}-${String(sp.problemId)}-${sp.solvedAt || idx}`,
+        userId,
+        userAlias: alias,
+        userAvatar: avatar,
+        type: 'solved_problem',
+        data: {
+          problemId: sp.problemId,
+          problemTitle: sp.customTitle || `Problema #${sp.problemId}`,
+        },
+        createdAt: sp.solvedAt ? new Date(sp.solvedAt) : new Date(0),
+      }));
+    }
+  } catch (err) {
+    console.warn('fetchUserActivities: nu s-a putut citi users/' + userId, err);
+  }
+
+  let nonSolveFromFeed = [];
+  try {
+    const feed = await fetchActivityFeed(350);
+    nonSolveFromFeed = feed.filter(
+      (a) => a.userId === userId && a.type && a.type !== 'solved_problem'
+    );
+  } catch (err) {
+    console.warn('fetchUserActivities: feed activities indisponibil', err);
+  }
+
+  const merged = [...nonSolveFromFeed, ...solvedRows].sort(
+    (a, b) => b.createdAt - a.createdAt
+  );
+  return merged.slice(0, maxResults);
 }
 
 export async function fetchPublicProfile(alias) {
