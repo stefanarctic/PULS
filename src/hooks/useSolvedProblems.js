@@ -4,6 +4,7 @@ import { db } from '../lib/firebase';
 import { auth } from '../lib/firebase';
 import { onAuthStateChanged } from 'firebase/auth';
 import { useAchievements } from './useAchievements';
+import { updateCommunityStats } from '../lib/communityService';
 
 export const useSolvedProblems = () => {
   const [solvedProblems, setSolvedProblems] = useState([]);
@@ -42,8 +43,7 @@ export const useSolvedProblems = () => {
     }
   };
 
-  // Salvează o problemă rezolvată
-  const saveSolvedProblem = async (problemId, scoreObtained, maxScore, customTitle = null) => {
+  const saveSolvedProblem = async (problemId, scoreObtained, maxScore, customTitle = null, communityData = {}) => {
     console.log('🔍 Hook received:', { problemId, scoreObtained, maxScore, customTitle });
     
     if (!user?.uid) {
@@ -100,7 +100,19 @@ export const useSolvedProblems = () => {
         });
       } catch (error) {
         console.error('Error checking achievements:', error);
-        // Nu aruncăm eroarea pentru a nu afecta salvarea problemei
+      }
+
+      try {
+        await updateCommunityStats(user.uid, {
+          problemId,
+          scoreObtained,
+          maxScore,
+          difficulty: communityData.difficulty || '',
+          category: communityData.category || '',
+          problemTitle: customTitle || communityData.problemTitle || `Problema #${problemId}`,
+        });
+      } catch (error) {
+        console.error('Error updating community stats:', error);
       }
       
       return true;

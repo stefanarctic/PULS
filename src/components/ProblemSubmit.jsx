@@ -227,7 +227,10 @@ const ProblemSubmit = ({
                     }
 
                     if (scoreObtained > 0) {
-                        await saveSolvedProblem(generatedProblemId, scoreObtained, maxScore, problemTitle);
+                        await saveSolvedProblem(generatedProblemId, scoreObtained, maxScore, problemTitle, {
+                            difficulty: problem?.dificultate || '',
+                            category: problem?.categorie || '',
+                        });
                         console.log('Problema rezolvată salvată automat în profil!');
                     }
                 } catch (saveErr) {
