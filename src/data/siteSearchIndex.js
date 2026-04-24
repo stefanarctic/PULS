@@ -137,6 +137,11 @@ const STATIC_SITE_ENTRIES = [
       "D-T",
       "17.6 MeV",
       "radioactivitate",
+      "Mr Deuteron",
+      "deuteron",
+      "D2O",
+      "Groq",
+      "asistent",
     ],
   },
   {

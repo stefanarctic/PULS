@@ -1,0 +1,173 @@
+// Mr. Deuteron — FAB colț dreapta-jos, popup mare, toolbar ecran complet + închidere
+
+.mr-deuteron-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 2100;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.5rem;
+  background: rgba(2, 6, 23, 0.72);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  animation: mr-deuteron-fade 0.2s ease-out;
+}
+
+@keyframes mr-deuteron-fade {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.mr-deuteron-panel {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  width: min(1400px, 98vw);
+  max-width: 98vw;
+  height: min(96vh, 1000px);
+  max-height: 96vh;
+  background: #0f172a;
+  color: #f8fafc;
+  border-radius: 0.75rem;
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.45);
+  overflow: hidden;
+  border: 1px solid rgba(148, 163, 184, 0.25);
+}
+
+.mr-deuteron-panel:fullscreen {
+  height: 100%;
+  max-height: 100%;
+  width: 100%;
+  max-width: 100%;
+  border-radius: 0;
+  border: none;
+}
+
+.mr-deuteron-panel__frame-wrap {
+  position: relative;
+  flex: 1;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+  background: #0b1220;
+}
+
+.mr-deuteron-panel__toolbar {
+  position: absolute;
+  top: 0.5rem;
+  right: 0.5rem;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+  pointer-events: auto;
+}
+
+.mr-deuteron-toolbar-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 1.9rem;
+  height: 1.9rem;
+  padding: 0;
+  border: none;
+  border-radius: 0.4rem;
+  background: rgba(75, 85, 99, 0.88);
+  color: #d1d5db;
+  cursor: pointer;
+  transition: background 0.15s, color 0.15s;
+}
+
+.mr-deuteron-toolbar-btn:hover {
+  background: rgba(107, 114, 128, 0.95);
+  color: #f9fafb;
+}
+
+.mr-deuteron-toolbar-btn:focus-visible {
+  outline: 2px solid #38bdf8;
+  outline-offset: 2px;
+}
+
+.mr-deuteron-iframe {
+  flex: 1 1 auto;
+  min-height: 0;
+  width: 100%;
+  border: 0;
+  display: block;
+  background: #fff;
+}
+
+// FAB: colț dreapta-jos, avatar Mr. Deuteron
+.mr-deuteron-fab {
+  position: fixed;
+  overflow: hidden;
+  right: 1.25rem;
+  bottom: 1.25rem;
+  top: auto;
+  left: auto;
+  z-index: 1001;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 80px;
+  height: 80px;
+  padding: 0;
+  border: 2px solid rgba(56, 189, 248, 0.45);
+  border-radius: 50%;
+  cursor: pointer;
+  background: #0a1628;
+  box-shadow:
+    0 4px 20px rgba(8, 47, 73, 0.55),
+    0 0 0 1px rgba(255, 255, 255, 0.08) inset;
+  transition: box-shadow 0.2s, transform 0.2s, opacity 0.25s;
+  opacity: 0.95;
+}
+
+.mr-deuteron-fab:hover {
+  opacity: 1;
+  box-shadow:
+    0 8px 28px rgba(8, 47, 73, 0.65),
+    0 0 0 1px rgba(56, 189, 248, 0.35) inset;
+  transform: scale(1.04);
+}
+
+.mr-deuteron-fab:focus-visible {
+  outline: 2px solid #38bdf8;
+  outline-offset: 3px;
+}
+
+.mr-deuteron-fab__avatar {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 20%;
+  pointer-events: none;
+  user-select: none;
+  border-radius: 50%;
+}
+
+@media (max-width: 480px) {
+  .mr-deuteron-fab {
+    right: 0.85rem;
+    bottom: 0.85rem;
+    width: 72px;
+    height: 72px;
+  }
+
+  .mr-deuteron-fab:hover {
+    transform: none;
+  }
+
+  .mr-deuteron-panel {
+    width: 100%;
+    height: 100%;
+    max-height: 100%;
+    border-radius: 0.5rem 0.5rem 0 0;
+  }
+
+}

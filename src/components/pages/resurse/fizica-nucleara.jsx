@@ -2,6 +2,7 @@ import Layout from "../../Layout";
 import { Button } from "../../Button";
 import SEO from "../../SEO";
 import { useMathJaxTypesetRoot } from "@/hooks/useMathJaxTypesetRoot";
+import MrDeuteronWidget from "../../MrDeuteronWidget";
 
 import apaGreaImg from "/res/screenshots/apa_grea_1.png";
 import instalatieSchimbIzotopicImg from "/res/screenshots/schimb_izotopic_Screenshot.png";
@@ -22,6 +23,7 @@ const FizicaNuclearaPage = () => {
         keywords="fizica nucleara, izotopi uraniu, harta nuclidelor, dezintegrare alfa, fisiune, U-235, factor k, apa grea, D2O, fuziune, deuteriu, tritiu, reactor, schimb izotopic, moderator"
         image="/res/icons/New-logo.png"
       />
+      <MrDeuteronWidget />
       <div className="resurse-pagina min-h-screen flex flex-col">
         <div className="resurse-page-container">
           <main
