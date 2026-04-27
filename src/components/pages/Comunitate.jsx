@@ -28,7 +28,7 @@ const Comunitate = () => {
             <Trophy size={28} /> Comunitate
           </h1>
           <p className="comunitate-page__subtitle">
-            Compete, progresează și vezi cum te compari cu alți elevi.
+            Concurează, progresează și vezi cum te compari cu alți elevi.
           </p>
         </div>
 

@@ -137,6 +137,12 @@ export async function callGroqWithModelFallbacks({
         const model = models[i];
         const isLast = i === models.length - 1;
 
+        console.info(`[Groq] încerc modelul: ${model}`, {
+            step: i + 1,
+            totalModels: models.length,
+            jsonMode,
+        });
+
         const body = {
             model,
             messages,
@@ -176,9 +182,10 @@ export async function callGroqWithModelFallbacks({
             throw new Error(lastMessage);
         }
 
-        if (i > 0) {
-            console.info(`[Groq] succes cu modelul de rezervă: ${model}`);
-        }
+        console.info(`[Groq] succes cu modelul: ${model}`, {
+            fallbackUsed: i > 0,
+            jsonMode,
+        });
         return text;
     }
 
