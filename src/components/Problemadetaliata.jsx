@@ -15,10 +15,12 @@ import { onAuthStateChanged } from 'firebase/auth';
 import { doc, getDoc, setDoc } from 'firebase/firestore';
 import { useAssistant } from '../hooks/useAssistant';
 import useDarkMode from '../hooks/useDarkMode';
+import { summarizeProblemImages } from '../lib/problemImageSummary';
 
 export const ProblemaDetaliata = ({ problema, onBack, homeworkContext = null }) => {
   const navigate = useNavigate();
   const [copied, setCopied] = useState(false);
+  const [isPreparingAi, setIsPreparingAi] = useState(false);
   const [isAdmin, setIsAdmin] = useState(false);
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [favorites, setFavorites] = useState([]);
@@ -229,14 +231,24 @@ export const ProblemaDetaliata = ({ problema, onBack, homeworkContext = null }) 
   };
 
   // Funcție pentru navigarea la secțiunea AI
-  const navigateToAI = () => {
+  const navigateToAI = async () => {
     if (assistant && assistant.openWithMessage) {
-      const msg = `Rezolva aceasta problema:\n\n${generateProblemText()}`;
+      const problemText = generateProblemText();
       try {
+        setIsPreparingAi(true);
+        const imageSummary = await summarizeProblemImages({
+          problemText,
+          problem: problema,
+        });
+        const msg = imageSummary
+          ? `Rezolvă această problemă:\n\n${problemText}\n\nREZUMAT IMAGINI ATAȘATE ENUNȚULUI:\n${imageSummary}`
+          : `Rezolvă această problemă:\n\n${problemText}`;
         assistant.openWithMessage(msg);
       } catch (error) {
         console.error('Error opening Profesorul Whiz:', error);
         alert('Eroare la deschiderea Profesorului Whiz. Te rugăm să încerci din nou.');
+      } finally {
+        setIsPreparingAi(false);
       }
     } else {
       console.warn('Profesorul Whiz not available. Make sure the AssistantAvatar component is mounted.');
@@ -573,9 +585,9 @@ export const ProblemaDetaliata = ({ problema, onBack, homeworkContext = null }) 
               <CardTitle className="text-lg">Ajutor AI</CardTitle>
             </CardHeader>
             <CardContent>
-              <Button className="ai-button" onClick={navigateToAI}>
+              <Button className="ai-button" onClick={navigateToAI} disabled={isPreparingAi}>
                 <Bot className="w-4 h-4 mr-2" />
-                Inteligența Artificială
+                {isPreparingAi ? 'Analizez imaginile...' : 'Inteligența Artificială'}
               </Button>
               <p className="ai-description">
                 Obține ajutor personalizat pentru rezolvarea acestei probleme.

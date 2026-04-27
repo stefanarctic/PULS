@@ -15,6 +15,7 @@ import {
     getGroqTextModels,
     getGroqVisionModels,
 } from './groqClient';
+import { summarizeProblemImages } from './problemImageSummary';
 
 function getApiKey() {
     const key = import.meta.env.VITE_GROQ_API_KEY;
@@ -186,12 +187,16 @@ Schema JSON exactă de returnat:
  */
 export async function groqEvaluate({ problemText, problem = null, solutionText, solutionPhotoDataUris }) {
     const baremSection = buildBaremSection(problem);
+    const problemImageSummary = await summarizeProblemImages({ problemText, problem });
 
     const evaluatorSystemPrompt = `${EVALUATOR_SYSTEM_PROMPT_BASE}\n\n${baremSection}`;
+    const enrichedProblemText = problemImageSummary
+        ? `${problemText}\n\nREZUMAT IMAGINI ATAȘATE ENUNȚULUI:\n${problemImageSummary}`
+        : problemText;
 
     // --- Step 1: Evaluator ---
     const evalRequest = buildEvaluatorRequest({
-        problemText,
+        problemText: enrichedProblemText,
         systemPrompt: evaluatorSystemPrompt,
         solutionText,
         solutionPhotoDataUris,
