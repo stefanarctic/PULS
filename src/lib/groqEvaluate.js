@@ -9,10 +9,12 @@
  * Uses VITE_GROQ_API_KEY from .env (client-side — for production, move to server).
  */
 
-const GROQ_CHAT_COMPLETIONS = 'https://api.groq.com/openai/v1/chat/completions';
-const VISION_MODEL = 'meta-llama/llama-4-scout-17b-16e-instruct';
-const TEXT_MODEL = 'llama-3.3-70b-versatile';
-const EXTRACTOR_MODEL = 'llama-3.3-70b-versatile';
+import {
+    callGroqWithModelFallbacks,
+    getGroqReasoningModels,
+    getGroqTextModels,
+    getGroqVisionModels,
+} from './groqClient';
 
 function getApiKey() {
     const key = import.meta.env.VITE_GROQ_API_KEY;
@@ -24,42 +26,19 @@ function getApiKey() {
 
 /**
  * @param {object} params
- * @param {string} params.model
+ * @param {string[]} params.models
  * @param {Array<{role: string, content: string | Array}>} params.messages
  * @param {boolean} [params.jsonMode]
  * @returns {Promise<string>}
  */
-async function callGroq({ model, messages, jsonMode = false }) {
-    const apiKey = getApiKey();
-
-    const body = {
-        model,
+async function callGroq({ models, messages, jsonMode = false }) {
+    return callGroqWithModelFallbacks({
+        apiKey: getApiKey(),
+        models,
         messages,
+        jsonMode,
         temperature: 0.3,
-        ...(jsonMode ? { response_format: { type: 'json_object' } } : {}),
-    };
-
-    const res = await fetch(GROQ_CHAT_COMPLETIONS, {
-        method: 'POST',
-        headers: {
-            Authorization: `Bearer ${apiKey}`,
-            'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(body),
     });
-
-    const data = await res.json();
-    if (!res.ok) {
-        const msg = data?.error?.message || `Groq API error ${res.status}`;
-        console.error('[Groq]', msg, data);
-        throw new Error(msg);
-    }
-
-    const text = data.choices?.[0]?.message?.content;
-    if (!text || typeof text !== 'string') {
-        throw new Error('Răspuns gol de la Groq.');
-    }
-    return text;
 }
 
 /**
@@ -95,11 +74,11 @@ function buildBaremSection(problem) {
  * @param {string} params.systemPrompt
  * @param {string} [params.solutionText]
  * @param {string[]} [params.solutionPhotoDataUris]
- * @returns {{ model: string, messages: Array }}
+ * @returns {{ models: string[], messages: Array }}
  */
 function buildEvaluatorRequest({ problemText, systemPrompt, solutionText, solutionPhotoDataUris }) {
     const hasImages = solutionPhotoDataUris && solutionPhotoDataUris.length > 0;
-    const model = hasImages ? VISION_MODEL : TEXT_MODEL;
+    const models = hasImages ? getGroqVisionModels() : getGroqReasoningModels();
 
     let userText = `PROBLEMĂ:\n${problemText}`;
     if (solutionText) {
@@ -111,7 +90,7 @@ function buildEvaluatorRequest({ problemText, systemPrompt, solutionText, soluti
 
     if (!hasImages) {
         return {
-            model,
+            models,
             messages: [
                 { role: 'system', content: systemPrompt },
                 { role: 'user', content: userText },
@@ -128,7 +107,7 @@ function buildEvaluatorRequest({ problemText, systemPrompt, solutionText, soluti
     }
 
     return {
-        model,
+        models,
         messages: [
             { role: 'system', content: systemPrompt },
             { role: 'user', content: contentParts },
@@ -219,13 +198,13 @@ export async function groqEvaluate({ problemText, problem = null, solutionText, 
     });
 
     const evaluationText = await callGroq({
-        model: evalRequest.model,
+        models: evalRequest.models,
         messages: evalRequest.messages,
     });
 
     // --- Step 2: Extractor ---
     const structuredJson = await callGroq({
-        model: EXTRACTOR_MODEL,
+        models: getGroqTextModels(),
         messages: [
             { role: 'system', content: EXTRACTOR_SYSTEM_PROMPT },
             { role: 'user', content: evaluationText },

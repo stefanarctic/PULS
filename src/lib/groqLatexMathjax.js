@@ -6,8 +6,16 @@
  * dacă ești conștient de limitare; pentru producție publică, mută apelul pe un API server).
  */
 
-const GROQ_CHAT_COMPLETIONS = 'https://api.groq.com/openai/v1/chat/completions';
-const DEFAULT_MODEL = 'llama-3.3-70b-versatile';
+import { callGroqWithModelFallbacks, getGroqTextModels } from './groqClient';
+
+function getLatexModelChain() {
+    const single = import.meta.env.VITE_GROQ_LATEX_MODEL?.trim();
+    const fallbacks = getGroqTextModels();
+    if (single) {
+        return [single, ...fallbacks.filter((m) => m !== single)];
+    }
+    return fallbacks;
+}
 
 /**
  * @param {Record<string, unknown>} original
@@ -71,7 +79,7 @@ export async function transformAnalyzeResponseForMathJax(analyzeResponse) {
         return analyzeResponse;
     }
 
-    const model = import.meta.env.VITE_GROQ_LATEX_MODEL || DEFAULT_MODEL;
+    const models = getLatexModelChain();
 
     const systemPrompt = `Primești un singur obiect JSON (răspuns API analiză fizică).
 Sarcina ta: returnezi UN singur obiect JSON cu ACELEAȘI chei și ACEEAȘI structură ca la intrare.
@@ -88,32 +96,23 @@ Reguli stricte:
 - Nu adăuga chei noi. Nu șterge chei. Nu folosi blocuri markdown în afara JSON.
 - Răspunsul tău trebuie să fie DOAR JSON valid, fără text înainte sau după.`;
 
-    const body = {
-        model,
-        messages: [
-            { role: 'system', content: systemPrompt },
-            { role: 'user', content: JSON.stringify(analyzeResponse) },
-        ],
-        temperature: 0,
-        response_format: { type: 'json_object' },
-    };
-
-    const res = await fetch(GROQ_CHAT_COMPLETIONS, {
-        method: 'POST',
-        headers: {
-            Authorization: `Bearer ${apiKey.trim()}`,
-            'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(body),
-    });
-
-    const data = await res.json();
-    if (!res.ok) {
-        console.warn('[Groq LaTeX]', data?.error?.message || res.status, data);
+    let text;
+    try {
+        text = await callGroqWithModelFallbacks({
+            apiKey: apiKey.trim(),
+            models,
+            messages: [
+                { role: 'system', content: systemPrompt },
+                { role: 'user', content: JSON.stringify(analyzeResponse) },
+            ],
+            jsonMode: true,
+            temperature: 0,
+        });
+    } catch (e) {
+        console.warn('[Groq LaTeX]', e);
         return analyzeResponse;
     }
 
-    const text = data.choices?.[0]?.message?.content;
     if (!text || typeof text !== 'string') {
         return analyzeResponse;
     }

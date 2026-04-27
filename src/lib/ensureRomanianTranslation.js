@@ -3,8 +3,16 @@
  * Folosește o euristică simplă pentru detecție + fallback la Groq pentru traducere.
  */
 
-const GROQ_CHAT_COMPLETIONS = 'https://api.groq.com/openai/v1/chat/completions';
-const DEFAULT_MODEL = 'llama-3.3-70b-versatile';
+import { callGroqWithModelFallbacks, getGroqTextModels } from './groqClient';
+
+function getTranslateModelChain() {
+  const single = import.meta.env.VITE_GROQ_TRANSLATE_MODEL?.trim();
+  const fallbacks = getGroqTextModels();
+  if (single) {
+    return [single, ...fallbacks.filter((m) => m !== single)];
+  }
+  return fallbacks;
+}
 
 const ROMANIAN_MARKERS = [
   /[ăîâșțĂÎÂȘȚ]/,
@@ -51,7 +59,7 @@ export async function ensureRomanian(text) {
     return text;
   }
 
-  const model = import.meta.env.VITE_GROQ_TRANSLATE_MODEL || DEFAULT_MODEL;
+  const models = getTranslateModelChain();
 
   const systemPrompt = `Ești un traducător profesionist. Primești un text care poate fi în orice limbă.
 
@@ -65,29 +73,17 @@ Reguli stricte:
 - Termenii tehnici IT fără echivalent consacrat pot rămâne în engleză.`;
 
   try {
-    const res = await fetch(GROQ_CHAT_COMPLETIONS, {
-      method: 'POST',
-      headers: {
-        Authorization: `Bearer ${apiKey.trim()}`,
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({
-        model,
-        messages: [
-          { role: 'system', content: systemPrompt },
-          { role: 'user', content: text },
-        ],
-        temperature: 0.1,
-      }),
+    const translated = await callGroqWithModelFallbacks({
+      apiKey: apiKey.trim(),
+      models,
+      messages: [
+        { role: 'system', content: systemPrompt },
+        { role: 'user', content: text },
+      ],
+      jsonMode: false,
+      temperature: 0.1,
     });
 
-    const data = await res.json();
-    if (!res.ok) {
-      console.warn('[ensureRomanian] Groq error:', data?.error?.message || res.status);
-      return text;
-    }
-
-    const translated = data.choices?.[0]?.message?.content;
     if (!translated || typeof translated !== 'string' || translated.trim().length === 0) {
       return text;
     }
