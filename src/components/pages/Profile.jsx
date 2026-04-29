@@ -20,6 +20,7 @@ import { useCommunityStats } from '../../hooks/useCommunity';
 import XPBar from '../community/XPBar';
 import StreakCounter from '../community/StreakCounter';
 import CategoryBadges from '../community/CategoryBadges';
+import { sanitizeAliasInput, getAliasFormatError, ALIAS_MAX_LENGTH } from '../../lib/aliasValidation';
 
 // FavoriteProblemCard definit aici
 const ExternalLinkIcon = () => (
@@ -481,8 +482,9 @@ const Profile = () => {
 
             // Validate alias
             const trimmedAlias = aliasSignUp.trim();
-            if (trimmedAlias.length < 3) {
-                setAuthError('Aliasul trebuie să aibă cel puțin 3 caractere.');
+            const aliasFormatErr = getAliasFormatError(trimmedAlias);
+            if (aliasFormatErr) {
+                setAuthError(aliasFormatErr);
                 setAuthLoading(false);
                 return;
             }
@@ -669,13 +671,9 @@ const Profile = () => {
                 return;
             }
 
-            // Validate alias
-            if (!trimmedAlias) {
-                setAliasError('Aliasul nu poate fi gol.');
-                return;
-            }
-            if (trimmedAlias.length < 3) {
-                setAliasError('Aliasul trebuie să aibă cel puțin 3 caractere.');
+            const aliasFormatErr = getAliasFormatError(trimmedAlias);
+            if (aliasFormatErr) {
+                setAliasError(aliasFormatErr);
                 return;
             }
             const isUnique = await checkAliasUnique(trimmedAlias);
@@ -1049,14 +1047,19 @@ const Profile = () => {
                                                 type="text"
                                                 value={aliasSignUp}
                                                 onChange={(e) => {
-                                                    setAliasSignUp(e.target.value);
+                                                    setAliasSignUp(sanitizeAliasInput(e.target.value));
                                                     setAuthError('');
                                                 }}
                                                 placeholder="Alege un alias unic"
                                                 required
                                                 disabled={authLoading}
                                                 minLength={3}
+                                                maxLength={ALIAS_MAX_LENGTH}
+                                                autoComplete="username"
                                             />
+                                            <div className="profile-alias-hint">
+                                                Litere, cifre, _ și -, fără spații (max. {ALIAS_MAX_LENGTH} caractere).
+                                            </div>
                                         </div>
                                     </>
                                 )}
@@ -1341,9 +1344,18 @@ const Profile = () => {
                             <input
                                 type="text"
                                 value={aliasInput}
-                                onChange={e => setAliasInput(e.target.value)}
+                                onChange={(e) => {
+                                    setAliasInput(sanitizeAliasInput(e.target.value));
+                                    setAliasError('');
+                                }}
                                 placeholder="Alege un alias unic"
+                                minLength={3}
+                                maxLength={ALIAS_MAX_LENGTH}
+                                autoComplete="username"
                             />
+                            <div className="profile-alias-hint">
+                                Litere, cifre, _ și -, fără spații (max. {ALIAS_MAX_LENGTH} caractere).
+                            </div>
                             {aliasError && <div className="alias-error">{aliasError}</div>}
                             <label>Poza de profil (URL):</label>
                             <div style={{ fontSize: '0.875rem', color: '#6b7280', marginBottom: '8px' }}>

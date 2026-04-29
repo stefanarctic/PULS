@@ -984,6 +984,13 @@
     }
 }
 
+.profile-alias-hint {
+    font-size: 0.75rem;
+    color: var(--muted-color-current-mode);
+    margin: 0.35rem 0 0;
+    line-height: 1.35;
+}
+
 .profile-auth-error {
     background: rgba(239, 68, 68, 0.1);
     border: 1px solid #ef4444;
