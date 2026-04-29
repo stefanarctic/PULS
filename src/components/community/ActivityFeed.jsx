@@ -134,6 +134,30 @@ function ActivityFeed({ activities = [], loading = false, showAvatar = true }) {
         const cardClass =
           `activity-feed__card${showAvatar ? '' : ' activity-feed__card--no-avatar'}${isProblemCard ? '' : ' activity-feed__card--static'}`;
 
+        const profilePath =
+          activity.userId
+            ? `/profil/${activity.userId}`
+            : activity.userAlias
+              ? `/profil/${encodeURIComponent(activity.userAlias)}`
+              : null;
+
+        const avatarNonProblem = (
+          <>
+            {activity.userAvatar ? (
+              <img
+                src={activity.userAvatar}
+                alt={activity.userAlias || ''}
+                className="activity-feed__avatar"
+                {...(activity.userAvatar.includes('googleusercontent.com') && { crossOrigin: 'anonymous', referrerPolicy: 'no-referrer' })}
+              />
+            ) : (
+              <div className="activity-feed__avatar activity-feed__avatar--placeholder">
+                {(activity.userAlias || '?')[0].toUpperCase()}
+              </div>
+            )}
+          </>
+        );
+
         const inner = (
           <>
             {showAvatar &&
@@ -152,21 +176,12 @@ function ActivityFeed({ activities = [], loading = false, showAvatar = true }) {
                     </div>
                   )}
                 </span>
-              ) : (
-                <Link to={`/profil/${activity.userAlias}`} className="activity-feed__avatar-link activity-feed__cell-avatar">
-                  {activity.userAvatar ? (
-                    <img
-                      src={activity.userAvatar}
-                      alt={activity.userAlias}
-                      className="activity-feed__avatar"
-                      {...(activity.userAvatar.includes('googleusercontent.com') && { crossOrigin: 'anonymous', referrerPolicy: 'no-referrer' })}
-                    />
-                  ) : (
-                    <div className="activity-feed__avatar activity-feed__avatar--placeholder">
-                      {(activity.userAlias || '?')[0].toUpperCase()}
-                    </div>
-                  )}
+              ) : profilePath ? (
+                <Link to={profilePath} className="activity-feed__avatar-link activity-feed__cell-avatar">
+                  {avatarNonProblem}
                 </Link>
+              ) : (
+                <span className="activity-feed__avatar-link activity-feed__cell-avatar">{avatarNonProblem}</span>
               ))}
             <div className="activity-feed__icon-wrap activity-feed__cell-icon">
               <Icon size={18} strokeWidth={2.25} />

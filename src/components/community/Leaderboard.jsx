@@ -95,7 +95,7 @@ const Leaderboard = ({ currentUserUid }) => {
                       )}
                     </td>
                     <td className="leaderboard__cell--user">
-                      <Link to={`/profil/${entry.alias}`} className="leaderboard__user-link">
+                      <Link to={`/profil/${entry.uid}`} className="leaderboard__user-link">
                         {entry.profilePic ? (
                           <img
                             src={entry.profilePic}

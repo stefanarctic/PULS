@@ -1297,8 +1297,8 @@ const Profile = () => {
                         <div className="profile-community-section">
                             <div className="profile-community-section__header">
                                 <h3>Progres comunitate</h3>
-                                {alias && (
-                                    <Link to={`/profil/${alias}`} className="profile-community-section__public-link">
+                                {user?.uid && (
+                                    <Link to={`/profil/${user.uid}`} className="profile-community-section__public-link">
                                         Vezi profilul public
                                     </Link>
                                 )}

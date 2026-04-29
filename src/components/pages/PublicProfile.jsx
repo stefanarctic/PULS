@@ -51,6 +51,14 @@ const PublicProfile = () => {
     ? new Date(profile.joinedDate).toLocaleDateString('ro-RO', { year: 'numeric', month: 'long', day: 'numeric' })
     : null;
 
+  const rawName = (profile.name || '').trim();
+  const rawAlias = (profile.alias || '').trim();
+  const primaryHeading = rawName || rawAlias || 'Utilizator';
+  const showAliasSubline =
+    rawAlias && rawName && rawName.toLowerCase() !== rawAlias.toLowerCase();
+  const avatarInitial = (primaryHeading[0] || '?').toUpperCase();
+  const avatarAlt = [rawName, rawAlias].filter(Boolean).join(' — ') || primaryHeading;
+
   return (
     <Layout>
       <div className="page-section profile-container public-profile">
@@ -64,18 +72,23 @@ const PublicProfile = () => {
               {profile.profilePic ? (
                 <img
                   src={profile.profilePic}
-                  alt={profile.alias}
+                  alt={avatarAlt}
                   className="profile-avatar-img"
                   {...(profile.profilePic.includes('googleusercontent.com') && { crossOrigin: 'anonymous', referrerPolicy: 'no-referrer' })}
                 />
               ) : (
                 <div style={{ fontSize: '2.5rem', fontWeight: 'bold' }}>
-                  {(profile.alias || '?')[0].toUpperCase()}
+                  {avatarInitial}
                 </div>
               )}
             </div>
             <div className="profile-info">
-              <h1 className="profile-name">{profile.alias}</h1>
+              <h1 className="profile-name">{primaryHeading}</h1>
+              {showAliasSubline && (
+                <p className="public-profile__alias-sub">
+                  <span className="public-profile__meta-label">Alias:</span> {rawAlias}
+                </p>
+              )}
               <div className="public-profile__rank-row">
                 <RankBadge rank={stats?.rank} size="lg" />
               </div>

@@ -899,6 +899,20 @@
     }
   }
 
+  &__alias-sub {
+    margin: 0.15rem 0 0;
+    font-size: 1.05rem;
+    font-weight: 500;
+    color: var(--muted-color-current-mode);
+    line-height: 1.35;
+  }
+
+  &__meta-label {
+    font-weight: 600;
+    color: var(--muted-color-current-mode);
+    margin-right: 0.25rem;
+  }
+
   &__rank-row {
     display: flex;
     align-items: center;

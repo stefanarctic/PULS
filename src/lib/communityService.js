@@ -402,17 +402,22 @@ export async function fetchUserActivities(userId, maxResults = 20) {
   return merged.slice(0, maxResults);
 }
 
-export async function fetchPublicProfile(alias) {
-  const q = query(
-    collection(db, 'users'),
-    where('alias', '==', alias),
-    limit(1)
-  );
+function normalizeProfileRouteParam(raw) {
+  if (raw == null || raw === '') return '';
+  let s = String(raw).replace(/\u00a0/g, ' ');
+  try {
+    for (let i = 0; i < 3; i++) {
+      const next = decodeURIComponent(s);
+      if (next === s) break;
+      s = next;
+    }
+  } catch {
+    /* păstrăm s */
+  }
+  return s.trim();
+}
 
-  const snapshot = await getDocs(q);
-  if (snapshot.empty) return null;
-
-  const docSnap = snapshot.docs[0];
+function mapUserDocToPublicProfile(docSnap) {
   const data = docSnap.data();
   return {
     uid: docSnap.id,
@@ -425,6 +430,35 @@ export async function fetchPublicProfile(alias) {
     categoryBadges: data.categoryBadges || [],
     achievements: data.achievements || [],
   };
+}
+
+/**
+ * Acceptă UID-ul documentului users/{id}, aliasul sau (dacă e unic) numele afișat în clasament.
+ */
+export async function fetchPublicProfile(routeParam) {
+  const key = normalizeProfileRouteParam(routeParam);
+  if (!key) return null;
+
+  const byIdSnap = await getDoc(doc(db, 'users', key));
+  if (byIdSnap.exists()) {
+    return mapUserDocToPublicProfile(byIdSnap);
+  }
+
+  const byAlias = await getDocs(
+    query(collection(db, 'users'), where('alias', '==', key), limit(1))
+  );
+  if (!byAlias.empty) {
+    return mapUserDocToPublicProfile(byAlias.docs[0]);
+  }
+
+  const byName = await getDocs(
+    query(collection(db, 'users'), where('name', '==', key), limit(2))
+  );
+  if (byName.size === 1) {
+    return mapUserDocToPublicProfile(byName.docs[0]);
+  }
+
+  return null;
 }
 
 export function getDefaultCommunityStats() {
