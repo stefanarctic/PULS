@@ -134,26 +134,28 @@ const MessageBubble = React.memo(({
     return protectedText;
   }, []);
 
-  // Typeset MathJax doar când mesajul devine vizibil sau este ultimul mesaj AI (care trebuie formatat imediat)
+  // MathJax mută DOM-ul; dacă rulează în timpul streaming-ului, React poate crăpa la următorul
+  // reconcile (removeChild / node nu mai e copil). Typeset doar când nu tastăm acel bubble.
   useEffect(() => {
-    if (msg.role === 'ai' && (hasBeenVisible || isLastAIMessage)) {
-      // Delay mic pentru a permite render-ul complet
-      const timeoutId = setTimeout(() => {
-        if (messageRef.current) {
-          const contentElement = messageRef.current.querySelector('.assistant-message-content');
-          if (contentElement && window.MathJax) {
-            if (window.MathJax.typesetPromise) {
-              window.MathJax.typesetPromise([contentElement]).catch(() => {});
-            } else if (window.MathJax.typeset) {
-              window.MathJax.typeset([contentElement]);
-            }
+    if (msg.role !== 'ai') return;
+    if (typing && isLastAIMessage) return;
+    if (!hasBeenVisible && !isLastAIMessage) return;
+
+    const timeoutId = setTimeout(() => {
+      if (messageRef.current) {
+        const contentElement = messageRef.current.querySelector('.assistant-message-content');
+        if (contentElement && window.MathJax) {
+          if (window.MathJax.typesetPromise) {
+            window.MathJax.typesetPromise([contentElement]).catch(() => {});
+          } else if (window.MathJax.typeset) {
+            window.MathJax.typeset([contentElement]);
           }
         }
-      }, 50);
-      
-      return () => clearTimeout(timeoutId);
-    }
-  }, [hasBeenVisible, isLastAIMessage, msg.role, displayText]);
+      }
+    }, 50);
+
+    return () => clearTimeout(timeoutId);
+  }, [hasBeenVisible, isLastAIMessage, msg.role, displayText, typing]);
   
   return (
     <div 
@@ -197,17 +199,29 @@ const MessageBubble = React.memo(({
       <div className="assistant-message-content-wrapper">
         <div className="assistant-message-content">
           {msg.role === 'ai' ? (
-            <ReactMarkdown
-              remarkPlugins={[remarkMath]}
-              rehypePlugins={[rehypeMathjaxBrowser]}
-              components={{
-                a: ({node, ...props}) => (
-                  <a {...props} className="assistant-link" target="_self" rel="noopener noreferrer" />
-                )
-              }}
-            >
-              {preprocessTextForMarkdown(displayText)}
-            </ReactMarkdown>
+            typing && isLastAIMessage ? (
+              <ReactMarkdown
+                components={{
+                  a: ({ node, ...props }) => (
+                    <a {...props} className="assistant-link" target="_self" rel="noopener noreferrer" />
+                  ),
+                }}
+              >
+                {preprocessTextForMarkdown(displayText)}
+              </ReactMarkdown>
+            ) : (
+              <ReactMarkdown
+                remarkPlugins={[remarkMath]}
+                rehypePlugins={[rehypeMathjaxBrowser]}
+                components={{
+                  a: ({ node, ...props }) => (
+                    <a {...props} className="assistant-link" target="_self" rel="noopener noreferrer" />
+                  ),
+                }}
+              >
+                {preprocessTextForMarkdown(displayText)}
+              </ReactMarkdown>
+            )
           ) : (
             <span>{displayText}</span>
           )}
@@ -524,7 +538,7 @@ const AssistantPopup = ({ onClose, initialMessage, initialMessageInNewChat = fal
     }
   }, []);
 
-  // Typeset MathJax only for the most recent AI message bubble - folosit doar în timpul typing
+  // Typeset pe ultimul bubble AI — după streaming (în timpul tastării nu mai rulăm, evită crash DOM)
   const typesetLastAIBubble = () => {
     try {
       if (!chatRef.current) return;
@@ -547,8 +561,6 @@ const AssistantPopup = ({ onClose, initialMessage, initialMessageInNewChat = fal
     setTyping(true);
     let currentText = "";
     let index = 0;
-    let lastTypesetTime = Date.now();
-    const typesetInterval = 200; // Redus pentru a formata MathJax mai des
     let animationFrameId = null;
     let lastUpdateTime = Date.now();
     const minInterval = 15; // Viteză similară ChatGPT - foarte rapid
@@ -564,16 +576,7 @@ const AssistantPopup = ({ onClose, initialMessage, initialMessageInNewChat = fal
         setTypingText(currentText);
         index = endIndex;
         lastUpdateTime = now;
-        
-        // Typeset MathJax periodic, dar mai rar
-        if (now - lastTypesetTime >= typesetInterval) {
-          // Folosim requestAnimationFrame pentru a evita blocking
-          requestAnimationFrame(() => {
-            typesetLastAIBubble();
-          });
-          lastTypesetTime = now;
-        }
-        
+
         animationFrameId = requestAnimationFrame(typeStep);
       } else if (index >= text.length) {
         // Finalizare
