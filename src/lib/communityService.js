@@ -32,14 +32,30 @@ const BADGE_TIERS = [
 
 // --- Pure helper functions ---
 
-export function calculateXP(difficulty, scoreObtained, maxScore, currentStreak = 0) {
+/** XP maxim ce poate fi „extras” dintr-o problemă (în funcție de dificultate). */
+export function getMaxXpPoolForDifficulty(difficulty) {
   const normalizedDiff = (difficulty || '').toLowerCase().trim();
-  const baseXP = XP_BY_DIFFICULTY[normalizedDiff] || 10;
-  const scoreRatio = maxScore > 0 ? scoreObtained / maxScore : 0;
-  const isPerfect = scoreObtained === maxScore && maxScore > 0;
-  const streakBonus = Math.min(currentStreak * 2, 20);
+  return XP_BY_DIFFICULTY[normalizedDiff] || 10;
+}
 
-  return Math.floor(baseXP * scoreRatio * (isPerfect ? 1.2 : 1)) + streakBonus;
+/**
+ * Porțiune din pool pentru acest scor: liniar (ex. 5/10 → jumătate), la punctaj maxim → tot pool-ul.
+ * Fără bonus streak (streak-ul se adaugă la delta în updateCommunityStats).
+ */
+export function calculateCreditableXpForProblem(difficulty, scoreObtained, maxScore) {
+  const pool = getMaxXpPoolForDifficulty(difficulty);
+  if (maxScore <= 0 || scoreObtained <= 0) return 0;
+  const isPerfect = scoreObtained === maxScore;
+  if (isPerfect) return pool;
+  return Math.floor((pool * scoreObtained) / maxScore);
+}
+
+/**
+ * @deprecated Folosește calculateCreditableXpForProblem + credit pe problemă; păstrat pentru compatibilitate.
+ * Returnează acum aceeași porțiune ca creditableXp (fără streak).
+ */
+export function calculateXP(difficulty, scoreObtained, maxScore, _currentStreak = 0) {
+  return calculateCreditableXpForProblem(difficulty, scoreObtained, maxScore);
 }
 
 export function getRankForXP(xp) {
@@ -120,25 +136,84 @@ export async function updateCommunityStats(userId, { problemId, scoreObtained, m
   const userData = snap.data();
   const existing = userData.communityStats || getDefaultCommunityStats();
 
+  const pid = String(problemId);
   const newStreak = computeStreak(existing.streak);
-  const xpGained = calculateXP(difficulty, scoreObtained, maxScore, newStreak.current);
-  const newXp = (existing.xp || 0) + xpGained;
-  const oldRank = getRankForXP(existing.xp || 0);
+
+  const creditedMap = { ...(existing.xpCreditedByProblem || {}) };
+  const prevCred = creditedMap[pid] ?? 0;
+  const newCreditablePortion = calculateCreditableXpForProblem(difficulty, scoreObtained, maxScore);
+  const effectiveCredit = Math.max(prevCred, newCreditablePortion);
+  const xpFromScoreDelta = Math.max(0, effectiveCredit - prevCred);
+  creditedMap[pid] = effectiveCredit;
+
+  const streakBonus = xpFromScoreDelta > 0 ? Math.min(newStreak.current * 2, 20) : 0;
+  const xpGained = xpFromScoreDelta + streakBonus;
+
+  const oldXp = existing.xp || 0;
+  const newXp = oldXp + xpGained;
+  const oldRank = getRankForXP(oldXp);
   const newRankInfo = getRankForXP(newXp);
   const newLevel = getLevelForXP(newXp);
 
-  const newTotalSolved = (existing.totalSolved || 0) + 1;
-  const newTotalScore = (existing.totalScore || 0) + scoreObtained;
-  const newTotalMaxScore = (existing.totalMaxScore || 0) + maxScore;
+  /** Actualizare cel mai bun rezultat per problemă (evită dubluri la totalScore). */
+  const bestGrade = { ...(existing.problemBestGrade || {}) };
+  const prevBest = bestGrade[pid];
+  const newRatio = maxScore > 0 ? scoreObtained / maxScore : -1;
+  const oldRatio =
+    prevBest != null && prevBest.max > 0 ? prevBest.obtained / prevBest.max : -1;
+  let newTotalScore = existing.totalScore || 0;
+  let newTotalMaxScore = existing.totalMaxScore || 0;
+  let improvedBest = false;
+  if (newRatio > oldRatio) {
+    improvedBest = true;
+    if (!prevBest) {
+      newTotalScore += scoreObtained;
+      newTotalMaxScore += maxScore;
+    } else {
+      newTotalScore += scoreObtained - prevBest.obtained;
+      newTotalMaxScore += maxScore - prevBest.max;
+    }
+    bestGrade[pid] = { obtained: scoreObtained, max: maxScore };
+  }
+
   const newAveragePercent = newTotalMaxScore > 0
     ? Math.round((newTotalScore / newTotalMaxScore) * 100)
     : 0;
   const isPerfect = scoreObtained === maxScore && maxScore > 0;
-  const newPerfectScores = (existing.perfectScores || 0) + (isPerfect ? 1 : 0);
+  const wasAlreadyMarkedPerfect = !!(existing.perfectProblemIds || {})[pid];
 
+  let newPerfectScores = existing.perfectScores || 0;
+  const perfectMap = { ...(existing.perfectProblemIds || {}) };
+  const firstPerfectUnlocked = isPerfect && !wasAlreadyMarkedPerfect;
+  if (firstPerfectUnlocked) {
+    perfectMap[pid] = true;
+    newPerfectScores += 1;
+  }
+
+  let newTotalSolved = existing.totalSolved || 0;
   const categoryCounts = { ...(existing.categoryCounts || {}) };
-  if (category) {
-    categoryCounts[category] = (categoryCounts[category] || 0) + 1;
+  const isFirstCreditFromProblem = prevCred === 0 && effectiveCredit > 0;
+  if (isFirstCreditFromProblem) {
+    newTotalSolved += 1;
+    if (category) {
+      categoryCounts[category] = (categoryCounts[category] || 0) + 1;
+    }
+  }
+
+  const streakUnchanged =
+    (existing.streak?.current ?? 0) === newStreak.current &&
+    (existing.streak?.longest ?? 0) === newStreak.longest &&
+    (existing.streak?.lastActivityDate || null) === (newStreak.lastActivityDate || null);
+
+  const nothingToPersist =
+    xpGained === 0 &&
+    streakUnchanged &&
+    !improvedBest &&
+    !isFirstCreditFromProblem &&
+    !firstPerfectUnlocked;
+
+  if (nothingToPersist) {
+    return;
   }
 
   const currentWeekStart = getISOWeekStart();
@@ -163,6 +238,9 @@ export async function updateCommunityStats(userId, { problemId, scoreObtained, m
     categoryCounts,
     weeklyXp,
     weekStartDate,
+    xpCreditedByProblem: creditedMap,
+    problemBestGrade: bestGrade,
+    perfectProblemIds: perfectMap,
   };
 
   const existingBadges = userData.categoryBadges || [];
@@ -179,20 +257,22 @@ export async function updateCommunityStats(userId, { problemId, scoreObtained, m
 
   const batch = [];
 
-  batch.push(writeActivity({
-    userId,
-    userAlias,
-    userAvatar,
-    type: 'solved_problem',
-    data: {
-      problemId,
-      problemTitle: problemTitle || `Problema #${problemId}`,
-      score: scoreObtained,
-      maxScore,
-      xpGained,
-      category: category || '',
-    },
-  }));
+  if (xpGained > 0) {
+    batch.push(writeActivity({
+      userId,
+      userAlias,
+      userAvatar,
+      type: 'solved_problem',
+      data: {
+        problemId,
+        problemTitle: problemTitle || `Problema #${problemId}`,
+        score: scoreObtained,
+        maxScore,
+        xpGained,
+        category: category || '',
+      },
+    }));
+  }
 
   if (oldRank.rank !== newRankInfo.rank) {
     batch.push(writeActivity({
@@ -226,7 +306,12 @@ export async function updateCommunityStats(userId, { problemId, scoreObtained, m
 
   await Promise.all(batch);
 
-  return { updatedStats, newBadges, xpGained, rankChanged: oldRank.rank !== newRankInfo.rank };
+  return {
+    updatedStats,
+    newBadges,
+    xpGained,
+    rankChanged: oldRank.rank !== newRankInfo.rank,
+  };
 }
 
 async function writeActivity(activityData) {
@@ -259,22 +344,53 @@ export async function migrateUserCommunityStats(userId, allProblems) {
     });
   }
 
+  /** Cel mai bun rezultat per problemă (după rație scor). */
+  const bestByPid = new Map();
+  for (const sp of solvedProblems) {
+    const pid = String(sp.problemId);
+    const ratio =
+      sp.maxScore > 0 ? (sp.scoreObtained || 0) / sp.maxScore : -1;
+    const prev = bestByPid.get(pid);
+    const prevRatio =
+      prev && prev.maxScore > 0 ? (prev.scoreObtained || 0) / prev.maxScore : -1;
+    if (!prev || ratio > prevRatio) {
+      bestByPid.set(pid, {
+        scoreObtained: sp.scoreObtained ?? 0,
+        maxScore: sp.maxScore ?? 0,
+        problemId: sp.problemId,
+      });
+    }
+  }
+
+  const xpCreditedByProblem = {};
+  const problemBestGrade = {};
+  const perfectProblemIds = {};
+
   let totalXp = 0;
   let totalScore = 0;
   let totalMaxScore = 0;
   let perfectScores = 0;
   const categoryCounts = {};
 
-  for (const sp of solvedProblems) {
-    const prob = problemMap.get(String(sp.problemId));
+  for (const [pid, sp] of bestByPid) {
+    const prob = problemMap.get(pid);
     const difficulty = prob?.dificultate || 'ușor';
     const category = prob?.categorie || '';
 
-    const xp = calculateXP(difficulty, sp.scoreObtained, sp.maxScore, 0);
-    totalXp += xp;
+    const earned = calculateCreditableXpForProblem(difficulty, sp.scoreObtained, sp.maxScore);
+    xpCreditedByProblem[pid] = earned;
+    totalXp += earned;
     totalScore += sp.scoreObtained || 0;
     totalMaxScore += sp.maxScore || 0;
-    if (sp.scoreObtained === sp.maxScore && sp.maxScore > 0) perfectScores++;
+    problemBestGrade[pid] = {
+      obtained: sp.scoreObtained ?? 0,
+      max: sp.maxScore ?? 0,
+    };
+    const isPerf = sp.scoreObtained === sp.maxScore && sp.maxScore > 0;
+    if (isPerf) {
+      perfectProblemIds[pid] = true;
+      perfectScores += 1;
+    }
     if (category) {
       categoryCounts[category] = (categoryCounts[category] || 0) + 1;
     }
@@ -285,7 +401,7 @@ export async function migrateUserCommunityStats(userId, allProblems) {
     level: getLevelForXP(totalXp),
     rank: getRankForXP(totalXp).rank,
     streak: { current: 0, longest: 0, lastActivityDate: null },
-    totalSolved: solvedProblems.length,
+    totalSolved: bestByPid.size,
     totalScore,
     totalMaxScore,
     averagePercent: totalMaxScore > 0 ? Math.round((totalScore / totalMaxScore) * 100) : 0,
@@ -293,6 +409,9 @@ export async function migrateUserCommunityStats(userId, allProblems) {
     categoryCounts,
     weeklyXp: 0,
     weekStartDate: getISOWeekStart(),
+    xpCreditedByProblem,
+    problemBestGrade,
+    perfectProblemIds,
   };
 
   const badges = checkCategoryBadges(categoryCounts, []);
@@ -475,6 +594,9 @@ export function getDefaultCommunityStats() {
     categoryCounts: {},
     weeklyXp: 0,
     weekStartDate: null,
+    xpCreditedByProblem: {},
+    problemBestGrade: {},
+    perfectProblemIds: {},
   };
 }
 
