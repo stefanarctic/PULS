@@ -653,6 +653,67 @@
         "polarLead": "Take electric-field components along orthogonal x and y axes with amplitude E₀ and a relative phase difference of π/2:",
         "polarModulusLead": "At every instant the electric-field vector \\(\\vec{E}(t) = (E_x(t), E_y(t))\\) has constant magnitude:",
         "polarClosing": "The tip of \\(\\vec{E}\\) moves on a circle of radius \\(E_0\\), hence the name circular polarisation. The handedness (right/left) follows from the relative sign of the two oscillations."
+      },
+      "lissajous": {
+        "seo": {
+          "title": "Lissajous figures resources | Parametric curves - PULS",
+          "description": "Learn about Lissajous figures, parametric equations and applications in physics — theory, formulas and interactive simulations.",
+          "keywords": "Lissajous, Lissajous figures, perpendicular oscillations, parametric curves, oscilloscope"
+        },
+        "title": "Lissajous figures",
+        "p1": "Two oscillations combine to trace a graph called a Lissajous curve (often pronounced “Liss-uh-joo”). One oscillation drives the x coordinate and the other drives y. The curve shows how both motions evolve together in time.",
+        "p2": "When the frequency ratio is rational (expressible as a ratio of integers a/b), the curve closes and retraces the same loop. Different ratios give different shapes.",
+        "p3": "Lissajous figures are plane curves that describe motion obtained by combining two perpendicular sinusoidal oscillations with different frequencies and phases.",
+        "p4": "They are named after Jules Antoine Lissajous, who studied them in the 19th century.",
+        "p5": "They are plotted using parametric equations and appear on an oscilloscope when two electrical signals drive perpendicular axes.",
+        "p6": "They are commonly used to study frequency and phase relationships between two signals.",
+        "examplesTitle": "Examples of Lissajous figures",
+        "examplesP": "The shape depends on the frequency ratio and the phase difference between the two oscillations.",
+        "altMain": "Lissajous figure simulation",
+        "altGraph": "Lissajous graphs",
+        "parametricHeading": "Parametric equations:",
+        "graphSectionTitle": "Lissajous plot from parametric equations",
+        "graphSectionP": "This plot shows how x and y evolve from the parametric equations. Notice how different frequency ratios and phase shifts change the shape of the figure.",
+        "variablesNote": "where A₁ and A₂ are the amplitudes, ω₁ and ω₂ are the angular frequencies, and φ is the phase difference."
+      },
+      "earthquakes": {
+        "seo": {
+          "title": "Earthquake resources | Seismic waves - PULS",
+          "description": "Learn about earthquakes, P- and S-waves, Richter magnitude and wave propagation — theory, formulas and simulations.",
+          "keywords": "earthquakes, seismic waves, Richter magnitude, P-waves, S-waves, PULS"
+        },
+        "title": "Earthquakes",
+        "p1": "An earthquake is a sudden release of energy inside Earth that generates seismic waves.",
+        "p2": "Earthquakes are caused by rapid stress release in the crust, producing seismic waves that propagate through the planet.",
+        "p3": "These waves can be recorded by seismographs and are used to study Earth's interior structure.",
+        "p4": "Our simulations provide a visual picture of how seismic waves propagate and interact with different materials.",
+        "simTitle": "Earthquake simulation",
+        "simP": "Animation of seismic waves radiated during an earthquake.",
+        "altSim": "Earthquake simulation screenshot",
+        "characteristicsHeading": "Key points:",
+        "c1": "Seismic waves propagate through Earth's interior.",
+        "c2": "There are several wave types (P, S, Love, Rayleigh, and more).",
+        "c3": "Seismographs record ground motion from these waves.",
+        "c4": "P-waves are longitudinal (compressional); S-waves are transverse (shear).",
+        "c5": "Surface waves (e.g. Love and Rayleigh) often cause the strongest shaking and damage at the surface.",
+        "c6": "P-waves travel faster than S-waves in the same material.",
+        "c7": "S-waves do not propagate through the outer liquid core; P-waves do.",
+        "formulas": {
+          "vpTime": "P-wave speed from travel time",
+          "vsTime": "S-wave speed from travel time",
+          "vpElastic": "P-wave speed in an elastic medium",
+          "vsElastic": "S-wave speed in an elastic medium",
+          "richter": "Richter magnitude"
+        },
+        "pWaveTravelNote": "where d is the distance from the epicentre to the station, and t is the travel time for each wave type.",
+        "elasticHeading": "Speeds in an elastic medium:",
+        "elasticNote": "where K is the bulk modulus, G the shear modulus, and ρ the density.",
+        "richterNote": "A is the maximum recorded amplitude and A₀ a reference amplitude.",
+        "gameHeading": "Earthquake experience as a mini-game",
+        "gameHint1": "Use the left and right arrow keys to move around the 3D scene.",
+        "gameHint2": "Press Enter to jump to the next event.",
+        "iframeTitle": "Interactive earthquake scene — Unity embed",
+        "modelDescription": "🌀🌏〰 Earthquake visualisation\n🔁 You can use the arrow keys to look around\n🔁 Press Enter to see the next view"
       }
     },
     "formulaSections": {
