@@ -504,6 +504,157 @@
         "description": "Uranium isotopes (four key isotopes and the map of the 26 known ones), chain fission (U-235, multiplication factor k), educational D-T fusion model (~17.6 MeV), heavy water D2O vs H2O, isotope exchange, and fractional distillation; lessons, formulas, and simulators."
       }
     },
+    "lessonPages": {
+      "common": {
+        "viewSimulation": "Open simulation"
+      },
+      "pendulums": {
+        "seo": {
+          "title": "Pendulum resources | Simple harmonic motion - PULS",
+          "description": "Learn simple harmonic oscillation and pendulums — theory materials, formulas, interactive simulations and educational videos for the simple, damped, and nonlinear pendulum.",
+          "keywords": "pendulums, simple harmonic motion, simple pendulum, damped pendulum, harmonic oscillation, pendulum physics"
+        },
+        "intro": {
+          "title": "Simple harmonic oscillatory motion.",
+          "subtitle": "Properties of simple harmonic oscillation.",
+          "p1": "The harmonic linear oscillator is an idealised physical model that describes periodic motion of an object subjected to a restoring force proportional to its displacement from equilibrium. It is fundamental in mechanics, electromagnetism, acoustics — and appears even in quantum descriptions.",
+          "p2": "Try our simulations to see how harmonic oscillators behave and to build intuition about period, frequency and amplitude."
+        },
+        "harmonicGraphs": {
+          "title": "Harmonic graphs",
+          "p": "Harmonic oscillation is characterised by periodic motion shown graphically as a sinusoidal function.",
+          "equationsLead": "Equations reduced to sine form",
+          "variablesNote": "Here, A is the amplitude, ω is the angular frequency, φ is the initial phase, and t is time.",
+          "altCharts": "Pendulum position, velocity and acceleration graphs"
+        },
+        "formats": {
+          "simple": "Simple pendulum",
+          "damped": "Damped pendulum",
+          "mechanical": "Mechanical pendulum",
+          "videoPendulum": "Pendulum video"
+        },
+        "formatsFormulas": {
+          "motionEq": "Equation of motion",
+          "velocityEq": "Velocity equation",
+          "accelEq": "Acceleration equation",
+          "periodFormula": "Period formula",
+          "eqMotion": "Equation of motion",
+          "eachPendulum": "Equation for each pendulum",
+          "smallAngleApprox": "Small-angle approximation"
+        },
+        "sectionPendulums": {
+          "title": "Pendulums",
+          "p1": "The pendulum is a classic oscillator. Studying its motion illustrates period, frequency, and restoring forces.",
+          "p2": "Use our simulations to compare different pendulum behaviours side by side."
+        },
+        "simplePendulum": {
+          "title": "Gravity pendulum (simple pendulum)",
+          "p": "A gravitational pendulum is a point-like mass suspended from a massless inextensible string of length ℓ. If released near equilibrium with a small deviation angle θ, oscillations are approximately simple harmonic motion with period",
+          "variablesNote": "where ℓ is the pendulum length and g is the gravitational acceleration."
+        },
+        "dampedSection": {
+          "title": "Damped pendulum",
+          "p": "A damped oscillator loses amplitude over time owing to dissipative forces (air resistance, friction, viscosity). Understanding damping is central to modelling real oscillators.",
+          "characteristics": "Features",
+          "b1": "Oscillations with decreasing amplitude.",
+          "b2": "The period depends on the damping coefficient (in detailed models).",
+          "b3": "Different behaviour at larger amplitudes.",
+          "b4": "Viscous damping often gives a relation between restoring force/drive and velocity that is locally linear.",
+          "b5": "Example: pendulum with friction.",
+          "b6": "Equation of motion:"
+        },
+        "nonlinearSection": {
+          "title": "Nonlinear simple pendulum",
+          "p": "A mass swings on an inextensible string driven by gravity, without restricting the angular displacement to remain small: for larger angles the motion is no longer sinusoidal and the period depends on amplitude.",
+          "formulasTitle": "Formulas",
+          "introLine": "The equation of motion of the planar pendulum is:",
+          "variablesNote": "where θ is the angular displacement from the vertical, ℓ is the length of the suspension, and g is the gravitational acceleration."
+        },
+        "multipleSection": {
+          "title": "Multiple pendulums",
+          "p": "The multiple pendulums sandbox shows how deterministic chaos arises: pendulums that start almost alike quickly follow very different paths — pronounced sensitivity to initial conditions.",
+          "observeHeading": "What you can explore in the simulator",
+          "o1": "How nearly identical pendulums desynchronize because motion is nonlinear.",
+          "o2": "Colourful trails exposing intricate, quasi-irregular trajectories.",
+          "o3": "Transitions from roughly periodic motion to chaotic behaviour depending on parameter values.",
+          "usefulHeading": "Useful relations",
+          "altSimulator": "Multiple pendulums simulator screenshot",
+          "eachFollows": "In the ideal frictionless model, each pendulum obeys the same nonlinear pendulum equation with slightly different initial conditions:",
+          "smallAnglesLead": "For small angles each pendulum is well approximated as harmonic:",
+          "sensitivityClosing": "Even though the differential equations look simple, coupled or nearly independent setups are extremely sensitive: a tiny change in initial angle or angular velocity leads to completely different long-time behaviour — exactly what the simulation highlights."
+        }
+      },
+      "waves": {
+        "seo": {
+          "title": "Wave resources | Wave propagation - PULS",
+          "description": "Learn about mechanical and electromagnetic waves, propagation, types and formulae — with interactive prism, water-wave and polarization simulations.",
+          "keywords": "waves, mechanical waves, electromagnetic waves, wave propagation, wave physics"
+        },
+        "title": "Waves",
+        "introLead": "Waves transmit oscillations — mechanical, electromagnetic or other — between points in matter or vacuum.",
+        "characteristicsHeading": "Characteristics",
+        "wavesCanBe": "Waves belong to principal families:",
+        "mechanicalLabel": "A. Mechanical waves",
+        "mechanicalParagraph": "A mechanical wave is a local disturbance spreading through an elastic medium because neighbouring particles interact through elastic restoring forces — hence mechanical waves are also called elastic waves.",
+        "electromagneticLabel": "B. Electromagnetic waves",
+        "electromagneticParagraph": "Electromagnetic waves arise from perpendicular electric and magnetic fields that regenerate each another and travel together through space. Unlike mechanical waves they need no medium, so electromagnetic waves propagate also in vacuum.",
+        "waveTypesHeading": "Wave types relative to propagation",
+        "longitudinalLabel": "A. Longitudinal waves",
+        "longitudinalParagraph": "In longitudinal waves the particle motions are parallel to the propagation direction: the medium is alternately compressed and rarefied along the propagation path.",
+        "transverseLabel": "B. Transverse waves",
+        "transverseParagraph": "In transverse waves the particle motions lie perpendicular to the propagation direction.",
+        "altSim": "Wave simulation screenshot",
+        "altPrism": "Prism simulation screenshot",
+        "altCircularPol": "Circular polarization simulator screenshot",
+        "videos": {
+          "soundTubeTitle": "Sound tube — fundamental frequency",
+          "soundTubeDesc": "Shows how longitudinal sound modes build up in pipes and how the fundamental frequency is identified.",
+          "soundTubePopupTitle": "Sound tube — fundamental frequency (video demonstration)",
+          "standingTitle": "Standing waves on a string",
+          "standingDesc": "Explore standing waves along a taut string — constructive and destructive interference at nodes and loops.",
+          "standingPopupTitle": "Standing waves on a string (video demonstration)"
+        },
+        "waterSim": {
+          "title": "Water surface waves simulator",
+          "p": "This simulation visualises ripple-like propagation across the water surface — how disturbances spread through a fluid. Interact with the scene to probe how differing sources and patterns propagate."
+        },
+        "waveFormulas": {
+          "generalTitle": "General wave relation",
+          "characterisation": "Waves are characterised by wavelength λ, frequency f, and propagation speed v.",
+          "usefulHeading": "Useful relations",
+          "otherLineSuffix": "; here T is the oscillation period."
+        },
+        "formatsFormulas": {
+          "general": "Fundamental waves relation",
+          "wavelength": "Wavelength",
+          "frequency": "Frequency",
+          "snellTitle": "Snell's law of refraction",
+          "deviationPrismTitle": "Prism deviation angle",
+          "nLambdaTitle": "Refractive index",
+          "exTitle": "x-component of the electric field",
+          "eyTitle": "y-component of the electric field",
+          "eModTitle": "Constant magnitude of the field vector"
+        },
+        "prismIntroTitle": "Prism optics",
+        "prismP1": "A prism is a transparent body with polished faces (often triangular) that bends light by refraction.",
+        "prismP2": "When white light passes through a prism, wavelength-dependent refraction disperses it into spectral colours.",
+        "prismP3": "Prisms are staples of undergraduate optics demos for splitting sunlight into reds, oranges, greens, blues, violet, and so forth.",
+        "prismP4": "Roughly speaking, white sunlight is built from overlapping wavelength components — as famously explored by Newton centuries ago.",
+        "prismSimTitle": "Dispersion of white light through a prism",
+        "prismSimP": "Observe how dispersion separates white light entering a transparent prism with wavelength-dependent refractive index.",
+        "prismFormulaHeading": "Formulas describing refraction inside a prism",
+        "prismLegendP1BeforeA": "For the deviation angle δ = (θ₁ + θ₂′) − A, the symbol ",
+        "prismLegendAemphasis": "A",
+        "prismLegendP1AfterA": " stands for the apex angle.",
+        "prismLegendP2": "Because the index n varies with wavelength, n = n(λ), neighbouring colours traverse the prism differently — that is dispersion of white light.",
+        "polarisationTitle": "Circular polarisation of electromagnetic waves",
+        "polarisationP": "Circularly polarised light can be regarded as the superposition of two perpendicular linearly polarised components of equal amplitude with a phase shift of π/2. The endpoint of the electric-field vector then traces a circle in the plane perpendicular to the propagation direction.",
+        "polarMathTitle": "Mathematical sketch (right-circular polarisation)",
+        "polarLead": "Take electric-field components along orthogonal x and y axes with amplitude E₀ and a relative phase difference of π/2:",
+        "polarModulusLead": "At every instant the electric-field vector \\(\\vec{E}(t) = (E_x(t), E_y(t))\\) has constant magnitude:",
+        "polarClosing": "The tip of \\(\\vec{E}\\) moves on a circle of radius \\(E_0\\), hence the name circular polarisation. The handedness (right/left) follows from the relative sign of the two oscillations."
+      }
+    },
     "formulaSections": {
       "mechanics": "Mechanics",
       "thermodynamics": "Thermodynamics",
