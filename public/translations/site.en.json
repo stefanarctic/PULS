@@ -714,6 +714,211 @@
         "gameHint2": "Press Enter to jump to the next event.",
         "iframeTitle": "Interactive earthquake scene — Unity embed",
         "modelDescription": "🌀🌏〰 Earthquake visualisation\n🔁 You can use the arrow keys to look around\n🔁 Press Enter to see the next view"
+      },
+      "mechanics": {
+        "seo": {
+          "title": "Mechanics resources | Oscillations and collisions - PULS",
+          "description": "Mechanics: harmonic motion on horizontal and vertical axes, collisions, inclined plane, projectile motion, elastic chains and air drag — theory, formulas and simulations.",
+          "keywords": "mechanics, oscillations, collisions, inclined plane, projectile, elastic chain, air resistance, PULS"
+        },
+        "pageTitle": "Mechanics — oscillatory motion and collisions",
+        "intro": {
+          "p1": "Mechanics studies how bodies move and the forces that cause motion. Here we focus on oscillatory motion and collisions — the foundation for understanding many more complex phenomena.",
+          "p2": "Oscillatory motion repeats periodically in time and appears in almost every physical system, from pendulums to atomic vibrations. Restoring forces tend to bring the system back toward equilibrium.",
+          "p3": "Collisions are processes in which two or more bodies interact through contact forces for a short time, exchanging momentum and kinetic energy according to conservation laws."
+        },
+        "oscOX": {
+          "title": "Harmonic oscillation along the x-axis",
+          "p1": "Motion along OX describes horizontal oscillation of a body under a restoring force proportional to displacement. It is central to understanding oscillator response in time.",
+          "p2": "When the body is displaced from equilibrium on OX, the restoring force F = −kx (Hooke's law) pulls it back. This yields simple harmonic motion with explicit equations for position, velocity and acceleration.",
+          "formulasHeading": "Equations for harmonic oscillation along OX:",
+          "variablesNote": "where: A is the amplitude, ω is the angular frequency, φ is the initial phase, k is the spring constant, m the mass of the body and t time.",
+          "alt": "Harmonic oscillation along OX — simulation screenshot"
+        },
+        "oscOY": {
+          "title": "Harmonic oscillation along the vertical axis (OY)",
+          "p1": "The vertical harmonic oscillator models a mass on a spring oscillating vertically — gravity and elastic force combine.",
+          "p2": "Equilibrium is no longer at x = 0; it shifts to where the spring force balances weight, depending on mass and spring constant.",
+          "formulasHeading": "Equations for harmonic oscillation along OY:",
+          "variablesNote": "where: y₀ is the equilibrium position, A the amplitude, ω the angular frequency, φ the initial phase, k the spring constant, m the mass and g gravitational acceleration.",
+          "alt": "Vertical harmonic oscillation — simulation screenshot"
+        },
+        "collision": {
+          "title": "Collisions",
+          "p1": "Collisions are central in mechanics: two or more bodies interact through contact forces for a short time. They are essential for understanding momentum and energy conservation.",
+          "p2": "During a collision internal interaction forces dominate external ones, so conservation principles apply. Main types: elastic (kinetic energy conserved) and inelastic (part of kinetic energy converted to other forms).",
+          "formulasHeading": "Collision formulas:",
+          "finalVelocitiesGroupHeading": "Final speeds (elastic collision):",
+          "variablesNote": "where: m₁, m₂ are masses, v₁ᵢ, v₂ᵢ initial speeds, v₁f, v₂f final speeds, e is the coefficient of restitution (e = 1 perfectly elastic, e = 0 perfectly inelastic).",
+          "alt": "Collision simulation screenshot"
+        },
+        "inclined": {
+          "title": "Inclined plane",
+          "p1": "The inclined plane is a classic setting for force analysis: weight splits into components that drive motion along the slope.",
+          "p2": "It links force, acceleration and potential energy and is the basis for many mechanics and engineering problems.",
+          "formulasHeading": "Formulas for the inclined plane:",
+          "variablesNote": "where: m is mass, g gravitational acceleration, α slope angle, μ friction coefficient, h vertical height of the plane, N the normal force.",
+          "alt": "Inclined plane simulation screenshot"
+        },
+        "projectile": {
+          "title": "Projectile motion",
+          "p1": "Projectile motion describes a body launched with initial speed in a uniform gravitational field (air resistance usually neglected). It combines uniform horizontal motion with uniformly accelerated vertical motion.",
+          "p2": "The path is parabolic for given launch speed and angle. The simulator lets you vary angle, speed and launch height to see range, maximum height and time of flight.",
+          "formulasHeading": "Projectile formulas (no air resistance):",
+          "motionEquationsHeading": "Equations of motion:",
+          "variablesNote": "where: v₀ is initial speed, α launch angle above the horizontal, g gravitational acceleration, y₀ initial height, T time of flight, R horizontal range.",
+          "alt": "Projectile motion simulation screenshot"
+        },
+        "elasticChains": {
+          "title": "Elastic chains",
+          "p1": "An elastic chain consists of masses connected by Hookean springs. It models wave propagation in a discrete medium and collective motion of coupled oscillators.",
+          "p2": "You can watch how a disturbance propagates along the chain, reflections at ends, and how energy is shared among masses — linking discrete models to continuous waves.",
+          "formulasHeading": "Basic formulas for an elastic chain:",
+          "variablesNote": "where: m is each mass, k the spring constant, and xᵢ the displacement of mass i from equilibrium. Neighbour differences produce forces that carry the disturbance along the chain.",
+          "alt": "Elastic chain simulation screenshot"
+        },
+        "airDrag": {
+          "title": "Air resistance (aerodynamic drag)",
+          "p1": "When a body moves through a fluid (air, water, …), the fluid exerts a drag force opposing motion. In the usual turbulent regime it grows roughly with the square of speed.",
+          "p2": "Shape, cross-sectional area and fluid density set how large the drag is — e.g. a flat sheet falls differently from the same paper crumpled into a ball. When drag balances weight, the body reaches terminal speed and stops accelerating.",
+          "p3": "Drag matters in aerospace, ballistics, sports and vehicle design. The Reynolds number tells whether flow is laminar or turbulent and strongly affects drag.",
+          "formulasHeading": "Air-resistance formulas:",
+          "variablesNote": "where: C_d is the drag coefficient (shape-dependent), ρ fluid density (≈ 1.225 kg/m³ for air at sea level), A cross-sectional area, v speed, m mass, g gravity, v_t terminal speed, Re Reynolds number, L a characteristic length and μ dynamic viscosity.",
+          "alt": "Air drag simulation screenshot"
+        },
+        "formulas": {
+          "oscOX": {
+            "motionLaw": "Equation of motion",
+            "velocityLaw": "Velocity",
+            "accelLaw": "Acceleration",
+            "angularSpeed": "Angular frequency",
+            "period": "Oscillation period"
+          },
+          "oscOY": {
+            "equilibriumPos": "Equilibrium position",
+            "motionLaw": "Equation of motion",
+            "velocityLaw": "Velocity",
+            "totalEnergy": "Total energy",
+            "naturalFreq": "Natural frequency"
+          },
+          "collision": {
+            "momentum": "Conservation of momentum",
+            "restitution": "Coefficient of restitution",
+            "v1f": "Final speed 1 (elastic)",
+            "v2f": "Final speed 2 (elastic)",
+            "kineticElastic": "Kinetic energy in elastic collisions",
+            "impulse": "Momentum / impulse"
+          },
+          "inclined": {
+            "parallel": "Parallel component of weight",
+            "perpendicular": "Perpendicular component of weight",
+            "friction": "Friction force",
+            "acceleration": "Acceleration on the incline",
+            "speedBase": "Speed at the bottom",
+            "timeDescent": "Time to descend"
+          },
+          "projectile": {
+            "decompose": "Resolving the initial velocity",
+            "motionOX": "Motion along OX",
+            "motionOY": "Motion along OY",
+            "timeOfFlight": "Time of flight",
+            "range": "Horizontal range"
+          },
+          "elasticChain": {
+            "hooke": "Spring force (Hooke's law)",
+            "chainEq": "Equation of motion for a mass in the chain"
+          },
+          "airDrag": {
+            "drag": "Drag force",
+            "motionWithDrag": "Equation of motion with drag",
+            "terminalV": "Terminal speed",
+            "vOfT": "Speed vs time",
+            "yOfT": "Position vs time",
+            "reynolds": "Reynolds number"
+          }
+        }
+      },
+      "electricity": {
+        "seo": {
+          "title": "Electricity resources | Circuits and AC - PULS",
+          "description": "Electricity: Ohm's and Kirchhoff's laws, circuit energy, alternating current — theory, formulas and interactive simulations.",
+          "keywords": "electricity, circuits, Ohm, Kirchhoff, Ohm's law, alternating current, PULS"
+        },
+        "pageTitle": "Electricity",
+        "intro": {
+          "p1": "Electricity is the branch of physics that studies electric charge, currents, electric and magnetic fields and their interactions. It underpins modern technology.",
+          "p2": "It includes circuit analysis, Ohm's and Kirchhoff's laws, electrical energy and power, and behaviour of resistors, capacitors and inductors.",
+          "p3": "Understanding electricity is essential for designing and analysing systems from simple circuits to large power networks."
+        },
+        "circuits": {
+          "title": "Electric circuits",
+          "p1": "Circuits are closed paths for current. Analysis rests on Ohm's law and Kirchhoff's rules.",
+          "p2": "A circuit may contain resistors, voltage sources, capacitors, inductors — each affecting overall behaviour.",
+          "formulasHeading": "Essential circuit formulas:",
+          "variablesNote": "where: U voltage, I current, R resistance, P power, W energy, q charge, t time, ρ resistivity, l conductor length, S cross-sectional area, n charge carrier density, v drift speed.",
+          "alt": "Electric circuit simulator screenshot"
+        },
+        "kirchhoff": {
+          "title": "Kirchhoff's laws",
+          "p1": "For multi-node, multi-loop circuits Ohm's law alone is not enough. Kirchhoff's current law (KCL) expresses charge conservation at each node; Kirchhoff's voltage law (KVL) expresses energy conservation around each closed loop.",
+          "p2": "The simulator below lets you build and analyse such circuits interactively.",
+          "formulasHeading": "Essential formulas (KCL and KVL):",
+          "variablesNote": "where: currents are signed following a chosen convention at each node; voltages are traversed consistently around each loop; R and I are branch resistances and currents; E are source emfs; V are nodal potentials.",
+          "alt": "Kirchhoff laws simulator screenshot"
+        },
+        "energy": {
+          "title": "Energy in circuits",
+          "p1": "Electrical energy is associated with charge motion in a circuit. It can be converted to heat, light, mechanical work, etc.",
+          "p2": "Energy balance is crucial for efficiency and consumption. Energy supplied by sources equals energy absorbed by components (conservation).",
+          "formulasHeading": "Energy formulas in circuits:",
+          "variablesNote": "where: W energy, P power, C capacitance, L inductance, Q charge, η efficiency.",
+          "alt": "Circuit energy simulator screenshot"
+        },
+        "ac": {
+          "title": "Alternating current (AC)",
+          "p1": "In AC, voltage and current vary in time (usually sinusoidally). In practice we use effective (RMS) values that give the same heating effect as DC.",
+          "formulasHeading": "Essential formulas:",
+          "variablesNote": "where: u(t), i(t) are instantaneous values; U_max, I_max amplitudes; f frequency; ω angular frequency; U_eff, I_eff RMS values; L inductance; C capacitance; φ phase shift; cosφ power factor.",
+          "alt": "Alternating current simulation screenshot"
+        },
+        "formulas": {
+          "circuits": {
+            "ohmsLaw": "Ohm's law",
+            "power": "Electrical power",
+            "energy": "Electrical energy",
+            "seriesReq": "Equivalent resistance in series",
+            "parallelReq": "Equivalent resistance in parallel",
+            "kcl": "Kirchhoff's first law (current law)",
+            "kvl": "Kirchhoff's second law (voltage law)",
+            "conductorR": "Resistance of a conductor",
+            "current": "Electric current",
+            "currentDensity": "Current density"
+          },
+          "energie": {
+            "resistorEnergy": "Energy dissipated in a resistor",
+            "instantPower": "Instantaneous power",
+            "capEnergy": "Energy stored in a capacitor",
+            "indEnergy": "Energy stored in an inductor",
+            "efficiency": "Circuit efficiency"
+          },
+          "kirchhoff": {
+            "kclNode": "First law (KCL) at a node",
+            "kclBalance": "KCL — current balance",
+            "kvlLoop": "Second law (KVL) on a closed loop",
+            "kvlBranches": "KVL — voltages on resistors and sources",
+            "nodeVoltage": "Voltage between two nodes"
+          },
+          "ac": {
+            "uSine": "Sinusoidal voltage",
+            "iSine": "Sinusoidal current (phase φ)",
+            "omegaRel": "Angular frequency relation",
+            "uRms": "RMS voltage",
+            "iRms": "RMS current",
+            "xl": "Inductive reactance",
+            "xc": "Capacitive reactance",
+            "pActive": "Active power in AC"
+          }
+        }
       }
     },
     "formulaSections": {
