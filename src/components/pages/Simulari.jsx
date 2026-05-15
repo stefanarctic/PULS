@@ -3,6 +3,7 @@ import { useNavigate, useSearchParams, useLocation } from "react-router-dom";
 import Layout from "../Layout";
 import { simulationsConfig } from "@/data/simulations";
 import SEO from "../SEO";
+import { useI18n } from "../../i18n/LanguageContext";
 
 // Funcție helper pentru normalizarea diacriticelor (elimină diacriticele)
 const normalizeDiacritics = (str) => {
@@ -35,6 +36,43 @@ const SimulariPage = () => {
   const navigate = useNavigate();
   const location = useLocation();
   const [searchParams, setSearchParams] = useSearchParams();
+  const { t, lang, localizedPath } = useI18n();
+
+  // Map Romanian category to the English label from the i18n catalog.
+  const localizedCategory = (cat) => {
+    if (lang !== 'en' || !cat) return cat;
+    const map = {
+      'Toate': t('simulationCategories.all', 'Toate'),
+      'Mecanică': t('simulationCategories.mechanics', 'Mecanică'),
+      'Pendule': t('simulationCategories.pendulums', 'Pendule'),
+      'Oscilații': t('simulationCategories.oscillations', 'Oscilații'),
+      'Unde': t('simulationCategories.waves', 'Unde'),
+      'Grafice': t('simulationCategories.graphs', 'Grafice'),
+      'Termodinamică': t('simulationCategories.thermodynamics', 'Termodinamică'),
+      'Electricitate': t('simulationCategories.electricity', 'Electricitate'),
+      'Electromagnetism': t('simulationCategories.electromagnetism', 'Electromagnetism'),
+      'Optică': t('simulationCategories.optics', 'Optică'),
+      'Lasere': t('simulationCategories.lasers', 'Lasere'),
+      'Astronomie': t('simulationCategories.astronomy', 'Astronomie'),
+      'Atomul': t('simulationCategories.atom', 'Atomul'),
+      'Fizică cuantică': t('simulationCategories.quantumPhysics', 'Fizică cuantică'),
+      'Fizică nucleară': t('simulationCategories.nuclearPhysics', 'Fizică nucleară'),
+      '4D': t('simulationCategories.fourD', '4D'),
+    };
+    return map[cat] || cat;
+  };
+
+  // Map a simulation entry to its localized title/description/caption using its route as the key.
+  const localizedSim = (sim) => {
+    if (lang !== 'en') return sim;
+    const key = sim.slug || (sim.route ? sim.route.split('/').filter(Boolean).pop() : sim.id);
+    return {
+      ...sim,
+      title: t(`simulations.${key}.title`, sim.title),
+      description: t(`simulations.${key}.description`, sim.description),
+      caption: t(`simulations.${key}.caption`, sim.caption),
+    };
+  };
   
   // Citește parametrii din URL la inițializare și decodează diacriticele
   const getSearchFromUrl = () => {
@@ -154,8 +192,8 @@ const SimulariPage = () => {
       />
       <div className="simulari-page">
         <main className="main-content">
-          <h1>Simulări</h1>
-          <p>Explorează concepte fizice prin intermediul simulărilor interactive.</p>
+          <h1>{t('simulationsPage.title', 'Simulări')}</h1>
+          <p>{t('simulationsPage.subtitle', 'Explorează concepte fizice prin intermediul simulărilor interactive.')}</p>
 
           {/* Search Bar */}
           <div className="simulations-search">
@@ -176,7 +214,7 @@ const SimulariPage = () => {
               <input
                 type="text"
                 className="search-input"
-                placeholder="Caută simulări după titlu, descriere sau categorie..."
+                placeholder={t('simulationsPage.searchPlaceholder', 'Caută simulări după titlu, descriere sau categorie...')}
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
               />
@@ -184,7 +222,7 @@ const SimulariPage = () => {
                 <button
                   className="search-clear"
                   onClick={() => setSearchQuery("")}
-                  aria-label="Șterge căutarea"
+                  aria-label={t('simulationsPage.clearSearchAria', 'Șterge căutarea')}
                 >
                   <svg 
                     xmlns="http://www.w3.org/2000/svg" 
@@ -211,7 +249,7 @@ const SimulariPage = () => {
                 className={`filter-btn ${selectedCategory === category ? "active" : ""}`}
                 onClick={() => setSelectedCategory(category)}
               >
-                {category}
+                {localizedCategory(category)}
                 {category !== "Toate" && (
                   <span className="filter-count">
                     ({simulationsConfig.filter(sim => sim.category === category).length})
@@ -224,59 +262,65 @@ const SimulariPage = () => {
           {/* Rezultate filtrate */}
           <div className="simulations-results">
             <p className="results-count">
-              {filteredSimulations.length} {filteredSimulations.length === 1 ? "simulare" : "simulări"}
-              {selectedCategory !== "Toate" && ` în categoria "${selectedCategory}"`}
-              {searchQuery && ` pentru "${searchQuery}"`}
+              {filteredSimulations.length === 1
+                ? t('simulationsPage.resultsSingle', '{count} simulare', { count: filteredSimulations.length })
+                : t('simulationsPage.resultsPlural', '{count} simulări', { count: filteredSimulations.length })
+              }
+              {selectedCategory !== "Toate" && ' '}{selectedCategory !== "Toate" && t('simulationsPage.inCategory', 'în categoria "{category}"', { category: localizedCategory(selectedCategory) })}
+              {searchQuery && ' '}{searchQuery && t('simulationsPage.forQuery', 'pentru "{query}"', { query: searchQuery })}
             </p>
             {filteredSimulations.length === 0 && (
               <p className="no-results">
-                Nu s-au găsit simulări care să corespundă criteriilor tale. Încearcă să modifici filtrele sau termenii de căutare.
+                {t('simulationsPage.noResults', 'Nu s-au găsit simulări care să corespundă criteriilor tale. Încearcă să modifici filtrele sau termenii de căutare.')}
               </p>
             )}
           </div>
 
           <div className="simulations-grid">
-            {filteredSimulations.map((simulation) => (
-              <div key={simulation.id} className="simulation-card" onClick={() => {
-                if (simulation.route) {
-                  navigate(simulation.route);
-                } else if (simulation.iframeSrc) {
-                  window.open(simulation.iframeSrc, "_blank");
-                }
-              }}>
-                <div className="card-content">
-                  <h2>{simulation.title}</h2>
-                  <p className="description">{simulation.description}</p>
-                  {simulation.category && (
-                    <span className="simulation-category">{simulation.category}</span>
-                  )}
-                </div>
-                <div className="image-container">
-                  <div className="card-image active">
-                    <img
-                      src={simulation.image}
-                      alt={simulation.caption}
-                    />
-                    <div className="caption">
-                      {simulation.caption}
+            {filteredSimulations.map((simulation) => {
+              const sim = localizedSim(simulation);
+              return (
+                <div key={sim.id} className="simulation-card" onClick={() => {
+                  if (sim.route) {
+                    navigate(localizedPath(sim.route));
+                  } else if (sim.iframeSrc) {
+                    window.open(sim.iframeSrc, "_blank");
+                  }
+                }}>
+                  <div className="card-content">
+                    <h2>{sim.title}</h2>
+                    <p className="description">{sim.description}</p>
+                    {sim.category && (
+                      <span className="simulation-category">{localizedCategory(sim.category)}</span>
+                    )}
+                  </div>
+                  <div className="image-container">
+                    <div className="card-image active">
+                      <img
+                        src={sim.image}
+                        alt={sim.caption}
+                      />
+                      <div className="caption">
+                        {sim.caption}
+                      </div>
                     </div>
                   </div>
+                  <button
+                    className="start-simulation-btn"
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      if (sim.route) {
+                        navigate(localizedPath(sim.route));
+                      } else if (sim.iframeSrc) {
+                        window.open(sim.iframeSrc, "_blank");
+                      }
+                    }}
+                  >
+                    {t('simulationsPage.startSimulation', 'Începe simularea')}
+                  </button>
                 </div>
-                <button
-                  className="start-simulation-btn"
-                  onClick={(e) => {
-                    e.stopPropagation();
-                    if (simulation.route) {
-                      navigate(simulation.route);
-                    } else if (simulation.iframeSrc) {
-                      window.open(simulation.iframeSrc, "_blank");
-                    }
-                  }}
-                >
-                  Începe simularea
-                </button>
-              </div>
-            ))}
+              );
+            })}
           </div>
         </main>
       </div>

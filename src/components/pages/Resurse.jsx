@@ -21,6 +21,7 @@ import { useNavigate, useSearchParams } from "react-router-dom";
 import SEO from "../SEO";
 import { useAssistant } from "@/hooks/useAssistant";
 import { tabelPeriodicFormulas } from "@/data/tabelPeriodicFormulas";
+import { useI18n } from "../../i18n/LanguageContext";
 
 
 const lessonCards = [
@@ -119,6 +120,36 @@ const lessonCards = [
 const ResursePage = () => {
   const navigate = useNavigate();
   const assistant = useAssistant();
+  const { t, lang, localizedPath } = useI18n();
+
+  // Localized lesson cards: maps the original Romanian title/description to its English counterpart from site.en.json.
+  const lessonI18nMap = {
+    'Pendule': 'pendulums',
+    'Unde': 'waves',
+    'Figuri Lissajous': 'lissajous',
+    'Seisme': 'earthquakes',
+    'Termodinamică': 'thermodynamics',
+    'Mecanică': 'mechanics',
+    'Electricitate': 'electricity',
+    'Electromagnetism': 'electromagnetism',
+    'Optică': 'optics',
+    'Lasere': 'lasers',
+    'Matematică': 'mathematics',
+    'Astronomie': 'astronomy',
+    'Fizică cuantică': 'quantumPhysics',
+    'Atomul': 'atom',
+    'Fizică nucleară': 'nuclearPhysics',
+  };
+  const translateLessonCard = (card) => {
+    if (lang !== 'en') return card;
+    const key = lessonI18nMap[card.title];
+    if (!key) return card;
+    return {
+      ...card,
+      title: t(`resourcesPage.lessons.${key}.title`, card.title),
+      description: t(`resourcesPage.lessons.${key}.description`, card.description),
+    };
+  };
 
   const [activeTab, setActiveTab] = useState("lectii");
   const [activeFormulaTab, setActiveFormulaTab] = useState("mecanica");
@@ -2427,10 +2458,10 @@ const ResursePage = () => {
 
           <Tabs defaultValue="lectii" value={activeTab} onValueChange={setActiveTab}>
             <TabsList>
-              <TabsTrigger key="lectii" value="lectii">Lecții</TabsTrigger>
-              <TabsTrigger key="formule" value="formule">Formule</TabsTrigger>
-              <TabsTrigger key="experimente" value="experimente">Experimente</TabsTrigger>
-              <TabsTrigger key="bibliografie" value="bibliografie">Bibliografie</TabsTrigger>
+              <TabsTrigger key="lectii" value="lectii">{t('resourcesPage.tabs.lessons', 'Lecții')}</TabsTrigger>
+              <TabsTrigger key="formule" value="formule">{t('resourcesPage.tabs.formulas', 'Formule')}</TabsTrigger>
+              <TabsTrigger key="experimente" value="experimente">{t('resourcesPage.tabs.experiments', 'Experimente')}</TabsTrigger>
+              <TabsTrigger key="bibliografie" value="bibliografie">{t('resourcesPage.tabs.bibliography', 'Bibliografie')}</TabsTrigger>
             </TabsList>
 
             <TabsContent key="formule" value="formule">
@@ -2927,34 +2958,38 @@ const ResursePage = () => {
               </div>
             </TabsContent>
 
-            {/* Lecții de fizică */}
+            {/* Physics lessons */}
             <TabsContent key="lectii" value="lectii">
               <div className="rounded-container">
-                <h2 className="resurse-section-title">Lecții de fizică</h2>
+                <h2 className="resurse-section-title">{t('resourcesPage.tabs.lessons', 'Lecții de fizică')}</h2>
                 <div className="formula-grid">
-                  {lessonCards.map(({ title, description, path }) => (
-                    <div
-                      key={path}
-                      className="formula-card resurse-lesson-card"
-                      role="button"
-                      tabIndex={0}
-                      aria-label={`Deschide lecția ${title}`}
-                      onClick={() => navigate(path)}
-                      onKeyDown={(event) => {
-                        if (event.key === "Enter" || event.key === " ") {
-                          event.preventDefault();
-                          navigate(path);
-                        }
-                      }}
-                    >
-                      <h3 className="text-xl font-semibold mb-2">{title}</h3>
-                      <p className="text-muted-foreground mb-2">{description}</p>
-                      <span className="resurse-link resurse-lesson-link">
-                        Citește lecția
-                        <span aria-hidden="true">→</span>
-                      </span>
-                    </div>
-                  ))}
+                  {lessonCards.map((card) => {
+                    const localized = translateLessonCard(card);
+                    const { title, description, path } = localized;
+                    return (
+                      <div
+                        key={path}
+                        className="formula-card resurse-lesson-card"
+                        role="button"
+                        tabIndex={0}
+                        aria-label={`${t('common.open', 'Deschide')} ${title}`}
+                        onClick={() => navigate(localizedPath(path))}
+                        onKeyDown={(event) => {
+                          if (event.key === "Enter" || event.key === " ") {
+                            event.preventDefault();
+                            navigate(localizedPath(path));
+                          }
+                        }}
+                      >
+                        <h3 className="text-xl font-semibold mb-2">{title}</h3>
+                        <p className="text-muted-foreground mb-2">{description}</p>
+                        <span className="resurse-link resurse-lesson-link">
+                          {t('common.readLesson', 'Citește lecția')}
+                          <span aria-hidden="true">→</span>
+                        </span>
+                      </div>
+                    );
+                  })}
                 </div>
               </div>
             </TabsContent>

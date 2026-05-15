@@ -1,5 +1,5 @@
 import { Book, FileQuestion, HelpCircle, Home, Layout, ListCheck, ListChecks, Settings, User, Search, ChevronDown, Menu, X, ChevronRight } from "lucide-react";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import DarkModeToggle from "./DarkModeToggle";
 import PulsLogoWhite from '/res/puls-logo-new2.png';
 import PulsLogoBlack from '/res/puls-logo-new3.png';
@@ -7,11 +7,13 @@ import useDarkMode from "../hooks/useDarkMode";
 import { auth, db } from "../lib/firebase";
 import { onAuthStateChanged } from "firebase/auth";
 import { doc, getDoc } from "firebase/firestore";
+import { LocalizedLink as Link, LanguageSwitcher, useI18n } from "../i18n/LanguageContext";
 
 import $ from 'jquery';
 import { useEffect, useRef, useState } from "react";
 
 const Navbar = () => {
+    const { t, localizedPath } = useI18n();
     const [pulsOpen, setPulsOpen] = useState(false);
     const [pulsForceOpen, setPulsForceOpen] = useState(false);
     const [bacOpen, setBacOpen] = useState(false);
@@ -239,8 +241,8 @@ const Navbar = () => {
     const handleSearchSubmit = (e) => {
         e.preventDefault();
         if (searchValue.trim()) {
-            // Navigate to a search results page with the query as a URL param
-            navigate(`/search?q=${encodeURIComponent(searchValue.trim())}`);
+            // Navigate to a search results page with the query as a URL param, respecting the current locale.
+            navigate(`${localizedPath('/search')}?q=${encodeURIComponent(searchValue.trim())}`);
             setSearchValue("");
         }
     };
@@ -383,7 +385,7 @@ const Navbar = () => {
                     <li>
                         <Link to="/" className="nav-link">
                             <Home className="nav-icon" />
-                            <span>Acasa</span>
+                            <span>{t('common.home', 'Acasa')}</span>
                         </Link>
                         <div
                             className={`nav-link dropdown-toggle navbar-dropdown-toggle${(pulsOpen || pulsForceOpen) ? ' active' : ''}`}
@@ -393,7 +395,7 @@ const Navbar = () => {
                             onClick={handleDropdownClick}
                         >
                             <span className="navbar-dropdown-span">
-                                <span>P.U.L.S.</span>
+                                <span>{t('navigation.pulsMenu.title', 'P.U.L.S.')}</span>
                                 <ChevronDown className="nav-icon navbar-dropdown-icon" />
                             </span>
                             {(pulsOpen || pulsForceOpen) && (
@@ -403,17 +405,17 @@ const Navbar = () => {
                                     onMouseEnter={handleDropdownMenuMouseEnter}
                                     onMouseLeave={handleDropdownMenuMouseLeave}
                                 >
-                                    <Link to="/resurse/pendule" className="dropdown-item navbar-dropdown-item" onClick={handleDropdownItemClick}>Pendule</Link>
-                                    <Link to="/resurse/unde" className="dropdown-item navbar-dropdown-item" onClick={handleDropdownItemClick}>Unde</Link>
-                                    <Link to="/resurse/lissajous" className="dropdown-item navbar-dropdown-item" onClick={handleDropdownItemClick}>Lissajous</Link>
-                                    <Link to="/resurse/seism" className="dropdown-item navbar-dropdown-item" onClick={handleDropdownItemClick}>Seisme</Link>
+                                    <Link to="/resurse/pendule" className="dropdown-item navbar-dropdown-item" onClick={handleDropdownItemClick}>{t('navigation.pulsMenu.pendulums', 'Pendule')}</Link>
+                                    <Link to="/resurse/unde" className="dropdown-item navbar-dropdown-item" onClick={handleDropdownItemClick}>{t('navigation.pulsMenu.waves', 'Unde')}</Link>
+                                    <Link to="/resurse/lissajous" className="dropdown-item navbar-dropdown-item" onClick={handleDropdownItemClick}>{t('navigation.pulsMenu.lissajous', 'Lissajous')}</Link>
+                                    <Link to="/resurse/seism" className="dropdown-item navbar-dropdown-item" onClick={handleDropdownItemClick}>{t('navigation.pulsMenu.earthquakes', 'Seisme')}</Link>
                                     <div 
                                         className="dropdown-item mai-multe-item"
                                         onMouseEnter={handleMaiMulteMouseEnter}
                                         onMouseLeave={handleMaiMulteMouseLeave}
                                     >
                                         <span style={{ display: 'flex', alignItems: 'center', gap: 4 }}>
-                                            Mai multe <ChevronRight className="nav-icon" style={{ marginLeft: 4, width: 16, height: 16 }} />
+                                            {t('navigation.pulsMenu.more', 'Mai multe')} <ChevronRight className="nav-icon" style={{ marginLeft: 4, width: 16, height: 16 }} />
                                         </span>
                                         {(submenuOpen || pulsForceOpen) && (
                                             <div 
@@ -422,13 +424,13 @@ const Navbar = () => {
                                                 onMouseEnter={handleSubmenuMouseEnter}
                                                 onMouseLeave={handleSubmenuMouseLeave}
                                             >
-                                                <Link to="/resurse/matematica" className="dropdown-item navbar-dropdown-item" onClick={handleDropdownItemClick}>Matematică</Link>
-                                                <Link to="/resurse/astronomie" className="dropdown-item navbar-dropdown-item" onClick={handleDropdownItemClick}>Astronomie</Link>
-                                                <Link to="/resurse/atomul" className="dropdown-item navbar-dropdown-item" onClick={handleDropdownItemClick}>Atomul</Link>
-                                                <Link to="/resurse/fizica-cuantica" className="dropdown-item navbar-dropdown-item" onClick={handleDropdownItemClick}>Fizică cuantică</Link>
-                                                <Link to="/resurse/fizica-nucleara" className="dropdown-item navbar-dropdown-item" onClick={handleDropdownItemClick}>Fizică nucleară</Link>
-                                                <Link to="/resurse/electromagnetism" className="dropdown-item navbar-dropdown-item" onClick={handleDropdownItemClick}>Electromagnetism</Link>
-                                                <Link to="/resurse/lasere" className="dropdown-item navbar-dropdown-item" onClick={handleDropdownItemClick}>Lasere</Link>
+                                                <Link to="/resurse/matematica" className="dropdown-item navbar-dropdown-item" onClick={handleDropdownItemClick}>{t('navigation.pulsMenu.mathematics', 'Matematică')}</Link>
+                                                <Link to="/resurse/astronomie" className="dropdown-item navbar-dropdown-item" onClick={handleDropdownItemClick}>{t('navigation.pulsMenu.astronomy', 'Astronomie')}</Link>
+                                                <Link to="/resurse/atomul" className="dropdown-item navbar-dropdown-item" onClick={handleDropdownItemClick}>{t('navigation.pulsMenu.atom', 'Atomul')}</Link>
+                                                <Link to="/resurse/fizica-cuantica" className="dropdown-item navbar-dropdown-item" onClick={handleDropdownItemClick}>{t('navigation.pulsMenu.quantumPhysics', 'Fizică cuantică')}</Link>
+                                                <Link to="/resurse/fizica-nucleara" className="dropdown-item navbar-dropdown-item" onClick={handleDropdownItemClick}>{t('navigation.pulsMenu.nuclearPhysics', 'Fizică nucleară')}</Link>
+                                                <Link to="/resurse/electromagnetism" className="dropdown-item navbar-dropdown-item" onClick={handleDropdownItemClick}>{t('navigation.pulsMenu.electromagnetism', 'Electromagnetism')}</Link>
+                                                <Link to="/resurse/lasere" className="dropdown-item navbar-dropdown-item" onClick={handleDropdownItemClick}>{t('navigation.pulsMenu.lasers', 'Lasere')}</Link>
                                             </div>
                                         )}
                                     </div>
@@ -443,7 +445,7 @@ const Navbar = () => {
                             onClick={handleBacDropdownClick}
                         >
                             <span className="navbar-dropdown-span">
-                                <span>BAC</span>
+                                <span>{t('navigation.bacMenu.title', 'BAC')}</span>
                                 <ChevronDown className="nav-icon navbar-dropdown-icon" />
                             </span>
                             {(bacOpen || bacForceOpen) && (
@@ -453,24 +455,24 @@ const Navbar = () => {
                                     onMouseEnter={handleBacDropdownMenuMouseEnter}
                                     onMouseLeave={handleBacDropdownMenuMouseLeave}
                                 >
-                                    <Link to="/resurse/mecanica" className="dropdown-item navbar-dropdown-item" onClick={handleBacDropdownItemClick}>Mecanică</Link>
-                                    <Link to="/resurse/termodinamica" className="dropdown-item navbar-dropdown-item" onClick={handleBacDropdownItemClick}>Termodinamică</Link>
-                                    <Link to="/resurse/electricitate" className="dropdown-item navbar-dropdown-item" onClick={handleBacDropdownItemClick}>Electricitate</Link>
-                                    <Link to="/resurse/optica" className="dropdown-item navbar-dropdown-item" onClick={handleBacDropdownItemClick}>Optică</Link>
+                                    <Link to="/resurse/mecanica" className="dropdown-item navbar-dropdown-item" onClick={handleBacDropdownItemClick}>{t('navigation.bacMenu.mechanics', 'Mecanică')}</Link>
+                                    <Link to="/resurse/termodinamica" className="dropdown-item navbar-dropdown-item" onClick={handleBacDropdownItemClick}>{t('navigation.bacMenu.thermodynamics', 'Termodinamică')}</Link>
+                                    <Link to="/resurse/electricitate" className="dropdown-item navbar-dropdown-item" onClick={handleBacDropdownItemClick}>{t('navigation.bacMenu.electricity', 'Electricitate')}</Link>
+                                    <Link to="/resurse/optica" className="dropdown-item navbar-dropdown-item" onClick={handleBacDropdownItemClick}>{t('navigation.bacMenu.optics', 'Optică')}</Link>
                                 </div>
                             )}
                         </div>
                         <Link to="/probleme" className="nav-link">
                             <ListCheck className="nav-icon" />
-                            <span>Probleme</span>
+                            <span>{t('common.problems', 'Probleme')}</span>
                         </Link>
                         <Link to="/simulari" className="nav-link">
                             <Settings className="nav-icon" />
-                            <span>Simulari</span>
+                            <span>{t('common.simulations', 'Simulari')}</span>
                         </Link>
                         <Link to="/resurse" className="nav-link">
                             <Book className="nav-icon" />
-                            <span>Resurse</span>
+                            <span>{t('common.resources', 'Resurse')}</span>
                         </Link>
                         <Link to="/profil" className="nav-link">
                             {user && profilePic && profilePic.trim() !== '' && !profilePicError ? (
@@ -486,8 +488,11 @@ const Navbar = () => {
                             ) : (
                                 <User className="nav-icon" />
                             )}
-                            <span>{alias || 'Profil'}</span>
+                            <span>{alias || t('common.profile', 'Profil')}</span>
                         </Link>
+                        <div className="nav-link language-switcher-link">
+                            <LanguageSwitcher />
+                        </div>
                         <div className="nav-link dark-mode-toggle-link">
                             <DarkModeToggle />
                         </div>
@@ -512,7 +517,7 @@ const Navbar = () => {
                         <button
                             className="mobile-menu-close"
                             onClick={() => setMobileMenuOpen(false)}
-                            aria-label="Închide meniul"
+                            aria-label={t('navigation.mobile.closeMenu', 'Închide meniul')}
                             style={{ position: 'absolute', top: 20, right: 20, background: 'none', border: 'none', cursor: 'pointer', zIndex: 1100 }}
                         >
                             <X size={32} color={darkModeOn ? '#fff' : '#222'} />
@@ -520,83 +525,53 @@ const Navbar = () => {
                         <div className="nav-list">
                             <Link to="/" className="nav-link" onClick={handleMobileNavClick}>
                                 <Home className="nav-icon" />
-                                <span>Acasa</span>
+                                <span>{t('common.home', 'Acasa')}</span>
                             </Link>
 
                             <div className="mobile-dropdown">
                                 <div className="mobile-dropdown-header" onClick={() => setMobileDropdownOpen(v => !v)}>
-                                    <span>P.U.L.S.</span>
+                                    <span>{t('navigation.pulsMenu.title', 'P.U.L.S.')}</span>
                                     <ChevronDown className="nav-icon" style={{ transform: mobileDropdownOpen ? 'rotate(180deg)' : 'none', transition: 'transform 0.3s' }} />
                                 </div>
                                 <div className={`mobile-dropdown-content${mobileDropdownOpen ? ' open' : ''}`}>
-                                    <Link to="/resurse/pendule" className="nav-link" onClick={handleMobileNavClick}>
-                                        Pendule
-                                    </Link>
-                                    <Link to="/resurse/unde" className="nav-link" onClick={handleMobileNavClick}>
-                                        Unde
-                                    </Link>
-                                    <Link to="/resurse/lissajous" className="nav-link" onClick={handleMobileNavClick}>
-                                        Lissajous
-                                    </Link>
-                                    <Link to="/resurse/seism" className="nav-link" onClick={handleMobileNavClick}>
-                                        Seisme
-                                    </Link>
-                                    <Link to="/resurse/matematica" className="nav-link" onClick={handleMobileNavClick}>
-                                        Matematică
-                                    </Link>
-                                    <Link to="/resurse/astronomie" className="nav-link" onClick={handleMobileNavClick}>
-                                        Astronomie
-                                    </Link>
-                                    <Link to="/resurse/atomul" className="nav-link" onClick={handleMobileNavClick}>
-                                        Atomul
-                                    </Link>
-                                    <Link to="/resurse/fizica-cuantica" className="nav-link" onClick={handleMobileNavClick}>
-                                        Fizică cuantică
-                                    </Link>
-                                    <Link to="/resurse/fizica-nucleara" className="nav-link" onClick={handleMobileNavClick}>
-                                        Fizică nucleară
-                                    </Link>
-                                    <Link to="/resurse/electromagnetism" className="nav-link" onClick={handleMobileNavClick}>
-                                        Electromagnetism
-                                    </Link>
-                                    <Link to="/resurse/lasere" className="nav-link" onClick={handleMobileNavClick}>
-                                        Lasere
-                                    </Link>
+                                    <Link to="/resurse/pendule" className="nav-link" onClick={handleMobileNavClick}>{t('navigation.pulsMenu.pendulums', 'Pendule')}</Link>
+                                    <Link to="/resurse/unde" className="nav-link" onClick={handleMobileNavClick}>{t('navigation.pulsMenu.waves', 'Unde')}</Link>
+                                    <Link to="/resurse/lissajous" className="nav-link" onClick={handleMobileNavClick}>{t('navigation.pulsMenu.lissajous', 'Lissajous')}</Link>
+                                    <Link to="/resurse/seism" className="nav-link" onClick={handleMobileNavClick}>{t('navigation.pulsMenu.earthquakes', 'Seisme')}</Link>
+                                    <Link to="/resurse/matematica" className="nav-link" onClick={handleMobileNavClick}>{t('navigation.pulsMenu.mathematics', 'Matematică')}</Link>
+                                    <Link to="/resurse/astronomie" className="nav-link" onClick={handleMobileNavClick}>{t('navigation.pulsMenu.astronomy', 'Astronomie')}</Link>
+                                    <Link to="/resurse/atomul" className="nav-link" onClick={handleMobileNavClick}>{t('navigation.pulsMenu.atom', 'Atomul')}</Link>
+                                    <Link to="/resurse/fizica-cuantica" className="nav-link" onClick={handleMobileNavClick}>{t('navigation.pulsMenu.quantumPhysics', 'Fizică cuantică')}</Link>
+                                    <Link to="/resurse/fizica-nucleara" className="nav-link" onClick={handleMobileNavClick}>{t('navigation.pulsMenu.nuclearPhysics', 'Fizică nucleară')}</Link>
+                                    <Link to="/resurse/electromagnetism" className="nav-link" onClick={handleMobileNavClick}>{t('navigation.pulsMenu.electromagnetism', 'Electromagnetism')}</Link>
+                                    <Link to="/resurse/lasere" className="nav-link" onClick={handleMobileNavClick}>{t('navigation.pulsMenu.lasers', 'Lasere')}</Link>
                                 </div>
                             </div>
 
                             <div className="mobile-dropdown">
                                 <div className="mobile-dropdown-header" onClick={() => setMobileBacDropdownOpen(v => !v)}>
-                                    <span>BAC</span>
+                                    <span>{t('navigation.bacMenu.title', 'BAC')}</span>
                                     <ChevronDown className="nav-icon" style={{ transform: mobileBacDropdownOpen ? 'rotate(180deg)' : 'none', transition: 'transform 0.3s' }} />
                                 </div>
                                 <div className={`mobile-dropdown-content${mobileBacDropdownOpen ? ' open' : ''}`}>
-                                    <Link to="/resurse/mecanica" className="nav-link" onClick={handleMobileNavClick}>
-                                        Mecanică
-                                    </Link>
-                                    <Link to="/resurse/termodinamica" className="nav-link" onClick={handleMobileNavClick}>
-                                        Termodinamică
-                                    </Link>
-                                    <Link to="/resurse/electricitate" className="nav-link" onClick={handleMobileNavClick}>
-                                        Electricitate
-                                    </Link>
-                                    <Link to="/resurse/optica" className="nav-link" onClick={handleMobileNavClick}>
-                                        Optică
-                                    </Link>
+                                    <Link to="/resurse/mecanica" className="nav-link" onClick={handleMobileNavClick}>{t('navigation.bacMenu.mechanics', 'Mecanică')}</Link>
+                                    <Link to="/resurse/termodinamica" className="nav-link" onClick={handleMobileNavClick}>{t('navigation.bacMenu.thermodynamics', 'Termodinamică')}</Link>
+                                    <Link to="/resurse/electricitate" className="nav-link" onClick={handleMobileNavClick}>{t('navigation.bacMenu.electricity', 'Electricitate')}</Link>
+                                    <Link to="/resurse/optica" className="nav-link" onClick={handleMobileNavClick}>{t('navigation.bacMenu.optics', 'Optică')}</Link>
                                 </div>
                             </div>
 
                             <Link to="/probleme" className="nav-link" onClick={handleMobileNavClick}>
                                 <ListCheck className="nav-icon" />
-                                <span>Probleme</span>
+                                <span>{t('common.problems', 'Probleme')}</span>
                             </Link>
                             <Link to="/simulari" className="nav-link" onClick={handleMobileNavClick}>
                                 <Settings className="nav-icon" />
-                                <span>Simulari</span>
+                                <span>{t('common.simulations', 'Simulari')}</span>
                             </Link>
                             <Link to="/resurse" className="nav-link" onClick={handleMobileNavClick}>
                                 <Book className="nav-icon" />
-                                <span>Resurse</span>
+                                <span>{t('common.resources', 'Resurse')}</span>
                             </Link>
                             <Link to="/profil" className="nav-link" onClick={handleMobileNavClick}>
                                 {user && profilePic && profilePic.trim() !== '' && !profilePicError ? (
@@ -612,8 +587,11 @@ const Navbar = () => {
                                 ) : (
                                     <User className="nav-icon" />
                                 )}
-                                <span>{alias || 'Profil'}</span>
+                                <span>{alias || t('common.profile', 'Profil')}</span>
                             </Link>
+                            <div className="nav-link language-switcher-link">
+                                <LanguageSwitcher />
+                            </div>
                             <div className="nav-link dark-mode-toggle-link">
                                 <DarkModeToggle />
                             </div>

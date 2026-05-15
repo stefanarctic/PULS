@@ -9,6 +9,8 @@ import { useAchievements } from "../../hooks/useAchievements";
 import SEO from "../SEO";
 import { parseHomeworkParams, recordAssignmentItemProgress } from "../../lib/assignmentProgress";
 import { Timestamp } from "firebase/firestore";
+import { useI18n } from "../../i18n/LanguageContext";
+import { observeAndTranslate } from "../../i18n/domTranslator";
 
 const SimulationPage = ({
   id,
@@ -22,12 +24,18 @@ const SimulationPage = ({
   const iframeRef = useRef(null);
   const frameRef = useRef(null);
   const previewHeightBeforeFullscreenRef = useRef("");
+  const iframeTranslateCleanupRef = useRef(null);
   const [isFullscreen, setIsFullscreen] = useState(false);
   const [user, setUser] = useState(null);
   const { checkAchievements } = useAchievements();
   const navigate = useNavigate();
   const [searchParams] = useSearchParams();
+  const { t, lang, localizedPath } = useI18n();
   const previewHeight = maxHeight || "90vh";
+  const translationKey = slug || id;
+  const localizedTitle = t(`simulations.${translationKey}.title`, title);
+  const localizedDescription = t(`simulations.${translationKey}.description`, description);
+  const localizedEyebrow = t(`simulations.${translationKey}.eyebrow`, eyebrow);
 
   // Monitorizează starea de autentificare
   useEffect(() => {
@@ -40,7 +48,7 @@ const SimulationPage = ({
 
   // Salvează simularea accesată în Firebase
   useEffect(() => {
-    if (!user?.uid || !id || !title) return;
+    if (!user?.uid || !id || !localizedTitle) return;
 
     const saveSimulationVisited = async () => {
       try {
@@ -54,12 +62,12 @@ const SimulationPage = ({
 
         // Verifică dacă simularea a fost deja accesată
         const existingIndex = currentSimulationsVisited.findIndex(
-          s => s.id === id || (s.title === title && s.id === id)
+          s => s.id === id || (s.title === localizedTitle && s.id === id)
         );
 
         const simulationVisited = {
           id: id,
-          title: title,
+          title: localizedTitle,
           date: new Date().toISOString()
         };
 
@@ -108,16 +116,37 @@ const SimulationPage = ({
     };
 
     saveSimulationVisited();
-  }, [user?.uid, id, title, checkAchievements, searchParams.toString(), slug]);
+  }, [user?.uid, id, localizedTitle, checkAchievements, searchParams, slug]);
 
   const handleBack = () => {
     // Dacă există istoric de navigare, mergem înapoi, altfel revenim la lista de simulări
     if (window.history.length > 2) {
       navigate(-1);
     } else {
-      navigate("/simulari");
+      navigate(localizedPath("/simulari"));
     }
   };
+
+  const handleIframeLoad = () => {
+    iframeTranslateCleanupRef.current?.();
+    iframeTranslateCleanupRef.current = null;
+
+    if (lang !== "en") return;
+    const iframe = iframeRef.current;
+    if (!iframe) return;
+
+    try {
+      const frameDocument = iframe.contentDocument || iframe.contentWindow?.document;
+      if (frameDocument?.body) {
+        iframeTranslateCleanupRef.current = observeAndTranslate(frameDocument);
+      }
+    } catch (error) {
+      // Cross-origin simulations cannot be translated from here.
+      console.warn("[i18n] Could not translate simulation iframe:", error);
+    }
+  };
+
+  useEffect(() => () => iframeTranslateCleanupRef.current?.(), []);
 
   const handleToggleFullscreen = () => {
     const iframe = iframeRef.current;
@@ -188,9 +217,9 @@ const SimulationPage = ({
   return (
     <Layout>
       <SEO
-        title={`${title} | Simulare Interactivă Fizică - PULS`}
-        description={description || `Simulare interactivă pentru ${title}. Explorează concepte fizice prin simulări educaționale interactive.`}
-        keywords={`${title}, simulare fizică, simulare interactivă, fizică educațională, ${title.toLowerCase()}`}
+        title={`${localizedTitle} | ${t('simulationPage.seoTitleSuffix', 'Simulare Interactivă Fizică - PULS')}`}
+        description={localizedDescription || t('simulationPage.seoDescription', 'Simulare interactivă pentru {title}. Explorează concepte fizice prin simulări educaționale interactive.', { title: localizedTitle })}
+        keywords={`${localizedTitle}, simulare fizică, simulare interactivă, fizică educațională, ${localizedTitle.toLowerCase()}`}
         image="/res/icons/New-logo.png"
         type="article"
       />
@@ -204,29 +233,30 @@ const SimulationPage = ({
             <span className="icon" aria-hidden="true">
               ←
             </span>
-            <span className="label">Înapoi la simulări</span>
+            <span className="label">{t('simulationPage.backToList', 'Înapoi la simulări')}</span>
           </button>
           <header className="simulation-header">
-            {eyebrow && <p className="eyebrow">{eyebrow}</p>}
-            <h1>{title}</h1>
-            {description && <p>{description}</p>}
+            {localizedEyebrow && <p className="eyebrow">{localizedEyebrow}</p>}
+            <h1>{localizedTitle}</h1>
+            {localizedDescription && <p>{localizedDescription}</p>}
           </header>
 
           <div className="simulation-frame" ref={frameRef}>
             <iframe
               ref={iframeRef}
               src={iframeSrc}
-              title={title}
+              title={localizedTitle}
               loading="lazy"
               allow="fullscreen"
               scrolling="auto"
               style={{ height: previewHeight }}
+              onLoad={handleIframeLoad}
             />
             <button
               type="button"
               className="simulation-fullscreen-btn"
               onClick={handleToggleFullscreen}
-              aria-label="Comută modul fullscreen"
+              aria-label={t('simulationPage.toggleFullscreen', 'Comută modul fullscreen')}
               data-active={isFullscreen}
             >
               <svg viewBox="0 0 60 60" role="img" aria-hidden="true">

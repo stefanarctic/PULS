@@ -5,7 +5,7 @@ import Home from "@/components/Home";
 import OurWork from "@/components/OurWork";
 import Services from "@/components/Services";
 import Testimonials from "@/components/Testimonials";
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Routes, Outlet } from 'react-router-dom';
 import SearchResults from "./components/pages/searchresults";
 import AssistantEntryPage from "./components/pages/AssistantEntryPage";
 import './scss/style.scss';
@@ -52,6 +52,66 @@ import { useDispatch, useSelector } from 'react-redux';
 import { fetchProblems } from './features/problems/problemsSlice';
 import AssistantAvatar from "./components/AssistantAvatar";
 import { simulationsConfig } from "@/data/simulations";
+import { LanguageProvider } from "./i18n/LanguageContext";
+
+// Routes shared by both Romanian (default) and English (/en/...) trees.
+// Defined as a function so each <Route path="/"> and <Route path="/en"> gets its own JSX nodes.
+const renderLocalizedRoutes = () => (
+  <>
+    <Route index element={<Index />} />
+    <Route path="landing-custom" element={<Index2 />} />
+    <Route path="probleme" element={<Probleme />} />
+    <Route path="probleme/bac" element={<ProblemeBac />} />
+    <Route path="probleme/grile" element={<ProblemeGrile />} />
+    <Route path="probleme/grile/:id" element={<GrileIndividuala />} />
+    <Route path="probleme/:id" element={<ProblemaIndividuala />} />
+    <Route path="simulari" element={<Simulari />} />
+    <Route path="resurse" element={<Resurse />} />
+    <Route path="resurse/pendule" element={<Pendule />} />
+    <Route path="resurse/unde" element={<Unde />} />
+    <Route path="resurse/lissajous" element={<Lissajous />} />
+    <Route path="resurse/seism" element={<Seism />} />
+    <Route path="resurse/termodinamica" element={<TermodinamicaPage />} />
+    <Route path="resurse/mecanica" element={<MecanicaPage />} />
+    <Route path="resurse/electricitate" element={<ElectricitatePage />} />
+    <Route path="resurse/electromagnetism" element={<ElectromagnetismPage />} />
+    <Route path="resurse/optica" element={<OpticaPage />} />
+    <Route path="resurse/matematica" element={<MatematicaPage />} />
+    <Route path="resurse/astronomie" element={<AstronomiePage />} />
+    <Route path="resurse/atomul" element={<AtomulPage />} />
+    <Route path="resurse/fizica-cuantica" element={<FizicaCuanticaPage />} />
+    <Route path="resurse/fizica-nucleara" element={<FizicaNuclearaPage />} />
+    <Route path="resurse/lasere" element={<LaserePage />} />
+    {simulationsConfig.map((simulation) => {
+      // simulation.route starts with a leading slash; strip it for nested usage.
+      const relativePath = simulation.route?.startsWith('/')
+        ? simulation.route.slice(1)
+        : simulation.route;
+      return (
+        <Route
+          key={simulation.route}
+          path={relativePath}
+          element={<SimulationPage {...simulation} />}
+        />
+      );
+    })}
+    <Route path="about-us" element={<About />} />
+    <Route path="search" element={<SearchResults />} />
+    <Route path="asistent" element={<AssistantEntryPage />} />
+    <Route path="comunitate" element={<Comunitate />} />
+    <Route path="profil/:alias" element={<PublicProfile />} />
+    <Route path="profil" element={<Profile />} />
+    <Route path="invite-teacher" element={<InviteTeacherPage />} />
+    <Route path="admin" element={<AdminDashboard />} />
+    <Route path="profesor" element={<TeacherDashboard />} />
+    <Route path="profesor/clasa/:classId" element={<TeacherClassPage />} />
+    <Route path="clasa/intra" element={<ClassJoinPage />} />
+    <Route path="clasa" element={<StudentClassesPage />} />
+    <Route path="clasa/:classId" element={<StudentClassPage />} />
+  </>
+);
+
+const LocaleShell = () => <Outlet />;
 
 const App = () => {
   const dispatch = useDispatch();
@@ -81,19 +141,12 @@ const App = () => {
       if (entry.isIntersecting) {
         entry.target.classList.add('show')
       }
-      // else {
-      //     entry.target.classList.remove('show')
-      // }
     })
   })
 
-
   function getRootElementFontSize() {
-    // Returns a number
     return parseFloat(
-      // of the computed font-size, so in px
       getComputedStyle(
-        // for the root <html> element
         document.documentElement
       ).fontSize
     );
@@ -108,67 +161,22 @@ const App = () => {
     console.log(window.innerWidth, window.innerHeight);
   }, []);
 
-  // useEffect(() => {
-  //   console.log(`Width: ${window.innerWidth}, Height: ${window.innerHeight}`)
-  // });
-
-  // setTimeout(() => {
-  //   // convertRem(2); // 32 (px)
-  //   console.log(convertRem(3.3));
-  // }, 1000);
-
   return (
     <Router>
-      <div className="App">
-        <Routes>
-          <Route path="/" element={<Index />} />
-          <Route path="/landing-custom" element={<Index2 />} />
-          <Route path="/probleme" element={<Probleme />} />
-          <Route path="/probleme/bac" element={<ProblemeBac />} />
-          <Route path="/probleme/grile" element={<ProblemeGrile />} />
-          <Route path="/probleme/grile/:id" element={<GrileIndividuala />} />
-          <Route path="/probleme/:id" element={<ProblemaIndividuala />} />
-          <Route path="/simulari" element={<Simulari />} />
-          <Route path="/resurse" element={<Resurse />} />
-          <Route path="/resurse/pendule" element={<Pendule />} />
-          <Route path="/resurse/unde" element={<Unde />} />
-          <Route path="/resurse/lissajous" element={<Lissajous />} />
-          <Route path="/resurse/seism" element={<Seism />} />
-          <Route path='/resurse/termodinamica' element={<TermodinamicaPage />} />
-          <Route path='/resurse/mecanica' element={<MecanicaPage />} />
-          <Route path='/resurse/electricitate' element={<ElectricitatePage />} />
-          <Route path='/resurse/electromagnetism' element={<ElectromagnetismPage />} />
-          <Route path='/resurse/optica' element={<OpticaPage />} />
-          <Route path='/resurse/matematica' element={<MatematicaPage />} />
-          <Route path='/resurse/astronomie' element={<AstronomiePage />} />
-          <Route path='/resurse/atomul' element={<AtomulPage />} />
-          <Route path='/resurse/fizica-cuantica' element={<FizicaCuanticaPage />} />
-          <Route path='/resurse/fizica-nucleara' element={<FizicaNuclearaPage />} />
-          <Route path='/resurse/lasere' element={<LaserePage />} />
-          {simulationsConfig.map((simulation) => (
-            <Route
-              key={simulation.route}
-              path={simulation.route}
-              element={<SimulationPage {...simulation} />}
-            />
-          ))}
-          <Route path="/about-us" element={<About />} />
-          <Route path="/search" element={<SearchResults />} />
-          <Route path="/asistent" element={<AssistantEntryPage />} />
-          <Route path="/comunitate" element={<Comunitate />} />
-          <Route path="/profil/:alias" element={<PublicProfile />} />
-          <Route path="/profil" element={<Profile />} />
-          <Route path="/invite-teacher" element={<InviteTeacherPage />} />
-          <Route path="/admin" element={<AdminDashboard />} />
-          <Route path="/profesor" element={<TeacherDashboard />} />
-          <Route path="/profesor/clasa/:classId" element={<TeacherClassPage />} />
-          <Route path="/clasa/intra" element={<ClassJoinPage />} />
-          <Route path="/clasa" element={<StudentClassesPage />} />
-          <Route path="/clasa/:classId" element={<StudentClassPage />} />
-        </Routes>
-        {/* În interiorul .App ca să se poată suprapune corect peste avatar (z-index) cu linkuri din pagini */}
-        <AssistantAvatar />
-      </div>
+      <LanguageProvider>
+        <div className="App">
+          <Routes>
+            <Route path="/en" element={<LocaleShell />}>
+              {renderLocalizedRoutes()}
+            </Route>
+            <Route path="/" element={<LocaleShell />}>
+              {renderLocalizedRoutes()}
+            </Route>
+          </Routes>
+          {/* În interiorul .App ca să se poată suprapune corect peste avatar (z-index) cu linkuri din pagini */}
+          <AssistantAvatar />
+        </div>
+      </LanguageProvider>
     </Router>
   )
 }

@@ -1,0 +1,1322 @@
+{
+  "meta": {
+    "locale": "en",
+    "sourceLocale": "ro",
+    "version": 2,
+    "notes": "Semantic English translation catalog for the PULS site. Keys are intentionally stable and should be used instead of DOM-selector based translations. Physics terminology is matched to standard usage (waves, oscillations, seismology, etc.), not literal word-for-word translation."
+  },
+  "common": {
+    "home": "Home",
+    "problems": "Problems",
+    "bacProblems": "Baccalaureate Problems",
+    "quizzes": "Quizzes",
+    "simulations": "Simulations",
+    "resources": "Resources",
+    "profile": "Profile",
+    "aiAssistant": "AI Assistant",
+    "aboutUs": "About Us",
+    "contact": "Contact",
+    "support": "Support",
+    "documentation": "Documentation",
+    "faq": "FAQ",
+    "terms": "Terms and conditions",
+    "privacy": "Privacy policy",
+    "all": "All",
+    "none": "None",
+    "yes": "Yes",
+    "no": "No",
+    "ok": "OK",
+    "back": "Back",
+    "close": "Close",
+    "open": "Open",
+    "start": "Start",
+    "stop": "Stop",
+    "reset": "Reset",
+    "pause": "Pause",
+    "resume": "Resume",
+    "play": "Play",
+    "explore": "Explore",
+    "readMore": "Read more",
+    "seeMore": "See more",
+    "readLesson": "Read lesson",
+    "search": "Search",
+    "clearSearch": "Clear search",
+    "filter": "Filter",
+    "filters": "Filters",
+    "sort": "Sort",
+    "cancel": "Cancel",
+    "confirm": "Confirm",
+    "delete": "Delete",
+    "edit": "Edit",
+    "save": "Save",
+    "saving": "Saving...",
+    "submit": "Submit",
+    "send": "Send",
+    "sending": "Sending...",
+    "share": "Share",
+    "copy": "Copy",
+    "copied": "Copied",
+    "download": "Download",
+    "upload": "Upload",
+    "loading": "Loading...",
+    "noResults": "No results found",
+    "previous": "Previous",
+    "next": "Next",
+    "page": "Page",
+    "of": "of",
+    "rightsReserved": "All rights reserved.",
+    "physicsTopic": "Physics topic",
+    "minutes": "min",
+    "seconds": "s",
+    "lightTheme": "Light theme",
+    "darkTheme": "Dark theme",
+    "toggleTheme": "Toggle theme",
+    "menu": "Menu",
+    "closeMenu": "Close menu",
+    "loginRequired": "Please sign in to continue.",
+    "comingSoon": "Coming soon"
+  },
+  "navigation": {
+    "logoAlt": "P.U.L.S",
+    "searchPlaceholder": "Search the site...",
+    "pulsMenu": {
+      "title": "P.U.L.S.",
+      "pendulums": "Pendulums",
+      "waves": "Waves",
+      "lissajous": "Lissajous",
+      "earthquakes": "Earthquakes",
+      "more": "More",
+      "mathematics": "Mathematics",
+      "astronomy": "Astronomy",
+      "atom": "The Atom",
+      "quantumPhysics": "Quantum Physics",
+      "nuclearPhysics": "Nuclear Physics",
+      "electromagnetism": "Electromagnetism",
+      "lasers": "Lasers"
+    },
+    "bacMenu": {
+      "title": "BAC",
+      "mechanics": "Mechanics",
+      "thermodynamics": "Thermodynamics",
+      "electricity": "Electricity",
+      "optics": "Optics"
+    },
+    "mobile": {
+      "closeMenu": "Close menu",
+      "openMenu": "Open menu"
+    }
+  },
+  "footer": {
+    "tagline": "Educational physics platform with interactive simulations, problems, quizzes, and theory resources.",
+    "platform": "Platform",
+    "quickResources": "Quick resources",
+    "topics": {
+      "pendulums": "Pendulums",
+      "waves": "Waves",
+      "lissajous": "Lissajous",
+      "earthquakes": "Earthquakes"
+    },
+    "copyright": "PULS. All rights reserved.",
+    "year": "2025"
+  },
+  "home": {
+    "hero": {
+      "title": "Discover physics through exercises and interactive simulations",
+      "subtitle": "PULS is an educational platform for studying pendulums, waves, Lissajous figures, and earthquakes through interactive problems and simulations.",
+      "primaryCta": "Explore problems",
+      "secondaryCta": "Try simulations",
+      "statsHeading": "Progress and statistics",
+      "stats": {
+        "interactiveSimulations": "Interactive simulations",
+        "physicsProblems": "Physics problems",
+        "educationalResources": "Educational resources",
+        "progressTracking": "Progress and statistics"
+      }
+    },
+    "features": {
+      "title": "What does PULS offer?",
+      "interactiveProblems": {
+        "title": "Interactive problems",
+        "description": "Physics exercises organised by difficulty, grade level, and topic so you can test your understanding."
+      },
+      "visualSimulations": {
+        "title": "Visual simulations",
+        "description": "Explore complex physics concepts such as the simple pendulum, sinusoidal waves, and Lissajous figures through visual experiments."
+      },
+      "teachingResources": {
+        "title": "Learning resources",
+        "description": "Theory lessons and educational materials that explain the studied physics concepts in detail."
+      },
+      "trackedProgress": {
+        "title": "Tracked progress",
+        "description": "Follow your evolution and view personalised statistics as you solve problems."
+      }
+    },
+    "simulationHighlights": {
+      "title": "Explore our simulations",
+      "pendulum": {
+        "title": "Pendulum",
+        "description": "Oscillatory motion, forces, kinetic and potential energy, conservation of energy"
+      },
+      "waves": {
+        "title": "Waves",
+        "description": "Mechanical waves, electromagnetic waves, interference, diffraction, and propagation"
+      },
+      "lissajous": {
+        "title": "Lissajous Figures",
+        "description": "Parametric curves, perpendicular oscillations, frequencies, and phases"
+      },
+      "earthquake": {
+        "title": "Earthquake",
+        "description": "Seismic waves, propagation, reflection, refraction, and core seismology concepts"
+      }
+    },
+    "problemLevels": {
+      "title": "Interactive problems",
+      "beginner": {
+        "title": "Beginner",
+        "description": "Simple problems for understanding the fundamentals of physics",
+        "difficulty": "Easy",
+        "cta": "Start now"
+      },
+      "intermediate": {
+        "title": "Intermediate",
+        "description": "Exercises that combine several concepts and require reasoning",
+        "difficulty": "Medium",
+        "cta": "Explore"
+      },
+      "advanced": {
+        "title": "Advanced",
+        "description": "Complex problems for olympiad and exam preparation",
+        "difficulty": "Hard",
+        "cta": "Challenge yourself"
+      },
+      "specialized": {
+        "title": "Specialized",
+        "description": "Problems focused on specific topics: pendulums, waves, Lissajous figures, and seismology",
+        "difficulty": "Expert",
+        "cta": "Specialize",
+        "emptyState": "No problems available yet"
+      },
+      "problemCount": {
+        "singular": "{count} problem",
+        "plural": "{count} problems"
+      }
+    },
+    "about": {
+      "title": "About us",
+      "paragraph1": "P.U.L.S. is an educational physics platform that combines interactive simulations, problems and quizzes, theory resources across multiple chapters, and digital tools designed to make abstract ideas visible. We set out to go beyond a page of formulas: we want a place where you can practise for school or the baccalaureate, track your progress, and explore phenomena, from oscillations and waves to mechanics, thermodynamics, optics, and astronomy, in a modern, clear, and engaging way.",
+      "paragraph2": "Our story began with a simple question: how can we make physical phenomena, especially oscillatory ones, come alive and become easier to understand? We are a team of students passionate about science, and we have always felt that beyond formulas and definitions there is a fascinating world full of rhythm, motion, and surprising links with nature and technology. From that starting point, P.U.L.S. grew into a broader platform: virtual simulations and experiments, collections of problems and baccalaureate-style papers, quick-practice quizzes, lessons grouped by topic, and profile tools with statistics so you can see your progress. Behind it all is the same curiosity: physics is not just symbols on a board, but motion, rhythm, and connections with the real world.",
+      "cta": "See more"
+    }
+  },
+  "aboutPage": {
+    "title": "About us",
+    "description": "P.U.L.S. is an educational physics platform that combines interactive simulations, problems and quizzes, theory resources across multiple chapters, and digital tools designed to make abstract ideas visible. We set out to go beyond a page of formulas: we want a place where you can practise for school or the baccalaureate, track your progress, and explore phenomena, from oscillations and waves to mechanics, thermodynamics, optics, and astronomy, in a modern, clear, and engaging way.",
+    "story1": "Our story began with a simple question: how can we make physical phenomena, especially oscillatory ones, come alive and become easier to understand? We are a team of students passionate about science, and we have always felt that beyond formulas and definitions there is a fascinating world full of rhythm, motion, and surprising connections with nature and technology. From that starting point, P.U.L.S. grew into a broader platform: virtual simulations and experiments, collections of problems and baccalaureate-style papers, quick-practice quizzes, materials and lessons grouped by topic, plus profile tools with statistics so you can see your progress. Behind it all lies the same curiosity: physics is not just symbols on a board, but motion, rhythm, and links to the real world.",
+    "story2": "We blended a passion for physics with modern web development and simulation tools (including environments such as Unity where the experience calls for advanced graphics and interaction) so that you can find both a browser-based laboratory and the matching exercises and resources in a single place. We have included both virtual experiments and recordings made in a real lab, wherever they aid understanding. We want anyone learning physics to find here not just an isolated simulation but a complete journey: from idea, to visualisation, to practice and review.",
+    "story3": "It was not an easy road. We spent countless hours studying, coding, and testing every simulation, with the unconditional support of our mentor, Mrs. Ioana Bianka Bebu, and of our collaborator, the physicist Ion Bebu. We learned that, beyond numbers and equations, physics is a story about order and chaos, about how the universe dances to rhythms that are unseen yet perfectly regular.",
+    "story4": "P.U.L.S. is not just a website but a window into a fascinating universe. It is proof that science can be beautiful, that it can inspire, and that through curiosity and hard work we can make complex things accessible and astonishing.",
+    "story5": "So, if you want to see how the world moves to an unseen rhythm, we invite you to explore the platform. Discover, experiment, and let yourself be carried away by the fascinating PULS of science!",
+    "motto": "Discover, experiment, and let yourself be carried away by the fascinating PULS of science!"
+  },
+  "problemsPage": {
+    "title": "Physics Problems",
+    "intro": "Explore a complete collection of physics problems for the baccalaureate and competitions. Each problem includes step-by-step solutions, the necessary formulas, and AI-powered self-evaluation. Problems are organised by category (Mechanics, Oscillations, Waves, Thermodynamics) and difficulty (easy, medium, hard, competition).",
+    "searchPlaceholder": "Search by title, category, ID, or number...",
+    "allDifficulties": "All difficulty levels",
+    "difficultyPrefix": "Difficulty",
+    "allCategories": "All categories",
+    "categoryPrefix": "Category",
+    "foundCount": "{count} problems found",
+    "pageCount": "page {current} of {total}",
+    "loading": "Loading problems...",
+    "loadError": "Failed to load problems: {error}",
+    "searchingTitle": "Searching for problems...",
+    "searchingDescription": "Please wait while the search is processed.",
+    "sort": {
+      "newest": "Newest first",
+      "oldest": "Oldest first",
+      "difficultyAsc": "Difficulty (ascending)",
+      "difficultyDesc": "Difficulty (descending)"
+    },
+    "categories": {
+      "all": "All",
+      "mechanics": "Mechanics",
+      "oscillations": "Oscillations",
+      "waves": "Waves",
+      "lissajous": "Lissajous",
+      "seismology": "Seismology",
+      "thermodynamics": "Thermodynamics",
+      "electricity": "Electricity",
+      "optics": "Optics",
+      "bac": "Baccalaureate",
+      "quizzes": "Quizzes"
+    },
+    "difficulty": {
+      "easy": "Easy",
+      "medium": "Medium",
+      "hard": "Hard",
+      "competition": "Competition"
+    },
+    "card": {
+      "openAria": "Open problem {title}",
+      "removeFavorite": "Remove from favorites",
+      "addFavorite": "Add to favorites",
+      "perfectScore": "You earned the maximum score on this problem",
+      "perfectScoreTooltip": "Perfect score on this problem",
+      "solved": "Solved",
+      "solve": "Solve",
+      "openDetails": "Open problem"
+    },
+    "empty": {
+      "title": "Searching for problems...",
+      "description": "Please wait while the search is processed."
+    },
+    "actions": {
+      "addProblem": "Add a new problem",
+      "suggestProblem": "Suggest a problem",
+      "addProblemTitle": "Add a problem",
+      "suggestProblemTitle": "Suggest a problem"
+    },
+    "suggestion": {
+      "loginRequired": "Sign in to save problems to favorites.",
+      "nonAdminNote": "As a non-admin user, you can only suggest problems. Your suggestions will be sent by email to the administrators for review and addition to the database.",
+      "saveError": "Error saving the problem: {error}",
+      "sendError": "Error sending the suggestion: {error}",
+      "successInline": "Your suggestion was sent successfully. The administrators will review the problem and add it to the database if it is approved.",
+      "preparing": "Preparing the problem suggestion...",
+      "initializingEmail": "Initialising the email service...",
+      "loadingProfile": "Loading user profile data...",
+      "sentDuration": "Suggestion sent successfully! Duration: {duration}ms",
+      "errorPrefix": "Error: {message}",
+      "genericError": "An error occurred while sending the suggestion. Please try again.",
+      "modal": {
+        "titleLabel": "Title *",
+        "titlePlaceholder": "Problem title",
+        "descriptionLabel": "Description",
+        "descriptionPlaceholder": "A short description of the problem",
+        "categoryLabel": "Category *",
+        "difficultyLabel": "Difficulty *",
+        "contentLabel": "Content / Statement *",
+        "contentPlaceholder": "Problem statement with LaTeX formulas (use $...$ for formulas)",
+        "formulasLabel": "Formulas",
+        "formulasPlaceholder": "Required formulas (one per line)",
+        "dataLabel": "Data / Variables",
+        "variableNamePlaceholder": "Variable name (e.g. m, v, t)",
+        "variableValuePlaceholder": "Value (e.g. 5 kg, 10 m/s)",
+        "addVariable": "Add variable",
+        "imagesLabel": "Images",
+        "imagesUploadHint": "Click, drag, or use Ctrl+V to add images",
+        "totalScoreLabel": "Total score",
+        "totalScorePlaceholder": "Total score",
+        "subproblemsLabel": "Requirements (sub-problems)",
+        "subproblemRequirement": "Requirement",
+        "subproblemScore": "Score",
+        "addSubproblem": "Add sub-problem",
+        "submitAdmin": "Save",
+        "submitAdminLoading": "Saving...",
+        "submitSuggest": "Send suggestion",
+        "submitSuggestLoading": "Sending...",
+        "cancel": "Cancel"
+      }
+    },
+    "suggestionSuccess": {
+      "title": "Suggestion sent!",
+      "description": "Your suggestion was sent successfully to the administrators. They will review the problem and add it to the database if it is approved.",
+      "close": "OK"
+    },
+    "pagination": {
+      "previous": "Previous",
+      "next": "Next"
+    }
+  },
+  "problemDetailPage": {
+    "back": "Back to problems",
+    "loading": "Loading the problem...",
+    "notFound": "Problem not found.",
+    "statementTitle": "Statement",
+    "dataTitle": "Data",
+    "formulasTitle": "Useful formulas",
+    "requirementsTitle": "Requirements",
+    "answerLabel": "Your answer",
+    "answerPlaceholder": "Type your reasoning and the final answer...",
+    "submitAnswer": "Submit answer",
+    "submitting": "Evaluating...",
+    "evaluating": "AI is evaluating your answer...",
+    "evaluationTitle": "AI Evaluation",
+    "yourScore": "Your score",
+    "maximumScore": "Maximum score",
+    "totalScore": "Total score",
+    "score": "Score: {obtained} / {max}",
+    "percentage": "{percent}%",
+    "feedbackTitle": "Feedback",
+    "stepFeedbackTitle": "Step-by-step feedback",
+    "correct": "Correct",
+    "partiallyCorrect": "Partially correct",
+    "incorrect": "Incorrect",
+    "tryAgain": "Try again",
+    "viewSolution": "View official solution",
+    "hideSolution": "Hide solution",
+    "officialSolutionTitle": "Official solution",
+    "askAssistant": "Ask the AI assistant",
+    "saveProgress": "Save progress",
+    "favoriteAdd": "Add to favorites",
+    "favoriteRemove": "Remove from favorites",
+    "perfectScoreBanner": "You earned the maximum score on this problem!",
+    "attemptHistoryTitle": "Previous attempts",
+    "attempt": "Attempt {n}",
+    "noAttempts": "You have not attempted this problem yet.",
+    "creditedAuthor": "Author: {alias}",
+    "errors": {
+      "loadFailed": "The problem could not be loaded.",
+      "evaluationFailed": "The evaluation could not be completed. Please try again.",
+      "saveFailed": "Your progress could not be saved."
+    }
+  },
+  "bacPage": {
+    "title": "Baccalaureate Problems",
+    "intro": "Solve baccalaureate-style problems organised by chapter and exam variant. Each problem includes step-by-step solutions and AI-powered self-evaluation.",
+    "filterByChapter": "Filter by chapter",
+    "filterByYear": "Filter by year",
+    "allChapters": "All chapters",
+    "allYears": "All years",
+    "variant": "Variant {number}",
+    "subject": "Subject {letter}",
+    "noResults": "No baccalaureate problems matched your filters."
+  },
+  "quizzesPage": {
+    "title": "Quizzes",
+    "intro": "Practice with multiple-choice quizzes designed for quick training and revision.",
+    "startQuiz": "Start quiz",
+    "questionsCount": "{count} questions",
+    "estimatedTime": "Estimated time: {minutes} min",
+    "questionCounter": "Question {current} of {total}",
+    "nextQuestion": "Next question",
+    "previousQuestion": "Previous question",
+    "finishQuiz": "Finish quiz",
+    "yourScore": "Your score: {score} / {total}",
+    "reviewAnswers": "Review answers",
+    "retryQuiz": "Retry quiz",
+    "correctAnswer": "Correct answer",
+    "yourAnswer": "Your answer",
+    "explanation": "Explanation"
+  },
+  "simulationsPage": {
+    "title": "Simulations",
+    "subtitle": "Explore physics concepts through interactive simulations.",
+    "searchPlaceholder": "Search simulations by title, description, or category...",
+    "clearSearchAria": "Clear search",
+    "resultsSingle": "{count} simulation",
+    "resultsPlural": "{count} simulations",
+    "inCategory": "in category \"{category}\"",
+    "forQuery": "for \"{query}\"",
+    "noResults": "No simulations matched your criteria. Try changing the filters or search terms.",
+    "startSimulation": "Start simulation",
+    "viewAll": "View all simulations",
+    "openInNewTab": "Open in new tab",
+    "embedNotice": "Simulation runs in an embedded frame."
+  },
+  "simulationPage": {
+    "backToList": "Back to simulations",
+    "loading": "Loading the simulation...",
+    "loadError": "The simulation could not be loaded.",
+    "controlsTitle": "Controls",
+    "physicsTitle": "Physics behind the simulation",
+    "tipsTitle": "Tips",
+    "fullscreen": "Fullscreen",
+    "exitFullscreen": "Exit fullscreen",
+    "shareLink": "Share link",
+    "toggleFullscreen": "Toggle fullscreen mode",
+    "seoTitleSuffix": "Interactive Physics Simulation - PULS",
+    "seoDescription": "Interactive simulation for {title}. Explore physics concepts through educational simulations."
+  },
+  "resourcesPage": {
+    "tabs": {
+      "lessons": "Physics lessons",
+      "formulas": "Formula sheet",
+      "experiments": "Practical experiments",
+      "bibliography": "Recommended bibliography"
+    },
+    "formulaHint": "Select a formula to read a detailed explanation.",
+    "formulasHeading": "Formulas grouped by chapter",
+    "showMore": "Show more",
+    "showLess": "Show less",
+    "lessons": {
+      "pendulums": {
+        "title": "Pendulums",
+        "description": "Discover oscillatory motion, formulas, and simulations for the simple, damped, and nonlinear pendulum."
+      },
+      "waves": {
+        "title": "Waves",
+        "description": "Learn about mechanical and electromagnetic wave propagation, wave types, and interactive simulations."
+      },
+      "lissajous": {
+        "title": "Lissajous Figures",
+        "description": "Explore Lissajous curves, parametric equations, and their applications in physics."
+      },
+      "earthquakes": {
+        "title": "Earthquakes",
+        "description": "Learn about earthquakes, seismic waves, propagation, and interactive visualizations."
+      },
+      "thermodynamics": {
+        "title": "Thermodynamics",
+        "description": "Study thermodynamics, its principles, and its applications in physics."
+      },
+      "mechanics": {
+        "title": "Mechanics",
+        "description": "Study mechanics, its principles, and its applications in physics."
+      },
+      "electricity": {
+        "title": "Electricity",
+        "description": "Explore electric circuits, Ohm's and Kirchhoff's laws, electrical energy, and electric fields."
+      },
+      "electromagnetism": {
+        "title": "Electromagnetism",
+        "description": "Electric and magnetic fields, induction, the Lorentz force, the Meissner effect, and superconductivity through interactive simulations."
+      },
+      "optics": {
+        "title": "Optics",
+        "description": "Discover how light behaves: refraction, reflection, lenses, interference, and diffraction."
+      },
+      "lasers": {
+        "title": "Lasers",
+        "description": "Operating principles, beam and pulse formulas, the ELI-NP context, and three interactive laser simulators."
+      },
+      "mathematics": {
+        "title": "Mathematics",
+        "description": "Functions, graphs, and a 4D visualizer. Explore function plotting and geometry in four-dimensional space."
+      },
+      "astronomy": {
+        "title": "Astronomy",
+        "description": "Kepler's laws, planetary motion, gravity, and the Michelson-Morley experiment (light, ether, interference)."
+      },
+      "quantumPhysics": {
+        "title": "Quantum Physics",
+        "description": "Double-slit interference, probability, quantum tunneling, theory, formulas, and interactive simulators."
+      },
+      "atom": {
+        "title": "The Atom",
+        "description": "The hydrogen atom (Bohr, Schrödinger, spectrum) and the periodic table of elements, with theory and simulations."
+      },
+      "nuclearPhysics": {
+        "title": "Nuclear Physics",
+        "description": "Uranium isotopes (four key isotopes and the map of the 26 known ones), chain fission (U-235, multiplication factor k), educational D-T fusion model (~17.6 MeV), heavy water D2O vs H2O, isotope exchange, and fractional distillation; lessons, formulas, and simulators."
+      }
+    },
+    "formulaSections": {
+      "mechanics": "Mechanics",
+      "thermodynamics": "Thermodynamics",
+      "electricity": "Electricity",
+      "optics": "Optics",
+      "oscillations": "Oscillations and waves",
+      "atom": "Atomic and nuclear physics"
+    },
+    "experiments": {
+      "title": "Practical experiments",
+      "subtitle": "Watch video experiments to better understand the physical phenomena presented.",
+      "harmonicOscillations": {
+        "title": "Harmonic oscillations",
+        "description": "Observe how a simple pendulum behaves in oscillatory motion."
+      },
+      "standingWaves": {
+        "title": "Standing waves on a vibrating string",
+        "description": "Explore how standing waves form on a vibrating string."
+      },
+      "soundTube": {
+        "title": "Sound tube: fundamental frequency",
+        "description": "See how sound waves form in a tube and how the fundamental frequency is determined."
+      },
+      "wavefront": {
+        "title": "Wavefront",
+        "description": "Observe how a wavefront propagates through water."
+      },
+      "lissajous": {
+        "title": "Lissajous figures",
+        "description": "Explore how Lissajous figures form from perpendicular oscillations."
+      },
+      "watchVideo": "Watch video"
+    },
+    "bibliography": {
+      "title": "Recommended bibliography",
+      "subtitle": "Recommended books, papers, and online resources for deeper study.",
+      "booksTitle": "Books",
+      "papersTitle": "Papers and articles",
+      "onlineTitle": "Online resources",
+      "openResource": "Open resource"
+    }
+  },
+  "resourcesSection": {
+    "title": "Learning resources",
+    "description": "Explore theory lessons, essential formulas, practical experiments, and recommended bibliography to deepen your understanding of physics.",
+    "viewAll": "See all resources",
+    "card": {
+      "experiments": "Experiments",
+      "formulas": "Formulas"
+    },
+    "cards": {
+      "pendulum": {
+        "title": "The Pendulum",
+        "description": "Discover oscillatory motion, period formulas, and the use of pendulums in time measurement."
+      },
+      "waves": {
+        "title": "Waves",
+        "description": "Learn about mechanical and electromagnetic waves, interference, diffraction, and practical applications."
+      },
+      "lissajous": {
+        "title": "Lissajous Figures",
+        "description": "Explore superposed harmonic curves, mathematical visualizations, and perpendicular oscillations."
+      },
+      "thermodynamics": {
+        "title": "Thermodynamics",
+        "description": "Study heat transfer, the laws of thermodynamics, and energy transformations."
+      },
+      "mechanics": {
+        "title": "Mechanics",
+        "description": "Understand the motion of bodies, forces, kinetic and potential energy, and Newton's laws."
+      },
+      "earthquake": {
+        "title": "Earthquakes",
+        "description": "Analyze seismic waves, their propagation through Earth's layers, and earthquake detection."
+      },
+      "electricity": {
+        "title": "Electricity",
+        "description": "Explore electric circuits, Ohm's and Kirchhoff's laws, electrical energy, and electric fields."
+      },
+      "electromagnetism": {
+        "title": "Electromagnetism",
+        "description": "Study electric and magnetic fields, induction, the Lorentz force, and the Meissner effect through interactive simulations."
+      },
+      "optics": {
+        "title": "Optics",
+        "description": "Discover the behavior of light, refraction, reflection, lenses, interference, and diffraction."
+      }
+    }
+  },
+  "simulationCategories": {
+    "all": "All",
+    "mechanics": "Mechanics",
+    "pendulums": "Pendulums",
+    "oscillations": "Oscillations",
+    "waves": "Waves",
+    "graphs": "Graphs",
+    "thermodynamics": "Thermodynamics",
+    "electricity": "Electricity",
+    "electromagnetism": "Electromagnetism",
+    "optics": "Optics",
+    "lasers": "Lasers",
+    "astronomy": "Astronomy",
+    "atom": "The Atom",
+    "quantumPhysics": "Quantum Physics",
+    "nuclearPhysics": "Nuclear Physics",
+    "fourD": "4D"
+  },
+  "simulations": {
+    "pendul-simplu": {
+      "title": "Simple Oscillating Pendulum",
+      "description": "Simulation of simple harmonic oscillatory motion of an ideal pendulum.",
+      "caption": "Simple harmonic oscillation"
+    },
+    "pendul-amortizat": {
+      "title": "Damped Oscillating Pendulum",
+      "description": "Simulation of damped oscillatory motion with viscous friction.",
+      "caption": "Damped oscillation"
+    },
+    "pendul-neliniar": {
+      "title": "Nonlinear Pendulum",
+      "description": "Simulation of large-amplitude pendulum motion where the small-angle approximation no longer holds.",
+      "caption": "Nonlinear oscillation"
+    },
+    "pendule-multiple": {
+      "title": "Multiple Double Pendulums",
+      "description": "Simulate multiple coupled double pendulums with chaotic behaviour and motion trails.",
+      "caption": "Multiple pendulums"
+    },
+    "unde-apa": {
+      "title": "Water Waves",
+      "description": "Simulate the propagation of surface waves in water, including interference patterns.",
+      "caption": "Water waves"
+    },
+    "figuri-lissajous": {
+      "title": "Lissajous Figures",
+      "description": "Generate Lissajous figures by combining two perpendicular oscillations with adjustable frequencies and phases.",
+      "caption": "Lissajous figures"
+    },
+    "grafice-pendule": {
+      "title": "Pendulum Graphs",
+      "description": "Plot position, velocity, and acceleration in time for different types of pendulums.",
+      "caption": "Pendulum graphs"
+    },
+    "grafice-functii": {
+      "title": "Function Graphs",
+      "description": "Plot mathematical functions and explore their shape, period, and amplitude interactively.",
+      "caption": "Function graphs"
+    },
+    "grafice-simple": {
+      "title": "Basic Graphs",
+      "description": "Plot graphs for simple sinusoidal and polynomial functions.",
+      "caption": "Basic graphs"
+    },
+    "seism": {
+      "title": "Earthquake",
+      "description": "Simulate an earthquake, the propagation of P- and S-waves, and their effects on structures.",
+      "caption": "Earthquake"
+    },
+    "prisma": {
+      "title": "Prism",
+      "description": "Simulate the dispersion of white light through a glass prism and the formation of the visible spectrum.",
+      "caption": "Light dispersion"
+    },
+    "termodinamica": {
+      "title": "Thermodynamics: Ideal Gas in a Vessel",
+      "description": "Adjust pressure, volume, and temperature and watch in real time how an ideal gas behaves in the simulator.",
+      "caption": "Thermodynamics"
+    },
+    "oscillatii-ox": {
+      "title": "Oscillatory Motion Along the x-Axis",
+      "description": "Simulate harmonic oscillatory motion along the x-axis with adjustable amplitude, frequency, and phase.",
+      "caption": "Oscillation along the x-axis"
+    },
+    "oscillatii-oy": {
+      "title": "Oscillatory Motion Along the y-Axis",
+      "description": "Simulate harmonic oscillatory motion along the y-axis with adjustable amplitude, frequency, and phase.",
+      "caption": "Oscillation along the y-axis"
+    },
+    "coliziuni-inelastice": {
+      "title": "Inelastic Collisions",
+      "description": "Simulate inelastic collisions between two bodies and follow the conservation of momentum and the loss of kinetic energy.",
+      "caption": "Inelastic collisions"
+    },
+    "circuite-electricitate": {
+      "title": "Electric Circuits",
+      "description": "Circuit simulator covering Ohm's law, series and parallel resistors, and Kirchhoff's laws.",
+      "caption": "Electric circuits"
+    },
+    "energie-circuite": {
+      "title": "Energy in Circuits",
+      "description": "Visualise the energy flow, dissipated power, and efficiency in simple electric circuits.",
+      "caption": "Energy in circuits"
+    },
+    "motoare-termice": {
+      "title": "Heat Engines",
+      "description": "Simulate Otto, Diesel, and Carnot cycles with p-V and T-S diagrams and follow efficiency in real time.",
+      "caption": "Heat engines"
+    },
+    "plan-inclinat": {
+      "title": "Inclined Plane",
+      "description": "Simulate the motion of a body on an inclined plane with static and kinetic friction.",
+      "caption": "Inclined plane"
+    },
+    "proiectile": {
+      "title": "Projectile Motion",
+      "description": "Baccalaureate-oriented simulator for projectile motion with and without air resistance.",
+      "caption": "Projectile motion"
+    },
+    "refractie-atmosferica": {
+      "title": "Desert Mirage",
+      "description": "Simulate atmospheric refraction and the formation of the desert-mirage effect.",
+      "caption": "Atmospheric refraction"
+    },
+    "lentila-subtire": {
+      "title": "Thin Lens",
+      "description": "Optics simulator for thin lenses with ray tracing and the formation of real or virtual images.",
+      "caption": "Thin lens"
+    },
+    "polarizare-circulara": {
+      "title": "Circular Polarization",
+      "description": "Simulate circular polarization of electromagnetic waves with 3D views and Stokes parameters.",
+      "caption": "Circular polarization"
+    },
+    "reflexie-refractie": {
+      "title": "Reflection and Refraction",
+      "description": "Simulate the reflection and refraction of light at the interface between two media with different refractive indices, including total internal reflection.",
+      "caption": "Reflection and refraction"
+    },
+    "Vizualizator-4d": {
+      "title": "4D Visualizer",
+      "description": "Explore and visualise 4D geometric objects through interactive projections, hyperspace rotations, and controlled transitions between dimensions.",
+      "caption": "4D visualizer"
+    },
+    "constelatii": {
+      "title": "Constellations in the Sky",
+      "description": "Interactive sky map covering constellation recognition, orientation using Polaris, short stories, and the link to astronomical coordinates.",
+      "caption": "Constellations in the sky"
+    },
+    "legi_Kepler": {
+      "title": "Kepler's Laws",
+      "description": "Simulate planetary motion according to Kepler's three laws, with elliptical orbits, varying speed, and the period-radius relation.",
+      "caption": "Kepler's laws"
+    },
+    "atom_hidrogen": {
+      "title": "The Hydrogen Atom",
+      "description": "Simulate the structure of the hydrogen atom using the Bohr, de Broglie, and quantum-mechanical Schrödinger models, including energy transitions and orbitals.",
+      "caption": "The hydrogen atom"
+    },
+    "michaelson-morley": {
+      "title": "Michelson-Morley Experiment",
+      "description": "Recreate the Michelson-Morley experiment virtually and analyse light interference to highlight the absence of the luminiferous ether and its relativistic implications.",
+      "caption": "Michelson-Morley experiment"
+    },
+    "lanturi-elastice": {
+      "title": "Elastic Chains",
+      "description": "Simulate the dynamics of elastic spring chains, mechanical-wave propagation, and coupled oscillatory systems.",
+      "caption": "Elastic chains"
+    },
+    "miscare-planete": {
+      "title": "Planetary Motion",
+      "description": "Simulate planetary motion in the Solar System, including general-relativistic effects on the orbit of Mercury.",
+      "caption": "Planetary motion"
+    },
+    "tabel-periodic": {
+      "title": "Periodic Table",
+      "description": "Explore the periodic table: elements, symbols, atomic number, electron configuration, and basic chemical properties.",
+      "caption": "Periodic table"
+    },
+    "laser": {
+      "title": "Laser",
+      "description": "Simulate a laser beam and key optical parameters such as wavelength, intensity, divergence, and beam profile.",
+      "caption": "Laser",
+      "eyebrow": "Lasers | Interactive simulation"
+    },
+    "laser-interactie": {
+      "title": "Laser-Matter Interaction",
+      "description": "Explore how intensity, target material, and focusing affect heating, ionization, and the interaction between a laser beam and a target.",
+      "caption": "Laser-matter interaction",
+      "eyebrow": "Lasers | Interactive simulation"
+    },
+    "eli-np-laser": {
+      "title": "ELI-NP Photon Sniper",
+      "description": "Simulator inspired by the ELI-NP context: ultrashort pulses, tight focusing, peak intensity, and the response of the target material.",
+      "caption": "ELI-NP and ultrashort pulses",
+      "eyebrow": "ELI-NP | Interactive simulation"
+    },
+    "accelerator-laser": {
+      "title": "Laser Wakefield Electron Acceleration",
+      "description": "Laser-wakefield acceleration simulation showing how pulse intensity and plasma density control electron trapping and the growth of the Lorentz factor.",
+      "caption": "Laser wakefield acceleration",
+      "eyebrow": "Lasers | Wakefield accelerator"
+    },
+    "spectru-electromagnetic": {
+      "title": "Electromagnetic Spectrum",
+      "description": "Explore the full electromagnetic spectrum: frequency, wavelength, photon energy, and applications across each range.",
+      "caption": "Electromagnetic spectrum"
+    },
+    "curent-alternativ": {
+      "title": "Alternating Current",
+      "description": "Simulation of sinusoidal voltage and current: frequency, period, RMS values, and phase shifts in RLC circuits.",
+      "caption": "Alternating current"
+    },
+    "kirchhoff": {
+      "title": "Kirchhoff's Laws",
+      "description": "Build and analyse electric circuits with nodes, loops, sources, and resistors using Kirchhoff's current and voltage laws.",
+      "caption": "Kirchhoff simulator"
+    },
+    "dubla-fanta": {
+      "title": "Double-Slit Experiment",
+      "description": "Interference and probability in the double-slit experiment, wave-particle duality, and the pattern observed on the screen.",
+      "caption": "Double-slit experiment"
+    },
+    "tunelare-cuantica": {
+      "title": "Quantum Tunneling",
+      "description": "Penetration of a potential barrier when the particle's energy is below the barrier height, with evanescent waves and the transmission coefficient.",
+      "caption": "Quantum tunneling"
+    },
+    "legaturi-atomi": {
+      "title": "Atomic Bonds",
+      "description": "Visualise chemical bonds, bonding and antibonding molecular orbitals, and the probability-density distribution between nuclei.",
+      "caption": "Atomic bonds"
+    },
+    "apa-grea": {
+      "title": "D2O vs H2O",
+      "description": "Compare heavy water (D2O) with regular water (H2O): liquid-phase fraction, indicative biological effects, density, boiling and freezing points, and moderation behaviour in a reactor.",
+      "caption": "Heavy-water simulator"
+    },
+    "instalatie-schimb-izotopic": {
+      "title": "Isotope Exchange Plant (H2S-H2O)",
+      "description": "Simulate the heavy-water separation process: stages, isotope exchange, concentration evolution, and process efficiency.",
+      "caption": "Isotope exchange plant",
+      "eyebrow": "Nuclear Physics | Interactive simulation"
+    },
+    "distilare-d2o-fractionata": {
+      "title": "Fractional D2O Distillation",
+      "description": "Single column with reboiler and condenser: reflux, theoretical stages, low relative volatility, and the purity-versus-time curve following isotope exchange.",
+      "caption": "Fractional heavy-water distillation",
+      "eyebrow": "Nuclear Physics | After isotope exchange"
+    },
+    "frecare-aer": {
+      "title": "Air Resistance",
+      "description": "Compare the fall of two bodies in gravity with aerodynamic drag: terminal velocity, mass, shape, and cross-sectional area.",
+      "caption": "Air resistance in free fall"
+    },
+    "reactor-fuziune-dt": {
+      "title": "D-T Fusion Reactor (Educational Model)",
+      "description": "Educational simulator for a D-T fusion reactor, illustrating fusion behaviour, plasma confinement, and meltdown scenarios.",
+      "caption": "Deuterium-tritium fusion model",
+      "eyebrow": "Nuclear Physics | Interactive simulation"
+    },
+    "fisiune-nucleara": {
+      "title": "Nuclear Chain Fission (U-235)",
+      "description": "Neutron-induced fission in U-235, the release of 2-3 new neutrons, roughly 200 MeV per event, the multiplication factor k, and control rods in an educational visual model.",
+      "caption": "Chain reaction and multiplication factor k",
+      "eyebrow": "Nuclear Physics | Chain fission"
+    },
+    "izotopi-uraniu": {
+      "title": "Uranium Isotopes: Nucleus, Alpha Decay, Fission, and Time",
+      "description": "Four key uranium isotopes from U-233 to U-238: nuclear model, alpha decay, U-235 fission scenario, and a time machine using N(t) based on half-life.",
+      "caption": "Uranium isotopes: nuclei and decay",
+      "eyebrow": "Nuclear Physics | Isotopes"
+    },
+    "toti-izotopii": {
+      "title": "Map of the 26 Uranium Isotopes",
+      "description": "The Z = 92 line on the nuclide chart: all known isotopes from A = 217 to 242, decay modes, historical timeline, and the radioactive law N(t) with lambda and half-life.",
+      "caption": "Uranium isotope map",
+      "eyebrow": "Nuclear Physics | Nuclide map"
+    },
+    "criogenie": {
+      "title": "Cryogenics and States of Matter",
+      "description": "Explore low-temperature regimes: the pV = nRT relation, particle dynamics, and transitions between gas, liquid, and solid for different materials.",
+      "caption": "Cryogenics simulator",
+      "eyebrow": "Thermodynamics | Cryogenics"
+    },
+    "supraconductivitate": {
+      "title": "Superconductivity and the Meissner Effect",
+      "description": "Simulate the T < Tc condition, magnetic levitation, and the transition back to the normal state when the temperature exceeds the critical temperature.",
+      "caption": "Superconductivity",
+      "eyebrow": "Electromagnetism | Quantum tag"
+    },
+    "fuel-cell": {
+      "title": "PEM Fuel Cell",
+      "description": "Educational simulation: H2 and O2 feed the cell, electrons travel through the external circuit, protons cross the membrane, and voltage, current, power, and efficiency vary with flow rate and load.",
+      "caption": "PEM fuel cell",
+      "eyebrow": "Electromagnetism | Fuel cell"
+    }
+  },
+  "profilePage": {
+    "title": "My profile",
+    "loading": "Loading profile...",
+    "signedOut": {
+      "title": "Sign in to access your profile",
+      "subtitle": "Track your progress, save favourite problems, and join classrooms.",
+      "googleButton": "Continue with Google",
+      "emailButton": "Use email and password",
+      "signIn": "Sign in",
+      "signUp": "Sign up",
+      "switchToSignUp": "Don't have an account? Sign up",
+      "switchToSignIn": "Already have an account? Sign in"
+    },
+    "auth": {
+      "nameLabel": "Full name",
+      "namePlaceholder": "Your name",
+      "aliasLabel": "Alias",
+      "aliasPlaceholder": "How others see you",
+      "emailLabel": "Email",
+      "emailPlaceholder": "you@example.com",
+      "passwordLabel": "Password",
+      "passwordPlaceholder": "At least 6 characters",
+      "confirmPasswordLabel": "Confirm password",
+      "confirmPasswordPlaceholder": "Repeat the password",
+      "submitSignUp": "Create account",
+      "submitSignIn": "Sign in",
+      "submitLoading": "Please wait...",
+      "errors": {
+        "passwordsDoNotMatch": "The passwords do not match.",
+        "weakPassword": "The password must contain at least 6 characters.",
+        "invalidEmail": "The email address is not valid.",
+        "emailInUse": "An account with this email address already exists.",
+        "wrongCredentials": "Invalid email or password.",
+        "tooManyRequests": "Too many attempts. Please try again later.",
+        "generic": "An error occurred. Please try again."
+      }
+    },
+    "header": {
+      "joinedOn": "Member since {date}",
+      "editProfile": "Edit profile",
+      "signOut": "Sign out",
+      "becomeTeacher": "Become a teacher",
+      "teacherPending": "Teacher request pending",
+      "teacherApproved": "Verified teacher",
+      "admin": "Administrator"
+    },
+    "tabs": {
+      "activity": "Activity",
+      "favorites": "Favorites",
+      "achievements": "Achievements",
+      "statistics": "Statistics",
+      "myProblems": "My problems",
+      "community": "Community",
+      "classes": "Classes",
+      "settings": "Settings"
+    },
+    "editModal": {
+      "title": "Edit profile",
+      "aliasLabel": "Alias",
+      "aliasHelp": "Visible to other users. Letters, digits, hyphens and underscores only ({max} characters max).",
+      "nameLabel": "Full name",
+      "descriptionLabel": "Short description",
+      "descriptionPlaceholder": "Tell others a bit about you...",
+      "profilePicLabel": "Profile picture",
+      "uploadButton": "Upload an image",
+      "uploadProcessing": "Uploading the image...",
+      "uploadSuccess": "Image uploaded successfully.",
+      "uploadError": "The image could not be uploaded.",
+      "save": "Save changes",
+      "saving": "Saving...",
+      "cancel": "Cancel",
+      "errors": {
+        "aliasFormat": "Invalid alias. Use only letters, digits, hyphens, and underscores.",
+        "aliasTooLong": "The alias is too long (max {max} characters).",
+        "aliasTaken": "This alias is already taken.",
+        "saveFailed": "The profile could not be saved."
+      }
+    },
+    "activity": {
+      "title": "Recent activity",
+      "empty": "No recent activity yet. Start solving a problem to see it here.",
+      "viewProblem": "View problem",
+      "solvedProblem": "You solved \"{title}\"",
+      "scoredProblem": "You scored {score}% on \"{title}\"",
+      "earnedAchievement": "You unlocked the achievement \"{achievement}\""
+    },
+    "favorites": {
+      "title": "Favorite problems",
+      "empty": "You have not added any problems to favorites yet.",
+      "removeFavorite": "Remove from favorites"
+    },
+    "achievements": {
+      "title": "Achievements",
+      "subtitle": "Unlock badges as you solve problems and explore the platform.",
+      "locked": "Locked",
+      "unlocked": "Unlocked",
+      "progress": "{current} / {target}",
+      "empty": "No achievements yet. Keep going!",
+      "rarity": {
+        "common": "Common",
+        "uncommon": "Uncommon",
+        "rare": "Rare",
+        "epic": "Epic",
+        "legendary": "Legendary"
+      }
+    },
+    "statistics": {
+      "title": "Statistics",
+      "subtitle": "Your progress across the entire platform.",
+      "problemsSolved": "Problems solved",
+      "averageScore": "Average score",
+      "totalXp": "Total XP",
+      "currentStreak": "Current streak",
+      "longestStreak": "Longest streak",
+      "byCategory": "Performance by category",
+      "byDifficulty": "Performance by difficulty",
+      "overTime": "Activity over time",
+      "noData": "Not enough data to show statistics yet."
+    },
+    "myProblems": {
+      "title": "Problems created by me",
+      "empty": "You have not created any problems yet.",
+      "loading": "Loading your problems...",
+      "deleteConfirmTitle": "Delete this problem?",
+      "deleteConfirmText": "This action is irreversible.",
+      "deleteSuccess": "Problem deleted successfully.",
+      "deleteError": "The problem could not be deleted."
+    },
+    "community": {
+      "title": "Community profile",
+      "xpLevel": "Level {level}",
+      "xpToNext": "{current} / {next} XP to the next level",
+      "streakTitle": "Solving streak",
+      "streakDays": "{count} days in a row",
+      "badgesTitle": "Category badges",
+      "noBadges": "Earn badges by completing problems in each category."
+    },
+    "actions": {
+      "clearTestProblems": "Clear test problems",
+      "clearAllSolved": "Clear all solved problems",
+      "clearAllConfirmText": "Are you sure? This action cannot be undone.",
+      "clearedSuccessfully": "Cleared successfully."
+    },
+    "errors": {
+      "loadFailed": "Profile data could not be loaded.",
+      "favoriteFailed": "Favorites could not be updated."
+    }
+  },
+  "publicProfile": {
+    "loading": "Loading profile...",
+    "notFound": "Profile not found.",
+    "joinedOn": "Member since {date}",
+    "noDescription": "This user has not added a description yet.",
+    "solvedProblems": "Solved problems",
+    "totalXp": "Total XP",
+    "currentLevel": "Current level",
+    "currentStreak": "Current streak",
+    "achievementsCount": "Achievements unlocked",
+    "createdProblems": "Problems created"
+  },
+  "searchPage": {
+    "title": "Search results",
+    "queryLabel": "Results for \"{query}\"",
+    "noQuery": "Enter a search term in the navigation bar above.",
+    "noResults": "No results found for \"{query}\". Try different keywords.",
+    "sections": {
+      "problems": "Problems",
+      "simulations": "Simulations",
+      "lessons": "Lessons",
+      "resources": "Resources"
+    },
+    "resultCount": "{count} results"
+  },
+  "assistant": {
+    "title": "AI Assistant",
+    "subtitle": "Ask the AI assistant any physics question.",
+    "openButton": "Open the assistant",
+    "closeButton": "Close",
+    "minimizeButton": "Minimize",
+    "expandButton": "Expand",
+    "greeting": "Hi! I'm the PULS AI assistant. How can I help you with physics today?",
+    "inputPlaceholder": "Ask a physics question...",
+    "sendButton": "Send",
+    "thinking": "Thinking...",
+    "stopGeneration": "Stop generating",
+    "regenerate": "Regenerate response",
+    "newChat": "New chat",
+    "clearChat": "Clear conversation",
+    "copyAnswer": "Copy answer",
+    "modelLabel": "Model",
+    "errors": {
+      "rateLimit": "Too many requests. Please wait a moment and try again.",
+      "network": "Network error. Please check your connection and try again.",
+      "generic": "Something went wrong. Please try again."
+    },
+    "disclaimer": "The AI assistant may make mistakes. Always verify important answers.",
+    "suggestedPrompts": {
+      "title": "Suggested questions",
+      "explainPendulum": "Explain the period of a simple pendulum.",
+      "waveTypes": "What are the types of mechanical waves?",
+      "lissajousFigures": "How are Lissajous figures formed?",
+      "earthquakeWaves": "What is the difference between P-waves and S-waves?"
+    }
+  },
+  "assistantEntryPage": {
+    "title": "AI Assistant",
+    "subtitle": "Get instant help with physics problems and concepts.",
+    "startChat": "Start a conversation",
+    "featuredQuestionsTitle": "Frequently asked questions"
+  },
+  "contact": {
+    "title": "Contact us",
+    "subtitle": "Have a question, an idea, or a problem to report? We'd love to hear from you.",
+    "nameLabel": "Your name",
+    "namePlaceholder": "First and last name",
+    "emailLabel": "Email address",
+    "emailPlaceholder": "you@example.com",
+    "subjectLabel": "Subject",
+    "subjectPlaceholder": "Briefly describe the topic",
+    "messageLabel": "Message",
+    "messagePlaceholder": "Your message...",
+    "send": "Send message",
+    "sending": "Sending...",
+    "success": "Message sent successfully. We'll get back to you soon.",
+    "errors": {
+      "nameRequired": "Please enter your name.",
+      "emailInvalid": "Please enter a valid email address.",
+      "subjectRequired": "Please enter a subject.",
+      "messageRequired": "Please enter a message.",
+      "sendFailed": "The message could not be sent. Please try again."
+    },
+    "info": {
+      "title": "Other ways to reach us",
+      "email": "Email",
+      "social": "Social media"
+    }
+  },
+  "classes": {
+    "studentDashboard": {
+      "title": "My classrooms",
+      "subtitle": "Classes you have joined as a student.",
+      "empty": "You have not joined any classrooms yet.",
+      "joinByCode": "Join a class",
+      "codePlaceholder": "Enter the class code",
+      "joinButton": "Join",
+      "open": "Open class",
+      "leaveClass": "Leave class",
+      "leaveConfirm": "Leave this class?",
+      "errors": {
+        "invalidCode": "Invalid class code.",
+        "alreadyMember": "You are already a member of this class.",
+        "joinFailed": "You could not join the class. Please try again."
+      }
+    },
+    "studentClassPage": {
+      "loading": "Loading class...",
+      "notFound": "Class not found.",
+      "teacher": "Teacher",
+      "members": "Members",
+      "assignmentsTab": "Assignments",
+      "announcementsTab": "Announcements",
+      "leaderboardTab": "Leaderboard",
+      "noAssignments": "No assignments yet.",
+      "noAnnouncements": "No announcements yet.",
+      "openAssignment": "Open assignment",
+      "submitAssignment": "Submit assignment",
+      "dueOn": "Due on {date}",
+      "submitted": "Submitted",
+      "notSubmitted": "Not submitted",
+      "scoreLabel": "Score",
+      "feedbackTitle": "Teacher feedback"
+    },
+    "teacherDashboard": {
+      "title": "Teacher dashboard",
+      "subtitle": "Manage your classes, assignments, and students.",
+      "createClass": "Create a class",
+      "className": "Class name",
+      "classNamePlaceholder": "e.g. 11A Physics",
+      "classDescription": "Description",
+      "classDescriptionPlaceholder": "Short description of the class",
+      "createButton": "Create",
+      "empty": "You haven't created any classes yet.",
+      "openClass": "Open class",
+      "deleteClass": "Delete class",
+      "deleteConfirm": "Delete this class? This action is irreversible.",
+      "studentsCount": "{count} students",
+      "errors": {
+        "createFailed": "The class could not be created.",
+        "deleteFailed": "The class could not be deleted."
+      }
+    },
+    "teacherClassPage": {
+      "loading": "Loading class...",
+      "notFound": "Class not found.",
+      "classCode": "Class code",
+      "copyCode": "Copy code",
+      "codeCopied": "Class code copied",
+      "studentsTab": "Students",
+      "assignmentsTab": "Assignments",
+      "announcementsTab": "Announcements",
+      "settingsTab": "Settings",
+      "noStudents": "No students have joined yet. Share the class code so they can join.",
+      "removeStudent": "Remove student",
+      "removeStudentConfirm": "Remove this student from the class?",
+      "createAssignment": "Create assignment",
+      "assignmentTitle": "Title",
+      "assignmentDescription": "Description",
+      "assignmentDueDate": "Due date",
+      "assignmentProblems": "Selected problems",
+      "publishAssignment": "Publish",
+      "submissions": "Submissions",
+      "submissionFromStudent": "{count} submissions from students",
+      "gradeSubmission": "Grade submission",
+      "saveGrade": "Save grade",
+      "feedbackPlaceholder": "Write feedback for the student...",
+      "createAnnouncement": "Post an announcement",
+      "announcementPlaceholder": "Write the announcement..."
+    },
+    "joinPage": {
+      "title": "Join a classroom",
+      "subtitle": "Enter the code provided by your teacher to join the class.",
+      "codeLabel": "Class code",
+      "codePlaceholder": "e.g. ABC123",
+      "join": "Join class",
+      "joining": "Joining...",
+      "success": "You have joined the class successfully.",
+      "errors": {
+        "notFound": "No class was found with this code.",
+        "alreadyMember": "You are already a member of this class.",
+        "generic": "Could not join the class. Please try again."
+      }
+    },
+    "inviteTeacher": {
+      "title": "Become a teacher on PULS",
+      "subtitle": "Apply for a verified teacher account and manage your own classrooms.",
+      "schoolLabel": "School / institution",
+      "schoolPlaceholder": "School name",
+      "subjectsLabel": "Subjects taught",
+      "subjectsPlaceholder": "e.g. Physics, Mathematics",
+      "linkLabel": "Profile or website (optional)",
+      "linkPlaceholder": "https://...",
+      "messageLabel": "Short message",
+      "messagePlaceholder": "Tell us a bit about your teaching context...",
+      "submit": "Send request",
+      "submitting": "Sending...",
+      "success": "Request sent. The PULS team will get back to you by email.",
+      "pending": "Your request is being reviewed.",
+      "approved": "Your account has been approved as a verified teacher."
+    }
+  },
+  "community": {
+    "title": "PULS Community",
+    "subtitle": "See who is climbing the leaderboard and unlocking achievements.",
+    "leaderboardTab": "Leaderboard",
+    "achievementsTab": "Achievements",
+    "rank": "Rank",
+    "user": "User",
+    "level": "Level",
+    "xp": "XP",
+    "streak": "Streak",
+    "problemsSolved": "Solved",
+    "noUsers": "No data to show yet.",
+    "topUsersTitle": "Top users",
+    "recentAchievementsTitle": "Recent achievements",
+    "weeklyTopTitle": "Top this week",
+    "viewProfile": "View profile",
+    "xpBar": {
+      "level": "Level {level}",
+      "toNextLevel": "{current} / {next} XP"
+    },
+    "streakCounter": {
+      "title": "Streak",
+      "days": "{count} days",
+      "today": "Today",
+      "longest": "Longest: {count}"
+    },
+    "categoryBadges": {
+      "title": "Category badges",
+      "earned": "Earned: {date}",
+      "locked": "Locked",
+      "progress": "{current} / {total}"
+    }
+  },
+  "achievementNotification": {
+    "title": "Achievement unlocked!",
+    "subtitle": "You earned a new badge.",
+    "viewDetails": "View details",
+    "dismiss": "Dismiss"
+  },
+  "admin": {
+    "dashboardTitle": "Admin dashboard",
+    "subtitle": "Manage problems, users, and pending requests.",
+    "pendingTeachers": "Pending teacher requests",
+    "approveTeacher": "Approve",
+    "rejectTeacher": "Reject",
+    "usersTab": "Users",
+    "problemsTab": "Problems",
+    "requestsTab": "Requests",
+    "deleteUser": "Delete user",
+    "deleteUserConfirm": "Delete this user and all of their data?",
+    "promoteToAdmin": "Promote to admin",
+    "revokeAdmin": "Revoke admin rights",
+    "noPending": "No pending requests."
+  },
+  "errors": {
+    "generic": "Something went wrong. Please try again.",
+    "network": "Network error. Please check your internet connection.",
+    "notFound": "The requested resource was not found.",
+    "unauthorized": "You need to sign in to access this page.",
+    "forbidden": "You do not have permission to perform this action.",
+    "server": "Server error. Please try again later.",
+    "timeout": "The request timed out. Please try again.",
+    "page404": {
+      "title": "Page not found",
+      "subtitle": "The page you are looking for does not exist or has been moved.",
+      "goHome": "Go to homepage"
+    }
+  },
+  "seo": {
+    "siteName": "PULS",
+    "defaultDescription": "PULS is an educational physics platform with interactive simulations, problems, quizzes, and theory resources.",
+    "problemsTitle": "Physics Problems | PULS - BAC problems and step-by-step solved exercises",
+    "problemsDescription": "Solve physics problems for the baccalaureate and competitions. Complete collection of problems with step-by-step solutions, organised by category and difficulty. AI-powered self-evaluation.",
+    "simulationsTitle": "Interactive Physics Simulations | PULS - 40+ educational simulations",
+    "simulationsDescription": "Explore physics through interactive simulations: pendulums, waves, oscillations, thermodynamics, mechanics, electricity, optics, lasers, quantum physics, the atom, astronomy, and more.",
+    "resourcesTitle": "Physics Resources | PULS - lessons, formulas, and experiments",
+    "resourcesDescription": "Physics lessons, formula sheet, and practical experiments for high-school students and teachers."
+  }
+}

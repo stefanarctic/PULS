@@ -1,6 +1,6 @@
 import { useEffect, useState, Fragment, useMemo } from 'react';
 import Layout from '../Layout';
-import { useLocation, Link } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
 // import { problemeData } from '../problemedata';
 import { useSelector, useDispatch } from 'react-redux';
@@ -13,6 +13,7 @@ import { doc, getDoc, setDoc } from 'firebase/firestore';
 import { useSolvedProblems } from '../../hooks/useSolvedProblems';
 import { sendProblemSuggestion } from '../../lib/emailService';
 import SEO from '../SEO';
+import { LocalizedLink as Link, useI18n } from '../../i18n/LanguageContext';
 
 // Icon components
 const SearchIcon = () => (
@@ -128,6 +129,7 @@ const ProblemCard = ({ problem, isFavorite, onToggleFavorite, completionPercent,
 const PhysicsProblems = () => {
     const location = useLocation();
     const params = new URLSearchParams(location.search);
+    const { t } = useI18n();
 
     // Restore filters from sessionStorage only if coming back from a problem
     const getStoredFilters = () => {
@@ -1417,7 +1419,7 @@ const PhysicsProblems = () => {
             <div className="problems-page">
                 <div className="problems-page-inner">
                     {/* Title */}
-                    <h1 className="problems-page-title">Probleme de fizică</h1>
+                    <h1 className="problems-page-title">{t('problemsPage.title', 'Probleme de fizică')}</h1>
                     {/* <p className="problems-page-intro" style={{ marginTop: '1rem', fontSize: '1.1rem', color: 'var(--muted-color-current-mode)', maxWidth: '800px', marginBottom: '2rem' }}>
                         Explorează o colecție completă de probleme de fizică pentru bacalaureat și concursuri. Fiecare problemă include rezolvări detaliate pas cu pas, formule necesare și autoevaluare cu feedback AI. Problemele sunt organizate pe categorii (Mecanică, Oscilații, Unde, Termodinamică) și dificultate (ușor, mediu, dificil, concurs).
                     </p> */}
@@ -1429,7 +1431,7 @@ const PhysicsProblems = () => {
                                 <span className="search-icon"><SearchIcon /></span>
                                 <input
                                     type="text"
-                                    placeholder="Caută după titlu, categorie, ID sau număr..."
+                                    placeholder={t('problemsPage.searchPlaceholder', 'Caută după titlu, categorie, ID sau număr...')}
                                     className="search-input"
                                     value={searchQuery}
                                     onChange={(e) => setSearchQuery(e.target.value)}
@@ -1443,7 +1445,10 @@ const PhysicsProblems = () => {
                                 >
                                     {difficulties.map((difficulty) => (
                                         <option key={difficulty} value={difficulty}>
-                                            {difficulty === "Toate" ? "Toate dificultățile" : `Dificultate: ${difficulty}`}
+                                            {difficulty === "Toate"
+                                                ? t('problemsPage.allDifficulties', 'Toate dificultățile')
+                                                : `${t('problemsPage.difficultyPrefix', 'Dificultate')}: ${difficulty}`
+                                            }
                                         </option>
                                     ))}
                                 </select>
@@ -1454,7 +1459,10 @@ const PhysicsProblems = () => {
                                 >
                                     {categories.map((category) => (
                                         <option key={category} value={category}>
-                                            {category === "Toate" ? "Toate categoriile" : `Categorie: ${category}`}
+                                            {category === "Toate"
+                                                ? t('problemsPage.allCategories', 'Toate categoriile')
+                                                : `${t('problemsPage.categoryPrefix', 'Categorie')}: ${category}`
+                                            }
                                         </option>
                                     ))}
                                 </select>
@@ -1488,27 +1496,27 @@ const PhysicsProblems = () => {
                     {/* Results Header */}
                     <div className="results-header">
                         <p className="results-count">
-                            {sortedProblems.length} probleme găsite
-                            {totalPages > 1 && ` (pagina ${currentPage} din ${totalPages})`}
+                            {t('problemsPage.foundCount', '{count} probleme găsite', { count: sortedProblems.length })}
+                            {totalPages > 1 && ` (${t('problemsPage.pageCount', 'pagina {current} din {total}', { current: currentPage, total: totalPages })})`}
                         </p>
                         <select
                             className="sort-select"
                             value={sortBy}
                             onChange={(e) => setSortBy(e.target.value)}
                         >
-                            <option value="newest">Cele mai noi</option>
-                            <option value="oldest">Cele mai vechi</option>
-                            <option value="difficulty-asc">Dificultate (crescător)</option>
-                            <option value="difficulty-desc">Dificultate (descrescător)</option>
+                            <option value="newest">{t('problemsPage.sort.newest', 'Cele mai noi')}</option>
+                            <option value="oldest">{t('problemsPage.sort.oldest', 'Cele mai vechi')}</option>
+                            <option value="difficulty-asc">{t('problemsPage.sort.difficultyAsc', 'Dificultate (crescător)')}</option>
+                            <option value="difficulty-desc">{t('problemsPage.sort.difficultyDesc', 'Dificultate (descrescător)')}</option>
                         </select>
                     </div>
 
                     {/* Problem Cards Grid */}
                     {status === 'loading' && (
-                        <div className="problems-loading">Se încarcă problemele...</div>
+                        <div className="problems-loading">{t('problemsPage.loading', 'Se încarcă problemele...')}</div>
                     )}
                     {status === 'failed' && (
-                        <div className="problems-error">Eroare la încărcarea problemelor: {error}</div>
+                        <div className="problems-error">{t('problemsPage.loadError', 'Eroare la încărcarea problemelor: {error}', { error })}</div>
                     )}
                     <div className="problems-grid">
                         {currentProblems.map((problem) => (
@@ -1528,8 +1536,8 @@ const PhysicsProblems = () => {
                         <div className="no-results">
                             <div className="loading-spinner">
                                 <div className="spinner"></div>
-                                <h3>Se caută probleme...</h3>
-                                <p>Te rugăm să aștepți în timp ce se procesează căutarea.</p>
+                                <h3>{t('problemsPage.searchingTitle', 'Se caută probleme...')}</h3>
+                                <p>{t('problemsPage.searchingDescription', 'Te rugăm să aștepți în timp ce se procesează căutarea.')}</p>
                             </div>
                         </div>
                     )}
@@ -1543,7 +1551,7 @@ const PhysicsProblems = () => {
                                     disabled={currentPage === 1}
                                     onClick={goToPreviousPage}
                                 >
-                                    Anterior
+                                    {t('common.previous', 'Anterior')}
                                 </button>
                                 
                                 {getPageNumbers().map((page, index) => (
@@ -1566,7 +1574,7 @@ const PhysicsProblems = () => {
                                     disabled={currentPage === totalPages}
                                     onClick={goToNextPage}
                                 >
-                                    Următor
+                                    {t('common.next', 'Următor')}
                                 </button>
                             </div>
                         </div>

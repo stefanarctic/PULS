@@ -18,9 +18,11 @@ import electricityDark from "/res/resources-section/mecanica_dark.webp"; // Plac
 import opticsLight from "/res/resources-section/termodinamica_light.webp"; // Placeholder - va trebui înlocuit cu imagine reală
 import opticsDark from "/res/resources-section/termodinamica_dark.webp"; // Placeholder - va trebui înlocuit cu imagine reală
 import "/src/scss/components/_resources-section-landing.scss"; // Import the SCSS stylesheet
+import { LocalizedLink as Link, useI18n } from "../../i18n/LanguageContext";
 
 const resources = [
   {
+    i18nKey: "pendulum",
     title: "Pendulul",
     description:
       "Descoperă mișcarea oscilatorie, formulele perioadei și aplicațiile pendulului în măsurarea timpului.",
@@ -31,6 +33,7 @@ const resources = [
     formulaCategory: "pendule",
   },
   {
+    i18nKey: "waves",
     title: "Unde",
     description:
       "Află despre unde mecanice și electromagnetice, interferență, difracție și aplicații practice.",
@@ -41,6 +44,7 @@ const resources = [
     formulaCategory: "unde",
   },
   {
+    i18nKey: "lissajous",
     title: "Figuri Lissajous",
     description:
       "Explorează curbe armonice suprapuse, vizualizări matematice și oscilații perpendiculare.",
@@ -51,6 +55,7 @@ const resources = [
     formulaCategory: "lissajous",
   },
   {
+    i18nKey: "thermodynamics",
     title: "Termodinamică",
     description:
       "Studiază transferul de căldură, legile termodinamicii și transformările energetice.",
@@ -61,6 +66,7 @@ const resources = [
     formulaCategory: "termodinamica",
   },
   {
+    i18nKey: "mechanics",
     title: "Mecanică",
     description:
       "Înțelege mișcarea corpurilor, forțele, energia cinetică și potențială, și legile lui Newton.",
@@ -71,6 +77,7 @@ const resources = [
     formulaCategory: "mecanica",
   },
   {
+    i18nKey: "earthquake",
     title: "Seism",
     description:
       "Analizează undele seismice, propagarea lor prin straturile Pământului și detectarea cutremurelor.",
@@ -81,6 +88,7 @@ const resources = [
     formulaCategory: "seism",
   },
   {
+    i18nKey: "electricity",
     title: "Electricitate",
     description:
       "Explorează circuitele electrice, legile lui Ohm și Kirchhoff, energia electrică și câmpurile electrice.",
@@ -91,6 +99,7 @@ const resources = [
     formulaCategory: "electricitate",
   },
   {
+    i18nKey: "electromagnetism",
     title: "Electromagnetism",
     description:
       "Câmp electric și magnetic, inducție, forța Lorentz și efectul Meissner prin simulări interactive.",
@@ -101,6 +110,7 @@ const resources = [
     formulaCategory: "electromagnetism",
   },
   {
+    i18nKey: "optics",
     title: "Optică",
     description:
       "Descoperă comportamentul luminii, refracția, reflexia, lentilele și fenomenele de interferență și difracție.",
@@ -114,6 +124,7 @@ const resources = [
 
 const ResourcesSection = () => {
   const isDarkMode = useDarkMode();
+  const { t } = useI18n();
 
   return (
     <section className="resources-section">
@@ -124,9 +135,9 @@ const ResourcesSection = () => {
           <div className="book-icon-wrapper">
             <BookOpen className="book-icon" />
           </div>
-          <h2 className="resources-title">Resurse didactice</h2>
+          <h2 className="resources-title">{t('resourcesSection.title', 'Resurse didactice')}</h2>
           <p className="resources-description">
-            Explorează lecții teoretice, formule esențiale, experimente practice și bibliografie recomandată pentru a-ți aprofunda cunoștințele de fizică.
+            {t('resourcesSection.description', 'Explorează lecții teoretice, formule esențiale, experimente practice și bibliografie recomandată pentru a-ți aprofunda cunoștințele de fizică.')}
           </p>
           {/* Decorative line */}
           <div className="resources-decorative-line">
@@ -139,10 +150,15 @@ const ResourcesSection = () => {
         <div className="resources-grid">
           {resources.map((resource, index) => {
             const image = isDarkMode ? resource.imageDark : resource.imageLight;
+            const translatedResource = {
+              ...resource,
+              title: t(`resourcesSection.cards.${resource.i18nKey}.title`, resource.title),
+              description: t(`resourcesSection.cards.${resource.i18nKey}.description`, resource.description),
+            };
             return (
               <ResourceCard
                 key={resource.title}
-                {...resource}
+                {...translatedResource}
                 image={image}
                 delay={index * 100}
               />
@@ -151,10 +167,10 @@ const ResourcesSection = () => {
         </div>
         {/* View all button */}
         <div className="resources-footer">
-          <button className="view-all-btn">
+          <Link to="/resurse" className="view-all-btn">
             <BookOpen className="view-all-icon" />
-            Vezi toate resursele
-          </button>
+            {t('resourcesSection.viewAll', 'Vezi toate resursele')}
+          </Link>
         </div>
       </div>
     </section>
