@@ -1096,6 +1096,183 @@
             "stefanBoltzmann": "Stefan–Boltzmann radiated power"
           }
         }
+      },
+      "quantumPhysics": {
+        "seo": {
+          "title": "Quantum physics resources | Double-slit and tunnelling - PULS",
+          "description": "Double-slit interference, Born rule, quantum tunnelling through barriers, molecular orbitals and bonding — theory, formulas and interactive simulations.",
+          "keywords": "quantum physics, double slit, interference, quantum tunnelling, Schrödinger, quantum mechanics, PULS"
+        },
+        "pageTitle": "Quantum physics",
+        "intro": {
+          "p1": "We introduce two core phenomena: amplitude superposition in the double-slit experiment (interference and probability) and penetration of a potential barrier (tunnelling). Below each simulation are commonly used formulas with short explanations."
+        },
+        "doubleSlit": {
+          "title": "Double-slit experiment",
+          "p1": "A beam passes through two parallel slits. In the quantum description the amplitude on the screen is the sum of contributions from each slit; measured intensity follows Born's rule and can show interference fringes. If you localize the particle on one path before the screen, the pattern changes — wave–particle complementarity.",
+          "formulasHeading": "Essential formulas (double slit)",
+          "maximaTitle": "Interference maxima",
+          "maximaLead": "For two slits separated by distance d and wavelength λ, at angle θ to the symmetry axis the path difference is approximately d sin θ. Constructive interference (intensity maxima) when this difference is an integer number of wavelengths:",
+          "fringeTitle": "Fringe spacing (Young, small angle)",
+          "fringeLead": "On a screen at distance L ≫ d from the slits, in the small-angle approximation sin θ ≈ y/L, the spacing between consecutive maxima of order m and m+1 on the screen is approximately:",
+          "fringeNote": "The closer the slits (small d) or the longer the wavelength, the farther apart the fringes on the screen.",
+          "bornTitle": "Born rule (probability)",
+          "bornLead": "The probability of detecting the particle in a small region of space is proportional to the squared modulus of the wavefunction (the sum of amplitudes for all relevant paths):",
+          "bornNote": "That is why interference is seen: terms that add in ψ can produce maxima or minima of |ψ|², not merely a sum of independent intensities.",
+          "cta": "Simulation: double slit",
+          "alt": "Double-slit simulator screenshot"
+        },
+        "tunnelling": {
+          "title": "Quantum tunnelling",
+          "p1": "In regions where classically the kinetic energy would be negative (E < V(x)), the wavefunction does not vanish abruptly: inside the barrier an evanescent part appears that decays exponentially, so there is non-zero probability of finding the particle beyond the barrier — tunnelling. It occurs in tunnel diodes, scanning tunnelling microscopes (STM) and many nuclear and chemical models.",
+          "formulasHeading": "Essential formulas (tunnelling)",
+          "schroTitle": "Time-independent Schrödinger equation (1D)",
+          "schroLead": "For a state with well-defined energy E, the time-independent form in one dimension is:",
+          "schroNote": "In each region where V is approximately constant, the solution is a combination of exponentials (oscillatory if E > V, growing/decaying if E < V).",
+          "kappaTitle": "Wavenumber in the allowed region and decay in the barrier",
+          "kappaLead": "For a rectangular barrier of height V₀ and E < V₀, inside the barrier (where classically the particle would not pass) the evanescent solution involves the parameter κ:",
+          "kappaNote": "The higher the barrier relative to E (i.e. the larger V₀ − E), the larger κ and the faster the wave decays inside the barrier.",
+          "transTitle": "Transmission through a thick barrier (idea)",
+          "transLead": "For a sufficiently wide barrier of width a, the transmission coefficient (probability to pass) decreases very rapidly with width, often dominated by a factor of the form:",
+          "transNote": "Exact numerical factors depend on the barrier shape (step, smooth, etc.), but the exponential dependence on κ a explains why tunnelling is sensitive to a few ångströms in STM or layer thickness in real devices.",
+          "heisenbergTitle": "Order of magnitude: energy and duration (Heisenberg)",
+          "heisenbergLead": "A state that does not live forever (e.g. a metastable level) has an uncertainty in energy related to its characteristic lifetime Δt:",
+          "heisenbergNote": "Useful when estimating level widths or lifetimes in processes involving tunnelling from a confined state.",
+          "cta": "Simulation: quantum tunnelling",
+          "alt": "Quantum tunnelling simulator screenshot"
+        },
+        "bonding": {
+          "title": "Bonding between atoms and molecular orbitals",
+          "p1": "Beyond the isolated atom, quantum mechanics explains why atoms can bind into stable molecules: linear combinations of atomic orbitals lead to bonding and antibonding molecular orbitals. Increased probability density between nuclei corresponds to a lower total energy than separated atoms.",
+          "formulasHeading": "Essential formulas (atomic bonding)",
+          "moTitle": "Combining atomic orbitals (bonding / antibonding MOs)",
+          "moLead": "In the very simplified picture of the H₂ molecule, two 1s orbitals can combine into a bonding (symmetric) and an antibonding (antisymmetric) orbital:",
+          "moNote": "In the bonding orbital, the probability density |ψ_bond|² is larger between the nuclei, lowering the total energy compared to separated atoms.",
+          "ebindTitle": "Binding energy",
+          "ebindLead": "Binding energy is defined as the difference between the energy of separated atoms and the energy of the molecule:",
+          "ebindNote": "The larger E_bind, the stronger the bond and the more stable the molecule.",
+          "forceTitle": "Binding force — harmonic oscillator approximation",
+          "forceLead": "Near the equilibrium separation r₀ between nuclei, the binding potential can be approximated by a harmonic oscillator:",
+          "forceNote": "The effective constant k relates to bond “stiffness”; vibrational frequency depends on k and the reduced mass of the two atoms.",
+          "rhoTitle": "Probability density along the bond",
+          "rhoLead": "The probability of finding electrons at point \\(\\vec{r}\\) is given by the probability density:",
+          "rhoNote": "High density between nuclei is the hallmark of a covalent bond; in the antibonding orbital this density is small or zero between nuclei.",
+          "cta": "Simulation: bonding between atoms",
+          "alt": "Atomic bonding simulator screenshot"
+        }
+      },
+      "lasers": {
+        "seo": {
+          "title": "Lasers | ELI-NP and interactive simulators - PULS",
+          "description": "Lasers: core ideas, useful formulas, modern applications, ELI‑NP context, and interactive simulators on laser–matter interaction, high-intensity pulses, and laser wakefield acceleration.",
+          "keywords": "lasers, laser, ELI-NP, Măgurele, laser optics, laser intensity, Gaussian beam, femtosecond pulse"
+        },
+        "pageTitle": "Lasers: from photons to extreme pulses",
+        "intro": {
+          "p1": "A laser is a light source with high coherence, very good directionality and, in many applications, a well-controlled wavelength. That combination makes it useful both in laboratory optics and in medicine, telecommunications, metrology or plasma physics.",
+          "p2": "At Măgurele, the ELI‑NP facility is a European reference for high-power laser experiments, where laser–matter interaction opens discussion of plasma, particle acceleration and extreme conditions in an educationally inspired, real-research setting."
+        },
+        "about": {
+          "title": "Lasers in brief",
+          "p1": "A laser produces coherent, directional light that is easy to focus. That makes it ideal for precise measurements, telecommunications, medicine and experiments where energy must be concentrated in a very small region.",
+          "p2": "When using a laser simulator, pay special attention to wavelength, power, spot diameter and pulse duration — these set intensity, ionisation and the physical regime of interaction with matter."
+        },
+        "eliHistory": {
+          "title": "Short ELI‑NP history",
+          "p1": "ELI‑NP, developed at Măgurele, is part of the European Extreme Light Infrastructure and was conceived for research at the intersection of high-power lasers and nuclear physics.",
+          "p2": "For students, ELI‑NP matters because it shows how seemingly theoretical ideas — focusing, peak power or laser–matter interaction — become central in frontier experiments."
+        },
+        "sections": {
+          "sim1": {
+            "title": "Simulator 1: Laser vs matter",
+            "intro": "This simulator explores how the beam interacts with the target: by changing interaction mode, material and beam parameters you can observe heating, photoemission or ionisation.",
+            "alt": "Laser vs matter simulator screenshot",
+            "cta": "Start simulation",
+            "formulasHeading": "Formulas and explanations",
+            "factsHeading": "What to notice in the simulator",
+            "formulas": {
+              "intensity": {
+                "title": "Beam intensity",
+                "explanation": "If the spot area shrinks, intensity rises rapidly. In the simulator this immediately affects the material response."
+              },
+              "photon": {
+                "title": "Photon energy",
+                "explanation": "Wavelength controls each photon's energy and thus the likelihood of processes such as the photoelectric effect."
+              },
+              "radiationPressure": {
+                "title": "Radiation pressure",
+                "explanation": "Light carries momentum; at high intensities it can transfer measurable pressure to an illuminated surface."
+              }
+            },
+            "facts": {
+              "f1": "a smaller spot produces stronger effects for the same total power",
+              "f2": "materials respond differently to heating and ionisation",
+              "f3": "interaction modes help compare thermal effects with photoelectric ones"
+            }
+          },
+          "sim2": {
+            "title": "Simulator 2: ELI‑NP Photon Sniper",
+            "intro": "The second simulator is inspired by ELI‑NP and emphasises ultra-short pulses, tight focusing and peak intensity achieved in high-power laser experiments.",
+            "alt": "ELI‑NP Photon Sniper simulator screenshot",
+            "cta": "Start ELI‑NP simulation",
+            "formulasHeading": "Formulas and explanations",
+            "factsHeading": "What to notice in the simulator",
+            "formulas": {
+              "peakPower": {
+                "title": "Peak pulse power",
+                "explanation": "When pulse energy is compressed into an extremely short duration, instantaneous power becomes very large."
+              },
+              "peakIntensity": {
+                "title": "Peak intensity",
+                "explanation": "High power combined with good focusing leads to extreme regimes where plasma and ablation appear."
+              },
+              "gaussianDiv": {
+                "title": "Gaussian beam divergence",
+                "explanation": "A very tightly focused beam usually diverges more after the focal region."
+              },
+              "rayleigh": {
+                "title": "Rayleigh range",
+                "explanation": "This distance indicates the region around the focus where the beam stays relatively collimated."
+              }
+            },
+            "facts": {
+              "f1": "ELI‑NP is linked to extreme laser research at Măgurele",
+              "f2": "pulse duration directly affects peak power",
+              "f3": "focusing and spot size control the physical regime you observe"
+            }
+          },
+          "sim3": {
+            "title": "Simulator 3: Laser wakefield accelerator",
+            "intro": "The third simulator sketches LWFA (Laser WakeField Acceleration): the laser pulse drives a plasma wave, and an electron can stay in the accelerating phase and gain energy over short distances.",
+            "alt": "Laser wakefield accelerator simulator screenshot",
+            "cta": "Open LWFA simulator",
+            "formulasHeading": "Formulas and explanations",
+            "factsHeading": "What to notice in the simulator",
+            "formulas": {
+              "plasmaWave": {
+                "title": "Plasma wave (simplified model)",
+                "explanation": "The wakefield is represented here by a sinusoidal profile: amplitude A grows with laser intensity, and spatial frequency depends on plasma density."
+              },
+              "intensity": {
+                "title": "Beam intensity",
+                "explanation": "For the same power P, focusing to a smaller A_spot increases intensity and stronger acceleration fields in the plasma."
+              },
+              "gamma": {
+                "title": "Electron Lorentz factor",
+                "explanation": "As electron speed v approaches c, γ grows rapidly, highlighting the relativistic regime in the accelerator."
+              },
+              "relEnergy": {
+                "title": "Relativistic energy",
+                "explanation": "This links γ directly to electron energy. In the simulation energy rises when the electron stays in phase with the plasma wave."
+              }
+            },
+            "facts": {
+              "f1": "higher intensity increases wakefield amplitude and electron acceleration",
+              "f2": "plasma density changes the wave period and capture conditions",
+              "f3": "if the electron falls out of the accelerating phase, energy gain drops"
+            }
+          }
+        }
       }
     },
     "formulaSections": {
