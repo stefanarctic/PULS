@@ -919,6 +919,183 @@
             "pActive": "Active power in AC"
           }
         }
+      },
+      "thermodynamics": {
+        "seo": {
+          "title": "Thermodynamics resources | Laws and heat engines - PULS",
+          "description": "Thermodynamics: first and second laws, ideal gas, entropy, heat engines, Carnot efficiency and periodic-table relations — theory, formulas and simulations.",
+          "keywords": "thermodynamics, entropy, Carnot, heat engine, ideal gas, periodic table, PULS"
+        },
+        "pageTitle": "Thermodynamics",
+        "intro": {
+          "p1": "Thermodynamics is the branch of physics that studies energy transformations and the laws governing them. It describes macroscopic systems using thermodynamic variables such as temperature, pressure, volume and internal energy.",
+          "p2": "Core ideas include internal energy, entropy, heat, work and thermodynamic potentials. They are linked by the fundamental laws that govern physical and chemical processes.",
+          "p3": "Thermodynamics is essential for heat engines, refrigeration, chemical processes and many natural and technological phenomena involving energy transfer and conversion."
+        },
+        "fundamental": {
+          "title": "Fundamental thermodynamic processes",
+          "p1": "Thermodynamics studies energy transformations and the laws governing them. Key concepts are temperature, pressure, volume, internal energy and entropy.",
+          "p2": "A thermodynamic system is described by state variables such as pressure (p), volume (V), temperature (T) and particle number (N). They are related by equations of state that describe each substance.",
+          "p3": "Processes may be reversible or irreversible, isothermal, isobaric, isochoric or adiabatic — each with specific equations reflecting energy conservation and entropy increase.",
+          "formulasHeading": "Essential thermodynamics formulas:",
+          "variablesNote": "where: U internal energy, Q heat, L work, p pressure, V volume, n moles, R gas constant, T temperature, S entropy, k_B Boltzmann constant, Ω number of microstates, f degrees of freedom, H enthalpy, F Helmholtz free energy, G Gibbs free energy, κ isothermal compressibility, α thermal expansion coefficient, η efficiency, T_C cold reservoir temperature, T_H hot reservoir temperature.",
+          "alt": "Thermodynamics simulation screenshot"
+        },
+        "engines": {
+          "title": "Heat engines",
+          "p1": "Heat engines convert thermal energy (heat) from a hot reservoir into useful mechanical work, rejecting part of the energy to a cold reservoir. Examples include internal combustion engines (Otto, Diesel), gas and steam turbines, and the idealised Carnot engine.",
+          "p2": "The heat-engine simulator lets you visualise thermodynamic cycles on p–V and T–s diagrams, compare efficiencies and understand each phase: compression, heating/combustion, expansion and exhaust.",
+          "formulasHeading": "Key heat-engine formulas:",
+          "variablesNote": "where: η is efficiency, L_{util} useful mechanical work per cycle, Q_H heat absorbed from the hot reservoir, Q_C heat rejected to the cold reservoir, T_H and T_C absolute temperatures of the hot and cold reservoirs; the contour integral \\(\\oint p\\,dV\\) is the p–V cycle area (net work per cycle).",
+          "alt": "Heat engine simulation screenshot"
+        },
+        "periodicTable": {
+          "title": "Periodic table (useful quantities for problems)",
+          "p1": "The periodic table gives element symbols, atomic number Z and — especially — molar mass M for mole, particle and concentration calculations. These quantities appear often in gases, mixtures, calorimetry and the ideal gas law.",
+          "formulasHeading": "Useful relations:",
+          "variablesNote": "where: Z proton count, A mass number, N neutron count, n amount of substance (moles), m mass, M molar mass, N_A Avogadro constant, c molar concentration, V volume.",
+          "alt": "Periodic table simulation screenshot"
+        },
+        "formulas": {
+          "main": {
+            "firstLaw": "First law of thermodynamics",
+            "idealGas": "Ideal gas equation of state",
+            "entropyBoltzmann": "Entropy (Boltzmann definition)",
+            "secondLaw": "Second law of thermodynamics",
+            "internalEnergy": "Internal energy of an ideal gas",
+            "workReversible": "Work in reversible processes",
+            "cv": "Heat capacity at constant volume",
+            "cp": "Heat capacity at constant pressure",
+            "enthalpy": "Enthalpy",
+            "helmholtz": "Helmholtz free energy",
+            "gibbs": "Gibbs free energy",
+            "compressibility": "Isothermal compressibility",
+            "thermalExpansion": "Thermal expansion coefficient",
+            "carnotEff": "Carnot engine efficiency"
+          },
+          "engines": {
+            "efficiency": "Thermal engine efficiency",
+            "carnotIdeal": "Ideal (Carnot) efficiency",
+            "cycleWork": "Work in a thermodynamic cycle",
+            "isobaricQ": "Heat exchanged in an isobaric process"
+          },
+          "periodic": {
+            "zProtons": "Atomic number Z equals number of protons",
+            "massNumber": "Mass number A",
+            "neutrons": "Number of neutrons N",
+            "moles": "Amount of substance (moles)",
+            "massFromMoles": "Mass from amount of substance",
+            "particleCount": "Number of particles",
+            "avogadro": "Avogadro constant",
+            "molarity": "Molar concentration"
+          }
+        }
+      },
+      "optics": {
+        "seo": {
+          "title": "Optics resources | Lenses, reflection and refraction - PULS",
+          "description": "Optics: thin lenses, reflection, Snell's law, prisms, atmospheric refraction, lasers and the electromagnetic spectrum — theory, formulas and simulations.",
+          "keywords": "optics, lenses, reflection, refraction, Snell, prism, laser, electromagnetic spectrum, PULS"
+        },
+        "pageTitle": "Optics",
+        "intro": {
+          "p1": "Optics studies light: its behaviour and properties and its interaction with matter. It spans geometrical optics, physical optics and quantum optics.",
+          "p2": "Topics include reflection, refraction, interference, diffraction and polarisation — essential for optical systems from simple lenses to complex instruments.",
+          "p3": "Applications range from lighting and medical imaging to lasers and optical fibre."
+        },
+        "thinLens": {
+          "title": "Thin lenses",
+          "p1": "Thin lenses refract light to form images. They may be converging (convex) or diverging (concave), each with characteristic image formation.",
+          "p2": "Thin-lens equations relate object and image distances and sizes — the basis of many optical systems.",
+          "formulasHeading": "Thin-lens formulas:",
+          "variablesNote": "where: f focal length, x₁ object distance, x₂ image distance, β linear magnification, y₁ object height, y₂ image height, C optical power (convergence), n refractive index, R₁ and R₂ radii of curvature, γ angular magnification, α₁ and α₂ angles.",
+          "alt": "Thin lens simulator screenshot"
+        },
+        "refractionReflection": {
+          "title": "Refraction and reflection",
+          "p1": "Refraction and reflection describe light at interfaces between media with different refractive indices. They follow the laws of reflection and refraction.",
+          "p2": "Snell's law relates incidence and refraction angles to the indices. Total internal reflection occurs when light goes from a higher to a lower index. Many effects — desert mirages or objects appearing bent in water — come from how the index varies.",
+          "formulasHeading": "Refraction and reflection formulas:",
+          "variablesNote": "where: n refractive index, c speed of light in vacuum, v speed in medium, i and r incidence and refraction angles, θ₁ and θ₂ angles in the two media, θᵢ and θᵣ incidence and reflection angles, θcrit critical angle, λ₀ wavelength in vacuum, λₙ wavelength in medium.",
+          "alt": "Reflection and refraction simulator screenshot"
+        },
+        "prism": {
+          "title": "Prism and dispersion of light",
+          "p1": "A prism refracts light and splits it into spectral components. Dispersion occurs because the refractive index depends on wavelength.",
+          "p2": "Dispersion explains rainbows and underpins many optical instruments. Studying prisms clarifies light behaviour in dispersive media.",
+          "formulasHeading": "Prism and dispersion formulas:",
+          "variablesNote": "where: δ deviation angle, A apex angle of the prism, i₁ and i₂ incidence and emergence angles, D angular dispersion with respect to λ, P dispersive power, n_F, n_C, n_D refractive indices at standard spectral lines, A,B,C Cauchy coefficients (not the apex).",
+          "alt": "Prism simulation screenshot"
+        },
+        "atmospheric": {
+          "title": "Atmospheric refraction",
+          "p1": "Atmospheric refraction bends light through layers of different density. It causes mirages and lets the Sun appear above the horizon when it is already geometrically below it.",
+          "p2": "It matters for astronomy, navigation and meteorology and shows how atmospheric optical properties affect observations.",
+          "formulasHeading": "Atmospheric refraction and mirage formulas:",
+          "variablesNote": "where: n_air air refractive index, T temperature (K), p pressure (hPa), e water vapour pressure, θᵢ incidence angle, θᵣ refraction angle, Δθ refraction correction, z zenith distance.",
+          "alt": "Desert mirage simulation screenshot"
+        },
+        "laser": {
+          "title": "Laser",
+          "p1": "A laser produces a coherent, nearly monochromatic beam with low divergence. In applications (telecom, medicine, metrology), wavelength, frequency, energy and intensity are linked.",
+          "formulasHeading": "Essential laser formulas:",
+          "variablesNote": "where: c speed of light, λ wavelength, f frequency, h Planck constant, E energy, p momentum, P power, A area, r distance, θ divergence, w₀ beam waist radius, z_R Rayleigh range.",
+          "alt": "Laser simulation screenshot"
+        },
+        "emSpectrum": {
+          "title": "Electromagnetic spectrum",
+          "p1": "Electromagnetic waves are described by frequency and wavelength; photon energy increases with frequency. The spectrum spans radio through gamma rays.",
+          "formulasHeading": "Essential formulas:",
+          "variablesNote": "where: c speed of light, λ wavelength, f frequency, h Planck constant, E photon energy, p momentum, P power, A area, r distance, λ_max Wien peak wavelength, T absolute temperature, b Wien constant, σ Stefan–Boltzmann constant, ε emissivity.",
+          "alt": "Electromagnetic spectrum simulation screenshot"
+        },
+        "formulas": {
+          "thinLens": {
+            "lensEq": "Thin lens equation",
+            "linearMag": "Linear magnification",
+            "opticalPower": "Optical power (convergence)",
+            "lensmaker": "Lensmaker's formula",
+            "systemPower": "Optical power of a lens system",
+            "angularMag": "Angular magnification"
+          },
+          "refractionReflection": {
+            "index": "Refractive index",
+            "snell": "Snell's law (refraction)",
+            "reflection": "Law of reflection",
+            "critical": "Critical angle for total internal reflection",
+            "speedMedium": "Speed of light in a medium",
+            "wavelengthMedium": "Wavelength in a medium"
+          },
+          "prism": {
+            "deviation": "Angle of deviation",
+            "angularDispersion": "Angular dispersion",
+            "dispersivePower": "Dispersive power",
+            "cauchy": "Cauchy formula for refractive index"
+          },
+          "atmospheric": {
+            "airIndex": "Refractive index of air",
+            "refractionAngle": "Angle of atmospheric refraction",
+            "horizonCorrection": "Low-altitude refraction correction"
+          },
+          "laser": {
+            "cLambdaf": "Wave–frequency relation",
+            "photonE": "Photon energy",
+            "photonP": "Photon momentum",
+            "intensity": "Intensity (power per area)",
+            "inverseSquare": "Inverse-square law (point source)",
+            "minDiv": "Minimum divergence (Gaussian beam)",
+            "rayleigh": "Rayleigh range"
+          },
+          "spectrum": {
+            "cLambdaf": "Wave–frequency relation",
+            "photonE": "Photon energy",
+            "photonP": "Photon momentum",
+            "intensityPlane": "Intensity (plane wave)",
+            "inverseSquare": "Inverse-square law (spherical propagation)",
+            "wien": "Wien's displacement law",
+            "stefanBoltzmann": "Stefan–Boltzmann radiated power"
+          }
+        }
       }
     },
     "formulaSections": {
