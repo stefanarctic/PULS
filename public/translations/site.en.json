@@ -1273,6 +1273,105 @@
             }
           }
         }
+      },
+      "atom": {
+        "seo": {
+          "title": "The atom | Hydrogen structure and periodic table - PULS",
+          "description": "Hydrogen atom (Bohr, Schrödinger), spectrum and transitions; periodic table and basic element properties — theory and interactive simulations.",
+          "keywords": "atom, hydrogen atom, periodic table, quantum mechanics, energy levels, spectrum, PULS"
+        },
+        "pageTitle": "The atom",
+        "intro": {
+          "p1": "Atomic structure and how elements are organised in chemistry and physics: from the simplest atom (hydrogen) to the periodic table. Below is essential theory and links to interactive simulations."
+        },
+        "hydrogen": {
+          "title": "Hydrogen atom",
+          "p1": "The hydrogen atom is the simplest: one proton and one electron. It was an ideal “laboratory” for developing quantum mechanics because its emission spectrum has very clear, sharp lines.",
+          "alt": "Hydrogen atom simulation screenshot",
+          "bohrHeading": "Bohr model — quantised energy levels",
+          "bohrP1": "Niels Bohr (1913) proposed that the electron cannot have arbitrary energy, only discrete values (energy levels). For hydrogen, the energy of quantum level n = 1, 2, 3, … is:",
+          "bohrP2": "The value 13.6 eV is the ionisation energy of hydrogen (energy needed to remove the electron from the ground level n = 1 to infinity). The minus sign shows the electron is bound to the proton.",
+          "transitionsHeading": "Transitions and spectral lines",
+          "transP1": "When the electron jumps from a higher level E_m to a lower one E_n, the energy difference is emitted as a photon:",
+          "transP2": "The wavelengths of hydrogen spectral lines follow the Rydberg formula:",
+          "transP3": "where R_H is the Rydberg constant for hydrogen; spectral series (Lyman, Balmer, Paschen, …) correspond to different values of n.",
+          "waveHeading": "Quantum description: the electron wavefunction",
+          "waveP1": "In modern quantum mechanics, the electron in hydrogen is described by a wavefunction ψ_{nℓm}(r,θ,φ) that satisfies the Schrödinger equation in the Coulomb potential of the proton:",
+          "waveP2": "The solutions yield the same energy levels E_n as Bohr's model, but also orbital shapes (s, p, d, …) and probabilities for finding the electron around the nucleus.",
+          "cta": "Simulation: hydrogen atom"
+        },
+        "periodicTable": {
+          "title": "The periodic table of elements",
+          "p1": "Elements are arranged by atomic number Z. Within a group, atoms have similar outer-shell configurations; across a period, both protons in the nucleus and electrons in shells increase.",
+          "formulasHeading": "Useful formulas / relations (as in the thermodynamics lesson)",
+          "variablesNote": "where: Z proton number, A mass number, N neutron number, n amount of substance (moles), m mass, M molar mass, N_A Avogadro constant, c molar concentration, V volume.",
+          "alt": "Periodic table simulation screenshot",
+          "cta": "Simulation: interactive periodic table"
+        }
+      },
+      "electromagnetism": {
+        "seo": {
+          "title": "Electromagnetism | Superconductivity, Meissner effect and fuel cell - PULS",
+          "description": "Applied electromagnetism: Meissner effect and superconductivity, plus a PEM fuel cell — H₂/O₂ reaction, voltage, current, power and efficiency, with interactive simulations.",
+          "keywords": "electromagnetism, superconductivity, Meissner effect, fuel cell, hydrogen, PEM, voltage, current"
+        },
+        "pageTitle": "Electromagnetism: fields, forces and modern applications",
+        "intro": {
+          "p1": "Electromagnetism describes how electric charge, electric field, magnetic field and electromagnetic waves are linked. It is a pillar of modern physics and the basis of today's electrical technology.",
+          "p2": "Here you find superconductivity (Meissner effect, levitation) and a PEM fuel cell: how H₂ and O₂ produce current through charge separation and electron flow in the external circuit."
+        },
+        "sections": {
+          "meissner": {
+            "title": "Superconductivity and the Meissner effect",
+            "intro": "Here you can see electromagnetism directly: magnetic field, levitation and transition to the normal state when temperature exceeds T_c.",
+            "alt": "Superconductivity and Meissner simulator screenshot",
+            "cta": "Open Meissner simulator",
+            "formulasHeading": "Formulas and explanations",
+            "formulas": {
+              "tc": {
+                "title": "Superconductivity condition",
+                "explanation": "Below the critical temperature T_c the material becomes superconducting and magnetic field screening appears."
+              },
+              "fm": {
+                "title": "Magnetic force (educational model)",
+                "explanation": "In the simulator the repulsive effect grows with the square of magnetic field B and decreases as distance h increases."
+              },
+              "balance": {
+                "title": "Vertical balance",
+                "explanation": "Stable levitation occurs when magnetic force balances weight (F_m ≈ mg)."
+              },
+              "london": {
+                "title": "London penetration depth",
+                "explanation": "Describes the scale over which the magnetic field penetrates the superconductor before being screened."
+              }
+            }
+          },
+          "fuelCell": {
+            "title": "PEM fuel cell",
+            "intro": "A proton-exchange membrane cell converts the chemical energy of hydrogen and oxygen into electric current: at the anode H₂ is oxidised, electrons travel through the external circuit, and H⁺ crosses the membrane to the cathode where O₂ is reduced and water forms.",
+            "alt": "PEM fuel cell simulator screenshot",
+            "cta": "Open fuel cell simulator",
+            "formulasHeading": "Formulas and explanations",
+            "formulas": {
+              "global": {
+                "title": "Overall reaction (educative model)",
+                "explanation": "Chemical balance of the hydrogen cell: hydrogen and oxygen are consumed, water is produced, and part of the released energy appears as electrical work in the circuit."
+              },
+              "power": {
+                "title": "Electrical power delivered to the load",
+                "explanation": "Useful power at the terminals is the product of voltage U and current I. In the simulator, higher flows or lower bulb resistance increase I and thus P."
+              },
+              "ohm": {
+                "title": "Ohm's law (simple load)",
+                "explanation": "For a resistive load R, current is tied to available voltage. The teaching model also limits current by reactant flow."
+              },
+              "efficiency": {
+                "title": "Efficiency (working definition)",
+                "explanation": "Efficiency compares electrical power output to power available from the chemical flow of reactants. H₂/O₂ imbalance or internal losses reduce η."
+              }
+            }
+          }
+        }
       }
     },
     "formulaSections": {
