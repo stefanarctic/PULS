@@ -9,6 +9,7 @@ import { normalizeString } from '../../lib/normalizeString';
 import { collection, query, where, getDocs, getDoc, updateDoc, doc } from 'firebase/firestore';
 import { createTeacherInvite } from '../../lib/teacherInvite';
 import { db } from '../../lib/firebase';
+import { useI18n } from '../../i18n/LanguageContext';
 import '../../scss/components/_admin-dashboard.scss';
 
 const SearchIcon = () => (
@@ -24,6 +25,14 @@ const AdminDashboard = () => {
   const navigate = useNavigate();
   const location = useLocation();
   const { value: problems, status, updateStatus, updateError, deleteStatus, deleteError } = useSelector(state => state.problems);
+  const { t } = useI18n();
+  const AD = 'adminDashboard';
+
+  const difficultyDisplayLabel = (value) => {
+    if (value == null || value === '') return value;
+    const key = normalizeString(String(value));
+    return t(`profilePage.difficultyLabels.${key}`, String(value));
+  };
 
   const [searchQuery, setSearchQuery] = useState('');
   const [selectedDifficulty, setSelectedDifficulty] = useState('Toate');
@@ -108,7 +117,7 @@ const AdminDashboard = () => {
       setPendingTeachers((prev) => prev.filter((p) => p.id !== uid));
     } catch (e) {
       console.error(e);
-      alert('Nu s-a putut aproba.');
+      alert(t(`${AD}.errors.approveTeacher`, 'Nu s-a putut aproba.'));
     }
   };
 
@@ -118,7 +127,7 @@ const AdminDashboard = () => {
       setPendingTeachers((prev) => prev.filter((p) => p.id !== uid));
     } catch (e) {
       console.error(e);
-      alert('Nu s-a putut respinge.');
+      alert(t(`${AD}.errors.rejectTeacher`, 'Nu s-a putut respinge.'));
     }
   };
 
@@ -132,7 +141,12 @@ const AdminDashboard = () => {
       setTeacherInviteUrl(url);
     } catch (e) {
       console.error(e);
-      setTeacherInviteError('Nu s-a putut genera invitația. Verifică regulile Firestore și că ești admin.');
+      setTeacherInviteError(
+        t(
+          `${AD}.errors.inviteGenerate`,
+          'Nu s-a putut genera invitația. Verifică regulile Firestore și că ești admin.'
+        )
+      );
     } finally {
       setTeacherInviteLoading(false);
     }
@@ -145,7 +159,7 @@ const AdminDashboard = () => {
       setTeacherInviteCopied(true);
       setTimeout(() => setTeacherInviteCopied(false), 2000);
     } catch {
-      setTeacherInviteError('Nu s-a putut copia în clipboard.');
+      setTeacherInviteError(t(`${AD}.errors.inviteCopy`, 'Nu s-a putut copia în clipboard.'));
     }
   };
 
@@ -157,7 +171,7 @@ const AdminDashboard = () => {
       setSelfTeacherStatus(status);
     } catch (e) {
       console.error(e);
-      alert('Nu s-a putut actualiza rolul.');
+      alert(t(`${AD}.errors.roleUpdate`, 'Nu s-a putut actualiza rolul.'));
     } finally {
       setSelfTeacherRoleSaving(false);
     }
@@ -571,7 +585,7 @@ const AdminDashboard = () => {
   const handleAiAnalysis = async () => {
     if (!formData.continut || !formData.continut.trim()) {
       console.warn('[AI Analysis] Nu există conținut în enunț pentru analiză');
-      alert('Te rugăm să introduci mai întâi enunțul problemei.');
+      alert(t(`${AD}.ai.needContent`, 'Te rugăm să introduci mai întâi enunțul problemei.'));
       return;
     }
 
@@ -910,7 +924,12 @@ Dacă nu găsești date sau formule, returnează obiecte goale. Răspunde DOAR c
       if ((!analysisData.date || Object.keys(analysisData.date).length === 0) &&
           (!analysisData.formule || analysisData.formule.length === 0)) {
         console.warn('[AI Analysis] Nu s-au detectat date sau formule');
-        alert('AI-ul nu a putut detecta date sau formule în enunț. Te rugăm să le introduci manual.');
+        alert(
+          t(
+            `${AD}.ai.noDetection`,
+            'AI-ul nu a putut detecta date sau formule în enunț. Te rugăm să le introduci manual.'
+          )
+        );
       } else {
         console.log('[AI Analysis] Analiză finalizată cu succes');
       }
@@ -919,7 +938,12 @@ Dacă nu găsești date sau formule, returnează obiecte goale. Răspunde DOAR c
       console.error('[AI Analysis] Eroare la analiza problemei:', error);
       console.error('[AI Analysis] Stack trace:', error.stack);
       console.error('[AI Analysis] Timp până la eroare:', totalTime, 'ms');
-      alert('Eroare la analiza problemei cu AI. Te rugăm să încerci din nou sau să introduci datele manual.');
+      alert(
+        t(
+          `${AD}.ai.analysisError`,
+          'Eroare la analiza problemei cu AI. Te rugăm să încerci din nou sau să introduci datele manual.'
+        )
+      );
     } finally {
       setAiAnalyzing(false);
       console.log('[AI Analysis] Stare analiză resetată');
@@ -950,7 +974,7 @@ Dacă nu găsești date sau formule, returnează obiecte goale. Răspunde DOAR c
       <Layout>
         <div className="admin-dashboard-loading">
           <div className="spinner"></div>
-          <p>Se verifică permisiunile...</p>
+          <p>{t(`${AD}.checkingAccess`, 'Se verifică permisiunile...')}</p>
         </div>
       </Layout>
     );
@@ -963,8 +987,8 @@ Dacă nu găsești date sau formule, returnează obiecte goale. Răspunde DOAR c
           <div className="container">
             <div className="error-message">
               <AlertCircle size={48} />
-              <h2>Acces interzis</h2>
-              <p>Nu ai permisiuni pentru a accesa această pagină.</p>
+              <h2>{t(`${AD}.accessDeniedTitle`, 'Acces interzis')}</h2>
+              <p>{t(`${AD}.accessDeniedBody`, 'Nu ai permisiuni pentru a accesa această pagină.')}</p>
             </div>
           </div>
         </div>
@@ -976,17 +1000,20 @@ Dacă nu găsești date sau formule, returnează obiecte goale. Răspunde DOAR c
     <Layout>
       <div className="admin-dashboard">
         <div className="admin-dashboard-inner">
-          <h1 className="admin-dashboard-title">Panou de administrare</h1>
+          <h1 className="admin-dashboard-title">{t(`${AD}.pageTitle`, 'Panou de administrare')}</h1>
 
-          <section className="admin-teacher-requests admin-debug-teacher-role" aria-label="Rol cont pentru testare">
+          <section className="admin-teacher-requests admin-debug-teacher-role" aria-label={t(`${AD}.debug.sectionAria`, 'Rol cont pentru testare')}>
             <h2 className="admin-teacher-requests-title">
               <User size={22} aria-hidden />
-              Rol cont (testare)
+              {t(`${AD}.debug.title`, 'Rol cont (testare)')}
             </h2>
             <p className="admin-debug-teacher-role-lead">
-              Stare curentă:{' '}
+              {t(`${AD}.debug.statusLabel`, 'Stare curentă:')}{' '}
               <strong className="admin-debug-teacher-role-status">{selfTeacherStatus ?? '…'}</strong>
-              . Ca elev (<code>none</code>) nu poți crea clase; ca profesor (<code>approved</code>) ai acces la panoul profesor.
+              .{' '}
+              {t(`${AD}.debug.asStudentPrefix`, 'Ca elev')}{' '}
+              (<code>none</code>){t(`${AD}.debug.asStudentSuffix`, ' nu poți crea clase; ca profesor ')}
+              (<code>approved</code>){t(`${AD}.debug.asTeacherSuffix`, ' ai acces la panoul profesor.')}
             </p>
             <div className="admin-teacher-requests-actions admin-debug-teacher-role-actions">
               <button
@@ -995,7 +1022,7 @@ Dacă nu găsești date sau formule, returnează obiecte goale. Răspunde DOAR c
                 disabled={selfTeacherRoleSaving || selfTeacherStatus == null || selfTeacherStatus === 'approved'}
                 onClick={() => setDebugTeacherRole('approved')}
               >
-                Simulează profesor
+                {t(`${AD}.debug.simulateTeacher`, 'Simulează profesor')}
               </button>
               <button
                 type="button"
@@ -1003,34 +1030,34 @@ Dacă nu găsești date sau formule, returnează obiecte goale. Răspunde DOAR c
                 disabled={selfTeacherRoleSaving || selfTeacherStatus == null || selfTeacherStatus === 'none'}
                 onClick={() => setDebugTeacherRole('none')}
               >
-                Simulează elev
+                {t(`${AD}.debug.simulateStudent`, 'Simulează elev')}
               </button>
             </div>
           </section>
 
-          <section className="admin-teacher-requests" aria-label="Cereri profesor">
+          <section className="admin-teacher-requests" aria-label={t(`${AD}.teacherRequests.sectionAria`, 'Cereri profesor')}>
             <h2 className="admin-teacher-requests-title">
               <GraduationCap size={22} aria-hidden />
-              Cereri cont profesor
+              {t(`${AD}.teacherRequests.title`, 'Cereri cont profesor')}
             </h2>
             {teacherApprovalsLoading ? (
-              <p className="admin-teacher-requests-empty">Se încarcă...</p>
+              <p className="admin-teacher-requests-empty">{t(`${AD}.teacherRequests.loading`, 'Se încarcă...')}</p>
             ) : pendingTeachers.length === 0 ? (
-              <p className="admin-teacher-requests-empty">Nicio cerere în așteptare.</p>
+              <p className="admin-teacher-requests-empty">{t(`${AD}.teacherRequests.empty`, 'Nicio cerere în așteptare.')}</p>
             ) : (
               <ul className="admin-teacher-requests-list">
-                {pendingTeachers.map((t) => (
-                  <li key={t.id} className="admin-teacher-requests-item">
+                {pendingTeachers.map((pending) => (
+                  <li key={pending.id} className="admin-teacher-requests-item">
                     <div className="admin-teacher-requests-info">
-                      <strong>{t.name || '—'}</strong>
-                      <span className="admin-teacher-requests-email">{t.email || ''}</span>
+                      <strong>{pending.name || '—'}</strong>
+                      <span className="admin-teacher-requests-email">{pending.email || ''}</span>
                     </div>
                     <div className="admin-teacher-requests-actions">
-                      <button type="button" className="admin-teacher-btn approve" onClick={() => approveTeacher(t.id)}>
-                        Aprobă
+                      <button type="button" className="admin-teacher-btn approve" onClick={() => approveTeacher(pending.id)}>
+                        {t(`${AD}.teacherRequests.approve`, 'Aprobă')}
                       </button>
-                      <button type="button" className="admin-teacher-btn reject" onClick={() => rejectTeacher(t.id)}>
-                        Respinge
+                      <button type="button" className="admin-teacher-btn reject" onClick={() => rejectTeacher(pending.id)}>
+                        {t(`${AD}.teacherRequests.reject`, 'Respinge')}
                       </button>
                     </div>
                   </li>
@@ -1039,18 +1066,20 @@ Dacă nu găsești date sau formule, returnează obiecte goale. Răspunde DOAR c
             )}
           </section>
 
-          <details className="admin-teacher-invite" aria-label="Invitație profesor">
+          <details className="admin-teacher-invite" aria-label={t(`${AD}.invite.sectionAria`, 'Invitație profesor')}>
             <summary className="admin-teacher-invite-summary">
               <span className="admin-teacher-invite-summary-text">
                 <UserPlus size={22} aria-hidden className="admin-teacher-invite-summary-icon" />
-                <span className="admin-teacher-invite-heading">Invitație profesor</span>
+                <span className="admin-teacher-invite-heading">{t(`${AD}.invite.heading`, 'Invitație profesor')}</span>
               </span>
               <ChevronDown size={22} className="admin-teacher-invite-chevron" aria-hidden />
             </summary>
             <div className="admin-teacher-invite-body">
               <p className="admin-teacher-invite-lead">
-                Generează un link unic și trimite-l persoanei care trebuie să poată cere cont de profesor. După ce trimite
-                cererea, o vezi mai sus și o aprobi sau respingi manual.
+                {t(
+                  `${AD}.invite.lead`,
+                  'Generează un link unic și trimite-l persoanei care trebuie să poată cere cont de profesor. După ce trimite cererea, o vezi mai sus și o aprobi sau respingi manual.'
+                )}
               </p>
               <div className="admin-teacher-invite-actions">
                 <button
@@ -1059,7 +1088,9 @@ Dacă nu găsești date sau formule, returnează obiecte goale. Răspunde DOAR c
                   disabled={teacherInviteLoading}
                   onClick={handleGenerateTeacherInvite}
                 >
-                  {teacherInviteLoading ? 'Se generează...' : 'Generează link nou'}
+                  {teacherInviteLoading
+                    ? t(`${AD}.invite.generating`, 'Se generează...')
+                    : t(`${AD}.invite.generate`, 'Generează link nou')}
                 </button>
                 {teacherInviteUrl ? (
                   <button
@@ -1067,14 +1098,16 @@ Dacă nu găsești date sau formule, returnează obiecte goale. Răspunde DOAR c
                     className="admin-teacher-btn reject"
                     onClick={copyTeacherInviteUrl}
                   >
-                    {teacherInviteCopied ? 'Copiat în clipboard' : 'Copiază linkul'}
+                    {teacherInviteCopied
+                      ? t(`${AD}.invite.copied`, 'Copiat în clipboard')
+                      : t(`${AD}.invite.copy`, 'Copiază linkul')}
                   </button>
                 ) : null}
               </div>
               {teacherInviteError ? <p className="admin-teacher-invite-err">{teacherInviteError}</p> : null}
               {teacherInviteUrl ? (
                 <div className="admin-teacher-invite-url-box">
-                  <span className="admin-teacher-invite-url-label">Link generat</span>
+                  <span className="admin-teacher-invite-url-label">{t(`${AD}.invite.linkLabel`, 'Link generat')}</span>
                   <code className="admin-teacher-invite-url" title={teacherInviteUrl}>
                     {teacherInviteUrl}
                   </code>
@@ -1090,7 +1123,10 @@ Dacă nu găsești date sau formule, returnează obiecte goale. Răspunde DOAR c
                 <span className="search-icon"><SearchIcon /></span>
                 <input
                   type="text"
-                  placeholder="Caută după titlu, categorie, ID sau număr..."
+                  placeholder={t(
+                    `${AD}.filters.searchPlaceholder`,
+                    'Caută după titlu, categorie, ID sau număr...'
+                  )}
                   className="search-input"
                   value={searchQuery}
                   onChange={(e) => setSearchQuery(e.target.value)}
@@ -1111,9 +1147,9 @@ Dacă nu găsești date sau formule, returnează obiecte goale. Răspunde DOAR c
                     }
                   }}
                 >
-                  <option value="all">Toate</option>
-                  <option value="normal">Normale</option>
-                  <option value="bac">Bac</option>
+                  <option value="all">{t(`${AD}.filters.typeAll`, 'Toate')}</option>
+                  <option value="normal">{t(`${AD}.filters.typeNormal`, 'Normale')}</option>
+                  <option value="bac">{t(`${AD}.filters.typeBac`, 'Bac')}</option>
                 </select>
                 <select
                   className="filter-select"
@@ -1122,7 +1158,11 @@ Dacă nu găsești date sau formule, returnează obiecte goale. Răspunde DOAR c
                 >
                   {difficulties.map((difficulty) => (
                     <option key={difficulty} value={difficulty}>
-                      {difficulty === 'Toate' ? 'Toate dificultățile' : `Dificultate: ${difficulty}`}
+                      {difficulty === 'Toate'
+                        ? t(`${AD}.filters.allDifficulties`, 'Toate dificultățile')
+                        : t(`${AD}.filters.difficultyPrefix`, 'Dificultate: {label}', {
+                            label: difficultyDisplayLabel(difficulty),
+                          })}
                     </option>
                   ))}
                 </select>
@@ -1133,7 +1173,9 @@ Dacă nu găsești date sau formule, returnează obiecte goale. Răspunde DOAR c
                 >
                   {categories.map((category) => (
                     <option key={category} value={category}>
-                      {category === 'Toate' ? 'Toate categoriile' : `Categorie: ${category}`}
+                      {category === 'Toate'
+                        ? t(`${AD}.filters.allCategories`, 'Toate categoriile')
+                        : t(`${AD}.filters.categoryPrefix`, 'Categorie: {name}', { name: category })}
                     </option>
                   ))}
                 </select>
@@ -1148,7 +1190,7 @@ Dacă nu găsești date sau formule, returnează obiecte goale. Răspunde DOAR c
                   value={filterYear}
                   onChange={(e) => setFilterYear(e.target.value)}
                 >
-                  <option value="">Toți anii</option>
+                  <option value="">{t(`${AD}.filters.allYears`, 'Toți anii')}</option>
                   {years.map(year => (
                     <option key={year} value={year}>{year}</option>
                   ))}
@@ -1158,9 +1200,11 @@ Dacă nu găsești date sau formule, returnează obiecte goale. Răspunde DOAR c
                   value={filterVariant}
                   onChange={(e) => setFilterVariant(e.target.value)}
                 >
-                  <option value="">Toate variantele</option>
-                  {variants.map(variant => (
-                    <option key={variant} value={variant}>Varianta {variant}</option>
+                  <option value="">{t(`${AD}.filters.allVariants`, 'Toate variantele')}</option>
+                  {variants.map((variant) => (
+                    <option key={variant} value={variant}>
+                      {t(`${AD}.filters.variantOption`, 'Varianta {n}', { n: variant })}
+                    </option>
                   ))}
                 </select>
                 <select
@@ -1168,7 +1212,7 @@ Dacă nu găsești date sau formule, returnează obiecte goale. Răspunde DOAR c
                   value={filterType}
                   onChange={(e) => setFilterType(e.target.value)}
                 >
-                  <option value="">Toate tipurile</option>
+                  <option value="">{t(`${AD}.filters.allTypes`, 'Toate tipurile')}</option>
                   {types.map(type => (
                     <option key={type} value={type}>{type}</option>
                   ))}
@@ -1178,7 +1222,7 @@ Dacă nu găsești date sau formule, returnează obiecte goale. Răspunde DOAR c
                   value={filterSubjectArea}
                   onChange={(e) => setFilterSubjectArea(e.target.value)}
                 >
-                  <option value="">Toate domeniile</option>
+                  <option value="">{t(`${AD}.filters.allSubjectAreas`, 'Toate domeniile')}</option>
                   {subjectAreas.map(area => (
                     <option key={area} value={area}>{area}</option>
                   ))}
@@ -1193,7 +1237,7 @@ Dacă nu găsești date sau formule, returnează obiecte goale. Răspunde DOAR c
                   }}
                 >
                   <X size={16} />
-                  Șterge filtrele BAC
+                  {t(`${AD}.filters.clearBac`, 'Șterge filtrele BAC')}
                 </button>
               </div>
             )}
@@ -1220,19 +1264,21 @@ Dacă nu găsești date sau formule, returnează obiecte goale. Răspunde DOAR c
           )}
           {updateStatus === 'succeeded' && (
             <div className="admin-message success">
-              <span>Problema a fost actualizată cu succes!</span>
+              <span>{t(`${AD}.messages.updateSuccess`, 'Problema a fost actualizată cu succes!')}</span>
             </div>
           )}
           {deleteStatus === 'succeeded' && (
             <div className="admin-message success">
-              <span>Problema a fost ștearsă cu succes!</span>
+              <span>{t(`${AD}.messages.deleteSuccess`, 'Problema a fost ștearsă cu succes!')}</span>
             </div>
           )}
 
           {/* Results Header */}
           <div className="results-header">
             <p className="results-count">
-              {filteredProblems.length} {filteredProblems.length === 1 ? 'problemă' : 'probleme'} găsite
+              {filteredProblems.length === 1
+                ? t(`${AD}.results.oneProblemFound`, '{count} problemă găsită', { count: filteredProblems.length })
+                : t(`${AD}.results.manyProblemsFound`, '{count} probleme găsite', { count: filteredProblems.length })}
             </p>
           </div>
 
@@ -1240,7 +1286,7 @@ Dacă nu găsești date sau formule, returnează obiecte goale. Răspunde DOAR c
           {status === 'loading' ? (
             <div className="admin-loading">
               <div className="spinner"></div>
-              <p>Se încarcă problemele...</p>
+              <p>{t(`${AD}.loadingProblems`, 'Se încarcă problemele...')}</p>
             </div>
           ) : (
             <div className="problems-grid">
@@ -1253,14 +1299,16 @@ Dacă nu găsești date sau formule, returnează obiecte goale. Răspunde DOAR c
                   <div className="problem-card-header">
                     <div className="problem-card-info">
                       <span className="problem-card-id">#{problem.index || problem.id}</span>
-                      <h3 className="problem-card-title">{problem.titlu || 'Fără titlu'}</h3>
+                      <h3 className="problem-card-title">
+                        {problem.titlu || t(`${AD}.card.noTitle`, 'Fără titlu')}
+                      </h3>
                       <p className="problem-card-topic">{problem.categorie}</p>
                     </div>
                     <div className="problem-card-actions" onClick={(e) => e.stopPropagation()}>
                       <button
                         className="btn-delete-card"
                         onClick={() => setDeleteConfirm(problem)}
-                        title="Șterge"
+                        title={t(`${AD}.card.deleteTitle`, 'Șterge')}
                       >
                         <Trash2 size={18} />
                       </button>
@@ -1270,13 +1318,13 @@ Dacă nu găsești date sau formule, returnează obiecte goale. Răspunde DOAR c
                     {/* Nu afișăm dificultatea pentru problemele de BAC */}
                     {(problem.categorie !== 'Bac' && !normalizeString(problem.categorie || '').includes('bac')) && problem.dificultate && (
                       <div className={`problem-card-difficulty ${getDifficultyColorClass(problem.dificultate)}`}>
-                        {problem.dificultate}
+                        {difficultyDisplayLabel(problem.dificultate)}
                       </div>
                     )}
                     {/* Nu afișăm punctajul pentru problemele de BAC */}
                     {problem.punctajTotal && (problem.categorie !== 'Bac' && !normalizeString(problem.categorie || '').includes('bac')) && (
                       <div className="problem-card-points">
-                        {problem.punctajTotal} puncte
+                        {t(`${AD}.card.points`, '{n} puncte', { n: problem.punctajTotal })}
                       </div>
                     )}
                   </div>
@@ -1290,36 +1338,36 @@ Dacă nu găsești date sau formule, returnează obiecte goale. Răspunde DOAR c
             <div className="modal-overlay" onClick={handleCloseModal}>
               <div className="modal-content" onClick={e => e.stopPropagation()}>
                 <div className="modal-header">
-                  <h2>Editează problemă</h2>
+                  <h2>{t(`${AD}.modal.editTitle`, 'Editează problemă')}</h2>
                   <button className="modal-close" onClick={handleCloseModal}>×</button>
                 </div>
                 
                 {updateError && (
                   <div className="error-message">
-                    Eroare la salvarea problemei: {updateError}
+                    {t(`${AD}.messages.saveErrorPrefix`, 'Eroare la salvarea problemei:')} {updateError}
                   </div>
                 )}
                 
                 <form onSubmit={handleSave} className="modal-form">
                   <div className="form-grid">
                     <div className="form-group">
-                      <label>Titlu *</label>
+                      <label>{t(`${AD}.modal.titleLabel`, 'Titlu *')}</label>
                       <input
                         type="text"
                         value={formData.titlu}
                         onChange={(e) => handleInputChange('titlu', e.target.value)}
                         required
-                        placeholder="Titlul problemei"
+                        placeholder={t(`${AD}.modal.titlePlaceholder`, 'Titlul problemei')}
                         disabled={updateStatus === 'loading'}
                       />
                     </div>
 
                     <div className="form-group">
-                      <label>Descriere</label>
+                      <label>{t(`${AD}.modal.descriptionLabel`, 'Descriere')}</label>
                       <textarea
                         value={formData.descriere}
                         onChange={(e) => handleInputChange('descriere', e.target.value)}
-                        placeholder="O scurtă descriere a problemei"
+                        placeholder={t(`${AD}.modal.descriptionPlaceholder`, 'O scurtă descriere a problemei')}
                         rows={3}
                         disabled={updateStatus === 'loading'}
                       />
@@ -1327,7 +1375,7 @@ Dacă nu găsești date sau formule, returnează obiecte goale. Răspunde DOAR c
 
                     <div className="form-row">
                       <div className="form-group">
-                        <label>Categorie *</label>
+                        <label>{t(`${AD}.modal.categoryLabel`, 'Categorie *')}</label>
                         <select
                           value={formData.categorie}
                           onChange={(e) => handleInputChange('categorie', e.target.value)}
@@ -1346,17 +1394,17 @@ Dacă nu găsești date sau formule, returnează obiecte goale. Răspunde DOAR c
                       {/* Ascunde dificultatea pentru problemele de BAC */}
                       {formData.categorie !== 'Bac' && !normalizeString(formData.categorie).includes('bac') && (
                         <div className="form-group">
-                          <label>Dificultate *</label>
+                          <label>{t(`${AD}.modal.difficultyLabel`, 'Dificultate *')}</label>
                           <select
                             value={formData.dificultate}
                             onChange={(e) => handleInputChange('dificultate', e.target.value)}
                             required
                             disabled={updateStatus === 'loading'}
                           >
-                            <option value="ușor">Ușor</option>
-                            <option value="mediu">Mediu</option>
-                            <option value="dificil">Dificil</option>
-                            <option value="concurs">Concurs</option>
+                            <option value="ușor">{difficultyDisplayLabel('ușor')}</option>
+                            <option value="mediu">{difficultyDisplayLabel('mediu')}</option>
+                            <option value="dificil">{difficultyDisplayLabel('dificil')}</option>
+                            <option value="concurs">{difficultyDisplayLabel('concurs')}</option>
                           </select>
                         </div>
                       )}
@@ -1366,26 +1414,26 @@ Dacă nu găsești date sau formule, returnează obiecte goale. Răspunde DOAR c
                     {(formData.categorie === 'Bac' || normalizeString(formData.categorie).includes('bac')) && (
                       <div className="form-row">
                         <div className="form-group">
-                          <label>Subiect</label>
+                          <label>{t(`${AD}.modal.bac.subjectLabel`, 'Subiect')}</label>
                           <select
                             value={formData.metadata?.subjectNumber ? String(formData.metadata.subjectNumber) : ''}
                             onChange={(e) => handleMetadataChange('subjectNumber', e.target.value ? parseInt(e.target.value) : null)}
                             disabled={updateStatus === 'loading'}
                           >
-                            <option value="">Selectează subiectul</option>
-                            <option value="1">Subiectul I</option>
-                            <option value="2">Subiectul II</option>
-                            <option value="3">Subiectul III</option>
+                            <option value="">{t(`${AD}.modal.bac.selectSubject`, 'Selectează subiectul')}</option>
+                            <option value="1">{t(`${AD}.modal.bac.subject1`, 'Subiectul I')}</option>
+                            <option value="2">{t(`${AD}.modal.bac.subject2`, 'Subiectul II')}</option>
+                            <option value="3">{t(`${AD}.modal.bac.subject3`, 'Subiectul III')}</option>
                           </select>
                         </div>
 
                         <div className="form-group">
-                          <label>An</label>
+                          <label>{t(`${AD}.modal.bac.yearLabel`, 'An')}</label>
                           <input
                             type="number"
                             value={formData.metadata?.year || ''}
                             onChange={(e) => handleMetadataChange('year', e.target.value ? parseInt(e.target.value) : null)}
-                            placeholder="ex: 2024"
+                            placeholder={t(`${AD}.modal.bac.yearPlaceholder`, 'ex: 2024')}
                             min="2000"
                             max="2100"
                             disabled={updateStatus === 'loading'}
@@ -1397,27 +1445,27 @@ Dacă nu găsești date sau formule, returnează obiecte goale. Răspunde DOAR c
                     {(formData.categorie === 'Bac' || normalizeString(formData.categorie).includes('bac')) && (
                       <div className="form-row">
                         <div className="form-group">
-                          <label>Sesiune</label>
+                          <label>{t(`${AD}.modal.bac.sessionLabel`, 'Sesiune')}</label>
                           <select
                             value={formData.metadata?.session || ''}
                             onChange={(e) => handleMetadataChange('session', e.target.value || null)}
                             disabled={updateStatus === 'loading'}
                           >
-                            <option value="">Selectează sesiunea</option>
-                            <option value="bac">Bac</option>
-                            <option value="model">Model</option>
-                            <option value="simulare">Simulare</option>
+                            <option value="">{t(`${AD}.modal.bac.selectSession`, 'Selectează sesiunea')}</option>
+                            <option value="bac">{t(`${AD}.modal.bac.sessionBac`, 'Bac')}</option>
+                            <option value="model">{t(`${AD}.modal.bac.sessionModel`, 'Model')}</option>
+                            <option value="simulare">{t(`${AD}.modal.bac.sessionSim`, 'Simulare')}</option>
                           </select>
                         </div>
 
                         <div className="form-group">
-                          <label>Categorie (Domeniu)</label>
+                          <label>{t(`${AD}.modal.bac.domainLabel`, 'Categorie (Domeniu)')}</label>
                           <select
                             value={formData.metadata?.subjectArea || ''}
                             onChange={(e) => handleMetadataChange('subjectArea', e.target.value || null)}
                             disabled={updateStatus === 'loading'}
                           >
-                            <option value="">Selectează categoria</option>
+                            <option value="">{t(`${AD}.modal.bac.selectDomain`, 'Selectează categoria')}</option>
                             <option value="Mecanică">Mecanică</option>
                             <option value="Termodinamică">Termodinamică</option>
                             <option value="Optică">Optică</option>
@@ -1429,18 +1477,18 @@ Dacă nu găsești date sau formule, returnează obiecte goale. Răspunde DOAR c
 
                     <div className="form-group full-width enunt-container">
                       <div className="enunt-header">
-                        <label>Conținut/Enunț *</label>
+                        <label>{t(`${AD}.modal.contentLabel`, 'Conținut/Enunț *')}</label>
                         <button
                           type="button"
                           onClick={handleAiAnalysis}
                           disabled={updateStatus === 'loading' || aiAnalyzing || !formData.continut?.trim()}
                           className="btn-ai-analyze"
-                          title="Folosește AI pentru a detecta automat datele și formulele din enunț"
+                          title={t(`${AD}.modal.aiAnalyzeTitle`, 'Folosește AI pentru a detecta automat datele și formulele din enunț')}
                         >
                           {aiAnalyzing ? (
                             <>
                               <span className="spinner" style={{ width: '14px', height: '14px', borderWidth: '2px' }}></span>
-                              Analizează...
+                              {t(`${AD}.modal.aiAnalyzing`, 'Analizează...')}
                             </>
                           ) : (
                             <>
@@ -1448,7 +1496,7 @@ Dacă nu găsești date sau formule, returnează obiecte goale. Răspunde DOAR c
                                 <path d="M12 2L2 7l10 5 10-5-10-5z" />
                                 <path d="M2 17l10 5 10-5M2 12l10 5 10-5" />
                               </svg>
-                              Detectează date și formule cu AI
+                              {t(`${AD}.modal.aiButton`, 'Detectează date și formule cu AI')}
                             </>
                           )}
                         </button>
@@ -1457,14 +1505,17 @@ Dacă nu găsești date sau formule, returnează obiecte goale. Răspunde DOAR c
                         value={formData.continut}
                         onChange={(e) => handleInputChange('continut', e.target.value)}
                         required
-                        placeholder="Enunțul problemei cu formule LaTeX (folosește $...$ pentru formule)"
+                        placeholder={t(
+                          `${AD}.modal.contentPlaceholder`,
+                          'Enunțul problemei cu formule LaTeX (folosește $...$ pentru formule)'
+                        )}
                         rows={6}
                         disabled={updateStatus === 'loading'}
                       />
                     </div>
 
                     <div className="form-group full-width">
-                      <label>Formule</label>
+                      <label>{t(`${AD}.modal.formulasLabel`, 'Formule')}</label>
                       <textarea
                         value={formData.formule.join('\n')}
                         onChange={(e) => handleInputChange('formule', e.target.value.split('\n'))}
@@ -1473,7 +1524,7 @@ Dacă nu găsești date sau formule, returnează obiecte goale. Răspunde DOAR c
                             e.stopPropagation();
                           }
                         }}
-                        placeholder="Formulele necesare (câte una pe rând)"
+                        placeholder={t(`${AD}.modal.formulasPlaceholder`, 'Formulele necesare (câte una pe rând)')}
                         rows={3}
                         disabled={updateStatus === 'loading'}
                         style={{ whiteSpace: 'pre-wrap' }}
@@ -1481,7 +1532,7 @@ Dacă nu găsești date sau formule, returnează obiecte goale. Răspunde DOAR c
                     </div>
 
                     <div className="form-group full-width">
-                      <label>Date/Variabile</label>
+                      <label>{t(`${AD}.modal.dataLabel`, 'Date/Variabile')}</label>
                       <div className="date-pairs-container">
                         {datePairs.map((pair, index) => (
                           <div key={index} className="date-pair-row">
@@ -1489,7 +1540,7 @@ Dacă nu găsești date sau formule, returnează obiecte goale. Răspunde DOAR c
                               type="text"
                               value={pair.key}
                               onChange={(e) => handleDatePairChange(index, 'key', e.target.value)}
-                              placeholder="Nume variabilă (ex: m, v, t)"
+                              placeholder={t(`${AD}.modal.varNamePlaceholder`, 'Nume variabilă (ex: m, v, t)')}
                               disabled={updateStatus === 'loading'}
                             />
                             <span className="date-pair-separator">=</span>
@@ -1497,7 +1548,7 @@ Dacă nu găsești date sau formule, returnează obiecte goale. Răspunde DOAR c
                               type="text"
                               value={pair.value}
                               onChange={(e) => handleDatePairChange(index, 'value', e.target.value)}
-                              placeholder="Valoare (ex: 5 kg, 10 m/s)"
+                              placeholder={t(`${AD}.modal.varValuePlaceholder`, 'Valoare (ex: 5 kg, 10 m/s)')}
                               disabled={updateStatus === 'loading'}
                             />
                             <button
@@ -1516,13 +1567,13 @@ Dacă nu găsești date sau formule, returnează obiecte goale. Răspunde DOAR c
                           onClick={addDatePair}
                           disabled={updateStatus === 'loading'}
                         >
-                          Adaugă variabilă
+                          {t(`${AD}.modal.addVariable`, 'Adaugă variabilă')}
                         </button>
                       </div>
                     </div>
 
                     <div className="form-group full-width">
-                      <label>Poze</label>
+                      <label>{t(`${AD}.modal.imagesLabel`, 'Poze')}</label>
                       <div className="image-upload-area">
                         <input
                           type="file"
@@ -1535,7 +1586,7 @@ Dacă nu găsești date sau formule, returnează obiecte goale. Răspunde DOAR c
                         />
                         <label htmlFor="image-upload-edit" className="image-upload-label">
                           <div className="upload-placeholder">
-                            <span>Click, trage sau folosește Ctrl+V pentru a adăuga poze</span>
+                            <span>{t(`${AD}.modal.uploadHint`, 'Click, trage sau folosește Ctrl+V pentru a adăuga poze')}</span>
                           </div>
                         </label>
                         
@@ -1560,19 +1611,19 @@ Dacă nu găsești date sau formule, returnează obiecte goale. Răspunde DOAR c
                     </div>
 
                     <div className="form-group">
-                      <label>Punctaj total</label>
+                      <label>{t(`${AD}.modal.totalScoreLabel`, 'Punctaj total')}</label>
                       <input
                         type="number"
                         value={formData.punctajTotal}
                         onChange={(e) => handleInputChange('punctajTotal', parseInt(e.target.value) || 0)}
                         min="0"
-                        placeholder="Punctaj total"
+                        placeholder={t(`${AD}.modal.totalScorePlaceholder`, 'Punctaj total')}
                         disabled={updateStatus === 'loading'}
                       />
                     </div>
 
                     <div className="form-group full-width">
-                      <label>Cerințe (subpuncte)</label>
+                      <label>{t(`${AD}.modal.requirementsLabel`, 'Cerințe (subpuncte)')}</label>
                       <div className="subpuncte-container">
                         {formData.subpuncte.map((subpunct, index) => (
                           <div key={index} className="subpunct-row">
@@ -1581,7 +1632,7 @@ Dacă nu găsești date sau formule, returnează obiecte goale. Răspunde DOAR c
                                 type="text"
                                 value={subpunct.cerinta}
                                 onChange={(e) => handleSubpunctChange(index, 'cerinta', e.target.value)}
-                                placeholder="Cerință"
+                                placeholder={t(`${AD}.modal.requirementPlaceholder`, 'Cerință')}
                                 disabled={updateStatus === 'loading'}
                               />
                               <input
@@ -1590,7 +1641,7 @@ Dacă nu găsești date sau formule, returnează obiecte goale. Răspunde DOAR c
                                 onChange={(e) => handleSubpunctChange(index, 'punctaj', parseInt(e.target.value) || 0)}
                                 min="1"
                                 max="10"
-                                placeholder="Punctaj"
+                                placeholder={t(`${AD}.modal.scorePlaceholder`, 'Punctaj')}
                                 disabled={updateStatus === 'loading'}
                               />
                             </div>
@@ -1610,7 +1661,7 @@ Dacă nu găsești date sau formule, returnează obiecte goale. Răspunde DOAR c
                           onClick={addSubpunct}
                           disabled={updateStatus === 'loading'}
                         >
-                          Adaugă subpunct
+                          {t(`${AD}.modal.addSubpart`, 'Adaugă subpunct')}
                         </button>
                       </div>
                     </div>
@@ -1619,69 +1670,71 @@ Dacă nu găsești date sau formule, returnează obiecte goale. Răspunde DOAR c
                     {formData.categorie !== 'Bac' && !normalizeString(formData.categorie).includes('bac') && (
                       <>
                         <div className="form-group full-width">
-                          <label>Varianta (opțional)</label>
+                          <label>{t(`${AD}.modal.normal.variantOptional`, 'Varianta (opțional)')}</label>
                           <input
                             type="text"
                             value={formData.varianta}
                             onChange={(e) => handleInputChange('varianta', e.target.value)}
-                            placeholder="ex: 2019 Var 2"
+                            placeholder={t(`${AD}.modal.normal.variantPlaceholder`, 'ex: 2019 Var 2')}
                             disabled={updateStatus === 'loading'}
                           />
                         </div>
 
                         <div className="form-group full-width">
-                          <label style={{ fontWeight: 600, marginBottom: '0.75rem', display: 'block' }}>Metadata (opțional)</label>
+                          <label style={{ fontWeight: 600, marginBottom: '0.75rem', display: 'block' }}>
+                            {t(`${AD}.modal.normal.metadataOptional`, 'Metadata (opțional)')}
+                          </label>
                           <div className="form-row">
                             <div className="form-group">
-                              <label>An</label>
+                              <label>{t(`${AD}.modal.normal.yearLabel`, 'An')}</label>
                               <input
                                 type="number"
                                 value={formData.metadata?.year || ''}
                                 onChange={(e) => handleMetadataChange('year', e.target.value ? parseInt(e.target.value) : null)}
-                                placeholder="ex: 2019"
+                                placeholder={t(`${AD}.modal.normal.yearPh`, 'ex: 2019')}
                                 disabled={updateStatus === 'loading'}
                               />
                             </div>
                             <div className="form-group">
-                              <label>Varianta (număr)</label>
+                              <label>{t(`${AD}.modal.normal.variantNumLabel`, 'Varianta (număr)')}</label>
                               <input
                                 type="number"
                                 value={formData.metadata?.variant || ''}
                                 onChange={(e) => handleMetadataChange('variant', e.target.value ? parseInt(e.target.value) : null)}
-                                placeholder="ex: 2"
+                                placeholder={t(`${AD}.modal.normal.variantNumPh`, 'ex: 2')}
                                 disabled={updateStatus === 'loading'}
                               />
                             </div>
                           </div>
                           <div className="form-row">
                             <div className="form-group">
-                              <label>Tip</label>
+                              <label>{t(`${AD}.modal.normal.typeLabel`, 'Tip')}</label>
                               <input
                                 type="text"
                                 value={formData.metadata?.type || ''}
                                 onChange={(e) => handleMetadataChange('type', e.target.value)}
-                                placeholder="ex: teoretic"
+                                placeholder={t(`${AD}.modal.normal.typePh`, 'ex: teoretic')}
                                 disabled={updateStatus === 'loading'}
                               />
                             </div>
                             <div className="form-group">
-                              <label>Cod subiect</label>
+                              <label>{t(`${AD}.modal.normal.subjectCodeLabel`, 'Cod subiect')}</label>
                               <input
                                 type="text"
                                 value={formData.metadata?.subjectCode || ''}
                                 onChange={(e) => handleMetadataChange('subjectCode', e.target.value)}
-                                placeholder="ex: A"
+                                placeholder={t(`${AD}.modal.normal.subjectCodePh`, 'ex: A')}
                                 disabled={updateStatus === 'loading'}
                               />
                             </div>
                           </div>
                           <div className="form-group">
-                            <label>Sursă</label>
+                            <label>{t(`${AD}.modal.normal.sourceLabel`, 'Sursă')}</label>
                             <input
                               type="text"
                               value={formData.metadata?.source || ''}
                               onChange={(e) => handleMetadataChange('source', e.target.value)}
-                              placeholder="ex: 2019_E_d_fizica_teoretic_vocational_2019_var_02_LRO"
+                              placeholder={t(`${AD}.modal.normal.sourcePh`, 'ex: 2019_E_d_fizica_teoretic_vocational_2019_var_02_LRO')}
                               disabled={updateStatus === 'loading'}
                             />
                           </div>
@@ -1692,47 +1745,49 @@ Dacă nu găsești date sau formule, returnează obiecte goale. Răspunde DOAR c
                     {/* Câmpuri suplimentare pentru BAC */}
                     {(formData.categorie === 'Bac' || normalizeString(formData.categorie).includes('bac')) && (
                       <div className="form-group full-width">
-                        <label style={{ fontWeight: 600, marginBottom: '0.75rem', display: 'block' }}>Metadata suplimentare (BAC)</label>
+                        <label style={{ fontWeight: 600, marginBottom: '0.75rem', display: 'block' }}>
+                          {t(`${AD}.modal.bac.extraMeta`, 'Metadata suplimentare (BAC)')}
+                        </label>
                         <div className="form-row">
                           <div className="form-group">
-                            <label>Varianta (opțional)</label>
+                            <label>{t(`${AD}.modal.normal.variantOptional`, 'Varianta (opțional)')}</label>
                             <input
                               type="text"
                               value={formData.varianta}
                               onChange={(e) => handleInputChange('varianta', e.target.value)}
-                              placeholder="ex: 2019 Var 2"
+                              placeholder={t(`${AD}.modal.normal.variantPlaceholder`, 'ex: 2019 Var 2')}
                               disabled={updateStatus === 'loading'}
                             />
                           </div>
                           <div className="form-group">
-                            <label>Varianta (număr)</label>
+                            <label>{t(`${AD}.modal.normal.variantNumLabel`, 'Varianta (număr)')}</label>
                             <input
                               type="number"
                               value={formData.metadata?.variant || ''}
                               onChange={(e) => handleMetadataChange('variant', e.target.value ? parseInt(e.target.value) : null)}
-                              placeholder="ex: 2"
+                              placeholder={t(`${AD}.modal.normal.variantNumPh`, 'ex: 2')}
                               disabled={updateStatus === 'loading'}
                             />
                           </div>
                         </div>
                         <div className="form-row">
                           <div className="form-group">
-                            <label>Cod subiect</label>
+                            <label>{t(`${AD}.modal.normal.subjectCodeLabel`, 'Cod subiect')}</label>
                             <input
                               type="text"
                               value={formData.metadata?.subjectCode || ''}
                               onChange={(e) => handleMetadataChange('subjectCode', e.target.value)}
-                              placeholder="ex: A"
+                              placeholder={t(`${AD}.modal.normal.subjectCodePh`, 'ex: A')}
                               disabled={updateStatus === 'loading'}
                             />
                           </div>
                           <div className="form-group">
-                            <label>Sursă</label>
+                            <label>{t(`${AD}.modal.normal.sourceLabel`, 'Sursă')}</label>
                             <input
                               type="text"
                               value={formData.metadata?.source || ''}
                               onChange={(e) => handleMetadataChange('source', e.target.value)}
-                              placeholder="ex: 2019_E_d_fizica_teoretic_vocational_2019_var_02_LRO"
+                              placeholder={t(`${AD}.modal.normal.sourcePh`, 'ex: 2019_E_d_fizica_teoretic_vocational_2019_var_02_LRO')}
                               disabled={updateStatus === 'loading'}
                             />
                           </div>
@@ -1747,7 +1802,9 @@ Dacă nu găsești date sau formule, returnează obiecte goale. Răspunde DOAR c
                       className="btn-primary"
                       disabled={updateStatus === 'loading'}
                     >
-                      {updateStatus === 'loading' ? 'Se salvează...' : 'Salvează'}
+                      {updateStatus === 'loading'
+                        ? t(`${AD}.modal.saving`, 'Se salvează...')
+                        : t(`${AD}.modal.save`, 'Salvează')}
                     </button>
                     <button
                       type="button"
@@ -1755,7 +1812,7 @@ Dacă nu găsești date sau formule, returnează obiecte goale. Răspunde DOAR c
                       onClick={handleCloseModal}
                       disabled={updateStatus === 'loading'}
                     >
-                      Anulează
+                      {t(`${AD}.modal.cancel`, 'Anulează')}
                     </button>
                   </div>
                 </form>
@@ -1768,15 +1825,17 @@ Dacă nu găsești date sau formule, returnează obiecte goale. Răspunde DOAR c
             <div className="admin-modal-overlay" onClick={() => setDeleteConfirm(null)}>
               <div className="admin-modal delete-modal" onClick={(e) => e.stopPropagation()}>
                 <div className="modal-header">
-                  <h2>Confirmă ștergerea</h2>
+                  <h2>{t(`${AD}.deleteModal.title`, 'Confirmă ștergerea')}</h2>
                   <button className="modal-close" onClick={() => setDeleteConfirm(null)}>×</button>
                 </div>
                 <div className="modal-content">
                   <div className="delete-confirmation">
                     <AlertCircle size={48} className="warning-icon" />
-                    <p>Ești sigur că vrei să ștergi problema:</p>
-                    <p className="problem-to-delete"><strong>{deleteConfirm.titlu || 'Fără titlu'}</strong></p>
-                    <p className="warning-text">Această acțiune nu poate fi anulată!</p>
+                    <p>{t(`${AD}.deleteModal.lead`, 'Ești sigur că vrei să ștergi problema:')}</p>
+                    <p className="problem-to-delete">
+                      <strong>{deleteConfirm.titlu || t(`${AD}.deleteModal.noTitle`, 'Fără titlu')}</strong>
+                    </p>
+                    <p className="warning-text">{t(`${AD}.deleteModal.warning`, 'Această acțiune nu poate fi anulată!')}</p>
                   </div>
                 </div>
                 <div className="modal-actions">
@@ -1784,14 +1843,16 @@ Dacă nu găsești date sau formule, returnează obiecte goale. Răspunde DOAR c
                     className="btn-secondary"
                     onClick={() => setDeleteConfirm(null)}
                   >
-                    Anulează
+                    {t(`${AD}.modal.cancel`, 'Anulează')}
                   </button>
                   <button
                     className="btn-danger"
                     onClick={handleDelete}
                     disabled={deleteStatus === 'loading'}
                   >
-                    {deleteStatus === 'loading' ? 'Se șterge...' : 'Șterge'}
+                    {deleteStatus === 'loading'
+                      ? t(`${AD}.deleteModal.deleting`, 'Se șterge...')
+                      : t(`${AD}.deleteModal.delete`, 'Șterge')}
                     <Trash2 size={18} />
                   </button>
                 </div>

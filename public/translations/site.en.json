@@ -2613,6 +2613,155 @@
     "revokeAdmin": "Revoke admin rights",
     "noPending": "No pending requests."
   },
+  "adminDashboard": {
+    "checkingAccess": "Checking permissions...",
+    "accessDeniedTitle": "Access denied",
+    "accessDeniedBody": "You do not have permission to access this page.",
+    "pageTitle": "Administration panel",
+    "debug": {
+      "sectionAria": "Account role (testing)",
+      "title": "Account role (testing)",
+      "statusLabel": "Current status:",
+      "asStudentPrefix": "As a student",
+      "asStudentSuffix": " you cannot create classes; as a teacher",
+      "asTeacherSuffix": " you can access the teacher dashboard.",
+      "simulateTeacher": "Simulate teacher",
+      "simulateStudent": "Simulate student"
+    },
+    "teacherRequests": {
+      "sectionAria": "Teacher account requests",
+      "title": "Teacher account requests",
+      "loading": "Loading...",
+      "empty": "No pending requests.",
+      "approve": "Approve",
+      "reject": "Reject"
+    },
+    "invite": {
+      "sectionAria": "Teacher invitation",
+      "heading": "Teacher invitation",
+      "lead": "Generate a unique link and send it to the person who should request a teacher account. After they submit the request, you will see it above and approve or reject it manually.",
+      "generate": "Generate new link",
+      "generating": "Generating...",
+      "copy": "Copy link",
+      "copied": "Copied to clipboard",
+      "linkLabel": "Generated link"
+    },
+    "errors": {
+      "inviteGenerate": "Could not generate the invitation. Check Firestore rules and that you are an admin.",
+      "inviteCopy": "Could not copy to clipboard.",
+      "approveTeacher": "Could not approve.",
+      "rejectTeacher": "Could not reject.",
+      "roleUpdate": "Could not update role."
+    },
+    "filters": {
+      "searchPlaceholder": "Search by title, category, ID or number...",
+      "typeAll": "All",
+      "typeNormal": "Standard",
+      "typeBac": "Baccalaureate",
+      "allDifficulties": "All difficulties",
+      "difficultyPrefix": "Difficulty: {label}",
+      "allCategories": "All categories",
+      "categoryPrefix": "Category: {name}",
+      "allYears": "All years",
+      "allVariants": "All variants",
+      "variantOption": "Variant {n}",
+      "allTypes": "All types",
+      "allSubjectAreas": "All subject areas",
+      "clearBac": "Clear BAC filters"
+    },
+    "messages": {
+      "updateSuccess": "Problem updated successfully.",
+      "deleteSuccess": "Problem deleted successfully.",
+      "saveErrorPrefix": "Error saving problem:"
+    },
+    "results": {
+      "oneProblemFound": "{count} problem found",
+      "manyProblemsFound": "{count} problems found"
+    },
+    "loadingProblems": "Loading problems...",
+    "card": {
+      "noTitle": "No title",
+      "deleteTitle": "Delete",
+      "points": "{n} points"
+    },
+    "ai": {
+      "needContent": "Please enter the problem statement first.",
+      "noDetection": "The AI could not detect variables or formulas in the statement. Please enter them manually.",
+      "analysisError": "Error analysing the problem with AI. Please try again or enter the data manually."
+    },
+    "modal": {
+      "editTitle": "Edit problem",
+      "titleLabel": "Title *",
+      "titlePlaceholder": "Problem title",
+      "descriptionLabel": "Description",
+      "descriptionPlaceholder": "A short description of the problem",
+      "categoryLabel": "Category *",
+      "difficultyLabel": "Difficulty *",
+      "contentLabel": "Content / Statement *",
+      "aiAnalyzeTitle": "Use AI to automatically detect data and formulas from the statement",
+      "aiAnalyzing": "Analysing...",
+      "aiButton": "Detect data and formulas with AI",
+      "contentPlaceholder": "Problem statement with LaTeX formulas (use $...$ for inline formulas)",
+      "formulasLabel": "Formulas",
+      "formulasPlaceholder": "Required formulas (one per line)",
+      "dataLabel": "Data / variables",
+      "varNamePlaceholder": "Variable name (e.g. m, v, t)",
+      "varValuePlaceholder": "Value (e.g. 5 kg, 10 m/s)",
+      "addVariable": "Add variable",
+      "imagesLabel": "Images",
+      "uploadHint": "Click, drag or use Ctrl+V to add images",
+      "totalScoreLabel": "Total score",
+      "totalScorePlaceholder": "Total score",
+      "requirementsLabel": "Requirements (sub-parts)",
+      "requirementPlaceholder": "Requirement",
+      "scorePlaceholder": "Points",
+      "addSubpart": "Add sub-part",
+      "bac": {
+        "subjectLabel": "Subject",
+        "selectSubject": "Select subject",
+        "subject1": "Subject I",
+        "subject2": "Subject II",
+        "subject3": "Subject III",
+        "yearLabel": "Year",
+        "yearPlaceholder": "e.g. 2024",
+        "sessionLabel": "Session",
+        "selectSession": "Select session",
+        "sessionBac": "Baccalaureate",
+        "sessionModel": "Model",
+        "sessionSim": "Mock exam",
+        "domainLabel": "Category (domain)",
+        "selectDomain": "Select category",
+        "extraMeta": "Extra metadata (BAC)"
+      },
+      "normal": {
+        "variantOptional": "Variant (optional)",
+        "variantPlaceholder": "e.g. 2019 Var 2",
+        "metadataOptional": "Metadata (optional)",
+        "yearLabel": "Year",
+        "yearPh": "e.g. 2019",
+        "variantNumLabel": "Variant (number)",
+        "variantNumPh": "e.g. 2",
+        "typeLabel": "Type",
+        "typePh": "e.g. theoretical",
+        "subjectCodeLabel": "Subject code",
+        "subjectCodePh": "e.g. A",
+        "sourceLabel": "Source",
+        "sourcePh": "e.g. 2019_E_d_fizica_teoretic_vocational_2019_var_02_LRO"
+      },
+      "saving": "Saving...",
+      "save": "Save",
+      "cancel": "Cancel",
+      "selectCategory": "Select category"
+    },
+    "deleteModal": {
+      "title": "Confirm deletion",
+      "lead": "Are you sure you want to delete this problem?",
+      "noTitle": "No title",
+      "warning": "This action cannot be undone.",
+      "deleting": "Deleting...",
+      "delete": "Delete"
+    }
+  },
   "errors": {
     "generic": "Something went wrong. Please try again.",
     "network": "Network error. Please check your internet connection.",
