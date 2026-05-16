@@ -7,6 +7,7 @@ import Footer from "@/components/Footer";
 import "@/scss/components/_searchresults.scss";
 import { normalizeString } from "../../lib/normalizeString";
 import { getSiteSearchStaticEntries } from "@/data/siteSearchIndex";
+import { LocalizedLink, useI18n } from "@/i18n/LanguageContext";
 
 function useQuery() {
     return new URLSearchParams(useLocation().search);
@@ -27,6 +28,7 @@ function matchesEntry(entry, qNorm) {
 const SearchResults = () => {
     const rawQuery = useQuery().get("q") || "";
     const qNorm = normalizeString(rawQuery.trim());
+    const { t } = useI18n();
 
     const { value: problemeData, status: problemsStatus } = useSelector((state) => state.problems);
 
@@ -77,6 +79,10 @@ const SearchResults = () => {
     const canAskWhiz = trimmedQuery.length >= 1;
     const whizTo = `/asistent?q=${encodeURIComponent(trimmedQuery)}`;
 
+    const searchInviteHeadingFallback = 'Mai ai nevoie de ajutor?';
+    const searchInviteBodyFallback =
+        'Căutarea de mai sus arată doar pagini și conținut de pe PULS. Dacă nu ai găsit ce căutai, poți întreba Profesorul Whiz — se deschide într-o filă nouă cu textul tău.';
+
     return (
         <div className="search-results-page">
             <Navbar />
@@ -119,21 +125,20 @@ const SearchResults = () => {
                 {canAskWhiz ? (
                     <section className="search-whiz-cta-section" aria-labelledby="search-whiz-cta-heading">
                         <h2 id="search-whiz-cta-heading" className="search-whiz-cta-heading">
-                            Mai ai nevoie de ajutor?
+                            {t("assistant.searchInviteHeading", searchInviteHeadingFallback)}
                         </h2>
                         <p className="search-whiz-cta-text">
-                            Căutarea de mai sus arată doar pagini și conținut de pe PULS. Dacă nu ai găsit ce
-                            căutai, poți întreba Profesorul Whiz — se deschide într-o filă nouă cu textul tău.
+                            {t("assistant.searchInviteBody", searchInviteBodyFallback)}
                         </p>
-                        <Link
+                        <LocalizedLink
                             to={whizTo}
                             target="_blank"
                             rel="noopener noreferrer"
                             className="search-whiz-cta-button"
                         >
                             <Sparkles size={20} className="search-whiz-cta-icon" aria-hidden />
-                            Întreabă Profesorul Whiz
-                        </Link>
+                            {t("assistant.searchAskProfessorWhiz", "Întreabă Profesorul Whiz")}
+                        </LocalizedLink>
                     </section>
                 ) : null}
             </main>

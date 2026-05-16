@@ -1,4 +1,4 @@
-import { LocalizedLink as Link } from "../../i18n/LanguageContext";
+import { LocalizedLink as Link, useI18n } from "../../i18n/LanguageContext";
 import { useEffect } from "react";
 import {
   BookOpen,
@@ -25,6 +25,7 @@ import "./Index2.css";
 const GUIDES_ENTRY = "/resurse";
 
 const Index2 = () => {
+  const { t } = useI18n();
   const structuredData = {
     "@context": "https://schema.org",
     "@type": "EducationalOrganization",
@@ -117,7 +118,7 @@ const Index2 = () => {
               <Brain size={20} strokeWidth={2} />
               <div>
                 <strong>AI</strong>
-                <span>asistent</span>
+                <span>{t('assistant.landingRibbonAiLabel', 'asistent')}</span>
               </div>
             </div>
             <div className="i2-stat">
@@ -244,7 +245,7 @@ const Index2 = () => {
               </div>
               <p className="i2-ai-punchline">Nu doar îți dă răspunsul. Te face să înțelegi.</p>
               <Link to="/asistent" className="i2-btn i2-btn--outline" style={{ marginTop: "0.5rem" }}>
-                Deschide asistentul <ArrowRight size={15} />
+                {t('assistant.landingOpenAssistantCta', 'Deschide asistentul')} <ArrowRight size={15} />
               </Link>
             </div>
             <div className="i2-ai-visual hidden hidden-bottom">

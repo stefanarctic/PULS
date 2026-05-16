@@ -106,6 +106,67 @@
       "openMenu": "Open menu"
     }
   },
+  "assistant": {
+    "brandName": "Professor Whiz",
+    "avatarAlt": "Professor Whiz",
+    "openFabTitle": "Open the virtual tutor",
+    "welcomeTitleLoggedOut": "Professor Whiz",
+    "welcomeSubtitleLoggedOut": "You must be signed in to use Professor Whiz.",
+    "welcomeHintLoggedOut": "Sign in to start the conversation.",
+    "welcomeHeading": "Welcome to Professor Whiz",
+    "welcomeQuestion": "What can I help you with today?",
+    "sidebarLoginTitle": "You must be signed in",
+    "sidebarLoginSubtitle": "Sign in to use Professor Whiz.",
+    "loadingChats": "Loading…",
+    "emptyChatsTitle": "You have no chats yet",
+    "emptyChatsSubtitle": "Create a new one to get started.",
+    "emptyChatBanner": "Start the conversation",
+    "newChat": "New chat",
+    "fullscreenEnter": "Fullscreen",
+    "fullscreenExit": "Exit fullscreen",
+    "close": "Close",
+    "hideSidebar": "Hide sidebar",
+    "showSidebar": "Show sidebar",
+    "mobileShowChats": "Show chats",
+    "send": "Send",
+    "inputPlaceholder": "Write a message…",
+    "deleteChatTitle": "Delete chat",
+    "deleteChatConfirm": "Are you sure you want to delete this chat?",
+    "copyTooltip": "Copy message",
+    "thinking": "Professor Whiz is thinking…",
+    "starterPrompts": [
+      "Explain mechanics concepts for me",
+      "How do I solve physics problems step by step?",
+      "Where can I find resources on oscillations?",
+      "Help me with thermodynamics questions",
+      "What formulas do I need for the baccalaureate?",
+      "Explain Newton’s laws clearly",
+      "How does mechanical energy work?",
+      "What resources do you recommend for exam prep?"
+    ],
+    "mustSignInToast": "You must be signed in to use Professor Whiz. Please sign in.",
+    "createChatError": "Could not create the chat. Please try again.",
+    "fallbackError": "Something went wrong while connecting to the server. Try again later.",
+    "genericServerError": "The server returned an empty reply.",
+    "chatTitles": {
+      "problemSolve": "Problem #{num} — {title}"
+    },
+    "chatDefaultLabel": "Chat",
+    "time": {
+      "justNow": "Just now",
+      "minsAgo": "{n} min ago",
+      "hoursShort": "{n} h ago"
+    },
+    "userAvatarAlt": "Your avatar",
+    "landingRibbonAiLabel": "Assistant",
+    "landingOpenAssistantCta": "Open assistant",
+    "searchInviteHeading": "Need more help?",
+    "searchInviteBody": "The search above lists pages on PULS only. If you did not find what you were looking for, you can ask Professor Whiz — it opens in a new tab with your search text.",
+    "searchAskProfessorWhiz": "Ask Professor Whiz",
+    "entryPageHint": "Professor Whiz opens in the popup window. Continue the conversation there, or close this tab once you’re done.",
+    "problemOpenError": "Could not open Professor Whiz. Please try again.",
+    "problemUnavailable": "Professor Whiz is not available right now. Please refresh the page."
+  },
   "footer": {
     "tagline": "Educational physics platform with interactive simulations, problems, quizzes, and theory resources.",
     "platform": "Platform",
@@ -2580,37 +2641,6 @@
       "resources": "Resources"
     },
     "resultCount": "{count} results"
-  },
-  "assistant": {
-    "title": "AI Assistant",
-    "subtitle": "Ask the AI assistant any physics question.",
-    "openButton": "Open the assistant",
-    "closeButton": "Close",
-    "minimizeButton": "Minimize",
-    "expandButton": "Expand",
-    "greeting": "Hi! I'm the PULS AI assistant. How can I help you with physics today?",
-    "inputPlaceholder": "Ask a physics question...",
-    "sendButton": "Send",
-    "thinking": "Thinking...",
-    "stopGeneration": "Stop generating",
-    "regenerate": "Regenerate response",
-    "newChat": "New chat",
-    "clearChat": "Clear conversation",
-    "copyAnswer": "Copy answer",
-    "modelLabel": "Model",
-    "errors": {
-      "rateLimit": "Too many requests. Please wait a moment and try again.",
-      "network": "Network error. Please check your connection and try again.",
-      "generic": "Something went wrong. Please try again."
-    },
-    "disclaimer": "The AI assistant may make mistakes. Always verify important answers.",
-    "suggestedPrompts": {
-      "title": "Suggested questions",
-      "explainPendulum": "Explain the period of a simple pendulum.",
-      "waveTypes": "What are the types of mechanical waves?",
-      "lissajousFigures": "How are Lissajous figures formed?",
-      "earthquakeWaves": "What is the difference between P-waves and S-waves?"
-    }
   },
   "assistantEntryPage": {
     "title": "AI Assistant",

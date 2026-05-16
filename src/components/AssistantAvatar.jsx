@@ -9,7 +9,7 @@ import { useI18n } from "../i18n/LanguageContext";
 const AssistantAvatar = () => {
   const location = useLocation();
   const navigate = useNavigate();
-  const { canonicalRomanianPathname, localizedPath } = useI18n();
+  const { canonicalRomanianPathname, localizedPath, t } = useI18n();
   const [open, setOpen] = useState(false);
   const [initialMessage, setInitialMessage] = useState("");
   /** true când mesajul vine din /asistent?q= — forțează chat nou în AssistantPopup */
@@ -345,9 +345,9 @@ const AssistantAvatar = () => {
         onMouseDown={handleMouseDown}
         onTouchStart={handleTouchStart}
         style={style}
-        title="Deschide asistentul virtual"
+        title={t("assistant.openFabTitle", "Deschide asistentul virtual")}
       >
-        <img src={avatarSrc} alt="Asistent Virtual" />
+        <img src={avatarSrc} alt={t("assistant.avatarAlt", "Asistent virtual")} />
       </div>
       {open && (
         <AssistantPopup

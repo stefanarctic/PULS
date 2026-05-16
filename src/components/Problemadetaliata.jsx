@@ -20,7 +20,7 @@ import { useI18n } from '../i18n/LanguageContext';
 
 export const ProblemaDetaliata = ({ problema, onBack, homeworkContext = null }) => {
   const navigate = useNavigate();
-  const { localizedPath } = useI18n();
+  const { localizedPath, t } = useI18n();
   const [copied, setCopied] = useState(false);
   const [isPreparingAi, setIsPreparingAi] = useState(false);
   const [isAdmin, setIsAdmin] = useState(false);
@@ -248,13 +248,23 @@ export const ProblemaDetaliata = ({ problema, onBack, homeworkContext = null }) 
         assistant.openWithMessage(msg);
       } catch (error) {
         console.error('Error opening Profesorul Whiz:', error);
-        alert('Eroare la deschiderea Profesorului Whiz. Te rugăm să încerci din nou.');
+        alert(
+          t(
+            "assistant.problemOpenError",
+            "Eroare la deschiderea Profesorului Whiz. Te rugăm să încerci din nou.",
+          ),
+        );
       } finally {
         setIsPreparingAi(false);
       }
     } else {
       console.warn('Profesorul Whiz not available. Make sure the AssistantAvatar component is mounted.');
-      alert('Profesorul Whiz nu este disponibil momentan. Te rugăm să reîmprospătezi pagina.');
+      alert(
+        t(
+          "assistant.problemUnavailable",
+          "Profesorul Whiz nu este disponibil momentan. Te rugăm să reîmprospătezi pagina.",
+        ),
+      );
     }
   };
 
