@@ -24,7 +24,7 @@ const FizicaNuclearaPage = () => {
         image="/res/icons/New-logo.png"
       />
       <MrDeuteronWidget />
-      <div className="resurse-pagina min-h-screen flex flex-col">
+      <div className="resurse-pagina resurse-fizica-nucleara min-h-screen flex flex-col">
         <div className="resurse-page-container">
           <main
             ref={mathRootRef}
@@ -336,7 +336,7 @@ const FizicaNuclearaPage = () => {
                 </h3>
 
                 <h4 className="text-base sm:text-lg font-semibold mb-2">1. Factor de separare izotopică</h4>
-                <div className="formula-resurse text-sm sm:text-base md:text-lg font-mono mb-4">
+                <div className="formula-resurse overflow-x-auto max-w-full text-sm sm:text-base md:text-lg font-mono mb-4">
                   {"\\( \\alpha = \\dfrac{(x_D/(1-x_D))_{faza\\,A}}{(x_D/(1-x_D))_{faza\\,B}} \\)"}
                 </div>
                 <p className="text-sm sm:text-base leading-7 text-muted-foreground mb-5">
@@ -345,7 +345,7 @@ const FizicaNuclearaPage = () => {
                 </p>
 
                 <h4 className="text-base sm:text-lg font-semibold mb-2">2. Bilanț de masă pentru deuteriu</h4>
-                <div className="formula-resurse text-sm sm:text-base md:text-lg font-mono mb-4">
+                <div className="formula-resurse overflow-x-auto max-w-full text-sm sm:text-base md:text-lg font-mono mb-4">
                   {"\\( F\\,x_F = P\\,x_P + W\\,x_W \\)"}
                 </div>
                 <p className="text-sm sm:text-base leading-7 text-muted-foreground mb-5">
@@ -354,7 +354,7 @@ const FizicaNuclearaPage = () => {
                 </p>
 
                 <h4 className="text-base sm:text-lg font-semibold mb-2">3. Îmbogățire pe etaje (model simplificat)</h4>
-                <div className="formula-resurse text-sm sm:text-base md:text-lg font-mono mb-5">
+                <div className="formula-resurse overflow-x-auto max-w-full text-sm sm:text-base md:text-lg font-mono mb-5">
                   {"\\( x_D^{(n)} \\approx x_D^{(0)}\\,\\alpha^{n} \\) (aprox. didactică)"}
                 </div>
                 <p className="text-sm sm:text-base leading-7 text-muted-foreground mb-6">
