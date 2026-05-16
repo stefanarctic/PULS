@@ -440,8 +440,105 @@
     },
     "formulaHint": "Select a formula to read a detailed explanation.",
     "formulasHeading": "Formulas grouped by chapter",
+    "formulaSheet": {
+      "title": "Essential physics formulas",
+      "chooseCategory": "Choose a category to see the corresponding formulas.",
+      "clickForExplanation": "Click a formula for a detailed explanation.",
+      "closePopup": "Close",
+      "askProfessorWhiz": "Ask Professor Whiz",
+      "whizUserMessage": "Explain the formula \"{title}\" from {section} in detail. I want to understand when and how it applies, with examples.",
+      "categories": {
+        "mecanica": "Mechanics",
+        "termodinamica": "Thermodynamics",
+        "pendule": "Oscillations",
+        "unde": "Waves",
+        "lissajous": "Lissajous",
+        "seism": "Earthquakes",
+        "optica": "Optics",
+        "lasere": "Lasers",
+        "prisma": "Refraction",
+        "electricitate": "Electricity",
+        "electromagnetism": "Electromagnetism",
+        "matematica": "Mathematics",
+        "astronomie": "Astronomy",
+        "atomul": "The atom",
+        "fizica_cuantica": "Quantum physics",
+        "fizica_nucleara": "Nuclear physics",
+        "relativitate": "Relativity"
+      }
+    },
     "showMore": "Show more",
     "showLess": "Show less",
+    "page": {
+      "title": "Resources",
+      "intro": "Access educational materials for studying physics, organized by difficulty level and content type."
+    },
+    "seo": {
+      "title": "Physics educational resources | PULS — Theory materials and videos",
+      "description": "Comprehensive physics learning resources: theory materials, videos, formulas, and explanations for mechanics, thermodynamics, electricity, electromagnetism, optics, lasers, and more.",
+      "keywords": "physics resources, physics formulas, electromagnetism, superconductivity, thermodynamics, mechanics, optics, lasers"
+    },
+    "experimentsSection": {
+      "title": "Practical video experiments",
+      "intro": "Watch video experiments to better understand the physical phenomena presented.",
+      "videoAlts": {
+        "pendulum": "Pendulum video",
+        "waveFrequency": "Wave frequency video",
+        "waves": "Waves video",
+        "wavefront1": "Wavefront video 1",
+        "wavefront2": "Wavefront video 2",
+        "lissajous": "Lissajous video"
+      },
+      "cards": {
+        "harmonic": {
+          "title": "Harmonic oscillations",
+          "description": "Observe how a simple pendulum behaves in oscillatory motion.",
+          "videoTitle": "Simple pendulum (video experiment)"
+        },
+        "standingWave": {
+          "title": "Standing waves on a vibrating string",
+          "description": "Explore how standing waves form on a vibrating string.",
+          "videoTitle": "Standing waves on a vibrating string (video experiment)"
+        },
+        "soundTube": {
+          "title": "Sound tube — fundamental frequency",
+          "description": "See how sound waves form in a tube and how the fundamental frequency is found.",
+          "videoTitle": "Sound tube — fundamental frequency (video experiment)"
+        },
+        "wavefront": {
+          "title": "Wavefront",
+          "description": "Observe how the wavefront propagates in water.",
+          "videoTitle": "Wavefront (video experiment)"
+        },
+        "lissajous": {
+          "title": "Lissajous figures",
+          "description": "Explore how Lissajous figures form from perpendicular oscillations.",
+          "videoTitle": "Lissajous figures (video experiment)"
+        }
+      }
+    },
+    "bibliographySection": {
+      "title": "Recommended bibliography",
+      "textbooks": "Textbooks",
+      "furtherReading": "Books for further study",
+      "online": "Online resources",
+      "manualGherbanovschiStrong": "Physics textbook for grade 11",
+      "manualGherbanovschiRest": "Authors: Cleopatra Gherbanovschi, Nicolae Gherbanovschi.",
+      "manualPaunStrong": "Physics textbook for grade 11 (M1/M2)",
+      "manualPaunRest": "Authors: Cristian Păun, Marius Burtea.",
+      "culegereStrong": "Collection of physics problems — grade 11",
+      "culegereRest": "Author: Florin Grigore, Paralela 45 Publishing House",
+      "povestitaStrong": "Physics narrated",
+      "povestitaRest": "Author: Cristian Presură",
+      "principiaStrong": "Principia Mathematica",
+      "principiaRest": "Author: Isaac Newton",
+      "feynmanStrong": "Six Easy Pieces",
+      "feynmanRest": "Author: Richard Feynman",
+      "linkKhan": "Khan Academy — Physics",
+      "linkPhet": "PhET Interactive Simulations",
+      "linkPhysicsOrg": "Physics.org",
+      "linkManuale": "Manuale.edu.ro — Educational resources"
+    },
     "lessons": {
       "pendulums": {
         "title": "Pendulums",

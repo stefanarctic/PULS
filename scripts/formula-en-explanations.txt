@@ -1,0 +1,322 @@
+25 cm = conventional clear vision distance. Magnifying glass with f = 5 cm magnifies 5 times. The smaller f is, the higher the magnification.
+a = slot width. Light scatters when it passes through a narrow slit. First minima at k = ±1.
+A is the number of nucleons (protons + neutrons). For uranium, Z = 92; the isotope is identified by A (eg 235 for U-235).
+A is the sum of protons (Z) and neutrons (N). In many problems, N lies with N = A − Z (using the given isotope).
+A sums up the protons and neutrons in the nucleus. The isotope is indicated by A along with the symbol of the element.
+Centripetal acceleration is directed toward the center of the circle and only changes the direction of the velocity, not the magnitude. ac = v²/r = ω²r. In the MCU there is only centripetal acceleration, not tangential. Without the needle, the body would move in a straight line.
+Acceleration is the opposite of displacement (restoration to the center) — the minus sign characterizes the harmonic oscillator.
+Gravitational acceleration at the surface of a celestial body of mass M and radius R. At Earth: g ≈ 9.8 m/s². Decreases with altitude. On the Moon, g is ~6 times smaller. Allows calculation of g on other planets knowing M and R.
+Average acceleration is the change in velocity per unit time. In MRUV, acceleration is constant. SI unit: m/s². Gravitational acceleration at the Earth's surface: g ≈ 9.8 m/s². Sign: a > 0 (acceleration), a < 0 (deceleration/braking).
+Same relationship for all electromagnetic waves (radio → gamma). It only changes f and λ.
+Adiabatic = no heat exchange with the outside. Anything done by gas comes from its internal energy. In adiabatic compression, the gas heats up!
+The addition of speeds is no longer linear; the result never exceeds c, even though u and v are close to c.
+The analog of F = ma for rotation: the resultant moment is equal to the product of the moment of inertia (I) and the angular acceleration (α). It depends on the shape of the body and the axis of rotation. Unit for I: kg·m².
+Approximation for the spot area around the characteristic radius w₀. Decreasing w₀ rapidly increases the intensity.
+There would be phase shift in the interferometer if absolute ether existed; the experiment did not find the effect—supports the invariance of the speed of light.
+It shows how much of the deuterium actually ends up in the product stream. In practice it depends on reflux, losses and the efficiency of the contact stages.
+It shows how much electromagnetic energy there is per unit volume in a propagating beam. The relation helps to interpret the extreme regimes.
+It shows the dependence of the velocity on temperature and molecular mass m. In the cryogenic regime, decreasing T strongly reduces the RMS velocity.
+It shows the entry into the relativistic regime: when the electron speed v approaches c, the value of γ increases rapidly and the energy of the particle increases significantly.
+The area of ​​the Lissajous ellipse when the frequencies are equal; becomes zero when the phases are aligned (movement in a straight line).
+C depends on the area of ​​the reinforcements (A), the distance between them (d) and the dielectric (εr). Bigger plate, closer together = higher C.
+The quantity of motion (mechanical impulse) is a vector having direction and sense of velocity. It measures "inertia in motion". Unit: kg·m/s. In collisions, p total is conserved. A truck has higher p than a car at the same speed due to mass.
+The heat given off by a resistor (ex: heater, light bulb). The higher the current, the more it heats up. Same as W, but in the form of heat.
+Heat at constant pressure. Cp is slightly greater than Cv (Cp = Cv + R). It is given in the tables.
+The field created by a charge Q. E tells how much force there is per unit charge. Unit: N/C or V/m.
+The magnetic field penetrates the surface of the superconductor only for a characteristic distance \(\lambda_L\), then it is effectively shielded.
+When the terminals are connected directly (without external resistance). Very high current! Dangerous — don't do this in practice.
+When the path difference (Δ) is a multiple of λ, the waves strengthen = bright fringe. k = the order of the maximum.
+When light passes from one medium to another (ex: air to water), the ray is refracted. n₁, n₂ = refractive indices. The larger n, the smaller the angle.
+When light comes from medium with higher n (ex: water) to one with lower n (air), there is an angle beyond which there is no more refraction, only reflection. Used for optical fibers.
+When the reduced mass increases (from H₂O to D₂O), the characteristic frequency decreases. This exact trend is illustrated in the slider experiment in the simulator.
+When the pressure remains constant: the gas expands on heating. The warmer it is, the more space it takes up. T must be in Kelvin!
+When you put a hot body in contact with a cold body, the heat given off by the hot body = the heat received by the cold body. Until equilibrium, when they have the same temperature.
+When the temperature remains constant: if you compress the gas (V decreases), the pressure increases. And vice versa. Example: syringe with closed cap.
+When a body heats up, they elongate. α says how much (he's in trouble). l₀ = initial length, Δt = how much it heated up. Example: railroad tracks widen in summer.
+When the volume remains constant: on heating, the pressure increases. Example: gas cylinder or car tire in the sun.
+When Δ is an odd multiple of λ/2, the waves cancel = dark fringe.
+When λ decreases (f increases), the momentum of the photon increases.
+How big is the image relative to the object. negative m = inverted image. m positive = right image. |m| > 1 = enlarged image.
+How much of the power of the source actually reaches the circuit. η = 1 (100%) when r = 0. In real batteries, η < 1.
+How much has the internal energy changed? It only depends on how much the temperature has changed, not the distance traveled. Use in any process.
+How much heat is needed to heat a mass m by ΔT degrees? c = specific heat (given: water has c ≈ 4200 J/(kg·K)).
+How much heat passes through the wall in one second? λ = conductivity of the material (metal conducts well, wood poorly), A = area, d = thickness.
+How much electric charge passes through a conductor in one second. I = current in Amps (A), Q in Coulombs (C), t in seconds. Example: 100 W bulb at 220 V has I ≈ 0.45 A.
+How much charge can the capacitor store at a given voltage. Big C = lots of charge. 1 F = 1 C/V.
+The moving clock relative to the observer appears to run more slowly: the intervals Δt (at rest in the clock system) appear longer by a factor of γ in another system.
+Even though it has no rest mass, the photon carries momentum. This is where radiation pressure and momentum transfer effects into matter arise.
+Even light carries momentum; occurs in radiation pressure and laser optics (trapping) applications.
+Combines peak power with spot area. High intensities are those that can produce ablation, plasma or advanced ionization.
+The component of weight parallel to the inclined plane that causes the body to slide. The larger the angle θ, the larger F∥. At θ = 90° (free fall): F∥ = mg. This force is responsible for the acceleration of the body on the plane.
+Concentration (mol/L or mol/m³) occurs when working with solutions or distributions of particles in a volume V.
+Molar concentration (mol/L or mol/m³) relates the number of moles to the volume of the solution or mixture.
+Balance condition between gravity and circular motion: the larger r, the smaller v orbital.
+Deuterium conservation in a separation unit: what enters with the feed (F) is found in product (P) and residue (W).
+Controls the shape and orientation of the figure when the frequency ratio is fixed (eg 1:1 gives ellipses or straight lines when Δφ = 0 or π/2).
+Direct conversion of mole fraction to percent. The value is used in the simulator for the OK / Caution / High / Critical visual codes.
+Equatorial coordinates on the celestial sphere: α measured in hr/min/sec along the celestial equator, δ as angle to the equator (similar to latitude).
+cos φ = power factor. In pure resistor, cos φ = 1. In motors, cos φ < 1 ​​(there is reactive power).
+With A and Z known, you quickly find out how many neutrons the nucleus has: N = A − Z.
+With the same P laser power, a smaller spot gives a higher intensity. In the simulator, increasing the intensity leads to stronger acceleration fields.
+Light quantum: the energy related to the frequency of the electromagnetic wave; explain atomic spectra and the photoelectric effect.
+Couple with the sine; the minus sign reflects the π/2 phase shift between sin and cos.
+d_o always positive (the object is real). d_i > 0 when the image is in front of the mirror (concave), d_i < 0 when it is behind (virtual). Convex has negative f.
+If the same pulse energy is compressed into a very short time, the instantaneous power increases enormously. This is one of the key principles of ultrafast lasers.
+If r is rational (eg 2/3), the figure is closed and periodic. Simple ratios give recognizable shapes.
+If you know the isotope (A) and the atomic number (Z), you quickly find the number of neutrons in the nucleus.
+If you know p, V and T in one state, you can calculate any quantity in the other state. All temperatures in Kelvin!
+If γ < ω₀, the system oscillates with frequency slightly less than ω₀. If γ ≥ ω₀, the motion becomes aperiodic (critical or overdamped).
+Displacement at position x and time t for a propagating wave. k is the wave number, ω the pulse; φ is the initial phase. The sign in the argument decides the meaning of the propagation.
+Derivative of displacement; the speed is maximum when passing through equilibrium (sin=0, cos=±1).
+It describes the temperature relaxation towards the ambient with a time constant \(\tau\). It is useful for quick estimates of cooling/heating time.
+Distance traveled in resisted fall. At small times: y ≈ ½gt² (free fall). At large times: y ≈ v_t·t (uniform motion with terminal velocity). The graph of y(t) starts out parabolic and becomes linear.
+Two bodies attract with a force proportional to the product of the masses and inversely proportional to the square of the distance between the centers. G is the universal gravitational constant. The law applies to point or spherical bodies. It explains both the fall of bodies and the motion of the planets.
+Two atomic wave functions (eg two 1s orbitals) can combine linearly to give one bonding (symmetric) and one antibonding (antisymmetric) molecular orbital.
+Two lenses glued together have total vergence = sum of vergences. Two lenses of +2 δ and +3 δ give +5 δ.
+Straight line with slope a and ordered at the origin b. Uniform growth model; a = Δy/Δx on any interval.
+e^x is its own derivative — which is why it appears in exponential growth and differential equations.
+Equivalent to exp(-λt); useful when counting how many T₁/₂ periods have passed (in "time" teaching simulations).
+Torricelli's equation relates final velocity to initial velocity, acceleration, and distance traveled without explicitly depending on time. Useful when the time is unknown. It is obtained by eliminating t from the equations v = v₀ + at and x = v₀t + ½at². In free fall: v² = 2gh.
+The equation for states with energy E is well defined. In each region where the potential V is constant, the solution is a combination of real or complex exponentials, as the energy is greater or less than V.
+The master equation for an ideal gas. ν = number of moles. With it you calculate p, V or T when you know the others. R is a constant, you use it directly.
+Eliminating the time when ω₁ = ω₂, you get the peak traced conic; for different phases an ellipse generally appears.
+Energy = power × time. How much does a light bulb use in 2 hours? W = P·t. Unit: Joule (J) or kWh (1 kWh = 3.6×10⁶ J).
+The kinetic energy of the extracted electron = the energy of the photon minus the extraction work (minimum energy to remove the electron).
+The kinetic energy of a rotating body. Analogous to Ec = ½mv² for translation. A body can have both translational and rotational kinetic energy (eg the spinning wheel).
+Kinetic energy is the energy due to motion. It depends on the mass and the square of the velocity. Unit: J. A body at rest has Ec = 0. When the velocity is doubled, the kinetic energy increases by a factor of 4. It is a positive scalar quantity.
+Binding energy is the energy required to separate the atoms of a molecule to infinity (state of free atoms).
+The energy in the charged capacitor. It is used for discharge (flash, defibrillator).
+The energy released comes from the mass difference between the initial state and the products (including emitted neutrons), according to E = Δm·c².
+Photon energy increases as frequency increases (λ decreases). UV has more energetic photons than IR.
+The internal energy of the gas depends only on the temperature. Cv is a constant that depends on the type of gas (it is given in the problems).
+Internal energy changes when the gas receives or gives up heat (Q) and when it does or receives mechanical work (L). Q > 0 = receives heat, L > 0 = is compressed (receives work).
+Energy per unit mass for bound orbit; directly related to the semimajor axis of (same idea as total E, but per mass).
+Gravitational potential energy depends on the height h above a reference level (usually the ground). Increases with h. When falling, Ep becomes Eq. The reference level is arbitrary; only ΔEp matters. Unit: J.
+Energy stored in a compressed or stretched spring with strain x. It is maximum at amplitude (x = ±A), zero at equilibrium. It is converted to kinetic energy and vice versa during oscillation. Similar form to Ec = ½mv².
+The total energy of the particle with rest mass m including the kinetic energy; for small v we find approximately Ec ≈ ½mv² + mc².
+The total energy of the low-mass system m in bound orbit is negative and depends only on the semimajor axis, not the eccentricity.
+Total energy proportional to square of amplitude and pulsation in a simple model (wave on string). The more vigorous the oscillation, the greater the energy.
+The energy of a charge q at the point where the voltage is U. When it moves, Ep is converted to kinetic energy or vice versa.
+Energy equivalent to mass even at rest — the famous E = mc²: mass and energy are aspects of the same quantity.
+Entropy measures "disorder". When you get heat, entropy increases. T must be in Kelvin. It is used in Principle II.
+Expresses the molar weight of heavy water in the mixture. In the simulator, the slider displays this percentage as an educational model.
+Beams that are very tight in focus tend to open up more quickly after focusing. The relation expresses the limit imposed by diffraction.
+Heat flow through cryogenic walls/insulations depends on conductivity k, area A, thickness L and thermal gradient. The formula explains why good insulation is critical in cryogenic vessels.
+The focus is in the middle of the radius. Mirror with R = 20 cm has f = 10 cm. f > 0 = concave mirror, f < 0 = convex mirror.
+Often used in oscillations and waves; the derivative of the cosine follows with changed sign.
+Exact form: restoring force ∝ sin φ, not φ. At large angles the period depends on the amplitude.
+The formula directly relates the energy of the electron to the Lorentz factor. When the electron remains synchronized with the accelerating phase of the wakefield, E increases more efficiently.
+Centripetal force is the resultant of the forces that keep the body on a circular path. Fc = m·ac. Examples: tension in the wire (tapered pendulum), friction (car turning), gravity (satellite in orbit). It is directed towards the center.
+The sliding friction force is proportional to the normal force. μ is the coefficient of friction (dimensionless, depends on the nature of the surfaces). Ff opposes the motion. In static friction: Ff ≤ μ·N (up to the maximum value that allows movement).
+Air resistance (drag) is proportional to the square of the velocity, the cross-sectional area (A), the fluid density (ρ) and the drag coefficient (C_d). C_d depends on body shape: ~0.47 for a sphere, ~1.0–1.3 for a flat surface. Formula valid in turbulent regime (Re > ~1000).
+The force between two point masses or spheres (their center). Newton's law of attraction at a distance.
+The elastic force is proportional to the strain x and directed towards the equilibrium position (minus sign). k is the elastic constant of the spring (N/m). The stiffer the spring, the higher k is. Strength is restorative.
+The force between two point charges. Charges of the same sign repel, opposite signs attract. r = distance between them.
+The normal force is the reaction of the supporting surface, perpendicular to the surface. On a plane inclined at angle θ, N = mg·cos θ. It balances the perpendicular component of weight. On the horizontal plane: N = mg.
+The resultant force acting on a body is equal to the product of mass and acceleration. Mass (m) measures the body's inertia: the greater the mass, the less the acceleration for the same force. Units: F in N (newton), m in kg, a in m/s².
+X-ray and gamma photons have much higher energies than those in the visible.
+Frequency is the number of complete revolutions per second. Unit: Hz (hertz) = s⁻¹. f = ω/(2π). Example: a disk making 33 rotations/minute has f = 33/60 ≈ 0.55 Hz.
+The minimum frequency for which the photoelectric effect occurs. Below f_min, even if the light is strong, no electrons come out. It's a problem of energy, not intensity.
+The generalization p = mv: the γ factor ensures conservation of momentum and energy in collisions at any speed.
+Gravity is the force with which the Earth attracts a body. g is the gravitational acceleration at the Earth's surface (varies slightly with latitude and altitude). Unit: N (newton). Example: a 10 kg body has a weight of G = 10·9.8 = 98 N.
+Hydrogen and oxygen react; chemical energy is partially converted into electrical energy by separating charges at the electrodes.
+Hypermetropia sees well far, but not near. Glasses with convex (convergent) lenses bring the image closer.
+Real image = on the other side of the lens from the object (can be captured on the screen). Virtual image = same side, cannot be caught.
+The image is at the same distance from the mirror as the object. If you stand 1 m from the mirror, your image is 1 m behind it. Virtual image, symmetrical.
+The impulse of the force (F·Δt) is equal to the change in momentum. For a constant force: F·Δt = m·Δv. In collisions, the forces are large and Δt small, so F can be very large. Explain why airbags increase Δt and decrease F.
+The intensity decreases with the square of the distance for a point source (ex: ideal isotropic antenna).
+The invariant interval in special relativity (signature +−−−). The "real" distance between events in spacetime does not depend on the inertial observer.
+Inverse of the previous formula: from the number of moles and the molar mass you get the mass in grams.
+Inverse of the formula above: if you know the moles, you get the mass of the substance.
+In the absence of non-conservative forces (friction, resistance), total mechanical energy (kinetic + potential) is conserved. Energy can go from Ec to Ep and vice versa, but the amount remains constant. Example: pendulum, free fall without friction.
+In adiabatic, p and V are related by this formula. γ ≈ 1.4 for air. You use it when you know p and V in one state and want to find out in another.
+In natural water, deuterium is a small fraction of the total hydrogen atoms. That is why ordinary water contains only traces of D₂O.
+In coil/capacitor circuits, the current can be out of phase by φ with respect to the voltage (they are not in phase).
+In the symmetrical configuration of the prism the minimum deviation occurs; useful relationship to experimentally determine n of the material.
+In the indicative data from the simulator, D₂O freezes higher (~3.8°C) than H₂O (~0°C), so ΔTf > 0.
+In the linear quantum description, the amplitude before measurement is the sum of the contributions associated with the two paths. The relative phase decides whether the waves are strengthening or weakening.
+In isochore, heat = change in internal energy (because L = 0). The more heat it receives, the more U increases.
+Around the equilibrium distance r₀ between the nuclei, the bond potential can be approximated by a harmonic oscillator potential, with effective constant k.
+In uniform rectilinear motion (URM), the body moves in a straight line with constant speed. The average speed is equal to the instantaneous speed and is calculated as the ratio of the distance traveled (d) to the time interval (t). SI unit of measurement: m/s. Example: a car that travels 120 km in 2 hours has a speed of v = 120/2 = 60 km/h.
+In the model with two major fragments and ν neutrons, the sum of the mass numbers and the sum of the atomic numbers remain those of the reactants.
+In the model with aether and v small with respect to c, the round-trip time on the arm parallel to the "aether wind" contains a correction of order v²/c².
+In the educational model, the laser pulse creates a plasma wave (wakefield). The amplitude A is related to the intensity, and the wave number k to the plasma density.
+In the ideal model, current can flow without significant Joule losses below \(T_c\).
+At the same time, capabilities are added. The total capacity increases.
+In parallel, inverse of total resistance = sum of inverses. Total resistance is lower than any!
+In parallel, the tension is the same in all. The total current is divided into branches: I = I₁ + I₂ + I₃.
+In engineering practice, cryogenics covers very low temperatures (of the order of tens-hundreds of kelvins). In this area the thermal and transport properties change strongly.
+In series, the equivalent capacitance is less than either. As the inverse of resistors in parallel.
+In series, the current is the same everywhere. The source voltage is divided between the resistors: U = U₁ + U₂ + U₃.
+In the simulator, the repulsive force increases with \(B^2\) and decreases with the square of the distance from the superconducting surface.
+In the planetary motion simulator, each planet is pulled toward the star with this force; gives the required centripetal acceleration of the orbit.
+In a uniform field (eg between two parallel plates), voltage = field × distance. d = distance between points.
+In a node, current in = current out. What goes in, comes out. No current is lost in the node.
+In an isolated system (resultant of external forces = 0), the total momentum is conserved. In collisions, the sum m·v before is equal to the sum m·v after. v' are the velocities after the collision. The equation is vector; applies to each axis.
+k describes the spatial oscillation in the classically allowed zone; κ measures how fast the wave modulus decreases inside the barrier (classical forbidden region).
+K is the complete elliptic integral; depends on the amplitude. Generalize the small formula T = 2π√(l/g).
+L = distance to screen, d = distance between the two slots. With larger λ or larger L, the fringes are further apart.
+At 1 atm, the simulator highlights the indicative values ​​100.0°C (H₂O) and 101.4°C (D₂O), so ΔTb is positive.
+At this frequency, X_L = X_C and Z = R (minimum). The circuit resonates, the current is maximum.
+When falling through air, the body is subject to gravity (mg, down) and drag (up, opposite to motion). The acceleration decreases as the speed increases, until the drag balances the weight and a = 0.
+Same as linear dilation, but for volume. γ is approximately 3 times α. Liquids expand more than solids.
+Same as DC but with Z instead of R. I and U are effective values.
+Same as mirrors, but the conventions are different. f > 0 = converging (convex) lens, f < 0 = diverging (concave).
+As with voltage. In the socket we have 220 V effective, 50 Hz. Current and voltage vary sinusoidally.
+In lenses, m = d_i/d_o (no minus, unlike mirrors). m > 0 = upright image, m < 0 = inverted image.
+In metals, resistance increases with heating. R₀ = resistance at reference temperature, α = temperature coefficient (given). On coal, resistance decreases!
+At constant pressure, the gas can do work as it expands. Some of the heat becomes work, the rest increases the temperature.
+At constant temperature the internal energy does not change. All the heat received is converted into work (or vice versa in compression).
+At small times, tanh ≈ gt/v_t, so v ≈ gt (free fall). At high times, tanh → 1, so v → v_t (terminal velocity). The transition is gradual; the body reaches ~99% of v_t after a time t ≈ 5 v_t/g.
+When melting, vaporizing, etc. the temperature remains constant, but heat is needed. L = latent heat (of melting or vaporization), given in the tables.
+When passing between media, the product n·sin θ remains constant on the interface (incidence). Angles are measured relative to the normal.
+At constant volume the gas does no work (nothing moves). All the heat received causes the temperature to rise.
+The laser can focus the power on a small area, increasing the intensity (W/m²).
+It relates the space-time coordinates between two inertial references in relative motion with velocity v; replace Galilean transformations at high speeds.
+It relates focal length (f), object distance (d_o) and image distance (d_i). With the concave mirror you can get real or virtual images, depending on the position of the object.
+Relates frequency (Hz) to pulsation (rad/s). In Romania, f = 50 Hz ⇒ ω ≈ 314 rad/s.
+Relate wavelength and frequency for vacuum propagation. If λ decreases, the frequency increases and the photons become more energetic.
+Relates wavelength and frequency. For light in a vacuum, c ≈ 3×10⁸ m/s. The laser is almost monochromatic (λ well defined).
+Relate moles to number of atoms or molecules: multiply by Avogadro's constant N_A.
+Relate moles to number of particles (atoms/molecules). It appears often in ideal gas and atomic structure problems.
+The relation between λ and k: 2π radians of spatial phase fit into a space of one wavelength.
+The relationship between f, the index n of the glass and the radii of curvature R₁, R₂. Converging lens: R₁ and R₂ have matching signs.
+Law of action and reaction: If body 1 acts on body 2 with force F₁₂, then body 2 acts on body 1 with force F₂₁ = −F₁₂. The forces have the same mode, the same direction, but opposite directions. It acts on different bodies.
+The law of motion of the harmonic oscillator. A = amplitude, ω = pulsation, φ = initial phase. The body oscillates between -A and +A. The cosine describes the periodic motion. v = dx/dt = -Aω·sin(ωt + φ).
+Law of vertical dynamics: Quasi-static levitation occurs when \(F_m\) offsets weight \(mg\).
+Law of Inertia: A body remains at rest or in uniform rectilinear motion as long as the resultant of the forces acting on it is zero. Inertia is the property of bodies to maintain their state of motion. Without external forces, a body does not change its velocity.
+Space law in MRUV: position (or distance traveled) depends on initial velocity, time and acceleration. The term v₀·t corresponds to the uniform motion, and ½·a·t² is the acceleration contribution. The graph of x(t) is a parabola. In free fall (v₀ = 0, a = g): x = ½·g·t².
+Diffraction limit: the narrower the beam (low w₀), the greater the divergence.
+The work when the gas expands or compresses at constant T. ln = natural logarithm. In compression (V₂ < V₁) the work is negative.
+The mechanical work of the resultant forces is equal to the change in kinetic energy. If L > 0, the body accelerates; if L < 0, the body brakes. This theorem is a form of the kinetic energy theorem and applies to any mechanical situation.
+Mechanical work is done by a force when its point of application moves. θ is the angle between the force and the direction of displacement. L = F·d when the force is parallel to the displacement. L > 0 (motive force), L < 0 (resistive force), L = 0 (perpendicular force). Unit: J (Jul).
+White light (sun) contains all colors. The prism breaks them down: each color has a different n and refracts differently.
+Light is made up of photons. Each photon has energy h·f. With higher frequency (lower λ), the photon is more energetic.
+Light exerts pressure by momentum transfer. For a perfectly reflective surface, the effect is roughly double that of absorption.
+The length measured in the direction of motion is shortened by 1/γ compared to the length at rest (small effect up to speeds comparable to c).
+The average length of the orbit (≈ 2πa for nearly circular orbit) divided by the period.
+Wavelengths of emission/absorption spectra at H: m to n level transitions (m > n in emission). R_H ≈ 1.097×10⁷ m⁻¹.
+The molar mass M (g/mol) is taken from the periodic table. The m/M ratio gives moles of substance — essential in gases and stoichiometry.
+The molar mass M is taken from the periodic table (g/mol). The formula is essential when you go from mass to moles (eg: gases, mixtures).
+The maximum of the radiation spectrum of a body depends on the temperature. Higher T ⇒ lower λ_max (more “blue”).
+Magnification = focal ratio. The objective has a large f (captures a lot of light), the eyepiece has a small f. Good telescope: large f_ob, small f_oc.
+Total magnification = objective magnification × eyepiece magnification. The microscope has two lenses: the objective (closer to the object) and the eyepiece (closer to the eye).
+It measures the efficiency of isotopic separation between two phases (or two streams in equilibrium). In teaching simulators, increasing α accelerates deuterium enrichment.
+Measure of how far the colors are separated (Fraunhofer lines F, D, C). Materials with high P disperse more strongly.
+Myopia sees well near, but not far. The focus is too close. Glasses with concave (divergent) lenses move the image away.
+Periodic motion with amplitude A, pulsation ω and initial phase φ. Extreme values ​​±A.
+Empirical model for n(λ) in visible; A, B, C match measurements. small λ (purple) → larger n, in general.
+Simplified model to illustrate the trend: more useful floors n and a better separation factor lead to higher D₂O concentrations.
+The typical model for a sinusoidal alternating voltage. U_max is the amplitude and ω = 2πf is the ripple.
+Kinetic momentum (momentum of momentum) is the momentum analog for rotation. L = I·ω. It is conserved in isolated systems (eg the skater who squeezes his arms spins faster). Unit: kg·m²/s.
+Moment of force (torque) measures the force's ability to produce rotation. d is the arm of the force (the distance from the axis of rotation to the line of action of the force). Unit: N·m. M = 0 when the force passes through the axis. M = F·d·sin θ in general.
+Mw relates to the seismic moment M₀ (in N·m). It is more stable for large earthquakes than amplitude-only magnitudes.
+n depends on wavelength — the reason the prism breaks up white light (dispersion). Purple and red have different indices.
+n is larger for violet (small λ) and smaller for red (large λ). Violet refracts more, red less. Hence the rainbow.
+N is the number of fissions; the simulator uses ~200 MeV per event as the order of magnitude for the energy released (does not include reactor structure details).
+n tells how many times slower light is in a medium than in a vacuum. Air: n ≈ 1. Water: n ≈ 1.33. Glass: n ≈ 1.5. The larger n, the slower the light.
+The neutron is captured; the nucleus splits into two major fragments, emits ν neutrons and γ radiation. The concrete channels (masses, Z) vary; conserve mass number and charge.
+Quantified levels for the electron in Bohr's model: n = 1 is the ground (–13.6 eV); n → ∞ corresponds to ionization (0 eV).
+You cannot simultaneously know position and momentum with arbitrary precision; fundamental limit in quantum mechanics.
+The nucleus emits a cluster of two protons and two neutrons bound as helium-4; the son has Z 2 and A 4 less than the parent.
+The number of elementary entities (atoms, molecules...) in a mole; used when switching between the macroscopic and microscopic scale.
+The number of particles in a mol. Use it to switch between microscopic and macroscopic scales.
+The Reynolds number (dimensionless) indicates the flow regime: Re < ~2000 → laminar (drag ∝ v), Re > ~4000 → turbulent (drag ∝ v²). ρ = fluid density, v = velocity, L = characteristic body length, μ = dynamic viscosity. In most practical cases (balls, parachutes, vehicles), Re is large and the v² formula is used.
+The healthy eye can focus from 10 cm to infinity. Below 10 cm we can no longer see clearly.
+The orbit is an ellipse; The sun in a focus. a = semi-major axis, e = eccentricity, b = semi-minor axis.
+High Q oscillator is hard to lose energy (narrow resonance in applications). Small Q → strong damping.
+Harmonic oscillation on the x-axis; amplitude A₁, frequency ω₁, phase φ₁.
+Independent oscillation on the y-axis. The trajectory (x, y) is the Lissajous curve.
+The slope of the tangent to the graph of f versus x—instantaneous rate of change. Fundamental to all derivation rules.
+Parable. His sign to tell whether the branches are up or down; peak at x = −b/(2a) (zero derivative).
+The heliocentric parallax p (in seconds of arc) gives the distance in parsecs. The base is the radius of Earth's orbit (~1 AU).
+Parameter that quantifies how quickly the system loses energy relative to its undamped self-oscillation.
+The Reactor part uses a conceptual scheme: more collisions => lower neutron energy. In the model, D₂O retains more available neutrons than H₂O.
+Particles also have wave behavior; λ decreases as momentum p increases—used in electron diffraction.
+The square of the period of revolution is proportional to the cube of the semimajor axis of the orbit. Valid for all planets orbiting the same body (eg Sun). It allows the calculation of planetary distances or the mass of the Sun.
+Up to zR the beam remains relatively collimated; after that it starts to widen visibly.
+On the perpendicular arm, the path in the ether system is slightly different, so the v²/c² order correction also differs from the parallel arm.
+On an ideal string, v increases with tension T and decreases with linear mass μ (kg/m). Explain why the stretched or thinner string sounds sharper.
+Over a distance of the order of zR, the beam remains relatively well collimated around the focus. Beyond this area, the diameter increases noticeably.
+On a screen at distance L from the slits, the approximate distance between two maxima uses the small angle approximation for sin and tang.
+On a closed loop: sum of source voltages = sum of voltage drops across resistors. Pay attention to the signs (source and current)!
+To convert from Celsius to Kelvin, add 273. Example: 25°C = 298 K. In physics we use Kelvin because 0 K = the lowest possible temperature.
+For the same total power, a smaller spot area means higher intensity. This is why focus is so important in experiments.
+For the same number of particles n, decreasing the temperature T tends to decrease the pressure p if the volume remains fixed. In the simulator you see directly the connection between T, V and effective pressure.
+For two slits at distance d, the path difference to a point on the screen depends on the angle to the axis of symmetry. Intensity maxima occur when this difference is an integer multiple of the wavelength.
+For rotational balance, the sum of the moments of the forces about any axis must be zero. The body does not rotate. The second equilibrium condition. The two conditions must be met simultaneously for complete equilibrium.
+For translational equilibrium, the resultant of the forces must be zero. The body does not translate. The first equilibrium condition for a rigid body.
+For myopia: D negative, d_remotum = maximum distance at which he sees clearly (in m). For hypermetropia: D positive.
+For a barrier of width a, the tunneling probability decreases exponentially with the product κ·a. The factors above depend on the exact model of the barrier.
+For a bulb modeled as a resistor \(R\), the current increases when the voltage increases or the resistance decreases (within the limits imposed by the reactance supply).
+For small angles; depends on length l and g. Does not depend on mass (in the ideal model). The period increases by √l.
+The period is the time it takes the body to complete one complete rotation (2π radians). Unit: s (second). T = 1/f, where f is the frequency. Example: the minutes of the clock have T = 60 s, so ω = 2π/60 rad/s.
+The period of the oscillator (spring–mass) depends only on m and k, not on the amplitude (within the validity of Hooke's law). The bigger the mass or the smaller k, the bigger T is. ω = √(k/m).
+The period of the gravitational pendulum depends on the length of the string (l) and g. It does not depend on the mass of the pendulum. Valid for small oscillations (θ < ~10°). The longer pendulum swings slower. Useful for measuring g.
+The period T is related to the semimajor axis of a; for the same central body M, the ratio T²/a³ is the same for all satellites.
+The probability of detecting the particle in an area is proportional to the square of the modulus of the wave function in that area.
+The probability of finding the electrons in the region between the nuclei is given by the square of the modulus of the bond wave function; a higher density between nuclei corresponds to covalent bonding.
+The Poisson process at the individual nucleus level gives an exponential decay of the macroscopic population N(t); same shape for each isotope, with different λ.
+Power consumed by a receiver. P = U·I is the general form. When you only know R and I, you use R·I². When you know U and R, you use U²/R. Unit: Watt (W).
+Lens power in diopters. 2 δ lens has f = 0.5 m = 50 cm. The higher the D, the stronger the lens.
+The power delivered to the external circuit is the product of the terminal voltage and the load current.
+Power measures the speed with which mechanical work is done. P = L/t (work per unit time). The form P = F·v is useful when force and velocity are constant and parallel. Unit: W (watt) = J/s. 1 HP ≈ 735 W.
+Average power per unit area. The second form (wave in medium) relates I to density ρ, velocity v, wave amplitude, and ω. Intensity decreases away from the source (geometry + absorption).
+The radiated power increases very quickly with temperature (T⁴). It explains why very hot bodies radiate intensely.
+The power radiated by a body (without contact). Warm bodies radiate heat. The warmer it is, the more it radiates (T to the power of 4).
+Total power = what the source gives. Useful power = what the circuit receives. The difference is lost in the internal resistance.
+r = internal resistance of the source. When the current is high, u increases and U at the terminals decreases. The battery discharges when it supplies current.
+Efficiency = how much of the heat received (Q₁) was transformed into useful work (L). Q₂ = heat lost. The yield is always below 1 (below 100%).
+Yield is the ratio of useful work (Lu) to consumed work (Lc). η ≤ 1 always; the difference is lost through friction, heat, etc. η = 1 only in ideal, lossless systems. It is often expressed as a percentage: η = 80% means η = 0.8.
+The maximum possible efficiency between a hot (T₁) and a cold (T₂) source. No real engine can be more efficient. Temperatures in Kelvin!
+Ratio of useful neutrons from the next generation to those from the current generation. In the simulator, k is estimated empirically from fission rates, not from detailed criticality calculations.
+Ratio between the useful electrical power and the power associated with the available chemical flow; H₂/O₂ imbalance or temperature affects efficiency in the model.
+The consecutive ratio of the amplitudes on two oscillations; related to the energy loss per cycle. T_d is the amortized period.
+The incident and reflected rays make the same angle with the surface normal. Simple: as it goes in, so it comes out. The mirror reflects symmetrically.
+The vector ray sweeps equal areas in equal times—the planet moves faster at perihelion, slower at aphelion.
+Basic relationship for magnetic field shielding in superconductors; underlies the interpretation of the Meissner effect.
+Indicative relationship between magnitude and released energy (in J, in forms usually cited in the literature). It is approximate: the actual energy depends on the fracture geometry and the environment.
+Useful relationship when you want to relate the amount of D₂O to the volume. No clinical calculation is done in the simulator, only a didactic representation of the composition.
+The lattice has many parallel slits at distance d. The maxima are very sharp. Used in the spectroscope to separate colors.
+The apparent resistance of the coil to alternating current. The higher the frequency, the higher the X_L. L = inductance (Henry).
+The apparent resistance of the capacitor to AC. The higher the frequency, the lower X_C. Opposite to the coil.
+The resistance depends on the material (ρ = resistivity), length (l) and section (A). Longer wire = more resistance. Thicker wire = less resistance. ρ is given in the tables.
+The total resistance of the RLC circuit. Combine R, X_L and X_C. When X_L = X_C, Z = R (resonance).
+Resistors in series add up. Total resistance is greater than any. The current is the same through everything.
+Elemental charge — the smallest free charge in nature. All charges are multiples of e. The electron has −e, the proton +e. You use it in electron number problems.
+Logarithmic scale based on the amplitude of the wave recorded at a seismograph, relative to a reference amplitude A₀ (depends on distance and instrument). It is no longer the only scale used in practice.
+Logarithmic scale: star with lower m appears brighter. Difference of 5 magnitudes ≈ factor 100 in flux.
+The simulator uses guidance values ​​of ~1.00 g/cm³ for H₂O and ~1.11 g/cm³ for D₂O. It follows that the same volume of D₂O is heavier.
+Finite lifetime states (eg tunneling from a meta-stable level) have a width in energy related to the characteristic time of the process.
+Below the critical temperature \(T_c\), the material enters the superconducting state and the magnetic response changes radically.
+The sum of the maximum kinetic energies in the two directions in a simple model with the same mass m (order of magnitude).
+T₁/₂ is the time half of the nuclei of a type survive; τ (mean life) is related to λ by τ = 1/λ.
+Temperature directly controls the average energy of the particles. At lower T, the particles move more slowly, which favors condensation and local ordering.
+Voltage = resistance × current. Are you looking for U? Multiply R by I. Looking for I? Divide U by R. E is fundamental in any circuit.
+The voltage in the socket oscillates with 50 Hz. Period T = 1/f = 0.02 s. Once every 0.02 s the cycle is repeated.
+Effective voltage is the one that produces the same effect as direct current. At 220 V effective, U_max ≈ 311 V.
+The actual voltage that the circuit receives. It is less than ε when it is current. At idle (I = 0): U = ε.
+The source voltage (ε) is divided: one part on the circuit (U = terminal voltage), one part on the internal resistance (u).
+The term b dx/dt models the viscous friction; energy dissipates, amplitude decreases over time.
+The time after which the trajectory repeats exactly, when the pulsations are commensurable (interpretation with the smallest multiple of the periods).
+A shorter wavelength laser carries more energetic photons. The formula is essential when comparing IR, visible, or UV lasers.
+The P wave (primary) is longitudinal; propagates through soil and fluids. It depends on the compressibility modulus K, the shear modulus G and the density ρ. Usually v_P > v_S.
+The S (secondary) wave is transverse — the particles oscillate perpendicular to the direction of propagation. It does not cross the ideal fluid. v_S depends on honey stiffness (G) and density.
+The angle by which the axis of the ellipse rotates per revolution in RG — very small for most planets, measurable for Mercury; depends on M, a, e.
+The angle θ between two directions to the stars in coordinates (α₁,δ₁) and (α₂,δ₂). Used for vault separations and observation conditions.
+Valid for sources that radiate approximately spherically. For collimated (laser) beams the decrease with r can be much slower.
+Valid for x > 0. Bind relative increments: d(ln x) = dx/x.
+Exact value in SI from definition; all inertial observers measure the same c for light in a vacuum, regardless of the speed of the source.
+The phase velocity is the product of the wavelength λ and the frequency f. It relates the spatial and temporal parameters of the wave.
+The velocity at a given instant in MRUV depends on the initial velocity (v₀), constant acceleration (a) and time (t). If a > 0, the body accelerates; if a < 0, the body brakes. This equation follows from the definition of acceleration: a = Δv/Δt. Example: a body launched with v₀ = 5 m/s and a = 2 m/s² has after 3 s the speed v = 5 + 2·3 = 11 m/s.
+The linear (tangential) velocity is perpendicular to the radius. v = ω·r relates the angular velocity to the radius of the trajectory. Points farther from the center have larger v. v = 2πr/T = 2πrf. The direction changes continuously, but the module remains constant.
+The maximum speed on the ellipse, at the minimum distance from the star (when the eccentricity e > 0).
+The maximum speed is reached when passing through the equilibrium position (x = 0), where all the energy is kinetic. vmax = Aω. It depends on the amplitude and pulsation. At the elastic oscillator: vmax = A√(k/m).
+The minimum speed on the ellipse, at the maximum distance from the star.
+The speed a satellite must have to orbit at a distance r from the center of the planet (mass M). It results from equating the gravitational force with the centripetal force. The higher the orbit, the smaller v is. For ISS: v ≈ 7.7 km/s.
+Terminal velocity is the maximum velocity reached in the fall, when the drag force equals the weight (a = 0). It depends on mass, shape and area. Example: a skydiver achieves ~55 m/s with arms outstretched, ~90 m/s in aerodynamic position. A stretched sheet of paper has much lower v_t than the same crumpled sheet.
+Angular velocity measures the speed of rotation in radians per second. ω = 2π/T = 2πf. In MCU, ω is constant. Unit: rad/s. The connection with the period: the higher T is, the smaller ω is.
+Z is the number of protons in the nucleus (and, in neutral atoms, the number of electrons). You can find it directly in the periodic table.
+Z is the number of protons in the nucleus; in neutral atom coincides with the number of electrons. You read it directly from the periodic table.
+δ is the angle by which the emerging beam is deviated from the incident one; A is the angle of the prism; θ₂′ is the angle of emergence on the second face.
+μ is the stiffness of the medium on the failure surface A, D is the mean slip. M₀ measures “how much” energy has been released by moving over a surface.

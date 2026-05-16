@@ -1,0 +1,376 @@
+1. D₂O/H₂O composition in a mixture (bulk model)
+1. Electric current
+1. Double-slit and interference
+1. Basic thermal quantities
+1. Uniform rectilinear motion
+1. Fundamental beam properties
+1. Reflection of light
+10. RLC circuits
+10. Photoelectric effect
+10. Air resistance (aerodynamic drag)
+11. Laser
+12. Electromagnetic spectrum
+1b. Periodic table — useful quantities
+2. Ideal gas — gas laws
+2. Ohm's law
+2. Uniformly accelerated rectilinear motion
+2. Physical properties: H₂O vs D₂O
+2. Power, intensity, and focusing
+2. Refraction of light
+2. Barrier tunnelling
+3. Electric circuits — resistors
+3. Isotopes and effects (Physics + reactor)
+3. Bonds between atoms and molecular orbitals
+3. Newton's laws
+3. Spherical mirrors
+3. First law of thermodynamics
+3. Ultrashort pulses and the ELI-NP regime
+4. Laser wakefield acceleration (LWFA)
+4. Electric energy and power
+4. Isotope exchange plant (D₂O)
+4. Thin lenses
+4. Mechanical work and energy
+4. Thermodynamic processes
+5. Nuclear fission (U-235) and chain reaction
+5. Impulse and momentum
+5. The human eye and vision defects
+5. Second law of thermodynamics
+5. Electric source
+6. Heat and calorimetry
+6. Optical instruments
+6. Uranium isotopes — notation, decays, radioactivity
+6. Kirchhoff's laws
+6. Uniform circular motion (UCM)
+7. Capacitor
+7. Dispersion of light
+7. Universal gravitation
+7. Heat transfer
+8. Electric field
+8. Cryogenics (low temperatures)
+8. Rotational dynamics (rigid body)
+8. Light interference
+9. Alternating current (AC)
+9. Diffraction of light
+9. Mechanical oscillations
+Natural abundance of deuterium
+Acceleration
+Centripetal acceleration
+Gravitational acceleration
+London penetration depth
+Adiabatic — Energy
+Adiabatic — p–V relation
+Area (case r = 1)
+Circular spot area
+Right ascension and declination (notation)
+Hydrogen atom and quantum
+Mass balance for deuterium
+Momentum
+Parallel-plate capacitance
+Capacitance
+Internal voltage drop
+Heat for heating/cooling
+Heat of phase change
+Sky, stars, and coordinates
+Damping coefficient
+Combining atomic orbitals (bonding/antibonding MOs)
+x(t) component
+y(t) component
+Relativistic velocity addition
+Molar concentration
+Indicative concentration
+Capacitors in parallel
+Capacitors in series
+Superconducting phase condition
+Equilibrium condition (rotation)
+Equilibrium condition (translation)
+Thermal conduction
+Steady thermal conduction (1D)
+Mass and charge conservation
+Conservation of momentum
+Conservation of mechanical energy
+Avogadro's constant
+Decay constant
+Length contraction
+Sign conventions (lenses)
+Sign conventions (mirrors)
+Temperature conversion
+Short-circuit current
+Instantaneous current (phase lag)
+Logarithmic decrement
+Mass defect and Q
+Cryogenic definition (typical threshold)
+Probability density in the bonding region
+Energy density
+Derivative of cosine
+Derivative of the exponential
+Derivative of the natural logarithm
+Derivative of sine
+Derivative (definition)
+Minimum deviation
+α decay
+Path difference and maxima
+Phase difference
+Boiling point difference
+Freezing point difference
+Expected time difference (ether model)
+Linear expansion
+Time dilation
+Volumetric expansion
+Distance
+Fringe spacing (Young)
+Focal length
+Fringe spacing (Young, small angle)
+Rayleigh distance
+Distance from parallax (parsec)
+Angular distance on the celestial sphere
+Gaussian divergence
+Divergence (Gaussian approximation)
+Vertical equilibrium
+Thermal equilibrium
+Equation of state
+Ideal gas equation (basic model)
+Lens equation (Gauss)
+London equation (compact form)
+Einstein's equation
+Equation of motion
+Equation of motion with drag
+Mirror equation
+Damped pendulum equation
+Joule heating (dissipated heat)
+Kinetic energy
+Rotational kinetic energy
+Rest energy
+Electrical energy consumed
+Photon energy
+Internal energy
+Energy on an elliptical orbit
+Elastic potential energy
+Electric potential energy
+Gravitational potential energy
+Relativistic electron energy
+Total relativistic energy
+Seismic energy (empirical formula)
+Stored energy
+Wave energy on a string (model)
+Energy (ideal 2D oscillator)
+Mean molecular kinetic energy
+Cumulative energy (teaching reference in simulator)
+Binding energy
+Specific mechanical energy (elliptic orbit)
+Bohr energy level (hydrogen)
+Quality factor Q
+Multiplication factor (simplified idea)
+Separation factor
+Lorentz factor
+Lissajous figures
+Induced fission (symbolic form)
+Half-life form
+Thin lens formula
+Cauchy's formula (dispersion)
+Rydberg formula
+Centripetal force
+Coulomb force
+Drag force
+Friction force
+Normal force
+Force on an inclined plane
+Approximate binding force (oscillator model)
+Gravitational force (Newton)
+Photon — energy and frequency
+Molar fraction of D₂O
+Frequency
+Resonant frequency
+Frequency in Romania
+Linear function
+Quadratic function
+Functions and analysis
+Universal gravitation
+Weight
+Hyperopia (farsightedness)
+Impedance
+Relativistic momentum
+Photon momentum
+Spectral refractive index (dispersion)
+Refractive index
+Index depends on λ
+Intensity
+Electric field strength
+Current strength
+Peak intensity
+Beam intensity
+Intensity focused in the spot
+Wave intensity
+Isobaric — Heat
+Isobaric — Work
+Isobaric (constant p): V and T
+Isochoric — Heat and energy
+Isochoric — Work
+Isochoric (constant V): p and T
+Isothermal — Energy and heat
+Isothermal — Work
+Isothermal (constant T): p and V
+Stage-wise enrichment (approx.)
+Second law
+Second law (for the eye)
+Kepler's second law — areas
+Third law
+Kepler's third law
+Kepler's third law
+Law of conservation of energy
+Decay law (number of remaining nuclei)
+Fundamental law of rotation
+First law
+First law (nodes)
+Kepler's first law — ellipse
+Inverse-square law
+Hooke's law
+Newton's law
+Ohm's law
+Ohm's law (load)
+Ohm's law for AC
+Snell's law
+Equation of motion (harmonic)
+Law of reflection
+Law of refraction
+Wien's law
+Kepler's laws and gravitation
+Lenses in contact
+de Broglie wavelength
+Mechanical work
+Apparent magnitude (Pogson)
+Moment magnitude (moment scale)
+Richter magnitude (local)
+Mass of a substance (from moles)
+Mass from moles
+Maximum (bright fringes)
+Linear magnification
+Telescope angular magnification
+Magnifying power of a magnifier
+Microscope magnification
+Minkowski metric
+Michelson–Morley
+Minimum (dark fringes)
+Minimum at a single slit
+Myopia (nearsightedness)
+Planetary motion
+Educational model of magnetic levitation
+Simplified neutron slowing model
+Simplified plasma wave model
+Simple cooling model (Newton's law)
+Moles from mass
+Angular momentum
+Torque (moment of force)
+Seismic moment
+Mass number and neutrons
+Atomic number
+Atomic number (Z) = number of protons
+Mass number
+Mass number (A)
+Amount of substance (moles)
+Number of neutrons
+Number of neutrons (N)
+Number of particles
+Wavenumber
+Reynolds number
+Normal eye
+Plane mirror
+Oscillations and pendulums
+Parallel — Current and voltage
+Parallel — Equivalent resistance
+Parameters k and κ (barrier, E below V₀)
+Nonlinear pendulum (correct model)
+Period
+Figure period
+Spring–mass period
+Period of the gravitational pendulum
+Simple pendulum period
+Period for large oscillations
+Fuel cell (PEM)
+Position vs time (falling)
+Photoelectric threshold
+Perihelion precession (general relativity, simplified)
+Radiation pressure
+Energy–time uncertainty
+Heisenberg uncertainty principle
+Prism and dispersion
+D₂O percentage
+Angular frequency
+Damped angular frequency
+Power
+Corrective power
+Dispersive power (Abbe)
+Peak pulse power
+Electric power
+Power in alternating current
+Total and useful power
+Thermal radiation
+Overall efficiency
+Indicative efficiency
+Efficiency
+Maximum efficiency (Carnot)
+Heat engine efficiency
+Source efficiency
+Density ratio
+Frequency ratio
+Vibrational frequency ratio
+Capacitive reactance
+Inductive reactance
+Overall reaction
+Born rule (probability)
+Relativity (spacetime formalism)
+Special relativity
+Fundamental relation
+General relation for two states
+Wave–frequency relation
+Wave–frequency relation
+Implicit relation (r = 1)
+Diffraction grating — maximum
+Resistance vs temperature
+Resistance of a conductor
+Effective resistivity in the superconducting state
+Electron charge
+1D stationary Schrödinger equation
+Seismology
+Series — Current and voltage
+Series — Equivalent resistance
+Visible spectrum
+Stefan–Boltzmann
+Superposition of amplitudes
+Superconductivity and the Meissner effect
+Periodic table and amount of substance
+Electromotive force
+Instantaneous voltage
+Terminal voltage
+Voltage and uniform field
+Impulse–momentum theorem
+Work–energy theorem
+Parallel-arm time (approx., v ≪ c)
+Perpendicular-arm time (approx.)
+Torricelli
+Lorentz transformations (x, t)
+Transmission (typical behaviour, thick barrier)
+Sinusoidal travelling wave
+Waves
+Angle of deviation in a prism
+Critical angle (total internal reflection)
+RMS current
+RMS voltage
+Entropy change
+Change in internal energy
+Vergence (optical power)
+Velocity
+Orbital speed
+Speed vs time (falling)
+Speed at aphelion
+Speed at perihelion
+Linear speed
+Speed of light (invariant in vacuum)
+Maximum speed
+Root-mean-square speed
+Mean orbital speed
+Wave speed on a string
+Terminal speed
+P-wave speed
+S-wave speed
+Angular speed
+Speed in circular orbit
