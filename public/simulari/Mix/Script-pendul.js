@@ -4,16 +4,30 @@ let amplitude = parseFloat(document.getElementById("amplitude").value);
 let speed = parseFloat(document.getElementById("speed").value);
 let angle = 0;
 let direction = 1;
-// let length = parseFloat(document.getElementById("lengthSlider").value) || 1.5;
-// const length = 1.5;
-let length = parseFloat(document.getElementById("lengthSlider").value) || 1.5; 
+let length = parseFloat(document.getElementById("lengthSlider").value) || 1.5;
 const mass = 1.5;
 let pendulumInterval;
 let measuringActive = false;
 const gravity = 9.81;
-// const omega = Math.sqrt(gravity / length);
 let time = 0;
 const timeStep = 0.02;
+
+function pendulUiBag() {
+    return window.__SIMULATOR_UI_I18N__ || window.__PENDUL_SIMPLU_I18N;
+}
+
+function pendulChartMsg(key, fallback) {
+    return pendulUiBag()?.chart?.[key] ?? fallback;
+}
+
+function pendulPauseLabel() {
+    return pendulUiBag()?.buttons?.pause ?? 'Pauză';
+}
+
+function pendulResumeLabel() {
+    return pendulUiBag()?.buttons?.resume ?? 'Rezumă';
+}
+
 const ctx = document.getElementById("pendulumChart").getContext("2d");
 
 const pendulumChart = new Chart(ctx, {
@@ -21,19 +35,19 @@ const pendulumChart = new Chart(ctx, {
     data: {
         labels: Array.from({ length: 50 }, (_, i) => i),
         datasets: [{
-            label: 'Deplasare (m)',
+            label: pendulChartMsg('displacement', 'Deplasare (m)'),
             data: [], 
             borderColor: 'blue',
             borderWidth: 2,
             pointRadius: 0,
         }, {
-            label: 'Viteză (m/s)',
+            label: pendulChartMsg('velocity', 'Viteză (m/s)'),
             data: [],
             borderColor: 'red',
             borderWidth: 2,
             pointRadius: 0,
         }, {
-            label: 'Accelerație (m/s²)',
+            label: pendulChartMsg('acceleration', 'Accelerație (m/s²)'),
             data: [],
             borderColor: 'green',
             borderWidth: 2,
@@ -69,6 +83,10 @@ const pendulumChart = new Chart(ctx, {
 });
 
 
+
+function resetMeasuringData() {
+    // Placeholder — kept for compatibility with the Start flow.
+}
 
 function updatePendulum() {
     let omega = Math.sqrt(gravity / length);
@@ -136,7 +154,7 @@ function startOscillation() {
     document.getElementById("measured-velocity").textContent = "0";
     document.getElementById("measured-acceleration").textContent = "0";
     document.getElementById("measured-kineticenergy").textContent = "0";
-    document.getElementById("pauseResumeBtn").textContent = "Pauză";
+    document.getElementById("pauseResumeBtn").textContent = pendulPauseLabel();
 }
 
 function togglePauseResume() {
@@ -145,10 +163,10 @@ function togglePauseResume() {
         speed = parseFloat(document.getElementById("speed").value);
         clearInterval(pendulumInterval); 
         pendulumInterval = setInterval(updatePendulum, 100 / speed);
-        button.textContent = "Pauză";
+        button.textContent = pendulPauseLabel();
     } else {
         clearInterval(pendulumInterval);
-        button.textContent = "Rezumă";
+        button.textContent = pendulResumeLabel();
     }
     isPaused = !isPaused;
 }
@@ -171,7 +189,7 @@ function stopOscillation() {
     document.getElementById("measured-kineticenergy").textContent = "0";
 
     document.getElementById("string").style.transform = `rotate(0deg)`;
-    document.getElementById("pauseResumeBtn").textContent = "Pauză";
+    document.getElementById("pauseResumeBtn").textContent = pendulPauseLabel();
 }
 document.getElementById("amplitude").addEventListener("input", function () {
     amplitude = parseFloat(this.value);
@@ -291,18 +309,21 @@ window.addEventListener("resize", function () {
     updateSidebarTogglePosition();
     updateUniformTogglePosition();
 });
-document.addEventListener("DOMContentLoaded", function () {
+
+function initPendulumLayoutUi() {
     const lengthSlider = document.getElementById("lengthSlider");
     const lengthValue = document.getElementById("lengthValue");
     const measuredLength = document.getElementById("measured-length");
+    const stringEl = document.getElementById("string");
+    const ballEl = document.getElementById("ball");
 
-    if (!lengthSlider || !lengthValue || !measuredLength) {
+    if (!lengthSlider || !lengthValue || !measuredLength || !stringEl || !ballEl) {
         console.error("Unul dintre elemente lipsește!");
         return;
     }
 
     let length = parseFloat(lengthSlider.value) / 100 || 1.5;
-    
+
     lengthValue.textContent = length.toFixed(2) + "m";
     measuredLength.textContent = length.toFixed(2) + "m";
 
@@ -310,16 +331,22 @@ document.addEventListener("DOMContentLoaded", function () {
         let newLength = parseFloat(lengthSlider.value) / 100 || 1.5;
         lengthValue.textContent = newLength.toFixed(2) + "m";
         measuredLength.textContent = newLength.toFixed(2) + "m";
-        string.style.height = `${newLength * 100}px`;
+        stringEl.style.height = `${newLength * 100}px`;
 
-        ball.style.top = `${newLength * 100}px`;
+        ballEl.style.top = `${newLength * 100}px`;
     }
 
     lengthSlider.addEventListener("input", updatePendulumLength);
     applyResponsivePanelState(true);
     updateSidebarTogglePosition();
     updateUniformTogglePosition();
-});
+}
+
+if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", initPendulumLayoutUi);
+} else {
+    initPendulumLayoutUi();
+}
 
 
 

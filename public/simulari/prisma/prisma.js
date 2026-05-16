@@ -4,6 +4,10 @@ let incidentAngle = 0;
 let dispersing = false;
 let animationStep = 0;
 
+function simUI(path, fallback) {
+  return typeof window.simLbl === 'function' ? window.simLbl(path, fallback) : fallback;
+}
+
 // Prisme
 const prism = {
   A: { x: 300, y: 300 },
@@ -24,7 +28,9 @@ const toggleButton = document.getElementById('toggleButton');
 toggleButton.addEventListener('click', () => {
   dispersing = !dispersing;
   animationStep = dispersing ? 7 : 0;
-  toggleButton.textContent = dispersing ? 'Dezactivează Dispersia' : 'Activează Dispersia';
+  toggleButton.textContent = dispersing
+    ? simUI('buttons.dispersionOff', 'Dezactivează Dispersia')
+    : simUI('buttons.dispersionOn', 'Activează Dispersia');
   resetScene();
 });
 
@@ -218,23 +224,22 @@ function resetScene() {
   drawRainbowRays(rayData);
 }
 
+function initPrismaUi() {
+  const sidebar = document.getElementById('sidebar');
+  const toggleSidebar = document.getElementById('toggleSidebar');
+  const slider = document.getElementById('angleSlider');
+  if (slider) {
+    slider.setAttribute(
+      'title',
+      simUI('sidebar.angleSliderTitle', 'Ajustați unghiul de incidență')
+    );
+  }
+  if (toggleSidebar && sidebar) {
+    toggleSidebar.addEventListener('click', function () {
+      sidebar.classList.toggle('visible');
+    });
+  }
+}
+
+initPrismaUi();
 resetScene();
-
-
-document.addEventListener("DOMContentLoaded", function () {
-  const sidebar = document.getElementById("sidebar");
-  const unitformBar = document.getElementById("unitformbar");
-  const toggleSidebar = document.getElementById("toggleSidebar");
-  const toggleUnitformBar = document.getElementById("toggleUnitformbar");
-
-  toggleSidebar.addEventListener("click", function () {
-    sidebar.classList.toggle("visible");
-  });
-
-  toggleUnitformBar.addEventListener("click", function () {
-    unitformBar.classList.toggle("visible");
-  });
-});
-
-
-

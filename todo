@@ -1,13 +1,87 @@
+# Todo PULS
+
+## Simulatoare — i18n iframe EN (`?lang=en`)
+
+Criteriu „tradus”: slug în `src/components/pages/SimulationPage.jsx` (`SIMULATOR_I18N_QUERY_SLUGS`) și bloc corespunzător în `public/translations/simulatoare.en.json`.
+
+### Traduse (19)
+
+| slug | titlu (RO în app) |
+|------|-------------------|
+| pendul-simplu | Pendulul Oscilator Simplu |
+| pendul-amortizat | Pendulul Oscilator Amortizat |
+| pendul-neliniar | Pendul simplu neliniar |
+| unde-apa | Undele produse în apă |
+| seism | Seism |
+| coliziuni-inelastice | Coliziuni Inelastice |
+| frecare-aer | Frecare cu aerul |
+| tunelare-cuantica | Tunelare cuantică |
+| dubla-fanta | Dubla fantă (cuantic) |
+| apa-grea | D₂O vs H₂O |
+| michaelson-morley | Experimentul Michelson-Morley |
+| fisiune-nucleara | Fisiune nucleară în lanț (U-235) |
+| reflexie-refractie | Reflexie și Refracție |
+| prisma | Prisma |
+| motoare-termice | Motoare Termice |
+
+### Semi-traduse (4)
+
+| figuri-lissajous | Figuri Lissajous |
+| plan-inclinat | Plan Înclinat |
+| proiectile | Mișcarea Proiectilului |
+| lanturi-elastice | Lanțuri Elastice |
+
+### Netraduse (34)
+
+| slug | titlu (RO în app) |
+|------|-------------------|
+| grafice-pendule | Grafice Pendule |
+| grafice-functii | Grafice Funcții |
+| grafice-simple | Grafice Simple |
+| termodinamica | Termodinamică – Gaz ideal într-un vas |
+| oscillatii-ox | Mișcări Oscilatorii pe OX |
+| oscillatii-oy | Mișcări Oscilatorii pe OY |
+| circuite-electricitate | Circuite Electrice |
+| energie-circuite | Energia în Circuite |
+| pendule-multiple | Penduluri Duble Multiple |
+| refractie-atmosferica | Miraj în Deșert |
+| lentila-subtire | Lentilă Subțire |
+| polarizare-circulara | Polarizare Circulară |
+| Vizualizator-4d | Vizualizator 4D |
+| constelatii | Constelații pe cer |
+| legi_Kepler | Legile lui Kepler |
+| atom_hidrogen | Atomul de hidrogen |
+| miscare-planete | Mișcarea Planetelor |
+| tabel-periodic | Tabelul periodic |
+| laser | Laser |
+| laser-interactie | Laser vs materie |
+| eli-np-laser | ELI-NP Photon Sniper |
+| accelerator-laser | Accelerare de electroni cu laser (LWFA) |
+| spectru-electromagnetic | Spectrul electromagnetic |
+| curent-alternativ | Curent alternativ |
+| kirchhoff | Legile lui Kirchhoff (iframe extern — caz aparte) |
+| legaturi-atomi | Legături între atomi |
+| instalatie-schimb-izotopic | Instalație de schimb izotopic (H₂S - H₂O) |
+| distilare-d2o-fractionata | Distilare fracționată D₂O (rectificare) |
+| reactor-fuziune-dt | Reactor fuziune D–T (model educativ) |
+| izotopi-uraniu | Izotopii uraniului (nucleu, α, fisiune, timp) |
+| toti-izotopii | Harta celor 26 de izotopi ai uraniului |
+| criogenie | Criogenie și stări de agregare |
+| supraconductivitate | Supraconductivitate și efectul Meissner |
+| fuel-cell | Pilă cu combustibil (PEM) |
+
+---
+
+## Alte note (din backlog)
+
 - de adaugat restul de simulari
-responsive pentru fizica nucleara, astronomie, pagina resurse
-traducere engleza
-{
+- responsive pentru pagina resurse
+- traducere engleza
     - ai verificare + vorbit in engleza
     - toate problemele de bac, normale si grile, traduse automat, cand se adauga problema, se traduce automat in toate limbile
-    - simulatoare + poze 
+    - simulatoare + poze
     - problema detaliata
     - search
     - mr deuteron in engleza
     - seo in engleza
     - jocuri in engleza
-}

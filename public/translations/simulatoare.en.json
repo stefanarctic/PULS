@@ -1,0 +1,1169 @@
+{
+  "meta": {
+    "locale": "en",
+    "sourceLocale": "ro",
+    "version": 1,
+    "notes": "English UI for simulator iframes (?lang=en): Pendule, Unde, Mecanică, etc."
+  },
+  "simulators": {
+    "pendul-simplu": {
+      "page": { "eyebrow": "Simple harmonic oscillation | Interactive simulation" },
+      "documentTitle": "Harmonic pendulum",
+      "htmlLang": "en",
+      "labels": {
+        "pageTitle": "Harmonic pendulum",
+        "amplitude": "Amplitude:",
+        "speed": "Playback speed:",
+        "stringLength": "String length:",
+        "unitsHeading": "Units of measurement:",
+        "formulasHeading": "Formulas:",
+        "measureLength": "L (length):",
+        "measureAmplitude": "A (amplitude):",
+        "measureTime": "t (time):",
+        "measureDisplacement": "x (displacement):",
+        "measureSpeedSetting": "v (playback):",
+        "measureAngle": "φ₀ (angle):",
+        "measureAngularFreq": "ω (angular frequency):",
+        "measureVelocity": "v (oscillation speed):",
+        "measureAcceleration": "a (acceleration):",
+        "measureKinetic": "K (kinetic energy):",
+        "unitLength": "L (length) — m (metre)",
+        "unitAmplitude": "A (amplitude) — m (metre)",
+        "unitTime": "t (time) — s (second)",
+        "unitDisplacement": "x (displacement) — m (metre)",
+        "unitPlayback": "v (playback) — × (playback multiplier)",
+        "unitAngle": "φ₀ (angle) — ° (degrees)",
+        "unitOmega": "ω (angular frequency) — rad/s",
+        "unitVelocity": "v (oscillation speed) — m/s",
+        "unitAccel": "a (acceleration) — m/s²",
+        "unitEnergy": "K (kinetic energy) — J (joule)"
+      },
+      "buttons": {
+        "start": "Start",
+        "pause": "Pause",
+        "resume": "Resume",
+        "stop": "Stop",
+        "measure": "Measure",
+        "themeDark": "🌙 Switch theme",
+        "themeLight": "☀️ Switch theme"
+      },
+      "chart": {
+        "displacement": "Displacement (m)",
+        "velocity": "Velocity (m/s)",
+        "acceleration": "Acceleration (m/s²)"
+      }
+    },
+    "pendul-amortizat": {
+      "page": { "eyebrow": "Damped oscillator | Interactive simulation" },
+      "documentTitle": "Damped harmonic oscillator",
+      "htmlLang": "en",
+      "labels": {
+        "pageTitle": "Harmonic oscillator",
+        "subtitle": "Damped oscillation",
+        "betaLabel": "β:",
+        "speed": "Playback speed:",
+        "stringLength": "String length:",
+        "measureLength": "L (length):",
+        "measureBeta": "β (damping coefficient):",
+        "measureAmplitude": "A (amplitude):",
+        "measureTime": "t (time):",
+        "measureDisplacement": "x (displacement):",
+        "measureSpeedSetting": "v (playback):",
+        "measureAngle": "φ₀ (angle):",
+        "measureAngularFreq": "ω (angular frequency):",
+        "unitsHeading": "Units of measurement:",
+        "unitLength": "L (length) — m (metre)",
+        "unitBeta": "β (damping coefficient) — s⁻¹",
+        "unitAmplitude": "A (amplitude) — m (metre)",
+        "unitTime": "t (time) — s (second)",
+        "unitDisplacement": "x (displacement) — m (metre)",
+        "unitPlayback": "v (playback) — × (playback multiplier)",
+        "unitAngle": "φ₀ (angle) — ° (degrees)",
+        "unitOmega": "ω (angular frequency) — rad/s",
+        "formulasHeading": "Formulas:"
+      },
+      "buttons": {
+        "start": "Start",
+        "pause": "Pause",
+        "resume": "Resume",
+        "stop": "Stop",
+        "measure": "Measure",
+        "themeDark": "🌙 Switch theme",
+        "themeLight": "☀️ Switch theme"
+      },
+      "chart": {
+        "displacement": "Displacement (m)"
+      }
+    },
+    "pendul-neliniar": {
+      "page": { "eyebrow": "Nonlinear pendulum | Interactive simulation" },
+      "documentTitle": "Nonlinear oscillator",
+      "htmlLang": "en",
+      "labels": {
+        "pageTitle": "Nonlinear oscillator",
+        "amplitude": "Amplitude:",
+        "speed": "Playback speed:",
+        "stringLength": "String length:",
+        "measureLength": "L (length):",
+        "measureAngle": "θ (angle):",
+        "measureTime": "t (time):",
+        "measureAngularVelocity": "ω (angular velocity):",
+        "measureVelocity": "v (linear speed):",
+        "measureAcceleration": "a (acceleration):",
+        "measureKinetic": "K (kinetic energy):",
+        "measurePotential": "U (potential energy):",
+        "measureMechanical": "E (mechanical energy):",
+        "measurePeriod": "T (period):",
+        "unitsHeading": "Units of measurement:",
+        "unitLength": "L (length) — m (metre)",
+        "unitAngle": "θ (angle) — ° (degrees)",
+        "unitTime": "t (time) — s (second)",
+        "unitOmega": "ω (angular velocity) — rad/s",
+        "unitVelocity": "v (linear speed) — m/s",
+        "unitAccel": "a (acceleration) — m/s²",
+        "unitKinetic": "K (kinetic energy) — J (joule)",
+        "unitPotential": "U (potential energy) — J (joule)",
+        "unitMechanical": "E (mechanical energy) — J (joule)",
+        "unitPeriod": "T (period) — s (second)",
+        "formulasHeading": "Nonlinear pendulum formulas:",
+        "eqMotionHeading": "Equation of motion:",
+        "omegaHeading": "Angular velocity:",
+        "linearVelocityHeading": "Linear speed:",
+        "kineticHeading": "Kinetic energy:",
+        "potentialHeading": "Potential energy:",
+        "mechanicalHeading": "Mechanical energy:"
+      },
+      "buttons": {
+        "start": "Start",
+        "pause": "Pause",
+        "resume": "Resume",
+        "stop": "Stop",
+        "measure": "Measure",
+        "themeDark": "🌙 Switch theme",
+        "themeLight": "☀️ Switch theme"
+      },
+      "chart": {
+        "angleRad": "Angle θ (rad)",
+        "angularVelocity": "Angular velocity ωθ (rad/s)",
+        "mechanicalEnergy": "Mechanical energy Em (J)"
+      }
+    },
+    "unde-apa": {
+      "page": { "eyebrow": "Water waves | Interactive simulation" },
+      "documentTitle": "Water wave simulator",
+      "htmlLang": "en",
+      "labels": {
+        "pageTitle": "Wave simulator",
+        "menuTitle": "Menu",
+        "flowSpeed": "Flow speed:",
+        "dropSize": "Drop size:",
+        "secondFaucet": "Second faucet:",
+        "dropColor": "Drop colour:",
+        "waveColor": "Wave colour:",
+        "dropsCount": "Drops:",
+        "chartHeading": "Graph: time → amplitude",
+        "chartOy": "OY: amplitude (wave count)",
+        "chartOx": "OX: time",
+        "measurementsHeading": "Measurements:",
+        "physicsFrequency": "Frequency:",
+        "physicsWaveSpeed": "Wave speed:",
+        "physicsWavelength": "Wavelength:",
+        "physicsHz": "Hz",
+        "physicsPxPerS": "px/s",
+        "physicsPx": "px"
+      },
+      "buttons": {
+        "start": "Start",
+        "stop": "Stop"
+      },
+      "chart": {
+        "pointA": "Point A",
+        "pointB": "Point B",
+        "pointC": "Point C"
+      },
+      "formulas": {
+        "block": "\\[ \\text{Wave frequency} \\] \\[ f = \\frac{1}{T} \\] \\[ \\text{Wavelength} \\] \\[ \\lambda = v \\cdot T = \\frac{v}{f} \\] \\[ \\text{Number of waves in time } t \\] \\[ N = \\frac{t}{T} \\]"
+      }
+    },
+    "figuri-lissajous": {
+      "page": { "eyebrow": "Lissajous figures - Interactive simulation" },
+      "documentTitle": "Lissajous figures",
+      "htmlLang": "en",
+      "labels": {
+        "popupTitle": "Create a Lissajous figure",
+        "harmonicFunctions": "Harmonic functions:",
+        "color": "Colour:",
+        "timeDeltaHint": "t1 − t2 + "
+      },
+      "buttons": {
+        "createFigure": "Create figure"
+      }
+    },
+    "seism": {
+      "page": { "eyebrow": "Earthquake (P & S waves) | Interactive simulation" },
+      "documentTitle": "Earthquake simulator",
+      "htmlLang": "en",
+      "labels": {
+        "pageTitle": "Earthquake simulator",
+        "calcHeading": "Arrival-time calculator",
+        "vpLabel": "Vp (km/s) — [5, 10] km/s:",
+        "vsLabel": "Vs (km/s) — [2, 5] km/s:",
+        "distLabel": "Distance (km) — d < 10 km:",
+        "time1": "Time 1:",
+        "time2": "Time 2:",
+        "deltaT": "Δt:",
+        "unitsHeading": "Units",
+        "formulasHeading": "Formulas",
+        "obsHeading": "Notes",
+        "calcButton": "Calculate",
+        "secondsSuffix": "s",
+        "uDist": "d — distance from the reference point to the epicentre — km",
+        "uVp": "Vp — primary (P) wave speed — km/s",
+        "uVs": "Vs — secondary (S) wave speed — km/s",
+        "uT1": "Time 1 — time for the P wave to reach the reference point — s",
+        "uT2": "Time 2 — time for the S wave to reach the reference point — s",
+        "uDt": "Δt — time difference between the two waves — s",
+        "uOmega": "ω — angular frequency — rad/s",
+        "uK": "k — wavenumber — rad/m",
+        "uLambda": "λ — wavelength — m",
+        "uPeriod": "T — period — s",
+        "uNu": "ν — frequency — Hz",
+        "uVphase": "v — phase speed — m/s",
+        "oVpGtVs": "vp > vs",
+        "oPWaves": "P — primary waves, longitudinal, yellow in the simulation",
+        "oSWaves": "S — secondary waves, transverse, blue in the simulation",
+        "oPDamage": "P waves: roughly 10–20% of earthquake damage at the surface; fast but carry less destructive energy.",
+        "oSDamage": "S waves: roughly 80–90% of destruction; transverse shaking is far more hazardous for structures."
+      },
+      "scene": {
+        "epicenter": "Epicentre",
+        "hypocenter": "Hypocentre",
+        "referencePoint": "Reference point"
+      },
+      "alerts": {
+        "fillAllFields": "Please fill in all fields.",
+        "vpGreaterThanVs": "P-wave speed (Vp) must be greater than S-wave speed (Vs).",
+        "vpRange": "Vp must be between 5 and 10 km/s.",
+        "vsRange": "Vs must be between 2 and 5 km/s.",
+        "distMax": "Distance must be less than 10 km for this diagram."
+      },
+      "buttons": {
+        "themeDark": "🌙 Switch theme",
+        "themeLight": "☀️ Switch theme"
+      }
+    },
+    "coliziuni-inelastice": {
+      "page": { "eyebrow": "Inelastic collisions | Interactive simulation" },
+      "documentTitle": "Inelastic collisions",
+      "htmlLang": "en",
+      "labels": {
+        "pageHeading": "Inelastic collision",
+        "unitsHeading": "Units of measurement",
+        "unitSpeedPx": "Speed: px/frame",
+        "unitMassKg": "Mass: kg",
+        "unitImpulse": "Momentum: kg·px/frame",
+        "unitEnergyJ": "Energy: J",
+        "unitForceN": "Force: N",
+        "formulasHeading": "Formulas used",
+        "formulaImpulse": "Momentum: p = m · v",
+        "formulaKe": "Kinetic energy: E = 0.5 · m · v²",
+        "formulaForce": "Force: F = m · a",
+        "sidebarTitle": "Menu",
+        "ball1Speed": "Ball 1 speed:",
+        "ball2Speed": "Ball 2 speed:",
+        "ball1Mass": "Ball 1 mass:",
+        "ball2Mass": "Ball 2 mass:",
+        "ballSize": "Ball size:",
+        "simSpeed": "Simulation speed:",
+        "suffixMs": " m/s",
+        "suffixPx": " px",
+        "suffixTimes": " ×",
+        "massKgSuffix": " kg",
+        "ball1Color": "Ball 1 colour:",
+        "ball2Color": "Ball 2 colour:",
+        "sidebarButtonsTitle": "Controls",
+        "chartTitle": "Momentum & energy chart",
+        "suffixPxFrame": " px/frame",
+        "suffixKgMps": " kg·m/s",
+        "suffixN": " N"
+      },
+      "buttons": {
+        "start": "Start",
+        "stop": "Stop",
+        "pauseResume": "Pause / Resume",
+        "measureShow": "Show measurements",
+        "measureHide": "Hide measurements",
+        "pause": "Pause",
+        "resume": "Resume"
+      },
+      "chart": {
+        "impulseB1": "Momentum ball 1 (kg·px/frame)",
+        "impulseB2": "Momentum ball 2 (kg·px/frame)",
+        "impulseTotal": "Total momentum (kg·px/frame)",
+        "energyTotal": "Total energy (J)"
+      },
+      "measurements": {
+        "title": "Measurements:",
+        "ball": "Ball {{n}}:",
+        "velocity": "Speed: {{v}} m/s",
+        "impulse": "Momentum: {{p}} kg·m/s",
+        "kinetic": "Kinetic energy: {{e}} J",
+        "force": "Force: {{f}} N",
+        "totalTitle": "Total:",
+        "totalImpulse": "Total momentum: {{p}} kg·m/s",
+        "totalEnergy": "Total energy: {{e}} J",
+        "totalForce": "Total force: {{f}} N",
+        "paused": "Simulation paused.",
+        "resumed": "Simulation resumed."
+      }
+    },
+    "plan-inclinat": {
+      "page": { "eyebrow": "Inclined plane | Interactive simulation" },
+      "documentTitle": "Inclined plane",
+      "htmlLang": "en",
+      "labels": {
+        "brandTitle": "Inclined plane",
+        "brandSubtitle": "Static vs kinetic • force vectors • formulas & results • large scene. Positive direction: downhill along the plane.",
+        "formulasHeading": "Formulas",
+        "resultsHeading": "Results",
+        "controlsHeading": "Controls",
+        "sceneHeading": "Scene",
+        "hintCritical": "Hint: critical angle (starts sliding) when tanθ = μs.",
+        "mass": "Mass",
+        "angle": "Angle",
+        "muStatic": "Static friction μs",
+        "muKinetic": "Kinetic friction μk",
+        "gravity": "Gravity",
+        "zoom": "Zoom",
+        "unitKg": "(kg)",
+        "unitDeg": "(°)",
+        "unitDash": "(—)",
+        "unitG": "(m/s²)",
+        "unitZoom": "(×)",
+        "tipIncreaseTheta": "Tip: increase θ until Gt exceeds μs·N.",
+        "stateBadgePrefix": "State:",
+        "legendTitle": "Forces",
+        "legendG": "Weight",
+        "legendGn": "Normal component of weight",
+        "legendGt": "Tangential component of weight",
+        "legendN": "Normal reaction",
+        "legendFf": "Friction force",
+        "legendFr": "Net force",
+        "ariaLeftPanel": "Formulas & results panel",
+        "ariaRightPanel": "Controls panel",
+        "vectorsTitle": "Vectors",
+        "labelsTitle": "Labels",
+        "gridTitle": "Grid",
+        "fullscreenTitle": "Fullscreen"
+      },
+      "physics": {
+        "modeStatic": "STATIC — not sliding",
+        "modeKinetic": "KINETIC — sliding"
+      },
+      "buttons": {
+        "run": "▶ Run",
+        "pause": "⏸ Pause",
+        "reset": "⟲ Reset"
+      }
+    },
+    "proiectile": {
+      "page": { "eyebrow": "Projectile motion | Interactive simulation" },
+      "documentTitle": "Projectile motion (BAC)",
+      "htmlLang": "en",
+      "labels": {
+        "title": "Projectile motion",
+        "subtitle": "BAC simulator",
+        "resultsHeading": "Results",
+        "controlsHeading": "Controls",
+        "modeNoAir": "No air (BAC)",
+        "modeAir": "With air (numeric)",
+        "cardKeyResults": "Key results",
+        "cardLive": "Live",
+        "kvTflight": "T (time of flight)",
+        "kvR": "R (range)",
+        "kvHmax": "Hmax",
+        "kvTup": "t↑ (to apex)",
+        "kvVimp": "impact speed",
+        "kvYmaxLive": "ymax (live)",
+        "kvTLive": "t",
+        "kvX": "x",
+        "kvY": "y",
+        "kvV": "v",
+        "detailsSummary": "BAC formulas (no air)",
+        "detailsNote": "In With air mode we use numerical integration.",
+        "hintZoom": "Zoom: wheel • Pan: Space + drag • Drag green handle for h₀ when paused",
+        "bacTypeTitle": "BAC angle",
+        "bacTypeBody": "Compare no air (ideal) vs with air (real). Range drops and the trajectory changes.",
+        "unitsTitle": "Units",
+        "unitsBody": "metres (m), seconds (s), m/s. Axes are in metres; ground is y = 0.",
+        "canvasAria": "Projectile simulation",
+        "cardModes": "Modes & display",
+        "chkAir": "Air resistance",
+        "chkTrace": "Trail",
+        "chkVectors": "Vectors",
+        "chkGrid": "Grid",
+        "cardParams": "Parameters (BAC)",
+        "lblV0": "v₀ (m/s)",
+        "lblAlpha": "α (°)",
+        "lblH0": "h₀ (m)",
+        "lblG": "g (m/s²)",
+        "cardRun": "Run",
+        "lblSpeed": "Playback speed (×)",
+        "lblTrace": "Trail quality",
+        "lblK": "k (air)",
+        "modelAir": "Model: a = −k·|v|·v + gravity",
+        "ariaLeftPanel": "Results & formulas panel",
+        "ariaRightPanel": "Controls panel",
+        "ariaCanvas": "Projectile simulation"
+      },
+      "buttons": {
+        "reset": "Reset",
+        "fullscreen": "Full screen",
+        "exitFullscreen": "Exit full screen",
+        "start": "Start",
+        "pause": "Pause",
+        "step": "Step",
+        "clearTrail": "Clear trail"
+      },
+      "hud": {
+        "ready": "Ready. Press Start.",
+        "landed": "Landed. Reset or Start to replay.",
+        "running": "Simulation running…",
+        "pausedHud": "Paused.",
+        "fullscreenBlocked": "Fullscreen blocked by the browser (try again)."
+      },
+      "status": {
+        "running": "running",
+        "landed": "landed",
+        "stop": "stop"
+      }
+    },
+    "reflexie-refractie": {
+      "page": { "eyebrow": "Reflection & refraction | Interactive simulation" },
+      "documentTitle": "Reflection and refraction simulator",
+      "htmlLang": "en",
+      "header": {
+        "title": "🔬 Reflection and refraction simulator",
+        "subtitle": "Explore how light behaves at the boundary between two media"
+      },
+      "controls": { "heading": "⚙️ Controls" },
+      "incident": {
+        "heading": "Incident ray",
+        "label": "Angle of incidence (θ₁)"
+      },
+      "medium1": {
+        "heading": "Medium 1 (upper)",
+        "nLabel": "Refractive index (n₁)"
+      },
+      "medium2": {
+        "heading": "Medium 2 (lower)",
+        "nLabel": "Refractive index (n₂)"
+      },
+      "medium": {
+        "air": "Air (n=1.00)",
+        "water": "Water (n=1.33)",
+        "glass": "Glass (n=1.52)",
+        "diamond": "Diamond (n=2.42)",
+        "custom": "Custom"
+      },
+      "display": {
+        "heading": "Display",
+        "showNormal": "Show normal",
+        "showAngles": "Show angles",
+        "showIntensity": "Show intensity"
+      },
+      "color": {
+        "heading": "Light colour",
+        "pickLabel": "Choose colour",
+        "wavelengthLabel": "Approximate wavelength: "
+      },
+      "buttons": { "reset": "🔄 Reset" },
+      "results": {
+        "thetaReflection": "θ reflection:",
+        "thetaRefraction": "θ refraction:",
+        "thetaCritical": "θ critical:",
+        "tirBadge": "⚡ Total internal reflection",
+        "refrNa": "N/A (TIR)",
+        "na": "N/A"
+      },
+      "theory": { "heading": "📐 Formulas & theory" },
+      "lawReflection": {
+        "title": "Law of reflection",
+        "explain": "The angle of reflection equals the angle of incidence."
+      },
+      "lawSnell": {
+        "title": "Snell’s law (refraction)",
+        "explain": "Relates the angles and refractive indices in the two media."
+      },
+      "critical": {
+        "title": "Critical angle",
+        "explain": "Minimum angle for total internal reflection (when n₁ > n₂)."
+      },
+      "units": {
+        "heading": "📏 Units",
+        "angle": "Angle: degrees (°) or radians (rad)",
+        "index": "Refractive index: dimensionless",
+        "wavelength": "Wavelength: nanometres (nm)",
+        "speedLight": "Speed of light: m/s",
+        "kms": " km/s",
+        "ms": " m/s"
+      },
+      "velocity": {
+        "heading": "🚀 Speed of light",
+        "vacuumIntro": "In vacuum:",
+        "mediumIntro": "In a medium:",
+        "v1Prefix": "v₁ = ",
+        "v2Prefix": "v₂ = "
+      },
+      "facts": {
+        "heading": "💡 Did you know…?",
+        "rainbow": {
+          "title": "Rainbows",
+          "body": "Rainbows form from refraction and reflection of sunlight in atmospheric water droplets. Each colour has a slightly different refractive index, which produces spectral separation."
+        },
+        "diamond": {
+          "title": "Diamond sparkle",
+          "body": "Diamond has one of the highest refractive indices (n = 2.42), giving frequent total internal reflection and its characteristic brilliance."
+        },
+        "fiber": {
+          "title": "Optical fibre",
+          "body": "Optical fibres use total internal reflection to guide light over long distances with little loss. Modern internet relies heavily on this technology."
+        },
+        "pool": {
+          "title": "Pools look shallower",
+          "body": "When you look into water, objects appear closer to the surface than they really are, due to refraction as light passes from water to air."
+        },
+        "mirage": {
+          "title": "Mirages",
+          "body": "Desert mirages come from refraction in air layers at different temperatures. Hot air near the ground has a lower refractive index."
+        },
+        "glasses": {
+          "title": "Spectacle lenses",
+          "body": "Glasses correct vision using refraction: converging lenses (for hyperopia) and diverging lenses (for myopia) steer light to focus correctly on the retina."
+        }
+      },
+      "carousel": {
+        "prevAria": "Previous fact",
+        "nextAria": "Next fact"
+      },
+      "technical": { "heading": "🔬 Technical details" },
+      "tech": {
+        "indexTitle": "What is refractive index?",
+        "indexBody": "Refractive index (n) is the ratio of the speed of light in vacuum to the speed in a given medium. The larger n, the slower light travels in that medium.",
+        "tirTitle": "Total internal reflection",
+        "tirBody": "When light goes from a denser medium (larger n) to a less dense one and the incidence angle exceeds the critical angle, all light is reflected back into the first medium.",
+        "dispersionTitle": "Dispersion of light",
+        "dispersionBody": "Refractive index varies slightly with wavelength. Blue light (smaller λ) refracts more than red (larger λ). This is called dispersion.",
+        "appsTitle": "Applications",
+        "apps": {
+          "fiber": "Optical fibres for telecommunications",
+          "endoscope": "Medical endoscopes",
+          "prism": "Prisms and spectrometry",
+          "lenses": "Lenses and optical systems",
+          "sensors": "Sensors and detectors"
+        }
+      },
+      "footer": {
+        "line1": "Educational optics simulator | Reflection & refraction",
+        "line2": "Based on Snell’s laws and geometrical optics"
+      },
+      "canvas": {
+        "ariaLabel": "Reflection and refraction view",
+        "medium1Prefix": "Medium 1",
+        "medium2Prefix": "Medium 2",
+        "interface": "Interface",
+        "normal": "Normal",
+        "rayIncident": "Incident ray",
+        "rayReflected": "Reflected ray",
+        "rayRefracted": "Refracted ray"
+      }
+    },
+    "prisma": {
+      "page": { "eyebrow": "Prism dispersion | Interactive simulation" },
+      "documentTitle": "Prism with dispersion",
+      "htmlLang": "en",
+      "main": {
+        "title": "Dispersion of light through a prism"
+      },
+      "sidebar": {
+        "panelHeading": "Time calculator",
+        "incidentIntro": "Angle of incidence of white light:",
+        "angleLabel": "Adjust the angle:",
+        "angleSliderTitle": "Adjust the angle of incidence"
+      },
+      "buttons": {
+        "dispersionOn": "Enable dispersion",
+        "dispersionOff": "Disable dispersion"
+      },
+      "toggleSidebar": {
+        "aria": "Open or close the theory panel"
+      },
+      "canvas": {
+        "aria": "Prism and dispersion simulation"
+      },
+      "theory": {
+        "snellTitle": "Snell's law:",
+        "snellLegend": "Here \\(n_1\\) and \\(n_2\\) are the refractive indices of the media (e.g. air and glass).",
+        "snellAngles": "Here \\(i\\) is the angle of incidence and \\(r\\) the angle of refraction.",
+        "cauchyTitle": "Refractive index vs wavelength (Cauchy):",
+        "redShift": "Red light (large λ) is deviated less.",
+        "violetShift": "Violet light (small λ) is deviated more.",
+        "dispersionWhy": "Dispersion is why we see rainbows: each colour refracts differently.",
+        "prismSeparates": "A prism splits white light because each colour travels at a different speed in the material.",
+        "newton": "Isaac Newton was the first to show that white light is made of many colours.",
+        "glassIndices": "In glass, the index for red is ≈ 1.514 and for violet ≈ 1.532 — a small difference, but enough for dispersion."
+      }
+    },
+    "motoare-termice": {
+      "page": { "eyebrow": "Heat engines | Interactive simulation" },
+      "documentTitle": "Otto / Diesel / Carnot heat-engine simulator",
+      "htmlLang": "en",
+      "header": {
+        "title": "Otto / Diesel / Carnot heat-engine simulator",
+        "tagline": "p-V + T-s live • work • efficiency • IMEP • comparisons"
+      },
+      "status": {
+        "ready": "ready",
+        "mode": {
+          "otto": "Otto",
+          "diesel": "Diesel",
+          "carnot": "Carnot",
+          "compare": "Compare"
+        }
+      },
+      "panel": {
+        "settings": "Settings"
+      },
+      "cycle": {
+        "otto": "Otto",
+        "diesel": "Diesel",
+        "carnot": "Carnot",
+        "compare": "Compare"
+      },
+      "compare": {
+        "heading": "Comparison",
+        "line1": "By default you compare 2 cycles. You can pick any pair.",
+        "line2": "Check “show the third” to display all three.",
+        "cycleA": "Cycle A",
+        "cycleB": "Cycle B",
+        "showThird": "Show the third (all 3)",
+        "pick": "Choose what to compare"
+      },
+      "initial": {
+        "heading": "Initial conditions (state 1)"
+      },
+      "params": {
+        "heading": "Engine / gas parameters",
+        "compressionRatio": "Compression ratio r = V₁/V₂",
+        "nMoles": "n (mol) — amount of gas"
+      },
+      "heat": {
+        "heading": "Combustion (fuel)",
+        "noteOtto": "Otto: heat addition at constant volume → you control T₃.",
+        "noteDiesel": "Diesel: heat addition at constant pressure → you control cutoff ρ = V₃/V₂.",
+        "cutoff": "Cutoff ρ = V₃/V₂"
+      },
+      "carnot": {
+        "heading": "Carnot (thermal reservoirs)",
+        "note": "Carnot has 2 isotherms (Tₕ and T𝒸) + 2 adiabats. Ideal efficiency: η = 1 − T𝒸/Tₕ.",
+        "alpha": "Isothermal ratio α = V₂/V₁"
+      },
+      "visual": {
+        "heading": "Display",
+        "resolution": "Path resolution",
+        "showStates": "Show state points",
+        "animation": "Animation"
+      },
+      "buttons": {
+        "recalc": "Recalculate",
+        "reset": "Reset"
+      },
+      "charts": {
+        "title": "Diagrams",
+        "tsLabel": "T-s (relative)",
+        "axisV": "V",
+        "axisP": "p",
+        "axisS": "s",
+        "axisT": "T"
+      },
+      "hud": {
+        "currentState": "Current state",
+        "segment": "segment"
+      },
+      "results": {
+        "title": "Results",
+        "eta": "Efficiency η",
+        "wnet": "Net work Wₙₑₜ (J)",
+        "wnetHint": "p–V loop area",
+        "qin": "Heat in Qᵢₙ (J)",
+        "qinHint": "ideal model (perfect gas)",
+        "imep": "IMEP (bar)",
+        "imepHint": "Wₙₑₜ / (V₁−V₂)"
+      },
+      "table": {
+        "state": "State",
+        "sRel": "s (rel.)",
+        "footnote": "Model: ideal cycles. “s (rel.)” is relative to state 1 (not absolute)."
+      },
+      "footer": {
+        "tips": "Tips: Otto → higher r ⇒ higher η. Diesel → higher ρ can raise W but lowers η. Carnot: η depends only on Tₕ and T𝒸."
+      },
+      "cycles": {
+        "otto": "Otto",
+        "diesel": "Diesel",
+        "carnot": "Carnot"
+      },
+      "hints": {
+        "etaOtto": "ideal Otto ≈ 1 − 1/r^(γ−1)",
+        "etaDiesel": "ideal Diesel depends on r and cutoff ρ",
+        "etaCarnot": "ideal Carnot: η = 1 − T𝒸/Tₕ"
+      },
+      "errors": {
+        "gamma": "invalid γ",
+        "r": "r too small",
+        "carnotTemps": "Set Tₕ > T𝒸"
+      }
+    },
+    "lanturi-elastice": {
+      "page": { "eyebrow": "Elastic chains | Interactive simulation" },
+      "documentTitle": "Chain / rope simulator",
+      "htmlLang": "en",
+      "labels": {
+        "title": "Chain / rope",
+        "subtitle": "Static catenary → dynamics (PBD + Verlet)",
+        "controlsHeading": "Controls",
+        "segments": "Segments",
+        "totalLength": "Total length",
+        "gravity": "Gravity",
+        "damping": "Damping",
+        "constraintIters": "Constraint iterations",
+        "dt": "Time step (Δt)",
+        "chkTension": "Colour by tension",
+        "chkNodes": "Show nodes",
+        "chkPinLeft": "Pin left end",
+        "chkPinRight": "Pin right end (before release)",
+        "hintMouse": "Mouse: drag nodes (dynamic mode).",
+        "hintStatic": "Static settle: re-forms the catenary.",
+        "hintRelease": "Release end: frees the right end.",
+        "chartsHeading": "Oscillation plots",
+        "chartClear": "Clear plots",
+        "chartEnable": "Enable plots",
+        "badgePrefix": "MODE:",
+        "waitData": "Waiting for data…",
+        "chartYTitle": "Vertical oscillation (position Y)",
+        "chartXTitle": "Horizontal oscillation (position X)"
+      },
+      "buttons": {
+        "reset": "Reset",
+        "staticSettle": "Static settle",
+        "releaseEnd": "Release end",
+        "pause": "Pause",
+        "resume": "Resume"
+      },
+      "modes": {
+        "static": "STATIC",
+        "dynamic": "DYNAMIC"
+      }
+    },
+    "frecare-aer": {
+      "page": { "eyebrow": "Air resistance | Interactive simulation" },
+      "documentTitle": "Air resistance simulator",
+      "htmlLang": "en",
+      "labels": {
+        "pageTitle": "Air resistance simulator",
+        "pageSubtitle": "See how drag changes falling motion.",
+        "object1": "Object 1",
+        "object2": "Object 2",
+        "environment": "Environment",
+        "airDensity": "Air density",
+        "vacuum": "Vacuum (no air)",
+        "fallHeight": "Drop height",
+        "tipsHeading": "Suggested experiment",
+        "nextExperiment": "Next experiment →",
+        "liveData": "Live data",
+        "graphTitle": "Speed — time graph",
+        "suffixKgM3": " kg/m³",
+        "dataTime": "Time",
+        "dataPosition": "Position",
+        "dataVelocity": "Speed",
+        "dataAccel": "Acceleration",
+        "dataFg": "F gravity",
+        "dataFd": "F drag",
+        "dataVt": "Terminal speed",
+        "propMass": "Mass",
+        "propCd": "Cd",
+        "propArea": "Area",
+        "propVtShort": "Vt",
+        "vtVacuumInf": "∞ (vacuum)",
+        "objFallback1": "Object 1",
+        "objFallback2": "Object 2"
+      },
+      "buttons": {
+        "startUpper": "START",
+        "stopUpper": "STOP",
+        "reset": "RESET"
+      },
+      "canvas": {
+        "vacuum": "VACUUM",
+        "ground": "GROUND",
+        "startLine": "START",
+        "legendFg": "Gravity",
+        "legendFd": "Drag (air friction)",
+        "graphVelocityAxis": "Speed (m/s)",
+        "graphTimeSuffix": "s",
+        "vtPrefix": "Vt "
+      },
+      "results": {
+        "tie": "Both reached the ground together! Δt = {{dt}}s",
+        "first": "{{name}} reached first! Δt = <span class=\"delta-time\">{{dt}}s</span>"
+      },
+      "objects": {
+        "feather": { "name": "Feather" },
+        "paper_flat": { "name": "Paper sheet (flat)" },
+        "paper_crumpled": { "name": "Paper sheet (crumpled)" },
+        "coin": { "name": "Coin" },
+        "tennis": { "name": "Tennis ball" },
+        "basketball": { "name": "Basketball" },
+        "steel_ball": { "name": "Small steel ball" },
+        "hammer": { "name": "Hammer" },
+        "brick": { "name": "Brick" },
+        "bowling": { "name": "Bowling ball" }
+      },
+      "tips": [
+        { "text": "Feather vs hammer — In air the feather drifts slowly because drag is huge. In vacuum (slider at 0) both fall IDENTICALLY — as on the Apollo 15 Moon demo." },
+        { "text": "Flat vs crumpled paper — Same mass, different shape! The flat sheet has much larger area, so air slows it enormously. Crumpled falls almost like a ball." },
+        { "text": "Tennis vs bowling ball — Similar spheres but very different mass. The bowling ball hits the ground much sooner in air, though in vacuum they would fall together." },
+        { "text": "Coin vs feather — Dramatic in air! The coin slices through with tiny area while the feather is braked heavily. Compare terminal speeds!" },
+        { "text": "Basketball vs steel ball — The basketball is heavier but its huge area yields a surprisingly low terminal speed. The steel ball falls much faster." },
+        { "text": "Brick vs feather — Extreme contrast! The brick is barely affected by air (~48 m/s terminal speed) while the feather floats near ~3 m/s." }
+      ]
+    },
+    "tunelare-cuantica": {
+      "page": { "eyebrow": "Quantum Tunnelling | Interactive simulation" },
+      "documentTitle": "Quantum tunnelling",
+      "htmlLang": "en",
+      "header": {
+        "title": "Quantum tunnelling",
+        "tagline": "The electron is not a classical particle — it is a probability wave.",
+        "theoryEyebrow": "Theory in brief"
+      },
+      "theoryLeft": {
+        "title": "Probability wave, not a trajectory",
+        "p1a": "In quantum mechanics, the electron is not a ball with well-defined position and speed before measurement. It is described by a ",
+        "p1strong": "wave function",
+        "p1b": "\\(\\psi(x,t)\\), a complex quantity that evolves according to the Schrödinger equation.",
+        "p2a": "Born’s rule: the probability of finding the particle between \\(a\\) and \\(b\\) is \\(P(a \\le x \\le b) = \\int_a^b |\\psi(x,t)|^2 \\, dx\\). ",
+        "p2strong": "The probability density",
+        "p2b": " is \\(\\rho(x,t) = |\\psi|^2\\). In the simulation, the violet “mist” shows \\(|\\psi|^2\\) (discretely normalised on the grid).",
+        "p3a": "A ",
+        "p3strong": "Gaussian wave packet",
+        "p3b": " localises \\(\\psi\\) in space and propagates as a group; the width \\(\\Delta x\\) and momentum \\(\\Delta p\\) obey (in order of magnitude) \\(\\Delta x\\,\\Delta p \\gtrsim \\hbar/2\\).",
+        "p4a": "The red zone: a ",
+        "p4pot": "potential barrier",
+        "p4b": "\\(V(x)\\). The ",
+        "p4e": "Energy",
+        "p4c": " slider sets the energy associated with the packet in the demo scale; ",
+        "p4barrier": "Barrier",
+        "p4d": " controls the height \\(V\\). The ratio \\(E/V\\) decides whether tunnelling or “going over” dominates."
+      },
+      "theoryRight": {
+        "title": "Tunnelling, reflection and transmission",
+        "p1strongA": "Classically",
+        "p1a": ", if \\(E \\lt V\\), a particle with energy \\(E\\) would not pass over the barrier. ",
+        "p1strongB": "Quantum-mechanically",
+        "p1b": ", in the region \\(V(x) > E\\) the solution has an ",
+        "p1strongC": "evanescent",
+        "p1c": " part \\(\\propto e^{-\\kappa x}\\) with",
+        "p2a": "Thus the wave ",
+        "p2strong": "penetrates",
+        "p2b": " the barrier and, after width \\(a\\), can emerge beyond it with transmission probability \\(T\\) (tunnelling). For \\(E > V\\) inside the barrier, the wave is oscillatory (\\(\\sim e^{\\pm i k' x}\\)); at interfaces there is ",
+        "p2strong2": "reflection",
+        "p2c": " and partial transmission.",
+        "p3a": "For a ",
+        "p3strong": "rectangular barrier",
+        "p3b": " of height \\(V_0\\) and width \\(a\\), with \\(E \\lt V_0\\), transmission decreases roughly exponentially with \\(\\kappa a\\): \\(T \\sim e^{-2\\kappa a}\\) (order of magnitude; prefactors depend on details). In the simulation, \\(R\\) and \\(T\\) are simplified analytical models.",
+        "caption": "for \\(E \\gt V_0\\) (rectangular barrier).",
+        "note": "The visualisation is educational; exact coefficients follow from matching \\(\\psi\\) and \\(\\mathrm{d}\\psi/\\mathrm{d}x\\) at the barrier edges."
+      },
+      "mathAria": {
+        "schrodinger": "One-dimensional Schrödinger equation",
+        "normalize": "Normalisation",
+        "decay": "Decay constant",
+        "conservation": "Probability conservation",
+        "rectangular": "Rectangular barrier with E greater than V₀"
+      },
+      "labels": {
+        "legendIncident": "incident",
+        "legendReflected": "reflected",
+        "legendTransmitted": "transmitted",
+        "legendProb": "|ψ|² (normalised)",
+        "energy": "Energy:",
+        "barrier": "Barrier:",
+        "canvasAria": "Probability wave simulation"
+      },
+      "modes": {
+        "below": "The electron tunnels through the barrier: the wave enters the classically forbidden region and a reduced amplitude appears beyond it.",
+        "above": "The electron passes classically over the barrier (energy above the potential); reflection and transmission oscillate with barrier width.",
+        "equal": "At the limit E = V, between tunnelling and propagation over the barrier, the coefficients depend sensitively on geometry."
+      },
+      "canvas": {
+        "norm": "Σ|ψ|² = {v} (normalised on grid)"
+      }
+    },
+    "dubla-fanta": {
+      "page": { "eyebrow": "Double-slit experiment | Interactive simulation" },
+      "documentTitle": "Double slit — quantum simulator",
+      "htmlLang": "en",
+      "header": {
+        "h1": "⚛️ Double slit (quantum)"
+      },
+      "labels": {
+        "lambda": "Wavelength (λ)",
+        "distance": "Slit separation (d)",
+        "screenDist": "Screen distance (D)",
+        "detector": "Detector",
+        "canvasAria": "Double-slit quantum simulation"
+      },
+      "buttons": {
+        "reset": "Reset"
+      },
+      "info": {
+        "h2": "What’s going on here?",
+        "intro": "This simulator shows the double-slit experiment in the quantum regime. Particles (electrons or photons) do not have an exact position; they are described by a wavefunction that gives the probability of detection.",
+        "waveHeading": "The wavefunction",
+        "waveP": "The wave is not “matter”, but information about where the particle might appear. Brighter regions mean higher probability.",
+        "interferenceHeading": "Interference",
+        "interferenceP": "When the wave passes through two slits it interferes with itself. That produces high- and low-probability fringes.",
+        "detectorHeading": "Role of the detector",
+        "detectorP": "When the detector is on, we learn which slit was used. That destroys interference and the pattern becomes classical: two simple bands.",
+        "colorsHeading": "What the colours mean",
+        "colorsP": "The heat map shows probability (ψ²): red = high probability, blue = low.",
+        "whyHeading": "Why it matters",
+        "whyP": "This phenomenon is central to quantum physics and underpins electrons in atoms, chemical bonding, and much of modern technology.",
+        "tryHeading": "Try this",
+        "try1": "Turn the detector off → see interference",
+        "try2": "Turn the detector on → fringes disappear",
+        "try3": "Increase λ → fringes get wider",
+        "try4": "Increase slit separation → fringes move closer together"
+      }
+    },
+    "apa-grea": {
+      "page": { "eyebrow": "Heavy water (D₂O vs H₂O) | Interactive simulation" },
+      "documentTitle": "Heavy water — D₂O vs H₂O",
+      "htmlLang": "en",
+      "hook": {
+        "a": "What happens if you drink heavy water?",
+        "b": "Can water shut down a nuclear reactor?",
+        "tease": "H₂O and D₂O share the same chemical skeleton, but different nuclear masses: deuterium (²H) is almost twice as heavy as protium (¹H). That is why differences show up in biology (isotope exchange), in reactors (neutron capture) and in spectra (vibration frequencies). Pick a mode below."
+      },
+      "nav": { "ariaLabel": "Modes" },
+      "tabs": {
+        "body": { "title": "Body", "sub": "D₂O fraction, modelled effects" },
+        "reactor": { "title": "Reactor", "sub": "fast neutrons, moderation" },
+        "physics": { "title": "Physics", "sub": "structure, spectra, phases" }
+      },
+      "bonus": {
+        "ariaLabel": "Romania — historical context",
+        "p1": "Dorel Mihai Constantinescu (b. 1947, Râmnicu Vâlcea) is the Romanian physicist associated with the period when Romania developed its own heavy-water facilities. In the 1970s, at the G plant in Râmnicu Vâlcea, he led the computing laboratory that modelled isotope separation processes and helped obtain the first quantities of D₂O in experimental flow. He also worked on design linked to the complex at Drobeta-Turnu Severin, an important node in the national heavy-water chain.",
+        "p2": "In 1976 he was recognised as inventor for a deuterium separation plant using isotope exchange; in 1977 he received a PhD in physics, and in 1981 the Romanian Academy awarded him the Dragomir Hurmuzescu prize. He published on the history of technology in Râmnicu Vâlcea, documenting the experience of a generation of specialists in the nuclear field."
+      },
+      "body": {
+        "panelTitle": "D₂O fraction in the liquid",
+        "desc1": "In organisms, water acts as a solvent and as a hydrogen source in enzymatic reactions. D₂O has properties similar to H₂O, but O–D bonds are “heavier” than O–H: some reaction rates drop (kinetic isotope effect), and very high D₂O fractions cause serious physiological effects. In natural water, deuterium is present at about 140 ppm (roughly 0.014% of hydrogen atoms, i.e. about one D per ~7000 H).",
+        "desc2": "The slider sets a fictitious molar fraction of D₂O in a model liquid; the cell grid is for visual intuition only, not a diagnosis.",
+        "pctSuffix": "% D₂O",
+        "sliderLabel": "D₂O fraction",
+        "disclaimer1": "Natural deuterium reference: ~140 ppm (~0.014%).",
+        "disclaimer2": "Educational demo. Do not drink heavy water.",
+        "story": {
+          "vlow": "Very low value, close to the natural deuterium background in water (~140 ppm). In the model, the visual effect is essentially zero.",
+          "low": "Low fraction: almost all molecules are still H₂O; in reality, organisms tolerate trace D₂O without obvious effects.",
+          "mid": "Moderate fraction: in the model, the D₂O share increases; in animal experiments, moderate D₂O fractions affect rates of some hydrogen-dependent reactions.",
+          "high": "High fraction: real toxicity rises with dose; in humans, large body fractions of D₂O are dangerous",
+          "vhigh": "Very high fraction: an extreme scenario for on-screen demonstration only.",
+          "max": "100%: the maximum in the model. In reality, massive D₂O exposure is not something to test — it is harmful."
+        }
+      },
+      "badges": { "ok": "OK", "warn": "Caution", "bad": "High", "dead": "Critical" },
+      "reactor": {
+        "panelTitle": "Moderator around the fuel",
+        "desc1": "Fission releases very energetic (“fast”) neutrons. To use them efficiently in fuel rods, they must be slowed to thermal energies — called moderation. Molecules around the fuel (heavy or light water) collide with neutrons and reduce their energy.",
+        "columnLabel": "Moderator",
+        "chainWord": "Chain",
+        "switchPrefix": "Moderator:",
+        "captureLabel": "Neutron capture in moderator",
+        "fact1": "CANDU reactors (e.g. Cernavodă): D₂O moderator, often natural uranium fuel.",
+        "fact2": "With H₂O, capture on hydrogen is higher; many designs use enriched fuel instead.",
+        "hintD2o": "D₂O: small capture cross section on deuterium; neutrons lose energy via elastic collisions and remain available for fission in the fuel (simplified model).",
+        "hintH2o": "H₂O: hydrogen absorbs thermal neutrons in the moderator; fewer neutrons reach the fuel — many light-water reactors use enriched uranium.",
+        "meterLow": "low (model)",
+        "meterHigh": "high (model)",
+        "chainOn": "active",
+        "chainOff": "dying down",
+        "fuelBar": "Fuel · fission",
+        "fateD2o": "<strong>D₂O</strong> moderator: small neutron losses in the water; in CANDU design, the chain can be sustained with natural uranium (~0.7% ²³⁵U).",
+        "fateH2o": "<strong>H₂O</strong> moderator: larger losses on hydrogen; in this model the chain thins — in practice this is compensated with enriched fuel or other measures."
+      },
+      "physics": {
+        "panelTitle": "H₂O and D₂O: same geometry, different mass",
+        "intro": "The water molecule has an H–O–H angle of about 104.5°. Replacing ¹H with ²H increases molecular mass by over 10%, while geometry stays similar. Infrared and Raman spectra show lower vibration frequencies for D₂O; as a liquid, D₂O is denser and boils slightly above 100 °C at standard atmospheric pressure.",
+        "structureHead": "Structure",
+        "statMolMass": "Molecular mass",
+        "statMolarMass": "Molar mass",
+        "statDensity": "Liquid density",
+        "freezeH": "Freezing",
+        "freezeP": "H₂O ~0 °C · D₂O ~3.8 °C at 1 atm (indicative).",
+        "abundH": "Abundance",
+        "abundP": "Natural deuterium: ~140 ppm (~0.014%) of hydrogen; ordinary water contains only traces of D₂O.",
+        "radioH": "Radioactivity",
+        "radioP": "Ordinary D₂O is not radioactive; tritium (³H) is a different isotope, present only in traces.",
+        "oscHead": "Oscillations (schematic)",
+        "boilH2oLabel": "H₂O boiling",
+        "boilD2oLabel": "D₂O boiling",
+        "boilNote": "1 atm",
+        "thermoTitle": "Boiling point",
+        "thermoP": "At standard pressure, D₂O boils near ~101.4 °C — slightly above H₂O — because of bonding and higher mass (hydrogen-bond picture).",
+        "massSectionHead": "Frequency and reduced mass",
+        "massExpP": "For a simple harmonic oscillator, a mode frequency depends on reduced mass μ: f ∝ 1 / √μ. In D₂O, μ is larger than in H₂O for similar motions, so characteristic frequencies are lower. The slider tweaks a simplified μ ratio between D₂O and H₂O.",
+        "massSliderLabel": "μ(D₂O) / μ(H₂O)",
+        "freqRatioLead": "f(D₂O) / f(H₂O) ≈ ",
+        "densityTitle": "Density (liquid, indicative)",
+        "densityP": "At the same temperature, one litre of D₂O weighs ~11% more than one litre of H₂O — relevant to isotope separation and industry.",
+        "quizTitle": "Questions",
+        "quizQ1": "1. At 1 atm, which boils at the higher temperature?",
+        "quizQ2": "2. In CANDU design with natural uranium, the typical moderator is:",
+        "quiz1ok": "At atmospheric pressure, D₂O boils near ~101.4 °C, slightly above H₂O (100 °C), because of bonding and mass.",
+        "quiz1bad": "D₂O has a higher boiling point than H₂O at the same pressure.",
+        "quiz2ok": "Natural-uranium CANDU reactors use a D₂O moderator to limit neutron losses.",
+        "quiz2bad": "Hydrogen capture in H₂O is high; classic CANDU does not use light-water moderator with natural uranium."
+      }
+    },
+    "michaelson-morley": {
+      "page": { "eyebrow": "Michelson–Morley experiment | Interactive simulation" },
+      "documentTitle": "Michelson–Morley experiment — full simulation",
+      "htmlLang": "en",
+      "header": {
+        "title": "Full simulation of the Michelson–Morley experiment",
+        "desc": "Explore the interferometer, rotation, fringes and the (hypothetical) ether effect. Adjust every physical parameter to see how the interference pattern changes."
+      },
+      "labels": {
+        "L": "Arm length L (m)",
+        "v": "Earth speed v (km/s)",
+        "lambda": "Wavelength λ (nm)",
+        "speed": "Rotation speed (×)",
+        "density": "Fringe density (px per period)",
+        "opacity": "Fringe opacity",
+        "relativistic": "Relativistic prediction",
+        "noEther": "no ether (ΔN = 0 on rotation)",
+        "noise": "Fringe noise"
+      },
+      "buttons": {
+        "pause": "⏸ Pause",
+        "play": "▶️ Run",
+        "reset": "🔄 Reset",
+        "random": "🌈 Random λ",
+        "rot90": "↻ Rotate 90°",
+        "save": "💾 Save"
+      },
+      "readouts": {
+        "angle": "Rotation angle:",
+        "dphi": "Δφ (radians):",
+        "shift": "Fringe shift:"
+      },
+      "theory": {
+        "title": "Theory and calculations — Michelson–Morley",
+        "p1": "The interferometer compares travel times along two perpendicular arms. In the classical ether picture, the time difference between arms after a 90° rotation is about Δt ≈ 2 L v² / c³, and the maximum fringe shift on rotation is ΔN ≈ 2 L v² / (λ c²). The phase is Δφ = 2π ΔN.",
+        "params": "Parameters",
+        "dt": "Δt (max.)",
+        "dN": "ΔN (max.)",
+        "dPhi": "Δφ (max.)",
+        "fringesUnit": "fringes",
+        "note": "Historically the result was null (no fringe shift was seen), which helped lead to special relativity."
+      }
+    },
+    "fisiune-nucleara": {
+      "page": { "eyebrow": "Nuclear chain fission (U-235) | Interactive simulation" },
+      "documentTitle": "Nuclear fission simulator",
+      "htmlLang": "en",
+      "hero": {
+        "eyebrow": "Nuclear physics",
+        "title": "Fission simulator",
+        "subtitle": "Watch how a single neutron starts a chain reaction in uranium-235."
+      },
+      "actions": {
+        "title": "Actions",
+        "inject": "Inject neutron",
+        "scram": "SCRAM"
+      },
+      "stats": {
+        "title": "Statistics",
+        "fissions": "Fissions",
+        "neutrons": "Active neutrons",
+        "energy": "Energy",
+        "temperature": "Temperature"
+      },
+      "k": {
+        "factor": "k factor",
+        "infoAria": "About the k factor",
+        "legendSub": "Subcritical",
+        "legendCrit": "Critical",
+        "legendSuper": "Supercritical"
+      },
+      "kTooltip": {
+        "title": "Multiplication factor k",
+        "num": "neutrons in next generation",
+        "den": "neutrons in current generation",
+        "li1": "k < 1 — the reaction dies out",
+        "li2": "k ≈ 1 — steady operation (reactor)",
+        "li3": "k > 1 — exponential growth"
+      },
+      "kStatus": {
+        "wait": "Waiting for the reaction…",
+        "sub": "Subcritical — reaction dying out",
+        "crit": "Critical — stable chain reaction",
+        "super": "Supercritical — exponential growth"
+      },
+      "stage": {
+        "title": "Visual reactor",
+        "pauseAria": "Pause",
+        "resetAria": "Restart"
+      },
+      "buttons": {
+        "pause": "Pause",
+        "resume": "Resume",
+        "reset": "Restart"
+      },
+      "presets": {
+        "label": "Presets",
+        "ariaLabel": "Preset modes",
+        "stable": "Stable",
+        "near": "Near-critical",
+        "super": "Supercritical",
+        "bomb": "Bomb mode"
+      },
+      "info": {
+        "openAria": "About this simulator",
+        "title": "How it works",
+        "closeAria": "Close",
+        "p1": "A slow neutron hits a U-235 nucleus, forming unstable U-236. The nucleus splits into smaller fragments and releases 2–3 new neutrons, plus about 200 MeV of energy.",
+        "p2": "If fuel density exceeds critical mass, the reaction becomes self-sustaining and the k factor rises above 1.",
+        "tip": "Click anywhere on the reactor to launch a neutron."
+      },
+      "legend": {
+        "u235": "U-235",
+        "fragments": "Fragments",
+        "neutron": "Neutron"
+      },
+      "params": {
+        "title": "Parameters",
+        "density": "Fuel density",
+        "speed": "Neutron speed",
+        "probability": "Capture probability",
+        "rods": "Control rods",
+        "moderator": "Moderator on",
+        "delayed": "Delayed neutrons",
+        "heatmap": "Density heat map"
+      }
+    }
+  }
+}

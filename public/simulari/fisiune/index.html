@@ -10,41 +10,41 @@
 <body>
     <div class="app">
         <header class="hero">
-            <p class="eyebrow">Fizică nucleară</p>
-            <h1>Simulator de Fisiune</h1>
-            <p class="subtitle">Observă cum un singur neutron declanșează o reacție în lanț în uraniu-235.</p>
+            <p class="eyebrow" data-i18n="hero.eyebrow">Fizică nucleară</p>
+            <h1 data-i18n="hero.title">Simulator de Fisiune</h1>
+            <p class="subtitle" data-i18n="hero.subtitle">Observă cum un singur neutron declanșează o reacție în lanț în uraniu-235.</p>
         </header>
 
         <main class="layout">
             <aside class="panel panel-left">
                 <div class="card actions-card">
-                    <h3>Acțiuni</h3>
-                    <button class="btn-block btn-inject" id="injectBtn">
+                    <h3 data-i18n="actions.title">Acțiuni</h3>
+                    <button type="button" class="btn-block btn-inject" id="injectBtn">
                         <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path d="M12 2a1 1 0 0 1 1 1v8h8a1 1 0 1 1 0 2h-8v8a1 1 0 1 1-2 0v-8H3a1 1 0 1 1 0-2h8V3a1 1 0 0 1 1-1z" fill="currentColor"/></svg>
-                        <span>Injectează neutron</span>
+                        <span data-i18n="actions.inject">Injectează neutron</span>
                     </button>
-                    <button class="btn-block btn-scram" id="scramBtn">
+                    <button type="button" class="btn-block btn-scram" id="scramBtn">
                         <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path d="M12 2 1 21h22L12 2zm0 6 6.5 11h-13L12 8zm-1 3v4h2v-4h-2zm0 5v2h2v-2h-2z" fill="currentColor"/></svg>
-                        <span>SCRAM</span>
+                        <span data-i18n="actions.scram">SCRAM</span>
                     </button>
                 </div>
 
                 <div class="card stats">
-                    <h3>Statistici</h3>
+                    <h3 data-i18n="stats.title">Statistici</h3>
                     <div class="stat">
-                        <span class="stat-label">Fisiuni</span>
+                        <span class="stat-label" data-i18n="stats.fissions">Fisiuni</span>
                         <span class="stat-value" id="fissionsStat">0</span>
                     </div>
                     <div class="stat">
-                        <span class="stat-label">Neutroni activi</span>
+                        <span class="stat-label" data-i18n="stats.neutrons">Neutroni activi</span>
                         <span class="stat-value" id="neutronsStat">0</span>
                     </div>
                     <div class="stat">
-                        <span class="stat-label">Energie</span>
+                        <span class="stat-label" data-i18n="stats.energy">Energie</span>
                         <span class="stat-value"><span id="energyStat">0</span><small>MeV</small></span>
                     </div>
                     <div class="stat">
-                        <span class="stat-label">Temperatură</span>
+                        <span class="stat-label" data-i18n="stats.temperature">Temperatură</span>
                         <span class="stat-value"><span id="tempStat">20</span><small>°C</small></span>
                     </div>
                     <div class="temp-bar" aria-hidden="true">
@@ -54,8 +54,8 @@
                     <div class="k-block">
                         <div class="k-header">
                             <span class="stat-label k-label">
-                                Factor k
-                                <button class="k-info" id="kInfo" aria-label="Despre factorul k" type="button">
+                                <span data-i18n="k.factor">Factor k</span>
+                                <button class="k-info" id="kInfo" data-i18n-aria="k.infoAria" aria-label="Despre factorul k" type="button">
                                     <svg viewBox="0 0 24 24" width="14" height="14" aria-hidden="true"><path d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20zm0 4.25a1.25 1.25 0 1 1 0 2.5 1.25 1.25 0 0 1 0-2.5zM13 17.5h-2V10h2v7.5z" fill="currentColor"/></svg>
                                 </button>
                             </span>
@@ -70,19 +70,19 @@
                             <div class="k-marker" id="kMarker"></div>
                         </div>
                         <div class="k-legend">
-                            <span>Subcritic</span>
-                            <span>Critic</span>
-                            <span>Supercritic</span>
+                            <span data-i18n="k.legendSub">Subcritic</span>
+                            <span data-i18n="k.legendCrit">Critic</span>
+                            <span data-i18n="k.legendSuper">Supercritic</span>
                         </div>
                         <div class="k-status" id="kStatus">Așteaptă reacția…</div>
 
                         <div class="k-tooltip" id="kTooltip" hidden>
-                            <p><strong>Factorul de multiplicare k</strong></p>
-                            <p class="formula">k = <span class="frac"><span class="num">neutroni generația următoare</span><span class="den">neutroni generația curentă</span></span></p>
+                            <p><strong data-i18n="kTooltip.title">Factorul de multiplicare k</strong></p>
+                            <p class="formula">k = <span class="frac"><span class="num" data-i18n="kTooltip.num">neutroni generația următoare</span><span class="den" data-i18n="kTooltip.den">neutroni generația curentă</span></span></p>
                             <ul>
-                                <li><b>k &lt; 1</b> — reacția se stinge</li>
-                                <li><b>k ≈ 1</b> — reacție stabilă (reactor)</li>
-                                <li><b>k &gt; 1</b> — creștere exponențială</li>
+                                <li data-i18n="kTooltip.li1"><b>k &lt; 1</b> — reacția se stinge</li>
+                                <li data-i18n="kTooltip.li2"><b>k ≈ 1</b> — reacție stabilă (reactor)</li>
+                                <li data-i18n="kTooltip.li3"><b>k &gt; 1</b> — creștere exponențială</li>
                             </ul>
                         </div>
                     </div>
@@ -93,45 +93,45 @@
                 <div class="stage-header">
                     <div class="stage-title">
                         <span class="dot"></span>
-                        <h2>Reactor vizual</h2>
+                        <h2 data-i18n="stage.title">Reactor vizual</h2>
                     </div>
                     <div class="stage-actions">
-                        <button class="btn btn-ghost" id="pauseBtn" aria-label="Pauză">
+                        <button type="button" class="btn btn-ghost" id="pauseBtn" data-i18n-aria="stage.pauseAria" aria-label="Pauză">
                             <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path d="M8 5h3v14H8zM13 5h3v14h-3z" fill="currentColor"/></svg>
-                            <span>Pauză</span>
+                            <span data-i18n="buttons.pause">Pauză</span>
                         </button>
-                        <button class="btn btn-primary" id="resetBtn" aria-label="Repornire">
+                        <button type="button" class="btn btn-primary" id="resetBtn" data-i18n-aria="stage.resetAria" aria-label="Repornire">
                             <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path d="M12 5V2L7 6l5 4V7a5 5 0 1 1-5 5H5a7 7 0 1 0 7-7z" fill="currentColor"/></svg>
-                            <span>Repornire</span>
+                            <span data-i18n="buttons.reset">Repornire</span>
                         </button>
                     </div>
                 </div>
 
-                <div class="presets" role="radiogroup" aria-label="Moduri preset">
-                    <span class="presets-label">Presetări</span>
+                <div class="presets" role="radiogroup" data-i18n-aria="presets.ariaLabel" aria-label="Moduri preset">
+                    <span class="presets-label" data-i18n="presets.label">Presetări</span>
                     <div class="preset-group">
-                        <button class="preset" data-preset="stable" role="radio" aria-checked="false">
+                        <button type="button" class="preset" data-preset="stable" role="radio" aria-checked="false">
                             <span class="preset-dot" style="background:#4a90e2"></span>
-                            <span class="preset-text">Stabil</span>
+                            <span class="preset-text" data-i18n="presets.stable">Stabil</span>
                         </button>
-                        <button class="preset" data-preset="near" role="radio" aria-checked="false">
+                        <button type="button" class="preset" data-preset="near" role="radio" aria-checked="false">
                             <span class="preset-dot" style="background:#ffd60a"></span>
-                            <span class="preset-text">Aproape critic</span>
+                            <span class="preset-text" data-i18n="presets.near">Aproape critic</span>
                         </button>
-                        <button class="preset" data-preset="super" role="radio" aria-checked="false">
+                        <button type="button" class="preset" data-preset="super" role="radio" aria-checked="false">
                             <span class="preset-dot" style="background:#ff453a"></span>
-                            <span class="preset-text">Supercritic</span>
+                            <span class="preset-text" data-i18n="presets.super">Supercritic</span>
                         </button>
-                        <button class="preset" data-preset="bomb" role="radio" aria-checked="false">
+                        <button type="button" class="preset" data-preset="bomb" role="radio" aria-checked="false">
                             <span class="preset-dot" style="background:#1d1d1f"></span>
-                            <span class="preset-text">Bomb mode</span>
+                            <span class="preset-text" data-i18n="presets.bomb">Bomb mode</span>
                         </button>
                     </div>
                 </div>
                 <div class="canvas-wrap">
                     <canvas id="reactor"></canvas>
 
-                    <button class="info-btn" id="infoBtn" aria-label="Despre simulator" aria-expanded="false" aria-controls="infoPopover">
+                    <button type="button" class="info-btn" id="infoBtn" data-i18n-aria="info.openAria" aria-label="Despre simulator" aria-expanded="false" aria-controls="infoPopover">
                         <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true">
                             <path d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20zm0 4.25a1.25 1.25 0 1 1 0 2.5 1.25 1.25 0 0 1 0-2.5zM13 17.5h-2V10h2v7.5z" fill="currentColor"/>
                         </svg>
@@ -139,67 +139,67 @@
 
                     <div class="info-popover" id="infoPopover" role="dialog" aria-labelledby="infoTitle" hidden>
                         <div class="info-popover-header">
-                            <h3 id="infoTitle">Cum funcționează</h3>
-                            <button class="info-close" id="infoClose" aria-label="Închide">
+                            <h3 id="infoTitle" data-i18n="info.title">Cum funcționează</h3>
+                            <button type="button" class="info-close" id="infoClose" data-i18n-aria="info.closeAria" aria-label="Închide">
                                 <svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true"><path d="M6.4 5 5 6.4 10.6 12 5 17.6 6.4 19 12 13.4 17.6 19 19 17.6 13.4 12 19 6.4 17.6 5 12 10.6z" fill="currentColor"/></svg>
                             </button>
                         </div>
                         <div class="info-popover-body">
-                            <p>Un neutron lent lovește un nucleu de <strong>U-235</strong>, formând U-236 instabil. Nucleul se scindează în fragmente mai mici și eliberează 2–3 neutroni noi, plus aproximativ 200&nbsp;MeV de energie.</p>
-                            <p>Dacă densitatea combustibilului depășește masa critică, reacția se autosusține și factorul <strong>k</strong> devine mai mare decât 1.</p>
-                            <p class="tip">Apasă oriunde pe reactor pentru a lansa un neutron.</p>
+                            <p data-i18n="info.p1">Un neutron lent lovește un nucleu de <strong>U-235</strong>, formând U-236 instabil. Nucleul se scindează în fragmente mai mici și eliberează 2–3 neutroni noi, plus aproximativ 200&nbsp;MeV de energie.</p>
+                            <p data-i18n="info.p2">Dacă densitatea combustibilului depășește masa critică, reacția se autosusține și factorul <strong>k</strong> devine mai mare decât 1.</p>
+                            <p class="tip" data-i18n="info.tip">Apasă oriunde pe reactor pentru a lansa un neutron.</p>
                         </div>
                     </div>
 
                     <div class="legend" aria-hidden="true">
-                        <span class="chip"><i class="swatch uranium"></i>U-235</span>
-                        <span class="chip"><i class="swatch product"></i>Fragmente</span>
-                        <span class="chip"><i class="swatch neutron"></i>Neutron</span>
+                        <span class="chip"><i class="swatch uranium"></i><span data-i18n="legend.u235">U-235</span></span>
+                        <span class="chip"><i class="swatch product"></i><span data-i18n="legend.fragments">Fragmente</span></span>
+                        <span class="chip"><i class="swatch neutron"></i><span data-i18n="legend.neutron">Neutron</span></span>
                     </div>
                 </div>
             </section>
 
             <aside class="panel panel-right">
                 <div class="card">
-                    <h3>Parametri</h3>
+                    <h3 data-i18n="params.title">Parametri</h3>
                     <div class="control">
                         <div class="control-row">
-                            <label for="density">Densitate combustibil</label>
+                            <label for="density" data-i18n="params.density">Densitate combustibil</label>
                             <span class="value" id="densityValue">120</span>
                         </div>
                         <input type="range" id="density" min="20" max="260" value="120" step="1">
                     </div>
                     <div class="control">
                         <div class="control-row">
-                            <label for="speed">Viteză neutroni</label>
+                            <label for="speed" data-i18n="params.speed">Viteză neutroni</label>
                             <span class="value" id="speedValue">2.2</span>
                         </div>
                         <input type="range" id="speed" min="0.5" max="5" value="2.2" step="0.1">
                     </div>
                     <div class="control">
                         <div class="control-row">
-                            <label for="probability">Probabilitate captură</label>
+                            <label for="probability" data-i18n="params.probability">Probabilitate captură</label>
                             <span class="value" id="probabilityValue">85%</span>
                         </div>
                         <input type="range" id="probability" min="10" max="100" value="85" step="1">
                     </div>
                     <div class="control">
                         <div class="control-row">
-                            <label for="rods">Bare de control</label>
+                            <label for="rods" data-i18n="params.rods">Bare de control</label>
                             <span class="value" id="rodsValue">0%</span>
                         </div>
                         <input type="range" id="rods" min="0" max="100" value="0" step="1">
                     </div>
                     <div class="control toggle">
-                        <label for="moderator">Moderator activ</label>
+                        <label for="moderator" data-i18n="params.moderator">Moderator activ</label>
                         <input type="checkbox" id="moderator" class="switch" checked>
                     </div>
                     <div class="control toggle">
-                        <label for="delayed">Neutroni întârziați</label>
+                        <label for="delayed" data-i18n="params.delayed">Neutroni întârziați</label>
                         <input type="checkbox" id="delayed" class="switch">
                     </div>
                     <div class="control toggle">
-                        <label for="heatmap">Hartă de densitate</label>
+                        <label for="heatmap" data-i18n="params.heatmap">Hartă de densitate</label>
                         <input type="checkbox" id="heatmap" class="switch">
                     </div>
                 </div>
@@ -207,6 +207,7 @@
         </main>
     </div>
 
-    <script src="script.js"></script>
+    <script src="/simulari/simulator-i18n-runtime.js"></script>
+    <script src="fisiune-nucleara-boot.js"></script>
 </body>
 </html>

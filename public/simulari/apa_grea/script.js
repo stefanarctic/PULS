@@ -2,6 +2,10 @@
  * Scenarii: corp · reactor · fizică — vanilla JS
  */
 
+function simLbl(path, fallback) {
+  return typeof window.simLbl === "function" ? window.simLbl(path, fallback) : fallback;
+}
+
 var H_HEX = "#2563eb";
 var D_HEX = "#7c3aed";
 var O_HEX = "#ec4899";
@@ -258,14 +262,22 @@ function setupModerator() {
     document.body.setAttribute("data-moderator", d2o ? "d2o" : "h2o");
     label.textContent = d2o ? "D₂O" : "H₂O";
     hint.textContent = d2o
-      ? "D₂O: secțiune mică de captură pe deuteriu; neutronii pierd energie prin ciocniri elastice și rămân disponibili pentru fisiune în combustibil (model simplificat)."
-      : "H₂O: hidrogenul absoarbe neutroni termici în moderator; scade numărul de neutroni disponibili pentru combustibil — în multe reactoare cu apă ușoară se folosește uraniu îmbogățit.";
+      ? simLbl(
+          "reactor.hintD2o",
+          "D₂O: secțiune mică de captură pe deuteriu; neutronii pierd energie prin ciocniri elastice și rămân disponibili pentru fisiune în combustibil (model simplificat)."
+        )
+      : simLbl(
+          "reactor.hintH2o",
+          "H₂O: hidrogenul absoarbe neutroni termici în moderator; scade numărul de neutroni disponibili pentru combustibil — în multe reactoare cu apă ușoară se folosește uraniu îmbogățit."
+        );
 
     if (meterFill) {
       meterFill.classList.toggle("is-high", !d2o);
     }
     if (meterVal) {
-      meterVal.textContent = d2o ? "scăzută (model)" : "ridicată (model)";
+      meterVal.textContent = d2o
+        ? simLbl("reactor.meterLow", "scăzută (model)")
+        : simLbl("reactor.meterHigh", "ridicată (model)");
     }
 
     if (stage) {
@@ -276,15 +288,23 @@ function setupModerator() {
       chainFill.classList.toggle("is-dead", !d2o);
     }
     if (chainLabel) {
-      chainLabel.textContent = d2o ? "activ" : "stins";
+      chainLabel.textContent = d2o
+        ? simLbl("reactor.chainOn", "activ")
+        : simLbl("reactor.chainOff", "stins");
     }
     if (fate) {
       fate.innerHTML = d2o
-        ? "Moderator <strong>D₂O</strong>: pierderi mici de neutroni în apă; în design CANDU, lanțul poate fi menținut cu uraniu natural (²³⁵U ~0,7%)."
-        : "Moderator <strong>H₂O</strong>: pierderi mai mari pe hidrogen; în acest model, lanțul se subțiază — în practică se compensează cu combustibil îmbogățit sau alte soluții.";
+        ? simLbl(
+            "reactor.fateD2o",
+            "Moderator <strong>D₂O</strong>: pierderi mici de neutroni în apă; în design CANDU, lanțul poate fi menținut cu uraniu natural (²³⁵U ~0,7%)."
+          )
+        : simLbl(
+            "reactor.fateH2o",
+            "Moderator <strong>H₂O</strong>: pierderi mai mari pe hidrogen; în acest model, lanțul se subțiază — în practică se compensează cu combustibil îmbogățit sau alte soluții."
+          );
     }
     if (coreBar) {
-      coreBar.textContent = d2o ? "Combustibil · fisiune" : "Combustibil · fisiune";
+      coreBar.textContent = simLbl("reactor.fuelBar", "Combustibil · fisiune");
     }
   }
   chk.addEventListener("change", sync);
@@ -365,12 +385,24 @@ function setupQuiz() {
       fb.hidden = false;
       if (q === "1") {
         fb.textContent = ok
-          ? "La presiune atmosferică standard, D₂O fierbe la ~101,4 °C, puțin peste H₂O (100 °C), din cauza legăturilor și masei."
-          : "D₂O are punct de fierbere mai mare decât H₂O la aceeași presiune.";
+          ? simLbl(
+              "physics.quiz1ok",
+              "La presiune atmosferică standard, D₂O fierbe la ~101,4 °C, puțin peste H₂O (100 °C), din cauza legăturilor și masei."
+            )
+          : simLbl(
+              "physics.quiz1bad",
+              "D₂O are punct de fierbere mai mare decât H₂O la aceeași presiune."
+            );
       } else {
         fb.textContent = ok
-          ? "Reactoarele CANDU cu uraniu natural folosesc moderator D₂O pentru a limita pierderile de neutroni."
-          : "Cu H₂O, captura pe hidrogen e mare; designul CANDU clasic nu folosește moderator de apă ușoară cu uraniu natural.";
+          ? simLbl(
+              "physics.quiz2ok",
+              "Reactoarele CANDU cu uraniu natural folosesc moderator D₂O pentru a limita pierderile de neutroni."
+            )
+          : simLbl(
+              "physics.quiz2bad",
+              "Cu H₂O, captura pe hidrogen e mare; designul CANDU clasic nu folosește moderator de apă ușoară cu uraniu natural."
+            );
       }
     }
   });
@@ -390,35 +422,53 @@ function buildCellGrid() {
 
 function getBodyStory(pct) {
   if (pct <= 0.05) {
-    return "Valoare foarte mică, apropiată de fondul natural al deuteriului din apă (~140 ppm). În model, efectul vizual rămâne practic nul.";
+    return simLbl(
+      "body.story.vlow",
+      "Valoare foarte mică, apropiată de fondul natural al deuteriului din apă (~140 ppm). În model, efectul vizual rămâne practic nul."
+    );
   }
   if (pct <= 10) {
-    return "Fracție mică: aproape toate moleculele sunt încă H₂O; în realitate, organismul tolerează urme de D₂O fără efecte vizibile.";
+    return simLbl(
+      "body.story.low",
+      "Fracție mică: aproape toate moleculele sunt încă H₂O; în realitate, organismul tolerează urme de D₂O fără efecte vizibile."
+    );
   }
   if (pct <= 25) {
-    return "Fracție moderată: în model, crește ponderea D₂O; în experimente pe animale, fracții moderate de D₂O afectează vitezele unor reacții dependente de hidrogen.";
+    return simLbl(
+      "body.story.mid",
+      "Fracție moderată: în model, crește ponderea D₂O; în experimente pe animale, fracții moderate de D₂O afectează vitezele unor reacții dependente de hidrogen."
+    );
   }
   if (pct <= 70) {
-    return "Fracție mare: toxicitatea reală crește cu doza; la oameni, fracții mari de D₂O în organism sunt periculoase";
+    return simLbl(
+      "body.story.high",
+      "Fracție mare: toxicitatea reală crește cu doza; la oameni, fracții mari de D₂O în organism sunt periculoase"
+    );
   }
   if (pct < 100) {
-    return "Fracție foarte mare: scenariu extrem, doar pentru demonstrație pe ecran.";
+    return simLbl(
+      "body.story.vhigh",
+      "Fracție foarte mare: scenariu extrem, doar pentru demonstrație pe ecran."
+    );
   }
-  return "100%: valoare maximă în model. În realitate, expunerea masivă la D₂O nu este testabilă și este dăunătoare.";
+  return simLbl(
+    "body.story.max",
+    "100%: valoare maximă în model. În realitate, expunerea masivă la D₂O nu este testabilă și este dăunătoare."
+  );
 }
 
 function updateBodyBadge(badge, pct) {
   badge.classList.remove("warn", "bad", "dead");
   if (pct <= 10) {
-    badge.textContent = "OK";
+    badge.textContent = simLbl("badges.ok", "OK");
   } else if (pct <= 25) {
-    badge.textContent = "Atenție";
+    badge.textContent = simLbl("badges.warn", "Atenție");
     badge.classList.add("warn");
   } else if (pct <= 70) {
-    badge.textContent = "Ridicat";
+    badge.textContent = simLbl("badges.bad", "Ridicat");
     badge.classList.add("bad");
   } else {
-    badge.textContent = "Critic";
+    badge.textContent = simLbl("badges.dead", "Critic");
     badge.classList.add("dead");
   }
 }

@@ -1,4 +1,4 @@
-document.addEventListener("DOMContentLoaded", () => {
+function initMathInputShortcuts() {
     const inputFields = [
         "omega1Input",
         "omega2Input",
@@ -24,4 +24,10 @@ document.addEventListener("DOMContentLoaded", () => {
             });
         }
     });
-});
+}
+
+if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", initMathInputShortcuts);
+} else {
+    initMathInputShortcuts();
+}

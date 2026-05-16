@@ -1,6 +1,21 @@
 // Simulator Termodinamică — Otto / Diesel / Carnot + Compare selector
 // p-V + T-s (entropie relativă) + Wnet/Qin/eta/IMEP
 
+function simUI(path, fallback) {
+  return typeof window.simLbl === "function" ? window.simLbl(path, fallback) : fallback;
+}
+
+const MODE_LABEL_FALLBACK = {
+  otto: "Otto",
+  diesel: "Diesel",
+  carnot: "Carnot",
+  compare: "Comparație",
+};
+
+function modeStatusLabel(m) {
+  return simUI("status.mode." + m, MODE_LABEL_FALLBACK[m] || m);
+}
+
 const R = 8.314462618; // J/(mol*K)
 
 const els = {
@@ -110,7 +125,7 @@ function setMode(m){
   els.ottoControls.classList.toggle("hidden", dieselOn);
   els.dieselControls.classList.toggle("hidden", !dieselOn);
 
-  els.status.textContent = m;
+  els.status.textContent = modeStatusLabel(m);
   recalc();
 }
 
@@ -175,7 +190,7 @@ function makeOtto(p){
 
   return {
     key: "otto",
-    name: "Otto",
+    name: simUI("cycles.otto", "Otto"),
     states: [
       {id:1, P:P1, V:V1, T:T1},
       {id:2, P:P2, V:V2, T:T2},
@@ -274,7 +289,7 @@ function makeDiesel(p){
 
   return {
     key: "diesel",
-    name: "Diesel",
+    name: simUI("cycles.diesel", "Diesel"),
     states: [
       {id:1, P:P1, V:V1, T:T1},
       {id:2, P:P2, V:V2, T:T2},
@@ -399,7 +414,7 @@ function makeCarnot(p){
 
   return {
     key: "carnot",
-    name: "Carnot",
+    name: simUI("cycles.carnot", "Carnot"),
     states: [
       {id:1, P:P1c, V:V1, T:Th},
       {id:2, P:P2,  V:V2, T:T2},
@@ -609,8 +624,8 @@ function paint(cycles, p){
   const W = els.pv.width, H = els.pv.height;
   const pad = 46;
 
-  drawAxes(pvCtx, W, H, pad, "V", "p");
-  drawAxes(tsCtx, W, H, pad, "s", "T");
+  drawAxes(pvCtx, W, H, pad, simUI("charts.axisV", "V"), simUI("charts.axisP", "p"));
+  drawAxes(tsCtx, W, H, pad, simUI("charts.axisS", "s"), simUI("charts.axisT", "T"));
 
   const showStates = els.showStates.checked;
   const draws = [];
@@ -645,7 +660,7 @@ function paint(cycles, p){
     tsCtx.fill();
     tsCtx.restore();
 
-    els.stateNow.textContent = `segment`;
+    els.stateNow.textContent = simUI("hud.segment", "segment");
     els.pNow.textContent = fmtBar(pt.P);
     els.vNow.textContent = fmtL(pt.V);
     els.tNow.textContent = fmt(pt.T,0);
@@ -665,9 +680,11 @@ function updateResultsSingle(cycle, p, path){
 
   els.eta.textContent = `${fmt(cycle.eta*100, 1)}%`;
   els.etaHint.textContent =
-    cycle.key === "otto"   ? "ideal Otto ≈ 1 − 1/r^(γ−1)"
-  : cycle.key === "diesel" ? "ideal Diesel depinde de r și cutoff ρ"
-  : "Carnot ideal: η = 1 − T𝒸/Tₕ";
+    cycle.key === "otto"
+      ? simUI("hints.etaOtto", "ideal Otto ≈ 1 − 1/r^(γ−1)")
+      : cycle.key === "diesel"
+        ? simUI("hints.etaDiesel", "ideal Diesel depinde de r și cutoff ρ")
+        : simUI("hints.etaCarnot", "Carnot ideal: η = 1 − T𝒸/Tₕ");
 
   els.wnet.textContent = `${fmt(Wnum, 0)} J`;
   els.qin.textContent  = `${fmt(cycle.Qin, 0)} J`;
@@ -688,11 +705,11 @@ function recalc(){
 
   // Basic sanity
   if (p.gamma <= 1.01){
-    els.status.textContent = "γ invalid";
+    els.status.textContent = simUI("errors.gamma", "γ invalid");
     return;
   }
   if (p.r <= 1.01){
-    els.status.textContent = "r too small";
+    els.status.textContent = simUI("errors.r", "r prea mic");
     return;
   }
 
@@ -710,7 +727,7 @@ function recalc(){
     const path = computeCurvePoints(cy, p);
     paint([cy], p);
     updateResultsSingle(cy, p, path);
-    els.status.textContent = "otto";
+    els.status.textContent = modeStatusLabel("otto");
     return;
   }
 
@@ -719,21 +736,21 @@ function recalc(){
     const path = computeCurvePoints(cy, p);
     paint([cy], p);
     updateResultsSingle(cy, p, path);
-    els.status.textContent = "diesel";
+    els.status.textContent = modeStatusLabel("diesel");
     return;
   }
 
   if(mode === "carnot"){
     // ensure Th > Tc
     if(p.Th <= p.Tc + 5){
-      els.status.textContent = "Setează Tₕ > T𝒸";
+      els.status.textContent = simUI("errors.carnotTemps", "Setează Tₕ > T𝒸");
       return;
     }
     const cy = makeCarnot(p);
     const path = computeCurvePoints(cy, p);
     paint([cy], p);
     updateResultsSingle(cy, p, path);
-    els.status.textContent = "carnot";
+    els.status.textContent = modeStatusLabel("carnot");
     return;
   }
 
@@ -776,7 +793,7 @@ function recalc(){
   els.status.textContent = line;
 
   els.eta.textContent = summaries.map(s => `${s.cy.name} ${fmt(s.cy.eta*100,1)}%`).join(" | ");
-  els.etaHint.textContent = "selectează ce compari";
+  els.etaHint.textContent = simUI("compare.pick", "selectează ce compari");
 
   els.wnet.textContent = summaries.map(s => `${s.cy.name} ${fmt(s.W,0)} J`).join(" | ");
   els.qin.textContent = summaries.map(s => `${s.cy.name} ${fmt(s.cy.Qin,0)} J`).join(" | ");

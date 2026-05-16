@@ -10,66 +10,70 @@
 <body>
 
 <header class="page-header">
-  <h1>Tunelare cuantică</h1>
-  <p>Electronul nu este o particulă clasică, este o undă de probabilitate.</p>
-  <p id="theory-heading" class="theory-eyebrow">Teorie pe scurt</p>
+  <h1 data-i18n="header.title">Tunelare cuantică</h1>
+  <p data-i18n="header.tagline">Electronul nu este o particulă clasică, este o undă de probabilitate.</p>
+  <p id="theory-heading" class="theory-eyebrow" data-i18n="header.theoryEyebrow">Teorie pe scurt</p>
 </header>
 
 <section class="theory-section" aria-labelledby="theory-heading">
   <div class="main-layout theory">
     <aside class="theory-panel theory-panel--left">
-      <h3 class="theory-panel-title">Undă de probabilitate, nu traiectorie</h3>
+      <h3 class="theory-panel-title" data-i18n="theoryLeft.title">Undă de probabilitate, nu traiectorie</h3>
       <p>
-        În mecanica cuantică, electronul nu este o bilă cu poziție și viteză bine definite înainte de măsurare.
-        Este descris de o <strong>funcție de undă</strong> \(\psi(x,t)\), o mărime complexă care evoluează conform ecuației Schrödinger.
+        <span data-i18n="theoryLeft.p1a">În mecanica cuantică, electronul nu este o bilă cu poziție și viteză bine definite înainte de măsurare.
+        Este descris de o </span><strong data-i18n="theoryLeft.p1strong">funcție de undă</strong><span data-i18n="theoryLeft.p1b"> \(\psi(x,t)\), o mărime complexă care evoluează conform ecuației Schrödinger.
+      </span>
       </p>
-      <div class="math-block" aria-label="Ecuația Schrödinger 1D">
+      <div class="math-block" data-i18n-aria="mathAria.schrodinger" aria-label="Ecuația Schrödinger 1D">
         $$
         i\hbar \frac{\partial \psi}{\partial t} = -\frac{\hbar^2}{2m} \frac{\partial^2 \psi}{\partial x^2} + V(x)\,\psi
         $$
       </div>
       <p>
-        Regula lui Born: probabilitatea de a găsi particula între \(a\) și \(b\) este
+        <span data-i18n="theoryLeft.p2a">Regula lui Born: probabilitatea de a găsi particula între \(a\) și \(b\) este
         \(P(a \le x \le b) = \int_a^b |\psi(x,t)|^2 \, dx\).
-        <strong>Densitatea</strong> este \(\rho(x,t) = |\psi|^2\). În simulare, ceața violetă arată \(|\psi|^2\) (normalizat discret pe grilă).
+        </span><strong data-i18n="theoryLeft.p2strong">Densitatea</strong><span data-i18n="theoryLeft.p2b"> este \(\rho(x,t) = |\psi|^2\). În simulare, ceața violetă arată \(|\psi|^2\) (normalizat discret pe grilă).
+      </span>
       </p>
-      <div class="math-block" aria-label="Normalizare">
+      <div class="math-block" data-i18n-aria="mathAria.normalize" aria-label="Normalizare">
         $$
         \int_{-\infty}^{\infty} |\psi(x,t)|^2 \, dx = 1
         $$
       </div>
       <p>
-        Un <strong>pachet gaussian</strong> localizează \(\psi\) în spațiu și se propagă ca grup; lățimea \(\Delta x\) și impulsul \(\Delta p\)
+        <span data-i18n="theoryLeft.p3a">Un </span><strong data-i18n="theoryLeft.p3strong">pachet gaussian</strong><span data-i18n="theoryLeft.p3b"> localizează \(\psi\) în spațiu și se propagă ca grup; lățimea \(\Delta x\) și impulsul \(\Delta p\)
         respectă (în ordinea mărimii) relația \(\Delta x\,\Delta p \gtrsim \hbar/2\).
+      </span>
       </p>
       <p>
-        Zona roșie: <strong>barieră de potențial</strong> \(V(x)\). Sliderul <strong>Energie</strong> fixează energia asociată pachetului în scala demo;
-        <strong>Barieră</strong> controlează înălțimea \(V\). Raportul \(E/V\) decide dacă domină tunelarea sau trecerea „peste”.
+        <span data-i18n="theoryLeft.p4a">Zona roșie: </span><strong data-i18n="theoryLeft.p4pot">barieră de potențial</strong><span data-i18n="theoryLeft.p4b"> \(V(x)\). Sliderul </span><strong data-i18n="theoryLeft.p4e">Energie</strong><span data-i18n="theoryLeft.p4c"> fixează energia asociată pachetului în scala demo;
+        </span><strong data-i18n="theoryLeft.p4barrier">Barieră</strong><span data-i18n="theoryLeft.p4d"> controlează înălțimea \(V\). Raportul \(E/V\) decide dacă domină tunelarea sau trecerea „peste”.
+      </span>
       </p>
     </aside>
 
     <div class="sim-column">
-      <canvas id="canvas" aria-label="Simulare undă de probabilitate"></canvas>
+      <canvas id="canvas" data-i18n-aria="labels.canvasAria" aria-label="Simulare undă de probabilitate"></canvas>
 
       <p id="modeText" class="mode-text" role="status" aria-live="polite"></p>
       <p id="rtText" class="rt-text"></p>
 
       <div class="legend">
-        <span class="swatch incident"></span> incidentă
-        <span class="swatch reflected"></span> reflectată
-        <span class="swatch transmitted"></span> transmisă
-        <span class="swatch prob"></span> |ψ|² (normalizat)
+        <span class="swatch incident"></span> <span data-i18n="labels.legendIncident">incidentă</span>
+        <span class="swatch reflected"></span> <span data-i18n="labels.legendReflected">reflectată</span>
+        <span class="swatch transmitted"></span> <span data-i18n="labels.legendTransmitted">transmisă</span>
+        <span class="swatch prob"></span> <span data-i18n="labels.legendProb">|ψ|² (normalizat)</span>
       </div>
 
       <div class="controls">
         <label>
-          Energie:
+          <span data-i18n="labels.energy">Energie:</span>
           <input type="range" id="energy" min="0.2" max="2" step="0.1" value="1">
           <span id="energyVal" class="val"></span>
         </label>
 
         <label>
-          Barieră:
+          <span data-i18n="labels.barrier">Barieră:</span>
           <input type="range" id="barrier" min="0.5" max="3" step="0.1" value="1.5">
           <span id="barrierVal" class="val"></span>
         </label>
@@ -77,39 +81,42 @@
     </div>
 
     <aside class="theory-panel theory-panel--right">
-      <h3 class="theory-panel-title">Tunelare, reflexie și transmisie</h3>
+      <h3 class="theory-panel-title" data-i18n="theoryRight.title">Tunelare, reflexie și transmisie</h3>
       <p>
-        <strong>Clasic</strong>, dacă \(E \lt V\), o particulă cu energie \(E\) nu ar trece peste barieră.
-        <strong>Cuantic</strong>, în regiunea \(V(x) > E\) soluția are parte <strong>evanescentă</strong> \(\propto e^{-\kappa x}\) cu
+        <strong data-i18n="theoryRight.p1strongA">Clasic</strong><span data-i18n="theoryRight.p1a">, dacă \(E \lt V\), o particulă cu energie \(E\) nu ar trece peste barieră.
+        </span><strong data-i18n="theoryRight.p1strongB">Cuantic</strong><span data-i18n="theoryRight.p1b">, în regiunea \(V(x) > E\) soluția are parte </span><strong data-i18n="theoryRight.p1strongC">evanescentă</strong><span data-i18n="theoryRight.p1c"> \(\propto e^{-\kappa x}\) cu
+      </span>
       </p>
-      <div class="math-block" aria-label="Constantă de decaiment">
+      <div class="math-block" data-i18n-aria="mathAria.decay" aria-label="Constantă de decaiment">
         $$
         \kappa = \frac{\sqrt{2m\,(V - E)}}{\hbar}
         $$
       </div>
       <p>
-        Astfel unda <strong>pătrunde</strong> în barieră și, după lățimea \(a\), poate ieși dincolo cu probabilitatea de transmisie \(T\) (tunelare).
-        Pentru \(E > V\) în interiorul barierei, unda este oscilantă (\(\sim e^{\pm i k' x}\)); la interfețe apar <strong>reflexie</strong> și transmisie parțiale.
+        <span data-i18n="theoryRight.p2a">Astfel unda </span><strong data-i18n="theoryRight.p2strong">pătrunde</strong><span data-i18n="theoryRight.p2b"> în barieră și, după lățimea \(a\), poate ieși dincolo cu probabilitatea de transmisie \(T\) (tunelare).
+        Pentru \(E > V\) în interiorul barierei, unda este oscilantă (\(\sim e^{\pm i k' x}\)); la interfețe apar </span><strong data-i18n="theoryRight.p2strong2">reflexie</strong><span data-i18n="theoryRight.p2c"> și transmisie parțiale.
+      </span>
       </p>
-      <div class="math-block" aria-label="Conservare probabilitate">
+      <div class="math-block" data-i18n-aria="mathAria.conservation" aria-label="Conservare probabilitate">
         $$
         R + T = 1
         $$
       </div>
       <p>
-        Pentru o <strong>barieră dreptunghiulară</strong> de înălțime \(V_0\) și lățime \(a\), cu \(E \lt V_0\), transmisia scade aproximativ exponențial cu \(\kappa a\):
+        <span data-i18n="theoryRight.p3a">Pentru o </span><strong data-i18n="theoryRight.p3strong">barieră dreptunghiulară</strong><span data-i18n="theoryRight.p3b"> de înălțime \(V_0\) și lățime \(a\), cu \(E \lt V_0\), transmisia scade aproximativ exponențial cu \(\kappa a\):
         \(T \sim e^{-2\kappa a}\) (ordin de mărime; factori frontali depind de detalii). În simulare, \(R\) și \(T\) sunt modele analitice simplificate.
+      </span>
       </p>
-      <div class="math-block math-block--multiline" aria-label="Barieră dreptunghiulară E mai mare ca V0">
+      <div class="math-block math-block--multiline" data-i18n-aria="mathAria.rectangular" aria-label="Barieră dreptunghiulară E mai mare ca V0">
         $$
         \begin{aligned}
           T &= \frac{4 k_1^2 k_2^2}{4 k_1^2 k_2^2 + (k_1^2 - k_2^2)^2 \sin^2(k_2 a)} \\[0.55em]
           k_1^2 &= \frac{2mE}{\hbar^2}, \qquad k_2^2 = \frac{2m(E-V_0)}{\hbar^2}
         \end{aligned}
         $$
-        <p class="math-block-caption">pentru \(E \gt V_0\) (barieră dreptunghiulară).</p>
+        <p class="math-block-caption" data-i18n="theoryRight.caption">pentru \(E \gt V_0\) (barieră dreptunghiulară).</p>
       </div>
-      <p class="theory-note">
+      <p class="theory-note" data-i18n="theoryRight.note">
         Vizualizarea este educativă; coeficienții exacți rezultă din potrivirea lui \(\psi\) și \(\mathrm{d}\psi/\mathrm{d}x\) la limitele barierei.
       </p>
     </aside>
@@ -118,19 +125,7 @@
 
 <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js" crossorigin></script>
 <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js" crossorigin></script>
-<script src="script.js"></script>
-<script>
-  document.addEventListener("DOMContentLoaded", function () {
-    if (typeof renderMathInElement === "function") {
-      renderMathInElement(document.querySelector(".theory-section"), {
-        delimiters: [
-          { left: "$$", right: "$$", display: true },
-          { left: "\\(", right: "\\)", display: false },
-        ],
-        throwOnError: false,
-      });
-    }
-  });
-</script>
+<script src="/simulari/simulator-i18n-runtime.js"></script>
+<script src="tunelare-boot.js"></script>
 </body>
 </html>

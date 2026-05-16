@@ -1,17 +1,28 @@
-document.addEventListener("DOMContentLoaded", function () {
+function seismLbl(path, fb) {
+    const o = window.__SIMULATOR_UI_I18N__;
+    return path.split(".").reduce((c, k) => (c != null ? c[k] : undefined), o) ?? fb;
+}
+
+function initCutremurSidebar() {
     const sidebar = document.getElementById("sidebar");
     const unitformBar = document.getElementById("unitformbar");
     const toggleSidebar = document.getElementById("toggleSidebar");
     const toggleUnitformBar = document.getElementById("toggleUnitformbar");
 
-    toggleSidebar.addEventListener("click", function () {
-        sidebar.classList.toggle("visible");
+    toggleSidebar?.addEventListener("click", function () {
+        sidebar?.classList.toggle("visible");
     });
 
-    toggleUnitformBar.addEventListener("click", function () {
-        unitformBar.classList.toggle("visible");
+    toggleUnitformBar?.addEventListener("click", function () {
+        unitformBar?.classList.toggle("visible");
     });
-});
+}
+
+if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", initCutremurSidebar);
+} else {
+    initCutremurSidebar();
+}
 
 function updateDistance() {
     const distInput = parseFloat(document.getElementById('dist').value) || 3;
@@ -30,24 +41,24 @@ document.getElementById('calculateBtn').addEventListener('click', function () {
     const dist = parseFloat(document.getElementById('dist').value);
     // Verificăm dacă valorile sunt valide
     if (isNaN(vp) || isNaN(vs) || isNaN(dist)) {
-        alert("Te rog completează toate câmpurile!");
+        alert(seismLbl("alerts.fillAllFields", "Te rog completează toate câmpurile!"));
         return;
     }
     if (vp <= vs) {
-        alert("Viteza P (vp) trebuie să fie mai mare decât viteza S (vs).");
+        alert(seismLbl("alerts.vpGreaterThanVs", "Viteza P (vp) trebuie să fie mai mare decât viteza S (vs)."));
         return;
     }
     if (vp < 5 || vp > 10) {
-        alert("Viteza P poate lua valori doar din intervalul 5 - 10 km/s.");
+        alert(seismLbl("alerts.vpRange", "Viteza P poate lua valori doar din intervalul 5 - 10 km/s."));
         return;
     }
-    
+
     if (vs < 2 || vs > 5) {
-        alert("Viteza S poate lua valori doar din intervalul 2 - 5 km/s.");
+        alert(seismLbl("alerts.vsRange", "Viteza S poate lua valori doar din intervalul 2 - 5 km/s."));
         return;
     }
-    if(dist >= 10){
-        alert("D nu ia valori mai mari de 10 km, pe desenul dat.");
+    if (dist >= 10) {
+        alert(seismLbl("alerts.distMax", "D nu ia valori mai mari de 10 km, pe desenul dat."));
         return;
     }
     // Afișăm rezultatele
@@ -61,9 +72,10 @@ document.getElementById('calculateBtn').addEventListener('click', function () {
       let t2 = dist / vs;
       let dt = (dist * (vp - vs)) / (vp * vs);
       // Afișăm timpii calculați
-      document.getElementById('t1output').textContent = t1.toFixed(2) + " secunde";
-      document.getElementById('t2output').textContent = t2.toFixed(2) + " secunde";
-      document.getElementById('dtoutput').textContent = dt.toFixed(2) + " secunde";
+      const su = seismLbl("labels.secondsSuffix", "secunde");
+      document.getElementById('t1output').textContent = t1.toFixed(2) + " " + su;
+      document.getElementById('t2output').textContent = t2.toFixed(2) + " " + su;
+      document.getElementById('dtoutput').textContent = dt.toFixed(2) + " " + su;
 });
 
 document.getElementById('dist').addEventListener('input', updateDistance);
@@ -125,15 +137,15 @@ function addText(text, position) {
         textMesh.position.set(position.x, position.y, position.z); // Plasăm textul la poziția dată
         scene.add(textMesh);
 
-        if (text === "Punct de Referinta") {
+        if (text === seismLbl("scene.referencePoint", "Punct de Referinta")) {
             referenceText = textMesh; 
         }
     });
 }
 
-addText("Epicentru", new THREE.Vector3(-0.1, -4.5, 1.4));  
-addText("Hipocentru", new THREE.Vector3(0, -8, 0));  
-addText("Punct de Referinta", new THREE.Vector3(3, -4.5, 0));  
+addText(seismLbl("scene.epicenter", "Epicentru"), new THREE.Vector3(-0.1, -4.5, 1.4));  
+addText(seismLbl("scene.hypocenter", "Hipocentru"), new THREE.Vector3(0, -8, 0));  
+addText(seismLbl("scene.referencePoint", "Punct de Referinta"), new THREE.Vector3(3, -4.5, 0));  
 
 // Dezactivăm scroll-ul implicit
 document.body.style.overflow = "hidden";

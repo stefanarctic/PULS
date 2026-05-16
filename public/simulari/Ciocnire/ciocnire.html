@@ -10,73 +10,74 @@
 </head>
 
 <body>
-    <h1>Coliziune Inelastică</h1>
+    <h1 data-i18n="labels.pageHeading">Coliziune Inelastică</h1>
     <div id="simulator">
         <div class="ball" id="ball1">1</div>
         <div class="ball" id="ball2">2</div>
     </div>
     <div id="chenare-info">
         <div class="chenar-mic-1" id="unitatiMasura">
-            <div class="chenar-titlu chenar-titlu-bej">Unități de Măsură</div>
+            <div class="chenar-titlu chenar-titlu-bej" data-i18n="labels.unitsHeading">Unități de Măsură</div>
             <div class="chenar-continut chenar-continut-bej">
-                <p>Viteză: px/frame</p>
-                <p>Masă: kg</p>
-                <p>Impuls: kg·px/frame</p>
-                <p>Energie: J</p>
-                <p>Forță: N</p>
+                <p data-i18n="labels.unitSpeedPx">Viteză: px/frame</p>
+                <p data-i18n="labels.unitMassKg">Masă: kg</p>
+                <p data-i18n="labels.unitImpulse">Impuls: kg·px/frame</p>
+                <p data-i18n="labels.unitEnergyJ">Energie: J</p>
+                <p data-i18n="labels.unitForceN">Forță: N</p>
             </div>
         </div>
         <div class="chenar-mic" id="formuleFolosite">
-            <div class="chenar-titlu chenar-titlu-mov">Formule Folosite</div>
+            <div class="chenar-titlu chenar-titlu-mov" data-i18n="labels.formulasHeading">Formule Folosite</div>
             <div class="chenar-continut chenar-continut-bej">
-                <p>Impuls: p = m * v</p>
-                <p>Energie Cinetică: E = 0.5 * m * v<sup>2</sup></p>
-                <p>Forță: F = m * a</p>
+                <p data-i18n="labels.formulaImpulse">Impuls: p = m * v</p>
+                <p data-i18n="labels.formulaKe">Energie Cinetică: E = 0.5 * m * v²</p>
+                <p data-i18n="labels.formulaForce">Forță: F = m * a</p>
             </div>
         </div>
     </div>
     <button id="toggleSidebar">☰</button>
     <div id="sidebar" class="sidebar hidden">
-        <h2>Meniu</h2>
+        <h2 data-i18n="labels.sidebarTitle">Meniu</h2>
 
-        <label for="v1">Viteza Bilei 1: <span id="v1Value"></span> m/s</label>
+        <label for="v1"><span data-i18n="labels.ball1Speed">Viteza Bilei 1:</span> <span id="v1Value"></span><span data-i18n="labels.suffixMs"> m/s</span></label>
         <input type="range" id="v1" min="0" max="5" value="3" step="0.1">
 
-        <label for="v2">Viteza Bilei 2: <span id="v2Value"></span> m/s</label>
+        <label for="v2"><span data-i18n="labels.ball2Speed">Viteza Bilei 2:</span> <span id="v2Value"></span><span data-i18n="labels.suffixMs"> m/s</span></label>
         <input type="range" id="v2" min="-5" max="0" value="-2" step="0.1">
 
-        <label for="m1">Masa Bilei 1: <span id="m1Value"></span> kg</label>
+        <label for="m1"><span data-i18n="labels.ball1Mass">Masa Bilei 1:</span> <span id="m1Value"></span><span data-i18n="labels.massKgSuffix"> kg</span></label>
         <input type="range" id="m1" min="1" max="10" value="2">
 
-        <label for="m2">Masa Bilei 2: <span id="m2Value"></span> kg</label>
+        <label for="m2"><span data-i18n="labels.ball2Mass">Masa Bilei 2:</span> <span id="m2Value"></span><span data-i18n="labels.massKgSuffix"> kg</span></label>
         <input type="range" id="m2" min="1" max="10" value="2">
 
-        <label for="size">Dimensiune Bile: <span id="sizeValue"> px</span></label>
+        <label for="size"><span data-i18n="labels.ballSize">Dimensiune Bile:</span> <span id="sizeValue"></span><span data-i18n="labels.suffixPx"> px</span></label>
         <input type="range" id="size" min="50" max="150" value="80">
 
-        <label for="speed">Viteza Simulare: <span id="speedValue"> x</span></label>
+        <label for="speed"><span data-i18n="labels.simSpeed">Viteza Simulare:</span> <span id="speedValue"></span><span data-i18n="labels.suffixTimes"> x</span></label>
         <input type="range" id="speed" min="0.1" max="2" step="0.1" value="1">
 
-        <label for="color1">Culoare Bila 1:</label>
+        <label for="color1"><span data-i18n="labels.ball1Color">Culoare Bila 1:</span></label>
         <input type="color" id="color1" value="#ff0000">
 
-        <label for="color2">Culoare Bila 2:</label>
+        <label for="color2"><span data-i18n="labels.ball2Color">Culoare Bila 2:</span></label>
         <input type="color" id="color2" value="#0000ff">
     </div>
     <button id="toggleSidebarleft">☰</button>
     <div id="sidebarleft" class="sidebarleft hidden">
-        <h2>Meniu de butoane</h2>
-        <button onclick="startSimulation()">Start</button>
-        <button onclick="stopSimulation()">Stop</button>
-        <button id="pauseResumeButton" onclick="pauseResumeSimulation()">Pauză/Resume</button>
-        <button id="measurementsButton" onclick="toggleMeasurements()">Arată Măsurători</button>
+        <h2 data-i18n="labels.sidebarButtonsTitle">Meniu de butoane</h2>
+        <button onclick="startSimulation()" data-i18n="buttons.start">Start</button>
+        <button onclick="stopSimulation()" data-i18n="buttons.stop">Stop</button>
+        <button id="pauseResumeButton" onclick="pauseResumeSimulation()" data-i18n="buttons.pauseResume">Pauză/Resume</button>
+        <button id="measurementsButton" onclick="toggleMeasurements()" data-i18n="buttons.measureShow">Arată Măsurători</button>
         <div id="info"></div>
         <div style="margin-top: 20px; background-color: #FAEDCD; padding-bottom:50px;  border-radius: 5px; height: 500px;">
-            <h3 style="text-align: center; margin-bottom: 10px;">Grafic Impuls și Energie</h3>
+            <h3 style="text-align: center; margin-bottom: 10px;" data-i18n="labels.chartTitle">Grafic Impuls și Energie</h3>
             <canvas id="physicsChart" style="width: 100%; height: 400px;"></canvas>
         </div>
     </div>
-    <script src="ciocnire.js"></script>
+    <script src="/simulari/simulator-i18n-runtime.js"></script>
+    <script src="coliziuni-inelastice-boot.js"></script>
 </body>
 
 </html>

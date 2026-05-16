@@ -335,14 +335,6 @@ export const ProblemaDetaliata = ({ problema, onBack, homeworkContext = null }) 
   }
 
   useEffect(() => {
-    if (typeof window?.MathJax !== "undefined") {
-      window.MathJax.typeset()
-    }
-
-    // console.log(getPrimaryColor());
-  });
-
-  useEffect(() => {
     // starRef.current.color = 'green';
   }, [darkModeOn]);
 

@@ -8,55 +8,55 @@
 </head>
 <body>
   <main>
-    <h1>Simularea completă a experimentului Michelson–Morley</h1>
-    <p class="desc">
+    <h1 data-i18n="header.title">Simularea completă a experimentului Michelson–Morley</h1>
+    <p class="desc" data-i18n="header.desc">
       Vizualizează interferometrul, rotația, franjele și efectul (ipotetic) al eterului. 
       Poți modifica toți parametrii fizici pentru a observa cum se schimbă interferența.
     </p>
 
     <section class="ui">
       <div class="control">
-        <label>Lungimea brațului L (m)</label>
+        <label><span data-i18n="labels.L">Lungimea brațului L (m)</span></label>
         <input type="range" id="L" min="1" max="20" value="11" step="0.1">
         <span id="Lval">11</span>
       </div>
 
       <div class="control">
-        <label>Viteza Pământului v (km/s)</label>
+        <label><span data-i18n="labels.v">Viteza Pământului v (km/s)</span></label>
         <input type="range" id="v" min="0" max="100" value="30" step="1">
         <span id="vval">30</span>
       </div>
 
       <div class="control">
-        <label>Lungimea de undă λ (nm)</label>
+        <label><span data-i18n="labels.lambda">Lungimea de undă λ (nm)</span></label>
         <input type="range" id="lambda" min="400" max="700" value="550" step="5">
         <span id="lamval">550 nm</span>
       </div>
 
       <div class="control">
-        <label>Viteză rotație (x)</label>
+        <label><span data-i18n="labels.speed">Viteză rotație (x)</span></label>
         <input type="range" id="speed" min="0.1" max="3" value="1" step="0.1">
         <span id="speedVal">1×</span>
       </div>
 
       <div class="control">
-        <label>Densitate franje (px/perioadă)</label>
+        <label><span data-i18n="labels.density">Densitate franje (px/perioadă)</span></label>
         <input type="range" id="density" min="6" max="80" value="20" step="1">
         <span id="densityVal">20 px</span>
       </div>
 
       <div class="control">
-        <label>Opacitate franje</label>
+        <label><span data-i18n="labels.opacity">Opacitate franje</span></label>
         <input type="range" id="opacity" min="0.1" max="1" value="1" step="0.05">
         <span id="opacityVal">100%</span>
       </div>
 
       <div class="buttons">
-        <button id="toggle">⏸ Pauză</button>
-        <button id="reset">🔄 Reset</button>
-        <button id="random">🌈 λ Random</button>
-        <button id="rot90">↻ Rotire 90°</button>
-        <button id="save">💾 Salvează</button>
+        <button type="button" id="toggle" data-i18n="buttons.pause">⏸ Pauză</button>
+        <button type="button" id="reset" data-i18n="buttons.reset">🔄 Reset</button>
+        <button type="button" id="random" data-i18n="buttons.random">🌈 λ Random</button>
+        <button type="button" id="rot90" data-i18n="buttons.rot90">↻ Rotire 90°</button>
+        <button type="button" id="save" data-i18n="buttons.save">💾 Salvează</button>
       </div>
     </section>
 
@@ -75,19 +75,19 @@
     </section>
 
     <section class="readouts">
-      <div>Unghi rotație: <span id="angleVal">0°</span></div>
-      <div>Δφ (radiani): <span id="phaseVal">0</span></div>
-      <div>Deplasare franje: <span id="shiftVal">0</span></div>
+      <div><span data-i18n="readouts.angle">Unghi rotație:</span> <span id="angleVal">0°</span></div>
+      <div><span data-i18n="readouts.dphi">Δφ (radiani):</span> <span id="phaseVal">0</span></div>
+      <div><span data-i18n="readouts.shift">Deplasare franje:</span> <span id="shiftVal">0</span></div>
     </section>
 
     <section class="ui">
       <div class="control">
-        <label>Predicție relativistă</label>
+        <label><span data-i18n="labels.relativistic">Predicție relativistă</span></label>
         <input type="checkbox" id="relativistic" checked>
-        <span>fără eter (ΔN=0 la rotație)</span>
+        <span data-i18n="labels.noEther">fără eter (ΔN=0 la rotație)</span>
       </div>
       <div class="control">
-        <label>Zgomot de franje</label>
+        <label><span data-i18n="labels.noise">Zgomot de franje</span></label>
         <input type="range" id="noise" min="0" max="0.5" value="0" step="0.01">
         <span id="noiseVal">0.00</span>
       </div>
@@ -96,26 +96,27 @@
     <canvas id="graph" width="800" height="400"></canvas>
 
     <section id="theory">
-      <h2>Teorie și calcule – Experimentul Michelson–Morley</h2>
-      <p>
+      <h2 data-i18n="theory.title">Teorie și calcule – Experimentul Michelson–Morley</h2>
+      <p data-i18n="theory.p1">
         Interferometrul compară timpii de parcurgere pe două brațe perpendiculare. În ipoteza
         clasică a eterului, diferența de timp între brațe la rotație cu 90° este aproximativ
         Δt ≈ 2 L v² / c³, iar deplasarea maximă a franjelor la rotație este
         ΔN ≈ 2 L v² / (λ c²). Faza corespunde cu Δφ = 2π ΔN.
       </p>
       <div class="facts">
-        <div><b>Parametri</b>: L = <span id="thL">–</span> m, v = <span id="thV">–</span> km/s, λ = <span id="thLam">–</span> nm</div>
-        <div><b>Δt (max.)</b>: <span id="thDt">–</span> s</div>
-        <div><b>ΔN (max.)</b>: <span id="thN">–</span> franje</div>
-        <div><b>Δφ (max.)</b>: <span id="thPhi">–</span> rad</div>
+        <div><b data-i18n="theory.params">Parametri</b>: L = <span id="thL">–</span> m, v = <span id="thV">–</span> km/s, λ = <span id="thLam">–</span> nm</div>
+        <div><b data-i18n="theory.dt">Δt (max.)</b>: <span id="thDt">–</span> s</div>
+        <div><b data-i18n="theory.dN">ΔN (max.)</b>: <span id="thN">–</span> <span data-i18n="theory.fringesUnit">franje</span></div>
+        <div><b data-i18n="theory.dPhi">Δφ (max.)</b>: <span id="thPhi">–</span> rad</div>
       </div>
-      <p class="note">
+      <p class="note" data-i18n="theory.note">
         Rezultatul istoric al experimentului a fost nul (nu s-a observat deplasarea așteptată
         a franjelor), ceea ce a contribuit la dezvoltarea teoriei relativității restrânse.
       </p>
     </section>
   </main>
 
-  <script src="app.js"></script>
+  <script src="/simulari/simulator-i18n-runtime.js"></script>
+  <script src="michaelson-morley-boot.js"></script>
 </body>
 </html>

@@ -1,6 +1,14 @@
 (function () {
     'use strict';
 
+    function simLbl(path, fallback) {
+        return typeof window.simLbl === 'function' ? window.simLbl(path, fallback) : fallback;
+    }
+    function objectDisplayName(obj) {
+        if (!obj) return '';
+        return simLbl('objects.' + obj.id + '.name', obj.name);
+    }
+
     // ========== OBJECT DEFINITIONS ==========
 
     const OBJECTS = [
@@ -67,6 +75,9 @@
     const heightInput = $('#height-input');
     const btnStart = $('#btn-start');
     const btnReset = $('#btn-reset');
+    const btnStartLabel = $('#btn-start-label');
+    const btnStartIconPlay = $('#btn-start-icon-play');
+    const btnStartIconPause = $('#btn-start-icon-pause');
     const resultBanner = $('#result-banner');
     const tipText = $('#tip-text');
     const btnNextTip = $('#btn-next-tip');
@@ -368,7 +379,7 @@
             simCtx.font = "600 11px 'Outfit', sans-serif";
             simCtx.fillStyle = 'rgba(0, 229, 255, 0.25)';
             simCtx.textAlign = 'center';
-            simCtx.fillText('VID', cw / 2, 22);
+            simCtx.fillText(simLbl('canvas.vacuum', 'VID'), cw / 2, 22);
             simCtx.restore();
         }
 
@@ -410,7 +421,7 @@
         simCtx.font = "500 9px 'JetBrains Mono', monospace";
         simCtx.fillStyle = 'rgba(255, 82, 82, 0.5)';
         simCtx.textAlign = 'center';
-        simCtx.fillText('SOL', cw / 2, groundY + 16);
+        simCtx.fillText(simLbl('canvas.ground', 'SOL'), cw / 2, groundY + 16);
         simCtx.restore();
 
         const startLineY = margin.top;
@@ -426,7 +437,7 @@
         simCtx.font = "500 9px 'JetBrains Mono', monospace";
         simCtx.fillStyle = 'rgba(0, 230, 118, 0.4)';
         simCtx.textAlign = 'center';
-        simCtx.fillText('START', cw / 2, startLineY - 6);
+        simCtx.fillText(simLbl('canvas.startLine', 'START'), cw / 2, startLineY - 6);
         simCtx.restore();
 
         if (state.obj1 && state.obj2) {
@@ -442,8 +453,8 @@
             const size1 = getObjectSize(state.obj1);
             const size2 = getObjectSize(state.obj2);
 
-            drawObject(simCtx, state.obj1.shape, x1, drawY1, size1, state.obj1.color, state.obj1.name);
-            drawObject(simCtx, state.obj2.shape, x2, drawY2, size2, state.obj2.color, state.obj2.name);
+            drawObject(simCtx, state.obj1.shape, x1, drawY1, size1, state.obj1.color, objectDisplayName(state.obj1));
+            drawObject(simCtx, state.obj2.shape, x2, drawY2, size2, state.obj2.color, objectDisplayName(state.obj2));
 
             if (state.running || state.finished) {
                 const maxForce = Math.max(
@@ -524,11 +535,11 @@
 
         simCtx.fillStyle = '#00e676';
         simCtx.fillRect(margin.left, legendY - 7, 10, 3);
-        simCtx.fillText('Gravitatie', margin.left + 14, legendY - 3);
+        simCtx.fillText(simLbl('canvas.legendFg', 'Gravitatie'), margin.left + 14, legendY - 3);
 
         simCtx.fillStyle = '#ff5252';
         simCtx.fillRect(margin.left + 80, legendY - 7, 10, 3);
-        simCtx.fillText('Drag (frecare aer)', margin.left + 94, legendY - 3);
+        simCtx.fillText(simLbl('canvas.legendFd', 'Drag (frecare aer)'), margin.left + 94, legendY - 3);
         simCtx.restore();
 
         simCtx.restore();
@@ -606,7 +617,7 @@
             graphCtx.font = "400 9px 'JetBrains Mono', monospace";
             graphCtx.fillStyle = 'rgba(139, 156, 192, 0.5)';
             graphCtx.textAlign = 'center';
-            graphCtx.fillText(tLabel + 's', xx, margin.top + gh + 16);
+            graphCtx.fillText(tLabel + simLbl('canvas.graphTimeSuffix', 's'), xx, margin.top + gh + 16);
         }
 
         graphCtx.save();
@@ -616,7 +627,7 @@
         graphCtx.save();
         graphCtx.translate(14, margin.top + gh / 2);
         graphCtx.rotate(-Math.PI / 2);
-        graphCtx.fillText('Viteza (m/s)', 0, 0);
+        graphCtx.fillText(simLbl('canvas.graphVelocityAxis', 'Viteza (m/s)'), 0, 0);
         graphCtx.restore();
         graphCtx.restore();
 
@@ -681,12 +692,13 @@
                 graphCtx.font = "400 8px 'JetBrains Mono', monospace";
                 graphCtx.fillStyle = color;
                 graphCtx.textAlign = 'right';
-                graphCtx.fillText('Vt ' + label + ': ' + vt.toFixed(1), margin.left + gw, yy - 4);
+                const vtPrefix = simLbl('canvas.vtPrefix', 'Vt ');
+                graphCtx.fillText(vtPrefix + label + ': ' + vt.toFixed(1), margin.left + gw, yy - 4);
                 graphCtx.restore();
             }
 
-            drawVtLine(vt1, '#00e5ff', state.obj1.name);
-            drawVtLine(vt2, '#ff6d00', state.obj2.name);
+            drawVtLine(vt1, '#00e5ff', objectDisplayName(state.obj1));
+            drawVtLine(vt2, '#ff6d00', objectDisplayName(state.obj2));
         }
 
         const legX = margin.left + gw - 10;
@@ -698,12 +710,12 @@
         if (state.obj1) {
             graphCtx.fillStyle = '#00e5ff';
             graphCtx.fillRect(legX - 52, legY - 5, 10, 3);
-            graphCtx.fillText(state.obj1.name, legX, legY);
+            graphCtx.fillText(objectDisplayName(state.obj1), legX, legY);
         }
         if (state.obj2) {
             graphCtx.fillStyle = '#ff6d00';
             graphCtx.fillRect(legX - 52, legY + 11, 10, 3);
-            graphCtx.fillText(state.obj2.name, legX, legY + 16);
+            graphCtx.fillText(objectDisplayName(state.obj2), legX, legY + 16);
         }
         graphCtx.restore();
 
@@ -718,7 +730,7 @@
             OBJECTS.forEach((obj) => {
                 const opt = document.createElement('option');
                 opt.value = obj.id;
-                opt.textContent = obj.name;
+                opt.textContent = objectDisplayName(obj);
                 sel.appendChild(opt);
             });
             sel.selectedIndex = idx === 0 ? 0 : OBJECTS.length - 1;
@@ -731,12 +743,16 @@
 
     function renderObjProps(container, obj, accentClass) {
         const vt = computeTerminalVelocity(obj, state.airDensity);
-        const vtStr = isFinite(vt) ? vt.toFixed(1) + ' m/s' : '∞ (vid)';
+        const vtStr = isFinite(vt) ? vt.toFixed(1) + ' m/s' : simLbl('labels.vtVacuumInf', '∞ (vid)');
+        const lm = simLbl('labels.propMass', 'Masa');
+        const lc = simLbl('labels.propCd', 'Cd');
+        const la = simLbl('labels.propArea', 'Aria');
+        const lvt = simLbl('labels.propVtShort', 'V term.');
         container.innerHTML = `
-            <span class="prop-label">Masa</span><span class="prop-value ${accentClass}">${obj.mass < 0.01 ? (obj.mass * 1000).toFixed(1) + ' g' : obj.mass.toFixed(3) + ' kg'}</span>
-            <span class="prop-label">Cd</span><span class="prop-value ${accentClass}">${obj.cd.toFixed(2)}</span>
-            <span class="prop-label">Aria</span><span class="prop-value ${accentClass}">${obj.area < 0.001 ? (obj.area * 10000).toFixed(2) + ' cm²' : (obj.area * 10000).toFixed(0) + ' cm²'}</span>
-            <span class="prop-label">V term.</span><span class="prop-value ${accentClass}">${vtStr}</span>
+            <span class="prop-label">${lm}</span><span class="prop-value ${accentClass}">${obj.mass < 0.01 ? (obj.mass * 1000).toFixed(1) + ' g' : obj.mass.toFixed(3) + ' kg'}</span>
+            <span class="prop-label">${lc}</span><span class="prop-value ${accentClass}">${obj.cd.toFixed(2)}</span>
+            <span class="prop-label">${la}</span><span class="prop-value ${accentClass}">${obj.area < 0.001 ? (obj.area * 10000).toFixed(2) + ' cm²' : (obj.area * 10000).toFixed(0) + ' cm²'}</span>
+            <span class="prop-label">${lvt}</span><span class="prop-value ${accentClass}">${vtStr}</span>
         `;
     }
 
@@ -763,8 +779,8 @@
             dA2 = G;
         }
 
-        dataEls.obj1Name.textContent = state.obj1 ? state.obj1.name : 'Obiect 1';
-        dataEls.obj2Name.textContent = state.obj2 ? state.obj2.name : 'Obiect 2';
+        dataEls.obj1Name.textContent = state.obj1 ? objectDisplayName(state.obj1) : simLbl('labels.objFallback1', 'Obiect 1');
+        dataEls.obj2Name.textContent = state.obj2 ? objectDisplayName(state.obj2) : simLbl('labels.objFallback2', 'Obiect 2');
 
         dataEls.obj1Time.textContent = s1.landed && s1.landTime !== null ? fmt(s1.landTime, 2) + ' s' : fmt(state.time, 2) + ' s';
         dataEls.obj2Time.textContent = s2.landed && s2.landTime !== null ? fmt(s2.landTime, 2) + ' s' : fmt(state.time, 2) + ' s';
@@ -808,10 +824,15 @@
         const delta = Math.abs(t1 - t2);
         let msg;
         if (delta < 0.01) {
-            msg = `Ambele au ajuns simultan! Δt = ${delta.toFixed(3)}s`;
+            msg = simLbl('results.tie', 'Ambele au ajuns simultan! Δt = {{dt}}s').replace(/\{\{dt\}\}/g, delta.toFixed(3));
         } else {
-            const first = t1 < t2 ? state.obj1.name : state.obj2.name;
-            msg = `${first} a ajuns prima! Δt = <span class="delta-time">${delta.toFixed(3)}s</span>`;
+            const firstName = t1 < t2 ? objectDisplayName(state.obj1) : objectDisplayName(state.obj2);
+            msg = simLbl(
+                'results.first',
+                '{{name}} a ajuns prima! Δt = <span class="delta-time">{{dt}}s</span>'
+            )
+                .replace(/\{\{name\}\}/g, firstName)
+                .replace(/\{\{dt\}\}/g, delta.toFixed(3));
         }
         resultBanner.innerHTML = msg;
         requestAnimationFrame(() => resultBanner.classList.add('visible'));
@@ -820,8 +841,9 @@
     // ========== TIPS ==========
 
     function showTip(index) {
-        const tip = TIPS[index % TIPS.length];
-        tipText.textContent = tip.text;
+        const i = index % TIPS.length;
+        const path = 'tips.' + i + '.text';
+        tipText.textContent = simLbl(path, TIPS[i].text);
     }
 
     function applyTip() {
@@ -854,7 +876,9 @@
         state.accumulator = 0;
 
         resultBanner.classList.remove('visible');
-        btnStart.innerHTML = '<svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor"><rect x="6" y="4" width="4" height="16"/><rect x="14" y="4" width="4" height="16"/></svg> STOP';
+        btnStartIconPlay.hidden = true;
+        btnStartIconPause.hidden = false;
+        btnStartLabel.textContent = simLbl('buttons.stopUpper', 'STOP');
         btnStart.classList.add('running');
 
         disableControls(true);
@@ -868,7 +892,9 @@
             cancelAnimationFrame(state.animId);
             state.animId = null;
         }
-        btnStart.innerHTML = '<svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor"><polygon points="5,3 19,12 5,21"/></svg> START';
+        btnStartIconPlay.hidden = false;
+        btnStartIconPause.hidden = true;
+        btnStartLabel.textContent = simLbl('buttons.startUpper', 'START');
         btnStart.classList.remove('running');
         disableControls(false);
     }
@@ -948,8 +974,8 @@
         state.obj2 = getSelectedObject(obj2Select);
         renderObjProps(obj1Props, state.obj1, 'obj1-accent');
         renderObjProps(obj2Props, state.obj2, 'obj2-accent');
-        dataEls.obj1Name.textContent = state.obj1.name;
-        dataEls.obj2Name.textContent = state.obj2.name;
+        dataEls.obj1Name.textContent = objectDisplayName(state.obj1);
+        dataEls.obj2Name.textContent = objectDisplayName(state.obj2);
         if (!state.running && !state.finished) {
             renderSimulation();
             renderGraph();
@@ -958,7 +984,7 @@
 
     function onAirDensityChange() {
         state.airDensity = parseFloat(airSlider.value);
-        airValue.textContent = state.airDensity.toFixed(3) + ' kg/m³';
+        airValue.textContent = state.airDensity.toFixed(3) + simLbl('labels.suffixKgM3', ' kg/m³');
         vacuumToggle.checked = state.airDensity < 0.001;
         document.body.classList.toggle('vacuum-mode', state.airDensity < 0.01);
         renderObjProps(obj1Props, state.obj1, 'obj1-accent');
@@ -1014,6 +1040,8 @@
         });
 
         showTip(0);
+
+        onAirDensityChange();
 
         const rect = simCanvas.parentElement.getBoundingClientRect();
         initParticles(rect.width, rect.height);

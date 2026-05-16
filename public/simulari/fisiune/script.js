@@ -2,6 +2,13 @@
     const canvas = document.getElementById('reactor');
     const ctx = canvas.getContext('2d');
 
+    function simLbl(path, fallback) {
+        return typeof window.simLbl === 'function' ? window.simLbl(path, fallback) : fallback;
+    }
+    function numLocale() {
+        return document.documentElement.lang === 'en' ? 'en-GB' : 'ro-RO';
+    }
+
     // Controls
     const densitySlider = document.getElementById('density');
     const speedSlider = document.getElementById('speed');
@@ -456,9 +463,9 @@
     }
 
     function updateStats() {
-        fissionsStat.textContent = state.fissions.toLocaleString('ro-RO');
+        fissionsStat.textContent = state.fissions.toLocaleString(numLocale());
         neutronsStat.textContent = state.neutrons.length;
-        energyStat.textContent = state.energy.toLocaleString('ro-RO');
+        energyStat.textContent = state.energy.toLocaleString(numLocale());
 
         const tempDisplay = Math.round(state.temperature);
         tempStat.textContent = tempDisplay;
@@ -481,11 +488,18 @@
 
         // Status text + color
         let statusClass = '';
-        let statusText = 'Așteaptă reacția…';
+        let statusText = simLbl('kStatus.wait', 'Așteaptă reacția…');
         if (hasData) {
-            if (k < 0.95) { statusClass = 'sub'; statusText = 'Subcritic — reacția se stinge'; }
-            else if (k <= 1.05) { statusClass = 'crit'; statusText = 'Critic — reacție stabilă'; }
-            else { statusClass = 'super'; statusText = 'Supercritic — creștere exponențială'; }
+            if (k < 0.95) {
+                statusClass = 'sub';
+                statusText = simLbl('kStatus.sub', 'Subcritic — reacția se stinge');
+            } else if (k <= 1.05) {
+                statusClass = 'crit';
+                statusText = simLbl('kStatus.crit', 'Critic — reacție stabilă');
+            } else {
+                statusClass = 'super';
+                statusText = simLbl('kStatus.super', 'Supercritic — creștere exponențială');
+            }
         }
         kStatus.className = 'k-status' + (statusClass ? ' ' + statusClass : '');
         kStatus.textContent = statusText;
@@ -581,7 +595,9 @@
     pauseBtn.addEventListener('click', () => {
         state.paused = !state.paused;
         const label = pauseBtn.querySelector('span');
-        label.textContent = state.paused ? 'Continuă' : 'Pauză';
+        label.textContent = state.paused
+            ? simLbl('buttons.resume', 'Continuă')
+            : simLbl('buttons.pause', 'Pauză');
     });
 
     injectBtn.addEventListener('click', () => {

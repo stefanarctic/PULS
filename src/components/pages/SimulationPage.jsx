@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import { useNavigate, useSearchParams } from "react-router-dom";
 import Layout from "../Layout";
 import { doc, getDoc, updateDoc } from "firebase/firestore";
@@ -12,6 +12,31 @@ import { Timestamp } from "firebase/firestore";
 import { useI18n } from "../../i18n/LanguageContext";
 import { observeAndTranslate } from "../../i18n/domTranslator";
 
+/** EN iframe bundles live in `/translations/simulatoare.en.json` (simulators.<slug>). */
+const SIMULATOR_I18N_QUERY_SLUGS = new Set([
+  "pendul-simplu",
+  "pendul-amortizat",
+  "pendul-neliniar",
+  "unde-apa",
+  "figuri-lissajous",
+  "seism",
+  "coliziuni-inelastice",
+  "plan-inclinat",
+  "proiectile",
+  "lanturi-elastice",
+  "frecare-aer",
+  "tunelare-cuantica",
+  "dubla-fanta",
+  "apa-grea",
+  "michaelson-morley",
+  "fisiune-nucleara",
+  "reflexie-refractie",
+  "prisma",
+  "motoare-termice",
+]);
+
+const DEFAULT_EN_SIMULATOR_EYEBROW = "Interactive simulation";
+
 const SimulationPage = ({
   id,
   slug,
@@ -19,7 +44,7 @@ const SimulationPage = ({
   description,
   iframeSrc,
   eyebrow = "Simulare interactivă",
-  maxHeight
+  maxHeight,
 }) => {
   const iframeRef = useRef(null);
   const frameRef = useRef(null);
@@ -32,10 +57,43 @@ const SimulationPage = ({
   const [searchParams] = useSearchParams();
   const { t, lang, localizedPath } = useI18n();
   const previewHeight = maxHeight || "90vh";
+  const iframeSrcWithLang = useMemo(() => {
+    if (lang !== "en" || !slug || !SIMULATOR_I18N_QUERY_SLUGS.has(slug)) return iframeSrc;
+    const sep = iframeSrc.includes("?") ? "&" : "?";
+    return `${iframeSrc}${sep}lang=en`;
+  }, [lang, slug, iframeSrc]);
   const translationKey = slug || id;
   const localizedTitle = t(`simulations.${translationKey}.title`, title);
   const localizedDescription = t(`simulations.${translationKey}.description`, description);
-  const localizedEyebrow = t(`simulations.${translationKey}.eyebrow`, eyebrow);
+
+  const [enSimulatorEyebrow, setEnSimulatorEyebrow] = useState(null);
+
+  useEffect(() => {
+    if (lang !== "en" || !slug || !SIMULATOR_I18N_QUERY_SLUGS.has(slug)) {
+      setEnSimulatorEyebrow(null);
+      return;
+    }
+    let cancelled = false;
+    (async () => {
+      try {
+        const res = await fetch("/translations/simulatoare.en.json");
+        if (!res.ok) return;
+        const data = await res.json();
+        const eyebrow = data?.simulators?.[slug]?.page?.eyebrow;
+        if (!cancelled && typeof eyebrow === "string") setEnSimulatorEyebrow(eyebrow);
+      } catch {
+        /* catalog optional */
+      }
+    })();
+    return () => {
+      cancelled = true;
+    };
+  }, [lang, slug]);
+
+  const localizedEyebrow =
+    lang === "en" && slug && SIMULATOR_I18N_QUERY_SLUGS.has(slug)
+      ? enSimulatorEyebrow ?? DEFAULT_EN_SIMULATOR_EYEBROW
+      : t(`simulations.${translationKey}.eyebrow`, eyebrow);
 
   // Monitorizează starea de autentificare
   useEffect(() => {
@@ -132,6 +190,7 @@ const SimulationPage = ({
     iframeTranslateCleanupRef.current = null;
 
     if (lang !== "en") return;
+    if (slug && SIMULATOR_I18N_QUERY_SLUGS.has(slug)) return;
     const iframe = iframeRef.current;
     if (!iframe) return;
 
@@ -164,7 +223,7 @@ const SimulationPage = ({
       if (requestFullscreen) {
         requestFullscreen.call(iframe);
       } else {
-        window.open(iframeSrc, "_blank");
+        window.open(iframeSrcWithLang, "_blank");
       }
     } else {
       const exitFullscreen =
@@ -212,7 +271,7 @@ const SimulationPage = ({
       document.removeEventListener("mozfullscreenchange", handleFullscreenChange);
       document.removeEventListener("MSFullscreenChange", handleFullscreenChange);
     };
-  }, [iframeSrc, previewHeight]);
+  }, [iframeSrcWithLang, previewHeight]);
 
   return (
     <Layout>
@@ -244,7 +303,7 @@ const SimulationPage = ({
           <div className="simulation-frame" ref={frameRef}>
             <iframe
               ref={iframeRef}
-              src={iframeSrc}
+              src={iframeSrcWithLang}
               title={localizedTitle}
               loading="lazy"
               allow="fullscreen"
