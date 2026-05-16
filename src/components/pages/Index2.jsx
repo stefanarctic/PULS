@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { LocalizedLink as Link } from "../../i18n/LanguageContext";
 import { useEffect } from "react";
 import {
   BookOpen,

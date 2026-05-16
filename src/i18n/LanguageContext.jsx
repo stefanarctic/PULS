@@ -1,6 +1,12 @@
 import { createContext, useContext, useEffect, useMemo, useCallback } from 'react';
 import { Link, NavLink, useLocation, useNavigate } from 'react-router-dom';
 import enDictionary from '../../public/translations/site.en.json';
+import {
+    normalizePathname,
+    splitPathQueryHash,
+    romanianPathToEnglishPath,
+    pathnameWithoutLocaleToRomanian,
+} from './pathLocalization';
 
 const SUPPORTED_LANGS = ['ro', 'en'];
 const DEFAULT_LANG = 'ro';
@@ -12,6 +18,7 @@ const LanguageContext = createContext({
     t: (_key, defaultValue) => defaultValue ?? _key,
     localizedPath: (path) => path,
     stripLocalePath: (path) => path,
+    canonicalRomanianPathname: '/',
 });
 
 const detectLangFromPath = (pathname) => {
@@ -60,6 +67,7 @@ export const LanguageProvider = ({ children }) => {
     const navigate = useNavigate();
     const lang = detectLangFromPath(location.pathname);
     const dict = enDictionary;
+    const routing = dict?.routing ?? {};
 
     useEffect(() => {
         if (typeof document !== 'undefined' && document.documentElement) {
@@ -70,11 +78,16 @@ export const LanguageProvider = ({ children }) => {
     const setLang = useCallback(
         (nextLang) => {
             if (!SUPPORTED_LANGS.includes(nextLang) || nextLang === lang) return;
-            const cleanPath = stripLocale(location.pathname);
-            const target = nextLang === 'en' ? resolvePath(cleanPath, 'en') : cleanPath;
-            navigate(`${target}${location.search || ''}${location.hash || ''}`, { replace: false });
+            const stripped = normalizePathname(stripLocale(location.pathname));
+            const canonicalRomanian = pathnameWithoutLocaleToRomanian(stripped, routing);
+            const uiPath =
+                nextLang === 'en'
+                    ? romanianPathToEnglishPath(canonicalRomanian, routing)
+                    : canonicalRomanian;
+            const target = `${resolvePath(uiPath, nextLang)}${location.search || ''}${location.hash || ''}`;
+            navigate(target, { replace: false });
         },
-        [lang, location.pathname, location.search, location.hash, navigate]
+        [lang, location.pathname, location.search, location.hash, navigate, routing]
     );
 
     const t = useCallback(
@@ -89,12 +102,35 @@ export const LanguageProvider = ({ children }) => {
         [lang, dict]
     );
 
-    const localizedPath = useCallback((path) => resolvePath(path, lang), [lang]);
+    const localizedPath = useCallback(
+        (path) => {
+            if (typeof path !== 'string') return path;
+            if (/^(?:https?:|mailto:|tel:|#)/i.test(path)) return path;
+            const [pathnamePart, qh] = splitPathQueryHash(path);
+            const mid =
+                lang === 'en' ? romanianPathToEnglishPath(pathnamePart, routing) : pathnamePart;
+            return resolvePath(`${mid}${qh}`, lang);
+        },
+        [lang, routing]
+    );
     const stripLocalePath = useCallback((path) => stripLocale(path), []);
 
+    const canonicalRomanianPathname = useMemo(
+        () => pathnameWithoutLocaleToRomanian(normalizePathname(stripLocale(location.pathname)), routing),
+        [location.pathname, routing]
+    );
+
     const value = useMemo(
-        () => ({ lang, setLang, t, localizedPath, stripLocalePath, dict }),
-        [lang, setLang, t, localizedPath, stripLocalePath, dict]
+        () => ({
+            lang,
+            setLang,
+            t,
+            localizedPath,
+            stripLocalePath,
+            dict,
+            canonicalRomanianPathname,
+        }),
+        [lang, setLang, t, localizedPath, stripLocalePath, dict, canonicalRomanianPathname]
     );
 
     return <LanguageContext.Provider value={value}>{children}</LanguageContext.Provider>;

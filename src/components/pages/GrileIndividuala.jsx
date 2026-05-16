@@ -11,6 +11,7 @@ import { auth } from '../../lib/firebase';
 import { onAuthStateChanged } from 'firebase/auth';
 import { Timestamp } from 'firebase/firestore';
 import { parseHomeworkParams, recordAssignmentItemProgress } from '../../lib/assignmentProgress';
+import { useI18n } from '../../i18n/LanguageContext';
 
 function convertDollarToInlineMathJax(str) {
     if (!str) return str;
@@ -20,6 +21,7 @@ function convertDollarToInlineMathJax(str) {
 const GrileIndividuala = () => {
     const { id } = useParams();
     const navigate = useNavigate();
+    const { localizedPath } = useI18n();
     const dispatch = useDispatch();
     const [searchParams] = useSearchParams();
     const homeworkContext = parseHomeworkParams(searchParams);
@@ -75,9 +77,9 @@ const GrileIndividuala = () => {
 
     useEffect(() => {
         if ((status === 'succeeded' || status === 'failed') && !grila) {
-            navigate('/probleme/grile');
+            navigate(localizedPath('/probleme/grile'));
         }
-    }, [grila, status, navigate]);
+    }, [grila, status, navigate, localizedPath]);
 
     const handleCheck = () => {
         if (selectedAnswer === null) return;
@@ -85,7 +87,7 @@ const GrileIndividuala = () => {
     };
 
     const handleBack = () => {
-        navigate('/probleme/grile');
+        navigate(localizedPath('/probleme/grile'));
     };
 
     if (status === 'loading' || status === 'idle') {

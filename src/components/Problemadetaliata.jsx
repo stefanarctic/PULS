@@ -16,9 +16,11 @@ import { doc, getDoc, setDoc } from 'firebase/firestore';
 import { useAssistant } from '../hooks/useAssistant';
 import useDarkMode from '../hooks/useDarkMode';
 import { summarizeProblemImages } from '../lib/problemImageSummary';
+import { useI18n } from '../i18n/LanguageContext';
 
 export const ProblemaDetaliata = ({ problema, onBack, homeworkContext = null }) => {
   const navigate = useNavigate();
+  const { localizedPath } = useI18n();
   const [copied, setCopied] = useState(false);
   const [isPreparingAi, setIsPreparingAi] = useState(false);
   const [isAdmin, setIsAdmin] = useState(false);
@@ -76,7 +78,7 @@ export const ProblemaDetaliata = ({ problema, onBack, homeworkContext = null }) 
     }
 
     // Navigate to admin dashboard with editId parameter
-    navigate(`/admin?editId=${problemId}`);
+    navigate(`${localizedPath('/admin')}?editId=${problemId}`);
   };
 
   const handleDelete = () => {
@@ -117,7 +119,7 @@ export const ProblemaDetaliata = ({ problema, onBack, homeworkContext = null }) 
       dispatch(fetchProblems()).then(() => {
         console.log('Problems reloaded successfully');
         if (onBack) onBack();
-        else navigate('/probleme');
+        else navigate(localizedPath('/probleme'));
       });
     } else if (deleteStatus === 'failed') {
       // Show more user-friendly error message
@@ -126,7 +128,7 @@ export const ProblemaDetaliata = ({ problema, onBack, homeworkContext = null }) 
       alert(`Eroare la ștergerea problemei:\n\n${errorMessage}\n\nTe rugăm să încerci din nou sau să contactezi administratorul.`);
       dispatch(clearDeleteStatus());
     }
-  }, [deleteStatus, deleteError, onBack, navigate, dispatch]);
+  }, [deleteStatus, deleteError, onBack, navigate, dispatch, localizedPath]);
 
   const getDifficultyClass = (dificultate) => {
     return `badge-difficulty ${dificultate || 'default'}`;
@@ -263,7 +265,7 @@ export const ProblemaDetaliata = ({ problema, onBack, homeworkContext = null }) 
       onBack();
     } else {
       // Altfel navigăm la pagina de probleme
-      navigate('/probleme');
+      navigate(localizedPath('/probleme'));
     }
   };
 

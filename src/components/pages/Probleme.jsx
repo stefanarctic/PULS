@@ -35,13 +35,14 @@ const ExternalLinkIcon = () => (
 const ProblemCard = ({ problem, isFavorite, onToggleFavorite, completionPercent, onBeforeNavigate }) => {
     const { index, titlu, dificultate, categorie, descriere, solved } = problem;
     const navigate = useNavigate();
+    const { localizedPath } = useI18n();
     const isPerfectScore = completionPercent === 100;
     const isSolved = solved || isPerfectScore;
     const handleNavigate = () => {
         if (onBeforeNavigate) {
             onBeforeNavigate();
         }
-        navigate(`/probleme/${index}`);
+        navigate(localizedPath(`/probleme/${index}`));
     };
     const handleKeyDown = (event) => {
         if (event.key === 'Enter' || event.key === ' ') {
@@ -129,7 +130,7 @@ const ProblemCard = ({ problem, isFavorite, onToggleFavorite, completionPercent,
 const PhysicsProblems = () => {
     const location = useLocation();
     const params = new URLSearchParams(location.search);
-    const { t } = useI18n();
+    const { t, localizedPath } = useI18n();
 
     // Restore filters from sessionStorage only if coming back from a problem
     const getStoredFilters = () => {
@@ -269,7 +270,7 @@ const PhysicsProblems = () => {
                 const problem = problemeData.find(p => p.index === problemIndex);
                 if (problem) {
                     saveFiltersBeforeNavigate();
-                    navigate(`/probleme/${problemIndex}`);
+                    navigate(localizedPath(`/probleme/${problemIndex}`));
                     return;
                 }
             }
@@ -293,7 +294,7 @@ const PhysicsProblems = () => {
             pathname: location.pathname,
             search: params.toString(),
         });
-    }, [selectedDifficulty, navigate, location.pathname, location.search]);
+    }, [selectedDifficulty, navigate, location.pathname, location.search, localizedPath]);
 
     // Reset la pagina 1 când se schimbă filtrele
     useEffect(() => {
@@ -1599,7 +1600,7 @@ const PhysicsProblems = () => {
                             const urlParams = new URLSearchParams(location.search);
                             if (urlParams.get('addProblem') === '1') {
                                 // Clear the custom link and navigate to normal problems page
-                                navigate('/probleme');
+                                navigate(localizedPath('/probleme'));
                             }
                             setShowAddModal(false);
                         }}

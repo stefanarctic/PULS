@@ -7,6 +7,7 @@ import { normalizeString } from '../../lib/normalizeString';
 import { ExternalLink, Plus, X } from 'lucide-react';
 import SEO from '../SEO';
 import '../../scss/components/_probleme-grile.scss';
+import { useI18n } from '../../i18n/LanguageContext';
 
 const SearchIcon = () => (
     <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
@@ -34,13 +35,14 @@ const getDifficultyColorClass = (diff) => {
 
 const GrileCard = ({ grila, onBeforeNavigate }) => {
     const navigate = useNavigate();
+    const { localizedPath } = useI18n();
     const titlu = grila.intrebare
         ? (grila.intrebare.length > 80 ? grila.intrebare.substring(0, 80) + '...' : grila.intrebare)
         : `Grilă #${grila.index}`;
 
     const handleNavigate = () => {
         if (onBeforeNavigate) onBeforeNavigate();
-        navigate(`/probleme/grile/${grila.index}`);
+        navigate(localizedPath(`/probleme/grile/${grila.index}`));
     };
 
     const handleKeyDown = (e) => {
@@ -83,6 +85,7 @@ const GrileCard = ({ grila, onBeforeNavigate }) => {
 
 const ProblemeGrile = () => {
     const navigate = useNavigate();
+    const { localizedPath } = useI18n();
     const dispatch = useDispatch();
     const { value: grileData, status, error, addStatus, addError } = useSelector(state => state.grile);
 
@@ -190,7 +193,7 @@ const ProblemeGrile = () => {
                 const grila = grileData.find(g => g.index === idx);
                 if (grila) {
                     saveFiltersBeforeNavigate();
-                    navigate(`/probleme/grile/${idx}`);
+                    navigate(localizedPath(`/probleme/grile/${idx}`));
                     return;
                 }
             }

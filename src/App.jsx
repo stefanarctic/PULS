@@ -46,71 +46,126 @@ import StudentClassPage from "./components/pages/StudentClassPage";
 import InviteTeacherPage from "./components/pages/InviteTeacherPage";
 import Comunitate from "./components/pages/Comunitate";
 import PublicProfile from "./components/pages/PublicProfile";
-import { useEffect } from "react";
 import uploadProblems from "./components/uploadProblems";
+import { Fragment, useEffect } from "react";
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchProblems } from './features/problems/problemsSlice';
 import AssistantAvatar from "./components/AssistantAvatar";
 import { simulationsConfig } from "@/data/simulations";
 import { LanguageProvider } from "./i18n/LanguageContext";
+import siteEnCatalog from "../public/translations/site.en.json";
+import { romanianRelativeRouteToEnglish } from "./i18n/pathLocalization";
+
+const SITE_ROUTING = siteEnCatalog.routing ?? {};
+
+const pairStatic = (englishBranch, roPath, elem) => {
+  const enPath = romanianRelativeRouteToEnglish(roPath, SITE_ROUTING);
+  if (!englishBranch || roPath === enPath)
+    return <Route path={roPath} element={elem} />;
+  return (
+    <Fragment key={`p-${roPath}`}>
+      <Route path={roPath} element={elem} />
+      <Route path={enPath} element={elem} />
+    </Fragment>
+  );
+};
+
+const simulationRouteNodes = (englishBranch) =>
+  simulationsConfig.flatMap((simulation) => {
+    const relativeRo = simulation.route?.startsWith("/")
+      ? simulation.route.slice(1)
+      : simulation.route;
+    const relativeEn = romanianRelativeRouteToEnglish(relativeRo, SITE_ROUTING);
+    const paths =
+      englishBranch && relativeEn !== relativeRo ? [relativeRo, relativeEn] : [relativeRo];
+    return paths.map((relPath) => (
+      <Route
+        key={`sim-${simulation.id}-${relPath}`}
+        path={relPath}
+        element={<SimulationPage {...simulation} />}
+      />
+    ));
+  });
 
 // Routes shared by both Romanian (default) and English (/en/...) trees.
-// Defined as a function so each <Route path="/"> and <Route path="/en"> gets its own JSX nodes.
-const renderLocalizedRoutes = () => (
+// Under /en, Romanian slugs remain valid as aliases alongside English URLs from site.en.json `routing`.
+const renderLocalizedRoutes = (englishBranch = false) => (
   <>
     <Route index element={<Index />} />
-    <Route path="landing-custom" element={<Index2 />} />
-    <Route path="probleme" element={<Probleme />} />
-    <Route path="probleme/bac" element={<ProblemeBac />} />
-    <Route path="probleme/grile" element={<ProblemeGrile />} />
-    <Route path="probleme/grile/:id" element={<GrileIndividuala />} />
-    <Route path="probleme/:id" element={<ProblemaIndividuala />} />
-    <Route path="simulari" element={<Simulari />} />
-    <Route path="resurse" element={<Resurse />} />
-    <Route path="resurse/pendule" element={<Pendule />} />
-    <Route path="resurse/unde" element={<Unde />} />
-    <Route path="resurse/lissajous" element={<Lissajous />} />
-    <Route path="resurse/seism" element={<Seism />} />
-    <Route path="resurse/termodinamica" element={<TermodinamicaPage />} />
-    <Route path="resurse/mecanica" element={<MecanicaPage />} />
-    <Route path="resurse/electricitate" element={<ElectricitatePage />} />
-    <Route path="resurse/electromagnetism" element={<ElectromagnetismPage />} />
-    <Route path="resurse/optica" element={<OpticaPage />} />
-    <Route path="resurse/matematica" element={<MatematicaPage />} />
-    <Route path="resurse/astronomie" element={<AstronomiePage />} />
-    <Route path="resurse/atomul" element={<AtomulPage />} />
-    <Route path="resurse/fizica-cuantica" element={<FizicaCuanticaPage />} />
-    <Route path="resurse/fizica-nucleara" element={<FizicaNuclearaPage />} />
-    <Route path="resurse/lasere" element={<LaserePage />} />
-    {simulationsConfig.map((simulation) => {
-      // simulation.route starts with a leading slash; strip it for nested usage.
-      const relativePath = simulation.route?.startsWith('/')
-        ? simulation.route.slice(1)
-        : simulation.route;
-      return (
-        <Route
-          key={simulation.route}
-          path={relativePath}
-          element={<SimulationPage {...simulation} />}
-        />
-      );
-    })}
-    <Route path="about-us" element={<About />} />
-    <Route path="search" element={<SearchResults />} />
-    <Route path="asistent" element={<AssistantEntryPage />} />
-    <Route path="comunitate" element={<Comunitate />} />
-    <Route path="profil/:alias" element={<PublicProfile />} />
-    <Route path="profil" element={<Profile />} />
-    <Route path="invite-teacher" element={<InviteTeacherPage />} />
-    <Route path="admin" element={<AdminDashboard />} />
-    <Route path="profesor" element={<TeacherDashboard />} />
-    <Route path="profesor/clasa/:classId" element={<TeacherClassPage />} />
-    <Route path="clasa/intra" element={<ClassJoinPage />} />
-    <Route path="clasa" element={<StudentClassesPage />} />
-    <Route path="clasa/:classId" element={<StudentClassPage />} />
+    {pairStatic(englishBranch, "landing-custom", <Index2 />)}
+    {pairStatic(englishBranch, "probleme", <Probleme />)}
+    {pairStatic(englishBranch, "probleme/bac", <ProblemeBac />)}
+    {pairStatic(englishBranch, "probleme/grile", <ProblemeGrile />)}
+    {englishBranch ? (
+      <Fragment key="grile-detail">
+        <Route path="probleme/grile/:id" element={<GrileIndividuala />} />
+        <Route path="problems/quizzes/:id" element={<GrileIndividuala />} />
+      </Fragment>
+    ) : (
+      <Route path="probleme/grile/:id" element={<GrileIndividuala />} />
+    )}
+    {englishBranch ? (
+      <Fragment key="prob-detail">
+        <Route path="probleme/:id" element={<ProblemaIndividuala />} />
+        <Route path="problems/:id" element={<ProblemaIndividuala />} />
+      </Fragment>
+    ) : (
+      <Route path="probleme/:id" element={<ProblemaIndividuala />} />
+    )}
+    {pairStatic(englishBranch, "simulari", <Simulari />)}
+    {pairStatic(englishBranch, "resurse", <Resurse />)}
+    {pairStatic(englishBranch, "resurse/pendule", <Pendule />)}
+    {pairStatic(englishBranch, "resurse/unde", <Unde />)}
+    {pairStatic(englishBranch, "resurse/lissajous", <Lissajous />)}
+    {pairStatic(englishBranch, "resurse/seism", <Seism />)}
+    {pairStatic(englishBranch, "resurse/termodinamica", <TermodinamicaPage />)}
+    {pairStatic(englishBranch, "resurse/mecanica", <MecanicaPage />)}
+    {pairStatic(englishBranch, "resurse/electricitate", <ElectricitatePage />)}
+    {pairStatic(englishBranch, "resurse/electromagnetism", <ElectromagnetismPage />)}
+    {pairStatic(englishBranch, "resurse/optica", <OpticaPage />)}
+    {pairStatic(englishBranch, "resurse/matematica", <MatematicaPage />)}
+    {pairStatic(englishBranch, "resurse/astronomie", <AstronomiePage />)}
+    {pairStatic(englishBranch, "resurse/atomul", <AtomulPage />)}
+    {pairStatic(englishBranch, "resurse/fizica-cuantica", <FizicaCuanticaPage />)}
+    {pairStatic(englishBranch, "resurse/fizica-nucleara", <FizicaNuclearaPage />)}
+    {pairStatic(englishBranch, "resurse/lasere", <LaserePage />)}
+    {simulationRouteNodes(englishBranch)}
+    {pairStatic(englishBranch, "about-us", <About />)}
+    {pairStatic(englishBranch, "search", <SearchResults />)}
+    {pairStatic(englishBranch, "asistent", <AssistantEntryPage />)}
+    {pairStatic(englishBranch, "comunitate", <Comunitate />)}
+    {englishBranch ? (
+      <Fragment key="prof-alias">
+        <Route path="profil/:alias" element={<PublicProfile />} />
+        <Route path="profile/:alias" element={<PublicProfile />} />
+      </Fragment>
+    ) : (
+      <Route path="profil/:alias" element={<PublicProfile />} />
+    )}
+    {pairStatic(englishBranch, "profil", <Profile />)}
+    {pairStatic(englishBranch, "invite-teacher", <InviteTeacherPage />)}
+    {pairStatic(englishBranch, "admin", <AdminDashboard />)}
+    {pairStatic(englishBranch, "profesor", <TeacherDashboard />)}
+    {englishBranch ? (
+      <Fragment key="teacher-class">
+        <Route path="profesor/clasa/:classId" element={<TeacherClassPage />} />
+        <Route path="teacher/class/:classId" element={<TeacherClassPage />} />
+      </Fragment>
+    ) : (
+      <Route path="profesor/clasa/:classId" element={<TeacherClassPage />} />
+    )}
+    {pairStatic(englishBranch, "clasa/intra", <ClassJoinPage />)}
+    {pairStatic(englishBranch, "clasa", <StudentClassesPage />)}
+    {englishBranch ? (
+      <Fragment key="student-class">
+        <Route path="clasa/:classId" element={<StudentClassPage />} />
+        <Route path="class/:classId" element={<StudentClassPage />} />
+      </Fragment>
+    ) : (
+      <Route path="clasa/:classId" element={<StudentClassPage />} />
+    )}
   </>
 );
-
 const LocaleShell = () => <Outlet />;
 
 const App = () => {
@@ -167,10 +222,10 @@ const App = () => {
         <div className="App">
           <Routes>
             <Route path="/en" element={<LocaleShell />}>
-              {renderLocalizedRoutes()}
+              {renderLocalizedRoutes(true)}
             </Route>
             <Route path="/" element={<LocaleShell />}>
-              {renderLocalizedRoutes()}
+              {renderLocalizedRoutes(false)}
             </Route>
           </Routes>
           {/* În interiorul .App ca să se poată suprapune corect peste avatar (z-index) cu linkuri din pagini */}

@@ -6,10 +6,12 @@ import ProblemaDetaliata from '../Problemadetaliata';
 import { useSelector } from 'react-redux';
 import SEO from '../SEO';
 import { parseHomeworkParams } from '../../lib/assignmentProgress';
+import { useI18n } from '../../i18n/LanguageContext';
 
 const ProblemaIndividuala = () => {
   const { id } = useParams();
   const navigate = useNavigate();
+  const { localizedPath } = useI18n();
   const [searchParams] = useSearchParams();
   const homeworkContext = parseHomeworkParams(searchParams);
   const { value: problemeData, status } = useSelector(state => state.problems);
@@ -21,9 +23,9 @@ const ProblemaIndividuala = () => {
   // Only redirect if problems have finished loading (succeeded or failed) and problem is not found
   useEffect(() => {
     if ((status === 'succeeded' || status === 'failed') && !problema) {
-      navigate('/probleme');
+      navigate(localizedPath('/probleme'));
     }
-  }, [problema, status, navigate]);
+  }, [problema, status, navigate, localizedPath]);
   
   // If problems are still loading or haven't started loading yet, show loading state
   if (status === 'loading' || status === 'idle') {
@@ -52,9 +54,9 @@ const ProblemaIndividuala = () => {
   const handleBack = () => {
     // If it's a bac problem, go back to bac page, otherwise to general problems page
     if (problema.categorie === 'Bac' || (problema.categorie && problema.categorie.toLowerCase().includes('bac'))) {
-      navigate('/probleme/bac');
+      navigate(localizedPath('/probleme/bac'));
     } else {
-      navigate('/probleme');
+      navigate(localizedPath('/probleme'));
     }
   };
 

@@ -13,6 +13,7 @@ import { addProblem, clearAddStatus } from '../../features/problems/problemsSlic
 import { sendProblemSuggestion } from '../../lib/emailService';
 import SEO from '../SEO';
 import '../../scss/components/_probleme-bac.scss';
+import { useI18n } from '../../i18n/LanguageContext';
 
 // Icon components
 const SearchIcon = () => (
@@ -75,6 +76,7 @@ const getSubjectArea = (problem) => {
 
 const ProblemeBac = () => {
     const navigate = useNavigate();
+    const { localizedPath } = useI18n();
     const location = useLocation();
     const dispatch = useDispatch();
     const { value: problemeData, status } = useSelector(state => state.problems);
@@ -387,7 +389,7 @@ const ProblemeBac = () => {
                     } catch (e) {
                         console.error('Error saving filters:', e);
                     }
-                    navigate(`/probleme/${problemIndex}`);
+                    navigate(localizedPath(`/probleme/${problemIndex}`));
                     return;
                 }
             }
@@ -1509,7 +1511,7 @@ const ProblemeBac = () => {
                             const urlParams = new URLSearchParams(location.search);
                             if (urlParams.get('addProblem') === '1') {
                                 // Clear the custom link and navigate to normal bac problems page
-                                navigate('/probleme/bac');
+                                navigate(localizedPath('/probleme/bac'));
                             }
                             setShowAddModal(false);
                         }}

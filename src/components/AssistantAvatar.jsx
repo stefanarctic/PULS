@@ -4,10 +4,12 @@ import "../scss/components/_assistant-avatar.scss";
 import AssistantPopup from "./AssistantPopup";
 import useDarkMode from "../hooks/useDarkMode";
 import { setAssistantRef } from "../hooks/useAssistant";
+import { useI18n } from "../i18n/LanguageContext";
 
 const AssistantAvatar = () => {
   const location = useLocation();
   const navigate = useNavigate();
+  const { canonicalRomanianPathname, localizedPath } = useI18n();
   const [open, setOpen] = useState(false);
   const [initialMessage, setInitialMessage] = useState("");
   /** true când mesajul vine din /asistent?q= — forțează chat nou în AssistantPopup */
@@ -75,7 +77,7 @@ const AssistantAvatar = () => {
 
   /** Deschidere din link /asistent?q=… (ex. filă nouă din pagina de căutare). */
   useEffect(() => {
-    if (location.pathname !== "/asistent") {
+    if (canonicalRomanianPathname !== "/asistent") {
       asistentDeepLinkConsumedRef.current = false;
       return;
     }
@@ -90,8 +92,8 @@ const AssistantAvatar = () => {
     setInitialMessageInNewChat(true);
     setInitialMessage(q);
     setOpen(true);
-    navigate("/asistent", { replace: true });
-  }, [location.pathname, location.search, navigate]);
+    navigate(localizedPath("/asistent"), { replace: true });
+  }, [location.pathname, location.search, navigate, localizedPath, canonicalRomanianPathname]);
 
   useEffect(() => {
     // Save position to localStorage whenever it changes

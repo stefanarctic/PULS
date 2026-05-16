@@ -25,7 +25,7 @@ const AdminDashboard = () => {
   const navigate = useNavigate();
   const location = useLocation();
   const { value: problems, status, updateStatus, updateError, deleteStatus, deleteError } = useSelector(state => state.problems);
-  const { t } = useI18n();
+  const { t, localizedPath } = useI18n();
   const AD = 'adminDashboard';
 
   const difficultyDisplayLabel = (value) => {
@@ -70,9 +70,9 @@ const AdminDashboard = () => {
 
   useEffect(() => {
     if (!adminLoading && !isAdmin) {
-      navigate('/');
+      navigate(localizedPath('/'));
     }
-  }, [isAdmin, adminLoading, navigate]);
+  }, [isAdmin, adminLoading, navigate, localizedPath]);
 
   useEffect(() => {
     if (!isAdmin || !user?.uid) {
@@ -354,7 +354,7 @@ const AdminDashboard = () => {
 
   const handleCloseModal = () => {
     // setEditingProblem(null);
-    navigate('/admin', { replace: false });
+    navigate(localizedPath('/admin'), { replace: false });
     setTimeout(() => setEditingProblem(null), 50);
   };
 
