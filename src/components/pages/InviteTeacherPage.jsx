@@ -5,11 +5,13 @@ import { doc, getDoc } from 'firebase/firestore';
 import Layout from '../Layout';
 import { auth, db } from '../../lib/firebase';
 import { fetchTeacherInvitePreview, redeemTeacherInvite } from '../../lib/teacherInvite';
+import { useI18n } from '../../i18n/LanguageContext';
 import { ArrowRight, GraduationCap, LogIn, Sparkles } from 'lucide-react';
 import '../../scss/components/_teacher-dashboard.scss';
 
 const InviteTeacherPage = () => {
   const navigate = useNavigate();
+  const { localizedPath } = useI18n();
   const [searchParams] = useSearchParams();
   const token = useMemo(() => {
     const raw = searchParams.get('t');
@@ -62,7 +64,7 @@ const InviteTeacherPage = () => {
     if (authLoading || user) return;
     if (!token) return;
     const redirect = encodeURIComponent(`/invite-teacher?t=${token}`);
-    navigate(`/profil?redirect=${redirect}`, { replace: true });
+    navigate(`${localizedPath('/profil')}?redirect=${redirect}`, { replace: true });
   }, [authLoading, user, token, navigate]);
 
   useEffect(() => {
@@ -126,7 +128,7 @@ const InviteTeacherPage = () => {
               <p className="student-classes-guest-text">
                 Lipsește tokenul din link. Folosește linkul complet primit de la administrator.
               </p>
-              <Link to="/" className="student-classes-btn student-classes-btn--primary">
+              <Link to={localizedPath('/')} className="student-classes-btn student-classes-btn--primary">
                 Acasă
                 <ArrowRight size={18} />
               </Link>
@@ -148,7 +150,7 @@ const InviteTeacherPage = () => {
               <p className="student-classes-guest-text">
                 {inviteLoadError || 'Linkul nu este valid sau a expirat.'}
               </p>
-              <Link to="/profil" className="student-classes-btn student-classes-btn--primary">
+              <Link to={localizedPath('/profil')} className="student-classes-btn student-classes-btn--primary">
                 Mergi la profil
                 <ArrowRight size={18} />
               </Link>
@@ -214,7 +216,7 @@ const InviteTeacherPage = () => {
               <Sparkles className="student-classes-guest-icon" strokeWidth={1.25} />
               <h1 className="student-classes-guest-title">Ești deja profesor</h1>
               <p className="student-classes-guest-text">Poți accesa panoul profesor din profil.</p>
-              <Link to="/profesor" className="student-classes-btn student-classes-btn--primary">
+              <Link to={localizedPath('/profesor')} className="student-classes-btn student-classes-btn--primary">
                 Panou profesor
                 <ArrowRight size={18} />
               </Link>
@@ -236,7 +238,7 @@ const InviteTeacherPage = () => {
               <p className="student-classes-guest-text">
                 Cererea ta pentru cont profesor este în așteptare. Un administrator o va revizui în curând.
               </p>
-              <Link to="/profil" className="student-classes-btn student-classes-btn--primary">
+              <Link to={localizedPath('/profil')} className="student-classes-btn student-classes-btn--primary">
                 Înapoi la profil
                 <ArrowRight size={18} />
               </Link>

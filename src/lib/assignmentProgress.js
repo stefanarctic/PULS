@@ -195,20 +195,29 @@ export async function recordAssignmentItemProgress({
   await setDoc(subRef, payload, { merge: true });
 }
 
+const DEFAULT_ASSIGNMENT_STATUS_LABELS = {
+  done: 'Tema făcută',
+  overdue: 'Tema nefăcută (termen depășit)',
+  inProgress: 'În lucru',
+  notStarted: 'De început',
+};
+
 /**
  * @param {object} params
  * @param {import('firebase/firestore').Timestamp|null|undefined} params.dueDate
  * @param {object|null|undefined} params.submission
  * @param {number} params.itemCount
+ * @param {Partial<typeof DEFAULT_ASSIGNMENT_STATUS_LABELS>} [params.labels] — override UI labels (e.g. English)
  */
-export function studentAssignmentDueStatus({ dueDate, submission, itemCount }) {
+export function studentAssignmentDueStatus({ dueDate, submission, itemCount, labels } = {}) {
+  const L = { ...DEFAULT_ASSIGNMENT_STATUS_LABELS, ...labels };
   const now = new Date();
   const due = dueDate?.toDate ? dueDate.toDate() : null;
   const overdue = due != null && due.getTime() < now.getTime();
   const allDone = submission?.allDone === true;
   if (allDone) {
     return {
-      label: 'Tema făcută',
+      label: L.done,
       variant: 'done',
       overdue,
       lateDone: !!(due && submission?.completedAt?.toDate && submission.completedAt.toDate() > due),
@@ -216,7 +225,7 @@ export function studentAssignmentDueStatus({ dueDate, submission, itemCount }) {
   }
   if (overdue) {
     return {
-      label: 'Tema nefăcută (termen depășit)',
+      label: L.overdue,
       variant: 'overdue',
       overdue: true,
       lateDone: false,
@@ -224,7 +233,7 @@ export function studentAssignmentDueStatus({ dueDate, submission, itemCount }) {
   }
   const doneCount = submission?.items ? Object.values(submission.items).filter((x) => x?.done).length : 0;
   return {
-    label: itemCount > 0 && doneCount > 0 ? 'În lucru' : 'De început',
+    label: itemCount > 0 && doneCount > 0 ? L.inProgress : L.notStarted,
     variant: 'pending',
     overdue: false,
     lateDone: false,

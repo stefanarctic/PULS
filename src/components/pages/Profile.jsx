@@ -350,7 +350,7 @@ const Profile = () => {
             try {
                 const path = decodeURIComponent(redirectParam);
                 if (path.startsWith('/') && !path.includes('://') && !path.startsWith('//')) {
-                    navigate(path, { replace: true });
+                    navigate(localizedPath(path), { replace: true });
                     return;
                 }
             } catch {
@@ -362,7 +362,7 @@ const Profile = () => {
         const trimmed = ret.trim();
         if (!trimmed.startsWith('/') || trimmed.startsWith('//')) return;
         if (trimmed.includes('://')) return;
-        navigate(trimmed, { replace: true });
+        navigate(localizedPath(trimmed), { replace: true });
     }, [loading, user?.uid, location.search, location.state?.returnTo, navigate]);
 
     useEffect(() => {
