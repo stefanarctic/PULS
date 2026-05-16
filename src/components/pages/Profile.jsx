@@ -20,7 +20,9 @@ import { useCommunityStats } from '../../hooks/useCommunity';
 import XPBar from '../community/XPBar';
 import StreakCounter from '../community/StreakCounter';
 import CategoryBadges from '../community/CategoryBadges';
-import { sanitizeAliasInput, getAliasFormatError, ALIAS_MAX_LENGTH } from '../../lib/aliasValidation';
+import { sanitizeAliasInput, getAliasFormatIssueCode, ALIAS_MAX_LENGTH, ALIAS_MIN_LENGTH } from '../../lib/aliasValidation';
+import { useI18n } from '../../i18n/LanguageContext';
+import { formatProblemTitlePrefix } from '../../lib/problemTitleDisplay';
 
 // FavoriteProblemCard definit aici
 const ExternalLinkIcon = () => (
@@ -31,10 +33,33 @@ const ExternalLinkIcon = () => (
     </svg>
 );
 
-// FavoriteProblemCard cu stiluri îmbunătățite
+const aliasIssueMessage = (code, t) => {
+    if (!code) return '';
+    const k = `profilePage.validation.aliasIssue.${code}`;
+    const fb = {
+        empty: 'Aliasul nu poate fi gol.',
+        tooShort: `Aliasul trebuie să aibă cel puțin ${ALIAS_MIN_LENGTH} caractere.`,
+        tooLong: `Aliasul nu poate avea mai mult de ${ALIAS_MAX_LENGTH} caractere.`,
+        invalidPattern:
+            'Aliasul poate conține doar litere, cifre, underscore (_) și cratimă (-), fără spații.',
+    };
+    if (code === 'tooShort') return t(k, fb.tooShort, { min: ALIAS_MIN_LENGTH });
+    if (code === 'tooLong') return t(k, fb.tooLong, { max: ALIAS_MAX_LENGTH });
+    return t(k, fb[code] || '');
+};
+
+// FavoriteProblemCard with i18n
 const FavoriteProblemCard = ({ problem, onUnstar, onResolveClick, completionPercent }) => {
+    const { t } = useI18n();
+    const FC = 'profilePage.favoriteCard';
+    const DL = 'profilePage.difficultyLabels';
     const { index, titlu, dificultate, categorie, solved, createdByAlias } = problem;
     const isPerfectScore = completionPercent === 100;
+    const diffKey = String(dificultate || '')
+        .normalize('NFD')
+        .replace(/\p{M}/gu, '')
+        .toLowerCase();
+    const difficultyLabel = t(`${DL}.${diffKey}`, dificultate);
     const getDifficultyColorClass = (diff) => {
         switch (diff) {
             case 'ușor':
@@ -58,14 +83,14 @@ const FavoriteProblemCard = ({ problem, onUnstar, onResolveClick, completionPerc
             <div className="problem-card-actions">
                 <button
                     onClick={onUnstar}
-                    title="Elimină din favorite"
+                    title={t(`${FC}.removeFavorite`, 'Elimină din favorite')}
                     className="problem-card-favorite-btn is-active"
-                    aria-label="Elimină din favorite"
+                    aria-label={t(`${FC}.removeAria`, 'Elimină din favorite')}
                 >
                     ★
                 </button>
                 {isPerfectScore && (
-                    <div className="problem-card-perfect-badge" title="Ai obținut scorul maxim la această problemă">
+                    <div className="problem-card-perfect-badge" title={t(`${FC}.perfectScoreTitle`, 'Ai obținut scorul maxim la această problemă')}>
                         <span className="problem-card-perfect-icon" aria-hidden="true">
                             <Check size={14} strokeWidth={3} />
                         </span>
@@ -83,23 +108,23 @@ const FavoriteProblemCard = ({ problem, onUnstar, onResolveClick, completionPerc
                     fontStyle: 'italic',
                     color: '#888',
                     zIndex: 2
-                }} title="Autor problemă">{createdByAlias}</span>
+                }} title={t(`${FC}.problemAuthorTitle`, 'Autor problemă')}>{createdByAlias}</span>
             )}
             <div className="problem-card-header">
                 <div className="problem-card-info">
                     <span className="problem-card-id">#{index}</span>
-                    <h3 className="problem-card-title">{titlu}</h3>
+                    <h3 className="problem-card-title">{formatProblemTitlePrefix(titlu, t)}</h3>
                     <p className="problem-card-topic">{categorie}</p>
                 </div>
-                {solved && <div className="problem-card-solved-badge">Rezolvată</div>}
+                {solved && <div className="problem-card-solved-badge">{t(`${FC}.solved`, 'Rezolvată')}</div>}
             </div>
             <div className="problem-card-footer">
-                <div className={`problem-card-difficulty ${getDifficultyColorClass(dificultate)}`}>{dificultate}</div>
+                <div className={`problem-card-difficulty ${getDifficultyColorClass(dificultate)}`}>{difficultyLabel}</div>
                 <button
                     className="problem-card-link"
                     onClick={() => onResolveClick(problem)}
                 >
-                    <span>Rezolvă</span>
+                    <span>{t(`${FC}.solve`, 'Rezolvă')}</span>
                     <ExternalLinkIcon />
                 </button>
             </div>
@@ -165,6 +190,8 @@ const normalizeFavoriteIds = (ids = []) => Array.from(new Set((ids || []).filter
 const Profile = () => {
     const navigate = useNavigate();
     const location = useLocation();
+    const { t, lang, localizedPath } = useI18n();
+    const P = 'profilePage';
 
     // Helper function to scroll to top
     const scrollToTop = () => {
@@ -439,15 +466,15 @@ const Profile = () => {
                     // Utilizatorul a închis popup-ul - nu afișăm eroare
                     return;
                 case 'auth/popup-blocked':
-                    alert('Popup-ul a fost blocat de browser. Te rugăm să permiți popup-urile pentru acest site.');
+                    alert(t(`${P}.alerts.popupBlocked`, 'Popup-ul a fost blocat de browser. Te rugăm să permiți popup-urile pentru acest site.'));
                     return;
                 case 'auth/network-request-failed':
-                    alert('Eroare de rețea. Te rugăm să verifici conexiunea la internet.');
+                    alert(t(`${P}.alerts.networkError`, 'Eroare de rețea. Te rugăm să verifici conexiunea la internet.'));
                     return;
                 default:
                     // Pentru alte erori, afișăm mesajul generic doar dacă nu este o eroare de anulare
                     if (error.code && !error.code.includes('cancelled') && !error.code.includes('popup-closed')) {
-                        alert('Eroare la autentificare cu Google. Te rugăm să încerci din nou.');
+                        alert(t(`${P}.alerts.googleAuthError`, 'Eroare la autentificare cu Google. Te rugăm să încerci din nou.'));
                     }
                     return;
             }
@@ -462,7 +489,7 @@ const Profile = () => {
         // Validation
         if (isSignUp) {
             if (!email || !password || !nameSignUp || !aliasSignUp) {
-                setAuthError('Te rog completează toate câmpurile.');
+                setAuthError(t(`${P}.validation.fillAllFields`, 'Te rog completează toate câmpurile.'));
                 setAuthLoading(false);
                 return;
             }
@@ -470,21 +497,21 @@ const Profile = () => {
             // Validate name
             const trimmedName = nameSignUp.trim();
             if (trimmedName.length < 2) {
-                setAuthError('Numele trebuie să aibă cel puțin 2 caractere.');
+                setAuthError(t(`${P}.validation.nameMin`, 'Numele trebuie să aibă cel puțin 2 caractere.'));
                 setAuthLoading(false);
                 return;
             }
             if (trimmedName.length > 50) {
-                setAuthError('Numele nu poate avea mai mult de 50 de caractere.');
+                setAuthError(t(`${P}.validation.nameMax`, 'Numele nu poate avea mai mult de 50 de caractere.'));
                 setAuthLoading(false);
                 return;
             }
 
             // Validate alias
             const trimmedAlias = aliasSignUp.trim();
-            const aliasFormatErr = getAliasFormatError(trimmedAlias);
-            if (aliasFormatErr) {
-                setAuthError(aliasFormatErr);
+            const aliasIssue = getAliasFormatIssueCode(trimmedAlias);
+            if (aliasIssue) {
+                setAuthError(aliasIssueMessage(aliasIssue, t));
                 setAuthLoading(false);
                 return;
             }
@@ -494,7 +521,7 @@ const Profile = () => {
                 const q = query(collection(db, 'users'), where('alias', '==', trimmedAlias));
                 const querySnapshot = await getDocs(q);
                 if (!querySnapshot.empty) {
-                    setAuthError('Aliasul este deja folosit. Te rog alege altul.');
+                    setAuthError(t(`${P}.validation.aliasTaken`, 'Aliasul este deja folosit. Te rog alege altul.'));
                     setAuthLoading(false);
                     return;
                 }
@@ -504,20 +531,20 @@ const Profile = () => {
             }
         } else {
             if (!email || !password) {
-                setAuthError('Te rog completează toate câmpurile.');
+                setAuthError(t(`${P}.validation.fillAllFields`, 'Te rog completează toate câmpurile.'));
                 setAuthLoading(false);
                 return;
             }
         }
 
         if (password.length < 6) {
-            setAuthError('Parola trebuie să aibă cel puțin 6 caractere.');
+            setAuthError(t(`${P}.validation.passwordMin`, 'Parola trebuie să aibă cel puțin 6 caractere.'));
             setAuthLoading(false);
             return;
         }
 
         if (isSignUp && password !== confirmPassword) {
-            setAuthError('Parolele nu se potrivesc.');
+            setAuthError(t(`${P}.validation.passwordMismatch`, 'Parolele nu se potrivesc.'));
             setAuthLoading(false);
             return;
         }
@@ -553,28 +580,28 @@ const Profile = () => {
             setShowEmailAuth(false);
             scrollToTop();
         } catch (error) {
-            let errorMessage = 'Eroare la autentificare.';
+            let errorMessage = t(`${P}.firebaseErrors.generic`, 'Eroare la autentificare.');
             switch (error.code) {
                 case 'auth/email-already-in-use':
-                    errorMessage = 'Acest email este deja înregistrat.';
+                    errorMessage = t(`${P}.firebaseErrors.emailInUse`, 'Acest email este deja înregistrat.');
                     break;
                 case 'auth/invalid-email':
-                    errorMessage = 'Adresa de email nu este validă.';
+                    errorMessage = t(`${P}.firebaseErrors.invalidEmail`, 'Adresa de email nu este validă.');
                     break;
                 case 'auth/weak-password':
-                    errorMessage = 'Parola este prea slabă.';
+                    errorMessage = t(`${P}.firebaseErrors.weakPassword`, 'Parola este prea slabă.');
                     break;
                 case 'auth/user-not-found':
-                    errorMessage = 'Nu există un cont cu acest email.';
+                    errorMessage = t(`${P}.firebaseErrors.userNotFound`, 'Nu există un cont cu acest email.');
                     break;
                 case 'auth/wrong-password':
-                    errorMessage = 'Parolă incorectă.';
+                    errorMessage = t(`${P}.firebaseErrors.wrongPassword`, 'Parolă incorectă.');
                     break;
                 case 'auth/invalid-credential':
-                    errorMessage = 'Email sau parolă incorectă.';
+                    errorMessage = t(`${P}.firebaseErrors.invalidCredential`, 'Email sau parolă incorectă.');
                     break;
                 default:
-                    errorMessage = error.message || 'Eroare la autentificare.';
+                    errorMessage = error.message || t(`${P}.firebaseErrors.generic`, 'Eroare la autentificare.');
             }
             setAuthError(errorMessage);
         } finally {
@@ -603,35 +630,35 @@ const Profile = () => {
                     await saveSolvedProblem(problem.problemId, problem.scoreObtained, problem.maxScore);
                 }
 
-                alert('Probleme de test adăugate!');
+                alert(t(`${P}.alerts.testProblemsAdded`, 'Probleme de test adăugate!'));
             };
 
             // Funcție pentru a șterge problemele de test din database
             window.clearTestSolvedProblems = async () => {
                 try {
                     const deletedCount = await clearTestProblems();
-                    alert(`Șterse ${deletedCount} probleme de test!`);
+                    alert(t(`${P}.alerts.testProblemsCleared`, 'Șterse {count} probleme de test!', { count: deletedCount }));
                 } catch (error) {
                     console.error('Error clearing test problems:', error);
-                    alert('Eroare la ștergerea problemelor de test!');
+                    alert(t(`${P}.alerts.testClearError`, 'Eroare la ștergerea problemelor de test!'));
                 }
             };
 
             // Funcție pentru a șterge toate problemele rezolvate
             window.clearAllSolvedProblems = async () => {
-                const confirmed = confirm('Ești sigur că vrei să ștergi TOATE problemele rezolvate? Această acțiune nu poate fi anulată!');
+                const confirmed = confirm(t(`${P}.alerts.clearAllConfirm`, 'Ești sigur că vrei să ștergi TOATE problemele rezolvate? Această acțiune nu poate fi anulată!'));
                 if (!confirmed) return;
 
                 try {
                     await clearAllSolvedProblems();
-                    alert('Toate problemele rezolvate au fost șterse!');
+                    alert(t(`${P}.alerts.allSolvedCleared`, 'Toate problemele rezolvate au fost șterse!'));
                 } catch (error) {
                     console.error('Error clearing all solved problems:', error);
-                    alert('Eroare la ștergerea problemelor!');
+                    alert(t(`${P}.alerts.clearAllError`, 'Eroare la ștergerea problemelor!'));
                 }
             };
         }
-    }, [saveSolvedProblem, clearTestProblems, clearAllSolvedProblems]);
+    }, [saveSolvedProblem, clearTestProblems, clearAllSolvedProblems, t, P]);
 
     const checkAliasUnique = async (aliasToCheck) => {
         const q = query(collection(db, 'users'), where('alias', '==', aliasToCheck));
@@ -659,32 +686,32 @@ const Profile = () => {
 
             // Validate name
             if (!trimmedName) {
-                setNameError('Numele nu poate fi gol.');
+                setNameError(t(`${P}.validation.nameEmpty`, 'Numele nu poate fi gol.'));
                 return;
             }
             if (trimmedName.length < 2) {
-                setNameError('Numele trebuie să aibă cel puțin 2 caractere.');
+                setNameError(t(`${P}.validation.nameMin`, 'Numele trebuie să aibă cel puțin 2 caractere.'));
                 return;
             }
             if (trimmedName.length > 50) {
-                setNameError('Numele nu poate avea mai mult de 50 de caractere.');
+                setNameError(t(`${P}.validation.nameMax`, 'Numele nu poate avea mai mult de 50 de caractere.'));
                 return;
             }
 
-            const aliasFormatErr = getAliasFormatError(trimmedAlias);
-            if (aliasFormatErr) {
-                setAliasError(aliasFormatErr);
+            const aliasIssue = getAliasFormatIssueCode(trimmedAlias);
+            if (aliasIssue) {
+                setAliasError(aliasIssueMessage(aliasIssue, t));
                 return;
             }
             const isUnique = await checkAliasUnique(trimmedAlias);
             if (!isUnique) {
-                setAliasError('Aliasul este deja folosit.');
+                setAliasError(t(`${P}.validation.aliasTakenShort`, 'Aliasul este deja folosit.'));
                 return;
             }
 
             // Validate description
             if (trimmedDescription.length > 200) {
-                setDescriptionError('Descrierea nu poate avea mai mult de 200 de caractere.');
+                setDescriptionError(t(`${P}.validation.descriptionMax`, 'Descrierea nu poate avea mai mult de 200 de caractere.'));
                 return;
             }
 
@@ -702,7 +729,7 @@ const Profile = () => {
                     console.log('Imagine încărcată cu succes la Cloudinary:', cloudinaryUrl);
                 } catch (uploadError) {
                     console.error('Eroare la upload imagine:', uploadError);
-                    alert('Eroare la încărcarea imaginii. Profilul va fi salvat fără imaginea nouă.');
+                    alert(t(`${P}.alerts.uploadError`, 'Eroare la încărcarea imaginii. Profilul va fi salvat fără imaginea nouă.'));
                     // Continuă cu salvarea profilului fără imaginea nouă
                 } finally {
                     setProfilePicUploadLoading(false);
@@ -737,7 +764,7 @@ const Profile = () => {
 
         } catch (error) {
             console.error('Error saving profile:', error);
-            setSaveError('Eroare la salvarea profilului. Te rugăm să încerci din nou.');
+            setSaveError(t(`${P}.alerts.saveProfileError`, 'Eroare la salvarea profilului. Te rugăm să încerci din nou.'));
         } finally {
             setProfileSaveLoading(false);
         }
@@ -751,13 +778,13 @@ const Profile = () => {
         // Validate file size (max 5MB)
         const maxSize = 5 * 1024 * 1024; // 5MB
         if (file.size > maxSize) {
-            alert('Fișierul este prea mare! Dimensiunea maximă permisă este 5MB.');
+            alert(t(`${P}.alerts.fileTooLarge`, 'Fișierul este prea mare! Dimensiunea maximă permisă este 5MB.'));
             return;
         }
 
         // Validate file type
         if (!file.type.startsWith('image/')) {
-            alert('Te rog selectează doar fișiere de tip imagine (JPG, PNG, GIF, etc.).');
+            alert(t(`${P}.alerts.fileTypeImage`, 'Te rog selectează doar fișiere de tip imagine (JPG, PNG, GIF, etc.).'));
             return;
         }
 
@@ -776,7 +803,7 @@ const Profile = () => {
 
         } catch (err) {
             console.error('Eroare la procesarea imaginii:', err);
-            alert('Eroare la procesarea imaginii. Te rog încearcă din nou.');
+            alert(t(`${P}.alerts.imageProcessError`, 'Eroare la procesarea imaginii. Te rog încearcă din nou.'));
         }
     };
 
@@ -851,7 +878,9 @@ const Profile = () => {
             // Folosește titlul personalizat dacă există, altfel caută în problemele existente
             let problemTitle = solvedProblem.customTitle;
             if (!problemTitle) {
-                problemTitle = originalProblem ? originalProblem.titlu : `Problema ${solvedProblem.problemId}`;
+                problemTitle = originalProblem
+                    ? originalProblem.titlu
+                    : t(`${P}.problemTitleFallback`, 'Problema {id}', { id: solvedProblem.problemId });
             }
 
             // Extragem index-ul problemei pentru navigare (ruta folosește index-ul)
@@ -910,7 +939,7 @@ const Profile = () => {
             if (p.categorie) stats.categorie[p.categorie] = (stats.categorie[p.categorie] || 0) + 1;
         });
         setStatistics(stats);
-    }, [user, userProblems, alias, allProblems, solvedProblems]);
+    }, [user, userProblems, alias, allProblems, solvedProblems, t, P]);
 
     useEffect(() => {
         if (user?.uid && allProblems?.length > 0) {
@@ -931,8 +960,8 @@ const Profile = () => {
                     <div className="loading-container">
                         <div className="loading-spinner">
                             <div className="spinner"></div>
-                            <h3>Se încarcă profilul...</h3>
-                            <p>Te rugăm să aștepți în timp ce se procesează datele.</p>
+                            <h3>{t(`${P}.loadingScreen.title`, 'Se încarcă profilul...')}</h3>
+                            <p>{t(`${P}.loadingScreen.subtitle`, 'Te rugăm să aștepți în timp ce se procesează datele.')}</p>
                         </div>
                     </div>
                 </div>
@@ -944,7 +973,7 @@ const Profile = () => {
         return (
             <Layout>
                 <div className={`profile-container profile-login-center ${showEmailAuth && isSignUp ? 'profile-login-center-signup' : ''}`}>
-                    <h2 className="profile-title">Profil</h2>
+                    <h2 className="profile-title">{t(`${P}.title`, 'Profil')}</h2>
 
                     {!showEmailAuth ? (
                         <div className="profile-auth-container">
@@ -956,10 +985,10 @@ const Profile = () => {
                                         <path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z" />
                                         <path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" />
                                     </svg>
-                                    Autentifică-te cu Google
+                                    {t(`${P}.authFull.signInGoogle`, 'Autentifică-te cu Google')}
                                 </button>
                                 <div className="profile-auth-divider">
-                                    <span>sau</span>
+                                    <span>{t(`${P}.authFull.divider`, 'sau')}</span>
                                 </div>
                                 <div className="profile-email-options">
                                     <button
@@ -976,7 +1005,7 @@ const Profile = () => {
                                             scrollToTop();
                                         }}
                                     >
-                                        Creează cont cu email
+                                        {t(`${P}.authFull.createEmail`, 'Creează cont cu email')}
                                     </button>
                                     <button
                                         className="profile-btn-big profile-btn-outline"
@@ -992,7 +1021,7 @@ const Profile = () => {
                                             scrollToTop();
                                         }}
                                     >
-                                        Autentifică-te cu email
+                                        {t(`${P}.authFull.signInEmail`, 'Autentifică-te cu email')}
                                     </button>
                                 </div>
                             </div>
@@ -1000,12 +1029,14 @@ const Profile = () => {
                     ) : (
                         <div className={`profile-email-auth-form ${isSignUp ? 'profile-email-auth-form--signup' : ''}`}>
                             <h3 className="profile-email-auth-title">
-                                {isSignUp ? 'Creează un cont nou' : 'Autentifică-te'}
+                                {isSignUp
+                                    ? t(`${P}.authFull.formTitleSignUp`, 'Creează un cont nou')
+                                    : t(`${P}.authFull.formTitleSignIn`, 'Autentifică-te')}
                             </h3>
 
                             <form onSubmit={handleEmailSignUp}>
                                 <div className="profile-email-auth-field">
-                                    <label htmlFor="email">Email:</label>
+                                    <label htmlFor="email">{t(`${P}.authFull.emailLabel`, 'Email:')}</label>
                                     <input
                                         id="email"
                                         type="email"
@@ -1014,7 +1045,7 @@ const Profile = () => {
                                             setEmail(e.target.value);
                                             setAuthError('');
                                         }}
-                                        placeholder="introdu@email.com"
+                                        placeholder={t(`${P}.authFull.emailPlaceholder`, 'you@example.com')}
                                         required
                                         disabled={authLoading}
                                     />
@@ -1023,7 +1054,7 @@ const Profile = () => {
                                 {isSignUp && (
                                     <>
                                         <div className="profile-email-auth-field">
-                                            <label htmlFor="nameSignUp">Nume:</label>
+                                            <label htmlFor="nameSignUp">{t(`${P}.authFull.nameLabel`, 'Nume:')}</label>
                                             <input
                                                 id="nameSignUp"
                                                 type="text"
@@ -1032,7 +1063,7 @@ const Profile = () => {
                                                     setNameSignUp(e.target.value);
                                                     setAuthError('');
                                                 }}
-                                                placeholder="Introdu numele tău"
+                                                placeholder={t(`${P}.authFull.namePlaceholder`, 'Introdu numele tău')}
                                                 required
                                                 disabled={authLoading}
                                                 minLength={2}
@@ -1041,7 +1072,7 @@ const Profile = () => {
                                         </div>
 
                                         <div className="profile-email-auth-field">
-                                            <label htmlFor="aliasSignUp">Alias:</label>
+                                            <label htmlFor="aliasSignUp">{t(`${P}.authFull.aliasLabel`, 'Alias:')}</label>
                                             <input
                                                 id="aliasSignUp"
                                                 type="text"
@@ -1050,7 +1081,7 @@ const Profile = () => {
                                                     setAliasSignUp(sanitizeAliasInput(e.target.value));
                                                     setAuthError('');
                                                 }}
-                                                placeholder="Alege un alias unic"
+                                                placeholder={t(`${P}.authFull.aliasPlaceholder`, 'Alege un alias unic')}
                                                 required
                                                 disabled={authLoading}
                                                 minLength={3}
@@ -1058,14 +1089,18 @@ const Profile = () => {
                                                 autoComplete="username"
                                             />
                                             <div className="profile-alias-hint">
-                                                Litere, cifre, _ și -, fără spații (max. {ALIAS_MAX_LENGTH} caractere).
+                                                {t(
+                                                    `${P}.editProfileModal.aliasHint`,
+                                                    'Litere, cifre, _ și -, fără spații (max. {max} caractere).',
+                                                    { max: ALIAS_MAX_LENGTH }
+                                                )}
                                             </div>
                                         </div>
                                     </>
                                 )}
 
                                 <div className="profile-email-auth-field">
-                                    <label htmlFor="password">Parolă:</label>
+                                    <label htmlFor="password">{t(`${P}.authFull.passwordLabel`, 'Parolă:')}</label>
                                     <input
                                         id="password"
                                         type="password"
@@ -1074,7 +1109,7 @@ const Profile = () => {
                                             setPassword(e.target.value);
                                             setAuthError('');
                                         }}
-                                        placeholder="Minim 6 caractere"
+                                        placeholder={t(`${P}.authFull.passwordPlaceholder`, 'Minim 6 caractere')}
                                         required
                                         disabled={authLoading}
                                         minLength={6}
@@ -1083,7 +1118,9 @@ const Profile = () => {
 
                                 {isSignUp && (
                                     <div className="profile-email-auth-field">
-                                        <label htmlFor="confirmPassword">Confirmă parola:</label>
+                                        <label htmlFor="confirmPassword">
+                                            {t(`${P}.authFull.confirmPasswordLabel`, 'Confirmă parola:')}
+                                        </label>
                                         <input
                                             id="confirmPassword"
                                             type="password"
@@ -1092,7 +1129,10 @@ const Profile = () => {
                                                 setConfirmPassword(e.target.value);
                                                 setAuthError('');
                                             }}
-                                            placeholder="Repetă parola"
+                                            placeholder={t(
+                                                `${P}.authFull.confirmPasswordPlaceholder`,
+                                                'Repetă parola'
+                                            )}
                                             required
                                             disabled={authLoading}
                                             minLength={6}
@@ -1112,7 +1152,11 @@ const Profile = () => {
                                         className="profile-btn profile-btn-blue"
                                         disabled={authLoading}
                                     >
-                                        {authLoading ? 'Se procesează...' : (isSignUp ? 'Creează cont' : 'Autentifică-te')}
+                                        {authLoading
+                                            ? t(`${P}.authFull.processing`, 'Se procesează...')
+                                            : isSignUp
+                                                ? t(`${P}.authFull.submitSignUp`, 'Creează cont')
+                                                : t(`${P}.authFull.submitSignIn`, 'Autentifică-te')}
                                     </button>
                                     <button
                                         type="button"
@@ -1127,14 +1171,14 @@ const Profile = () => {
                                         }}
                                         disabled={authLoading}
                                     >
-                                        Anulează
+                                        {t(`${P}.authFull.cancel`, 'Anulează')}
                                     </button>
                                 </div>
 
                                 <div className="profile-email-auth-switch">
                                     {isSignUp ? (
                                         <span>
-                                            Ai deja cont?{' '}
+                                            {t(`${P}.authFull.hasAccount`, 'Ai deja cont?')}{' '}
                                             <button
                                                 type="button"
                                                 className="profile-auth-link"
@@ -1147,12 +1191,12 @@ const Profile = () => {
                                                     scrollToTop();
                                                 }}
                                             >
-                                                Autentifică-te
+                                                {t(`${P}.authFull.signInLink`, 'Autentifică-te')}
                                             </button>
                                         </span>
                                     ) : (
                                         <span>
-                                            Nu ai cont?{' '}
+                                            {t(`${P}.authFull.noAccount`, 'Nu ai cont?')}{' '}
                                             <button
                                                 type="button"
                                                 className="profile-auth-link"
@@ -1162,7 +1206,7 @@ const Profile = () => {
                                                     scrollToTop();
                                                 }}
                                             >
-                                                Creează unul
+                                                {t(`${P}.authFull.createOne`, 'Creează unul')}
                                             </button>
                                         </span>
                                     )}
@@ -1217,22 +1261,26 @@ const Profile = () => {
                             <h1 className="profile-name">{name || user.name}</h1>
                             <p className="profile-email">{user.email}</p>
                             <div className="profile-alias">
-                                <span>Alias: </span>
-                                <b>{alias || <span style={{ color: '#aaa' }}>[nesetat]</span>}</b>
+                                <span>{t(`${P}.signedIn.aliasLabel`, 'Alias:')} </span>
+                                <b>{alias || <span style={{ color: '#aaa' }}>{t(`${P}.signedIn.notSet`, '[nesetat]')}</span>}</b>
                             </div>
                             <div className="profile-description">
-                                <span>Descriere: </span>
-                                <span>{description || <span style={{ color: '#aaa' }}>[nesetată]</span>}</span>
+                                <span>{t(`${P}.signedIn.descriptionLabel`, 'Descriere:')} </span>
+                                <span>{description || <span style={{ color: '#aaa' }}>{t(`${P}.signedIn.notSet`, '[nesetat]')}</span>}</span>
                             </div>
                             <div className="profile-stats">
                                 <div className="stat-item">
                                     <span className="stat-icon">📅</span>
-                                    <span className="stat-text">Membru din {user.joinedDate?.slice(0, 10) || '-'}</span>
+                                    <span className="stat-text">
+                                        {t(`${P}.signedIn.memberSince`, 'Membru din {date}', {
+                                            date: user.joinedDate?.slice(0, 10) || '-',
+                                        })}
+                                    </span>
                                 </div>
                                 {isAdmin && (
                                     <div className="stat-item">
                                         <span className="stat-icon">⭐</span>
-                                        <span className="stat-text">Administrator</span>
+                                        <span className="stat-text">{t(`${P}.signedIn.administrator`, 'Administrator')}</span>
                                     </div>
                                 )}
                             </div>
@@ -1254,43 +1302,46 @@ const Profile = () => {
                                     setSaveError('');
                                     setShowEditModal(true);
                                 }}>
-                                    Editează profilul
+                                    {t(`${P}.signedIn.editProfile`, 'Editează profilul')}
                                 </button>
                                 <button className="logout-btn" onClick={handleLogout}>
-                                    Deconectează-te
+                                    {t(`${P}.signedIn.logOut`, 'Deconectează-te')}
                                 </button>
                             </div>
                             <div className="profile-floating-stack">
                                 {isAdmin && (
-                                    <button type="button" className="admin-dashboard-btn profile-floating-btn" onClick={() => navigate('/admin')}>
+                                    <button type="button" className="admin-dashboard-btn profile-floating-btn" onClick={() => navigate(localizedPath('/admin'))}>
                                         <ShieldCheck size={18} />
-                                        <span>Panou Admin</span>
+                                        <span>{t(`${P}.signedIn.adminPanel`, 'Panou Admin')}</span>
                                     </button>
                                 )}
                                 {teacherStatus !== 'approved' && (
-                                    <Link to="/clasa" className="admin-dashboard-btn profile-floating-btn" style={{ textDecoration: 'none' }}>
+                                    <Link to={localizedPath('/clasa')} className="admin-dashboard-btn profile-floating-btn" style={{ textDecoration: 'none' }}>
                                         <School size={18} />
-                                        <span>Clasele mele</span>
+                                        <span>{t(`${P}.signedIn.myClasses`, 'Clasele mele')}</span>
                                     </Link>
                                 )}
                                 {teacherStatus === 'approved' && (
-                                    <button type="button" className="admin-dashboard-btn profile-floating-btn" onClick={() => navigate('/profesor')}>
+                                    <button type="button" className="admin-dashboard-btn profile-floating-btn" onClick={() => navigate(localizedPath('/profesor'))}>
                                         <GraduationCap size={18} />
-                                        <span>Panou profesor</span>
+                                        <span>{t(`${P}.signedIn.teacherPanel`, 'Panou profesor')}</span>
                                     </button>
                                 )}
-                                <Link to="/comunitate" className="admin-dashboard-btn profile-floating-btn" style={{ textDecoration: 'none' }}>
+                                <Link to={localizedPath('/comunitate')} className="admin-dashboard-btn profile-floating-btn" style={{ textDecoration: 'none' }}>
                                     <Users size={18} />
-                                    <span>Comunitate</span>
+                                    <span>{t(`${P}.signedIn.community`, 'Comunitate')}</span>
                                 </Link>
                                 {teacherStatus === 'pending' && (
                                     <p className="profile-teacher-hint">
-                                        Cererea ta pentru cont profesor este în așteptare. Un administrator o va revizui în curând.
+                                        {t(
+                                            `${P}.signedIn.teacherPendingHint`,
+                                            'Cererea ta pentru cont profesor este în așteptare. Un administrator o va revizui în curând.'
+                                        )}
                                     </p>
                                 )}
                                 {teacherStatus === 'rejected' && (
                                     <p className="profile-teacher-hint profile-teacher-hint--warn">
-                                        Cererea anterioară a fost respinsă.
+                                        {t(`${P}.signedIn.teacherRejectedHint`, 'Cererea anterioară a fost respinsă.')}
                                     </p>
                                 )}
                             </div>
@@ -1299,10 +1350,10 @@ const Profile = () => {
                     {communityStats && (
                         <div className="profile-community-section">
                             <div className="profile-community-section__header">
-                                <h3>Progres comunitate</h3>
+                                <h3>{t(`${P}.signedIn.communityProgress`, 'Progres comunitate')}</h3>
                                 {user?.uid && (
-                                    <Link to={`/profil/${user.uid}`} className="profile-community-section__public-link">
-                                        Vezi profilul public
+                                    <Link to={localizedPath(`/profil/${user.uid}`)} className="profile-community-section__public-link">
+                                        {t(`${P}.signedIn.viewPublicProfile`, 'Vezi profilul public')}
                                     </Link>
                                 )}
                             </div>
@@ -1320,7 +1371,7 @@ const Profile = () => {
                                 </div>
                                 {communityBadges && communityBadges.length > 0 && (
                                     <div className="profile-community-section__badges">
-                                        <h4>Badge-uri categorii</h4>
+                                        <h4>{t(`${P}.signedIn.categoryBadges`, 'Badge-uri categorii')}</h4>
                                         <CategoryBadges badges={communityBadges} compact />
                                     </div>
                                 )}
@@ -1331,16 +1382,16 @@ const Profile = () => {
                 {showEditModal && (
                     <div className="profile-edit-modal">
                         <div className="profile-edit-content">
-                            <h2>Editează profilul</h2>
-                            <label>Nume:</label>
+                            <h2>{t(`${P}.editProfileModal.title`, 'Editează profilul')}</h2>
+                            <label>{t(`${P}.editProfileModal.nameLabel`, 'Nume:')}</label>
                             <input
                                 type="text"
                                 value={nameInput}
                                 onChange={e => setNameInput(e.target.value)}
-                                placeholder="Introdu numele tău"
+                                placeholder={t(`${P}.editProfileModal.namePlaceholder`, 'Introdu numele tău')}
                             />
                             {nameError && <div className="name-error">{nameError}</div>}
-                            <label>Alias:</label>
+                            <label>{t(`${P}.editProfileModal.aliasLabel`, 'Alias:')}</label>
                             <input
                                 type="text"
                                 value={aliasInput}
@@ -1348,18 +1399,25 @@ const Profile = () => {
                                     setAliasInput(sanitizeAliasInput(e.target.value));
                                     setAliasError('');
                                 }}
-                                placeholder="Alege un alias unic"
+                                placeholder={t(`${P}.editProfileModal.aliasPlaceholder`, 'Alege un alias unic')}
                                 minLength={3}
                                 maxLength={ALIAS_MAX_LENGTH}
                                 autoComplete="username"
                             />
                             <div className="profile-alias-hint">
-                                Litere, cifre, _ și -, fără spații (max. {ALIAS_MAX_LENGTH} caractere).
+                                {t(
+                                    `${P}.editProfileModal.aliasHint`,
+                                    'Litere, cifre, _ și -, fără spații (max. {max} caractere).',
+                                    { max: ALIAS_MAX_LENGTH }
+                                )}
                             </div>
                             {aliasError && <div className="alias-error">{aliasError}</div>}
-                            <label>Poza de profil (URL):</label>
+                            <label>{t(`${P}.editProfileModal.profilePicUrl`, 'Poza de profil (URL):')}</label>
                             <div style={{ fontSize: '0.875rem', color: '#6b7280', marginBottom: '8px' }}>
-                                Formate acceptate: JPG, PNG, GIF. Dimensiune maximă: 5MB
+                                {t(
+                                    `${P}.editProfileModal.acceptedFormats`,
+                                    'Formate acceptate: JPG, PNG, GIF. Dimensiune maximă: 5MB'
+                                )}
                             </div>
                             <div
                                 className="profile-pic-dropzone"
@@ -1403,7 +1461,7 @@ const Profile = () => {
                                                 cursor: 'pointer'
                                             }}
                                         >
-                                            Șterge
+                                            {t(`${P}.editProfileModal.deleteImage`, 'Șterge')}
                                         </button>
                                     </div>
                                 ) : profilePic && (profilePic.startsWith('http') || profilePic.startsWith('data:image')) ? (
@@ -1415,12 +1473,17 @@ const Profile = () => {
                                     />
                                 ) : profilePic ? (
                                     <div style={{ fontSize: '0.75rem', color: '#6b7280', marginBottom: '8px' }}>
-                                        Imagine salvată
+                                        {t(`${P}.editProfileModal.savedImage`, 'Imagine salvată')}
                                     </div>
                                 ) : (
                                     <div>
                                         <div style={{ marginBottom: '8px' }}>📷</div>
-                                        <span>Trage o poză aici, dă click sau folosește Ctrl+V</span>
+                                        <span>
+                                            {t(
+                                                `${P}.editProfileModal.dropzone`,
+                                                'Trage o poză aici, dă click sau folosește Ctrl+V'
+                                            )}
+                                        </span>
                                     </div>
                                 )}
                                 <input
@@ -1440,14 +1503,20 @@ const Profile = () => {
                                     textAlign: 'center',
                                     fontWeight: '500'
                                 }}>
-                                    ✅ Profil salvat cu succes! {selectedImageFile ? 'Imaginea a fost încărcată la Cloudinary.' : ''}
+                                    {t(`${P}.editProfileModal.saveSuccess`, 'Profil salvat cu succes!')}{' '}
+                                    {selectedImageFile
+                                        ? t(`${P}.editProfileModal.cloudinaryNote`, 'Imaginea a fost încărcată la Cloudinary.')
+                                        : ''}
                                 </div>
                             )}
-                            <label>Descriere:</label>
+                            <label>{t(`${P}.editProfileModal.descriptionLabel`, 'Descriere:')}</label>
                             <textarea
                                 value={descriptionInput}
                                 onChange={e => setDescriptionInput(e.target.value)}
-                                placeholder="Scrie câteva cuvinte despre tine (max 200 caractere)"
+                                placeholder={t(
+                                    `${P}.editProfileModal.descriptionPlaceholder`,
+                                    'Scrie câteva cuvinte despre tine (max. 200 caractere)'
+                                )}
                                 maxLength={200}
                             />
                             {descriptionError && <div className="description-error">{descriptionError}</div>}
@@ -1458,14 +1527,16 @@ const Profile = () => {
                                     onClick={handleProfileSave}
                                     disabled={profileSaveLoading}
                                 >
-                                    {profileSaveLoading ? 'Se salvează...' : 'Salvează'}
+                                    {profileSaveLoading
+                                        ? t(`${P}.editProfileModal.saving`, 'Se salvează...')
+                                        : t(`${P}.editProfileModal.save`, 'Salvează')}
                                 </button>
                                 <button
                                     className="profile-btn profile-btn-red"
                                     onClick={() => setShowEditModal(false)}
                                     disabled={profileSaveLoading}
                                 >
-                                    Anulează
+                                    {t(`${P}.editProfileModal.cancel`, 'Anulează')}
                                 </button>
                             </div>
                         </div>
@@ -1478,25 +1549,25 @@ const Profile = () => {
                             className={`tab-trigger ${activeTab === 'activitate' ? 'active' : ''}`}
                             onClick={() => setActiveTab('activitate')}
                         >
-                            Activitate recentă
+                            {t(`${P}.tabs.recentActivity`, 'Activitate recentă')}
                         </button>
                         <button
                             className={`tab-trigger ${activeTab === 'probleme' ? 'active' : ''}`}
                             onClick={() => setActiveTab('probleme')}
                         >
-                            Probleme salvate
+                            {t(`${P}.tabs.savedProblems`, 'Probleme salvate')}
                         </button>
                         <button
                             className={`tab-trigger ${activeTab === 'realizari' ? 'active' : ''}`}
                             onClick={() => setActiveTab('realizari')}
                         >
-                            Realizări
+                            {t(`${P}.tabs.achievements`, 'Realizări')}
                         </button>
                         <button
                             className={`tab-trigger ${activeTab === 'statistici' ? 'active' : ''}`}
                             onClick={() => setActiveTab('statistici')}
                         >
-                            Statistici
+                            {t(`${P}.tabs.statistics`, 'Statistici')}
                         </button>
                     </div>
                     <div className="tab-content">
@@ -1506,8 +1577,8 @@ const Profile = () => {
                                     <div className="loading-container" style={{ minHeight: '200px' }}>
                                         <div className="loading-spinner">
                                             <div className="spinner"></div>
-                                            <h3>Se încarcă activitatea...</h3>
-                                            <p>Te rugăm să aștepți în timp ce se procesează datele.</p>
+                                            <h3>{t(`${P}.loadingPanels.activity`, 'Se încarcă activitatea...')}</h3>
+                                            <p>{t(`${P}.loadingPanels.wait`, 'Te rugăm să aștepți în timp ce se procesează datele.')}</p>
                                         </div>
                                     </div>
                                 ) : (
@@ -1517,9 +1588,13 @@ const Profile = () => {
                         )}
                         {activeTab === 'probleme' && (
                             <div className="profile-favorites-section" style={{ margin: '32px 0' }}>
-                                <h2 style={{ fontSize: '2rem', fontWeight: 700, marginBottom: '2rem' }}>Probleme salvate</h2>
+                                <h2 style={{ fontSize: '2rem', fontWeight: 700, marginBottom: '2rem' }}>
+                                    {t(`${P}.savedProblemsSection.title`, 'Probleme salvate')}
+                                </h2>
                                 {favoriteProblems.filter(p => p && p.id).length === 0 ? (
-                                    <div style={{ color: '#888' }}>Nu ai probleme favorite salvate.</div>
+                                    <div style={{ color: '#888' }}>
+                                        {t(`${P}.savedProblemsSection.empty`, 'Nu ai probleme favorite salvate.')}
+                                    </div>
                                 ) : (
                                     <div className="favorites-grid-container" style={{ maxHeight: '325px', overflowY: 'auto', paddingRight: 8 }}>
                                         <div className="problems-grid">
@@ -1541,7 +1616,7 @@ const Profile = () => {
                                                     }}
                                                     onResolveClick={(p) => {
                                                         // Navigare client-side (fără reload) folosind indexul problemei
-                                                        navigate(`/probleme/${p.index}`);
+                                                        navigate(localizedPath(`/probleme/${p.index}`));
                                                     }}
                                                 />
                                             ))}
@@ -1556,8 +1631,8 @@ const Profile = () => {
                                     <div className="loading-container" style={{ minHeight: '200px' }}>
                                         <div className="loading-spinner">
                                             <div className="spinner"></div>
-                                            <h3>Se încarcă realizările...</h3>
-                                            <p>Te rugăm să aștepți în timp ce se procesează datele.</p>
+                                            <h3>{t(`${P}.loadingPanels.achievements`, 'Se încarcă realizările...')}</h3>
+                                            <p>{t(`${P}.loadingPanels.wait`, 'Te rugăm să aștepți în timp ce se procesează datele.')}</p>
                                         </div>
                                     </div>
                                 ) : (
@@ -1571,8 +1646,8 @@ const Profile = () => {
                                     <div className="loading-container" style={{ minHeight: '200px' }}>
                                         <div className="loading-spinner">
                                             <div className="spinner"></div>
-                                            <h3>Se încarcă statisticile...</h3>
-                                            <p>Te rugăm să aștepți în timp ce se procesează datele.</p>
+                                            <h3>{t(`${P}.loadingPanels.statistics`, 'Se încarcă statisticile...')}</h3>
+                                            <p>{t(`${P}.loadingPanels.wait`, 'Te rugăm să aștepți în timp ce se procesează datele.')}</p>
                                         </div>
                                     </div>
                                 ) : (

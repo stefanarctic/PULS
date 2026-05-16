@@ -10,12 +10,18 @@ import RankBadge from '../community/RankBadge';
 import Achievements from '../Achievements';
 import { usePublicProfile, useUserActivities } from '../../hooks/useCommunity';
 import { ArrowLeft, Calendar } from 'lucide-react';
+import { useI18n } from '../../i18n/LanguageContext';
 
 const PublicProfile = () => {
   const { alias } = useParams();
   const { profile, loading, notFound } = usePublicProfile(alias);
   const { activities, loading: activitiesLoading } = useUserActivities(profile?.uid);
   const [activeTab, setActiveTab] = useState('activitate');
+  const { t, lang, localizedPath } = useI18n();
+  const PP = 'publicProfile';
+  const P = 'profilePage';
+
+  const dateLocale = lang === 'en' ? 'en-US' : 'ro-RO';
 
   if (loading) {
     return (
@@ -24,7 +30,7 @@ const PublicProfile = () => {
           <div className="loading-container" style={{ minHeight: 400 }}>
             <div className="loading-spinner">
               <div className="spinner"></div>
-              <h3>Se încarcă profilul...</h3>
+              <h3>{t(`${PP}.loading`, 'Se încarcă profilul...')}</h3>
             </div>
           </div>
         </div>
@@ -36,10 +42,16 @@ const PublicProfile = () => {
     return (
       <Layout>
         <div className="page-section profile-container public-profile public-profile--not-found">
-          <h2>Utilizator negăsit</h2>
-          <p>Nu există un profil cu alias-ul <strong>{alias}</strong>.</p>
-          <Link to="/comunitate" className="public-profile__back-link">
-            <ArrowLeft size={16} /> Înapoi la comunitate
+          <h2>{t(`${PP}.userNotFoundTitle`, 'Utilizator negăsit')}</h2>
+          <p>
+            {t(
+              `${PP}.userNotFoundMessage`,
+              'Nu există un profil cu alias-ul {alias}.',
+              { alias: alias || '' }
+            )}
+          </p>
+          <Link to={localizedPath('/comunitate')} className="public-profile__back-link">
+            <ArrowLeft size={16} /> {t(`${PP}.backToCommunity`, 'Înapoi la comunitate')}
           </Link>
         </div>
       </Layout>
@@ -48,12 +60,12 @@ const PublicProfile = () => {
 
   const { communityStats: stats, categoryBadges: badges, achievements } = profile;
   const joinedFormatted = profile.joinedDate
-    ? new Date(profile.joinedDate).toLocaleDateString('ro-RO', { year: 'numeric', month: 'long', day: 'numeric' })
+    ? new Date(profile.joinedDate).toLocaleDateString(dateLocale, { year: 'numeric', month: 'long', day: 'numeric' })
     : null;
 
   const rawName = (profile.name || '').trim();
   const rawAlias = (profile.alias || '').trim();
-  const primaryHeading = rawName || rawAlias || 'Utilizator';
+  const primaryHeading = rawName || rawAlias || t(`${PP}.defaultUserName`, 'Utilizator');
   const showAliasSubline =
     rawAlias && rawName && rawName.toLowerCase() !== rawAlias.toLowerCase();
   const avatarInitial = (primaryHeading[0] || '?').toUpperCase();
@@ -62,8 +74,8 @@ const PublicProfile = () => {
   return (
     <Layout>
       <div className="page-section profile-container public-profile">
-        <Link to="/comunitate" className="public-profile__back-link">
-          <ArrowLeft size={16} /> Comunitate
+        <Link to={localizedPath('/comunitate')} className="public-profile__back-link">
+          <ArrowLeft size={16} /> {t(`${PP}.communityNav`, 'Comunitate')}
         </Link>
 
         <div className="profile-header">
@@ -86,7 +98,7 @@ const PublicProfile = () => {
               <h1 className="profile-name">{primaryHeading}</h1>
               {showAliasSubline && (
                 <p className="public-profile__alias-sub">
-                  <span className="public-profile__meta-label">Alias:</span> {rawAlias}
+                  <span className="public-profile__meta-label">{t(`${PP}.aliasLabel`, 'Alias:')}</span> {rawAlias}
                 </p>
               )}
               <div className="public-profile__rank-row">
@@ -98,7 +110,9 @@ const PublicProfile = () => {
                     <span className="stat-icon">
                       <Calendar size={18} strokeWidth={2} />
                     </span>
-                    <span className="stat-text">Membru din {joinedFormatted}</span>
+                    <span className="stat-text">
+                      {t(`${PP}.joinedOn`, 'Membru din {date}', { date: joinedFormatted })}
+                    </span>
                   </div>
                 </div>
               )}
@@ -109,7 +123,7 @@ const PublicProfile = () => {
           {stats && (
             <div className="profile-community-section">
               <div className="profile-community-section__header">
-                <h3>Progres comunitate</h3>
+                <h3>{t(`${PP}.communityProgress`, 'Progres comunitate')}</h3>
               </div>
               <div className="profile-community-section__body">
                 <XPBar
@@ -125,7 +139,7 @@ const PublicProfile = () => {
                 </div>
                 {badges && badges.length > 0 && (
                   <div className="profile-community-section__badges">
-                    <h4>Badge-uri categorii</h4>
+                    <h4>{t(`${PP}.categoryBadges`, 'Badge-uri categorii')}</h4>
                     <CategoryBadges badges={badges} compact />
                   </div>
                 )}
@@ -141,21 +155,21 @@ const PublicProfile = () => {
               className={`tab-trigger ${activeTab === 'activitate' ? 'active' : ''}`}
               onClick={() => setActiveTab('activitate')}
             >
-              Activitate recentă
+              {t(`${P}.tabs.recentActivity`, 'Activitate recentă')}
             </button>
             <button
               type="button"
               className={`tab-trigger ${activeTab === 'realizari' ? 'active' : ''}`}
               onClick={() => setActiveTab('realizari')}
             >
-              Realizări
+              {t(`${P}.tabs.achievements`, 'Realizări')}
             </button>
             <button
               type="button"
               className={`tab-trigger ${activeTab === 'statistici' ? 'active' : ''}`}
               onClick={() => setActiveTab('statistici')}
             >
-              Statistici
+              {t(`${P}.tabs.statistics`, 'Statistici')}
             </button>
           </div>
           <div className="tab-content">
@@ -165,7 +179,7 @@ const PublicProfile = () => {
                   <div className="loading-container" style={{ minHeight: 200 }}>
                     <div className="loading-spinner">
                       <div className="spinner"></div>
-                      <h3>Se încarcă activitatea...</h3>
+                      <h3>{t(`${PP}.loadingActivity`, 'Se încarcă activitatea...')}</h3>
                     </div>
                   </div>
                 ) : (

@@ -54,8 +54,8 @@
             border-left: 4px solid #10b981;
         }
 
-        // Stiluri pentru steaua de favorite
-        button[aria-label="Elimină din favorite"] {
+        // Favorite star — use class, not aria-label (aria text is translated)
+        .problem-card-favorite-btn.is-active {
             position: absolute;
             right: 12px;
             top: 12px;

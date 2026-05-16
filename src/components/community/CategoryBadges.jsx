@@ -1,5 +1,8 @@
 import React from 'react';
 import { Award } from 'lucide-react';
+import { useI18n } from '../../i18n/LanguageContext';
+
+const CB = 'communityPage.categoryBadges';
 
 const TIER_COLORS = {
   apprentice: '#10b981',
@@ -16,11 +19,16 @@ const TIER_LABELS = {
 };
 
 const CategoryBadges = ({ badges = [], compact = false }) => {
+  const { t } = useI18n();
+
   if (badges.length === 0) {
     return (
       <div className="category-badges category-badges--empty">
         <p className="category-badges__empty-text">
-          Rezolvă probleme din diferite categorii pentru a debloca badge-uri!
+          {t(
+            `${CB}.empty`,
+            'Rezolvă probleme din diferite categorii pentru a debloca badge-uri!'
+          )}
         </p>
       </div>
     );
@@ -37,7 +45,7 @@ const CategoryBadges = ({ badges = [], compact = false }) => {
         <div
           key={badge.id}
           className={`category-badge category-badge--${badge.tier}`}
-          title={`${badge.name} - deblocat`}
+          title={t(`${CB}.badgeTitle`, '{name} — deblocat', { name: badge.name })}
         >
           <Award size={compact ? 16 : 20} style={{ color: TIER_COLORS[badge.tier] }} />
           <div className="category-badge__info">

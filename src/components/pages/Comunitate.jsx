@@ -8,8 +8,12 @@ import StreakCounter from '../community/StreakCounter';
 import { useActivityFeed, useCommunityStats } from '../../hooks/useCommunity';
 import { useSelector } from 'react-redux';
 import { Trophy, Activity, Zap } from 'lucide-react';
+import { useI18n } from '../../i18n/LanguageContext';
+
+const CP = 'communityPage';
 
 const Comunitate = () => {
+  const { t, localizedPath } = useI18n();
   const { activities, loading: feedLoading } = useActivityFeed(50);
   const { stats, user, loading: statsLoading, refresh: refreshStats } = useCommunityStats();
   const allProblems = useSelector(state => state.problems.items);
@@ -18,17 +22,20 @@ const Comunitate = () => {
     if (user?.uid && allProblems?.length > 0) {
       refreshStats(allProblems);
     }
-  }, [user?.uid, allProblems?.length]);
+  }, [user?.uid, allProblems?.length, refreshStats]);
 
   return (
     <Layout>
       <div className="page-section profile-container comunitate-page">
         <div className="comunitate-page__header">
           <h1 className="comunitate-page__title">
-            <Trophy size={28} /> Comunitate
+            <Trophy size={28} /> {t(`${CP}.title`, 'Comunitate')}
           </h1>
           <p className="comunitate-page__subtitle">
-            Concurează, progresează și vezi cum te compari cu alți elevi.
+            {t(
+              `${CP}.subtitle`,
+              'Concurează, progresează și vezi cum te compari cu alți elevi.'
+            )}
           </p>
         </div>
 
@@ -36,9 +43,9 @@ const Comunitate = () => {
           <div className="comunitate-page__my-stats">
             <div className="comunitate-page__my-stats-header">
               <Zap size={18} />
-              <span>Progresul tău</span>
-              <Link to="/profil" className="comunitate-page__profile-link">
-                Vezi profilul complet
+              <span>{t(`${CP}.yourProgress`, 'Progresul tău')}</span>
+              <Link to={localizedPath('/profil')} className="comunitate-page__profile-link">
+                {t(`${CP}.viewFullProfile`, 'Vezi profilul complet')}
               </Link>
             </div>
             <div className="comunitate-page__my-stats-body">
@@ -64,7 +71,7 @@ const Comunitate = () => {
           <div className="comunitate-page__feed">
             <div className="comunitate-page__feed-header">
               <h2>
-                <Activity size={20} /> Activitate recentă
+                <Activity size={20} /> {t(`${CP}.recentActivity`, 'Activitate recentă')}
               </h2>
             </div>
             <ActivityFeed activities={activities} loading={feedLoading} />

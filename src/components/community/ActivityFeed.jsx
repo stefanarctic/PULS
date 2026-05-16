@@ -1,117 +1,108 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { BookCheck, TrendingUp, Flame, Award, ChevronRight } from 'lucide-react';
+import { useI18n } from '../../i18n/LanguageContext';
 
-function getRelativeTime(date) {
-  if (!date) return '';
-  const now = new Date();
-  const diff = now - date;
-  const seconds = Math.floor(diff / 1000);
-  const minutes = Math.floor(seconds / 60);
-  const hours = Math.floor(minutes / 60);
-  const days = Math.floor(hours / 24);
+import { formatProblemTitlePrefix } from '../../lib/problemTitleDisplay';
 
-  if (seconds < 60) return 'acum';
-  if (minutes < 60) return `acum ${minutes} min`;
-  if (hours < 24) return `acum ${hours}h`;
-  if (days < 7) return `acum ${days}z`;
-  return date.toLocaleDateString('ro-RO', { day: 'numeric', month: 'short' });
-}
-
-function getActivityIcon(type) {
-  switch (type) {
-    case 'solved_problem': return BookCheck;
-    case 'rank_up': return TrendingUp;
-    case 'streak_milestone': return Flame;
-    case 'badge_earned': return Award;
-    default: return BookCheck;
-  }
-}
-
-/** Cale către pagina problemei; null pentru rezolvări custom fără rută. */
-function getProblemPathForActivity(activity) {
-  if (activity.type !== 'solved_problem') return null;
-  const raw = activity.data?.problemId;
-  if (raw != null && raw !== '') {
-    const s = String(raw);
-    if (s.startsWith('submitted_')) return null;
-    return `/probleme/${encodeURIComponent(s)}`;
-  }
-  const title = activity.data?.problemTitle || '';
-  const m = title.match(/#(\d+)/);
-  if (m) return `/probleme/${m[1]}`;
-  return null;
-}
-
-/**
- * @param {{ problemTitleInline?: boolean }} opts - dacă true, titlul problemei e text simplu (cardul e Link)
- */
-function renderActivityBody(activity, opts = {}) {
-  const { problemTitleInline = false } = opts;
-  const { type, data, userAlias } = activity;
-  const name = userAlias || 'Cineva';
-  const titleText = data?.problemTitle || 'o problemă';
-
-  switch (type) {
-    case 'solved_problem':
-      return (
-        <>
-          <span className="activity-feed__actor">{name}</span>
-          <span className="activity-feed__verb"> a rezolvat </span>
-          {problemTitleInline ? (
-            <span className="activity-feed__problem-title-inline">{titleText}</span>
-          ) : (
-            <span className="activity-feed__problem-title--plain">{titleText}</span>
-          )}
-          {data?.xpGained ? (
-            <span className="activity-feed__xp"> (+{data.xpGained} XP)</span>
-          ) : null}
-        </>
-      );
-    case 'rank_up':
-      return (
-        <>
-          <span className="activity-feed__actor">{name}</span>
-          <span className="activity-feed__verb"> a avansat la rangul </span>
-          <span className="activity-feed__highlight">
-            {data?.newRank?.charAt(0).toUpperCase() + data?.newRank?.slice(1)}
-          </span>
-        </>
-      );
-    case 'streak_milestone':
-      return (
-        <>
-          <span className="activity-feed__actor">{name}</span>
-          <span className="activity-feed__verb"> are un streak de </span>
-          <span className="activity-feed__highlight">{data?.streakDays} zile</span>
-          <span className="activity-feed__verb"> consecutive!</span>
-        </>
-      );
-    case 'badge_earned':
-      return (
-        <>
-          <span className="activity-feed__actor">{name}</span>
-          <span className="activity-feed__verb"> a deblocat badge-ul </span>
-          <span className="activity-feed__highlight">{data?.badgeName}</span>
-        </>
-      );
-    default:
-      return (
-        <>
-          <span className="activity-feed__actor">{name}</span>
-          <span className="activity-feed__verb"> a făcut o acțiune pe platformă.</span>
-        </>
-      );
-  }
-}
+const AF = 'communityPage.activityFeed';
 
 function ActivityFeed({ activities = [], loading = false, showAvatar = true }) {
+  const { t, lang, localizedPath } = useI18n();
+
+  const getRelativeTime = (dateInput) => {
+    const toDate = (v) => {
+      if (v == null) return null;
+      if (v instanceof Date) return v;
+      if (typeof v?.toDate === 'function') return v.toDate();
+      return new Date(v);
+    };
+    const d = toDate(dateInput);
+    if (!d || Number.isNaN(d.getTime())) return '';
+    const now = new Date();
+    const diff = now - d;
+    const seconds = Math.floor(diff / 1000);
+    const minutes = Math.floor(seconds / 60);
+    const hours = Math.floor(minutes / 60);
+    const days = Math.floor(hours / 24);
+    const dateLocale = lang === 'en' ? 'en-US' : 'ro-RO';
+
+    if (seconds < 60) return t(`${AF}.time.justNow`, 'acum');
+    if (minutes < 60) return t(`${AF}.time.minutesAgo`, 'acum {n} min', { n: minutes });
+    if (hours < 24) return t(`${AF}.time.hoursAgo`, 'acum {n}h', { n: hours });
+    if (days < 7) return t(`${AF}.time.daysAgo`, 'acum {n}z', { n: days });
+    return d.toLocaleDateString(dateLocale, { day: 'numeric', month: 'short' });
+  };
+
+  const renderActivityBody = (activity, opts = {}) => {
+    const { problemTitleInline = false } = opts;
+    const { type, data, userAlias } = activity;
+    const name = userAlias || t(`${AF}.someone`, 'Cineva');
+    let titleText = data?.problemTitle || t(`${AF}.problemFallback`, 'o problemă');
+    titleText = formatProblemTitlePrefix(titleText, t);
+
+    switch (type) {
+      case 'solved_problem':
+        return (
+          <>
+            <span className="activity-feed__actor">{name}</span>
+            <span className="activity-feed__verb">{t(`${AF}.verbs.solved`, ' a rezolvat ')}</span>
+            {problemTitleInline ? (
+              <span className="activity-feed__problem-title-inline">{titleText}</span>
+            ) : (
+              <span className="activity-feed__problem-title--plain">{titleText}</span>
+            )}
+            {data?.xpGained ? (
+              <span className="activity-feed__xp"> (+{data.xpGained} XP)</span>
+            ) : null}
+          </>
+        );
+      case 'rank_up':
+        return (
+          <>
+            <span className="activity-feed__actor">{name}</span>
+            <span className="activity-feed__verb">{t(`${AF}.verbs.rankUp`, ' a avansat la rangul ')}</span>
+            <span className="activity-feed__highlight">
+              {data?.newRank?.charAt(0).toUpperCase() + data?.newRank?.slice(1)}
+            </span>
+          </>
+        );
+      case 'streak_milestone': {
+        const n = data?.streakDays;
+        return (
+          <>
+            <span className="activity-feed__actor">{name}</span>
+            <span className="activity-feed__verb">{t(`${AF}.streak.connector`, ' are un streak de ')}</span>
+            <span className="activity-feed__highlight">
+              {t(`${AF}.streak.duration`, '{n} zile consecutive!', { n })}
+            </span>
+          </>
+        );
+      }
+      case 'badge_earned':
+        return (
+          <>
+            <span className="activity-feed__actor">{name}</span>
+            <span className="activity-feed__verb">{t(`${AF}.verbs.badge`, ' a deblocat badge-ul ')}</span>
+            <span className="activity-feed__highlight">{data?.badgeName}</span>
+          </>
+        );
+      default:
+        return (
+          <>
+            <span className="activity-feed__actor">{name}</span>
+            <span className="activity-feed__verb">{t(`${AF}.verbs.generic`, ' a făcut o acțiune pe platformă.')}</span>
+          </>
+        );
+    }
+  };
+
   if (loading) {
     return (
       <div className="activity-feed activity-feed--loading">
         <div className="loading-spinner">
           <div className="spinner"></div>
-          <p>Se încarcă activitatea...</p>
+          <p>{t(`${AF}.loading`, 'Se încarcă activitatea...')}</p>
         </div>
       </div>
     );
@@ -120,7 +111,7 @@ function ActivityFeed({ activities = [], loading = false, showAvatar = true }) {
   if (activities.length === 0) {
     return (
       <div className="activity-feed activity-feed--empty">
-        <p>Nicio activitate recentă. Rezolvă probleme pentru a apărea aici!</p>
+        <p>{t(`${AF}.empty`, 'Nicio activitate recentă. Rezolvă probleme pentru a apărea aici!')}</p>
       </div>
     );
   }
@@ -128,18 +119,43 @@ function ActivityFeed({ activities = [], loading = false, showAvatar = true }) {
   return (
     <div className="activity-feed activity-feed--cards">
       {activities.map((activity) => {
-        const Icon = getActivityIcon(activity.type);
-        const problemPath = getProblemPathForActivity(activity);
+        const Icon = (() => {
+          switch (activity.type) {
+            case 'solved_problem': return BookCheck;
+            case 'rank_up': return TrendingUp;
+            case 'streak_milestone': return Flame;
+            case 'badge_earned': return Award;
+            default: return BookCheck;
+          }
+        })();
+        const rawPath = (() => {
+          if (activity.type !== 'solved_problem') return null;
+          const raw = activity.data?.problemId;
+          if (raw != null && raw !== '') {
+            const s = String(raw);
+            if (s.startsWith('submitted_')) return null;
+            return `/probleme/${encodeURIComponent(s)}`;
+          }
+          const title = activity.data?.problemTitle || '';
+          const m = title.match(/#(\d+)/);
+          if (m) return `/probleme/${m[1]}`;
+          return null;
+        })();
+        const problemPath = rawPath ? localizedPath(rawPath) : null;
         const isProblemCard = Boolean(problemPath);
         const cardClass =
           `activity-feed__card${showAvatar ? '' : ' activity-feed__card--no-avatar'}${isProblemCard ? '' : ' activity-feed__card--static'}`;
 
-        const profilePath =
+        const rawProfilePath =
           activity.userId
             ? `/profil/${activity.userId}`
             : activity.userAlias
               ? `/profil/${encodeURIComponent(activity.userAlias)}`
               : null;
+        const profilePath = rawProfilePath ? localizedPath(rawProfilePath) : null;
+
+        const displayTitle = formatProblemTitlePrefix(activity.data?.problemTitle || '', t);
+        const ariaTitle = displayTitle || t(`${AF}.problemFallback`, 'o problemă');
 
         const avatarNonProblem = (
           <>
@@ -193,7 +209,15 @@ function ActivityFeed({ activities = [], loading = false, showAvatar = true }) {
             </div>
             <time
               className="activity-feed__time activity-feed__cell-time"
-              dateTime={activity.createdAt instanceof Date ? activity.createdAt.toISOString() : undefined}
+              dateTime={
+                (() => {
+                  const raw = activity.createdAt;
+                  if (raw instanceof Date) return raw.toISOString();
+                  if (raw && typeof raw.toDate === 'function') return raw.toDate().toISOString();
+                  if (raw) return new Date(raw).toISOString();
+                  return undefined;
+                })()
+              }
             >
               {getRelativeTime(activity.createdAt)}
             </time>
@@ -206,7 +230,7 @@ function ActivityFeed({ activities = [], loading = false, showAvatar = true }) {
         );
 
         if (isProblemCard) {
-          const label = `Deschide problema: ${activity.data?.problemTitle || 'problemă'}`;
+          const label = t(`${AF}.openProblemAria`, 'Deschide problema: {title}', { title: ariaTitle });
           return (
             <Link key={activity.id} to={problemPath} className={cardClass} aria-label={label}>
               {inner}

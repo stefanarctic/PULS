@@ -1905,6 +1905,8 @@
       "admin": "Administrator"
     },
     "tabs": {
+      "recentActivity": "Recent activity",
+      "savedProblems": "Saved problems",
       "activity": "Activity",
       "favorites": "Favorites",
       "achievements": "Achievements",
@@ -1989,12 +1991,103 @@
     "community": {
       "title": "Community profile",
       "xpLevel": "Level {level}",
+      "xpAmount": "{xp} XP",
+      "xpProgressSegment": "{current} / {total} XP",
+      "nextRank": "Next rank: {rank}",
+      "dayStreakOne": "{count} day",
+      "dayStreakOther": "{count} days",
+      "recordOne": "Record: {count} day",
+      "recordOther": "Record: {count} days",
       "xpToNext": "{current} / {next} XP to the next level",
       "streakTitle": "Solving streak",
       "streakDays": "{count} days in a row",
       "badgesTitle": "Category badges",
       "noBadges": "Earn badges by completing problems in each category."
     },
+    "achievementMilestones": {
+      "solved_first": {
+        "title": "First problem solved",
+        "description": "You solved your first problem!"
+      },
+      "solved_5": {
+        "title": "Dedicated solver",
+        "description": "You solved 5 problems!"
+      },
+      "solved_10": {
+        "title": "Master solver",
+        "description": "You solved 10 problems!"
+      },
+      "solved_25": {
+        "title": "Solving expert",
+        "description": "You solved 25 problems!"
+      },
+      "solved_50": {
+        "title": "Legend of solving",
+        "description": "You solved 50 problems!"
+      },
+      "solved_100": {
+        "title": "Grand master",
+        "description": "You solved 100 problems!"
+      },
+      "added_first": {
+        "title": "Physics beginner",
+        "description": "You added your first problem!"
+      },
+      "added_5": {
+        "title": "Advanced",
+        "description": "You added 5 problems!"
+      },
+      "added_10": {
+        "title": "Master",
+        "description": "You added 10 problems!"
+      },
+      "added_25": {
+        "title": "Prolific creator",
+        "description": "You added 25 problems!"
+      },
+      "added_50": {
+        "title": "Problem architect",
+        "description": "You added 50 problems!"
+      },
+      "perfect_1": {
+        "title": "Perfect score",
+        "description": "You achieved the maximum score on a problem!"
+      },
+      "perfect_5": {
+        "title": "Perfectionist",
+        "description": "You achieved the maximum score on 5 problems!"
+      },
+      "perfect_10": {
+        "title": "Master of perfection",
+        "description": "You achieved the maximum score on 10 problems!"
+      },
+      "avg_90": {
+        "title": "Academic excellence",
+        "description": "Your average score is above 90%!"
+      },
+      "avg_95": {
+        "title": "Physics genius",
+        "description": "Your average score is above 95%!"
+      },
+      "avg_100": {
+        "title": "Absolute perfection",
+        "description": "Your average score is 100%!"
+      },
+      "sim_first": {
+        "title": "First simulation",
+        "description": "You opened your first simulation!"
+      },
+      "sim_5": {
+        "title": "Simulation explorer",
+        "description": "You opened 5 simulations!"
+      },
+      "sim_10": {
+        "title": "Simulation master",
+        "description": "You opened 10 simulations!"
+      }
+    },
+    "achievementUnlockedToast": "Achievement unlocked!",
+    "closeNotificationAria": "Close",
     "actions": {
       "clearTestProblems": "Clear test problems",
       "clearAllSolved": "Clear all solved problems",
@@ -2004,13 +2097,216 @@
     "errors": {
       "loadFailed": "Profile data could not be loaded.",
       "favoriteFailed": "Favorites could not be updated."
+    },
+    "loadingScreen": {
+      "title": "Loading profile...",
+      "subtitle": "Please wait while we process your data."
+    },
+    "signedIn": {
+      "mainTitle": "Profile",
+      "aliasLabel": "Alias:",
+      "descriptionLabel": "Description:",
+      "notSet": "[not set]",
+      "memberSince": "Member since {date}",
+      "administrator": "Administrator",
+      "editProfile": "Edit profile",
+      "logOut": "Log out",
+      "adminPanel": "Admin panel",
+      "myClasses": "My classes",
+      "teacherPanel": "Teacher dashboard",
+      "community": "Community",
+      "teacherPendingHint": "Your teacher account request is pending. An administrator will review it soon.",
+      "teacherRejectedHint": "The previous request was declined.",
+      "communityProgress": "Community progress",
+      "viewPublicProfile": "View public profile",
+      "categoryBadges": "Category badges"
+    },
+    "loadingPanels": {
+      "activity": "Loading activity...",
+      "achievements": "Loading achievements...",
+      "statistics": "Loading statistics...",
+      "wait": "Please wait while we process your data."
+    },
+    "savedProblemsSection": {
+      "title": "Saved problems",
+      "empty": "You have no saved favourite problems."
+    },
+    "editProfileModal": {
+      "title": "Edit profile",
+      "nameLabel": "Name:",
+      "namePlaceholder": "Enter your name",
+      "aliasLabel": "Alias:",
+      "aliasPlaceholder": "Choose a unique alias",
+      "aliasHint": "Letters, digits, _ and -, no spaces (max. {max} characters).",
+      "profilePicUrl": "Profile photo (URL):",
+      "acceptedFormats": "Accepted formats: JPG, PNG, GIF. Maximum size: 5MB",
+      "dropzone": "Drag a photo here, click, or press Ctrl+V",
+      "deleteImage": "Remove",
+      "savedImage": "Saved image",
+      "descriptionLabel": "Description:",
+      "descriptionPlaceholder": "Write a few words about yourself (max. 200 characters)",
+      "save": "Save",
+      "saving": "Saving...",
+      "cancel": "Cancel",
+      "saveSuccess": "Profile saved successfully!",
+      "cloudinaryNote": "The image was uploaded to Cloudinary."
+    },
+    "authFull": {
+      "signInGoogle": "Sign in with Google",
+      "divider": "or",
+      "createEmail": "Create account with email",
+      "signInEmail": "Sign in with email",
+      "formTitleSignUp": "Create a new account",
+      "formTitleSignIn": "Sign in",
+      "emailLabel": "Email:",
+      "emailPlaceholder": "you@example.com",
+      "nameLabel": "Name:",
+      "namePlaceholder": "Enter your name",
+      "aliasLabel": "Alias:",
+      "aliasPlaceholder": "Choose a unique alias",
+      "passwordLabel": "Password:",
+      "passwordPlaceholder": "At least 6 characters",
+      "confirmPasswordLabel": "Confirm password:",
+      "confirmPasswordPlaceholder": "Repeat password",
+      "processing": "Processing...",
+      "submitSignUp": "Create account",
+      "submitSignIn": "Sign in",
+      "cancel": "Cancel",
+      "hasAccount": "Already have an account?",
+      "signInLink": "Sign in",
+      "noAccount": "Don't have an account?",
+      "createOne": "Create one"
+    },
+    "validation": {
+      "fillAllFields": "Please fill in all fields.",
+      "nameMin": "Name must be at least 2 characters long.",
+      "nameMax": "Name cannot exceed 50 characters.",
+      "passwordMin": "Password must be at least 6 characters.",
+      "passwordMismatch": "Passwords do not match.",
+      "aliasTaken": "This alias is already taken. Please choose another.",
+      "nameEmpty": "Name cannot be empty.",
+      "descriptionMax": "Description cannot exceed 200 characters.",
+      "aliasTakenShort": "This alias is already taken.",
+      "aliasIssue": {
+        "empty": "Alias cannot be empty.",
+        "tooShort": "Alias must be at least {min} characters.",
+        "tooLong": "Alias cannot exceed {max} characters.",
+        "invalidPattern": "Alias may only contain letters, digits, underscore (_) and hyphen (-), with no spaces."
+      }
+    },
+    "firebaseErrors": {
+      "generic": "Authentication error.",
+      "emailInUse": "This email is already registered.",
+      "invalidEmail": "The email address is not valid.",
+      "weakPassword": "The password is too weak.",
+      "userNotFound": "No account exists with this email.",
+      "wrongPassword": "Incorrect password.",
+      "invalidCredential": "Incorrect email or password."
+    },
+    "alerts": {
+      "popupBlocked": "The popup was blocked by your browser. Please allow popups for this site.",
+      "networkError": "Network error. Please check your internet connection.",
+      "googleAuthError": "Error signing in with Google. Please try again.",
+      "uploadError": "Error uploading image. The profile will be saved without the new image.",
+      "fileTooLarge": "File is too large! Maximum size is 5MB.",
+      "fileTypeImage": "Please select only image files (JPG, PNG, GIF, etc.).",
+      "imageProcessError": "Error processing the image. Please try again.",
+      "testProblemsAdded": "Test problems added!",
+      "testProblemsCleared": "Cleared {count} test problems!",
+      "testClearError": "Error clearing test problems!",
+      "clearAllConfirm": "Are you sure you want to delete ALL solved problems? This cannot be undone!",
+      "allSolvedCleared": "All solved problems have been deleted!",
+      "clearAllError": "Error deleting problems!",
+      "saveProfileError": "Error saving profile. Please try again."
+    },
+    "favoriteCard": {
+      "removeFavorite": "Remove from favourites",
+      "removeAria": "Remove from favourites",
+      "perfectScoreTitle": "You achieved the maximum score on this problem",
+      "problemAuthorTitle": "Problem author",
+      "solved": "Solved",
+      "solve": "Solve"
+    },
+    "difficultyLabels": {
+      "usor": "Easy",
+      "usoare": "Easy",
+      "mediu": "Medium",
+      "medii": "Medium",
+      "dificil": "Hard",
+      "dificile": "Hard",
+      "concurs": "Contest",
+      "concursuri": "Contest"
+    },
+    "defaultUser": "User",
+    "userStatsGrid": {
+      "solved": "Problems solved",
+      "averageScore": "Average score",
+      "perfectScores": "Perfect scores",
+      "currentStreak": "Current streak",
+      "streakDaysOne": "{n} day",
+      "streakDaysOther": "{n} days",
+      "ariaProblemsCatalog": "Go to the problems catalog",
+      "ariaProblemsPractice": "Go to problems to practice",
+      "ariaCommunity": "Go to the Community page"
+    },
+    "problemTitleFallback": "Problem {id}"
+  },
+  "recentActivity": {
+    "title": "Recently solved problems",
+    "emptyLine1": "You have not solved any problems yet.",
+    "emptyLine2": "Start solving problems to see your progress here!",
+    "types": {
+      "problem_solved": "Solved",
+      "problem_added": "Added",
+      "simulation_visited": "Simulation opened",
+      "resource_accessed": "Resource viewed",
+      "achievement_earned": "Achievement earned",
+      "default": "Activity"
+    },
+    "relativeTime": {
+      "today": "Today",
+      "yesterday": "Yesterday",
+      "daysAgo": "{count} days ago"
     }
+  },
+  "achievementsPanel": {
+    "title": "Achievements",
+    "empty": "No achievements yet.",
+    "types": {
+      "problem_solved": "Solved",
+      "problem_added": "Added",
+      "simulation": "Simulation opened",
+      "simulation_visited": "Simulation opened"
+    }
+  },
+  "statisticsPanel": {
+    "title": "Overall statistics",
+    "solvedHeading": "Solved problems",
+    "addedHeading": "Problems you added",
+    "labelSolvedCount": "Problems solved",
+    "labelTotalScore": "Total score",
+    "labelAverageScore": "Average score",
+    "byDifficulty": "By difficulty",
+    "byCategory": "By category",
+    "noDifficultyStats": "No difficulty statistics.",
+    "noCategoryStats": "No category statistics.",
+    "emptyStateLine1": "No statistics available yet.",
+    "emptyStateLine2": "Start solving problems and adding new ones to see your stats!"
   },
   "publicProfile": {
     "loading": "Loading profile...",
     "notFound": "Profile not found.",
+    "userNotFoundTitle": "User not found",
+    "userNotFoundMessage": "There is no profile with the alias {alias}.",
+    "backToCommunity": "Back to community",
+    "communityNav": "Community",
+    "defaultUserName": "User",
+    "aliasLabel": "Alias:",
     "joinedOn": "Member since {date}",
     "noDescription": "This user has not added a description yet.",
+    "communityProgress": "Community progress",
+    "categoryBadges": "Category badges",
+    "loadingActivity": "Loading activity...",
     "solvedProblems": "Solved problems",
     "totalXp": "Total XP",
     "currentLevel": "Current level",
@@ -2239,6 +2535,61 @@
       "earned": "Earned: {date}",
       "locked": "Locked",
       "progress": "{current} / {total}"
+    }
+  },
+  "communityPage": {
+    "title": "Community",
+    "subtitle": "Compete, level up, and see how you compare to other students.",
+    "yourProgress": "Your progress",
+    "viewFullProfile": "View full profile",
+    "recentActivity": "Recent activity",
+    "leaderboard": {
+      "title": "Leaderboard",
+      "allTime": "All-time",
+      "weekly": "Weekly",
+      "rankIntro": "You're ",
+      "rankClimb": "— solve problems to move up!",
+      "loading": "Loading leaderboard...",
+      "error": "Could not load the leaderboard.",
+      "retry": "Try again",
+      "empty": "No users on the leaderboard yet. Be the first to solve a problem!",
+      "columns": {
+        "pos": "#",
+        "user": "User",
+        "rank": "Rank",
+        "xp": "XP",
+        "level": "Level",
+        "solved": "Solved",
+        "streak": "Streak"
+      }
+    },
+    "activityFeed": {
+      "loading": "Loading activity...",
+      "empty": "No recent activity yet. Solve problems to appear here!",
+      "someone": "Someone",
+      "problemFallback": "a problem",
+      "openProblemAria": "Open problem: {title}",
+      "problemPrefix": "PROBLEM",
+      "time": {
+        "justNow": "just now",
+        "minutesAgo": "{n} min ago",
+        "hoursAgo": "{n}h ago",
+        "daysAgo": "{n}d ago"
+      },
+      "verbs": {
+        "solved": " solved ",
+        "rankUp": " reached rank ",
+        "badge": " unlocked the badge ",
+        "generic": " did something on the platform."
+      },
+      "streak": {
+        "connector": " has a ",
+        "duration": "{n}-day streak!"
+      }
+    },
+    "categoryBadges": {
+      "empty": "Solve problems from different categories to unlock badges!",
+      "badgeTitle": "{name} — unlocked"
     }
   },
   "achievementNotification": {

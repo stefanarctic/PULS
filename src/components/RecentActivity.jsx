@@ -1,9 +1,14 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
+import { useI18n } from '../i18n/LanguageContext';
+import { formatProblemTitlePrefix } from '../lib/problemTitleDisplay';
+
+const RA = 'recentActivity';
 
 const RecentActivity = ({ activityLog = [] }) => {
-
   const navigate = useNavigate();
+  const { t, lang, localizedPath } = useI18n();
+  const dateLocale = lang === 'en' ? 'en-US' : 'ro-RO';
 
   const getActivityIcon = (type) => {
     switch (type) {
@@ -17,14 +22,15 @@ const RecentActivity = ({ activityLog = [] }) => {
   };
 
   const getActivityTypeText = (type) => {
-    switch (type) {
-      case 'problem_solved': return 'Rezolvată';
-      case 'problem_added': return 'Adăugată';
-      case 'simulation_visited': return 'Simulare accesată';
-      case 'resource_accessed': return 'Resursă accesată';
-      case 'achievement_earned': return 'Realizare obținută';
-      default: return 'Activitate';
-    }
+    const fb = {
+      problem_solved: 'Rezolvată',
+      problem_added: 'Adăugată',
+      simulation_visited: 'Simulare accesată',
+      resource_accessed: 'Resursă accesată',
+      achievement_earned: 'Realizare obținută',
+    };
+    const key = `${RA}.types.${type || 'default'}`;
+    return t(key, fb[type] || t(`${RA}.types.default`, 'Activitate'));
   };
 
   const formatDate = (dateString) => {
@@ -33,12 +39,14 @@ const RecentActivity = ({ activityLog = [] }) => {
     const now = new Date();
     const diffTime = Math.abs(now - date);
     const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
-    
-    if (diffDays === 1) return 'Azi';
-    if (diffDays === 2) return 'Ieri';
-    if (diffDays <= 7) return `${diffDays - 1} zile în urmă`;
-    
-    return date.toLocaleDateString('ro-RO', {
+
+    if (diffDays === 1) return t(`${RA}.relativeTime.today`, 'Azi');
+    if (diffDays === 2) return t(`${RA}.relativeTime.yesterday`, 'Ieri');
+    if (diffDays <= 7) {
+      return t(`${RA}.relativeTime.daysAgo`, '{count} zile în urmă', { count: diffDays - 1 });
+    }
+
+    return date.toLocaleDateString(dateLocale, {
       year: 'numeric',
       month: 'short',
       day: 'numeric',
@@ -51,13 +59,11 @@ const RecentActivity = ({ activityLog = [] }) => {
     if (activity.type === 'problem_solved' && activity.score) {
       const { scoreObtained, maxScore } = activity.score;
       const percentage = Math.round((scoreObtained / maxScore) * 100);
-      
-      // console.log('🎯 RecentActivity displaying score:', { scoreObtained, maxScore, percentage });
-      
-      let scoreColor = '#ef4444'; // roșu pentru scor mic
-      if (percentage >= 80) scoreColor = '#10b981'; // verde pentru scor mare
-      else if (percentage >= 60) scoreColor = '#f59e0b'; // galben pentru scor mediu
-      
+
+      let scoreColor = '#ef4444';
+      if (percentage >= 80) scoreColor = '#10b981';
+      else if (percentage >= 60) scoreColor = '#f59e0b';
+
       return (
         <div className="score-display" style={{ color: scoreColor }}>
           <span className="score-text">{scoreObtained}/{maxScore}</span>
@@ -70,7 +76,6 @@ const RecentActivity = ({ activityLog = [] }) => {
 
   const extractProblemId = (title) => {
     if (!title) return null;
-    // Extrage ID-ul din titlu (ex: "PROBLEMA #14: Plan înclinat cu frecare" -> 14)
     const match = title.match(/#(\d+)/);
     return match ? parseInt(match[1], 10) : null;
   };
@@ -78,18 +83,18 @@ const RecentActivity = ({ activityLog = [] }) => {
   const handleActivityClick = (activity) => {
     const problemId = extractProblemId(activity.title);
     if (problemId !== null) {
-      navigate(`/probleme/${problemId}`);
+      navigate(localizedPath(`/probleme/${problemId}`));
     }
   };
 
   return (
     <div className="recent-activity">
-      <h3>Probleme recent rezolvate</h3>
+      <h3>{t(`${RA}.title`, 'Probleme recent rezolvate')}</h3>
       {activityLog.length === 0 ? (
         <div className="empty-activity">
           <div className="empty-icon">📝</div>
-          <p>Nu ai rezolvat încă nicio problemă.</p>
-          <p>Începe să rezolvi probleme pentru a vedea progresul tău aici!</p>
+          <p>{t(`${RA}.emptyLine1`, 'Nu ai rezolvat încă nicio problemă.')}</p>
+          <p>{t(`${RA}.emptyLine2`, 'Începe să rezolvi probleme pentru a vedea progresul tău aici!')}</p>
         </div>
       ) : (
         <div className="activity-list">
@@ -105,7 +110,7 @@ const RecentActivity = ({ activityLog = [] }) => {
               </div>
               <div className="activity-content">
                 <div className="activity-title">
-                  {activity.title}
+                  {formatProblemTitlePrefix(activity.title, t)}
                 </div>
                 <div className="activity-details">
                   <span className="activity-type">
@@ -119,11 +124,6 @@ const RecentActivity = ({ activityLog = [] }) => {
                 </div>
                 {getScoreDisplay(activity)}
               </div>
-              {/* {activity.link && (
-                <a href={activity.link} className="activity-link" title="Vezi problema">
-                  →
-                </a>
-              )} */}
             </div>
           ))}
         </div>
@@ -132,4 +132,4 @@ const RecentActivity = ({ activityLog = [] }) => {
   );
 };
 
-export default RecentActivity; 
+export default RecentActivity;
