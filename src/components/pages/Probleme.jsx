@@ -15,6 +15,29 @@ import { sendProblemSuggestion } from '../../lib/emailService';
 import SEO from '../SEO';
 import { LocalizedLink as Link, useI18n } from '../../i18n/LanguageContext';
 
+function formatDifficultyLabel(raw, t) {
+    if (!raw) return '';
+    const n = normalizeString(raw);
+    if (n.includes('usor')) return t('problemsPage.difficulty.easy', raw);
+    if (n.includes('mediu')) return t('problemsPage.difficulty.medium', raw);
+    if (n.includes('dificil')) return t('problemsPage.difficulty.hard', raw);
+    if (n.includes('concurs')) return t('problemsPage.difficulty.competition', raw);
+    return raw;
+}
+
+function formatCategoryFilterLabel(cat, t) {
+    const map = {
+        Toate: ['problemsPage.categories.all', 'Toate'],
+        Mecanică: ['problemsPage.categories.mechanics', 'Mecanică'],
+        Oscilații: ['problemsPage.categories.oscillations', 'Oscilații'],
+        Unde: ['problemsPage.categories.waves', 'Unde'],
+        Lissajous: ['problemsPage.categories.lissajous', 'Lissajous'],
+        Seismologie: ['problemsPage.categories.seismology', 'Seismologie'],
+    };
+    const entry = map[cat];
+    return entry ? t(entry[0], entry[1]) : cat;
+}
+
 // Icon components
 const SearchIcon = () => (
     <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
@@ -35,7 +58,7 @@ const ExternalLinkIcon = () => (
 const ProblemCard = ({ problem, isFavorite, onToggleFavorite, completionPercent, onBeforeNavigate }) => {
     const { index, titlu, dificultate, categorie, descriere, solved } = problem;
     const navigate = useNavigate();
-    const { localizedPath } = useI18n();
+    const { localizedPath, t } = useI18n();
     const isPerfectScore = completionPercent === 100;
     const isSolved = solved || isPerfectScore;
     const handleNavigate = () => {
@@ -77,14 +100,14 @@ const ProblemCard = ({ problem, isFavorite, onToggleFavorite, completionPercent,
             onKeyDown={handleKeyDown}
             role="button"
             tabIndex={0}
-            aria-label={`Deschide problema ${titlu}`}
+            aria-label={t('problemsPage.card.openAria', `Deschide problema ${titlu}`, { title: titlu })}
         >
             <div className="problem-card-header">
                 <div className="problem-card-actions">
                     {isFavorite && (
                         <button
-                            title="Elimină din favorite"
-                            aria-label="Elimină din favorite"
+                            title={t('problemsPage.card.removeFavorite', 'Elimină din favorite')}
+                            aria-label={t('problemsPage.card.removeFavorite', 'Elimină din favorite')}
                             onClick={(e) => {
                                 e.stopPropagation();
                                 e.preventDefault();
@@ -98,7 +121,7 @@ const ProblemCard = ({ problem, isFavorite, onToggleFavorite, completionPercent,
                     {isPerfectScore && (
                         <div
                             className="problem-card-perfect-badge"
-                            title="Ai obținut scorul maxim la această problemă"
+                            title={t('problemsPage.card.perfectScoreTooltip', 'Ai obținut scorul maxim la această problemă')}
                         >
                             <span className="problem-card-perfect-icon" aria-hidden="true">
                                 <Check size={14} strokeWidth={3} />
@@ -112,14 +135,14 @@ const ProblemCard = ({ problem, isFavorite, onToggleFavorite, completionPercent,
                     <h3 className="problem-card-title">{titlu}</h3>
                     <p className="problem-card-topic">{categorie}</p>
                 </div>
-                {solved && <div className="problem-card-solved-badge">Rezolvată</div>}
+                {solved && <div className="problem-card-solved-badge">{t('problemsPage.card.solved', 'Rezolvată')}</div>}
             </div>
             <div className="problem-card-footer">
                 <div className={`problem-card-difficulty ${getDifficultyColorClass(dificultate)}`}>
-                    {dificultate}
+                    {formatDifficultyLabel(dificultate, t)}
                 </div>
                 <div className="problem-card-link">
-                    <span>Rezolvă</span>
+                    <span>{t('problemsPage.card.solve', 'Rezolvă')}</span>
                     <ExternalLinkIcon />
                 </div>
             </div>
@@ -130,7 +153,7 @@ const ProblemCard = ({ problem, isFavorite, onToggleFavorite, completionPercent,
 const PhysicsProblems = () => {
     const location = useLocation();
     const params = new URLSearchParams(location.search);
-    const { t, localizedPath } = useI18n();
+    const { lang, t, localizedPath } = useI18n();
 
     // Restore filters from sessionStorage only if coming back from a problem
     const getStoredFilters = () => {
@@ -238,7 +261,7 @@ const PhysicsProblems = () => {
 
     const toggleFavorite = async (problem) => {
         if (!user?.uid) {
-            alert('Autentifică-te pentru a salva probleme la favorite.');
+            alert(t('problemsPage.suggestion.loginRequired', 'Autentifică-te pentru a salva probleme la favorite.'));
             return;
         }
         try {
@@ -841,13 +864,13 @@ const PhysicsProblems = () => {
                 
                 setEmailStatus('loading');
                 setEmailError(null);
-                setEmailLogs([{ type: 'info', message: 'Pregătire sugestie problemă...', timestamp: new Date() }]);
+                setEmailLogs([{ type: 'info', message: t('problemsPage.suggestion.preparing', 'Pregătire sugestie problemă...'), timestamp: new Date() }]);
                 
                 try {
-                    setEmailLogs(prev => [...prev, { type: 'info', message: 'Se inițializează serviciul de email...', timestamp: new Date() }]);
+                    setEmailLogs(prev => [...prev, { type: 'info', message: t('problemsPage.suggestion.initializingEmail', 'Se inițializează serviciul de email...'), timestamp: new Date() }]);
                     console.log('📝 [UI] Calling sendProblemSuggestion...');
                     
-                    setEmailLogs(prev => [...prev, { type: 'info', message: 'Se încarcă datele profilului utilizator...', timestamp: new Date() }]);
+                    setEmailLogs(prev => [...prev, { type: 'info', message: t('problemsPage.suggestion.loadingProfile', 'Se încarcă datele profilului utilizator...'), timestamp: new Date() }]);
                     const result = await sendProblemSuggestion(problemData, user);
                     
                     console.log('✅ [UI] Problem suggestion sent successfully!', {
@@ -858,7 +881,7 @@ const PhysicsProblems = () => {
                     
                     setEmailLogs(prev => [...prev, { 
                         type: 'success', 
-                        message: `Sugestia a fost trimisă cu succes! Durata: ${result.duration || 'N/A'}ms`, 
+                        message: t('problemsPage.suggestion.sentDuration', 'Sugestia a fost trimisă cu succes! Durata: {duration}ms', { duration: result.duration || 'N/A' }), 
                         timestamp: new Date() 
                     }]);
                     
@@ -896,11 +919,11 @@ const PhysicsProblems = () => {
                     
                     setEmailLogs(prev => [...prev, { 
                         type: 'error', 
-                        message: `Eroare: ${error.message}`, 
+                        message: t('problemsPage.suggestion.errorPrefix', 'Eroare: {message}', { message: error.message }), 
                         timestamp: new Date() 
                     }]);
                     setEmailStatus('error');
-                    setEmailError(error.message || 'A apărut o eroare la trimiterea sugestiei. Te rugăm să încerci din nou.');
+                    setEmailError(error.message || t('problemsPage.suggestion.genericError', 'A apărut o eroare la trimiterea sugestiei. Te rugăm să încerci din nou.'));
                 }
             }
         };
@@ -1021,7 +1044,7 @@ const PhysicsProblems = () => {
             <div className="modal-overlay" onClick={onClose}>
                 <div className="modal-content" onClick={e => e.stopPropagation()}>
                     <div className="modal-header">
-                        <h2>{isAdmin ? 'Adaugă problemă' : 'Sugerează o problemă'}</h2>
+                        <h2>{isAdmin ? t('problemsPage.actions.addProblemTitle', 'Adaugă problemă') : t('problemsPage.actions.suggestProblemTitle', 'Sugerează o problemă')}</h2>
                         <button className="modal-close" onClick={onClose}>×</button>
                     </div>
                     
@@ -1034,13 +1057,14 @@ const PhysicsProblems = () => {
                             color: '#1976d2',
                             fontSize: '14px'
                         }}>
-                            <strong>Notă:</strong> Ca utilizator non-admin, poți doar să sugerezi probleme. Sugestiile tale vor fi trimise prin email administratorilor pentru revizuire și adăugare în baza de date.
+                            <strong>{t('problemsPage.suggestion.notePrefix', 'Notă:')}</strong>{' '}
+                            {t('problemsPage.suggestion.nonAdminNote', 'Ca utilizator non-admin, poți doar să sugerezi probleme. Sugestiile tale vor fi trimise prin email administratorilor pentru revizuire și adăugare în baza de date.')}
                         </div>
                     )}
                     
                     {addError && (
                         <div className="error-message">
-                            Eroare la salvarea problemei: {addError}
+                            {t('problemsPage.suggestion.saveError', 'Eroare la salvarea problemei: {error}', { error: addError })}
                         </div>
                     )}
                     
@@ -1080,7 +1104,7 @@ const PhysicsProblems = () => {
                                         color: '#9e9e9e',
                                         fontSize: '11px'
                                     }}>
-                                        {log.timestamp.toLocaleTimeString('ro-RO')}
+                                        {log.timestamp.toLocaleTimeString(lang === 'en' ? 'en-GB' : 'ro-RO')}
                                     </span>
                                 </div>
                             ))}
@@ -1096,7 +1120,7 @@ const PhysicsProblems = () => {
                             color: '#2e7d32',
                             fontSize: '14px'
                         }}>
-                            ✓ Sugestia ta a fost trimisă cu succes! Administratorii vor revizui problema și o vor adăuga în baza de date dacă este aprobată.
+                            ✓ {t('problemsPage.suggestion.successInline', 'Sugestia ta a fost trimisă cu succes! Administratorii vor revizui problema și o vor adăuga în baza de date dacă este aprobată.')}
                         </div>
                     )}
                     
@@ -1109,30 +1133,30 @@ const PhysicsProblems = () => {
                             color: '#c62828',
                             fontSize: '14px'
                         }}>
-                            Eroare la trimiterea sugestiei: {emailError}
+                            {t('problemsPage.suggestion.sendError', 'Eroare la trimiterea sugestiei: {error}', { error: emailError })}
                         </div>
                     )}
                     
                     <form onSubmit={handleSubmit} className="modal-form">
                         <div className="form-grid">
                             <div className="form-group">
-                                <label>Titlu *</label>
+                                <label>{t('problemsPage.suggestion.modal.titleLabel', 'Titlu *')}</label>
                                 <input
                                     type="text"
                                     value={formData.titlu}
                                     onChange={(e) => handleInputChange('titlu', e.target.value)}
                                     required
-                                    placeholder="Titlul problemei"
+                                    placeholder={t('problemsPage.suggestion.modal.titlePlaceholder', 'Titlul problemei')}
                                     disabled={addStatus === 'loading'}
                                 />
                             </div>
 
                             <div className="form-group">
-                                <label>Descriere</label>
+                                <label>{t('problemsPage.suggestion.modal.descriptionLabel', 'Descriere')}</label>
                                 <textarea
                                     value={formData.descriere}
                                     onChange={(e) => handleInputChange('descriere', e.target.value)}
-                                    placeholder="O scurtă descriere a problemei"
+                                    placeholder={t('problemsPage.suggestion.modal.descriptionPlaceholder', 'O scurtă descriere a problemei')}
                                     rows={3}
                                     disabled={addStatus === 'loading'}
                                 />
@@ -1140,52 +1164,52 @@ const PhysicsProblems = () => {
 
                             <div className="form-row">
                                 <div className="form-group">
-                                    <label>Categorie *</label>
+                                    <label>{t('problemsPage.suggestion.modal.categoryLabel', 'Categorie *')}</label>
                                     <select
                                         value={formData.categorie}
                                         onChange={(e) => handleInputChange('categorie', e.target.value)}
                                         required
                                         disabled={addStatus === 'loading'}
                                     >
-                                        <option value="Mecanică">Mecanică</option>
-                                        <option value="Oscilații">Oscilații</option>
-                                        <option value="Unde">Unde</option>
-                                        <option value="Lissajous">Lissajous</option>
-                                        <option value="Seismologie">Seismologie</option>
-                                        <option value="Bac">Bac</option>
+                                        <option value="Mecanică">{formatCategoryFilterLabel('Mecanică', t)}</option>
+                                        <option value="Oscilații">{formatCategoryFilterLabel('Oscilații', t)}</option>
+                                        <option value="Unde">{formatCategoryFilterLabel('Unde', t)}</option>
+                                        <option value="Lissajous">{formatCategoryFilterLabel('Lissajous', t)}</option>
+                                        <option value="Seismologie">{formatCategoryFilterLabel('Seismologie', t)}</option>
+                                        <option value="Bac">{t('problemsPage.categories.bac', 'Bac')}</option>
                                     </select>
                                 </div>
 
                                 <div className="form-group">
-                                    <label>Dificultate *</label>
+                                    <label>{t('problemsPage.suggestion.modal.difficultyLabel', 'Dificultate *')}</label>
                                     <select
                                         value={formData.dificultate}
                                         onChange={(e) => handleInputChange('dificultate', e.target.value)}
                                         required
                                         disabled={addStatus === 'loading'}
                                     >
-                                        <option value="ușor">Ușor</option>
-                                        <option value="mediu">Mediu</option>
-                                        <option value="dificil">Dificil</option>
-                                        <option value="concurs">Concurs</option>
+                                        <option value="ușor">{t('problemsPage.difficulty.easy', 'Ușor')}</option>
+                                        <option value="mediu">{t('problemsPage.difficulty.medium', 'Mediu')}</option>
+                                        <option value="dificil">{t('problemsPage.difficulty.hard', 'Dificil')}</option>
+                                        <option value="concurs">{t('problemsPage.difficulty.competition', 'Concurs')}</option>
                                     </select>
                                 </div>
                             </div>
 
                             <div className="form-group full-width">
-                                <label>Conținut/Enunț *</label>
+                                <label>{t('problemsPage.suggestion.modal.contentLabel', 'Conținut/Enunț *')}</label>
                                 <textarea
                                     value={formData.continut}
                                     onChange={(e) => handleInputChange('continut', e.target.value)}
                                     required
-                                    placeholder="Enunțul problemei cu formule LaTeX (folosește $...$ pentru formule)"
+                                    placeholder={t('problemsPage.suggestion.modal.contentPlaceholder', 'Enunțul problemei cu formule LaTeX (folosește $...$ pentru formule)')}
                                     rows={6}
                                     disabled={addStatus === 'loading'}
                                 />
                             </div>
 
                             <div className="form-group full-width">
-                                <label>Formule</label>
+                                <label>{t('problemsPage.suggestion.modal.formulasLabel', 'Formule')}</label>
                                 <textarea
                                     value={formData.formule.join('\n')}
                                     onChange={(e) => handleInputChange('formule', e.target.value.split('\n'))}
@@ -1194,7 +1218,7 @@ const PhysicsProblems = () => {
                                             e.stopPropagation();
                                         }
                                     }}
-                                    placeholder="Formulele necesare (câte una pe rând)"
+                                    placeholder={t('problemsPage.suggestion.modal.formulasPlaceholder', 'Formulele necesare (câte una pe rând)')}
                                     rows={3}
                                     disabled={addStatus === 'loading'}
                                     style={{ whiteSpace: 'pre-wrap' }}
@@ -1202,7 +1226,7 @@ const PhysicsProblems = () => {
                             </div>
 
                             <div className="form-group full-width">
-                                <label>Date/Variabile</label>
+                                <label>{t('problemsPage.suggestion.modal.dataLabel', 'Date/Variabile')}</label>
                                 <div className="date-pairs-container">
                                     {datePairs.map((pair, index) => (
                                         <div key={index} className="date-pair-row">
@@ -1210,7 +1234,7 @@ const PhysicsProblems = () => {
                                                 type="text"
                                                 value={pair.key}
                                                 onChange={(e) => handleDatePairChange(index, 'key', e.target.value)}
-                                                placeholder="Nume variabilă (ex: m, v, t)"
+                                                placeholder={t('problemsPage.suggestion.modal.variableNamePlaceholder', 'Nume variabilă (ex: m, v, t)')}
                                                 disabled={addStatus === 'loading'}
                                             />
                                             <span className="date-pair-separator">=</span>
@@ -1218,7 +1242,7 @@ const PhysicsProblems = () => {
                                                 type="text"
                                                 value={pair.value}
                                                 onChange={(e) => handleDatePairChange(index, 'value', e.target.value)}
-                                                placeholder="Valoare (ex: 5 kg, 10 m/s)"
+                                                placeholder={t('problemsPage.suggestion.modal.variableValuePlaceholder', 'Valoare (ex: 5 kg, 10 m/s)')}
                                                 disabled={addStatus === 'loading'}
                                             />
                                             <button
@@ -1237,13 +1261,13 @@ const PhysicsProblems = () => {
                                         onClick={addDatePair}
                                         disabled={addStatus === 'loading'}
                                     >
-                                        Adaugă variabilă
+                                        {t('problemsPage.suggestion.modal.addVariable', 'Adaugă variabilă')}
                                     </button>
                                 </div>
                             </div>
 
                             <div className="form-group full-width">
-                                <label>Poze</label>
+                                <label>{t('problemsPage.suggestion.modal.imagesLabel', 'Poze')}</label>
                                 <div className="image-upload-area">
                                     <input
                                         type="file"
@@ -1256,7 +1280,7 @@ const PhysicsProblems = () => {
                                     />
                                     <label htmlFor="image-upload" className="image-upload-label">
                                         <div className="upload-placeholder">
-                                            <span>Click, trage sau folosește Ctrl+V pentru a adăuga poze</span>
+                                            <span>{t('problemsPage.suggestion.modal.imagesUploadHint', 'Click, trage sau folosește Ctrl+V pentru a adăuga poze')}</span>
                                         </div>
                                     </label>
                                     
@@ -1264,7 +1288,7 @@ const PhysicsProblems = () => {
                                         <div className="uploaded-images">
                                             {formData.poze.map((image, index) => (
                                                 <div key={index} className="image-preview">
-                                                    <img src={image} alt={`Preview ${index + 1}`} />
+                                                    <img src={image} alt={t('problemsPage.suggestion.modal.previewAlt', 'Previzualizare {n}', { n: index + 1 })} />
                                                     <button
                                                         type="button"
                                                         className="remove-image"
@@ -1281,19 +1305,19 @@ const PhysicsProblems = () => {
                             </div>
 
                             <div className="form-group">
-                                <label>Punctaj total</label>
+                                <label>{t('problemsPage.suggestion.modal.totalScoreLabel', 'Punctaj total')}</label>
                                 <input
                                     type="number"
                                     value={formData.punctajTotal}
                                     onChange={(e) => handleInputChange('punctajTotal', parseInt(e.target.value) || 0)}
                                     min="0"
-                                    placeholder="Punctaj total"
+                                    placeholder={t('problemsPage.suggestion.modal.totalScorePlaceholder', 'Punctaj total')}
                                     disabled={addStatus === 'loading'}
                                 />
                             </div>
 
                             <div className="form-group full-width">
-                                <label>Cerințe (subpuncte)</label>
+                                <label>{t('problemsPage.suggestion.modal.subproblemsLabel', 'Cerințe (subpuncte)')}</label>
                                 <div className="subpuncte-container">
                                     {formData.subpuncte.map((subpunct, index) => (
                                         <div key={index} className="subpunct-row">
@@ -1302,7 +1326,7 @@ const PhysicsProblems = () => {
                                                     type="text"
                                                     value={subpunct.cerinta}
                                                     onChange={(e) => handleSubpunctChange(index, 'cerinta', e.target.value)}
-                                                    placeholder="Cerință"
+                                                    placeholder={t('problemsPage.suggestion.modal.subproblemRequirement', 'Cerință')}
                                                     disabled={addStatus === 'loading'}
                                                 />
                                                 <input
@@ -1311,7 +1335,7 @@ const PhysicsProblems = () => {
                                                     onChange={(e) => handleSubpunctChange(index, 'punctaj', parseInt(e.target.value) || 0)}
                                                     min="1"
                                                     max="10"
-                                                    placeholder="Punctaj"
+                                                    placeholder={t('problemsPage.suggestion.modal.subproblemScore', 'Punctaj')}
                                                     disabled={addStatus === 'loading'}
                                                 />
                                             </div>
@@ -1331,7 +1355,7 @@ const PhysicsProblems = () => {
                                         onClick={addSubpunct}
                                         disabled={addStatus === 'loading'}
                                     >
-                                        Adaugă subpunct
+                                        {t('problemsPage.suggestion.modal.addSubproblem', 'Adaugă subpunct')}
                                     </button>
                                 </div>
                             </div>
@@ -1344,8 +1368,8 @@ const PhysicsProblems = () => {
                                 disabled={addStatus === 'loading' || emailStatus === 'loading'}
                             >
                                 {isAdmin 
-                                    ? (addStatus === 'loading' ? 'Se salvează...' : 'Salvează')
-                                    : (emailStatus === 'loading' ? 'Se trimite...' : 'Trimite sugestie')
+                                    ? (addStatus === 'loading' ? t('problemsPage.suggestion.modal.submitAdminLoading', 'Se salvează...') : t('problemsPage.suggestion.modal.submitAdmin', 'Salvează'))
+                                    : (emailStatus === 'loading' ? t('problemsPage.suggestion.modal.submitSuggestLoading', 'Se trimite...') : t('problemsPage.suggestion.modal.submitSuggest', 'Trimite sugestie'))
                                 }
                             </button>
                             <button
@@ -1354,7 +1378,7 @@ const PhysicsProblems = () => {
                                 onClick={onClose}
                                 disabled={addStatus === 'loading' || emailStatus === 'loading'}
                             >
-                                Anulează
+                                {t('problemsPage.suggestion.modal.cancel', 'Anulează')}
                             </button>
                         </div>
                     </form>
@@ -1411,9 +1435,15 @@ const PhysicsProblems = () => {
     return (
         <Layout>
             <SEO
-                title="Probleme de Fizică | PULS - Probleme BAC și Exerciții cu Rezolvări Pas cu Pas"
-                description={`Rezolvă probleme de fizică pentru bacalaureat și concursuri. Colecție completă de probleme cu rezolvări pas cu pas, organizate pe categorii și dificultate. Autoevaluare cu feedback AI. Peste ${sortedProblems.length} probleme disponibile.`}
-                keywords="probleme fizică, probleme BAC fizică, exerciții fizică, probleme rezolvate fizică, bacalaureat fizică, probleme concurs fizică, probleme fizică rezolvate pas cu pas, probleme fizică clasa a 12-a, probleme fizică mecanică, probleme fizică termodinamică"
+                title={t('problemsPage.seoTitle', 'Probleme de Fizică | PULS - Probleme BAC și Exerciții cu Rezolvări Pas cu Pas')}
+                description={t(
+                    'problemsPage.seoDescription',
+                    `Rezolvă probleme de fizică pentru bacalaureat și concursuri. Colecție completă de probleme cu rezolvări pas cu pas, organizate pe categorii și dificultate. Autoevaluare cu feedback AI. Peste ${sortedProblems.length} probleme disponibile.`,
+                )}
+                keywords={t(
+                    'problemsPage.seoKeywords',
+                    'probleme fizică, probleme BAC fizică, exerciții fizică, probleme rezolvate fizică, bacalaureat fizică, probleme concurs fizică, probleme fizică rezolvate pas cu pas, probleme fizică clasa a 12-a, probleme fizică mecanică, probleme fizică termodinamică',
+                )}
                 image="/res/icons/New-logo.png"
                 structuredData={structuredData}
             />
@@ -1448,7 +1478,7 @@ const PhysicsProblems = () => {
                                         <option key={difficulty} value={difficulty}>
                                             {difficulty === "Toate"
                                                 ? t('problemsPage.allDifficulties', 'Toate dificultățile')
-                                                : `${t('problemsPage.difficultyPrefix', 'Dificultate')}: ${difficulty}`
+                                                : `${t('problemsPage.difficultyPrefix', 'Dificultate')}: ${formatDifficultyLabel(difficulty, t)}`
                                             }
                                         </option>
                                     ))}
@@ -1462,7 +1492,7 @@ const PhysicsProblems = () => {
                                         <option key={category} value={category}>
                                             {category === "Toate"
                                                 ? t('problemsPage.allCategories', 'Toate categoriile')
-                                                : `${t('problemsPage.categoryPrefix', 'Categorie')}: ${category}`
+                                                : `${t('problemsPage.categoryPrefix', 'Categorie')}: ${formatCategoryFilterLabel(category, t)}`
                                             }
                                         </option>
                                     ))}
@@ -1479,17 +1509,17 @@ const PhysicsProblems = () => {
                                 className={`category-pill${selectedCategory === category ? ' active' : ''}`}
                                 onClick={() => setSelectedCategory(category)}
                             >
-                                {category}
+                                {formatCategoryFilterLabel(category, t)}
                             </button>
                         ))}
                         <Link to="/probleme/bac" className="bac-category-button">
                             <GraduationCap size={16} />
-                            <span>Bacalaureat</span>
+                            <span>{t('problemsPage.categories.bac', 'Bacalaureat')}</span>
                             <ExternalLink size={12} />
                         </Link>
                         <Link to="/probleme/grile" className="bac-category-button">
                             <ListChecks size={16} />
-                            <span>Grile</span>
+                            <span>{t('problemsPage.categories.quizzes', 'Grile')}</span>
                             <ExternalLink size={12} />
                         </Link>
                     </div>
@@ -1532,13 +1562,12 @@ const PhysicsProblems = () => {
                         ))}
                     </div>
 
-                    {/* Loading Component for No Results */}
-                    {sortedProblems.length === 0 && (
+                    {status === 'succeeded' && sortedProblems.length === 0 && (
                         <div className="no-results">
                             <div className="loading-spinner">
                                 <div className="spinner"></div>
-                                <h3>{t('problemsPage.searchingTitle', 'Se caută probleme...')}</h3>
-                                <p>{t('problemsPage.searchingDescription', 'Te rugăm să aștepți în timp ce se procesează căutarea.')}</p>
+                                <h3>{t('problemsPage.noResultsYetTitle', 'Nu există rezultate pentru filtrele curente')}</h3>
+                                <p>{t('problemsPage.noResultsYetDescription', 'Încearcă să modifici căutarea sau filtrele.')}</p>
                             </div>
                         </div>
                     )}
@@ -1586,7 +1615,7 @@ const PhysicsProblems = () => {
                         <button 
                             className="fab-add-problem"
                             onClick={() => setShowAddModal(true)}
-                            title={isAdmin ? "Adaugă o problemă nouă" : "Sugerează o problemă"}
+                            title={isAdmin ? t('problemsPage.actions.addProblem', 'Adaugă o problemă nouă') : t('problemsPage.actions.suggestProblem', 'Sugerează o problemă')}
                         >
                             <Plus size={24} />
                         </button>
@@ -1649,10 +1678,13 @@ const PhysicsProblems = () => {
                             >
                                 <div style={{ fontSize: '48px', marginBottom: '15px' }}>✓</div>
                                 <h3 style={{ margin: '0 0 10px', fontSize: '24px', fontWeight: 600 }}>
-                                    Sugestie Trimisă!
+                                    {t('problemsPage.suggestionSuccess.title', 'Sugestie Trimisă!')}
                                 </h3>
                                 <p style={{ margin: 0, fontSize: '16px', opacity: 0.9 }}>
-                                    Sugestia ta a fost trimisă cu succes administratorilor. Ei vor revizui problema și o vor adăuga în baza de date dacă este aprobată.
+                                    {t(
+                                        'problemsPage.suggestionSuccess.description',
+                                        'Sugestia ta a fost trimisă cu succes administratorilor. Ei vor revizui problema și o vor adăuga în baza de date dacă este aprobată.',
+                                    )}
                                 </p>
                                 <button
                                     onClick={() => setShowSuccessNotification(false)}
@@ -1675,7 +1707,7 @@ const PhysicsProblems = () => {
                                         e.target.style.backgroundColor = 'rgba(255, 255, 255, 0.2)';
                                     }}
                                 >
-                                    OK
+                                    {t('problemsPage.suggestionSuccess.close', 'OK')}
                                 </button>
                             </div>
                         </div>

@@ -15,6 +15,23 @@ import SEO from '../SEO';
 import '../../scss/components/_probleme-bac.scss';
 import { useI18n } from '../../i18n/LanguageContext';
 
+function bacSubjectRoman(num) {
+    return num === 1 ? 'I' : num === 2 ? 'II' : num === 3 ? 'III' : String(num);
+}
+
+function translateBacSession(sessionKey, t) {
+    const k = (sessionKey || '').toLowerCase();
+    if (k === 'simulare') return t('bacProblemsPage.sessionSimulare', 'Simulare');
+    if (k === 'model') return t('bacProblemsPage.sessionModel', 'Model');
+    if (k === 'bac') return t('bacProblemsPage.sessionBac', 'Bac');
+    return sessionKey;
+}
+
+function translateBacSubjectArea(area, t) {
+    if (!area) return '';
+    return t(`bacProblemsPage.categoriesData.${area}`, area);
+}
+
 // Icon components
 const SearchIcon = () => (
     <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
@@ -76,7 +93,7 @@ const getSubjectArea = (problem) => {
 
 const ProblemeBac = () => {
     const navigate = useNavigate();
-    const { localizedPath } = useI18n();
+    const { lang, t, localizedPath } = useI18n();
     const location = useLocation();
     const dispatch = useDispatch();
     const { value: problemeData, status } = useSelector(state => state.problems);
@@ -345,7 +362,7 @@ const ProblemeBac = () => {
 
     const toggleFavorite = async (problem) => {
         if (!user?.uid) {
-            alert('Autentifică-te pentru a salva probleme la favorite.');
+            alert(t('bacProblemsPage.favoriteLogin', 'Autentifică-te pentru a salva probleme la favorite.'));
             return;
         }
         try {
@@ -740,13 +757,13 @@ const ProblemeBac = () => {
             } else {
                 setEmailStatus('loading');
                 setEmailError(null);
-                setEmailLogs([{ type: 'info', message: 'Pregătire sugestie problemă...', timestamp: new Date() }]);
+                setEmailLogs([{ type: 'info', message: t('problemsPage.suggestion.preparing', 'Pregătire sugestie problemă...'), timestamp: new Date() }]);
                 try {
-                    setEmailLogs(prev => [...prev, { type: 'info', message: 'Se inițializează serviciul de email...', timestamp: new Date() }]);
+                    setEmailLogs(prev => [...prev, { type: 'info', message: t('problemsPage.suggestion.initializingEmail', 'Se inițializează serviciul de email...'), timestamp: new Date() }]);
                     const result = await sendProblemSuggestion(problemData, user);
                     setEmailLogs(prev => [...prev, { 
                         type: 'success', 
-                        message: `Sugestia a fost trimisă cu succes! Durata: ${result.duration || 'N/A'}ms`, 
+                        message: t('problemsPage.suggestion.sentDuration', 'Sugestia a fost trimisă cu succes! Durata: {duration}ms', { duration: result.duration || 'N/A' }), 
                         timestamp: new Date() 
                     }]);
                     setEmailStatus('success');
@@ -774,11 +791,11 @@ const ProblemeBac = () => {
                 } catch (error) {
                     setEmailLogs(prev => [...prev, { 
                         type: 'error', 
-                        message: `Eroare: ${error.message}`, 
+                        message: t('problemsPage.suggestion.errorPrefix', 'Eroare: {message}', { message: error.message }), 
                         timestamp: new Date() 
                     }]);
                     setEmailStatus('error');
-                    setEmailError(error.message || 'A apărut o eroare la trimiterea sugestiei. Te rugăm să încerci din nou.');
+                    setEmailError(error.message || t('bacProblemsPage.genericSuggestError', 'A apărut o eroare la trimiterea sugestiei. Te rugăm să încerci din nou.'));
                 }
             }
         };
@@ -905,15 +922,9 @@ const ProblemeBac = () => {
             <div className="modal-overlay" onClick={onClose}>
                 <div className="modal-content" onClick={e => e.stopPropagation()}>
                     <div className="modal-header">
-                        <h2>{isAdmin ? 'Adaugă problemă de bac' : 'Sugerează o problemă de bac'}</h2>
-                        <button className="modal-close" onClick={onClose}>×</button>
+                        <h2>{isAdmin ? t('bacProblemsPage.modalTitleAdmin', 'Adaugă problemă de bac') : t('bacProblemsPage.modalTitleSuggest', 'Sugerează o problemă de bac')}</h2>
+                        <button type="button" className="modal-close" onClick={onClose}>×</button>
                     </div>
-                    
-                    {!isAdmin && (
-                        <div className="info-message" style={{ padding: '12px', marginBottom: '16px', backgroundColor: '#e3f2fd', borderRadius: '4px', color: '#1976d2', fontSize: '14px' }}>
-                            <strong>Notă:</strong> Ca utilizator non-admin, poți doar să sugerezi probleme. Sugestiile tale vor fi trimise prin email administratorilor.
-                        </div>
-                    )}
                     
                     {!isAdmin && (
                         <div className="info-message" style={{ 
@@ -924,13 +935,14 @@ const ProblemeBac = () => {
                             color: '#1976d2',
                             fontSize: '14px'
                         }}>
-                            <strong>Notă:</strong> Ca utilizator non-admin, poți doar să sugerezi probleme. Sugestiile tale vor fi trimise prin email administratorilor pentru revizuire și adăugare în baza de date.
+                            <strong>{t('problemsPage.suggestion.notePrefix', 'Notă:')}</strong>{' '}
+                            {t('bacProblemsPage.modalNoteNonAdmin', 'Ca utilizator non-admin, poți doar să sugerezi probleme. Sugestiile tale vor fi trimise prin email administratorilor pentru revizuire și adăugare în baza de date.')}
                         </div>
                     )}
                     
                     {addError && (
                         <div className="error-message">
-                            Eroare la salvarea problemei: {addError}
+                            {t('bacProblemsPage.saveError', 'Eroare la salvarea problemei: {error}', { error: addError })}
                         </div>
                     )}
                     
@@ -970,7 +982,7 @@ const ProblemeBac = () => {
                                         color: '#9e9e9e',
                                         fontSize: '11px'
                                     }}>
-                                        {log.timestamp.toLocaleTimeString('ro-RO')}
+                                        {log.timestamp.toLocaleTimeString(lang === 'en' ? 'en-GB' : 'ro-RO')}
                                     </span>
                                 </div>
                             ))}
@@ -986,7 +998,7 @@ const ProblemeBac = () => {
                             color: '#2e7d32',
                             fontSize: '14px'
                         }}>
-                            ✓ Sugestia ta a fost trimisă cu succes! Administratorii vor revizui problema și o vor adăuga în baza de date dacă este aprobată.
+                            ✓ {t('problemsPage.suggestion.successInline', 'Sugestia ta a fost trimisă cu succes! Administratorii vor revizui problema și o vor adăuga în baza de date dacă este aprobată.')}
                         </div>
                     )}
                     
@@ -999,30 +1011,30 @@ const ProblemeBac = () => {
                             color: '#c62828',
                             fontSize: '14px'
                         }}>
-                            Eroare la trimiterea sugestiei: {emailError}
+                            {t('problemsPage.suggestion.sendError', 'Eroare la trimiterea sugestiei: {error}', { error: emailError })}
                         </div>
                     )}
                     
                     <form onSubmit={handleSubmit} className="modal-form">
                         <div className="form-grid">
                             <div className="form-group">
-                                <label>Titlu *</label>
+                                <label>{t('problemsPage.suggestion.modal.titleLabel', 'Titlu *')}</label>
                                 <input
                                     type="text"
                                     value={formData.titlu}
                                     onChange={(e) => handleInputChange('titlu', e.target.value)}
                                     required
-                                    placeholder="Titlul problemei"
+                                    placeholder={t('problemsPage.suggestion.modal.titlePlaceholder', 'Titlul problemei')}
                                     disabled={addStatus === 'loading'}
                                 />
                             </div>
 
                             <div className="form-group">
-                                <label>Descriere</label>
+                                <label>{t('problemsPage.suggestion.modal.descriptionLabel', 'Descriere')}</label>
                                 <textarea
                                     value={formData.descriere}
                                     onChange={(e) => handleInputChange('descriere', e.target.value)}
-                                    placeholder="O scurtă descriere a problemei"
+                                    placeholder={t('problemsPage.suggestion.modal.descriptionPlaceholder', 'O scurtă descriere a problemei')}
                                     rows={3}
                                     disabled={addStatus === 'loading'}
                                 />
@@ -1030,27 +1042,27 @@ const ProblemeBac = () => {
 
                             <div className="form-row">
                                 <div className="form-group">
-                                    <label>Subiect *</label>
+                                    <label>{t('bacProblemsPage.modalSubjectSelectLabel', 'Subiect *')}</label>
                                     <select
                                         value={formData.subiect}
                                         onChange={(e) => handleInputChange('subiect', e.target.value)}
                                         required
                                         disabled={addStatus === 'loading'}
                                     >
-                                        <option value="">Selectează subiectul</option>
-                                        <option value="1">Subiectul I</option>
-                                        <option value="2">Subiectul II</option>
-                                        <option value="3">Subiectul III</option>
+                                        <option value="">{t('bacProblemsPage.subjectPlaceholder', 'Selectează subiectul')}</option>
+                                        <option value="1">{t('bacProblemsPage.subjectPaper', 'Subiectul {roman}', { roman: bacSubjectRoman(1) })}</option>
+                                        <option value="2">{t('bacProblemsPage.subjectPaper', 'Subiectul {roman}', { roman: bacSubjectRoman(2) })}</option>
+                                        <option value="3">{t('bacProblemsPage.subjectPaper', 'Subiectul {roman}', { roman: bacSubjectRoman(3) })}</option>
                                     </select>
                                 </div>
 
                                 <div className="form-group">
-                                    <label>An *</label>
+                                    <label>{t('bacProblemsPage.modalYearLabel', 'An *')}</label>
                                     <input
                                         type="number"
                                         value={formData.an}
                                         onChange={(e) => handleInputChange('an', e.target.value)}
-                                        placeholder="ex: 2024"
+                                        placeholder={t('bacProblemsPage.yearPlaceholder', 'ex: 2024')}
                                         required
                                         min="2000"
                                         max="2100"
@@ -1061,64 +1073,64 @@ const ProblemeBac = () => {
 
                             <div className="form-row">
                                 <div className="form-group">
-                                    <label>Sesiune *</label>
+                                    <label>{t('bacProblemsPage.modalSessionLabel', 'Sesiune *')}</label>
                                     <select
                                         value={formData.sesiune}
                                         onChange={(e) => handleInputChange('sesiune', e.target.value)}
                                         required
                                         disabled={addStatus === 'loading'}
                                     >
-                                        <option value="">Selectează sesiunea</option>
-                                        <option value="bac">Bac</option>
-                                        <option value="model">Model</option>
-                                        <option value="simulare">Simulare</option>
+                                        <option value="">{t('bacProblemsPage.sessionPlaceholder', 'Selectează sesiunea')}</option>
+                                        <option value="bac">{translateBacSession('bac', t)}</option>
+                                        <option value="model">{translateBacSession('model', t)}</option>
+                                        <option value="simulare">{translateBacSession('simulare', t)}</option>
                                     </select>
                                 </div>
 
                                 <div className="form-group">
-                                    <label>Categorie</label>
+                                    <label>{t('bacProblemsPage.modalCategorySelectLabel', 'Categorie')}</label>
                                     <select
                                         value={formData.subjectArea}
                                         onChange={(e) => handleInputChange('subjectArea', e.target.value)}
                                         disabled={addStatus === 'loading'}
                                     >
-                                        <option value="">Selectează categoria</option>
-                                        <option value="Mecanică">Mecanică</option>
-                                        <option value="Termodinamică">Termodinamică</option>
-                                        <option value="Optică">Optică</option>
-                                        <option value="Curent continuu">Curent continuu</option>
+                                        <option value="">{t('bacProblemsPage.categoryPlaceholder', 'Selectează categoria')}</option>
+                                        <option value="Mecanică">{translateBacSubjectArea('Mecanică', t)}</option>
+                                        <option value="Termodinamică">{translateBacSubjectArea('Termodinamică', t)}</option>
+                                        <option value="Optică">{translateBacSubjectArea('Optică', t)}</option>
+                                        <option value="Curent continuu">{translateBacSubjectArea('Curent continuu', t)}</option>
                                     </select>
                                 </div>
                             </div>
 
                             <div className="form-row">
                                 <div className="form-group">
-                                    <label>Punctaj total</label>
+                                    <label>{t('problemsPage.suggestion.modal.totalScoreLabel', 'Punctaj total')}</label>
                                     <input
                                         type="number"
                                         value={formData.punctajTotal}
                                         onChange={(e) => handleInputChange('punctajTotal', parseInt(e.target.value) || 0)}
                                         min="0"
-                                        placeholder="Punctaj total"
+                                        placeholder={t('problemsPage.suggestion.modal.totalScorePlaceholder', 'Punctaj total')}
                                         disabled={addStatus === 'loading'}
                                     />
                                 </div>
                             </div>
 
                             <div className="form-group full-width">
-                                <label>Conținut/Enunț *</label>
+                                <label>{t('problemsPage.suggestion.modal.contentLabel', 'Conținut/Enunț *')}</label>
                                 <textarea
                                     value={formData.continut}
                                     onChange={(e) => handleInputChange('continut', e.target.value)}
                                     required
-                                    placeholder="Enunțul problemei cu formule LaTeX (folosește $...$ pentru formule)"
+                                    placeholder={t('problemsPage.suggestion.modal.contentPlaceholder', 'Enunțul problemei cu formule LaTeX (folosește $...$ pentru formule)')}
                                     rows={6}
                                     disabled={addStatus === 'loading'}
                                 />
                             </div>
 
                             <div className="form-group full-width">
-                                <label>Formule</label>
+                                <label>{t('problemsPage.suggestion.modal.formulasLabel', 'Formule')}</label>
                                 <textarea
                                     value={formData.formule.join('\n')}
                                     onChange={(e) => handleInputChange('formule', e.target.value.split('\n'))}
@@ -1127,7 +1139,7 @@ const ProblemeBac = () => {
                                             e.stopPropagation();
                                         }
                                     }}
-                                    placeholder="Formulele necesare (câte una pe rând)"
+                                    placeholder={t('problemsPage.suggestion.modal.formulasPlaceholder', 'Formulele necesare (câte una pe rând)')}
                                     rows={3}
                                     disabled={addStatus === 'loading'}
                                     style={{ whiteSpace: 'pre-wrap' }}
@@ -1135,7 +1147,7 @@ const ProblemeBac = () => {
                             </div>
 
                             <div className="form-group full-width">
-                                <label>Date/Variabile</label>
+                                <label>{t('problemsPage.suggestion.modal.dataLabel', 'Date/Variabile')}</label>
                                 <div className="date-pairs-container">
                                     {datePairs.map((pair, index) => (
                                         <div key={index} className="date-pair-row">
@@ -1143,7 +1155,7 @@ const ProblemeBac = () => {
                                                 type="text"
                                                 value={pair.key}
                                                 onChange={(e) => handleDatePairChange(index, 'key', e.target.value)}
-                                                placeholder="Nume variabilă (ex: m, v, t)"
+                                                placeholder={t('problemsPage.suggestion.modal.variableNamePlaceholder', 'Nume variabilă (ex: m, v, t)')}
                                                 disabled={addStatus === 'loading'}
                                             />
                                             <span className="date-pair-separator">=</span>
@@ -1151,7 +1163,7 @@ const ProblemeBac = () => {
                                                 type="text"
                                                 value={pair.value}
                                                 onChange={(e) => handleDatePairChange(index, 'value', e.target.value)}
-                                                placeholder="Valoare (ex: 5 kg, 10 m/s)"
+                                                placeholder={t('problemsPage.suggestion.modal.variableValuePlaceholder', 'Valoare (ex: 5 kg, 10 m/s)')}
                                                 disabled={addStatus === 'loading'}
                                             />
                                             <button
@@ -1170,13 +1182,13 @@ const ProblemeBac = () => {
                                         onClick={addDatePair}
                                         disabled={addStatus === 'loading'}
                                     >
-                                        Adaugă variabilă
+                                        {t('problemsPage.suggestion.modal.addVariable', 'Adaugă variabilă')}
                                     </button>
                                 </div>
                             </div>
 
                             <div className="form-group full-width">
-                                <label>Poze</label>
+                                <label>{t('problemsPage.suggestion.modal.imagesLabel', 'Poze')}</label>
                                 <div 
                                     className="image-upload-area"
                                     onPaste={handlePaste}
@@ -1194,7 +1206,7 @@ const ProblemeBac = () => {
                                     />
                                     <label htmlFor="image-upload-bac" className="image-upload-label">
                                         <div className="upload-placeholder">
-                                            <span>Click, trage sau folosește Ctrl+V pentru a adăuga poze</span>
+                                            <span>{t('problemsPage.suggestion.modal.imagesUploadHint', 'Click, trage sau folosește Ctrl+V pentru a adăuga poze')}</span>
                                         </div>
                                     </label>
                                     
@@ -1202,7 +1214,7 @@ const ProblemeBac = () => {
                                         <div className="uploaded-images">
                                             {formData.poze.map((image, index) => (
                                                 <div key={index} className="image-preview">
-                                                    <img src={image} alt={`Preview ${index + 1}`} />
+                                                    <img src={image} alt={t('problemsPage.suggestion.modal.previewAlt', 'Previzualizare {n}', { n: index + 1 })} />
                                                     <button
                                                         type="button"
                                                         className="remove-image"
@@ -1219,7 +1231,7 @@ const ProblemeBac = () => {
                             </div>
 
                             <div className="form-group full-width">
-                                <label>Cerințe (subpuncte)</label>
+                                <label>{t('problemsPage.suggestion.modal.subproblemsLabel', 'Cerințe (subpuncte)')}</label>
                                 <div className="subpuncte-container">
                                     {formData.subpuncte.map((subpunct, index) => (
                                         <div key={index} className="subpunct-row">
@@ -1228,7 +1240,7 @@ const ProblemeBac = () => {
                                                     type="text"
                                                     value={subpunct.cerinta}
                                                     onChange={(e) => handleSubpunctChange(index, 'cerinta', e.target.value)}
-                                                    placeholder="Cerință"
+                                                    placeholder={t('problemsPage.suggestion.modal.subproblemRequirement', 'Cerință')}
                                                     disabled={addStatus === 'loading'}
                                                 />
                                                 <input
@@ -1237,7 +1249,7 @@ const ProblemeBac = () => {
                                                     onChange={(e) => handleSubpunctChange(index, 'punctaj', parseInt(e.target.value) || 0)}
                                                     min="1"
                                                     max="10"
-                                                    placeholder="Punctaj"
+                                                    placeholder={t('problemsPage.suggestion.modal.subproblemScore', 'Punctaj')}
                                                     disabled={addStatus === 'loading'}
                                                 />
                                             </div>
@@ -1257,16 +1269,16 @@ const ProblemeBac = () => {
                                         onClick={addSubpunct}
                                         disabled={addStatus === 'loading'}
                                     >
-                                        Adaugă subpunct
+                                        {t('problemsPage.suggestion.modal.addSubproblem', 'Adaugă subpunct')}
                                     </button>
                                 </div>
                             </div>
                         </div>
                         <div className="modal-actions">
                             <button type="submit" className="btn-primary" disabled={addStatus === 'loading' || emailStatus === 'loading'}>
-                                {isAdmin ? (addStatus === 'loading' ? 'Se salvează...' : 'Salvează') : (emailStatus === 'loading' ? 'Se trimite...' : 'Trimite sugestie')}
+                                {isAdmin ? (addStatus === 'loading' ? t('problemsPage.suggestion.modal.submitAdminLoading', 'Se salvează...') : t('problemsPage.suggestion.modal.submitAdmin', 'Salvează')) : (emailStatus === 'loading' ? t('problemsPage.suggestion.modal.submitSuggestLoading', 'Se trimite...') : t('problemsPage.suggestion.modal.submitSuggest', 'Trimite sugestie'))}
                             </button>
-                            <button type="button" className="btn-secondary" onClick={onClose} disabled={addStatus === 'loading' || emailStatus === 'loading'}>Anulează</button>
+                            <button type="button" className="btn-secondary" onClick={onClose} disabled={addStatus === 'loading' || emailStatus === 'loading'}>{t('problemsPage.suggestion.modal.cancel', 'Anulează')}</button>
                         </div>
                     </form>
                 </div>
@@ -1333,9 +1345,15 @@ const ProblemeBac = () => {
     return (
         <Layout>
             <SEO
-                title="Probleme BAC Fizică | Examen Bacalaureat - Rezolvări Complete | PULS"
-                description={`Probleme de fizică din examenele de bacalaureat. Colecție completă de probleme BAC organizate pe ani, sesiuni și subiecte. Rezolvări pas cu pas și autoevaluare cu feedback AI. Peste ${sortedProblems.length} probleme BAC disponibile.`}
-                keywords="probleme BAC fizică, examen bacalaureat fizică, probleme BAC rezolvate, fizică BAC, subiecte BAC fizică, variante BAC fizică, probleme BAC 2024, probleme BAC 2023, probleme BAC 2022, subiecte BAC fizică rezolvate, examen BAC fizică, pregătire BAC fizică"
+                title={t('bacProblemsPage.seoTitle', 'Probleme BAC Fizică | Examen Bacalaureat - Rezolvări Complete | PULS')}
+                description={t(
+                    'bacProblemsPage.seoDescription',
+                    `Probleme de fizică din examenele de bacalaureat. Colecție completă de probleme BAC organizate pe ani, sesiuni și subiecte. Rezolvări pas cu pas și autoevaluare cu feedback AI. Peste ${sortedProblems.length} probleme BAC disponibile.`,
+                )}
+                keywords={t(
+                    'bacProblemsPage.seoKeywords',
+                    'probleme BAC fizică, examen bacalaureat fizică, probleme BAC rezolvate, fizică BAC, subiecte BAC fizică, variante BAC fizică',
+                )}
                 image="/res/icons/New-logo.png"
                 structuredData={structuredData}
             />
@@ -1344,9 +1362,9 @@ const ProblemeBac = () => {
                     {/* Header Section */}
                     <div className="problems-bac-header">
                         <div className="header-content">
-                            <h1 className="problems-bac-page-title">Probleme de Bacalaureat</h1>
+                            <h1 className="problems-bac-page-title">{t('bacProblemsPage.title', 'Probleme de Bacalaureat')}</h1>
                             <p className="problems-bac-page-subtitle">
-                                Probleme organizate pe variante de examen din diferiți ani
+                                {t('bacProblemsPage.subtitle', 'Probleme organizate pe variante de examen din diferiți ani')}
                             </p>
                         </div>
                     </div>
@@ -1358,7 +1376,7 @@ const ProblemeBac = () => {
                                 <span className="search-icon"><SearchIcon /></span>
                                 <input
                                     type="text"
-                                    placeholder="Caută după titlu, ID sau număr..."
+                                    placeholder={t('bacProblemsPage.searchPlaceholder', 'Caută după titlu, ID sau număr...')}
                                     className="search-input"
                                     value={searchQuery}
                                     onChange={(e) => setSearchQuery(e.target.value)}
@@ -1368,29 +1386,31 @@ const ProblemeBac = () => {
                         
                         <div className="filters-wrapper">
                             <div className="filter-group">
-                                <label className="filter-label">Subiect</label>
+                                <label className="filter-label">{t('bacProblemsPage.filterSubject', 'Subiect')}</label>
                                 <select
                                     className="filter-select"
                                     value={selectedSubject}
                                     onChange={(e) => setSelectedSubject(e.target.value)}
                                 >
-                                    <option value="Toate">Toate subiectele</option>
+                                    <option value="Toate">{t('bacProblemsPage.allSubjects', 'Toate subiectele')}</option>
                                     {availableSubjects.map((subjectNum) => (
                                         <option key={subjectNum} value={subjectNum.toString()}>
-                                            Subiectul {subjectNum === 1 ? 'I' : subjectNum === 2 ? 'II' : 'III'}
+                                            {t('bacProblemsPage.subjectPaper', 'Subiectul {roman}', {
+                                                roman: bacSubjectRoman(subjectNum),
+                                            })}
                                         </option>
                                     ))}
                                 </select>
                             </div>
                             
                             <div className="filter-group">
-                                <label className="filter-label">An</label>
+                                <label className="filter-label">{t('bacProblemsPage.filterYear', 'An')}</label>
                                 <select
                                     className="filter-select"
                                     value={selectedYear}
                                     onChange={(e) => setSelectedYear(e.target.value)}
                                 >
-                                    <option value="Toate">Toți anii</option>
+                                    <option value="Toate">{t('bacProblemsPage.allYears', 'Toți anii')}</option>
                                     {availableYears.map((year) => (
                                         <option key={year} value={year.toString()}>
                                             {year}
@@ -1400,50 +1420,48 @@ const ProblemeBac = () => {
                             </div>
                             
                             <div className="filter-group">
-                                <label className="filter-label">Sesiune</label>
+                                <label className="filter-label">{t('bacProblemsPage.filterSession', 'Sesiune')}</label>
                                 <select
                                     className="filter-select"
                                     value={selectedSession}
                                     onChange={(e) => setSelectedSession(e.target.value)}
                                 >
-                                    <option value="Toate">Toate sesiunile</option>
+                                    <option value="Toate">{t('bacProblemsPage.allSessions', 'Toate sesiunile')}</option>
                                     {availableSessions.map((session) => (
                                         <option key={session} value={session}>
-                                            {session === 'simulare' ? 'Simulare' : 
-                                             session === 'model' ? 'Model' :
-                                             session === 'bac' ? 'Bac' : session}
+                                            {translateBacSession(session, t)}
                                         </option>
                                     ))}
                                 </select>
                             </div>
                             
                             <div className="filter-group">
-                                <label className="filter-label">Categorie</label>
+                                <label className="filter-label">{t('bacProblemsPage.filterCategory', 'Categorie')}</label>
                                 <select
                                     className="filter-select"
                                     value={selectedCategory}
                                     onChange={(e) => setSelectedCategory(e.target.value)}
                                 >
-                                    <option value="Toate">Toate categoriile</option>
+                                    <option value="Toate">{t('bacProblemsPage.allCategories', 'Toate categoriile')}</option>
                                     {availableCategories.map((category) => (
                                         <option key={category} value={category}>
-                                            {category}
+                                            {translateBacSubjectArea(category, t)}
                                         </option>
                                     ))}
                                 </select>
                             </div>
                             
                             <div className="filter-group">
-                                <label className="filter-label">Sortare</label>
+                                <label className="filter-label">{t('bacProblemsPage.filterSort', 'Sortare')}</label>
                                 <select
                                     className="filter-select"
                                     value={sortBy}
                                     onChange={(e) => setSortBy(e.target.value)}
                                 >
-                                    <option value="newest">Cele mai noi</option>
-                                    <option value="oldest">Cele mai vechi</option>
-                                    <option value="subject-asc">Subiect (I → III)</option>
-                                    <option value="subject-desc">Subiect (III → I)</option>
+                                    <option value="newest">{t('bacProblemsPage.sortNewest', 'Cele mai noi')}</option>
+                                    <option value="oldest">{t('bacProblemsPage.sortOldest', 'Cele mai vechi')}</option>
+                                    <option value="subject-asc">{t('bacProblemsPage.sortSubjectAsc', 'Subiect (I → III)')}</option>
+                                    <option value="subject-desc">{t('bacProblemsPage.sortSubjectDesc', 'Subiect (III → I)')}</option>
                                 </select>
                             </div>
                         </div>
@@ -1452,7 +1470,9 @@ const ProblemeBac = () => {
                     {/* Results Count */}
                     <div className="results-count-section">
                         <span className="results-count-badge">
-                            {sortedProblems.length} {sortedProblems.length === 1 ? 'problemă găsită' : 'probleme găsite'}
+                            {sortedProblems.length === 1
+                                ? t('bacProblemsPage.resultsSingle', '{count} problemă găsită', { count: sortedProblems.length })
+                                : t('bacProblemsPage.resultsPlural', '{count} probleme găsite', { count: sortedProblems.length })}
                         </span>
                     </div>
 
@@ -1462,7 +1482,7 @@ const ProblemeBac = () => {
                             <div className="loading-spinner">
                                 <div className="spinner"></div>
                             </div>
-                            <p>Se încarcă problemele...</p>
+                            <p>{t('bacProblemsPage.loading', 'Se încarcă problemele...')}</p>
                         </div>
                     )}
 
@@ -1470,8 +1490,8 @@ const ProblemeBac = () => {
                     {status === 'succeeded' && sortedProblems.length === 0 && (
                         <div className="no-results">
                             <div className="no-results-icon">📚</div>
-                            <h3>Nu există probleme de bac disponibile</h3>
-                            <p>Problemele vor fi adăugate în curând.</p>
+                            <h3>{t('bacProblemsPage.emptyTitle', 'Nu există probleme de bac disponibile')}</h3>
+                            <p>{t('bacProblemsPage.emptySubtitle', 'Problemele vor fi adăugate în curând.')}</p>
                         </div>
                     )}
 
@@ -1496,8 +1516,8 @@ const ProblemeBac = () => {
                         <button 
                             className="fab-add-problem"
                             onClick={() => setShowAddModal(true)}
-                            title={isAdmin ? "Adaugă o problemă nouă" : "Sugerează o problemă"}
-                            aria-label={isAdmin ? "Adaugă o problemă nouă" : "Sugerează o problemă"}
+                            title={isAdmin ? t('bacProblemsPage.fabAddTitle', 'Adaugă o problemă nouă') : t('bacProblemsPage.fabSuggestTitle', 'Sugerează o problemă')}
+                            aria-label={isAdmin ? t('bacProblemsPage.fabAddTitle', 'Adaugă o problemă nouă') : t('bacProblemsPage.fabSuggestTitle', 'Sugerează o problemă')}
                         >
                             <Plus size={24} />
                         </button>

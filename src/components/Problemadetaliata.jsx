@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useContext, useRef } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 import '../scss/components/_problema-detaliata.scss';
 import { ArrowLeft, Bot, Calculator, BookOpen, Copy, Check, Star } from 'lucide-react';
@@ -17,6 +17,41 @@ import { useAssistant } from '../hooks/useAssistant';
 import useDarkMode from '../hooks/useDarkMode';
 import { summarizeProblemImages } from '../lib/problemImageSummary';
 import { useI18n } from '../i18n/LanguageContext';
+import { normalizeString } from '../lib/normalizeString';
+
+function formatProblemCategory(cat, t) {
+  if (!cat) return '';
+  const map = {
+    Toate: ['problemsPage.categories.all', 'Toate'],
+    Mecanică: ['problemsPage.categories.mechanics', 'Mecanică'],
+    Oscilații: ['problemsPage.categories.oscillations', 'Oscilații'],
+    Unde: ['problemsPage.categories.waves', 'Unde'],
+    unde: ['problemsPage.categories.waves', 'Unde'],
+    Lissajous: ['problemsPage.categories.lissajous', 'Lissajous'],
+    Seismologie: ['problemsPage.categories.seismology', 'Seismologie'],
+    Bac: ['problemsPage.categories.bac', 'Bac'],
+    pendule: ['problemsPage.categories.oscillations', 'Pendule'],
+    Pendule: ['problemsPage.categories.oscillations', 'Pendule'],
+    seisme: ['problemsPage.categories.seismology', 'Seisme'],
+    Seisme: ['problemsPage.categories.seismology', 'Seisme'],
+    difractie: ['problemDetailPage.categoryDiffraction', 'Difracția Luminii'],
+    Difractie: ['problemDetailPage.categoryDiffraction', 'Difracția Luminii'],
+  };
+  const entry = map[cat];
+  return entry ? t(entry[0], entry[1]) : cat;
+}
+
+function formatDifficultyDisplay(raw, t) {
+  if (!raw) return '';
+  const n = normalizeString(raw);
+  if (n.includes('usor') || n.includes('usoare')) return t('problemsPage.difficulty.easy', raw);
+  if (n.includes('mediu') || n.includes('medii')) return t('problemsPage.difficulty.medium', raw);
+  if (n.includes('dificil') || n.includes('dificile') || n.includes('greu') || n.includes('grele')) {
+    return t('problemsPage.difficulty.hard', raw);
+  }
+  if (n.includes('concurs')) return t('problemsPage.difficulty.competition', raw);
+  return raw;
+}
 
 export const ProblemaDetaliata = ({ problema, onBack, homeworkContext = null }) => {
   const navigate = useNavigate();
@@ -64,7 +99,7 @@ export const ProblemaDetaliata = ({ problema, onBack, homeworkContext = null }) 
   const handleEdit = () => {
     // Check if user is authenticated before navigating
     if (!auth.currentUser) {
-      alert('Trebuie să te conectezi pentru a edita probleme. Te rugăm să te autentifici mai întâi.');
+      alert(t('problemDetailPage.editLoginRequired', 'Trebuie să te conectezi pentru a edita probleme. Te rugăm să te autentifici mai întâi.'));
       return;
     }
 
@@ -73,7 +108,7 @@ export const ProblemaDetaliata = ({ problema, onBack, homeworkContext = null }) 
 
     if (!problemId) {
       console.error('Problem ID is missing:', problema);
-      alert('Eroare: Problema nu are un ID valid. Nu se poate edita.');
+      alert(t('problemDetailPage.editMissingId', 'Eroare: Problema nu are un ID valid. Nu se poate edita.'));
       return;
     }
 
@@ -84,7 +119,7 @@ export const ProblemaDetaliata = ({ problema, onBack, homeworkContext = null }) 
   const handleDelete = () => {
     // Check if user is authenticated before showing confirmation
     if (!auth.currentUser) {
-      alert('Trebuie să te conectezi pentru a șterge probleme. Te rugăm să te autentifici mai întâi.');
+      alert(t('problemDetailPage.deleteLoginRequired', 'Trebuie să te conectezi pentru a șterge probleme. Te rugăm să te autentifici mai întâi.'));
       return;
     }
 
@@ -98,11 +133,17 @@ export const ProblemaDetaliata = ({ problema, onBack, homeworkContext = null }) 
 
     if (!problemId) {
       console.error('Problem ID is missing:', problema);
-      alert('Eroare: Problema nu are un ID valid. Nu se poate șterge.');
+      alert(t('problemDetailPage.deleteMissingId', 'Eroare: Problema nu are un ID valid. Nu se poate șterge.'));
       return;
     }
 
-    if (window.confirm(`Sigur vrei să ștergi problema "${problema.titlu}"?`)) {
+    if (
+      window.confirm(
+        t('problemDetailPage.deleteProblemConfirm', `Sigur vrei să ștergi problema "${problema.titlu}"?`, {
+          title: problema.titlu,
+        }),
+      )
+    ) {
       console.log('User confirmed deletion, dispatching deleteProblem with ID:', problemId, 'and index:', problema.index);
       // Pass both ID and index to help find the document
       dispatch(deleteProblem({ id: problemId, index: problema.index }));
@@ -125,35 +166,14 @@ export const ProblemaDetaliata = ({ problema, onBack, homeworkContext = null }) 
       // Show more user-friendly error message
       const errorMessage = deleteError || 'A apărut o eroare necunoscută';
       console.error('Delete failed with error:', errorMessage);
-      alert(`Eroare la ștergerea problemei:\n\n${errorMessage}\n\nTe rugăm să încerci din nou sau să contactezi administratorul.`);
+      alert(
+        t('problemDetailPage.deleteError', `Eroare la ștergerea problemei:\n\n${errorMessage}\n\nTe rugăm să încerci din nou sau să contactezi administratorul.`, {
+          message: errorMessage,
+        }),
+      );
       dispatch(clearDeleteStatus());
     }
-  }, [deleteStatus, deleteError, onBack, navigate, dispatch, localizedPath]);
-
-  const getDifficultyClass = (dificultate) => {
-    return `badge-difficulty ${dificultate || 'default'}`;
-  };
-
-  const getCategoryName = (categorie) => {
-    switch (categorie) {
-      case 'unde': return 'Unde';
-      case 'pendule': return 'Pendule';
-      case 'seisme': return 'Seisme';
-      case 'difractie': return 'Difracția Luminii';
-      default: return categorie;
-    }
-  };
-
-  const getDifficultyName = (dificultate) => {
-    switch (dificultate) {
-      case 'usoare': return 'Ușoare';
-      case 'medii': return 'Medii';
-      case 'grele': return 'Grele';
-      case 'dificile': return 'Dificile';
-      case 'concurs': return 'Concurs';
-      default: return dificultate;
-    }
-  };
+  }, [deleteStatus, deleteError, onBack, navigate, dispatch, localizedPath, t]);
 
   // Funcție pentru a extrage latexul dintr-un string cu delimitatori $...$
   function stripMathJaxDelimiters(str) {
@@ -168,19 +188,24 @@ export const ProblemaDetaliata = ({ problema, onBack, homeworkContext = null }) 
 
   // Funcție pentru generarea textului compact al problemei
   const generateProblemText = () => {
-    let text = `PROBLEMA #${problema.index}: ${problema.titlu}\n`;
-    text += `Categorie: ${getCategoryName(problema.categorie)}\n`;
-    text += `Dificultate: ${getDifficultyName(problema.dificultate)}\n`;
-    text += `Punctaj total: ${problema.punctajTotal} puncte\n\n`;
+    let text =
+      t(
+        'problemDetailPage.export.problemHeader',
+        `PROBLEMA #${problema.index}: ${problema.titlu}`,
+        { num: problema.index, title: problema.titlu },
+      ) + '\n';
+    text += `${t('problemDetailPage.export.category', 'Categorie:')} ${formatProblemCategory(problema.categorie, t)}\n`;
+    text += `${t('problemDetailPage.export.difficulty', 'Dificultate:')} ${formatDifficultyDisplay(problema.dificultate, t)}\n`;
+    text += `${t('problemDetailPage.export.totalScore', `Punctaj total: ${problema.punctajTotal} puncte`, { points: problema.punctajTotal })}\n\n`;
 
-    text += `DESCRIERE:\n${problema.descriere}\n\n`;
+    text += `${t('problemDetailPage.export.description', 'DESCRIERE:')}\n${problema.descriere}\n\n`;
 
     if (problema.continut) {
-      text += `CONTINUT:\n${stripMathJaxDelimiters(problema.continut)}\n\n`;
+      text += `${t('problemDetailPage.export.content', 'CONTINUT:')}\n${stripMathJaxDelimiters(problema.continut)}\n\n`;
     }
 
     if (problema.formule && problema.formule.length > 0) {
-      text += `FORMULE RELEVANTE:\n`;
+      text += `${t('problemDetailPage.export.formulas', 'FORMULE RELEVANTE:')}\n`;
       problema.formule.forEach((formula, index) => {
         text += `${index + 1}. ${stripMathJaxDelimiters(formula)}\n`;
       });
@@ -188,7 +213,7 @@ export const ProblemaDetaliata = ({ problema, onBack, homeworkContext = null }) 
     }
 
     if (problema.date && Object.keys(problema.date).length > 0) {
-      text += `DATE CUNOSCUTE:\n`;
+      text += `${t('problemDetailPage.export.knownData', 'DATE CUNOSCUTE:')}\n`;
       Object.entries(problema.date).forEach(([key, value]) => {
         text += `${stripMathJaxDelimiters(key.replace(/_/g, ' '))}: ${stripMathJaxDelimiters(String(value))}\n`;
       });
@@ -196,15 +221,30 @@ export const ProblemaDetaliata = ({ problema, onBack, homeworkContext = null }) 
     }
 
     if (problema.subpuncte && problema.subpuncte.length > 0) {
-      text += `CERINTE:\n`;
+      text += `${t('problemDetailPage.export.requirements', 'CERINTE:')}\n`;
       problema.subpuncte.forEach((subpunct, index) => {
-        text += `${String.fromCharCode(97 + index)}) ${stripMathJaxDelimiters(subpunct.cerinta)} (${subpunct.punctaj}p)\n`;
+        const letter = String.fromCharCode(97 + index);
+        text +=
+          t(
+            'problemDetailPage.export.requirementLine',
+            `${letter}) ${stripMathJaxDelimiters(subpunct.cerinta)} (${subpunct.punctaj}p)`,
+            {
+              letter,
+              text: stripMathJaxDelimiters(subpunct.cerinta),
+              points: subpunct.punctaj,
+            },
+          ) + '\n';
       });
       text += '\n';
 
-      text += `BAREM:\n`;
+      text += `${t('problemDetailPage.export.rubric', 'BAREM:')}\n`;
       problema.subpuncte.forEach((subpunct, index) => {
-        text += `${String.fromCharCode(97 + index)}) ${subpunct.punctaj} puncte\n`;
+        const letter = String.fromCharCode(97 + index);
+        text +=
+          t('problemDetailPage.export.rubricLine', `${letter}) ${subpunct.punctaj} puncte`, {
+            letter,
+            points: subpunct.punctaj,
+          }) + '\n';
       });
     }
 
@@ -242,9 +282,12 @@ export const ProblemaDetaliata = ({ problema, onBack, homeworkContext = null }) 
           problemText,
           problem: problema,
         });
-        const msg = imageSummary
-          ? `Rezolvă această problemă:\n\n${problemText}\n\nREZUMAT IMAGINI ATAȘATE ENUNȚULUI:\n${imageSummary}`
-          : `Rezolvă această problemă:\n\n${problemText}`;
+        const solvePrompt = t('problemDetailPage.export.solvePrompt', 'Rezolvă această problemă:\n\n');
+        const imageHdr = t(
+          'problemDetailPage.export.imageSummaryHeader',
+          '\n\nREZUMAT IMAGINI ATAȘATE ENUNȚULUI:\n',
+        );
+        const msg = imageSummary ? `${solvePrompt}${problemText}${imageHdr}${imageSummary}` : `${solvePrompt}${problemText}`;
         assistant.openWithMessage(msg);
       } catch (error) {
         console.error('Error opening Profesorul Whiz:', error);
@@ -309,7 +352,7 @@ export const ProblemaDetaliata = ({ problema, onBack, homeworkContext = null }) 
   const toggleFavorite = async () => {
     if (!problemId) return;
     if (!auth.currentUser) {
-      alert('Autentifică-te pentru a salva probleme la favorite.');
+      alert(t('problemDetailPage.favoriteLogin', 'Autentifică-te pentru a salva probleme la favorite.'));
       return;
     }
     const previousFavorites = favorites;
@@ -333,11 +376,18 @@ export const ProblemaDetaliata = ({ problema, onBack, homeworkContext = null }) 
     } catch (error) {
       console.error('Favorite toggle failed:', error);
       setFavorites(previousFavorites);
-      alert('A apărut o problemă la actualizarea favoritei. Încearcă din nou.');
+      alert(t('problemDetailPage.favoriteUpdateError', 'A apărut o problemă la actualizarea favoritei. Încearcă din nou.'));
     } finally {
       setIsUpdatingFavorite(false);
     }
   };
+
+  const isBacProblem =
+    problema.categorie === 'Bac' ||
+    (problema.categorie && problema.categorie.toLowerCase().includes('bac'));
+  const backLabel = isBacProblem
+    ? t('problemDetailPage.backBac', 'Înapoi la probleme pentru bacalaureat')
+    : t('problemDetailPage.back', 'Înapoi la probleme');
 
 
   return (
@@ -353,10 +403,10 @@ export const ProblemaDetaliata = ({ problema, onBack, homeworkContext = null }) 
                     <button
                       onClick={goBackToProblems}
                       className="back-button"
-                      title="Înapoi la probleme"
+                      title={backLabel}
                     >
                       <ArrowLeft className="w-4 h-4" />
-                      <span>Înapoi la probleme</span>
+                      <span>{backLabel}</span>
                     </button>
                   </div>
                   <div className="card-title-row">
@@ -365,8 +415,16 @@ export const ProblemaDetaliata = ({ problema, onBack, homeworkContext = null }) 
                       <button
                         type="button"
                         className={`problema-favorite-btn${isFavorite ? ' is-active' : ''}`}
-                        title={isFavorite ? 'Elimină din favorite' : 'Adaugă la favorite'}
-                        aria-label={isFavorite ? 'Elimină din favorite' : 'Adaugă la favorite'}
+                        title={
+                          isFavorite
+                            ? t('problemDetailPage.favoriteRemove', 'Elimină din favorite')
+                            : t('problemDetailPage.favoriteAdd', 'Adaugă la favorite')
+                        }
+                        aria-label={
+                          isFavorite
+                            ? t('problemDetailPage.favoriteRemove', 'Elimină din favorite')
+                            : t('problemDetailPage.favoriteAdd', 'Adaugă la favorite')
+                        }
                         onClick={toggleFavorite}
                         disabled={isUpdatingFavorite}
                       >
@@ -376,14 +434,18 @@ export const ProblemaDetaliata = ({ problema, onBack, homeworkContext = null }) 
                   </div>
                   <p className="card-description">{problema.descriere}</p>
                   <div className="flex items-center space-x-4">
-                    <Badge className="category">{getCategoryName(problema.categorie)}</Badge>
-                    <span className="total-points">Total: {problema.punctajTotal} puncte</span>
+                    <Badge className="category">{formatProblemCategory(problema.categorie, t)}</Badge>
+                    <span className="total-points">
+                      {t('problemDetailPage.totalPointsBadge', `Total: ${problema.punctajTotal} puncte`, {
+                        points: problema.punctajTotal,
+                      })}
+                    </span>
                   </div>
                 </div>
                 <button
                   onClick={copyToClipboard}
                   className="copy-button"
-                  title="Copiază problema completă"
+                  title={t('problemDetailPage.copyFullProblemTitle', 'Copiază problema completă')}
                 >
                   {copied ? (
                     <Check className="w-5 h-5 text-green-600" />
@@ -401,7 +463,9 @@ export const ProblemaDetaliata = ({ problema, onBack, homeworkContext = null }) 
                     <img
                       key={index}
                       src={imagine}
-                      alt={`Ilustrație problemă ${index + 1}`}
+                      alt={t('problemDetailPage.illustrationAltIndexed', `Ilustrație problemă ${index + 1}`, {
+                        index: index + 1,
+                      })}
                       className={`problema-imagine ${problema.poze.length === 2 ? 'dual-image' : ''}`}
                     />
                   ))}
@@ -410,15 +474,15 @@ export const ProblemaDetaliata = ({ problema, onBack, homeworkContext = null }) 
               {/* Suport pentru imagine (format vechi - o singură imagine) */}
               {!problema.poze && problema.imagine && (
                 <div className="problema-imagine-container">
-                  <img src={problema.imagine} alt="Ilustrație problemă" className="problema-imagine" />
+                  <img src={problema.imagine} alt={t('problemDetailPage.illustrationAlt', 'Ilustrație problemă')} className="problema-imagine" />
                 </div>
               )}
               {/* Suport pentru imagine1 și imagine2 (format vechi - două imagini) */}
               {!problema.poze && problema.imagine1 && (
                 <div className="problema-imagine-container dual-images">
-                  <img src={problema.imagine1} alt="Ilustrație problemă" className="problema-imagine dual-image" />
+                  <img src={problema.imagine1} alt={t('problemDetailPage.illustrationAlt', 'Ilustrație problemă')} className="problema-imagine dual-image" />
                   {problema.imagine2 && (
-                    <img src={problema.imagine2} alt="Ilustrație problemă" className="problema-imagine dual-image" />
+                    <img src={problema.imagine2} alt={t('problemDetailPage.illustrationAlt', 'Ilustrație problemă')} className="problema-imagine dual-image" />
                   )}
                 </div>
               )}
@@ -429,7 +493,7 @@ export const ProblemaDetaliata = ({ problema, onBack, homeworkContext = null }) 
               {problema.formule?.length > 0 && (
                 <div className="formule-section">
                   <h4 className="font-semibold text-blue-900 mb-3 flex items-center">
-                    <Calculator className="w-4 h-4 mr-2" /> Formule relevante:
+                    <Calculator className="w-4 h-4 mr-2" /> {t('problemDetailPage.formulasTitle', 'Formule relevante')}:
                   </h4>
                   <div className="space-y-2">
                     {problema.formule.map((formula, index) => {
@@ -495,7 +559,7 @@ export const ProblemaDetaliata = ({ problema, onBack, homeworkContext = null }) 
               {problema.date && Object.keys(problema.date).length > 0 && (
                 <div className="date-section">
                   <h4 className="font-semibold text-gray-900 mb-3 flex items-center">
-                    <BookOpen className="w-4 h-4 mr-2" /> Date cunoscute:
+                    <BookOpen className="w-4 h-4 mr-2" /> {t('problemDetailPage.dataTitle', 'Date cunoscute')}:
                   </h4>
                   <div className="grid grid-cols-2 gap-3">
                     {Object.entries(problema.date).map(([key, value]) => {
@@ -548,7 +612,7 @@ export const ProblemaDetaliata = ({ problema, onBack, homeworkContext = null }) 
 
           <Card className="problema-detaliata-requirements-card">
             <CardHeader>
-              <CardTitle className="text-xl">Cerințe</CardTitle>
+              <CardTitle className="text-xl">{t('problemDetailPage.requirementsTitle', 'Cerințe')}</CardTitle>
             </CardHeader>
             <CardContent>
               {problema.subpuncte && problema.subpuncte.length > 0 && (
@@ -571,20 +635,24 @@ export const ProblemaDetaliata = ({ problema, onBack, homeworkContext = null }) 
         <div className="problema-sidebar sidebar">
           <Card className="problema-detaliata-scores-card mb-6 sticky top-4">
             <CardHeader>
-              <CardTitle className="text-lg">Punctaje</CardTitle>
+              <CardTitle className="text-lg">{t('problemDetailPage.scoresTitle', 'Punctaje')}</CardTitle>
             </CardHeader>
             <CardContent>
               {problema.subpuncte && problema.subpuncte.length > 0 && (
                 <div className="space-y-3">
                   {problema.subpuncte.map((subpunct, index) => (
                     <div key={subpunct.id} className="punctaj-item">
-                      <span>Punctul {String.fromCharCode(97 + index)})</span>
+                      <span>
+                        {t('problemDetailPage.scorePart', `Punctul ${String.fromCharCode(97 + index)})`, {
+                          letter: String.fromCharCode(97 + index),
+                        })}
+                      </span>
                       <Badge variant="secondary" className="bg-blue-100 text-blue-700">{subpunct.punctaj}p</Badge>
                     </div>
                   ))}
                   <Separator className="my-4" />
                   <div className="punctaj-item bg-blue-50">
-                    <span className="font-bold text-blue-900">Total</span>
+                    <span className="font-bold text-blue-900">{t('problemDetailPage.totalLabel', 'Total')}</span>
                     <Badge className="total-badge">{problema.punctajTotal}p</Badge>
                   </div>
                 </div>
@@ -594,15 +662,20 @@ export const ProblemaDetaliata = ({ problema, onBack, homeworkContext = null }) 
 
           <Card className="problema-detaliata-ai-card">
             <CardHeader>
-              <CardTitle className="text-lg">Ajutor AI</CardTitle>
+              <CardTitle className="text-lg">{t('problemDetailPage.aiHelpTitle', 'Ajutor AI')}</CardTitle>
             </CardHeader>
             <CardContent>
               <Button className="ai-button" onClick={navigateToAI} disabled={isPreparingAi}>
                 <Bot className="w-4 h-4 mr-2" />
-                {isPreparingAi ? 'Analizez imaginile...' : 'Inteligența Artificială'}
+                {isPreparingAi
+                  ? t('problemDetailPage.aiHelpButtonLoading', 'Analizez imaginile...')
+                  : t('problemDetailPage.aiHelpButton', 'Inteligența Artificială')}
               </Button>
               <p className="ai-description">
-                Obține ajutor personalizat pentru rezolvarea acestei probleme.
+                {t(
+                  'problemDetailPage.aiHelpDescription',
+                  'Obține ajutor personalizat pentru rezolvarea acestei probleme.',
+                )}
               </p>
             </CardContent>
           </Card>
@@ -617,28 +690,34 @@ export const ProblemaDetaliata = ({ problema, onBack, homeworkContext = null }) 
                   color: '#856404',
                   fontSize: '14px'
                 }}>
-                  ⚠️ Trebuie să te conectezi pentru a edita sau șterge probleme
+                  ⚠️ {t('problemDetailPage.adminLoginRequired', 'Trebuie să te conectezi pentru a edita sau șterge probleme')}
                 </div>
               ) : (
                 <>
                   <button
                     className="problem-card-edit-btn"
                     onClick={handleEdit}
-                    title="Editează problema"
+                    title={t('problemDetailPage.editProblem', 'Editează problema')}
                   >
-                    ✏️ Editează problema
+                    ✏️ {t('problemDetailPage.editProblem', 'Editează problema')}
                   </button>
                   <button
                     className="problem-card-delete-btn"
                     onClick={handleDelete}
                     disabled={deleteStatus === 'loading'}
-                    title={deleteStatus === 'loading' ? 'Se șterge...' : 'Șterge problema'}
+                    title={
+                      deleteStatus === 'loading'
+                        ? t('problemDetailPage.deleteInProgress', 'Se șterge...')
+                        : t('problemDetailPage.deleteProblem', 'Șterge problema')
+                    }
                     style={{
                       opacity: deleteStatus === 'loading' ? 0.6 : 1,
                       cursor: deleteStatus === 'loading' ? 'not-allowed' : 'pointer'
                     }}
                   >
-                    {deleteStatus === 'loading' ? '⏳ Se șterge...' : '🗑️ Șterge problema'}
+                    {deleteStatus === 'loading'
+                      ? `⏳ ${t('problemDetailPage.deleteInProgress', 'Se șterge...')}`
+                      : `🗑️ ${t('problemDetailPage.deleteProblem', 'Șterge problema')}`}
                   </button>
                 </>
               )}
@@ -649,7 +728,7 @@ export const ProblemaDetaliata = ({ problema, onBack, homeworkContext = null }) 
         {/* Mutat aici: Card Trimite o problemă */}
         <Card className="problema-detaliata-submit-card mt-6">
           <CardHeader>
-            <CardTitle className="text-lg">Trimite o problemă</CardTitle>
+            <CardTitle className="text-lg">{t('problemDetailPage.submitSolutionCardTitle', 'Trimite o problemă')}</CardTitle>
           </CardHeader>
           <CardContent>
             <ProblemSubmit

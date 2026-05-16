@@ -21,7 +21,7 @@ function convertDollarToInlineMathJax(str) {
 const GrileIndividuala = () => {
     const { id } = useParams();
     const navigate = useNavigate();
-    const { localizedPath } = useI18n();
+    const { localizedPath, t } = useI18n();
     const dispatch = useDispatch();
     const [searchParams] = useSearchParams();
     const homeworkContext = parseHomeworkParams(searchParams);
@@ -98,7 +98,7 @@ const GrileIndividuala = () => {
                         <div className="main">
                             <div className="loading-spinner">
                                 <div className="spinner"></div>
-                                <h3>Se încarcă grila...</h3>
+                                <h3>{t('gridProblemsPage.detailLoadingTitle', 'Se încarcă grila...')}</h3>
                             </div>
                         </div>
                     </div>
@@ -115,14 +115,30 @@ const GrileIndividuala = () => {
     const options = ['a', 'b', 'c', 'd'].filter(k => variante[k]);
 
     const title = grila.intrebare?.substring(0, 60) || `Grilă #${grilaIndex}`;
-    const description = `Întrebare cu variante de răspuns: ${title}...`;
+    const snippet = `${title}${title.length >= 60 ? '...' : ''}`;
+    const description = t(
+        'gridProblemsPage.detailMetaDescription',
+        `Întrebare cu variante de răspuns: ${snippet}`,
+        { snippet }
+    );
+    const keywords = grila.categorie
+        ? t(
+            'gridProblemsPage.detailKeywordsWithCategory',
+            `grilă fizică, ${grila.categorie}, întrebări fizică`,
+            { category: grila.categorie }
+        )
+        : t('gridProblemsPage.detailKeywords', 'grilă fizică, întrebări fizică');
 
     return (
         <Layout>
             <SEO
-                title={`Grilă #${grilaIndex} | Grile de Fizică - PULS`}
+                title={t(
+                    'gridProblemsPage.detailSeoTitle',
+                    `Grilă #${grilaIndex} | Grile de Fizică - PULS`,
+                    { num: grilaIndex }
+                )}
                 description={description}
-                keywords={`grilă fizică, ${grila.categorie || ''}, întrebări fizică`}
+                keywords={keywords}
                 image="/res/icons/New-logo.png"
             />
             <div className="grila-detalii-page">
@@ -130,15 +146,17 @@ const GrileIndividuala = () => {
                     <button
                         onClick={handleBack}
                         className="grila-back-button"
-                        title="Înapoi la grile"
+                        title={t('gridProblemsPage.detailBack', 'Înapoi la grile')}
                     >
                         <ArrowLeft size={18} />
-                        <span>Înapoi la grile</span>
+                        <span>{t('gridProblemsPage.detailBack', 'Înapoi la grile')}</span>
                     </button>
 
                     <div className="grila-detalii-card">
                         <div className="grila-detalii-header">
-                            <span className="grila-detalii-id">Grilă #{grilaIndex}</span>
+                            <span className="grila-detalii-id">
+                                {t('gridProblemsPage.detailQuizBadge', `Grilă #${grilaIndex}`, { num: grilaIndex })}
+                            </span>
                             {grila.categorie && (
                                 <span className="grila-detalii-categorie">{grila.categorie}</span>
                             )}
@@ -195,7 +213,7 @@ const GrileIndividuala = () => {
                                 onClick={handleCheck}
                                 disabled={selectedAnswer === null}
                             >
-                                Verifică răspunsul
+                                {t('gridProblemsPage.detailVerify', 'Verifică răspunsul')}
                             </button>
                         )}
 
@@ -205,18 +223,24 @@ const GrileIndividuala = () => {
                                     {isCorrect ? (
                                         <>
                                             <Check size={24} />
-                                            <span>Răspuns corect!</span>
+                                            <span>{t('gridProblemsPage.detailCorrect', 'Răspuns corect!')}</span>
                                         </>
                                     ) : (
                                         <>
                                             <X size={24} />
-                                            <span>Răspuns greșit. Varianta corectă este {correctAnswer.toUpperCase()}.</span>
+                                            <span>
+                                                {t(
+                                                    'gridProblemsPage.detailWrong',
+                                                    `Răspuns greșit. Varianta corectă este ${correctAnswer.toUpperCase()}.`,
+                                                    { letter: correctAnswer.toUpperCase() }
+                                                )}
+                                            </span>
                                         </>
                                     )}
                                 </div>
                                 {grila.explicatie && (
                                     <div className="grila-explicatie">
-                                        <strong>Explicație:</strong>
+                                        <strong>{t('gridProblemsPage.detailExplanationLabel', 'Explicație:')}</strong>
                                         <div
                                             dangerouslySetInnerHTML={{
                                                 __html: convertDollarToInlineMathJax(grila.explicatie)

@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect, useMemo } from 'react';
+import React, { useState, useRef, useMemo } from 'react';
 import { Card, CardHeader, CardTitle, CardContent } from './card';
 import { Badge } from './badge';
 import { Button } from './Buttondet';
@@ -25,6 +25,7 @@ import { Timestamp } from 'firebase/firestore';
 import { recordAssignmentItemProgress, score10FromObtainedMax } from '../lib/assignmentProgress';
 import '../scss/components/_problem-submit.scss';
 import MathJaxMarkdownBlock from './MathJaxMarkdownBlock';
+import { useI18n } from '../i18n/LanguageContext';
 
 // Funcție pentru conversie File → Data URI
 const fileToDataUri = (file) => {
@@ -38,6 +39,7 @@ const fileToDataUri = (file) => {
 
 /** @param {{ rows: Array<{ label: string, value: string, unit?: string }>, caption: string }} props */
 const AnalyzeDataTable = ({ rows, caption }) => {
+    const { t } = useI18n();
     if (!rows?.length) return null;
     const showUnit = rows.some((r) => r.unit);
     return (
@@ -46,9 +48,9 @@ const AnalyzeDataTable = ({ rows, caption }) => {
                 <caption className="problem-analysis-data-caption">{caption}</caption>
                 <thead>
                     <tr>
-                        <th scope="col">Mărime</th>
-                        <th scope="col">Valoare</th>
-                        {showUnit ? <th scope="col">Unitate</th> : null}
+                        <th scope="col">{t('problemDetailPage.submitPanel.tableQuantity', 'Mărime')}</th>
+                        <th scope="col">{t('problemDetailPage.submitPanel.tableValue', 'Valoare')}</th>
+                        {showUnit ? <th scope="col">{t('problemDetailPage.submitPanel.tableUnit', 'Unitate')}</th> : null}
                     </tr>
                 </thead>
                 <tbody>
@@ -71,6 +73,7 @@ const ProblemSubmit = ({
     defaultProblemTitle = null,
     assignmentContext = null,
 }) => {
+    const { t } = useI18n();
     const [solutionText, setSolutionText] = useState('');
     const [solutionImageFiles, setSolutionImageFiles] = useState([]);
     const solutionImageInputRef = useRef(null);
@@ -100,17 +103,17 @@ const ProblemSubmit = ({
         }
 
         if (problem.formule && problem.formule.length > 0) {
-            text += `\n\nFormule:\n${problem.formule.join('\n')}`;
+            text += `\n\n${t('problemDetailPage.export.formulas', 'Formule:')}\n${problem.formule.join('\n')}`;
         }
 
         if (problem.date && Object.keys(problem.date).length > 0) {
-            text += `\n\nDate:\n${Object.entries(problem.date)
+            text += `\n\n${t('problemDetailPage.export.knownData', 'Date cunoscute:')}\n${Object.entries(problem.date)
                 .map(([key, value]) => `${key} = ${value}`)
                 .join('\n')}`;
         }
 
         if (problem.subpuncte && problem.subpuncte.length > 0) {
-            text += `\n\nCerințe:\n${problem.subpuncte
+            text += `\n\n${t('problemDetailPage.export.requirements', 'Cerințe:')}\n${problem.subpuncte
                 .map((sub, idx) => `${sub.id || idx + 1}. ${sub.cerinta}`)
                 .join('\n')}`;
         }
@@ -131,7 +134,7 @@ const ProblemSubmit = ({
                 setError(null);
             } catch (err) {
                 console.error('Error reading solution files:', err);
-                setError('A apărut o eroare la citirea imaginilor soluției.');
+                setError(t('problemDetailPage.submitPanel.errorReadImages', 'A apărut o eroare la citirea imaginilor soluției.'));
             }
             if (solutionImageInputRef.current) solutionImageInputRef.current.value = '';
         }
@@ -145,12 +148,12 @@ const ProblemSubmit = ({
 
     const handleSubmit = async () => {
         if (!problem || !getProblemTextFromProps()) {
-            setError('Problema este preluată automat din pagină. Te rugăm să accesezi problema din listă.');
+            setError(t('problemDetailPage.submitPanel.errorProblemContext', 'Problema este preluată automat din pagină. Te rugăm să accesezi problema din listă.'));
             return;
         }
 
         if (!solutionText.trim() && solutionImageFiles.length === 0) {
-            setError('Te rog introdu textul soluției SAU încarcă cel puțin o imagine cu rezolvarea.');
+            setError(t('problemDetailPage.submitPanel.errorNeedInput', 'Te rog introdu textul soluției SAU încarcă cel puțin o imagine cu rezolvarea.'));
             return;
         }
 
@@ -182,15 +185,19 @@ const ProblemSubmit = ({
                             ? String(problem?.index || problem?.id || defaultProblemId)
                             : `submitted_${Date.now()}`;
 
-                    let problemTitle = problem?.titlu || defaultProblemTitle || 'Problema trimisă';
+                    let problemTitle = problem?.titlu || defaultProblemTitle || t('problemDetailPage.submitPanel.submittedProblemTitle', 'Problema trimisă');
                     const problemIndex = problem?.index;
                     if (
                         problemIndex !== null &&
                         problemIndex !== undefined &&
                         !generatedProblemId.startsWith('submitted_')
                     ) {
-                        if (!problemTitle.match(/^PROBLEMA\s*#\d+/i)) {
-                            problemTitle = `PROBLEMA #${problemIndex}: ${problemTitle}`;
+                        if (!problemTitle.match(/^(PROBLEMA|PROBLEM)\s*#\d+/i)) {
+                            problemTitle = t(
+                                'problemDetailPage.submitPanel.problemHeaderPrefix',
+                                `PROBLEMA #${problemIndex}: ${problemTitle}`,
+                                { num: problemIndex, title: problemTitle },
+                            );
                         }
                     }
 
@@ -240,7 +247,9 @@ const ProblemSubmit = ({
         } catch (err) {
             console.error('Error calling API:', err);
             const message =
-                err instanceof Error ? err.message : 'A apărut o eroare necunoscută la apelarea API-ului.';
+                err instanceof Error
+                    ? err.message
+                    : t('problemDetailPage.submitPanel.errorApiUnknown', 'A apărut o eroare necunoscută la apelarea API-ului.');
             setError(message);
         } finally {
             setIsLoading(false);
@@ -258,32 +267,46 @@ const ProblemSubmit = ({
                     <Card className="problem-submit-card">
                         <CardHeader className="problem-submit-card-header">
                             <CardTitle className="problem-submit-card-title">
-                                🔧 Soluție
+                                🔧 {t('problemDetailPage.submitPanel.solutionTitle', 'Soluție')}
                                 {solutionImageFiles.length > 0 && (
                                     <Badge className="problem-submit-badge">
-                                        {solutionImageFiles.length}{' '}
-                                        {solutionImageFiles.length === 1 ? 'imagine' : 'imagini'}
+                                        {solutionImageFiles.length === 1
+                                            ? t('problemDetailPage.submitPanel.imagesBadgeSingle', '{count} imagine', {
+                                                  count: solutionImageFiles.length,
+                                              })
+                                            : t('problemDetailPage.submitPanel.imagesBadgePlural', '{count} imagini', {
+                                                  count: solutionImageFiles.length,
+                                              })}
                                     </Badge>
                                 )}
                             </CardTitle>
                         </CardHeader>
                         <CardContent className="problem-submit-card-content">
                             <div className="problem-submit-form-group">
-                                <label className="problem-submit-label">Text Soluție:</label>
+                                <label className="problem-submit-label">
+                                    {t('problemDetailPage.submitPanel.solutionTextLabel', 'Text Soluție:')}
+                                </label>
                                 <textarea
                                     className="problem-submit-textarea"
-                                    placeholder="Scrie soluția ta aici..."
+                                    placeholder={t(
+                                        'problemDetailPage.submitPanel.solutionPlaceholder',
+                                        'Scrie soluția ta aici...',
+                                    )}
                                     value={solutionText}
                                     onChange={(e) => setSolutionText(e.target.value)}
                                 />
                             </div>
 
                             <div className="problem-submit-divider">
-                                <span className="problem-submit-divider-text">SAU</span>
+                                <span className="problem-submit-divider-text">
+                                    {t('problemDetailPage.submitPanel.orDivider', 'SAU')}
+                                </span>
                             </div>
 
                             <div>
-                                <label className="problem-submit-label">Imagini Soluție:</label>
+                                <label className="problem-submit-label">
+                                    {t('problemDetailPage.submitPanel.solutionImagesLabel', 'Imagini Soluție:')}
+                                </label>
                                 <input
                                     type="file"
                                     accept="image/*"
@@ -297,7 +320,7 @@ const ProblemSubmit = ({
                                     onClick={() => triggerFileInput(solutionImageInputRef)}
                                     className="problem-submit-upload-btn"
                                 >
-                                    ➕ Adaugă Imagini Soluție
+                                    ➕ {t('problemDetailPage.submitPanel.addSolutionImages', 'Adaugă Imagini Soluție')}
                                 </Button>
                                 {solutionImageFiles.length > 0 ? (
                                     <div className="problem-submit-images-grid">
@@ -305,7 +328,11 @@ const ProblemSubmit = ({
                                             <div key={index} className="problem-submit-image-preview">
                                                 <img
                                                     src={img.previewUrl}
-                                                    alt={`Soluție ${index + 1}`}
+                                                    alt={t(
+                                                        'problemDetailPage.submitPanel.solutionImageAlt',
+                                                        `Soluție ${index + 1}`,
+                                                        { index: index + 1 },
+                                                    )}
                                                     className="problem-submit-image"
                                                 />
                                                 <Button
@@ -320,7 +347,11 @@ const ProblemSubmit = ({
                                     </div>
                                 ) : (
                                     <div className="problem-submit-empty-state">
-                                        📷 Nicio imagine cu soluția încărcată
+                                        📷{' '}
+                                        {t(
+                                            'problemDetailPage.submitPanel.noSolutionImages',
+                                            'Nicio imagine cu soluția încărcată',
+                                        )}
                                     </div>
                                 )}
                             </div>
@@ -330,7 +361,7 @@ const ProblemSubmit = ({
 
                 {error && (
                     <div className="problem-submit-error">
-                        <strong>⚠️ Eroare:</strong> {error}
+                        <strong>⚠️ {t('problemDetailPage.submitPanel.errorPrefix', 'Eroare:')}</strong> {error}
                     </div>
                 )}
 
@@ -340,12 +371,16 @@ const ProblemSubmit = ({
                     disabled={isLoading}
                     className="problem-submit-submit-btn"
                 >
-                    {isLoading ? '⏳ Se analizează soluția…' : '🚀 Analizează Soluția'}
+                    {isLoading
+                        ? `⏳ ${t('problemDetailPage.submitPanel.analyzingSolution', 'Se analizează soluția…')}`
+                        : `🚀 ${t('problemDetailPage.submitPanel.analyzeSolution', 'Analizează Soluția')}`}
                 </Button>
 
                 {isLoading && (
                     <div className="problem-submit-loading">
-                        <p>⏳ Se analizează soluția…</p>
+                        <p>
+                            ⏳ {t('problemDetailPage.submitPanel.analyzingSolution', 'Se analizează soluția…')}
+                        </p>
                     </div>
                 )}
             </div>
@@ -356,7 +391,7 @@ const ProblemSubmit = ({
                         <div className="problem-analysis-rating-section">
                             <h3 className="problem-analysis-rating-title">
                                 <Trophy className="problem-analysis-icon" aria-hidden />
-                                Punctaj obținut
+                                {t('problemDetailPage.submitPanel.scoreObtainedTitle', 'Punctaj obținut')}
                             </h3>
                             <div className="problem-analysis-rating-content">
                                 <div className="problem-analysis-rating-text">
@@ -372,7 +407,7 @@ const ProblemSubmit = ({
                                 <div className="problem-analysis-summary-section">
                                     <h3 className="problem-analysis-summary-title">
                                         <FileText className="problem-analysis-icon" aria-hidden />
-                                        Rezumat problemă
+                                        {t('problemDetailPage.submitPanel.problemSummaryTitle', 'Rezumat problemă')}
                                     </h3>
                                     <div className="problem-analysis-summary-content">
                                         <MathJaxMarkdownBlock content={normalized.problemSummary} />
@@ -383,7 +418,7 @@ const ProblemSubmit = ({
                                 <div className="problem-analysis-summary-section">
                                     <h3 className="problem-analysis-summary-title">
                                         <ListChecks className="problem-analysis-icon" aria-hidden />
-                                        Rezumat feedback
+                                        {t('problemDetailPage.submitPanel.feedbackSummaryTitle', 'Rezumat feedback')}
                                     </h3>
                                     <div className="problem-analysis-summary-content">
                                         <MathJaxMarkdownBlock content={normalized.feedbackSummary} />
@@ -397,7 +432,10 @@ const ProblemSubmit = ({
                         <div className="problem-analysis-reflection-section">
                             <h3 className="problem-analysis-reflection-title">
                                 <ScanEye className="problem-analysis-icon" aria-hidden />
-                                Ce am înțeles din soluția ta
+                                {t(
+                                    'problemDetailPage.submitPanel.reflectionTitle',
+                                    'Ce am înțeles din soluția ta',
+                                )}
                             </h3>
                             <div className="problem-analysis-reflection-content">
                                 <MathJaxMarkdownBlock content={normalized.studentWorkReflection} />
@@ -409,15 +447,24 @@ const ProblemSubmit = ({
                         <div className="problem-analysis-data-section">
                             <h3 className="problem-analysis-data-section-title">
                                 <Table2 className="problem-analysis-icon" aria-hidden />
-                                Date și rezultate numerice
+                                {t('problemDetailPage.submitPanel.dataResultsTitle', 'Date și rezultate numerice')}
                             </h3>
                             {normalized.givenData && (
-                                <AnalyzeDataTable rows={normalized.givenData} caption="Date din enunț" />
+                                <AnalyzeDataTable
+                                    rows={normalized.givenData}
+                                    caption={t(
+                                        'problemDetailPage.submitPanel.captionGivenData',
+                                        'Date din enunț',
+                                    )}
+                                />
                             )}
                             {normalized.numericalResults && (
                                 <AnalyzeDataTable
                                     rows={normalized.numericalResults}
-                                    caption="Rezultate / mărimi cerute"
+                                    caption={t(
+                                        'problemDetailPage.submitPanel.captionNumericalResults',
+                                        'Rezultate / mărimi cerute',
+                                    )}
                                 />
                             )}
                         </div>
@@ -427,7 +474,7 @@ const ProblemSubmit = ({
                         <div className="problem-analysis-formulas-section">
                             <h3 className="problem-analysis-formulas-title">
                                 <Sigma className="problem-analysis-icon" aria-hidden />
-                                Formule folosite
+                                {t('problemDetailPage.submitPanel.formulasUsedTitle', 'Formule folosite')}
                             </h3>
                             <ul className="problem-analysis-formulas-list">
                                 {normalized.formulasUsed.map((f, i) => (
@@ -443,7 +490,7 @@ const ProblemSubmit = ({
                         <div className="problem-analysis-explanation-section">
                             <h3 className="problem-analysis-explanation-title">
                                 <BookOpen className="problem-analysis-icon" aria-hidden />
-                                Explicație
+                                {t('problemDetailPage.submitPanel.explanationTitle', 'Explicație')}
                             </h3>
                             <div className="problem-analysis-explanation-content">
                                 <MathJaxMarkdownBlock content={normalized.explanation} />
@@ -455,7 +502,7 @@ const ProblemSubmit = ({
                         <div className="problem-analysis-solution-section">
                             <h3 className="problem-analysis-solution-title">
                                 <ClipboardList className="problem-analysis-icon" aria-hidden />
-                                Pașii rezolvării
+                                {t('problemDetailPage.submitPanel.solutionStepsTitle', 'Pașii rezolvării')}
                             </h3>
                             <div className="problem-analysis-solution-content">
                                 <MathJaxMarkdownBlock content={normalized.correctSolution} />
@@ -467,7 +514,10 @@ const ProblemSubmit = ({
                         <div className="problem-analysis-errors-section" style={{display: 'none'}}>
                             <h3 className="problem-analysis-errors-title">
                                 <Lightbulb className="problem-analysis-icon" aria-hidden />
-                                Analiza erorilor și îmbunătățiri
+                                {t(
+                                    'problemDetailPage.submitPanel.errorAnalysisTitle',
+                                    'Analiza erorilor și îmbunătățiri',
+                                )}
                             </h3>
                             <div className="problem-analysis-errors-content">
                                 <MathJaxMarkdownBlock content={normalized.errorAnalysis} />
@@ -479,7 +529,7 @@ const ProblemSubmit = ({
                         <div className="problem-analysis-final-section">
                             <h3 className="problem-analysis-final-title">
                                 <Target className="problem-analysis-icon" aria-hidden />
-                                Răspuns final
+                                {t('problemDetailPage.submitPanel.finalAnswerTitle', 'Răspuns final')}
                             </h3>
                             <div className="problem-analysis-final-content">
                                 <MathJaxMarkdownBlock content={normalized.finalAnswer} />
@@ -496,7 +546,7 @@ const ProblemSubmit = ({
                         className="problem-submit-submit-btn"
                         style={{ marginTop: '2rem' }}
                     >
-                        🔄 Analiză nouă
+                        🔄 {t('problemDetailPage.submitPanel.newAnalysis', 'Analiză nouă')}
                     </Button>
                 </div>
             )}
@@ -504,8 +554,18 @@ const ProblemSubmit = ({
             {!apiResponse && !isLoading && (
                 <div className="problem-submit-placeholder">
                     <div className="problem-submit-placeholder-icon">📊</div>
-                    <h3 className="problem-submit-placeholder-title">Rezultatele vor apărea aici</h3>
-                    <p>Completează formularul și trimite pentru a vedea analiza</p>
+                    <h3 className="problem-submit-placeholder-title">
+                        {t(
+                            'problemDetailPage.submitPanel.resultsPlaceholderTitle',
+                            'Rezultatele vor apărea aici',
+                        )}
+                    </h3>
+                    <p>
+                        {t(
+                            'problemDetailPage.submitPanel.resultsPlaceholderSubtitle',
+                            'Completează formularul și trimite pentru a vedea analiza',
+                        )}
+                    </p>
                 </div>
             )}
         </div>
