@@ -1,18 +1,32 @@
 import { getState, computePressure, PARTICLE_COUNT, MATERIALS } from "./physics.js";
+import { simT } from "./i18n.js";
 
-const HINTS = {
+const HINTS_RO = {
   gas: "Particulele se mișcă haotic, fără legături — comportament de gaz.",
   liquid: "Atracție ușoară între vecini: se grupează dar încă curg.",
   solid: "Rețea ordonată: poziții aproape fixe, doar vibrații mici.",
 };
 
-const STATE_LABEL = {
+const STATE_LABEL_RO = {
   gas: "\uD83D\uDD25 Gas (chaotic)",
   liquid: "\uD83D\uDCA7 Liquid (fluid)",
   solid: "\u2744\uFE0F Solid (cristalin)",
 };
 
-const INSIGHT_DEFAULT =
+const MATERIAL_LABEL_KEY = {
+  water: "labels.materialWater",
+  helium: "labels.materialHelium",
+  iron: "labels.materialIron",
+  nitrogen: "labels.materialNitrogen",
+};
+
+function materialDisplayName(key) {
+  const m = MATERIALS[key];
+  const path = MATERIAL_LABEL_KEY[key];
+  return path ? simT(path, m.label) : m.label;
+}
+
+const INSIGHT_DEFAULT_RO =
   "Mișcă temperatura sau volumul — aici apare legătura cu presiunea și starea.";
 
 export function initUI(callbacks = {}) {
@@ -61,23 +75,37 @@ export function initUI(callbacks = {}) {
 
     if (kind === "temp" && Math.abs(dt) >= 1.5) {
       if (dt > 0) {
-        msg =
-          "T crește → viteze mai mari (culoarea se „încălzește”) → la același volum, presiunea tinde să crească (pV = nRT).";
+        msg = simT(
+          "insight.tempUp",
+          "T crește → viteze mai mari (culoarea se „încălzește”) → la același volum, presiunea tinde să crească (pV = nRT)."
+        );
       } else {
-        msg =
-          "T scade → mai puțină agitație → presiunea scade dacă volumul rămâne la fel; poți ajunge la lichid/solid.";
+        msg = simT(
+          "insight.tempDown",
+          "T scade → mai puțină agitație → presiunea scade dacă volumul rămâne la fel; poți ajunge la lichid/solid."
+        );
       }
     } else if (kind === "vol" && Math.abs(dv) >= 1.5) {
       if (dv < 0) {
-        msg =
-          "Volum mai mic → particulele mai aproape → mai multe coliziuni → presiunea crește (la T similară).";
+        msg = simT(
+          "insight.volDown",
+          "Volum mai mic → particulele mai aproape → mai multe coliziuni → presiunea crește (la T similară)."
+        );
       } else {
-        msg =
-          "Volum mai mare → spațiu liber → coliziuni mai rare → presiunea tinde să scadă.";
+        msg = simT(
+          "insight.volUp",
+          "Volum mai mare → spațiu liber → coliziuni mai rare → presiunea tinde să scadă."
+        );
       }
     } else if (kind === "material" && mat !== lastMat) {
       const m = MATERIALS[mat];
-      msg = `Material: ${m.label}. Îngheț ~${m.T_freeze} K, fierbere ~${m.T_boil} K — la aceeași T poți fi într-o altă stare decât înainte.`;
+      msg = simT(
+        "insight.material",
+        "Material: {name}. Îngheț ~{Tf} K, fierbere ~{Tb} K — la aceeași T poți fi într-o altă stare decât înainte."
+      )
+        .replace("{name}", materialDisplayName(mat))
+        .replace("{Tf}", String(m.T_freeze))
+        .replace("{Tb}", String(m.T_boil));
     }
 
     if (msg) {
@@ -94,8 +122,8 @@ export function initUI(callbacks = {}) {
     const temp = Number(slider.value);
     const mat = materialSelect.value;
     const state = getState(temp, mat);
-    stateLabel.textContent = STATE_LABEL[state];
-    stateHint.textContent = HINTS[state];
+    stateLabel.textContent = simT(`stateLabel.${state}`, STATE_LABEL_RO[state]);
+    stateHint.textContent = simT(`hints.${state}`, HINTS_RO[state]);
 
     if (temp < 20) {
       zeroWarning.hidden = false;
@@ -176,7 +204,7 @@ export function initUI(callbacks = {}) {
 
   refreshTempVol();
   if (insightDynamic) {
-    insightDynamic.textContent = INSIGHT_DEFAULT;
+    insightDynamic.textContent = simT("labels.insightDefault", INSIGHT_DEFAULT_RO);
   }
 
   return {
@@ -189,15 +217,21 @@ export function initUI(callbacks = {}) {
     refreshTempVol,
     refreshDerived,
     /** Apelat din bucla simulării când se schimbă presiunea mult */
-       maybeInsightFromPressure(ratio) {
+    maybeInsightFromPressure(ratio) {
       if (!insightDynamic) return;
       if (ratio > 1.32 && lastRatio <= 1.05) {
         pulseInsightIfChanged(
-          "Presiune mare acum: multe particule într-un volum mic sau T ridicată — observă mișcarea haotică."
+          simT(
+            "insight.pressureHigh",
+            "Presiune mare acum: multe particule într-un volum mic sau T ridicată — observă mișcarea haotică."
+          )
         );
       } else if (ratio < 0.55 && lastRatio >= 0.75) {
         pulseInsightIfChanged(
-          "Presiune mică: volum mare sau T mică — particulele au mai mult loc."
+          simT(
+            "insight.pressureLow",
+            "Presiune mică: volum mare sau T mică — particulele au mai mult loc."
+          )
         );
       }
       lastRatio = ratio;
@@ -210,20 +244,33 @@ export function initUI(callbacks = {}) {
         areaPx,
         maxAreaPx
       );
-      pressureLabel.textContent = `Pressure: ${label}`;
+      let labelTr = label;
+      if (label === "Low") labelTr = simT("pressure.low", "Scăzută");
+      else if (label === "High") labelTr = simT("pressure.high", "Mare");
+      else if (label === "Medium") labelTr = simT("pressure.medium", "Medie");
+      pressureLabel.textContent = `${simT("pressure.prefix", "Presiune:")} ${labelTr}`;
       pressureLabel.dataset.ratio = String(ratio);
       return { label, ratio };
     },
     setChallengeFreeze(done) {
       challengeFreeze.textContent = done
-        ? "\u2713 Stare solidă atinsă."
-        : "Coboară T până la solid pentru materialul ales.";
+        ? simT("challenge.freezeDone", "\u2713 Stare solidă atinsă.")
+        : simT(
+            "challenge.freezeTodo",
+            "Coboară T până la solid pentru materialul ales."
+          );
     },
     setChallengePressure(done, hint) {
       challengePressure.textContent = done
-        ? "\u2713 Presiune mare la T nemărită."
+        ? simT(
+            "challenge.pressureDone",
+            "\u2713 Presiune mare la T nemărită."
+          )
         : hint ||
-          "Micșorează volumul fără să crești temperatura (provocare).";
+          simT(
+            "challenge.pressureTodo",
+            "Micșorează volumul fără să crești temperatura (provocare)."
+          );
     },
   };
 }

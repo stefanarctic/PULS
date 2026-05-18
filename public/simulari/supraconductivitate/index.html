@@ -10,64 +10,64 @@
 <body>
   <div class="app">
     <header class="hero">
-      <h1>Supraconductivitate</h1>
-      <p class="tagline">Levitație magnetică · efect Meissner · condiția <em>T &lt; T<sub>c</sub></em></p>
+      <h1 data-i18n="labels.pageTitle">Supraconductivitate</h1>
+      <p class="tagline" data-i18n="labels.tagline">Levitație magnetică · efect Meissner · condiția <em>T &lt; T<sub>c</sub></em></p>
     </header>
 
     <div class="layout">
       <aside class="panel panel--left">
         <div class="panel-block">
-          <h2>Controale</h2>
+          <h2 data-i18n="labels.controls">Controale</h2>
 
           <label class="control" data-edu="temp">
             <span class="label-row">
-              Temperatură <span class="unit">T</span>
+              <span data-i18n="labels.temperature">Temperatură</span> <span class="unit">T</span>
               <span id="valT" class="val">77 K</span>
             </span>
             <input type="range" id="sliderT" min="1" max="120" value="77" step="0.5" />
-            <span class="hint">T jos ⇒ mai „rece” vizual; aproape de T<sub>c</sub> instabil.</span>
+            <span class="hint" data-i18n="hints.temp">T jos ⇒ mai „rece” vizual; aproape de T<sub>c</sub> instabil.</span>
           </label>
 
           <label class="control" data-edu="field">
             <span class="label-row">
-              Câmp <span class="unit">B</span>
+              <span data-i18n="labels.field">Câmp</span> <span class="unit">B</span>
               <span id="valB" class="val">0.65</span>
             </span>
             <input type="range" id="sliderB" min="0.15" max="1" value="0.65" step="0.01" />
-            <span class="hint">B mare ⇒ linii dense, forță ~B².</span>
+            <span class="hint" data-i18n="hints.field">B mare ⇒ linii dense, forță ~B².</span>
           </label>
 
           <label class="control" data-edu="dist">
             <span class="label-row">
-              Distanță țintă
+              <span data-i18n="labels.targetDistance">Distanță țintă</span>
               <span id="valH0" class="val">120 px</span>
             </span>
             <input type="range" id="sliderH0" min="40" max="220" value="120" step="2" />
-            <span class="hint">Resort slab spre această înălțime (T &lt; T<sub>c</sub>).</span>
+            <span class="hint" data-i18n="hints.dist">Resort slab spre această înălțime (T &lt; T<sub>c</sub>).</span>
           </label>
 
           <label class="control" data-edu="material">
-            <span class="label-row">Material</span>
+            <span class="label-row" data-i18n="labels.material">Material</span>
             <select id="selectMat">
-              <option value="ybco">YBCO — T<sub>c</sub> ≈ 92 K</option>
-              <option value="hg">Mercur — T<sub>c</sub> ≈ 4.2 K</option>
-              <option value="nb">Niobiu — T<sub>c</sub> ≈ 9.2 K</option>
+              <option value="ybco" data-i18n="labels.materialOptYbco">YBCO — T<sub>c</sub> ≈ 92 K</option>
+              <option value="hg" data-i18n="labels.materialOptHg">Mercur — T<sub>c</sub> ≈ 4.2 K</option>
+              <option value="nb" data-i18n="labels.materialOptNb">Niobiu — T<sub>c</sub> ≈ 9.2 K</option>
             </select>
           </label>
 
           <label class="toggle" data-edu="lock">
             <input type="checkbox" id="chkLock" />
-            <span>Quantum locking</span>
+            <span data-i18n="labels.quantumLocking">Quantum locking</span>
           </label>
 
-          <p class="drag-hint">Canvas: <strong>trage magnetul</strong>.</p>
+          <p class="drag-hint" data-i18n="labels.dragHint">Canvas: <strong>trage magnetul</strong>.</p>
 
           <label class="toggle">
             <input type="checkbox" id="chkEdu" checked />
-            <span>Mod educațional</span>
+            <span data-i18n="labels.eduMode">Mod educațional</span>
           </label>
 
-          <button type="button" id="btnApplyH0" class="btn secondary">Reset / aplică distanța</button>
+          <button type="button" id="btnApplyH0" class="btn secondary" data-i18n="labels.btnApply">Reset / aplică distanța</button>
         </div>
       </aside>
 
@@ -75,39 +75,39 @@
         <section class="stage-wrap" data-edu="stage">
           <div id="condBadge" class="cond-badge cond-badge--super" aria-live="polite">
             <span class="cond-formula"><em>T</em> &lt; <em>T</em><sub>c</sub></span>
-            <span class="cond-label">Supraconductor · Meissner</span>
+            <span class="cond-label" data-i18n="labels.condLabelSuper">Supraconductor · Meissner</span>
           </div>
-          <canvas id="sim" width="900" height="820" aria-label="Simulare levitație — trage magnetul"></canvas>
+          <canvas id="sim" width="900" height="820" aria-label="Simulare levitație — trage magnetul" data-i18n-aria="aria.simCanvas"></canvas>
           <div id="gameover" class="gameover hidden" role="status">
-            <span class="gameover-title">Stare normală</span>
-            <span class="gameover-sub">T &gt; T<sub>c</sub> — supraconductivitatea dispare. Magnetul cade.</span>
-            <button type="button" id="btnReset" class="btn">Resetează simularea</button>
+            <span class="gameover-title" data-i18n="labels.gameoverTitle">Stare normală</span>
+            <span class="gameover-sub" data-i18n="labels.gameoverSub">T &gt; T<sub>c</sub> — supraconductivitatea dispare. Magnetul cade.</span>
+            <button type="button" id="btnReset" class="btn" data-i18n="labels.gameoverReset">Resetează simularea</button>
           </div>
         </section>
 
         <footer class="edu-foot">
-          <p><strong>Model:</strong> dacă <em>T &lt; T<sub>c</sub></em>, forța magnetică efectivă ∼ k·B²/h² (respingere Meissner simplificată); altfel doar <em>−mg</em>. Aproape de T<sub>c</sub> apare instabilitate și zgomot termic în model.</p>
+          <p data-i18n="labels.footerModel"><strong>Model:</strong> dacă <em>T &lt; T<sub>c</sub></em>, forța magnetică efectivă ∼ k·B²/h² (respingere Meissner simplificată); altfel doar <em>−mg</em>. Aproape de T<sub>c</sub> apare instabilitate și zgomot termic în model.</p>
         </footer>
       </div>
 
       <aside class="panel panel--right">
         <div class="panel-block chart-block" data-edu="chart">
-          <h3>T vs. stare</h3>
-          <canvas id="chart" width="260" height="88" aria-label="Grafic temperatură"></canvas>
+          <h3 data-i18n="labels.chartTitle">T vs. stare</h3>
+          <canvas id="chart" width="260" height="88" aria-label="Grafic temperatură" data-i18n-aria="aria.chart"></canvas>
         </div>
 
         <div class="panel-block compare" data-edu="compare">
-          <h3>Materiale</h3>
+          <h3 data-i18n="labels.materialsTitle">Materiale</h3>
           <div class="mat-cards">
             <div class="mat-card" data-mat="ybco">
               <strong>YBCO</strong>
               <span>T<sub>c</sub> ≈ 92 K</span>
-              <small>Ceramică HTS; LN₂ în model idealizat.</small>
+              <small data-i18n="labels.matYbcoBlurb">Ceramică HTS; LN₂ în model idealizat.</small>
             </div>
             <div class="mat-card" data-mat="hg">
               <strong>Mercur</strong>
               <span>T<sub>c</sub> ≈ 4.2 K</span>
-              <small>Primul supraconductor; He lichid.</small>
+              <small data-i18n="labels.matHgBlurb">Primul supraconductor; He lichid.</small>
             </div>
           </div>
         </div>
@@ -116,6 +116,7 @@
   </div>
 
   <div id="tooltip" class="tooltip hidden" role="tooltip"></div>
-  <script src="script.js"></script>
+  <script src="../simulator-i18n-runtime.js"></script>
+  <script src="supraconductivitate-boot.js"></script>
 </body>
 </html>

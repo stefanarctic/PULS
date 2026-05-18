@@ -10,21 +10,24 @@
   <header class="topbar">
     <div class="brand">
       <span class="logo-dot"></span>
-      <h1>Fuel Cell <span class="accent">Simulator</span></h1>
+      <h1>
+        <span data-i18n="labels.titleFuel">Fuel Cell</span>
+        <span class="accent" data-i18n="labels.titleSimulator">Simulator</span>
+      </h1>
     </div>
-    <p class="tagline">Bagi hidrogen + oxigen → iese curent și apă</p>
+    <p class="tagline" data-i18n="labels.tagline">Bagi hidrogen + oxigen → iese curent și apă</p>
   </header>
 
   <main class="layout">
     <!-- LEFT PANEL: CONTROLS -->
     <aside class="panel panel-left">
-      <h2>Controale</h2>
+      <h2 data-i18n="labels.controls">Controale</h2>
 
       <div class="control">
         <div class="control-head">
           <label for="flowH2">
             <span class="pill pill-h2">H₂</span>
-            Debit Hidrogen
+            <span data-i18n="labels.flowH2">Debit Hidrogen</span>
           </label>
           <output id="flowH2Val">60</output>
         </div>
@@ -35,7 +38,7 @@
         <div class="control-head">
           <label for="flowO2">
             <span class="pill pill-o2">O₂</span>
-            Debit Oxigen
+            <span data-i18n="labels.flowO2">Debit Oxigen</span>
           </label>
           <output id="flowO2Val">60</output>
         </div>
@@ -46,7 +49,7 @@
         <div class="control-head">
           <label for="temp">
             <span class="pill pill-t">T°</span>
-            Temperatură
+            <span data-i18n="labels.temperature">Temperatură</span>
           </label>
           <output id="tempVal">65 °C</output>
         </div>
@@ -57,7 +60,7 @@
         <div class="control-head">
           <label for="resistance">
             <span class="pill pill-r">Ω</span>
-            Rezistență bec
+            <span data-i18n="labels.bulbResistance">Rezistență bec</span>
           </label>
           <output id="resistanceVal">10 Ω</output>
         </div>
@@ -66,19 +69,19 @@
 
       <div class="readouts">
         <div class="readout">
-          <span class="readout-label">Curent</span>
+          <span class="readout-label" data-i18n="labels.current">Curent</span>
           <span class="readout-value" id="currentOut">0.0 A</span>
         </div>
         <div class="readout">
-          <span class="readout-label">Tensiune</span>
+          <span class="readout-label" data-i18n="labels.voltage">Tensiune</span>
           <span class="readout-value" id="voltageOut">0.00 V</span>
         </div>
         <div class="readout">
-          <span class="readout-label">Putere</span>
+          <span class="readout-label" data-i18n="labels.power">Putere</span>
           <span class="readout-value" id="powerOut">0.0 W</span>
         </div>
         <div class="readout">
-          <span class="readout-label">Eficiență</span>
+          <span class="readout-label" data-i18n="labels.efficiency">Eficiență</span>
           <span class="readout-value" id="effOut">0 %</span>
         </div>
       </div>
@@ -92,66 +95,67 @@
       </div>
 
       <div class="legend">
-        <span class="legend-item"><i class="dot dot-e"></i>Electroni</span>
-        <span class="legend-item"><i class="dot dot-p"></i>Protoni (H⁺)</span>
-        <span class="legend-item"><i class="dot dot-h"></i>H₂</span>
-        <span class="legend-item"><i class="dot dot-o"></i>O₂</span>
-        <span class="legend-item"><i class="dot dot-w"></i>H₂O</span>
+        <span class="legend-item"><i class="dot dot-e"></i><span data-i18n="legend.electrons">Electroni</span></span>
+        <span class="legend-item"><i class="dot dot-p"></i><span data-i18n="legend.protons">Protoni (H⁺)</span></span>
+        <span class="legend-item"><i class="dot dot-h"></i><span data-i18n="legend.h2">H₂</span></span>
+        <span class="legend-item"><i class="dot dot-o"></i><span data-i18n="legend.o2">O₂</span></span>
+        <span class="legend-item"><i class="dot dot-w"></i><span data-i18n="legend.h2o">H₂O</span></span>
       </div>
     </section>
 
     <!-- RIGHT PANEL: INFO -->
     <aside class="panel panel-right">
-      <h2>Cum funcționează</h2>
+      <h2 data-i18n="info.howItWorks">Cum funcționează</h2>
 
       <div class="info-card">
         <div class="step">
           <span class="step-num">1</span>
           <div>
-            <h3>Anod (stânga)</h3>
-            <p>H₂ se sparge în <b>protoni</b> + <b>electroni</b>.</p>
+            <h3 data-i18n="steps.step1Title">Anod (stânga)</h3>
+            <p data-i18n="steps.step1Body">H₂ se sparge în <b>protoni</b> + <b>electroni</b>.</p>
           </div>
         </div>
         <div class="step">
           <span class="step-num">2</span>
           <div>
-            <h3>Electronii</h3>
-            <p>Merg pe fir → aprind becul ⚡</p>
+            <h3 data-i18n="steps.step2Title">Electronii</h3>
+            <p data-i18n="steps.step2Body">Merg pe fir → aprind becul ⚡</p>
           </div>
         </div>
         <div class="step">
           <span class="step-num">3</span>
           <div>
-            <h3>Membrana (PEM)</h3>
-            <p>Lasă doar <b>protonii</b> să treacă spre dreapta.</p>
+            <h3 data-i18n="steps.step3Title">Membrana (PEM)</h3>
+            <p data-i18n="steps.step3Body">Lasă doar <b>protonii</b> să treacă spre dreapta.</p>
           </div>
         </div>
         <div class="step">
           <span class="step-num">4</span>
           <div>
-            <h3>Catod (dreapta)</h3>
-            <p>Protoni + electroni + O₂ → <b>apă</b> 💧</p>
+            <h3 data-i18n="steps.step4Title">Catod (dreapta)</h3>
+            <p data-i18n="steps.step4Body">Protoni + electroni + O₂ → <b>apă</b> 💧</p>
           </div>
         </div>
       </div>
 
       <div class="formula-card">
-        <div class="formula">2H₂ + O₂ → 2H₂O + energie</div>
+        <div class="formula" data-i18n="info.formulaLine">2H₂ + O₂ → 2H₂O + energie</div>
         <div class="hint" id="hintMsg">Crește debitele pentru a vedea reacția.</div>
       </div>
 
       <div class="tips">
-        <h4>Încercă:</h4>
+        <h4 data-i18n="info.tryHeading">Încercă:</h4>
         <ul>
-          <li>Setează <b>H₂ = 0</b> → becul se stinge</li>
-          <li>Dezechilibru → <b>eficiență ↓</b></li>
-          <li>Rezistență mică → <b>curent ↑</b></li>
-          <li>Hover pe anod / membrană / catod</li>
+          <li data-i18n="tips.tip1">Setează <b>H₂ = 0</b> → becul se stinge</li>
+          <li data-i18n="tips.tip2">Dezechilibru → <b>eficiență ↓</b></li>
+          <li data-i18n="tips.tip3">Rezistență mică → <b>curent ↑</b></li>
+          <li data-i18n="tips.tip4">Hover pe anod / membrană / catod</li>
         </ul>
       </div>
     </aside>
   </main>
 
-  <script src="script.js"></script>
+  <script src="../simulator-i18n-runtime.js"></script>
+  <script src="fuel-cell-boot.js"></script>
 </body>
 </html>

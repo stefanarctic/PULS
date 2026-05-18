@@ -1,5 +1,8 @@
 (() => {
     const $ = (id) => document.getElementById(id);
+
+    const simT = (path, ro) =>
+      typeof window.simLbl === "function" ? window.simLbl(path, ro) : ro;
   
     const leftPanel = $("leftPanel");
     const rightPanel = $("rightPanel");
@@ -157,9 +160,11 @@
     let _frames = 0;
     let _acc = 0;
   
-    function setStatus(kind, text){
+    function setStatus(kind, messageKey, roMessage) {
       statusBox.className = `status ${kind}`;
-      statusBox.textContent = `Stare: ${text}`;
+      const prefix = simT("status.prefix", "Stare:");
+      const text = simT(messageKey, roMessage);
+      statusBox.textContent = `${prefix} ${text}`;
     }
   
     function readParams(){
@@ -215,7 +220,7 @@
           color: colorFor(i, p.N),
         });
       }
-      setStatus("ok", "Simulare oprită");
+      setStatus("ok", "status.stopped", "Simulare oprită");
     }
   
     // Double pendulum dynamics (standard form)
@@ -458,17 +463,25 @@
     // Controls
     startPause.addEventListener("click", () => {
       running = !running;
-      startPause.textContent = running ? "Pauză" : "Pornește";
-      statusVal.textContent = running ? "RULEAZĂ" : "PAUZĂ";
-      setStatus(running ? "ok" : "warn", running ? "Simulare pornită" : "Simulare oprită");
+      startPause.textContent = running
+        ? simT("buttons.pause", "Pauză")
+        : simT("buttons.start", "Pornește");
+      statusVal.textContent = running
+        ? simT("hud.running", "RULEAZĂ")
+        : simT("hud.paused", "PAUZĂ");
+      setStatus(
+        running ? "ok" : "warn",
+        running ? "status.running" : "status.stopped",
+        running ? "Simulare pornită" : "Simulare oprită"
+      );
     });
   
     resetBtn.addEventListener("click", () => {
       buildPendulums();
-      startPause.textContent = "Pornește";
+      startPause.textContent = simT("buttons.start", "Pornește");
       running = false;
-      statusVal.textContent = "PAUZĂ";
-      setStatus("ok", "Simulare resetată");
+      statusVal.textContent = simT("hud.paused", "PAUZĂ");
+      setStatus("ok", "status.reset", "Simulare resetată");
     });
   
     // Rebuild when important params change
@@ -524,7 +537,7 @@
     syncUI();
     applyPmInitialPanels();
     buildPendulums();
-    statusVal.textContent = "PAUZĂ";
+    statusVal.textContent = simT("hud.paused", "PAUZĂ");
     fpsVal.textContent = "—";
   
     requestAnimationFrame(loop);

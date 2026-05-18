@@ -4,7 +4,7 @@
 
 Criteriu „tradus”: slug în `src/components/pages/SimulationPage.jsx` (`SIMULATOR_I18N_QUERY_SLUGS`) și bloc corespunzător în `public/translations/simulatoare.en.json`.
 
-### Traduse (20)
+### Traduse (24)
 
 | slug | titlu (RO în app) |
 |------|-------------------|
@@ -12,6 +12,7 @@ Criteriu „tradus”: slug în `src/components/pages/SimulationPage.jsx` (`SIMU
 | pendul-amortizat | Pendulul Oscilator Amortizat |
 | pendul-neliniar | Pendul simplu neliniar |
 | grafice-pendule | Grafice Pendule |
+| pendule-multiple | Penduluri Duble Multiple |
 | unde-apa | Undele produse în apă |
 | seism | Seism |
 | coliziuni-inelastice | Coliziuni Inelastice |
@@ -24,6 +25,9 @@ Criteriu „tradus”: slug în `src/components/pages/SimulationPage.jsx` (`SIMU
 | reflexie-refractie | Reflexie și Refracție |
 | prisma | Prisma |
 | motoare-termice | Motoare Termice |
+| fuel-cell | Pilă cu combustibil (PEM) |
+| supraconductivitate | Supraconductivitate și efectul Meissner |
+| criogenie | Criogenie și stări de agregare |
 
 ### Semi-traduse (4)
 
@@ -32,7 +36,7 @@ Criteriu „tradus”: slug în `src/components/pages/SimulationPage.jsx` (`SIMU
 | proiectile | Mișcarea Proiectilului |
 | lanturi-elastice | Lanțuri Elastice |
 
-### Netraduse (33)
+### Netraduse (29)
 
 | slug | titlu (RO în app) |
 |------|-------------------|
@@ -43,7 +47,6 @@ Criteriu „tradus”: slug în `src/components/pages/SimulationPage.jsx` (`SIMU
 | oscillatii-oy | Mișcări Oscilatorii pe OY |
 | circuite-electricitate | Circuite Electrice |
 | energie-circuite | Energia în Circuite |
-| pendule-multiple | Penduluri Duble Multiple |
 | refractie-atmosferica | Miraj în Deșert |
 | lentila-subtire | Lentilă Subțire |
 | polarizare-circulara | Polarizare Circulară |
@@ -66,9 +69,6 @@ Criteriu „tradus”: slug în `src/components/pages/SimulationPage.jsx` (`SIMU
 | reactor-fuziune-dt | Reactor fuziune D–T (model educativ) |
 | izotopi-uraniu | Izotopii uraniului (nucleu, α, fisiune, timp) |
 | toti-izotopii | Harta celor 26 de izotopi ai uraniului |
-| criogenie | Criogenie și stări de agregare |
-| supraconductivitate | Supraconductivitate și efectul Meissner |
-| fuel-cell | Pilă cu combustibil (PEM) |
 
 ---
 
@@ -76,6 +76,7 @@ Criteriu „tradus”: slug în `src/components/pages/SimulationPage.jsx` (`SIMU
 
 - de adaugat restul de simulari
 - responsive pentru pagina resurse
+- titluri in engleza la pagini 
 - traducere engleza
     - de corectat restul de probleme gresite
     - simulatoare + poze

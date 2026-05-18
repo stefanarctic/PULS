@@ -76,6 +76,9 @@
   const btnApplyH0 = document.getElementById("btnApplyH0");
   const tooltip = document.getElementById("tooltip");
 
+  const simT = (path, ro) =>
+    typeof window.simLbl === "function" ? window.simLbl(path, ro) : ro;
+
   /** @type {{
    * T: number, B: number, Tc: number, h: number, v: number, x: number, vx: number,
    * fallen: boolean, wasSuper: boolean, meissnerBlend: number,
@@ -718,7 +721,9 @@
       "cond-badge " + (sup ? "cond-badge--super" : "cond-badge--normal");
     const label = condBadge.querySelector(".cond-label");
     if (label) {
-      label.textContent = sup ? "Supraconductor · Meissner" : "Material normal";
+      label.textContent = sup
+        ? simT("badge.super", "Supraconductor · Meissner")
+        : simT("badge.normal", "Material normal");
     }
   }
 
@@ -771,14 +776,14 @@
     ctx.fillStyle = "rgba(230, 237, 243, 0.88)";
     ctx.font = `${fsTitle}px system-ui,sans-serif`;
     const status = state.fallen
-      ? "Stare: normală (conductor)"
+      ? simT("hud.statusFallen", "Stare: normală (conductor)")
       : supAlive
         ? narrow
-          ? "Supraconductor · Meissner"
-          : "Stare: supraconductor · Meissner activ"
+          ? simT("hud.statusSuperNarrow", "Supraconductor · Meissner")
+          : simT("hud.statusSuperWide", "Stare: supraconductor · Meissner activ")
         : narrow
-          ? "Peste Tc — cade"
-          : "Stare: peste Tc — cade";
+          ? simT("hud.aboveNarrow", "Peste Tc — cade")
+          : simT("hud.aboveWide", "Stare: peste Tc — cade");
     ctx.fillText(status, px, py);
     py += lh;
 
@@ -799,7 +804,9 @@
       );
       py += lh - 1;
       ctx.fillText(
-        `h≈${state.h.toFixed(0)} → țintă ${parseFloat(sliderH0.value)}`,
+        simT("hud.hNarrow", "h≈{h} → țintă {v}")
+          .replace("{h}", state.h.toFixed(0))
+          .replace("{v}", String(parseFloat(sliderH0.value))),
         px,
         py
       );
@@ -811,7 +818,9 @@
       );
       py += lh;
       ctx.fillText(
-        `h ≈ ${state.h.toFixed(0)} px · țintă slider = ${parseFloat(sliderH0.value)} px`,
+        simT("hud.hWide", "h ≈ {h} px · țintă slider = {v} px")
+          .replace("{h}", state.h.toFixed(0))
+          .replace("{v}", String(parseFloat(sliderH0.value))),
         px,
         py
       );
@@ -819,7 +828,11 @@
     if (state.dragging) {
       py += lh;
       ctx.fillStyle = "rgba(126, 200, 255, 0.85)";
-      ctx.fillText(narrow ? "Tragere…" : "Tragere activă", px, py);
+      ctx.fillText(
+        narrow ? simT("hud.dragNarrow", "Tragere…") : simT("hud.dragWide", "Tragere activă"),
+        px,
+        py
+      );
     }
     ctx.restore();
 
@@ -882,7 +895,7 @@
     cctx.textAlign = "left";
     const fsTitle = Math.max(9, Math.min(11, w * 0.038));
     cctx.font = `${fsTitle}px system-ui,sans-serif`;
-    cctx.fillText("T curent", pad.l, 11);
+    cctx.fillText(simT("hud.chartCurrentT", "T curent"), pad.l, 11);
   }
 
   function loop() {
@@ -931,24 +944,27 @@
     valH0.textContent = `${sliderH0.value} px`;
   }
 
-  const eduTips = {
-    stage:
-      "Canvas: trage magnetul. Sub Tc respingerea Meissner te împinge; peste Tc câmpul pătrunde și magnetul cade. Linii animate = flux magnetic.",
-    temp:
-      "T: cu cât e mai departe sub Tc, scena e „mai rece” (glow, vapori); aproape de Tc apare încălzire vizuală și instabilitate.",
-    field:
-      "B: numărul și strălucirea liniilor de câmp cresc cu sliderul; magnetul reacționează mai tare la schimbări bruște.",
-    dist:
-      "Distanță: un resort slab trage spre valoarea sliderului — poziția apare din lupta mg vs kB²/h², nu din teleport.",
-    material:
-      "T fiecărui material are Tc diferit — compară cât de ușor păstrezi starea supraconductoare la aceeași T.",
-    lock:
-      "Quantum locking: poziția țintă (pin) urmează neted cursorul; la eliberare magnetul rămâne ancorat — flux pinning simplificat.",
-    chart:
-      "Grafic live: zona verde = T sub Tc (supraconductor); roșu = peste Tc. Punctul = temperatura ta.",
-    compare:
-      "YBCO are Tc mare (~92 K); mercurul, primul supraconductor cunoscut, are Tc foarte mic (~4 K) — necesită heliu lichid.",
-  };
+  function getEduTip(key) {
+    const fallbacks = {
+      stage:
+        "Canvas: trage magnetul. Sub Tc respingerea Meissner te împinge; peste Tc câmpul pătrunde și magnetul cade. Linii animate = flux magnetic.",
+      temp:
+        "T: cu cât e mai departe sub Tc, scena e „mai rece” (glow, vapori); aproape de Tc apare încălzire vizuală și instabilitate.",
+      field:
+        "B: numărul și strălucirea liniilor de câmp cresc cu sliderul; magnetul reacționează mai tare la schimbări bruște.",
+      dist:
+        "Distanță: un resort slab trage spre valoarea sliderului — poziția apare din lupta mg vs kB²/h², nu din teleport.",
+      material:
+        "T fiecărui material are Tc diferit — compară cât de ușor păstrezi starea supraconductoare la aceeași T.",
+      lock:
+        "Quantum locking: poziția țintă (pin) urmează neted cursorul; la eliberare magnetul rămâne ancorat — flux pinning simplificat.",
+      chart:
+        "Grafic live: zona verde = T sub Tc (supraconductor); roșu = peste Tc. Punctul = temperatura ta.",
+      compare:
+        "YBCO are Tc mare (~92 K); mercurul, primul supraconductor cunoscut, are Tc foarte mic (~4 K) — necesită heliu lichid.",
+    };
+    return simT(`edu.${key}`, fallbacks[key] || "");
+  }
 
   function setEduMode(on) {
     document.body.classList.toggle("edu-active", on);
@@ -956,7 +972,7 @@
 
   function onEduHover(ev, key) {
     if (!chkEdu.checked || !key) return;
-    const text = eduTips[key];
+    const text = getEduTip(key);
     if (!text) return;
     tooltip.textContent = text;
     tooltip.classList.remove("hidden");

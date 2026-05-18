@@ -18,6 +18,7 @@ const SIMULATOR_I18N_QUERY_SLUGS = new Set([
   "pendul-amortizat",
   "pendul-neliniar",
   "grafice-pendule",
+  "pendule-multiple",
   "unde-apa",
   "figuri-lissajous",
   "seism",
@@ -34,6 +35,9 @@ const SIMULATOR_I18N_QUERY_SLUGS = new Set([
   "reflexie-refractie",
   "prisma",
   "motoare-termice",
+  "fuel-cell",
+  "supraconductivitate",
+  "criogenie",
 ]);
 
 const DEFAULT_EN_SIMULATOR_EYEBROW = "Interactive simulation";

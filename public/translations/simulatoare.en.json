@@ -175,6 +175,338 @@
         "fillAllFields": "Please fill in all fields"
       }
     },
+    "pendule-multiple": {
+      "page": { "eyebrow": "Multiple double pendulums | Interactive simulation" },
+      "documentTitle": "Multiple double pendulums — chaos + trails",
+      "htmlLang": "en",
+      "labels": {
+        "pageTitle": "Double pendulums (multiple)",
+        "count": "Number of pendulums (N)",
+        "theta1": "Initial angle θ₁ (°)",
+        "theta2": "Initial angle θ₂ (°)",
+        "spread": "Perturbation (°)",
+        "L1": "Length L₁ (m)",
+        "L2": "Length L₂ (m)",
+        "m1": "Mass m₁ (kg)",
+        "m2": "Mass m₂ (kg)",
+        "g": "Gravity g (m/s²)",
+        "damp": "Damping (1/s)",
+        "dt": "Step dt (s)",
+        "trail": "Trail length",
+        "trailAlpha": "Trail opacity"
+      },
+      "buttons": {
+        "start": "Start",
+        "pause": "Pause",
+        "reset": "Reset"
+      },
+      "options": {
+        "heading": "Options",
+        "rods": "Rods / strings",
+        "bobs": "Bobs",
+        "trace": "Trails",
+        "showAll": "Show all pendulums"
+      },
+      "info": {
+        "controls": "Controls",
+        "information": "Information",
+        "whatYouSee": "What you're seeing",
+        "fact1": "Every pendulum starts almost the same, but with a small perturbation.",
+        "fact2": "After a short time the trajectories diverge completely — deterministic chaos.",
+        "fact3": "Trails follow bob 2 (the end of the double pendulum), so they look wild.",
+        "modelShort": "Model (brief)",
+        "coordsLabel": "Coordinates:",
+        "integrateLabel": "Numerical integration (RK4):",
+        "dtCaption": "dt = time step (s)",
+        "live": "Live",
+        "simulatedTime": "Simulated time",
+        "statusLabel": "Status",
+        "fpsApprox": "FPS (approx.)",
+        "tip": "Tip: try N=16, perturbation=0.2°, dt=0.01 and let it run ~10 s."
+      },
+      "aria": {
+        "controlsPanel": "Controls panel",
+        "infoPanel": "Information panel"
+      },
+      "hud": {
+        "running": "RUNNING",
+        "paused": "PAUSED"
+      },
+      "status": {
+        "prefix": "State:",
+        "stopped": "Simulation stopped",
+        "running": "Simulation running",
+        "reset": "Simulation reset"
+      }
+    },
+    "fuel-cell": {
+      "page": { "eyebrow": "PEM fuel cell | Interactive simulation" },
+      "documentTitle": "PEM fuel cell simulator",
+      "htmlLang": "en",
+      "labels": {
+        "titleFuel": "Fuel cell",
+        "titleSimulator": "Simulator",
+        "tagline": "Feed in hydrogen + oxygen → current and water out",
+        "controls": "Controls",
+        "flowH2": "Hydrogen flow",
+        "flowO2": "Oxygen flow",
+        "temperature": "Temperature",
+        "bulbResistance": "Bulb resistance",
+        "current": "Current",
+        "voltage": "Voltage",
+        "power": "Power",
+        "efficiency": "Efficiency"
+      },
+      "legend": {
+        "electrons": "Electrons",
+        "protons": "Protons (H⁺)",
+        "h2": "H₂",
+        "o2": "O₂",
+        "h2o": "H₂O"
+      },
+      "info": {
+        "howItWorks": "How it works",
+        "tryHeading": "Try this:",
+        "formulaLine": "2H₂ + O₂ → 2H₂O + energy"
+      },
+      "steps": {
+        "step1Title": "Anode (left)",
+        "step1Body": "H₂ splits into protons and electrons.",
+        "step2Title": "Electrons",
+        "step2Body": "Travel through the wire → light the bulb ⚡",
+        "step3Title": "Membrane (PEM)",
+        "step3Body": "Only protons pass through to the right.",
+        "step4Title": "Cathode (right)",
+        "step4Body": "Protons + electrons + O₂ → water 💧"
+      },
+      "tips": {
+        "tip1": "Set H₂ = 0 → bulb goes out",
+        "tip2": "Imbalance → lower efficiency",
+        "tip3": "Lower resistance → higher current",
+        "tip4": "Hover over anode / membrane / cathode"
+      },
+      "hints": {
+        "default": "Increase the flow rates for more power.",
+        "noReactants": "⚠ No reactants → current = 0.",
+        "imbalance": "H₂ / O₂ imbalance → low efficiency.",
+        "producing": "⚡ The cell is producing energy. The bulb glows!"
+      },
+      "canvas": {
+        "h2Tank": "H₂ tank",
+        "o2Tank": "O₂ tank",
+        "anode": "ANODE (−)",
+        "cathode": "CATHODE (+)",
+        "pem": "PEM",
+        "reactionOff": "Reaction off"
+      },
+      "regions": {
+        "anode": {
+          "title": "Anode (−)",
+          "desc": "Here H₂ splits into <b>protons</b> (H⁺) and <b>electrons</b> (e⁻)."
+        },
+        "membrane": {
+          "title": "PEM membrane",
+          "desc": "Only <b>protons</b> pass through. Electrons are blocked → forced along the wire."
+        },
+        "cathode": {
+          "title": "Cathode (+)",
+          "desc": "Protons + electrons + O₂ → <b>H₂O</b>. Water leaves the cell."
+        },
+        "bulb": {
+          "title": "Load (bulb)",
+          "desc": "Electrons pass through and heat the filament. Brightness ≈ <b>power</b>."
+        },
+        "h2tank": {
+          "title": "H₂ reservoir",
+          "desc": "Hydrogen source. Higher flow → more molecules."
+        },
+        "o2tank": {
+          "title": "O₂ reservoir",
+          "desc": "Oxygen source. Without O₂ the reaction stops."
+        }
+      }
+    },
+    "supraconductivitate": {
+      "page": { "eyebrow": "Superconductivity & Meissner effect | Interactive simulation" },
+      "documentTitle": "Superconductivity & Meissner effect — simulator",
+      "htmlLang": "en",
+      "labels": {
+        "pageTitle": "Superconductivity",
+        "tagline": "Magnetic levitation · Meissner effect · condition T < Tc",
+        "controls": "Controls",
+        "temperature": "Temperature",
+        "field": "Field",
+        "targetDistance": "Target distance",
+        "material": "Material",
+        "quantumLocking": "Quantum locking",
+        "dragHint": "Canvas: drag the magnet.",
+        "eduMode": "Educational mode",
+        "btnApply": "Reset / apply distance",
+        "condLabelSuper": "Superconductor · Meissner",
+        "gameoverTitle": "Normal state",
+        "gameoverSub": "T > Tc — superconductivity is gone. The magnet falls.",
+        "gameoverReset": "Reset simulation",
+        "footerModel": "Model: if T < Tc, the effective magnetic force ~ k·B²/h² (simplified Meissner repulsion); otherwise only −mg. Near Tc the model adds instability and thermal noise.",
+        "chartTitle": "T vs. state",
+        "materialsTitle": "Materials",
+        "matYbcoBlurb": "HTS ceramic; LN₂ in this idealised model.",
+        "matHgBlurb": "First superconductor; liquid He.",
+        "materialOptYbco": "YBCO — Tc ≈ 92 K",
+        "materialOptHg": "Mercury — Tc ≈ 4.2 K",
+        "materialOptNb": "Niobium — Tc ≈ 9.2 K"
+      },
+      "hints": {
+        "temp": "Low T ⇒ colder look; near Tc it gets unstable.",
+        "field": "High B ⇒ denser lines, force ~ B².",
+        "dist": "Weak spring toward this height (T < Tc)."
+      },
+      "badge": {
+        "super": "Superconductor · Meissner",
+        "normal": "Normal material"
+      },
+      "hud": {
+        "statusFallen": "State: normal (conductor)",
+        "statusSuperNarrow": "Superconductor · Meissner",
+        "statusSuperWide": "State: superconductor · Meissner active",
+        "aboveNarrow": "Above Tc — falls",
+        "aboveWide": "State: above Tc — falls",
+        "dragNarrow": "Dragging…",
+        "dragWide": "Active drag",
+        "hNarrow": "h≈{h} → target {v}",
+        "hWide": "h ≈ {h} px · slider target = {v} px",
+        "chartCurrentT": "Current T"
+      },
+      "edu": {
+        "stage": "Canvas: drag the magnet. Below Tc Meissner repulsion pushes back; above Tc the field penetrates and the magnet falls. Animated lines = magnetic flux.",
+        "temp": "T: farther below Tc the scene looks colder (glow, vapour); near Tc you get a warmer look and instability.",
+        "field": "B: more, brighter field lines with the slider; the magnet reacts more to sudden changes.",
+        "dist": "Distance: a weak spring pulls toward the slider value — height comes from mg vs kB²/h², not teleporting.",
+        "material": "Each material has a different Tc — compare how easy it is to stay superconducting at the same T.",
+        "lock": "Quantum locking: the target (pin) follows the cursor smoothly; on release the magnet stays pinned — simplified flux pinning.",
+        "chart": "Live chart: green = T below Tc (superconducting); red = above Tc. Dot = your temperature.",
+        "compare": "YBCO has a high Tc (~92 K); mercury, the first known superconductor, has a very low Tc (~4 K) — it needs liquid helium."
+      },
+      "aria": {
+        "simCanvas": "Levitation simulation — drag the magnet",
+        "chart": "Temperature chart"
+      }
+    },
+    "criogenie": {
+      "page": { "eyebrow": "Cryogenics & states of matter | Interactive simulation" },
+      "documentTitle": "Cryogenics simulator — pV = nRT",
+      "htmlLang": "en",
+      "labels": {
+        "ahaTitle": "“Aha” moment",
+        "insightDefault": "Move temperature or volume — see how pressure and state connect.",
+        "ideaTitle": "Core idea",
+        "ideaBody": "Watch how “molecules” move when you change temperature and volume. Simple model: kinetic energy grows with T — hotter particles move faster (colour shifts warmer).",
+        "pvTitle": "pV = nRT",
+        "pvBody": "With the same number of particles, if you shrink volume or raise temperature, effective pressure rises. Watch the pressure readout below.",
+        "statesTitle": "States & material",
+        "statesBody": "Gas — chaos, no order. Liquid — clumps but still flows. Solid — an ordered lattice with tiny vibrations. Each material has different thresholds (e.g. helium barely “freezes” at these temperatures).",
+        "liveTitle": "Live",
+        "statePrefix": "State:",
+        "challengesTitle": "Challenges",
+        "pageTitle": "Cryogenics simulator",
+        "tagline": "Temperature, volume, pressure — states of matter",
+        "chartDistTitle": "Speed distribution",
+        "chartDistCaption": "Bars = simulation; orange curve = theoretical Rayleigh (2D) distribution, same kind as the speed modulus from Maxwell–Boltzmann for an ideal gas in the plane.",
+        "chartAxis": "relative speed →",
+        "controls": "Controls",
+        "material": "Material",
+        "materialWater": "Water",
+        "materialHelium": "Helium",
+        "materialIron": "Iron",
+        "materialNitrogen": "Nitrogen",
+        "tempSlider": "Temperature:",
+        "volumeSlider": "Box volume:",
+        "experimentTitle": "Experiment mode",
+        "expStart": "Start experiment",
+        "expNext": "Another experiment",
+        "expCapture": "📷 Capture experiment",
+        "zeroWarning": "⚠️ Absolute zero cannot be reached",
+        "captureFooter": "Simulated on puls-fizica.ro",
+        "imageSaved": "Image saved"
+      },
+      "pressure": {
+        "prefix": "Pressure:",
+        "low": "Low",
+        "medium": "Medium",
+        "high": "High"
+      },
+      "hints": {
+        "gas": "Particles move chaotically, no bonds — gas-like behaviour.",
+        "liquid": "Mild attraction: they clump but still flow.",
+        "solid": "Ordered lattice: nearly fixed positions, small vibrations."
+      },
+      "stateLabel": {
+        "gas": "🔥 Gas (chaotic)",
+        "liquid": "💧 Liquid (fluid)",
+        "solid": "❄️ Solid (crystalline)"
+      },
+      "insight": {
+        "tempUp": "Higher T → faster speeds (warmer colours) → at the same volume, pressure tends to rise (pV = nRT).",
+        "tempDown": "Lower T → less agitation → pressure drops if volume stays the same; you can reach liquid/solid.",
+        "volDown": "Smaller volume → particles closer → more collisions → pressure rises (at similar T).",
+        "volUp": "Larger volume → more free space → fewer collisions → pressure tends to drop.",
+        "material": "Material: {name}. Freezing ~{Tf} K, boiling ~{Tb} K — at the same T you may be in a different state than before.",
+        "pressureHigh": "High pressure now: many particles in a small volume or high T — watch the chaotic motion.",
+        "pressureLow": "Low pressure: large volume or low T — particles have more room."
+      },
+      "challenge": {
+        "freezeDone": "✓ Solid state reached.",
+        "freezeTodo": "Lower T until solid for the chosen material.",
+        "pressureDone": "✓ High pressure without raising T.",
+        "pressureTodo": "Shrink volume without raising temperature (challenge)."
+      },
+      "experiments": {
+        "highPressureNoTemp": {
+          "title": "High pressure, no hotter T",
+          "desc": "Reach Pressure: High without increasing temperature from the Start moment.",
+          "winMsg": "Experiment complete: high pressure at controlled T!"
+        },
+        "liquidNoVolumeUp": {
+          "title": "Liquid without a bigger box",
+          "desc": "With Water: start hot (gas), lower T toward liquid. Do not increase the Volume slider after Start.",
+          "winMsg": "Experiment complete: liquid without enlarging the box!"
+        },
+        "cryoZone": {
+          "title": "Cryogenic zone",
+          "desc": "Bring temperature below 80 K and watch things slow down.",
+          "winMsg": "Experiment complete: ultra-cold zone!"
+        },
+        "solidState": {
+          "title": "Solid state",
+          "desc": "Reach solid for the chosen material (lower T or pick a material with a suitable freezing point).",
+          "winMsg": "Experiment complete: solid reached!"
+        }
+      },
+      "toasts": {
+        "startExperiment": "Start: {title}",
+        "nextExperiment": "Next experiment — read the goal",
+        "solidAchieved": "Solid achieved",
+        "highPressure": "High pressure reached",
+        "nearAbsoluteZero": "Near absolute zero"
+      },
+      "chartHud": {
+        "title": "Simulation vs. theory (Maxwell 2D)",
+        "stats": "mean {mean} · max {max} · axis 0→{vmax} · σ={sigma}",
+        "legendSim": "■ simulation",
+        "legendTheory": "── Rayleigh theory (2D)"
+      },
+      "absoluteZero": {
+        "line1": "Absolute zero cannot be reached",
+        "line2": "The third law — 0 K is a limit, not a destination"
+      },
+      "aria": {
+        "drawerExplain": "Explanations",
+        "drawerChart": "Chart and controls"
+      },
+      "toggle": {
+        "left": "Hide / show explanations",
+        "right": "Hide / show chart and sliders"
+      }
+    },
     "unde-apa": {
       "page": { "eyebrow": "Water waves | Interactive simulation" },
       "documentTitle": "Water wave simulator",

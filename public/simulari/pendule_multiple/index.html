@@ -9,39 +9,39 @@
 <body>
   <header class="topbar">
     <div class="brand">
-      <h1>Penduluri duble (multiple)</h1>
+      <h1 data-i18n="labels.pageTitle">Penduluri duble (multiple)</h1>
     </div>
   </header>
 
   <main class="layout" id="pmLayout">
-    <button type="button" id="togglePmLeft" class="pm-toggle pm-toggle-left" aria-controls="leftPanel" aria-expanded="true" aria-label="Panou controale">☰</button>
+    <button type="button" id="togglePmLeft" class="pm-toggle pm-toggle-left" aria-controls="leftPanel" aria-expanded="true" data-i18n-aria="aria.controlsPanel">☰</button>
 
     <!-- LEFT PANEL -->
     <aside id="leftPanel" class="panel left">
       <div class="panelHeader">
-        <h2>Controale</h2>
+        <h2 data-i18n="info.controls">Controale</h2>
       </div>
 
       <div class="row">
-        <label for="count">Număr penduluri (N)</label>
+        <label for="count" data-i18n="labels.count">Număr penduluri (N)</label>
         <input id="count" type="range" min="1" max="24" step="1" value="10" />
         <span id="countVal" class="val">10</span>
       </div>
 
       <div class="row">
-        <label for="theta1">Unghi inițial θ₁ (°)</label>
+        <label for="theta1" data-i18n="labels.theta1">Unghi inițial θ₁ (°)</label>
         <input id="theta1" type="range" min="-179" max="179" step="1" value="120" />
         <span id="theta1Val" class="val">120</span>
       </div>
 
       <div class="row">
-        <label for="theta2">Unghi inițial θ₂ (°)</label>
+        <label for="theta2" data-i18n="labels.theta2">Unghi inițial θ₂ (°)</label>
         <input id="theta2" type="range" min="-179" max="179" step="1" value="-20" />
         <span id="theta2Val" class="val">-20</span>
       </div>
 
       <div class="row">
-        <label for="spread">Perturbare (°)</label>
+        <label for="spread" data-i18n="labels.spread">Perturbare (°)</label>
         <input id="spread" type="range" min="0" max="2" step="0.01" value="0.25" />
         <span id="spreadVal" class="val">0.25</span>
       </div>
@@ -49,37 +49,37 @@
       <div class="divider"></div>
 
       <div class="row">
-        <label for="L1">Lungime L₁ (m)</label>
+        <label for="L1" data-i18n="labels.L1">Lungime L₁ (m)</label>
         <input id="L1" type="range" min="0.3" max="2.5" step="0.01" value="1.10" />
         <span id="L1Val" class="val">1.10</span>
       </div>
 
       <div class="row">
-        <label for="L2">Lungime L₂ (m)</label>
+        <label for="L2" data-i18n="labels.L2">Lungime L₂ (m)</label>
         <input id="L2" type="range" min="0.3" max="2.5" step="0.01" value="1.10" />
         <span id="L2Val" class="val">1.10</span>
       </div>
 
       <div class="row">
-        <label for="m1">Masă m₁ (kg)</label>
+        <label for="m1" data-i18n="labels.m1">Masă m₁ (kg)</label>
         <input id="m1" type="range" min="0.2" max="5" step="0.1" value="1.0" />
         <span id="m1Val" class="val">1.0</span>
       </div>
 
       <div class="row">
-        <label for="m2">Masă m₂ (kg)</label>
+        <label for="m2" data-i18n="labels.m2">Masă m₂ (kg)</label>
         <input id="m2" type="range" min="0.2" max="5" step="0.1" value="1.0" />
         <span id="m2Val" class="val">1.0</span>
       </div>
 
       <div class="row">
-        <label for="g">Gravitație g (m/s²)</label>
+        <label for="g" data-i18n="labels.g">Gravitație g (m/s²)</label>
         <input id="g" type="range" min="0" max="20" step="0.01" value="9.81" />
         <span id="gVal" class="val">9.81</span>
       </div>
 
       <div class="row">
-        <label for="damp">Damping (1/s)</label>
+        <label for="damp" data-i18n="labels.damp">Damping (1/s)</label>
         <input id="damp" type="range" min="0" max="1.5" step="0.01" value="0.02" />
         <span id="dampVal" class="val">0.02</span>
       </div>
@@ -87,35 +87,35 @@
       <div class="divider"></div>
 
       <div class="row">
-        <label for="dt">Pas dt (s)</label>
+        <label for="dt" data-i18n="labels.dt">Pas dt (s)</label>
         <input id="dt" type="range" min="0.002" max="0.03" step="0.001" value="0.010" />
         <span id="dtVal" class="val">0.010</span>
       </div>
 
       <div class="row">
-        <label for="trail">Lungime urmă</label>
+        <label for="trail" data-i18n="labels.trail">Lungime urmă</label>
         <input id="trail" type="range" min="50" max="2500" step="10" value="900" />
         <span id="trailVal" class="val">900</span>
       </div>
 
       <div class="row">
-        <label for="trailAlpha">Opacitate urmă</label>
+        <label for="trailAlpha" data-i18n="labels.trailAlpha">Opacitate urmă</label>
         <input id="trailAlpha" type="range" min="0.03" max="0.35" step="0.01" value="0.12" />
         <span id="trailAlphaVal" class="val">0.12</span>
       </div>
 
       <div class="btnRow">
-        <button id="startPause" class="btn">Pornește</button>
-        <button id="reset" class="btn ghost">Resetează</button>
+        <button id="startPause" type="button" class="btn" data-i18n="buttons.start">Pornește</button>
+        <button id="reset" type="button" class="btn ghost" data-i18n="buttons.reset">Resetează</button>
       </div>
 
       <div class="row">
-        <label>Opțiuni</label>
+        <label data-i18n="options.heading">Opțiuni</label>
         <div class="toggles">
-          <label class="chk"><input id="showRods" type="checkbox" checked> Funii/tije</label>
-          <label class="chk"><input id="showBobs" type="checkbox" checked> Bile</label>
-          <label class="chk"><input id="showTrace" type="checkbox" checked> Urme</label>
-          <label class="chk"><input id="showAll" type="checkbox" checked> Arată toate pendulurile</label>
+          <label class="chk"><input id="showRods" type="checkbox" checked> <span data-i18n="options.rods">Funii/tije</span></label>
+          <label class="chk"><input id="showBobs" type="checkbox" checked> <span data-i18n="options.bobs">Bile</span></label>
+          <label class="chk"><input id="showTrace" type="checkbox" checked> <span data-i18n="options.trace">Urme</span></label>
+          <label class="chk"><input id="showAll" type="checkbox" checked> <span data-i18n="options.showAll">Arată toate pendulurile</span></label>
         </div>
         <span class="val"></span>
       </div>
@@ -131,52 +131,53 @@
     <!-- RIGHT PANEL -->
     <aside id="rightPanel" class="panel right">
       <div class="panelHeader">
-        <h2>Informații</h2>
+        <h2 data-i18n="info.information">Informații</h2>
       </div>
 
-      <h3>Ce vezi aici</h3>
+      <h3 data-i18n="info.whatYouSee">Ce vezi aici</h3>
       <ul class="facts">
-        <li>Toate pendulurile pornesc aproape identic, dar cu o mică diferență <b>(perturbare)</b>.</li>
-        <li>După puțin timp, traiectoriile devin complet diferite → <b>haos determinist</b>.</li>
-        <li>Urmele sunt pentru bobul 2 (capătul pendulului dublu), de aceea arată „nebun".</li>
+        <li data-i18n="info.fact1">Toate pendulurile pornesc aproape identic, dar cu o mică diferență <b>(perturbare)</b>.</li>
+        <li data-i18n="info.fact2">După puțin timp, traiectoriile devin complet diferite → <b>haos determinist</b>.</li>
+        <li data-i18n="info.fact3">Urmele sunt pentru bobul 2 (capătul pendulului dublu), de aceea arată „nebun".</li>
       </ul>
 
       <div class="divider"></div>
 
-      <h3>Model (pe scurt)</h3>
+      <h3 data-i18n="info.modelShort">Model (pe scurt)</h3>
       <div class="formula">
         <div class="f">
-          <span>Coordonate:</span>
+          <span data-i18n="info.coordsLabel">Coordonate:</span>
           <code>
 x₁ = L₁ sinθ₁,  y₁ = L₁ cosθ₁<br/>
 x₂ = x₁ + L₂ sinθ₂,  y₂ = y₁ + L₂ cosθ₂
           </code>
         </div>
         <div class="f">
-          <span>Integrăm numeric (RK4):</span>
+          <span data-i18n="info.integrateLabel">Integrăm numeric (RK4):</span>
           <code>θ′ = ω,  ω′ = f(θ₁,θ₂,ω₁,ω₂)</code>
-          <small>dt = pas de timp (s)</small>
+          <small data-i18n="info.dtCaption">dt = pas de timp (s)</small>
         </div>
       </div>
 
       <div class="divider"></div>
 
-      <h3>În timp real</h3>
+      <h3 data-i18n="info.live">În timp real</h3>
       <div class="stats">
-        <div class="stat"><span>Timp simulat</span><b id="timeVal">0.00 s</b></div>
-        <div class="stat"><span>Status</span><b id="statusVal">PAUZĂ</b></div>
-        <div class="stat"><span>FPS (aprox.)</span><b id="fpsVal">—</b></div>
+        <div class="stat"><span data-i18n="info.simulatedTime">Timp simulat</span><b id="timeVal">0.00 s</b></div>
+        <div class="stat"><span data-i18n="info.statusLabel">Status</span><b id="statusVal">PAUZĂ</b></div>
+        <div class="stat"><span data-i18n="info.fpsApprox">FPS (aprox.)</span><b id="fpsVal">—</b></div>
       </div>
 
       <div id="statusBox" class="status ok">Simulare oprită</div>
-      <p class="note">
+      <p class="note" data-i18n="info.tip">
         Tip: pune N=16, perturbare=0.2°, dt=0.01 și lasă-l 10 secunde.
       </p>
     </aside>
 
-    <button type="button" id="togglePmRight" class="pm-toggle pm-toggle-right" aria-controls="rightPanel" aria-expanded="true" aria-label="Panou informații">☰</button>
+    <button type="button" id="togglePmRight" class="pm-toggle pm-toggle-right" aria-controls="rightPanel" aria-expanded="true" data-i18n-aria="aria.infoPanel">☰</button>
   </main>
 
-  <script src="script.js"></script>
+  <script src="../simulator-i18n-runtime.js"></script>
+  <script src="pendule-multiple-boot.js"></script>
 </body>
 </html>
