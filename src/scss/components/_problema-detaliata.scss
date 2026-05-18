@@ -293,8 +293,62 @@
   min-width: 0; // Previne overflow
 }
 
-.back-button-container {
+.problem-header-nav-row {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  gap: 0.5rem;
   margin-bottom: 1rem;
+  min-height: 2.5rem;
+}
+
+.problem-header-nav-left {
+  flex: 0 0 auto;
+}
+
+.problem-header-nav-center {
+  flex: 1 1 auto;
+  min-width: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Lățime aliniată cu rezerva pentru butonul Copy (2.5rem + offset) — centrează Prev/Next între Back și Copy */
+.problem-header-nav-trailing {
+  flex: 0 0 3.5rem;
+  width: 3.5rem;
+  pointer-events: none;
+}
+
+.problem-neighbor-nav {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  max-width: 100%;
+}
+
+.problem-neighbor-btn {
+  &:disabled {
+    opacity: 0.45;
+    cursor: not-allowed;
+    transform: none;
+    box-shadow: none;
+
+    &:hover {
+      background-color: var(--secondary-background-current-mode);
+      border-color: var(--primary-color-current-mode);
+      color: var(--primary-color-current-mode);
+      transform: none;
+      box-shadow: none;
+    }
+  }
+}
+
+.back-button-container {
+  margin-bottom: 0;
 }
 
 .back-button {
@@ -500,6 +554,10 @@
     padding: 10px;
   }
 
+  .problem-header-nav-row .back-button {
+    width: auto;
+  }
+
   .badge {
     font-size: 0.75rem;
     padding: 4px 8px;
@@ -510,7 +568,21 @@
   }
 }
 
-/* === TELEFON (max-width: 767px) === */
+@media screen and (max-width: 640px) {
+  .problem-header-nav-row {
+    flex-wrap: wrap;
+  }
+
+  .problem-header-nav-center {
+    flex: 1 1 100%;
+    order: 2;
+  }
+
+  .problem-header-nav-trailing {
+    display: none;
+  }
+}
+
 @media screen and (max-width: 767px) {
   .container {
     padding: 16px;
@@ -561,6 +633,12 @@
     max-width: 100%;
     font-size: 0.85rem;
     padding: 10px;
+  }
+
+  .problem-header-nav-row .back-button {
+    width: auto !important;
+    min-width: 0;
+    max-width: none;
   }
 
   .badge {

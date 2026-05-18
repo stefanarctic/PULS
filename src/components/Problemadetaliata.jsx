@@ -1,7 +1,7 @@
 import React, { useEffect, useState, useRef, useMemo } from 'react';
 import { useNavigate } from 'react-router-dom';
 import '../scss/components/_problema-detaliata.scss';
-import { ArrowLeft, Bot, Calculator, BookOpen, Copy, Check, Star } from 'lucide-react';
+import { ArrowLeft, Bot, Calculator, BookOpen, Copy, Check, Star, ChevronLeft, ChevronRight } from 'lucide-react';
 import { Button } from './Buttondet';
 import { Card, CardContent, CardHeader, CardTitle } from './card';
 import { Badge } from './badge';
@@ -125,7 +125,15 @@ function formatDifficultyDisplay(raw, t) {
   return raw;
 }
 
-export const ProblemaDetaliata = ({ problema, onBack, homeworkContext = null, translationLoading = false }) => {
+export const ProblemaDetaliata = ({
+  problema,
+  onBack,
+  homeworkContext = null,
+  translationLoading = false,
+  neighborPrevIndex = null,
+  neighborNextIndex = null,
+  homeworkQuery = '',
+}) => {
   const navigate = useNavigate();
   const { localizedPath, t } = useI18n();
   const [copied, setCopied] = useState(false);
@@ -397,6 +405,13 @@ export const ProblemaDetaliata = ({ problema, onBack, homeworkContext = null, tr
     }
   };
 
+  const navigateToProblemByIndex = (index) => {
+    if (index == null || !Number.isFinite(Number(index))) return;
+    const base = localizedPath(`/probleme/${index}`);
+    const target = homeworkQuery ? `${base}?${homeworkQuery}` : base;
+    navigate(target);
+  };
+
   const getPrimaryColor = () =>
     getComputedStyle(document.documentElement)
       .getPropertyValue('--primary-color-current-mode')
@@ -464,15 +479,51 @@ export const ProblemaDetaliata = ({ problema, onBack, homeworkContext = null, tr
             <CardHeader>
               <div className="card-header-container">
                 <div className="card-header-content">
-                  <div className="back-button-container">
-                    <button
-                      onClick={goBackToProblems}
-                      className="back-button"
-                      title={backLabel}
-                    >
-                      <ArrowLeft className="w-4 h-4" />
-                      <span>{backLabel}</span>
-                    </button>
+                  <div className="problem-header-nav-row">
+                    <div className="problem-header-nav-left">
+                      <div className="back-button-container">
+                        <button
+                          type="button"
+                          onClick={goBackToProblems}
+                          className="back-button"
+                          title={backLabel}
+                        >
+                          <ArrowLeft className="w-4 h-4" />
+                          <span>{backLabel}</span>
+                        </button>
+                      </div>
+                    </div>
+                    <div className="problem-header-nav-center">
+                      {(neighborPrevIndex != null || neighborNextIndex != null) && (
+                        <div
+                          className="problem-neighbor-nav"
+                          role="navigation"
+                          aria-label={t('problemDetailPage.neighborNavAria', 'Problemă anterioară sau următoare')}
+                        >
+                          <button
+                            type="button"
+                            className="back-button problem-neighbor-btn"
+                            disabled={neighborPrevIndex == null}
+                            onClick={() => navigateToProblemByIndex(neighborPrevIndex)}
+                            title={t('problemDetailPage.prevProblem', 'Problema anterioară (index mai mic)')}
+                          >
+                            <ChevronLeft className="w-4 h-4" aria-hidden />
+                            <span>{t('problemDetailPage.prevProblemShort', 'Anterioară')}</span>
+                          </button>
+                          <button
+                            type="button"
+                            className="back-button problem-neighbor-btn"
+                            disabled={neighborNextIndex == null}
+                            onClick={() => navigateToProblemByIndex(neighborNextIndex)}
+                            title={t('problemDetailPage.nextProblem', 'Problema următoare (index mai mare)')}
+                          >
+                            <span>{t('problemDetailPage.nextProblemShort', 'Următoarea')}</span>
+                            <ChevronRight className="w-4 h-4" aria-hidden />
+                          </button>
+                        </div>
+                      )}
+                    </div>
+                    <div className="problem-header-nav-trailing" aria-hidden="true" />
                   </div>
                   <div className="card-title-row">
                     <CardTitle className="card-title">{problema.titlu}</CardTitle>

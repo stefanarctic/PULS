@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useMemo } from 'react';
 import { useParams, useNavigate, useSearchParams } from 'react-router-dom';
 import Layout from '../Layout';
 import ProblemaDetaliata from '../Problemadetaliata';
@@ -7,6 +7,15 @@ import SEO from '../SEO';
 import { parseHomeworkParams } from '../../lib/assignmentProgress';
 import { useI18n } from '../../i18n/LanguageContext';
 import { useProblemEnglishTranslation } from '../../hooks/useProblemEnglishTranslation';
+import { normalizeString } from '../../lib/normalizeString';
+
+function isBacProblem(p) {
+  if (!p) return false;
+  return (
+    p.categorie === 'Bac' ||
+    (p.categorie && normalizeString(p.categorie).includes('bac'))
+  );
+}
 
 const ProblemaIndividuala = () => {
   const { id } = useParams();
@@ -14,10 +23,33 @@ const ProblemaIndividuala = () => {
   const { localizedPath, t, lang } = useI18n();
   const [searchParams] = useSearchParams();
   const homeworkContext = parseHomeworkParams(searchParams);
+  const homeworkQuery = searchParams.toString();
   const { value: problemeData, status } = useSelector(state => state.problems);
 
   const problema = problemeData.find(problem => problem.index === parseInt(id, 10));
   const { displayProblema, status: translationStatus } = useProblemEnglishTranslation(problema, lang);
+
+  const { neighborPrevIndex, neighborNextIndex } = useMemo(() => {
+    if (!problema || problema.index == null || !Number.isFinite(Number(problema.index))) {
+      return { neighborPrevIndex: null, neighborNextIndex: null };
+    }
+    const sameBac = isBacProblem(problema);
+    const pool = problemeData.filter(
+      (p) =>
+        p.index != null &&
+        Number.isFinite(Number(p.index)) &&
+        (sameBac ? isBacProblem(p) : !isBacProblem(p)),
+    );
+    const sorted = [...pool].sort((a, b) => a.index - b.index);
+    const pos = sorted.findIndex((p) => p.index === problema.index);
+    if (pos < 0) {
+      return { neighborPrevIndex: null, neighborNextIndex: null };
+    }
+    return {
+      neighborPrevIndex: pos > 0 ? sorted[pos - 1].index : null,
+      neighborNextIndex: pos < sorted.length - 1 ? sorted[pos + 1].index : null,
+    };
+  }, [problemeData, problema]);
 
   useEffect(() => {
     if ((status === 'succeeded' || status === 'failed') && !problema) {
@@ -102,6 +134,9 @@ const ProblemaIndividuala = () => {
         onBack={handleBack}
         homeworkContext={homeworkContext}
         translationLoading={lang === 'en' && translationStatus === 'loading'}
+        neighborPrevIndex={neighborPrevIndex}
+        neighborNextIndex={neighborNextIndex}
+        homeworkQuery={homeworkQuery}
       />
     </Layout>
   );

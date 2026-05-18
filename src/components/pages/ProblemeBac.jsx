@@ -298,6 +298,10 @@ const ProblemeBac = () => {
                     if (subA !== subB) return subB - subA;
                     return a.index - b.index;
                 });
+            case "index-asc":
+                return problems.sort((a, b) => a.index - b.index);
+            case "index-desc":
+                return problems.sort((a, b) => b.index - a.index);
             default:
                 return problems.sort((a, b) => a.index - b.index);
         }
@@ -1474,6 +1478,8 @@ const ProblemeBac = () => {
                                     <option value="oldest">{t('bacProblemsPage.sortOldest', 'Cele mai vechi')}</option>
                                     <option value="subject-asc">{t('bacProblemsPage.sortSubjectAsc', 'Subiect (I → III)')}</option>
                                     <option value="subject-desc">{t('bacProblemsPage.sortSubjectDesc', 'Subiect (III → I)')}</option>
+                                    <option value="index-asc">{t('bacProblemsPage.sortIndexAsc', 'Index (crescător)')}</option>
+                                    <option value="index-desc">{t('bacProblemsPage.sortIndexDesc', 'Index (descrescător)')}</option>
                                 </select>
                             </div>
                         </div>
