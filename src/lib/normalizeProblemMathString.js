@@ -33,6 +33,26 @@ function repairDeepLBrokenExtUnitWrappers(s) {
 }
 
 /**
+ * Rămășițe DeepL/LaTeX: „ext” lipit în fața unităților (\\t din \\text → spațiu + ext…).
+ * Ex.: extkg → kg, extm/s² → m/s², extN/cm → N/cm.
+ * Evită cuvinte precum extract, external, extra (ext+ra).
+ *
+ * @param {string} s
+ */
+function repairStrayExtBeforeUnitTokens(s) {
+  return s.replace(/ext([a-zA-Z/²³°]+)/g, (full, unit) => {
+    if (/^ract/.test(unit)) return full; // extract, …
+    if (/^ernal/.test(unit)) return full; // external
+    if (/^inguish/.test(unit)) return full;
+    if (/^imate/.test(unit)) return full;
+    if (/^rem(?!ote|odel)/.test(unit)) return full; // extremely (not remote…)
+    if (/^ra(?:$|[^a-zA-Z0-9./²³°])/.test(unit)) return full; // extra, extraneous minimal
+    if (unit === 'ra') return full;
+    return unit;
+  });
+}
+
+/**
  * Uniformizează text matematic din Firestore / DeepL: uneori LaTeX ajunge cu backslash dublu
  * (ex. \\omega, \\frac) sau cu secvențe pseudo-escaped (\\n vizibil în enunț).
  *
@@ -67,6 +87,7 @@ export function normalizeProblemMathString(str) {
   s = s.replace(/\\t(?![a-zA-Z])/g, ' ');
 
   s = repairDeepLBrokenExtUnitWrappers(s);
+  s = repairStrayExtBeforeUnitTokens(s);
 
   return s;
 }

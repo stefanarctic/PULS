@@ -32,3 +32,4 @@ vite.allowed-hosts.js
 .directory
 
 prezentare.txt
+firebase-service-account-key.json

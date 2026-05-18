@@ -1,12 +1,13 @@
 /**
- * Structură Firestore: `traduceri/{problemId}/en/main` — traducerea în engleză.
- * `problemId` = același ID ca la `problems/{problemId}`.
+ * Structură Firestore:
+ * - Probleme: `traduceri/{problemId}/en/main` — `problemId` = ID document `problems/{…}`.
+ * - Grile: `traduceri/{grilaId}/en/main` — `grilaId` = ID document `grile/{…}`.
  */
 
-import { normalizeProblemMathString } from './normalizeProblemMathString';
+import { normalizeProblemMathString } from './normalizeProblemMathString.js';
 
 /** EN din Firestore / DeepL: aplică aceleași reparații ca la afișare (cache-ul nu trece mereu prin decodeMathFromDeepL). */
-function normalizeEnPayloadStrings(en) {
+export function normalizeEnPayloadStrings(en) {
   if (!en || typeof en !== 'object') return en;
   const norm = (v) => {
     if (typeof v !== 'string') return v;
@@ -35,7 +36,7 @@ function normalizeEnPayloadStrings(en) {
 
 export const TRADUCERI_COLLECTION = 'traduceri';
 export const TRADUCERI_EN_SUBCOLLECTION = 'en';
-/** Un singur document EN per problemă. */
+/** Un singur document EN per articol (`problems` sau `grile`). */
 export const TRADUCERI_EN_DOC_ID = 'main';
 
 /** Versiune cache — incrementează după schimbări la structură / strategie. */
@@ -207,6 +208,118 @@ export function mergeProblemWithEn(problema, en) {
       ...sp,
       cerinta: enc.subpuncte[i]?.cerinta ?? sp.cerinta,
     }));
+  }
+  return merged;
+}
+
+/** Versiune cache grile EN — incrementează după schimbări la structură / strategie. */
+export const GRILA_TRANSLATION_VERSION = 1;
+
+const GRILA_VARIANT_ORDER = /** @type {const} */ (['a', 'b', 'c', 'd']);
+
+/** Meta pe `traduceri/.../en/main` pentru grile — nu se îmbină în obiectul afișat. */
+export const GRILA_EN_DOC_META_KEYS = new Set([
+  'grilaId',
+  'grilaIndex',
+  'sourceLang',
+  'translationVersion',
+  'updatedAt',
+]);
+
+export function normalizeGrilaEnPayloadStrings(en) {
+  if (!en || typeof en !== 'object') return en;
+  const norm = (v) => {
+    if (typeof v !== 'string') return v;
+    const out = normalizeProblemMathString(v);
+    return out ?? v;
+  };
+  const next = { ...en };
+  if (typeof next.intrebare === 'string') next.intrebare = norm(next.intrebare);
+  if (typeof next.explicatie === 'string') next.explicatie = norm(next.explicatie);
+  if (typeof next.categorie === 'string') next.categorie = norm(next.categorie);
+  if (next.variante && typeof next.variante === 'object') {
+    const v = { ...next.variante };
+    for (const k of GRILA_VARIANT_ORDER) {
+      if (typeof v[k] === 'string') v[k] = norm(v[k]);
+    }
+    next.variante = v;
+  }
+  return next;
+}
+
+export function enPayloadFromGrilaDoc(data) {
+  if (!data || typeof data !== 'object') return null;
+  const out = { ...data };
+  for (const k of GRILA_EN_DOC_META_KEYS) {
+    delete out[k];
+  }
+  return out;
+}
+
+export function mergeGrilaWithEnDoc(grila, enFirestoreDoc) {
+  if (!grila || !enFirestoreDoc) return grila;
+  const payload = enPayloadFromGrilaDoc(enFirestoreDoc);
+  return mergeGrilaWithEn(grila, payload);
+}
+
+/**
+ * @param {object} grila — din `grile`
+ * @returns {Promise<object>} câmpuri pentru documentul `en/main`
+ */
+export async function translateGrilaToEnPayload(grila) {
+  const encoded = [];
+  const push = (s) => {
+    encoded.push(encodeMathForDeepL(s ?? ''));
+  };
+
+  const varianteSrc = grila.variante && typeof grila.variante === 'object' ? grila.variante : {};
+  const variantKeysPresent = GRILA_VARIANT_ORDER.filter((k) => {
+    const s = varianteSrc[k];
+    return s != null && String(s).trim() !== '';
+  });
+
+  push(grila.intrebare ?? '');
+  push(grila.explicatie ?? '');
+  push(grila.categorie ?? '');
+  for (const k of variantKeysPresent) {
+    push(varianteSrc[k] ?? '');
+  }
+
+  const translated = await deeplTranslateMany(encoded);
+  for (let i = 0; i < translated.length; i++) {
+    translated[i] = decodeMathFromDeepL(translated[i]);
+  }
+
+  let idx = 0;
+  const en = {
+    intrebare: translated[idx++] ?? '',
+    explicatie: translated[idx++] ?? '',
+    categorie: translated[idx++] ?? '',
+    variante: {},
+  };
+
+  for (const k of variantKeysPresent) {
+    en.variante[k] = translated[idx++] ?? '';
+  }
+
+  return en;
+}
+
+export function mergeGrilaWithEn(grila, en) {
+  if (!en || typeof en !== 'object') return grila;
+  const enc = normalizeGrilaEnPayloadStrings(en);
+  const merged = { ...grila };
+  if (enc.intrebare != null && enc.intrebare !== '') merged.intrebare = enc.intrebare;
+  if (enc.explicatie != null && enc.explicatie !== '') merged.explicatie = enc.explicatie;
+  if (enc.categorie != null && enc.categorie !== '') merged.categorie = enc.categorie;
+  if (enc.variante && typeof enc.variante === 'object') {
+    const v0 = merged.variante && typeof merged.variante === 'object' ? merged.variante : {};
+    merged.variante = { ...v0 };
+    for (const k of GRILA_VARIANT_ORDER) {
+      if (enc.variante[k] != null && String(enc.variante[k]).trim() !== '') {
+        merged.variante[k] = enc.variante[k];
+      }
+    }
   }
   return merged;
 }

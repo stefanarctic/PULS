@@ -4,10 +4,12 @@ import { useNavigate } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { fetchGrile, addGrila, clearAddStatus } from '../../features/grile/grileSlice';
 import { normalizeString } from '../../lib/normalizeString';
+import { mergeGrilaWithEnDoc, GRILA_TRANSLATION_VERSION } from '../../lib/deeplProblemTranslate';
 import { Plus, X } from 'lucide-react';
 import SEO from '../SEO';
 import '../../scss/components/_probleme-grile.scss';
 import { useI18n } from '../../i18n/LanguageContext';
+import { useProblemEnById } from '../../hooks/useProblemEnById';
 
 const FILTER_ALL = 'Toate';
 
@@ -357,7 +359,23 @@ const ProblemeGrile = () => {
 
     const totalPages = Math.ceil(sortedGrile.length / grilePerPage);
     const startIndex = (currentPage - 1) * grilePerPage;
-    const currentGrile = sortedGrile.slice(startIndex, startIndex + grilePerPage);
+    const endIndexExclusive = startIndex + grilePerPage;
+
+    const currentGrilaIds = useMemo(
+        () =>
+            sortedGrile
+                .slice(startIndex, endIndexExclusive)
+                .map((g) => g.id)
+                .filter(Boolean),
+        [sortedGrile, startIndex, endIndexExclusive],
+    );
+    const enByGrilaId = useProblemEnById(currentGrilaIds, lang, GRILA_TRANSLATION_VERSION);
+
+    const currentGrile = useMemo(() => {
+        const slice = sortedGrile.slice(startIndex, endIndexExclusive);
+        if (lang !== 'en') return slice;
+        return slice.map((g) => mergeGrilaWithEnDoc(g, enByGrilaId[g.id]));
+    }, [sortedGrile, startIndex, endIndexExclusive, lang, enByGrilaId]);
 
     const structuredData = useMemo(() => ({
         "@context": "https://schema.org",

@@ -13,11 +13,12 @@ import { Timestamp } from 'firebase/firestore';
 import { parseHomeworkParams, recordAssignmentItemProgress } from '../../lib/assignmentProgress';
 import { useI18n } from '../../i18n/LanguageContext';
 import { convertDollarToInlineMathJax } from '../../lib/problemHtmlMath';
+import { useGrilaEnglishTranslation } from '../../hooks/useGrilaEnglishTranslation';
 
 const GrileIndividuala = () => {
     const { id } = useParams();
     const navigate = useNavigate();
-    const { localizedPath, t } = useI18n();
+    const { localizedPath, t, lang } = useI18n();
     const dispatch = useDispatch();
     const [searchParams] = useSearchParams();
     const homeworkContext = parseHomeworkParams(searchParams);
@@ -29,7 +30,10 @@ const GrileIndividuala = () => {
 
     const grilaIndex = parseInt(id, 10);
     const grila = grileData.find(g => g.index === grilaIndex);
-    const correctAnswer = grila ? (grila.raspunsCorect || 'a').toLowerCase() : '';
+    const { displayGrila, status: translationStatus } = useGrilaEnglishTranslation(grila, lang);
+    const grileView = displayGrila ?? grila;
+
+    const correctAnswer = grileView ? (grileView.raspunsCorect || 'a').toLowerCase() : '';
     const isCorrect = !!(hasChecked && selectedAnswer !== null && selectedAnswer === correctAnswer);
 
     useEffect(() => {
@@ -113,21 +117,25 @@ const GrileIndividuala = () => {
         return null;
     }
 
-    const variante = grila.variante || {};
+    const grileDisplay = grileView;
+
+    const variante = grileDisplay.variante || {};
     const options = ['a', 'b', 'c', 'd'].filter(k => variante[k]);
 
-    const title = grila.intrebare?.substring(0, 60) || `Grilă #${grilaIndex}`;
+    const translationLoading = lang === 'en' && translationStatus === 'loading';
+
+    const title = grileDisplay.intrebare?.substring(0, 60) || `Grilă #${grilaIndex}`;
     const snippet = `${title}${title.length >= 60 ? '...' : ''}`;
     const description = t(
         'gridProblemsPage.detailMetaDescription',
         `Întrebare cu variante de răspuns: ${snippet}`,
         { snippet }
     );
-    const keywords = grila.categorie
+    const keywords = grileDisplay.categorie
         ? t(
             'gridProblemsPage.detailKeywordsWithCategory',
-            `grilă fizică, ${grila.categorie}, întrebări fizică`,
-            { category: grila.categorie }
+            `grilă fizică, ${grileDisplay.categorie}, întrebări fizică`,
+            { category: grileDisplay.categorie }
         )
         : t('gridProblemsPage.detailKeywords', 'grilă fizică, întrebări fizică');
 
@@ -155,22 +163,27 @@ const GrileIndividuala = () => {
                     </button>
 
                     <div className="grila-detalii-card">
+                        {translationLoading && (
+                            <div className="grila-translation-banner" role="status">
+                                {t('gridProblemsPage.translationInProgress', 'Se traduce grila în engleză…')}
+                            </div>
+                        )}
                         <div className="grila-detalii-header">
                             <span className="grila-detalii-id">
                                 {t('gridProblemsPage.detailQuizBadge', `Grilă #${grilaIndex}`, { num: grilaIndex })}
                             </span>
-                            {grila.categorie && (
-                                <span className="grila-detalii-categorie">{grila.categorie}</span>
+                            {grileDisplay.categorie && (
+                                <span className="grila-detalii-categorie">{grileDisplay.categorie}</span>
                             )}
                         </div>
 
                         <div
                             className="grila-intrebare"
                             dangerouslySetInnerHTML={{
-                                __html: convertDollarToInlineMathJax(grila.intrebare || '')
+                                __html: convertDollarToInlineMathJax(grileDisplay.intrebare || '')
                             }}
                         />
-                        <MathJaxRender />
+                        <MathJaxRender rerun={translationStatus} />
 
                         <div className="grila-variante">
                             {options.map((key) => {
@@ -240,15 +253,15 @@ const GrileIndividuala = () => {
                                         </>
                                     )}
                                 </div>
-                                {grila.explicatie && (
+                                {grileDisplay.explicatie && (
                                     <div className="grila-explicatie">
                                         <strong>{t('gridProblemsPage.detailExplanationLabel', 'Explicație:')}</strong>
                                         <div
                                             dangerouslySetInnerHTML={{
-                                                __html: convertDollarToInlineMathJax(grila.explicatie)
+                                                __html: convertDollarToInlineMathJax(grileDisplay.explicatie)
                                             }}
                                         />
-                                        <MathJaxRender />
+                                        <MathJaxRender rerun={translationStatus} />
                                     </div>
                                 )}
                             </div>

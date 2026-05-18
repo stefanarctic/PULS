@@ -15,7 +15,8 @@
     "upload-cleaned": "node upload-cleaned-problems.js",
     "remove-duplicates": "node remove-duplicate-problems.js",
     "upload-grile": "node upload-grile.js",
-    "screenshot-simulations": "node scripts/screenshot-simulations.js"
+    "screenshot-simulations": "node scripts/screenshot-simulations.js",
+    "repair-traduceri-en": "node scripts/repair-traduceri-en-normalize.mjs"
   },
   "dependencies": {
     "@mistralai/mistralai": "^1.11.0",
