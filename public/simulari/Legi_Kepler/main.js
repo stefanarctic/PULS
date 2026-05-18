@@ -10,6 +10,9 @@
 const canvas = document.getElementById("scene");
 const ctx = canvas.getContext("2d");
 
+const simT = (path, ro) =>
+  typeof window.simLbl === "function" ? window.simLbl(path, ro) : ro;
+
 const plot = document.getElementById("law3Plot");
 const pctx = plot.getContext("2d");
 
@@ -50,6 +53,10 @@ const els = {
 
   areasLog: document.getElementById("areasLog"),
 };
+
+function setBadgeMsg(i18nKey, roFallback) {
+  els.statusBadge.textContent = `${simT("status.prefix", "Status:")} ${simT(i18nKey, roFallback)}`;
+}
 
 let running = true;
 let paused = false;
@@ -133,8 +140,6 @@ function positionAtTime(tYears){
 
 function clamp(v,a,b){ return Math.max(a, Math.min(b, v)); }
 
-function setBadge(txt){ els.statusBadge.textContent = txt; }
-
 function resizeHiDPI(c, context){
   const dpr = window.devicePixelRatio || 1;
   const rect = c.getBoundingClientRect();
@@ -180,18 +185,26 @@ function updateReadouts(){
   els.mVal.textContent = Mstar.toFixed(2);
   els.dtVal.textContent = `${dtDays}d`;
 
-  els.aTxt.textContent = `${a.toFixed(2)} UA`;
+  const dash = simT("readouts.emDash", "–");
+  const au = simT("readouts.au", "UA");
+  const yr = simT("readouts.years", "ani");
+  const approx = simT("readouts.approx", "≈");
+  const au2 = simT("readouts.auSquared", "UA²");
+
+  els.aTxt.textContent = `${a.toFixed(2)} ${au}`;
   els.eTxt.textContent = e.toFixed(2);
-  els.tTxt.textContent = `${period().toFixed(3)} ani`;
-  els.ratioTxt.textContent = `${ratioT2a3().toFixed(4)} (≈ ${ (1/Mstar).toFixed(4) })`;
-  els.areaTxt.textContent = lastArea ? `${lastArea.toExponential(3)} UA²` : "–";
+  els.tTxt.textContent = `${period().toFixed(3)} ${yr}`;
+  els.ratioTxt.textContent = `${ratioT2a3().toFixed(4)} (${approx} ${ (1/Mstar).toFixed(4) })`;
+  els.areaTxt.textContent = lastArea ? `${lastArea.toExponential(3)} ${au2}` : dash;
 }
 
 function formatAreasLog(){
-  if (areaHistory.length === 0) return "–";
+  const dash = simT("readouts.emDash", "–");
+  if (areaHistory.length === 0) return dash;
+  const au2 = simT("readouts.auSquared", "UA²");
   const rows = areaHistory
     .slice(-6)
-    .map((v,i)=>`A${areaHistory.length-5+i}: ${v.toExponential(3)} UA²`);
+    .map((v,i)=>`A${areaHistory.length-5+i}: ${v.toExponential(3)} ${au2}`);
   return rows.join("\n");
 }
 
@@ -265,8 +278,8 @@ function drawPlot(){
   // labels
   pctx.fillStyle = "rgba(0,0,0,.65)";
   pctx.font = "900 11px ui-sans-serif, system-ui";
-  pctx.fillText("x = a³", 14, 18);
-  pctx.fillText("y = T²", 14, 32);
+  pctx.fillText(simT("canvas.plotX", "x = a³"), 14, 18);
+  pctx.fillText(simT("canvas.plotY", "y = T²"), 14, 32);
 
   function mapX(x){
     const left = 10, right = w-10;
@@ -304,12 +317,12 @@ els.dtDays.addEventListener("input", ()=>{
 
 els.startBtn.addEventListener("click", ()=>{
   running = true; paused = false;
-  setBadge("Status: Pornit");
+  setBadgeMsg("status.running", "Pornit");
 });
 els.pauseBtn.addEventListener("click", ()=>{
   if (!running) return;
   paused = !paused;
-  setBadge(paused ? "Status: Pauza" : "Status: Pornit");
+  setBadgeMsg(paused ? "status.paused" : "status.running", paused ? "Pauza" : "Pornit");
 });
 els.resetBtn.addEventListener("click", ()=>{
   t = 0;
@@ -318,8 +331,8 @@ els.resetBtn.addEventListener("click", ()=>{
   areaHistory = [];
   lastArea = 0;
   lastImpulseTime = 0;
-  els.areasLog.textContent = "–";
-  setBadge("Status: Pornit");
+  els.areasLog.textContent = simT("readouts.emDash", "–");
+  setBadgeMsg("status.running", "Pornit");
 });
 
 els.impulseBtn.addEventListener("click", ()=>{
@@ -429,15 +442,15 @@ function drawOrbitAndPlanet(){
     ctx.beginPath(); ctx.moveTo(top.x, top.y); ctx.lineTo(bot.x, bot.y); ctx.stroke();
     ctx.restore();
 
-    drawTextGlow("Legea I: elipsă, Soarele în focar", 18, 38, 16, "left");
+    drawTextGlow(simT("canvas.law1On", "Legea I: elipsă, Soarele în focar"), 18, 38, 16, "left");
   } else {
-    drawTextGlow("Orbită (vizual)", 18, 38, 16, "left");
+    drawTextGlow(simT("canvas.orbitVisual", "Orbită (vizual)"), 18, 38, 16, "left");
   }
 
   // Sun at focus (0,0)
   const sun = W2S(0,0);
   drawGlowCircle(sun.x, sun.y, 10, "rgba(255,215,90,.95)", 22);
-  drawTextGlow("Soare (focar)", sun.x+14, sun.y-12, 12, "left");
+  drawTextGlow(simT("canvas.sunFocus", "Soare (focar)"), sun.x+14, sun.y-12, 12, "left");
 
   // foci (optional): for ellipse, second focus at x = -2c (because focus1 at 0, center at -c? careful)
   // In focus-based coordinates, focus1 is at 0. The center is at x = -ae (because x = a(cosE - e) is centered at -ae).
@@ -449,7 +462,7 @@ function drawOrbitAndPlanet(){
     const f2x = centerX - c; // -2c
     const f2 = W2S(f2x, 0);
     drawGlowCircle(f2.x, f2.y, 6, "rgba(106,92,255,.85)", 18);
-    drawTextGlow("F2", f2.x+12, f2.y-10, 12, "left");
+    drawTextGlow(simT("canvas.f2Label", "F2"), f2.x+12, f2.y-10, 12, "left");
   }
 
   // planet position
@@ -530,7 +543,11 @@ function drawOrbitAndPlanet(){
 
     lastArea = sweptArea(t0, t1, 140);
     const daysShown = Math.round(dtCapped * DAYS_PER_YEAR);
-    drawTextGlow(`Legea II: aria(Δt=${daysShown}d) ~ constantă`, 18, 62, 14, "left");
+    const law2Line = simT(
+      "canvas.law2Area",
+      "Legea II: aria(Δt={days}d) ~ constantă"
+    ).replace(/\{days\}/g, String(daysShown));
+    drawTextGlow(law2Line, 18, 62, 14, "left");
   }
 
   // Law III overlay — pe lățimi mici, caseta sus-dreapta acoperă textele Lege I/II (stânga sus);
@@ -561,11 +578,13 @@ function drawOrbitAndPlanet(){
 
     ctx.fillStyle = "rgba(255,255,255,.92)";
     ctx.font = "900 14px ui-sans-serif, system-ui";
-    ctx.fillText("Legea III", boxX+14, boxY+26);
+    ctx.fillText(simT("canvas.law3Title", "Legea III"), boxX+14, boxY+26);
 
     ctx.font = "800 13px ui-sans-serif, system-ui";
-    ctx.fillText(`T = ${T.toFixed(3)} ani`, boxX+14, boxY+50);
-    ctx.fillText(`T²/a³ = ${ratio.toFixed(4)}  (≈ ${expected.toFixed(4)})`, boxX+14, boxY+72);
+    const yr = simT("readouts.years", "ani");
+    const approx = simT("readouts.approx", "≈");
+    ctx.fillText(`T = ${T.toFixed(3)} ${yr}`, boxX+14, boxY+50);
+    ctx.fillText(`T²/a³ = ${ratio.toFixed(4)}  (${approx} ${expected.toFixed(4)})`, boxX+14, boxY+72);
     ctx.fillText(`M = ${Mstar.toFixed(2)} M☉`, boxX+14, boxY+92);
 
     ctx.restore();
@@ -576,7 +595,7 @@ function drawOrbitAndPlanet(){
   ctx.fillStyle = "rgba(0,0,0,.28)";
   ctx.fillRect(0, h-52, w, 52);
   ctx.restore();
-  drawTextGlow("Notă: mărește e ca să vezi cum crește viteza la periapsis (Legea II devine evidentă).", 18, h-20, 13);
+  drawTextGlow(simT("canvas.bottomNote", "Notă: mărește e ca să vezi cum crește viteza la periapsis (Legea II devine evidentă)."), 18, h-20, 13);
 
   // update readouts
   updateReadouts();
@@ -597,6 +616,11 @@ function tick(dt){
 // Main loop
 // =====================
 function init(){
+  if (window.MathJax?.typesetPromise) {
+    const app = document.getElementById("keplerApp");
+    if (app) window.MathJax.typesetPromise([app]).catch(() => {});
+  }
+
   updateReadouts();
   drawPlot();
 
@@ -612,7 +636,7 @@ function init(){
   }
   requestAnimationFrame(loop);
 
-  setBadge("Status: Pornit");
+  setBadgeMsg("status.running", "Pornit");
 }
 
 // —— Panouri retractabile (design ca la oscilatorul simplu / Mix) ——

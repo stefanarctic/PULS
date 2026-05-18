@@ -12,7 +12,7 @@
     <div class="layout" id="layout">
         <aside class="sidebar" id="sidebar">
             <div class="sidebar-top">
-                <button class="collapse-btn" id="collapseBtn" aria-label="Retrage panoul">
+                <button type="button" class="collapse-btn" id="collapseBtn" data-i18n-aria="aria.collapsePanel" aria-label="Retrage panoul">
                     ◀
                 </button>
             </div>
@@ -21,36 +21,36 @@
                 <aside class="panel">
                     <header class="title">
                         <div>
-                            <h1>Simulator Optică — Lentilă subțire (raze + imagine)</h1>
-                            <p>Trage obiectul pe canvas sau folosește controalele. Vezi automat imaginea
+                            <h1 data-i18n="labels.pageTitle">Simulator Optică — Lentilă subțire (raze + imagine)</h1>
+                            <p data-i18n="labels.pageSubtitle">Trage obiectul pe canvas sau folosește controalele. Vezi automat imaginea
                                 (reală/virtuală).</p>
                         </div>
-                        <div class="pill">drag & drop</div>
+                        <div class="pill" data-i18n="labels.pillDrag">drag & drop</div>
                     </header>
 
                     <section class="controls">
                         <div class="group">
                             <div class="row">
-                                <div class="label">Focala <b>f</b> (cm)</div>
+                                <div class="label" data-i18n="labels.focal">Focala <b>f</b> (cm)</div>
                                 <div class="value" id="fVal">10.0</div>
                             </div>
                             <input id="fSlider" type="range" min="2" max="40" step="0.5" value="12" />
 
                             <div class="row">
-                                <div class="label">Tip lentilă</div>
+                                <div class="label" data-i18n="labels.lensKind">Tip lentilă</div>
                                 <div class="value" id="lensType">Convergentă</div>
                             </div>
                         </div>
 
                         <div class="group">
                             <div class="row">
-                                <div class="label">Distanță obiect <b>d₀</b> (cm)</div>
+                                <div class="label" data-i18n="labels.doLabel">Distanță obiect <b>d₀</b> (cm)</div>
                                 <div class="value" id="doVal">25.0</div>
                             </div>
                             <input id="doSlider" type="range" min="3" max="120" step="0.5" value="35" />
 
                             <div class="row mt10">
-                                <div class="label">Înălțime obiect <b>h₀</b> (cm)</div>
+                                <div class="label" data-i18n="labels.hoLabel">Înălțime obiect <b>h₀</b> (cm)</div>
                                 <div class="value" id="hoVal">6.0</div>
                             </div>
                             <input id="hoSlider" type="range" min="1" max="20" step="0.5" value="7" />
@@ -58,36 +58,36 @@
 
                         <div class="group">
                             <div class="row">
-                                <div class="label">Zoom (px/cm)</div>
+                                <div class="label" data-i18n="labels.zoom">Zoom (px/cm)</div>
                                 <div class="value" id="scaleVal">10</div>
                             </div>
                             <input id="scaleSlider" type="range" min="6" max="16" step="1" value="10" />
                         </div>
 
                         <div class="toggles">
-                            <button class="btn primary" id="toggleRays">Raze: ON</button>
-                            <button class="btn primary" id="toggleLabels">Etichete: ON</button>
-                            <button class="btn good" id="reset">Reset</button>
+                            <button type="button" class="btn primary" id="toggleRays" data-i18n="toggles.raysOn">Raze: ON</button>
+                            <button type="button" class="btn primary" id="toggleLabels" data-i18n="toggles.labelsOn">Etichete: ON</button>
+                            <button type="button" class="btn good" id="reset" data-i18n="toggles.reset">Reset</button>
                         </div>
 
                         <div class="readout">
                             <div class="card">
-                                <h3>Rezultate</h3>
+                                <h3 data-i18n="labels.results">Rezultate</h3>
                                 <div class="kv">
-                                    <div>distanță imagine <b>dᵢ</b></div><b id="diOut">—</b>
-                                    <div>mărire <b>m = -dᵢ/d₀</b></div><b id="mOut">—</b>
-                                    <div>înălțime imagine <b>hᵢ</b></div><b id="hiOut">—</b>
-                                    <div>tip imagine</div><b id="typeOut">—</b>
+                                    <div data-i18n="labels.diKey">distanță imagine dᵢ</div><b id="diOut">—</b>
+                                    <div data-i18n="labels.mKey">mărire m = -dᵢ/d₀</div><b id="mOut">—</b>
+                                    <div data-i18n="labels.hiKey">înălțime imagine hᵢ</div><b id="hiOut">—</b>
+                                    <div data-i18n="labels.typeKey">tip imagine</div><b id="typeOut">—</b>
                                 </div>
                             </div>
 
-                            <div id="status" class="status">Trage obiectul sau schimbă slider-ele. 🧠</div>
+                            <div id="status" class="status" data-i18n="status.idle">Trage obiectul sau schimbă slider-ele. 🧠</div>
                         </div>
                     </section>
 
                     <section class="formula-rail">
                         <div class="formula-card">
-                            <h4>Formule (lentilă subțire)</h4>
+                            <h4 data-i18n="labels.formulaTitle">Formule (lentilă subțire)</h4>
                             <div class="formula">
                                 <span class="sym">1</span>
                                 <span class="eq">
@@ -108,20 +108,20 @@
                             </div>
                         </div>
                         <div class="formula-card">
-                            <h4>Unități</h4>
+                            <h4 data-i18n="labels.unitsTitle">Unități</h4>
                             <ul>
-                                <li><b>f</b>, <b>d₀</b>, <b>dᵢ</b> → centimetri (cm)</li>
-                                <li><b>h₀</b>, <b>hᵢ</b> → centimetri (cm)</li>
-                                <li><b>m</b> → fără unitate</li>
+                                <li data-i18n="units.u1"><b>f</b>, <b>d₀</b>, <b>dᵢ</b> → centimetri (cm)</li>
+                                <li data-i18n="units.u2"><b>h₀</b>, <b>hᵢ</b> → centimetri (cm)</li>
+                                <li data-i18n="units.u3"><b>m</b> → fără unitate</li>
                             </ul>
                         </div>
                         <div class="formula-card">
-                            <h4>Convenții de semn</h4>
+                            <h4 data-i18n="labels.signTitle">Convenții de semn</h4>
                             <ul>
-                                <li><b>d₀ &gt; 0</b> → obiect real</li>
-                                <li><b>dᵢ &gt; 0</b> → imagine reală</li>
-                                <li><b>dᵢ &lt; 0</b> → imagine virtuală</li>
-                                <li><b>m &lt; 0</b> → imagine răsturnată</li>
+                                <li data-i18n="signs.s1"><b>d₀ &gt; 0</b> → obiect real</li>
+                                <li data-i18n="signs.s2"><b>dᵢ &gt; 0</b> → imagine reală</li>
+                                <li data-i18n="signs.s3"><b>dᵢ &lt; 0</b> → imagine virtuală</li>
+                                <li data-i18n="signs.s4"><b>m &lt; 0</b> → imagine răsturnată</li>
                             </ul>
                         </div>
                     </section>
@@ -131,22 +131,22 @@
         </aside>
         <main class="stageWrap" id="stageWrap">
             <div class="stage panel" id="stage">
-                <canvas id="c"></canvas>
+                <canvas id="c" data-i18n-aria="aria.canvas" aria-label="Canvasedul simulării lentilei"></canvas>
                 <div class="hint">
-                    <span>🖱️ Trage săgeata obiectului</span>
-                    <span>✋ Trage pe canvas (gol) pentru a muta vederea — mobil sau PC</span>
-                    <span>📌 Lentila e pe axa verticală din centru</span>
+                    <span data-i18n="hints.h1">🖱️ Trage săgeata obiectului</span>
+                    <span data-i18n="hints.h2">✋ Trage pe canvas (gol) pentru a muta vederea — mobil sau PC</span>
+                    <span data-i18n="hints.h3">📌 Lentila e pe axa verticală din centru</span>
                 </div>
 
-                <!-- buton mic când sidebar e retras -->
-                <button class="peek-btn" id="peekBtn" aria-label="Arată panoul">
+                <button type="button" class="peek-btn" id="peekBtn" data-i18n="peekBtn" data-i18n-aria="aria.showPanel" aria-label="Arată panoul">
                     ☰ Controale
                 </button>
             </div>
         </main>
     </div>
 
-    <script src="./app.js"></script>
+    <script src="../simulator-i18n-runtime.js"></script>
+    <script src="./lentila-subtire-boot.js"></script>
 </body>
 
 </html>

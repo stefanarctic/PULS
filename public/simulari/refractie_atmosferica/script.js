@@ -1,6 +1,11 @@
 (() => {
     const $ = (id) => document.getElementById(id);
 
+    const simT = (path, ro) =>
+      typeof window.simLbl === "function" ? window.simLbl(path, ro) : ro;
+
+    const secSuffix = simT("live.secondsSuffix", " s");
+
     const leftPanel = $("leftPanel");
     const rightPanel = $("rightPanel");
     const toggleRafLeft = $("toggleRafLeft");
@@ -115,9 +120,10 @@
     const fpsVal = $("fpsVal");
     const statusBox = $("statusBox");
   
-    function setStatus(kind, text){
+    function setStatus(kind, path, roFallback) {
       statusBox.className = `status ${kind}`;
-      statusBox.textContent = `Stare: ${text}`;
+      const msg = simT(path, roFallback);
+      statusBox.textContent = `${simT("status.prefix", "Stare:")} ${msg}`;
     }
   
     // Canvas
@@ -418,7 +424,7 @@
       ctx.fill();
       ctx.font = "12px ui-sans-serif, system-ui";
       ctx.fillStyle = "rgba(15,23,42,.62)";
-      ctx.fillText("Observator", eyeS.x + 8, eyeS.y - 8);
+      ctx.fillText(simT("canvas.observer", "Observator"), eyeS.x + 8, eyeS.y - 8);
       ctx.restore();
   
       const center = -2.5 * Math.PI/180;
@@ -476,7 +482,14 @@
       ctx.save();
       ctx.fillStyle = "rgba(15,23,42,.70)";
       ctx.font = `${Math.max(12, Math.floor(w*0.012))}px ui-sans-serif, system-ui`;
-      ctx.fillText("Miraj inferior: n(y) crește cu înălțimea → raze curbate → aparent „apă”", 16, 26);
+      ctx.fillText(
+        simT(
+          "canvas.hudLine",
+          "Miraj inferior: n(y) crește cu înălțimea → raze curbate → aparent „apă”"
+        ),
+        16,
+        26
+      );
   
       const gy = W2S(0,0).y;
       ctx.strokeStyle = "rgba(15,23,42,.12)";
@@ -511,14 +524,22 @@
   
     function reset(){
       simTime = 0;
-      setStatus("ok", "Pornit");
+      setStatus("ok", "status.started", "Pornit");
     }
   
     toggleAnim.addEventListener("click", () => {
       running = !running;
-      toggleAnim.textContent = running ? "Pauză" : "Pornește";
-      statusVal.textContent = running ? "RULEAZĂ" : "PAUZĂ";
-      setStatus(running ? "ok" : "warn", running ? "Rulează." : "Pauză.");
+      toggleAnim.textContent = running
+        ? simT("buttons.pause", "Pauză")
+        : simT("buttons.start", "Pornește");
+      statusVal.textContent = running
+        ? simT("live.running", "RULEAZĂ")
+        : simT("live.paused", "PAUZĂ");
+      setStatus(
+        running ? "ok" : "warn",
+        running ? "status.runningDetail" : "status.pausedDetail",
+        running ? "Rulează." : "Pauză."
+      );
     });
   
     resetBtn.addEventListener("click", () => reset());
@@ -544,7 +565,7 @@
         simTime += dtReal * parseFloat(speed.value);
       }
   
-      timeVal.textContent = `${simTime.toFixed(2)} s`;
+      timeVal.textContent = `${simTime.toFixed(2)}${secSuffix}`;
   
       resizeCanvas();
       drawBackground(simTime);
@@ -559,9 +580,9 @@
     // init
     applyRafInitialPanels();
     syncUI();
-    setStatus("ok", "Pornit");
-    statusVal.textContent = "RULEAZĂ";
-    fpsVal.textContent = "—";
+    setStatus("ok", "status.started", "Pornit");
+    statusVal.textContent = simT("live.running", "RULEAZĂ");
+    fpsVal.textContent = simT("live.fpsDash", "—");
     requestAnimationFrame(loop);
   })();
   

@@ -38,6 +38,15 @@ const SIMULATOR_I18N_QUERY_SLUGS = new Set([
   "fuel-cell",
   "supraconductivitate",
   "criogenie",
+  "refractie-atmosferica",
+  "legi_Kepler",
+  "atom_hidrogen",
+  "oscillatii-ox",
+  "oscillatii-oy",
+  "energie-circuite",
+  "polarizare-circulara",
+  "Vizualizator-4d",
+  "lentila-subtire",
 ]);
 
 const DEFAULT_EN_SIMULATOR_EYEBROW = "Interactive simulation";

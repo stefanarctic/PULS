@@ -7,7 +7,9 @@
   },
   "simulators": {
     "pendul-simplu": {
-      "page": { "eyebrow": "Simple harmonic oscillation | Interactive simulation" },
+      "page": {
+        "eyebrow": "Simple harmonic oscillation | Interactive simulation"
+      },
       "documentTitle": "Harmonic pendulum",
       "htmlLang": "en",
       "labels": {
@@ -54,7 +56,9 @@
       }
     },
     "pendul-amortizat": {
-      "page": { "eyebrow": "Damped oscillator | Interactive simulation" },
+      "page": {
+        "eyebrow": "Damped oscillator | Interactive simulation"
+      },
       "documentTitle": "Damped harmonic oscillator",
       "htmlLang": "en",
       "labels": {
@@ -96,7 +100,9 @@
       }
     },
     "pendul-neliniar": {
-      "page": { "eyebrow": "Nonlinear pendulum | Interactive simulation" },
+      "page": {
+        "eyebrow": "Nonlinear pendulum | Interactive simulation"
+      },
       "documentTitle": "Nonlinear oscillator",
       "htmlLang": "en",
       "labels": {
@@ -149,7 +155,9 @@
       }
     },
     "grafice-pendule": {
-      "page": { "eyebrow": "Pendulum graphs | Interactive simulation" },
+      "page": {
+        "eyebrow": "Pendulum graphs | Interactive simulation"
+      },
       "documentTitle": "Harmonic graphs — pendulum simulator",
       "htmlLang": "en",
       "labels": {
@@ -176,7 +184,9 @@
       }
     },
     "pendule-multiple": {
-      "page": { "eyebrow": "Multiple double pendulums | Interactive simulation" },
+      "page": {
+        "eyebrow": "Multiple double pendulums | Interactive simulation"
+      },
       "documentTitle": "Multiple double pendulums — chaos + trails",
       "htmlLang": "en",
       "labels": {
@@ -240,7 +250,9 @@
       }
     },
     "fuel-cell": {
-      "page": { "eyebrow": "PEM fuel cell | Interactive simulation" },
+      "page": {
+        "eyebrow": "PEM fuel cell | Interactive simulation"
+      },
       "documentTitle": "PEM fuel cell simulator",
       "htmlLang": "en",
       "labels": {
@@ -327,7 +339,9 @@
       }
     },
     "supraconductivitate": {
-      "page": { "eyebrow": "Superconductivity & Meissner effect | Interactive simulation" },
+      "page": {
+        "eyebrow": "Superconductivity & Meissner effect | Interactive simulation"
+      },
       "documentTitle": "Superconductivity & Meissner effect — simulator",
       "htmlLang": "en",
       "labels": {
@@ -392,7 +406,9 @@
       }
     },
     "criogenie": {
-      "page": { "eyebrow": "Cryogenics & states of matter | Interactive simulation" },
+      "page": {
+        "eyebrow": "Cryogenics & states of matter | Interactive simulation"
+      },
       "documentTitle": "Cryogenics simulator — pV = nRT",
       "htmlLang": "en",
       "labels": {
@@ -507,8 +523,616 @@
         "right": "Hide / show chart and sliders"
       }
     },
+    "refractie-atmosferica": {
+      "page": {
+        "eyebrow": "Atmospheric refraction | Interactive simulation"
+      },
+      "documentTitle": "Desert mirage — atmospheric refraction",
+      "htmlLang": "en",
+      "labels": {
+        "pageTitle": "Desert mirage",
+        "controlPanel": "Controls",
+        "dist": "Distance to oasis (m)",
+        "eyeH": "Eye height (m)",
+        "palmH": "Palm tree height (m)",
+        "grad": "Thermal gradient strength",
+        "layerH": "Warm air layer thickness (m)",
+        "shimmer": "\"Shimmer\" (hot-air distortion)",
+        "rays": "Number of rays",
+        "spread": "Ray spread (°)",
+        "steps": "Quality (steps per ray)",
+        "speed": "Animation speed",
+        "options": "Options",
+        "formulasTitle": "Formulas & explanations"
+      },
+      "buttons": {
+        "pause": "Pause",
+        "start": "Start",
+        "reset": "Reset"
+      },
+      "toggles": {
+        "showRays": "Show rays",
+        "showField": "Show warm layer",
+        "showGhost": "Show \"water patch\" (mirage)"
+      },
+      "headings": {
+        "whatHappens": "What's happening",
+        "model2d": "Simplified 2D model",
+        "live": "Live"
+      },
+      "facts": {
+        "fact1": "Very hot air near the ground has lower density → a slightly lower refractive index.",
+        "fact2": "If n increases with height, rays bend: they can dip and then \"lift\" again (turn back).",
+        "fact3": "Result: a \"pseudo-reflection\" like a water patch (inferior mirage)."
+      },
+      "formula": {
+        "stratified": {
+          "title": "Stratified index:",
+          "note": "k depends on the thermal gradient."
+        },
+        "invariant": {
+          "title": "Invariant (stratified medium):",
+          "note": "θ = angle from the horizontal."
+        },
+        "turn": {
+          "title": "Turning point:",
+          "code": "when sin(θ) → 0",
+          "note": "the ray becomes almost horizontal and reverses its vertical direction."
+        }
+      },
+      "live": {
+        "time": "Time",
+        "state": "State",
+        "fps": "FPS",
+        "running": "RUNNING",
+        "paused": "PAUSED",
+        "secondsSuffix": " s",
+        "fpsDash": "—"
+      },
+      "status": {
+        "prefix": "Status:",
+        "started": "Started",
+        "runningDetail": "Running.",
+        "pausedDetail": "Paused."
+      },
+      "tips": {
+        "tipGrad": "Tip: gradient 0.7–0.9 + layer 1–2 m + shimmer 0.3 → strong \"water\" effect on the ground."
+      },
+      "canvas": {
+        "observer": "Observer",
+        "hudLine": "Inferior mirage: n(y) increases with height → curved rays → apparent \"water\""
+      },
+      "aria": {
+        "panelControl": "Control panel",
+        "panelFormulas": "Formulas panel"
+      }
+    },
+    "legi_Kepler": {
+      "page": {
+        "eyebrow": "Kepler's laws | Interactive simulation"
+      },
+      "documentTitle": "Kepler Lab — three laws (simulator)",
+      "htmlLang": "en",
+      "leftHdr": {
+        "title": "Kepler's laws",
+        "subtitle": "3 laws • orbit • areas • period"
+      },
+      "units": {
+        "heading": "Units (simple & tidy)",
+        "i1": "a — AU (astronomical units)",
+        "i2": "T — years",
+        "i3": "M — solar masses",
+        "i4": "e — eccentricity \\(0 \\ldots 0{,}9\\)",
+        "i5": "μ = \\(4\\pi^2 M\\) (in AU³/yr²)",
+        "i6": "Δt — time interval (days)",
+        "i7": "Area — swept area (AU²)",
+        "i8": "Period — orbital period (years)",
+        "i9": "Eccentricity — orbital eccentricity",
+        "i10": "Central mass — central mass (solar masses)",
+        "i11": "Speed — orbital speed (AU/yr)",
+        "i12": "Acceleration — orbital acceleration (AU/yr²)",
+        "i13": "Force — gravitational force (N)",
+        "i14": "Energy — orbital energy (J)",
+        "standardNote": "So for \\(M=1\\) and \\(a=1\\), you get \\(T \\approx 1\\) year (standard)."
+      },
+      "keyFormulas": {
+        "heading": "Key formulas",
+        "law1": "Law I: elliptic orbit, Sun at one focus",
+        "law2": "Law II: equal areas in equal times",
+        "law2hint": "For a fixed \\(\\Delta t\\), swept area should stay nearly constant.",
+        "law3": "Law III: \\(T^2 \\propto a^3\\)",
+        "law3hint1": "More precisely: \\(T = 2\\pi \\sqrt{\\dfrac{a^3}{\\mu}}\\), with \\(\\mu=4\\pi^2 M\\).",
+        "law3hint2": "So: \\(\\dfrac{T^2}{a^3} \\approx \\dfrac{1}{M}\\) (in our units)."
+      },
+      "observeVis": {
+        "heading": "What to watch",
+        "v1": "small \\(e\\) → almost circular orbit",
+        "v2": "large \\(e\\) → planet “guns it” at perihelion",
+        "v3": "area for the same \\(\\Delta t\\) stays similar"
+      },
+      "stage": {
+        "title": "Kepler's laws — Simulator",
+        "tLaw1": "Law I",
+        "tLaw2": "Law II",
+        "tLaw3": "Law III",
+        "tFoci": "Foci",
+        "tTrail": "Trail",
+        "hint": "Drag a and e, then press Area to see \"equal areas\" in action."
+      },
+      "readout": {
+        "kRatio": "T²/a³:",
+        "kArea": "Area(Δt):"
+      },
+      "rightHdr": {
+        "title": "Controls",
+        "subtitle": "parameters • time • measurements"
+      },
+      "controls": {
+        "simSpeed": "Simulation speed:",
+        "semimajor": "a (semi-major axis) [AU]:",
+        "ecc": "e (eccentricity):",
+        "mass": "M (central mass) [M☉]:",
+        "massHint": "Affects Law III (\\(\\frac{T^2}{a^3} \\approx \\frac{1}{M}\\)).",
+        "dtArea": "Δt for areas (Law II) [days]:"
+      },
+      "buttons": {
+        "start": "Start",
+        "pause": "Pause",
+        "reset": "Reset",
+        "areaSample": "Area"
+      },
+      "law2Log": {
+        "title": "Law II — recent areas",
+        "note": "Values should be close if Δt is constant."
+      },
+      "law3plot": {
+        "title": "Law III — plot (\\(a^3\\), \\(T^2\\))",
+        "addPoint": "+ Add point",
+        "clear": "Clear plot",
+        "note": "If M is fixed, points lie on a line."
+      },
+      "status": {
+        "prefix": "Status:",
+        "running": "Running",
+        "paused": "Paused"
+      },
+      "readouts": {
+        "approx": "≈",
+        "emDash": "—",
+        "au": "AU",
+        "years": "yr",
+        "auSquared": "AU²"
+      },
+      "canvas": {
+        "law1On": "Law I: ellipse, Sun at a focus",
+        "orbitVisual": "Orbit (visual)",
+        "sunFocus": "Sun (focus)",
+        "f2Label": "F2",
+        "law2Area": "Law II: area(Δt={days}d) ~ constant",
+        "law3Title": "Law III",
+        "bottomNote": "Tip: increase e to see higher speed at periapsis (Law II becomes obvious).",
+        "plotX": "x = a³",
+        "plotY": "y = T²"
+      },
+      "aria": {
+        "panelTheory": "Theory panel (Kepler's laws)",
+        "panelControl": "Simulation control panel"
+      }
+    },
+    "atom_hidrogen": {
+      "page": {
+        "eyebrow": "Hydrogen spectrum | Interactive simulation"
+      },
+      "documentTitle": "Hydrogen — spectrum & models (Bohr / de Broglie / Schrödinger)",
+      "htmlLang": "en",
+      "leftHdr": {
+        "title": "Theory & units",
+        "subtitle": "Hydrogen • Spectroscopy • Quantum models"
+      },
+      "units": {
+        "heading": "Units",
+        "i1": "λ (wavelength) — nm",
+        "i2": "f (frequency) — Hz",
+        "i3": "E (photon energy) — eV / J",
+        "i4": "n (level) — natural number",
+        "i5": "R (Rydberg) — m⁻¹",
+        "i6": "h (Planck constant) — J·s",
+        "i7": "c (speed of light) — m/s",
+        "i8": "eV (electron-volt) — eV",
+        "i9": "J (joule) — J",
+        "i10": "m (metre) — m",
+        "i11": "s (second) — s",
+        "i12": "Hz (hertz) — Hz",
+        "i13": "nm (nanometre) — nm",
+        "i14": "m⁻¹ (reciprocal metre) — m⁻¹",
+        "i15": "J·s (joule-second) — J·s"
+      },
+      "keyFormulas": {
+        "heading": "Key formulas",
+        "f1": "Bohr:  \\(E_n = -\\dfrac{13.6}{n^2}\\) eV",
+        "f2": "\\(\\Delta E = E_{n_f}-E_{n_i}\\),  \\(E_\\gamma = |\\Delta E|\\)",
+        "f3": "\\(\\lambda = \\dfrac{hc}{E_\\gamma}\\)",
+        "f4": "\\(E_\\gamma = hf\\)",
+        "f5": "\\(f = \\dfrac{c}{\\lambda}\\)",
+        "f6": "Rydberg:  \\(\\dfrac{1}{\\lambda} = R\\left(\\dfrac{1}{n_f^2}-\\dfrac{1}{n_i^2}\\right)\\)",
+        "f7": "\\(R = 1.0973731568508 \\times 10^7 m^{-1}\\)",
+        "f8": "de Broglie:  \\(\\lambda_{dB}=\\dfrac{h}{p}\\),  \\(2\\pi r = n\\lambda_{dB}\\)",
+        "f9": "\\(p = mv\\)",
+        "f10": "Schrödinger:  \\(|\\psi|^2 \\Rightarrow\\) probability density",
+        "f11": "\\(E = \\dfrac{h^2}{8m}\\nabla^2\\psi + V\\psi\\)",
+        "f12": "\\(V = -\\dfrac{e^2}{4\\pi\\epsilon_0 r}\\)"
+      },
+      "spectrumLegend": {
+        "heading": "Spectrum legend",
+        "emit": "Emission (bright lines)",
+        "abs": "Absorption (dark lines)",
+        "note": "* For visuals we use the main series (Balmer visible, Lyman UV, Paschen IR)."
+      },
+      "stage": {
+        "title": "Hydrogen — Spectrum & models",
+        "hintDefault": "Click “Excite” to see transitions & spectral lines"
+      },
+      "tabs": {
+        "bohr": "Bohr",
+        "debroglie": "de Broglie",
+        "schrodinger": "Schrödinger",
+        "spectrometer": "Spectrometer"
+      },
+      "readouts": {
+        "model": "Model:",
+        "series": "Series:",
+        "transition": "Transition:",
+        "lambda": "λ:",
+        "energy": "E:"
+      },
+      "rightHdr": {
+        "title": "Controls",
+        "subtitle": "Simulation • Parameters • Spectrum"
+      },
+      "controls": {
+        "speed": "Speed:",
+        "ni": "Initial level (nᵢ):",
+        "nf": "Final level (nᶠ):",
+        "nfNote": "* For emission, nᶠ must be less than nᵢ.",
+        "regime": "Mode:",
+        "lightBeam": "Light beam:",
+        "monoLambda": "λ (monochromatic):",
+        "spectralSeries": "Spectral series:",
+        "instrument": "Instrument:"
+      },
+      "modes": {
+        "emission": "Emission",
+        "absorption": "Absorption",
+        "white": "White",
+        "mono": "Monochromatic"
+      },
+      "seriesOpt": {
+        "balmer": "Balmer (visible, nᶠ=2)",
+        "lyman": "Lyman (UV, nᶠ=1)",
+        "paschen": "Paschen (IR, nᶠ=3)"
+      },
+      "instrumentOpt": {
+        "grating": "Diffraction grating",
+        "prism": "Prism"
+      },
+      "buttons": {
+        "start": "Start",
+        "pause": "Pause",
+        "stop": "Stop",
+        "excite": "⚡ Excite"
+      },
+      "notesCard": {
+        "title": "Notes",
+        "l1": "In Bohr you see orbits + jumps.",
+        "l2": "In de Broglie you see the “wrapped” wave.",
+        "l3": "In Schrödinger you see the probability cloud.",
+        "l4": "In Spectrometer you see lines on the spectrum."
+      },
+      "spectrumCard": {
+        "title": "Spectrum (screen)",
+        "caption": "* Colour band = continuum; lines = H transitions."
+      },
+      "hints": {
+        "bohr": "Bohr: orbits + energy transitions (click ⚡ Excite)",
+        "debroglie": "de Broglie: standing wave on the orbit (n = number of “loops”)",
+        "schrodinger": "Schrödinger: probability cloud (1s/2s/2p visual)",
+        "spectrometer": "Spectrometer: beam + cell + prism/grating + screen"
+      },
+      "modelName": {
+        "bohr": "Bohr",
+        "debroglie": "de Broglie",
+        "schrodinger": "Schrödinger",
+        "spectrometer": "Spectrometer"
+      },
+      "seriesName": {
+        "lyman": "Lyman",
+        "balmer": "Balmer",
+        "paschen": "Paschen"
+      },
+      "status": {
+        "prefix": "Status:",
+        "ready": "Idle",
+        "running": "Running",
+        "paused": "Paused",
+        "event": "Event"
+      },
+      "readoutsFmt": {
+        "dash": "—"
+      },
+      "spectrumPlot": {
+        "nm380": "380nm",
+        "nm760": "760nm"
+      },
+      "canvas": {
+        "bohrTitle": "Bohr: quantized orbits + transitions (ΔE → photon)",
+        "bohrEmit": "Emission: electron drops and emits a photon",
+        "bohrAbsorb": "Absorption: electron moves up if it receives a photon",
+        "bohrSeriesHint": "Use “Spectral series” to fix nᶠ (Lyman/Balmer/Paschen).",
+        "debroglieTitle": "de Broglie: standing wave on orbit (2πr = nλ)",
+        "debroglieWaves": "Quantum number n = {n} → {n} wavelengths fit around the orbit.",
+        "debroglieStable": "If it doesn’t fit, the state isn’t stable (destructive interference).",
+        "debroglieStationary": "n = {n} (standing wave)",
+        "schroTitle": "Schrödinger: probability cloud |ψ|² (2D visual)",
+        "schroOrbital2d": "Orbital: {o} (2D view).",
+        "schroProb": "It doesn’t “orbit” like a planet — position is probabilistic.",
+        "schroOrbitalLbl": "Orbital: {o}",
+        "specTitle": "Spectrometer: beam → H cell → prism/grating → screen (spectrum)",
+        "specSource": "Source",
+        "specSlit": "Slit",
+        "specCell": "H cell",
+        "specPrism": "Prism",
+        "specGrating": "Grating",
+        "specScreen": "Screen",
+        "specInstrPrism": "Instrument: Prism",
+        "specInstrGrating": "Instrument: Diffraction grating",
+        "specBeamWhite": "Beam: White (continuum)",
+        "specBeamMono": "Beam: Monochromatic ({nm} nm)",
+        "specRegEmission": "Mode: Emission (bright lines)",
+        "specRegAbsorption": "Mode: Absorption (dark lines)"
+      },
+      "aria": {
+        "panelTheory": "Theory panel (units & formulas)",
+        "panelControl": "Simulation control panel"
+      }
+    },
+    "oscillatii-ox": {
+      "page": {
+        "eyebrow": "Simple harmonic motion | Interactive simulation"
+      },
+      "documentTitle": "Hooke's law simulator — OX (horizontal spring)",
+      "htmlLang": "en",
+      "units": {
+        "heading": "Units of measurement:",
+        "u1": "x (displacement) — m (metre)",
+        "u2": "v (velocity) — m/s (metres per second)",
+        "u3": "m (mass) — kg (kilogram)",
+        "u4": "k (spring constant) — N/m (newton per metre)",
+        "u5": "F (elastic force) — N (newton)",
+        "u6": "E_c (kinetic energy) — J (joule)",
+        "u7": "E_p (potential energy) — J (joule)",
+        "u8": "E_t (total energy) — J (joule)"
+      },
+      "formulas": {
+        "heading": "Formulas:",
+        "f1": "\\[F = -k \\cdot x\\] (Hooke's law)",
+        "f2": "\\[E_p = \\frac{1}{2} \\cdot k \\cdot x^2\\] (elastic potential energy)",
+        "f3": "\\[E_c = \\frac{1}{2} \\cdot m \\cdot v^2\\] (kinetic energy)",
+        "f4": "\\[E_t = E_c + E_p\\] (conservation of mechanical energy)",
+        "f5": "\\[T = 2\\pi\\sqrt{\\frac{m}{k}}\\] (oscillation period)"
+      },
+      "labels": {
+        "pageTitle": "Harmonic oscillator on OX",
+        "mass": "Mass (m):",
+        "springK": "Spring constant (k):",
+        "friction": "Friction coefficient (b):",
+        "frictionZero": "Set friction to 0"
+      },
+      "buttons": {
+        "start": "Start",
+        "pause": "Pause",
+        "resume": "Resume",
+        "stop": "Stop",
+        "measure": "Measure",
+        "themeDark": "☀️ Switch theme",
+        "themeLight": "🌙 Switch theme"
+      },
+      "measure": {
+        "mass": "m (mass):",
+        "amplitude": "A (amplitude):",
+        "time": "t (time):",
+        "x": "x (displacement):",
+        "v": "v (speed):",
+        "k": "k (spring constant):",
+        "force": "F (force):",
+        "ec": "E_c (kinetic energy):",
+        "ep": "E_p (potential energy):",
+        "et": "E_t (total energy):"
+      },
+      "chart": {
+        "displacement": "Displacement (m)",
+        "velocity": "Velocity (m/s)",
+        "timeAxis": "Time (s)"
+      },
+      "unitsFmt": {
+        "kg": " kg",
+        "nPerM": " N/m",
+        "kgCompact": "kg",
+        "mCompact": "m",
+        "sCompact": "s",
+        "msCompact": "m/s",
+        "nCompact": "N",
+        "jCompact": "J",
+        "m": " m",
+        "s": " s",
+        "ms": " m/s",
+        "n": " N",
+        "j": " J"
+      },
+      "aria": {
+        "toggleLeft": "Show or hide left panel",
+        "toggleRight": "Show or hide right panel"
+      },
+      "misc": {
+        "dash": "—"
+      }
+    },
+    "oscillatii-oy": {
+      "page": {
+        "eyebrow": "Damped harmonic motion | Interactive simulation"
+      },
+      "documentTitle": "Hooke's law simulator — OY (vertical spring)",
+      "htmlLang": "en",
+      "units": {
+        "heading": "Units of measurement:",
+        "u1": "L (length) — m (metre)",
+        "u2": "A (amplitude) — m (metre)",
+        "u3": "t (time) — s (second)",
+        "u4": "y (displacement) — m (metre)",
+        "u5": "v (velocity) — m/s (metres per second)",
+        "u6": "k (spring constant) — N/m",
+        "u7": "F (force) — N (newton)",
+        "u8": "E_p (elastic potential energy) — J (joule)",
+        "u9": "E_k (kinetic energy) — J (joule)",
+        "u10": "E (total energy) — J (joule)"
+      },
+      "formulas": {
+        "heading": "Formulas:",
+        "f1": "\\[F = k \\cdot y\\]",
+        "f2": "\\[y = \\frac{F}{k}\\]",
+        "f3": "\\[E_p = \\frac{k \\cdot y^2}{2}\\]",
+        "f4": "\\[E_c = \\frac{m \\cdot v^2}{2}\\]",
+        "f5": "\\[E_t = E_c + E_p\\]",
+        "f6": "\\[y(t) = A \\cdot e^{-bt} \\cdot \\sin(\\omega t)\\]"
+      },
+      "labels": {
+        "pageTitle": "Harmonic oscillator on OY",
+        "amplitude": "Amplitude (A):",
+        "speedScale": "Speed scale (v):",
+        "mass": "Mass (m):",
+        "springK": "Spring constant (k):",
+        "friction": "Friction coefficient (b):",
+        "frictionZero": "Set friction to 0"
+      },
+      "buttons": {
+        "start": "Start",
+        "pause": "Pause",
+        "resume": "Resume",
+        "stop": "Stop",
+        "measure": "Measure",
+        "themeDark": "☀️ Switch theme",
+        "themeLight": "🌙 Switch theme"
+      },
+      "measure": {
+        "mass": "m (mass):",
+        "amplitude": "A (amplitude):",
+        "time": "t (time):",
+        "y": "y (displacement):",
+        "v": "v (speed):",
+        "ec": "E_k (kinetic energy):",
+        "ep": "E_p (potential energy):",
+        "et": "E (total energy):"
+      },
+      "chart": {
+        "displacement": "Displacement y (m)",
+        "velocity": "Velocity (m/s)",
+        "timeAxis": "Time (s)"
+      },
+      "unitsFmt": {
+        "kg": " kg",
+        "nPerM": " N/m",
+        "m": " m",
+        "s": " s",
+        "ms": " m/s",
+        "j": " J",
+        "times": "×"
+      },
+      "aria": {
+        "toggleLeft": "Show or hide left panel",
+        "toggleRight": "Show or hide right panel"
+      },
+      "misc": {
+        "dash": "—"
+      }
+    },
+    "energie-circuite": {
+      "page": {
+        "eyebrow": "Electrical circuits | Interactive simulation"
+      },
+      "documentTitle": "Energy in circuits — power flow",
+      "htmlLang": "en",
+      "labels": {
+        "pageTitle": "Energy in circuits",
+        "controlPanel": "Controls",
+        "voltage": "Voltage U (V)",
+        "resistance": "Resistance R (Ω)",
+        "pmax": "Rated power Pmax (W)",
+        "switchLabel": "Switch",
+        "liveStats": "Live values",
+        "formulasPanel": "Formulas & info",
+        "formulasUnits": "Formulas + units",
+        "quickFacts": "Quick facts",
+        "resetEnergy": "Reset energy",
+        "resetAll": "Repair / Reset"
+      },
+      "stats": {
+        "currentI": "Current I",
+        "powerP": "Power P",
+        "energyE": "Energy E",
+        "timeOn": "Time on",
+        "heatModel": "\"Heat\" (model)"
+      },
+      "formula": {
+        "currentTitle": "Current:",
+        "currentNote": "units: A (ampere)",
+        "powerTitle": "Power:",
+        "powerNote": "units: W (watt)",
+        "energyTitle": "Energy dissipated:",
+        "energyNote": "units: J (joule)"
+      },
+      "facts": {
+        "f1": "Energy is not \"used up\" in the wires — it is delivered to the resistor and becomes heat.",
+        "f2": "A resistor has a rated power Pmax. If P > Pmax long enough → overheating → failure.",
+        "f3": "If you double U (R fixed), power rises about 4×: P = U²/R."
+      },
+      "status": {
+        "prefix": "Status:",
+        "ready": "Ready.",
+        "circuitOn": "Circuit ON.",
+        "circuitOff": "Circuit OFF.",
+        "burnOut": "Resistor burned (open circuit). Press \"Repair / Reset\".",
+        "overload": "Overload! P>Pmax — {t}s until burnout",
+        "repaired": "Repaired. You can switch on again.",
+        "cantStart": "Cannot switch on: resistor burned. Press \"Repair / Reset\"."
+      },
+      "switchState": {
+        "on": "ON",
+        "off": "OFF"
+      },
+      "canvas": {
+        "batteryU": "U = {u} V",
+        "resistorR": "R = {r} Ω",
+        "resistorPmax": "Pmax = {pmax} W",
+        "resistorFailed": "FAILED (OPEN)",
+        "switchBlocked": "switch: BLOCKED (fault)",
+        "switchOnLbl": "switch: ON",
+        "switchOffLbl": "switch: OFF",
+        "hudTransport": "Energy (model) moves along wires and dissipates in the resistor.",
+        "hudI": "I = U/R = {v} A",
+        "hudP": "P = U·I = {p} W   (Pmax = {pmax} W)",
+        "hudE": "E = ∫P dt = {e} J",
+        "hudOverload": "Overload: P > Pmax → resistor may burn.",
+        "hudFailed": "Fault: resistor burned → open circuit → I = 0."
+      },
+      "aria": {
+        "panelControl": "Control panel",
+        "panelFormulas": "Formulas panel",
+        "circuitCanvas": "Circuit animation"
+      }
+    },
     "unde-apa": {
-      "page": { "eyebrow": "Water waves | Interactive simulation" },
+      "page": {
+        "eyebrow": "Water waves | Interactive simulation"
+      },
       "documentTitle": "Water wave simulator",
       "htmlLang": "en",
       "labels": {
@@ -545,7 +1169,9 @@
       }
     },
     "figuri-lissajous": {
-      "page": { "eyebrow": "Lissajous figures - Interactive simulation" },
+      "page": {
+        "eyebrow": "Lissajous figures - Interactive simulation"
+      },
       "documentTitle": "Lissajous figures",
       "htmlLang": "en",
       "labels": {
@@ -559,7 +1185,9 @@
       }
     },
     "seism": {
-      "page": { "eyebrow": "Earthquake (P & S waves) | Interactive simulation" },
+      "page": {
+        "eyebrow": "Earthquake (P & S waves) | Interactive simulation"
+      },
       "documentTitle": "Earthquake simulator",
       "htmlLang": "en",
       "labels": {
@@ -612,7 +1240,9 @@
       }
     },
     "coliziuni-inelastice": {
-      "page": { "eyebrow": "Inelastic collisions | Interactive simulation" },
+      "page": {
+        "eyebrow": "Inelastic collisions | Interactive simulation"
+      },
       "documentTitle": "Inelastic collisions",
       "htmlLang": "en",
       "labels": {
@@ -677,7 +1307,9 @@
       }
     },
     "plan-inclinat": {
-      "page": { "eyebrow": "Inclined plane | Interactive simulation" },
+      "page": {
+        "eyebrow": "Inclined plane | Interactive simulation"
+      },
       "documentTitle": "Inclined plane",
       "htmlLang": "en",
       "labels": {
@@ -726,7 +1358,9 @@
       }
     },
     "proiectile": {
-      "page": { "eyebrow": "Projectile motion | Interactive simulation" },
+      "page": {
+        "eyebrow": "Projectile motion | Interactive simulation"
+      },
       "documentTitle": "Projectile motion (BAC)",
       "htmlLang": "en",
       "labels": {
@@ -798,14 +1432,18 @@
       }
     },
     "reflexie-refractie": {
-      "page": { "eyebrow": "Reflection & refraction | Interactive simulation" },
+      "page": {
+        "eyebrow": "Reflection & refraction | Interactive simulation"
+      },
       "documentTitle": "Reflection and refraction simulator",
       "htmlLang": "en",
       "header": {
         "title": "🔬 Reflection and refraction simulator",
         "subtitle": "Explore how light behaves at the boundary between two media"
       },
-      "controls": { "heading": "⚙️ Controls" },
+      "controls": {
+        "heading": "⚙️ Controls"
+      },
       "incident": {
         "heading": "Incident ray",
         "label": "Angle of incidence (θ₁)"
@@ -836,7 +1474,9 @@
         "pickLabel": "Choose colour",
         "wavelengthLabel": "Approximate wavelength: "
       },
-      "buttons": { "reset": "🔄 Reset" },
+      "buttons": {
+        "reset": "🔄 Reset"
+      },
       "results": {
         "thetaReflection": "θ reflection:",
         "thetaRefraction": "θ refraction:",
@@ -845,7 +1485,9 @@
         "refrNa": "N/A (TIR)",
         "na": "N/A"
       },
-      "theory": { "heading": "📐 Formulas & theory" },
+      "theory": {
+        "heading": "📐 Formulas & theory"
+      },
       "lawReflection": {
         "title": "Law of reflection",
         "explain": "The angle of reflection equals the angle of incidence."
@@ -905,7 +1547,9 @@
         "prevAria": "Previous fact",
         "nextAria": "Next fact"
       },
-      "technical": { "heading": "🔬 Technical details" },
+      "technical": {
+        "heading": "🔬 Technical details"
+      },
       "tech": {
         "indexTitle": "What is refractive index?",
         "indexBody": "Refractive index (n) is the ratio of the speed of light in vacuum to the speed in a given medium. The larger n, the slower light travels in that medium.",
@@ -938,7 +1582,9 @@
       }
     },
     "prisma": {
-      "page": { "eyebrow": "Prism dispersion | Interactive simulation" },
+      "page": {
+        "eyebrow": "Prism dispersion | Interactive simulation"
+      },
       "documentTitle": "Prism with dispersion",
       "htmlLang": "en",
       "main": {
@@ -974,7 +1620,9 @@
       }
     },
     "motoare-termice": {
-      "page": { "eyebrow": "Heat engines | Interactive simulation" },
+      "page": {
+        "eyebrow": "Heat engines | Interactive simulation"
+      },
       "documentTitle": "Otto / Diesel / Carnot heat-engine simulator",
       "htmlLang": "en",
       "header": {
@@ -1084,7 +1732,9 @@
       }
     },
     "lanturi-elastice": {
-      "page": { "eyebrow": "Elastic chains | Interactive simulation" },
+      "page": {
+        "eyebrow": "Elastic chains | Interactive simulation"
+      },
       "documentTitle": "Chain / rope simulator",
       "htmlLang": "en",
       "labels": {
@@ -1125,7 +1775,9 @@
       }
     },
     "frecare-aer": {
-      "page": { "eyebrow": "Air resistance | Interactive simulation" },
+      "page": {
+        "eyebrow": "Air resistance | Interactive simulation"
+      },
       "documentTitle": "Air resistance simulator",
       "htmlLang": "en",
       "labels": {
@@ -1177,28 +1829,62 @@
         "first": "{{name}} reached first! Δt = <span class=\"delta-time\">{{dt}}s</span>"
       },
       "objects": {
-        "feather": { "name": "Feather" },
-        "paper_flat": { "name": "Paper sheet (flat)" },
-        "paper_crumpled": { "name": "Paper sheet (crumpled)" },
-        "coin": { "name": "Coin" },
-        "tennis": { "name": "Tennis ball" },
-        "basketball": { "name": "Basketball" },
-        "steel_ball": { "name": "Small steel ball" },
-        "hammer": { "name": "Hammer" },
-        "brick": { "name": "Brick" },
-        "bowling": { "name": "Bowling ball" }
+        "feather": {
+          "name": "Feather"
+        },
+        "paper_flat": {
+          "name": "Paper sheet (flat)"
+        },
+        "paper_crumpled": {
+          "name": "Paper sheet (crumpled)"
+        },
+        "coin": {
+          "name": "Coin"
+        },
+        "tennis": {
+          "name": "Tennis ball"
+        },
+        "basketball": {
+          "name": "Basketball"
+        },
+        "steel_ball": {
+          "name": "Small steel ball"
+        },
+        "hammer": {
+          "name": "Hammer"
+        },
+        "brick": {
+          "name": "Brick"
+        },
+        "bowling": {
+          "name": "Bowling ball"
+        }
       },
       "tips": [
-        { "text": "Feather vs hammer — In air the feather drifts slowly because drag is huge. In vacuum (slider at 0) both fall IDENTICALLY — as on the Apollo 15 Moon demo." },
-        { "text": "Flat vs crumpled paper — Same mass, different shape! The flat sheet has much larger area, so air slows it enormously. Crumpled falls almost like a ball." },
-        { "text": "Tennis vs bowling ball — Similar spheres but very different mass. The bowling ball hits the ground much sooner in air, though in vacuum they would fall together." },
-        { "text": "Coin vs feather — Dramatic in air! The coin slices through with tiny area while the feather is braked heavily. Compare terminal speeds!" },
-        { "text": "Basketball vs steel ball — The basketball is heavier but its huge area yields a surprisingly low terminal speed. The steel ball falls much faster." },
-        { "text": "Brick vs feather — Extreme contrast! The brick is barely affected by air (~48 m/s terminal speed) while the feather floats near ~3 m/s." }
+        {
+          "text": "Feather vs hammer — In air the feather drifts slowly because drag is huge. In vacuum (slider at 0) both fall IDENTICALLY — as on the Apollo 15 Moon demo."
+        },
+        {
+          "text": "Flat vs crumpled paper — Same mass, different shape! The flat sheet has much larger area, so air slows it enormously. Crumpled falls almost like a ball."
+        },
+        {
+          "text": "Tennis vs bowling ball — Similar spheres but very different mass. The bowling ball hits the ground much sooner in air, though in vacuum they would fall together."
+        },
+        {
+          "text": "Coin vs feather — Dramatic in air! The coin slices through with tiny area while the feather is braked heavily. Compare terminal speeds!"
+        },
+        {
+          "text": "Basketball vs steel ball — The basketball is heavier but its huge area yields a surprisingly low terminal speed. The steel ball falls much faster."
+        },
+        {
+          "text": "Brick vs feather — Extreme contrast! The brick is barely affected by air (~48 m/s terminal speed) while the feather floats near ~3 m/s."
+        }
       ]
     },
     "tunelare-cuantica": {
-      "page": { "eyebrow": "Quantum Tunnelling | Interactive simulation" },
+      "page": {
+        "eyebrow": "Quantum Tunnelling | Interactive simulation"
+      },
       "documentTitle": "Quantum tunnelling",
       "htmlLang": "en",
       "header": {
@@ -1270,7 +1956,9 @@
       }
     },
     "dubla-fanta": {
-      "page": { "eyebrow": "Double-slit experiment | Interactive simulation" },
+      "page": {
+        "eyebrow": "Double-slit experiment | Interactive simulation"
+      },
       "documentTitle": "Double slit — quantum simulator",
       "htmlLang": "en",
       "header": {
@@ -1307,7 +1995,9 @@
       }
     },
     "apa-grea": {
-      "page": { "eyebrow": "Heavy water (D₂O vs H₂O) | Interactive simulation" },
+      "page": {
+        "eyebrow": "Heavy water (D₂O vs H₂O) | Interactive simulation"
+      },
       "documentTitle": "Heavy water — D₂O vs H₂O",
       "htmlLang": "en",
       "hook": {
@@ -1315,11 +2005,22 @@
         "b": "Can water shut down a nuclear reactor?",
         "tease": "H₂O and D₂O share the same chemical skeleton, but different nuclear masses: deuterium (²H) is almost twice as heavy as protium (¹H). That is why differences show up in biology (isotope exchange), in reactors (neutron capture) and in spectra (vibration frequencies). Pick a mode below."
       },
-      "nav": { "ariaLabel": "Modes" },
+      "nav": {
+        "ariaLabel": "Modes"
+      },
       "tabs": {
-        "body": { "title": "Body", "sub": "D₂O fraction, modelled effects" },
-        "reactor": { "title": "Reactor", "sub": "fast neutrons, moderation" },
-        "physics": { "title": "Physics", "sub": "structure, spectra, phases" }
+        "body": {
+          "title": "Body",
+          "sub": "D₂O fraction, modelled effects"
+        },
+        "reactor": {
+          "title": "Reactor",
+          "sub": "fast neutrons, moderation"
+        },
+        "physics": {
+          "title": "Physics",
+          "sub": "structure, spectra, phases"
+        }
       },
       "bonus": {
         "ariaLabel": "Romania — historical context",
@@ -1343,7 +2044,12 @@
           "max": "100%: the maximum in the model. In reality, massive D₂O exposure is not something to test — it is harmful."
         }
       },
-      "badges": { "ok": "OK", "warn": "Caution", "bad": "High", "dead": "Critical" },
+      "badges": {
+        "ok": "OK",
+        "warn": "Caution",
+        "bad": "High",
+        "dead": "Critical"
+      },
       "reactor": {
         "panelTitle": "Moderator around the fuel",
         "desc1": "Fission releases very energetic (“fast”) neutrons. To use them efficiently in fuel rods, they must be slowed to thermal energies — called moderation. Molecules around the fuel (heavy or light water) collide with neutrons and reduce their energy.",
@@ -1398,7 +2104,9 @@
       }
     },
     "michaelson-morley": {
-      "page": { "eyebrow": "Michelson–Morley experiment | Interactive simulation" },
+      "page": {
+        "eyebrow": "Michelson–Morley experiment | Interactive simulation"
+      },
       "documentTitle": "Michelson–Morley experiment — full simulation",
       "htmlLang": "en",
       "header": {
@@ -1441,7 +2149,9 @@
       }
     },
     "fisiune-nucleara": {
-      "page": { "eyebrow": "Nuclear chain fission (U-235) | Interactive simulation" },
+      "page": {
+        "eyebrow": "Nuclear chain fission (U-235) | Interactive simulation"
+      },
       "documentTitle": "Nuclear fission simulator",
       "htmlLang": "en",
       "hero": {
@@ -1522,6 +2232,323 @@
         "moderator": "Moderator on",
         "delayed": "Delayed neutrons",
         "heatmap": "Density heat map"
+      }
+    },
+    "polarizare-circulara": {
+      "page": {
+        "eyebrow": "Polarization | Interactive simulation",
+        "documentTitle": "Circular polarization simulator",
+        "htmlLang": "en"
+      },
+      "header": {
+        "title": "Circular polarization",
+        "subtitle": "Electromagnetic wave simulator"
+      },
+      "nav": {
+        "simulator": "Simulator",
+        "theory": "Theory",
+        "advanced": "Advanced"
+      },
+      "controls": {
+        "waveParamsTitle": "Wave parameters",
+        "reset": "Reset",
+        "polTypeTitle": "Polarization type",
+        "wavePropsTitle": "Wave properties",
+        "displayTitle": "Display options",
+        "playbackTitle": "Playback"
+      },
+      "pol": {
+        "right": "Right-hand circular",
+        "left": "Left-hand circular",
+        "linear": "Linear",
+        "elliptical": "Elliptical"
+      },
+      "sliders": {
+        "frequency": {
+          "label": "Frequency (f)",
+          "min": "1 × 10¹⁴",
+          "max": "10 × 10¹⁴"
+        },
+        "amplitude": {
+          "label": "Amplitude (E₀)",
+          "min": "0.1 V/m",
+          "max": "2.0 V/m"
+        },
+        "wavelength": {
+          "label": "Wavelength (λ)",
+          "min": "380 nm (Violet)",
+          "max": "780 nm (Red)"
+        },
+        "phaseDiff": {
+          "label": "Phase difference (δ)",
+          "min": "0°",
+          "max": "360°"
+        },
+        "speed": {
+          "label": "Animation speed",
+          "min": "0.1×",
+          "max": "3.0×"
+        }
+      },
+      "checkboxes": {
+        "ex": "Eₓ component",
+        "ey": "Eᵧ component",
+        "resultant": "Resultant vector",
+        "trail": "Polarization trail",
+        "grid": "Grid"
+      },
+      "view": {
+        "v3d": "3D",
+        "xy": "XY plane",
+        "xz": "XZ plane",
+        "yz": "YZ plane"
+      },
+      "vizInfo": {
+        "currentTime": "Current time",
+        "waveVector": "Wave vector",
+        "angularFreq": "Angular frequency",
+        "visibleColor": "Visible colour"
+      },
+      "simulatorTab": {
+        "calculations": "Calculations",
+        "fieldComponents": "Electric field components",
+        "exLabel": "Eₓ(z,t) =",
+        "eyLabel": "Eᵧ(z,t) =",
+        "currentValue": "Current value:",
+        "derivedTitle": "Derived quantities",
+        "qk": "Wave number (k)",
+        "qomega": "Angular frequency (ω)",
+        "qperiod": "Period (T)",
+        "qvelocity": "Phase velocity (v)",
+        "qintensity": "Intensity (I)",
+        "qphoton": "Photon energy (E)",
+        "polStateTitle": "Polarization state",
+        "jonesLabel": "Jones vector:",
+        "stokesLabel": "Stokes parameters:"
+      },
+      "theoryTab": {
+        "panelTitle": "Theory and concepts",
+        "whatIsTitle": "What is circular polarization?",
+        "whatIsP": "Circular polarization is a state in which the electric field vector of an electromagnetic wave rotates in a circle as the wave propagates. The tip of the electric field traces a helix in space.",
+        "typesTitle": "Types of polarization",
+        "rcpTitle": "Right-hand circular (RCP)",
+        "rcpP": "The electric field rotates clockwise when viewed facing the propagation direction. Phase difference δ = +90° (π/2).",
+        "lcpTitle": "Left-hand circular (LCP)",
+        "lcpP": "The electric field rotates counter-clockwise when viewed facing the propagation direction. Phase difference δ = −90° (−π/2).",
+        "linTitle": "Linear polarization",
+        "linP": "The electric field oscillates in a single plane. Phase difference δ = 0° or 180°.",
+        "ellTitle": "Elliptical polarization",
+        "ellP": "The general case where the electric field traces an ellipse. It occurs when the components have different amplitudes or a phase difference other than 90°.",
+        "mathTitle": "Mathematical description",
+        "mathIntro": "For a wave propagating along z:",
+        "mathWhere": "Where:",
+        "mathLi1": "E₀ₓ, E₀ᵧ — amplitude components",
+        "mathLi2": "k = 2π/λ — wave number",
+        "mathLi3": "ω = 2πf — angular frequency",
+        "mathLi4": "δ — phase difference",
+        "constantsTitle": "Physical constants",
+        "constC": "Speed of light (c)",
+        "constH": "Planck constant (h)",
+        "constEps": "Vacuum permittivity (ε₀)",
+        "constMu": "Vacuum permeability (μ₀)"
+      },
+      "advancedTab": {
+        "panelTitle": "Advanced topics",
+        "jonesCalcTitle": "Jones calculus",
+        "jonesCalcP": "Jones calculus is a mathematical formalism for polarized light using complex 2×1 Jones vectors and complex 2×2 Jones matrices.",
+        "jonesCommon": "Common Jones vectors:",
+        "jonesH": "Linear (H):",
+        "jonesV": "Linear (V):",
+        "jonesRCP": "Right-hand circular:",
+        "jonesLCP": "Left-hand circular:",
+        "stokesTitle": "Stokes parameters",
+        "stokesP": "Stokes parameters give a complete description of polarization, including partially polarized light.",
+        "poincareTitle": "Poincaré sphere",
+        "poincareP": "The Poincaré sphere is a graphical representation of all possible polarization states. Points on the sphere represent fully polarized light:",
+        "poincareLi1": "North pole: right-hand circular",
+        "poincareLi2": "South pole: left-hand circular",
+        "poincareLi3": "Equator: linear polarizations",
+        "poincareLi4": "Other points: elliptical polarizations",
+        "appsTitle": "Applications",
+        "appSpecH": "🔬 Spectroscopy",
+        "appSpecP": "Circular dichroism for chiral molecules",
+        "appComH": "📡 Communications",
+        "appComP": "Satellite communications often use circular polarization",
+        "app3dH": "🎬 3D cinema",
+        "app3dP": "RealD 3D uses circular polarization for stereoscopic projection",
+        "appRadH": "📻 Radio astronomy",
+        "appRadP": "Detecting polarized emission from celestial sources",
+        "appQH": "🔒 Quantum cryptography",
+        "appQP": "Polarization states encode quantum information",
+        "appNatH": "🦋 Nature",
+        "appNatP": "Some animals can detect circularly polarized light",
+        "opticsTitle": "Optical elements",
+        "qwTitle": "Quarter-wave plate (λ/4)",
+        "qwP": "Converts linear to circular polarization and vice versa. Introduces a 90° phase shift between orthogonal components.",
+        "hwTitle": "Half-wave plate (λ/2)",
+        "hwP": "Rotates the plane of linear polarization. Converts RCP to LCP and vice versa.",
+        "polTitle": "Polarizer",
+        "polP": "Transmits only one linear polarization component, blocking the orthogonal component."
+      },
+      "footer": {
+        "line": "Circular polarization simulator"
+      },
+      "canvas": {
+        "axisZ": "z (propagation)",
+        "view3d": "3D view — drag to rotate, scroll to zoom",
+        "viewXy": "XY plane (polarization)",
+        "viewXz": "XZ plane (Ex propagation)",
+        "viewYz": "YZ plane (Ey propagation)"
+      },
+      "aria": {
+        "mainCanvas": "Electromagnetic wave visualization"
+      },
+      "equations": {
+        "s0": "S₀ = |Eₓ|² + |Eᵧ|² (total intensity)",
+        "s1": "S₁ = |Eₓ|² − |Eᵧ|² (linear H–V)",
+        "s2": "S₂ = 2Re(EₓEᵧ*) (linear ±45°)",
+        "s3": "S₃ = 2Im(EₓEᵧ*) (circular)"
+      }
+    },
+    "Vizualizator-4d": {
+      "page": {
+        "eyebrow": "4D geometry | Interactive simulation",
+        "documentTitle": "4D visualizer",
+        "htmlLang": "en"
+      },
+      "labels": {
+        "controlsTitle": "4D visualizer controls",
+        "model4d": "4D model:",
+        "rotX": "Rotate around X:",
+        "rotY": "Rotate around Y:",
+        "rotZ": "Rotate around Z:",
+        "rotW": "Rotate around W:",
+        "projectionType": "Projection type:",
+        "animSpeed": "Animation speed:"
+      },
+      "projection": {
+        "perspective": "Perspective",
+        "orthographic": "Orthographic",
+        "stereographic": "Stereographic"
+      },
+      "buttons": {
+        "autoRotateStart": "Start auto rotation",
+        "autoRotateStop": "Stop auto rotation",
+        "resetView": "Reset view"
+      },
+      "info": {
+        "title": "About the 4D visualizer",
+        "p1": "The 4D visualizer projects 4D objects into 3D space using mathematical transforms. The W axis is the fourth dimension.",
+        "p2": "Use the sliders to rotate the 4D object around different axes. X, Y, and Z behave like ordinary 3D rotations; W is rotation in the fourth dimension.",
+        "controlsStrong": "Controls:"
+      },
+      "loading": "Loading 4D visualizer…",
+      "errors": {
+        "initFailed": "Failed to initialize the 4D visualizer. Please refresh the page."
+      },
+      "aria": {
+        "toggleSidebar": "Show or hide controls"
+      },
+      "models": {
+        "tesseract": "Tesseract (4D cube)",
+        "hypersphere": "4D hypersphere",
+        "3-sphere": "3-sphere (glome)",
+        "calabi-yau": "Calabi–Yau manifold",
+        "hopf-fibration": "Hopf fibration",
+        "clifford-torus": "Clifford torus",
+        "hyperplane": "4D hyperplane",
+        "klein-bottle": "Klein bottle",
+        "pentachoron": "Pentachoron",
+        "16-cell": "16-cell (hexadecachoron)",
+        "24-cell": "24-cell (icositetrachoron)",
+        "24-cell-dual": "24-cell dual (F₄ lattice)",
+        "120-cell": "120-cell (hyperdodecahedron)",
+        "600-cell": "600-cell (hexacosichoron)",
+        "buckyball4d": "4D buckyball (C₆₀)",
+        "hypertorus": "Hypertorus (4D torus)",
+        "duoprism": "Duoprism",
+        "polychoron-prism": "4D prism (polychoron prism)",
+        "polychoron-antiprism": "4D antiprism (polychoron antiprism)",
+        "e4-hyperdiamond": "E₄ hyperdiamond lattice",
+        "f4-root-polytope": "F₄ root polytope (Lie group F₄)",
+        "e8-lattice": "E₈ lattice"
+      }
+    },
+    "lentila-subtire": {
+      "page": {
+        "eyebrow": "Thin lens | Interactive simulation",
+        "documentTitle": "Thin lens — rays and image",
+        "htmlLang": "en"
+      },
+      "labels": {
+        "pageTitle": "Optics simulator — thin lens (rays + image)",
+        "pageSubtitle": "Drag the object on the canvas or use the controls. The image (real/virtual) updates automatically.",
+        "pillDrag": "drag & drop",
+        "focal": "Focal length f (cm)",
+        "lensKind": "Lens type",
+        "doLabel": "Object distance d₀ (cm)",
+        "hoLabel": "Object height h₀ (cm)",
+        "zoom": "Zoom (px/cm)",
+        "results": "Results",
+        "diKey": "Image distance dᵢ",
+        "mKey": "Magnification m = −dᵢ/d₀",
+        "hiKey": "Image height hᵢ",
+        "typeKey": "Image type",
+        "formulaTitle": "Formulas (thin lens)",
+        "unitsTitle": "Units",
+        "signTitle": "Sign conventions"
+      },
+      "units": {
+        "u1": "f, d₀, dᵢ → centimetres (cm)",
+        "u2": "h₀, hᵢ → centimetres (cm)",
+        "u3": "m → dimensionless"
+      },
+      "signs": {
+        "s1": "d₀ > 0 → real object",
+        "s2": "dᵢ > 0 → real image",
+        "s3": "dᵢ < 0 → virtual image",
+        "s4": "m < 0 → inverted image"
+      },
+      "toggles": {
+        "raysOn": "Rays: ON",
+        "raysOff": "Rays: OFF",
+        "labelsOn": "Labels: ON",
+        "labelsOff": "Labels: OFF",
+        "reset": "Reset"
+      },
+      "hints": {
+        "h1": "🖱️ Drag the object arrow",
+        "h2": "✋ Drag empty canvas to pan — mobile or desktop",
+        "h3": "📌 Lens on the vertical centre axis"
+      },
+      "peekBtn": "☰ Controls",
+      "lens": {
+        "converging": "Converging",
+        "diverging": "Diverging"
+      },
+      "canvas": {
+        "lens": "Lens",
+        "object": "Object",
+        "image": "Image",
+        "imageAtInfinity": "Image at infinity: parallel rays after the lens"
+      },
+      "types": {
+        "infinity": "at infinity (parallel rays)",
+        "realInverted": "real, inverted",
+        "realUpright": "real, upright",
+        "virtualInverted": "virtual, inverted",
+        "virtualUpright": "virtual, upright"
+      },
+      "status": {
+        "nearFocal": "You are very close to <b>d₀ = f</b> → the image recedes toward infinity. (Physically correct 😄)",
+        "realRight": "A <b>real</b> image forms on the right of the lens. You can project it onto a screen.",
+        "virtualLoupe": "A <b>virtual</b> image (like a magnifier). Dashed extensions show where it appears to form.",
+        "idle": "Drag the object or adjust the sliders. 🧠"
+      },
+      "aria": {
+        "collapsePanel": "Collapse panel",
+        "showPanel": "Show panel",
+        "canvas": "Thin lens simulation canvas"
       }
     }
   }

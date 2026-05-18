@@ -1,5 +1,24 @@
 (() => {
     const $ = (id) => document.getElementById(id);
+
+    const simT = (path, ro) =>
+      typeof window.simLbl === "function" ? window.simLbl(path, ro) : ro;
+
+    function simFmt(path, roTemplate, vars) {
+      let msg = simT(path, roTemplate);
+      if (vars) {
+        for (const [key, val] of Object.entries(vars)) {
+          msg = msg.split(key).join(String(val));
+        }
+      }
+      return msg;
+    }
+
+    function setStatus(kind, path, roFallback, vars) {
+      const msg = simFmt(path, roFallback, vars);
+      statusEl.className = `status ${kind}`;
+      statusEl.textContent = `${simT("status.prefix", "Status:")} ${msg}`;
+    }
   
     // Panels + layout
     const layout = document.querySelector(".layout");
@@ -222,12 +241,10 @@
       }
     }
   
-    function setStatus(kind, text){
-      statusEl.className = `status ${kind}`;
-      statusEl.textContent = `Status: ${text}`;
-    }
     function refreshSwitchUI(){
-      swBtn.textContent = isOn ? "PORNIT" : "OPRIT";
+      swBtn.textContent = isOn
+        ? simT("switchState.on", "PORNIT")
+        : simT("switchState.off", "OPRIT");
       swBtn.classList.toggle("on", isOn);
       swBtn.classList.toggle("off", !isOn);
     }
@@ -305,7 +322,11 @@
   
       ctx.font = "14px ui-sans-serif, system-ui";
       ctx.fillStyle = "rgba(51,65,85,.95)";
-      ctx.fillText(`U = ${U.toFixed(1)} V`, x-40, 195);
+      ctx.fillText(
+        simFmt("canvas.batteryU", "U = {u} V", { "{u}": U.toFixed(1) }),
+        x - 40,
+        195
+      );
   
       if (isOn && !failed && U > 0) {
         glowCircle(x, 280, 56, "rgba(37,99,235,.10)");
@@ -347,8 +368,18 @@
   
       ctx.fillStyle = "rgba(51,65,85,.95)";
       ctx.font = "14px ui-sans-serif, system-ui";
-      ctx.fillText(`R = ${R.toFixed(1)} Ω`, x-42, 195);
-      ctx.fillText(`Pmax = ${PmaxV.toFixed(2)} W`, x-58, 214);
+      ctx.fillText(
+        simFmt("canvas.resistorR", "R = {r} Ω", { "{r}": R.toFixed(1) }),
+        x - 42,
+        195
+      );
+      ctx.fillText(
+        simFmt("canvas.resistorPmax", "Pmax = {pmax} W", {
+          "{pmax}": PmaxV.toFixed(2),
+        }),
+        x - 58,
+        214
+      );
   
       if (!failed && overload > 1.0){
         ctx.fillStyle = "rgba(148,163,184,.18)";
@@ -363,7 +394,11 @@
       if (failed){
         ctx.fillStyle = "rgba(17,24,39,.92)";
         ctx.font = "700 16px ui-sans-serif, system-ui";
-        ctx.fillText("DEFECT (DESCHIS)", x-66, 392);
+        ctx.fillText(
+          simT("canvas.resistorFailed", "DEFECT (DESCHIS)"),
+          x - 66,
+          392
+        );
       }
   
       ctx.restore();
@@ -393,7 +428,15 @@
   
       ctx.fillStyle = "rgba(51,65,85,.95)";
       ctx.font = "14px ui-sans-serif, system-ui";
-      ctx.fillText(failed ? "comutator: BLOCAT (defect)" : (isOn ? "comutator: PORNIT" : "comutator: OPRIT"), x1, y+26);
+      ctx.fillText(
+        failed
+          ? simT("canvas.switchBlocked", "comutator: BLOCAT (defect)")
+          : isOn
+            ? simT("canvas.switchOnLbl", "comutator: PORNIT")
+            : simT("canvas.switchOffLbl", "comutator: OPRIT"),
+        x1,
+        y + 26
+      );
       ctx.restore();
     }
   
@@ -425,21 +468,57 @@
       ctx.save();
       ctx.fillStyle = "rgba(15,23,42,.90)";
       ctx.font = "16px ui-sans-serif, system-ui";
-      ctx.fillText("Energia (model) se transportă pe fire și se disipă în rezistor.", 26, 40);
-  
+      ctx.fillText(
+        simT(
+          "canvas.hudTransport",
+          "Energia (model) se transportă pe fire și se disipă în rezistor."
+        ),
+        26,
+        40
+      );
+
       ctx.fillStyle = "rgba(51,65,85,.95)";
       ctx.font = "14px ui-sans-serif, system-ui";
-      ctx.fillText(`I = U/R = ${I.toFixed(3)} A`, 26, 68);
-      ctx.fillText(`P = U·I = ${P.toFixed(3)} W   (Pmax = ${PmaxV.toFixed(2)} W)`, 26, 90);
-      ctx.fillText(`E = ∫P dt = ${E.toFixed(3)} J`, 26, 112);
-  
+      ctx.fillText(
+        simFmt("canvas.hudI", "I = U/R = {v} A", { "{v}": I.toFixed(3) }),
+        26,
+        68
+      );
+      ctx.fillText(
+        simFmt("canvas.hudP", "P = U·I = {p} W   (Pmax = {pmax} W)", {
+          "{p}": P.toFixed(3),
+          "{pmax}": PmaxV.toFixed(2),
+        }),
+        26,
+        90
+      );
+      ctx.fillText(
+        simFmt("canvas.hudE", "E = ∫P dt = {e} J", { "{e}": E.toFixed(3) }),
+        26,
+        112
+      );
+
       if (!failed && isOn && P > PmaxV && PmaxV>0){
         ctx.fillStyle = "rgba(239,68,68,.92)";
-        ctx.fillText("Suprasarcină: P > Pmax → rezistorul se poate arde.", 26, 140);
+        ctx.fillText(
+          simT(
+            "canvas.hudOverload",
+            "Suprasarcină: P > Pmax → rezistorul se poate arde."
+          ),
+          26,
+          140
+        );
       }
       if (failed){
         ctx.fillStyle = "rgba(17,24,39,.92)";
-        ctx.fillText("Defect: rezistor ars → circuit deschis → I = 0.", 26, 140);
+        ctx.fillText(
+          simT(
+            "canvas.hudFailed",
+            "Defect: rezistor ars → circuit deschis → I = 0."
+          ),
+          26,
+          140
+        );
       }
       ctx.restore();
     }
@@ -479,14 +558,24 @@
           isOn = false;
           packets.length = 0;
           refreshSwitchUI();
-          setStatus("bad", "rezistor ars (circuit întrerupt). Apasă \"Reparare / Resetare\".");
+          setStatus(
+            "bad",
+            "status.burnOut",
+            "rezistor ars (circuit întrerupt). Apasă „Reparare / Resetare”."
+          );
         } else {
-          setStatus("warn", `suprasarcină! P>Pmax — ${ (FAIL_AFTER - overPowerTime).toFixed(2) }s până la burnout`);
+          setStatus("warn", "status.overload", "Suprasarcină! P>Pmax — {t}s până la ardere", {
+            "{t}": (FAIL_AFTER - overPowerTime).toFixed(2),
+          });
         }
       } else {
         overPowerTime = Math.max(0, overPowerTime - 1.2*dt);
         if (!failed){
-          setStatus("ok", isOn ? "circuit PORNIT." : "circuit OPRIT.");
+          setStatus(
+            "ok",
+            isOn ? "status.circuitOn" : "status.circuitOff",
+            isOn ? "circuit PORNIT." : "circuit OPRIT."
+          );
         }
       }
   
@@ -520,7 +609,11 @@
     // Events
     swBtn.addEventListener("click", () => {
       if (failed){
-        setStatus("bad", "nu poți porni: rezistor ars. Apasă \"Reparare / Resetare\".");
+        setStatus(
+          "bad",
+          "status.cantStart",
+          "Nu poți porni: rezistor ars. Apasă „Reparare / Resetare”."
+        );
         return;
       }
       isOn = !isOn;
@@ -539,12 +632,12 @@
       isOn = false;
       packets.length = 0;
       refreshSwitchUI();
-      setStatus("ok", "reparat. Poți porni din nou.");
+      setStatus("ok", "status.repaired", "reparat. Poți porni din nou.");
     });
   
     // Init
     refreshSwitchUI();
-    setStatus("ok", "gata.");
+    setStatus("ok", "status.ready", "gata.");
     applyEcInitialPanels();
     requestAnimationFrame(tick);
   })();

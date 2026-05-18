@@ -4,7 +4,7 @@
 
 Criteriu „tradus”: slug în `src/components/pages/SimulationPage.jsx` (`SIMULATOR_I18N_QUERY_SLUGS`) și bloc corespunzător în `public/translations/simulatoare.en.json`.
 
-### Traduse (24)
+### Traduse (29)
 
 | slug | titlu (RO în app) |
 |------|-------------------|
@@ -28,6 +28,15 @@ Criteriu „tradus”: slug în `src/components/pages/SimulationPage.jsx` (`SIMU
 | fuel-cell | Pilă cu combustibil (PEM) |
 | supraconductivitate | Supraconductivitate și efectul Meissner |
 | criogenie | Criogenie și stări de agregare |
+| refractie-atmosferica | Miraj în Deșert |
+| legi_Kepler | Legile lui Kepler |
+| atom_hidrogen | Atomul de hidrogen |
+| oscillatii-ox | Mișcări Oscilatorii pe OX |
+| oscillatii-oy | Mișcări Oscilatorii pe OY |
+| energie-circuite | Energia în Circuite |
+| polarizare-circulara | Polarizare Circulară |
+| Vizualizator-4d | Vizualizator 4D |
+| lentila-subtire | Lentilă Subțire |
 
 ### Semi-traduse (4)
 
@@ -36,24 +45,15 @@ Criteriu „tradus”: slug în `src/components/pages/SimulationPage.jsx` (`SIMU
 | proiectile | Mișcarea Proiectilului |
 | lanturi-elastice | Lanțuri Elastice |
 
-### Netraduse (29)
+### Netraduse (20)
 
 | slug | titlu (RO în app) |
 |------|-------------------|
 | grafice-functii | Grafice Funcții |
 | grafice-simple | Grafice Simple |
 | termodinamica | Termodinamică – Gaz ideal într-un vas |
-| oscillatii-ox | Mișcări Oscilatorii pe OX |
-| oscillatii-oy | Mișcări Oscilatorii pe OY |
 | circuite-electricitate | Circuite Electrice |
-| energie-circuite | Energia în Circuite |
-| refractie-atmosferica | Miraj în Deșert |
-| lentila-subtire | Lentilă Subțire |
-| polarizare-circulara | Polarizare Circulară |
-| Vizualizator-4d | Vizualizator 4D |
 | constelatii | Constelații pe cer |
-| legi_Kepler | Legile lui Kepler |
-| atom_hidrogen | Atomul de hidrogen |
 | miscare-planete | Mișcarea Planetelor |
 | tabel-periodic | Tabelul periodic |
 | laser | Laser |

@@ -34,14 +34,14 @@
                     </svg>
                 </div>
                 <div class="logo-text">
-                    <h1>Polarizare Circulară</h1>
-                    <span>Simulator Unde Electromagnetice</span>
+                    <h1 data-i18n="header.title">Polarizare Circulară</h1>
+                    <span data-i18n="header.subtitle">Simulator Unde Electromagnetice</span>
                 </div>
             </div>
             <nav class="nav-tabs">
-                <button class="nav-tab active" data-tab="simulator">Simulator</button>
-                <button class="nav-tab" data-tab="theory">Teorie</button>
-                <button class="nav-tab" data-tab="advanced">Avansat</button>
+                <button type="button" class="nav-tab active" data-tab="simulator"><span data-i18n="nav.simulator">Simulator</span></button>
+                <button type="button" class="nav-tab" data-tab="theory"><span data-i18n="nav.theory">Teorie</span></button>
+                <button type="button" class="nav-tab" data-tab="advanced"><span data-i18n="nav.advanced">Avansat</span></button>
             </nav>
         </header>
 
@@ -50,137 +50,137 @@
             <!-- Left Panel - Controls -->
             <aside class="panel controls-panel">
                 <div class="panel-header">
-                    <h2>Parametri Undă</h2>
-                    <button class="reset-btn" id="resetBtn">
+                    <h2 data-i18n="controls.waveParamsTitle">Parametri Undă</h2>
+                    <button type="button" class="reset-btn" id="resetBtn">
                         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                             <path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"/>
                             <path d="M3 3v5h5"/>
                         </svg>
-                        Resetare
+                        <span data-i18n="controls.reset">Resetare</span>
                     </button>
                 </div>
 
                 <div class="controls-section">
-                    <h3>Tip Polarizare</h3>
+                    <h3 data-i18n="controls.polTypeTitle">Tip Polarizare</h3>
                     <div class="polarization-selector">
-                        <button class="pol-btn active" data-type="right">
+                        <button type="button" class="pol-btn active" data-type="right">
                             <span class="pol-icon">↻</span>
-                            Circulară Dreapta
+                            <span data-i18n="pol.right">Circulară Dreapta</span>
                         </button>
-                        <button class="pol-btn" data-type="left">
+                        <button type="button" class="pol-btn" data-type="left">
                             <span class="pol-icon">↺</span>
-                            Circulară Stânga
+                            <span data-i18n="pol.left">Circulară Stânga</span>
                         </button>
-                        <button class="pol-btn" data-type="linear">
+                        <button type="button" class="pol-btn" data-type="linear">
                             <span class="pol-icon">↔</span>
-                            Liniară
+                            <span data-i18n="pol.linear">Liniară</span>
                         </button>
-                        <button class="pol-btn" data-type="elliptical">
+                        <button type="button" class="pol-btn" data-type="elliptical">
                             <span class="pol-icon">⬭</span>
-                            Eliptică
+                            <span data-i18n="pol.elliptical">Eliptică</span>
                         </button>
                     </div>
                 </div>
 
                 <div class="controls-section">
-                    <h3>Proprietăți Undă</h3>
+                    <h3 data-i18n="controls.wavePropsTitle">Proprietăți Undă</h3>
                     
                     <div class="slider-group">
                         <div class="slider-header">
-                            <label for="frequency">Frecvență (f)</label>
+                            <label for="frequency" data-i18n="sliders.frequency.label">Frecvență (f)</label>
                             <span class="slider-value" id="frequencyValue">5.0 × 10¹⁴ Hz</span>
                         </div>
                         <input type="range" id="frequency" min="1" max="10" step="0.1" value="5">
                         <div class="slider-range">
-                            <span>1 × 10¹⁴</span>
-                            <span>10 × 10¹⁴</span>
+                            <span data-i18n="sliders.frequency.min">1 × 10¹⁴</span>
+                            <span data-i18n="sliders.frequency.max">10 × 10¹⁴</span>
                         </div>
                     </div>
 
                     <div class="slider-group">
                         <div class="slider-header">
-                            <label for="amplitude">Amplitudine (E₀)</label>
+                            <label for="amplitude" data-i18n="sliders.amplitude.label">Amplitudine (E₀)</label>
                             <span class="slider-value" id="amplitudeValue">1.0 V/m</span>
                         </div>
                         <input type="range" id="amplitude" min="0.1" max="2" step="0.1" value="1">
                         <div class="slider-range">
-                            <span>0.1 V/m</span>
-                            <span>2.0 V/m</span>
+                            <span data-i18n="sliders.amplitude.min">0.1 V/m</span>
+                            <span data-i18n="sliders.amplitude.max">2.0 V/m</span>
                         </div>
                     </div>
 
                     <div class="slider-group">
                         <div class="slider-header">
-                            <label for="wavelength">Lungime de undă (λ)</label>
+                            <label for="wavelength" data-i18n="sliders.wavelength.label">Lungime de undă (λ)</label>
                             <span class="slider-value" id="wavelengthValue">600 nm</span>
                         </div>
                         <input type="range" id="wavelength" min="380" max="780" step="10" value="600">
                         <div class="slider-range">
-                            <span>380 nm (Violet)</span>
-                            <span>780 nm (Roșu)</span>
+                            <span data-i18n="sliders.wavelength.min">380 nm (Violet)</span>
+                            <span data-i18n="sliders.wavelength.max">780 nm (Roșu)</span>
                         </div>
                     </div>
 
                     <div class="slider-group">
                         <div class="slider-header">
-                            <label for="phaseDiff">Diferență de fază (δ)</label>
+                            <label for="phaseDiff" data-i18n="sliders.phaseDiff.label">Diferență de fază (δ)</label>
                             <span class="slider-value" id="phaseDiffValue">90°</span>
                         </div>
                         <input type="range" id="phaseDiff" min="0" max="360" step="1" value="90">
                         <div class="slider-range">
-                            <span>0°</span>
-                            <span>360°</span>
+                            <span data-i18n="sliders.phaseDiff.min">0°</span>
+                            <span data-i18n="sliders.phaseDiff.max">360°</span>
                         </div>
                     </div>
 
                     <div class="slider-group">
                         <div class="slider-header">
-                            <label for="speed">Viteză animație</label>
+                            <label for="speed" data-i18n="sliders.speed.label">Viteză animație</label>
                             <span class="slider-value" id="speedValue">1.0×</span>
                         </div>
                         <input type="range" id="speed" min="0.1" max="3" step="0.1" value="1">
                         <div class="slider-range">
-                            <span>0.1×</span>
-                            <span>3.0×</span>
+                            <span data-i18n="sliders.speed.min">0.1×</span>
+                            <span data-i18n="sliders.speed.max">3.0×</span>
                         </div>
                     </div>
                 </div>
 
                 <div class="controls-section">
-                    <h3>Opțiuni Afișare</h3>
+                    <h3 data-i18n="controls.displayTitle">Opțiuni Afișare</h3>
                     <div class="checkbox-group">
                         <label class="checkbox-label">
                             <input type="checkbox" id="showExField" checked>
                             <span class="checkmark"></span>
-                            Componenta Eₓ
+                            <span data-i18n="checkboxes.ex">Componenta Eₓ</span>
                         </label>
                         <label class="checkbox-label">
                             <input type="checkbox" id="showEyField" checked>
                             <span class="checkmark"></span>
-                            Componenta Eᵧ
+                            <span data-i18n="checkboxes.ey">Componenta Eᵧ</span>
                         </label>
                         <label class="checkbox-label">
                             <input type="checkbox" id="showResultant" checked>
                             <span class="checkmark"></span>
-                            Vector Rezultant
+                            <span data-i18n="checkboxes.resultant">Vector Rezultant</span>
                         </label>
                         <label class="checkbox-label">
                             <input type="checkbox" id="showTrail" checked>
                             <span class="checkmark"></span>
-                            Traiectorie Polarizare
+                            <span data-i18n="checkboxes.trail">Traiectorie Polarizare</span>
                         </label>
                         <label class="checkbox-label">
                             <input type="checkbox" id="showGrid" checked>
                             <span class="checkmark"></span>
-                            Grilă
+                            <span data-i18n="checkboxes.grid">Grilă</span>
                         </label>
                     </div>
                 </div>
 
                 <div class="controls-section">
-                    <h3>Control Redare</h3>
+                    <h3 data-i18n="controls.playbackTitle">Control Redare</h3>
                     <div class="playback-controls">
-                        <button class="playback-btn" id="playPauseBtn">
+                        <button type="button" class="playback-btn" id="playPauseBtn">
                             <svg class="play-icon" width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
                                 <path d="M8 5v14l11-7z"/>
                             </svg>
@@ -188,12 +188,12 @@
                                 <path d="M6 4h4v16H6zM14 4h4v16h-4z"/>
                             </svg>
                         </button>
-                        <button class="playback-btn" id="stepBackBtn">
+                        <button type="button" class="playback-btn" id="stepBackBtn">
                             <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
                                 <path d="M6 6h2v12H6zm3.5 6l8.5 6V6z"/>
                             </svg>
                         </button>
-                        <button class="playback-btn" id="stepForwardBtn">
+                        <button type="button" class="playback-btn" id="stepForwardBtn">
                             <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
                                 <path d="M6 18l8.5-6L6 6v12zM16 6v12h2V6h-2z"/>
                             </svg>
@@ -205,31 +205,31 @@
             <!-- Center - Visualization -->
             <section class="visualization-section">
                 <div class="canvas-container">
-                    <canvas id="mainCanvas"></canvas>
+                    <canvas id="mainCanvas" data-i18n-aria="aria.mainCanvas"></canvas>
                     <div class="canvas-overlay">
                         <div class="view-controls">
-                            <button class="view-btn active" data-view="3d">3D</button>
-                            <button class="view-btn" data-view="xy">Plan XY</button>
-                            <button class="view-btn" data-view="xz">Plan XZ</button>
-                            <button class="view-btn" data-view="yz">Plan YZ</button>
+                            <button type="button" class="view-btn active" data-view="3d"><span data-i18n="view.v3d">3D</span></button>
+                            <button type="button" class="view-btn" data-view="xy"><span data-i18n="view.xy">Plan XY</span></button>
+                            <button type="button" class="view-btn" data-view="xz"><span data-i18n="view.xz">Plan XZ</span></button>
+                            <button type="button" class="view-btn" data-view="yz"><span data-i18n="view.yz">Plan YZ</span></button>
                         </div>
                     </div>
                 </div>
                 <div class="visualization-info">
                     <div class="info-card">
-                        <span class="info-label">Timp Curent</span>
+                        <span class="info-label" data-i18n="vizInfo.currentTime">Timp Curent</span>
                         <span class="info-value" id="currentTime">t = 0.00 fs</span>
                     </div>
                     <div class="info-card">
-                        <span class="info-label">Vector de Undă</span>
+                        <span class="info-label" data-i18n="vizInfo.waveVector">Vector de Undă</span>
                         <span class="info-value" id="waveVector">k = 1.05 × 10⁷ rad/m</span>
                     </div>
                     <div class="info-card">
-                        <span class="info-label">Frecvență Unghiulară</span>
+                        <span class="info-label" data-i18n="vizInfo.angularFreq">Frecvență Unghiulară</span>
                         <span class="info-value" id="angularFreq">ω = 3.14 × 10¹⁵ rad/s</span>
                     </div>
                     <div class="info-card color-indicator">
-                        <span class="info-label">Culoare Vizibilă</span>
+                        <span class="info-label" data-i18n="vizInfo.visibleColor">Culoare Vizibilă</span>
                         <span class="color-swatch" id="colorSwatch"></span>
                     </div>
                 </div>
@@ -240,63 +240,63 @@
                 <!-- Simulator Tab Content -->
                 <div class="tab-content active" id="simulatorContent">
                     <div class="panel-header">
-                        <h2>Calcule</h2>
+                        <h2 data-i18n="simulatorTab.calculations">Calcule</h2>
                     </div>
 
                     <div class="info-section">
-                        <h3>Componente Câmp Electric</h3>
+                        <h3 data-i18n="simulatorTab.fieldComponents">Componente Câmp Electric</h3>
                         <div class="formula-card">
                             <div class="formula">
-                                <span class="formula-label">Eₓ(z,t) =</span>
+                                <span class="formula-label" data-i18n="simulatorTab.exLabel">Eₓ(z,t) =</span>
                                 <span class="formula-expr" id="exFormula">E₀ cos(kz - ωt)</span>
                             </div>
                             <div class="formula-result">
-                                <span>Valoare curentă: </span>
+                                <span data-i18n="simulatorTab.currentValue">Valoare curentă: </span>
                                 <span id="exValue">0.00 V/m</span>
                             </div>
                         </div>
                         <div class="formula-card">
                             <div class="formula">
-                                <span class="formula-label">Eᵧ(z,t) =</span>
+                                <span class="formula-label" data-i18n="simulatorTab.eyLabel">Eᵧ(z,t) =</span>
                                 <span class="formula-expr" id="eyFormula">E₀ cos(kz - ωt + δ)</span>
                             </div>
                             <div class="formula-result">
-                                <span>Valoare curentă: </span>
+                                <span data-i18n="simulatorTab.currentValue">Valoare curentă: </span>
                                 <span id="eyValue">0.00 V/m</span>
                             </div>
                         </div>
                     </div>
 
                     <div class="info-section">
-                        <h3>Mărimi Derivate</h3>
+                        <h3 data-i18n="simulatorTab.derivedTitle">Mărimi Derivate</h3>
                         <div class="quantity-grid">
                             <div class="quantity-item">
-                                <span class="quantity-label">Număr de undă (k)</span>
+                                <span class="quantity-label" data-i18n="simulatorTab.qk">Număr de undă (k)</span>
                                 <span class="quantity-value" id="kValue">1.05 × 10⁷ rad/m</span>
                                 <span class="quantity-formula">k = 2π/λ</span>
                             </div>
                             <div class="quantity-item">
-                                <span class="quantity-label">Frecvență unghiulară (ω)</span>
+                                <span class="quantity-label" data-i18n="simulatorTab.qomega">Frecvență unghiulară (ω)</span>
                                 <span class="quantity-value" id="omegaValue">3.14 × 10¹⁵ rad/s</span>
                                 <span class="quantity-formula">ω = 2πf</span>
                             </div>
                             <div class="quantity-item">
-                                <span class="quantity-label">Perioadă (T)</span>
+                                <span class="quantity-label" data-i18n="simulatorTab.qperiod">Perioadă (T)</span>
                                 <span class="quantity-value" id="periodValue">2.00 fs</span>
                                 <span class="quantity-formula">T = 1/f</span>
                             </div>
                             <div class="quantity-item">
-                                <span class="quantity-label">Viteză de fază (v)</span>
+                                <span class="quantity-label" data-i18n="simulatorTab.qvelocity">Viteză de fază (v)</span>
                                 <span class="quantity-value" id="velocityValue">3.00 × 10⁸ m/s</span>
                                 <span class="quantity-formula">v = λf = c</span>
                             </div>
                             <div class="quantity-item">
-                                <span class="quantity-label">Intensitate (I)</span>
+                                <span class="quantity-label" data-i18n="simulatorTab.qintensity">Intensitate (I)</span>
                                 <span class="quantity-value" id="intensityValue">1.33 × 10⁻³ W/m²</span>
                                 <span class="quantity-formula">I = ½ε₀cE₀²</span>
                             </div>
                             <div class="quantity-item">
-                                <span class="quantity-label">Energia fotonului (E)</span>
+                                <span class="quantity-label" data-i18n="simulatorTab.qphoton">Energia fotonului (E)</span>
                                 <span class="quantity-value" id="photonEnergy">3.31 × 10⁻¹⁹ J</span>
                                 <span class="quantity-formula">E = hf</span>
                             </div>
@@ -304,10 +304,10 @@
                     </div>
 
                     <div class="info-section">
-                        <h3>Stare de Polarizare</h3>
+                        <h3 data-i18n="simulatorTab.polStateTitle">Stare de Polarizare</h3>
                         <div class="polarization-info">
                             <div class="jones-vector">
-                                <span class="jones-label">Vector Jones:</span>
+                                <span class="jones-label" data-i18n="simulatorTab.jonesLabel">Vector Jones:</span>
                                 <div class="jones-matrix" id="jonesVector">
                                     <span class="matrix-bracket">[</span>
                                     <div class="matrix-content">
@@ -318,7 +318,7 @@
                                 </div>
                             </div>
                             <div class="stokes-params">
-                                <span class="stokes-label">Parametri Stokes:</span>
+                                <span class="stokes-label" data-i18n="simulatorTab.stokesLabel">Parametri Stokes:</span>
                                 <div class="stokes-values" id="stokesParams">
                                     <span>S₀ = 1</span>
                                     <span>S₁ = 0</span>
@@ -333,12 +333,12 @@
                 <!-- Theory Tab Content -->
                 <div class="tab-content" id="theoryContent">
                     <div class="panel-header">
-                        <h2>Teorie și Concepte</h2>
+                        <h2 data-i18n="theoryTab.panelTitle">Teorie și Concepte</h2>
                     </div>
 
                     <div class="info-section">
-                        <h3>Ce este Polarizarea Circulară?</h3>
-                        <p class="theory-text">
+                        <h3 data-i18n="theoryTab.whatIsTitle">Ce este Polarizarea Circulară?</h3>
+                        <p class="theory-text" data-i18n="theoryTab.whatIsP">
                             Polarizarea circulară este o stare de polarizare în care vectorul câmpului electric 
                             al unei unde electromagnetice se rotește în cerc pe măsură ce unda se propagă. 
                             Vârful vectorului câmpului electric descrie o elice în spațiu.
@@ -346,65 +346,65 @@
                     </div>
 
                     <div class="info-section">
-                        <h3>Tipuri de Polarizare</h3>
+                        <h3 data-i18n="theoryTab.typesTitle">Tipuri de Polarizare</h3>
                         <div class="theory-card">
-                            <h4>Circulară Dreapta (RCP)</h4>
-                            <p>Câmpul electric se rotește în sensul acelor de ceasornic când este privit din direcția de propagare. 
+                            <h4 data-i18n="theoryTab.rcpTitle">Circulară Dreapta (RCP)</h4>
+                            <p data-i18n="theoryTab.rcpP">Câmpul electric se rotește în sensul acelor de ceasornic când este privit din direcția de propagare. 
                             Diferența de fază δ = +90° (π/2).</p>
                         </div>
                         <div class="theory-card">
-                            <h4>Circulară Stânga (LCP)</h4>
-                            <p>Câmpul electric se rotește în sens invers acelor de ceasornic când este privit din direcția de propagare. 
+                            <h4 data-i18n="theoryTab.lcpTitle">Circulară Stânga (LCP)</h4>
+                            <p data-i18n="theoryTab.lcpP">Câmpul electric se rotește în sens invers acelor de ceasornic când este privit din direcția de propagare. 
                             Diferența de fază δ = -90° (-π/2).</p>
                         </div>
                         <div class="theory-card">
-                            <h4>Polarizare Liniară</h4>
-                            <p>Câmpul electric oscilează într-un singur plan. Diferența de fază δ = 0° sau 180°.</p>
+                            <h4 data-i18n="theoryTab.linTitle">Polarizare Liniară</h4>
+                            <p data-i18n="theoryTab.linP">Câmpul electric oscilează într-un singur plan. Diferența de fază δ = 0° sau 180°.</p>
                         </div>
                         <div class="theory-card">
-                            <h4>Polarizare Eliptică</h4>
-                            <p>Cazul general în care câmpul electric descrie o elipsă. Apare când componentele 
+                            <h4 data-i18n="theoryTab.ellTitle">Polarizare Eliptică</h4>
+                            <p data-i18n="theoryTab.ellP">Cazul general în care câmpul electric descrie o elipsă. Apare când componentele 
                             au amplitudini diferite sau diferență de fază diferită de 90°.</p>
                         </div>
                     </div>
 
                     <div class="info-section">
-                        <h3>Descriere Matematică</h3>
+                        <h3 data-i18n="theoryTab.mathTitle">Descriere Matematică</h3>
                         <div class="math-block">
-                            <p>Pentru o undă care se propagă în direcția z:</p>
+                            <p data-i18n="theoryTab.mathIntro">Pentru o undă care se propagă în direcția z:</p>
                             <div class="equation">
                                 <strong>Eₓ(z,t) = E₀ₓ cos(kz - ωt)</strong>
                             </div>
                             <div class="equation">
                                 <strong>Eᵧ(z,t) = E₀ᵧ cos(kz - ωt + δ)</strong>
                             </div>
-                            <p>Unde:</p>
+                            <p data-i18n="theoryTab.mathWhere">Unde:</p>
                             <ul class="param-list">
-                                <li><strong>E₀ₓ, E₀ᵧ</strong> - Componentele amplitudinii</li>
-                                <li><strong>k = 2π/λ</strong> - Numărul de undă</li>
-                                <li><strong>ω = 2πf</strong> - Frecvența unghiulară</li>
-                                <li><strong>δ</strong> - Diferența de fază</li>
+                                <li data-i18n="theoryTab.mathLi1"><strong>E₀ₓ, E₀ᵧ</strong> - Componentele amplitudinii</li>
+                                <li data-i18n="theoryTab.mathLi2"><strong>k = 2π/λ</strong> - Numărul de undă</li>
+                                <li data-i18n="theoryTab.mathLi3"><strong>ω = 2πf</strong> - Frecvența unghiulară</li>
+                                <li data-i18n="theoryTab.mathLi4"><strong>δ</strong> - Diferența de fază</li>
                             </ul>
                         </div>
                     </div>
 
                     <div class="info-section">
-                        <h3>Constante Fizice</h3>
+                        <h3 data-i18n="theoryTab.constantsTitle">Constante Fizice</h3>
                         <div class="constants-grid">
                             <div class="constant-item">
-                                <span class="constant-name">Viteza luminii (c)</span>
+                                <span class="constant-name" data-i18n="theoryTab.constC">Viteza luminii (c)</span>
                                 <span class="constant-value">2.998 × 10⁸ m/s</span>
                             </div>
                             <div class="constant-item">
-                                <span class="constant-name">Constanta lui Planck (h)</span>
+                                <span class="constant-name" data-i18n="theoryTab.constH">Constanta lui Planck (h)</span>
                                 <span class="constant-value">6.626 × 10⁻³⁴ J·s</span>
                             </div>
                             <div class="constant-item">
-                                <span class="constant-name">Permitivitatea vidului (ε₀)</span>
+                                <span class="constant-name" data-i18n="theoryTab.constEps">Permitivitatea vidului (ε₀)</span>
                                 <span class="constant-value">8.854 × 10⁻¹² F/m</span>
                             </div>
                             <div class="constant-item">
-                                <span class="constant-name">Permeabilitatea vidului (μ₀)</span>
+                                <span class="constant-name" data-i18n="theoryTab.constMu">Permeabilitatea vidului (μ₀)</span>
                                 <span class="constant-value">1.257 × 10⁻⁶ H/m</span>
                             </div>
                         </div>
@@ -414,32 +414,32 @@
                 <!-- Advanced Tab Content -->
                 <div class="tab-content" id="advancedContent">
                     <div class="panel-header">
-                        <h2>Subiecte Avansate</h2>
+                        <h2 data-i18n="advancedTab.panelTitle">Subiecte Avansate</h2>
                     </div>
 
                     <div class="info-section">
-                        <h3>Calculul Jones</h3>
-                        <p class="theory-text">
+                        <h3 data-i18n="advancedTab.jonesCalcTitle">Calculul Jones</h3>
+                        <p class="theory-text" data-i18n="advancedTab.jonesCalcP">
                             Calculul Jones este un formalism matematic pentru descrierea luminii polarizate folosind 
                             vectori complecși 2×1 (vectori Jones) și matrici complexe 2×2 (matrici Jones).
                         </p>
                         <div class="math-block">
-                            <p>Vectori Jones comuni:</p>
+                            <p data-i18n="advancedTab.jonesCommon">Vectori Jones comuni:</p>
                             <div class="jones-examples">
                                 <div class="jones-example">
-                                    <span>Liniar (H):</span>
+                                    <span data-i18n="advancedTab.jonesH">Liniar (H):</span>
                                     <span class="jones-vec">[1, 0]ᵀ</span>
                                 </div>
                                 <div class="jones-example">
-                                    <span>Liniar (V):</span>
+                                    <span data-i18n="advancedTab.jonesV">Liniar (V):</span>
                                     <span class="jones-vec">[0, 1]ᵀ</span>
                                 </div>
                                 <div class="jones-example">
-                                    <span>Circular Dreapta:</span>
+                                    <span data-i18n="advancedTab.jonesRCP">Circular Dreapta:</span>
                                     <span class="jones-vec">1/√2 [1, -i]ᵀ</span>
                                 </div>
                                 <div class="jones-example">
-                                    <span>Circular Stânga:</span>
+                                    <span data-i18n="advancedTab.jonesLCP">Circular Stânga:</span>
                                     <span class="jones-vec">1/√2 [1, i]ᵀ</span>
                                 </div>
                             </div>
@@ -447,77 +447,77 @@
                     </div>
 
                     <div class="info-section">
-                        <h3>Parametrii Stokes</h3>
-                        <p class="theory-text">
+                        <h3 data-i18n="advancedTab.stokesTitle">Parametrii Stokes</h3>
+                        <p class="theory-text" data-i18n="advancedTab.stokesP">
                             Parametrii Stokes oferă o descriere completă a stării de polarizare, 
                             inclusiv pentru lumina parțial polarizată.
                         </p>
                         <div class="math-block">
-                            <div class="equation">S₀ = |Eₓ|² + |Eᵧ|² (Intensitate totală)</div>
-                            <div class="equation">S₁ = |Eₓ|² - |Eᵧ|² (Liniar H-V)</div>
-                            <div class="equation">S₂ = 2Re(EₓEᵧ*) (Liniar ±45°)</div>
-                            <div class="equation">S₃ = 2Im(EₓEᵧ*) (Circular)</div>
+                            <div class="equation" data-i18n="equations.s0">S₀ = |Eₓ|² + |Eᵧ|² (Intensitate totală)</div>
+                            <div class="equation" data-i18n="equations.s1">S₁ = |Eₓ|² - |Eᵧ|² (Liniar H-V)</div>
+                            <div class="equation" data-i18n="equations.s2">S₂ = 2Re(EₓEᵧ*) (Liniar ±45°)</div>
+                            <div class="equation" data-i18n="equations.s3">S₃ = 2Im(EₓEᵧ*) (Circular)</div>
                         </div>
                     </div>
 
                     <div class="info-section">
-                        <h3>Sfera Poincaré</h3>
-                        <p class="theory-text">
+                        <h3 data-i18n="advancedTab.poincareTitle">Sfera Poincaré</h3>
+                        <p class="theory-text" data-i18n="advancedTab.poincareP">
                             Sfera Poincaré este o reprezentare grafică a tuturor stărilor posibile de polarizare. 
                             Punctele de pe sferă reprezintă stări complet polarizate:
                         </p>
                         <ul class="feature-list">
-                            <li>Polul Nord: Circular dreapta</li>
-                            <li>Polul Sud: Circular stânga</li>
-                            <li>Ecuator: Polarizări liniare</li>
-                            <li>Alte puncte: Polarizări eliptice</li>
+                            <li data-i18n="advancedTab.poincareLi1">Polul Nord: Circular dreapta</li>
+                            <li data-i18n="advancedTab.poincareLi2">Polul Sud: Circular stânga</li>
+                            <li data-i18n="advancedTab.poincareLi3">Ecuator: Polarizări liniare</li>
+                            <li data-i18n="advancedTab.poincareLi4">Alte puncte: Polarizări eliptice</li>
                         </ul>
                     </div>
 
                     <div class="info-section">
-                        <h3>Aplicații</h3>
+                        <h3 data-i18n="advancedTab.appsTitle">Aplicații</h3>
                         <div class="applications-grid">
                             <div class="app-card">
-                                <h4>🔬 Spectroscopie</h4>
-                                <p>Dicroism circular pentru studiul moleculelor chirale</p>
+                                <h4 data-i18n="advancedTab.appSpecH">🔬 Spectroscopie</h4>
+                                <p data-i18n="advancedTab.appSpecP">Dicroism circular pentru studiul moleculelor chirale</p>
                             </div>
                             <div class="app-card">
-                                <h4>📡 Comunicații</h4>
-                                <p>Comunicațiile prin satelit folosesc polarizare circulară</p>
+                                <h4 data-i18n="advancedTab.appComH">📡 Comunicații</h4>
+                                <p data-i18n="advancedTab.appComP">Comunicațiile prin satelit folosesc polarizare circulară</p>
                             </div>
                             <div class="app-card">
-                                <h4>🎬 Cinema 3D</h4>
-                                <p>RealD 3D folosește polarizare circulară pentru proiecție stereoscopică</p>
+                                <h4 data-i18n="advancedTab.app3dH">🎬 Cinema 3D</h4>
+                                <p data-i18n="advancedTab.app3dP">RealD 3D folosește polarizare circulară pentru proiecție stereoscopică</p>
                             </div>
                             <div class="app-card">
-                                <h4>📻 Radioastronomie</h4>
-                                <p>Detectarea emisiilor polarizate de la surse celeste</p>
+                                <h4 data-i18n="advancedTab.appRadH">📻 Radioastronomie</h4>
+                                <p data-i18n="advancedTab.appRadP">Detectarea emisiilor polarizate de la surse celeste</p>
                             </div>
                             <div class="app-card">
-                                <h4>🔒 Criptografie Cuantică</h4>
-                                <p>Stările de polarizare codifică informația cuantică</p>
+                                <h4 data-i18n="advancedTab.appQH">🔒 Criptografie Cuantică</h4>
+                                <p data-i18n="advancedTab.appQP">Stările de polarizare codifică informația cuantică</p>
                             </div>
                             <div class="app-card">
-                                <h4>🦋 Natură</h4>
-                                <p>Unele animale pot detecta lumina polarizată circular</p>
+                                <h4 data-i18n="advancedTab.appNatH">🦋 Natură</h4>
+                                <p data-i18n="advancedTab.appNatP">Unele animale pot detecta lumina polarizată circular</p>
                             </div>
                         </div>
                     </div>
 
                     <div class="info-section">
-                        <h3>Elemente Optice</h3>
+                        <h3 data-i18n="advancedTab.opticsTitle">Elemente Optice</h3>
                         <div class="theory-card">
-                            <h4>Placă de Sfert de Undă (λ/4)</h4>
-                            <p>Convertește polarizarea liniară în circulară și invers. 
+                            <h4 data-i18n="advancedTab.qwTitle">Placă de Sfert de Undă (λ/4)</h4>
+                            <p data-i18n="advancedTab.qwP">Convertește polarizarea liniară în circulară și invers. 
                             Introduce o defazare de 90° între componentele ortogonale.</p>
                         </div>
                         <div class="theory-card">
-                            <h4>Placă de Jumătate de Undă (λ/2)</h4>
-                            <p>Rotește planul polarizării liniare. Convertește RCP în LCP și invers.</p>
+                            <h4 data-i18n="advancedTab.hwTitle">Placă de Jumătate de Undă (λ/2)</h4>
+                            <p data-i18n="advancedTab.hwP">Rotește planul polarizării liniare. Convertește RCP în LCP și invers.</p>
                         </div>
                         <div class="theory-card">
-                            <h4>Polarizor</h4>
-                            <p>Transmite doar o componentă de polarizare liniară, blocând componenta ortogonală.</p>
+                            <h4 data-i18n="advancedTab.polTitle">Polarizor</h4>
+                            <p data-i18n="advancedTab.polP">Transmite doar o componentă de polarizare liniară, blocând componenta ortogonală.</p>
                         </div>
                     </div>
                 </div>
@@ -527,11 +527,12 @@
         <!-- Footer -->
         <footer class="footer">
             <div class="footer-content">
-                <span>Simulator Polarizare Circulară</span>
+                <span data-i18n="footer.line">Simulator Polarizare Circulară</span>
             </div>
         </footer>
     </div>
 
-    <script src="script.js"></script>
+    <script src="../simulator-i18n-runtime.js"></script>
+    <script src="polarizare-circulara-boot.js"></script>
 </body>
 </html>
