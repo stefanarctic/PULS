@@ -5,6 +5,29 @@
 
 "use strict";
 
+function resolveBundlePath(path) {
+  const o = window.__SIMULATOR_UI_I18N__;
+  if (!path || !o) return undefined;
+  return path.split(".").reduce((cur, key) => cur?.[key], o);
+}
+
+function simT(path, ro) {
+  return typeof window.simLbl === "function" ? window.simLbl(path, ro) : ro;
+}
+
+function simHtml(path, ro) {
+  const v = resolveBundlePath(path);
+  return typeof v === "string" ? v : ro;
+}
+
+function simFmt(path, vars, roTpl) {
+  let s = simT(path, roTpl);
+  for (const [k, v] of Object.entries(vars)) {
+    s = s.replace(new RegExp(`\\{${k}\\}`, "g"), String(v));
+  }
+  return s;
+}
+
 // ─────────────────────────────────────────────
 //  Canvas setup
 // ─────────────────────────────────────────────
@@ -308,10 +331,10 @@ function drawLaserSource(x, y, W, H) {
   ctx.fillStyle = "#00d9ff";
   ctx.font = "bold 9px 'Courier New'";
   ctx.textAlign = "center";
-  ctx.fillText("FASCICUL", x, y - hh - 6);
+  ctx.fillText(simT("canvas.beam", "FASCICUL"), x, y - hh - 6);
   ctx.fillStyle = "#87909c";
   ctx.font = "8px 'Courier New'";
-  ctx.fillText("ELI-NP · 10 PW", x, y + hh + 14);
+  ctx.fillText(simT("canvas.eliNpPw", "ELI-NP · 10 PW"), x, y + hh + 14);
   ctx.restore();
 }
 
@@ -339,7 +362,7 @@ function drawLens(x, y, H) {
   ctx.fillStyle = "#87909c";
   ctx.font = "8px 'Courier New'";
   ctx.textAlign = "center";
-  ctx.fillText("LENTILĂ", x, y + lh + 14);
+  ctx.fillText(simT("canvas.lens", "LENTILĂ"), x, y + lh + 14);
   ctx.restore();
 }
 
@@ -419,8 +442,12 @@ function drawTarget(cx, cy, tw, th, baseColor, craterR, glowI) {
   ctx.fillStyle = "#87909c";
   ctx.font = "8px 'Courier New'";
   ctx.textAlign = "center";
-  const matNames = { metal: "Au (metal)", plastic: "CH₂ (plastic)", plasma: "Plasmă" };
-  ctx.fillText(matNames[selectMaterial.value] || "Țintă", cx, cy + th / 2 + 14);
+  const matNames = {
+    metal: simT("materials.shortMetal", "Au (metal)"),
+    plastic: simT("materials.shortPlastic", "CH₂ (plastic)"),
+    plasma: simT("materials.shortPlasma", "Plasmă"),
+  };
+  ctx.fillText(matNames[selectMaterial.value] || simT("materials.targetFallback", "Țintă"), cx, cy + th / 2 + 14);
   ctx.restore();
 }
 
@@ -441,12 +468,20 @@ function drawLabels(g, lensX, diam_um, dist_m, effD) {
   ctx.stroke();
   ctx.setLineDash([]);
 
-  ctx.fillText(`d = ${parseFloat(sliderDist.value).toFixed(1)} m`, (g.sourceX + 60 + g.targetX) / 2, arrowY - 6);
+  ctx.fillText(
+    simFmt("canvas.dist", { d: parseFloat(sliderDist.value).toFixed(1) }, `d = ${parseFloat(sliderDist.value).toFixed(1)} m`),
+    (g.sourceX + 60 + g.targetX) / 2,
+    arrowY - 6
+  );
 
   // Spot size annotation
   const spotY = g.sourceY - 30;
   ctx.fillStyle = "rgba(0,217,255,0.42)";
-  ctx.fillText(`⌀ pată: ${effD.toFixed(1)} µm (ef.)`, g.targetX + g.targetW * 0.5 + 30, spotY);
+  ctx.fillText(
+    simFmt("canvas.spotEff", { d: effD.toFixed(1) }, `⌀ pată: ${effD.toFixed(1)} µm (ef.)`),
+    g.targetX + g.targetW * 0.5 + 30,
+    spotY
+  );
 
   ctx.restore();
 }
@@ -745,7 +780,7 @@ function animLoop() {
       spawnParticles(hitX, hitY, 80, "debris");
       spawnParticles(hitX, hitY, 60, "plasma");
       for (let i = 0; i < 5; i++) spawnShockRing(hitX, hitY, "#ffffff");
-      showOverlay("💥 PLASMĂ COMPLETĂ!\nȚinta ionizată 100%");
+      showOverlay(simT("overlay.fullPlasma", "💥 PLASMĂ COMPLETĂ!\nȚinta ionizată 100%"));
     }
   }
 
@@ -797,7 +832,7 @@ function animLoop() {
   } else {
     state.firing = false;
     btnFire.classList.remove("firing");
-    btnFire.textContent = "🔴 PORNEȘTE LASERUL";
+    btnFire.textContent = simT("buttons.fire", "🔴 PORNEȘTE LASERUL");
   }
 }
 
@@ -827,12 +862,12 @@ function updateReadouts(I, Ipeak, T, ioniz, pres, regime, eliMode) {
 
   // State
   const stateMap = {
-    idle:     { text: "Fascicul în drum",  color: "#00d4ff" },
-    heating:  { text: "Încălzire",          color: "#ff8c00" },
-    ablation: { text: "Ablație",            color: "#ff4500" },
-    plasma:   { text: "Ionizare / Plasmă",  color: "#bf00ff" },
-    boom:     { text: "PLASMĂ COMPLETĂ 💥", color: "#ff00ff" },
-    done:     { text: "Finalizat",          color: "#39ff14" },
+    idle:     { text: simT("phase.beamEnRoute", "Fascicul în drum"),  color: "#00d4ff" },
+    heating:  { text: simT("phase.heating", "Încălzire"),          color: "#ff8c00" },
+    ablation: { text: simT("phase.ablation", "Ablație"),            color: "#ff4500" },
+    plasma:   { text: simT("phase.plasma", "Ionizare / Plasmă"),  color: "#bf00ff" },
+    boom:     { text: simT("phase.boom", "PLASMĂ COMPLETĂ 💥"), color: "#ff00ff" },
+    done:     { text: simT("phase.done", "Finalizat"),          color: "#39ff14" },
   };
   const s = stateMap[state.phase] || stateMap.idle;
   rdState.textContent = s.text;
@@ -855,17 +890,17 @@ function updateInfoBox(I, T, ioniz, regime, eliMode) {
   const log = Math.log10(Math.max(1, I));
 
   if (log < 16) {
-    txt = "<strong>Regim termic:</strong> Fasciculul încălzeşte suprafaţa. Temperatura creşte, dar nu există ablaţie semnificativă.";
+    txt = simHtml("info.thermal", "<strong>Regim termic:</strong> Fasciculul încălzeşte suprafaţa. Temperatura creşte, dar nu există ablaţie semnificativă.");
   } else if (log < 18) {
-    txt = "<strong>Ablaţie laser:</strong> Materialul se evaporă şi se ejectează. Se formează un crater. Presiunea de radiaţie devine semnificativă.";
+    txt = simHtml("info.ablation", "<strong>Ablaţie laser:</strong> Materialul se evaporă şi se ejectează. Se formează un crater. Presiunea de radiaţie devine semnificativă.");
   } else if (log < 21) {
-    txt = "<strong>Ionizare / Plasmă:</strong> Electronii sunt smuşi din atomi. Se formează plasmă fierbinte. Intensitatea câmpului electric depăşeşte câmpul atomic.";
+    txt = simHtml("info.plasma", "<strong>Ionizare / Plasmă:</strong> Electronii sunt smuşi din atomi. Se formează plasmă fierbinte. Intensitatea câmpului electric depăşeşte câmpul atomic.");
   } else {
-    txt = "<strong>Regim relativist:</strong> Electronii sunt acceleraţi la viteze relativiste. Fizică nucleară şi generare de particule. Acesta este regimul ELI-NP!";
+    txt = simHtml("info.relativistic", "<strong>Regim relativist:</strong> Electronii sunt acceleraţi la viteze relativiste. Fizică nucleară şi generare de particule. Acesta este regimul ELI-NP!");
   }
 
   if (eliMode) {
-    txt += " <strong style='color:#ffd700'>Modul ELI activ:</strong> pulsuri femtosecunde → putere de vârf extremă în timp ultra-scurt.";
+    txt += " " + simHtml("info.eliSuffix", "<strong style='color:#ffd700'>Modul ELI activ:</strong> pulsuri femtosecunde → putere de vârf extremă în timp ultra-scurt.");
   }
 
   infoBox.innerHTML = `<p>${txt}</p>`;
@@ -894,7 +929,7 @@ function updateIdleReadouts() {
   rdIoniz.style.color = ioniz > 80 ? "#ff00ff" : ioniz > 40 ? "#ff4500" : ioniz > 10 ? "#ff8c00" : "#39ff14";
   rdPressure.innerHTML = fmtSci(pres);
   rdPeakInt.innerHTML = eliMode ? fmtSci(Ipeak) : "—";
-  rdState.textContent = "Intactă / În așteptare";
+  rdState.textContent = simT("phase.idle", "Intactă / În așteptare");
   rdState.style.color = "#39ff14";
   regimeFill.style.width = `${(regime * 100).toFixed(0)}%`;
   regimeFill.style.background = regime > 0.75 ? "#ff00ff"
@@ -935,7 +970,7 @@ btnFire.addEventListener("click", () => {
   if (state.animFrame) cancelAnimationFrame(state.animFrame);
 
   btnFire.classList.add("firing");
-  btnFire.textContent = "⚡ LASER ACTIV...";
+  btnFire.textContent = simT("buttons.firing", "⚡ LASER ACTIV...");
 
   animLoop();
 });
@@ -950,7 +985,7 @@ btnReset.addEventListener("click", () => {
   state.craterRadius  = 0;
   state.glowIntensity = 0;
   btnFire.classList.remove("firing");
-  btnFire.textContent = "🔴 PORNEȘTE LASERUL";
+  btnFire.textContent = simT("buttons.fire", "🔴 PORNEȘTE LASERUL");
   overlayMsg.classList.add("hidden");
 
   // Restore controls to default values.

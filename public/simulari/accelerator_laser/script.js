@@ -1,6 +1,29 @@
 const canvas = document.getElementById("simCanvas");
 const ctx = canvas.getContext("2d");
 
+function resolveBundlePath(path) {
+  const o = window.__SIMULATOR_UI_I18N__;
+  if (!path || !o) return undefined;
+  return path.split(".").reduce((cur, key) => cur?.[key], o);
+}
+
+function simT(path, ro) {
+  return typeof window.simLbl === "function" ? window.simLbl(path, ro) : ro;
+}
+
+function simHtml(path, ro) {
+  const v = resolveBundlePath(path);
+  return typeof v === "string" ? v : ro;
+}
+
+function simFmt(path, vars, roTpl) {
+  let s = simT(path, roTpl);
+  for (const [k, v] of Object.entries(vars)) {
+    s = s.replace(new RegExp("\\{" + k + "\\}", "g"), String(v));
+  }
+  return s;
+}
+
 canvas.width  = window.innerWidth;
 canvas.height = window.innerHeight;
 
@@ -254,7 +277,11 @@ function drawHUD() {
   ctx.fillText("γ: " + electron.energy.toFixed(2), 20, canvas.height - 70);
   ctx.font = "13px monospace";
   ctx.fillStyle = "rgba(0,200,255,0.75)";
-  ctx.fillText("v: " + electron.vx.toFixed(2) + "  c=" + c, 20, canvas.height - 20);
+  ctx.fillText(
+    simFmt("hud.velocityLine", { vx: electron.vx.toFixed(2), c }, "v: " + electron.vx.toFixed(2) + "  c=" + c),
+    20,
+    canvas.height - 20
+  );
 }
 
 function draw() {
@@ -271,6 +298,65 @@ function draw() {
   drawHUD();
 }
 
+function applyInfoCardCopy() {
+  const wt = document.getElementById("infoWhatsTitle");
+  const wb = document.getElementById("infoWhatsBody");
+  const yt = document.getElementById("infoWhyTitle");
+  const yb = document.getElementById("infoWhyBody");
+  const btn = document.getElementById("toggleInfo");
+  if (wt) wt.textContent = simT("info.whatsTitle", "⚡ Ce vezi");
+  if (wb) {
+    wb.innerHTML = simHtml(
+      "info.whatsBody",
+      "Laserul creează o <strong>undă de plasmă</strong> (wakefield).<br>Electronul este prins în această undă și accelerat."
+    );
+  }
+  if (yt) yt.textContent = simT("info.whyTitle", "🧪 De ce contează");
+  if (yb) {
+    yb.innerHTML = simHtml(
+      "info.whyBody",
+      "Această tehnică poate accelera particule pe distanțe de <strong>mii de ori mai mici</strong> decât acceleratoarele clasice, principiul din spatele <strong>ELI-NP</strong>."
+    );
+  }
+  if (btn) btn.title = simT("toggle.title", "Ce se întâmplă?");
+}
+
+function initKatexFormulas() {
+  if (!window.katex || typeof katex.render !== "function") return;
+  const waveEl = document.getElementById("formula-wave");
+  const gammaEl = document.getElementById("formula-gamma");
+  if (waveEl) {
+    katex.render("y(x,t) = A\\sin(kx - \\omega t)", waveEl, {
+      throwOnError: false,
+      displayMode: false
+    });
+  }
+  if (gammaEl) {
+    katex.render("\\gamma = \\dfrac{1}{\\sqrt{1 - v^2/c^2}}", gammaEl, {
+      throwOnError: false,
+      displayMode: true
+    });
+  }
+}
+
+function whenKatexReady() {
+  if (window.katex && typeof katex.render === "function") {
+    initKatexFormulas();
+    return;
+  }
+  const deadline = Date.now() + 10000;
+  (function poll() {
+    if (window.katex && typeof katex.render === "function") {
+      initKatexFormulas();
+    } else if (Date.now() < deadline) {
+      setTimeout(poll, 40);
+    }
+  })();
+}
+
+applyInfoCardCopy();
+whenKatexReady();
+
 // ── Loop ──────────────────────────────────────────────────────────────────────
 
 function loop() {
@@ -284,9 +370,10 @@ loop();
 
 // ── Info card ─────────────────────────────────────────────────────────────────
 
-const toggleBtn  = document.getElementById("toggleInfo");
-const infoCard   = document.getElementById("infoCard");
-
-toggleBtn.addEventListener("click", () => {
-  infoCard.classList.toggle("hidden");
-});
+const toggleBtn = document.getElementById("toggleInfo");
+const infoCard = document.getElementById("infoCard");
+if (toggleBtn && infoCard) {
+  toggleBtn.addEventListener("click", () => {
+    infoCard.classList.toggle("hidden");
+  });
+}

@@ -2550,6 +2550,337 @@
         "showPanel": "Show panel",
         "canvas": "Thin lens simulation canvas"
       }
+    },
+    "laser-interactie": {
+      "page": {
+        "eyebrow": "Lasers | Interactive simulation"
+      },
+      "documentTitle": "Laser vs matter",
+      "htmlLang": "en",
+      "header": {
+        "titleBefore": "Laser",
+        "titleAfter": "Matter",
+        "badge": "Physics simulator"
+      },
+      "aria": {
+        "panelLeft": "Control panel (left)",
+        "panelRight": "Data panel (right)",
+        "canvas": "Laser — matter interaction view"
+      },
+      "sections": {
+        "interactionMode": "Interaction mode",
+        "laserParams": "Laser parameters",
+        "material": "Material",
+        "liveStats": "Live stats",
+        "energy": "Relative energy",
+        "eventLog": "Event log"
+      },
+      "sliders": {
+        "freq": "Frequency (ν)",
+        "intensity": "Intensity (I)",
+        "duration": "Pulse duration (τ)"
+      },
+      "energyHint": "hν vs φ",
+      "buttons": {
+        "fire": "Fire laser",
+        "reset": "↺ Reset"
+      },
+      "modes": {
+        "hConstant": "h = 6.626×10⁻³⁴ J·s",
+        "photo": {
+          "name": "Photoelectric effect",
+          "sub": "photon → free electron",
+          "title": "⚡ Photoelectric effect",
+          "formula": "Ec = hν − φ",
+          "desc": "A photon with energy <em>hν</em> releases an electron only if <em>hν > φ</em>. Excess energy becomes kinetic energy."
+        },
+        "heat": {
+          "name": "Heating",
+          "sub": "vibrations → heat",
+          "title": "🔥 Heating (absorption)",
+          "formula": "ΔE = n·hν → ΔT",
+          "desc": "Photons transfer energy to the crystal lattice. Electrons vibrate more strongly → temperature rises."
+        },
+        "ionize": {
+          "name": "Ionization",
+          "sub": "electron fully removed",
+          "title": "💜 Ionization by laser",
+          "formula": "hν ≫ φ → e⁻ + ion⁺",
+          "desc": "At high intensity, electrons are stripped from atoms, forming a plasma."
+        }
+      },
+      "watermark": {
+        "photo": "PHOTOELECTRIC EFFECT",
+        "heat": "HEATING",
+        "ionize": "IONIZATION"
+      },
+      "materials": {
+        "sodium": {
+          "line": "Na (sodium)",
+          "phi": "φ = 2.3 eV"
+        },
+        "copper": {
+          "line": "Cu (copper)",
+          "phi": "φ = 4.7 eV"
+        },
+        "gold": {
+          "line": "Au (gold)",
+          "phi": "φ = 5.1 eV"
+        },
+        "silicon": {
+          "line": "Si (silicon)",
+          "phi": "φ = 4.0 eV"
+        }
+      },
+      "stats": {
+        "photonE": "Photon energy",
+        "workFn": "Work function",
+        "ekinMax": "Max electron Eₖ",
+        "emitted": "e⁻ emitted",
+        "temperature": "Temperature",
+        "blockedE": "0 eV (blocked)",
+        "vibrations": "— (vibrations)",
+        "plasma": "≫ 0 eV (plasma)",
+        "dash": "—"
+      },
+      "log": {
+        "init1": "Simulator initialised.",
+        "init2": "Choose a mode and fire the laser.",
+        "photoAbove": "hν={Ep}eV > φ={Ph}eV → Ec={Ek}eV",
+        "photoBelow": "hν={Ep}eV < φ={Ph}eV — no electrons emitted",
+        "heatDelta": "ΔT = +{dT} K → T = {T} K",
+        "ionBurst": "Ionization: electron fully ejected + ion⁺ formed",
+        "reset": "Simulator reset."
+      }
+    },
+    "eli-np-laser": {
+      "page": {
+        "eyebrow": "ELI-NP | Interactive simulation"
+      },
+      "documentTitle": "Photon Sniper – laser–target interaction",
+      "htmlLang": "en",
+      "header": {
+        "logoSub": "Extreme Light Infrastructure · Nuclear physics",
+        "titleMain": "Photon Sniper",
+        "titleSub": "– Laser–target interaction"
+      },
+      "sections": {
+        "laserParams": "Laser parameters",
+        "eliMode": "⚡ ELI mode",
+        "physicalData": "Physical data"
+      },
+      "labels": {
+        "power": "Power",
+        "focus": "Focusing (spot diameter)",
+        "dist": "Target distance",
+        "material": "Target material",
+        "pulseDuration": "Pulse duration",
+        "repRate": "Repetition rate",
+        "eliToggle": "Ultrashort pulses (fs)"
+      },
+      "hints": {
+        "pw": "1 PW = 10¹⁵ W",
+        "focus": "Smaller = more concentrated",
+        "dist": "Affects beam divergence",
+        "fs": "1 fs = 10⁻¹⁵ s"
+      },
+      "buttons": {
+        "fire": "🔴 FIRE LASER",
+        "firing": "⚡ LASER ACTIVE...",
+        "reset": "↺ Reset"
+      },
+      "readouts": {
+        "intensity": "Intensity",
+        "spotTemp": "Spot temperature",
+        "ionization": "Ionisation degree",
+        "radPressure": "Radiation pressure",
+        "peakEli": "Peak intensity (ELI)",
+        "targetState": "Target state"
+      },
+      "regime": {
+        "barTitle": "Physical regime",
+        "thermal": "Thermal",
+        "ablation": "Ablation",
+        "plasma": "Plasma",
+        "relativistic": "Relativistic"
+      },
+      "materials": {
+        "metal": "Metal (gold)",
+        "plastic": "Plastic (CH₂)",
+        "plasma": "Pre-ionised plasma",
+        "shortMetal": "Au (metal)",
+        "shortPlastic": "CH₂ (plastic)",
+        "shortPlasma": "Plasma",
+        "targetFallback": "Target"
+      },
+      "canvas": {
+        "beam": "BEAM",
+        "eliNpPw": "ELI-NP · 10 PW",
+        "lens": "LENS",
+        "dist": "d = {d} m",
+        "spotEff": "Spot ⌀: {d} µm (eff.)"
+      },
+      "phase": {
+        "beamEnRoute": "Beam en route",
+        "heating": "Heating",
+        "ablation": "Ablation",
+        "plasma": "Ionisation / plasma",
+        "boom": "FULL PLASMA 💥",
+        "done": "Finished",
+        "idle": "Intact / idle"
+      },
+      "info": {
+        "thermal": "<strong>Thermal regime:</strong> The beam heats the surface. Temperature rises, with little ablation.",
+        "ablation": "<strong>Laser ablation:</strong> Material vaporises and is ejected. A crater forms. Radiation pressure becomes significant.",
+        "plasma": "<strong>Ionisation / plasma:</strong> Electrons are stripped from atoms. Hot plasma forms. The electric field exceeds the atomic field.",
+        "relativistic": "<strong>Relativistic regime:</strong> Electrons reach relativistic speeds. Nuclear physics and particle generation—this is the ELI-NP regime!",
+        "eliSuffix": "<strong style=\"color:#ffd700\">ELI mode on:</strong> femtosecond pulses → extreme peak power in ultrashort time."
+      },
+      "overlay": {
+        "fullPlasma": "💥 FULL PLASMA!\nTarget 100% ionised"
+      },
+      "footer": {
+        "line": "ELI-NP Măgurele · Educational simulation · High-power laser physics"
+      },
+      "aria": {
+        "canvas": "Photon Sniper laser–target simulation canvas"
+      }
+    },
+    "accelerator-laser": {
+      "page": {
+        "eyebrow": "Lasers | Wakefield accelerator (educational)"
+      },
+      "documentTitle": "Laser wakefield acceleration (LWFA)",
+      "htmlLang": "en",
+      "labels": {
+        "intensity": "Laser intensity",
+        "density": "Plasma density"
+      },
+      "info": {
+        "whatsTitle": "⚡ What you see",
+        "whatsBody": "The laser creates a <strong>plasma wake</strong> (wakefield).<br>The electron is trapped in this wave and accelerated.",
+        "whyTitle": "🧪 Why it matters",
+        "whyBody": "This technique can accelerate particles over distances <strong>thousands of times smaller</strong> than classical accelerators—the principle behind <strong>ELI-NP</strong>."
+      },
+      "toggle": {
+        "title": "What is happening?"
+      },
+      "hud": {
+        "velocityLine": "v: {vx}  c={c}"
+      },
+      "aria": {
+        "canvas": "Laser wakefield acceleration (LWFA) simulation canvas"
+      }
+    },
+    "laser": {
+      "page": {
+        "eyebrow": "Lasers | Interactive optics lab"
+      },
+      "documentTitle": "Laser lab — beam, optics and detectors",
+      "htmlLang": "en",
+      "sections": {
+        "device": "Laser device",
+        "lasers": "Lasers",
+        "optics": "Optics",
+        "scene": "Scene"
+      },
+      "labels": {
+        "angle": "Angle",
+        "power": "Power",
+        "activeLaser": "Active laser",
+        "laserType": "Laser type",
+        "color": "Colour",
+        "element": "Element"
+      },
+      "buttons": {
+        "addLaser": "Add laser",
+        "resetLaser": "Reset laser",
+        "addToScene": "Add to scene",
+        "deleteSelected": "Delete selected"
+      },
+      "hint": {
+        "drag": "Drag elements with the mouse to move them."
+      },
+      "aria": {
+        "closePanel": "Close control panel",
+        "openPanel": "Open control panel",
+        "canvas": "Laser optics simulation canvas"
+      },
+      "laserSelect": {
+        "line": "Laser {n} — {type} / {color}",
+        "burnedSuffix": " (BURNED)"
+      },
+      "device": {
+        "burnedLabel": "BURNED"
+      },
+      "laserTypes": {
+        "diode": { "label": "Diode", "note": "baseline" },
+        "hene": { "label": "He-Ne", "note": "stable" },
+        "argon": { "label": "Argon", "note": "stronger" },
+        "fiber": { "label": "Fibre", "note": "efficient" },
+        "yag": { "label": "Nd:YAG", "note": "industrial" },
+        "ruby": { "label": "Ruby", "note": "premium" }
+      },
+      "laserColors": {
+        "red": { "label": "Red" },
+        "green": { "label": "Green" },
+        "blue": { "label": "Blue" },
+        "violet": { "label": "Violet" },
+        "yellow": { "label": "Yellow" }
+      },
+      "tools": {
+        "mirror_flat": "Plane mirror",
+        "mirror_concave": "Concave mirror",
+        "mirror_convex": "Convex mirror",
+        "prism": "Prism",
+        "lens_converging": "Converging lens",
+        "lens_diverging": "Diverging lens",
+        "beamsplitter": "Beam splitter",
+        "detector": "Optical detector",
+        "balloon_black": "Black balloon",
+        "balloon_red": "Red balloon",
+        "balloon_blue": "Blue balloon",
+        "balloon_green": "Green balloon",
+        "balloon_yellow": "Yellow balloon",
+        "balloon_white": "White balloon",
+        "firework": "Firework",
+        "protractor": "Protractor"
+      },
+      "detector": {
+        "intensityLine": "Intensity: {v}{interfer}",
+        "powerLine": "Power: {v} mW",
+        "lambdaLine": "λ: 632 nm",
+        "interferenceConstructive": " (constructive)",
+        "interferenceDestructive": " (destructive)",
+        "interferenceMixed": " (interference)"
+      },
+      "protractor": {
+        "hint": "0° on the line — rotate and read on the arc"
+      },
+      "details": {
+        "active": "Active: {id}{burned}",
+        "burnedTag": " (BURNED)",
+        "position": "Position: x={x}, y={y}",
+        "angle": "Angle: {deg}°",
+        "typeLine": "Type: {label} ×{mult}",
+        "colorLine": "Colour: {label} ({wl}) ×{mult}",
+        "basePower": "Base power: {v}",
+        "effPower": "Effective power: {v}",
+        "temp": "Temperature: {v}°C",
+        "noteLine": "Note: {note}{ruby}",
+        "rubyExtra": " — strongest in the list",
+        "opticsCount": "Optics: {n} elements",
+        "selectedHeader": "Selected: {type}",
+        "selectedPos": "  position x={x} y={y}",
+        "selectedAngle": "  angle={deg}°",
+        "fireworkExploded": "  fuse=exploded",
+        "fireworkLit": "  fuse=lit",
+        "fireworkCold": "  fuse=cold",
+        "noneSelected": "Selected: (no optic)",
+        "laserListPrefix": "Laser list: ",
+        "laserListItem": "L{n}:{type}/{color} {deg}°{burned}",
+        "burnedShort": " ARS"
+      }
     }
   }
 }

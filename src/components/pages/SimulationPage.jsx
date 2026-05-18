@@ -47,6 +47,10 @@ const SIMULATOR_I18N_QUERY_SLUGS = new Set([
   "polarizare-circulara",
   "Vizualizator-4d",
   "lentila-subtire",
+  "laser-interactie",
+  "eli-np-laser",
+  "accelerator-laser",
+  "laser",
 ]);
 
 const DEFAULT_EN_SIMULATOR_EYEBROW = "Interactive simulation";

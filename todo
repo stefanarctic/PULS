@@ -4,7 +4,7 @@
 
 Criteriu „tradus”: slug în `src/components/pages/SimulationPage.jsx` (`SIMULATOR_I18N_QUERY_SLUGS`) și bloc corespunzător în `public/translations/simulatoare.en.json`.
 
-### Traduse (29)
+### Traduse (33)
 
 | slug | titlu (RO în app) |
 |------|-------------------|
@@ -37,6 +37,10 @@ Criteriu „tradus”: slug în `src/components/pages/SimulationPage.jsx` (`SIMU
 | polarizare-circulara | Polarizare Circulară |
 | Vizualizator-4d | Vizualizator 4D |
 | lentila-subtire | Lentilă Subțire |
+| laser-interactie | Laser vs materie |
+| eli-np-laser | ELI-NP Photon Sniper |
+| accelerator-laser | Accelerare de electroni cu laser (LWFA) |
+| laser | Laser |
 
 ### Semi-traduse (4)
 
@@ -45,7 +49,7 @@ Criteriu „tradus”: slug în `src/components/pages/SimulationPage.jsx` (`SIMU
 | proiectile | Mișcarea Proiectilului |
 | lanturi-elastice | Lanțuri Elastice |
 
-### Netraduse (20)
+### Netraduse (16)
 
 | slug | titlu (RO în app) |
 |------|-------------------|
@@ -56,10 +60,6 @@ Criteriu „tradus”: slug în `src/components/pages/SimulationPage.jsx` (`SIMU
 | constelatii | Constelații pe cer |
 | miscare-planete | Mișcarea Planetelor |
 | tabel-periodic | Tabelul periodic |
-| laser | Laser |
-| laser-interactie | Laser vs materie |
-| eli-np-laser | ELI-NP Photon Sniper |
-| accelerator-laser | Accelerare de electroni cu laser (LWFA) |
 | spectru-electromagnetic | Spectrul electromagnetic |
 | curent-alternativ | Curent alternativ |
 | kirchhoff | Legile lui Kirchhoff (iframe extern — caz aparte) |

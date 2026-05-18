@@ -19,7 +19,7 @@ function syncLaserPanelUi() {
   panelToggle.setAttribute("aria-expanded", String(!collapsed))
   panelToggle.setAttribute(
     "aria-label",
-    collapsed ? "Deschide panoul de controale" : "Închide panoul de controale"
+    collapsed ? simT("aria.openPanel", "Deschide panoul de controale") : simT("aria.closePanel", "Închide panoul de controale")
   )
 }
 
@@ -74,13 +74,44 @@ const BALLOON_PRESETS = {
 const FIREWORK_IGNITION_THRESHOLD = 10.5
 const AMBIENT_TEMPERATURE = 24
 
-function populateSelectFromMap(select, source){
+function simT(path, ro) {
+  return typeof window.simLbl === "function" ? window.simLbl(path, ro) : ro
+}
+
+function simFmt(path, vars, roTpl) {
+  let s = simT(path, roTpl)
+  for (const k of Object.keys(vars)) {
+    s = s.replace(new RegExp("\\{" + k + "\\}", "g"), String(vars[k]))
+  }
+  return s
+}
+
+function laserTypeLabel(key) {
+  const d = LASER_TYPE_PRESETS[key] || LASER_TYPE_PRESETS.diode
+  return simT("laserTypes." + key + ".label", d.label)
+}
+
+function laserTypeNote(key) {
+  const d = LASER_TYPE_PRESETS[key] || LASER_TYPE_PRESETS.diode
+  return simT("laserTypes." + key + ".note", d.note)
+}
+
+function laserColorLabel(key) {
+  const d = LASER_COLOR_PRESETS[key] || LASER_COLOR_PRESETS.red
+  return simT("laserColors." + key + ".label", d.label)
+}
+
+function toolLabel(typeKey) {
+  return simT("tools." + typeKey, typeKey)
+}
+
+function populateSelectFromMap(select, source, i18nPrefix) {
   if(!select) return
   select.innerHTML = ""
   for(const [key, data] of Object.entries(source)){
     const opt = document.createElement("option")
     opt.value = key
-    opt.textContent = data.label
+    opt.textContent = i18nPrefix ? simT(i18nPrefix + "." + key + ".label", data.label) : data.label
     select.appendChild(opt)
   }
 }
@@ -138,7 +169,13 @@ function renderLaserSelect(){
     const l = lasers[i]
     const opt = document.createElement("option")
     opt.value = String(i)
-    const label = "Laser " + (i + 1) + " - " + getLaserTypeData(l).label + " / " + getLaserColorData(l).label + (l.burned ? " (ARS)" : "")
+    const burned = l.burned ? simT("laserSelect.burnedSuffix", " (ARS)") : ""
+    const label =
+      simFmt(
+        "laserSelect.line",
+        { n: i + 1, type: laserTypeLabel(l.typeKey), color: laserColorLabel(l.colorKey) },
+        "Laser " + (i + 1) + " - " + getLaserTypeData(l).label + " / " + getLaserColorData(l).label
+      ) + burned
     opt.textContent = label
     laserSelect.appendChild(opt)
   }
@@ -157,8 +194,8 @@ function setActiveLaserIndex(idx){
 }
 
 // init active laser
-populateSelectFromMap(laserTypeSelect, LASER_TYPE_PRESETS)
-populateSelectFromMap(laserColorSelect, LASER_COLOR_PRESETS)
+populateSelectFromMap(laserTypeSelect, LASER_TYPE_PRESETS, "laserTypes")
+populateSelectFromMap(laserColorSelect, LASER_COLOR_PRESETS, "laserColors")
 laser.angle = degToRad(Number(angleSlider.value) || 0)
 angleSlider.value = Math.round(normalizeDeg(radToDeg(laser.angle)))
 powerSlider.value = String(laser.power || 8)
@@ -756,7 +793,7 @@ function drawElement(el){
     ctx.fillStyle = "rgba(255,255,220,0.75)"
     ctx.font = "11px sans-serif"
     ctx.textAlign = "center"
-    ctx.fillText("0° pe linie — rotește și măsoară pe arc", 0, 38)
+    ctx.fillText(simT("protractor.hint", "0° pe linie — rotește și măsoară pe arc"), 0, 38)
     ctx.restore()
   }
 
@@ -793,7 +830,7 @@ function drawElement(el){
         const delta = Math.abs(reads[0].pathLength - reads[1].pathLength)
         const phaseDiff = (2 * Math.PI * delta) / LAMBDA_PX
         const cosD = Math.cos(phaseDiff)
-        interferenceInfo = cosD > 0.5 ? " (constructiv)" : cosD < -0.5 ? " (destructiv)" : " (interferență)"
+        interferenceInfo = cosD > 0.5 ? simT("detector.interferenceConstructive", " (constructiv)") : cosD < -0.5 ? simT("detector.interferenceDestructive", " (destructiv)") : simT("detector.interferenceMixed", " (interferență)")
       }
     }
     const powerMw = totalPower * 0.4
@@ -803,9 +840,21 @@ function drawElement(el){
     ctx.fillStyle = "rgba(200,255,220,0.95)"
     ctx.font = "12px monospace"
     ctx.textAlign = "center"
-    ctx.fillText(`Intensity: ${intensity.toFixed(2)}${interferenceInfo}`, 0, -28)
-    ctx.fillText(`Power: ${powerMw.toFixed(1)} mW`, 0, -14)
-    ctx.fillText("λ: 632 nm", 0, 0)
+    ctx.fillText(
+      simFmt(
+        "detector.intensityLine",
+        { v: intensity.toFixed(2), interfer: interferenceInfo },
+        "Intensity: " + intensity.toFixed(2) + interferenceInfo
+      ),
+      0,
+      -28
+    )
+    ctx.fillText(
+      simFmt("detector.powerLine", { v: powerMw.toFixed(1) }, "Power: " + powerMw.toFixed(1) + " mW"),
+      0,
+      -14
+    )
+    ctx.fillText(simT("detector.lambdaLine", "λ: 632 nm"), 0, 0)
     ctx.restore()
   }
 
@@ -860,7 +909,7 @@ if (laser.burned) {
   ctx.fillStyle = "#2a0a0a"
   ctx.font = "10px sans-serif"
   ctx.textAlign = "center"
-  ctx.fillText("ARS", 0, 5)
+  ctx.fillText(simT("device.burnedLabel", "ARS"), 0, 5)
 } else {
   const beamRgb = getLaserBeamRgb(laser)
   ctx.fillStyle = rgbString(beamRgb, 1)
@@ -1556,7 +1605,6 @@ function updateDetails(){
 
   const activeL = lasers[activeLaserIndex]
   const activeDeg = Math.round(normalizeDeg(radToDeg(activeL.angle)))
-  const typeData = getLaserTypeData(activeL)
   const colorData = getLaserColorData(activeL)
   const basePower = Number(activeL.power || 0)
   const effectivePower = getLaserEffectivePower(activeL)
@@ -1567,35 +1615,49 @@ function updateDetails(){
     selectedEl = elements.find(e => e.id === activeElementId) || null
   }
 
+  const typeMult = getLaserTypeData(activeL).multiplier
   const lines = []
-  lines.push("Activ: " + activeL.id + (activeL.burned ? " (ARS)" : ""))
-  lines.push("Pozitie: x=" + Math.round(activeL.x) + ", y=" + Math.round(activeL.y))
-  lines.push("Unghi: " + activeDeg + "°")
-  lines.push("Tip: " + typeData.label + " x" + typeData.multiplier.toFixed(2))
-  lines.push("Culoare: " + colorData.label + " (" + colorData.wavelength + ") x" + colorData.multiplier.toFixed(2))
-  lines.push("Putere bază: " + basePower.toFixed(1))
-  lines.push("Putere efectivă: " + effectivePower.toFixed(1))
-  lines.push("Temperatură: " + temperature.toFixed(1) + "°C")
-  lines.push("Notă: " + typeData.note + (activeL.typeKey === "ruby" ? " - cel mai puternic din listă" : ""))
-  lines.push("Optică: " + elements.length + " elemente")
+  const burnedActive = activeL.burned ? simT("details.burnedTag", " (ARS)") : ""
+  lines.push(simFmt("details.active", { id: activeL.id, burned: burnedActive }, "Activ: " + activeL.id + (activeL.burned ? " (ARS)" : "")))
+  lines.push(simFmt("details.position", { x: Math.round(activeL.x), y: Math.round(activeL.y) }, "Pozitie: x=" + Math.round(activeL.x) + ", y=" + Math.round(activeL.y)))
+  lines.push(simFmt("details.angle", { deg: activeDeg }, "Unghi: " + activeDeg + "°"))
+  lines.push(simFmt("details.typeLine", { label: laserTypeLabel(activeL.typeKey), mult: typeMult.toFixed(2) }, "Tip: " + getLaserTypeData(activeL).label + " x" + typeMult.toFixed(2)))
+  lines.push(simFmt("details.colorLine", { label: laserColorLabel(activeL.colorKey), wl: colorData.wavelength, mult: colorData.multiplier.toFixed(2) }, "Culoare: " + colorData.label + " (" + colorData.wavelength + ") x" + colorData.multiplier.toFixed(2)))
+  lines.push(simFmt("details.basePower", { v: basePower.toFixed(1) }, "Putere bază: " + basePower.toFixed(1)))
+  lines.push(simFmt("details.effPower", { v: effectivePower.toFixed(1) }, "Putere efectivă: " + effectivePower.toFixed(1)))
+  lines.push(simFmt("details.temp", { v: temperature.toFixed(1) }, "Temperatură: " + temperature.toFixed(1) + "°C"))
+  const rubyX = activeL.typeKey === "ruby" ? simT("details.rubyExtra", " - cel mai puternic din listă") : ""
+  lines.push(simFmt("details.noteLine", { note: laserTypeNote(activeL.typeKey), ruby: rubyX }, "Notă: " + getLaserTypeData(activeL).note + (activeL.typeKey === "ruby" ? " - cel mai puternic din listă" : "")))
+  lines.push(simFmt("details.opticsCount", { n: elements.length }, "Optică: " + elements.length + " elemente"))
 
   if(selectedEl){
     const deg = Math.round(normalizeDeg(radToDeg(selectedEl.angle)))
-    lines.push("Selectat: " + selectedEl.type)
-    lines.push("  poziție x=" + Math.round(selectedEl.x) + " y=" + Math.round(selectedEl.y))
-    lines.push("  unghi=" + deg + "°")
+    lines.push(simFmt("details.selectedHeader", { type: toolLabel(selectedEl.type) }, "Selectat: " + selectedEl.type))
+    lines.push(simFmt("details.selectedPos", { x: Math.round(selectedEl.x), y: Math.round(selectedEl.y) }, "  poziție x=" + Math.round(selectedEl.x) + " y=" + Math.round(selectedEl.y)))
+    lines.push(simFmt("details.selectedAngle", { deg }, "  unghi=" + deg + "°"))
     if(selectedEl.type === "firework"){
-      lines.push("  fitil=" + (selectedEl.exploded ? "explodat" : selectedEl.ignited ? "aprins" : "stins"))
+      lines.push(
+        selectedEl.exploded
+          ? simT("details.fireworkExploded", "  fitil=explodat")
+          : selectedEl.ignited
+            ? simT("details.fireworkLit", "  fitil=aprins")
+            : simT("details.fireworkCold", "  fitil=stins")
+      )
     }
   } else {
-    lines.push("Selectat: (nimic optic)")
+    lines.push(simT("details.noneSelected", "Selectat: (nimic optic)"))
   }
 
   const laserStates = lasers.map((l, i) => {
     const d = Math.round(normalizeDeg(radToDeg(l.angle)))
-    return "L" + (i + 1) + ":" + getLaserTypeData(l).label + "/" + getLaserColorData(l).label + " " + d + "°" + (l.burned ? " ARS" : "")
+    const burned = l.burned ? simT("details.burnedShort", " ARS") : ""
+    return simFmt(
+      "details.laserListItem",
+      { n: i + 1, type: laserTypeLabel(l.typeKey), color: laserColorLabel(l.colorKey), deg: d, burned },
+      "L" + (i + 1) + ":" + getLaserTypeData(l).label + "/" + getLaserColorData(l).label + " " + d + "°" + (l.burned ? " ARS" : "")
+    )
   })
-  lines.push("Laser listă: " + laserStates.join(" | "))
+  lines.push(simT("details.laserListPrefix", "Laser listă: ") + laserStates.join(" | "))
 
   detailsDiv.textContent = lines.join("\n")
 }
