@@ -18,6 +18,7 @@ import { useMathJaxTypesetRoot } from '../hooks/useMathJaxTypesetRoot';
 import { summarizeProblemImages } from '../lib/problemImageSummary';
 import { useI18n } from '../i18n/LanguageContext';
 import { normalizeString } from '../lib/normalizeString';
+import { convertDollarToInlineMathJax, prepareProblemHtmlMath } from '../lib/problemHtmlMath';
 
 function formatProblemCategory(cat, t) {
   if (!cat) return '';
@@ -55,15 +56,61 @@ function problemMathJaxFingerprint(p) {
   ].join('\u0000');
 }
 
-/** DeepL/Markdown: scoate backtick-uri sau <code> în jurul delimitatorilor MathJax. */
-function prepareProblemHtmlMath(str) {
-  if (str == null || str === '') return str;
-  let s = String(str);
-  s = s.replace(/`(\\\([\s\S]*?\\\))`/g, '$1');
-  s = s.replace(/`(\$[\s\S]*?\$)`/g, '$1');
-  s = s.replace(/<code[^>]*>\s*(\\\([\s\S]*?\\\))\s*<\/code>/gi, '$1');
-  s = s.replace(/<code[^>]*>\s*(\$[\s\S]*?\$)\s*<\/code>/gi, '$1');
-  return s;
+function escapeHtmlPlain(s) {
+  return String(s)
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;');
+}
+
+/** Enunț scurt / fără LaTeX: nu încadra în $...$ — MathJax ignoră spațiile în modul math. */
+function plainProseToSafeHtml(s) {
+  if (s == null || s === '') return '';
+  const prepared = prepareProblemHtmlMath(s);
+  if (!prepared) return '';
+  return String(prepared)
+    .split(/<br\s*\/?>/gi)
+    .map((chunk) => escapeHtmlPlain(chunk))
+    .join('<br/>');
+}
+
+function hasProblemLatexMarkers(s) {
+  return (
+    typeof s === 'string' &&
+    (s.includes('\\') || s.includes('$') || /[α-ωΑ-Ω°]/.test(s))
+  );
+}
+
+function isWhitespacePhrase(s) {
+  return typeof s === 'string' && /\s/.test(s);
+}
+
+function htmlForProblemDateKey(key) {
+  if (!hasProblemLatexMarkers(key) && isWhitespacePhrase(key)) {
+    return plainProseToSafeHtml(key);
+  }
+  let formattedKey = key;
+  if (!hasProblemLatexMarkers(key)) {
+    formattedKey = `$${key}$`;
+  } else if (!formattedKey.includes('$') && !formattedKey.startsWith('\\(')) {
+    formattedKey = `$${formattedKey}$`;
+  }
+  return convertDollarToInlineMathJax(formattedKey);
+}
+
+function htmlForProblemDateValue(value) {
+  const raw = String(value ?? '');
+  if (!hasProblemLatexMarkers(raw) && isWhitespacePhrase(raw)) {
+    return plainProseToSafeHtml(raw);
+  }
+  let formattedValue = raw;
+  if (!hasProblemLatexMarkers(raw) && !formattedValue.includes('$') && !formattedValue.startsWith('\\(')) {
+    formattedValue = `$${formattedValue}$`;
+  } else if (hasProblemLatexMarkers(raw) && !formattedValue.includes('$') && !formattedValue.startsWith('\\(')) {
+    formattedValue = `$${formattedValue}$`;
+  }
+  return convertDollarToInlineMathJax(formattedValue);
 }
 
 function formatDifficultyDisplay(raw, t) {
@@ -355,13 +402,6 @@ export const ProblemaDetaliata = ({ problema, onBack, homeworkContext = null, tr
       .getPropertyValue('--primary-color-current-mode')
       .trim();
 
-  // Adaugă funcția de conversie pentru delimitatori MathJax
-  function convertDollarToInlineMathJax(str) {
-    if (!str) return str;
-    const s = prepareProblemHtmlMath(str);
-    return s.replace(/\$(.+?)\$/g, (match) => match.replace(/\$(.+?)\$/g, (_, expr) => `\\(${expr}\\)`));
-  }
-
   useEffect(() => {
     // starRef.current.color = 'green';
   }, [darkModeOn]);
@@ -414,7 +454,7 @@ export const ProblemaDetaliata = ({ problema, onBack, homeworkContext = null, tr
     <div className="container">
       {/* Butonul de "Înapoi la probleme" a fost eliminat */}
       <div className="main">
-        <div className="problema-detaliata" ref={mathJaxRootRef}>
+        <div className="problema-detaliata tex2jax_process" ref={mathJaxRootRef}>
           <Card className="problema-detaliata-main-card mb-6">
             {translationLoading && (
               <div className="problema-translation-banner" role="status">
@@ -587,41 +627,15 @@ export const ProblemaDetaliata = ({ problema, onBack, homeworkContext = null, tr
                   </h4>
                   <div className="grid grid-cols-2 gap-3">
                     {Object.entries(problema.date).map(([key, value]) => {
-                      // Păstrează formatarea LaTeX exactă din enunț
-                      // Dacă cheia conține backslash sau caractere matematice speciale, păstrează-o ca LaTeX
-                      let formattedKey = key;
-                      const hasLatex = key.includes('\\') || key.includes('$') || /[α-ωΑ-Ω]/.test(key);
-
-                      if (!hasLatex) {
-                        // Pentru chei simple precum "m_1", păstrăm underscore-ul pentru LaTeX
-                        // Dacă cheia are format "m_1", o transformăm în "$m_1$"
-                        if (key.includes('_')) {
-                          formattedKey = `$${key}$`;
-                        } else {
-                          // Dacă nu are underscore, înlocuim cu spații doar dacă e necesar
-                          formattedKey = `$${key}$`;
-                        }
-                      } else if (!formattedKey.includes('$') && !formattedKey.startsWith('\\(')) {
-                        // Dacă are LaTeX dar nu are delimitatori, adaugă delimitatori
-                        formattedKey = `$${formattedKey}$`;
-                      }
-
-                      // Pentru valoare, păstrăm formatarea exactă
-                      let formattedValue = String(value);
-                      const valueHasLatex = formattedValue.includes('\\') || formattedValue.includes('$') || /[α-ωΑ-Ω°]/.test(formattedValue);
-
-                      if (!valueHasLatex && !formattedValue.includes('$') && !formattedValue.startsWith('\\(')) {
-                        formattedValue = `$${formattedValue}$`;
-                      } else if (valueHasLatex && !formattedValue.includes('$') && !formattedValue.startsWith('\\(')) {
-                        formattedValue = `$${formattedValue}$`;
-                      }
+                      const keyHtml = htmlForProblemDateKey(key);
+                      const valueHtml = htmlForProblemDateValue(value);
 
                       return (
                         <div key={key} className="flex justify-between items-center">
                           <span
                             className="text-gray-600"
                             dangerouslySetInnerHTML={{
-                              __html: `${convertDollarToInlineMathJax(formattedKey)}: <span class='font-medium'>${convertDollarToInlineMathJax(formattedValue)}</span>`
+                              __html: `${keyHtml}: <span class='font-medium'>${valueHtml}</span>`,
                             }}
                           />
                         </div>

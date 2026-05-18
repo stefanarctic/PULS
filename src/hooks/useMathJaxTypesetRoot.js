@@ -24,14 +24,20 @@ export function useMathJaxTypesetRoot(watch) {
 
     const scheduleTypeset = () => {
       if (cancelled) return;
-      if (window.MathJax?.typesetPromise) {
-        requestAnimationFrame(() => {
-          if (cancelled || !el.isConnected) return;
-          window.MathJax.typesetPromise([el]).catch(() => {});
-        });
-      } else {
+      const mj = window.MathJax;
+      if (!mj?.typesetPromise) {
         timeoutId = window.setTimeout(scheduleTypeset, 50);
+        return;
       }
+      requestAnimationFrame(() => {
+        if (cancelled || !el.isConnected) return;
+        const run = () => mj.typesetPromise([el]).catch(() => {});
+        if (mj.startup?.promise) {
+          mj.startup.promise.then(run).catch(run);
+        } else {
+          run();
+        }
+      });
     };
 
     scheduleTypeset();
@@ -40,7 +46,14 @@ export function useMathJaxTypesetRoot(watch) {
     if (watch !== undefined) {
       delayedId = window.setTimeout(() => {
         if (cancelled || !el.isConnected) return;
-        window.MathJax?.typesetPromise?.([el])?.catch(() => {});
+        const mj = window.MathJax;
+        if (!mj?.typesetPromise) return;
+        const run = () => mj.typesetPromise([el]).catch(() => {});
+        if (mj.startup?.promise) {
+          mj.startup.promise.then(run).catch(run);
+        } else {
+          run();
+        }
       }, 160);
     }
 

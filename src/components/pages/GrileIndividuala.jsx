@@ -12,11 +12,7 @@ import { onAuthStateChanged } from 'firebase/auth';
 import { Timestamp } from 'firebase/firestore';
 import { parseHomeworkParams, recordAssignmentItemProgress } from '../../lib/assignmentProgress';
 import { useI18n } from '../../i18n/LanguageContext';
-
-function convertDollarToInlineMathJax(str) {
-    if (!str) return str;
-    return str.replace(/\$(.+?)\$/g, (_, expr) => `\\(${expr}\\)`);
-}
+import { convertDollarToInlineMathJax } from '../../lib/problemHtmlMath';
 
 const GrileIndividuala = () => {
     const { id } = useParams();
@@ -70,8 +66,14 @@ const GrileIndividuala = () => {
     }, [hasChecked, homeworkContext, firebaseUser?.uid, isCorrect]);
 
     useEffect(() => {
-        if (hasChecked && window.MathJax?.typesetPromise) {
-            window.MathJax.typesetPromise();
+        if (!hasChecked) return;
+        const mj = window.MathJax;
+        if (!mj?.typesetPromise) return;
+        const run = () => mj.typesetPromise().catch(() => {});
+        if (mj.startup?.promise) {
+            mj.startup.promise.then(run).catch(run);
+        } else {
+            run();
         }
     }, [hasChecked]);
 

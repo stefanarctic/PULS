@@ -3,6 +3,8 @@
  * `problemId` = același ID ca la `problems/{problemId}`.
  */
 
+import { normalizeProblemMathString } from './normalizeProblemMathString';
+
 export const TRADUCERI_COLLECTION = 'traduceri';
 export const TRADUCERI_EN_SUBCOLLECTION = 'en';
 /** Un singur document EN per problemă. */
@@ -61,7 +63,10 @@ export function encodeMathForDeepL(raw) {
 /** Scoate <m> după răspuns și restaurează LaTeX-ul. */
 export function decodeMathFromDeepL(translated) {
   if (translated == null) return '';
-  return String(translated).replace(/<m>([\s\S]*?)<\/m>/gi, (_, inner) => xmlUnescapeFromTag(inner));
+  const decoded = String(translated).replace(/<m>([\s\S]*?)<\/m>/gi, (_, inner) =>
+    xmlUnescapeFromTag(inner),
+  );
+  return normalizeProblemMathString(decoded);
 }
 
 /** Ruta same-origin: Vite middleware (dev) sau Vercel /api (prod) — evită CORS DeepL. */

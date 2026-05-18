@@ -327,7 +327,7 @@ Ecuațiile elongațiilor sunt:
 y = A \\sin(\\omega t + \\varphi_{01})
 \\]
 \\[
-v = -A \\omega \\cos(\\omega t + \\varphi_{01})
+v = A \\omega \\cos(\\omega t + \\varphi_{01})
 \\]
 \\[
 T = t_2 - t_1

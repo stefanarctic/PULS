@@ -8,8 +8,14 @@ function MathJaxRender(props) {
   useEffect(() => {
     let canceled = false;
     function tryTypeset() {
-      if (window.MathJax && window.MathJax.typesetPromise) {
-        window.MathJax.typesetPromise().catch(() => {});
+      const mj = window.MathJax;
+      if (mj?.typesetPromise) {
+        const run = () => mj.typesetPromise().catch(() => {});
+        if (mj.startup?.promise) {
+          mj.startup.promise.then(run).catch(run);
+        } else {
+          run();
+        }
       } else if (!canceled) {
         setTimeout(tryTypeset, 100);
       }
