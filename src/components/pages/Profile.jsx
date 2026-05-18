@@ -22,6 +22,8 @@ import StreakCounter from '../community/StreakCounter';
 import CategoryBadges from '../community/CategoryBadges';
 import { sanitizeAliasInput, getAliasFormatIssueCode, ALIAS_MAX_LENGTH, ALIAS_MIN_LENGTH } from '../../lib/aliasValidation';
 import { useI18n } from '../../i18n/LanguageContext';
+import { useProblemEnById } from '../../hooks/useProblemEnById';
+import { mergeProblemWithEnDoc, PROBLEM_TRANSLATION_VERSION } from '../../lib/deeplProblemTranslate';
 import { formatProblemTitlePrefix } from '../../lib/problemTitleDisplay';
 
 // FavoriteProblemCard definit aici
@@ -437,6 +439,8 @@ const Profile = () => {
             .map(id => combinedProblemsMap.get(id))
             .filter(problem => Boolean(problem && problem.id))
     ), [favoriteIds, combinedProblemsMap]);
+
+    const enByIdFavorites = useProblemEnById(favoriteIds, lang, PROBLEM_TRANSLATION_VERSION);
 
     const handleGoogleLogin = async () => {
         try {
@@ -1601,7 +1605,7 @@ const Profile = () => {
                                             {favoriteProblems.filter(p => p && p.id).map(problem => (
                                                 <FavoriteProblemCard
                                                     key={problem.id}
-                                                    problem={problem}
+                                                    problem={mergeProblemWithEnDoc(problem, enByIdFavorites[problem.id])}
                                                     completionPercent={getProblemCompletion(problem)}
                                                     onUnstar={async (e) => {
                                                         e.preventDefault();

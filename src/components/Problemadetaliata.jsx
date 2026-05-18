@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useRef } from 'react';
+import React, { useEffect, useState, useRef, useMemo } from 'react';
 import { useNavigate } from 'react-router-dom';
 import '../scss/components/_problema-detaliata.scss';
 import { ArrowLeft, Bot, Calculator, BookOpen, Copy, Check, Star } from 'lucide-react';
@@ -6,7 +6,6 @@ import { Button } from './Buttondet';
 import { Card, CardContent, CardHeader, CardTitle } from './card';
 import { Badge } from './badge';
 import { Separator } from './separator';
-import MathJaxRender from './MathJaxRender';
 import ProblemSubmit from './ProblemSubmit';
 import { useDispatch, useSelector } from 'react-redux';
 import { deleteProblem, clearDeleteStatus, fetchProblems } from '../features/problems/problemsSlice';
@@ -15,6 +14,7 @@ import { onAuthStateChanged } from 'firebase/auth';
 import { doc, getDoc, setDoc } from 'firebase/firestore';
 import { useAssistant } from '../hooks/useAssistant';
 import useDarkMode from '../hooks/useDarkMode';
+import { useMathJaxTypesetRoot } from '../hooks/useMathJaxTypesetRoot';
 import { summarizeProblemImages } from '../lib/problemImageSummary';
 import { useI18n } from '../i18n/LanguageContext';
 import { normalizeString } from '../lib/normalizeString';
@@ -41,6 +41,31 @@ function formatProblemCategory(cat, t) {
   return entry ? t(entry[0], entry[1]) : cat;
 }
 
+function problemMathJaxFingerprint(p) {
+  if (!p) return '';
+  const sub = Array.isArray(p.subpuncte) ? p.subpuncte.map((s) => s.cerinta).join('\n') : '';
+  return [
+    p.id,
+    p.continut,
+    p.descriere,
+    p.titlu,
+    Array.isArray(p.formule) ? p.formule.join('\n') : '',
+    JSON.stringify(p.date || {}),
+    sub,
+  ].join('\u0000');
+}
+
+/** DeepL/Markdown: scoate backtick-uri sau <code> în jurul delimitatorilor MathJax. */
+function prepareProblemHtmlMath(str) {
+  if (str == null || str === '') return str;
+  let s = String(str);
+  s = s.replace(/`(\\\([\s\S]*?\\\))`/g, '$1');
+  s = s.replace(/`(\$[\s\S]*?\$)`/g, '$1');
+  s = s.replace(/<code[^>]*>\s*(\\\([\s\S]*?\\\))\s*<\/code>/gi, '$1');
+  s = s.replace(/<code[^>]*>\s*(\$[\s\S]*?\$)\s*<\/code>/gi, '$1');
+  return s;
+}
+
 function formatDifficultyDisplay(raw, t) {
   if (!raw) return '';
   const n = normalizeString(raw);
@@ -53,7 +78,7 @@ function formatDifficultyDisplay(raw, t) {
   return raw;
 }
 
-export const ProblemaDetaliata = ({ problema, onBack, homeworkContext = null }) => {
+export const ProblemaDetaliata = ({ problema, onBack, homeworkContext = null, translationLoading = false }) => {
   const navigate = useNavigate();
   const { localizedPath, t } = useI18n();
   const [copied, setCopied] = useState(false);
@@ -69,6 +94,9 @@ export const ProblemaDetaliata = ({ problema, onBack, homeworkContext = null }) 
   const starRef = useRef(null);
   const assistant = useAssistant();
   const { deleteStatus, deleteError } = useSelector(state => state.problems);
+
+  const mathJaxFingerprint = useMemo(() => problemMathJaxFingerprint(problema), [problema]);
+  const mathJaxRootRef = useMathJaxTypesetRoot(mathJaxFingerprint);
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, async (firebaseUser) => {
@@ -330,8 +358,8 @@ export const ProblemaDetaliata = ({ problema, onBack, homeworkContext = null }) 
   // Adaugă funcția de conversie pentru delimitatori MathJax
   function convertDollarToInlineMathJax(str) {
     if (!str) return str;
-    // Înlocuiește TOATE aparițiile $...$ cu \( ... \) (regex global, non-greedy)
-    return str.replace(/\$(.+?)\$/g, (match) => match.replace(/\$(.+?)\$/g, (_, expr) => `\\(${expr}\\)`));
+    const s = prepareProblemHtmlMath(str);
+    return s.replace(/\$(.+?)\$/g, (match) => match.replace(/\$(.+?)\$/g, (_, expr) => `\\(${expr}\\)`));
   }
 
   useEffect(() => {
@@ -386,8 +414,13 @@ export const ProblemaDetaliata = ({ problema, onBack, homeworkContext = null }) 
     <div className="container">
       {/* Butonul de "Înapoi la probleme" a fost eliminat */}
       <div className="main">
-        <div className="problema-detaliata">
+        <div className="problema-detaliata" ref={mathJaxRootRef}>
           <Card className="problema-detaliata-main-card mb-6">
+            {translationLoading && (
+              <div className="problema-translation-banner" role="status">
+                {t('problemDetailPage.translationInProgress', 'Se traduce problema în engleză…')}
+              </div>
+            )}
             <CardHeader>
               <div className="card-header-container">
                 <div className="card-header-content">
@@ -480,7 +513,6 @@ export const ProblemaDetaliata = ({ problema, onBack, homeworkContext = null }) 
               )}
               {/* ENUNT PROBLEMA CU MATHJAX */}
               <div className="text-gray-700 leading-relaxed mb-6" dangerouslySetInnerHTML={{ __html: convertDollarToInlineMathJax(problema.continut) }} />
-              <MathJaxRender />
 
               {problema.formule?.length > 0 && (
                 <div className="formule-section">
@@ -491,6 +523,7 @@ export const ProblemaDetaliata = ({ problema, onBack, homeworkContext = null }) 
                     {problema.formule.map((formula, index) => {
                       // Curăță formula și asigură că este în format LaTeX valid
                       let cleanedFormula = formula.trim();
+                      cleanedFormula = prepareProblemHtmlMath(cleanedFormula);
 
                       // Elimină delimitatori LaTeX dacă există deja
                       cleanedFormula = cleanedFormula.replace(/^\$+|\$+$/g, '');
@@ -540,7 +573,6 @@ export const ProblemaDetaliata = ({ problema, onBack, homeworkContext = null }) 
                             // MathJax inline
                             dangerouslySetInnerHTML={{ __html: `\\(${cleanedFormula}\\)` }}
                           />
-                          <MathJaxRender />
                         </div>
                       );
                     })}
@@ -592,7 +624,6 @@ export const ProblemaDetaliata = ({ problema, onBack, homeworkContext = null }) 
                               __html: `${convertDollarToInlineMathJax(formattedKey)}: <span class='font-medium'>${convertDollarToInlineMathJax(formattedValue)}</span>`
                             }}
                           />
-                          <MathJaxRender />
                         </div>
                       );
                     })}
@@ -613,7 +644,6 @@ export const ProblemaDetaliata = ({ problema, onBack, homeworkContext = null }) 
                     <div key={subpunct.id} className="subpunct">
                       <span className="font-semibold text-blue-600">{String.fromCharCode(97 + index)}) </span>
                       <span className="text-gray-800" dangerouslySetInnerHTML={{ __html: convertDollarToInlineMathJax(subpunct.cerinta) }} />
-                      <MathJaxRender /> {/* Aici adaugă MathJaxRender */}
                     </div>
                   ))}
                 </div>

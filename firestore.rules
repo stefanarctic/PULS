@@ -206,6 +206,20 @@ service cloud.firestore {
       allow update, delete: if isAdmin();
     }
 
+    // Traduceri: `traduceri/{problemId}/en/main` (engleză, același problemId ca la problems).
+    match /traduceri/{problemDocId} {
+      allow read: if true;
+      match /en/{enDocId} {
+        allow read: if true;
+        allow create, update: if enDocId == 'main' &&
+                                 request.resource.data.problemId == problemDocId &&
+                                 request.resource.data.problemId is string &&
+                                 request.resource.data.keys().hasAll(['problemId', 'translationVersion']) &&
+                                 (!('sourceLang' in request.resource.data) || request.resource.data.sourceLang == 'ro');
+        allow delete: if isAdmin();
+      }
+    }
+
     match /grile/{grilaId} {
       allow read: if true;
       allow create: if true;

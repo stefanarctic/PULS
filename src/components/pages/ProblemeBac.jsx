@@ -14,6 +14,8 @@ import { sendProblemSuggestion } from '../../lib/emailService';
 import SEO from '../SEO';
 import '../../scss/components/_probleme-bac.scss';
 import { useI18n } from '../../i18n/LanguageContext';
+import { useProblemEnById } from '../../hooks/useProblemEnById';
+import { mergeProblemWithEnDoc, PROBLEM_TRANSLATION_VERSION } from '../../lib/deeplProblemTranslate';
 
 function bacSubjectRoman(num) {
     return num === 1 ? 'I' : num === 2 ? 'II' : num === 3 ? 'III' : String(num);
@@ -300,6 +302,16 @@ const ProblemeBac = () => {
                 return problems.sort((a, b) => a.index - b.index);
         }
     }, [filteredBacProblems, sortBy]);
+
+    const bacProblemIds = useMemo(
+        () => sortedProblems.map((p) => p.id).filter(Boolean),
+        [sortedProblems]
+    );
+    const enByIdBac = useProblemEnById(bacProblemIds, lang, PROBLEM_TRANSLATION_VERSION);
+    const sortedProblemsForCards = useMemo(() => {
+        if (lang !== 'en') return sortedProblems;
+        return sortedProblems.map((p) => mergeProblemWithEnDoc(p, enByIdBac[p.id]));
+    }, [lang, sortedProblems, enByIdBac]);
 
 
     const solvedProblemsMap = useMemo(() => {
@@ -1498,7 +1510,7 @@ const ProblemeBac = () => {
                     {/* Problems Grid */}
                     {status === 'succeeded' && sortedProblems.length > 0 && (
                         <div className="problems-grid">
-                            {sortedProblems.map((problem) => (
+                            {sortedProblemsForCards.map((problem) => (
                                 <ProblemCard
                                     key={problem.id}
                                     problem={problem}

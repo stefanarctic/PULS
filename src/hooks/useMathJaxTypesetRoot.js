@@ -36,9 +36,18 @@ export function useMathJaxTypesetRoot(watch) {
 
     scheduleTypeset();
 
+    let delayedId;
+    if (watch !== undefined) {
+      delayedId = window.setTimeout(() => {
+        if (cancelled || !el.isConnected) return;
+        window.MathJax?.typesetPromise?.([el])?.catch(() => {});
+      }, 160);
+    }
+
     return () => {
       cancelled = true;
       if (timeoutId) window.clearTimeout(timeoutId);
+      if (delayedId) window.clearTimeout(delayedId);
     };
   }, deps);
 

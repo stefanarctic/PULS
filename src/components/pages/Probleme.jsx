@@ -11,6 +11,8 @@ import { auth, db } from '../../lib/firebase';
 import { onAuthStateChanged, getAuth } from 'firebase/auth';
 import { doc, getDoc, setDoc } from 'firebase/firestore';
 import { useSolvedProblems } from '../../hooks/useSolvedProblems';
+import { useProblemEnById } from '../../hooks/useProblemEnById';
+import { mergeProblemWithEnDoc, PROBLEM_TRANSLATION_VERSION } from '../../lib/deeplProblemTranslate';
 import { sendProblemSuggestion } from '../../lib/emailService';
 import SEO from '../SEO';
 import { LocalizedLink as Link, useI18n } from '../../i18n/LanguageContext';
@@ -575,7 +577,20 @@ const PhysicsProblems = () => {
     const totalPages = Math.ceil(sortedProblems.length / problemsPerPage);
     const startIndex = (currentPage - 1) * problemsPerPage;
     const endIndex = startIndex + problemsPerPage;
-    const currentProblems = sortedProblems.slice(startIndex, endIndex);
+    const currentProblemIds = useMemo(
+        () =>
+            sortedProblems
+                .slice((currentPage - 1) * problemsPerPage, currentPage * problemsPerPage)
+                .map((p) => p.id)
+                .filter(Boolean),
+        [sortedProblems, currentPage, problemsPerPage]
+    );
+    const enById = useProblemEnById(currentProblemIds, lang, PROBLEM_TRANSLATION_VERSION);
+    const currentProblems = useMemo(() => {
+        const slice = sortedProblems.slice(startIndex, endIndex);
+        if (lang !== 'en') return slice;
+        return slice.map((p) => mergeProblemWithEnDoc(p, enById[p.id]));
+    }, [sortedProblems, startIndex, endIndex, lang, enById]);
 
     // Funcție pentru generarea numerelor de pagină
     const getPageNumbers = () => {

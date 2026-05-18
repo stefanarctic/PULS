@@ -517,6 +517,7 @@
   "problemDetailPage": {
     "back": "Back to problems",
     "loading": "Loading the problem...",
+    "translationInProgress": "Translating this problem to English…",
     "notFound": "Problem not found.",
     "statementTitle": "Statement",
     "dataTitle": "Data",

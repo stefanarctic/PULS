@@ -6,6 +6,7 @@ import { useSelector } from 'react-redux';
 import SEO from '../SEO';
 import { parseHomeworkParams } from '../../lib/assignmentProgress';
 import { useI18n } from '../../i18n/LanguageContext';
+import { useProblemEnglishTranslation } from '../../hooks/useProblemEnglishTranslation';
 
 const ProblemaIndividuala = () => {
   const { id } = useParams();
@@ -16,12 +17,15 @@ const ProblemaIndividuala = () => {
   const { value: problemeData, status } = useSelector(state => state.problems);
 
   const problema = problemeData.find(problem => problem.index === parseInt(id, 10));
+  const { displayProblema, status: translationStatus } = useProblemEnglishTranslation(problema, lang);
 
   useEffect(() => {
     if ((status === 'succeeded' || status === 'failed') && !problema) {
       navigate(localizedPath('/probleme'));
     }
   }, [problema, status, navigate, localizedPath]);
+
+  const problemaView = displayProblema ?? problema;
 
   if (status === 'loading' || status === 'idle') {
     return (
@@ -46,16 +50,16 @@ const ProblemaIndividuala = () => {
   }
 
   const handleBack = () => {
-    if (problema.categorie === 'Bac' || (problema.categorie && problema.categorie.toLowerCase().includes('bac'))) {
+    if (problemaView.categorie === 'Bac' || (problemaView.categorie && problemaView.categorie.toLowerCase().includes('bac'))) {
       navigate(localizedPath('/probleme/bac'));
     } else {
       navigate(localizedPath('/probleme'));
     }
   };
 
-  const problemTitle = problema?.titlu || `Problema ${id}`;
-  const snippetRaw = problema?.enunt ? `${problema.enunt.substring(0, 150)}...` : '';
-  const problemDescription = problema?.enunt
+  const problemTitle = problemaView?.titlu || `Problema ${id}`;
+  const snippetRaw = problemaView?.enunt ? `${problemaView.enunt.substring(0, 150)}...` : '';
+  const problemDescription = problemaView?.enunt
     ? t('problemDetailPage.seoDescriptionWithStatement', `${problemTitle} - ${snippetRaw}`, {
         title: problemTitle,
         snippet: snippetRaw,
@@ -79,8 +83,8 @@ const ProblemaIndividuala = () => {
 
   const seoKeywords = t(
     'problemDetailPage.seoKeywords',
-    `problema fizică, ${problema?.categorie || ''}, ${problema?.dificultate || ''}, rezolvare fizică, exercițiu fizică`,
-    { category: problema?.categorie || '', difficulty: problema?.dificultate || '' },
+    `problema fizică, ${problemaView?.categorie || ''}, ${problemaView?.dificultate || ''}, rezolvare fizică, exercițiu fizică`,
+    { category: problemaView?.categorie || '', difficulty: problemaView?.dificultate || '' },
   );
 
   return (
@@ -93,7 +97,12 @@ const ProblemaIndividuala = () => {
         type="article"
         structuredData={structuredData}
       />
-      <ProblemaDetaliata problema={problema} onBack={handleBack} homeworkContext={homeworkContext} />
+      <ProblemaDetaliata
+        problema={problemaView}
+        onBack={handleBack}
+        homeworkContext={homeworkContext}
+        translationLoading={lang === 'en' && translationStatus === 'loading'}
+      />
     </Layout>
   );
 };
