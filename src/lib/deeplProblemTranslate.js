@@ -5,6 +5,34 @@
 
 import { normalizeProblemMathString } from './normalizeProblemMathString';
 
+/** EN din Firestore / DeepL: aplică aceleași reparații ca la afișare (cache-ul nu trece mereu prin decodeMathFromDeepL). */
+function normalizeEnPayloadStrings(en) {
+  if (!en || typeof en !== 'object') return en;
+  const norm = (v) => {
+    if (typeof v !== 'string') return v;
+    const out = normalizeProblemMathString(v);
+    return out ?? v;
+  };
+  const next = { ...en };
+  if (typeof next.titlu === 'string') next.titlu = norm(next.titlu);
+  if (typeof next.descriere === 'string') next.descriere = norm(next.descriere);
+  if (typeof next.continut === 'string') next.continut = norm(next.continut);
+  if (Array.isArray(next.formule)) next.formule = next.formule.map((f) => norm(f));
+  if (next.date && typeof next.date === 'object') {
+    const d = {};
+    for (const [k, val] of Object.entries(next.date)) {
+      d[norm(k)] = norm(val);
+    }
+    next.date = d;
+  }
+  if (Array.isArray(next.subpuncte)) {
+    next.subpuncte = next.subpuncte.map((sp) =>
+      sp && typeof sp === 'object' ? { ...sp, cerinta: norm(sp.cerinta) } : sp,
+    );
+  }
+  return next;
+}
+
 export const TRADUCERI_COLLECTION = 'traduceri';
 export const TRADUCERI_EN_SUBCOLLECTION = 'en';
 /** Un singur document EN per problemă. */
@@ -167,16 +195,17 @@ export async function translateProblemToEnPayload(problema) {
 
 export function mergeProblemWithEn(problema, en) {
   if (!en || typeof en !== 'object') return problema;
+  const enc = normalizeEnPayloadStrings(en);
   const merged = { ...problema };
-  if (en.titlu) merged.titlu = en.titlu;
-  if (en.descriere != null && en.descriere !== '') merged.descriere = en.descriere;
-  if (en.continut) merged.continut = en.continut;
-  if (Array.isArray(en.formule)) merged.formule = en.formule;
-  if (en.date && typeof en.date === 'object') merged.date = en.date;
-  if (Array.isArray(en.subpuncte) && Array.isArray(problema.subpuncte)) {
+  if (enc.titlu) merged.titlu = enc.titlu;
+  if (enc.descriere != null && enc.descriere !== '') merged.descriere = enc.descriere;
+  if (enc.continut) merged.continut = enc.continut;
+  if (Array.isArray(enc.formule)) merged.formule = enc.formule;
+  if (enc.date && typeof enc.date === 'object') merged.date = enc.date;
+  if (Array.isArray(enc.subpuncte) && Array.isArray(problema.subpuncte)) {
     merged.subpuncte = problema.subpuncte.map((sp, i) => ({
       ...sp,
-      cerinta: en.subpuncte[i]?.cerinta ?? sp.cerinta,
+      cerinta: enc.subpuncte[i]?.cerinta ?? sp.cerinta,
     }));
   }
   return merged;
