@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ro">
 
 <head>
   <meta charset="UTF-8">
@@ -68,48 +68,42 @@
     <div class="overlay" id="overlay"></div>
     <div class="generate-points-popup" id="generate-points-popup">
       <div class="popup-content">
-        <h1>Genereaza graficul pendulului</h1>
+        <h1 data-i18n="labels.popupTitle">Genereaza graficul pendulului</h1>
         <div class="data-input">
           <div class="section">
-            <label for="timeInterval">Intervalul de timp:</label>
+            <label for="timeInterval" data-i18n="labels.timeInterval">Intervalul de timp:</label>
             <div id="timeInterval">
               [ <input type="number" min="-10000" max="10000" id="interval1Input" class="intervalInput" autocomplete="off" placeholder="t0"> , <input type="number" min="-10000"
                 max="10000" id="interval2Input" class="intervalInput" autocomplete="off" placeholder="t"> ]
             </div>
-            <label>Ecuatia functiei:</label>
+            <label data-i18n="labels.equationHeading">Ecuatia functiei:</label>
 
             <div class="amplitude">
-              <label for="amplitudeInput">A = </label>
+              <label for="amplitudeInput" data-i18n="labels.amplitudeLabel">A = </label>
               <input type="number" id="amplitudeInput" autocomplete="off" placeholder="A">
             </div>
             
             <div class="equation">
-              <label>x = A * sin(</label>
+              <label data-i18n="labels.eqSinOpen">x = A * sin(</label>
               <input type="number" id="omegaInput" autocomplete="off" placeholder="𝛚">
-              <label for="omegaInput">* </label>
-              <label for="omegaInput">t + </label>
+              <label for="omegaInput" data-i18n="labels.eqOmegaStar">* </label>
+              <label for="omegaInput" data-i18n="labels.eqTPlus">t + </label>
               <input type="number" id="phaseInput" autocomplete="off" placeholder="ϕ0">
-              <label for="omegaInput">)</label>
+              <label for="omegaInput" data-i18n="labels.eqClose">)</label>
             </div>
 
-            <label for="colorInput">Culoare:</label>
+            <label for="colorInput" data-i18n="labels.color">Culoare:</label>
             <input type="color" id="colorInput" value="#ff0000">
           </div>
         </div>
-        <button id="generate-points-btn">Genereaza graficul</button>
+        <button id="generate-points-btn" type="button" data-i18n="buttons.generateGraph">Genereaza graficul</button>
         <button class="close-popup-btn" id="close-popup-btn">x</button>
       </div>
     </div>
   </div>
 
-  <script src="https://d3js.org/d3.v7.min.js"></script>
-  <script src="script.js"></script>
-  <!-- <script src="dragging.js"></script> -->
-  <!-- <script src="zoom.js"></script> -->
-  <!-- <script src="logs.js"></script> -->
-  <!-- <script src="createPoint.js"></script> -->
-  <script src="generatePoints.js"></script>
-  <script src="zoom2.js"></script>
+  <script src="../simulator-i18n-runtime.js"></script>
+  <script src="grafice-pendule-boot.js"></script>
   <!-- <script src="snowflakes.js"></script> -->
 </body>
 

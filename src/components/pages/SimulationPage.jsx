@@ -17,6 +17,7 @@ const SIMULATOR_I18N_QUERY_SLUGS = new Set([
   "pendul-simplu",
   "pendul-amortizat",
   "pendul-neliniar",
+  "grafice-pendule",
   "unde-apa",
   "figuri-lissajous",
   "seism",

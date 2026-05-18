@@ -1,3 +1,12 @@
+function simAlert(path, roText, vars) {
+    let s = typeof window.simLbl === 'function' ? window.simLbl(path, roText) : roText;
+    if (vars) {
+        for (const [k, v] of Object.entries(vars)) {
+            s = s.replace(new RegExp(`\\{${k}\\}`, 'g'), String(v));
+        }
+    }
+    alert(s);
+}
 
 let isDialogOpen = false;
 const popup = document.getElementById('generate-points-popup');
@@ -89,13 +98,19 @@ const validateValues = () => {
             continue;
         }
         if (parseInt(input.value) > parseInt(input.max)) {
-            alert(`Valoarea ${input.value} este mai mare decat maximul (${input.max})`);
+            simAlert('alerts.valueAboveMax', `Valoarea ${input.value} este mai mare decat maximul (${input.max})`, {
+                value: input.value,
+                max: input.max,
+            });
             input.style.borderColor = 'red';
             ok = false;
             continue;
         }
         if (parseInt(input.value) < parseInt(input.min)) {
-            alert(`Valoarea ${input.value} este mai mica decat minimul (${input.min})`);
+            simAlert('alerts.valueBelowMin', `Valoarea ${input.value} este mai mica decat minimul (${input.min})`, {
+                value: input.value,
+                min: input.min,
+            });
             input.style.borderColor = 'red';
             ok = false;
             continue;
@@ -103,8 +118,13 @@ const validateValues = () => {
     }
 
     if (parseInt(intervalInputs[0].value) > parseInt(intervalInputs[1].value)) {
-        alert(`Valoarea ${intervalInputs[0].value} este mai mare decat ${intervalInputs[1].value}`);
-        input.style.borderColor = 'red';
+        simAlert(
+            'alerts.intervalStartAfterEnd',
+            `Valoarea ${intervalInputs[0].value} este mai mare decat ${intervalInputs[1].value}`,
+            { start: intervalInputs[0].value, end: intervalInputs[1].value }
+        );
+        intervalInputs[0].style.borderColor = 'red';
+        intervalInputs[1].style.borderColor = 'red';
         ok = false;
     }
 
@@ -123,20 +143,20 @@ const validateValues = () => {
 
     if(parseInt(phaseInput.value) > 90)
     {
-        alert(`ϕ0 nu poate sa fie mai mare decat 90°`);
+        simAlert('alerts.phaseTooLarge', 'ϕ0 nu poate sa fie mai mare decat 90°');
         phaseInput.style.borderColor = 'red';
         ok = false;
     }
     else if(parseInt(phaseInput.value) < 0)
     {
-        alert(`ϕ0 nu poate sa fie negativ`);
+        simAlert('alerts.phaseNegative', 'ϕ0 nu poate sa fie negativ');
         phaseInput.style.borderColor = 'red';
         ok = false;
     }
 
     if (amplitudeInput.value === '' || omegaInput.value === '' || phaseInput.value === ''
         || intervalInputs[0].value === '' || intervalInputs[1].value === '')
-        alert(`Te rog sa completezi toate campurile`);
+        simAlert('alerts.fillAllFields', 'Te rog sa completezi toate campurile');
 
     return ok;
 }

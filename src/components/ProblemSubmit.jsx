@@ -73,7 +73,7 @@ const ProblemSubmit = ({
     defaultProblemTitle = null,
     assignmentContext = null,
 }) => {
-    const { t } = useI18n();
+    const { t, lang } = useI18n();
     const [solutionText, setSolutionText] = useState('');
     const [solutionImageFiles, setSolutionImageFiles] = useState([]);
     const solutionImageInputRef = useRef(null);
@@ -172,6 +172,7 @@ const ProblemSubmit = ({
                 problem,
                 solutionText: solutionText.trim() || undefined,
                 solutionPhotoDataUris,
+                locale: lang,
             });
 
             setApiResponse(result);

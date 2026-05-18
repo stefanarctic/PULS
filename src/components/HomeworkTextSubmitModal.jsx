@@ -137,6 +137,7 @@ const HomeworkTextSubmitModal = ({
         problemText,
         solutionText: solutionText.trim() || undefined,
         solutionPhotoDataUris: images.length ? images.map((x) => x.previewUrl) : undefined,
+        locale: lang,
       });
       setApiResponse(result);
 

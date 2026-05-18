@@ -4,13 +4,14 @@
 
 Criteriu „tradus”: slug în `src/components/pages/SimulationPage.jsx` (`SIMULATOR_I18N_QUERY_SLUGS`) și bloc corespunzător în `public/translations/simulatoare.en.json`.
 
-### Traduse (19)
+### Traduse (20)
 
 | slug | titlu (RO în app) |
 |------|-------------------|
 | pendul-simplu | Pendulul Oscilator Simplu |
 | pendul-amortizat | Pendulul Oscilator Amortizat |
 | pendul-neliniar | Pendul simplu neliniar |
+| grafice-pendule | Grafice Pendule |
 | unde-apa | Undele produse în apă |
 | seism | Seism |
 | coliziuni-inelastice | Coliziuni Inelastice |
@@ -31,11 +32,10 @@ Criteriu „tradus”: slug în `src/components/pages/SimulationPage.jsx` (`SIMU
 | proiectile | Mișcarea Proiectilului |
 | lanturi-elastice | Lanțuri Elastice |
 
-### Netraduse (34)
+### Netraduse (33)
 
 | slug | titlu (RO în app) |
 |------|-------------------|
-| grafice-pendule | Grafice Pendule |
 | grafice-functii | Grafice Funcții |
 | grafice-simple | Grafice Simple |
 | termodinamica | Termodinamică – Gaz ideal într-un vas |
@@ -77,13 +77,13 @@ Criteriu „tradus”: slug în `src/components/pages/SimulationPage.jsx` (`SIMU
 - de adaugat restul de simulari
 - responsive pentru pagina resurse
 - traducere engleza
-    - ai verificare + vorbit in engleza
-    - de corectat restul de probleme gresite + grile
+    - de corectat restul de probleme gresite
     - simulatoare + poze
     - search
     - mr deuteron in engleza
     - seo in engleza
     - jocuri in engleza
+    - ui mai bun la language select
 
 
 

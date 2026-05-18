@@ -148,6 +148,33 @@
         "mechanicalEnergy": "Mechanical energy Em (J)"
       }
     },
+    "grafice-pendule": {
+      "page": { "eyebrow": "Pendulum graphs | Interactive simulation" },
+      "documentTitle": "Harmonic graphs — pendulum simulator",
+      "htmlLang": "en",
+      "labels": {
+        "popupTitle": "Generate the pendulum graph",
+        "timeInterval": "Time interval:",
+        "equationHeading": "Function:",
+        "amplitudeLabel": "A = ",
+        "eqSinOpen": "x = A * sin(",
+        "eqOmegaStar": "* ",
+        "eqTPlus": "t + ",
+        "eqClose": ")",
+        "color": "Colour:"
+      },
+      "buttons": {
+        "generateGraph": "Generate graph"
+      },
+      "alerts": {
+        "valueAboveMax": "The value {value} is greater than the maximum ({max})",
+        "valueBelowMin": "The value {value} is less than the minimum ({min})",
+        "intervalStartAfterEnd": "The value {start} is greater than {end}",
+        "phaseTooLarge": "φ₀ cannot be greater than 90°",
+        "phaseNegative": "φ₀ cannot be negative",
+        "fillAllFields": "Please fill in all fields"
+      }
+    },
     "unde-apa": {
       "page": { "eyebrow": "Water waves | Interactive simulation" },
       "documentTitle": "Water wave simulator",
