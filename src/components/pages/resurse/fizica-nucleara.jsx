@@ -3,6 +3,7 @@ import { Button } from "../../Button";
 import SEO from "../../SEO";
 import { useMathJaxTypesetRoot } from "@/hooks/useMathJaxTypesetRoot";
 import { useI18n } from "@/i18n/LanguageContext";
+import { pickSimulationThumb } from "@/lib/simulationScreenshots";
 import MrDeuteronWidget from "../../MrDeuteronWidget";
 
 import apaGreaImg from "/res/screenshots/apa_grea_1.png";
@@ -15,7 +16,7 @@ import totiIzotopiiImg from "/res/screenshots/Toti_Izotopii_Screenshot.png";
 
 const FizicaNuclearaPage = () => {
   const mathRootRef = useMathJaxTypesetRoot();
-  const { t, localizedPath } = useI18n();
+  const { t, localizedPath, lang } = useI18n();
   const NP = "resourcesPage.lessonPages.nuclearPhysics";
 
   return (
@@ -77,7 +78,7 @@ const FizicaNuclearaPage = () => {
 
                 <div className="image-slider h-52 sm:h-64 md:h-80 relative flex items-center justify-center mb-6 md:mb-8">
                   <img
-                    src={fisiuneNuclearaImg}
+                    src={pickSimulationThumb(fisiuneNuclearaImg, "fisiune-nucleara", lang)}
                     alt={t(
                       `${NP}.fissionSim.alt`,
                       "Simulator fisiune nucleară U-235: neutroni, nuclei, factor k și energie cumulată"
@@ -175,7 +176,7 @@ const FizicaNuclearaPage = () => {
 
                 <div className="image-slider h-52 sm:h-64 md:h-80 relative flex items-center justify-center mb-6 md:mb-8">
                   <img
-                    src={reactorFuziuneDtImg}
+                    src={pickSimulationThumb(reactorFuziuneDtImg, "reactor-fuziune-dt", lang)}
                     alt={t(
                       `${NP}.fusionSim.alt`,
                       "Simulator educativ reactor fuziune D–T: nucleu, particule, controale și grafic energie"
@@ -281,7 +282,7 @@ const FizicaNuclearaPage = () => {
                 </p>
                 <div className="image-slider h-52 sm:h-64 md:h-80 relative flex items-center justify-center mb-6 md:mb-8">
                   <img
-                    src={apaGreaImg}
+                    src={pickSimulationThumb(apaGreaImg, "apa-grea", lang)}
                     alt={t(`${NP}.heavyWater.alt`, "Simulator moderator cu apă grea")}
                     className="w-full h-full object-contain mx-auto my-auto"
                   />
@@ -383,7 +384,7 @@ const FizicaNuclearaPage = () => {
 
                 <div className="image-slider h-52 sm:h-64 md:h-80 relative flex items-center justify-center mb-6 md:mb-8">
                   <img
-                    src={instalatieSchimbIzotopicImg}
+                    src={pickSimulationThumb(instalatieSchimbIzotopicImg, "instalatie-schimb-izotopic", lang)}
                     alt={t(`${NP}.exchange.alt`, "Simulator instalație de schimb izotopic pentru apă grea")}
                     className="w-full h-full object-contain mx-auto my-auto"
                   />
@@ -472,7 +473,7 @@ const FizicaNuclearaPage = () => {
 
                 <div className="image-slider h-52 sm:h-64 md:h-80 relative flex items-center justify-center mb-6 md:mb-8">
                   <img
-                    src={distilareD2oFractionataResurseImg}
+                    src={pickSimulationThumb(distilareD2oFractionataResurseImg, "distilare-d2o-fractionata", lang)}
                     alt={t(
                       `${NP}.distillation.alt`,
                       "Simulator distilare fracționată H₂O–D₂O: coloană, reflux și grafic de puritate"
@@ -591,7 +592,7 @@ const FizicaNuclearaPage = () => {
                 </p>
                 <div className="image-slider h-52 sm:h-64 md:h-80 relative flex items-center justify-center mb-6 md:mb-8">
                   <img
-                    src={izotopiUraniuImg}
+                    src={pickSimulationThumb(izotopiUraniuImg, "izotopi-uraniu", lang)}
                     alt={t(`${NP}.uFour.alt`, "Simulator izotopii uraniului: nucleu, raport N/Z, dezintegrare alfa și evoluție în timp")}
                     className="w-full h-full object-contain mx-auto my-auto"
                   />
@@ -659,7 +660,7 @@ const FizicaNuclearaPage = () => {
                 </p>
                 <div className="image-slider h-52 sm:h-64 md:h-80 relative flex items-center justify-center mb-6 md:mb-8">
                   <img
-                    src={totiIzotopiiImg}
+                    src={pickSimulationThumb(totiIzotopiiImg, "toti-izotopii", lang)}
                     alt={t(`${NP}.u26.alt`, "Harta izotopilor uraniului: celule pe rândul Z egal cu 92, legendă moduri de dezintegrare")}
                     className="w-full h-full object-contain mx-auto my-auto"
                   />

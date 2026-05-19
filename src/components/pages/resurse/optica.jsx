@@ -4,6 +4,7 @@ import SEO from "../../SEO";
 import { useEffect, useMemo, useState } from "react";
 import { useMathJaxTypesetRoot } from "@/hooks/useMathJaxTypesetRoot";
 import { useI18n } from "@/i18n/LanguageContext";
+import { pickSimulationThumb } from "@/lib/simulationScreenshots";
 
 import simulatorPrismaImg from "/res/screenshots/Prisma_Screenshot.png";
 import lentilaSubtireImg from "/res/screenshots/Lentila_Subtire_Screenshot.png";
@@ -13,7 +14,7 @@ import spectruImg from "/res/screenshots/spectru_Screenshot.png";
 import laserImg from "/res/screenshots/laser_Screenshot.png";
 
 const OpticaPage = () => {
-  const { t, localizedPath } = useI18n();
+  const { t, localizedPath, lang } = useI18n();
   const [visibleFormulasCount, setVisibleFormulasCount] = useState({});
   const mathRootRef = useMathJaxTypesetRoot(JSON.stringify(visibleFormulasCount));
 
@@ -305,7 +306,7 @@ const OpticaPage = () => {
                 </p>
                 <div className="image-slider h-64 md:h-80 relative flex items-center justify-center mb-8">
                   <img
-                    src={lentilaSubtireImg}
+                    src={pickSimulationThumb(lentilaSubtireImg, "lentila-subtire", lang)}
                     alt={t(`${O}.thinLens.alt`, "Simulator Lentilă Subțire")}
                     className="w-full h-full object-contain mx-auto my-auto"
                   />
@@ -358,7 +359,7 @@ const OpticaPage = () => {
                 </p>
                 <div className="image-slider h-64 md:h-80 relative flex items-center justify-center mb-8">
                   <img
-                    src={reflexieRefractieImg}
+                    src={pickSimulationThumb(reflexieRefractieImg, "reflexie-refractie", lang)}
                     alt={t(`${O}.refractionReflection.alt`, "Simulator Reflexie și Refracție")}
                     className="w-full h-full object-contain mx-auto my-auto"
                   />
@@ -413,7 +414,7 @@ const OpticaPage = () => {
                 </p>
                 <div className="image-slider h-64 md:h-80 relative flex items-center justify-center mb-8">
                   <img
-                    src={simulatorPrismaImg}
+                    src={pickSimulationThumb(simulatorPrismaImg, "prisma", lang)}
                     alt={t(`${O}.prism.alt`, "Prisma")}
                     className="w-full h-full object-contain mx-auto my-auto"
                   />
@@ -468,7 +469,7 @@ const OpticaPage = () => {
                 </p>
                 <div className="image-slider h-64 md:h-80 relative flex items-center justify-center mb-8">
                   <img
-                    src={refractieAtmosfericaImg}
+                    src={pickSimulationThumb(refractieAtmosfericaImg, "refractie-atmosferica", lang)}
                     alt={t(`${O}.atmospheric.alt`, "Simulator Miraj în Deșert")}
                     className="w-full h-full object-contain mx-auto my-auto"
                   />
@@ -516,7 +517,7 @@ const OpticaPage = () => {
                   )}
                 </p>
                 <div className="image-slider h-64 md:h-80 relative flex items-center justify-center mb-8">
-                  <img src={laserImg} alt={t(`${O}.laser.alt`, "Laser")} className="w-full h-full object-contain mx-auto my-auto" />
+                  <img src={pickSimulationThumb(laserImg, "laser", lang)} alt={t(`${O}.laser.alt`, "Laser")} className="w-full h-full object-contain mx-auto my-auto" />
                 </div>
                 <div className="mt-8 flex flex-col md:flex-row md:items-center justify-between gap-6">
                   <div>
@@ -560,7 +561,7 @@ const OpticaPage = () => {
                 </p>
                 <div className="image-slider h-64 md:h-80 relative flex items-center justify-center mb-8">
                   <img
-                    src={spectruImg}
+                    src={pickSimulationThumb(spectruImg, "spectru-electromagnetic", lang)}
                     alt={t(`${O}.emSpectrum.alt`, "Spectrul electromagnetic")}
                     className="w-full h-full object-contain mx-auto my-auto"
                   />

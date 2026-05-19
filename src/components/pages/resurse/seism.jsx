@@ -6,9 +6,10 @@ import seismicWaveAnimation from "/res/screenshots/Seism_Screenshot.png";
 import Layout from "../../Layout";
 import SEO from "../../SEO";
 import { useI18n } from "@/i18n/LanguageContext";
+import { pickSimulationThumb } from "@/lib/simulationScreenshots";
 
 const SeismePage = () => {
-  const { t, localizedPath } = useI18n();
+  const { t, localizedPath, lang } = useI18n();
   const [visibleFormulasCount, setVisibleFormulasCount] = useState({});
   const mathRootRef = useMathJaxTypesetRoot(JSON.stringify(visibleFormulasCount));
 
@@ -148,7 +149,7 @@ const SeismePage = () => {
                 </p>
                 <div className="image-slider h-64 md:h-80 relative flex items-center justify-center mb-8">
                   <img
-                    src={seismImages[0].src}
+                    src={pickSimulationThumb(seismImages[0].src, "seism", lang)}
                     alt={seismImages[0].alt}
                     className="w-full h-full object-contain mx-auto my-auto"
                   />

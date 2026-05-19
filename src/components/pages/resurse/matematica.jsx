@@ -3,13 +3,14 @@ import { Button } from "../../Button";
 import SEO from "../../SEO";
 import { useMathJaxTypesetRoot } from "@/hooks/useMathJaxTypesetRoot";
 import { useI18n } from "@/i18n/LanguageContext";
+import { pickSimulationThumb } from "@/lib/simulationScreenshots";
 
 import simulatorFunctiiImg from "/res/screenshots/Functii_Screenshot.png";
 import vizualizator4dImg from "/res/screenshots/Vizualizator_4d_Screenshot.png";
 
 const MatematicaPage = () => {
   const mathRootRef = useMathJaxTypesetRoot();
-  const { t, localizedPath } = useI18n();
+  const { t, localizedPath, lang } = useI18n();
   const M = "resourcesPage.lessonPages.mathematics";
 
   return (
@@ -56,7 +57,7 @@ const MatematicaPage = () => {
                 </p>
                 <div className="image-slider h-64 md:h-80 relative flex items-center justify-center mb-8">
                   <img
-                    src={simulatorFunctiiImg}
+                    src={pickSimulationThumb(simulatorFunctiiImg, "grafice-functii", lang)}
                     alt={t(`${M}.graphs.alt`, "Grafice Funcții")}
                     className="w-full h-full object-contain mx-auto my-auto"
                   />
@@ -112,7 +113,7 @@ const MatematicaPage = () => {
                 </p>
                 <div className="image-slider h-64 md:h-80 relative flex items-center justify-center mb-8">
                   <img
-                    src={vizualizator4dImg}
+                    src={pickSimulationThumb(vizualizator4dImg, "vizualizator-4d", lang)}
                     alt={t(`${M}.fourD.alt`, "Vizualizator 4D")}
                     className="w-full h-full object-contain mx-auto my-auto"
                   />

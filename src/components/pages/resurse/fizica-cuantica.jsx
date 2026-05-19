@@ -3,13 +3,14 @@ import { Button } from "../../Button";
 import SEO from "../../SEO";
 import { useMathJaxTypesetRoot } from "@/hooks/useMathJaxTypesetRoot";
 import { useI18n } from "@/i18n/LanguageContext";
+import { pickSimulationThumb } from "@/lib/simulationScreenshots";
 
 import dublaFantaImg from "/res/screenshots/dubla_fanta_Screenshot.png";
 import tunelareImg from "/res/screenshots/tunelare_Screenshot.png";
 import legaturiAtomiImg from "/res/screenshots/legaturi_atomi_Screenshot.png";
 
 const FizicaCuanticaPage = () => {
-  const { t, localizedPath } = useI18n();
+  const { t, localizedPath, lang } = useI18n();
   const mathRootRef = useMathJaxTypesetRoot();
 
   const Q = "resourcesPage.lessonPages.quantumPhysics";
@@ -53,7 +54,7 @@ const FizicaCuanticaPage = () => {
                 </p>
                 <div className="image-slider h-64 md:h-80 relative flex items-center justify-center mb-8">
                   <img
-                    src={dublaFantaImg}
+                    src={pickSimulationThumb(dublaFantaImg, "dubla-fanta", lang)}
                     alt={t(`${Q}.doubleSlit.alt`, "Simulator dublă fantă")}
                     className="w-full h-full object-contain mx-auto my-auto"
                   />
@@ -124,7 +125,7 @@ const FizicaCuanticaPage = () => {
                 </p>
                 <div className="image-slider h-64 md:h-80 relative flex items-center justify-center mb-8">
                   <img
-                    src={tunelareImg}
+                    src={pickSimulationThumb(tunelareImg, "tunelare-cuantica", lang)}
                     alt={t(`${Q}.tunnelling.alt`, "Simulator tunelare cuantică")}
                     className="w-full h-full object-contain mx-auto my-auto"
                   />
@@ -219,7 +220,7 @@ const FizicaCuanticaPage = () => {
                 </p>
                 <div className="image-slider h-64 md:h-80 relative flex items-center justify-center mb-8">
                   <img
-                    src={legaturiAtomiImg}
+                    src={pickSimulationThumb(legaturiAtomiImg, "legaturi-atomi", lang)}
                     alt={t(`${Q}.bonding.alt`, "Simulator legături între atomi")}
                     className="w-full h-full object-contain mx-auto my-auto"
                   />

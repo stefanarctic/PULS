@@ -6,6 +6,7 @@ import simulatorGraficeBasicImg from "/res/screenshots/Grafice_Basic_Screenshot.
 import Layout from "../../Layout";
 import SEO from "../../SEO";
 import { useI18n } from "@/i18n/LanguageContext";
+import { pickSimulationThumb } from "@/lib/simulationScreenshots";
 
 const LissajousPage = () => {
 	const { t, localizedPath, lang } = useI18n();
@@ -101,7 +102,7 @@ const LissajousPage = () => {
 								</p>
 								<div className="image-slider h-64 md:h-80 relative flex items-center justify-center mb-8">
 									<img
-										src={lissajousImages[0].src}
+										src={pickSimulationThumb(lissajousImages[0].src, "figuri-lissajous", lang)}
 										alt={lissajousImages[0].alt}
 										className="w-full h-full object-contain mx-auto my-auto"
 									/>
@@ -139,7 +140,7 @@ const LissajousPage = () => {
 								</p>
 								<div className="image-slider h-64 md:h-80 relative flex items-center justify-center mb-8">
 									<img
-										src={lissajousImages[1].src}
+										src={pickSimulationThumb(lissajousImages[1].src, "grafice-simple", lang)}
 										alt={lissajousImages[1].alt}
 										className="w-full h-full object-contain mx-auto my-auto"
 									/>

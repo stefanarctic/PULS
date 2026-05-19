@@ -4,6 +4,7 @@ import Layout from "../Layout";
 import { simulationsConfig } from "@/data/simulations";
 import SEO from "../SEO";
 import { useI18n } from "../../i18n/LanguageContext";
+import { pickSimulationThumb } from "@/lib/simulationScreenshots";
 
 // Funcție helper pentru normalizarea diacriticelor (elimină diacriticele)
 const normalizeDiacritics = (str) => {
@@ -314,7 +315,7 @@ const SimulariPage = () => {
                   <div className="image-container">
                     <div className="card-image active">
                       <img
-                        src={sim.image}
+                        src={pickSimulationThumb(simulation.image, simulation.slug, lang)}
                         alt={sim.caption}
                       />
                       <div className="caption">

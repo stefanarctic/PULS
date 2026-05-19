@@ -17,6 +17,7 @@ import Layout from "../../Layout";
 import SEO from "../../SEO";
 import VideoPopup from "../../VideoPopup";
 import { useI18n } from "@/i18n/LanguageContext";
+import { pickSimulationThumb } from "@/lib/simulationScreenshots";
 
 const UndePage = () => {
   const { t, localizedPath, lang } = useI18n();
@@ -262,7 +263,7 @@ const UndePage = () => {
                 </p>
 
                 <div className="image-slider h-64 md:h-80 relative flex items-center justify-center mb-8">
-                  <img src={undeImages[0].src} alt={undeImages[0].alt} className="w-full h-full object-contain mx-auto my-auto" />
+                  <img src={pickSimulationThumb(undeImages[0].src, "unde-apa", lang)} alt={undeImages[0].alt} className="w-full h-full object-contain mx-auto my-auto" />
                 </div>
                 <div className="mt-8 flex flex-col md:flex-row md:items-center justify-between gap-6">
                   <div>
@@ -344,7 +345,7 @@ const UndePage = () => {
                 </p>
 
                 <div className="image-slider h-64 md:h-80 relative flex items-center justify-center mb-8">
-                  <img src={prismaImages[1].src} alt={prismaImages[1].alt} className="w-full h-full object-contain mx-auto my-auto" />
+                  <img src={pickSimulationThumb(prismaImages[1].src, "prisma", lang)} alt={prismaImages[1].alt} className="w-full h-full object-contain mx-auto my-auto" />
                 </div>
                 <div className="mt-8 flex flex-col md:flex-row md:items-center justify-between gap-6">
                   <div>
@@ -415,7 +416,7 @@ const UndePage = () => {
 
                 <div className="image-slider h-64 md:h-80 relative flex items-center justify-center mb-8">
                   <img
-                    src={PolarizareCircularaImg}
+                    src={pickSimulationThumb(PolarizareCircularaImg, "polarizare-circulara", lang)}
                     alt={t("resourcesPage.lessonPages.waves.altCircularPol", "Simulator Polarizare Circulară")}
                     className="w-full h-full object-contain mx-auto my-auto"
                   />

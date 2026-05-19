@@ -4,6 +4,7 @@ import SEO from "../../SEO";
 import { useEffect, useState, useMemo } from "react";
 import { useMathJaxTypesetRoot } from "@/hooks/useMathJaxTypesetRoot";
 import { useI18n } from "@/i18n/LanguageContext";
+import { pickSimulationThumb } from "@/lib/simulationScreenshots";
 
 import circuiteElectricitateImg from "/res/screenshots/Circuite_Electricitate_Screenshot.png";
 import energieCircuiteImg from "/res/screenshots/Energie_Circuite_Screenshot.png";
@@ -11,7 +12,7 @@ import curentAlternativImg from "/res/screenshots/ac_Screenshot.png";
 import kirchhoffSimulatorImg from "/res/screenshots/kirchoff_Screenshot.png";
 
 const ElectricitatePage = () => {
-  const { t, localizedPath } = useI18n();
+  const { t, localizedPath, lang } = useI18n();
   const [visibleFormulasCount, setVisibleFormulasCount] = useState({});
   const mathRootRef = useMathJaxTypesetRoot(JSON.stringify(visibleFormulasCount));
 
@@ -219,7 +220,7 @@ const ElectricitatePage = () => {
                 </p>
                 <div className="image-slider h-64 md:h-80 relative flex items-center justify-center mb-8">
                   <img
-                    src={circuiteElectricitateImg}
+                    src={pickSimulationThumb(circuiteElectricitateImg, "circuite-electricitate", lang)}
                     alt={t(`${E}.circuits.alt`, "Simulator Circuite Electrice")}
                     className="w-full h-full object-contain mx-auto my-auto"
                   />
@@ -274,7 +275,7 @@ const ElectricitatePage = () => {
                 </p>
                 <div className="image-slider h-64 md:h-80 relative flex items-center justify-center mb-8">
                   <img
-                    src={kirchhoffSimulatorImg}
+                    src={pickSimulationThumb(kirchhoffSimulatorImg, "kirchhoff", lang)}
                     alt={t(`${E}.kirchhoff.alt`, "Simulator legile lui Kirchhoff")}
                     className="w-full h-full object-contain mx-auto my-auto"
                   />
@@ -329,7 +330,7 @@ const ElectricitatePage = () => {
                 </p>
                 <div className="image-slider h-64 md:h-80 relative flex items-center justify-center mb-8">
                   <img
-                    src={energieCircuiteImg}
+                    src={pickSimulationThumb(energieCircuiteImg, "energie-circuite", lang)}
                     alt={t(`${E}.energy.alt`, "Simulator Energie în Circuite")}
                     className="w-full h-full object-contain mx-auto my-auto"
                   />
@@ -378,7 +379,7 @@ const ElectricitatePage = () => {
                 </p>
                 <div className="image-slider h-64 md:h-80 relative flex items-center justify-center mb-8">
                   <img
-                    src={curentAlternativImg}
+                    src={pickSimulationThumb(curentAlternativImg, "curent-alternativ", lang)}
                     alt={t(`${E}.ac.alt`, "Curent alternativ")}
                     className="w-full h-full object-contain mx-auto my-auto"
                   />

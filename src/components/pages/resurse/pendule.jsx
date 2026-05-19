@@ -12,6 +12,7 @@ import VideoPendul from "/res/Videos/Pendul Video.mp4";
 import Layout from "../../Layout";
 import SEO from "../../SEO";
 import { useI18n } from "@/i18n/LanguageContext";
+import { pickSimulationThumb } from "@/lib/simulationScreenshots";
 
 const PendulePage = () => {
   const { t, localizedPath, lang } = useI18n();
@@ -138,10 +139,10 @@ const PendulePage = () => {
   }, [graficeFormulas, pendulSimpluFormulas, pendulAmortizatFormulas, pendulNeliniarFormulas, penduleMultipleFormulas]);
 
   const Images = [
-    { src: simulatorGraficePendulImg, alt: t("resourcesPage.lessonPages.pendulums.harmonicGraphs.altCharts", "Grafice Pendul") },
-    { src: simulatorPendulSimpluImg, alt: t("resourcesPage.lessonPages.pendulums.formats.simple", "Pendulul Simplu") },
-    { src: simulatorPendulAmortizatImg, alt: t("resourcesPage.lessonPages.pendulums.formats.damped", "Pendulul Amortizat") },
-    { src: simulatorTrasnitPendulImg, alt: t("resourcesPage.lessonPages.pendulums.formats.mechanical", "Pendulul Mecanic") },
+    { slug: "grafice-pendule", src: simulatorGraficePendulImg, alt: t("resourcesPage.lessonPages.pendulums.harmonicGraphs.altCharts", "Grafice Pendul") },
+    { slug: "pendul-simplu", src: simulatorPendulSimpluImg, alt: t("resourcesPage.lessonPages.pendulums.formats.simple", "Pendulul Simplu") },
+    { slug: "pendul-amortizat", src: simulatorPendulAmortizatImg, alt: t("resourcesPage.lessonPages.pendulums.formats.damped", "Pendulul Amortizat") },
+    { slug: "pendul-neliniar", src: simulatorTrasnitPendulImg, alt: t("resourcesPage.lessonPages.pendulums.formats.mechanical", "Pendulul Mecanic") },
     { src: VideoPendul, alt: t("resourcesPage.lessonPages.pendulums.formats.videoPendulum", "Video Pendul") },
   ];
 
@@ -196,7 +197,11 @@ const PendulePage = () => {
                   )}
                 </p>
                 <div className="image-slider h-64 md:h-80 relative flex items-center justify-center mb-8">
-                  <img src={Images[0].src} alt={Images[0].alt} className="w-full h-full object-contain mx-auto my-auto" />
+                  <img
+                    src={pickSimulationThumb(Images[0].src, Images[0].slug, lang)}
+                    alt={Images[0].alt}
+                    className="w-full h-full object-contain mx-auto my-auto"
+                  />
                 </div>
                 <div className="mt-8 flex flex-col md:flex-row md:items-center justify-between gap-6">
                   <div>
@@ -263,7 +268,11 @@ const PendulePage = () => {
                   )}
                 </p>
                 <div className="image-slider h-64 md:h-80 relative flex items-center justify-center mb-8">
-                  <img src={Images[1].src} alt={Images[1].alt} className="w-full h-full object-contain mx-auto my-auto" />
+                  <img
+                    src={pickSimulationThumb(Images[1].src, Images[1].slug, lang)}
+                    alt={Images[1].alt}
+                    className="w-full h-full object-contain mx-auto my-auto"
+                  />
                 </div>
                 <div className="mt-8 flex flex-col md:flex-row md:items-center justify-between gap-6">
                   <div>
@@ -298,7 +307,11 @@ const PendulePage = () => {
                   )}
                 </p>
                 <div className="image-slider h-64 md:h-80 relative flex items-center justify-center mb-8">
-                  <img src={Images[2].src} alt={Images[2].alt} className="w-full h-full object-contain mx-auto my-auto" />
+                  <img
+                    src={pickSimulationThumb(Images[2].src, Images[2].slug, lang)}
+                    alt={Images[2].alt}
+                    className="w-full h-full object-contain mx-auto my-auto"
+                  />
                 </div>
                 <div className="mt-8 flex flex-col md:flex-row md:items-center justify-between gap-6">
                   <div>
@@ -337,7 +350,11 @@ const PendulePage = () => {
                   )}
                 </p>
                 <div className="image-slider h-64 md:h-80 relative flex items-center justify-center mb-8">
-                  <img src={Images[3].src} alt={Images[3].alt} className="w-full h-full object-contain mx-auto my-auto" />
+                  <img
+                    src={pickSimulationThumb(Images[3].src, Images[3].slug, lang)}
+                    alt={Images[3].alt}
+                    className="w-full h-full object-contain mx-auto my-auto"
+                  />
                 </div>
                 <div className="mt-8 flex flex-col md:flex-row md:items-center justify-between gap-6">
                   <div>
@@ -388,7 +405,7 @@ const PendulePage = () => {
                 </p>
                 <div className="image-slider h-64 md:h-80 relative flex items-center justify-center mb-8">
                   <img
-                    src={penduleMultipleImg}
+                    src={pickSimulationThumb(penduleMultipleImg, "pendule-multiple", lang)}
                     alt={t("resourcesPage.lessonPages.pendulums.multipleSection.altSimulator", "Simulator Pendule Multiple")}
                     className="w-full h-full object-contain mx-auto my-auto"
                   />

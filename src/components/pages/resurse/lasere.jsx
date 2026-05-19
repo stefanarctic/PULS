@@ -4,6 +4,7 @@ import { useMemo } from "react";
 import { useMathJaxTypesetRoot } from "@/hooks/useMathJaxTypesetRoot";
 import SEO from "../../SEO";
 import { useI18n } from "@/i18n/LanguageContext";
+import { pickSimulationThumbFromSimularePath } from "@/lib/simulationScreenshots";
 
 import laserSimulatorImg from "/res/screenshots/Laser_Simulator_Screenshot.png";
 import eliNpLaserImg from "/res/screenshots/Eli_Np_Laser_Screenshot.png";
@@ -145,7 +146,7 @@ const FORMULA_KEYS = {
 };
 
 const LaserePage = () => {
-  const { t, localizedPath } = useI18n();
+  const { t, localizedPath, lang } = useI18n();
   const mathRootRef = useMathJaxTypesetRoot();
 
   const L = "resourcesPage.lessonPages.lasers";
@@ -173,7 +174,7 @@ const LaserePage = () => {
           facts: ["f1", "f2", "f3"].slice(0, fb.facts.length).map((fk, i) => t(`${LS}.${meta.key}.facts.${fk}`, fb.facts[i])),
         };
       }),
-    [t]
+    [t, lang]
   );
 
   return (
@@ -252,7 +253,7 @@ const LaserePage = () => {
 
                   <div className="image-slider h-64 sm:h-72 md:h-80 relative flex items-center justify-center mb-6 md:mb-8">
                     <img
-                      src={simulator.image}
+                      src={pickSimulationThumbFromSimularePath(simulator.image, simulator.href, lang)}
                       alt={simulator.alt}
                       className="w-full h-full object-contain mx-auto my-auto"
                     />

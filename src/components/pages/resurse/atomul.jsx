@@ -4,6 +4,7 @@ import SEO from "../../SEO";
 import { useMemo } from "react";
 import { useMathJaxTypesetRoot } from "@/hooks/useMathJaxTypesetRoot";
 import { useI18n } from "@/i18n/LanguageContext";
+import { pickSimulationThumb } from "@/lib/simulationScreenshots";
 import { tabelPeriodicFormulas } from "@/data/tabelPeriodicFormulas";
 
 import atomulDeHidrogenImg from "/res/screenshots/Atom_hidrogen.png";
@@ -21,7 +22,7 @@ const PERIODIC_TITLE_KEYS = [
 ];
 
 const AtomulPage = () => {
-  const { t, localizedPath } = useI18n();
+  const { t, localizedPath, lang } = useI18n();
   const mathRootRef = useMathJaxTypesetRoot();
 
   const A = "resourcesPage.lessonPages.atom";
@@ -75,7 +76,7 @@ const AtomulPage = () => {
                 </p>
                 <div className="image-slider h-64 md:h-80 relative flex items-center justify-center mb-8">
                   <img
-                    src={atomulDeHidrogenImg}
+                    src={pickSimulationThumb(atomulDeHidrogenImg, "atom_hidrogen", lang)}
                     alt={t(`${A}.hydrogen.alt`, "Atomul de hidrogen")}
                     className="w-full h-full object-contain mx-auto my-auto"
                   />
@@ -159,7 +160,7 @@ const AtomulPage = () => {
                 </p>
                 <div className="image-slider h-64 md:h-80 relative flex items-center justify-center mb-8">
                   <img
-                    src={tabelPeriodicImg}
+                    src={pickSimulationThumb(tabelPeriodicImg, "tabel-periodic", lang)}
                     alt={t(`${A}.periodicTable.alt`, "Tabel periodic")}
                     className="w-full h-full object-contain mx-auto my-auto"
                   />

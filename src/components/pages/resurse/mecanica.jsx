@@ -13,6 +13,7 @@ import frecareAerImg from "/res/screenshots/Frecare_Aer_Screenshot.png";
 import Layout from "../../Layout";
 import SEO from "../../SEO";
 import { useI18n } from "@/i18n/LanguageContext";
+import { pickSimulationThumb } from "@/lib/simulationScreenshots";
 
 const MecanicaPage = () => {
   const { t, localizedPath, lang } = useI18n();
@@ -300,7 +301,7 @@ const MecanicaPage = () => {
                   )}
                 </p>
                 <div className="image-slider h-64 md:h-80 relative flex items-center justify-center mb-8">
-                  <img src={simulatorOscilatieOXImg} alt={t(`${M}.oscOX.alt`, "Oscilatie OX")} className="w-full h-full object-contain mx-auto my-auto" />
+                  <img src={pickSimulationThumb(simulatorOscilatieOXImg, "oscillatii-ox", lang)} alt={t(`${M}.oscOX.alt`, "Oscilatie OX")} className="w-full h-full object-contain mx-auto my-auto" />
                 </div>
                 <div className="mt-8 flex flex-col md:flex-row md:items-center justify-between gap-6">
                   <div>
@@ -340,7 +341,7 @@ const MecanicaPage = () => {
                   )}
                 </p>
                 <div className="image-slider h-64 md:h-80 relative flex items-center justify-center mb-8">
-                  <img src={simulatorOscilatieOYImg} alt={t(`${M}.oscOY.alt`, "Oscilatie OY")} className="w-full h-full object-contain mx-auto my-auto" />
+                  <img src={pickSimulationThumb(simulatorOscilatieOYImg, "oscillatii-oy", lang)} alt={t(`${M}.oscOY.alt`, "Oscilatie OY")} className="w-full h-full object-contain mx-auto my-auto" />
                 </div>
                 <div className="mt-8 flex flex-col md:flex-row md:items-center justify-between gap-6">
                   <div>
@@ -380,7 +381,7 @@ const MecanicaPage = () => {
                   )}
                 </p>
                 <div className="image-slider h-64 md:h-80 relative flex items-center justify-center mb-8">
-                  <img src={simulatorCiocnireImg} alt={t(`${M}.collision.alt`, "Ciocnire")} className="w-full h-full object-contain mx-auto my-auto" />
+                  <img src={pickSimulationThumb(simulatorCiocnireImg, "coliziuni-inelastice", lang)} alt={t(`${M}.collision.alt`, "Ciocnire")} className="w-full h-full object-contain mx-auto my-auto" />
                 </div>
                 <div className="mt-8 flex flex-col md:flex-row md:items-center justify-between gap-6">
                   <div>
@@ -432,7 +433,7 @@ const MecanicaPage = () => {
                   )}
                 </p>
                 <div className="image-slider h-64 md:h-80 relative flex items-center justify-center mb-8">
-                  <img src={simulatorPlanInclinatImg} alt={t(`${M}.inclined.alt`, "Plan înclinat")} className="w-full h-full object-contain mx-auto my-auto" />
+                  <img src={pickSimulationThumb(simulatorPlanInclinatImg, "plan-inclinat", lang)} alt={t(`${M}.inclined.alt`, "Plan înclinat")} className="w-full h-full object-contain mx-auto my-auto" />
                 </div>
                 <div className="mt-8 flex flex-col md:flex-row md:items-center justify-between gap-6">
                   <div>
@@ -472,7 +473,7 @@ const MecanicaPage = () => {
                   )}
                 </p>
                 <div className="image-slider h-64 md:h-80 relative flex items-center justify-center mb-8">
-                  <img src={proiectileImg} alt={t(`${M}.projectile.alt`, "Mișcarea proiectilului")} className="w-full h-full object-contain mx-auto my-auto" />
+                  <img src={pickSimulationThumb(proiectileImg, "proiectile", lang)} alt={t(`${M}.projectile.alt`, "Mișcarea proiectilului")} className="w-full h-full object-contain mx-auto my-auto" />
                 </div>
                 <div className="mt-8 flex flex-col md:flex-row md:items-center justify-between gap-6">
                   <div>
@@ -519,7 +520,7 @@ const MecanicaPage = () => {
                   )}
                 </p>
                 <div className="image-slider h-64 md:h-80 relative flex items-center justify-center mb-8">
-                  <img src={lanturiElasticeImg} alt={t(`${M}.elasticChains.alt`, "Lanțuri elastice")} className="w-full h-full object-contain mx-auto my-auto" />
+                  <img src={pickSimulationThumb(lanturiElasticeImg, "lanturi-elastice", lang)} alt={t(`${M}.elasticChains.alt`, "Lanțuri elastice")} className="w-full h-full object-contain mx-auto my-auto" />
                 </div>
                 <div className="mt-8 flex flex-col md:flex-row md:items-center justify-between gap-6">
                   <div>
@@ -568,7 +569,7 @@ const MecanicaPage = () => {
                   )}
                 </p>
                 <div className="image-slider h-64 md:h-80 relative flex items-center justify-center mb-8">
-                  <img src={frecareAerImg} alt={t(`${M}.airDrag.alt`, "Simulare frecare cu aerul")} className="w-full h-full object-contain mx-auto my-auto" />
+                  <img src={pickSimulationThumb(frecareAerImg, "frecare-aer", lang)} alt={t(`${M}.airDrag.alt`, "Simulare frecare cu aerul")} className="w-full h-full object-contain mx-auto my-auto" />
                 </div>
                 <div className="mt-8 flex flex-col md:flex-row md:items-center justify-between gap-6">
                   <div>

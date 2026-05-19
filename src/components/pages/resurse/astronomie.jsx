@@ -3,6 +3,7 @@ import { Button } from "../../Button";
 import SEO from "../../SEO";
 import { useMathJaxTypesetRoot } from "@/hooks/useMathJaxTypesetRoot";
 import { useI18n } from "@/i18n/LanguageContext";
+import { pickSimulationThumb } from "@/lib/simulationScreenshots";
 
 import constelatiiImg from "/res/screenshots/Constelatii_Screenshot.png";
 import legiKeplerImg from "/res/screenshots/Legi_Kepler_Screenshot.png";
@@ -11,7 +12,7 @@ import michaelsonMorleyImg from "/res/screenshots/Michaelson_Morley_Screenshot.p
 
 const AstronomiePage = () => {
   const mathRootRef = useMathJaxTypesetRoot();
-  const { t, localizedPath } = useI18n();
+  const { t, localizedPath, lang } = useI18n();
   const A = "resourcesPage.lessonPages.astronomy";
 
   return (
@@ -68,7 +69,7 @@ const AstronomiePage = () => {
                 </p>
                 <div className="image-slider h-64 md:h-80 relative flex items-center justify-center mb-8">
                   <img
-                    src={constelatiiImg}
+                    src={pickSimulationThumb(constelatiiImg, "constelatii", lang)}
                     alt={t(`${A}.constellations.alt`, "Screenshot simulator constelații")}
                     className="w-full h-full object-contain mx-auto my-auto"
                   />
@@ -143,7 +144,7 @@ const AstronomiePage = () => {
                 </p>
                 <div className="image-slider h-64 md:h-80 relative flex items-center justify-center mb-8">
                   <img
-                    src={legiKeplerImg}
+                    src={pickSimulationThumb(legiKeplerImg, "legi_Kepler", lang)}
                     alt={t(`${A}.kepler.alt`, "Legile lui Kepler")}
                     className="w-full h-full object-contain mx-auto my-auto"
                   />
@@ -213,7 +214,7 @@ const AstronomiePage = () => {
                 </p>
                 <div className="image-slider h-64 md:h-80 relative flex items-center justify-center mb-8">
                   <img
-                    src={miscarePlaneteImg}
+                    src={pickSimulationThumb(miscarePlaneteImg, "miscare-planete", lang)}
                     alt={t(`${A}.planetary.alt`, "Simulare Mișcarea Planetelor")}
                     className="w-full h-full object-contain mx-auto my-auto"
                   />
@@ -304,7 +305,7 @@ const AstronomiePage = () => {
                 </p>
                 <div className="image-slider h-64 md:h-80 relative flex items-center justify-center mb-8">
                   <img
-                    src={michaelsonMorleyImg}
+                    src={pickSimulationThumb(michaelsonMorleyImg, "michaelson-morley", lang)}
                     alt={t(`${A}.michelson.alt`, "Experimentul Michelson-Morley")}
                     className="w-full h-full object-contain mx-auto my-auto"
                   />

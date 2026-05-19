@@ -4,6 +4,7 @@ import SEO from "../../SEO";
 import { useMemo } from "react";
 import { useMathJaxTypesetRoot } from "@/hooks/useMathJaxTypesetRoot";
 import { useI18n } from "@/i18n/LanguageContext";
+import { pickSimulationThumbFromSimularePath } from "@/lib/simulationScreenshots";
 
 import supraconductivitateImg from "/res/screenshots/Supraconductivitate_Screenshot.png";
 import fuelCellImg from "/res/screenshots/Fuel_Cell_Screenshot.png";
@@ -116,7 +117,7 @@ const RO_FALLBACK = {
 };
 
 const ElectromagnetismPage = () => {
-  const { t, localizedPath } = useI18n();
+  const { t, localizedPath, lang } = useI18n();
   const mathRootRef = useMathJaxTypesetRoot();
 
   const E = "resourcesPage.lessonPages.electromagnetism";
@@ -144,7 +145,7 @@ const ElectromagnetismPage = () => {
           })),
         };
       }),
-    [t]
+    [t, lang]
   );
 
   return (
@@ -190,7 +191,11 @@ const ElectromagnetismPage = () => {
                   <p className="text-sm sm:text-base leading-7 text-muted-foreground mb-6">{section.intro}</p>
 
                   <div className="image-slider h-64 sm:h-72 md:h-80 relative flex items-center justify-center mb-6 md:mb-8">
-                    <img src={section.image} alt={section.alt} className="w-full h-full object-contain mx-auto my-auto" />
+                    <img
+                      src={pickSimulationThumbFromSimularePath(section.image, section.href, lang)}
+                      alt={section.alt}
+                      className="w-full h-full object-contain mx-auto my-auto"
+                    />
                   </div>
 
                   <h3 className="text-lg sm:text-xl font-semibold mb-4">{section.formulasHeading}</h3>
