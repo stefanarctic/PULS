@@ -16,7 +16,7 @@ const Slideshow = () => {
   const images = [
     {
       url: darkModeOn ? SlideImageBlack1 : SlideImageWhite1,
-      alt: "Simulari Interactive",
+      alt: "Simulări interactive",
     },
     {
       url: darkModeOn ? SlideImageBlack2 : SlideImageWhite2,

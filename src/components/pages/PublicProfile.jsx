@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import Layout from '../Layout';
+import SEO from '../SEO';
 import XPBar from '../community/XPBar';
 import StreakCounter from '../community/StreakCounter';
 import UserStatsGrid from '../community/UserStatsGrid';
@@ -26,6 +27,13 @@ const PublicProfile = () => {
   if (loading) {
     return (
       <Layout>
+        <SEO
+          title={t(`${PP}.seo.loadingTitle`, 'Se încarcă profilul… | PULS')}
+          description={t(`${PP}.seo.description`, 'Vezi progresul acestui utilizator pe PULS: XP, nivel, insignii, realizări și activitate.')}
+          keywords={t(`${PP}.seo.keywords`, 'PULS, profil comunitate, realizări, clasament')}
+          image="/res/icons/New-logo.png"
+          locale={lang === 'en' ? 'en_US' : 'ro_RO'}
+        />
         <div className="page-section profile-container public-profile">
           <div className="loading-container" style={{ minHeight: 400 }}>
             <div className="loading-spinner">
@@ -41,6 +49,13 @@ const PublicProfile = () => {
   if (notFound || !profile) {
     return (
       <Layout>
+        <SEO
+          title={t(`${PP}.seo.notFoundTitle`, 'Profil inexistent | PULS')}
+          description={t(`${PP}.seo.description`, 'Vezi progresul acestui utilizator pe PULS: XP, nivel, insignii, realizări și activitate.')}
+          keywords={t(`${PP}.seo.keywords`, 'PULS, profil comunitate, realizări, clasament')}
+          image="/res/icons/New-logo.png"
+          locale={lang === 'en' ? 'en_US' : 'ro_RO'}
+        />
         <div className="page-section profile-container public-profile public-profile--not-found">
           <h2>{t(`${PP}.userNotFoundTitle`, 'Utilizator negăsit')}</h2>
           <p>
@@ -73,6 +88,13 @@ const PublicProfile = () => {
 
   return (
     <Layout>
+      <SEO
+        title={t(`${PP}.seo.title`, '{name} | Profil în comunitate — PULS', { name: primaryHeading })}
+        description={t(`${PP}.seo.description`, 'Vezi progresul acestui utilizator pe PULS: XP, nivel, insignii, realizări și activitate.')}
+        keywords={t(`${PP}.seo.keywords`, 'PULS, profil comunitate, realizări, clasament')}
+        image="/res/icons/New-logo.png"
+        locale={lang === 'en' ? 'en_US' : 'ro_RO'}
+      />
       <div className="page-section profile-container public-profile">
         <Link to={localizedPath('/comunitate')} className="public-profile__back-link">
           <ArrowLeft size={16} /> {t(`${PP}.communityNav`, 'Comunitate')}

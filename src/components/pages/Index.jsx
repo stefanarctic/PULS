@@ -1,13 +1,12 @@
 import Layout from "../Layout";
 import Slideshow from "../Slideshow";
 import { Waves, Atom, Circle, Activity, Calculator, BookOpen, Lightbulb, Target, GraduationCap, FileText } from "lucide-react";
-import { useEffect } from "react";
+import { useEffect, useMemo, useState } from 'react';
 import useTranslate, { getTextNodes, useTranslateObject } from "../../hooks/useTranslate";
 // import { problemeData } from "../problemedata";
 import { useSelector } from 'react-redux';
 import { auth, provider } from '../../lib/firebase';
 import { onAuthStateChanged, signInWithPopup } from 'firebase/auth';
-import { useState } from 'react';
 import ResourcesSection from "./ResourcesSection";
 import SEO from "../SEO";
 import { LocalizedLink as Link, useI18n } from "../../i18n/LanguageContext";
@@ -25,7 +24,7 @@ const Index = () => {
     const { value: problemeData, status } = useSelector(state => state.problems);
     const [user, setUser] = useState(null);
     const [loading, setLoading] = useState(true);
-    const { t } = useI18n();
+    const { t, lang } = useI18n();
 
     // Funcție pentru a calcula numărul de probleme după dificultate
     const getProblemsCountByDifficulty = (difficulty) => {
@@ -109,49 +108,78 @@ const Index = () => {
         console.log(JSON.stringify(translations, null, 2));
     }, [translations]);
     
-    const structuredData = {
-        "@context": "https://schema.org",
-        "@type": "EducationalOrganization",
-        "name": "PULS - Platformă Educațională pentru Fizică",
-        "description": "Platformă educațională modernă pentru studiul fizicii cu simulări interactive, probleme BAC și asistent AI",
-        "url": "https://puls-fizica.ro",
-        "logo": "https://puls-fizica.ro/res/icons/New-logo.png",
-        "sameAs": [
-            "https://github.com/Stefanarctic/PULS"
-        ],
-        "educationalCredentialAwarded": "Educational Content",
-        "hasOfferCatalog": {
-            "@type": "OfferCatalog",
-            "name": "Resurse Educaționale Fizică",
-            "itemListElement": [
-                {
-                    "@type": "Offer",
-                    "itemOffered": {
-                        "@type": "Course",
-                        "name": "Simulări Interactive Fizică",
-                        "description": "40+ simulări interactive pentru pendule, unde, oscilații, termodinamică și mai mult"
-                    }
-                },
-                {
-                    "@type": "Offer",
-                    "itemOffered": {
-                        "@type": "Course",
-                        "name": "Probleme BAC Fizică",
-                        "description": "Colecție completă de probleme din examenele de bacalaureat cu rezolvări"
-                    }
-                }
-            ]
-        }
-    };
+    const structuredData = useMemo(
+        () => ({
+            "@context": "https://schema.org",
+            "@type": "EducationalOrganization",
+            name: t(
+                'home.schema.organizationName',
+                'PULS - Platformă Educațională pentru Fizică',
+            ),
+            description: t(
+                'home.schema.organizationDescription',
+                'Platformă educațională modernă pentru studiul fizicii cu simulări interactive, probleme BAC și asistent AI',
+            ),
+            url: "https://puls-fizica.ro",
+            logo: "https://puls-fizica.ro/res/icons/New-logo.png",
+            sameAs: ["https://github.com/Stefanarctic/PULS"],
+            educationalCredentialAwarded: "Educational Content",
+            hasOfferCatalog: {
+                "@type": "OfferCatalog",
+                name: t('home.schema.catalogName', 'Resurse Educaționale Fizică'),
+                itemListElement: [
+                    {
+                        "@type": "Offer",
+                        itemOffered: {
+                            "@type": "Course",
+                            name: t(
+                                'home.schema.simulationsCourseName',
+                                'Simulări Interactive Fizică',
+                            ),
+                            description: t(
+                                'home.schema.simulationsCourseDescription',
+                                '40+ simulări interactive pentru pendule, unde, oscilații, termodinamică și mai mult',
+                            ),
+                        },
+                    },
+                    {
+                        "@type": "Offer",
+                        itemOffered: {
+                            "@type": "Course",
+                            name: t(
+                                'home.schema.bacCourseName',
+                                'Probleme BAC Fizică',
+                            ),
+                            description: t(
+                                'home.schema.bacCourseDescription',
+                                'Colecție completă de probleme din examenele de bacalaureat cu rezolvări',
+                            ),
+                        },
+                    },
+                ],
+            },
+        }),
+        [t, lang],
+    );
 
     return (
         <Layout>
             <SEO
-                title="PULS - Platformă Educațională pentru Fizică Interactivă | Simulări și Probleme BAC"
-                description="Platformă educațională modernă pentru studiul fizicii. 40+ simulări interactive, probleme BAC cu rezolvări, resurse teoretice și asistent AI pentru elevi și profesori."
-                keywords="fizică, educație, simulări fizică, probleme BAC fizică, pendule, unde, oscilații, termodinamică, mecanică, electricitate, optică, platformă educațională, învățare fizică, simulări interactive"
+                title={t(
+                    'home.seo.title',
+                    'PULS - Platformă Educațională pentru Fizică Interactivă | Simulări și Probleme BAC',
+                )}
+                description={t(
+                    'home.seo.description',
+                    'Platformă educațională modernă pentru studiul fizicii. 40+ simulări interactive, probleme BAC cu rezolvări, resurse teoretice și asistent AI pentru elevi și profesori.',
+                )}
+                keywords={t(
+                    'home.seo.keywords',
+                    'fizică, educație, simulări fizică, probleme BAC fizică, pendule, unde, oscilații, termodinamică, mecanică, electricitate, optică, platformă educațională, învățare fizică, simulări interactive',
+                )}
                 image="/res/icons/New-logo.png"
                 structuredData={structuredData}
+                locale={lang === 'en' ? 'en_US' : 'ro_RO'}
             />
             {/* Hero Section */}
             <header id="hero">
@@ -174,10 +202,10 @@ const Index = () => {
                             ) : (
                                 <>
                                     <button className="filled">
-                                        <Link to="/probleme" className="index-link">{t('home.hero.primaryCta', 'Exploreaza problemele')}</Link>
+                                        <Link to="/probleme" className="index-link">{t('home.hero.primaryCta', 'Explorează problemele')}</Link>
                                     </button>
                                     <button>
-                                        <Link to="/simulari" className="index-link">{t('home.hero.secondaryCta', 'Incearca simularile')}</Link>
+                                        <Link to="/simulari" className="index-link">{t('home.hero.secondaryCta', 'Încearcă simulările')}</Link>
                                     </button>
                                 </>
                             )}

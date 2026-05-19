@@ -8,6 +8,7 @@ import "@/scss/components/_searchresults.scss";
 import { normalizeString } from "../../lib/normalizeString";
 import { getSiteSearchStaticEntries } from "@/data/siteSearchIndex";
 import { LocalizedLink, useI18n } from "@/i18n/LanguageContext";
+import SEO from "@/components/SEO";
 
 function useQuery() {
     return new URLSearchParams(useLocation().search);
@@ -28,7 +29,7 @@ function matchesEntry(entry, qNorm) {
 const SearchResults = () => {
     const rawQuery = useQuery().get("q") || "";
     const qNorm = normalizeString(rawQuery.trim());
-    const { t } = useI18n();
+    const { t, lang } = useI18n();
 
     const { value: problemeData, status: problemsStatus } = useSelector((state) => state.problems);
 
@@ -83,8 +84,22 @@ const SearchResults = () => {
     const searchInviteBodyFallback =
         'Căutarea de mai sus arată doar pagini și conținut de pe PULS. Dacă nu ai găsit ce căutai, poți întreba Profesorul Whiz — se deschide într-o filă nouă cu textul tău.';
 
+    const searchTitle = trimmedQuery
+        ? t("searchPage.seo.titleWithQuery", 'Rezultate pentru "{query}" | PULS', { query: trimmedQuery })
+        : t("searchPage.seo.title", "Căutare | PULS");
+
     return (
         <div className="search-results-page">
+            <SEO
+                title={searchTitle}
+                description={t(
+                    "searchPage.seo.description",
+                    "Caută pe PULS probleme de fizică, simulări și resurse.",
+                )}
+                keywords={t("searchPage.seo.keywords", "căutare PULS, fizică, simulări")}
+                image="/res/icons/New-logo.png"
+                locale={lang === "en" ? "en_US" : "ro_RO"}
+            />
             <Navbar />
             <main className="search-results-main">
                 <h1 className="search-results-title">

@@ -468,7 +468,7 @@ const Navbar = () => {
                         </Link>
                         <Link to="/simulari" className="nav-link">
                             <Settings className="nav-icon" />
-                            <span>{t('common.simulations', 'Simulari')}</span>
+                            <span>{t('common.simulations', 'Simulări')}</span>
                         </Link>
                         <Link to="/resurse" className="nav-link">
                             <Book className="nav-icon" />
@@ -567,7 +567,7 @@ const Navbar = () => {
                             </Link>
                             <Link to="/simulari" className="nav-link" onClick={handleMobileNavClick}>
                                 <Settings className="nav-icon" />
-                                <span>{t('common.simulations', 'Simulari')}</span>
+                                <span>{t('common.simulations', 'Simulări')}</span>
                             </Link>
                             <Link to="/resurse" className="nav-link" onClick={handleMobileNavClick}>
                                 <Book className="nav-icon" />

@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useMemo } from 'react';
 import Layout from '../Layout';
+import SEO from '../SEO';
 import { auth, provider, db, storage, createUserWithEmailAndPassword, signInWithEmailAndPassword } from '../../lib/firebase';
 import { signInWithPopup, signOut, onAuthStateChanged } from 'firebase/auth';
 import { doc, setDoc, getDoc, collection, query, where, getDocs, onSnapshot } from 'firebase/firestore';
@@ -960,6 +961,16 @@ const Profile = () => {
     if (loading) {
         return (
             <Layout>
+                <SEO
+                    title={t(`${P}.seo.title`, 'Profilul meu | PULS')}
+                    description={t(
+                        `${P}.seo.description`,
+                        'Contul tău PULS: probleme salvate, realizări, clase și progres.',
+                    )}
+                    keywords={t(`${P}.seo.keywords`, 'profil PULS, cont elev, fizică, progres')}
+                    image="/res/icons/New-logo.png"
+                    locale={lang === 'en' ? 'en_US' : 'ro_RO'}
+                />
                 <div className="profile-container">
                     <div className="loading-container">
                         <div className="loading-spinner">
@@ -976,6 +987,16 @@ const Profile = () => {
     if (!user) {
         return (
             <Layout>
+                <SEO
+                    title={t(`${P}.seo.title`, 'Profilul meu | PULS')}
+                    description={t(
+                        `${P}.seo.description`,
+                        'Contul tău PULS: probleme salvate, realizări, clase și progres.',
+                    )}
+                    keywords={t(`${P}.seo.keywords`, 'profil PULS, cont elev, fizică, progres')}
+                    image="/res/icons/New-logo.png"
+                    locale={lang === 'en' ? 'en_US' : 'ro_RO'}
+                />
                 <div className={`profile-container profile-login-center ${showEmailAuth && isSignUp ? 'profile-login-center-signup' : ''}`}>
                     <h2 className="profile-title">{t(`${P}.title`, 'Profil')}</h2>
 
@@ -1226,6 +1247,16 @@ const Profile = () => {
 
     return (
         <Layout>
+            <SEO
+                title={t(`${P}.seo.title`, 'Profilul meu | PULS')}
+                description={t(
+                    `${P}.seo.description`,
+                    'Contul tău PULS: probleme salvate, realizări, clase și progres.',
+                )}
+                keywords={t(`${P}.seo.keywords`, 'profil PULS, cont elev, fizică, progres')}
+                image="/res/icons/New-logo.png"
+                locale={lang === 'en' ? 'en_US' : 'ro_RO'}
+            />
             <AchievementNotification
                 achievements={newAchievements}
                 onClose={clearNewAchievements}

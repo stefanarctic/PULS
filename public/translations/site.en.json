@@ -269,6 +269,139 @@
       "paragraph1": "P.U.L.S. is an educational physics platform that combines interactive simulations, problems and quizzes, theory resources across multiple chapters, and digital tools designed to make abstract ideas visible. We set out to go beyond a page of formulas: we want a place where you can practise for school or the baccalaureate, track your progress, and explore phenomena, from oscillations and waves to mechanics, thermodynamics, optics, and astronomy, in a modern, clear, and engaging way.",
       "paragraph2": "Our story began with a simple question: how can we make physical phenomena, especially oscillatory ones, come alive and become easier to understand? We are a team of students passionate about science, and we have always felt that beyond formulas and definitions there is a fascinating world full of rhythm, motion, and surprising links with nature and technology. From that starting point, P.U.L.S. grew into a broader platform: virtual simulations and experiments, collections of problems and baccalaureate-style papers, quick-practice quizzes, lessons grouped by topic, and profile tools with statistics so you can see your progress. Behind it all is the same curiosity: physics is not just symbols on a board, but motion, rhythm, and connections with the real world.",
       "cta": "See more"
+    },
+    "seo": {
+      "title": "PULS — Interactive physics learning | Simulations & practice problems",
+      "description": "Modern physics education: 40+ interactive simulations, baccalaureate-style problems with solutions, theory resources, quizzes, and an AI tutor — for students and teachers.",
+      "keywords": "physics education, interactive simulations, baccalaureate physics, pendulum, waves, oscillations, thermodynamics, PULS"
+    },
+    "schema": {
+      "organizationName": "PULS — Educational physics platform",
+      "organizationDescription": "Modern physics learning with interactive simulations, baccalaureate problems, and an AI assistant.",
+      "catalogName": "PULS educational resources",
+      "simulationsCourseName": "Interactive physics simulations",
+      "simulationsCourseDescription": "40+ interactive simulations covering pendulums, waves, oscillations, thermodynamics, and more.",
+      "bacCourseName": "Baccalaureate physics problems",
+      "bacCourseDescription": "Curated exam-style problems with full worked solutions."
+    }
+  },
+  "landingCustom": {
+    "seo": {
+      "title": "PULS — Physics for your exam without the struggle | Short guides & simulations",
+      "description": "Short (~15 min) topic guides, interactive simulations, real exam-style problems, and AI that shows where you go wrong. See. Understand. Apply.",
+      "keywords": "physics exam prep, baccalaureate physics, physics guides, interactive simulations, PULS"
+    },
+    "schema": {
+      "name": "PULS — Exam physics guides & simulations",
+      "description": "Short guides for high-school physics, interactive simulations, real problems, and an AI physics tutor."
+    },
+    "hero": {
+      "badge": "See · Understand · Apply",
+      "titleBefore": "Pass your physics exam ",
+      "titleHighlight": "without the grind",
+      "subtitle": "Short (~15 min) guides by topic, interactive simulations, real problems, and AI that pinpoints exactly where you slip up.",
+      "ctaGuides": "Start your first guide",
+      "ctaHow": "See how it works"
+    },
+    "ribbon": {
+      "simulations": "simulations",
+      "perGuide": "per guide",
+      "chapters": "chapters"
+    },
+    "problem": {
+      "label": "THE PROBLEM",
+      "title": "Struggling with physics for the big exam?",
+      "pain0": "You memorise definitions without really understanding them",
+      "pain1": "Problems feel completely different from the theory",
+      "pain2": "You never know if your solution is actually right",
+      "pain3": "You waste time jumping between YouTube, PDFs, and textbooks",
+      "closingPrefix": "You don't need more resources. ",
+      "closingStrong": "You need a system."
+    },
+    "how": {
+      "label": "HOW IT WORKS",
+      "titleBefore": "PULS walks you through it ",
+      "titleHighlight": "step by step",
+      "titleAfter": " until it truly clicks",
+      "step1Title": "Understand quickly",
+      "step1Desc": "Core ideas explained clearly, without fluff — in short sessions focused on what exams actually ask.",
+      "step2Title": "See the phenomenon",
+      "step2Desc": "Interactive simulations show how the physics works, not just symbols on paper.",
+      "step3Title": "Apply and check",
+      "step3Desc": "Solve real problems and get instant feedback from the AI tutor."
+    },
+    "diff": {
+      "label": "WHY PULS",
+      "titleBefore": "Stop learning physics ",
+      "titleHighlight": "by rote",
+      "check0a": "you see what happens",
+      "check0b": "not just read about it",
+      "check1a": "you know why",
+      "check1b": "not just how",
+      "check2a": "you apply right away",
+      "check2b": "not “maybe later”",
+      "footer": "That’s what sticks."
+    },
+    "ai": {
+      "label": "AI TUTOR",
+      "titleBefore": "A personal tutor ",
+      "titleHighlight": "24/7",
+      "bullet0": "points to exactly where you went wrong",
+      "bullet1": "reviews your whole solution",
+      "bullet2": "shows the correct reasoning step by step",
+      "punchline": "It doesn’t hand you the answer—it helps you understand.",
+      "mockQuestion": "Why is the restoring force negative in oscillations?",
+      "mockAnswer": "The restoring force always opposes displacement. When the mass is to the right of equilibrium, the force pulls it left — that’s why it’s negative.",
+      "mockPlaceholder": "Type a question…"
+    },
+    "sim": {
+      "label": "SIMULATIONS",
+      "titleBefore": "See physics ",
+      "titleHighlight": "in motion",
+      "bullet0": "tweak parameters in real time",
+      "bullet1": "watch the effect instantly",
+      "bullet2": "grasp abstract ideas visually",
+      "accent": "That’s the game-changer.",
+      "cta": "Explore simulations"
+    },
+    "content": {
+      "label": "CONTENT",
+      "titleBefore": "Exactly what you need ",
+      "titleHighlight": "for exam prep",
+      "item0": "Full chapters — mechanics, oscillations, electricity, and more",
+      "item1Before": "Real exam-style problems — ",
+      "item1Link": "BAC papers",
+      "item2Before": "Quizzes and self-check — ",
+      "item2Link": "quick drill",
+      "item3Before": "Progress tracked in ",
+      "item3Link": "your profile",
+      "ctaProblems": "Browse problems"
+    },
+    "classes": {
+      "label": "CLASSROOMS",
+      "titleBefore": "Teachers can work with you ",
+      "titleHighlight": "directly",
+      "card0": "assignments and targeted practice",
+      "card1": "on-the-spot feedback",
+      "card2": "visible progress",
+      "ctaMyClass": "My class",
+      "ctaJoin": "Join with class code"
+    },
+    "testimonial": {
+      "label": "TESTIMONIALS",
+      "titleBefore": "Students are learning ",
+      "titleHighlight": "differently",
+      "avatarInitial": "S",
+      "quote": "For the first time I actually understood physics topics — I didn’t just memorise them.",
+      "authorName": "12th-grade student",
+      "authorSubtitle": "PULS user"
+    },
+    "final": {
+      "titleBefore": "Stop losing time. ",
+      "titleHighlight": "Start now.",
+      "subtitle": "Your first guide is waiting.",
+      "cta": "Start with a short guide",
+      "footerBadge": "See · Understand · Apply"
     }
   },
   "aboutPage": {
@@ -692,7 +825,12 @@
     "startSimulation": "Start simulation",
     "viewAll": "View all simulations",
     "openInNewTab": "Open in new tab",
-    "embedNotice": "Simulation runs in an embedded frame."
+    "embedNotice": "Simulation runs in an embedded frame.",
+    "seo": {
+      "title": "Interactive physics simulations | PULS — 40+ educational sims",
+      "description": "Explore physics through interactive simulations: pendulums, waves, oscillations, thermodynamics, mechanics, electricity, optics, lasers, quantum physics, the atom, astronomy, and more.",
+      "keywords": "physics simulations, interactive physics, PULS, pendulum, waves, oscillations, thermodynamics, educational physics"
+    }
   },
   "simulationPage": {
     "backToList": "Back to simulations",
@@ -2390,6 +2528,11 @@
     }
   },
   "profilePage": {
+    "seo": {
+      "title": "My profile | PULS",
+      "description": "Manage your PULS learner profile: sign in, saved problems, achievements, statistics, classrooms, and progress.",
+      "keywords": "PULS profile, physics learning, student account, classroom"
+    },
     "title": "My profile",
     "loading": "Loading profile...",
     "signedOut": {
@@ -2825,6 +2968,13 @@
     "emptyStateLine2": "Start solving problems and adding new ones to see your stats!"
   },
   "publicProfile": {
+    "seo": {
+      "title": "{name} | Community profile — PULS",
+      "loadingTitle": "Loading profile… | PULS",
+      "notFoundTitle": "Profile not found | PULS",
+      "description": "View this learner’s progress on PULS: XP, level, badges, achievements, and activity.",
+      "keywords": "PULS community, physics learner profile, leaderboard, achievements"
+    },
     "loading": "Loading profile...",
     "notFound": "Profile not found.",
     "userNotFoundTitle": "User not found",
@@ -2856,10 +3006,21 @@
       "lessons": "Lessons",
       "resources": "Resources"
     },
-    "resultCount": "{count} results"
+    "resultCount": "{count} results",
+    "seo": {
+      "title": "Search | PULS",
+      "titleWithQuery": "Search results for \"{query}\" | PULS",
+      "description": "Search PULS for physics problems, simulations, and resources.",
+      "keywords": "PULS search, physics, simulations, problems"
+    }
   },
   "assistantEntryPage": {
     "title": "AI Assistant",
+    "seo": {
+      "title": "AI Assistant | PULS",
+      "description": "Get instant help with physics problems and concepts from the PULS tutor.",
+      "keywords": "PULS AI, physics help, study assistant"
+    },
     "subtitle": "Get instant help with physics problems and concepts.",
     "startChat": "Start a conversation",
     "featuredQuestionsTitle": "Frequently asked questions"
@@ -3182,6 +3343,11 @@
     }
   },
   "communityPage": {
+    "seo": {
+      "title": "Community | PULS — leaderboard & progress",
+      "description": "Compete on the PULS leaderboard, track XP and streaks, and see recent community activity.",
+      "keywords": "PULS community, physics leaderboard, XP, student rankings"
+    },
     "title": "Community",
     "subtitle": "Compete, level up, and see how you compare to other students.",
     "yourProgress": "Your progress",
