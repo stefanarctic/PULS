@@ -76,6 +76,15 @@
     "loginRequired": "Please sign in to continue.",
     "comingSoon": "Coming soon"
   },
+  "mrDeuteron": {
+    "fabTitle": "Mr. Deuteron — D₂O and nuclear‑physics assistant",
+    "fabAlt": "Mr. Deuteron — D₂O and nuclear‑physics assistant",
+    "dialogAriaLabel": "Mr. Deuteron — chat about D₂O and nuclear physics",
+    "iframeTitle": "Mr. Deuteron — D₂O chat",
+    "enterFullscreen": "Fullscreen",
+    "exitFullscreen": "Exit fullscreen",
+    "closePanel": "Close window"
+  },
   "navigation": {
     "logoAlt": "P.U.L.S",
     "searchPlaceholder": "Search the site...",

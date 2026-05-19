@@ -16,6 +16,7 @@
     "remove-duplicates": "node remove-duplicate-problems.js",
     "upload-grile": "node upload-grile.js",
     "screenshot-simulations": "node scripts/screenshot-simulations.js",
+    "screenshot-simulations-en": "node scripts/screenshot-simulations-en.js",
     "repair-traduceri-en": "node scripts/repair-traduceri-en-normalize.mjs"
   },
   "dependencies": {

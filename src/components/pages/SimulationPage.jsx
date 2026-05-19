@@ -12,6 +12,30 @@ import { Timestamp } from "firebase/firestore";
 import { useI18n } from "../../i18n/LanguageContext";
 import { observeAndTranslate } from "../../i18n/domTranslator";
 
+/**
+ * Tell cross-origin embedded apps (e.g. Kirchhoff on Vercel) to match the site language.
+ * Matches the simulator’s listener: `{ type: "LANGUAGE_CHANGE", lang: "ro" | "en" }`.
+ */
+function postLanguageToEmbeddedSimulator(iframeEl, resolvedSrc, uiLang) {
+  const win = iframeEl?.contentWindow;
+  if (!win) return;
+  let origin;
+  try {
+    origin = new URL(resolvedSrc).origin;
+  } catch {
+    return;
+  }
+  const langCode = uiLang === "en" ? "en" : "ro";
+  try {
+    win.postMessage({ type: "LANGUAGE_CHANGE", lang: langCode }, origin);
+  } catch {
+    /* noop */
+  }
+}
+
+/** Slugs whose iframe should receive LANGUAGE_CHANGE when the site locale changes. */
+const SIMULATOR_POSTMESSAGE_LANGUAGE_SLUGS = new Set(["kirchhoff"]);
+
 /** EN iframe bundles live in `/translations/simulatoare.en.json` (simulators.<slug>). */
 const SIMULATOR_I18N_QUERY_SLUGS = new Set([
   "pendul-simplu",
@@ -66,6 +90,7 @@ const SIMULATOR_I18N_QUERY_SLUGS = new Set([
   "tabel-periodic",
   "izotopi-uraniu",
   "toti-izotopii",
+  "kirchhoff",
 ]);
 
 const DEFAULT_EN_SIMULATOR_EYEBROW = "Interactive simulation";
@@ -222,6 +247,10 @@ const SimulationPage = ({
     iframeTranslateCleanupRef.current?.();
     iframeTranslateCleanupRef.current = null;
 
+    if (slug && SIMULATOR_POSTMESSAGE_LANGUAGE_SLUGS.has(slug)) {
+      postLanguageToEmbeddedSimulator(iframeRef.current, iframeSrcWithLang, lang);
+    }
+
     if (lang !== "en") return;
     if (slug && SIMULATOR_I18N_QUERY_SLUGS.has(slug)) return;
     const iframe = iframeRef.current;
@@ -239,6 +268,14 @@ const SimulationPage = ({
   };
 
   useEffect(() => () => iframeTranslateCleanupRef.current?.(), []);
+
+  useEffect(() => {
+    if (!slug || !SIMULATOR_POSTMESSAGE_LANGUAGE_SLUGS.has(slug)) return undefined;
+    const iframe = iframeRef.current;
+    if (!iframe) return undefined;
+    postLanguageToEmbeddedSimulator(iframe, iframeSrcWithLang, lang);
+    return undefined;
+  }, [lang, slug, iframeSrcWithLang]);
 
   const handleToggleFullscreen = () => {
     const iframe = iframeRef.current;

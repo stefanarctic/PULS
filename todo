@@ -4,7 +4,7 @@
 
 Criteriu „tradus”: slug în `src/components/pages/SimulationPage.jsx` (`SIMULATOR_I18N_QUERY_SLUGS`) și bloc corespunzător în `public/translations/simulatoare.en.json`.
 
-### Traduse (51)
+### Traduse (52)
 
 | slug | titlu (RO în app) |
 |------|-------------------|
@@ -59,20 +59,13 @@ Criteriu „tradus”: slug în `src/components/pages/SimulationPage.jsx` (`SIMU
 | legaturi-atomi | Legături între atomi |
 | izotopi-uraniu | Izotopii uraniului (nucleu, α, fisiune, timp) | 
 | toti-izotopii | Harta celor 26 de izotopi ai uraniului |
-
-### Netraduse (1)
-
-| slug | titlu (RO în app) |
-|------|-------------------|
 | kirchhoff | Legile lui Kirchhoff (iframe extern — caz aparte) |
 
----
 
 ## Alte note (din backlog)
 
 - de adaugat restul de simulari
 - traducere engleza
     - simulatoare + poze
-    - mr deuteron in engleza
     - seo in engleza
     - jocuri in engleza

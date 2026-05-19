@@ -1,7 +1,11 @@
-import { useCallback, useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { createPortal } from "react-dom";
 import { Maximize2, Minimize2, X } from "lucide-react";
-import { MR_DEUTERON_URL } from "@/data/mrDeuteron";
+import {
+  MR_DEUTERON_ORIGIN,
+  buildMrDeuteronEmbeddedUrl,
+} from "@/data/mrDeuteron";
+import { useI18n } from "@/i18n/LanguageContext";
 import "../scss/components/_mr-deuteron-widget.scss";
 
 const AVATAR_SRC = "/res/mr-deuteron-avatar.png";
@@ -14,13 +18,21 @@ function bodyLock() {
   };
 }
 
-const FAB_ALT = "Mr. Deuteron — asistent D₂O și fizică nucleară";
-
 export default function MrDeuteronWidget() {
+  const { lang, t } = useI18n();
+
+  /** Fixed when opening the panel so iframe is not rebuilt on site language toggle (child uses LANGUAGE_CHANGE instead). */
+  const [iframeSrc, setIframeSrc] = useState("");
   const [open, setOpen] = useState(false);
   const [fs, setFs] = useState(false);
   const panelRef = useRef(null);
   const closeBtnRef = useRef(null);
+  const iframeRef = useRef(null);
+
+  const fabTitle = useMemo(
+    () => t("mrDeuteron.fabTitle", "Mr. Deuteron — asistent D₂O și fizică nucleară"),
+    [t]
+  );
 
   useEffect(() => {
     if (!open) return undefined;
@@ -38,9 +50,39 @@ export default function MrDeuteronWidget() {
 
   useEffect(() => {
     if (!open) return;
-    const t = setTimeout(() => closeBtnRef.current?.focus(), 100);
-    return () => clearTimeout(t);
+    const focusTimerId = setTimeout(() => closeBtnRef.current?.focus(), 100);
+    return () => clearTimeout(focusTimerId);
   }, [open]);
+
+  /** Sync with iframe app: URL `?lang=` on first load + live updates via postMessage. */
+  const postLanguageToIframe = useCallback(() => {
+    const win = iframeRef.current?.contentWindow;
+    if (!win) return;
+    try {
+      win.postMessage({ type: "LANGUAGE_CHANGE", lang }, MR_DEUTERON_ORIGIN);
+    } catch {
+      /* noop */
+    }
+  }, [lang]);
+
+  useEffect(() => {
+    if (!open || !iframeSrc) return undefined;
+    postLanguageToIframe();
+    return undefined;
+  }, [iframeSrc, lang, open, postLanguageToIframe]);
+
+  const closePanel = useCallback(() => {
+    if (document.fullscreenElement) {
+      document.exitFullscreen?.().catch(() => {});
+    }
+    setOpen(false);
+    setIframeSrc("");
+  }, []);
+
+  const openPanel = useCallback(() => {
+    setIframeSrc(buildMrDeuteronEmbeddedUrl(lang));
+    setOpen(true);
+  }, [lang]);
 
   const toggleFs = useCallback(() => {
     const el = panelRef.current;
@@ -56,19 +98,12 @@ export default function MrDeuteronWidget() {
     if (!open) return;
     const onKey = (e) => {
       if (e.key === "Escape" && !document.fullscreenElement) {
-        setOpen(false);
+        closePanel();
       }
     };
     window.addEventListener("keydown", onKey);
     return () => window.removeEventListener("keydown", onKey);
-  }, [open]);
-
-  const close = () => {
-    if (document.fullscreenElement) {
-      document.exitFullscreen?.().catch(() => {});
-    }
-    setOpen(false);
-  };
+  }, [open, closePanel]);
 
   const modal = open
     ? createPortal(
@@ -76,7 +111,7 @@ export default function MrDeuteronWidget() {
           className="mr-deuteron-overlay"
           role="presentation"
           onMouseDown={(e) => {
-            if (e.target === e.currentTarget) close();
+            if (e.target === e.currentTarget) closePanel();
           }}
         >
           <div
@@ -84,7 +119,10 @@ export default function MrDeuteronWidget() {
             ref={panelRef}
             role="dialog"
             aria-modal="true"
-            aria-label="Mr. Deuteron — chat D₂O și fizică nucleară"
+            aria-label={t(
+              "mrDeuteron.dialogAriaLabel",
+              "Mr. Deuteron — chat D₂O și fizică nucleară"
+            )}
           >
             <div className="mr-deuteron-panel__frame-wrap">
               <div className="mr-deuteron-panel__toolbar">
@@ -92,8 +130,8 @@ export default function MrDeuteronWidget() {
                   type="button"
                   className="mr-deuteron-toolbar-btn"
                   onClick={toggleFs}
-                  title={fs ? "Ieși din ecran complet" : "Ecran complet"}
-                  aria-label={fs ? "Ieși din ecran complet" : "Ecran complet"}
+                  title={fs ? t("mrDeuteron.exitFullscreen", "Ieși din ecran complet") : t("mrDeuteron.enterFullscreen", "Ecran complet")}
+                  aria-label={fs ? t("mrDeuteron.exitFullscreen", "Ieși din ecran complet") : t("mrDeuteron.enterFullscreen", "Ecran complet")}
                 >
                   {fs ? <Minimize2 size={16} strokeWidth={2.25} /> : <Maximize2 size={16} strokeWidth={2.25} />}
                 </button>
@@ -101,20 +139,24 @@ export default function MrDeuteronWidget() {
                   type="button"
                   ref={closeBtnRef}
                   className="mr-deuteron-toolbar-btn"
-                  onClick={close}
-                  title="Închide"
-                  aria-label="Închide fereastra"
+                  onClick={closePanel}
+                  title={t("mrDeuteron.closePanel", "Închide")}
+                  aria-label={t("mrDeuteron.closePanel", "Închide fereastra")}
                 >
                   <X size={16} strokeWidth={2.25} />
                 </button>
               </div>
-              <iframe
-                title="Mr. Deuteron — chat D₂O"
-                className="mr-deuteron-iframe"
-                src={MR_DEUTERON_URL}
-                allow="clipboard-read; clipboard-write; fullscreen"
-                referrerPolicy="no-referrer-when-downgrade"
-              />
+              {iframeSrc ? (
+                <iframe
+                  ref={iframeRef}
+                  title={t("mrDeuteron.iframeTitle", "Mr. Deuteron — chat D₂O")}
+                  className="mr-deuteron-iframe"
+                  src={iframeSrc}
+                  onLoad={postLanguageToIframe}
+                  allow="clipboard-read; clipboard-write; fullscreen"
+                  referrerPolicy="no-referrer-when-downgrade"
+                />
+              ) : null}
             </div>
           </div>
         </div>,
@@ -127,15 +169,18 @@ export default function MrDeuteronWidget() {
       <button
         type="button"
         className="mr-deuteron-fab"
-        onClick={() => setOpen(true)}
-        title={FAB_ALT}
+        onClick={openPanel}
+        title={fabTitle}
         aria-haspopup="dialog"
         aria-expanded={open}
       >
         <img
           className="mr-deuteron-fab__avatar"
           src={AVATAR_SRC}
-          alt={FAB_ALT}
+          alt={t(
+            "mrDeuteron.fabAlt",
+            "Mr. Deuteron — asistent D₂O și fizică nucleară"
+          )}
           draggable={false}
         />
       </button>
