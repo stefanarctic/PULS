@@ -3003,6 +3003,7 @@
     "noSiteMatches": "No matching links on the site for this search.",
     "problemLine": "Problem #{index}: {title}",
     "problemUntitled": "Untitled",
+    "loadingProblemTranslations": "Loading results (English titles)…",
     "queryLabel": "Results for \"{query}\"",
     "noQuery": "Enter a search term in the navigation bar above.",
     "noResults": "No results found for \"{query}\". Try different keywords.",
