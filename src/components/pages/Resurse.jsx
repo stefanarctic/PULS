@@ -322,7 +322,7 @@ const ResursePage = () => {
         )}
         image="/res/icons/New-logo.png"
       />
-      <div className="resurse-page page-section">
+      <div className="resurse-page">
         <main>
           <h1 className="resurse-title">{t(`${RS}.page.title`, "Resurse")}</h1>
 
