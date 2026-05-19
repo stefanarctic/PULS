@@ -818,6 +818,11 @@
         "simModes": "Simulation mode"
       }
     },
+    "kirchhoff": {
+      "page": {
+        "eyebrow": "Electric circuits | Kirchhoff interactive"
+      }
+    },
     "curent-alternativ": {
       "page": {
         "eyebrow": "Alternating current | Interactive simulation"
