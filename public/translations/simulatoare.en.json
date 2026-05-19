@@ -3944,6 +3944,551 @@
         "efficiency": "efficiency"
       }
     },
+    "izotopi-uraniu": {
+      "page": {
+        "eyebrow": "Nuclear physics | Uranium isotopes"
+      },
+      "documentTitle": "Nuclear lab · Uranium isotopes",
+      "htmlLang": "en",
+      "hero": {
+        "badge": "NUCLEAR LAB · INTERACTIVE",
+        "titleBefore": "The isotopes of",
+        "titleAccent": "Uranium",
+        "subtitle": "Explore the nucleus, trigger α decays, simulate fission, and fast‑forward billions of years in one second."
+      },
+      "nav": {
+        "info": "① Quick facts",
+        "simulator": "② Nucleus simulator",
+        "lab": "③ Fission & time",
+        "theory": "④ Theory"
+      },
+      "sections": {
+        "info": {
+          "title": "Quick facts · the four isotopes that matter",
+          "lead1": "Always 92 protons. What differs?",
+          "leadBold": "The number of neutrons."
+        },
+        "sim": {
+          "title": "Nucleus simulator",
+          "lead": "Switch isotope, inspect the N/Z ratio, trigger an α decay."
+        },
+        "lab": {
+          "title": "WOW module · Fission & time",
+          "lead": "Things break apart here. Hit U‑235 with a neutron, or run billions of years in the sim."
+        }
+      },
+      "legend": {
+        "proton": "proton",
+        "neutron": "neutron"
+      },
+      "controls": {
+        "chooseIsotope": "Choose isotope",
+        "isotope": "Isotope",
+        "simSpeed": "Simulation speed:",
+        "speedMin": "thousand yr",
+        "speedMax": "billion yr"
+      },
+      "stats": {
+        "protons": "Protons (Z)",
+        "neutrons": "Neutrons (N)",
+        "mass": "Mass (A)",
+        "ratio": "N/Z ratio"
+      },
+      "stability": {
+        "label": "Stability"
+      },
+      "buttons": {
+        "decay": "☢️ α decay",
+        "reset": "↺ Reset",
+        "simulateFission": "⚡ Simulate fission",
+        "start": "▶ Start",
+        "pause": "❚❚ Pause",
+        "decayDone": "✓ Decay complete"
+      },
+      "fission": {
+        "cardTitle": "💥 Nuclear fission (U‑235)",
+        "cardLead": "A slow neutron hits the nucleus → fragments + 2–3 neutrons + energy.",
+        "massEnergyHint": "The mass difference becomes energy. ~200 MeV per fission."
+      },
+      "compare": {
+        "cardTitle": "⚖️ U‑235 vs U‑238",
+        "cardLead": "Why is one fuel and the other not?",
+        "rowAbundance": "Natural abundance",
+        "rowFissile": "Fissile with thermal n",
+        "rowHalfLife": "Half-life",
+        "rowUse": "Typical use",
+        "rowDecay": "Decay mode",
+        "yes": "YES",
+        "no": "NO",
+        "hl235": "704 m.y.",
+        "hl238": "4.47 b.y.",
+        "use235": "Reactor / weapons",
+        "use238": "Fertile fuel"
+      },
+      "timeMachine": {
+        "title": "⏳ Time machine · radioactive decay",
+        "lead": "1000 atoms. Press Start and watch them vanish over time. Exponential decay: N(t) = N₀·(½)^(t/T½)."
+      },
+      "time": {
+        "leftLabel": "Atoms remaining",
+        "elapsedLabel": "Elapsed time",
+        "currentHalfLife": "Current T½:",
+        "tHalfApprox": "T½ ≈ "
+      },
+      "theory": {
+        "sectionTitle": "Theory · useful formulas",
+        "sectionLead": "Quick reference for the nucleus, α decay and the time module; details and the Formulas tab on the site.",
+        "linkText": "PULS resources — nuclear physics (lessons & formulas)",
+        "linkHref": "/resources/nuclear-physics",
+        "li1Html": "<strong>Notation:</strong> <span class=\"theory-mono\">A = Z + N</span> — for uranium, Z = 92.",
+        "li2Html": "<strong>α decay:</strong> the nucleus emits <span class=\"theory-mono\">⁴₂He</span>; the daughter has Z − 2, A − 4.",
+        "li3Html": "<strong>Radioactivity:</strong> <span class=\"theory-mono\">N(t) = N₀·e<sup>−λt</sup></span>, <span class=\"theory-mono\">λ = ln(2)/T<sub>½</sub></span> (same structure as the “all isotopes” chart)."
+      },
+      "cards": {
+        "statHalfLife": "T½",
+        "statDecay": "Decay",
+        "statMass": "Mass A",
+        "statUses": "Use"
+      },
+      "canvas": {
+        "alphaLabel": "α (He‑4)",
+        "fissionEnergy": "+200 MeV"
+      },
+      "timeFormat": {
+        "years": "yr",
+        "kyr": "k yr",
+        "Myr": "m.y.",
+        "Gyr": "b.y.",
+        "perSecSuffix": "/s"
+      },
+      "decay": {
+        "defaultNoteHtml": "In α decay: <span class=\"nuclide\"><span class=\"nums\"><sup>A</sup><sub>Z</sub></span>X</span> → <span class=\"nuclide\"><span class=\"nums\"><sup>A−4</sup><sub>Z−2</sub></span>Y</span> + <span class=\"nuclide\"><span class=\"nums\"><sup>4</sup><sub>2</sub></span>He</span>. Example: <span class=\"nuclide\"><span class=\"nums\"><sup>235</sup><sub>92</sub></span>U</span> → <span class=\"nuclide\"><span class=\"nums\"><sup>231</sup><sub>90</sub></span>Th</span> + α.",
+        "resultLead": "✓ Formed <b>{{name}}</b>:",
+        "conservation": "Conservation: A ({{pa}} = {{da}} + 4) ✓ · Z (92 = {{dz}} + 2) ✓"
+      },
+      "isotopes": {
+        "U-233": {
+          "halfLifeText": "159,200 yr",
+          "stabilityText": "Low",
+          "tag": "artificial · fissile",
+          "desc": "Produced from thorium‑232. Fissile like U‑235; studied for generation‑IV concepts.",
+          "uses": "Reactor (Th)"
+        },
+        "U-234": {
+          "halfLifeText": "245,500 yr",
+          "stabilityText": "Low",
+          "tag": "natural · trace",
+          "desc": "Appears from U‑238 decay (≈0.0055% of natural uranium). Minor industrial role.",
+          "uses": "natural trace"
+        },
+        "U-235": {
+          "halfLifeText": "703.8 m.y.",
+          "stabilityText": "Moderate",
+          "tag": "natural · FISSILE",
+          "desc": "The only naturally occurring isotope fissile with thermal neutrons. ~0.72% of natural U. Reactor and weapons fuel.",
+          "uses": "Reactor / weapons"
+        },
+        "U-238": {
+          "halfLifeText": "4.47 b.y.",
+          "stabilityText": "High",
+          "tag": "natural · fertile",
+          "desc": ">99% of natural uranium. Not fissile with thermal neutrons, but can capture a neutron and breed Pu‑239 (fissile).",
+          "uses": "Fertile fuel"
+        }
+      },
+      "daughters": {
+        "U-233": {
+          "name": "Thorium‑229",
+          "halfLifeText": "7,340 yr",
+          "stabilityText": "Low"
+        },
+        "U-234": {
+          "name": "Thorium‑230",
+          "halfLifeText": "75,400 yr",
+          "stabilityText": "Low"
+        },
+        "U-235": {
+          "name": "Thorium‑231",
+          "halfLifeText": "25.52 h",
+          "stabilityText": "Very low"
+        },
+        "U-238": {
+          "name": "Thorium‑234",
+          "halfLifeText": "24.10 days",
+          "stabilityText": "Very low"
+        }
+      }
+    },
+    "toti-izotopii": {
+      "page": {
+        "eyebrow": "Nuclear physics | All uranium isotopes"
+      },
+      "documentTitle": "Nuclide map · Uranium (A = 217–242)",
+      "htmlLang": "en",
+      "hero": {
+        "badge": "NUCLEAR EXPLORER · Z = 92",
+        "titleBefore": "The complete map of",
+        "titleAccent": "uranium isotopes",
+        "subtitle": "26 isotopes, from microseconds to billions of years. Same nucleus, always 92 protons — only the neutrons change everything.",
+        "statIsotopes": "isotopes",
+        "statMass": "mass number",
+        "statRatio": "T½ max / min ratio"
+      },
+      "timeline": {
+        "step": "01 · history",
+        "h2": "From discovery to the nuclide map",
+        "y1789": {
+          "h": "Discovery",
+          "p": "Martin Heinrich Klaproth isolates uranium from pitchblende and names it after the planet Uranus."
+        },
+        "y1896": {
+          "h": "Radioactivity",
+          "p": "Henri Becquerel observes spontaneous radiation from uranium salts. A new science is born."
+        },
+        "y1913": {
+          "h": "The isotope concept",
+          "p": "Frederick Soddy shows that atoms of one element can have different masses. Uranium would have dozens."
+        },
+        "y1938": {
+          "h": "Fission of U-235",
+          "p": "Hahn & Strassmann split the nucleus. U-235 becomes the most important industrial isotope in history."
+        },
+        "today": {
+          "year": "today",
+          "h": "26 known isotopes",
+          "p": "From U-217 (26 ms) to U-242 (~17 min). Only three occur in nature: U-234, U-235, U-238."
+        }
+      },
+      "chart": {
+        "step": "02 · map",
+        "h2Before": "Nuclide chart",
+        "h2Accent": "· row Z = 92",
+        "lead": "Each cell is one isotope. Color = decay type. Brightness = relative stability. Click or navigate.",
+        "axisNeutrons": "neutrons →",
+        "legendNote": "color intensity = relative stability"
+      },
+      "explorer": {
+        "step": "03 · explorer",
+        "h2": "One isotope at a time",
+        "lead": "Move the slider or tap a cell above."
+      },
+      "card": {
+        "protons": "Protons",
+        "neutrons": "Neutrons",
+        "massA": "Mass (A)",
+        "nz": "N/Z ratio",
+        "halfLifeLabel": "Half-life",
+        "hlUnstable": "unstable",
+        "hlLongLived": "long-lived",
+        "decayMode": "Decay mode"
+      },
+      "matters": {
+        "title": "Why this isotope matters",
+        "origin": "Origin",
+        "abundance": "Abundance",
+        "fissile": "Fissile",
+        "uses": "Uses"
+      },
+      "decay": {
+        "step": "04 · time",
+        "h2": "The isotope through time",
+        "leadBefore": "Radioactive decay law:",
+        "leadAfter": "Same formula for every isotope — only λ changes.",
+        "statRemaining": "Remaining",
+        "statElapsed": "Elapsed time",
+        "statPeriods": "Half-lives",
+        "timeLabel": "Time",
+        "speedMax": "5 × T½",
+        "formulaSub": "λ = ln(2) / T½ · decay constant",
+        "forIsotope": "for",
+        "perSecond": "s⁻¹",
+        "timesHalf": "× T½",
+        "zeroElapsed": "0",
+        "axisHalf": "T½",
+        "chip": {
+          "alpha": "α · alpha",
+          "betaM": "β⁻",
+          "ce": "EC · electron capture",
+          "betaP": "β⁺"
+        }
+      },
+      "decayChip": {
+        "alpha": "α · alpha",
+        "betaM": "β⁻ · beta minus",
+        "ce": "EC · electron capture",
+        "betaP": "β⁺ · beta plus"
+      },
+      "extremes": {
+        "title": "Map extremes",
+        "longestLabel": "most long-lived",
+        "shortestLabel": "least stable"
+      },
+      "theory": {
+        "step": "05 · theory",
+        "h2": "Formulas tied to the map",
+        "lead": "The same Z = 92 for all isotopes; N and A differ. Stability and decay mode depend on distance from the “valley of stability”.",
+        "linkText": "PULS resources — nuclear physics",
+        "linkHref": "/resources/nuclear-physics",
+        "li1Html": "<strong>Mass number:</strong> <span class=\"theory-mono\">A = Z + N = 92 + N</span>.",
+        "li2Html": "<strong>Radioactive decay:</strong> <span class=\"theory-mono\">N(t) = N₀·e<sup>−λt</sup></span>, <span class=\"theory-mono\">λ = ln(2)/T<sub>½</sub></span> — used in the panel when you pick an isotope.",
+        "li3Html": "<strong>Natural isotopes:</strong> typical rock/ore is dominated by U-238 (~99.3%), U-235 (~0.72%), with U-234 as a trace in the U-238 chain."
+      },
+      "footer": {
+        "note": "Data are current estimates for experimentally known uranium isotopes (A = 217 → 242)."
+      },
+      "stab": {
+        "e0": "extremely unstable",
+        "e1": "very unstable",
+        "e2": "unstable",
+        "e3": "moderately stable",
+        "e4": "long-lived"
+      },
+      "tags": {
+        "natural": "natural",
+        "trace": "natural trace",
+        "artificial": "artificial",
+        "fissile": "FISSILE",
+        "fertile": "fertile"
+      },
+      "tooltip": {
+        "fissile": "Fissile",
+        "protonsZ": "Protons · Z",
+        "neutronsN": "Neutrons · N",
+        "massA": "Mass · A",
+        "halfLife": "T½",
+        "stability": "Stability",
+        "origin": "Origin",
+        "hint": "click to select"
+      },
+      "unit": {
+        "ns": "ns",
+        "us": "μs",
+        "ms": "ms",
+        "s": "s",
+        "min": "min",
+        "h": "h",
+        "days": "days",
+        "yr": "yr",
+        "kyr": "k yr",
+        "Myr": "m.y.",
+        "Gyr": "b.y."
+      },
+      "canvas": {
+        "axisY": "N(t) / N₀",
+        "axisX": "time (× T½)",
+        "atomsViz": "atoms remaining"
+      },
+      "isotopesByA": {
+        "217": {
+          "hlText": "26 ms",
+          "origin": "artificial",
+          "abund": "—",
+          "fissile": "no",
+          "uses": "research only",
+          "desc": "A very light uranium isotope made in accelerators. Gone in tens of milliseconds."
+        },
+        "218": {
+          "hlText": "0.51 ms",
+          "origin": "artificial",
+          "abund": "—",
+          "fissile": "no",
+          "uses": "research",
+          "desc": "Among the least stable isotopes: the atom lasts less than a millisecond."
+        },
+        "219": {
+          "hlText": "55 μs",
+          "origin": "artificial",
+          "abund": "—",
+          "fissile": "no",
+          "uses": "research",
+          "desc": "Sub‑millisecond lifetime. Studied for nuclear structure of the lightest U isotopes."
+        },
+        "220": {
+          "hlText": "~60 ns",
+          "origin": "artificial",
+          "abund": "—",
+          "fissile": "no",
+          "uses": "research",
+          "desc": "Estimated value. Essentially instantaneous — decay in tens of nanoseconds."
+        },
+        "221": {
+          "hlText": "0.66 μs",
+          "origin": "artificial",
+          "abund": "—",
+          "fissile": "no",
+          "uses": "research",
+          "desc": "Produced in heavy‑ion reactions. Lifetime on the scale of a laser flash."
+        },
+        "222": {
+          "hlText": "4.7 μs",
+          "origin": "artificial",
+          "abund": "—",
+          "fissile": "no",
+          "uses": "research",
+          "desc": "Estimated. Probes the fission barrier for very light U isotopes."
+        },
+        "223": {
+          "hlText": "21 μs",
+          "origin": "artificial",
+          "abund": "—",
+          "fissile": "no",
+          "uses": "research",
+          "desc": "Ultra‑short lifetime. Detected via α‑particle spectroscopy."
+        },
+        "224": {
+          "hlText": "0.94 ms",
+          "origin": "artificial",
+          "abund": "—",
+          "fissile": "no",
+          "uses": "research",
+          "desc": "Millisecond scale — among the first U isotopes with ms‑scale lifetimes."
+        },
+        "225": {
+          "hlText": "61 ms",
+          "origin": "artificial",
+          "abund": "—",
+          "fissile": "no",
+          "uses": "research",
+          "desc": "Under a tenth of a second. Used in short α‑decay chain studies."
+        },
+        "226": {
+          "hlText": "0.27 s",
+          "origin": "artificial",
+          "abund": "—",
+          "fissile": "no",
+          "uses": "research",
+          "desc": "Lasts a moment. Useful marker in decay‑chain experiments."
+        },
+        "227": {
+          "hlText": "1.1 min",
+          "origin": "artificial",
+          "abund": "—",
+          "fissile": "no",
+          "uses": "research",
+          "desc": "About a minute of existence. Produced in controlled nuclear reactions."
+        },
+        "228": {
+          "hlText": "9.1 min",
+          "origin": "artificial",
+          "abund": "—",
+          "fissile": "no",
+          "uses": "nuclear research",
+          "desc": "As A increases, lifetime tends to grow — tied to nuclear binding trends."
+        },
+        "229": {
+          "hlText": "58 min",
+          "origin": "artificial",
+          "abund": "—",
+          "fissile": "no",
+          "uses": "research",
+          "desc": "First U isotope decaying mainly by electron capture rather than α."
+        },
+        "230": {
+          "hlText": "20.2 days",
+          "origin": "artificial",
+          "abund": "—",
+          "fissile": "partial",
+          "uses": "medical research",
+          "desc": "Studied as a potential α‑therapy agent. Lives almost three weeks."
+        },
+        "231": {
+          "hlText": "4.2 days",
+          "origin": "artificial",
+          "abund": "—",
+          "fissile": "no",
+          "uses": "research",
+          "desc": "A few days’ lifetime. Intermediate in artificial decay chains."
+        },
+        "232": {
+          "hlText": "68.9 yr",
+          "origin": "artificial",
+          "abund": "—",
+          "fissile": "yes · fast neutrons",
+          "uses": "contaminant in U-233",
+          "desc": "Appears in the Th–U cycle. Problematic: strong γ rays via its progeny."
+        },
+        "233": {
+          "hlText": "159,200 yr",
+          "origin": "artificial",
+          "abund": "—",
+          "fissile": "YES · thermal neutrons",
+          "uses": "Th reactors",
+          "desc": "Fissile like U‑235. Breeds from Th‑232 via neutron capture — Generation‑IV interest."
+        },
+        "234": {
+          "hlText": "245,500 yr",
+          "origin": "natural · trace",
+          "abund": "0.0055 %",
+          "fissile": "no",
+          "uses": "geologic tracer",
+          "desc": "Natural daughter of U‑238 decay. Only ~55 ppm of natural uranium."
+        },
+        "235": {
+          "hlText": "703.8 m.y.",
+          "origin": "natural · primary",
+          "abund": "0.720 %",
+          "fissile": "YES · thermal neutrons",
+          "uses": "reactor · weapons",
+          "desc": "The only naturally occurring thermal‑neutron fissile isotope. Main reactor fuel."
+        },
+        "236": {
+          "hlText": "23.4 m.y.",
+          "origin": "natural · trace",
+          "abund": "< 10⁻¹⁰",
+          "fissile": "no",
+          "uses": "nuclear forensics",
+          "desc": "Neutron‑irradiation marker. In pristine samples → hint of nuclear processing."
+        },
+        "237": {
+          "hlText": "6.75 days",
+          "origin": "artificial",
+          "abund": "—",
+          "fissile": "no",
+          "uses": "Pu tracer",
+          "desc": "Reactor product. Used to trace plutonium production pathways. β⁻ to neptunium."
+        },
+        "238": {
+          "hlText": "4.47 b.y.",
+          "origin": "natural · primary",
+          "abund": "99.2742 %",
+          "fissile": "fertile · fast",
+          "uses": "fertile fuel · DU",
+          "desc": ">99% of Earth’s uranium. Not thermal‑fissile, but captures neutrons to breed fissile Pu‑239."
+        },
+        "239": {
+          "hlText": "23.5 min",
+          "origin": "artificial",
+          "abund": "—",
+          "fissile": "no",
+          "uses": "Pu‑239 precursor",
+          "desc": "Key link: U‑238 + n → U‑239 → Np‑239 → Pu‑239 — how plutonium is made."
+        },
+        "240": {
+          "hlText": "14.1 h",
+          "origin": "artificial",
+          "abund": "—",
+          "fissile": "no",
+          "uses": "research",
+          "desc": "From multiple neutron capture in reactors."
+        },
+        "241": {
+          "hlText": "~5 min",
+          "origin": "artificial",
+          "abund": "—",
+          "fissile": "no",
+          "uses": "research",
+          "desc": "Estimated. Very neutron‑rich, rarely produced."
+        },
+        "242": {
+          "hlText": "16.8 min",
+          "origin": "artificial",
+          "abund": "—",
+          "fissile": "no",
+          "uses": "research",
+          "desc": "Heaviest uranium isotope observed experimentally; beyond lies mostly theory."
+        }
+      }
+    },
     "distilare-d2o-fractionata": {
       "page": {
         "eyebrow": "Fractional distillation Dâ‚‚O | Interactive simulation"

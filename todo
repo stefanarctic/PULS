@@ -4,7 +4,7 @@
 
 Criteriu „tradus”: slug în `src/components/pages/SimulationPage.jsx` (`SIMULATOR_I18N_QUERY_SLUGS`) și bloc corespunzător în `public/translations/simulatoare.en.json`.
 
-### Traduse (49)
+### Traduse (51)
 
 | slug | titlu (RO în app) |
 |------|-------------------|
@@ -57,15 +57,14 @@ Criteriu „tradus”: slug în `src/components/pages/SimulationPage.jsx` (`SIMU
 | reactor-fuziune-dt | Reactor fuziune D–T (model educativ) |
 | circuite-electricitate | Circuite Electrice |
 | legaturi-atomi | Legături între atomi |
+| izotopi-uraniu | Izotopii uraniului (nucleu, α, fisiune, timp) | 
+| toti-izotopii | Harta celor 26 de izotopi ai uraniului |
 
-### Netraduse (4)
+### Netraduse (1)
 
 | slug | titlu (RO în app) |
 |------|-------------------|
-| tabel-periodic | Tabelul periodic |
 | kirchhoff | Legile lui Kirchhoff (iframe extern — caz aparte) |
-| izotopi-uraniu | Izotopii uraniului (nucleu, α, fisiune, timp) | 
-| toti-izotopii | Harta celor 26 de izotopi ai uraniului |
 
 ---
 

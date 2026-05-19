@@ -64,6 +64,8 @@ const SIMULATOR_I18N_QUERY_SLUGS = new Set([
   "reactor-fuziune-dt",
   "legaturi-atomi",
   "tabel-periodic",
+  "izotopi-uraniu",
+  "toti-izotopii",
 ]);
 
 const DEFAULT_EN_SIMULATOR_EYEBROW = "Interactive simulation";
