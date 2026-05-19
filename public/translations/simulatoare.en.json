@@ -1170,7 +1170,7 @@
     },
     "figuri-lissajous": {
       "page": {
-        "eyebrow": "Lissajous figures - Interactive simulation"
+        "eyebrow": "Lissajous figures | Interactive simulation"
       },
       "documentTitle": "Lissajous figures",
       "htmlLang": "en",
@@ -1178,10 +1178,20 @@
         "popupTitle": "Create a Lissajous figure",
         "harmonicFunctions": "Harmonic functions:",
         "color": "Colour:",
-        "timeDeltaHint": "t1 − t2 + "
+        "timeDeltaHint": "t1 − t2 + ",
+        "originLabel": "O(0, 0)",
+        "showPopupAria": "Open create figure dialog",
+        "closePopupAria": "Close dialog",
+        "logAria": "Simulation log"
       },
       "buttons": {
         "createFigure": "Create figure"
+      },
+      "logs": {
+        "noFigureYet": "No Lissajous figure added yet.",
+        "invalidFields": "Enter valid values in all fields.",
+        "figureAdded": "Lissajous figure added successfully.",
+        "dataEntered": "Input: A = {A} m, ω1 = {w1} rad/s, ω2 = {w2} rad/s, t ∈ [{t1}, {t2}] s, φ0 = {phi}°, colour = {color}"
       }
     },
     "seism": {

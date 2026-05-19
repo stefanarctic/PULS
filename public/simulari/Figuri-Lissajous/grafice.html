@@ -17,9 +17,9 @@
 <body>
 
   <div id="log-container">
-    <textarea id="log" readonly></textarea>
+    <textarea id="log" readonly data-i18n-aria="labels.logAria" aria-label="Jurnal simulare"></textarea>
   </div>
-  <button class="show-popup-button" id="show-popup-button"><span>+</span></button>
+  <button type="button" class="show-popup-button" id="show-popup-button" data-i18n-aria="labels.showPopupAria" aria-label="Deschide dialog creare figură"><span>+</span></button>
   <div class="create-point">
     <div class="overlay" id="overlay"></div>
     <div class="create-point-popup" id="create-point-popup">
@@ -59,7 +59,7 @@
           </div>
         </div>
         <button id="create-point-btn" data-i18n="buttons.createFigure">Creeaza figura</button>
-        <button class="close-popup-btn" id="close-popup-btn">x</button>
+        <button type="button" class="close-popup-btn" id="close-popup-btn" data-i18n-aria="labels.closePopupAria" aria-label="Închide">×</button>
       </div>
     </div>
   </div>

@@ -4,7 +4,7 @@
 
 Criteriu „tradus”: slug în `src/components/pages/SimulationPage.jsx` (`SIMULATOR_I18N_QUERY_SLUGS`) și bloc corespunzător în `public/translations/simulatoare.en.json`.
 
-### Traduse (42)
+### Traduse (43)
 
 | slug | titlu (RO în app) |
 |------|-------------------|
@@ -50,9 +50,6 @@ Criteriu „tradus”: slug în `src/components/pages/SimulationPage.jsx` (`SIMU
 | plan-inclinat | Plan Înclinat |
 | proiectile | Mișcarea Proiectilului |
 | lanturi-elastice | Lanțuri Elastice |
-
-### Semi-traduse (1)
-
 | figuri-lissajous | Figuri Lissajous |
 
 ### Netraduse (10)
