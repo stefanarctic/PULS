@@ -1,4 +1,5 @@
-import { createContext, useContext, useEffect, useMemo, useCallback } from 'react';
+import { createContext, useContext, useEffect, useMemo, useCallback, useState, useRef } from 'react';
+import { ChevronDown } from 'lucide-react';
 import { Link, NavLink, useLocation, useNavigate } from 'react-router-dom';
 import enDictionary from '../../public/translations/site.en.json';
 import {
@@ -10,6 +11,15 @@ import {
 
 const SUPPORTED_LANGS = ['ro', 'en'];
 const DEFAULT_LANG = 'ro';
+
+/** UI menu (native names); only codes in SUPPORTED_LANGS are selectable. */
+const LANGUAGE_MENU = [
+    { code: 'ro', short: 'RO', nativeLabel: 'Română', flag: '🇷🇴' },
+    { code: 'en', short: 'EN', nativeLabel: 'English', flag: '🇬🇧' },
+    { code: 'fr', short: 'FR', nativeLabel: 'Français', flag: '🇫🇷', disabled: true },
+    { code: 'it', short: 'IT', nativeLabel: 'Italiano', flag: '🇮🇹', disabled: true },
+    { code: 'de', short: 'DE', nativeLabel: 'Deutsch', flag: '🇩🇪', disabled: true },
+];
 const EN_PREFIX = '/en';
 
 const LanguageContext = createContext({
@@ -163,19 +173,88 @@ export const LocalizedNavLink = ({ to, children, ...rest }) => {
 
 export const LanguageSwitcher = ({ className = '', style }) => {
     const { lang, setLang } = useContext(LanguageContext);
-    const next = lang === 'en' ? 'ro' : 'en';
-    const label = next.toUpperCase();
+    const [open, setOpen] = useState(false);
+    const wrapRef = useRef(null);
+
+    const current = LANGUAGE_MENU.find((x) => x.code === lang) ?? LANGUAGE_MENU[0];
+
+    useEffect(() => {
+        if (!open) return undefined;
+        const onDocMouseDown = (e) => {
+            if (wrapRef.current && !wrapRef.current.contains(e.target)) setOpen(false);
+        };
+        const onKey = (e) => {
+            if (e.key === 'Escape') setOpen(false);
+        };
+        document.addEventListener('mousedown', onDocMouseDown);
+        document.addEventListener('keydown', onKey);
+        return () => {
+            document.removeEventListener('mousedown', onDocMouseDown);
+            document.removeEventListener('keydown', onKey);
+        };
+    }, [open]);
+
     return (
-        <button
-            type="button"
-            className={`language-switcher ${className}`.trim()}
-            onClick={() => setLang(next)}
-            aria-label={lang === 'en' ? 'Switch to Romanian' : 'Comută la engleză'}
-            title={lang === 'en' ? 'Switch to Romanian' : 'Switch to English'}
+        <div
+            ref={wrapRef}
+            className={`language-switcher-wrap ${className}`.trim()}
             style={style}
         >
-            {label}
-        </button>
+            <button
+                type="button"
+                className={`language-switcher-trigger ${open ? 'is-open' : ''}`.trim()}
+                onClick={() => setOpen((v) => !v)}
+                aria-haspopup="listbox"
+                aria-expanded={open}
+                aria-label={`Language: ${current.nativeLabel}. Open menu`}
+            >
+                <span className="language-switcher-trigger-flag" aria-hidden>
+                    {current.flag}
+                </span>
+                <span className="language-switcher-trigger-code">{current.short}</span>
+                <span className="language-switcher-trigger-chevron" aria-hidden>
+                    <ChevronDown size={14} strokeWidth={2} />
+                </span>
+            </button>
+            {open && (
+                <ul className="language-switcher-menu" role="listbox" aria-label="Languages">
+                    {LANGUAGE_MENU.map((item) => {
+                        const selectable = !item.disabled && SUPPORTED_LANGS.includes(item.code);
+                        const selected = item.code === lang;
+                        return (
+                            <li key={item.code} role="presentation">
+                                <button
+                                    type="button"
+                                    role="option"
+                                    aria-selected={selected}
+                                    disabled={!selectable}
+                                    className={`language-switcher-option${selected ? ' is-selected' : ''}${item.disabled ? ' is-disabled' : ''}`.trim()}
+                                    title={item.disabled ? `${item.nativeLabel} — soon` : undefined}
+                                    aria-label={
+                                        item.disabled
+                                            ? `${item.nativeLabel}, coming soon`
+                                            : undefined
+                                    }
+                                    onClick={() => {
+                                        if (!selectable) return;
+                                        setLang(item.code);
+                                        setOpen(false);
+                                    }}
+                                >
+                                    <span className="language-switcher-option-flag" aria-hidden>
+                                        {item.flag}
+                                    </span>
+                                    <span className="language-switcher-option-label">{item.nativeLabel}</span>
+                                    {item.disabled ? (
+                                        <span className="language-switcher-soon-badge">Soon</span>
+                                    ) : null}
+                                </button>
+                            </li>
+                        );
+                    })}
+                </ul>
+            )}
+        </div>
     );
 };
 
