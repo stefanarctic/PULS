@@ -2301,7 +2301,7 @@
     },
     "curent-alternativ": {
       "title": "Alternating Current",
-      "description": "Simulation of sinusoidal voltage and current: frequency, period, RMS values, and phase shifts in RLC circuits.",
+      "description": "Interactive simulation of sinusoidal voltage and current: frequency, RMS values, phase, instantaneous power, and phasor view.",
       "caption": "Alternating current"
     },
     "kirchhoff": {
@@ -2348,7 +2348,7 @@
     },
     "reactor-fuziune-dt": {
       "title": "D-T Fusion Reactor (Educational Model)",
-      "description": "Educational simulator for a D-T fusion reactor, illustrating fusion behaviour, plasma confinement, and meltdown scenarios.",
+      "description": "Educational toy model for D–T fusion: temperature, pressure, and neutron flux change particle motion and fusion rate; cumulative energy (~17.6 MeV per event), stability warnings, time-series chart, and a visual meltdown scenario.",
       "caption": "Deuterium-tritium fusion model",
       "eyebrow": "Nuclear Physics | Interactive simulation"
     },

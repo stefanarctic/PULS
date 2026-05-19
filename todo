@@ -4,7 +4,7 @@
 
 Criteriu „tradus”: slug în `src/components/pages/SimulationPage.jsx` (`SIMULATOR_I18N_QUERY_SLUGS`) și bloc corespunzător în `public/translations/simulatoare.en.json`.
 
-### Traduse (43)
+### Traduse (47)
 
 | slug | titlu (RO în app) |
 |------|-------------------|
@@ -12,6 +12,8 @@ Criteriu „tradus”: slug în `src/components/pages/SimulationPage.jsx` (`SIMU
 | pendul-amortizat | Pendulul Oscilator Amortizat |
 | pendul-neliniar | Pendul simplu neliniar |
 | grafice-pendule | Grafice Pendule |
+| grafice-functii | Grafice Funcții |
+| grafice-simple | Grafice Simple |
 | pendule-multiple | Penduluri Duble Multiple |
 | unde-apa | Undele produse în apă |
 | seism | Seism |
@@ -51,19 +53,17 @@ Criteriu „tradus”: slug în `src/components/pages/SimulationPage.jsx` (`SIMU
 | proiectile | Mișcarea Proiectilului |
 | lanturi-elastice | Lanțuri Elastice |
 | figuri-lissajous | Figuri Lissajous |
+| curent-alternativ | Curent alternativ |
+| reactor-fuziune-dt | Reactor fuziune D–T (model educativ) |
 
-### Netraduse (10)
+### Netraduse (6)
 
 | slug | titlu (RO în app) |
 |------|-------------------|
-| grafice-functii | Grafice Funcții |
-| grafice-simple | Grafice Simple |
 | circuite-electricitate | Circuite Electrice |
 | tabel-periodic | Tabelul periodic |
-| curent-alternativ | Curent alternativ |
 | kirchhoff | Legile lui Kirchhoff (iframe extern — caz aparte) |
 | legaturi-atomi | Legături între atomi |
-| reactor-fuziune-dt | Reactor fuziune D–T (model educativ) |
 | izotopi-uraniu | Izotopii uraniului (nucleu, α, fisiune, timp) | 
 | toti-izotopii | Harta celor 26 de izotopi ai uraniului |
 

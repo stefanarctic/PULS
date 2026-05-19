@@ -7,7 +7,7 @@ const closePopupButton = document.getElementById('close-popup-btn');
 const createPointButton = document.getElementById('create-point-btn');
 const omega1Input = document.getElementById('omega1Input');
 const omega2Input = document.getElementById('omega2Input');
-const amplitudine = document.getElementById('amplitudineInput');
+const amplitudeInputEl = document.getElementById('amplitudineInput');
 const unghiulinitial = document.getElementById('unghiulinitialInput');
 const letterInput = document.getElementById('letterInput');
 const timeInput = document.getElementById('timeInput');
@@ -59,7 +59,7 @@ const resetValues = () => {
     time2Input.value = ''; // Resetăm și t2
     omega1Input.value = '';
     omega2Input.value = '';
-    amplitudine.value = '';
+    amplitudeInputEl.value = '';
     unghiulinitial.value = '';
     colorInput.value = '';
 }
@@ -75,15 +75,29 @@ const createPoint = () => {
     const time2 = parseFloat(time2Input.value);
     const omega1 = parseFloat(omega1Input.value);
     const omega2 = parseFloat(omega2Input.value);
-    const amplitudine = parseFloat(amplitudineInput.value);
-    const unghiulinitial = parseFloat(unghiulinitialInput.value);
+    const amplitudeVal = parseFloat(amplitudeInputEl.value);
+    const unghiulinitialVal = parseFloat(unghiulinitial.value);
     const color = colorInput.value;
-    if (isNaN(time) || isNaN(time2) || isNaN(omega1) || isNaN(omega2) || isNaN(amplitudine) || isNaN(unghiulinitial)) {
-        addLog("Introdu valori valide în toate câmpurile!");
+    if (isNaN(time) || isNaN(time2) || isNaN(omega1) || isNaN(omega2) || isNaN(amplitudeVal) || isNaN(unghiulinitialVal)) {
+        addLog(window.gsT("logs.enterValidNumbers", "Introdu valori valide în toate câmpurile!"));
         return;
     }
     // Logăm valorile înainte de resetare
-    addLog(`Date introduse: A = ${amplitudine} m, 𝛚1 = ${omega1} rad/s, 𝛚2 = ${omega2} rad/s, t = ${time} s, t2 = ${time2} s, φ0 = ${unghiulinitial}°, culoare = ${color}`);
+    addLog(
+        window.gsFmt(
+            "logs.enteredData",
+            `Date introduse: A = ${amplitudeVal} m, 𝛚1 = ${omega1} rad/s, 𝛚2 = ${omega2} rad/s, t = ${time} s, t2 = ${time2} s, φ0 = ${unghiulinitialVal}°, culoare = ${color}`,
+            {
+                "{AMP}": String(amplitudeVal),
+                "{W1}": String(omega1),
+                "{W2}": String(omega2),
+                "{T}": String(time),
+                "{T2}": String(time2),
+                "{PHI}": String(unghiulinitialVal),
+                "{CLR}": String(color),
+            }
+        )
+    );
     //const A = 10;
     //const w1 = 3;
     //const w2 = 6;
@@ -92,8 +106,8 @@ const createPoint = () => {
     const t2 = time2;
     const w1 = omega1;
     const w2 = omega2;
-    const f0 = unghiulinitial;
-    const A = amplitudine;
+    const f0 = unghiulinitialVal;
+    const A = amplitudeVal;
     const x = A * Math.sin(w1 * t);
     const y = A * Math.sin(w2 * t2 + f0);
     gridGroup.append("circle")
@@ -117,7 +131,7 @@ const createPoint = () => {
     //     .attr("y2", -y * minorSpacing) // Coordonata Y a punctului B
     //     .attr("stroke", color) // Culoarea liniei
     //     .attr("stroke-width", 2); // Grosimea liniei
-    addLog("Punct creat cu succes!");
+    addLog(window.gsT("logs.pointCreatedOk", "Punct creat cu succes!"));
     createdPoints.push({ name: letter, x, y }); // Adaugă punctul în array
     hideDialog();
 }
@@ -129,15 +143,21 @@ const createLine = () => {
 
 
     if (isNaN(pointAIndex) || isNaN(pointBIndex)) {
-        addLog("Indexurile introduse nu sunt numere valide.");
+        addLog(window.gsT("logs.indicesNotNumeric", "Indexurile introduse nu sunt numere valide."));
         return;
     }
     if (pointAIndex === pointBIndex) {
-        addLog("Indexurile introduse sunt identice!");
+        addLog(window.gsT("logs.sameIndices", "Indexurile introduse sunt identice!"));
         return;
     }
     if (pointAIndex < 0 || pointAIndex >= createdPoints.length || pointBIndex < 0 || pointBIndex >= createdPoints.length) {
-        addLog(`Indexurile sunt în afara limitelor! A: ${pointAIndex}, B: ${pointBIndex}`);
+        addLog(
+            window.gsFmt(
+                "logs.indicesOutOfRange",
+                "Indexurile sunt în afara limitelor! A: {IA}, B: {IB}",
+                { "{IA}": String(pointAIndex), "{IB}": String(pointBIndex) }
+            )
+        );
         return;
     }
 
@@ -146,7 +166,7 @@ const createLine = () => {
     const pointB = createdPoints[pointBIndex];
 
     if (!pointA || !pointB) {
-        addLog("Punctele nu au fost găsite. Verifică array-ul createdPoints.");
+        addLog(window.gsT("logs.pointsMissing", "Punctele nu au fost găsite. Verifică array-ul createdPoints."));
         return;
     }
 
@@ -163,7 +183,13 @@ const createLine = () => {
         .attr("stroke", lineColor)
         .attr("stroke-width", 2);
 
-    addLog(`Linie creată între punctele ${pointA.name} și ${pointB.name}`);
+    addLog(
+        window.gsFmt(
+            "logs.lineCreatedBetween",
+            "Linie creată între punctele {NA} și {NB}",
+            { "{NA}": String(pointA.name), "{NB}": String(pointB.name) }
+        )
+    );
     hideDialog(); // Închidem dialogul după crearea liniei
 };
 

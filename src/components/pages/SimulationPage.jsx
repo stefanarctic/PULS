@@ -18,6 +18,8 @@ const SIMULATOR_I18N_QUERY_SLUGS = new Set([
   "pendul-amortizat",
   "pendul-neliniar",
   "grafice-pendule",
+  "grafice-functii",
+  "grafice-simple",
   "pendule-multiple",
   "unde-apa",
   "figuri-lissajous",
@@ -57,6 +59,8 @@ const SIMULATOR_I18N_QUERY_SLUGS = new Set([
   "termodinamica",
   "instalatie-schimb-izotopic",
   "distilare-d2o-fractionata",
+  "curent-alternativ",
+  "reactor-fuziune-dt",
 ]);
 
 const DEFAULT_EN_SIMULATOR_EYEBROW = "Interactive simulation";

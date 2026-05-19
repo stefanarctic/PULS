@@ -27,7 +27,7 @@ const deletePoint = (pointIndex) => {
         })
         .remove();
 
-    addLog(`Punctul ${point.name} a fost șters.`);
+    addLog(window.gsFmt("logs.pointRemoved", "Punctul {NM} a fost șters.", { "{NM}": point.name }));
 };
 
 // Funcția pentru ștergerea unei linii
@@ -49,7 +49,13 @@ const deleteLine = (pointAIndex, pointBIndex) => {
         })
         .remove();
 
-    addLog(`Linia dintre punctele ${pointA.name} și ${pointB.name} a fost ștearsă.`);
+    addLog(
+        window.gsFmt(
+            "logs.lineRemoved",
+            "Linia dintre punctele {NA} și {NB} a fost ștearsă.",
+            { "{NA}": pointA.name, "{NB}": pointB.name }
+        )
+    );
 };
 
 // Evenimente pentru popup
@@ -64,7 +70,7 @@ closeDeletePopupBtn.addEventListener('click', () => {
 deletePointBtnPopup.addEventListener('click', () => {
   const pointIndex = parseInt(deletePointIndexInput.value, 10);
   if (isNaN(pointIndex) || pointIndex < 0 || pointIndex >= createdPoints.length) {
-    addLog("Index invalid. Te rog să încerci din nou.");
+    addLog(window.gsT("logs.invalidPointIndex", "Index invalid. Te rog să încerci din nou."));
     return;
   }
   deletePoint(pointIndex); // Apelăm funcția pentru ștergerea punctului
@@ -77,7 +83,7 @@ deleteLineBtnPopup.addEventListener('click', () => {
   if (isNaN(pointAIndex) || isNaN(pointBIndex) ||
       pointAIndex < 0 || pointAIndex >= createdPoints.length ||
       pointBIndex < 0 || pointBIndex >= createdPoints.length) {
-    addLog("Indexuri invalide. Te rog să încerci din nou.");
+    addLog(window.gsT("logs.invalidLineIndices", "Indexuri invalide. Te rog să încerci din nou."));
     return;
   }
   deleteLine(pointAIndex, pointBIndex); // Apelăm funcția pentru ștergerea liniei

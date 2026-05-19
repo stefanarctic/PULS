@@ -154,6 +154,91 @@
         "mechanicalEnergy": "Mechanical energy Em (J)"
       }
     },
+    "grafice-functii": {
+      "page": {
+        "eyebrow": "Graphs | Interactive simulation"
+      },
+      "documentTitle": "Function graphs",
+      "htmlLang": "en"
+    },
+    "grafice-simple": {
+      "page": {
+        "eyebrow": "Graphs | Interactive simulation"
+      },
+      "documentTitle": "Basic graphs",
+      "htmlLang": "en",
+      "labels": {
+        "createPointHeading": "Create a point",
+        "letter": "Letter:",
+        "harmonicsSection": "Harmonic functions:",
+        "eqXPrefix": "x =",
+        "eqSinMiddle": "* sin(",
+        "timesT": "*",
+        "closeParenShort": ")",
+        "eqYPrefix": "y = A * sin(",
+        "timesT2": "*",
+        "plusPhi": "+ ",
+        "colourPoint": "Colour:",
+        "createPointBtn": "Create point",
+        "createLineHeading": "Create a line",
+        "pointA": "Point A:",
+        "pointB": "Point B:",
+        "lineColour": "Line colour:",
+        "createLineBtn": "Create line",
+        "createTriangleHeading": "Create a triangle",
+        "pointC": "Point C:",
+        "triangleColour": "Triangle colour:",
+        "createTriangleBtn": "Create triangle",
+        "deleteHeading": "Delete a point or a line",
+        "pointIndexLabel": "Point index:",
+        "deletePointBtn": "Delete point",
+        "linePointAIndex": "Point A index:",
+        "linePointBIndex": "Point B index:",
+        "deleteLineBtn": "Delete line"
+      },
+      "placeholders": {
+        "letterHint": "",
+        "amplitudeHint": "A",
+        "omega1Hint": "ω1",
+        "omega2Hint": "ω2",
+        "timeHint": "t",
+        "phiHint": "φ0",
+        "indexPointA": "Point A index",
+        "indexPointB": "Point B index",
+        "indexPointC": "Point C index",
+        "indexPointPlain": "Point index",
+        "indexPointAPlain": "Point A index",
+        "indexPointBPlain": "Point B index"
+      },
+      "aria": {
+        "logArea": "Activity log",
+        "openTools": "Open drawing tools (+)",
+        "openDeleteTools": "Open delete tools (–)",
+        "closePopup": "Close"
+      },
+      "logs": {
+        "logNotFoundErr": "The element with id “log” was not found!",
+        "enterValidNumbers": "Enter valid numbers in all fields!",
+        "enteredData": "Entered values: A = {AMP} m, ω₁ = {W1} rad/s, ω₂ = {W2} rad/s, t = {T} s, t₂ = {T2} s, φ₀ = {PHI}°, colour = {CLR}",
+        "pointCreatedOk": "Point created.",
+        "indicesNotNumeric": "The indices entered are not valid numbers.",
+        "sameIndices": "The two indices are the same!",
+        "indicesOutOfRange": "Indices out of range! A: {IA}, B: {IB}",
+        "pointsMissing": "Points not found — check createdPoints.",
+        "lineCreatedBetween": "Line created between {NA} and {NB}.",
+        "pointRemoved": "Point “{NM}” deleted.",
+        "lineRemoved": "Line between {NA} and {NB} deleted.",
+        "invalidPointIndex": "Invalid index. Please try again.",
+        "invalidLineIndices": "Invalid indices. Please try again.",
+        "triangleIndexesInvalid": "The point indices entered are not valid.",
+        "pointsMustBeDistinct": "The three vertices must be different!",
+        "triangleDone": "Triangle through {NA}, {NB}, and {NC}.",
+        "introCaseTitle": "In this demo we show:",
+        "introEqx": "x = A*sin(ω₁·t), with A = 10 m, ω₁ = 3",
+        "introEqy": "y = A*sin(ω₂·t + π/2), with A = 10 m, ω₂ = 6",
+        "introExample": "For A take t = 3, B t = 6, C t = 9, D t = 12, O t = 0"
+      }
+    },
     "grafice-pendule": {
       "page": {
         "eyebrow": "Pendulum graphs | Interactive simulation"
@@ -521,6 +606,67 @@
       "toggle": {
         "left": "Hide / show explanations",
         "right": "Hide / show chart and sliders"
+      }
+    },
+    "curent-alternativ": {
+      "page": {
+        "eyebrow": "Alternating current | Interactive simulation"
+      },
+      "documentTitle": "Alternating current (AC)",
+      "htmlLang": "en",
+      "labels": {
+        "pageTitle": "Alternating current",
+        "subtitle": "AC / DC simulator — voltage, current, phase, phasor",
+        "panelFormulas": "Formulas & measurements",
+        "siUnitsTitle": "SI units",
+        "siU": "U — V (volt)",
+        "siI": "I — A (ampere)",
+        "siF": "f — Hz (hertz)",
+        "siPhi": "φ — rad (radian)",
+        "formulasMeasuresTitle": "Formulas & measurements",
+        "energySection": "Energy",
+        "phaseSection": "Phase",
+        "controlPanel": "Control",
+        "paramsSection": "Parameters",
+        "ampU": "U(t) amplitude",
+        "ampI": "I(t) amplitude",
+        "frequency": "Frequency",
+        "speed": "Animation speed",
+        "phase": "Phase",
+        "mode": "Mode",
+        "measurementsSection": "Measurements",
+        "miniGraphTitle": "Small graph",
+        "legendU": "U(t)",
+        "legendI": "I(t)",
+        "legendP": "P(t)"
+      },
+      "units": {
+        "radPerS": "rad/s"
+      },
+      "formula": {
+        "active": "(active)",
+        "apparent": "(apparent)",
+        "reactive": "(reactive)"
+      },
+      "analysis": {
+        "ideal": "✔ Nearly ideal (resistive) circuit",
+        "reactive": "⚠ Circuit has a reactive component",
+        "negativePower": "❌ Negative power (energy returned)"
+      },
+      "phaseText": {
+        "currentLags": "Current lags voltage",
+        "currentLeads": "Current leads voltage",
+        "inPhase": "In phase"
+      },
+      "energy": {
+        "line": "E ≈ {e} J"
+      },
+      "measurements": {
+        "impedance": "Z = {z} Ω"
+      },
+      "aria": {
+        "panelFormulas": "Formulas and measurements panel",
+        "panelControl": "Control panel"
       }
     },
     "refractie-atmosferica": {
@@ -1598,6 +1744,43 @@
         "rayIncident": "Incident ray",
         "rayReflected": "Reflected ray",
         "rayRefracted": "Refracted ray"
+      }
+    },
+    "reactor-fuziune-dt": {
+      "page": {
+        "eyebrow": "Nuclear physics | Fusion reactor (educational model)"
+      },
+      "documentTitle": "Fusion reactor simulator — D–T (educational)",
+      "htmlLang": "en",
+      "labels": {
+        "title": "Fusion reactor simulator — D–T",
+        "subtitle": "Control parameters, cumulative energy (~17.6 MeV per fusion), and stability (educational model — not reactor engineering).",
+        "hintTemp": "Higher temperature → particles move faster.",
+        "hintFlux": "Higher flux increases the likelihood of fusion near the core (~17.6 MeV per event).",
+        "hintEnergy": "Displayed energy = number of reactions × 17.6 MeV (educational D–T model).",
+        "meltdownHeading": "Meltdown — what happened?",
+        "meltdownBody": "Tritium is a radioactive isotope of hydrogen. Under extreme conditions, reactions can spiral out of control and the released energy becomes unstable. In the scenario above, the reactor enters meltdown: loss of control, a violent surge of energy, then dispersal of an educational radioactive “cloud” visualisation.",
+        "temperature": "Temperature (K)",
+        "pressure": "Pressure",
+        "neutronFlux": "Neutron flux",
+        "resetBtn": "Reset reactor",
+        "chartTitle": "Energy over time (MeV)",
+        "cardEnergy": "Energy",
+        "cardRate": "Fusions per second",
+        "cardStability": "Stability"
+      },
+      "stability": {
+        "ok": "OK",
+        "unstable": "UNSTABLE",
+        "critical": "CRITICAL"
+      },
+      "status": {
+        "meltdown": "\u2622 MELTDOWN",
+        "warningUnstable": "\u26A0 UNSTABLE"
+      },
+      "aria": {
+        "educationalHints": "Educational hints",
+        "energyChart": "Energy over time chart"
       }
     },
     "prisma": {
