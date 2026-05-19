@@ -33,3 +33,6 @@ vite.allowed-hosts.js
 
 prezentare.txt
 firebase-service-account-key.json
+
+# Firestore op backups (script output)
+scripts/backups/
