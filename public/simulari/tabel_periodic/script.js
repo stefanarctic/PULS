@@ -485,24 +485,30 @@ function renderModal(el) {
   }
 
   panelElectronic.innerHTML = `
-    <div class="modal-section">
-      <h3>Configurație electronică</h3>
-      <p class="config-aufbau-hint">Subnivelurile sunt afișate în <strong>ordinea Aufbau</strong> (ex. 4s înainte de 3d), ca în manualele de chimie.</p>
-      <p><strong>Varianta completă:</strong></p>
-      <div class="config-full">${fullSup}</div>
-      <p><strong>Varianta prescurtată:</strong></p>
-      <div class="config-short">${shortSup}</div>
+    <div class="electronic-grid">
+      <div class="electronic-col">
+        <div class="modal-section">
+          <h3>Configurație electronică</h3>
+          <p class="config-aufbau-hint">Subnivelurile sunt afișate în <strong>ordinea Aufbau</strong> (ex. 4s înainte de 3d), ca în manualele de chimie.</p>
+          <p><strong>Varianta completă:</strong></p>
+          <div class="config-full">${fullSup}</div>
+          <p><strong>Varianta prescurtată:</strong></p>
+          <div class="config-short">${shortSup}</div>
+        </div>
+        <div class="modal-section">
+          <h3>Distribuția pe nivele (n)</h3>
+          <ul class="shells-list">${shellsHTML}</ul>
+          ${shellInterpretationNote(el)}
+        </div>
+        ${quantumHTML}
+      </div>
+      <div class="electronic-col">
+        <div class="modal-section">
+          <h3>Distribuția pe subnivele (orbitali)</h3>
+          ${sublevelsHTML}
+        </div>
+      </div>
     </div>
-    <div class="modal-section">
-      <h3>Distribuția pe nivele (n)</h3>
-      <ul class="shells-list">${shellsHTML}</ul>
-      ${shellInterpretationNote(el)}
-    </div>
-    <div class="modal-section">
-      <h3>Distribuția pe subnivele (orbitali)</h3>
-      ${sublevelsHTML}
-    </div>
-    ${quantumHTML}
   `;
 
   panelVisual.innerHTML = `
@@ -539,6 +545,11 @@ function showElement(el) {
   document.querySelectorAll(".tab-btn").forEach(b => b.classList.remove("active"));
   document.getElementById("panelGeneral").classList.add("active");
   document.querySelector('.tab-btn[data-tab="general"]').classList.add("active");
+
+  const tabIso = document.getElementById("tabIsotopes");
+  const hasIsotopes = typeof ISOTOPE_DATA !== "undefined" && ISOTOPE_DATA[el.symbol];
+  tabIso.style.display = hasIsotopes ? "" : "none";
+  if (hasIsotopes) renderIsotopePanel(el);
 
   const modalContent = modal.querySelector(".modal-content");
   if (modalContent && UNSTABLE_GLITCH_SYMBOLS.includes(el.symbol)) {
@@ -577,8 +588,8 @@ document.querySelectorAll(".tab-btn").forEach(btn => {
     document.querySelectorAll(".tab-btn").forEach(b => b.classList.remove("active"));
     document.querySelectorAll(".tab-panel").forEach(p => p.classList.remove("active"));
     btn.classList.add("active");
-    const panelId = tab === "general" ? "panelGeneral" : tab === "electronic" ? "panelElectronic" : "panelVisual";
-    document.getElementById(panelId).classList.add("active");
+    const panelMap = { general: "panelGeneral", electronic: "panelElectronic", visual: "panelVisual", isotopes: "panelIsotopes" };
+    document.getElementById(panelMap[tab]).classList.add("active");
     if (tab === "visual") {
       requestAnimationFrame(() => {
         const canvas = document.getElementById("bohrCanvas");
@@ -586,6 +597,12 @@ document.querySelectorAll(".tab-btn").forEach(btn => {
           sizeBohrCanvas(canvas, currentModalElement);
           runBohrAnimation(canvas, currentModalElement.shells);
         }
+      });
+    }
+    if (tab === "isotopes") {
+      requestAnimationFrame(() => {
+        const nc = document.getElementById("nucleusCanvas");
+        if (nc) drawNucleus(nc);
       });
     }
   });
@@ -744,4 +761,380 @@ if (radioactiveBtn) {
       radioactiveBtn.click();
     }
   });
+}
+
+// ═══════════════════════════════════════════════════════════
+//  ISOTOPE TAB
+// ═══════════════════════════════════════════════════════════
+
+let isoState = { symbol: null, sliderIdx: 0, compareA: null, compareB: null, comparing: false };
+
+function stabilityClass(s) {
+  if (s === "stable") return "iso-stable";
+  if (s === "weakly-radioactive") return "iso-weak";
+  return "iso-radio";
+}
+function stabilityLabel(s) {
+  if (s === "stable") return "Stabil";
+  if (s === "weakly-radioactive") return "Slab radioactiv";
+  return "Radioactiv";
+}
+function stabilityIcon(s) {
+  if (s === "stable") return "✓";
+  if (s === "weakly-radioactive") return "⚠";
+  return "☢";
+}
+
+function renderIsotopePanel(el) {
+  const panel = document.getElementById("panelIsotopes");
+  const data = ISOTOPE_DATA[el.symbol];
+  if (!data) { panel.innerHTML = "<p>Nu sunt disponibile date despre izotopi pentru acest element.</p>"; return; }
+
+  const iso = data.isotopes;
+  isoState.symbol = el.symbol;
+  isoState.sliderIdx = 0;
+  isoState.compareA = null;
+  isoState.compareB = null;
+  isoState.comparing = false;
+
+  let html = `<div class="iso-header-section">
+    <h3>${el.name} (${el.symbol}) — Izotopi</h3>
+    <p class="iso-subtitle">${iso.length} izotopi selectați • Z = ${data.protons}</p>
+  </div>`;
+
+  html += `<div class="iso-legend-bar">
+    <span class="iso-leg iso-stable">✓ Stabil</span>
+    <span class="iso-leg iso-weak">⚠ Slab radioactiv</span>
+    <span class="iso-leg iso-radio">☢ Radioactiv</span>
+  </div>`;
+
+  html += `<div class="iso-grid">`;
+
+  // LEFT column: slider + nucleus
+  html += `<div class="iso-col-left">`;
+
+  html += `<div class="iso-slider-section">
+    <div class="iso-slider-label">Adaugă neutroni →</div>
+    <div class="iso-slider-wrap">
+      <input type="range" id="isoSlider" min="0" max="${iso.length - 1}" value="0" step="1" class="iso-slider" />
+      <div class="iso-slider-ticks" id="isoSliderTicks"></div>
+    </div>
+    <div class="iso-slider-current" id="isoSliderCurrent"></div>
+  </div>`;
+
+  html += `<div class="iso-nucleus-section">
+    <div class="iso-nucleus-wrap">
+      <canvas id="nucleusCanvas" width="260" height="260"></canvas>
+    </div>
+    <div class="iso-nucleus-legend">
+      <span class="nuc-leg"><span class="nuc-dot nuc-proton"></span> Protoni (${data.protons})</span>
+      <span class="nuc-leg"><span class="nuc-dot nuc-neutron"></span> Neutroni</span>
+      <span class="nuc-leg"><span class="nuc-dot nuc-electron"></span> Electroni</span>
+    </div>
+  </div>`;
+
+  html += `</div>`; // end iso-col-left
+
+  // RIGHT column: cards
+  html += `<div class="iso-col-right">`;
+  html += `<div class="iso-cards" id="isoCards">`;
+  iso.forEach((i, idx) => {
+    const cls = stabilityClass(i.stability);
+    const sup = toSuperscript(String(i.A));
+    html += `<div class="iso-card ${cls} ${idx === 0 ? 'iso-card-active' : ''}" data-idx="${idx}">
+      <div class="iso-card-head">
+        <div class="iso-card-symbol">${sup}${el.symbol}</div>
+        <div class="iso-card-name">${i.name}</div>
+        <div class="iso-card-badge ${cls}">${stabilityIcon(i.stability)} ${stabilityLabel(i.stability)}</div>
+      </div>
+      <div class="iso-card-props">
+        <div class="iso-prop"><strong>Masă</strong>${i.mass.toFixed(5)} u</div>
+        <div class="iso-prop"><strong>Neutroni</strong>${i.neutrons}</div>
+        <div class="iso-prop"><strong>T½</strong>${i.halfLife}</div>
+        ${i.abundance ? `<div class="iso-prop"><strong>Abundență</strong>${i.abundance}</div>` : ''}
+      </div>
+      <div class="iso-card-uses">
+        <strong>Utilizări:</strong>
+        <ul>${i.uses.map(u => `<li>${u}</li>`).join("")}</ul>
+      </div>
+      <div class="iso-card-expand-btn" data-idx="${idx}">▼ Detalii</div>
+      <div class="iso-card-details" id="isoDetail${idx}" style="display:none;">
+        ${i.decay ? `<div class="iso-detail-row"><strong>Dezintegrare:</strong> ${i.decay}</div>` : ''}
+        ${i.decayEq ? `<div class="iso-detail-row iso-equation">${i.decayEq.replace(/\n/g, '<br>')}</div>` : ''}
+        <div class="iso-detail-row">${i.details}</div>
+      </div>
+      <label class="iso-compare-check"><input type="checkbox" class="iso-cmp-cb" data-idx="${idx}" /> Compară</label>
+    </div>`;
+  });
+  html += `</div>`;
+  html += `</div>`; // end iso-col-right
+
+  html += `</div>`; // end iso-grid
+
+  // Compare panel (full width below)
+  html += `<div class="iso-compare-panel" id="isoComparePanel" style="display:none;">
+    <h3>Comparare izotopi</h3>
+    <div class="iso-compare-grid" id="isoCompareGrid"></div>
+  </div>`;
+
+  panel.innerHTML = html;
+
+  // Wire slider
+  const slider = document.getElementById("isoSlider");
+  const ticksWrap = document.getElementById("isoSliderTicks");
+  let ticksHTML = "";
+  iso.forEach((i, idx) => {
+    const sup = toSuperscript(String(i.A));
+    ticksHTML += `<span class="iso-tick ${idx === 0 ? 'active' : ''}" data-idx="${idx}">${sup}${el.symbol}</span>`;
+  });
+  ticksWrap.innerHTML = ticksHTML;
+
+  updateSliderDisplay(0, el.symbol);
+
+  slider.addEventListener("input", () => {
+    const idx = parseInt(slider.value, 10);
+    isoState.sliderIdx = idx;
+    updateSliderDisplay(idx, el.symbol);
+  });
+
+  // Wire expand buttons
+  panel.querySelectorAll(".iso-card-expand-btn").forEach(btn => {
+    btn.addEventListener("click", () => {
+      const idx = btn.dataset.idx;
+      const det = document.getElementById("isoDetail" + idx);
+      const open = det.style.display !== "none";
+      det.style.display = open ? "none" : "block";
+      btn.textContent = open ? "▼ Detalii" : "▲ Ascunde";
+    });
+  });
+
+  // Wire compare checkboxes
+  panel.querySelectorAll(".iso-cmp-cb").forEach(cb => {
+    cb.addEventListener("change", () => {
+      const checked = [...panel.querySelectorAll(".iso-cmp-cb:checked")];
+      if (checked.length > 2) { cb.checked = false; return; }
+      if (checked.length === 2) {
+        isoState.compareA = parseInt(checked[0].dataset.idx, 10);
+        isoState.compareB = parseInt(checked[1].dataset.idx, 10);
+        isoState.comparing = true;
+        renderCompare(el.symbol);
+      } else {
+        isoState.comparing = false;
+        document.getElementById("isoComparePanel").style.display = "none";
+      }
+    });
+  });
+
+  // Wire card clicks to slider
+  panel.querySelectorAll(".iso-card").forEach(card => {
+    card.addEventListener("click", (e) => {
+      if (e.target.closest(".iso-card-expand-btn") || e.target.closest(".iso-compare-check") || e.target.tagName === "INPUT") return;
+      const idx = parseInt(card.dataset.idx, 10);
+      slider.value = idx;
+      isoState.sliderIdx = idx;
+      updateSliderDisplay(idx, el.symbol);
+    });
+  });
+}
+
+function updateSliderDisplay(idx, symbol) {
+  const data = ISOTOPE_DATA[symbol];
+  if (!data) return;
+  const iso = data.isotopes[idx];
+  const panel = document.getElementById("panelIsotopes");
+
+  // Update current label
+  const cur = document.getElementById("isoSliderCurrent");
+  const sup = toSuperscript(String(iso.A));
+  cur.innerHTML = `<span class="iso-slider-big ${stabilityClass(iso.stability)}">${sup}${symbol}</span> <span class="iso-slider-info">${iso.name} • N=${iso.neutrons} • ${stabilityLabel(iso.stability)}</span>`;
+
+  // Highlight active card
+  panel.querySelectorAll(".iso-card").forEach((c, i) => {
+    c.classList.toggle("iso-card-active", i === idx);
+  });
+
+  // Update tick labels
+  panel.querySelectorAll(".iso-tick").forEach((t, i) => {
+    t.classList.toggle("active", i === idx);
+  });
+
+  // Draw nucleus
+  requestAnimationFrame(() => {
+    const nc = document.getElementById("nucleusCanvas");
+    if (nc) drawNucleus(nc);
+  });
+}
+
+function drawNucleus(canvas) {
+  const sym = isoState.symbol;
+  const data = ISOTOPE_DATA[sym];
+  if (!data) return;
+  const iso = data.isotopes[isoState.sliderIdx];
+  const ctx = canvas.getContext("2d");
+  const w = canvas.width, h = canvas.height;
+  const cx = w / 2, cy = h / 2;
+  ctx.clearRect(0, 0, w, h);
+
+  const protons = data.protons;
+  const neutrons = iso.neutrons;
+  const total = protons + neutrons;
+
+  // Place nucleons in a tight cluster
+  const nucleonR = total <= 4 ? 12 : total <= 10 ? 9 : total <= 50 ? 6 : total <= 150 ? 4.5 : 3.5;
+  const nucleons = [];
+  const pArr = [], nArr = [];
+  for (let i = 0; i < protons; i++) pArr.push("p");
+  for (let i = 0; i < neutrons; i++) nArr.push("n");
+
+  // Interleave for visual balance
+  let pi = 0, ni = 0;
+  while (pi < pArr.length || ni < nArr.length) {
+    if (pi < pArr.length) { nucleons.push("p"); pi++; }
+    if (ni < nArr.length) { nucleons.push("n"); ni++; }
+  }
+
+  // Spiral layout
+  const positions = [];
+  if (total === 1) {
+    positions.push({ x: cx, y: cy });
+  } else {
+    const spacing = nucleonR * 2.2;
+    let angle = 0, r = 0, step = spacing;
+    for (let i = 0; i < total; i++) {
+      positions.push({ x: cx + r * Math.cos(angle), y: cy + r * Math.sin(angle) });
+      angle += (spacing / Math.max(r, spacing * 0.5));
+      r = spacing * angle / (2 * Math.PI);
+    }
+  }
+
+  // Determine scale to fit
+  if (positions.length > 1) {
+    let maxDist = 0;
+    positions.forEach(p => {
+      const d = Math.sqrt((p.x - cx) ** 2 + (p.y - cy) ** 2);
+      if (d > maxDist) maxDist = d;
+    });
+    const maxR = Math.min(w, h) / 2 - 30 - nucleonR;
+    if (maxDist > maxR && maxDist > 0) {
+      const scale = maxR / maxDist;
+      positions.forEach(p => {
+        p.x = cx + (p.x - cx) * scale;
+        p.y = cy + (p.y - cy) * scale;
+      });
+    }
+  }
+
+  // Draw nucleons
+  nucleons.forEach((type, i) => {
+    const pos = positions[i];
+    if (!pos) return;
+    const grad = ctx.createRadialGradient(pos.x - nucleonR * 0.3, pos.y - nucleonR * 0.3, 0, pos.x, pos.y, nucleonR);
+    if (type === "p") {
+      grad.addColorStop(0, "#ff6b6b");
+      grad.addColorStop(1, "#c92a2a");
+    } else {
+      grad.addColorStop(0, "#adb5bd");
+      grad.addColorStop(1, "#6c757d");
+    }
+    ctx.beginPath();
+    ctx.arc(pos.x, pos.y, nucleonR, 0, Math.PI * 2);
+    ctx.fillStyle = grad;
+    ctx.fill();
+    ctx.strokeStyle = type === "p" ? "rgba(200,0,0,0.4)" : "rgba(100,100,100,0.4)";
+    ctx.lineWidth = 0.8;
+    ctx.stroke();
+  });
+
+  // Draw electron orbits
+  const electrons = protons;
+  if (electrons > 0) {
+    const orbitR = Math.min(w, h) / 2 - 12;
+    ctx.setLineDash([4, 6]);
+    ctx.strokeStyle = "rgba(100,180,255,0.35)";
+    ctx.lineWidth = 1;
+    ctx.beginPath();
+    ctx.arc(cx, cy, orbitR, 0, Math.PI * 2);
+    ctx.stroke();
+    ctx.setLineDash([]);
+
+    const eCount = Math.min(electrons, 8);
+    const eR = 5;
+    for (let i = 0; i < eCount; i++) {
+      const a = (i / eCount) * Math.PI * 2 - Math.PI / 2;
+      const ex = cx + orbitR * Math.cos(a);
+      const ey = cy + orbitR * Math.sin(a);
+      const eGrad = ctx.createRadialGradient(ex - 1, ey - 1, 0, ex, ey, eR);
+      eGrad.addColorStop(0, "#74c0fc");
+      eGrad.addColorStop(1, "#1971c2");
+      ctx.beginPath();
+      ctx.arc(ex, ey, eR, 0, Math.PI * 2);
+      ctx.fillStyle = eGrad;
+      ctx.fill();
+    }
+    if (electrons > 8) {
+      ctx.fillStyle = "rgba(100,180,255,0.8)";
+      ctx.font = "10px sans-serif";
+      ctx.textAlign = "center";
+      ctx.textBaseline = "middle";
+      ctx.fillText(`+${electrons - 8}e⁻`, cx + orbitR - 16, cy - orbitR + 16);
+    }
+  }
+
+  // Label
+  const sup = toSuperscript(String(iso.A));
+  ctx.fillStyle = "rgba(255,255,255,0.7)";
+  ctx.font = "bold 13px sans-serif";
+  ctx.textAlign = "center";
+  ctx.textBaseline = "bottom";
+  ctx.fillText(`${sup}${sym}`, cx, h - 4);
+  ctx.font = "10px sans-serif";
+  ctx.fillText(`${protons}p + ${neutrons}n`, cx, h - 18);
+}
+
+function renderCompare(symbol) {
+  const panel = document.getElementById("isoComparePanel");
+  const grid = document.getElementById("isoCompareGrid");
+  const data = ISOTOPE_DATA[symbol];
+  if (!data || isoState.compareA == null || isoState.compareB == null) { panel.style.display = "none"; return; }
+
+  const a = data.isotopes[isoState.compareA];
+  const b = data.isotopes[isoState.compareB];
+  const el = elements.find(e => e.symbol === symbol);
+  const name = el ? el.name : symbol;
+
+  const supA = toSuperscript(String(a.A));
+  const supB = toSuperscript(String(b.A));
+
+  const rows = [
+    ["Masă (u)", a.mass.toFixed(5), b.mass.toFixed(5)],
+    ["Neutroni", a.neutrons, b.neutrons],
+    ["T½", a.halfLife, b.halfLife],
+    ["Stabilitate", stabilityLabel(a.stability), stabilityLabel(b.stability)],
+    ["Dezintegrare", a.decay || "—", b.decay || "—"],
+    ["Abundență", a.abundance || "—", b.abundance || "—"],
+  ];
+
+  let html = `<table class="iso-compare-table">
+    <thead><tr><th></th><th class="${stabilityClass(a.stability)}">${supA}${symbol}<br><small>${a.name}</small></th><th class="${stabilityClass(b.stability)}">${supB}${symbol}<br><small>${b.name}</small></th></tr></thead><tbody>`;
+  rows.forEach(([label, va, vb]) => {
+    const diff = va !== vb ? "iso-diff" : "";
+    html += `<tr><td class="iso-cmp-label">${label}</td><td class="${diff}">${va}</td><td class="${diff}">${vb}</td></tr>`;
+  });
+  html += `</tbody></table>`;
+
+  // Uses comparison
+  html += `<div class="iso-compare-uses">
+    <div class="iso-cmp-uses-col">
+      <h4 class="${stabilityClass(a.stability)}">${supA}${symbol}</h4>
+      <ul>${a.uses.map(u => `<li>${u}</li>`).join("")}</ul>
+    </div>
+    <div class="iso-cmp-uses-col">
+      <h4 class="${stabilityClass(b.stability)}">${supB}${symbol}</h4>
+      <ul>${b.uses.map(u => `<li>${u}</li>`).join("")}</ul>
+    </div>
+  </div>`;
+
+  grid.innerHTML = html;
+  panel.style.display = "block";
+  panel.scrollIntoView({ behavior: "smooth", block: "nearest" });
 }

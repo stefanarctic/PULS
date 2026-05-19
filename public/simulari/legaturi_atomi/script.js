@@ -545,7 +545,7 @@ import * as THREE from "https://unpkg.com/three@0.164.0/build/three.module.js";
     const containerWidth = dom.sceneContainer.clientWidth || window.innerWidth;
     const containerHeight = dom.sceneContainer.clientHeight || window.innerHeight;
     const camera = new THREE.PerspectiveCamera(42, containerWidth / containerHeight, 0.1, 100);
-    camera.position.set(0, 0.3, 10.2);
+    camera.position.set(0, 0.3, isMobile ? 14.5 : 10.2);
 
     const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
     renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));

@@ -230,10 +230,16 @@ body {
     padding: 24px;
     border-radius: 12px;
     width: 100%;
-    max-width: 560px;
+    max-width: 960px;
     max-height: 90vh;
     overflow-y: auto;
     position: relative;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+  }
+
+  .modal-content::-webkit-scrollbar {
+    display: none;
   }
 
   .modal-content.modal-glitch {
@@ -572,6 +578,37 @@ body {
     width: 100%;
   }
 
+  /* ——— Desktop 2-column layouts (General + Electronic + Isotopes) ——— */
+  @media (min-width: 901px) {
+    .prop-grid {
+      grid-template-columns: repeat(4, 1fr);
+    }
+    .quantum-params {
+      grid-template-columns: repeat(4, 1fr);
+    }
+    .electronic-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px 28px;
+    }
+    .electronic-col {
+      min-width: 0;
+    }
+    .iso-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px 28px;
+    }
+    .iso-col-left {
+      position: sticky;
+      top: 0;
+      align-self: start;
+    }
+    .iso-col-right {
+      min-width: 0;
+    }
+  }
+
   /* ——— Desktop: tabelul rămâne centrat, fără scroll în viewport ——— */
   .periodic-table-scroll {
     overflow: visible;
@@ -732,5 +769,454 @@ body {
       margin: 0 auto;
       max-width: min(420px, 92vw);
       aspect-ratio: 1;
+    }
+  }
+
+  /* ═══════════════════════════════════════════════════════
+     ISOTOPE TAB STYLES
+     ═══════════════════════════════════════════════════════ */
+
+  .iso-header-section h3 {
+    font-size: 16px;
+    margin-bottom: 4px;
+  }
+
+  .iso-subtitle {
+    font-size: 12px;
+    color: rgba(255,255,255,0.55);
+    margin-bottom: 12px;
+  }
+
+  /* Stability color system */
+  .iso-stable { --iso-color: #51cf66; --iso-bg: rgba(81,207,102,0.12); --iso-border: rgba(81,207,102,0.45); }
+  .iso-weak { --iso-color: #fcc419; --iso-bg: rgba(252,196,25,0.12); --iso-border: rgba(252,196,25,0.45); }
+  .iso-radio { --iso-color: #ff6b6b; --iso-bg: rgba(255,107,107,0.12); --iso-border: rgba(255,107,107,0.45); }
+
+  /* Legend bar */
+  .iso-legend-bar {
+    display: flex;
+    gap: 16px;
+    margin-bottom: 16px;
+    flex-wrap: wrap;
+  }
+
+  .iso-leg {
+    font-size: 12px;
+    padding: 4px 10px;
+    border-radius: 20px;
+    background: var(--iso-bg);
+    color: var(--iso-color);
+    border: 1px solid var(--iso-border);
+    font-weight: 600;
+    white-space: nowrap;
+  }
+
+  /* Slider section */
+  .iso-slider-section {
+    background: rgba(0,0,0,0.2);
+    border-radius: 10px;
+    padding: 14px 16px;
+    margin-bottom: 16px;
+  }
+
+  .iso-slider-label {
+    font-size: 12px;
+    color: rgba(255,255,255,0.65);
+    margin-bottom: 8px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+
+  .iso-slider-wrap {
+    position: relative;
+    padding-bottom: 22px;
+  }
+
+  .iso-slider {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 100%;
+    height: 6px;
+    border-radius: 3px;
+    background: linear-gradient(90deg, #51cf66 0%, #fcc419 50%, #ff6b6b 100%);
+    outline: none;
+    cursor: pointer;
+  }
+
+  .iso-slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    background: white;
+    box-shadow: 0 1px 6px rgba(0,0,0,0.4);
+    cursor: grab;
+    border: 2px solid rgba(255,255,255,0.8);
+    transition: transform 0.15s;
+  }
+
+  .iso-slider::-webkit-slider-thumb:active {
+    transform: scale(1.15);
+    cursor: grabbing;
+  }
+
+  .iso-slider::-moz-range-thumb {
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    background: white;
+    box-shadow: 0 1px 6px rgba(0,0,0,0.4);
+    cursor: grab;
+    border: 2px solid rgba(255,255,255,0.8);
+  }
+
+  .iso-slider-ticks {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 6px;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+  }
+
+  .iso-tick {
+    font-size: 11px;
+    color: rgba(255,255,255,0.4);
+    transition: color 0.2s, transform 0.2s;
+    cursor: pointer;
+  }
+
+  .iso-tick.active {
+    color: white;
+    font-weight: bold;
+    transform: scale(1.15);
+  }
+
+  .iso-slider-current {
+    margin-top: 10px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-wrap: wrap;
+  }
+
+  .iso-slider-big {
+    font-size: 22px;
+    font-weight: bold;
+    color: var(--iso-color);
+  }
+
+  .iso-slider-info {
+    font-size: 13px;
+    color: rgba(255,255,255,0.7);
+  }
+
+  /* Nucleus visualization */
+  .iso-nucleus-section {
+    background: rgba(0,0,0,0.2);
+    border-radius: 10px;
+    padding: 14px;
+    margin-bottom: 16px;
+    text-align: center;
+  }
+
+  .iso-nucleus-wrap {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 10px;
+  }
+
+  #nucleusCanvas {
+    border-radius: 8px;
+    background: rgba(0,0,0,0.15);
+  }
+
+  .iso-nucleus-legend {
+    display: flex;
+    justify-content: center;
+    gap: 16px;
+    flex-wrap: wrap;
+  }
+
+  .nuc-leg {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 12px;
+    color: rgba(255,255,255,0.7);
+  }
+
+  .nuc-dot {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    display: inline-block;
+  }
+
+  .nuc-proton { background: radial-gradient(circle at 35% 35%, #ff6b6b, #c92a2a); }
+  .nuc-neutron { background: radial-gradient(circle at 35% 35%, #adb5bd, #6c757d); }
+  .nuc-electron { background: radial-gradient(circle at 35% 35%, #74c0fc, #1971c2); }
+
+  /* Isotope cards */
+  .iso-cards {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-bottom: 16px;
+  }
+
+  .iso-card {
+    background: var(--iso-bg);
+    border: 1px solid rgba(255,255,255,0.08);
+    border-left: 4px solid var(--iso-border);
+    border-radius: 10px;
+    padding: 14px 16px;
+    cursor: pointer;
+    transition: border-color 0.2s, box-shadow 0.2s, transform 0.15s;
+  }
+
+  .iso-card:hover {
+    border-color: var(--iso-border);
+    box-shadow: 0 0 12px var(--iso-bg);
+  }
+
+  .iso-card.iso-card-active {
+    border-color: var(--iso-color);
+    box-shadow: 0 0 16px var(--iso-bg), inset 0 0 0 1px var(--iso-border);
+    transform: scale(1.01);
+  }
+
+  .iso-card-head {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 10px;
+    flex-wrap: wrap;
+  }
+
+  .iso-card-symbol {
+    font-size: 20px;
+    font-weight: bold;
+    color: white;
+    min-width: 50px;
+  }
+
+  .iso-card-name {
+    font-size: 14px;
+    color: rgba(255,255,255,0.85);
+    flex: 1;
+  }
+
+  .iso-card-badge {
+    font-size: 11px;
+    padding: 3px 10px;
+    border-radius: 20px;
+    font-weight: 600;
+    color: var(--iso-color);
+    background: var(--iso-bg);
+    border: 1px solid var(--iso-border);
+    white-space: nowrap;
+  }
+
+  .iso-card-props {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(110px, 1fr));
+    gap: 6px;
+    margin-bottom: 10px;
+  }
+
+  .iso-prop {
+    background: rgba(0,0,0,0.15);
+    padding: 6px 10px;
+    border-radius: 6px;
+    font-size: 13px;
+  }
+
+  .iso-prop strong {
+    display: block;
+    font-size: 10px;
+    color: rgba(255,255,255,0.55);
+    margin-bottom: 2px;
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+  }
+
+  .iso-card-uses {
+    font-size: 12px;
+    color: rgba(255,255,255,0.75);
+    margin-bottom: 8px;
+  }
+
+  .iso-card-uses strong {
+    color: rgba(255,255,255,0.55);
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+  }
+
+  .iso-card-uses ul {
+    margin: 4px 0 0;
+    padding-left: 16px;
+    list-style: disc;
+  }
+
+  .iso-card-uses li {
+    margin-bottom: 2px;
+  }
+
+  /* Expand/details */
+  .iso-card-expand-btn {
+    font-size: 12px;
+    color: rgba(255,255,255,0.5);
+    cursor: pointer;
+    padding: 4px 0;
+    text-align: center;
+    transition: color 0.2s;
+    border-top: 1px solid rgba(255,255,255,0.06);
+    margin-top: 4px;
+  }
+
+  .iso-card-expand-btn:hover {
+    color: rgba(255,255,255,0.85);
+  }
+
+  .iso-card-details {
+    padding: 10px 0 0;
+    font-size: 13px;
+    line-height: 1.55;
+    color: rgba(255,255,255,0.85);
+  }
+
+  .iso-detail-row {
+    margin-bottom: 8px;
+  }
+
+  .iso-equation {
+    font-family: Consolas, monospace;
+    font-size: 13px;
+    background: rgba(0,0,0,0.2);
+    padding: 8px 12px;
+    border-radius: 6px;
+    color: rgba(255,255,255,0.95);
+  }
+
+  /* Compare */
+  .iso-compare-check {
+    font-size: 12px;
+    color: rgba(255,255,255,0.5);
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    margin-top: 6px;
+    cursor: pointer;
+  }
+
+  .iso-compare-check:hover {
+    color: rgba(255,255,255,0.8);
+  }
+
+  .iso-cmp-cb {
+    accent-color: #74c0fc;
+  }
+
+  .iso-compare-panel {
+    background: rgba(0,0,0,0.25);
+    border-radius: 10px;
+    padding: 16px;
+    margin-top: 8px;
+    border: 1px solid rgba(100,180,255,0.2);
+  }
+
+  .iso-compare-panel h3 {
+    font-size: 14px;
+    margin-bottom: 12px;
+    color: rgba(255,255,255,0.85);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+
+  .iso-compare-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 13px;
+    margin-bottom: 14px;
+  }
+
+  .iso-compare-table th, .iso-compare-table td {
+    padding: 8px 10px;
+    text-align: center;
+    border-bottom: 1px solid rgba(255,255,255,0.06);
+  }
+
+  .iso-compare-table th {
+    font-weight: bold;
+    color: var(--iso-color);
+    font-size: 15px;
+    padding-bottom: 10px;
+  }
+
+  .iso-compare-table th small {
+    display: block;
+    font-size: 11px;
+    font-weight: normal;
+    color: rgba(255,255,255,0.5);
+  }
+
+  .iso-cmp-label {
+    text-align: left !important;
+    font-weight: 600;
+    color: rgba(255,255,255,0.6);
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+  }
+
+  .iso-diff {
+    background: rgba(100,180,255,0.08);
+    font-weight: 600;
+  }
+
+  .iso-compare-uses {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+  }
+
+  .iso-cmp-uses-col h4 {
+    font-size: 14px;
+    color: var(--iso-color);
+    margin-bottom: 6px;
+  }
+
+  .iso-cmp-uses-col ul {
+    font-size: 12px;
+    color: rgba(255,255,255,0.75);
+    padding-left: 16px;
+    list-style: disc;
+    margin: 0;
+  }
+
+  .iso-cmp-uses-col li {
+    margin-bottom: 3px;
+  }
+
+  @media (max-width: 640px) {
+    .iso-card-props {
+      grid-template-columns: 1fr 1fr;
+    }
+    .iso-compare-uses {
+      grid-template-columns: 1fr;
+    }
+    .iso-card-head {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 6px;
+    }
+    #nucleusCanvas {
+      width: 220px;
+      height: 220px;
     }
   }

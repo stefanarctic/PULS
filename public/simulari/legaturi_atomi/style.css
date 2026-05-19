@@ -527,7 +527,10 @@ input[type="range"] {
     --panel-width: 300px;
   }
 
-  #app {
+  #app,
+  #app.left-collapsed,
+  #app.right-collapsed,
+  #app.left-collapsed.right-collapsed {
     grid-template-columns: 1fr;
     grid-template-rows: 1fr;
     grid-template-areas: "viewport";
