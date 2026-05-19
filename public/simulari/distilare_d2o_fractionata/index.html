@@ -8,23 +8,23 @@
 </head>
 <body>
     <header class="site-header">
-        <h1>Distilare fracționată H₂O – D₂O</h1>
-        <p class="tagline">După schimbul izotopic (~20% D₂O) — separare fină pe puncte de fierbere · model educațional</p>
-        <p class="science-bite">Diferență punct de fierbere: ~1,4&nbsp;°C între H₂O și D₂O — de aceea separarea e extrem de lentă și cere multe talere teoretice.</p>
-        <button id="panelToggleBtn" class="panel-toggle-btn" type="button" aria-label="Deschide panoul de control">
+        <h1 data-i18n="header.title">Distilare fracționată H₂O – D₂O</h1>
+        <p class="tagline" data-i18n="header.tagline">După schimbul izotopic (~20% D₂O) — separare fină pe puncte de fierbere · model educațional</p>
+        <p class="science-bite" data-i18n="header.scienceBite">Diferență punct de fierbere: ~1,4&nbsp;°C între H₂O și D₂O — de aceea separarea e extrem de lentă și cere multe talere teoretice.</p>
+        <button id="panelToggleBtn" class="panel-toggle-btn" type="button" data-i18n-aria="header.panelToggleAria" aria-label="Deschide panoul de control" data-i18n="header.panelToggle">
             Parametri
         </button>
     </header>
 
     <main class="layout">
-        <section class="simulation-area" id="simulationArea" aria-label="Vizualizare coloană">
+        <section class="simulation-area" id="simulationArea" data-i18n-aria="aria.simulationArea" aria-label="Vizualizare coloană">
             <div id="gsLockOverlay" class="overlay gs-lock-overlay hidden" aria-hidden="true">
                 <span class="gs-lock-icon" aria-hidden="true">&#128274;</span>
-                <p class="hook">Rectificarea este blocată</p>
+                <p class="hook" data-i18n="gsLock.hook">Rectificarea este blocată</p>
                 <p>
-                    Mai întâi finalizează simularea <strong>Instalație de schimb izotopic (H₂S – H₂O)</strong> până la
+                    <span data-i18n="gsLock.p1">Mai întâi finalizează simularea </span><strong data-i18n="gsLock.p1Strong">Instalație de schimb izotopic (H₂S – H₂O)</strong><span data-i18n="gsLock.p2"> până la
                     ecranul de succes (~30% D₂O). Abia după aceea poți continua cu distilarea fracționată — în practică,
-                    etapa GS aduce concentrația în zona zecilor de procente; rectificarea finisează spre purități nucleare.
+                    etapa GS aduce concentrația în zona zecilor de procente; rectificarea finisează spre purități nucleare.</span>
                 </p>
                 <a
                     id="gsLockLink"
@@ -32,27 +32,27 @@
                     href="/simulare/instalatie-schimb-izotopic"
                     target="_top"
                     rel="noopener noreferrer"
+                    data-i18n="gsLock.link"
                 >Deschide simularea de schimb izotopic</a>
             </div>
 
             <div id="introOverlay" class="overlay">
-                <p class="hook">Ai dus apa grea până la 20%… dar adevărata luptă abia începe.</p>
+                <p class="hook" data-i18n="intro.hook">Ai dus apa grea până la 20%… dar adevărata luptă abia începe.</p>
                 <p>
-                    H₂O fierbe la ~100&nbsp;°C, D₂O la ~101,4&nbsp;°C — diferență mică, deci <strong>multe talere teoretice</strong>,
-                    <strong>reflux mare</strong> și <strong>coloană înaltă</strong>. O singură coloană: condensator sus,
-                    blaz jos (fierbator); vapori ↑ (mai bogați în H₂O), lichid &#8595; (D₂O se concentrează jos).
+                    <span data-i18n="intro.p1">H₂O fierbe la ~100&nbsp;°C, D₂O la ~101,4&nbsp;°C — diferență mică, deci </span><strong data-i18n="intro.s1">multe talere teoretice</strong><span data-i18n="intro.sep1">, </span><strong data-i18n="intro.s2">reflux mare</strong><span data-i18n="intro.sep2"> și </span><strong data-i18n="intro.s3">coloană înaltă</strong><span data-i18n="intro.p2">. O singură coloană: condensator sus,
+                    blaz jos (fierbator); vapori ↑ (mai bogați în H₂O), lichid &#8595; (D₂O se concentrează jos).</span>
                 </p>
-                <button id="startBtn" type="button" class="btn-primary">Pornește rectificarea</button>
+                <button id="startBtn" type="button" class="btn-primary" data-i18n="introStart">Pornește rectificarea</button>
             </div>
 
             <div class="column-wrap">
                 <div class="condenser" aria-hidden="true">
-                    <span class="unit-label">Condensator</span>
-                    <span class="flow flow--up">↑ vapori</span>
+                    <span class="unit-label" data-i18n="column.condenser">Condensator</span>
+                    <span class="flow flow--up" data-i18n="column.vaporsUp">↑ vapori</span>
                     <div class="product product--top">
-                        <span>Produs sus</span>
+                        <span data-i18n="column.topProduct">Produs sus</span>
                         <strong id="distPurity">—</strong>
-                        <small>lichid ușor (H₂O) — D₂O mai slab decât jos</small>
+                        <small data-i18n="column.topProductHint">lichid ușor (H₂O) — D₂O mai slab decât jos</small>
                     </div>
                 </div>
 
@@ -74,7 +74,7 @@
                             d="M60 6 L60 16 Q 102 26 96 40 L 78 46"
                         />
                     </svg>
-                    <span class="reflux-caption">Reflux: lichid condensat revine în coloană</span>
+                    <span class="reflux-caption" data-i18n="column.refluxCaption">Reflux: lichid condensat revine în coloană</span>
                 </div>
 
                 <div class="reflux-drip-column" id="refluxDripColumn" aria-hidden="true">
@@ -87,26 +87,26 @@
                         <span class="reflux-droplet"></span>
                         <span class="reflux-droplet"></span>
                     </div>
-                    <span class="reflux-drip-cta">Lichid condensat &#8595; înapoi în coloană</span>
+                    <span class="reflux-drip-cta" data-i18n="column.refluxDrip">Lichid condensat &#8595; înapoi în coloană</span>
                 </div>
 
                 <div class="column-shell" id="columnShell">
                     <div class="column-gradient"></div>
                     <canvas id="flowParticles" class="flow-particles" aria-hidden="true"></canvas>
-                    <div class="trays" id="traysContainer" role="list" aria-label="Talere teoretice"></div>
+                    <div class="trays" id="traysContainer" role="list" data-i18n-aria="aria.trays" aria-label="Talere teoretice"></div>
                     <div class="flow-legend">
-                        <span class="flow-legend__item flow-legend__item--up">&#8593; H<sub>2</sub>O: rapid, ușor, transparent</span>
-                        <span class="flow-legend__item flow-legend__item--down">&#8595; D<sub>2</sub>O: lent, „greu”, dens</span>
+                        <span class="flow-legend__item flow-legend__item--up" data-i18n="flowLegend.up">&#8593; H<sub>2</sub>O: rapid, ușor, transparent</span>
+                        <span class="flow-legend__item flow-legend__item--down" data-i18n="flowLegend.down">&#8595; D<sub>2</sub>O: lent, „greu”, dens</span>
                     </div>
                 </div>
 
                 <div class="reboiler" aria-hidden="true">
                     <div class="product product--bottom">
-                        <span>Reziduu / apă grea</span>
+                        <span data-i18n="column.bottomProduct">Reziduu / apă grea</span>
                         <strong id="bottomPurity">20.0% D₂O</strong>
-                        <small>țintă didactică ~99,8%</small>
+                        <small data-i18n="column.bottomTarget">țintă didactică ~99,8%</small>
                     </div>
-                    <span class="unit-label">Blaz</span>
+                    <span class="unit-label" data-i18n="column.reboiler">Blaz</span>
                     <span class="temp-badge" id="reboilerBadge">100.5 °C</span>
                 </div>
             </div>
@@ -114,30 +114,34 @@
             <div class="readouts">
                 <div
                     class="readout readout--tip"
+                    data-i18n-title="readouts.tReboilerTip"
                     title="Prea jos: puțină vaporizare, coloana „nu lucrează”. Prea sus: risc de pierderi / model didactic simplificat."
                 >
-                    <span class="readout__label">T blaz</span>
+                    <span class="readout__label" data-i18n="readouts.tReboiler">T blaz</span>
                     <span class="readout__value" id="readoutT">100.5 °C</span>
                 </div>
                 <div
                     class="readout readout--tip"
+                    data-i18n-title="readouts.stagesTip"
                     title="Mai multe tăvi echivalente = mai multe contacte vapori–lichid. Cu puține talere, separarea e lentă sau slabă."
                 >
-                    <span class="readout__label">Talere (teoretice)</span>
+                    <span class="readout__label" data-i18n="readouts.stages">Talere (teoretice)</span>
                     <span class="readout__value" id="readoutN">40</span>
                 </div>
                 <div
                     class="readout readout--tip"
+                    data-i18n-title="readouts.refluxTip"
                     title="R = L/D: cât lichid se întoarce în coloană față de produsul extras. În acest model didactic R este fixat între 1 și 1,5."
                 >
-                    <span class="readout__label">R reflux (L/D)</span>
+                    <span class="readout__label" data-i18n="readouts.refluxR">R reflux (L/D)</span>
                     <span class="readout__value" id="readoutR">1.25</span>
                 </div>
                 <div
                     class="readout readout--tip"
+                    data-i18n-title="readouts.alphaTip"
                     title="α aproape de 1 (ex.1,05–1,07) înseamnă separare foarte dificilă: fiecare etaj separă puțin, de aceea ai nevoie de multe trepte și reflux."
                 >
-                    <span class="readout__label">α relativ (model)</span>
+                    <span class="readout__label" data-i18n="readouts.alpha">α relativ (model)</span>
                     <span class="readout__value" id="readoutAlpha">1.066</span>
                 </div>
             </div>
@@ -146,74 +150,78 @@
 
             <div id="nuclearMilestone" class="nuclear-milestone" hidden>
                 <span class="nuclear-milestone__glow"></span>
-                <p class="nuclear-milestone__title">Puritate nucleară atinsă</p>
-                <p class="nuclear-milestone__sub">~99,8% D₂O în blaz (țintă didactică)</p>
+                <p class="nuclear-milestone__title" data-i18n="nuclear.title">Puritate nucleară atinsă</p>
+                <p class="nuclear-milestone__sub" data-i18n="nuclear.sub">~99,8% D₂O în blaz (țintă didactică)</p>
             </div>
         </section>
 
         <aside id="controlsPanel" class="controls-panel">
-            <button id="panelCloseBtn" class="panel-close-btn" type="button" aria-label="Închide panoul">×</button>
+            <button id="panelCloseBtn" class="panel-close-btn" type="button" data-i18n-aria="panel.closeAria" aria-label="Închide panoul">×</button>
 
             <div class="panel-section">
-                <h2 class="panel-heading">Control proces</h2>
-                <div class="preset-row" role="group" aria-label="Preseturi simulare">
-                    <button type="button" class="preset-btn preset-btn--rapid" id="presetRapid" title="Puține talere teoretice, R = 1 (minim în domeniul didactic): separare rapidă dar slabă">
+                <h2 class="panel-heading" data-i18n="panel.controlHeading">Control proces</h2>
+                <div class="preset-row" role="group" data-i18n-aria="panel.presetsAria" aria-label="Preseturi simulare">
+                    <button type="button" class="preset-btn preset-btn--rapid" id="presetRapid" data-i18n-title="presets.rapidTitle" title="Puține talere teoretice, R = 1 (minim în domeniul didactic): separare rapidă dar slabă" data-i18n="presets.rapid">
                         Rapid
                     </button>
-                    <button type="button" class="preset-btn preset-btn--balanced" id="presetBalanced" title="Setare echilibrată pentru demo">
+                    <button type="button" class="preset-btn preset-btn--balanced" id="presetBalanced" data-i18n-title="presets.balancedTitle" title="Setare echilibrată pentru demo" data-i18n="presets.balanced">
                         Echilibrat
                     </button>
-                    <button type="button" class="preset-btn preset-btn--industrial" id="presetIndustrial" title="Multe talere teoretice și R = 1,5 (maxim în domeniul didactic): drum spre înaltă puritate (încet)">
+                    <button type="button" class="preset-btn preset-btn--industrial" id="presetIndustrial" data-i18n-title="presets.industrialTitle" title="Multe talere teoretice și R = 1,5 (maxim în domeniul didactic): drum spre înaltă puritate (încet)" data-i18n="presets.industrial">
                         Industrial
                     </button>
                 </div>
                 <div class="control-group">
                     <label
                         for="reboilerSlider"
+                        data-i18n-title="labels.reboilerTempTitle"
                         title="Sub ~100 °C, vaporizarea efectivă scade; blazul trebuie în fereastra H₂O–D₂O."
-                    >Temperatură blaz: <span id="reboilerVal">100.5</span> °C</label>
+                    ><span data-i18n="panel.reboilerLabel">Temperatură blaz:</span> <span id="reboilerVal">100.5</span> °C</label>
                     <input type="range" id="reboilerSlider" min="99.5" max="101.8" step="0.05" value="100.5">
                     <p id="tempWarning" class="temp-warning temp-warning--hidden" role="status"></p>
                 </div>
                 <div class="control-group">
                     <label
                         for="stagesSlider"
+                        data-i18n-title="labels.stagesTitle"
                         title="Fiecare taler teoretic echivalează, în model, cu o tavă de distilare (contact vapori–lichid)."
-                    >Număr talere (teoretice): <span id="stagesVal">40</span></label>
+                    ><span data-i18n="panel.stagesLabel">Număr talere (teoretice):</span> <span id="stagesVal">40</span></label>
                     <input type="range" id="stagesSlider" min="8" max="100" step="1" value="40">
                 </div>
-                <p class="alpha-hint">Cu <span class="alpha-char">&alpha;</span> &asymp; 1,066 (H<sub>2</sub>O mai volatil dec&acirc;t D<sub>2</sub>O): separarea e dificil&#259; &mdash; trebuie multe talere teoretice &#537;i reflux mare ca s&#259; te apropii de 99,8% D<sub>2</sub>O jos în blaz.</p>
+                <p class="alpha-hint" data-i18n="panel.alphaHint">Cu <span class="alpha-char">&alpha;</span> &asymp; 1,066 (H<sub>2</sub>O mai volatil dec&acirc;t D<sub>2</sub>O): separarea e dificil&#259; &mdash; trebuie multe talere teoretice &#537;i reflux mare ca s&#259; te apropii de 99,8% D<sub>2</sub>O jos în blaz.</p>
                 <div class="control-group">
-                    <label for="refluxSlider" title="R între 1 și 1,5 (parametri didactic): valori mai mari întorc mai mult lichid în coloană.">Rata reflux R = L/D: <span id="refluxVal">1.25</span></label>
+                    <label for="refluxSlider" data-i18n-title="labels.refluxTitle" title="R între 1 și 1,5 (parametri didactic): valori mai mari întorc mai mult lichid în coloană."><span data-i18n="panel.refluxLabel">Rata reflux R = L/D:</span> <span id="refluxVal">1.25</span></label>
                     <input type="range" id="refluxSlider" min="1" max="1.5" step="0.05" value="1.25">
                 </div>
                 <div class="control-group">
-                    <label for="speedSlider">Viteză simulare: <span id="speedVal">1.0</span>×</label>
+                    <label for="speedSlider"><span data-i18n="panel.speedLabel">Viteză simulare:</span> <span id="speedVal">1.0</span>×</label>
                     <input type="range" id="speedSlider" min="0.25" max="8" step="0.25" value="1">
                 </div>
             </div>
 
             <div class="panel-section">
-                <h2 class="panel-heading">Puritate reziduu vs timp</h2>
-                <p class="panel-note">Axa X: timp simulat · Axa Y: % D₂O în lichidul din blaz. Ultimii procenti spre țintă sunt cei mai lenți (platou) — „ultimii 5% sunt iadul”.</p>
+                <h2 class="panel-heading" data-i18n="panel.chartHeading">Puritate reziduu vs timp</h2>
+                <p class="panel-note" data-i18n="panel.chartNote">Axa X: timp simulat · Axa Y: % D₂O în lichidul din blaz. Ultimii procenti spre țintă sunt cei mai lenți (platou) — „ultimii 5% sunt iadul”.</p>
                 <div class="chart-wrap">
-                    <canvas id="purityChart" width="640" height="220" aria-label="Grafic puritate"></canvas>
+                    <canvas id="purityChart" width="640" height="220" data-i18n-aria="aria.chart" aria-label="Grafic puritate"></canvas>
                 </div>
                 <div class="chart-actions">
-                    <button type="button" id="resetRunBtn" class="btn-secondary">Reset măsurători grafic</button>
-                    <button type="button" id="pauseBtn" class="btn-secondary">Pauză</button>
+                    <button type="button" id="resetRunBtn" class="btn-secondary" data-i18n="panel.resetChart">Reset măsurători grafic</button>
+                    <button type="button" id="pauseBtn" class="btn-secondary" data-i18n="panel.pause">Pauză</button>
                 </div>
             </div>
 
             <div class="info-box">
-                <strong>Notă:</strong> Modelul este <em>schematic</em> — ilustrează rolul talerelor teoretice, refluxului și temperaturii într-o rectificare cu volatilitate redusă (α aproape de 1). Nu înlocuiește proiectarea industrială sau
-                distilarea sub vid din instalații reale.
-                <span class="info-box__extra">Separarea H₂O/D₂O este una dintre cele mai dificile din ingineria chimică: proprietăți apropiate, deci consum mare de energie și echipamente foarte înalte pentru atingerea purități nucleare.</span>
+                <strong data-i18n="panel.noteStrong">Notă:</strong>
+                <span data-i18n="panel.noteOpen">Modelul este </span><em data-i18n="panel.noteEm">schematic</em><span data-i18n="panel.noteRest"> — ilustrează rolul talerelor teoretice, refluxului și temperaturii într-o rectificare cu volatilitate redusă (α aproape de 1). Nu înlocuiește proiectarea industrială sau
+                distilarea sub vid din instalații reale.</span>
+                <span class="info-box__extra" data-i18n="panel.noteExtra">Separarea H₂O/D₂O este una dintre cele mai dificile din ingineria chimică: proprietăți apropiate, deci consum mare de energie și echipamente foarte înalte pentru atingerea purități nucleare.</span>
             </div>
         </aside>
     </main>
     <div id="panelBackdrop" class="panel-backdrop" hidden></div>
 
-    <script src="script.js"></script>
+    <script src="/simulari/simulator-i18n-runtime.js"></script>
+    <script src="/simulari/distilare_d2o_fractionata/distilare-d2o-fractionata-boot.js"></script>
 </body>
 </html>

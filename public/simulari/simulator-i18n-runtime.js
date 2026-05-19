@@ -33,6 +33,11 @@
       const val = resolvePath(bundle, p);
       if (typeof val === 'string') el.setAttribute('aria-label', val);
     });
+    document.querySelectorAll('[data-i18n-title]').forEach((el) => {
+      const p = el.getAttribute('data-i18n-title');
+      const val = resolvePath(bundle, p);
+      if (typeof val === 'string') el.setAttribute('title', val);
+    });
     if (bundle.documentTitle) document.title = bundle.documentTitle;
     const hl = bundle.htmlLang || bundle.meta?.locale;
     if (hl) document.documentElement.lang = hl;

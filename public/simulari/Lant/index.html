@@ -11,56 +11,56 @@
     <div class="brand">
       <div class="dot"></div>
       <div>
-        <div class="title">Lanț / Frânghie</div>
-        <div class="subtitle">Catenară statică → dinamic (PBD + Verlet)</div>
+        <div class="title" data-i18n="labels.title">Lanț / Frânghie</div>
+        <div class="subtitle" data-i18n="labels.subtitle">Catenară statică → dinamic (PBD + Verlet)</div>
       </div>
     </div>
 
     <div class="btnrow">
-      <button id="btnReset" class="btn">Resetează</button>
-      <button id="btnStatic" class="btn">Așază static</button>
-      <button id="btnRelease" class="btn btnAccent">Eliberează capăt</button>
-      <button id="btnPause" class="btn">Pauză</button>
+      <button id="btnReset" class="btn" data-i18n="buttons.reset">Resetează</button>
+      <button id="btnStatic" class="btn" data-i18n="buttons.staticSettle">Așază static</button>
+      <button id="btnRelease" class="btn btnAccent" data-i18n="buttons.releaseEnd">Eliberează capăt</button>
+      <button id="btnPause" class="btn" data-i18n="buttons.pause">Pauză</button>
     </div>
   </header>
 
   <main class="wrap">
     <section class="panel">
-      <div class="panelTitle">Controale</div>
+      <div class="panelTitle" data-i18n="labels.controlsHeading">Controale</div>
 
       <div class="grid">
         <label class="field">
-          <span>Segmente</span>
+          <span data-i18n="labels.segments">Segmente</span>
           <input id="segCount" type="range" min="10" max="120" value="50"/>
           <span class="val" id="segCountVal">50</span>
         </label>
 
         <label class="field">
-          <span>Lungime totală</span>
+          <span data-i18n="labels.totalLength">Lungime totală</span>
           <input id="ropeLen" type="range" min="200" max="1200" value="700"/>
           <span class="val" id="ropeLenVal">7.0 m</span>
         </label>
 
         <label class="field">
-          <span>Gravitație</span>
+          <span data-i18n="labels.gravity">Gravitație</span>
           <input id="gravity" type="range" min="50" max="2500" value="900"/>
           <span class="val" id="gravityVal">9.0 m/s²</span>
         </label>
 
         <label class="field">
-          <span>Amortizare</span>
+          <span data-i18n="labels.damping">Amortizare</span>
           <input id="damping" type="range" min="0" max="0.08" step="0.001" value="0.012"/>
           <span class="val" id="dampingVal">0.012</span>
         </label>
 
         <label class="field">
-          <span>Iterații constrângeri</span>
+          <span data-i18n="labels.constraintIters">Iterații constrângeri</span>
           <input id="iters" type="range" min="2" max="40" value="18"/>
           <span class="val" id="itersVal">18</span>
         </label>
 
         <label class="field">
-          <span>Pas timp (Δt)</span>
+          <span data-i18n="labels.dt">Pas timp (Δt)</span>
           <input id="dt" type="range" min="0.006" max="0.024" step="0.001" value="0.016"/>
           <span class="val" id="dtVal">0.016 s</span>
         </label>
@@ -69,52 +69,53 @@
       <div class="toggles">
         <label class="check">
           <input id="showTension" type="checkbox" checked/>
-          <span>Colorează după tensiune</span>
+          <span data-i18n="labels.chkTension">Colorează după tensiune</span>
         </label>
         <label class="check">
           <input id="showNodes" type="checkbox"/>
-          <span>Arată noduri</span>
+          <span data-i18n="labels.chkNodes">Arată noduri</span>
         </label>
         <label class="check">
           <input id="pinLeft" type="checkbox" checked/>
-          <span>Prinde stânga</span>
+          <span data-i18n="labels.chkPinLeft">Prinde stânga</span>
         </label>
         <label class="check">
           <input id="pinRight" type="checkbox" checked/>
-          <span>Prinde dreapta (înainte de eliberare)</span>
+          <span data-i18n="labels.chkPinRight">Prinde dreapta (înainte de eliberare)</span>
         </label>
       </div>
 
       <div class="hint">
-        <b>Mouse:</b> trage de noduri (în dinamic). <br/>
-        <b>Static settle:</b> reașază catenara. <br/>
-        <b>Release capăt:</b> eliberează dreapta.
+        <span data-i18n="labels.hintMouse">Mouse: trage de noduri (în modul dinamic).</span><br/>
+        <span data-i18n="labels.hintStatic">Așezare statică: reașază catenara.</span><br/>
+        <span data-i18n="labels.hintRelease">Eliberează capătul: dreapta devine liberă.</span>
       </div>
 
       <div class="stats" id="stats"></div>
     </section>
 
     <section class="stage">
-      <canvas id="c"></canvas>
+      <canvas id="c" data-i18n-aria="labels.canvasAria" aria-label="Simulare lanț"></canvas>
       <div class="badge" id="modeBadge">MOD: STATIC</div>
     </section>
 
     <section class="panel">
-      <div class="panelTitle">Grafice Oscilație</div>
+      <div class="panelTitle" data-i18n="labels.chartsHeading">Grafice Oscilație</div>
       <div class="chartsContainer">
         <canvas id="chartCanvasY"></canvas>
         <canvas id="chartCanvasX"></canvas>
       </div>
       <div class="chartControls">
-        <button id="btnClearChart" class="btn">Șterge grafice</button>
+        <button id="btnClearChart" class="btn" data-i18n="labels.chartClear">Șterge grafice</button>
         <label class="check">
           <input id="chartEnabled" type="checkbox" checked/>
-          <span>Activează grafice</span>
+          <span data-i18n="labels.chartEnable">Activează grafice</span>
         </label>
       </div>
     </section>
   </main>
 
-  <script src="main.js"></script>
+  <script src="/simulari/simulator-i18n-runtime.js"></script>
+  <script src="/simulari/Lant/lanturi-elastice-boot.js"></script>
 </body>
 </html>

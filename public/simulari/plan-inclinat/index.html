@@ -10,8 +10,10 @@
 <body>
   <header class="topbar">
     <div class="brand">
-      <h1>Planul înclinat</h1>
-      <p>Static vs. cinetic • vectori forță • formule + rezultate • scenă mare. Sens pozitiv: <b>în jos pe plan</b>.</p>
+      <h1 data-i18n="labels.brandTitle">Planul înclinat</h1>
+      <p>
+        <span data-i18n="labels.brandSubtitlePart1">Static vs. cinetic • vectori forță • formule + rezultate • scenă mare. Sens pozitiv: </span><b data-i18n="labels.brandSubtitleBold">în jos pe plan</b><span data-i18n="labels.brandSubtitlePart2">.</span>
+      </p>
     </div>
     <div class="topbarMeta">
       <div class="chip">
@@ -30,11 +32,11 @@
   </header>
 
   <main class="layout" id="piLayout">
-    <button type="button" id="togglePiLeft" class="pi-toggle pi-toggle-left" aria-controls="leftPanel" aria-expanded="true" aria-label="Panou formule și rezultate">☰</button>
+    <button type="button" id="togglePiLeft" class="pi-toggle pi-toggle-left" aria-controls="leftPanel" aria-expanded="true" data-i18n-aria="labels.ariaLeftPanel" aria-label="Panou formule și rezultate">☰</button>
 
     <aside id="leftPanel" class="panel left">
       <div class="panelHeader">
-        <h2>Formule</h2>
+        <h2 data-i18n="labels.formulasHeading">Formule</h2>
       </div>
       <div class="panelPad">
         <div class="formula">
@@ -42,18 +44,19 @@
           <div class="row2"><span class="k">Gt</span><span class="mono">m·g·sinθ</span></div>
           <div class="row2"><span class="k">Gn</span><span class="mono">m·g·cosθ</span></div>
           <div class="row2"><span class="k">N</span><span class="mono">m·g·cosθ</span></div>
-          <div class="row2"><span class="k">Static</span><span class="mono">Gt ≤ μs·N</span></div>
-          <div class="row2"><span class="k">Cinetic</span><span class="mono">Ff = μk·N</span></div>
+          <div class="row2"><span class="k" data-i18n="labels.formulaStatic">Static</span><span class="mono">Gt ≤ μs·N</span></div>
+          <div class="row2"><span class="k" data-i18n="labels.formulaKinetic">Cinetic</span><span class="mono">Ff = μk·N</span></div>
           <div class="row2"><span class="k">Fr</span><span class="mono">Gt − Ff</span></div>
           <div class="row2"><span class="k">a</span><span class="mono">(Gt − Ff)/m</span></div>
         </div>
         <div class="callout">
-          <b>Hint:</b> unghiul critic (pornire) când <span class="mono">tanθ = μs</span>.
+          <b data-i18n="labels.hintLabel">Hint:</b>
+          <span data-i18n="labels.hintCritical"> unghiul critic (pornire) când tanθ = μs.</span>
         </div>
       </div>
 
       <div class="panelHeader panelHeaderSpaced">
-        <h2>Rezultate</h2>
+        <h2 data-i18n="labels.resultsHeading">Rezultate</h2>
       </div>
       <div class="panelPad">
         <div class="stats" id="stats"></div>
@@ -63,12 +66,12 @@
     <div class="piStageShell">
       <section class="stage sceneStage">
         <div class="sceneBar">
-          <div class="barTitle"><span class="emoji">🧊</span><b>Scenă</b></div>
+          <div class="barTitle"><span class="emoji">🧊</span><b data-i18n="labels.sceneHeading">Scenă</b></div>
           <div class="tools">
-            <button class="iconbtn on" id="toggleVectors" title="Vectori">↗</button>
-            <button class="iconbtn on" id="toggleLabels" title="Etichete">🏷</button>
-            <button class="iconbtn" id="toggleGrid" title="Grilă">⌗</button>
-            <button class="iconbtn" id="fullscreenBtn" title="Fullscreen">⛶</button>
+            <button class="iconbtn on" id="toggleVectors" data-i18n-title="labels.vectorsTitle" title="Vectori">↗</button>
+            <button class="iconbtn on" id="toggleLabels" data-i18n-title="labels.labelsTitle" title="Etichete">🏷</button>
+            <button class="iconbtn" id="toggleGrid" data-i18n-title="labels.gridTitle" title="Grilă">⌗</button>
+            <button class="iconbtn" id="fullscreenBtn" data-i18n-title="labels.fullscreenTitle" title="Fullscreen">⛶</button>
           </div>
         </div>
 
@@ -89,11 +92,11 @@
 
     <aside id="rightPanel" class="panel right">
       <div class="panelHeader">
-        <h2>Controale</h2>
+        <h2 data-i18n="labels.controlsHeading">Controale</h2>
       </div>
       <div class="panelPad">
         <div class="control">
-          <label>Masă <span class="mono">m</span> <span class="unit">(kg)</span></label>
+          <label><span data-i18n="labels.mass">Masă</span> <span class="mono">m</span> <span class="unit" data-i18n="labels.unitKg">(kg)</span></label>
           <div class="controlRow">
             <input id="mass" type="range" min="0.2" max="50" step="0.1" value="5" />
             <input id="massNum" type="number" min="0.2" max="50" step="0.1" value="5" />
@@ -101,7 +104,7 @@
         </div>
 
         <div class="control">
-          <label>Unghi <span class="mono">θ</span> <span class="unit">(°)</span></label>
+          <label><span data-i18n="labels.angle">Unghi</span> <span class="mono">θ</span> <span class="unit" data-i18n="labels.unitDeg">(°)</span></label>
           <div class="controlRow">
             <input id="angle" type="range" min="0" max="60" step="0.5" value="25" />
             <input id="angleNum" type="number" min="0" max="60" step="0.5" value="25" />
@@ -109,7 +112,7 @@
         </div>
 
         <div class="control">
-          <label>Frecare statică <span class="mono">μs</span> <span class="unit">(—)</span></label>
+          <label><span data-i18n="labels.muStatic">Frecare statică</span> <span class="mono">μs</span> <span class="unit" data-i18n="labels.unitDash">(—)</span></label>
           <div class="controlRow">
             <input id="muS" type="range" min="0" max="1.2" step="0.01" value="0.45" />
             <input id="muSNum" type="number" min="0" max="1.2" step="0.01" value="0.45" />
@@ -117,7 +120,7 @@
         </div>
 
         <div class="control">
-          <label>Frecare cinetică <span class="mono">μk</span> <span class="unit">(—)</span></label>
+          <label><span data-i18n="labels.muKinetic">Frecare cinetică</span> <span class="mono">μk</span> <span class="unit" data-i18n="labels.unitDash">(—)</span></label>
           <div class="controlRow">
             <input id="muK" type="range" min="0" max="1.2" step="0.01" value="0.35" />
             <input id="muKNum" type="number" min="0" max="1.2" step="0.01" value="0.35" />
@@ -125,7 +128,7 @@
         </div>
 
         <div class="control">
-          <label>Gravitație <span class="mono">g</span> <span class="unit">(m/s²)</span></label>
+          <label><span data-i18n="labels.gravity">Gravitație</span> <span class="mono">g</span> <span class="unit" data-i18n="labels.unitG">(m/s²)</span></label>
           <div class="controlRow">
             <input id="g" type="range" min="1" max="20" step="0.01" value="9.81" />
             <input id="gNum" type="number" min="1" max="20" step="0.01" value="9.81" />
@@ -133,7 +136,7 @@
         </div>
 
         <div class="control">
-          <label>Zoom <span class="mono">z</span> <span class="unit">(×)</span></label>
+          <label><span data-i18n="labels.zoom">Zoom</span> <span class="mono">z</span> <span class="unit" data-i18n="labels.unitZoom">(×)</span></label>
           <div class="controlRow">
             <input id="zoom" type="range" min="0.8" max="2.2" step="0.01" value="1.2" />
             <input id="zoomNum" type="number" min="0.8" max="2.2" step="0.01" value="1.2" />
@@ -141,21 +144,22 @@
         </div>
 
         <div class="btnRow">
-          <button class="btn primary" id="toggleRun">▶ Pornește</button>
-          <button class="btn" id="reset">⟲ Reset</button>
+          <button class="btn primary" id="toggleRun" data-i18n="buttons.run">▶ Pornește</button>
+          <button class="btn" id="reset" data-i18n="buttons.reset">⟲ Reset</button>
         </div>
 
         <div class="sep"></div>
 
-        <div class="smallMuted">
-          Tip: mărește θ până când <span class="mono">Gt</span> depășește <span class="mono">μs·N</span>.
+        <div class="smallMuted" data-i18n="labels.tipIncreaseTheta">
+          Tip: mărește θ până când Gt depășește μs·N.
         </div>
       </div>
     </aside>
 
-    <button type="button" id="togglePiRight" class="pi-toggle pi-toggle-right" aria-controls="rightPanel" aria-expanded="true" aria-label="Panou controale">☰</button>
+    <button type="button" id="togglePiRight" class="pi-toggle pi-toggle-right" aria-controls="rightPanel" aria-expanded="true" data-i18n-aria="labels.ariaRightPanel" aria-label="Panou controale">☰</button>
   </main>
 
-  <script src="./script.js"></script>
+  <script src="/simulari/simulator-i18n-runtime.js"></script>
+  <script src="/simulari/plan-inclinat/plan-inclinat-boot.js"></script>
 </body>
 </html>

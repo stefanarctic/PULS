@@ -56,6 +56,7 @@ const SIMULATOR_I18N_QUERY_SLUGS = new Set([
   "spectru-electromagnetic",
   "termodinamica",
   "instalatie-schimb-izotopic",
+  "distilare-d2o-fractionata",
 ]);
 
 const DEFAULT_EN_SIMULATOR_EYEBROW = "Interactive simulation";

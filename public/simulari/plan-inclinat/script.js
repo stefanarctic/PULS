@@ -1,6 +1,11 @@
 const canvas = document.getElementById("sim");
 const ctx = canvas.getContext("2d");
 
+function simT(path, fallback) {
+  if (typeof window.simLbl === "function") return window.simLbl(path, fallback);
+  return fallback;
+}
+
 const el = {
   mass: document.getElementById("mass"),
   massNum: document.getElementById("massNum"),
@@ -213,12 +218,12 @@ function computePhysics(){
     Ff = Gpar;
     Fr = 0;
     a = 0;
-    mode = "STATIC — stă pe loc";
+    mode = simT("physics.modeStatic", "STATIC \u2014 st\u0103 pe loc");
   }else{
     Ff = muK * N;
     Fr = Gpar - Ff;
     a = Fr / m;
-    mode = "CINETIC — alunecă";
+    mode = simT("physics.modeKinetic", "CINETIC \u2014 alunec\u0103");
   }
 
   return { m, theta, muS, muK, g, G, Gpar, Gperp, N, FfMax, slipping, Ff, Fr, a, mode };
@@ -243,7 +248,7 @@ function renderStats(p){
     </div>
   `).join("");
 
-  el.stateBadge.textContent = `Stare: ${p.mode}`;
+  el.stateBadge.textContent = `${simT("labels.stateBadgePrefix", "Stare:")} ${p.mode}`;
   el.hudT.textContent = `${nice(sim.t,2)} s`;
   el.hudV.textContent = `${nice(sim.v,3)} m/s`;
   el.hudA.textContent = `${nice(p.a,3)} m/s²`;
@@ -252,13 +257,13 @@ function renderStats(p){
   el.miniA.textContent = `${nice(p.a,3)}`;
 
   if(running){
-    el.statusText.textContent = p.slipping ? "RUNNING" : "HOLD (static)";
+    el.statusText.textContent = p.slipping ? simT("labels.statusRunning", "RUNNING") : simT("labels.statusHold", "HOLD (static)");
     el.statusDot.style.background =
       p.slipping
         ? "radial-gradient(circle at 30% 30%, #fff, var(--a3))"
         : "radial-gradient(circle at 30% 30%, #fff, var(--a4))";
   }else{
-    el.statusText.textContent = "READY";
+    el.statusText.textContent = simT("labels.statusReady", "READY");
     el.statusDot.style.background = "radial-gradient(circle at 30% 30%, #fff, var(--a1))";
   }
 }
@@ -478,12 +483,12 @@ function draw(p){
   const legendPadding = 12;
   const legendItemHeight = 20;
   const legendItems = [
-    { name: "G", color: colG, desc: "Greutate" },
-    { name: "Gn", color: colGc, desc: "Greutate normală" },
-    { name: "Gt", color: colGp, desc: "Greutate tangențială" },
-    { name: "N", color: colN, desc: "Reacțiune normală" },
-    { name: "Ff", color: colFf, desc: "Forță frecare" },
-    { name: "Fr", color: colFr, desc: "Forță rezultantă" },
+    { name: "G", color: colG, desc: simT("labels.legendG", "Greutate") },
+    { name: "Gn", color: colGc, desc: simT("labels.legendGn", "Greutate normal\u0103") },
+    { name: "Gt", color: colGp, desc: simT("labels.legendGt", "Greutate tangen\u021bial\u0103") },
+    { name: "N", color: colN, desc: simT("labels.legendN", "Reac\u021biune normal\u0103") },
+    { name: "Ff", color: colFf, desc: simT("labels.legendFf", "For\u021b\u0103 frecare") },
+    { name: "Fr", color: colFr, desc: simT("labels.legendFr", "For\u021b\u0103 rezultant\u0103") },
   ];
   
   const legendWidth = 220;
@@ -501,7 +506,7 @@ function draw(p){
   // titlu
   ctx.fillStyle = "rgba(10,14,30,0.85)";
   ctx.font = "bold 13px var(--sans)";
-  ctx.fillText("Forțe", legendX + legendPadding, legendY + legendPadding + 12);
+  ctx.fillText(simT("labels.legendTitle", "For\u021be"), legendX + legendPadding, legendY + legendPadding + 12);
   
   // items
   ctx.font = `12px ${getComputedStyle(document.documentElement).getPropertyValue("--mono")}`;
@@ -593,7 +598,7 @@ bindPair(el.zoom, el.zoomNum, onChange);
 // buttons
 el.toggleRun.addEventListener("click", ()=>{
   running = !running;
-  el.toggleRun.textContent = running ? "⏸ Pauză" : "▶ Pornește";
+  el.toggleRun.textContent = running ? simT("buttons.pause", "\u23f8 Pauz\u0103") : simT("buttons.run", "\u25b6 Porne\u0219te");
   onChange();
 });
 el.reset.addEventListener("click", resetSim);

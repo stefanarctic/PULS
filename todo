@@ -4,7 +4,7 @@
 
 Criteriu „tradus”: slug în `src/components/pages/SimulationPage.jsx` (`SIMULATOR_I18N_QUERY_SLUGS`) și bloc corespunzător în `public/translations/simulatoare.en.json`.
 
-### Traduse (38)
+### Traduse (42)
 
 | slug | titlu (RO în app) |
 |------|-------------------|
@@ -46,15 +46,16 @@ Criteriu „tradus”: slug în `src/components/pages/SimulationPage.jsx` (`SIMU
 | spectru-electromagnetic | Spectrul electromagnetic |
 | termodinamica | Termodinamică – Gaz ideal într-un vas |
 | instalatie-schimb-izotopic | Instalație de schimb izotopic (H₂S - H₂O) |
-
-### Semi-traduse (4)
-
-| figuri-lissajous | Figuri Lissajous |
+| distilare-d2o-fractionata | Distilare fracționată D₂O (rectificare) |
 | plan-inclinat | Plan Înclinat |
 | proiectile | Mișcarea Proiectilului |
 | lanturi-elastice | Lanțuri Elastice |
 
-### Netraduse (11)
+### Semi-traduse (1)
+
+| figuri-lissajous | Figuri Lissajous |
+
+### Netraduse (10)
 
 | slug | titlu (RO în app) |
 |------|-------------------|
@@ -65,9 +66,8 @@ Criteriu „tradus”: slug în `src/components/pages/SimulationPage.jsx` (`SIMU
 | curent-alternativ | Curent alternativ |
 | kirchhoff | Legile lui Kirchhoff (iframe extern — caz aparte) |
 | legaturi-atomi | Legături între atomi |
-| distilare-d2o-fractionata | Distilare fracționată D₂O (rectificare) |
 | reactor-fuziune-dt | Reactor fuziune D–T (model educativ) |
-| izotopi-uraniu | Izotopii uraniului (nucleu, α, fisiune, timp) |
+| izotopi-uraniu | Izotopii uraniului (nucleu, α, fisiune, timp) | 
 | toti-izotopii | Harta celor 26 de izotopi ai uraniului |
 
 ---

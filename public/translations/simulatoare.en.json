@@ -1314,16 +1314,21 @@
       "htmlLang": "en",
       "labels": {
         "brandTitle": "Inclined plane",
-        "brandSubtitle": "Static vs kinetic • force vectors • formulas & results • large scene. Positive direction: downhill along the plane.",
+        "brandSubtitlePart1": "Static vs kinetic • force vectors • formulas & results • large scene. Positive direction: ",
+        "brandSubtitleBold": "downhill along the plane",
+        "brandSubtitlePart2": ".",
         "formulasHeading": "Formulas",
         "resultsHeading": "Results",
         "controlsHeading": "Controls",
         "sceneHeading": "Scene",
-        "hintCritical": "Hint: critical angle (starts sliding) when tanθ = μs.",
+        "hintLabel": "Hint:",
+        "hintCritical": " critical angle (starts sliding) when tanθ = μs.",
+        "formulaStatic": "Static",
+        "formulaKinetic": "Kinetic",
         "mass": "Mass",
         "angle": "Angle",
-        "muStatic": "Static friction μs",
-        "muKinetic": "Kinetic friction μk",
+        "muStatic": "Static friction",
+        "muKinetic": "Kinetic friction",
         "gravity": "Gravity",
         "zoom": "Zoom",
         "unitKg": "(kg)",
@@ -1345,7 +1350,10 @@
         "vectorsTitle": "Vectors",
         "labelsTitle": "Labels",
         "gridTitle": "Grid",
-        "fullscreenTitle": "Fullscreen"
+        "fullscreenTitle": "Fullscreen",
+        "statusReady": "READY",
+        "statusRunning": "RUNNING",
+        "statusHold": "HOLD (static)"
       },
       "physics": {
         "modeStatic": "STATIC — not sliding",
@@ -1385,7 +1393,7 @@
         "detailsSummary": "BAC formulas (no air)",
         "detailsNote": "In With air mode we use numerical integration.",
         "hintZoom": "Zoom: wheel • Pan: Space + drag • Drag green handle for h₀ when paused",
-        "bacTypeTitle": "BAC angle",
+        "bacTypeTitle": "Ideal vs real (BAC)",
         "bacTypeBody": "Compare no air (ideal) vs with air (real). Range drops and the trajectory changes.",
         "unitsTitle": "Units",
         "unitsBody": "metres (m), seconds (s), m/s. Axes are in metres; ground is y = 0.",
@@ -1400,19 +1408,20 @@
         "lblAlpha": "α (°)",
         "lblH0": "h₀ (m)",
         "lblG": "g (m/s²)",
-        "cardRun": "Run",
+        "cardRun": "Playback",
         "lblSpeed": "Playback speed (×)",
         "lblTrace": "Trail quality",
         "lblK": "k (air)",
         "modelAir": "Model: a = −k·|v|·v + gravity",
         "ariaLeftPanel": "Results & formulas panel",
         "ariaRightPanel": "Controls panel",
-        "ariaCanvas": "Projectile simulation"
+        "axisX": "x (m)",
+        "axisY": "y (m)"
       },
       "buttons": {
         "reset": "Reset",
         "fullscreen": "Full screen",
-        "exitFullscreen": "Exit full screen",
+        "exitFullscreen": "Exit full",
         "start": "Start",
         "pause": "Pause",
         "step": "Step",
@@ -1751,16 +1760,27 @@
         "chkNodes": "Show nodes",
         "chkPinLeft": "Pin left end",
         "chkPinRight": "Pin right end (before release)",
-        "hintMouse": "Mouse: drag nodes (dynamic mode).",
+        "hintMouse": "Mouse: drag nodes (in dynamic mode).",
         "hintStatic": "Static settle: re-forms the catenary.",
         "hintRelease": "Release end: frees the right end.",
         "chartsHeading": "Oscillation plots",
         "chartClear": "Clear plots",
         "chartEnable": "Enable plots",
-        "badgePrefix": "MODE:",
+        "badgePrefix": "MODE: ",
         "waitData": "Waiting for data…",
         "chartYTitle": "Vertical oscillation (position Y)",
-        "chartXTitle": "Horizontal oscillation (position X)"
+        "chartXTitle": "Horizontal oscillation (position X)",
+        "canvasAria": "Elastic chain simulation",
+        "yes": "Yes",
+        "no": "No",
+        "suffixM": " m",
+        "suffixS": " s",
+        "suffixMs2": " m/s²",
+        "suffixSUnit": " s"
+      },
+      "stats": {
+        "line1": "Nodes: <b>{nodes}</b> | Segments: <b>{segments}</b> | Segment length: <b>{segLen}</b> m",
+        "line2": "Pinned left: <b>{pinL}</b> | Pinned right: <b>{pinR}</b> | Dragging: <b>{drag}</b>"
       },
       "buttons": {
         "reset": "Reset",
@@ -3520,6 +3540,121 @@
         "rLg": "r = L/G",
         "efficiency": "efficiency"
       }
+    },
+    "distilare-d2o-fractionata": {
+      "page": {
+        "eyebrow": "Fractional distillation Dâ‚‚O | Interactive simulation"
+      },
+      "documentTitle": "Fractional distillation D₂O | Final stage",
+      "htmlLang": "en",
+      "header": {
+        "title": "Fractional distillation H₂O – D₂O",
+        "tagline": "After isotopic exchange (~20% D₂O) — fine separation by boiling points · educational model",
+        "scienceBite": "Boiling point gap: ~1.4 °C between H₂O and D₂O — so separation is extremely slow and needs many theoretical stages.",
+        "panelToggle": "Parameters",
+        "panelToggleAria": "Open control panel"
+      },
+      "gsLock": {
+        "hook": "Rectification is locked",
+        "p1": "First finish the ",
+        "p1Strong": "Isotopic exchange plant (H₂S – H₂O)",
+        "p2": " simulation through the success screen (~30% D₂O). Only then can you continue with fractional distillation — in practice the GS stage brings concentration into the tens of percent; fine rectification pushes toward nuclear-grade purity.",
+        "link": "Open isotopic-exchange simulation"
+      },
+      "intro": {
+        "hook": "You brought heavy water to 20%… but the real fight has just begun.",
+        "p1": "H₂O boils at ~100 °C, D₂O at ~101.4 °C — a small gap, so you need ",
+        "s1": "many theoretical stages",
+        "sep1": ", ",
+        "s2": "high reflux",
+        "sep2": ", and a ",
+        "s3": "tall column",
+        "p2": ". One column: condenser on top, reboiler at the bottom; vapours ↑ (richer in H₂O), liquid ↓ (D₂O concentrates at the bottom)."
+      },
+      "introStart": "Start rectification",
+      "column": {
+        "condenser": "Condenser",
+        "vaporsUp": "↑ vapours",
+        "topProduct": "Overhead product",
+        "topProductHint": "light liquid (H₂O) — less D₂O than at the bottom",
+        "refluxCaption": "Reflux: condensed liquid returns to the column",
+        "refluxDrip": "Condensed liquid ↓ back into the column",
+        "bottomProduct": "Bottoms / heavy water",
+        "bottomTarget": "teaching target ~99.8%",
+        "reboiler": "Reboiler"
+      },
+      "flowLegend": {
+        "up": "↑ H₂O: fast, light, transparent",
+        "down": "↓ D₂O: slow, “heavy”, dense"
+      },
+      "aria": {
+        "simulationArea": "Column view",
+        "trays": "Theoretical stages",
+        "chart": "Purity chart"
+      },
+      "readouts": {
+        "tReboiler": "Reboiler T",
+        "tReboilerTip": "Too low: little vaporisation, the column “doesn’t work”. Too high: risk of losses / simplified teaching model.",
+        "stages": "Stages (theoretical)",
+        "stagesTip": "More equivalent stages = more vapour–liquid contacts. With few stages, separation is slow or weak.",
+        "refluxR": "Reflux R (L/D)",
+        "refluxTip": "R = L/D: how much liquid returns to the column vs product taken. In this teaching model R is fixed between 1 and 1.5.",
+        "alpha": "α relative (model)",
+        "alphaTip": "α close to 1 (e.g. 1.05–1.07) means very hard separation: each stage changes composition only a little, so you need many stages and reflux.",
+        "distTopSub": "(top — D₂O decreases, H₂O concentrates)"
+      },
+      "nuclear": {
+        "title": "Nuclear-grade purity reached",
+        "sub": "~99.8% D₂O in the reboiler (teaching target)"
+      },
+      "panel": {
+        "closeAria": "Close panel",
+        "controlHeading": "Process control",
+        "presetsAria": "Simulation presets",
+        "reboilerLabel": "Reboiler temperature:",
+        "stagesLabel": "Number of stages (theoretical):",
+        "refluxLabel": "Reflux rate R = L/D:",
+        "speedLabel": "Simulation speed:",
+        "chartHeading": "Bottom purity vs time",
+        "chartNote": "X axis: simulated time · Y axis: % D₂O in reboiler liquid. The last percent towards the target are the slowest (plateau) — “the last 5% are hell”.",
+        "resetChart": "Reset chart data",
+        "pause": "Pause",
+        "resume": "Resume",
+        "noteStrong": "Note:",
+        "noteOpen": "The model is ",
+        "noteEm": "schematic",
+        "noteRest": "— it shows the role of theoretical stages, reflux, and temperature in rectification with low relative volatility (α close to 1). It does not replace industrial design or real vacuum distillation.",
+        "noteExtra": "H₂O/D₂O separation is one of the hardest in chemical engineering: very similar properties, so high energy use and very tall equipment for nuclear purity.",
+        "alphaHint": "With α ≈ 1.066 (H₂O more volatile than D₂O): separation is difficult — you need many theoretical stages and high reflux to approach 99.8% D₂O at the reboiler."
+      },
+      "presets": {
+        "rapid": "Fast",
+        "rapidTitle": "Few theoretical stages, R = 1 (minimum in the teaching range): fast but weak separation",
+        "balanced": "Balanced",
+        "balancedTitle": "Balanced settings for demo",
+        "industrial": "Industrial",
+        "industrialTitle": "Many theoretical stages and R = 1.5 (maximum in the teaching range): path to high purity (slow)"
+      },
+      "labels": {
+        "reboilerTempTitle": "Below ~100 °C effective vaporisation drops; the reboiler should sit in the H₂O–D₂O window.",
+        "stagesTitle": "Each theoretical stage corresponds, in the model, to a distillation tray (vapour–liquid contact).",
+        "refluxTitle": "R between 1 and 1.5 (teaching parameters): higher values return more liquid to the column."
+      },
+      "process": {
+        "paused": "Paused — concentrations are frozen.",
+        "boilLow": "Temperature too low: no efficient vaporisation in the reboiler.",
+        "phase1": "H₂O evaporates preferentially — vapour richer in light water rises toward the condenser.",
+        "phase2": "Reflux improves separation: liquid returns and washes D₂O toward the column base.",
+        "phase3": "Near maximum purity → slow process (plateau). The last percent are the most expensive.",
+        "phase4": "Teaching target reached in the model — in practice the last ppm need more time and stages."
+      },
+      "tempWarning": "Little vaporisation at this temperature — raise the reboiler slightly.",
+      "chart": {
+        "targetLine": "Target {target}% D₂O",
+        "xAxis": "t (sim. h)",
+        "yAxis": "% D₂O (reboiler)"
+      },
+      "trayTitle": "Stage {n} → ~{pct}% D₂O (tray liquid, model)"
     }
   }
 }

@@ -12,51 +12,51 @@
     <div class="brand">
       <div class="logo">↗</div>
       <div>
-        <div class="title">Mișcarea Proiectilului</div>
-        <div class="subtitle">Simulator BAC</div>
+        <div class="title" data-i18n="labels.title">Mișcarea Proiectilului</div>
+        <div class="subtitle" data-i18n="labels.subtitle">Simulator BAC</div>
       </div>
     </div>
 
     <div class="actions">
-      <button class="btn" id="btnReset">Reset</button>
-      <button class="btn" id="btnFull">Full screen</button>
-      <button class="btn primary" id="btnPlay">Start</button>
+      <button class="btn" id="btnReset" data-i18n="buttons.reset">Reset</button>
+      <button class="btn" id="btnFull" data-i18n="buttons.fullscreen">Full screen</button>
+      <button class="btn primary" id="btnPlay" data-i18n="buttons.start">Start</button>
     </div>
   </header>
 
   <main class="layout" id="projLayout">
-    <button type="button" id="toggleProjLeft" class="proj-toggle proj-toggle-left" aria-controls="leftPanel" aria-expanded="true" aria-label="Panou rezultate și formule">☰</button>
+    <button type="button" id="toggleProjLeft" class="proj-toggle proj-toggle-left" aria-controls="leftPanel" aria-expanded="true" data-i18n-aria="labels.ariaLeftPanel" aria-label="Panou rezultate și formule">☰</button>
 
-    <aside id="leftPanel" class="panel left" aria-label="Rezultate și formule">
+    <aside id="leftPanel" class="panel left" data-i18n-aria="labels.ariaLeftPanel" aria-label="Rezultate și formule">
       <div class="panelHeader">
-        <h2>Rezultate</h2>
+        <h2 data-i18n="labels.resultsHeading">Rezultate</h2>
         <span class="pill" id="modePill">Fără aer (BAC)</span>
       </div>
       <div class="panelPad">
         <div class="card">
-          <div class="cardTitle">Rezultate cheie</div>
+          <div class="cardTitle" data-i18n="labels.cardKeyResults">Rezultate cheie</div>
           <div class="kvgrid">
-            <div class="kv"><span>T (timp zbor)</span><b id="outT">—</b></div>
-            <div class="kv"><span>R (bătaie)</span><b id="outR">—</b></div>
-            <div class="kv"><span>Hmax</span><b id="outHmax">—</b></div>
-            <div class="kv"><span>t↑ (până la vârf)</span><b id="outTup">—</b></div>
-            <div class="kv"><span>v impact</span><b id="outVimp">—</b></div>
-            <div class="kv"><span>ymax (live)</span><b id="outYmax">—</b></div>
+            <div class="kv"><span data-i18n="labels.kvTflight">T (timp zbor)</span><b id="outT">—</b></div>
+            <div class="kv"><span data-i18n="labels.kvR">R (bătaie)</span><b id="outR">—</b></div>
+            <div class="kv"><span data-i18n="labels.kvHmax">Hmax</span><b id="outHmax">—</b></div>
+            <div class="kv"><span data-i18n="labels.kvTup">t↑ (până la vârf)</span><b id="outTup">—</b></div>
+            <div class="kv"><span data-i18n="labels.kvVimp">v impact</span><b id="outVimp">—</b></div>
+            <div class="kv"><span data-i18n="labels.kvYmaxLive">ymax (live)</span><b id="outYmax">—</b></div>
           </div>
         </div>
 
         <div class="card">
-          <div class="cardTitle">Live</div>
+          <div class="cardTitle" data-i18n="labels.cardLive">Live</div>
           <div class="kvgrid">
-            <div class="kv"><span>t</span><b id="outt">—</b></div>
-            <div class="kv"><span>x</span><b id="outx">—</b></div>
-            <div class="kv"><span>y</span><b id="outy">—</b></div>
-            <div class="kv"><span>v</span><b id="outv">—</b></div>
+            <div class="kv"><span data-i18n="labels.kvTLive">t</span><b id="outt">—</b></div>
+            <div class="kv"><span data-i18n="labels.kvX">x</span><b id="outx">—</b></div>
+            <div class="kv"><span data-i18n="labels.kvY">y</span><b id="outy">—</b></div>
+            <div class="kv"><span data-i18n="labels.kvV">v</span><b id="outv">—</b></div>
           </div>
         </div>
 
         <details class="details" open>
-          <summary>Formule BAC (fără aer)</summary>
+          <summary data-i18n="labels.detailsSummary">Formule BAC (fără aer)</summary>
           <div class="formula">
             <div><b>v₀x</b>=v₀cosα, <b>v₀y</b>=v₀sinα</div>
             <div><b>x(t)</b>=v₀cosα·t</div>
@@ -65,8 +65,8 @@
             <div><b>Hmax</b>=h₀+(v₀²sin²α)/(2g)</div>
             <div><b>T</b> din y(T)=0, apoi <b>R</b>=v₀cosα·T</div>
           </div>
-          <div class="note">
-            În modul <b>Cu aer</b> folosim integrare numerică.
+          <div class="note" data-i18n="labels.detailsNote">
+            În modul cu aer folosim integrare numerică.
           </div>
         </details>
       </div>
@@ -75,8 +75,8 @@
     <div class="projStageShell">
       <section class="center">
         <div class="stageTop">
-          <div class="hint">
-            Zoom: rotița • Pan: <b>Space</b> + drag • Trage punctul verde ca să schimbi <b>h₀</b> (când e pauză)
+          <div class="hint" data-i18n="labels.hintZoom">
+            Zoom: rotița • Pan: Space + drag • Trage punctul verde ca să schimbi h₀ (când e pauză)
           </div>
           <div class="status">
             <span class="pill soft" id="statusPill">stop</span>
@@ -85,7 +85,7 @@
 
         <div class="stageWrap">
           <div class="stage" id="stage">
-            <canvas id="canvas" aria-label="Simulare proiectil"></canvas>
+            <canvas id="canvas" data-i18n-aria="labels.canvasAria" aria-label="Simulare proiectil"></canvas>
             <div class="hud">
               <span class="dot"></span>
               <span id="hudText">Pregătit.</span>
@@ -95,14 +95,14 @@
 
         <div class="stageBottom">
           <div class="mini">
-            <div class="miniTitle">Tip BAC</div>
-            <div class="miniText">
-              Compară <b>fără aer</b> (ideal) vs <b>cu aer</b> (real). Vezi cum scade bătaia și cum se modifică traiectoria.
+            <div class="miniTitle" data-i18n="labels.bacTypeTitle">Tip BAC</div>
+            <div class="miniText" data-i18n="labels.bacTypeBody">
+              Compară fără aer (ideal) vs cu aer (real). Vezi cum scade bătaia și cum se modifică traiectoria.
             </div>
           </div>
           <div class="mini">
-            <div class="miniTitle">Unități</div>
-            <div class="miniText">
+            <div class="miniTitle" data-i18n="labels.unitsTitle">Unități</div>
+            <div class="miniText" data-i18n="labels.unitsBody">
               metri (m), secunde (s), m/s. Axele sunt în metri; solul e y=0.
             </div>
           </div>
@@ -110,75 +110,76 @@
       </section>
     </div>
 
-    <aside id="rightPanel" class="panel right" aria-label="Controale">
+    <aside id="rightPanel" class="panel right" data-i18n-aria="labels.ariaRightPanel" aria-label="Controale">
       <div class="panelHeader">
-        <h2>Controale</h2>
+        <h2 data-i18n="labels.controlsHeading">Controale</h2>
       </div>
       <div class="panelPad">
         <div class="card">
-          <div class="cardTitle">Moduri & afișare</div>
+          <div class="cardTitle" data-i18n="labels.cardModes">Moduri & afișare</div>
           <div class="toggles">
-            <label class="toggle"><input type="checkbox" id="chkAir" /> Rezistența aerului</label>
-            <label class="toggle"><input type="checkbox" id="chkTrace" checked /> Urmă</label>
-            <label class="toggle"><input type="checkbox" id="chkVectors" checked /> Vectori</label>
-            <label class="toggle"><input type="checkbox" id="chkGrid" checked /> Grilă</label>
+            <label class="toggle"><input type="checkbox" id="chkAir" /> <span data-i18n="labels.chkAir">Rezistența aerului</span></label>
+            <label class="toggle"><input type="checkbox" id="chkTrace" checked /> <span data-i18n="labels.chkTrace">Urmă</span></label>
+            <label class="toggle"><input type="checkbox" id="chkVectors" checked /> <span data-i18n="labels.chkVectors">Vectori</span></label>
+            <label class="toggle"><input type="checkbox" id="chkGrid" checked /> <span data-i18n="labels.chkGrid">Grilă</span></label>
           </div>
         </div>
 
         <div class="card">
-          <div class="cardTitle">Parametri (BAC)</div>
+          <div class="cardTitle" data-i18n="labels.cardParams">Parametri (BAC)</div>
 
           <div class="control">
-            <label>v₀ (m/s) <b id="labV0"></b></label>
+            <label><span data-i18n="labels.lblV0">v₀ (m/s)</span> <b id="labV0"></b></label>
             <input id="v0" type="range" min="2" max="60" step="0.5" value="22" />
           </div>
 
           <div class="control">
-            <label>α (°) <b id="labAng"></b></label>
+            <label><span data-i18n="labels.lblAlpha">α (°)</span> <b id="labAng"></b></label>
             <input id="ang" type="range" min="1" max="89" step="1" value="45" />
           </div>
 
           <div class="control">
-            <label>h₀ (m) <b id="labH0"></b></label>
+            <label><span data-i18n="labels.lblH0">h₀ (m)</span> <b id="labH0"></b></label>
             <input id="h0" type="range" min="0" max="30" step="0.1" value="0" />
           </div>
 
           <div class="control">
-            <label>g (m/s²) <b id="labG"></b></label>
+            <label><span data-i18n="labels.lblG">g (m/s²)</span> <b id="labG"></b></label>
             <input id="g" type="range" min="1" max="20" step="0.1" value="9.8" />
           </div>
         </div>
 
         <div class="card">
-          <div class="cardTitle">Rulare</div>
+          <div class="cardTitle" data-i18n="labels.cardRun">Rulare</div>
 
           <div class="control">
-            <label>Viteză rulare (x) <b id="labSpeed"></b></label>
+            <label><span data-i18n="labels.lblSpeed">Viteză rulare (x)</span> <b id="labSpeed"></b></label>
             <input id="speed" type="range" min="0.25" max="2.5" step="0.05" value="1" />
           </div>
 
           <div class="control">
-            <label>Calitate urmă <b id="labTrace"></b></label>
+            <label><span data-i18n="labels.lblTrace">Calitate urmă</span> <b id="labTrace"></b></label>
             <input id="traceRes" type="range" min="8" max="60" step="1" value="22" />
           </div>
 
           <div class="control">
-            <label>k (aer) <b id="labK"></b></label>
+            <label><span data-i18n="labels.lblK">k (aer)</span> <b id="labK"></b></label>
             <input id="k" type="range" min="0" max="0.25" step="0.005" value="0.06" />
-            <div class="sub">Model: <b>a = −k·|v|·v</b> + gravitație</div>
+            <div class="sub" data-i18n="labels.modelAir">Model: <b>a = −k·|v|·v</b> + gravitație</div>
           </div>
 
           <div class="row">
-            <button class="btn soft" id="btnStep">Step</button>
-            <button class="btn soft danger" id="btnClear">Curăță urma</button>
+            <button class="btn soft" id="btnStep" data-i18n="buttons.step">Step</button>
+            <button class="btn soft danger" id="btnClear" data-i18n="buttons.clearTrail">Curăță urma</button>
           </div>
         </div>
       </div>
     </aside>
 
-    <button type="button" id="toggleProjRight" class="proj-toggle proj-toggle-right" aria-controls="rightPanel" aria-expanded="true" aria-label="Panou controale">☰</button>
+    <button type="button" id="toggleProjRight" class="proj-toggle proj-toggle-right" aria-controls="rightPanel" aria-expanded="true" data-i18n-aria="labels.ariaRightPanel" aria-label="Panou controale">☰</button>
   </main>
 
-  <script src="./app.js"></script>
+  <script src="/simulari/simulator-i18n-runtime.js"></script>
+  <script src="/simulari/proiectile/proiectile-boot.js"></script>
 </body>
 </html>

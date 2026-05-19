@@ -16,6 +16,17 @@ const REFLUX_R_MIN = 1;
 const REFLUX_R_MAX = 1.5;
 const REFLUX_R_DEFAULT = 1.25;
 
+function simT(path, fallback) {
+  if (typeof window.simLbl === "function") return window.simLbl(path, fallback);
+  return fallback;
+}
+
+function simFmt(path, fallback, vars) {
+  let s = simT(path, fallback);
+  if (!vars) return s;
+  return s.replace(/\{(\w+)\}/g, (_, k) => (vars[k] !== undefined && vars[k] !== null ? String(vars[k]) : ""));
+}
+
 function clampRefluxR(r) {
   const x = Number(r);
   if (!Number.isFinite(x)) return REFLUX_R_DEFAULT;
@@ -261,27 +272,37 @@ function updateProcessMessage(boil) {
   }
   el.classList.remove("process-banner--hidden");
   if (paused) {
-    el.textContent = "Pauz\u0103 \u2014 concentra\u021biile sunt \u00eenghe\u021bate.";
+    el.textContent = simT("process.paused", "Pauz\u0103 \u2014 concentra\u021biile sunt \u00eenghe\u021bate.");
     return;
   }
   if (boil < 0.18) {
-    el.textContent =
-      "Temperatur\u0103 prea mic\u0103: nu se produce vaporizare eficient\u0103 \u00een blaz.";
+    el.textContent = simT(
+      "process.boilLow",
+      "Temperatur\u0103 prea mic\u0103: nu se produce vaporizare eficient\u0103 \u00een blaz."
+    );
     return;
   }
   let msg = "";
   if (concBottom < 0.38) {
-    msg =
-      "Se evapor\u0103 preferen\u021bial H\u2082O \u2014 vapori mai boga\u021bi \u00een ap\u0103 u\u0219oar\u0103 urc\u0103 spre condensator.";
+    msg = simT(
+      "process.phase1",
+      "Se evapor\u0103 preferen\u021bial H\u2082O \u2014 vapori mai boga\u021bi \u00een ap\u0103 u\u0219oar\u0103 urc\u0103 spre condensator."
+    );
   } else if (concBottom < 0.82) {
-    msg =
-      "Refluxul \u00eembun\u0103t\u0103\u021be\u0219te separarea: lichidul se \u00eentoarce \u0219i spal\u0103 D\u2082O spre baza coloanei.";
+    msg = simT(
+      "process.phase2",
+      "Refluxul \u00eembun\u0103t\u0103\u021be\u0219te separarea: lichidul se \u00eentoarce \u0219i spal\u0103 D\u2082O spre baza coloanei."
+    );
   } else if (concBottom < 0.995) {
-    msg =
-      "Aproape de puritate maxim\u0103 \u2192 proces lent (platou). Ultimii procenti sunt cei mai costisitori.";
+    msg = simT(
+      "process.phase3",
+      "Aproape de puritate maxim\u0103 \u2192 proces lent (platou). Ultimii procenti sunt cei mai costisitori."
+    );
   } else {
-    msg =
-      "\u021aint\u0103 didactic\u0103 atins\u0103 \u00een model \u2014 \u00een practic\u0103, ultimii ppm cer \u0219i mai mult timp \u0219i trepte.";
+    msg = simT(
+      "process.phase4",
+      "\u021aint\u0103 didactic\u0103 atins\u0103 \u00een model \u2014 \u00een practic\u0103, ultimii ppm cer \u0219i mai mult timp \u0219i trepte."
+    );
   }
   el.textContent = msg;
 }
@@ -290,8 +311,10 @@ function updateTempWarning(boil) {
   const el = document.getElementById("tempWarning");
   if (!el) return;
   if (boil < 0.2) {
-    el.textContent =
-      "Nu se produce vaporizare eficient\u0103 la aceast\u0103 temperatur\u0103 \u2014 ridic\u0103 u\u0219or blazul.";
+    el.textContent = simT(
+      "tempWarning",
+      "Nu se produce vaporizare eficient\u0103 la aceast\u0103 temperatur\u0103 \u2014 ridic\u0103 u\u0219or blazul."
+    );
     el.classList.remove("temp-warning--hidden");
   } else {
     el.textContent = "";
@@ -321,7 +344,11 @@ function updateReadouts(alpha, boil) {
   const rb = document.getElementById("reboilerBadge");
   if (elB) elB.textContent = `${pctBot.toFixed(2)}% D₂O`;
   if (elD) {
-    elD.innerHTML = `${pctTopVap.toFixed(2)}% D\u2082O <small class="dist-sub">(sus &mdash; D\u2082O scade, H\u2082O se concentreaz\u0103)</small>`;
+    const sub = simT(
+      "readouts.distTopSub",
+      "(sus &mdash; D\u2082O scade, H\u2082O se concentreaz\u0103)"
+    );
+    elD.innerHTML = `${pctTopVap.toFixed(2)}% D\u2082O <small class="dist-sub">${sub}</small>`;
   }
   if (rb) rb.textContent = `${reboilerT.toFixed(2)} °C`;
 
@@ -353,7 +380,11 @@ function updateTrayStyles() {
     const idx = parseInt(el.dataset.index || "0", 10);
     if (idx < 0 || idx >= n) return;
     const pct = xLiquid[idx] * 100;
-    el.title = `Etaj ${idx + 1} \u2192 ~${pct.toFixed(1)}% D\u2082O (lichid pe taler, model)`;
+    el.title = simFmt(
+      "trayTitle",
+      `Etaj ${idx + 1} \u2192 ~${pct.toFixed(1)}% D\u2082O (lichid pe taler, model)`,
+      { n: idx + 1, pct: pct.toFixed(1) }
+    );
     const frac = (xLiquid[idx] - CONC_TOP_INIT) / (0.998 - CONC_TOP_INIT);
     const rich = frac > 0.35 + (idx / n) * 0.25;
     el.classList.toggle("tray-plate--rich", rich);
@@ -506,17 +537,21 @@ function drawChart() {
   ctx.fillStyle = "rgba(241, 196, 15, 0.9)";
   ctx.font = "10px Segoe UI,sans-serif";
   ctx.textAlign = "left";
-  ctx.fillText(`Tinta ${TARGET_NOTE}% D₂O`, padL + 4, yTarget - 4);
+  ctx.fillText(
+    simFmt("chart.targetLine", `Tinta ${TARGET_NOTE}% D\u2082O`, { target: TARGET_NOTE }),
+    padL + 4,
+    yTarget - 4
+  );
 
   ctx.fillStyle = "#9ca3af";
   ctx.font = "11px Segoe UI,sans-serif";
   ctx.textAlign = "center";
-  ctx.fillText("t (h sim.)", padL + gw / 2, h - 10);
+  ctx.fillText(simT("chart.xAxis", "t (h sim.)"), padL + gw / 2, h - 10);
 
   ctx.save();
   ctx.translate(12, padT + gh / 2);
   ctx.rotate(-Math.PI / 2);
-  ctx.fillText("% D₂O (blaz)", 0, 0);
+  ctx.fillText(simT("chart.yAxis", "% D\u2082O (blaz)"), 0, 0);
   ctx.restore();
 
   if (purityHistory.length < 2) return;
@@ -703,7 +738,7 @@ function wireControls() {
   document.getElementById("pauseBtn")?.addEventListener("click", (e) => {
     paused = !paused;
     const btn = e.currentTarget;
-    if (btn) btn.textContent = paused ? "Continuă" : "Pauză";
+    if (btn) btn.textContent = paused ? simT("panel.resume", "Continu\u0103") : simT("panel.pause", "Pauz\u0103");
   });
 
   const panel = document.getElementById("controlsPanel");
