@@ -73,6 +73,23 @@ const SimulariPage = () => {
       caption: t(`simulations.${key}.caption`, sim.caption),
     };
   };
+
+  /** Strings to match against search (shown locale text + originals/slug where useful). */
+  const simSearchTextFields = (sim) => {
+    const shown = localizedSim(sim);
+    const fields = [
+      shown.title,
+      shown.description,
+      shown.caption,
+      localizedCategory(sim.category),
+      sim.slug,
+      sim.category,
+    ];
+    if (lang === "en") {
+      fields.push(sim.title, sim.description, sim.caption);
+    }
+    return fields;
+  };
   
   // Citește parametrii din URL la inițializare și decodează diacriticele
   const getSearchFromUrl = () => {
@@ -161,26 +178,16 @@ const SimulariPage = () => {
     if (searchQuery.trim()) {
       const query = searchQuery.trim();
       const normalizedQuery = normalizeDiacritics(query);
-      
-      filtered = filtered.filter(sim => {
-        // Normalizează toate textele pentru comparație
-        const normalizedTitle = normalizeDiacritics(sim.title);
-        const normalizedDescription = normalizeDiacritics(sim.description);
-        const normalizedCaption = normalizeDiacritics(sim.caption);
-        const normalizedCategory = sim.category ? normalizeDiacritics(sim.category) : "";
-        
-        // Compară normalizat (astfel "a" va găsi "ă", "â", etc.)
-        return (
-          normalizedTitle.includes(normalizedQuery) ||
-          normalizedDescription.includes(normalizedQuery) ||
-          normalizedCaption.includes(normalizedQuery) ||
-          normalizedCategory.includes(normalizedQuery)
-        );
-      });
+
+      filtered = filtered.filter((sim) =>
+        simSearchTextFields(sim).some((field) =>
+          normalizeDiacritics(String(field ?? "")).includes(normalizedQuery),
+        ),
+      );
     }
 
     return filtered;
-  }, [selectedCategory, searchQuery]);
+  }, [selectedCategory, searchQuery, lang, t]);
 
   return (
     <Layout>

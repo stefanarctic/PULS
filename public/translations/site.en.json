@@ -2997,6 +2997,12 @@
   },
   "searchPage": {
     "title": "Search results",
+    "resultsFor": "Results for:",
+    "queryEmDash": "—",
+    "pagesAndSimulations": "Pages and simulations",
+    "noSiteMatches": "No matching links on the site for this search.",
+    "problemLine": "Problem #{index}: {title}",
+    "problemUntitled": "Untitled",
     "queryLabel": "Results for \"{query}\"",
     "noQuery": "Enter a search term in the navigation bar above.",
     "noResults": "No results found for \"{query}\". Try different keywords.",

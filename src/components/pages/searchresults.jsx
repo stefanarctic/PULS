@@ -1,4 +1,4 @@
-import { Link, useLocation } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 import { useMemo } from "react";
 import { useSelector } from "react-redux";
 import { Sparkles } from "lucide-react";
@@ -26,14 +26,57 @@ function matchesEntry(entry, qNorm) {
     return normalizeString(blob).includes(qNorm);
 }
 
+/** EN: simulator rows use translated title/category and extra EN keywords for matching. */
+function localizeSimulationSearchEntry(entry, translate) {
+    if (!entry.path?.startsWith("/simulare/")) return entry;
+    const slug = entry.path.replace("/simulare/", "").split("/")[0];
+    const titleRo = entry.title;
+    const titleEn = translate(`simulations.${slug}.title`, titleRo);
+    const description = translate(`simulations.${slug}.description`, "");
+    const caption = translate(`simulations.${slug}.caption`, "");
+
+    const categoryKeyByRo = {
+        Mecanică: "simulationCategories.mechanics",
+        Pendule: "simulationCategories.pendulums",
+        Oscilații: "simulationCategories.oscillations",
+        Unde: "simulationCategories.waves",
+        Grafice: "simulationCategories.graphs",
+        Termodinamică: "simulationCategories.thermodynamics",
+        Electricitate: "simulationCategories.electricity",
+        Electromagnetism: "simulationCategories.electromagnetism",
+        Optică: "simulationCategories.optics",
+        Lasere: "simulationCategories.lasers",
+        Astronomie: "simulationCategories.astronomy",
+        Atomul: "simulationCategories.atom",
+        "Fizică cuantică": "simulationCategories.quantumPhysics",
+        "Fizică nucleară": "simulationCategories.nuclearPhysics",
+        "4D": "simulationCategories.fourD",
+    };
+    const categoryRo = entry.category;
+    const ck = categoryRo && categoryKeyByRo[categoryRo];
+    const categoryEn = ck ? translate(ck, categoryRo) : categoryRo;
+
+    const extraKeywords = [titleEn, description, caption, categoryEn].filter(Boolean);
+    return {
+        ...entry,
+        title: titleEn,
+        category: categoryEn || entry.category,
+        keywords: [...(entry.keywords || []), ...extraKeywords],
+    };
+}
+
 const SearchResults = () => {
     const rawQuery = useQuery().get("q") || "";
     const qNorm = normalizeString(rawQuery.trim());
-    const { t, lang } = useI18n();
+    const { t, lang, localizedPath } = useI18n();
 
     const { value: problemeData, status: problemsStatus } = useSelector((state) => state.problems);
 
-    const staticEntries = useMemo(() => getSiteSearchStaticEntries(), []);
+    const staticEntries = useMemo(() => {
+        const base = getSiteSearchStaticEntries();
+        if (lang !== "en") return base;
+        return base.map((e) => localizeSimulationSearchEntry(e, t));
+    }, [lang, t]);
 
     const { pageResults, problemResults } = useMemo(() => {
         if (!qNorm) {
@@ -57,11 +100,19 @@ const SearchResults = () => {
                     );
                 })
                 .slice(0, 50)
-                .map((p) => ({
-                    title: `Problema #${p.index}: ${p.titlu || "Fără titlu"}`,
-                    path: `/probleme/${p.index}`,
-                    kind: "problem",
-                }));
+                .map((p) => {
+                    const plainTitle =
+                        p.titlu ||
+                        t("searchPage.problemUntitled", "Fără titlu");
+                    return {
+                        title: t("searchPage.problemLine", "Problema #{index}: {title}", {
+                            index: p.index,
+                            title: plainTitle,
+                        }),
+                        path: `/probleme/${p.index}`,
+                        kind: "problem",
+                    };
+                });
         }
 
         const seen = new Set();
@@ -73,12 +124,12 @@ const SearchResults = () => {
         }
 
         return { pageResults: pageDeduped, problemResults: problems };
-    }, [qNorm, staticEntries, problemeData, problemsStatus]);
+    }, [qNorm, staticEntries, problemeData, problemsStatus, t]);
 
     const totalLinks = pageResults.length + problemResults.length;
     const trimmedQuery = rawQuery.trim();
     const canAskWhiz = trimmedQuery.length >= 1;
-    const whizTo = `/asistent?q=${encodeURIComponent(trimmedQuery)}`;
+    const whizTo = localizedPath(`/asistent?q=${encodeURIComponent(trimmedQuery)}`);
 
     const searchInviteHeadingFallback = 'Mai ai nevoie de ajutor?';
     const searchInviteBodyFallback =
@@ -103,34 +154,41 @@ const SearchResults = () => {
             <Navbar />
             <main className="search-results-main">
                 <h1 className="search-results-title">
-                    Rezultate pentru: <em>{trimmedQuery || "—"}</em>
+                    {t("searchPage.resultsFor", "Rezultate pentru:")}{" "}
+                    <em>{trimmedQuery || t("searchPage.queryEmDash", "—")}</em>
                 </h1>
 
                 <section className="search-links-section" aria-labelledby="search-links-heading">
                     <h2 id="search-links-heading" className="search-links-heading">
-                        Pagini și simulări
+                        {t("searchPage.pagesAndSimulations", "Pagini și simulări")}
                     </h2>
                     {totalLinks === 0 ? (
                         <p className="search-results-empty">
-                            Niciun link potrivit pe site pentru acest text.
+                            {t(
+                                "searchPage.noSiteMatches",
+                                "Niciun link potrivit pe site pentru acest text.",
+                            )}
                         </p>
                     ) : (
                         <ul className="search-results-list">
                             {pageResults.map((item) => (
                                 <li key={item.path} className="search-results-item">
-                                    <Link to={item.path} className="search-results-link">
+                                    <LocalizedLink to={item.path} className="search-results-link">
                                         {item.title}
                                         {item.category ? (
                                             <span className="search-results-meta"> · {item.category}</span>
                                         ) : null}
-                                    </Link>
+                                    </LocalizedLink>
                                 </li>
                             ))}
                             {problemResults.map((item) => (
                                 <li key={item.path} className="search-results-item">
-                                    <Link to={item.path} className="search-results-link search-results-link--problem">
+                                    <LocalizedLink
+                                        to={item.path}
+                                        className="search-results-link search-results-link--problem"
+                                    >
                                         {item.title}
-                                    </Link>
+                                    </LocalizedLink>
                                 </li>
                             ))}
                         </ul>
