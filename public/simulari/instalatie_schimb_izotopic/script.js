@@ -2,6 +2,17 @@
  * Simulator apă grea — schimb izotopic H₂O–H₂S pe 3 etaje (concentrație globală 5% → 20% → 30%).
  */
 
+const simT = (path, ro) =>
+  typeof window.simLbl === 'function' ? window.simLbl(path, ro) : ro;
+
+function simFmt(path, vars, roTpl) {
+  let s = simT(path, roTpl);
+  for (const [k, v] of Object.entries(vars)) {
+    s = s.replace(new RegExp(`\\{${k}\\}`, 'g'), String(v));
+  }
+  return s;
+}
+
 const CONFIG = {
     PPM_NATURAL: 140,
     PPM_ETAJ1_MAX: 50000,
@@ -46,6 +57,11 @@ class Simulation {
         this.initParticlesAll();
         this.setupEventListeners();
         this.syncEtajUi();
+        this.applyLockTitles();
+        const concBar = document.getElementById('concentrationBar');
+        if (concBar) {
+            concBar.title = simT('concentrationBarTitle', concBar.title || '');
+        }
         this.updateHints();
         this.updateColumnLabelsAll();
         this.refreshPanelStats();
@@ -67,6 +83,19 @@ class Simulation {
                 hotCanvas,
                 particles: [],
             });
+        });
+    }
+
+    applyLockTitles() {
+        const map = {
+            blocked: ['locks.blocked', 'Blocat'],
+            afterEtaj1: ['locks.afterEtaj1', 'Completează etajul 1'],
+            afterEtaj2: ['locks.afterEtaj2', 'Completează etajul 2'],
+        };
+        document.querySelectorAll('[data-lock-title]').forEach((el) => {
+            const k = el.getAttribute('data-lock-title');
+            const pair = map[k];
+            if (pair) el.setAttribute('title', simT(pair[0], pair[1]));
         });
     }
 
@@ -316,22 +345,31 @@ class Simulation {
     updateHints() {
         const stageDisplay = document.getElementById('stageDisplay');
         const stageHint = document.getElementById('stageHint');
-        stageDisplay.innerText = `Etaj ${this.activeEtaj} (activ)`;
+        const n = this.activeEtaj;
+        stageDisplay.innerText = simFmt('stage.active', { n }, `Etaj ${n} (activ)`);
 
         if (this.activeEtaj === 1) {
-            stageHint.innerText =
-                'Ținta: 5% D₂O. Fixează L/G între 0,48–0,52 (ideal 0,50), coloana rece ~35°C și cea caldă ~130°C. La 5% se deblochează Etajul 2 și treci automat la el.';
+            stageHint.innerText = simT(
+                'hints.etaj1',
+                'Ținta: 5% D₂O. Fixează L/G între 0,48–0,52 (ideal 0,50), coloana rece ~35°C și cea caldă ~130°C. La 5% se deblochează Etajul 2 și treci automat la el.',
+            );
         } else if (this.activeEtaj === 2) {
-            let t =
-                'Ținta: 20% D₂O. Aceiași parametri ca la etajul 1. La 20% se deblochează Etajul 3 și treci automat la el (scenariu „rupere de pântă”).';
+            let t = simT(
+                'hints.etaj2',
+                'Ținta: 20% D₂O. Aceiași parametri ca la etajul 1. La 20% se deblochează Etajul 3 și treci automat la el (scenariu „rupere de pântă”).',
+            );
             if (this.unlocked[2]) {
-                t =
-                    'Ținta: 20% D₂O. Ai atins 20% — Etajul 3 este activ (ipoteză). Continuă spre 30%.';
+                t = simT(
+                    'hints.etaj2b',
+                    'Ținta: 20% D₂O. Ai atins 20% — Etajul 3 este activ (ipoteză). Continuă spre 30%.',
+                );
             }
             stageHint.innerText = t;
         } else {
-            stageHint.innerText =
-                'Ținta: 30% D₂O — „rupere de pântă”. Etaj ipotetic: vizual ai și legături de lichid între coloane (plan nerealizat). Parametrii rămân aceiași ca la etajele 1–2.';
+            stageHint.innerText = simT(
+                'hints.etaj3',
+                'Ținta: 30% D₂O — „rupere de pântă”. Etaj ipotetic: vizual ai și legături de lichid între coloane (plan nerealizat). Parametrii rămân aceiași ca la etajele 1–2.',
+            );
         }
     }
 
@@ -343,14 +381,20 @@ class Simulation {
             const pctStr = pct.toFixed(4);
             const hotStr = (pct * 0.72).toFixed(4);
             const legacy = unit.classList.contains('etaj-unit--legacy');
+            const tc = this.coldTemp.toFixed(0);
+            const th = this.hotTemp.toFixed(0);
             const coldTitle = legacy
-                ? `COLOANĂ RECE (${this.coldTemp.toFixed(0)}°C)`
-                : `RECE (${this.coldTemp.toFixed(0)}°C)`;
+                ? simFmt('columns.coldLegacy', { temp: tc }, `COLOANĂ RECE (${tc}°C)`)
+                : simFmt('columns.coldShort', { temp: tc }, `RECE (${tc}°C)`);
             const hotTitle = legacy
-                ? `COLOANĂ CALDĂ (${this.hotTemp.toFixed(0)}°C)`
-                : `CALD (${this.hotTemp.toFixed(0)}°C)`;
-            const coldConc = legacy ? `D₂O concentration: ${pctStr}%` : `D₂O: ${pctStr}%`;
-            const hotConc = legacy ? `D₂O concentration: ${hotStr}%` : `D₂O: ${hotStr}%`;
+                ? simFmt('columns.hotLegacy', { temp: th }, `COLOANĂ CALDĂ (${th}°C)`)
+                : simFmt('columns.hotShort', { temp: th }, `CALD (${th}°C)`);
+            const coldConc = legacy
+                ? simFmt('columns.concLegacy', { pct: pctStr }, `D₂O concentration: ${pctStr}%`)
+                : simFmt('columns.concShort', { pct: pctStr }, `D₂O: ${pctStr}%`);
+            const hotConc = legacy
+                ? simFmt('columns.concLegacy', { pct: hotStr }, `D₂O concentration: ${hotStr}%`)
+                : simFmt('columns.concShort', { pct: hotStr }, `D₂O: ${hotStr}%`);
             unit.querySelectorAll('.cold-col .column-label').forEach((el) => {
                 el.innerText = coldTitle;
             });
@@ -399,19 +443,19 @@ class Simulation {
         processState.classList.toggle('process-idle', !active);
 
         if (this.etajUnlockTicks > 0) {
-            processState.innerText = `Etaj deblocat`;
+            processState.innerText = simT('process.stageUnlocked', 'Etaj deblocat');
         } else if (this.coldTemp < 30) {
-            processState.innerText = 'Cristalizare — proces ineficient';
+            processState.innerText = simT('process.crystallization', 'Cristalizare — proces ineficient');
         } else if (this.primaryScore >= 0.82) {
-            processState.innerText = 'Zonă bună';
+            processState.innerText = simT('process.goodZone', 'Zonă bună');
         } else if (this.primaryScore >= 0.35) {
-            processState.innerText = 'Acceptabil';
+            processState.innerText = simT('process.acceptable', 'Acceptabil');
         } else if (nearCap) {
-            processState.innerText = 'Aproape de ținta etajului';
+            processState.innerText = simT('process.nearTarget', 'Aproape de ținta etajului');
         } else if (active) {
-            processState.innerText = 'Schimb izotopic activ';
+            processState.innerText = simT('process.active', 'Schimb izotopic activ');
         } else {
-            processState.innerText = 'Reglează L/G și temperaturile';
+            processState.innerText = simT('process.tuneLg', 'Reglează L/G și temperaturile');
         }
 
         document.querySelectorAll('.column').forEach((col) => {
@@ -652,11 +696,11 @@ class Simulation {
         const xMax = 0.55;
         const currentValue = this.lgRatio;
 
-        ctx.fillText('r = L/G', w / 2, h - 10);
+        ctx.fillText(simT('graph.rLg', 'r = L/G'), w / 2, h - 10);
         ctx.save();
         ctx.translate(15, h / 2);
         ctx.rotate(-Math.PI / 2);
-        ctx.fillText('eficiență', 0, 0);
+        ctx.fillText(simT('graph.efficiency', 'eficiență'), 0, 0);
         ctx.restore();
 
         ctx.strokeStyle = 'rgba(78, 167, 255, 0.95)';
@@ -709,11 +753,21 @@ class Simulation {
         document.getElementById('percentDisplay').innerText = '30.0000%';
         document.getElementById('concFill').style.height = '100%';
 
+        const cold = this.coldTemp.toFixed(0);
+        const hot = this.hotTemp.toFixed(0);
+        const lg = this.lgRatio.toFixed(2);
         document.getElementById('successSummary').innerHTML = `
-            <p>Ai urcat concentrația de la 140 ppm la <strong>30% D₂O</strong>, trecând pe rând prin etajele de schimb izotopic.</p>
-            <p><strong>Etaj 1:</strong> până la 5% cu coloana rece la ${this.coldTemp.toFixed(0)}°C, coloana caldă la ${this.hotTemp.toFixed(0)}°C și L/G ${this.lgRatio.toFixed(2)}.</p>
-            <p><strong>Etaj 2:</strong> același regim de parametri, până la 20%.</p>
-            <p><strong>Etaj 3:</strong> scenariul ipotetic „rupere de pântă” până la 30% — cu ocoluri suplimentare de lichid doar ca idee de proiect, nu ca instalație reală documentată aici.</p>
+            <p>${simT('success.summaryP1', 'Ai urcat concentrația de la 140 ppm la <strong>30% D₂O</strong>, trecând pe rând prin etajele de schimb izotopic.')}</p>
+            <p>${simFmt(
+                'success.summaryP2',
+                { cold, hot, lg },
+                `<strong>Etaj 1:</strong> până la 5% cu coloana rece la ${cold}°C, coloana caldă la ${hot}°C și L/G ${lg}.`,
+            )}</p>
+            <p>${simT('success.summaryP3', '<strong>Etaj 2:</strong> același regim de parametri, până la 20%.')}</p>
+            <p>${simT(
+                'success.summaryP4',
+                '<strong>Etaj 3:</strong> scenariul ipotetic „rupere de pântă” până la 30% — cu ocoluri suplimentare de lichid doar ca idee de proiect, nu ca instalație reală documentată aici.',
+            )}</p>
         `;
 
         document.getElementById('successOverlay').classList.remove('hidden');
@@ -750,6 +804,11 @@ class Simulation {
         document.getElementById('overlay').classList.remove('hidden');
         document.querySelectorAll('.column').forEach((c) => c.classList.remove('moment-glow-upgrade'));
 
+        const concBarRestart = document.getElementById('concentrationBar');
+        if (concBarRestart) {
+            concBarRestart.title = simT('concentrationBarTitle', 'Progres global spre 30%');
+        }
+
         this.syncEtajUi();
         this.updateHints();
         this.updateColumnLabelsAll();
@@ -766,6 +825,11 @@ class Simulation {
     }
 }
 
-document.addEventListener('DOMContentLoaded', () => {
+function startInstalatieSim() {
     window.sim = new Simulation();
-});
+}
+if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', startInstalatieSim);
+} else {
+    startInstalatieSim();
+}

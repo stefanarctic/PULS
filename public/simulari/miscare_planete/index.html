@@ -13,78 +13,78 @@
 
     <header class="hud">
       <div class="hud-left">
-        <div class="title">☉ Sistem Solar</div>
-        <div class="sub">Click pe o planetă → info în panou. Te poți plimba liber cu mouse-ul.</div>
+        <div class="title" data-i18n="hud.title">☉ Sistem Solar</div>
+        <div class="sub" data-i18n="hud.subtitle">Click pe o planetă → info în panou. Te poți plimba liber cu mouse-ul.</div>
       </div>
 
       <div class="hud-right">
-        <button id="btnPanel" class="btn">☰ Panou</button>
-        <button id="btnPause" class="btn">⏸ Pause</button>
-        <button id="btnReset" class="btn ghost">↺ Reset</button>
+        <button type="button" id="btnPanel" class="btn" data-i18n="buttons.panel">☰ Panou</button>
+        <button type="button" id="btnPause" class="btn" data-i18n="buttons.pause">⏸ Pause</button>
+        <button type="button" id="btnReset" class="btn ghost" data-i18n="buttons.reset">↺ Reset</button>
       </div>
     </header>
 
     <aside id="panel" class="panel open">
       <div class="panel-head">
-        <div class="panel-title-big">Panou</div>
-        <button id="btnClosePanel" class="btn tiny ghost">✕</button>
+        <div class="panel-title-big" data-i18n="panel.title">Panou</div>
+        <button type="button" id="btnClosePanel" class="btn tiny ghost" data-i18n-aria="aria.closePanel" aria-label="Închide panoul">✕</button>
       </div>
 
       <section class="panel-section">
-        <div class="panel-title">Controale</div>
+        <div class="panel-title" data-i18n="panel.controlsTitle">Controale</div>
 
         <label class="row">
-          <span>Viteza</span>
+          <span data-i18n="panel.speed">Viteza</span>
           <input id="timeWarp" type="range" min="0.1" max="50" value="8" step="0.1" />
           <span id="timeWarpVal" class="mono">8.0×</span>
         </label>
 
         <label class="row">
-          <span>Orbite</span>
+          <span data-i18n="panel.orbits">Orbite</span>
           <input id="toggleOrbits" type="checkbox" checked />
         </label>
 
         <label class="row">
-          <span>Urmărește</span>
+          <span data-i18n="panel.follow">Urmărește</span>
           <select id="followSelect"></select>
         </label>
 
-        <div class="small note">
+        <div class="small note" data-i18n="panel.mouseHint">
           Mouse: drag = rotește, wheel = zoom, right-drag = pan
         </div>
       </section>
 
       <section class="panel-section">
-        <div class="panel-title">Formule & unități</div>
+        <div class="panel-title" data-i18n="panel.formulasTitle">Formule & unități</div>
         <div class="math mono">
-          <div><b>Legea gravitației:</b> F = G · (M☉ · m) / r²</div>
-          <div><b>Accelerație:</b> a = F / m = G · M☉ / r²</div>
-          <div><b>Viteză orbitală (aprox. circular):</b> v ≈ √(G·M☉/r)</div>
+          <div><b data-i18n="formulas.gravLaw">Legea gravitației:</b> F = G · (M☉ · m) / r²</div>
+          <div><b data-i18n="formulas.accel">Accelerație:</b> a = F / m = G · M☉ / r²</div>
+          <div><b data-i18n="formulas.orbVel">Viteză orbitală (aprox. circular):</b> v ≈ √(G·M☉/r)</div>
           <hr />
-          <div><b>Unități:</b></div>
-          <div>G = 6.67430×10⁻¹¹ N·m²/kg²</div>
-          <div>Forță: N (kg·m/s²)</div>
-          <div>r: m, v: m/s, a: m/s²</div>
+          <div><b data-i18n="formulas.unitsTitle">Unități:</b></div>
+          <div data-i18n="formulas.gConstant">G = 6.67430×10⁻¹¹ N·m²/kg²</div>
+          <div data-i18n="formulas.forceN">Forță: N (kg·m/s²)</div>
+          <div data-i18n="formulas.rva">r: m, v: m/s, a: m/s²</div>
         </div>
       </section>
 
       <section class="panel-section">
-        <div class="panel-title">Selectat</div>
+        <div class="panel-title" data-i18n="panel.selectedTitle">Selectat</div>
         <div id="selectedName" class="selected-name">—</div>
 
         <!-- etichetă doar pentru planeta selectată -->
-        <div id="selectedTag" class="selected-tag mono">Click pe o planetă…</div>
+        <div id="selectedTag" class="selected-tag mono" data-i18n="selected.tagHint">Click pe o planetă…</div>
 
         <div id="selectedStats" class="mono stats"></div>
         <div id="selectedFacts" class="facts">—</div>
 
-        <div class="small note">
+        <div class="small note" data-i18n="panel.selectedNote">
           Notă: după ce selectezi o planetă, o poți urmări din dropdown.
         </div>
       </section>
     </aside>
 
-    <div id="hint" class="hint">Click pe o planetă 👇</div>
+    <div id="hint" class="hint" data-i18n="hint.text">Click pe o planetă 👇</div>
   </div>
 
   <script type="importmap">
@@ -96,6 +96,7 @@
     }
   </script>
 
-  <script type="module" src="main.js"></script>
+  <script src="/simulari/simulator-i18n-runtime.js"></script>
+  <script src="/simulari/miscare_planete/miscare-planete-boot.js"></script>
 </body>
 </html>

@@ -1,3 +1,6 @@
+const simT = (path, ro) =>
+  typeof window.simLbl === 'function' ? window.simLbl(path, ro) : ro;
+
 const canvas = document.getElementById('mainCanvas');
 const ctx = canvas.getContext('2d');
 const toggleValveButton = document.getElementById('toggleValveButton');
@@ -18,13 +21,18 @@ const tableNumLeft = document.getElementById('tableNumLeft');
 const tableNumRight = document.getElementById('tableNumRight');
 const tableTempLeft = document.getElementById('tableTempLeft');
 const tableTempRight = document.getElementById('tableTempRight');
-const tableMasaLeft = document.getElementById('tableMasaLeft');
-const tableMasaRight = document.getElementById('tableMasaRight');
 const tablePresiune = document.getElementById('tablePresiune');
 const restartButton = document.getElementById('restartButton');
 const molarMassGlobalSlider = document.getElementById('molarMassGlobal');
 const molarMassGlobalValue = document.getElementById('molarMassGlobalValue');
 const tableMasaGlobal = document.getElementById('tableMasaGlobal');
+
+function syncValveButtonLabel() {
+  if (!toggleValveButton) return;
+  toggleValveButton.textContent = valveOpen
+    ? simT('buttons.closeValve', 'Închide Valvă')
+    : simT('buttons.openValve', 'Deschide Valvă');
+}
 
 const RADIUS = 8;
 let molecules = [];
@@ -271,7 +279,7 @@ restartButton.addEventListener('click', () => {
     molarMassGlobalValue.textContent = 10;
     updateSliders();
     valveOpen = false;
-    toggleValveButton.textContent = 'Deschide Valvă';
+    syncValveButtonLabel();
     dividerHeight = 1.0;
     divider.style.height = '100%';
     isVesselBroken = false;
@@ -312,4 +320,5 @@ molarMassGlobalSlider.addEventListener('input', () => {
 divider.style.height = '100%';
 createMolecules();
 updateSliders();
+syncValveButtonLabel();
 animate();

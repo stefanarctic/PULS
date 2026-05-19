@@ -4,7 +4,7 @@
 
 Criteriu „tradus”: slug în `src/components/pages/SimulationPage.jsx` (`SIMULATOR_I18N_QUERY_SLUGS`) și bloc corespunzător în `public/translations/simulatoare.en.json`.
 
-### Traduse (33)
+### Traduse (38)
 
 | slug | titlu (RO în app) |
 |------|-------------------|
@@ -41,6 +41,11 @@ Criteriu „tradus”: slug în `src/components/pages/SimulationPage.jsx` (`SIMU
 | eli-np-laser | ELI-NP Photon Sniper |
 | accelerator-laser | Accelerare de electroni cu laser (LWFA) |
 | laser | Laser |
+| constelatii | Constelații pe cer |
+| miscare-planete | Mișcarea Planetelor |
+| spectru-electromagnetic | Spectrul electromagnetic |
+| termodinamica | Termodinamică – Gaz ideal într-un vas |
+| instalatie-schimb-izotopic | Instalație de schimb izotopic (H₂S - H₂O) |
 
 ### Semi-traduse (4)
 
@@ -49,22 +54,17 @@ Criteriu „tradus”: slug în `src/components/pages/SimulationPage.jsx` (`SIMU
 | proiectile | Mișcarea Proiectilului |
 | lanturi-elastice | Lanțuri Elastice |
 
-### Netraduse (16)
+### Netraduse (11)
 
 | slug | titlu (RO în app) |
 |------|-------------------|
 | grafice-functii | Grafice Funcții |
 | grafice-simple | Grafice Simple |
-| termodinamica | Termodinamică – Gaz ideal într-un vas |
 | circuite-electricitate | Circuite Electrice |
-| constelatii | Constelații pe cer |
-| miscare-planete | Mișcarea Planetelor |
 | tabel-periodic | Tabelul periodic |
-| spectru-electromagnetic | Spectrul electromagnetic |
 | curent-alternativ | Curent alternativ |
 | kirchhoff | Legile lui Kirchhoff (iframe extern — caz aparte) |
 | legaturi-atomi | Legături între atomi |
-| instalatie-schimb-izotopic | Instalație de schimb izotopic (H₂S - H₂O) |
 | distilare-d2o-fractionata | Distilare fracționată D₂O (rectificare) |
 | reactor-fuziune-dt | Reactor fuziune D–T (model educativ) |
 | izotopi-uraniu | Izotopii uraniului (nucleu, α, fisiune, timp) |

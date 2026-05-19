@@ -1,6 +1,19 @@
 import * as THREE from "three";
 import { OrbitControls } from "three/addons/controls/OrbitControls.js";
 
+const simT = (path, ro) =>
+  typeof window.simLbl === "function" ? window.simLbl(path, ro) : ro;
+function simFmt(path, vars, roTpl) {
+  let s = simT(path, roTpl);
+  for (const [k, v] of Object.entries(vars)) {
+    s = s.replace(new RegExp(`\\{${k}\\}`, "g"), String(v));
+  }
+  return s;
+}
+
+const FOLLOW_NONE = "none";
+const FOLLOW_SUN = "sun";
+
 /* =========================
    CONST (Physics + scales)
 ========================= */
@@ -20,25 +33,33 @@ const BASE_DT = 60 * 60 * 2; // 2 hours
    PLANETS
 ========================= */
 const PLANETS = [
-  { name:"Mercur", mass:3.3011e23, radius:2.4397e6, a_AU:0.387, color:0xb7b7b7, spinSpeed: 0.020,
-    facts:["~88 zile/orbită.","Atmosferă extrem de subțire.","Temperaturi extreme."] },
-  { name:"Venus", mass:4.8675e24, radius:6.0518e6, a_AU:0.723, color:0xe7c58f, spinSpeed: -0.006,
-    facts:["Rotație retrogradă.","Efect de seră puternic.","Presiune mare la sol."] },
-  { name:"Pământ", mass:5.97237e24, radius:6.371e6, a_AU:1.0, color:0x4aa3ff, spinSpeed: 0.030,
-    facts:["Apă ~71% din suprafață.","Luna stabilizează axa.","Viață cunoscută."] },
-  { name:"Marte", mass:6.4171e23, radius:3.3895e6, a_AU:1.524, color:0xff7a55, spinSpeed: 0.028,
-    facts:["Olympus Mons.","Phobos & Deimos.","Țintă pt. colonizare."] },
-  { name:"Jupiter", mass:1.8982e27, radius:6.9911e7, a_AU:5.203, color:0xd7b28a, spinSpeed: 0.070,
-    facts:["Cel mai mare.","Marea Pată Roșie.","Multe luni."] },
-  { name:"Saturn", mass:5.6834e26, radius:5.8232e7, a_AU:9.537, color:0xe6d7a8, spinSpeed: 0.060,
-    facts:["Inele spectaculoase.","Densitate < apă.","Titan: atmosferă densă."] },
-  { name:"Uranus", mass:8.6810e25, radius:2.5362e7, a_AU:19.191, color:0x8fe8ff, spinSpeed: 0.040,
-    facts:["Axa „culcată”.","Gigant de gheață.","Inele discrete."] },
-  { name:"Neptun", mass:1.02413e26, radius:2.4622e7, a_AU:30.07, color:0x4b66ff, spinSpeed: 0.038,
-    facts:["Vânturi foarte rapide.","Gigant de gheață.","Triton retrograd."] },
-  { name:"Pluto", mass:1.303e22, radius:1.1883e6, a_AU:39.48, color:0xc9b7aa, spinSpeed: 0.012,
-    facts:["Planetă pitică.","Orbită înclinată/excentrică.","Sistem cu Charon."] }
+  { slug: "mercury", name: "Mercur", mass: 3.3011e23, radius: 2.4397e6, a_AU: 0.387, color: 0xb7b7b7, spinSpeed: 0.020,
+    facts: ["~88 zile/orbită.", "Atmosferă extrem de subțire.", "Temperaturi extreme."] },
+  { slug: "venus", name: "Venus", mass: 4.8675e24, radius: 6.0518e6, a_AU: 0.723, color: 0xe7c58f, spinSpeed: -0.006,
+    facts: ["Rotație retrogradă.", "Efect de seră puternic.", "Presiune mare la sol."] },
+  { slug: "earth", name: "Pământ", mass: 5.97237e24, radius: 6.371e6, a_AU: 1.0, color: 0x4aa3ff, spinSpeed: 0.030,
+    facts: ["Apă ~71% din suprafață.", "Luna stabilizează axa.", "Viață cunoscută."] },
+  { slug: "mars", name: "Marte", mass: 6.4171e23, radius: 3.3895e6, a_AU: 1.524, color: 0xff7a55, spinSpeed: 0.028,
+    facts: ["Olympus Mons.", "Phobos & Deimos.", "Țintă pt. colonizare."] },
+  { slug: "jupiter", name: "Jupiter", mass: 1.8982e27, radius: 6.9911e7, a_AU: 5.203, color: 0xd7b28a, spinSpeed: 0.070,
+    facts: ["Cel mai mare.", "Marea Pată Roșie.", "Multe luni."] },
+  { slug: "saturn", name: "Saturn", mass: 5.6834e26, radius: 5.8232e7, a_AU: 9.537, color: 0xe6d7a8, spinSpeed: 0.060,
+    facts: ["Inele spectaculoase.", "Densitate < apă.", "Titan: atmosferă densă."] },
+  { slug: "uranus", name: "Uranus", mass: 8.681e25, radius: 2.5362e7, a_AU: 19.191, color: 0x8fe8ff, spinSpeed: 0.040,
+    facts: ["Axa „culcată”.", "Gigant de gheață.", "Inele discrete."] },
+  { slug: "neptune", name: "Neptun", mass: 1.02413e26, radius: 2.4622e7, a_AU: 30.07, color: 0x4b66ff, spinSpeed: 0.038,
+    facts: ["Vânturi foarte rapide.", "Gigant de gheață.", "Triton retrograd."] },
+  { slug: "pluto", name: "Pluto", mass: 1.303e22, radius: 1.1883e6, a_AU: 39.48, color: 0xc9b7aa, spinSpeed: 0.012,
+    facts: ["Planetă pitică.", "Orbită înclinată/excentrică.", "Sistem cu Charon."] }
 ];
+
+function planetLabel(def) {
+  return simT(`planets.${def.slug}.name`, def.name);
+}
+
+function planetFactLine(def, i) {
+  return simT(`planets.${def.slug}.fact${i}`, def.facts[i]);
+}
 
 /* =========================
    THREE setup
@@ -322,27 +343,27 @@ function computeAccel(posMeters) {
 function makePlanetMaterial(def) {
   let map = null;
 
-  if (def.name === "Jupiter") {
+  if (def.slug === "jupiter") {
     map = makeCanvasTexture(drawJupiter, 1024);
     map.repeat.set(2,1);
-  } else if (def.name === "Pământ") {
+  } else if (def.slug === "earth") {
     map = makeCanvasTexture(drawEarth, 1024);
     map.repeat.set(2,1);
-  } else if (def.name === "Saturn") {
+  } else if (def.slug === "saturn") {
     map = makeCanvasTexture(drawSaturn, 1024);
     map.repeat.set(2,1);
-  } else if (["Mercur","Venus","Marte","Pluto"].includes(def.name)) {
+  } else if (["mercury","venus","mars","pluto"].includes(def.slug)) {
     const palette = {
-      "Mercur": ["#b5b5b5", "#6f6f6f"],
-      "Venus":  ["#f2d2a8", "#b98b5a"],
-      "Marte":  ["#e0754f", "#7b2f20"],
-      "Pluto":  ["#d8c7b7", "#7d6b5f"]
-    }[def.name];
+      mercury: ["#b5b5b5", "#6f6f6f"],
+      venus:  ["#f2d2a8", "#b98b5a"],
+      mars:  ["#e0754f", "#7b2f20"],
+      pluto:  ["#d8c7b7", "#7d6b5f"]
+    }[def.slug];
     map = makeCanvasTexture((ctx, s)=>drawRocky(ctx, s, palette[0], palette[1]), 1024);
     map.repeat.set(2,1);
   }
 
-  const emissiveIntensity = def.name === "Pământ" ? 0.75 : 0.48;
+  const emissiveIntensity = def.slug === "earth" ? 0.75 : 0.48;
 
   return new THREE.MeshStandardMaterial({
     color: def.color,
@@ -397,7 +418,7 @@ function setupPlanets() {
     const body = new THREE.Mesh(geom, mat);
     body.position.set(xW, 0, zW);
     body.userData.kind = "planet";
-    body.userData.planetName = def.name;
+    body.userData.planetSlug = def.slug;
 
     // orbit line
     const orbit = createOrbitLine(rWorld);
@@ -405,15 +426,15 @@ function setupPlanets() {
     scene.add(orbit);
 
     // rings
-    if (def.name === "Saturn") addRing(body, 1.2, 2.35, 0.22, 0.35);
-    if (def.name === "Jupiter") addRing(body, 1.25, 2.15, 0.16, 0.10);
+    if (def.slug === "saturn") addRing(body, 1.2, 2.35, 0.22, 0.35);
+    if (def.slug === "jupiter") addRing(body, 1.25, 2.15, 0.16, 0.10);
 
     // halos (more for small planets)
-    const isSmall = ["Mercur","Venus","Pământ","Marte","Pluto"].includes(def.name);
+    const isSmall = ["mercury","venus","earth","mars","pluto"].includes(def.slug);
     addHalo(body, def.color, isSmall ? 5.2 : 3.8, isSmall ? 0.80 : 0.68);
 
     // Earth atmosphere extra
-    if (def.name === "Pământ") {
+    if (def.slug === "earth") {
       const r = body.geometry.parameters.radius || 1;
       const atmo = new THREE.Mesh(
         new THREE.SphereGeometry(r * 1.06, 48, 48),
@@ -439,7 +460,7 @@ function setupPlanets() {
       new THREE.MeshBasicMaterial({ transparent: true, opacity: 0.0, depthWrite: false })
     );
     hit.userData.kind = "planet";
-    hit.userData.planetName = def.name;
+    hit.userData.planetSlug = def.slug;
     body.add(hit);
     pickTargets.push(hit);
 
@@ -502,7 +523,7 @@ let tempPauseUntil = 0;
 let selected = null;
 
 // follow + camera framing
-let followTarget = "Nimic";
+let followTarget = FOLLOW_NONE;
 let followStrength = 0.045;      // “ușor”, nu te blochează
 let camMoveT = 0;               // 0..1 for smooth camera move
 let camFrom = new THREE.Vector3();
@@ -511,21 +532,34 @@ let targetFrom = new THREE.Vector3();
 let targetTo = new THREE.Vector3();
 
 function fillFollowSelect() {
+  if (!followSelect) return;
   followSelect.innerHTML = "";
-  const options = ["Nimic", "Soare", ...PLANETS.map(p => p.name)];
-  for (const opt of options) {
+  const addOpt = (value, path, roLabel) => {
     const o = document.createElement("option");
-    o.value = opt;
-    o.textContent = opt;
+    o.value = value;
+    o.textContent = simT(path, roLabel);
     followSelect.appendChild(o);
+  };
+  addOpt(FOLLOW_NONE, "follow.none", "Nimic");
+  addOpt(FOLLOW_SUN, "follow.sun", "Soare");
+  for (const p of PLANETS) {
+    addOpt(p.slug, `planets.${p.slug}.name`, p.name);
   }
-  followSelect.value = "Nimic";
+  followSelect.value = FOLLOW_NONE;
 }
 fillFollowSelect();
 
+function syncPauseButton() {
+  if (!btnPause) return;
+  btnPause.textContent = userPaused
+    ? simT("buttons.play", "▶ Play")
+    : simT("buttons.pause", "⏸ Pause");
+}
+syncPauseButton();
+
 btnPause?.addEventListener("click", () => {
   userPaused = !userPaused;
-  btnPause.textContent = userPaused ? "▶ Play" : "⏸ Pause";
+  syncPauseButton();
 });
 
 btnReset?.addEventListener("click", () => {
@@ -546,6 +580,9 @@ btnReset?.addEventListener("click", () => {
 
   setupPlanets();
   for (const o of orbitLines) o.visible = toggleOrbits?.checked ?? true;
+
+  fillFollowSelect();
+  followTarget = FOLLOW_NONE;
 });
 
 timeWarp?.addEventListener("input", () => {
@@ -560,15 +597,15 @@ toggleOrbits?.addEventListener("change", () => {
 followSelect?.addEventListener("change", () => {
   followTarget = followSelect.value;
 
-  if (followTarget === "Nimic") return;
+  if (followTarget === FOLLOW_NONE) return;
 
-  if (followTarget === "Soare") {
+  if (followTarget === FOLLOW_SUN) {
     setSelected({ kind: "sun" });
     focusCameraOnSun();
     return;
   }
 
-  const p = planetBodies.find(x => x.def.name === followTarget);
+  const p = planetBodies.find(x => x.def.slug === followTarget);
   if (p) {
     setSelected(p);
     focusCameraOnPlanet(p);
@@ -600,22 +637,20 @@ window.addEventListener("pointerdown", (e) => {
   if (kind === "sun") {
     setSelected({ kind: "sun" });
     tempPauseUntil = performance.now() + 450;
-    // optional: if user clicks sun, set dropdown to Soare
-    if (followSelect) followSelect.value = "Soare";
-    followTarget = "Soare";
+    if (followSelect) followSelect.value = FOLLOW_SUN;
+    followTarget = FOLLOW_SUN;
     focusCameraOnSun();
     return;
   }
 
   if (kind === "planet") {
-    const name = hit.userData.planetName;
-    const p = planetBodies.find(x => x.def.name === name);
+    const slug = hit.userData.planetSlug;
+    const p = planetBodies.find(x => x.def.slug === slug);
     if (p) {
       setSelected(p);
       tempPauseUntil = performance.now() + 650;
-      // sync dropdown to chosen planet
-      if (followSelect) followSelect.value = p.def.name;
-      followTarget = p.def.name;
+      if (followSelect) followSelect.value = p.def.slug;
+      followTarget = p.def.slug;
       focusCameraOnPlanet(p);
     }
   }
@@ -635,22 +670,25 @@ function setSelected(obj) {
   selected = obj;
 
   if (!obj) {
-    selectedName.textContent = "—";
-    selectedTag.textContent = "Click pe o planetă sau Soare…";
+    selectedName.textContent = simT("selected.dash", "—");
+    selectedTag.textContent = simT("selected.promptAny", "Click pe o planetă sau Soare…");
     selectedStats.textContent = "";
-    selectedFacts.textContent = "—";
+    selectedFacts.textContent = simT("selected.dash", "—");
     selectedMarker.visible = false;
     return;
   }
 
   if (obj.kind === "sun") {
-    selectedName.textContent = "Soare";
-    selectedTag.textContent = "Corp selectat: Soare";
+    selectedName.textContent = simT("sun.name", "Soare");
+    selectedTag.textContent = simT("selected.tagSun", "Corp selectat: Soare");
+    const sf1 = simT("sun.fact1", "~99.86% din masa Sistemului Solar.");
+    const sf2 = simT("sun.fact2", "Furnizează energia prin fuziune (H → He).");
+    const sf3 = simT("sun.fact3", "Influențează toate orbitele prin gravitație.");
     selectedFacts.innerHTML =
       `<ul>
-        <li>~99.86% din masa Sistemului Solar.</li>
-        <li>Furnizează energia prin fuziune (H → He).</li>
-        <li>Influențează toate orbitele prin gravitație.</li>
+        <li>${sf1}</li>
+        <li>${sf2}</li>
+        <li>${sf3}</li>
       </ul>`;
 
     selectedMarker.visible = true;
@@ -660,9 +698,10 @@ function setSelected(obj) {
   }
 
   // planet
-  selectedName.textContent = obj.def.name;
-  selectedTag.textContent = `Planetă selectată: ${obj.def.name}`;
-  selectedFacts.innerHTML = `<ul>${obj.def.facts.map(f => `<li>${f}</li>`).join("")}</ul>`;
+  const label = planetLabel(obj.def);
+  selectedName.textContent = label;
+  selectedTag.textContent = simFmt("selected.tagPlanet", { name: label }, `Planetă selectată: ${obj.def.name}`);
+  selectedFacts.innerHTML = `<ul>${[0, 1, 2].map((i) => `<li>${planetFactLine(obj.def, i)}</li>`).join("")}</ul>`;
 
   selectedMarker.visible = true;
   selectedMarker.position.copy(obj.mesh.position);
@@ -675,12 +714,13 @@ function updateSelectedStats() {
 
   if (selected.kind === "sun") {
     const mu = G * M_SUN; // m^3/s^2
+    const gLine = simT("formulas.gConstant", "G = 6.67430×10⁻¹¹ N·m²/kg²");
     selectedStats.textContent =
 `M☉ = ${formatSI(M_SUN)} kg
 R☉ ≈ ${formatSI(R_SUN)} m
 μ = G·M☉ = ${formatSI(mu)} m³/s²
 
-G = 6.67430×10⁻¹¹ N·m²/kg²`;
+${gLine}`;
     return;
   }
 
@@ -691,6 +731,7 @@ G = 6.67430×10⁻¹¹ N·m²/kg²`;
   const F = (G * M_SUN * selected.def.mass) / (r * r);
   const rAU = r / AU;
 
+  const gLine = simT("formulas.gConstant", "G = 6.67430×10⁻¹¹ N·m²/kg²");
   selectedStats.textContent =
 `r = ${rAU.toFixed(3)} AU  (${formatSI(r)} m)
 v = ${formatSI(v)} m/s
@@ -698,7 +739,7 @@ a = ${formatSI(a)} m/s²
 F = ${formatSI(F)} N
 
 m = ${formatSI(selected.def.mass)} kg
-G = 6.67430×10⁻¹¹ N·m²/kg²
+${gLine}
 M☉ = 1.98847×10³⁰ kg`;
 }
 
@@ -751,14 +792,14 @@ function updateCameraMove(dt) {
 
 // soft follow target (keeps planet in view but you can still orbit/pan/zoom)
 function updateSoftFollow() {
-  if (!followTarget || followTarget === "Nimic") return;
+  if (!followTarget || followTarget === FOLLOW_NONE) return;
 
   let targetWorld = new THREE.Vector3(0,0,0);
 
-  if (followTarget === "Soare") {
+  if (followTarget === FOLLOW_SUN) {
     targetWorld.set(0,0,0);
   } else {
-    const p = planetBodies.find(x => x.def.name === followTarget);
+    const p = planetBodies.find(x => x.def.slug === followTarget);
     if (!p) return;
     targetWorld.copy(p.mesh.position);
   }

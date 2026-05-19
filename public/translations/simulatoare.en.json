@@ -2814,19 +2814,47 @@
         "burnedLabel": "BURNED"
       },
       "laserTypes": {
-        "diode": { "label": "Diode", "note": "baseline" },
-        "hene": { "label": "He-Ne", "note": "stable" },
-        "argon": { "label": "Argon", "note": "stronger" },
-        "fiber": { "label": "Fibre", "note": "efficient" },
-        "yag": { "label": "Nd:YAG", "note": "industrial" },
-        "ruby": { "label": "Ruby", "note": "premium" }
+        "diode": {
+          "label": "Diode",
+          "note": "baseline"
+        },
+        "hene": {
+          "label": "He-Ne",
+          "note": "stable"
+        },
+        "argon": {
+          "label": "Argon",
+          "note": "stronger"
+        },
+        "fiber": {
+          "label": "Fibre",
+          "note": "efficient"
+        },
+        "yag": {
+          "label": "Nd:YAG",
+          "note": "industrial"
+        },
+        "ruby": {
+          "label": "Ruby",
+          "note": "premium"
+        }
       },
       "laserColors": {
-        "red": { "label": "Red" },
-        "green": { "label": "Green" },
-        "blue": { "label": "Blue" },
-        "violet": { "label": "Violet" },
-        "yellow": { "label": "Yellow" }
+        "red": {
+          "label": "Red"
+        },
+        "green": {
+          "label": "Green"
+        },
+        "blue": {
+          "label": "Blue"
+        },
+        "violet": {
+          "label": "Violet"
+        },
+        "yellow": {
+          "label": "Yellow"
+        }
       },
       "tools": {
         "mirror_flat": "Plane mirror",
@@ -2880,6 +2908,617 @@
         "laserListPrefix": "Laser list: ",
         "laserListItem": "L{n}:{type}/{color} {deg}°{burned}",
         "burnedShort": " ARS"
+      }
+    },
+    "constelatii": {
+      "page": {
+        "eyebrow": "Astronomy | Interactive sky"
+      },
+      "documentTitle": "Constellations in the sky",
+      "htmlLang": "en",
+      "labels": {
+        "kickerLearn": "Learn",
+        "kickerZodiac": "Real-sky zodiac",
+        "findOnSky": "In the sky:"
+      },
+      "compass": {
+        "title": "The needle points toward Polaris (the north celestial pole). Dubhe–Merak in the Big Dipper → Polaris → north."
+      },
+      "aria": {
+        "canvas": "Interactive sky: constellations, zodiac patterns, and Venus"
+      },
+      "zodiacHook": "Newspaper horoscopes use the “tropical” zodiac. Here you see astronomers’ constellations in the real sky—same sky, different story.",
+      "venus": {
+        "kicker": "Evening / Morning Star",
+        "title": "Venus · the bright “star”",
+        "myth": "It isn’t a star. It’s the planet Venus.",
+        "find": "It is the brightest “star” in our sky after the Sun and Moon: look west after sunset or east before sunrise. Thick sulfuric-acid clouds make it shine white; near the horizon it looks more yellow-orange. Its place along the zodiac changes month to month—it’s a planet, not a fixed point like the stars."
+      },
+      "constellations": {
+        "uma": {
+          "title": "Big Dipper · Ursa Major",
+          "myth": "In Greek myth the nymph Callisto was turned into a bear; Zeus placed her in the sky for protection. Nearby is her son Arcas— the Little Dipper. Both “circle forever”, as a reminder of love and punishment.",
+          "find": "Look for a large dipper pattern. On the short side of the “bowl”, Merak and Dubhe point north: the golden line on the dome runs Merak → Dubhe → Polaris—the same path you extend about five times to reach the North Star and true north."
+        },
+        "umi": {
+          "title": "Little Dipper · Ursa Minor",
+          "myth": "The Little Dipper shares the same tale: Arcas, Callisto’s son, placed in the sky to stay close to his mother. Together the two dippers are the “bears” guarding the north celestial pole.",
+          "find": "It looks like a smaller dipper around the North Star. Usually you find it after the Big Dipper, following the Dubhe–Merak line toward Polaris; the other stars chain from the handle that ends at Polaris."
+        },
+        "polaris": {
+          "title": "Polaris · North Star",
+          "myth": "Polaris has guided navigators for millennia: it seems fixed while the rest of the sky wheels around it. In Romanian folklore it was often called the “tailed star”—like a stake pinned high in the sky.",
+          "find": "It marks the end of the Little Dipper’s handle, very near the north celestial pole: the whole sky seems to rotate around it. It isn’t the brightest star, but you can find it easily starting from the Big Dipper."
+        }
+      },
+      "zodiac": {
+        "aries": {
+          "title": "Aries · The Ram",
+          "myth": "The golden ram of the Phrixus and Helle tale, later sacrificed; Zeus set it in the sky as a memorial of courage (and of a trick with golden fleece).",
+          "find": "Along the ecliptic east of the Pisces–Aries “saddle”; Hamal shines with an orange tint."
+        },
+        "taurus": {
+          "title": "Taurus · The Bull",
+          "myth": "Zeus became a bull to carry off Europa; in another tale the bull is the quarry of Heracles. Aldebaran glimmers like the beast’s ruddy eye.",
+          "find": "In summer and autumn, watch Venus near the same arc as Aldebaran and the Hyades. Elnath marks bright horns toward Gemini."
+        },
+        "gemini": {
+          "title": "Gemini · The Twins",
+          "myth": "Castor and Pollux, Leda’s sons: one mortal, one immortal, sharing one name in the sky—twins who stay inseparable even as stars.",
+          "find": "Two bright stars close together—Castor and Pollux—unmissable on the spring sky."
+        },
+        "cancer": {
+          "title": "Cancer · The Crab",
+          "myth": "The crab bit Heracles’ foot during his fight with the Hydra—a small pinch, punished with a place in the sky.",
+          "find": "A faint pattern between Gemini and Leo; the Beehive cluster (Praesepe) lies near the donkey stars."
+        },
+        "leo": {
+          "title": "Leo · The Lion",
+          "myth": "Heracles’ first labour, the Nemean lion; in the sky Regulus is the beast’s heart; the slain monster becomes the sickle asterism.",
+          "find": "Regulus sits on the ecliptic; Leo’s “sickle” curls up the lion’s head, then the line drops toward Denebola."
+        },
+        "virgo": {
+          "title": "Virgo · The Maiden",
+          "myth": "Demeter / Astraea, the last immortal to leave Earth—or the maiden with the ear of grain; Spica is the shining wheat.",
+          "find": "Spica is one of the brightest in the figure; it rises in the southeast on spring evenings after Aries sets."
+        },
+        "libra": {
+          "title": "Libra · The Scales",
+          "myth": "The Scorpion’s claws made into scales; goddess Themis and cosmic justice—Libra is the only zodiac sign that is an object, not a creature.",
+          "find": "Two bright stars, relics of the Scorpion’s old claws; between Virgo and Antares."
+        },
+        "scorpius": {
+          "title": "Scorpius · The Scorpion",
+          "myth": "Boastful Orion, stung by a scorpion sent by Artemis; in the sky hunter and beast are kept forever apart.",
+          "find": "Antares, the red “heart”, is a fixed summer landmark; the tail bent south draws a J."
+        },
+        "sagittarius": {
+          "title": "Sagittarius · The Archer",
+          "myth": "The centaur Chiron, gentle teacher, wounded by a poisoned arrow; in the sky he holds his bow toward the Scorpion’s heart.",
+          "find": "The “Teapot” asterism is easy on the summer Milky Way."
+        },
+        "capricornus": {
+          "title": "Capricornus · The Sea-Goat",
+          "myth": "Pan’s goat-fish, who jumped into the Nile with a fish tail to flee Typhon—half goat, half fish.",
+          "find": "South on the ecliptic after Sagittarius; Deneb Algedi’s triangle climbs in late autumn."
+        },
+        "aquarius": {
+          "title": "Aquarius · The Water-Bearer",
+          "myth": "Ganymede, cup-bearer of the gods; Aquarius pours water from a celestial jar; the constellation marks blessed rain.",
+          "find": "Sadalmelik and Sadalsuud on the celestial equator; rises autumn through winter near Pisces."
+        },
+        "pisces": {
+          "title": "Pisces · The Fish",
+          "myth": "Aphrodite and Eros tied with cord to escape Typhon; the two braided fish became a symbol of rising from the waters.",
+          "find": "A pale chain on the ecliptic west of Andromeda’s W; Alresha gleams toward the Pisces–Andromeda knot."
+        }
+      }
+    },
+    "miscare-planete": {
+      "documentTitle": "Simulation: Solar system (planet motion)",
+      "htmlLang": "en",
+      "hud": {
+        "title": "☉ Solar System",
+        "subtitle": "Click a planet → info in the panel. You can move the view freely with the mouse."
+      },
+      "buttons": {
+        "panel": "☰ Panel",
+        "pause": "⏸ Pause",
+        "play": "▶ Play",
+        "reset": "↺ Reset"
+      },
+      "aria": {
+        "closePanel": "Close panel"
+      },
+      "panel": {
+        "title": "Panel",
+        "controlsTitle": "Controls",
+        "speed": "Speed",
+        "orbits": "Orbits",
+        "follow": "Follow",
+        "mouseHint": "Mouse: drag = rotate, wheel = zoom, right-drag = pan",
+        "formulasTitle": "Formulas & units",
+        "selectedTitle": "Selected",
+        "selectedNote": "Note: after you select a planet, you can follow it from the dropdown."
+      },
+      "formulas": {
+        "gravLaw": "Law of gravitation:",
+        "accel": "Acceleration:",
+        "orbVel": "Orbital speed (approx. circular):",
+        "unitsTitle": "Units:",
+        "gConstant": "G = 6.67430×10⁻¹¹ N·m²/kg²",
+        "forceN": "Force: N (kg·m/s²)",
+        "rva": "r: m, v: m/s, a: m/s²"
+      },
+      "hint": {
+        "text": "Click a planet 👇"
+      },
+      "follow": {
+        "none": "None",
+        "sun": "Sun"
+      },
+      "selected": {
+        "dash": "—",
+        "tagHint": "Click a planet…",
+        "promptAny": "Click a planet or the Sun…",
+        "tagSun": "Selected body: Sun",
+        "tagPlanet": "Selected planet: {name}"
+      },
+      "sun": {
+        "name": "Sun",
+        "fact1": "~99.86% of the Solar System’s mass.",
+        "fact2": "It supplies energy through fusion (H → He).",
+        "fact3": "Its gravity shapes every orbit."
+      },
+      "planets": {
+        "mercury": {
+          "name": "Mercury",
+          "fact0": "~88 days per orbit.",
+          "fact1": "Extremely thin atmosphere.",
+          "fact2": "Extreme surface temperatures."
+        },
+        "venus": {
+          "name": "Venus",
+          "fact0": "Retrograde rotation.",
+          "fact1": "Strong greenhouse effect.",
+          "fact2": "High surface pressure."
+        },
+        "earth": {
+          "name": "Earth",
+          "fact0": "Water covers ~71% of the surface.",
+          "fact1": "The Moon stabilizes the spin axis.",
+          "fact2": "The only known life."
+        },
+        "mars": {
+          "name": "Mars",
+          "fact0": "Olympus Mons.",
+          "fact1": "Phobos & Deimos.",
+          "fact2": "A prime target for exploration."
+        },
+        "jupiter": {
+          "name": "Jupiter",
+          "fact0": "Largest planet.",
+          "fact1": "The Great Red Spot.",
+          "fact2": "Dozens of moons."
+        },
+        "saturn": {
+          "name": "Saturn",
+          "fact0": "Spectacular rings.",
+          "fact1": "Less dense than water.",
+          "fact2": "Titan: a dense atmosphere."
+        },
+        "uranus": {
+          "name": "Uranus",
+          "fact0": "A strongly tilted (“sideways”) axis.",
+          "fact1": "An ice giant.",
+          "fact2": "Faint rings."
+        },
+        "neptune": {
+          "name": "Neptune",
+          "fact0": "Very fast winds.",
+          "fact1": "An ice giant.",
+          "fact2": "Triton in retrograde orbit."
+        },
+        "pluto": {
+          "name": "Pluto",
+          "fact0": "A dwarf planet.",
+          "fact1": "Inclined, eccentric orbit.",
+          "fact2": "A system with Charon."
+        }
+      }
+    },
+    "spectru-electromagnetic": {
+      "documentTitle": "Electromagnetic spectrum",
+      "htmlLang": "en",
+      "header": {
+        "title": "Electromagnetic spectrum",
+        "subtitle": "Interactive simulation — from radio waves to gamma rays"
+      },
+      "bar": {
+        "radio": "RADIO",
+        "microwave": "MICROWAVE",
+        "infrared": "INFRARED",
+        "visible": "VISIBLE",
+        "uv": "UV",
+        "xray": "X-RAYS",
+        "gamma": "GAMMA"
+      },
+      "panels": {
+        "regionInfo": "● Region information",
+        "waveViz": "● Wave visualization",
+        "appsTitle": "Applications",
+        "laserSim": "● Laser simulator",
+        "selectHint": "Select a band in the spectrum for details."
+      },
+      "laser": {
+        "wavelength": "Wavelength",
+        "intensity": "Intensity",
+        "divergence": "Beam divergence",
+        "dangerLevel": "Hazard level",
+        "lambdaEq": "λ = {wl} nm",
+        "bandBlueViolet": "BLUE–VIOLET",
+        "bandBlue": "BLUE",
+        "bandGreen": "GREEN",
+        "bandYellowOrange": "YELLOW–ORANGE",
+        "bandRed": "RED"
+      },
+      "dangerMessages": {
+        "class1": "CLASS 1 — Harmless",
+        "class3r": "CLASS 3R — Avoid direct viewing",
+        "class3b": "CLASS 3B — Hazardous to the eye",
+        "class4": "⚠ CLASS 4 — EXTREME HAZARD"
+      },
+      "regions": {
+        "radio": {
+          "name": "RADIO WAVES",
+          "range": "λ > 1 mm · f < 300 GHz",
+          "desc": "Radio waves have the longest wavelengths in the electromagnetic spectrum. They travel at the speed of light and can cross thousands of kilometres, reflecting from Earth's ionosphere.",
+          "props": [
+            {
+              "l": "Wavelength",
+              "v": "1 mm – 100 km"
+            },
+            {
+              "l": "Frequency",
+              "v": "3 Hz – 300 GHz"
+            },
+            {
+              "l": "Photon energy",
+              "v": "1 feV – 1 μeV"
+            },
+            {
+              "l": "Penetration",
+              "v": "Very high"
+            }
+          ],
+          "apps": [
+            "AM/FM broadcasting",
+            "Satellite communications",
+            "Weather radar",
+            "Wi-Fi & Bluetooth",
+            "Radio astrophysics"
+          ]
+        },
+        "microwave": {
+          "name": "MICROWAVES",
+          "range": "λ = 1 mm – 1 m · f = 300 MHz – 300 GHz",
+          "desc": "Microwaves are used in microwave ovens through resonance of water molecules. They underpin 5G technology and are used to study the cosmos via the cosmic microwave background (CMB).",
+          "props": [
+            {
+              "l": "Wavelength",
+              "v": "1 mm – 1 m"
+            },
+            {
+              "l": "Frequency",
+              "v": "300 MHz – 300 GHz"
+            },
+            {
+              "l": "Photon energy",
+              "v": "1 μeV – 1 meV"
+            },
+            {
+              "l": "Penetration",
+              "v": "Moderate"
+            }
+          ],
+          "apps": [
+            "Microwave ovens",
+            "5G/6G networks",
+            "Aviation radar",
+            "Cosmic microwave background (CMB)",
+            "Military communications"
+          ]
+        },
+        "ir": {
+          "name": "INFRARED",
+          "range": "λ = 700 nm – 1 mm · f = 300 GHz – 430 THz",
+          "desc": "Infrared radiation is perceived as heat by the human body. Any object above 0 K emits IR. Thermal cameras can resolve temperature differences down to about 0.01 °C.",
+          "props": [
+            {
+              "l": "Wavelength",
+              "v": "700 nm – 1 mm"
+            },
+            {
+              "l": "Frequency",
+              "v": "300 GHz – 430 THz"
+            },
+            {
+              "l": "Photon energy",
+              "v": "1 meV – 1.7 eV"
+            },
+            {
+              "l": "Type",
+              "v": "Thermal radiation"
+            }
+          ],
+          "apps": [
+            "Thermal cameras",
+            "IR remote controls",
+            "Infrared astronomy (JWST)",
+            "Motion sensors",
+            "Fibre-optic lasers"
+          ]
+        },
+        "visible": {
+          "name": "VISIBLE LIGHT",
+          "range": "λ = 380 – 700 nm · f = 430 – 790 THz",
+          "desc": "Visible light is the only part of the electromagnetic spectrum the human eye can detect. Rainbow colours correspond to different frequencies of visible light. Visible lasers are widely used in medicine and industry.",
+          "props": [
+            {
+              "l": "Wavelength",
+              "v": "380 – 700 nm"
+            },
+            {
+              "l": "Frequency",
+              "v": "430 – 790 THz"
+            },
+            {
+              "l": "Photon energy",
+              "v": "1.7 – 3.3 eV"
+            },
+            {
+              "l": "Speed in vacuum",
+              "v": "299 792 km/s"
+            }
+          ],
+          "apps": [
+            "Lasers (surgery, industry)",
+            "Photography & displays",
+            "Optical fibre",
+            "Photosynthesis",
+            "Optical spectroscopy"
+          ]
+        },
+        "uv": {
+          "name": "ULTRAVIOLET",
+          "range": "λ = 10 – 380 nm · f = 790 THz – 30 PHz",
+          "desc": "UV radiation is produced by the Sun and UV lamps. Invisible to the eye, UV-A tans skin, UV-B produces vitamin D but also sunburn, while UV-C (mostly blocked by ozone) is lethal to microbes.",
+          "props": [
+            {
+              "l": "Wavelength",
+              "v": "10 – 380 nm"
+            },
+            {
+              "l": "Frequency",
+              "v": "790 THz – 30 PHz"
+            },
+            {
+              "l": "Photon energy",
+              "v": "3.3 – 124 eV"
+            },
+            {
+              "l": "Biological risk",
+              "v": "Mutagenic"
+            }
+          ],
+          "apps": [
+            "UV-C sterilisation",
+            "Counterfeit banknote detection",
+            "Ultraviolet astronomy (Hubble)",
+            "Psoriasis treatment",
+            "Sunlamps"
+          ]
+        },
+        "xray": {
+          "name": "X-RAYS",
+          "range": "λ = 0.01 – 10 nm · f = 30 PHz – 30 EHz",
+          "desc": "X-rays penetrate soft tissue but are blocked by bone and metal, which makes them indispensable in medicine. Discovered by Wilhelm Röntgen in 1895, they revolutionised diagnosis. At high energies they are used in crystallography and astronomy.",
+          "props": [
+            {
+              "l": "Wavelength",
+              "v": "0.01 – 10 nm"
+            },
+            {
+              "l": "Frequency",
+              "v": "30 PHz – 30 EHz"
+            },
+            {
+              "l": "Photon energy",
+              "v": "0.1 – 100 keV"
+            },
+            {
+              "l": "Penetration",
+              "v": "Very high"
+            }
+          ],
+          "apps": [
+            "Medical radiography",
+            "CT scanner",
+            "Airport security",
+            "X-ray crystallography",
+            "X-ray telescopes (Chandra)"
+          ]
+        },
+        "gamma": {
+          "name": "GAMMA RAYS",
+          "range": "λ < 0.01 nm · f > 30 EHz",
+          "desc": "Gamma rays are the most energetic radiation in the Universe, produced in nuclear explosions, radioactive decay, and neutron-star collisions (kilonovae). They penetrate almost anything and are lethal in high doses, yet are essential in cancer radiotherapy.",
+          "props": [
+            {
+              "l": "Wavelength",
+              "v": "< 0.01 nm"
+            },
+            {
+              "l": "Frequency",
+              "v": "> 30 EHz"
+            },
+            {
+              "l": "Photon energy",
+              "v": "> 100 keV"
+            },
+            {
+              "l": "Risk",
+              "v": "EXTREME"
+            }
+          ],
+          "apps": [
+            "Radiotherapy (cancer)",
+            "PET scan",
+            "Food sterilisation",
+            "Nuclear-material detection",
+            "Gamma Knife (neurosurgery)"
+          ]
+        }
+      }
+    },
+    "termodinamica": {
+      "documentTitle": "Ideal gas simulator — one vessel",
+      "htmlLang": "en",
+      "h1": "Ideal gas simulator — one vessel",
+      "side": {
+        "left": "Left",
+        "right": "Right"
+      },
+      "sliders": {
+        "temperature": "Temperature (K):",
+        "numMolecules": "Number of molecules:",
+        "molarMass": "Molar mass (g/mol):",
+        "molarMassGlobal": "Global molar mass (g/mol):"
+      },
+      "buttons": {
+        "openValve": "Open valve",
+        "closeValve": "Close valve",
+        "restart": "Restart"
+      },
+      "table": {
+        "parameter": "Parameter",
+        "left": "Left",
+        "right": "Right",
+        "rowNumMolecules": "Molecule count",
+        "rowMeanTemp": "Mean temperature (K)",
+        "rowMolarMass": "Molar mass (g/mol)",
+        "rowPressure": "Pressure (simulated)"
+      }
+    },
+    "instalatie-schimb-izotopic": {
+      "documentTitle": "Heavy-water simulator | GS process",
+      "htmlLang": "en",
+      "header": {
+        "title": "🧪 SIMULATOR FOR HEAVY-WATER PRODUCTION",
+        "subtitle": "Girdler–Sulfide process (H₂O – H₂S) • Isotopic exchange by stage",
+        "panelToggle": "Parameters",
+        "panelToggleAria": "Open control panel"
+      },
+      "overlay": {
+        "title": "Primary enrichment: up to 30% D₂O across three stages",
+        "p1": "Start from 140 ppm (deuterium in natural water).",
+        "p2": "Stage 1 brings the mixture to 5%; Stage 2 then unlocks (up to 20%), then Stage 3 — a hypothetical “floodgate break” — up to 30%.",
+        "start": "START PROCESS"
+      },
+      "etaje": {
+        "1": {
+          "name": "Stage 1",
+          "target": "Target: 5% D₂O"
+        },
+        "2": {
+          "name": "Stage 2",
+          "target": "Target: 20% D₂O"
+        },
+        "3": {
+          "name": "Stage 3",
+          "target": "Target: 30% · “Floodgate break”",
+          "hypothesis": "Hypothetical scenario (unbuilt plan): extra liquid circulation between columns.",
+          "rupereLead": "Floodgate break (concept):",
+          "rupereRest": " in an isotopic-separation cascade, past a concentration threshold the design optimum changes (different flow ratio, different number of equivalent stages). This is an imaginary exercise: two extra liquid bypasses between columns so you can see how behaviour “breaks away” from the classic stages — not a 1:1 match to any real plant floor."
+        }
+      },
+      "flows": {
+        "liquid": "↓ LIQUID",
+        "gas": "↑ GAS",
+        "down": "↓",
+        "up": "↑"
+      },
+      "columns": {
+        "coldLegacy": "COLD COLUMN ({temp}°C)",
+        "hotLegacy": "HOT COLUMN ({temp}°C)",
+        "coldShort": "COLD ({temp}°C)",
+        "hotShort": "HOT ({temp}°C)",
+        "concLegacy": "D₂O concentration: {pct}%",
+        "concShort": "D₂O: {pct}%"
+      },
+      "pipes": {
+        "top": "Cold ↓ Hot",
+        "bottom": "Hot ↑ Cold"
+      },
+      "aria": {
+        "etaj1": "Stage 1",
+        "etaj2Locked": "Stage 2 locked",
+        "etaj3Locked": "Stage 3 locked"
+      },
+      "locks": {
+        "blocked": "Locked",
+        "afterEtaj1": "Complete stage 1 first",
+        "afterEtaj2": "Complete stage 2 first"
+      },
+      "concentrationBarTitle": "Overall progress toward 30%",
+      "success": {
+        "title": "Congratulations! You completed all three stages.",
+        "body": "You reached the 30% D₂O target in the hypothetical “floodgate break” stage.",
+        "restart": "Restart",
+        "nextSim": "Continue to fractional D₂O distillation",
+        "summaryP1": "You raised the concentration from 140 ppm to <strong>30% D₂O</strong>, moving through the isotopic-exchange stages in turn.",
+        "summaryP2": "<strong>Stage 1:</strong> up to 5% with the cold column at {cold}°C, the hot column at {hot}°C, and L/G {lg}.",
+        "summaryP3": "<strong>Stage 2:</strong> same operating parameters, up to 20%.",
+        "summaryP4": "<strong>Stage 3:</strong> the hypothetical “floodgate break” scenario up to 30% — with extra liquid bypasses only as a design idea, not as a documented real installation here."
+      },
+      "panel": {
+        "closeAria": "Close control panel",
+        "concentration": "Concentration",
+        "ppmD2o": "ppm D₂O",
+        "purity": "Purity",
+        "d2oH2o": "D₂O / H₂O",
+        "currentStage": "Current stage (active)",
+        "hintInitial": "Select an unlocked stage on the left. Stage 1 goes up to 5%; then Stage 2 unlocks (up to 20%), then Stage 3 (hypothesis, up to 30%).",
+        "waiting": "Idle",
+        "simSpeed": "Simulator speed:",
+        "sectionParams": "Isotopic-exchange parameters (stages 1–3)",
+        "coldTemp": "Cold column temperature:",
+        "hotTemp": "Hot column temperature:",
+        "lgRatio": "L/G ratio (liquid/gas):",
+        "noteStrong": "Note:",
+        "noteText": "Vacuum distillation is not part of this exercise — that is a separate process step. All three stages here use the same H₂O–H₂S model; Stage 3 only adds the hypothetical visual with extra liquid ties."
+      },
+      "stage": {
+        "active": "Stage {n} (active)"
+      },
+      "hints": {
+        "etaj1": "Target: 5% D₂O. Set L/G between 0.48–0.52 (ideal 0.50), cold column ~35°C and hot ~130°C. At 5%, Stage 2 unlocks and you switch to it automatically.",
+        "etaj2": "Target: 20% D₂O. Same parameters as stage 1. At 20%, Stage 3 unlocks and you switch automatically (“floodgate break” scenario).",
+        "etaj2b": "Target: 20% D₂O. You reached 20% — Stage 3 (hypothesis) is active. Continue toward 30%.",
+        "etaj3": "Target: 30% D₂O — “floodgate break”. Hypothetical stage: visually there are also liquid ties between columns (unbuilt plan). Parameters stay the same as stages 1–2."
+      },
+      "process": {
+        "stageUnlocked": "Stage unlocked",
+        "crystallization": "Crystallisation — inefficient process",
+        "goodZone": "Good operating zone",
+        "acceptable": "Acceptable",
+        "nearTarget": "Near stage target",
+        "active": "Isotopic exchange active",
+        "tuneLg": "Adjust L/G and temperatures"
+      },
+      "graph": {
+        "rLg": "r = L/G",
+        "efficiency": "efficiency"
       }
     }
   }
