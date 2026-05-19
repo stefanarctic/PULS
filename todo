@@ -4,7 +4,7 @@
 
 Criteriu „tradus”: slug în `src/components/pages/SimulationPage.jsx` (`SIMULATOR_I18N_QUERY_SLUGS`) și bloc corespunzător în `public/translations/simulatoare.en.json`.
 
-### Traduse (47)
+### Traduse (48)
 
 | slug | titlu (RO în app) |
 |------|-------------------|
@@ -55,12 +55,12 @@ Criteriu „tradus”: slug în `src/components/pages/SimulationPage.jsx` (`SIMU
 | figuri-lissajous | Figuri Lissajous |
 | curent-alternativ | Curent alternativ |
 | reactor-fuziune-dt | Reactor fuziune D–T (model educativ) |
+| circuite-electricitate | Circuite Electrice |
 
-### Netraduse (6)
+### Netraduse (5)
 
 | slug | titlu (RO în app) |
 |------|-------------------|
-| circuite-electricitate | Circuite Electrice |
 | tabel-periodic | Tabelul periodic |
 | kirchhoff | Legile lui Kirchhoff (iframe extern — caz aparte) |
 | legaturi-atomi | Legături între atomi |

@@ -608,6 +608,216 @@
         "right": "Hide / show chart and sliders"
       }
     },
+    "circuite-electricitate": {
+      "page": {
+        "eyebrow": "Electric circuits | Interactive simulation"
+      },
+      "documentTitle": "Circuit Simulator — Ohm + Kirchhoff",
+      "htmlLang": "en",
+      "labels": {
+        "pageTitle": "Circuit Simulator",
+        "tagline": "Ohm · Kirchhoff · Live solver",
+        "tools": "Tools",
+        "components": "Components",
+        "measurements": "Measurements",
+        "toolPrefix": "Tool:",
+        "selection": "Selection",
+        "selected": "Selected",
+        "value": "Value",
+        "liveResults": "Live results",
+        "branches": "Branches",
+        "explanations": "Explanations",
+        "challenges": "Challenges"
+      },
+      "tools": {
+        "select": "Select",
+        "node": "Node",
+        "wire": "Wire",
+        "resistor": "Resistor",
+        "rheostat": "Rheostat",
+        "source": "Source",
+        "ammeter": "Ammeter",
+        "voltmeter": "Voltmeter"
+      },
+      "actions": {
+        "solve": "Solve",
+        "demo": "Demo",
+        "clear": "Clear",
+        "fit": "Fit",
+        "delete": "Delete",
+        "deleteTitle": "Delete selection"
+      },
+      "modes": {
+        "schematic": "Schematic",
+        "electron": "Electron flow",
+        "heat": "Heat map"
+      },
+      "metrics": {
+        "totalCurrent": "⚡ Total current",
+        "sourceVoltage": "🔋 Source voltage",
+        "power": "🔥 Power",
+        "equivR": "Ω R equiv."
+      },
+      "empty": {
+        "branches": "Press Solve to see branch currents.",
+        "edu": "Press Solve for step-by-step (Kirchhoff & Ohm)."
+      },
+      "hints": {
+        "canvas": "<b>Click on the canvas</b> to place nodes (Node tool). For components: click two nodes. In <span class=\"mono\">Select</span> you can drag nodes. The voltmeter is a probe (not in the circuit).",
+        "pickSecond": "Selected N{n}, pick the second node…"
+      },
+      "props": {
+        "voltageLabel": "Voltage Vs (V)",
+        "sourceHelp": "Source: first node = +, second = −.",
+        "resistanceLabel": "Resistance R (Ω)",
+        "rheostatHelp": "Rheostat: value is Rmax.",
+        "resistorHelp": "Fixed resistor."
+      },
+      "selection": {
+        "elem": "{name} E{id} (N{a} ↔ N{b})",
+        "voltmeter": "Voltmeter P{id} (N{a} ↔ N{b})"
+      },
+      "status": {
+        "ready": "Ready. Start with Node + GND + Wire/Resistors.",
+        "cleared": "Cleared. Add nodes + GND + components.",
+        "demoLoaded": "Demo loaded. Press Solve.",
+        "solveError": "Solve error (see console).",
+        "deleted": "Deleted.",
+        "valueChanged": "Value updated. Press Solve.",
+        "wireConnected": "Wire between N{a} and N{b}.",
+        "ammeterConnected": "Ammeter between N{a} and N{b}.",
+        "resistorConnected": "Resistor between N{a} and N{b} (select it to set value).",
+        "rheostatConnected": "Rheostat between N{a} and N{b}.",
+        "sourceConnected": "9 V source (+ at N{a}, − at N{b}).",
+        "voltmeterConnected": "Voltmeter between N{a} and N{b}.",
+        "nodeAdded": "Node N{n} added.",
+        "nodeOnWire": "Node N{n} created on wire.",
+        "clickNodeForGnd": "Click a node to set it as GND.",
+        "gndSet": "GND set on N{n}.",
+        "clickNodeOrWire": "Click a node (or a wire to create a node).",
+        "noGnd": "No GND. Set a node as ground (GND).",
+        "nothingToSolve": "Nothing to solve.",
+        "singular": "Cannot solve: singular circuit.",
+        "solvedShort": "Solved. Warning: very large currents (possible short).",
+        "solvedOk": "Solved. Kirchhoff + Ohm applied.",
+        "challengeDone": "Challenge {n} ✓ completed!",
+        "challengePending": "Challenge {n}: not yet. Press Solve and check again."
+      },
+      "tips": {
+        "toolSelect": {
+          "title": "Select",
+          "desc": "Select / drag nodes. Click an element to edit."
+        },
+        "toolNode": {
+          "title": "Node",
+          "desc": "Junction point. Click on the canvas to add one."
+        },
+        "toolGnd": {
+          "title": "Ground (GND)",
+          "desc": "Reference node. Without GND there is no absolute potential."
+        },
+        "toolWire": {
+          "title": "Wire",
+          "desc": "Ideal wire (R ≈ 0). Click two nodes to connect."
+        },
+        "toolR": {
+          "title": "Resistor",
+          "desc": "Resistive passive element. Dissipates energy as heat."
+        },
+        "toolRh": {
+          "title": "Rheostat",
+          "desc": "Variable resistance for current control."
+        },
+        "toolBat": {
+          "title": "Source",
+          "desc": "Ideal voltage source. First node = +, second = −."
+        },
+        "toolA": {
+          "title": "Ammeter",
+          "desc": "Measures current. Connect in series (R ≈ 0)."
+        },
+        "toolV": {
+          "title": "Voltmeter",
+          "desc": "Measures potential difference. Probe (not in circuit)."
+        },
+        "actionSolve": {
+          "title": "Solve",
+          "desc": "Solve the circuit (Kirchhoff + Ohm). A GND node is required."
+        },
+        "actionDemo": {
+          "title": "Demo",
+          "desc": "Load a demo circuit."
+        },
+        "actionClear": {
+          "title": "Clear",
+          "desc": "Delete everything."
+        },
+        "actionFit": {
+          "title": "Fit",
+          "desc": "Re-center the circuit in the canvas."
+        },
+        "modeSchematic": {
+          "title": "Schematic mode",
+          "desc": "Classic schematic view with standard symbols."
+        },
+        "modeElectron": {
+          "title": "Electron flow mode",
+          "desc": "Visualize particles flowing through wires."
+        },
+        "modeHeat": {
+          "title": "Heat map mode",
+          "desc": "Color wires by dissipated power."
+        },
+        "metricI": {
+          "title": "Total current",
+          "desc": "Total current drawn from the source."
+        },
+        "metricV": {
+          "title": "Source voltage",
+          "desc": "Electromotive force of the main source."
+        },
+        "metricP": {
+          "title": "Power",
+          "desc": "Total power dissipated in the circuit."
+        },
+        "metricR": {
+          "title": "Equivalent R",
+          "desc": "Equivalent resistance seen by the source."
+        }
+      },
+      "edu": {
+        "noSourceTitle": "Missing source",
+        "noSourceText": "No voltage source. Add one to get current.",
+        "ohmGlobalTitle": "Ohm's law — whole circuit",
+        "ohmGlobalText": "Total current through source:",
+        "powerTitle": "Dissipated power",
+        "powerText": "Total power delivered by the source:",
+        "kclTitle": "Kirchhoff KCL at node N{n}",
+        "kclText": "Sum of currents entering a node is zero:",
+        "kvlTitle": "Kirchhoff KVL — voltage sum",
+        "kvlText": "On any closed loop, the sum of potential differences is zero:",
+        "kvlForm": "Σ V_loop = 0",
+        "onResistorTitle": "On resistor R{id}",
+        "onRheostatTitle": "On rheostat R{id}",
+        "onResistorText": "With R = {r} Ω and I = {i} A:"
+      },
+      "challenges": {
+        "c1": {
+          "title": "Build a circuit with R_eq = 100 Ω (±5%)"
+        },
+        "c2": {
+          "title": "Make total current = 0.10 A (±5%)"
+        },
+        "c3": {
+          "title": "Connect 2 resistors in parallel"
+        },
+        "verify": "Verify"
+      },
+      "aria": {
+        "openMenu": "Open menu",
+        "simModes": "Simulation mode"
+      }
+    },
     "curent-alternativ": {
       "page": {
         "eyebrow": "Alternating current | Interactive simulation"

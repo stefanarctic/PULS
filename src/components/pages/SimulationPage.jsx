@@ -46,6 +46,7 @@ const SIMULATOR_I18N_QUERY_SLUGS = new Set([
   "oscillatii-ox",
   "oscillatii-oy",
   "energie-circuite",
+  "circuite-electricitate",
   "polarizare-circulara",
   "Vizualizator-4d",
   "lentila-subtire",
