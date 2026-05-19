@@ -4058,6 +4058,197 @@
         "yAxis": "% D₂O (reboiler)"
       },
       "trayTitle": "Stage {n} → ~{pct}% D₂O (tray liquid, model)"
+    },
+    "legaturi-atomi": {
+      "page": {
+        "eyebrow": "Chemical bonding | Interactive simulation"
+      },
+      "documentTitle": "Atomic bonds simulator",
+      "htmlLang": "en",
+      "panel": {
+        "mainTitle": "Atomic bonds",
+        "mainIntro": "Move the atoms and watch how the electron distribution changes.",
+        "atomsHeading": "Atoms",
+        "energyHeading": "Energy",
+        "physicsHeading": "Physics control",
+        "viewHeading": "Visualization",
+        "stateHeading": "Simulation state",
+        "legendHeading": "Legend"
+      },
+      "controls": {
+        "atomA": "Atom A",
+        "atomB": "Atom B",
+        "addAtomLabel": "Add atom",
+        "electronicExcitation": "Electronic excitation",
+        "deltaOverride": "Manual override for ΔEN",
+        "deltaManual": "Manual ΔEN",
+        "motionSlow": "Motion speed"
+      },
+      "buttons": {
+        "addAtom": "Add atom",
+        "removeAtom": "Remove atom",
+        "resetPositions": "Reset positions"
+      },
+      "readouts": {
+        "totalAtoms": "Total atoms",
+        "selected": "Selected",
+        "bond": "Bond",
+        "distance": "Distance",
+        "deltaEN": "ΔEN",
+        "intensity": "Strength",
+        "charges": "Charges",
+        "suggestion": "Suggestion"
+      },
+      "range": {
+        "stable": "Stable",
+        "excited": "Excited",
+        "slow": "Slow",
+        "fast": "Fast"
+      },
+      "viewMode": {
+        "classic": "Classic",
+        "quantum": "Quantum",
+        "classicHelp": "Classic mode: electrons on orbits, visible charge transfer and orbital motion.",
+        "quantumHelp": "Quantum mode: probability cloud (noisy shader), pulse, bond formation and deformation on approach."
+      },
+      "bondTypes": {
+        "none": "No bond",
+        "covalent": "Covalent",
+        "polar_covalent": "Polar covalent",
+        "ionic": "Ionic",
+        "semiconductor": "Semiconductor-like",
+        "metallic": "Metallic"
+      },
+      "hints": {
+        "sceneDrag": "Click and drag an atom to move it in the plane.",
+        "pickPair": "Pick an interesting pair to unlock new chemistry scenarios.",
+        "addAtom": "Add another atom to explore bonding."
+      },
+      "legend": {
+        "dragNucleus": "Drag a nucleus to change the distance between atoms.",
+        "classicMode": "Classic mode shows simplified orbits and the bond.",
+        "quantumMode": "Quantum mode shows a probability cloud between atoms."
+      },
+      "aria": {
+        "toggleLeft": "Toggle control panel",
+        "toggleRight": "Toggle reference panel",
+        "viewModeGroup": "Visualization mode"
+      },
+      "ref": {
+        "mainTitle": "Formulas & units",
+        "bondClassificationTitle": "Bond classification",
+        "thBondType": "Bond type",
+        "coulombTitle": "Coulomb's law",
+        "coulombQ": "q = electric charge (C)",
+        "coulombR": "r = distance between charges (m)",
+        "bindingEnergyTitle": "Binding energy",
+        "bindingLine1": "E is expressed in eV or kJ/mol",
+        "bindingLine2": "1 eV = 1.602 × 10⁻¹⁹ J",
+        "bindingLine3": "1 eV per particle ≈ 96.49 kJ/mol",
+        "unitsTitle": "Units of measurement",
+        "thQuantity": "Quantity",
+        "thUnit": "Unit",
+        "unitDistance": "Distance",
+        "unitEN": "Electronegativity",
+        "unitENPaulingNote": "Pauling (dimensionless)",
+        "unitCharge": "Charge",
+        "unitEnergy": "Energy",
+        "unitRadius": "Atomic radius",
+        "unitForce": "Force",
+        "unitChargeValue": "e (elementary charge)",
+        "unitAngstromNote": "Å (ångström) = 10⁻¹⁰ m",
+        "unitElectronvoltNote": "eV (electron-volt)",
+        "unitPicometerNote": "pm (picometre) = 10⁻¹² m",
+        "unitNewtonNote": "N (newton)",
+        "paulingTitle": "Pauling scale (selection)",
+        "thElement": "Element",
+        "thType": "Type",
+        "octetTitle": "Octet rule",
+        "octetLine1": "Atoms tend to have 8 valence electrons (exception: H → 2e⁻).",
+        "octetLine2": "Chemical bonds form to approach this stable configuration.",
+        "pauling": {
+          "mostEN": "Most electronegative",
+          "nonmetal": "Nonmetal",
+          "halogen": "Halogen",
+          "nonmetalShort": "Nonmetal",
+          "nonmetal2": "Nonmetal",
+          "nonmetal3": "Nonmetal",
+          "semiconductor": "Semiconductor",
+          "transition": "Transition metal",
+          "alkalineEarth": "Alkaline earth",
+          "alkaliMetal": "Alkali metal",
+          "alkaliMetal2": "Alkali metal"
+        }
+      },
+      "elements": {
+        "H": { "name": "Hydrogen" },
+        "O": { "name": "Oxygen" },
+        "C": { "name": "Carbon" },
+        "N": { "name": "Nitrogen" },
+        "Cl": { "name": "Chlorine" },
+        "F": { "name": "Fluorine" },
+        "Na": { "name": "Sodium" },
+        "K": { "name": "Potassium" },
+        "Ca": { "name": "Calcium" },
+        "Fe": { "name": "Iron" },
+        "Cu": { "name": "Copper" },
+        "Si": { "name": "Silicon" },
+        "S": { "name": "Sulfur" },
+        "He": { "name": "Helium" }
+      },
+      "categories": {
+        "basic": "Nonmetals",
+        "halogens": "Halogens",
+        "alkali": "Alkali metals",
+        "alkaline_earth": "Alkaline earth metals",
+        "transition_metals": "Transition metals",
+        "special": "Special elements"
+      },
+      "comboSuggestions": {
+        "C_H": "This pair is the basis for CH₄ and simple organic molecules.",
+        "C_O": "Explore the basis for CO₂ and differences between multiple bonds.",
+        "H_Cl": "You can form HCl, a classic polar covalent example.",
+        "He_H": "Helium stays inert and is a good counter-example of non-reactivity.",
+        "K_F": "You can form KF, with polarity even more extreme than NaCl.",
+        "N_H": "This pair underlies NH₃, where nitrogen keeps a lone pair.",
+        "N_N": "Explore N₂ and the idea of a triple bond.",
+        "Na_Cl": "You can form NaCl and watch almost complete electron transfer.",
+        "O_H": "This pair underlies H₂O; add another H to build the water molecule.",
+        "Ca_Cl": "You can head toward CaCl₂; one more Cl atom is needed for the full formula.",
+        "Fe_Cu": "Compare two metals and the idea of an electron sea.",
+        "Si_Si": "Explore the start of a semiconductor network with Si.",
+        "_generic": "The {a} + {b} pair can be explored freely in this sandbox."
+      },
+      "descriptions": {
+        "diffuse": "Particles stay diffuse until the nuclei enter the overlap region.",
+        "nobleGas": "Noble gases stay nearly inert even when you bring atoms close.",
+        "semiconductor": "Orbitals align like in a network, while transfer stays energetically controlled.",
+        "metallic": "Electrons delocalise and flow through a shared electron-like cloud.",
+        "covalent": "A bonding electron oscillates between nuclei, and the cloud stays nearly symmetric.",
+        "polarCovalent": "The cloud polarises and electron density shifts toward the more electronegative atom.",
+        "ionic": "Bond formation pushes the electron toward the acceptor and clearly separates donor from acceptor."
+      },
+      "labels": {
+        "manualDeltaSuffix": "(manual)",
+        "noAtomSelected": "No atom",
+        "atomSelectOption": "Atom {i} — {type}"
+      },
+      "tooltip": {
+        "z": "Z",
+        "valence": "Valence",
+        "en": "EN",
+        "activeElectrons": "Active electrons"
+      },
+      "errors": {
+        "initFailed": "An error occurred during startup: {msg}"
+      }
+    },
+    "tabel-periodic": {
+      "page": {
+        "eyebrow": "Periodic table | Interactive simulation"
+      },
+      "documentTitle": "Interactive periodic table",
+      "htmlLang": "en"
     }
   }
 }

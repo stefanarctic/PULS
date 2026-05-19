@@ -33,6 +33,32 @@ function toSuperscript(str) {
   return str.replace(/\d/g, d => SUPER[+d]);
 }
 
+const LANG_EN = typeof window !== "undefined" && window.__TABEL_LANG__ === "en";
+
+function lbl(path, ro) {
+  if (!LANG_EN || typeof window.simLbl !== "function") return ro;
+  return window.simLbl(path, ro);
+}
+
+/** Replace {{key}} placeholders in translator strings */
+function tmpl(str, vars) {
+  if (!str || !vars) return str;
+  let s = String(str);
+  for (const key of Object.keys(vars)) {
+    const v = vars[key];
+    s = s.split("{{" + key + "}}").join(v == null ? "" : String(v));
+  }
+  return s;
+}
+
+function elemDisplayName(el) {
+  const b = typeof window !== "undefined" ? window.__SIMULATOR_UI_I18N__ : null;
+  if (LANG_EN && b && b.elementNames && b.elementNames[el.symbol]) return b.elementNames[el.symbol];
+  return el.name;
+}
+
+
+
 function getFullConfig(short) {
   let s = String(short).trim();
   for (const [noble, exp] of Object.entries(NOBLE_GAS_CONFIG)) {
@@ -111,13 +137,34 @@ const CONFIG_EXCEPTION_SHELL_NOTES = {
 };
 
 function shellInterpretationNote(el) {
-  const inner = CONFIG_EXCEPTION_SHELL_NOTES[el.symbol];
+  const enInner = LANG_EN ? window.__SIMULATOR_UI_I18N__?.configExceptions?.[el.symbol] : null;
+  const inner = typeof enInner === "string" ? enInner : CONFIG_EXCEPTION_SHELL_NOTES[el.symbol];
   return inner ? `<p class="config-note">${inner}</p>` : "";
 }
 
 /** Text după eticheta subnivelului în blocul „Parametri cuantici”. */
 function getQuantumFoot(el) {
   const sym = el.symbol;
+  if (LANG_EN) {
+    const qf = window.__SIMULATOR_UI_I18N__?.quantumFoot || {};
+    const qn = window.__SIMULATOR_UI_I18N__?.quantumElementNames || {};
+    if (sym === "Cr" || sym === "Mo") {
+      const name = sym === "Cr" ? qn.Cr ?? "chromium" : qn.Mo ?? "molybdenum";
+      return String(qf.CrMoSuffix || "").replace(/\$\{name\}/g, name);
+    }
+    if (sym === "Cu" || sym === "Ag" || sym === "Au") {
+      let name = "copper";
+      if (sym === "Ag") name = qn.Ag ?? "silver";
+      else if (sym === "Au") name = qn.Au ?? "gold";
+      else name = qn.Cu ?? "copper";
+      return String(qf.CuAgAuSuffix || "").replace(/\$\{name\}/g, name);
+    }
+    if (sym === "Nb" || sym === "Ru" || sym === "Rh") return qf.NbRuRhSuffix || "";
+    if (sym === "Pt") return qf.PtSuffix || "";
+    if (sym === "Pd") return qf.PdSuffix || "";
+    return ".";
+  }
+
   if (sym === "Cr" || sym === "Mo") {
     const name = sym === "Cr" ? "crom" : "molibden";
     return ` — la ${name}, ultimul electron care umple subnivelul d până la configurația d⁵ este în <strong>d</strong> (parametrii de mai jos corespund ultimului electron din subnivelul d).`;
@@ -174,6 +221,17 @@ function categoryToClass(category) {
     .replace(/ț/g, "t")
     .replace(/î/g, "i")
     .replace(/ș/g, "s");
+}
+
+function categoryDisplay(cat) {
+  const b = typeof window !== "undefined" ? window.__SIMULATOR_UI_I18N__ : null;
+  const key = categoryToClass(cat);
+  if (LANG_EN && b && b.categories && typeof b.categories[key] === "string") return b.categories[key];
+  return cat;
+}
+
+function isoDataset() {
+  return typeof window !== "undefined" && window.ISOTOPE_DATA ? window.ISOTOPE_DATA : (typeof ISOTOPE_DATA !== "undefined" ? ISOTOPE_DATA : {});
 }
 
 // Culori reale pentru sfera 3D în popup – aspect fizic al fiecărui element: { light, base }
@@ -326,7 +384,7 @@ function drawBohr(canvas, shells, timeOffset = 0) {
   ctx.font = `${Math.max(11, w / 35)}px sans-serif`;
   ctx.textAlign = "center";
   ctx.textBaseline = "middle";
-  ctx.fillText("nucleu", cx, cy);
+  ctx.fillText(lbl("labels.nucleusLabel", "nucleu"), cx, cy);
 
   const totalElectrons = shells.reduce((a, b) => a + b, 0);
   let idx = 0;
@@ -393,7 +451,7 @@ function buildOrbitalHTML(l, electrons, label) {
     let content = "";
     if (down) content += "↓";
     if (up) content += "↑";
-    if (!content) content = "○";
+    if (!content) content = LANG_EN ? lbl("labels.orbitalBoxEmpty", "○") : "○";
     return `<div class="orbital-box" title="m = ${mValues[i]}"><div>${content}</div><div class="m-value">m=${mValues[i]}</div></div>`;
   }).join("");
   return `<div class="orbital-row"><span class="orbital-label">${label}</span><div class="orbital-boxes">${boxes}</div></div>`;
@@ -411,33 +469,34 @@ function renderModal(el) {
   const oxStr = ox.length ? ox.join(", ") : "—";
 
   const sphereGradient = getSphereGradient(el);
+  const dispName = elemDisplayName(el).toUpperCase();
   modalHeader.innerHTML = `
     <div class="modal-header-top">
-      <div class="color-box" style="background: ${sphereGradient}" title="Culoare element"></div>
-      <div class="element-title">${el.name.toUpperCase()} (${el.symbol})</div>
+      <div class="color-box" style="background: ${sphereGradient}" title="${lbl("labels.metaColourCue", "Culoare element").replace(/"/g, "&quot;")}"></div>
+      <div class="element-title">${dispName} (${el.symbol})</div>
     </div>
     <div class="element-meta">
-      <span><strong>Număr atomic:</strong> ${el.number}</span>
-      <span><strong>Masă atomică:</strong> ${massStr}</span>
-      <span><strong>Categorie:</strong> ${el.category}</span>
-      <span><strong>Bloc:</strong> ${el.block}</span>
-      <span><strong>Perioadă:</strong> ${el.period}</span>
-      <span><strong>Grupă:</strong> ${el.group}</span>
+      <span><strong>${lbl("labels.metaAtomic", "Număr atomic:")}</strong> ${el.number}</span>
+      <span><strong>${lbl("labels.metaMass", "Masă atomică:")}</strong> ${massStr}</span>
+      <span><strong>${lbl("labels.metaCategory", "Categorie:")}</strong> ${categoryDisplay(el.category)}</span>
+      <span><strong>${lbl("labels.metaBlock", "Bloc:")}</strong> ${el.block}</span>
+      <span><strong>${lbl("labels.metaPeriod", "Perioadă:")}</strong> ${el.period}</span>
+      <span><strong>${lbl("labels.metaGroup", "Grupă:")}</strong> ${el.group}</span>
     </div>
   `;
 
   panelGeneral.innerHTML = `
     <div class="modal-section">
-      <h3>Valență și stări de oxidare</h3>
+      <h3>${lbl("labels.oxidationHeading", "Valență și stări de oxidare")}</h3>
       <p>${oxStr}</p>
     </div>
     <div class="modal-section">
-      <h3>Proprietăți fizice</h3>
+      <h3>${lbl("labels.physicsHeading", "Proprietăți fizice")}</h3>
       <div class="prop-grid">
-        <div class="prop-item"><strong>Densitate</strong>${el.density ?? "—"}</div>
-        <div class="prop-item"><strong>Punct topire</strong>${el.meltingPoint ?? "—"}</div>
-        <div class="prop-item"><strong>Punct fierbere</strong>${el.boilingPoint ?? "—"}</div>
-        <div class="prop-item"><strong>Electronegativitate</strong>${el.electronegativity ?? "—"}</div>
+        <div class="prop-item"><strong>${lbl("labels.density", "Densitate")}</strong>${el.density ?? lbl("labels.noneDash", "—")}</div>
+        <div class="prop-item"><strong>${lbl("labels.meltingPt", "Punct topire")}</strong>${el.meltingPoint ?? lbl("labels.noneDash", "—")}</div>
+        <div class="prop-item"><strong>${lbl("labels.boilingPt", "Punct fierbere")}</strong>${el.boilingPoint ?? lbl("labels.noneDash", "—")}</div>
+        <div class="prop-item"><strong>${lbl("labels.electronegativity", "Electronegativitate")}</strong>${el.electronegativity ?? lbl("labels.noneDash", "—")}</div>
       </div>
     </div>
   `;
@@ -448,7 +507,12 @@ function renderModal(el) {
   let shellsHTML = "";
   (el.shells || []).forEach((count, i) => {
     const n = i + 1;
-    shellsHTML += `<li><strong>n = ${n}</strong> → ${count} e⁻</li>`;
+    if (LANG_EN) {
+      const line = tmpl(lbl("labels.shellElectronsLine", "<strong>n = {{n}}</strong> → {{count}} e⁻"), { n, count });
+      shellsHTML += `<li>${line}</li>`;
+    } else {
+      shellsHTML += `<li><strong>n = ${n}</strong> → ${count} e⁻</li>`;
+    }
   });
 
   let sublevelsHTML = "";
@@ -459,10 +523,16 @@ function renderModal(el) {
     d: "m ∈ {-2, -1, 0, +1, +2}, 5 orbitali, max 10 e⁻",
     f: "m ∈ {-3..+3}, 7 orbitali, max 14 e⁻"
   };
+  const L = window.__SIMULATOR_UI_I18N__?.labels;
   sublevels.forEach(({ n, letter, electrons }) => {
     const lNum = { s: 0, p: 1, d: 2, f: 3 }[letter];
     const label = `${n}${letter}${electrons}`;
-    sublevelsHTML += `<div class="modal-section"><h3>Subnivel ${lLabels[letter]} – ${lInfo[letter]}</h3>`;
+    const lblTxt = LANG_EN && L?.lLabels?.[letter] ? L.lLabels[letter] : lLabels[letter];
+    const infoTxt = LANG_EN && L?.lInfo?.[letter] ? L.lInfo[letter] : lInfo[letter];
+    const heading = LANG_EN
+      ? tmpl(lbl(`labels.sublevelTitle`, `Subshell {{lbl}} – {{info}}`), { lbl: lblTxt, info: infoTxt })
+      : `Subnivel ${lLabels[letter]} – ${lInfo[letter]}`;
+    sublevelsHTML += `<div class="modal-section"><h3>${heading}</h3>`;
     sublevelsHTML += buildOrbitalHTML(lNum, electrons, label);
     sublevelsHTML += "</div>";
   });
@@ -470,10 +540,20 @@ function renderModal(el) {
   let quantumHTML = "";
   if (lastEl) {
     const quantumFoot = getQuantumFoot(el);
+    let quantumExplain;
+    if (LANG_EN) {
+      const qTpl = lbl(
+        `labels.quantumPrefix`,
+        `<p class="quantum-clarification">Subshell filled last in Aufbau order: <strong>{{last}}</strong>{{foot}}</p>`
+      );
+      quantumExplain = tmpl(qTpl, { last: lastSubLabel, foot: quantumFoot });
+    } else {
+      quantumExplain = `<p class="quantum-clarification">Subnivelul completat ultimul în ordinea Aufbau: <strong>${lastSubLabel}</strong>${quantumFoot}</p>`;
+    }
     quantumHTML = `
       <div class="modal-section">
-        <h3>Parametri cuantici (ultimul electron plasat)</h3>
-        <p class="quantum-clarification">Subnivelul completat ultimul în ordinea Aufbau: <strong>${lastSubLabel}</strong>${quantumFoot}</p>
+        <h3>${lbl(`labels.quantumHeading`, `Parametri cuantici (ultimul electron plasat)`)}</h3>
+        ${quantumExplain}
         <div class="quantum-params">
           <span><strong>n</strong> = ${lastEl.n}</span>
           <span><strong>l</strong> = ${lastEl.l}</span>
@@ -488,15 +568,15 @@ function renderModal(el) {
     <div class="electronic-grid">
       <div class="electronic-col">
         <div class="modal-section">
-          <h3>Configurație electronică</h3>
-          <p class="config-aufbau-hint">Subnivelurile sunt afișate în <strong>ordinea Aufbau</strong> (ex. 4s înainte de 3d), ca în manualele de chimie.</p>
-          <p><strong>Varianta completă:</strong></p>
+          <h3>${lbl(`labels.electronConfigHeading`, `Configurație electronică`)}</h3>
+          <p class="config-aufbau-hint">${lbl(`labels.aufbauHint`, `Subnivelurile sunt afișate în <strong>ordinea Aufbau</strong> (ex. 4s înainte de 3d), ca în manualele de chimie.`)}</p>
+          <p><strong>${lbl(`labels.fullVariant`, `Varianta completă:`)}</strong></p>
           <div class="config-full">${fullSup}</div>
-          <p><strong>Varianta prescurtată:</strong></p>
+          <p><strong>${lbl(`labels.shortVariant`, `Varianta prescurtată:`)}</strong></p>
           <div class="config-short">${shortSup}</div>
         </div>
         <div class="modal-section">
-          <h3>Distribuția pe nivele (n)</h3>
+          <h3>${lbl(`labels.shellsHeading`, `Distribuția pe nivele (n)`)}</h3>
           <ul class="shells-list">${shellsHTML}</ul>
           ${shellInterpretationNote(el)}
         </div>
@@ -504,7 +584,7 @@ function renderModal(el) {
       </div>
       <div class="electronic-col">
         <div class="modal-section">
-          <h3>Distribuția pe subnivele (orbitali)</h3>
+          <h3>${lbl(`labels.subshellOrbitalHeading`, `Distribuția pe subnivele (orbitali)`)}</h3>
           ${sublevelsHTML}
         </div>
       </div>
@@ -513,13 +593,13 @@ function renderModal(el) {
 
   panelVisual.innerHTML = `
     <div class="modal-section">
-      <h3>Model Bohr – straturi și electroni</h3>
+      <h3>${lbl(`labels.bohrHeading`, `Model Bohr – straturi și electroni`)}</h3>
       <div class="bohr-container">
         <canvas id="bohrCanvas"></canvas>
       </div>
     </div>
     <div class="modal-section">
-      <h3>Configurație (referință)</h3>
+      <h3>${lbl(`labels.bohrConfigRefHeading`, `Configurație (referință)`)}</h3>
       <div class="config-short">${shortSup}</div>
     </div>
   `;
@@ -547,7 +627,7 @@ function showElement(el) {
   document.querySelector('.tab-btn[data-tab="general"]').classList.add("active");
 
   const tabIso = document.getElementById("tabIsotopes");
-  const hasIsotopes = typeof ISOTOPE_DATA !== "undefined" && ISOTOPE_DATA[el.symbol];
+  const hasIsotopes = isoDataset()[el.symbol];
   tabIso.style.display = hasIsotopes ? "" : "none";
   if (hasIsotopes) renderIsotopePanel(el);
 
@@ -562,11 +642,15 @@ function showElement(el) {
   const idx = elementsByNumber.findIndex((e) => e.number === el.number);
   if (prevBtn) {
     prevBtn.disabled = idx <= 0;
-    prevBtn.title = idx > 0 ? `${elementsByNumber[idx - 1].name} (${elementsByNumber[idx - 1].symbol})` : "Elementul anterior";
+    prevBtn.title = idx > 0
+      ? `${elemDisplayName(elementsByNumber[idx - 1])} (${elementsByNumber[idx - 1].symbol})`
+      : lbl("labels.navPrevTitle", "Elementul anterior");
   }
   if (nextBtn) {
     nextBtn.disabled = idx < 0 || idx >= elementsByNumber.length - 1;
-    nextBtn.title = idx >= 0 && idx < elementsByNumber.length - 1 ? `${elementsByNumber[idx + 1].name} (${elementsByNumber[idx + 1].symbol})` : "Următorul element";
+    nextBtn.title = idx >= 0 && idx < elementsByNumber.length - 1
+      ? `${elemDisplayName(elementsByNumber[idx + 1])} (${elementsByNumber[idx + 1].symbol})`
+      : lbl("labels.navNextTitle", "Următorul element");
   }
 }
 
@@ -677,7 +761,7 @@ elements.forEach(el => {
   div.style.gridRow = el.period;
   const mass = Number(el.atomicMass);
   const massStr = mass === Math.round(mass) ? mass : mass.toFixed(2);
-  const radioIcon = isRadioactive(el) ? '<span class="radioactive-icon" title="Radioactiv">☢</span>' : '';
+  const radioIcon = isRadioactive(el) ? `<span class="radioactive-icon" title="${lbl("labels.radioactiveTitle", "Radioactiv").replace(/"/g, "&quot;")}">☢</span>` : '';
   div.innerHTML = `
     <div class="number">${el.number}</div>
     <div class="symbol">${el.symbol}</div>
@@ -775,9 +859,9 @@ function stabilityClass(s) {
   return "iso-radio";
 }
 function stabilityLabel(s) {
-  if (s === "stable") return "Stabil";
-  if (s === "weakly-radioactive") return "Slab radioactiv";
-  return "Radioactiv";
+  if (s === "stable") return lbl("labels.isoStable", "Stabil");
+  if (s === "weakly-radioactive") return lbl("labels.isoWeak", "Slab radioactiv");
+  return lbl("labels.isoRadio", "Radioactiv");
 }
 function stabilityIcon(s) {
   if (s === "stable") return "✓";
@@ -787,8 +871,14 @@ function stabilityIcon(s) {
 
 function renderIsotopePanel(el) {
   const panel = document.getElementById("panelIsotopes");
-  const data = ISOTOPE_DATA[el.symbol];
-  if (!data) { panel.innerHTML = "<p>Nu sunt disponibile date despre izotopi pentru acest element.</p>"; return; }
+  const data = isoDataset()[el.symbol];
+  if (!data) {
+    panel.innerHTML = `<p>${lbl(
+      "labels.isoNoData",
+      "Nu sunt disponibile date despre izotopi pentru acest element."
+    )}</p>`;
+    return;
+  }
 
   const iso = data.isotopes;
   isoState.symbol = el.symbol;
@@ -798,14 +888,20 @@ function renderIsotopePanel(el) {
   isoState.comparing = false;
 
   let html = `<div class="iso-header-section">
-    <h3>${el.name} (${el.symbol}) — Izotopi</h3>
-    <p class="iso-subtitle">${iso.length} izotopi selectați • Z = ${data.protons}</p>
+    <h3>${elemDisplayName(el)} (${el.symbol}) ${lbl("labels.isoTitleSuffix", "— Izotopi")}</h3>
+    <p class="iso-subtitle">${tmpl(
+      lbl(
+        "labels.isoSubtitle",
+        "{{count}} izotopi selectați • Z = {{z}}"
+      ),
+      { count: String(iso.length), z: String(data.protons) }
+    )}</p>
   </div>`;
 
   html += `<div class="iso-legend-bar">
-    <span class="iso-leg iso-stable">✓ Stabil</span>
-    <span class="iso-leg iso-weak">⚠ Slab radioactiv</span>
-    <span class="iso-leg iso-radio">☢ Radioactiv</span>
+    <span class="iso-leg iso-stable">${lbl("labels.isoLegendStable", "✓ Stabil")}</span>
+    <span class="iso-leg iso-weak">${lbl("labels.isoLegendWeak", "⚠ Slab radioactiv")}</span>
+    <span class="iso-leg iso-radio">${lbl("labels.isoLegendRadio", "☢ Radioactiv")}</span>
   </div>`;
 
   html += `<div class="iso-grid">`;
@@ -814,7 +910,7 @@ function renderIsotopePanel(el) {
   html += `<div class="iso-col-left">`;
 
   html += `<div class="iso-slider-section">
-    <div class="iso-slider-label">Adaugă neutroni →</div>
+    <div class="iso-slider-label">${lbl("labels.isoSliderHint", "Adaugă neutroni →")}</div>
     <div class="iso-slider-wrap">
       <input type="range" id="isoSlider" min="0" max="${iso.length - 1}" value="0" step="1" class="iso-slider" />
       <div class="iso-slider-ticks" id="isoSliderTicks"></div>
@@ -827,9 +923,18 @@ function renderIsotopePanel(el) {
       <canvas id="nucleusCanvas" width="260" height="260"></canvas>
     </div>
     <div class="iso-nucleus-legend">
-      <span class="nuc-leg"><span class="nuc-dot nuc-proton"></span> Protoni (${data.protons})</span>
-      <span class="nuc-leg"><span class="nuc-dot nuc-neutron"></span> Neutroni</span>
-      <span class="nuc-leg"><span class="nuc-dot nuc-electron"></span> Electroni</span>
+      <span class="nuc-leg"><span class="nuc-dot nuc-proton"></span> ${tmpl(
+        lbl("labels.isoLegendProtons", "Protoni ({{z}})"),
+        { z: String(data.protons) }
+      )}</span>
+      <span class="nuc-leg"><span class="nuc-dot nuc-neutron"></span> ${lbl(
+        "labels.isoLegendNeutrons",
+        "Neutroni"
+      )}</span>
+      <span class="nuc-leg"><span class="nuc-dot nuc-electron"></span> ${lbl(
+        "labels.isoLegendElectrons",
+        "Electroni"
+      )}</span>
     </div>
   </div>`;
 
@@ -848,22 +953,22 @@ function renderIsotopePanel(el) {
         <div class="iso-card-badge ${cls}">${stabilityIcon(i.stability)} ${stabilityLabel(i.stability)}</div>
       </div>
       <div class="iso-card-props">
-        <div class="iso-prop"><strong>Masă</strong>${i.mass.toFixed(5)} u</div>
-        <div class="iso-prop"><strong>Neutroni</strong>${i.neutrons}</div>
-        <div class="iso-prop"><strong>T½</strong>${i.halfLife}</div>
-        ${i.abundance ? `<div class="iso-prop"><strong>Abundență</strong>${i.abundance}</div>` : ''}
+        <div class="iso-prop"><strong>${lbl("labels.isoMass", "Masă")}</strong>${i.mass.toFixed(5)} u</div>
+        <div class="iso-prop"><strong>${lbl("labels.isoNeutrons", "Neutroni")}</strong>${i.neutrons}</div>
+        <div class="iso-prop"><strong>${lbl("labels.isoHalfLife", "T½")}</strong>${i.halfLife}</div>
+        ${i.abundance ? `<div class="iso-prop"><strong>${lbl("labels.isoAbundance", "Abundență")}</strong>${i.abundance}</div>` : ""}
       </div>
       <div class="iso-card-uses">
-        <strong>Utilizări:</strong>
+        <strong>${lbl("labels.isoUsesHeading", "Utilizări:")}</strong>
         <ul>${i.uses.map(u => `<li>${u}</li>`).join("")}</ul>
       </div>
-      <div class="iso-card-expand-btn" data-idx="${idx}">▼ Detalii</div>
+      <div class="iso-card-expand-btn" data-idx="${idx}">${lbl("labels.isoDetailsExpand", "▼ Detalii")}</div>
       <div class="iso-card-details" id="isoDetail${idx}" style="display:none;">
-        ${i.decay ? `<div class="iso-detail-row"><strong>Dezintegrare:</strong> ${i.decay}</div>` : ''}
+        ${i.decay ? `<div class="iso-detail-row"><strong>${lbl("labels.decayHeading", "Dezintegrare")}:</strong> ${i.decay}</div>` : ""}
         ${i.decayEq ? `<div class="iso-detail-row iso-equation">${i.decayEq.replace(/\n/g, '<br>')}</div>` : ''}
         <div class="iso-detail-row">${i.details}</div>
       </div>
-      <label class="iso-compare-check"><input type="checkbox" class="iso-cmp-cb" data-idx="${idx}" /> Compară</label>
+      <label class="iso-compare-check"><input type="checkbox" class="iso-cmp-cb" data-idx="${idx}" /> ${lbl("labels.isoCompare", "Compară")}</label>
     </div>`;
   });
   html += `</div>`;
@@ -873,7 +978,7 @@ function renderIsotopePanel(el) {
 
   // Compare panel (full width below)
   html += `<div class="iso-compare-panel" id="isoComparePanel" style="display:none;">
-    <h3>Comparare izotopi</h3>
+    <h3>${lbl("labels.isoCompareHeading", "Comparare izotopi")}</h3>
     <div class="iso-compare-grid" id="isoCompareGrid"></div>
   </div>`;
 
@@ -904,7 +1009,9 @@ function renderIsotopePanel(el) {
       const det = document.getElementById("isoDetail" + idx);
       const open = det.style.display !== "none";
       det.style.display = open ? "none" : "block";
-      btn.textContent = open ? "▼ Detalii" : "▲ Ascunde";
+      btn.textContent = open
+        ? lbl("labels.isoDetailsExpand", "▼ Detalii")
+        : lbl("labels.isoDetailsCollapse", "▲ Ascunde");
     });
   });
 
@@ -938,7 +1045,7 @@ function renderIsotopePanel(el) {
 }
 
 function updateSliderDisplay(idx, symbol) {
-  const data = ISOTOPE_DATA[symbol];
+  const data = isoDataset()[symbol];
   if (!data) return;
   const iso = data.isotopes[idx];
   const panel = document.getElementById("panelIsotopes");
@@ -967,7 +1074,7 @@ function updateSliderDisplay(idx, symbol) {
 
 function drawNucleus(canvas) {
   const sym = isoState.symbol;
-  const data = ISOTOPE_DATA[sym];
+  const data = isoDataset()[sym];
   if (!data) return;
   const iso = data.isotopes[isoState.sliderIdx];
   const ctx = canvas.getContext("2d");
@@ -1094,24 +1201,38 @@ function drawNucleus(canvas) {
 function renderCompare(symbol) {
   const panel = document.getElementById("isoComparePanel");
   const grid = document.getElementById("isoCompareGrid");
-  const data = ISOTOPE_DATA[symbol];
-  if (!data || isoState.compareA == null || isoState.compareB == null) { panel.style.display = "none"; return; }
+  const data = isoDataset()[symbol];
+  if (!data || isoState.compareA == null || isoState.compareB == null) {
+    panel.style.display = "none";
+    return;
+  }
 
   const a = data.isotopes[isoState.compareA];
   const b = data.isotopes[isoState.compareB];
-  const el = elements.find(e => e.symbol === symbol);
-  const name = el ? el.name : symbol;
 
   const supA = toSuperscript(String(a.A));
   const supB = toSuperscript(String(b.A));
 
+  const dash = lbl("labels.noneDash", "—");
   const rows = [
-    ["Masă (u)", a.mass.toFixed(5), b.mass.toFixed(5)],
-    ["Neutroni", a.neutrons, b.neutrons],
-    ["T½", a.halfLife, b.halfLife],
-    ["Stabilitate", stabilityLabel(a.stability), stabilityLabel(b.stability)],
-    ["Dezintegrare", a.decay || "—", b.decay || "—"],
-    ["Abundență", a.abundance || "—", b.abundance || "—"],
+    [
+      lbl("labels.isoCompareMass", "Masă (u)"),
+      a.mass.toFixed(5),
+      b.mass.toFixed(5),
+    ],
+    [lbl("labels.isoCompareNeutrons", "Neutroni"), a.neutrons, b.neutrons],
+    [lbl("labels.isoCompareHalfLife", "T½"), a.halfLife, b.halfLife],
+    [
+      lbl("labels.isoCompareStability", "Stabilitate"),
+      stabilityLabel(a.stability),
+      stabilityLabel(b.stability),
+    ],
+    [lbl("labels.isoCompareDecay", "Dezintegrare"), a.decay || dash, b.decay || dash],
+    [
+      lbl("labels.isoCompareAbundance", "Abundență"),
+      a.abundance || dash,
+      b.abundance || dash,
+    ],
   ];
 
   let html = `<table class="iso-compare-table">

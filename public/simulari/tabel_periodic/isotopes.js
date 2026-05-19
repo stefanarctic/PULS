@@ -181,3 +181,5 @@ const ISOTOPE_ELEMENT_ORDER = [
   "H", "He", "Li", "C", "N", "O", "F", "P", "K", "Ca",
   "Fe", "Co", "Sr", "Tc", "I", "Cs", "Pb", "Rn", "Po", "Ra", "Th", "U", "Pu", "Am"
 ];
+
+if (typeof window !== "undefined") window.ISOTOPE_DATA = ISOTOPE_DATA;

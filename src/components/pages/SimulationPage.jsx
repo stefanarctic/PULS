@@ -62,6 +62,8 @@ const SIMULATOR_I18N_QUERY_SLUGS = new Set([
   "distilare-d2o-fractionata",
   "curent-alternativ",
   "reactor-fuziune-dt",
+  "legaturi-atomi",
+  "tabel-periodic",
 ]);
 
 const DEFAULT_EN_SIMULATOR_EYEBROW = "Interactive simulation";

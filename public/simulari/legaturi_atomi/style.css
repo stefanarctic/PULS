@@ -210,6 +210,10 @@ label {
   font-size: 0.9rem;
 }
 
+label > span:first-child {
+  display: block;
+}
+
 select,
 input[type="range"] {
   width: 100%;
