@@ -490,11 +490,12 @@ const Navbar = () => {
                             )}
                             <span>{alias || t('common.profile', 'Profil')}</span>
                         </Link>
-                        <div className="nav-link language-switcher-link">
-                            <LanguageSwitcher />
-                        </div>
-                        <div className="nav-link dark-mode-toggle-link">
-                            <DarkModeToggle />
+                        <div className="nav-utility-group">
+                            <LanguageSwitcher variant="navbar" />
+                            <span className="nav-utility-divider" aria-hidden="true" />
+                            <div className="dark-mode-toggle-link">
+                                <DarkModeToggle />
+                            </div>
                         </div>
                     </li>
                 </ul>
@@ -589,11 +590,12 @@ const Navbar = () => {
                                 )}
                                 <span>{alias || t('common.profile', 'Profil')}</span>
                             </Link>
-                            <div className="nav-link language-switcher-link">
-                                <LanguageSwitcher />
-                            </div>
-                            <div className="nav-link dark-mode-toggle-link">
-                                <DarkModeToggle />
+                            <div className="nav-utility-group">
+                                <LanguageSwitcher variant="navbar" />
+                                <span className="nav-utility-divider" aria-hidden="true" />
+                                <div className="dark-mode-toggle-link">
+                                    <DarkModeToggle />
+                                </div>
                             </div>
                         </div>
                     </div>

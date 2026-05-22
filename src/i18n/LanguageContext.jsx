@@ -171,20 +171,36 @@ export const LocalizedNavLink = ({ to, children, ...rest }) => {
     );
 };
 
-export const LanguageSwitcher = ({ className = '', style }) => {
+export const LanguageSwitcher = ({ className = '', style, variant = 'default' }) => {
     const { lang, setLang } = useContext(LanguageContext);
     const [open, setOpen] = useState(false);
+    const [forceOpen, setForceOpen] = useState(false);
     const wrapRef = useRef(null);
+    const menuRef = useRef(null);
+    const closeTimeoutRef = useRef(null);
+    const isNavbar = variant === 'navbar';
 
     const current = LANGUAGE_MENU.find((x) => x.code === lang) ?? LANGUAGE_MENU[0];
 
     useEffect(() => {
+        return () => {
+            if (closeTimeoutRef.current) clearTimeout(closeTimeoutRef.current);
+        };
+    }, []);
+
+    useEffect(() => {
         if (!open) return undefined;
         const onDocMouseDown = (e) => {
-            if (wrapRef.current && !wrapRef.current.contains(e.target)) setOpen(false);
+            if (wrapRef.current && !wrapRef.current.contains(e.target)) {
+                setOpen(false);
+                if (isNavbar) setForceOpen(false);
+            }
         };
         const onKey = (e) => {
-            if (e.key === 'Escape') setOpen(false);
+            if (e.key === 'Escape') {
+                setOpen(false);
+                if (isNavbar) setForceOpen(false);
+            }
         };
         document.addEventListener('mousedown', onDocMouseDown);
         document.addEventListener('keydown', onKey);
@@ -192,32 +208,154 @@ export const LanguageSwitcher = ({ className = '', style }) => {
             document.removeEventListener('mousedown', onDocMouseDown);
             document.removeEventListener('keydown', onKey);
         };
-    }, [open]);
+    }, [open, isNavbar]);
+
+    const handleMouseEnter = () => {
+        if (!isNavbar) return;
+        if (closeTimeoutRef.current) clearTimeout(closeTimeoutRef.current);
+        if (!forceOpen) setOpen(true);
+    };
+
+    const handleMouseLeave = () => {
+        if (!isNavbar || forceOpen) return;
+        closeTimeoutRef.current = setTimeout(() => setOpen(false), 150);
+    };
+
+    const handleMenuMouseEnter = () => {
+        if (!isNavbar) return;
+        if (closeTimeoutRef.current) clearTimeout(closeTimeoutRef.current);
+    };
+
+    const handleMenuMouseLeave = () => {
+        if (!isNavbar || forceOpen) return;
+        closeTimeoutRef.current = setTimeout(() => setOpen(false), 200);
+    };
+
+    const handleTriggerClick = (e) => {
+        if (isNavbar) {
+            e.preventDefault();
+            setForceOpen((prev) => {
+                const newState = !prev;
+                setOpen(newState);
+                return newState;
+            });
+            return;
+        }
+        setOpen((v) => !v);
+    };
+
+    const handleLanguageSelect = (selectable, code) => {
+        if (!selectable) return;
+        setLang(code);
+        setOpen(false);
+        if (isNavbar) setForceOpen(false);
+    };
+
+    const wrapClassName = [
+        'language-switcher-wrap',
+        isNavbar && 'nav-link dropdown-toggle navbar-dropdown-toggle',
+        isNavbar && (open || forceOpen) && 'active',
+        className,
+    ].filter(Boolean).join(' ');
+
+    const triggerClassName = [
+        'language-switcher-trigger',
+        isNavbar && 'navbar-dropdown-span',
+        open && 'is-open',
+    ].filter(Boolean).join(' ');
+
+    const menuClassName = isNavbar
+        ? 'dropdown-menu navbar-dropdown-menu'
+        : 'language-switcher-menu';
+
+    const getOptionClassName = (item, selected) => {
+        if (isNavbar) {
+            return [
+                'dropdown-item navbar-dropdown-item language-switcher-navbar-item',
+                item.disabled && 'is-disabled',
+                selected && 'is-selected',
+            ].filter(Boolean).join(' ');
+        }
+
+        return [
+            'language-switcher-option',
+            selected && 'is-selected',
+            item.disabled && 'is-disabled',
+        ].filter(Boolean).join(' ');
+    };
 
     return (
         <div
             ref={wrapRef}
-            className={`language-switcher-wrap ${className}`.trim()}
+            className={wrapClassName}
             style={style}
+            onMouseEnter={isNavbar ? handleMouseEnter : undefined}
+            onMouseLeave={isNavbar ? handleMouseLeave : undefined}
         >
             <button
                 type="button"
-                className={`language-switcher-trigger ${open ? 'is-open' : ''}`.trim()}
-                onClick={() => setOpen((v) => !v)}
+                className={triggerClassName}
+                onClick={handleTriggerClick}
                 aria-haspopup="listbox"
                 aria-expanded={open}
                 aria-label={`Language: ${current.nativeLabel}. Open menu`}
             >
-                <span className="language-switcher-trigger-flag" aria-hidden>
-                    {current.flag}
-                </span>
-                <span className="language-switcher-trigger-code">{current.short}</span>
-                <span className="language-switcher-trigger-chevron" aria-hidden>
-                    <ChevronDown size={14} strokeWidth={2} />
-                </span>
+                {isNavbar ? (
+                    <>
+                        <span>{current.short}</span>
+                        <ChevronDown className="nav-icon navbar-dropdown-icon" />
+                    </>
+                ) : (
+                    <>
+                        <span className="language-switcher-trigger-flag" aria-hidden>
+                            {current.flag}
+                        </span>
+                        <span className="language-switcher-trigger-code">{current.short}</span>
+                        <span className="language-switcher-trigger-chevron" aria-hidden>
+                            <ChevronDown size={14} strokeWidth={2} />
+                        </span>
+                    </>
+                )}
             </button>
             {open && (
-                <ul className="language-switcher-menu" role="listbox" aria-label="Languages">
+                isNavbar ? (
+                    <div
+                        ref={menuRef}
+                        className={menuClassName}
+                        role="listbox"
+                        aria-label="Languages"
+                        onMouseEnter={handleMenuMouseEnter}
+                        onMouseLeave={handleMenuMouseLeave}
+                    >
+                        {LANGUAGE_MENU.map((item) => {
+                            const selectable = !item.disabled && SUPPORTED_LANGS.includes(item.code);
+                            const selected = item.code === lang;
+                            return (
+                                <button
+                                    key={item.code}
+                                    type="button"
+                                    role="option"
+                                    aria-selected={selected}
+                                    disabled={!selectable}
+                                    className={getOptionClassName(item, selected)}
+                                    title={item.disabled ? `${item.nativeLabel} — soon` : undefined}
+                                    aria-label={
+                                        item.disabled
+                                            ? `${item.nativeLabel}, coming soon`
+                                            : undefined
+                                    }
+                                    onClick={() => handleLanguageSelect(selectable, item.code)}
+                                >
+                                    {item.nativeLabel}
+                                    {item.disabled ? (
+                                        <span className="language-switcher-soon-badge">Soon</span>
+                                    ) : null}
+                                </button>
+                            );
+                        })}
+                    </div>
+                ) : (
+                <ul className={menuClassName} role="listbox" aria-label="Languages">
                     {LANGUAGE_MENU.map((item) => {
                         const selectable = !item.disabled && SUPPORTED_LANGS.includes(item.code);
                         const selected = item.code === lang;
@@ -228,18 +366,14 @@ export const LanguageSwitcher = ({ className = '', style }) => {
                                     role="option"
                                     aria-selected={selected}
                                     disabled={!selectable}
-                                    className={`language-switcher-option${selected ? ' is-selected' : ''}${item.disabled ? ' is-disabled' : ''}`.trim()}
+                                    className={getOptionClassName(item, selected)}
                                     title={item.disabled ? `${item.nativeLabel} — soon` : undefined}
                                     aria-label={
                                         item.disabled
                                             ? `${item.nativeLabel}, coming soon`
                                             : undefined
                                     }
-                                    onClick={() => {
-                                        if (!selectable) return;
-                                        setLang(item.code);
-                                        setOpen(false);
-                                    }}
+                                    onClick={() => handleLanguageSelect(selectable, item.code)}
                                 >
                                     <span className="language-switcher-option-flag" aria-hidden>
                                         {item.flag}
@@ -253,6 +387,7 @@ export const LanguageSwitcher = ({ className = '', style }) => {
                         );
                     })}
                 </ul>
+                )
             )}
         </div>
     );
