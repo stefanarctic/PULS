@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import { useNavigate, useSearchParams } from "react-router-dom";
 import Layout from "../Layout";
 import { doc, getDoc, updateDoc } from "firebase/firestore";
@@ -9,6 +9,91 @@ import { useAchievements } from "../../hooks/useAchievements";
 import SEO from "../SEO";
 import { parseHomeworkParams, recordAssignmentItemProgress } from "../../lib/assignmentProgress";
 import { Timestamp } from "firebase/firestore";
+import { useI18n } from "../../i18n/LanguageContext";
+import { observeAndTranslate } from "../../i18n/domTranslator";
+
+/**
+ * Tell cross-origin embedded apps (e.g. Kirchhoff on Vercel) to match the site language.
+ * Matches the simulator’s listener: `{ type: "LANGUAGE_CHANGE", lang: "ro" | "en" }`.
+ */
+function postLanguageToEmbeddedSimulator(iframeEl, resolvedSrc, uiLang) {
+  const win = iframeEl?.contentWindow;
+  if (!win) return;
+  let origin;
+  try {
+    origin = new URL(resolvedSrc).origin;
+  } catch {
+    return;
+  }
+  const langCode = uiLang === "en" ? "en" : "ro";
+  try {
+    win.postMessage({ type: "LANGUAGE_CHANGE", lang: langCode }, origin);
+  } catch {
+    /* noop */
+  }
+}
+
+/** Slugs whose iframe should receive LANGUAGE_CHANGE when the site locale changes. */
+const SIMULATOR_POSTMESSAGE_LANGUAGE_SLUGS = new Set(["kirchhoff"]);
+
+/** EN iframe bundles live in `/translations/simulatoare.en.json` (simulators.<slug>). */
+const SIMULATOR_I18N_QUERY_SLUGS = new Set([
+  "pendul-simplu",
+  "pendul-amortizat",
+  "pendul-neliniar",
+  "grafice-pendule",
+  "grafice-functii",
+  "grafice-simple",
+  "pendule-multiple",
+  "unde-apa",
+  "figuri-lissajous",
+  "seism",
+  "coliziuni-inelastice",
+  "plan-inclinat",
+  "proiectile",
+  "lanturi-elastice",
+  "frecare-aer",
+  "tunelare-cuantica",
+  "dubla-fanta",
+  "apa-grea",
+  "michaelson-morley",
+  "fisiune-nucleara",
+  "reflexie-refractie",
+  "prisma",
+  "motoare-termice",
+  "fuel-cell",
+  "supraconductivitate",
+  "criogenie",
+  "refractie-atmosferica",
+  "legi_Kepler",
+  "atom_hidrogen",
+  "oscillatii-ox",
+  "oscillatii-oy",
+  "energie-circuite",
+  "circuite-electricitate",
+  "polarizare-circulara",
+  "Vizualizator-4d",
+  "lentila-subtire",
+  "laser-interactie",
+  "eli-np-laser",
+  "accelerator-laser",
+  "laser",
+  "constelatii",
+  "miscare-planete",
+  "spectru-electromagnetic",
+  "termodinamica",
+  "instalatie-schimb-izotopic",
+  "distilare-d2o-fractionata",
+  "curent-alternativ",
+  "reactor-fuziune-dt",
+  "legaturi-atomi",
+  "tabel-periodic",
+  "izotopi-uraniu",
+  "toti-izotopii",
+  "kirchhoff",
+]);
+
+const DEFAULT_EN_SIMULATOR_EYEBROW = "Interactive simulation";
 
 const SimulationPage = ({
   id,
@@ -17,17 +102,56 @@ const SimulationPage = ({
   description,
   iframeSrc,
   eyebrow = "Simulare interactivă",
-  maxHeight
+  maxHeight,
 }) => {
   const iframeRef = useRef(null);
   const frameRef = useRef(null);
   const previewHeightBeforeFullscreenRef = useRef("");
+  const iframeTranslateCleanupRef = useRef(null);
   const [isFullscreen, setIsFullscreen] = useState(false);
   const [user, setUser] = useState(null);
   const { checkAchievements } = useAchievements();
   const navigate = useNavigate();
   const [searchParams] = useSearchParams();
+  const { t, lang, localizedPath } = useI18n();
   const previewHeight = maxHeight || "90vh";
+  const iframeSrcWithLang = useMemo(() => {
+    if (lang !== "en" || !slug || !SIMULATOR_I18N_QUERY_SLUGS.has(slug)) return iframeSrc;
+    const sep = iframeSrc.includes("?") ? "&" : "?";
+    return `${iframeSrc}${sep}lang=en`;
+  }, [lang, slug, iframeSrc]);
+  const translationKey = slug || id;
+  const localizedTitle = t(`simulations.${translationKey}.title`, title);
+  const localizedDescription = t(`simulations.${translationKey}.description`, description);
+
+  const [enSimulatorEyebrow, setEnSimulatorEyebrow] = useState(null);
+
+  useEffect(() => {
+    if (lang !== "en" || !slug || !SIMULATOR_I18N_QUERY_SLUGS.has(slug)) {
+      setEnSimulatorEyebrow(null);
+      return;
+    }
+    let cancelled = false;
+    (async () => {
+      try {
+        const res = await fetch("/translations/simulatoare.en.json");
+        if (!res.ok) return;
+        const data = await res.json();
+        const eyebrow = data?.simulators?.[slug]?.page?.eyebrow;
+        if (!cancelled && typeof eyebrow === "string") setEnSimulatorEyebrow(eyebrow);
+      } catch {
+        /* catalog optional */
+      }
+    })();
+    return () => {
+      cancelled = true;
+    };
+  }, [lang, slug]);
+
+  const localizedEyebrow =
+    lang === "en" && slug && SIMULATOR_I18N_QUERY_SLUGS.has(slug)
+      ? enSimulatorEyebrow ?? DEFAULT_EN_SIMULATOR_EYEBROW
+      : t(`simulations.${translationKey}.eyebrow`, eyebrow);
 
   // Monitorizează starea de autentificare
   useEffect(() => {
@@ -40,7 +164,7 @@ const SimulationPage = ({
 
   // Salvează simularea accesată în Firebase
   useEffect(() => {
-    if (!user?.uid || !id || !title) return;
+    if (!user?.uid || !id || !localizedTitle) return;
 
     const saveSimulationVisited = async () => {
       try {
@@ -54,12 +178,12 @@ const SimulationPage = ({
 
         // Verifică dacă simularea a fost deja accesată
         const existingIndex = currentSimulationsVisited.findIndex(
-          s => s.id === id || (s.title === title && s.id === id)
+          s => s.id === id || (s.title === localizedTitle && s.id === id)
         );
 
         const simulationVisited = {
           id: id,
-          title: title,
+          title: localizedTitle,
           date: new Date().toISOString()
         };
 
@@ -108,16 +232,50 @@ const SimulationPage = ({
     };
 
     saveSimulationVisited();
-  }, [user?.uid, id, title, checkAchievements, searchParams.toString(), slug]);
+  }, [user?.uid, id, localizedTitle, checkAchievements, searchParams, slug]);
 
   const handleBack = () => {
     // Dacă există istoric de navigare, mergem înapoi, altfel revenim la lista de simulări
     if (window.history.length > 2) {
       navigate(-1);
     } else {
-      navigate("/simulari");
+      navigate(localizedPath("/simulari"));
     }
   };
+
+  const handleIframeLoad = () => {
+    iframeTranslateCleanupRef.current?.();
+    iframeTranslateCleanupRef.current = null;
+
+    if (slug && SIMULATOR_POSTMESSAGE_LANGUAGE_SLUGS.has(slug)) {
+      postLanguageToEmbeddedSimulator(iframeRef.current, iframeSrcWithLang, lang);
+    }
+
+    if (lang !== "en") return;
+    if (slug && SIMULATOR_I18N_QUERY_SLUGS.has(slug)) return;
+    const iframe = iframeRef.current;
+    if (!iframe) return;
+
+    try {
+      const frameDocument = iframe.contentDocument || iframe.contentWindow?.document;
+      if (frameDocument?.body) {
+        iframeTranslateCleanupRef.current = observeAndTranslate(frameDocument);
+      }
+    } catch (error) {
+      // Cross-origin simulations cannot be translated from here.
+      console.warn("[i18n] Could not translate simulation iframe:", error);
+    }
+  };
+
+  useEffect(() => () => iframeTranslateCleanupRef.current?.(), []);
+
+  useEffect(() => {
+    if (!slug || !SIMULATOR_POSTMESSAGE_LANGUAGE_SLUGS.has(slug)) return undefined;
+    const iframe = iframeRef.current;
+    if (!iframe) return undefined;
+    postLanguageToEmbeddedSimulator(iframe, iframeSrcWithLang, lang);
+    return undefined;
+  }, [lang, slug, iframeSrcWithLang]);
 
   const handleToggleFullscreen = () => {
     const iframe = iframeRef.current;
@@ -135,7 +293,7 @@ const SimulationPage = ({
       if (requestFullscreen) {
         requestFullscreen.call(iframe);
       } else {
-        window.open(iframeSrc, "_blank");
+        window.open(iframeSrcWithLang, "_blank");
       }
     } else {
       const exitFullscreen =
@@ -183,14 +341,14 @@ const SimulationPage = ({
       document.removeEventListener("mozfullscreenchange", handleFullscreenChange);
       document.removeEventListener("MSFullscreenChange", handleFullscreenChange);
     };
-  }, [iframeSrc, previewHeight]);
+  }, [iframeSrcWithLang, previewHeight]);
 
   return (
     <Layout>
       <SEO
-        title={`${title} | Simulare Interactivă Fizică - PULS`}
-        description={description || `Simulare interactivă pentru ${title}. Explorează concepte fizice prin simulări educaționale interactive.`}
-        keywords={`${title}, simulare fizică, simulare interactivă, fizică educațională, ${title.toLowerCase()}`}
+        title={`${localizedTitle} | ${t('simulationPage.seoTitleSuffix', 'Simulare Interactivă Fizică - PULS')}`}
+        description={localizedDescription || t('simulationPage.seoDescription', 'Simulare interactivă pentru {title}. Explorează concepte fizice prin simulări educaționale interactive.', { title: localizedTitle })}
+        keywords={`${localizedTitle}, simulare fizică, simulare interactivă, fizică educațională, ${localizedTitle.toLowerCase()}`}
         image="/res/icons/New-logo.png"
         type="article"
       />
@@ -204,29 +362,30 @@ const SimulationPage = ({
             <span className="icon" aria-hidden="true">
               ←
             </span>
-            <span className="label">Înapoi la simulări</span>
+            <span className="label">{t('simulationPage.backToList', 'Înapoi la simulări')}</span>
           </button>
           <header className="simulation-header">
-            {eyebrow && <p className="eyebrow">{eyebrow}</p>}
-            <h1>{title}</h1>
-            {description && <p>{description}</p>}
+            {localizedEyebrow && <p className="eyebrow">{localizedEyebrow}</p>}
+            <h1>{localizedTitle}</h1>
+            {localizedDescription && <p>{localizedDescription}</p>}
           </header>
 
           <div className="simulation-frame" ref={frameRef}>
             <iframe
               ref={iframeRef}
-              src={iframeSrc}
-              title={title}
+              src={iframeSrcWithLang}
+              title={localizedTitle}
               loading="lazy"
               allow="fullscreen"
               scrolling="auto"
               style={{ height: previewHeight }}
+              onLoad={handleIframeLoad}
             />
             <button
               type="button"
               className="simulation-fullscreen-btn"
               onClick={handleToggleFullscreen}
-              aria-label="Comută modul fullscreen"
+              aria-label={t('simulationPage.toggleFullscreen', 'Comută modul fullscreen')}
               data-active={isFullscreen}
             >
               <svg viewBox="0 0 60 60" role="img" aria-hidden="true">

@@ -627,3 +627,14 @@
         gap: 1rem;
     }
 }
+
+.grila-translation-banner {
+    padding: 0.65rem 1rem;
+    margin-bottom: 0.75rem;
+    font-size: 0.9rem;
+    text-align: center;
+    border-radius: 8px;
+    background: rgba(59, 130, 246, 0.12);
+    border: 1px solid rgba(59, 130, 246, 0.25);
+    color: var(--primary-color-current-mode, #1e40af);
+}

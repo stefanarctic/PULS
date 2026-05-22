@@ -9,152 +9,152 @@
 <body>
     <div class="container">
         <header>
-            <h1>🔬 Simulator de Reflexie și Refracție</h1>
-            <p class="subtitle">Explorează comportamentul luminii la interfața dintre două medii</p>
+            <h1 data-i18n="header.title">🔬 Simulator de Reflexie și Refracție</h1>
+            <p class="subtitle" data-i18n="header.subtitle">Explorează comportamentul luminii la interfața dintre două medii</p>
         </header>
 
         <main class="main-content">
             <!-- Left Panel - Controls -->
             <aside class="panel controls-panel">
-                <h2>⚙️ Controale</h2>
+                <h2 data-i18n="controls.heading">⚙️ Controale</h2>
                 
                 <div class="control-group">
-                    <h3>Raza Incidentă</h3>
+                    <h3 data-i18n="incident.heading">Raza Incidentă</h3>
                     <div class="slider-container">
-                        <label for="incidentAngle">Unghi de incidență (θ₁)</label>
+                        <label for="incidentAngle" data-i18n="incident.label">Unghi de incidență (θ₁)</label>
                         <input type="range" id="incidentAngle" min="0" max="89" value="45">
                         <span class="value-display" id="incidentAngleValue">45°</span>
                     </div>
                 </div>
 
                 <div class="control-group">
-                    <h3>Mediul 1 (Superior)</h3>
+                    <h3 data-i18n="medium1.heading">Mediul 1 (Superior)</h3>
                     <div class="slider-container">
-                        <label for="n1">Indice de refracție (n₁)</label>
+                        <label for="n1" data-i18n="medium1.nLabel">Indice de refracție (n₁)</label>
                         <input type="range" id="n1" min="1" max="2.5" step="0.01" value="1">
                         <span class="value-display" id="n1Value">1.00</span>
                     </div>
                     <select id="medium1Select" class="medium-select">
-                        <option value="1">Aer (n=1.00)</option>
-                        <option value="1.33">Apă (n=1.33)</option>
-                        <option value="1.52">Sticlă (n=1.52)</option>
-                        <option value="2.42">Diamant (n=2.42)</option>
-                        <option value="custom">Personalizat</option>
+                        <option value="1" data-i18n="medium.air">Aer (n=1.00)</option>
+                        <option value="1.33" data-i18n="medium.water">Apă (n=1.33)</option>
+                        <option value="1.52" data-i18n="medium.glass">Sticlă (n=1.52)</option>
+                        <option value="2.42" data-i18n="medium.diamond">Diamant (n=2.42)</option>
+                        <option value="custom" data-i18n="medium.custom">Personalizat</option>
                     </select>
                 </div>
 
                 <div class="control-group">
-                    <h3>Mediul 2 (Inferior)</h3>
+                    <h3 data-i18n="medium2.heading">Mediul 2 (Inferior)</h3>
                     <div class="slider-container">
-                        <label for="n2">Indice de refracție (n₂)</label>
+                        <label for="n2" data-i18n="medium2.nLabel">Indice de refracție (n₂)</label>
                         <input type="range" id="n2" min="1" max="2.5" step="0.01" value="1.52">
                         <span class="value-display" id="n2Value">1.52</span>
                     </div>
                     <select id="medium2Select" class="medium-select">
-                        <option value="1">Aer (n=1.00)</option>
-                        <option value="1.33">Apă (n=1.33)</option>
-                        <option value="1.52" selected>Sticlă (n=1.52)</option>
-                        <option value="2.42">Diamant (n=2.42)</option>
-                        <option value="custom">Personalizat</option>
+                        <option value="1" data-i18n="medium.air">Aer (n=1.00)</option>
+                        <option value="1.33" data-i18n="medium.water">Apă (n=1.33)</option>
+                        <option value="1.52" selected data-i18n="medium.glass">Sticlă (n=1.52)</option>
+                        <option value="2.42" data-i18n="medium.diamond">Diamant (n=2.42)</option>
+                        <option value="custom" data-i18n="medium.custom">Personalizat</option>
                     </select>
                 </div>
 
                 <div class="control-group">
-                    <h3>Vizualizare</h3>
+                    <h3 data-i18n="display.heading">Vizualizare</h3>
                     <div class="checkbox-container">
                         <input type="checkbox" id="showNormal" checked>
-                        <label for="showNormal">Afișează normala</label>
+                        <label for="showNormal" data-i18n="display.showNormal">Afișează normala</label>
                     </div>
                     <div class="checkbox-container">
                         <input type="checkbox" id="showAngles" checked>
-                        <label for="showAngles">Afișează unghiurile</label>
+                        <label for="showAngles" data-i18n="display.showAngles">Afișează unghiurile</label>
                     </div>
                     <div class="checkbox-container">
                         <input type="checkbox" id="showIntensity" checked>
-                        <label for="showIntensity">Afișează intensitatea</label>
+                        <label for="showIntensity" data-i18n="display.showIntensity">Afișează intensitatea</label>
                     </div>
                 </div>
 
                 <div class="control-group">
-                    <h3>Culoarea Luminii</h3>
+                    <h3 data-i18n="color.heading">Culoarea Luminii</h3>
                     <div class="color-picker-container">
                         <input type="color" id="lightColor" value="#ff6b6b">
-                        <span class="color-label">Selectează culoarea</span>
+                        <span class="color-label" data-i18n="color.pickLabel">Selectează culoarea</span>
                     </div>
                     <div class="wavelength-display">
-                        <span>Lungime de undă aproximativă: </span>
+                        <span data-i18n="color.wavelengthLabel">Lungime de undă aproximativă: </span>
                         <span id="wavelengthValue">~620 nm</span>
                     </div>
                 </div>
 
-                <button id="resetBtn" class="btn-reset">🔄 Resetează</button>
+                <button id="resetBtn" class="btn-reset" type="button" data-i18n="buttons.reset">🔄 Resetează</button>
             </aside>
 
             <!-- Center - Simulator Canvas -->
             <section class="simulator-section">
-                <canvas id="simulatorCanvas"></canvas>
+                <canvas id="simulatorCanvas" data-i18n-aria="canvas.ariaLabel" aria-label="Vizualizare reflexie și refracție"></canvas>
                 <div class="results-bar">
                     <div class="result-item">
-                        <span class="result-label">θ reflexie:</span>
+                        <span class="result-label" data-i18n="results.thetaReflection">θ reflexie:</span>
                         <span class="result-value" id="reflectionAngle">45°</span>
                     </div>
                     <div class="result-item">
-                        <span class="result-label">θ refracție:</span>
+                        <span class="result-label" data-i18n="results.thetaRefraction">θ refracție:</span>
                         <span class="result-value" id="refractionAngle">28.1°</span>
                     </div>
                     <div class="result-item critical-angle">
-                        <span class="result-label">θ critic:</span>
+                        <span class="result-label" data-i18n="results.thetaCritical">θ critic:</span>
                         <span class="result-value" id="criticalAngle">41.1°</span>
                     </div>
                     <div class="result-item tir-indicator" id="tirIndicator">
-                        <span class="tir-badge">⚡ Reflexie Totală Internă</span>
+                        <span class="tir-badge" data-i18n="results.tirBadge">⚡ Reflexie Totală Internă</span>
                     </div>
                 </div>
             </section>
 
             <!-- Right Panel - Formulas and Info -->
             <aside class="panel info-panel">
-                <h2>📐 Formule și Teorie</h2>
+                <h2 data-i18n="theory.heading">📐 Formule și Teorie</h2>
 
                 <div class="formula-card">
-                    <h3>Legea Reflexiei</h3>
+                    <h3 data-i18n="lawReflection.title">Legea Reflexiei</h3>
                     <div class="formula">θ<sub>r</sub> = θ<sub>i</sub></div>
-                    <p class="formula-explanation">Unghiul de reflexie este egal cu unghiul de incidență.</p>
+                    <p class="formula-explanation" data-i18n="lawReflection.explain">Unghiul de reflexie este egal cu unghiul de incidență.</p>
                 </div>
 
                 <div class="formula-card">
-                    <h3>Legea lui Snell (Refracție)</h3>
+                    <h3 data-i18n="lawSnell.title">Legea lui Snell (Refracție)</h3>
                     <div class="formula">n₁ · sin(θ₁) = n₂ · sin(θ₂)</div>
-                    <p class="formula-explanation">Relația dintre unghiurile și indicii de refracție ai celor două medii.</p>
+                    <p class="formula-explanation" data-i18n="lawSnell.explain">Relația dintre unghiurile și indicii de refracție ai celor două medii.</p>
                 </div>
 
                 <div class="formula-card">
-                    <h3>Unghi Critic</h3>
+                    <h3 data-i18n="critical.title">Unghi Critic</h3>
                     <div class="formula">θ<sub>c</sub> = arcsin(n₂/n₁)</div>
-                    <p class="formula-explanation">Unghiul minim pentru reflexie totală internă (când n₁ > n₂).</p>
+                    <p class="formula-explanation" data-i18n="critical.explain">Unghiul minim pentru reflexie totală internă (când n₁ > n₂).</p>
                 </div>
 
                 <div class="info-card">
-                    <h3>📏 Unități de Măsură</h3>
+                    <h3 data-i18n="units.heading">📏 Unități de Măsură</h3>
                     <ul>
-                        <li><strong>Unghi:</strong> grade (°) sau radiani (rad)</li>
-                        <li><strong>Indice de refracție:</strong> adimensional</li>
-                        <li><strong>Lungime de undă:</strong> nanometri (nm)</li>
-                        <li><strong>Viteza luminii:</strong> m/s</li>
+                        <li data-i18n="units.angle">Unghi: grade (°) sau radiani (rad)</li>
+                        <li data-i18n="units.index">Indice de refracție: adimensional</li>
+                        <li data-i18n="units.wavelength">Lungime de undă: nanometri (nm)</li>
+                        <li data-i18n="units.speedLight">Viteza luminii: m/s</li>
                     </ul>
                 </div>
 
                 <div class="info-card velocity-card">
-                    <h3>🚀 Viteza Luminii</h3>
-                    <p>În vid: <strong>c = 299,792,458 m/s</strong></p>
-                    <p>În mediu: <strong>v = c/n</strong></p>
+                    <h3 data-i18n="velocity.heading">🚀 Viteza Luminii</h3>
+                    <p><span data-i18n="velocity.vacuumIntro">În vid:</span> <strong>c = 299,792,458 m/s</strong></p>
+                    <p><span data-i18n="velocity.mediumIntro">În mediu:</span> <strong>v = c/n</strong></p>
                     <div class="velocity-display">
                         <div class="velocity-item">
-                            <span>v₁ = </span>
+                            <span data-i18n="velocity.v1Prefix">v₁ = </span>
                             <span id="velocity1">299,792,458 m/s</span>
                         </div>
                         <div class="velocity-item">
-                            <span>v₂ = </span>
+                            <span data-i18n="velocity.v2Prefix">v₂ = </span>
                             <span id="velocity2">197,231,880 m/s</span>
                         </div>
                     </div>
@@ -164,82 +164,83 @@
 
         <!-- Fun Facts Section -->
         <section class="fun-facts-section">
-            <h2>💡 Știați că...?</h2>
+            <h2 data-i18n="facts.heading">💡 Știați că...?</h2>
             <div class="facts-carousel">
                 <div class="fact-card active" id="fact1">
                     <div class="fact-icon">🌈</div>
-                    <h3>Curcubeul</h3>
-                    <p>Curcubeul se formează datorită refracției și reflexiei luminii solare în picăturile de apă din atmosferă. Fiecare culoare are un indice de refracție ușor diferit, ceea ce produce separarea spectrală.</p>
+                    <h3 data-i18n="facts.rainbow.title">Curcubeul</h3>
+                    <p data-i18n="facts.rainbow.body">Curcubeul se formează datorită refracției și reflexiei luminii solare în picăturile de apă din atmosferă. Fiecare culoare are un indice de refracție ușor diferit, ceea ce produce separarea spectrală.</p>
                 </div>
                 <div class="fact-card" id="fact2">
                     <div class="fact-icon">💎</div>
-                    <h3>Strălucirea Diamantului</h3>
-                    <p>Diamantul are unul dintre cei mai mari indici de refracție (n=2.42), ceea ce produce reflexie totală internă frecventă și îi conferă strălucirea caracteristică.</p>
+                    <h3 data-i18n="facts.diamond.title">Strălucirea Diamantului</h3>
+                    <p data-i18n="facts.diamond.body">Diamantul are unul dintre cei mai mari indici de refracție (n=2.42), ceea ce produce reflexie totală internă frecventă și îi conferă strălucirea caracteristică.</p>
                 </div>
                 <div class="fact-card" id="fact3">
                     <div class="fact-icon">🔭</div>
-                    <h3>Fibre Optice</h3>
-                    <p>Fibrele optice folosesc reflexia totală internă pentru a transmite lumina pe distanțe mari fără pierderi semnificative. Internetul modern depinde de această tehnologie!</p>
+                    <h3 data-i18n="facts.fiber.title">Fibre Optice</h3>
+                    <p data-i18n="facts.fiber.body">Fibrele optice folosesc reflexia totală internă pentru a transmite lumina pe distanțe mari fără pierderi semnificative. Internetul modern depinde de această tehnologie!</p>
                 </div>
                 <div class="fact-card" id="fact4">
                     <div class="fact-icon">🏊</div>
-                    <h3>Piscina Pare Mai Puțin Adâncă</h3>
-                    <p>Când privești în apă, obiectele par mai aproape de suprafață decât sunt în realitate. Aceasta se datorează refracției luminii la trecerea din apă în aer.</p>
+                    <h3 data-i18n="facts.pool.title">Piscina Pare Mai Puțin Adâncă</h3>
+                    <p data-i18n="facts.pool.body">Când privești în apă, obiectele par mai aproape de suprafață decât sunt în realitate. Aceasta se datorează refracției luminii la trecerea din apă în aer.</p>
                 </div>
                 <div class="fact-card" id="fact5">
                     <div class="fact-icon">🌅</div>
-                    <h3>Mirajele</h3>
-                    <p>Mirajele din deșert sunt cauzate de refracția luminii în straturile de aer cu temperaturi diferite. Aerul cald de lângă sol are un indice de refracție mai mic.</p>
+                    <h3 data-i18n="facts.mirage.title">Mirajele</h3>
+                    <p data-i18n="facts.mirage.body">Mirajele din deșert sunt cauzate de refracția luminii în straturile de aer cu temperaturi diferite. Aerul cald de lângă sol are un indice de refracție mai mic.</p>
                 </div>
                 <div class="fact-card" id="fact6">
                     <div class="fact-icon">👓</div>
-                    <h3>Lentilele Ochelarilor</h3>
-                    <p>Ochelarii corectează vederea folosind refracția. Lentilele convergente (pentru hipermetropie) și divergente (pentru miopie) modifică traiectoria luminii pentru a focaliza corect pe retină.</p>
+                    <h3 data-i18n="facts.glasses.title">Lentilele Ochelarilor</h3>
+                    <p data-i18n="facts.glasses.body">Ochelarii corectează vederea folosind refracția. Lentilele convergente (pentru hipermetropie) și divergente (pentru miopie) modifică traiectoria luminii pentru a focaliza corect pe retină.</p>
                 </div>
             </div>
             <div class="carousel-controls">
-                <button id="prevFact" class="carousel-btn">◀</button>
+                <button type="button" id="prevFact" class="carousel-btn" data-i18n-aria="carousel.prevAria" aria-label="Faptul anterior">◀</button>
                 <div class="carousel-dots" id="carouselDots"></div>
-                <button id="nextFact" class="carousel-btn">▶</button>
+                <button type="button" id="nextFact" class="carousel-btn" data-i18n-aria="carousel.nextAria" aria-label="Următorul fapt">▶</button>
             </div>
         </section>
 
         <!-- Technical Details Section -->
         <section class="technical-section">
-            <h2>🔬 Detalii Tehnice</h2>
+            <h2 data-i18n="technical.heading">🔬 Detalii Tehnice</h2>
             <div class="technical-grid">
                 <div class="tech-card">
-                    <h3>Ce este Indicele de Refracție?</h3>
-                    <p>Indicele de refracție (n) reprezintă raportul dintre viteza luminii în vid și viteza luminii într-un mediu dat. Cu cât indicele este mai mare, cu atât lumina se propagă mai încet în acel mediu.</p>
+                    <h3 data-i18n="tech.indexTitle">Ce este Indicele de Refracție?</h3>
+                    <p data-i18n="tech.indexBody">Indicele de refracție (n) reprezintă raportul dintre viteza luminii în vid și viteza luminii într-un mediu dat. Cu cât indicele este mai mare, cu atât lumina se propagă mai încet în acel mediu.</p>
                     <div class="formula-inline">n = c / v</div>
                 </div>
                 <div class="tech-card">
-                    <h3>Reflexia Totală Internă</h3>
-                    <p>Când lumina trece dintr-un mediu mai dens (n mai mare) într-unul mai puțin dens și unghiul de incidență depășește unghiul critic, toată lumina este reflectată înapoi în primul mediu.</p>
+                    <h3 data-i18n="tech.tirTitle">Reflexia Totală Internă</h3>
+                    <p data-i18n="tech.tirBody">Când lumina trece dintr-un mediu mai dens (n mai mare) într-unul mai puțin dens și unghiul de incidență depășește unghiul critic, toată lumina este reflectată înapoi în primul mediu.</p>
                 </div>
                 <div class="tech-card">
-                    <h3>Dispersia Luminii</h3>
-                    <p>Indicele de refracție variază ușor cu lungimea de undă a luminii. Lumina albastră (λ mai mic) se refractă mai mult decât lumina roșie (λ mai mare). Acest fenomen se numește dispersie.</p>
+                    <h3 data-i18n="tech.dispersionTitle">Dispersia Luminii</h3>
+                    <p data-i18n="tech.dispersionBody">Indicele de refracție variază ușor cu lungimea de undă a luminii. Lumina albastră (λ mai mic) se refractă mai mult decât lumina roșie (λ mai mare). Acest fenomen se numește dispersie.</p>
                 </div>
                 <div class="tech-card">
-                    <h3>Aplicații Practice</h3>
+                    <h3 data-i18n="tech.appsTitle">Aplicații Practice</h3>
                     <ul>
-                        <li>Fibre optice pentru telecomunicații</li>
-                        <li>Endoscoape medicale</li>
-                        <li>Prisme și spectrometrie</li>
-                        <li>Lentile și sisteme optice</li>
-                        <li>Senzori și detectoare</li>
+                        <li data-i18n="tech.apps.fiber">Fibre optice pentru telecomunicații</li>
+                        <li data-i18n="tech.apps.endoscope">Endoscoape medicale</li>
+                        <li data-i18n="tech.apps.prism">Prisme și spectrometrie</li>
+                        <li data-i18n="tech.apps.lenses">Lentile și sisteme optice</li>
+                        <li data-i18n="tech.apps.sensors">Senzori și detectoare</li>
                     </ul>
                 </div>
             </div>
         </section>
 
         <footer>
-            <p>Simulator educațional de fizică optică | Reflexie și Refracție</p>
-            <p class="footer-note">Bazat pe legile lui Snell și principiile opticii geometrice</p>
+            <p data-i18n="footer.line1">Simulator educațional de fizică optică | Reflexie și Refracție</p>
+            <p class="footer-note" data-i18n="footer.line2">Bazat pe legile lui Snell și principiile opticii geometrice</p>
         </footer>
     </div>
 
-    <script src="script.js"></script>
+    <script src="/simulari/simulator-i18n-runtime.js"></script>
+    <script src="reflexie-refractie-boot.js"></script>
 </body>
 </html>

@@ -1,6 +1,10 @@
 // Physics Simulator for Reflection and Refraction
 // Based on Snell's Law and the Law of Reflection
 
+function simUI(path, fallback) {
+    return typeof window.simLbl === 'function' ? window.simLbl(path, fallback) : fallback;
+}
+
 class PhysicsSimulator {
     constructor() {
         this.canvas = document.getElementById('simulatorCanvas');
@@ -304,7 +308,7 @@ class PhysicsSimulator {
         document.getElementById('reflectionAngle').textContent = this.incidentAngle.toFixed(1) + '°';
         
         if (result.totalInternalReflection) {
-            document.getElementById('refractionAngle').textContent = 'N/A (TIR)';
+            document.getElementById('refractionAngle').textContent = simUI('results.refrNa', 'N/A (TIR)');
             document.getElementById('tirIndicator').classList.add('active');
         } else {
             document.getElementById('refractionAngle').textContent = result.refractionAngle.toFixed(1) + '°';
@@ -314,7 +318,7 @@ class PhysicsSimulator {
         if (result.criticalAngle !== null) {
             document.getElementById('criticalAngle').textContent = result.criticalAngle.toFixed(1) + '°';
         } else {
-            document.getElementById('criticalAngle').textContent = 'N/A';
+            document.getElementById('criticalAngle').textContent = simUI('results.na', 'N/A');
         }
         
         // Update velocities
@@ -328,9 +332,9 @@ class PhysicsSimulator {
     
     formatVelocity(v) {
         if (v >= 1e8) {
-            return (v / 1e6).toFixed(0).replace(/\B(?=(\d{3})+(?!\d))/g, ",") + ' km/s';
+            return (v / 1e6).toFixed(0).replace(/\B(?=(\d{3})+(?!\d))/g, ",") + simUI('units.kms', ' km/s');
         }
-        return v.toFixed(0).replace(/\B(?=(\d{3})+(?!\d))/g, ",") + ' m/s';
+        return v.toFixed(0).replace(/\B(?=(\d{3})+(?!\d))/g, ",") + simUI('units.ms', ' m/s');
     }
     
     draw() {
@@ -385,8 +389,8 @@ class PhysicsSimulator {
         ctx.font = 'bold 14px Segoe UI';
         ctx.fillStyle = 'rgba(255, 255, 255, 0.7)';
         ctx.textAlign = 'left';
-        ctx.fillText(`Mediu 1: n₁ = ${this.n1.toFixed(2)}`, 15, 25);
-        ctx.fillText(`Mediu 2: n₂ = ${this.n2.toFixed(2)}`, 15, this.centerY + 25);
+        ctx.fillText(`${simUI('canvas.medium1Prefix', 'Mediu 1')}: n₁ = ${this.n1.toFixed(2)}`, 15, 25);
+        ctx.fillText(`${simUI('canvas.medium2Prefix', 'Mediu 2')}: n₂ = ${this.n2.toFixed(2)}`, 15, this.centerY + 25);
     }
     
     drawInterface() {
@@ -403,7 +407,7 @@ class PhysicsSimulator {
         ctx.font = '12px Segoe UI';
         ctx.fillStyle = 'rgba(255, 255, 255, 0.6)';
         ctx.textAlign = 'right';
-        ctx.fillText('Interfață', this.width - 15, this.centerY - 8);
+        ctx.fillText(simUI('canvas.interface', 'Interfață'), this.width - 15, this.centerY - 8);
     }
     
     drawNormal() {
@@ -422,7 +426,7 @@ class PhysicsSimulator {
         ctx.font = '11px Segoe UI';
         ctx.fillStyle = 'rgba(255, 255, 255, 0.5)';
         ctx.textAlign = 'center';
-        ctx.fillText('Normala', this.centerX, this.centerY - 190);
+        ctx.fillText(simUI('canvas.normal', 'Normala'), this.centerX, this.centerY - 190);
     }
     
     drawRays() {
@@ -442,7 +446,7 @@ class PhysicsSimulator {
         this.drawRay(
             incidentStartX, incidentStartY,
             this.centerX, this.centerY,
-            this.lightColor, 3, 1, 'Raza incidentă'
+            this.lightColor, 3, 1, simUI('canvas.rayIncident', 'Raza incidentă')
         );
         
         // Draw arrow on incident ray
@@ -461,7 +465,7 @@ class PhysicsSimulator {
         this.drawRay(
             this.centerX, this.centerY,
             reflectedEndX, reflectedEndY,
-            this.lightColor, 3, reflectedAlpha, 'Raza reflectată'
+            this.lightColor, 3, reflectedAlpha, simUI('canvas.rayReflected', 'Raza reflectată')
         );
         
         // Draw arrow on reflected ray
@@ -483,7 +487,7 @@ class PhysicsSimulator {
             this.drawRay(
                 this.centerX, this.centerY,
                 refractedEndX, refractedEndY,
-                this.lightColor, 3, refractedAlpha, 'Raza refractată'
+                this.lightColor, 3, refractedAlpha, simUI('canvas.rayRefracted', 'Raza refractată')
             );
             
             // Draw arrow on refracted ray
@@ -649,10 +653,12 @@ class PhysicsSimulator {
     }
 }
 
-// Initialize simulator when DOM is loaded
-document.addEventListener('DOMContentLoaded', () => {
-    const simulator = new PhysicsSimulator();
-    
-    // Make simulator accessible globally for debugging
-    window.simulator = simulator;
-});
+function startReflectionSimulator() {
+    window.simulator = new PhysicsSimulator();
+}
+
+if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', startReflectionSimulator);
+} else {
+    startReflectionSimulator();
+}

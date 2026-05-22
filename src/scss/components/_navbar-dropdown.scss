@@ -52,4 +52,41 @@
   &:hover {
     background-color: var(--navbar-hover);
   }
+}
+
+.language-switcher-navbar-item {
+  all: unset;
+  box-sizing: border-box;
+  display: block;
+  width: 100%;
+  font-family: 'Open Sans', sans-serif;
+  color: var(--primary-color-current-mode);
+  padding: 0.5rem 1rem;
+  font-size: 1rem;
+  text-align: left;
+  cursor: pointer;
+  transition: background 0.1s ease;
+
+  &:hover:not(:disabled) {
+    background-color: var(--navbar-hover);
+  }
+
+  &:disabled,
+  &.is-disabled {
+    cursor: not-allowed;
+    color: var(--muted-color-current-mode);
+    opacity: 0.65;
+  }
+
+  .language-switcher-soon-badge {
+    margin-left: 0.4rem;
+    font-size: 0.65rem;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: var(--muted-color-current-mode);
+    background: none;
+    border: none;
+    padding: 0;
+  }
 } 

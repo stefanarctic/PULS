@@ -8,47 +8,44 @@
     <title>Pendulul Oscilator</title>
 </head>
 <body>
-    <b class="titlemain">Pendulul Oscilator</b>
-    <b class="subtitlemain">Oscilatia Amortizata</b>
+    <b class="titlemain" data-i18n="labels.pageTitle">Pendulul Oscilator</b>
+    <b class="subtitlemain" data-i18n="labels.subtitle">Oscilatia Amortizata</b>
     <button id="toggleSidebar">></button>
    <div class="sidebar">
         <div class="slider-container">
             <div class="slider-label">
-                <span class="text1">B:</span>
+                <span class="text1" data-i18n="labels.betaLabel">B:</span>
                 <span id="beta-value" class="text1">0.05 x s^-1</span>
             </div>
             <input type="range" id="beta" min="1" max="10" value="5">
         </div>
         <div class="slider-container">
             <div class="slider-label">
-                <span class="text1">Viteză:</span>
+                <span class="text1" data-i18n="labels.speed">Viteză:</span>
                 <span id="speed-value" class="text1">10x</span>
             </div>
             <input type="range" id="speed" min="1" max="15" value="10">
         </div>
         <div class="slider-container">
             <div class="slider-label">
-                <span class="text1">Lungime fir:</span>
+                <span class="text1" data-i18n="labels.stringLength">Lungime fir:</span>
                 <span id="lengthValue" class="text1">450</span>
             </div>
             <input type="range" id="lengthSlider" min="200" max="600" value="450">
         </div>
-        <button onclick="startOscillation()" class="button1">Start</button>
-        <button id="pauseResumeBtn" onclick="togglePauseResume()" class="button1">Pauză</button>
-        <button onclick="stopOscillation()" class="button1">Stop</button>
-        <button onclick="toggleMeasuringTool()" class="button1">Măsoară</button>
-        <div class="measurement-values" id="measurement-values">
-            <p>L(lungimea): <span id="measured-length">-</span></p>
-            <p>β (Coeficientulde amortizare): <span id="measured-beta">-</span></p>
-            <p>A (Amplitudine): <span id="measured-amplitude">-</span></p>
-            <p>t (timpul): <span id="measured-time">-</span></p>
-            <p>x (Vector deplasare):<span id="measured-x">-</span></p>
-            <p>v (Viteză-setare):<span id="measured-speed">-</span></p>
-            <p>φ0 (Unghi): <span id="measured-angle">-</span></p>
-            <p>𝛚 (Pulsatia): <span id="measured-angular-velocity">-</span></p>
-            <!-- <p>v (Viteză oscilatorie): <span id="measured-velocity">-</span></p>
-            <p>a (Accelerație): <span id="measured-acceleration">-</span></p> -->
-            <!-- <p>Ec (Energia cinetica): <span id="measured-kineticenergy">-</span></p> -->
+        <button onclick="startOscillation()" class="button1" data-i18n="buttons.start">Start</button>
+        <button id="pauseResumeBtn" onclick="togglePauseResume()" class="button1" data-i18n="buttons.pause">Pauză</button>
+        <button onclick="stopOscillation()" class="button1" data-i18n="buttons.stop">Stop</button>
+        <button onclick="toggleMeasuringTool()" class="button1" data-i18n="buttons.measure">Măsoară</button>
+        <div class="measurement-values" id="measurement-values-sidebar">
+            <p><span data-i18n="labels.measureLength">L(lungimea):</span> <span id="measured-length">-</span></p>
+            <p><span data-i18n="labels.measureBeta">β (Coeficientulde amortizare):</span> <span id="measured-beta">-</span></p>
+            <p><span data-i18n="labels.measureAmplitude">A (Amplitudine):</span> <span id="measured-amplitude">-</span></p>
+            <p><span data-i18n="labels.measureTime">t (timpul):</span> <span id="measured-time">-</span></p>
+            <p><span data-i18n="labels.measureDisplacement">x (Vector deplasare):</span><span id="measured-x">-</span></p>
+            <p><span data-i18n="labels.measureSpeedSetting">v (Viteză-setare):</span><span id="measured-speed">-</span></p>
+            <p><span data-i18n="labels.measureAngle">φ0 (Unghi):</span> <span id="measured-angle">-</span></p>
+            <p><span data-i18n="labels.measureAngularFreq">𝛚 (Pulsatia):</span> <span id="measured-angular-velocity">-</span></p>
             <div id="chart-container">
                 <canvas id="pendulumChart"></canvas>
             </div>
@@ -58,31 +55,26 @@
         <button id="toggleUniformbar"><</button>
         <div class="unitform-container">
     <div class="unitbar">
-        <span class="text1">Unitati de masura:</span>
-        <div class="measurement-values" id="measurement-values">
-            <p>L(lungimea) - m (metru)</p>
-            <p>β (Coeficientulde amortizare) - s^-1</p>
-            <p>A (Amplitudine) - m(metru) </p>
-            <p>t (timpul) - s(secunda) </p>
-            <p>x (Vector deplasare) - m(metru)</p>
-            <p>v (Viteză-setare) - x (viteza de redare)</p>
-            <p>φ0 (Unghi) - ° (grade)</p>
-            <p>𝛚 (Pulsatia)  - rad/ s (radian pe secunda) </p>
-            <!-- <p>v (Viteză oscilatorie) - m/s (metru pe secunda)</p>
-            <p>a (Accelerație) - m/s²(metru pe secunda la a doua) </p>
-            <p>Ec(Energia cinetica) - J(joule)</p> -->
+        <span class="text1" data-i18n="labels.unitsHeading">Unitati de masura:</span>
+        <div class="measurement-values" id="measurement-values-units">
+            <p data-i18n="labels.unitLength">L(lungimea) - m (metru)</p>
+            <p data-i18n="labels.unitBeta">β (Coeficientulde amortizare) - s^-1</p>
+            <p data-i18n="labels.unitAmplitude">A (Amplitudine) - m(metru) </p>
+            <p data-i18n="labels.unitTime">t (timpul) - s(secunda) </p>
+            <p data-i18n="labels.unitDisplacement">x (Vector deplasare) - m(metru)</p>
+            <p data-i18n="labels.unitPlayback">v (Viteză-setare) - x (viteza de redare)</p>
+            <p data-i18n="labels.unitAngle">φ0 (Unghi) - ° (grade)</p>
+            <p data-i18n="labels.unitOmega">𝛚 (Pulsatia)  - rad/ s (radian pe secunda) </p>
         </div>
     </div>
     <div class="formulabar">
-        <span class="text1">Formule:</span>
-        <div class="measurement-values" id="measurement-values">
+        <span class="text1" data-i18n="labels.formulasHeading">Formule:</span>
+        <div class="measurement-values" id="measurement-values-formulas">
             <p>\( x(t) = A e^{-\beta t} \sin\left(\omega_d t + \phi\right) \)</p>
-            <!-- <p>v = ωA cos( ωt + φo) </p>
-            <p>a = -ω²A sin( ωt + φo)  </p> -->
             <p>\( \omega = \sqrt{\frac{g}{L}} \)</p>
             <p>\( \text{A} = L \cdot \tan(\theta) \)</p>
         </div>
-        <button id="themeToggle" class="button2">🌙 Schimbă tema</button>
+        <button id="themeToggle" class="button2" data-i18n="buttons.themeDark">🌙 Schimbă tema</button>
         </div>
     </div>
   </div>
@@ -92,15 +84,14 @@
             <div class="ball" id="ball"></div>
         </div>
         </div>
-        <!-- <div id="shadow"></div> -->
     </div>
-    
-</body>
-<script src="Oscilatie-intretinuta.js"></script>
-<script src="Tema.js"></script>
+
+<script src="/simulari/simulator-i18n-runtime.js"></script>
+<script src="pendul-amortizat-boot.js"></script>
 <script type="text/javascript" async 
   src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
 <script type="text/javascript" async 
   src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
 
+</body>
 </html>

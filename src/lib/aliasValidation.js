@@ -31,3 +31,15 @@ export function getAliasFormatError(alias) {
   }
   return null;
 }
+
+/**
+ * @returns {'empty'|'tooShort'|'tooLong'|'invalidPattern'|null}
+ */
+export function getAliasFormatIssueCode(alias) {
+  const s = (alias || '').trim();
+  if (!s) return 'empty';
+  if (s.length < ALIAS_MIN_LENGTH) return 'tooShort';
+  if (s.length > ALIAS_MAX_LENGTH) return 'tooLong';
+  if (!ALIAS_PATTERN.test(s)) return 'invalidPattern';
+  return null;
+}

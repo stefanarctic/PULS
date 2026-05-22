@@ -1,4 +1,16 @@
-document.addEventListener("DOMContentLoaded", function () {
+function M(path, fb) {
+    return typeof window.simLbl === 'function' ? window.simLbl(path, fb) : fb;
+}
+
+function tpl(str, vars) {
+    let s = str;
+    Object.keys(vars).forEach((k) => {
+        s = s.split('{{' + k + '}}').join(String(vars[k]));
+    });
+    return s;
+}
+
+function initCiocnireSidebarsAndChart() {
     const sidebar = document.getElementById("sidebar");
     const toggleSidebar = document.getElementById("toggleSidebar");
     const sidebarleft = document.getElementById("sidebarleft");
@@ -35,7 +47,6 @@ document.addEventListener("DOMContentLoaded", function () {
     window.addEventListener("resize", applyInitialSidebarState);
     applyInitialSidebarState();
 
-    // Initializare valori slidere
     document.getElementById('m1Value').innerText = document.getElementById('m1').value;
     document.getElementById('m2Value').innerText = document.getElementById('m2').value;
     document.getElementById('v1Value').innerText = document.getElementById('v1').value;
@@ -43,7 +54,6 @@ document.addEventListener("DOMContentLoaded", function () {
     document.getElementById('sizeValue').innerText = document.getElementById('size').value;
     document.getElementById('speedValue').innerText = document.getElementById('speed').value;
 
-    // Set initial ball sizes
     let initialSize = parseInt(document.getElementById('size').value);
     ball1.style.width = initialSize + 'px';
     ball1.style.height = initialSize + 'px';
@@ -52,18 +62,15 @@ document.addEventListener("DOMContentLoaded", function () {
     ball1.style.lineHeight = initialSize + 'px';
     ball2.style.lineHeight = initialSize + 'px';
 
-    // Set initial positions
     pos1 = 0;
     let simulatorWidth = document.getElementById('simulator').offsetWidth;
     pos2 = simulatorWidth - initialSize;
     ball1.style.left = pos1 + 'px';
     ball2.style.left = pos2 + 'px';
 
-    // Inițializează graficul
     initializeChart();
-});
+}
 
-let ball1 = document.getElementById('ball1');
 let ball2 = document.getElementById('ball2');
 let info = document.getElementById('info');
 
@@ -177,28 +184,28 @@ function initializeChart() {
             labels: [],
             datasets: [
                 {
-                    label: 'Impuls Bila 1 (kg·px/frame)',
+                    label: M('chart.impulseB1', 'Impuls Bila 1 (kg·px/frame)'),
                     data: [],
                     borderColor: '#13c79a',
                     backgroundColor: 'rgba(19, 199, 154, 0.1)',
                     tension: 0.4
                 },
                 {
-                    label: 'Impuls Bila 2 (kg·px/frame)',
+                    label: M('chart.impulseB2', 'Impuls Bila 2 (kg·px/frame)'),
                     data: [],
                     borderColor: '#c75513',
                     backgroundColor: 'rgba(199, 85, 19, 0.1)',
                     tension: 0.4
                 },
                 {
-                    label: 'Impuls Total (kg·px/frame)',
+                    label: M('chart.impulseTotal', 'Impuls Total (kg·px/frame)'),
                     data: [],
                     borderColor: '#3455d3',
                     backgroundColor: 'rgba(52, 85, 211, 0.1)',
                     tension: 0.4
                 },
                 {
-                    label: 'Energie Totală (J)',
+                    label: M('chart.energyTotal', 'Energie Totală (J)'),
                     data: [],
                     borderColor: '#d34555',
                     backgroundColor: 'rgba(211, 69, 85, 0.1)',
@@ -291,7 +298,7 @@ function updateChart() {
 function toggleMeasurements() {
     showMeasurements = !showMeasurements;
     const button = document.getElementById('measurementsButton');
-    button.innerText = showMeasurements ? 'Ascunde Măsurători' : 'Arată Măsurători';
+    button.innerText = showMeasurements ? M('buttons.measureHide', 'Ascunde Măsurători') : M('buttons.measureShow', 'Arată Măsurători');
     if (!showMeasurements) {
         info.innerText = '';
     }
@@ -370,10 +377,9 @@ function updateMeasurements() {
     const title = document.createElement('h3');
     title.style.color = '#333';
     title.style.marginBottom = '10px';
-    title.innerText = 'Măsurători:';
+    title.innerText = M('measurements.title', 'Măsurători:');
     container.appendChild(title);
 
-    // Function to create measurement block
     function createMeasurementBlock(ballNumber, v, p, E, F) {
         const block = document.createElement('div');
         block.style.marginBottom = '15px';
@@ -381,7 +387,7 @@ function updateMeasurements() {
         const ballTitle = document.createElement('p');
         ballTitle.style.fontWeight = 'bold';
         ballTitle.style.color = '#333';
-        ballTitle.innerText = `Bila ${ballNumber}:`;
+        ballTitle.innerText = tpl(M('measurements.ball', 'Bila {{n}}:'), { n: ballNumber });
         block.appendChild(ballTitle);
 
         const list = document.createElement('ul');
@@ -389,37 +395,35 @@ function updateMeasurements() {
         list.style.paddingLeft = '10px';
 
         const velocityItem = document.createElement('li');
-        velocityItem.innerText = `Viteză: ${v} m/s`;
+        velocityItem.innerText = tpl(M('measurements.velocity', 'Viteză: {{v}} m/s'), { v });
         list.appendChild(velocityItem);
 
         const impulseItem = document.createElement('li');
-        impulseItem.innerText = `Impuls: ${p} kg·m/s`;
+        impulseItem.innerText = tpl(M('measurements.impulse', 'Impuls: {{p}} kg·m/s'), { p });
         list.appendChild(impulseItem);
 
         const energyItem = document.createElement('li');
-        energyItem.innerText = `Energie cinetică: ${E} J`;
+        energyItem.innerText = tpl(M('measurements.kinetic', 'Energie cinetică: {{e}} J'), { e: E });
         list.appendChild(energyItem);
 
         const forceItem = document.createElement('li');
-        forceItem.innerText = `Forță: ${F} N`;
+        forceItem.innerText = tpl(M('measurements.force', 'Forță: {{f}} N'), { f: F });
         list.appendChild(forceItem);
 
         block.appendChild(list);
         return block;
     }
 
-    // Create measurement blocks for ball 1 and ball 2
     const ball1Block = createMeasurementBlock(1, physics.v1, physics.p1, physics.E1, physics.F1);
     const ball2Block = createMeasurementBlock(2, physics.v2, physics.p2, physics.E2, physics.F2);
     container.appendChild(ball1Block);
     container.appendChild(ball2Block);
 
-    // Create total measurement block
     const totalBlock = document.createElement('div');
     const totalTitle = document.createElement('p');
     totalTitle.style.fontWeight = 'bold';
     totalTitle.style.color = '#333';
-    totalTitle.innerText = 'Total:';
+    totalTitle.innerText = M('measurements.totalTitle', 'Total:');
     totalBlock.appendChild(totalTitle);
 
     const totalList = document.createElement('ul');
@@ -427,15 +431,15 @@ function updateMeasurements() {
     totalList.style.paddingLeft = '10px';
 
     const totalImpulseItem = document.createElement('li');
-    totalImpulseItem.innerText = `Impuls total: ${physics.pTotal} kg·m/s`;
+    totalImpulseItem.innerText = tpl(M('measurements.totalImpulse', 'Impuls total: {{p}} kg·m/s'), { p: physics.pTotal });
     totalList.appendChild(totalImpulseItem);
 
     const totalEnergyItem = document.createElement('li');
-    totalEnergyItem.innerText = `Energie totală: ${physics.ETotal} J`;
+    totalEnergyItem.innerText = tpl(M('measurements.totalEnergy', 'Energie totală: {{e}} J'), { e: physics.ETotal });
     totalList.appendChild(totalEnergyItem);
 
     const totalForceItem = document.createElement('li');
-    totalForceItem.innerText = `Forţa totală: ${physics.FTotal} J`;
+    totalForceItem.innerText = tpl(M('measurements.totalForce', 'Forţa totală: {{f}} N'), { f: physics.FTotal });
     totalList.appendChild(totalForceItem);
 
     totalBlock.appendChild(totalList);
@@ -451,17 +455,17 @@ function pauseResumeSimulation() {
         if (!isPaused) {
             cancelAnimationFrame(animationFrame);
             isPaused = true;
-            document.getElementById('pauseResumeButton').innerText = 'Resume';
+            document.getElementById('pauseResumeButton').innerText = M('buttons.resume', 'Resume');
             if (!showMeasurements) {
-                info.innerText = "Simulare în pauză.";
+                info.innerText = M('measurements.paused', 'Simulare în pauză.');
             }
         } else {
             animate();
             collisionHappened = false;
             isPaused = false;
-            document.getElementById('pauseResumeButton').innerText = 'Pauză';
+            document.getElementById('pauseResumeButton').innerText = M('buttons.pause', 'Pauză');
             if (!showMeasurements) {
-                info.innerText = "Simulare reluată.";
+                info.innerText = M('measurements.resumed', 'Simulare reluată.');
             }
         }
     }
@@ -513,7 +517,7 @@ function startSimulation() {
 
     isRunning = true;
     isPaused = false;
-    document.getElementById('pauseResumeButton').innerText = 'Pauză';
+    document.getElementById('pauseResumeButton').innerText = M('buttons.pause', 'Pauză');
 
     animate();
 }
@@ -629,4 +633,10 @@ function moveTogether(startPos, vFinal) {
         animationFrame = requestAnimationFrame(move);
     }
     move();
+}
+
+if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initCiocnireSidebarsAndChart);
+} else {
+    initCiocnireSidebarsAndChart();
 }

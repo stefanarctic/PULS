@@ -1,4 +1,8 @@
 let isPaused = false;
+function simNlUi(path, fb) {
+    const o = window.__SIMULATOR_UI_I18N__;
+    return path.split(".").reduce((c, k) => (c != null ? c[k] : undefined), o) ?? fb;
+}
 let isStopped = true;
 let amplitude = parseFloat(document.getElementById("amplitude").value); // în grade
 let speed = parseFloat(document.getElementById("speed").value);
@@ -18,19 +22,19 @@ const pendulumChart = new Chart(ctx, {
     data: {
         labels: Array.from({ length: 50 }, (_, i) => i),
         datasets: [{
-            label: 'Unghi θ (rad)',
+            label: simNlUi('chart.angleRad', 'Unghi θ (rad)'),
             data: [], 
             borderColor: 'blue',
             borderWidth: 2,
             pointRadius: 0,
         }, {
-            label: 'Viteză unghiulară ωθ (rad/s)',
+            label: simNlUi('chart.angularVelocity', 'Viteză unghiulară ωθ (rad/s)'),
             data: [],
             borderColor: 'red',
             borderWidth: 2,
             pointRadius: 0,
         }, {
-            label: 'Energia mecanică Em (J)',
+            label: simNlUi('chart.mechanicalEnergy', 'Energia mecanică Em (J)'),
             data: [],
             borderColor: 'green',
             borderWidth: 2,
@@ -142,7 +146,7 @@ function startOscillation() {
     document.getElementById("measured-potentialenergy").textContent = "0J";
     document.getElementById("measured-mechanicalenergy").textContent = "0J";
     document.getElementById("measured-period").textContent = "0s";
-    document.getElementById("pauseResumeBtn").textContent = "Pauză";
+    document.getElementById("pauseResumeBtn").textContent = simNlUi('buttons.pause', 'Pauză');
 }
 
 function togglePauseResume() {
@@ -151,10 +155,10 @@ function togglePauseResume() {
         speed = parseFloat(document.getElementById("speed").value);
         clearInterval(pendulumInterval); 
         pendulumInterval = setInterval(updatePendulum, 100 / speed);
-        button.textContent = "Pauză";
+        button.textContent = simNlUi('buttons.pause', 'Pauză');
     } else {
         clearInterval(pendulumInterval);
-        button.textContent = "Rezumă";
+        button.textContent = simNlUi('buttons.resume', 'Rezumă');
     }
     isPaused = !isPaused;
 }
@@ -176,7 +180,7 @@ function stopOscillation() {
     document.getElementById("measured-potentialenergy").textContent = "0J";
     document.getElementById("measured-mechanicalenergy").textContent = "0J";
     document.getElementById("measured-period").textContent = "0s";
-    document.getElementById("pauseResumeBtn").textContent = "Pauză";
+    document.getElementById("pauseResumeBtn").textContent = simNlUi('buttons.pause', 'Pauză');
 }
 
 function resetMeasuringData() {
@@ -303,7 +307,7 @@ window.addEventListener("resize", function () {
     updateUniformTogglePosition();
 });
 
-document.addEventListener("DOMContentLoaded", function () {
+function initNonlinearPendulumLayoutUi() {
     const lengthSlider = document.getElementById("lengthSlider");
     const lengthValue = document.getElementById("lengthValue");
     const measuredLength = document.getElementById("measured-length");
@@ -323,7 +327,6 @@ document.addEventListener("DOMContentLoaded", function () {
         lengthValue.textContent = newLength;
         measuredLength.textContent = (newLength / 100).toFixed(2) + "m";
         
-        // Actualizăm lungimea firului vizual
         const string = document.getElementById("string");
         const ball = document.getElementById("ball");
         if (string && ball) {
@@ -336,8 +339,12 @@ document.addEventListener("DOMContentLoaded", function () {
     applyResponsivePanelState(true);
     updateSidebarTogglePosition();
     updateUniformTogglePosition();
-});
+}
 
-
+if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", initNonlinearPendulumLayoutUi);
+} else {
+    initNonlinearPendulumLayoutUi();
+}
 
 

@@ -11,6 +11,10 @@ const CONSTANTS = {
     mu0: 1.257e-6         // Vacuum permeability (H/m)
 };
 
+function simT(path, ro) {
+    return typeof window.simLbl === 'function' ? window.simLbl(path, ro) : ro;
+}
+
 // ===== Simulation State =====
 class SimulationState {
     constructor() {
@@ -339,7 +343,7 @@ class WaveRenderer {
         // Axis labels
         this.ctx.font = '14px Inter, sans-serif';
         this.ctx.fillStyle = '#00d4ff';
-        this.ctx.fillText('z (propagare)', zEnd.x + 10, zEnd.y);
+        this.ctx.fillText(simT('canvas.axisZ', 'z (propagare)'), zEnd.x + 10, zEnd.y);
         
         this.ctx.fillStyle = '#ff6b9d';
         this.ctx.fillText('Eₓ', xEnd.x + 10, xEnd.y);
@@ -543,14 +547,24 @@ class WaveRenderer {
         this.ctx.font = '12px JetBrains Mono, monospace';
         this.ctx.fillStyle = 'rgba(255, 255, 255, 0.5)';
         
-        const viewLabels = {
+        const viewPaths = {
+            '3d': 'canvas.view3d',
+            'xy': 'canvas.viewXy',
+            'xz': 'canvas.viewXz',
+            'yz': 'canvas.viewYz'
+        };
+        const viewFallbacks = {
             '3d': 'Vizualizare 3D - Trage pentru rotire, scroll pentru zoom',
             'xy': 'Plan XY (Polarizare)',
             'xz': 'Plan XZ (Propagare Ex)',
             'yz': 'Plan YZ (Propagare Ey)'
         };
-        
-        this.ctx.fillText(viewLabels[this.state.viewMode], 20, this.height - 20);
+        const vm = this.state.viewMode;
+        this.ctx.fillText(
+            simT(viewPaths[vm], viewFallbacks[vm]),
+            20,
+            this.height - 20
+        );
     }
     
     render() {
@@ -986,6 +1000,14 @@ class Application {
 }
 
 // ===== Initialize Application =====
-document.addEventListener('DOMContentLoaded', () => {
+// Script may load dynamically after DOMContentLoaded (see polarizare-circulara-boot.js).
+function initPolarizareCircularaApp() {
+    if (window.app) return;
     window.app = new Application();
-});
+}
+
+if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", initPolarizareCircularaApp);
+} else {
+    initPolarizareCircularaApp();
+}

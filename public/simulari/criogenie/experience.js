@@ -1,5 +1,7 @@
 /** Toast-uri, experimente ghidate, captură PNG */
 
+import { simT } from "./i18n.js";
+
 let toastTimer = null;
 
 export function showToast(message, icon = "\u2728") {
@@ -18,17 +20,17 @@ export function showToast(message, icon = "\u2728") {
   }, 3400);
 }
 
-export const EXPERIMENTS = [
+const EXPERIMENT_DEFS = [
   {
+    id: "highPressureNoTemp",
     title: "Presiune mare, fără T mai mare",
     desc: "Obține Pressure: High fără să crești temperatura față de momentul Start.",
     winMsg: "Experiment reușit: presiune mare la T controlată!",
     check: (c) =>
-      c.active &&
-      c.ratio > 1.38 &&
-      c.temp <= c.startTemp + 1.5,
+      c.active && c.ratio > 1.38 && c.temp <= c.startTemp + 1.5,
   },
   {
+    id: "liquidNoVolumeUp",
     title: "Lichid fără volum mai mare",
     desc: "Cu Apă: pornește la T mare (gaz), coboară T spre lichid. Nu crește slider-ul Volum după Start.",
     winMsg: "Experiment reușit: lichid fără să mărești cutia!",
@@ -40,18 +42,31 @@ export const EXPERIMENTS = [
       c.vol <= c.startVol + 0.015,
   },
   {
+    id: "cryoZone",
     title: "Zonă criogenică",
     desc: "Adu temperatura sub 80 K și observă încetinirea.",
     winMsg: "Experiment reușit: zonă ultrarece!",
     check: (c) => c.active && c.temp < 80,
   },
   {
+    id: "solidState",
     title: "Stare solidă",
     desc: "Obține solid pentru materialul ales (coboară T sau alege un material cu T de îngheț potrivit).",
     winMsg: "Experiment reușit: solid atins!",
     check: (c) => c.active && c.state === "solid",
   },
 ];
+
+function translateExperimentDef(raw) {
+  const base = `experiments.${raw.id}`;
+  return {
+    id: raw.id,
+    title: simT(`${base}.title`, raw.title),
+    desc: simT(`${base}.desc`, raw.desc),
+    winMsg: simT(`${base}.winMsg`, raw.winMsg),
+    check: raw.check,
+  };
+}
 
 let expIndex = 0;
 let expActive = false;
@@ -65,12 +80,12 @@ export function getExperimentIndex() {
 }
 
 export function getCurrentExperimentDef() {
-  return EXPERIMENTS[expIndex];
+  return translateExperimentDef(EXPERIMENT_DEFS[expIndex]);
 }
 
 export function startExperiment() {
   expActive = true;
-  return EXPERIMENTS[expIndex];
+  return getCurrentExperimentDef();
 }
 
 export function stopExperiment() {
@@ -82,17 +97,17 @@ export function stopExperiment() {
  */
 export function tickExperiment(c) {
   if (!expActive) return null;
-  const def = EXPERIMENTS[expIndex];
-  if (!def.check(c)) return null;
+  const raw = EXPERIMENT_DEFS[expIndex];
+  if (!raw.check(c)) return null;
   expActive = false;
-  const msg = def.winMsg;
-  expIndex = (expIndex + 1) % EXPERIMENTS.length;
+  const msg = simT(`experiments.${raw.id}.winMsg`, raw.winMsg);
+  expIndex = (expIndex + 1) % EXPERIMENT_DEFS.length;
   return msg;
 }
 
 export function advanceExperimentPreview() {
-  expIndex = (expIndex + 1) % EXPERIMENTS.length;
-  return EXPERIMENTS[expIndex];
+  expIndex = (expIndex + 1) % EXPERIMENT_DEFS.length;
+  return getCurrentExperimentDef();
 }
 
 /** Captură canvas simulare + banner T, P, stare */
@@ -120,7 +135,11 @@ export function captureExperimentShot(sourceCanvas, meta) {
   );
   o.font = `500 ${Math.floor(fs * 0.72)}px system-ui, sans-serif`;
   o.fillStyle = "#7ec8e3";
-  o.fillText("Simulated on puls-fizica.ro", pad, Math.floor(bh * 0.78));
+  o.fillText(
+    simT("labels.captureFooter", "Simulated on puls-fizica.ro"),
+    pad,
+    Math.floor(bh * 0.78)
+  );
 
   o.drawImage(sourceCanvas, 0, bh);
 
@@ -132,7 +151,7 @@ export function captureExperimentShot(sourceCanvas, meta) {
     a.download = `criogenie-${Date.now()}.png`;
     a.click();
     URL.revokeObjectURL(url);
-    showToast("Imagine salvată", "\uD83D\uDCF8");
+    showToast(simT("labels.imageSaved", "Imagine salvată"), "\uD83D\uDCF8");
   }, "image/png");
 }
 

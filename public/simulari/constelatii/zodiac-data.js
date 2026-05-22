@@ -7,6 +7,15 @@
 export const ZODIAC_HOOK =
   "Horoscopul din ziar e „tropical”. Aici vezi constelațiile de pe harta astronomilor, același cer, alt poveste.";
 
+/** Partea din `find` înainte de `ZODIAC_HOOK` (pentru i18n EN). */
+export function stripZodiacHook(findStr) {
+  if (typeof findStr !== "string") return findStr;
+  if (findStr.endsWith(ZODIAC_HOOK)) {
+    return findStr.slice(0, findStr.length - ZODIAC_HOOK.length).trimEnd();
+  }
+  return findStr;
+}
+
 export const ZODIAC_DEFINITIONS = [
   {
     id: "aries",

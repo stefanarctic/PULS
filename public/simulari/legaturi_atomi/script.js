@@ -1,5 +1,11 @@
 import * as THREE from "https://unpkg.com/three@0.164.0/build/three.module.js";
 
+function simLabel(path, fallback) {
+  return typeof window !== "undefined" && typeof window.simLbl === "function"
+    ? window.simLbl(path, fallback)
+    : fallback;
+}
+
 (function () {
   const ELEMENT_DATA = {
     H: { name: "Hidrogen", atomicNumber: 1, valence: 1, electronegativity: 2.2, radius: 0.56, color: 0x8fd3ff, kind: "nonmetal", category: "basic" },
@@ -37,7 +43,16 @@ import * as THREE from "https://unpkg.com/three@0.164.0/build/three.module.js";
   };
 
   function getBondTypeLabel(bondType) {
-    return BOND_TYPE_LABELS[bondType] || bondType;
+    return simLabel(`bondTypes.${bondType}`, BOND_TYPE_LABELS[bondType] || bondType);
+  }
+
+  function getElementDisplayName(type) {
+    return simLabel(`elements.${type}.name`, ELEMENT_DATA[type].name);
+  }
+
+  function getCategoryLabel(categoryId) {
+    const entry = ELEMENT_CATEGORIES.find((c) => c.id === categoryId);
+    return simLabel(`categories.${categoryId}`, entry?.label ?? categoryId);
   }
 
   const COMBO_SUGGESTIONS = {
@@ -124,7 +139,10 @@ import * as THREE from "https://unpkg.com/three@0.164.0/build/three.module.js";
       this.actualDeltaEN = 0;
       this.electronCounts = [atoms[0]?.baseElectronCount ?? 0, atoms[1]?.baseElectronCount ?? 0];
       this.electronDeltas = [0, 0];
-      this.comboSuggestion = "Alege o pereche interesanta pentru a debloca scenarii chimice noi.";
+      this.comboSuggestion = simLabel(
+        "hints.pickPair",
+        "Alege o pereche interesanta pentru a debloca scenarii chimice noi."
+      );
       this.atomCharges = new Map();
       this.atomElectronCounts = new Map();
       this.atomElectronDeltas = new Map();
@@ -184,8 +202,15 @@ import * as THREE from "https://unpkg.com/three@0.164.0/build/three.module.js";
   }
 
   function getComboSuggestion(atomA, atomB) {
-    return COMBO_SUGGESTIONS[getPairKey(atomA.type, atomB.type)] ||
-      `Combinatia ${atomA.type} + ${atomB.type} poate fi explorata liber in simulator.`;
+    const pairKey = getPairKey(atomA.type, atomB.type);
+    const jsonKey = pairKey.replace(/\|/g, "_");
+    if (COMBO_SUGGESTIONS[pairKey]) {
+      return simLabel(`comboSuggestions.${jsonKey}`, COMBO_SUGGESTIONS[pairKey]);
+    }
+    const roFallback = `Combinatia ${atomA.type} + ${atomB.type} poate fi explorata liber in simulator.`;
+    return simLabel("comboSuggestions._generic", roFallback)
+      .replace(/\{a\}/g, atomA.type)
+      .replace(/\{b\}/g, atomB.type);
   }
 
   function createInitialAtoms() {
@@ -298,31 +323,52 @@ import * as THREE from "https://unpkg.com/three@0.164.0/build/three.module.js";
 
     let bondType = "none";
     let chargeTransfer = 0;
-    let description = "Particulele raman difuze pana cand nucleele intra in regiunea de suprapunere.";
+    let description = simLabel(
+      "descriptions.diffuse",
+      "Particulele raman difuze pana cand nucleele intra in regiunea de suprapunere."
+    );
 
     if (hasNobleGas) {
-      description = "Gazele nobile raman aproape complet inerte, chiar daca apropii atomii.";
+      description = simLabel(
+        "descriptions.nobleGas",
+        "Gazele nobile raman aproape complet inerte, chiar daca apropii atomii."
+      );
     } else if (bondStrength > 0.08) {
       if (isSemiconductorPair) {
         bondType = "semiconductor";
         chargeTransfer = 0.1 * bondStrength;
-        description = "Orbitalii se aliniaza ca intr-o retea, iar transferul ramane controlat energetic.";
+        description = simLabel(
+          "descriptions.semiconductor",
+          "Orbitalii se aliniaza ca intr-o retea, iar transferul ramane controlat energetic."
+        );
       } else if (isMetallicPair) {
         bondType = "metallic";
         chargeTransfer = 0.08 * bondStrength;
-        description = "Electronii devin delocalizați și curg printr-un nor comun de tip mare de electroni.";
+        description = simLabel(
+          "descriptions.metallic",
+          "Electronii devin delocalizați și curg printr-un nor comun de tip mare de electroni."
+        );
       } else if (usedDeltaEN < 0.4) {
         bondType = "covalent";
         chargeTransfer = 0.12 * bondStrength;
-        description = "Un electron de legatura oscileaza intre nuclee, iar norul ramane aproape simetric.";
+        description = simLabel(
+          "descriptions.covalent",
+          "Un electron de legatura oscileaza intre nuclee, iar norul ramane aproape simetric."
+        );
       } else if (usedDeltaEN < 1.7) {
         bondType = "polar_covalent";
         chargeTransfer = lerp(0.18, 0.48, clamp(usedDeltaEN / 1.7, 0, 1)) * bondStrength;
-        description = "Norul devine polarizat si fluxul electronic este tras spre atomul mai electronegativ.";
+        description = simLabel(
+          "descriptions.polarCovalent",
+          "Norul devine polarizat si fluxul electronic este tras spre atomul mai electronegativ."
+        );
       } else {
         bondType = "ionic";
         chargeTransfer = lerp(0.68, 0.96, clamp(usedDeltaEN / 3.5, 0, 1)) * bondStrength;
-        description = "Momentul formării legăturii împinge electronul spre acceptor și separă clar donatorul de acceptor.";
+        description = simLabel(
+          "descriptions.ionic",
+          "Momentul formării legăturii împinge electronul spre acceptor și separă clar donatorul de acceptor."
+        );
       }
     }
 
@@ -465,13 +511,16 @@ import * as THREE from "https://unpkg.com/three@0.164.0/build/three.module.js";
       state.chargeTransfer = 0;
       state.cloudIntensity = 0;
       state.cloudSpread = 1;
-      state.description = "Adauga inca un atom pentru a explora legaturi.";
+      state.description = simLabel("hints.addAtom", "Adauga inca un atom pentru a explora legaturi.");
       state.proximity = 0;
       state.polarity = 0;
       state.chargeSigns = [0, 0];
       state.electronDeltas = [0, 0];
       state.electronCounts = [0, 0];
-      state.comboSuggestion = "Alege o pereche interesanta pentru a debloca scenarii chimice noi.";
+      state.comboSuggestion = simLabel(
+        "hints.pickPair",
+        "Alege o pereche interesanta pentru a debloca scenarii chimice noi."
+      );
     }
 
     if (previousBondType !== state.bondType && state.bondType !== "none") {
@@ -545,7 +594,7 @@ import * as THREE from "https://unpkg.com/three@0.164.0/build/three.module.js";
     const containerWidth = dom.sceneContainer.clientWidth || window.innerWidth;
     const containerHeight = dom.sceneContainer.clientHeight || window.innerHeight;
     const camera = new THREE.PerspectiveCamera(42, containerWidth / containerHeight, 0.1, 100);
-    camera.position.set(0, 0.3, 10.2);
+    camera.position.set(0, 0.3, isMobile ? 14.5 : 10.2);
 
     const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
     renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
@@ -681,13 +730,13 @@ import * as THREE from "https://unpkg.com/three@0.164.0/build/three.module.js";
       dom.newAtomSelect.innerHTML = "";
       ELEMENT_CATEGORIES.forEach((category) => {
         const group = document.createElement("optgroup");
-        group.label = category.label;
+        group.label = getCategoryLabel(category.id);
         Object.entries(ELEMENT_DATA)
           .filter(([, data]) => data.category === category.id)
           .forEach(([symbol, data]) => {
             const option = document.createElement("option");
             option.value = symbol;
-            option.textContent = `${symbol} - ${data.name}`;
+            option.textContent = `${symbol} - ${getElementDisplayName(symbol)}`;
             group.appendChild(option);
           });
         if (group.children.length) {
@@ -704,7 +753,9 @@ import * as THREE from "https://unpkg.com/three@0.164.0/build/three.module.js";
         state.atoms.forEach((atom, index) => {
           const option = document.createElement("option");
           option.value = String(atom.id);
-          option.textContent = `Atom ${index + 1} - ${atom.type}`;
+          option.textContent = simLabel("labels.atomSelectOption", "Atom {i} — {type}")
+            .replace("{i}", String(index + 1))
+            .replace("{type}", atom.type);
           select.appendChild(option);
         });
       });
@@ -907,7 +958,7 @@ import * as THREE from "https://unpkg.com/three@0.164.0/build/three.module.js";
 
       const rect = dom.sceneContainer.getBoundingClientRect();
       dom.atomTooltip.classList.remove("is-hidden");
-      dom.atomTooltip.innerHTML = `<strong>${atom.type} · ${atom.data.name}</strong><span>Z = ${atom.data.atomicNumber}</span><span>Valență = ${atom.data.valence}</span><span>EN = ${atom.data.electronegativity.toFixed(2)}</span><span>Electroni activi = ${atom.electronCount.toFixed(2)}</span>`;
+      dom.atomTooltip.innerHTML = `<strong>${atom.type} · ${getElementDisplayName(atom.type)}</strong><span>${simLabel("tooltip.z", "Z")} = ${atom.data.atomicNumber}</span><span>${simLabel("tooltip.valence", "Valență")} = ${atom.data.valence}</span><span>${simLabel("tooltip.en", "EN")} = ${atom.data.electronegativity.toFixed(2)}</span><span>${simLabel("tooltip.activeElectrons", "Electroni activi")} = ${atom.electronCount.toFixed(2)}</span>`;
       dom.atomTooltip.style.left = `${event.clientX - rect.left + 16}px`;
       dom.atomTooltip.style.top = `${event.clientY - rect.top + 16}px`;
     }
@@ -980,7 +1031,7 @@ import * as THREE from "https://unpkg.com/three@0.164.0/build/three.module.js";
       dom.bondTypeBadge.className = `bond-badge ${state.bondType}`;
       dom.distanceValue.textContent = state.distance.toFixed(2);
       dom.deltaEnValue.textContent = state.deltaENOverrideEnabled
-        ? `${state.deltaEN.toFixed(2)} (manual)`
+        ? `${state.deltaEN.toFixed(2)} ${simLabel("labels.manualDeltaSuffix", "(manual)")}`
         : state.deltaEN.toFixed(2);
       dom.bondStrengthValue.textContent = `${Math.round(state.bondStrength * 100)}%`;
       dom.comboSuggestionValue.textContent = state.comboSuggestion;
@@ -989,16 +1040,23 @@ import * as THREE from "https://unpkg.com/three@0.164.0/build/three.module.js";
       const selectedAtom = getAtomById(state, state.selectedAtomId);
       dom.selectedAtomValue.textContent = selectedAtom
         ? `${selectedAtom.type} #${state.atoms.findIndex((atom) => atom.id === selectedAtom.id) + 1}`
-        : "Niciun atom";
+        : simLabel("labels.noAtomSelected", "Niciun atom");
 
       const activeCharges = state.activeBond
         ? state.activeBond.atomIds.map((atomId) => formatSignedCharge(state.atomCharges.get(atomId) || 0))
         : ["0.00", "0.00"];
       dom.chargeValue.textContent = `${activeCharges[0]} / ${activeCharges[1]}`;
 
-      const modeText = state.viewMode === "classic"
-        ? "Mod clasic: electroni pe orbite, transfer vizibil și mișcări pe orbite."
-        : "Mod cuantic: nor de probabilitate (program de umbrire cu zgomot), pulsație, formare de legătură și deformare la apropiere.";
+      const modeText =
+        state.viewMode === "classic"
+          ? simLabel(
+              "viewMode.classicHelp",
+              "Mod clasic: electroni pe orbite, transfer vizibil și mișcări pe orbite."
+            )
+          : simLabel(
+              "viewMode.quantumHelp",
+              "Mod cuantic: nor de probabilitate (program de umbrire cu zgomot), pulsație, formare de legătură și deformare la apropiere."
+            );
       dom.bondDescription.textContent = `${state.description} ${modeText}`;
 
       updateControlStates();
@@ -1391,6 +1449,6 @@ import * as THREE from "https://unpkg.com/three@0.164.0/build/three.module.js";
     init();
   } catch (error) {
     console.error(error);
-    showRuntimeError(`A aparut o eroare la initializare: ${error.message}`);
+    showRuntimeError(simLabel("errors.initFailed", "A aparut o eroare la initializare: {msg}").replace("{msg}", error.message));
   }
 })();

@@ -22,38 +22,38 @@
     <div class="app">
       <section class="hook glass" aria-labelledby="hook-title-a">
         <div class="hook-questions" aria-live="polite">
-          <h1 class="hook-line hook-a" id="hook-title-a">Ce se întâmplă dacă bei apă grea?</h1>
-          <p class="hook-line hook-b" id="hook-title-b">Poate apa să oprească un reactor nuclear?</p>
+          <h1 class="hook-line hook-a" id="hook-title-a" data-i18n="hook.a">Ce se întâmplă dacă bei apă grea?</h1>
+          <p class="hook-line hook-b" id="hook-title-b" data-i18n="hook.b">Poate apa să oprească un reactor nuclear?</p>
         </div>
-        <p class="hook-tease">
+        <p class="hook-tease" data-i18n="hook.tease">
           H₂O și D₂O au același schelet chimic, dar mase nucleare diferite: deuteriu (²H) cântărește aproape dublu față de protium (¹H).
           De aceea diferențele apar în biologie (schimb izotopic), în reactor (captură de neutroni) și în spectre (frecvențe vibrationale). Alege un mod mai jos.
         </p>
       </section>
 
-      <nav class="scenario-nav glass" role="tablist" aria-label="Moduri">
+      <nav class="scenario-nav glass" role="tablist" data-i18n-aria="nav.ariaLabel" aria-label="Moduri">
         <button type="button" class="scenario-card" role="tab" id="tab-body" data-mode="body" aria-selected="true" aria-controls="panel-body">
-          <span class="sc-title">Corp</span>
-          <span class="sc-sub">fracție D₂O, efecte modelate</span>
+          <span class="sc-title" data-i18n="tabs.body.title">Corp</span>
+          <span class="sc-sub" data-i18n="tabs.body.sub">fracție D₂O, efecte modelate</span>
         </button>
         <button type="button" class="scenario-card" role="tab" id="tab-reactor" data-mode="reactor" aria-selected="false" aria-controls="panel-reactor">
-          <span class="sc-title">Reactor</span>
-          <span class="sc-sub">neutroni rapizi, moderație</span>
+          <span class="sc-title" data-i18n="tabs.reactor.title">Reactor</span>
+          <span class="sc-sub" data-i18n="tabs.reactor.sub">neutroni rapizi, moderație</span>
         </button>
         <button type="button" class="scenario-card" role="tab" id="tab-physics" data-mode="physics" aria-selected="false" aria-controls="panel-physics">
-          <span class="sc-title">Fizică</span>
-          <span class="sc-sub">structură, spectre, faze</span>
+          <span class="sc-title" data-i18n="tabs.physics.title">Fizică</span>
+          <span class="sc-sub" data-i18n="tabs.physics.sub">structură, spectre, faze</span>
         </button>
       </nav>
 
-      <aside class="bonus glass" aria-label="Context România">
+      <aside class="bonus glass" data-i18n-aria="bonus.ariaLabel" aria-label="Context România">
         <div class="bonus-body">
-          <p>
+          <p data-i18n="bonus.p1">
             <strong>Dorel Mihai Constantinescu</strong> (n. 1947, Râmnicu Vâlcea) este fizicianul român asociat cu etapa în care România a dezvoltat instalații proprii pentru apă grea.
             În anii 1970, la <strong>Uzina G din Râmnicu Vâlcea</strong>, a condus laboratorul de calcul pentru modelarea proceselor de separare izotopică și a participat la obținerea primelor cantități de D₂O în flux experimental.
             A lucrat și în legătură cu proiectarea combinatului de la <strong>Drobeta-Turnu Severin</strong>, nod important al filierei naționale de apă grea.
           </p>
-          <p>
+          <p data-i18n="bonus.p2">
             În 1976 a fost recunoscut ca inventator pentru o instalație de separare a deuteriului prin schimb izotopic; în 1977 a obținut titlul de doctor în fizică, iar în 1981 Academia Română i-a acordat Premiul „Dragomir Hurmuzescu”.
             A publicat despre istoria tehnologiei la Râmnicu Vâlcea, punând pe hârtie experiența unei generații de specialiști din domeniul nuclear.
           </p>
@@ -61,39 +61,39 @@
       </aside>
 
       <section id="panel-body" role="tabpanel" aria-labelledby="tab-body" class="panel active">
-        <h2 class="panel-title">Fracție D₂O în lichid</h2>
-        <p class="panel-desc">
+        <h2 class="panel-title" data-i18n="body.panelTitle">Fracție D₂O în lichid</h2>
+        <p class="panel-desc" data-i18n="body.desc1">
           În organism, apa participă ca solvent și ca sursă de hidrogen în reacții enzimatice. D₂O are proprietăți fizice apropiate de H₂O, dar legăturile O–D sunt mai „grele” decât O–H:
           unele viteze de reacție scad (efect cinetic izotopic), iar la fracții foarte mari de D₂O apar efecte fiziologice grave. În apă naturală, deuteriul este prezent în ordin de mărime de <strong>140 ppm</strong> (aprox. <strong>0,014%</strong> din atomii de hidrogen, adică circa o parte D la ~7000 părți H).
         </p>
-        <p class="panel-desc">
+        <p class="panel-desc" data-i18n="body.desc2">
           Sliderul setează o <strong>fracție molară fictivă</strong> de D₂O într-un lichid model; grila de celule arată propagarea vizuală, nu un diagnostic.
         </p>
 
         <div class="body-sim glass">
           <div class="body-head">
             <span class="body-badge" id="body-badge">OK</span>
-            <span class="body-pct"><strong id="body-pct-val">0,014</strong>% D₂O</span>
+            <span class="body-pct"><strong id="body-pct-val">0,014</strong><span data-i18n="body.pctSuffix">% D₂O</span></span>
           </div>
-          <label class="body-slider-label" for="body-d2o">Fracție D₂O</label>
+          <label class="body-slider-label" for="body-d2o" data-i18n="body.sliderLabel">Fracție D₂O</label>
           <input type="range" id="body-d2o" min="0" max="100" step="0.001" value="0.014" />
           <div class="cell-grid" id="cell-grid" aria-hidden="true"></div>
           <p class="body-story" id="body-story"></p>
-          <p class="body-disclaimer">Referință naturală de deuteriu: ~140 ppm (~0,014%).</p>
-          <p class="body-disclaimer">Demonstrație educativă. Nu consuma apă grea.</p>
+          <p class="body-disclaimer" data-i18n="body.disclaimer1">Referință naturală de deuteriu: ~140 ppm (~0,014%).</p>
+          <p class="body-disclaimer" data-i18n="body.disclaimer2">Demonstrație educativă. Nu consuma apă grea.</p>
         </div>
       </section>
 
       <section id="panel-reactor" role="tabpanel" aria-labelledby="tab-reactor" class="panel" hidden>
-        <h2 class="panel-title">Moderator în jurul combustibilului</h2>
-        <p class="panel-desc">
+        <h2 class="panel-title" data-i18n="reactor.panelTitle">Moderator în jurul combustibilului</h2>
+        <p class="panel-desc" data-i18n="reactor.desc1">
           La fisiune se eliberează neutroni foarte energici („rapizi”). Ca să fie folosiți eficient de combustibilul din tije, trebuie încetiniți până la energii termice,
            proces numit <strong>moderație</strong>. Moleculele din jurul combustibilului (apă grea sau ușoară) ciocnesc cu neutronii și le scad energia.
         </p>
         <p class="reactor-one-liner" id="reactor-fate"></p>
 
         <div class="reactor-stage glass" id="reactor-stage">
-          <div class="reactor-label">Moderator</div>
+          <div class="reactor-label" data-i18n="reactor.columnLabel">Moderator</div>
           <div class="chain-glow" id="chain-glow" aria-hidden="true"></div>
           <div class="neutron-layer" id="neutrons"></div>
           <div class="core-bar" id="core-bar-text">Combustibil</div>
@@ -101,7 +101,7 @@
 
         <div class="reactor-aha glass">
           <div class="chain-meter-row">
-            <span>Lanț</span>
+            <span data-i18n="reactor.chainWord">Lanț</span>
             <div class="chain-meter"><div class="chain-fill" id="chain-fill"></div></div>
             <span class="chain-label" id="chain-label">activ</span>
           </div>
@@ -111,30 +111,30 @@
           <label class="switch-row">
             <input type="checkbox" id="mod-d2o" checked />
             <span class="switch-ui" aria-hidden="true"></span>
-            <span class="switch-text">Moderator: <strong id="mod-label">D₂O</strong></span>
+            <span class="switch-text"><span data-i18n="reactor.switchPrefix">Moderator:</span> <strong id="mod-label">D₂O</strong></span>
           </label>
           <p class="mod-hint" id="mod-hint"></p>
           <div class="meter-row">
-            <span>Captură neutroni în moderator</span>
+            <span data-i18n="reactor.captureLabel">Captură neutroni în moderator</span>
             <div class="meter"><div class="meter-fill" id="meter-fill"></div></div>
             <span class="meter-val" id="meter-val">scăzută</span>
           </div>
         </div>
 
         <ul class="facts">
-          <li>Reactoare CANDU (ex. Cernavodă): moderator D₂O, adesea uraniu natural.</li>
-          <li>Cu H₂O, captura pe hidrogen e mai mare; în multe proiecte se folosește combustibil îmbogățit.</li>
+          <li data-i18n="reactor.fact1">Reactoare CANDU (ex. Cernavodă): moderator D₂O, adesea uraniu natural.</li>
+          <li data-i18n="reactor.fact2">Cu H₂O, captura pe hidrogen e mai mare; în multe proiecte se folosește combustibil îmbogățit.</li>
         </ul>
       </section>
 
       <section id="panel-physics" role="tabpanel" aria-labelledby="tab-physics" class="panel" hidden>
-        <h2 class="panel-title">H₂O și D₂O: aceeași geometrie, masă diferită</h2>
-        <p class="panel-desc">
+        <h2 class="panel-title" data-i18n="physics.panelTitle">H₂O și D₂O: aceeași geometrie, masă diferită</h2>
+        <p class="panel-desc" data-i18n="physics.intro">
           Molecula de apă are unghi H–O–H de aproximativ 104,5°. Înlocuind ¹H cu ²H, masa moleculară crește cu peste 10%, dar geometria rămâne apropiată.
           Spectrele infraroșii și Raman arată frecvențe de vibrație mai joase pentru D₂O; la echilibru lichid, D₂O are densitate mai mare și punct de fierbere ușor peste 100 °C la presiune atmosferică standard.
         </p>
 
-        <h3 class="subhead section-marker">Structură</h3>
+        <h3 class="subhead section-marker" data-i18n="physics.structureHead">Structură</h3>
         <div class="compare-grid">
           <article class="card mol-card tilt">
             <div class="card-head">
@@ -143,11 +143,11 @@
             </div>
             <div class="mol-wrap mol-pulse" id="mol-h2o"></div>
             <dl class="stats">
-              <dt>Masă moleculară</dt>
+              <dt data-i18n="physics.statMolMass">Masă moleculară</dt>
               <dd>~18,02 u</dd>
-              <dt>Masă molară</dt>
+              <dt data-i18n="physics.statMolarMass">Masă molară</dt>
               <dd>~18 g/mol</dd>
-              <dt>Densitate lichid</dt>
+              <dt data-i18n="physics.statDensity">Densitate lichid</dt>
               <dd>~1,00 g/cm³ (15 °C)</dd>
             </dl>
           </article>
@@ -158,11 +158,11 @@
             </div>
             <div class="mol-wrap mol-pulse mol-heavy" id="mol-d2o"></div>
             <dl class="stats">
-              <dt>Masă moleculară</dt>
+              <dt data-i18n="physics.statMolMass">Masă moleculară</dt>
               <dd>~20,03 u</dd>
-              <dt>Masă molară</dt>
+              <dt data-i18n="physics.statMolarMass">Masă molară</dt>
               <dd>~20 g/mol</dd>
-              <dt>Densitate lichid</dt>
+              <dt data-i18n="physics.statDensity">Densitate lichid</dt>
               <dd>~1,11 g/cm³ (la ~25 °C)</dd>
             </dl>
           </article>
@@ -170,20 +170,20 @@
 
         <div class="info-grid">
           <div class="info-card">
-            <h4>Îngheț</h4>
-            <p>H₂O ~0 °C · D₂O ~3,8 °C la 1 atm (valori orientative).</p>
+            <h4 data-i18n="physics.freezeH">Îngheț</h4>
+            <p data-i18n="physics.freezeP">H₂O ~0 °C · D₂O ~3,8 °C la 1 atm (valori orientative).</p>
           </div>
           <div class="info-card">
-            <h4>Abundență</h4>
-            <p>Deuteriu natural: ~140 ppm (~0,014%) din hidrogen; apa „normală” conține doar urme de D₂O.</p>
+            <h4 data-i18n="physics.abundH">Abundență</h4>
+            <p data-i18n="physics.abundP">Deuteriu natural: ~140 ppm (~0,014%) din hidrogen; apa „normală” conține doar urme de D₂O.</p>
           </div>
           <div class="info-card">
-            <h4>Radioactivitate</h4>
-            <p>D₂O obișnuit nu e radioactiv; tritiul (³H) e alt izotop, prezent în urme.</p>
+            <h4 data-i18n="physics.radioH">Radioactivitate</h4>
+            <p data-i18n="physics.radioP">D₂O obișnuit nu e radioactiv; tritiul (³H) e alt izotop, prezent în urme.</p>
           </div>
         </div>
 
-        <h3 class="subhead section-marker">Oscilații (schematic)</h3>
+        <h3 class="subhead section-marker" data-i18n="physics.oscHead">Oscilații (schematic)</h3>
         <div class="behavior-row">
           <div class="vibe-demo glass vibe-zap">
             <span class="vibe-label">H₂O</span>
@@ -197,20 +197,20 @@
 
         <div class="boil-cards">
           <div class="card mini glass boil-pop">
-            <span class="temp-label">Fierbere H₂O</span>
+            <span class="temp-label" data-i18n="physics.boilH2oLabel">Fierbere H₂O</span>
             <span class="temp-val">100,0 °C</span>
-            <span class="temp-note">1 atm</span>
+            <span class="temp-note" data-i18n="physics.boilNote">1 atm</span>
           </div>
           <div class="card mini glass hot boil-pop">
-            <span class="temp-label">Fierbere D₂O</span>
+            <span class="temp-label" data-i18n="physics.boilD2oLabel">Fierbere D₂O</span>
             <span class="temp-val">≈ 101,4 °C</span>
-            <span class="temp-note">1 atm</span>
+            <span class="temp-note" data-i18n="physics.boilNote">1 atm</span>
           </div>
         </div>
 
         <div class="thermo-demo glass">
-          <h3 class="subhead">Punct de fierbere</h3>
-          <p class="small muted">
+          <h3 class="subhead" data-i18n="physics.thermoTitle">Punct de fierbere</h3>
+          <p class="small muted" data-i18n="physics.thermoP">
             La presiune standard, D₂O fierbe la ~101,4 °C — puțin peste H₂O, din cauza legăturilor și masei mai mari (în modelul de legături de hidrogen).
           </p>
           <div class="thermo-row">
@@ -228,17 +228,17 @@
           </div>
         </div>
 
-        <h3 class="subhead section-marker">Frecvență și masă redusă</h3>
+        <h3 class="subhead section-marker" data-i18n="physics.massSectionHead">Frecvență și masă redusă</h3>
         <article class="exp glass">
-          <p class="small muted">
+          <p class="small muted" data-i18n="physics.massExpP">
             Pentru un oscilator harmonic simplificat, frecvența unui mod depinde de <strong>masa redusă</strong> μ: <code>f ∝ 1 / √μ</code>.
             La D₂O, μ e mai mare decât la H₂O pentru aceleași tipuri de mișcare, deci frecvențe caracteristice mai joase. Sliderul modifică un raport μ simplificat între D₂O și H₂O.
           </p>
           <div class="slider-row">
-            <label for="mass-slider">μ<sub>D₂O</sub> / μ<sub>H₂O</sub></label>
+            <label for="mass-slider" data-i18n="physics.massSliderLabel">μ<sub>D₂O</sub> / μ<sub>H₂O</sub></label>
             <input type="range" id="mass-slider" min="100" max="140" value="111" />
             <div class="exp-readout">
-              f<sub>D₂O</sub> / f<sub>H₂O</sub> ≈ <strong id="freq-ratio">0,95</strong>
+              <span data-i18n="physics.freqRatioLead">f<sub>D₂O</sub> / f<sub>H₂O</sub> ≈ </span><strong id="freq-ratio">0,95</strong>
             </div>
           </div>
           <div class="wave-pair wave-rumble">
@@ -254,8 +254,8 @@
         </article>
 
         <article class="exp glass">
-          <h3 class="subhead">Densitate (lichid, orientativ)</h3>
-          <p class="small muted">
+          <h3 class="subhead" data-i18n="physics.densityTitle">Densitate (lichid, orientativ)</h3>
+          <p class="small muted" data-i18n="physics.densityP">
             La aceeași temperatură, litrul de D₂O cântărește cu ~11% mai mult decât litrul de H₂O, util la separare izotopică și la procese industriale.
           </p>
           <div class="density-bars">
@@ -273,15 +273,15 @@
         </article>
 
         <article class="exp glass">
-          <h3 class="subhead">Întrebări</h3>
+          <h3 class="subhead" data-i18n="physics.quizTitle">Întrebări</h3>
           <div class="quiz" id="quiz">
-            <p class="quiz-q"><strong>1.</strong> La 1 atm, care fierbe la temperatură mai mare?</p>
+            <p class="quiz-q" data-i18n="physics.quizQ1">1. La 1 atm, care fierbe la temperatură mai mare?</p>
             <div class="quiz-btns">
               <button type="button" class="q-btn" data-correct="false" data-q="1">H₂O</button>
               <button type="button" class="q-btn" data-correct="true" data-q="1">D₂O</button>
             </div>
             <p class="quiz-feedback" id="fb-1" hidden></p>
-            <p class="quiz-q"><strong>2.</strong> În design CANDU cu uraniu natural, moderatorul tipic este:</p>
+            <p class="quiz-q" data-i18n="physics.quizQ2">2. În design CANDU cu uraniu natural, moderatorul tipic este:</p>
             <div class="quiz-btns">
               <button type="button" class="q-btn" data-correct="false" data-q="2">H₂O</button>
               <button type="button" class="q-btn" data-correct="true" data-q="2">D₂O</button>
@@ -291,6 +291,7 @@
         </article>
       </section>
     </div>
-    <script src="script.js"></script>
+    <script src="/simulari/simulator-i18n-runtime.js"></script>
+    <script src="apa-grea-boot.js"></script>
   </body>
 </html>

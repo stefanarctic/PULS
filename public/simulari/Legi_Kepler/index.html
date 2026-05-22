@@ -20,56 +20,56 @@
 <body>
   <div class="app" id="keplerApp">
 
-    <button type="button" id="toggleLeftPanel" class="kepler-toggle kepler-toggle-left" aria-controls="keplerPanelLeft" aria-expanded="true" aria-label="Panou teorie (legile lui Kepler)">☰</button>
+    <button type="button" id="toggleLeftPanel" class="kepler-toggle kepler-toggle-left" aria-controls="keplerPanelLeft" aria-expanded="true" data-i18n-aria="aria.panelTheory">☰</button>
 
     <!-- LEFT PANEL -->
     <aside class="panel left" id="keplerPanelLeft">
       <div class="panelHeader leftHdr">
-        <h2>Legile lui Kepler</h2>
-        <p class="small">3 legi • orbită • arii • perioadă</p>
+        <h2 data-i18n="leftHdr.title">Legile lui Kepler</h2>
+        <p class="small" data-i18n="leftHdr.subtitle">3 legi • orbită • arii • perioadă</p>
       </div>
 
       <div class="card">
-        <h3>Unități (simple & „curate”)</h3>
+        <h3 data-i18n="units.heading">Unități (simple & „curate”)</h3>
         <ul class="list">
-          <li><b>a</b> – UA (unități astronomice)</li>
-          <li><b>T</b> – ani</li>
-          <li><b>M</b> – mase solare</li>
-          <li><b>e</b> – excentricitate \(0 \ldots 0{,}9\)</li>
-          <li><b>μ</b> = \(4\pi^2 M\) (în UA³/an²)</li>
-          <li><b>Δt</b> – interval de timp (în zile)</li>
-          <li><b>Aria</b> – aria măturată (în UA²)</li>
-          <li><b>Perioada</b> – perioada de revoluție (în ani)</li>
-          <li><b>Excentricitate</b> – excentricitatea orbitei (în UA)</li>
-          <li><b>Masa centrală</b> – masa centrală (în mase solare)</li>
-          <li><b>Viteza</b> – viteza de revoluție (în UA/an)</li>
-          <li><b>Accelerație</b> – accelerația de revoluție (în UA/an²)</li>
-          <li><b>Forță</b> – forța de gravitație (în N)</li>
-          <li><b>Energie</b> – energia de revoluție (în J)</li>
+          <li data-i18n="units.i1"><b>a</b> – UA (unități astronomice)</li>
+          <li data-i18n="units.i2"><b>T</b> – ani</li>
+          <li data-i18n="units.i3"><b>M</b> – mase solare</li>
+          <li data-i18n="units.i4"><b>e</b> – excentricitate \(0 \ldots 0{,}9\)</li>
+          <li data-i18n="units.i5"><b>μ</b> = \(4\pi^2 M\) (în UA³/an²)</li>
+          <li data-i18n="units.i6"><b>Δt</b> – interval de timp (în zile)</li>
+          <li data-i18n="units.i7"><b>Aria</b> – aria măturată (în UA²)</li>
+          <li data-i18n="units.i8"><b>Perioada</b> – perioada de revoluție (în ani)</li>
+          <li data-i18n="units.i9"><b>Excentricitate</b> – excentricitatea orbitei (în UA)</li>
+          <li data-i18n="units.i10"><b>Masa centrală</b> – masa centrală (în mase solare)</li>
+          <li data-i18n="units.i11"><b>Viteza</b> – viteza de revoluție (în UA/an)</li>
+          <li data-i18n="units.i12"><b>Accelerație</b> – accelerația de revoluție (în UA/an²)</li>
+          <li data-i18n="units.i13"><b>Forță</b> – forța de gravitație (în N)</li>
+          <li data-i18n="units.i14"><b>Energie</b> – energia de revoluție (în J)</li>
         </ul>
-        <p class="small muted">Așa, pentru \(M=1\) și \(a=1\), rezultă \(T \approx 1\) an (standard).</p>
+        <p class="small muted" data-i18n="units.standardNote">Așa, pentru \(M=1\) și \(a=1\), rezultă \(T \approx 1\) an (standard).</p>
       </div>
 
       <div class="card formulaCard">
-        <h3>Formule cheie</h3>
+        <h3 data-i18n="keyFormulas.heading">Formule cheie</h3>
         <div class="formula">
-          <div><b>Legea I:</b> orbită eliptică, Soarele într-un focar</div>
+          <div data-i18n="keyFormulas.law1"><b>Legea I:</b> orbită eliptică, Soarele într-un focar</div>
           <div class="sp"></div>
-          <div><b>Legea II:</b> arii egale în timp egal</div>
-          <div class="small muted">Aria măturată într-un \(\Delta t\) fix ar trebui să fie aproape constantă.</div>
+          <div data-i18n="keyFormulas.law2"><b>Legea II:</b> arii egale în timp egal</div>
+          <div class="small muted" data-i18n="keyFormulas.law2hint">Aria măturată într-un \(\Delta t\) fix ar trebui să fie aproape constantă.</div>
           <hr/>
-          <div><b>Legea III:</b> \(T^2 \propto a^3\)</div>
-          <div class="small muted">Mai exact: \(T = 2\pi \sqrt{\dfrac{a^3}{\mu}}\), cu \(\mu=4\pi^2 M\).</div>
-          <div class="small muted">Deci: \(\dfrac{T^2}{a^3} \approx \dfrac{1}{M}\) (în unitățile noastre).</div>
+          <div data-i18n="keyFormulas.law3"><b>Legea III:</b> \(T^2 \propto a^3\)</div>
+          <div class="small muted" data-i18n="keyFormulas.law3hint1">Mai exact: \(T = 2\pi \sqrt{\dfrac{a^3}{\mu}}\), cu \(\mu=4\pi^2 M\).</div>
+          <div class="small muted" data-i18n="keyFormulas.law3hint2">Deci: \(\dfrac{T^2}{a^3} \approx \dfrac{1}{M}\) (în unitățile noastre).</div>
         </div>
       </div>
 
       <div class="card">
-        <h3>Observă vizual</h3>
+        <h3 data-i18n="observeVis.heading">Observă vizual</h3>
         <ul class="list">
-          <li>la \(e\) mic → orbită aproape cerc</li>
-          <li>la \(e\) mare → planetă „rupe viteza” la perihel</li>
-          <li>aria pentru același \(\Delta t\) rămâne similară</li>
+          <li data-i18n="observeVis.v1">la \(e\) mic → orbită aproape cerc</li>
+          <li data-i18n="observeVis.v2">la \(e\) mare → planetă „rupe viteza” la perihel</li>
+          <li data-i18n="observeVis.v3">aria pentru același \(\Delta t\) rămâne similară</li>
         </ul>
       </div>
     </aside>
@@ -77,35 +77,35 @@
     <!-- CENTER STAGE -->
     <main class="stage">
       <div class="stageTop">
-        <h1>Legile lui Kepler – Simulator</h1>
+        <h1 data-i18n="stage.title">Legile lui Kepler – Simulator</h1>
 
         <div class="toggles">
           <label class="toggle">
             <input type="checkbox" id="showEllipse" checked>
-            <span>Legea I</span>
+            <span data-i18n="stage.tLaw1">Legea I</span>
           </label>
           <label class="toggle">
             <input type="checkbox" id="showAreas" checked>
-            <span>Legea II</span>
+            <span data-i18n="stage.tLaw2">Legea II</span>
           </label>
           <label class="toggle">
             <input type="checkbox" id="showLaw3" checked>
-            <span>Legea III</span>
+            <span data-i18n="stage.tLaw3">Legea III</span>
           </label>
           <label class="toggle">
             <input type="checkbox" id="showFoci">
-            <span>Focare</span>
+            <span data-i18n="stage.tFoci">Focare</span>
           </label>
           <label class="toggle">
             <input type="checkbox" id="showTrail" checked>
-            <span>Urme</span>
+            <span data-i18n="stage.tTrail">Urme</span>
           </label>
         </div>
       </div>
 
       <div class="canvasWrap">
         <canvas id="scene" width="1200" height="620"></canvas>
-        <div class="hint" id="hint">
+        <div class="hint" id="hint" data-i18n="stage.hint">
           Trage de <b>a</b> și <b>e</b>, apoi apasă <b>Aria</b> ca să vezi „arii egale” în acțiune.
         </div>
       </div>
@@ -116,8 +116,8 @@
           <div><span class="k">a:</span> <span id="aTxt">–</span></div>
           <div><span class="k">e:</span> <span id="eTxt">–</span></div>
           <div><span class="k">T:</span> <span id="tTxt">–</span></div>
-          <div><span class="k">T²/a³:</span> <span id="ratioTxt">–</span></div>
-          <div><span class="k">Aria(Δt):</span> <span id="areaTxt">–</span></div>
+          <div><span class="k" data-i18n="readout.kRatio">T²/a³:</span> <span id="ratioTxt">–</span></div>
+          <div><span class="k" data-i18n="readout.kArea">Aria(Δt):</span> <span id="areaTxt">–</span></div>
         </div>
       </div>
     </main>
@@ -125,14 +125,14 @@
     <!-- RIGHT PANEL -->
     <aside class="panel right" id="keplerPanelRight">
       <div class="panelHeader rightHdr">
-        <h2>Control</h2>
-        <p class="small">parametri • timp • măsurători</p>
+        <h2 data-i18n="rightHdr.title">Control</h2>
+        <p class="small" data-i18n="rightHdr.subtitle">parametri • timp • măsurători</p>
       </div>
 
       <div class="controls">
 
         <div class="row">
-          <label>Viteză simulare:</label>
+          <label data-i18n="controls.simSpeed">Viteză simulare:</label>
           <div class="inline">
             <input id="speed" type="range" min="0.1" max="10" value="1.2" step="0.1"/>
             <span class="pill" id="speedVal">1.2×</span>
@@ -140,7 +140,7 @@
         </div>
 
         <div class="row">
-          <label>a (semiaxa majoră) [UA]:</label>
+          <label data-i18n="controls.semimajor">a (semiaxa majoră) [UA]:</label>
           <div class="inline">
             <input id="a" type="range" min="0.4" max="5" value="1.6" step="0.01"/>
             <span class="pill" id="aVal">1.60</span>
@@ -148,7 +148,7 @@
         </div>
 
         <div class="row">
-          <label>e (excentricitate):</label>
+          <label data-i18n="controls.ecc">e (excentricitate):</label>
           <div class="inline">
             <input id="e" type="range" min="0" max="0.9" value="0.35" step="0.01"/>
             <span class="pill" id="eVal">0.35</span>
@@ -156,16 +156,16 @@
         </div>
 
         <div class="row">
-          <label>M (masa centrală) [M☉]:</label>
+          <label data-i18n="controls.mass">M (masa centrală) [M☉]:</label>
           <div class="inline">
             <input id="M" type="range" min="0.2" max="3" value="1" step="0.01"/>
             <span class="pill" id="mVal">1.00</span>
           </div>
-          <div class="small muted formulaInline">Influențează Legea III (\(\frac{T^2}{a^3} \approx \frac{1}{M}\)).</div>
+          <div class="small muted formulaInline" data-i18n="controls.massHint">Influențează Legea III (\(\frac{T^2}{a^3} \approx \frac{1}{M}\)).</div>
         </div>
 
         <div class="row">
-          <label>Δt pentru arii (Legea II) [zile]:</label>
+          <label data-i18n="controls.dtArea">Δt pentru arii (Legea II) [zile]:</label>
           <div class="inline">
             <input id="dtDays" type="range" min="2" max="60" value="15" step="1"/>
             <span class="pill" id="dtVal">15d</span>
@@ -173,36 +173,36 @@
         </div>
 
         <div class="btnStack">
-          <button class="btn" id="startBtn">Start</button>
-          <button class="btn" id="pauseBtn">Pauză</button>
-          <button class="btn danger" id="resetBtn">Reset</button>
-          <button class="btn accent" id="impulseBtn">Aria</button>
+          <button class="btn" id="startBtn" data-i18n="buttons.start">Start</button>
+          <button class="btn" id="pauseBtn" data-i18n="buttons.pause">Pauză</button>
+          <button class="btn danger" id="resetBtn" data-i18n="buttons.reset">Reset</button>
+          <button class="btn accent" id="impulseBtn" data-i18n="buttons.areaSample">Aria</button>
         </div>
 
         <div class="card mini">
-          <h3>Legea II – ultimele arii</h3>
+          <h3 data-i18n="law2Log.title">Legea II – ultimele arii</h3>
           <div id="areasLog" class="log">–</div>
-          <div class="small muted">Ar trebui să fie apropiate dacă Δt e constant.</div>
+          <div class="small muted" data-i18n="law2Log.note">Ar trebui să fie apropiate dacă Δt e constant.</div>
         </div>
 
         <div class="card mini">
-          <h3>Legea III – plot (\(a^3\), \(T^2\))</h3>
+          <h3 data-i18n="law3plot.title">Legea III – plot (\(a^3\), \(T^2\))</h3>
           <canvas id="law3Plot" width="360" height="140"></canvas>
           <div class="btnGrid">
-            <button class="btn ghost" id="addPointBtn">+ Adaugă punct</button>
-            <button class="btn ghost" id="clearPlotBtn">Șterge plot</button>
+            <button class="btn ghost" id="addPointBtn" data-i18n="law3plot.addPoint">+ Adaugă punct</button>
+            <button class="btn ghost" id="clearPlotBtn" data-i18n="law3plot.clear">Șterge plot</button>
           </div>
-          <div class="small muted">Dacă M e constant, punctele stau pe o linie.</div>
+          <div class="small muted" data-i18n="law3plot.note">Dacă M e constant, punctele stau pe o linie.</div>
         </div>
 
       </div>
     </aside>
 
-    <button type="button" id="toggleRightPanel" class="kepler-toggle kepler-toggle-right" aria-controls="keplerPanelRight" aria-expanded="true" aria-label="Panou control simulare">☰</button>
+    <button type="button" id="toggleRightPanel" class="kepler-toggle kepler-toggle-right" aria-controls="keplerPanelRight" aria-expanded="true" data-i18n-aria="aria.panelControl">☰</button>
 
   </div>
 
-  <script src="main.js"></script>
+  <script src="../simulator-i18n-runtime.js"></script>
+  <script src="legi-kepler-boot.js"></script>
 </body>
 </html>
- 

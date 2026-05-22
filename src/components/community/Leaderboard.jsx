@@ -3,8 +3,12 @@ import { Link } from 'react-router-dom';
 import { Trophy, TrendingUp, Flame } from 'lucide-react';
 import RankBadge from './RankBadge';
 import { useLeaderboard } from '../../hooks/useCommunity';
+import { useI18n } from '../../i18n/LanguageContext';
+
+const L = 'communityPage.leaderboard';
 
 const Leaderboard = ({ currentUserUid }) => {
+  const { t, localizedPath } = useI18n();
   const [timeFilter, setTimeFilter] = useState('all-time');
   const { entries, loading, error, refresh } = useLeaderboard(timeFilter);
 
@@ -17,20 +21,22 @@ const Leaderboard = ({ currentUserUid }) => {
     <div className="leaderboard">
       <div className="leaderboard__header">
         <h2 className="leaderboard__title">
-          <Trophy size={22} /> Clasament
+          <Trophy size={22} /> {t(`${L}.title`, 'Clasament')}
         </h2>
         <div className="leaderboard__filters">
           <button
+            type="button"
             className={`leaderboard__filter-btn ${timeFilter === 'all-time' ? 'active' : ''}`}
             onClick={() => setTimeFilter('all-time')}
           >
-            All-time
+            {t(`${L}.allTime`, 'All-time')}
           </button>
           <button
+            type="button"
             className={`leaderboard__filter-btn ${timeFilter === 'weekly' ? 'active' : ''}`}
             onClick={() => setTimeFilter('weekly')}
           >
-            Săptămânal
+            {t(`${L}.weekly`, 'Săptămânal')}
           </button>
         </div>
       </div>
@@ -39,9 +45,10 @@ const Leaderboard = ({ currentUserUid }) => {
         <div className="leaderboard__current-user-banner">
           <TrendingUp size={16} />
           <span>
-            Ești pe locul <strong>#{currentUserPosition}</strong>
+            {t(`${L}.rankIntro`, 'Ești pe locul ')}
+            <strong>#{currentUserPosition}</strong>
             {currentUserPosition > 1 && (
-              <> &mdash; rezolvă probleme pentru a urca!</>
+              <> {t(`${L}.rankClimb`, '— rezolvă probleme pentru a urca!')}</>
             )}
           </span>
         </div>
@@ -51,30 +58,30 @@ const Leaderboard = ({ currentUserUid }) => {
         <div className="leaderboard__loading">
           <div className="loading-spinner">
             <div className="spinner"></div>
-            <p>Se încarcă clasamentul...</p>
+            <p>{t(`${L}.loading`, 'Se încarcă clasamentul...')}</p>
           </div>
         </div>
       ) : error ? (
         <div className="leaderboard__error">
-          <p>Eroare la încărcarea clasamentului.</p>
-          <button onClick={refresh}>Reîncearcă</button>
+          <p>{t(`${L}.error`, 'Eroare la încărcarea clasamentului.')}</p>
+          <button type="button" onClick={refresh}>{t(`${L}.retry`, 'Reîncearcă')}</button>
         </div>
       ) : entries.length === 0 ? (
         <div className="leaderboard__empty">
-          <p>Niciun utilizator în clasament. Fii primul care rezolvă o problemă!</p>
+          <p>{t(`${L}.empty`, 'Niciun utilizator în clasament. Fii primul care rezolvă o problemă!')}</p>
         </div>
       ) : (
         <div className="leaderboard__table-wrapper">
           <table className="leaderboard__table">
             <thead>
               <tr>
-                <th className="leaderboard__th--pos">#</th>
-                <th className="leaderboard__th--user">Utilizator</th>
-                <th className="leaderboard__th--rank">Rank</th>
-                <th className="leaderboard__th--xp">XP</th>
-                <th className="leaderboard__th--level">Nivel</th>
-                <th className="leaderboard__th--solved">Rezolvate</th>
-                <th className="leaderboard__th--streak">Streak</th>
+                <th className="leaderboard__th--pos">{t(`${L}.columns.pos`, '#')}</th>
+                <th className="leaderboard__th--user">{t(`${L}.columns.user`, 'Utilizator')}</th>
+                <th className="leaderboard__th--rank">{t(`${L}.columns.rank`, 'Rank')}</th>
+                <th className="leaderboard__th--xp">{t(`${L}.columns.xp`, 'XP')}</th>
+                <th className="leaderboard__th--level">{t(`${L}.columns.level`, 'Nivel')}</th>
+                <th className="leaderboard__th--solved">{t(`${L}.columns.solved`, 'Rezolvate')}</th>
+                <th className="leaderboard__th--streak">{t(`${L}.columns.streak`, 'Streak')}</th>
               </tr>
             </thead>
             <tbody>
@@ -95,7 +102,7 @@ const Leaderboard = ({ currentUserUid }) => {
                       )}
                     </td>
                     <td className="leaderboard__cell--user">
-                      <Link to={`/profil/${entry.uid}`} className="leaderboard__user-link">
+                      <Link to={localizedPath(`/profil/${entry.uid}`)} className="leaderboard__user-link">
                         {entry.profilePic ? (
                           <img
                             src={entry.profilePic}

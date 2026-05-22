@@ -13,9 +13,10 @@ import {
 } from 'lucide-react';
 import { Button } from './Buttondet';
 import MathJaxMarkdownBlock from './MathJaxMarkdownBlock';
+import { useI18n } from '../i18n/LanguageContext';
 
-/** @param {{ rows: Array<{ label: string, value: string, unit?: string }>, caption: string }} props */
-const AnalyzeDataTable = ({ rows, caption }) => {
+/** @param {{ rows: Array<{ label: string, value: string, unit?: string }>, caption: string, quantityLabel?: string, valueLabel?: string, unitLabel?: string }} props */
+const AnalyzeDataTable = ({ rows, caption, quantityLabel, valueLabel, unitLabel }) => {
   if (!rows?.length) return null;
   const showUnit = rows.some((r) => r.unit);
   return (
@@ -24,9 +25,9 @@ const AnalyzeDataTable = ({ rows, caption }) => {
         <caption className="problem-analysis-data-caption">{caption}</caption>
         <thead>
           <tr>
-            <th scope="col">Mărime</th>
-            <th scope="col">Valoare</th>
-            {showUnit ? <th scope="col">Unitate</th> : null}
+            <th scope="col">{quantityLabel}</th>
+            <th scope="col">{valueLabel}</th>
+            {showUnit ? <th scope="col">{unitLabel}</th> : null}
           </tr>
         </thead>
         <tbody>
@@ -59,10 +60,17 @@ const AnalyzeDataTable = ({ rows, caption }) => {
  * @param {string} [props.className]
  */
 export default function EvaluationResultsPanel({ normalized, onNewAnalysis, className = '' }) {
+  const { t } = useI18n();
+  const ER = 'evaluationResults';
+
   if (!normalized) return null;
 
   const hasSummaries = !!(normalized.problemSummary || normalized.feedbackSummary);
   const hasDataBlock = !!(normalized.givenData || normalized.numericalResults);
+
+  const qty = t(`${ER}.quantity`, 'Mărime');
+  const val = t(`${ER}.value`, 'Valoare');
+  const unit = t(`${ER}.unit`, 'Unitate');
 
   return (
     <div className={`problem-submit-results ${className}`.trim()}>
@@ -70,7 +78,7 @@ export default function EvaluationResultsPanel({ normalized, onNewAnalysis, clas
         <div className="problem-analysis-rating-section">
           <h3 className="problem-analysis-rating-title">
             <Trophy className="problem-analysis-icon" aria-hidden />
-            Punctaj obținut
+            {t(`${ER}.scoreTitle`, 'Punctaj obținut')}
           </h3>
           <div className="problem-analysis-rating-content">
             <div className="problem-analysis-rating-text">
@@ -86,7 +94,7 @@ export default function EvaluationResultsPanel({ normalized, onNewAnalysis, clas
             <div className="problem-analysis-summary-section">
               <h3 className="problem-analysis-summary-title">
                 <FileText className="problem-analysis-icon" aria-hidden />
-                Rezumat problemă
+                {t(`${ER}.problemSummary`, 'Rezumat problemă')}
               </h3>
               <div className="problem-analysis-summary-content">
                 <MathJaxMarkdownBlock content={normalized.problemSummary} />
@@ -97,7 +105,7 @@ export default function EvaluationResultsPanel({ normalized, onNewAnalysis, clas
             <div className="problem-analysis-summary-section">
               <h3 className="problem-analysis-summary-title">
                 <ListChecks className="problem-analysis-icon" aria-hidden />
-                Rezumat feedback
+                {t(`${ER}.feedbackSummary`, 'Rezumat feedback')}
               </h3>
               <div className="problem-analysis-summary-content">
                 <MathJaxMarkdownBlock content={normalized.feedbackSummary} />
@@ -111,7 +119,7 @@ export default function EvaluationResultsPanel({ normalized, onNewAnalysis, clas
         <div className="problem-analysis-reflection-section">
           <h3 className="problem-analysis-reflection-title">
             <ScanEye className="problem-analysis-icon" aria-hidden />
-            Ce am înțeles din soluția ta
+            {t(`${ER}.reflection`, 'Ce am înțeles din soluția ta')}
           </h3>
           <div className="problem-analysis-reflection-content">
             <MathJaxMarkdownBlock content={normalized.studentWorkReflection} />
@@ -123,11 +131,25 @@ export default function EvaluationResultsPanel({ normalized, onNewAnalysis, clas
         <div className="problem-analysis-data-section">
           <h3 className="problem-analysis-data-section-title">
             <Table2 className="problem-analysis-icon" aria-hidden />
-            Date și rezultate numerice
+            {t(`${ER}.dataTitle`, 'Date și rezultate numerice')}
           </h3>
-          {normalized.givenData && <AnalyzeDataTable rows={normalized.givenData} caption="Date din enunț" />}
+          {normalized.givenData && (
+            <AnalyzeDataTable
+              rows={normalized.givenData}
+              caption={t(`${ER}.captionGiven`, 'Date din enunț')}
+              quantityLabel={qty}
+              valueLabel={val}
+              unitLabel={unit}
+            />
+          )}
           {normalized.numericalResults && (
-            <AnalyzeDataTable rows={normalized.numericalResults} caption="Rezultate / mărimi cerute" />
+            <AnalyzeDataTable
+              rows={normalized.numericalResults}
+              caption={t(`${ER}.captionResults`, 'Rezultate / mărimi cerute')}
+              quantityLabel={qty}
+              valueLabel={val}
+              unitLabel={unit}
+            />
           )}
         </div>
       )}
@@ -136,7 +158,7 @@ export default function EvaluationResultsPanel({ normalized, onNewAnalysis, clas
         <div className="problem-analysis-formulas-section">
           <h3 className="problem-analysis-formulas-title">
             <Sigma className="problem-analysis-icon" aria-hidden />
-            Formule folosite
+            {t(`${ER}.formulasUsed`, 'Formule folosite')}
           </h3>
           <ul className="problem-analysis-formulas-list">
             {normalized.formulasUsed.map((f, i) => (
@@ -152,7 +174,7 @@ export default function EvaluationResultsPanel({ normalized, onNewAnalysis, clas
         <div className="problem-analysis-explanation-section">
           <h3 className="problem-analysis-explanation-title">
             <BookOpen className="problem-analysis-icon" aria-hidden />
-            Explicație
+            {t(`${ER}.explanation`, 'Explicație')}
           </h3>
           <div className="problem-analysis-explanation-content">
             <MathJaxMarkdownBlock content={normalized.explanation} />
@@ -164,7 +186,7 @@ export default function EvaluationResultsPanel({ normalized, onNewAnalysis, clas
         <div className="problem-analysis-solution-section">
           <h3 className="problem-analysis-solution-title">
             <ClipboardList className="problem-analysis-icon" aria-hidden />
-            Pașii rezolvării
+            {t(`${ER}.solutionSteps`, 'Pașii rezolvării')}
           </h3>
           <div className="problem-analysis-solution-content">
             <MathJaxMarkdownBlock content={normalized.correctSolution} />
@@ -176,7 +198,7 @@ export default function EvaluationResultsPanel({ normalized, onNewAnalysis, clas
         <div className="problem-analysis-errors-section" style={{ display: 'none' }}>
           <h3 className="problem-analysis-errors-title">
             <Lightbulb className="problem-analysis-icon" aria-hidden />
-            Analiza erorilor și îmbunătățiri
+            {t(`${ER}.errorAnalysis`, 'Analiza erorilor și îmbunătățiri')}
           </h3>
           <div className="problem-analysis-errors-content">
             <MathJaxMarkdownBlock content={normalized.errorAnalysis} />
@@ -188,7 +210,7 @@ export default function EvaluationResultsPanel({ normalized, onNewAnalysis, clas
         <div className="problem-analysis-final-section">
           <h3 className="problem-analysis-final-title">
             <Target className="problem-analysis-icon" aria-hidden />
-            Răspuns final
+            {t(`${ER}.finalAnswer`, 'Răspuns final')}
           </h3>
           <div className="problem-analysis-final-content">
             <MathJaxMarkdownBlock content={normalized.finalAnswer} />
@@ -198,7 +220,7 @@ export default function EvaluationResultsPanel({ normalized, onNewAnalysis, clas
 
       {onNewAnalysis ? (
         <Button type="button" onClick={onNewAnalysis} className="problem-submit-submit-btn" style={{ marginTop: '2rem' }}>
-          Analiză nouă
+          {t(`${ER}.newAnalysis`, 'Analiză nouă')}
         </Button>
       ) : null}
     </div>

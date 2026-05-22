@@ -105,6 +105,20 @@ const miniCtx = miniCanvas.getContext("2d");
 const phasorCanvas = document.getElementById("phasor");
 const phasorCtx = phasorCanvas.getContext("2d");
 
+function simT(path, ro) {
+    return typeof window.simLbl === "function" ? window.simLbl(path, ro) : ro;
+}
+
+function simFmt(path, roTemplate, vars) {
+    let msg = simT(path, roTemplate);
+    if (vars) {
+        for (const [key, val] of Object.entries(vars)) {
+            msg = msg.split(key).join(String(val));
+        }
+    }
+    return msg;
+}
+
 function resizePhasor() {
     phasorCanvas.width = phasorCanvas.clientWidth;
     phasorCanvas.height = phasorCanvas.clientHeight;
@@ -146,50 +160,59 @@ function updateUI() {
     let Q = urms * irms * sinphi;
     let Z = irms !== 0 ? (urms / irms) : Infinity;
 
+    const radPerS = simT("units.radPerS", "rad/s");
+    const pActive = simT("formula.active", "(activă)");
+    const pApparent = simT("formula.apparent", "(aparentă)");
+    const pReactive = simT("formula.reactive", "(reactivă)");
+
     formula.innerHTML = `
     <b>i(t)</b> = ${amplitudeI} · sin(${omega.toFixed(2)}t + ${phase.toFixed(2)})<br>
     <b>u(t)</b> = ${amplitudeU} · sin(${omega.toFixed(2)}t)<br><br>
 
-    <b>ω</b> = 2πf = ${omega.toFixed(2)} rad/s<br>
+    <b>ω</b> = 2πf = ${omega.toFixed(2)} ${radPerS}<br>
     <b>Irms</b> = ${irms.toFixed(2)}<br>
     <b>Urms</b> = ${urms.toFixed(2)}<br><br>
 
-    <b>P</b> = ${P.toFixed(2)} (activă)<br>
-    <b>S</b> = ${S.toFixed(2)} (aparentă)<br>
-    <b>Q</b> = ${Q.toFixed(2)} (reactivă)<br><br>
+    <b>P</b> = ${P.toFixed(2)} ${pActive}<br>
+    <b>S</b> = ${S.toFixed(2)} ${pApparent}<br>
+    <b>Q</b> = ${Q.toFixed(2)} ${pReactive}<br><br>
 
     <b>cosφ</b> = ${cosphi.toFixed(2)}
     `;
     let analysis = document.getElementById("analysis");
 
     if (cosphi > 0.9) {
-        analysis.innerHTML = "✔ Circuit aproape ideal (rezistiv)";
+        analysis.innerHTML = simT("analysis.ideal", "✔ Circuit aproape ideal (rezistiv)");
     } else if (cosphi > 0) {
-        analysis.innerHTML = "⚠ Circuit cu componentă reactivă";
+        analysis.innerHTML = simT("analysis.reactive", "⚠ Circuit cu componentă reactivă");
     } else {
-        analysis.innerHTML = "❌ Putere negativă (energie returnată)";
+        analysis.innerHTML = simT("analysis.negativePower", "❌ Putere negativă (energie returnată)");
     }
     if (impedanceDiv) {
-        impedanceDiv.textContent = `Z = ${(Number.isFinite(Z) ? Z.toFixed(3) : "∞")} Ω`;
+        const zStr = Number.isFinite(Z) ? Z.toFixed(3) : "∞";
+        impedanceDiv.textContent = simFmt("measurements.impedance", "Z = {z} Ω", { "{z}": zStr });
     }
     indicators.innerHTML = `
     φ = ${(phase).toFixed(2)} rad<br>
     cosφ = ${cosphi.toFixed(2)}<br>
     P/S = ${(cosphi).toFixed(2)}
     `;
-    let energy = P * 1; 
-    document.getElementById("energy").textContent =
-        `E ≈ ${energy.toFixed(2)} J`;
+    let energy = P * 1;
+    const eStr = energy.toFixed(2);
+    document.getElementById("energy").textContent = simFmt(
+        "energy.line",
+        "E ≈ {e} J",
+        { "{e}": eStr }
+    );
     let phaseDeg = (phase * 180 / Math.PI).toFixed(1);
 
     let phaseText = "";
 
-    if (phase > 0) phaseText = "Curentul este întârziat";
-    else if (phase < 0) phaseText = "Curentul este în avans";
-    else phaseText = "În fază";
+    if (phase > 0) phaseText = simT("phaseText.currentLags", "Curentul este întârziat");
+    else if (phase < 0) phaseText = simT("phaseText.currentLeads", "Curentul este în avans");
+    else phaseText = simT("phaseText.inPhase", "În fază");
 
-    document.getElementById("phaseInfo").textContent =
-        `${phaseDeg}° → ${phaseText}`;
+    document.getElementById("phaseInfo").textContent = `${phaseDeg}° → ${phaseText}`;
 
     rmsDiv.innerHTML = ``; 
     cosphiDiv.innerHTML = ``;

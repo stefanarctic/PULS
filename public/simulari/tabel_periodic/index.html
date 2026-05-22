@@ -1,65 +1,67 @@
-<!DOCTYPE html>
-<html lang="ro">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
-  <title>Tabel Periodic Interactiv</title>
-  <link rel="stylesheet" href="styles.css" />
-</head>
-<body>
-
-  <div class="cosmic-overlay" id="cosmicOverlay" aria-hidden="true">
-    <p class="cosmic-text">Primele elemente din Univers</p>
-  </div>
-
-  <div class="quantum-orbital-bg" id="quantumOrbitalBg" aria-hidden="true">
-    <div class="orbital-scheme">
-      <span class="orb">1s</span><span class="orb">2s</span><span class="orb">2p</span><span class="orb">3s</span><span class="orb">3p</span><span class="orb">4s</span><span class="orb">3d</span><span class="orb">4p</span><span class="orb">5s</span><span class="orb">4d</span><span class="orb">5p</span><span class="orb">6s</span><span class="orb">4f</span><span class="orb">5d</span><span class="orb">6p</span><span class="orb">7s</span><span class="orb">5f</span><span class="orb">6d</span><span class="orb">7p</span>
-    </div>
-  </div>
-
-  <h1>Tabelul Periodic Interactiv</h1>
-  <p class="mobile-table-hint">Pe ecran mic: glisează cu degetul pentru a vedea tot tabelul.</p>
-
-  <div class="periodic-table-scroll" id="periodicTableScroll">
-    <div class="periodic-table" id="periodicTable"></div>
-  </div>
-
-  <div class="legend">
-    <div class="legend-title">Legendă – categorii de elemente (apasă pentru a evidenția)</div>
-    <div class="legend-item" data-category="metal-alcalin" role="button" tabindex="0"><span class="legend-color" style="background: rgba(255, 102, 0, 0.55);"></span> Metal alcalin</div>
-    <div class="legend-item" data-category="metal-alcalin-pamantos" role="button" tabindex="0"><span class="legend-color" style="background: rgba(255, 200, 0, 0.55);"></span> Metal alcalin-pământos</div>
-    <div class="legend-item" data-category="metal-de-tranzitie" role="button" tabindex="0"><span class="legend-color" style="background: rgba(255, 80, 80, 0.55);"></span> Metal de tranziție</div>
-    <div class="legend-item" data-category="metal-post-tranzitie" role="button" tabindex="0"><span class="legend-color" style="background: rgba(140, 180, 220, 0.55);"></span> Metal post-tranziție</div>
-    <div class="legend-item" data-category="lantanid" role="button" tabindex="0"><span class="legend-color" style="background: rgba(255, 160, 200, 0.55);"></span> Lantanid</div>
-    <div class="legend-item" data-category="actinid" role="button" tabindex="0"><span class="legend-color" style="background: rgba(255, 120, 180, 0.55);"></span> Actinid</div>
-    <div class="legend-item" data-category="semimetal" role="button" tabindex="0"><span class="legend-color" style="background: rgba(180, 200, 120, 0.55);"></span> Semimetal</div>
-    <div class="legend-item" data-category="nemetal" role="button" tabindex="0"><span class="legend-color" style="background: rgba(100, 200, 200, 0.55);"></span> Nemetal</div>
-    <div class="legend-item" data-category="halogen" role="button" tabindex="0"><span class="legend-color" style="background: rgba(100, 220, 160, 0.55);"></span> Halogen</div>
-    <div class="legend-item" data-category="gaz-rar" role="button" tabindex="0"><span class="legend-color" style="background: rgba(180, 140, 255, 0.55);"></span> Gaz rar (nobil)</div>
-    <button type="button" class="legend-item legend-btn-radioactive" id="highlightRadioactive" role="button" tabindex="0"><span class="legend-icon">☢</span> Evidențiază elementele radioactive</button>
-  </div>
-
-  <div class="element-modal" id="elementModal">
-    <div class="modal-content">
-      <button class="close-btn" id="closeModal">✖</button>
-      <div class="modal-header" id="modalHeader"></div>
-      <div class="modal-tabs">
-        <button class="tab-btn active" data-tab="general">General</button>
-        <button class="tab-btn" data-tab="electronic">Electronic</button>
-        <button class="tab-btn" data-tab="visual">Vizual</button>
-      </div>
-      <div class="tab-panel active" id="panelGeneral"></div>
-      <div class="tab-panel" id="panelElectronic"></div>
-      <div class="tab-panel" id="panelVisual"></div>
-      <div class="modal-nav">
-        <button type="button" class="nav-btn nav-prev" id="prevElement" title="Elementul anterior">← Anterior</button>
-        <button type="button" class="nav-btn nav-next" id="nextElement" title="Următorul element">Următor →</button>
-      </div>
-    </div>
-  </div>
-
-  <script src="elements.js"></script>
-  <script src="script.js"></script>
-</body>
-</html> 
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <title>Tabel Periodic Interactiv</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+  <div class="cosmic-overlay" id="cosmicOverlay" aria-hidden="true">
+    <p class="cosmic-text" data-i18n="labels.cosmicOverlay">Primele elemente din Univers</p>
+  </div>
+
+  <div class="quantum-orbital-bg" id="quantumOrbitalBg" aria-hidden="true">
+    <div class="orbital-scheme">
+      <span class="orb">1s</span><span class="orb">2s</span><span class="orb">2p</span><span class="orb">3s</span><span class="orb">3p</span><span class="orb">4s</span><span class="orb">3d</span><span class="orb">4p</span><span class="orb">5s</span><span class="orb">4d</span><span class="orb">5p</span><span class="orb">6s</span><span class="orb">4f</span><span class="orb">5d</span><span class="orb">6p</span><span class="orb">7s</span><span class="orb">5f</span><span class="orb">6d</span><span class="orb">7p</span>
+    </div>
+  </div>
+
+  <h1 data-i18n="labels.pageHeading">Tabelul Periodic Interactiv</h1>
+  <p class="mobile-table-hint" data-i18n="labels.mobileHint">Pe ecran mic: glisează cu degetul pentru a vedea tot tabelul.</p>
+
+  <div class="periodic-table-scroll" id="periodicTableScroll">
+    <div class="periodic-table" id="periodicTable"></div>
+  </div>
+
+  <div class="legend">
+    <div class="legend-title" data-i18n="labels.legendTitle">Legendă – categorii de elemente (apasă pentru a evidenția)</div>
+    <div class="legend-item" data-category="metal-alcalin" role="button" tabindex="0"><span class="legend-color" style="background: rgba(255, 102, 0, 0.55);"></span> <span data-i18n="categories.category-metal-alcalin">Metal alcalin</span></div>
+    <div class="legend-item" data-category="metal-alcalin-pamantos" role="button" tabindex="0"><span class="legend-color" style="background: rgba(255, 200, 0, 0.55);"></span> <span data-i18n="categories.category-metal-alcalin-pamantos">Metal alcalin-pământos</span></div>
+    <div class="legend-item" data-category="metal-de-tranzitie" role="button" tabindex="0"><span class="legend-color" style="background: rgba(255, 80, 80, 0.55);"></span> <span data-i18n="categories.category-metal-de-tranzitie">Metal de tranziție</span></div>
+    <div class="legend-item" data-category="metal-post-tranzitie" role="button" tabindex="0"><span class="legend-color" style="background: rgba(140, 180, 220, 0.55);"></span> <span data-i18n="categories.category-metal-post-tranzitie">Metal post-tranziție</span></div>
+    <div class="legend-item" data-category="lantanid" role="button" tabindex="0"><span class="legend-color" style="background: rgba(255, 160, 200, 0.55);"></span> <span data-i18n="categories.category-lantanid">Lantanid</span></div>
+    <div class="legend-item" data-category="actinid" role="button" tabindex="0"><span class="legend-color" style="background: rgba(255, 120, 180, 0.55);"></span> <span data-i18n="categories.category-actinid">Actinid</span></div>
+    <div class="legend-item" data-category="semimetal" role="button" tabindex="0"><span class="legend-color" style="background: rgba(180, 200, 120, 0.55);"></span> <span data-i18n="categories.category-semimetal">Semimetal</span></div>
+    <div class="legend-item" data-category="nemetal" role="button" tabindex="0"><span class="legend-color" style="background: rgba(100, 200, 200, 0.55);"></span> <span data-i18n="categories.category-nemetal">Nemetal</span></div>
+    <div class="legend-item" data-category="halogen" role="button" tabindex="0"><span class="legend-color" style="background: rgba(100, 220, 160, 0.55);"></span> <span data-i18n="categories.category-halogen">Halogen</span></div>
+    <div class="legend-item" data-category="gaz-rar" role="button" tabindex="0"><span class="legend-color" style="background: rgba(180, 140, 255, 0.55);"></span> <span data-i18n="categories.category-gaz-rar">Gaz rar (nobil)</span></div>
+    <button type="button" class="legend-item legend-btn-radioactive" id="highlightRadioactive" role="button" tabindex="0"><span class="legend-icon">☢</span> <span data-i18n="labels.highlightRadioactive">Evidențiază elementele radioactive</span></button>
+  </div>
+
+  <div class="element-modal" id="elementModal">
+    <div class="modal-content">
+      <button type="button" class="close-btn" id="closeModal" data-i18n-aria="labels.closeAria" aria-label="Închide">✖</button>
+      <div class="modal-header" id="modalHeader"></div>
+      <div class="modal-tabs">
+        <button type="button" class="tab-btn active" data-tab="general" data-i18n="labels.tabGeneral">General</button>
+        <button type="button" class="tab-btn" data-tab="electronic" data-i18n="labels.tabElectronic">Electronic</button>
+        <button type="button" class="tab-btn" data-tab="visual" data-i18n="labels.tabVisual">Vizual</button>
+        <button type="button" class="tab-btn" data-tab="isotopes" id="tabIsotopes" style="display:none;" data-i18n="labels.tabIsotopes">☢ Izotopi</button>
+      </div>
+      <div class="tab-panel active" id="panelGeneral"></div>
+      <div class="tab-panel" id="panelElectronic"></div>
+      <div class="tab-panel" id="panelVisual"></div>
+      <div class="tab-panel" id="panelIsotopes"></div>
+      <div class="modal-nav">
+        <button type="button" class="nav-btn nav-prev" id="prevElement" data-i18n-title="labels.navPrevTitle" title="Elementul anterior" data-i18n="labels.navPrev">← Anterior</button>
+        <button type="button" class="nav-btn nav-next" id="nextElement" data-i18n-title="labels.navNextTitle" title="Următorul element" data-i18n="labels.navNext">Următor →</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="../simulator-i18n-runtime.js"></script>
+  <script src="tabel-periodic-boot.js"></script>
+</body>
+</html>

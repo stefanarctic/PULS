@@ -5,11 +5,11 @@ import rehypeMathjaxBrowser from "rehype-mathjax/browser";
 import "../scss/components/_assistant-popup.scss";
 import { 
   X, Send, Plus, Trash2, MessageSquare, Maximize2, Minimize2, 
-  Copy, Check, Bot, User, Sparkles, Loader2
+  Copy, Check, User, Loader2
 } from "lucide-react";
-import { searchKnowledgeBase } from "../lib/assistant-knowledge-base.js";
 import { fetchAssistantReply } from "../lib/assistantChatApi.js";
-import { ensureRomanian } from "../lib/ensureRomanianTranslation.js";
+import { postProcessAiReply } from "../lib/ensureRomanianTranslation.js";
+import { useI18n } from "../i18n/LanguageContext";
 // MathJaxRender eliminat - fiecare mesaj gestionează propriul rendering prin Intersection Observer
 import { useChats } from "../hooks/useChats";
 import useDarkMode from "../hooks/useDarkMode";
@@ -57,7 +57,10 @@ const MessageBubble = React.memo(({
   professorWhizAvatar,
   onCopyMessage,
   copiedMessageId,
-  formatTime
+  formatTime,
+  aiAvatarAlt,
+  userAvatarAlt,
+  copyMessageTitle,
 }) => {
   const messageRef = useRef(null);
   const { hasBeenVisible } = useIntersectionObserver(messageRef, {
@@ -166,14 +169,14 @@ const MessageBubble = React.memo(({
         {msg.role === 'ai' ? (
           <img 
             src={professorWhizAvatar || "/Modele Asistent/professor-whiz-alb.png"} 
-            alt="Profesorul Whiz" 
+            alt={aiAvatarAlt || "Professor Whiz"} 
             className="assistant-message-avatar-img"
             style={{ width: '100%', height: '100%', objectFit: 'cover' }}
           />
         ) : userProfilePic ? (
           <img 
             src={userProfilePic} 
-            alt="User avatar" 
+            alt={userAvatarAlt || "User"} 
             className="assistant-message-avatar-img"
             {...(userProfilePic.includes('googleusercontent.com') && { 
               crossOrigin: 'anonymous', 
@@ -231,7 +234,8 @@ const MessageBubble = React.memo(({
             <button
               className="assistant-message-action-btn"
               onClick={() => onCopyMessage(displayText, messageId)}
-              title="Copiază mesajul"
+              title={copyMessageTitle || "Copy message"}
+              type="button"
             >
               {isCopied ? <Check size={14} /> : <Copy size={14} />}
             </button>
@@ -257,13 +261,17 @@ const MessageBubble = React.memo(({
     prevProps.typing === nextProps.typing &&
     prevProps.userProfilePic === nextProps.userProfilePic &&
     prevProps.professorWhizAvatar === nextProps.professorWhizAvatar &&
-    prevProps.copiedMessageId === nextProps.copiedMessageId
+    prevProps.copiedMessageId === nextProps.copiedMessageId &&
+    prevProps.aiAvatarAlt === nextProps.aiAvatarAlt &&
+    prevProps.userAvatarAlt === nextProps.userAvatarAlt &&
+    prevProps.copyMessageTitle === nextProps.copyMessageTitle &&
+    prevProps.formatTime === nextProps.formatTime
   );
 });
 
 MessageBubble.displayName = 'MessageBubble';
 
-const PROMPTS = [
+const STARTER_PROMPTS_FALLBACK_RO = [
   "Explică-mi concepte de mecanică",
   "Cum rezolv probleme de fizică?",
   "Unde găsesc resurse despre oscilații?",
@@ -275,6 +283,14 @@ const PROMPTS = [
 ];
 
 const AssistantPopup = ({ onClose, initialMessage, initialMessageInNewChat = false }) => {
+  const { lang, t, dict } = useI18n();
+
+  const starterPrompts = useMemo(() => {
+    const fromDict = dict?.assistant?.starterPrompts;
+    if (lang === "en" && Array.isArray(fromDict) && fromDict.length > 0) return fromDict;
+    return STARTER_PROMPTS_FALLBACK_RO;
+  }, [lang, dict]);
+
   const [inputValue, setInputValue] = useState("");
   const [chatMode, setChatMode] = useState(false);
   const textareaRef = useRef(null);
@@ -290,7 +306,8 @@ const AssistantPopup = ({ onClose, initialMessage, initialMessageInNewChat = fal
   const hasScrolledOnOpenRef = useRef(false);
   const shouldAutoScrollRef = useRef(true); // false când user-ul face scroll manual în sus
   const darkModeOn = useDarkMode();
-  
+  const localeTag = lang === "en" ? "en-GB" : "ro-RO";
+
   // Chat management hook
   const {
     chats,
@@ -645,36 +662,43 @@ const AssistantPopup = ({ onClose, initialMessage, initialMessageInNewChat = fal
 
   const handleDeleteChat = async (chatId, e) => {
     e.stopPropagation();
-    if (window.confirm('Ești sigur că vrei să ștergi acest chat?')) {
+    if (window.confirm(t('assistant.deleteChatConfirm', 'Ești sigur că vrei să ștergi acest chat?'))) {
       await deleteChat(chatId);
     }
   };
 
-  const formatChatTitle = (chat) => {
-    if (chat.title && chat.title !== `Chat ${new Date(chat.createdAt).toLocaleDateString('ro-RO')}`) {
+  const formatChatTitle = useCallback((chat) => {
+    const chatLabel = t('assistant.chatDefaultLabel', 'Chat');
+    const createdAt = chat.createdAt ?? Date.now();
+    const defaultRoTitle = `${chatLabel} ${new Date(createdAt).toLocaleDateString('ro-RO')}`;
+    if (chat.title && chat.title !== defaultRoTitle) {
       return chat.title;
     }
-    const firstUserMessage = chat.messages?.find(m => m.role === 'user');
+    const firstUserMessage = chat.messages?.find((m) => m.role === 'user');
     if (firstUserMessage) {
       const preview = firstUserMessage.text.substring(0, 30);
-      return preview.length < firstUserMessage.text.length ? preview + '...' : preview;
+      return preview.length < firstUserMessage.text.length ? `${preview}...` : preview;
     }
-    return chat.title || `Chat ${new Date(chat.createdAt).toLocaleDateString('ro-RO')}`;
-  };
+    return chat.title || `${chatLabel} ${new Date(createdAt).toLocaleDateString(localeTag)}`;
+  }, [t, localeTag]);
 
-  // Memoizat pentru performanță
   const formatTime = useCallback((timestamp) => {
     if (!timestamp) return '';
     const date = new Date(timestamp);
     const now = new Date();
     const diffMs = now - date;
     const diffMins = Math.floor(diffMs / 60000);
-    
-    if (diffMins < 1) return 'Acum';
-    if (diffMins < 60) return `Acum ${diffMins} min`;
-    if (diffMins < 1440) return `Acum ${Math.floor(diffMins / 60)}h`;
-    return date.toLocaleDateString('ro-RO', { day: 'numeric', month: 'short' });
-  }, []);
+
+    if (diffMins < 1) return t('assistant.time.justNow', 'Acum');
+    if (diffMins < 60) {
+      return t('assistant.time.minsAgo', `Acum ${diffMins} min`, { n: diffMins });
+    }
+    if (diffMins < 1440) {
+      const hours = Math.floor(diffMins / 60);
+      return t('assistant.time.hoursShort', `Acum ${hours}h`, { n: hours });
+    }
+    return date.toLocaleDateString(localeTag, { day: 'numeric', month: 'short' });
+  }, [t, localeTag]);
 
   const handleSend = async (e, prompt = null, sendOptions = {}) => {
     if (e) e.preventDefault();
@@ -682,7 +706,7 @@ const AssistantPopup = ({ onClose, initialMessage, initialMessageInNewChat = fal
     if (!text) return;
 
     if (!user?.uid) {
-      alert('Trebuie să fii logat pentru a folosi Profesorul Whiz. Te rugăm să te conectezi.');
+      alert(t('assistant.mustSignInToast', 'Trebuie să fii logat pentru a folosi Profesorul Whiz. Te rugăm să te conectezi.'));
       return;
     }
 
@@ -706,8 +730,11 @@ const AssistantPopup = ({ onClose, initialMessage, initialMessageInNewChat = fal
         let newTitle;
         
         if (problemInfo) {
-          // Creează titlul în formatul "Rezolvarea problemei #X - titlul problemei"
-          newTitle = `Rezolvare #${problemInfo.number} - ${problemInfo.title}`;
+          newTitle = t(
+            'assistant.chatTitles.problemSolve',
+            `Rezolvare #${problemInfo.number} - ${problemInfo.title}`,
+            { num: problemInfo.number, title: problemInfo.title },
+          );
           // Limitează lungimea titlului dacă este prea lung
           if (newTitle.length > 100) {
             newTitle = newTitle.substring(0, 97) + '...';
@@ -723,7 +750,7 @@ const AssistantPopup = ({ onClose, initialMessage, initialMessageInNewChat = fal
         console.log('✅ Chat created with ID:', activeChatId, 'and title:', newTitle);
       } catch (error) {
         console.error('Error creating chat:', error);
-        alert('Eroare la crearea chat-ului. Te rugăm să încerci din nou.');
+        alert(t('assistant.createChatError', 'Eroare la crearea chat-ului. Te rugăm să încerci din nou.'));
         return;
       }
     }
@@ -747,8 +774,8 @@ const AssistantPopup = ({ onClose, initialMessage, initialMessageInNewChat = fal
     }, 100);
 
     try {
-      const rawAiText = await fetchAssistantReply(text, activeChatId);
-      const aiText = await ensureRomanian(rawAiText);
+      const rawAiText = await fetchAssistantReply(text, activeChatId, { locale: lang });
+      const aiText = await postProcessAiReply(rawAiText, lang);
       
       const aiMessage = { 
         role: "ai", 
@@ -806,7 +833,8 @@ const AssistantPopup = ({ onClose, initialMessage, initialMessageInNewChat = fal
       
     } catch (err) {
       console.error("Chat error:", err);
-      const errorText = err.message || "A apărut o eroare la conectarea cu serverul. Încearcă din nou mai târziu.";
+      const errorText =
+        err.message || t('assistant.fallbackError', 'A apărut o eroare la conectarea cu serverul. Încearcă din nou mai târziu.');
       await addMessage(activeChatId, { 
         role: "ai", 
         text: errorText,
@@ -950,6 +978,11 @@ const AssistantPopup = ({ onClose, initialMessage, initialMessageInNewChat = fal
     };
   }, []); // Rulează doar la mount/unmount
 
+  const aiAvatarAlt = t('assistant.avatarAlt', 'Profesorul Whiz');
+  const userAvatarAlt = t('assistant.userAvatarAlt', 'Avatar utilizator');
+  const copyMsgTitle = t('assistant.copyTooltip', 'Copiază mesajul');
+  const brand = t('assistant.brandName', 'Profesorul Whiz');
+
   return (
     <div 
       className={`assistant-popup-overlay ${isFullscreen ? 'fullscreen' : ''}`} 
@@ -974,24 +1007,31 @@ const AssistantPopup = ({ onClose, initialMessage, initialMessageInNewChat = fal
             <div className="assistant-popup-logo">
               <img 
                 src={professorWhizAvatar} 
-                alt="Profesorul Whiz" 
+                alt={aiAvatarAlt} 
                 style={{ width: '24px', height: '24px', borderRadius: '50%', objectFit: 'cover' }}
               />
-              <span>Profesorul Whiz</span>
+              <span>{brand}</span>
             </div>
           </div>
           <div className="assistant-popup-header-right">
             <button 
+              type="button"
               className="assistant-popup-icon-btn"
               onClick={handleToggleFullscreen}
-              title={isFullscreen ? "Ieșire din fullscreen" : "Fullscreen"}
+              title={
+                isFullscreen
+                  ? t('assistant.fullscreenExit', 'Ieșire din fullscreen')
+                  : t('assistant.fullscreenEnter', 'Fullscreen')
+              }
             >
               {isFullscreen ? <Minimize2 size={18} /> : <Maximize2 size={18} />}
             </button>
             <button 
+              type="button"
               className="assistant-popup-icon-btn assistant-popup-close-btn" 
               onClick={onClose}
-              title="Închide"
+              title={t('assistant.close', 'Închide')}
+              aria-label={t('assistant.close', 'Închide')}
             >
               <X size={18} />
             </button>
@@ -1003,16 +1043,22 @@ const AssistantPopup = ({ onClose, initialMessage, initialMessageInNewChat = fal
           <div className={`assistant-popup-sidebar ${sidebarOpen ? 'open' : ''}`}>
             <div className="assistant-popup-sidebar-header">
               <button 
+                type="button"
                 className="assistant-popup-new-chat-btn"
                 onClick={handleNewChat}
               >
                 <Plus size={18} />
-                <span>Chat nou</span>
+                <span>{t('assistant.newChat', 'Chat nou')}</span>
               </button>
               <button 
+                type="button"
                 className="assistant-popup-sidebar-toggle"
                 onClick={() => setSidebarOpen(!sidebarOpen)}
-                title={sidebarOpen ? "Ascunde sidebar" : "Afișează sidebar"}
+                title={
+                  sidebarOpen
+                    ? t('assistant.hideSidebar', 'Ascunde sidebar')
+                    : t('assistant.showSidebar', 'Afișează sidebar')
+                }
               >
                 <MessageSquare size={18} />
               </button>
@@ -1021,19 +1067,19 @@ const AssistantPopup = ({ onClose, initialMessage, initialMessageInNewChat = fal
               {!user?.uid ? (
                 <div className="assistant-popup-empty-state">
                   <MessageSquare size={32} />
-                  <p>Trebuie să fii logat</p>
-                  <span>Conectează-te pentru a folosi Profesorul Whiz</span>
+                  <p>{t('assistant.sidebarLoginTitle', 'Trebuie să fii logat')}</p>
+                  <span>{t('assistant.sidebarLoginSubtitle', 'Conectează-te pentru a folosi Profesorul Whiz')}</span>
                 </div>
               ) : chatsLoading ? (
                 <div className="assistant-popup-loading-state">
                   <Loader2 size={20} className="spinning" />
-                  <span>Se încarcă...</span>
+                  <span>{t('assistant.loadingChats', 'Se încarcă...')}</span>
                 </div>
               ) : chats.length === 0 ? (
                 <div className="assistant-popup-empty-state">
                   <MessageSquare size={32} />
-                  <p>Nu ai chat-uri</p>
-                  <span>Creează unul nou pentru a începe</span>
+                  <p>{t('assistant.emptyChatsTitle', 'Nu ai chat-uri')}</p>
+                  <span>{t('assistant.emptyChatsSubtitle', 'Creează unul nou pentru a începe')}</span>
                 </div>
               ) : (
                 chats.map((chat) => (
@@ -1049,7 +1095,9 @@ const AssistantPopup = ({ onClose, initialMessage, initialMessageInNewChat = fal
                     <button
                       className="assistant-popup-chat-item-delete"
                       onClick={(e) => handleDeleteChat(chat.id, e)}
-                      title="Șterge chat"
+                      type="button"
+                      title={t('assistant.deleteChatTitle', 'Șterge chat')}
+                      aria-label={t('assistant.deleteChatTitle', 'Șterge chat')}
                     >
                       <Trash2 size={14} />
                     </button>
@@ -1062,9 +1110,10 @@ const AssistantPopup = ({ onClose, initialMessage, initialMessageInNewChat = fal
           {/* Main Content */}
           <div className={`assistant-popup-main-content ${isFullscreen ? 'fullscreen' : ''}`}>
             <button 
+              type="button"
               className="assistant-popup-mobile-sidebar-toggle"
               onClick={() => setSidebarOpen(!sidebarOpen)}
-              title="Afișează chat-uri"
+              title={t('assistant.mobileShowChats', 'Afișează chat-uri')}
             >
               <MessageSquare size={18} />
             </button>
@@ -1076,14 +1125,14 @@ const AssistantPopup = ({ onClose, initialMessage, initialMessageInNewChat = fal
                     <div className="assistant-popup-avatar-large">
                       <img 
                         src={professorWhizAvatar} 
-                        alt="Profesorul Whiz" 
+                        alt={aiAvatarAlt} 
                         style={{ width: '100%', height: '100%', objectFit: 'cover', borderRadius: '50%' }}
                       />
                     </div>
-                    <h2>Profesorul Whiz</h2>
-                    <p>Trebuie să fii logat pentru a folosi Profesorul Whiz</p>
+                    <h2>{t('assistant.welcomeTitleLoggedOut', 'Profesorul Whiz')}</h2>
+                    <p>{t('assistant.welcomeSubtitleLoggedOut', 'Trebuie să fii logat pentru a folosi Profesorul Whiz')}</p>
                     <p style={{ fontSize: '0.9rem', color: 'var(--muted-color-current-mode)', marginTop: '0.5rem' }}>
-                      Conectează-te pentru a începe conversația
+                      {t('assistant.welcomeHintLoggedOut', 'Conectează-te pentru a începe conversația')}
                     </p>
                   </div>
                 </div>
@@ -1093,17 +1142,18 @@ const AssistantPopup = ({ onClose, initialMessage, initialMessageInNewChat = fal
                     <div className="assistant-popup-avatar-large">
                       <img 
                         src={professorWhizAvatar} 
-                        alt="Profesorul Whiz" 
+                        alt={aiAvatarAlt} 
                         style={{ width: '100%', height: '100%', objectFit: 'cover', borderRadius: '50%' }}
                       />
                     </div>
-                    <h2>Bun venit la Profesorul Whiz</h2>
-                    <p>Cu ce te pot ajuta astăzi?</p>
+                    <h2>{t('assistant.welcomeHeading', 'Bun venit la Profesorul Whiz')}</h2>
+                    <p>{t('assistant.welcomeQuestion', 'Cu ce te pot ajuta astăzi?')}</p>
                   </div>
                   <div className="assistant-popup-prompts">
-                    {PROMPTS.map((prompt, idx) => (
+                    {starterPrompts.map((prompt, idx) => (
                       <button
                         key={idx}
+                        type="button"
                         className="assistant-popup-prompt-btn"
                         onClick={() => handlePromptClick(prompt)}
                       >
@@ -1116,7 +1166,7 @@ const AssistantPopup = ({ onClose, initialMessage, initialMessageInNewChat = fal
                       <textarea
                         ref={textareaRef}
                         className="assistant-popup-input"
-                        placeholder="Scrie un mesaj..."
+                        placeholder={t('assistant.inputPlaceholder', 'Scrie un mesaj...')}
                         value={inputValue}
                         onChange={handleInput}
                         onKeyDown={handleKeyDown}
@@ -1127,7 +1177,8 @@ const AssistantPopup = ({ onClose, initialMessage, initialMessageInNewChat = fal
                         type="submit" 
                         className="assistant-popup-send-btn"
                         disabled={!inputValue.trim()}
-                        title="Trimite"
+                        title={t('assistant.send', 'Trimite')}
+                        aria-label={t('assistant.send', 'Trimite')}
                       >
                         <Send size={18} />
                       </button>
@@ -1141,10 +1192,10 @@ const AssistantPopup = ({ onClose, initialMessage, initialMessageInNewChat = fal
                       <div className="assistant-popup-empty-chat">
                         <img 
                           src={professorWhizAvatar} 
-                          alt="Profesorul Whiz" 
+                          alt={aiAvatarAlt} 
                           style={{ width: '48px', height: '48px', borderRadius: '50%', objectFit: 'cover' }}
                         />
-                        <p>Începe conversația</p>
+                        <p>{t('assistant.emptyChatBanner', 'Începe conversația')}</p>
                       </div>
                     ) : (
                       messages.map((msg, idx) => {
@@ -1163,16 +1214,23 @@ const AssistantPopup = ({ onClose, initialMessage, initialMessageInNewChat = fal
                             onCopyMessage={handleCopyMessage}
                             copiedMessageId={copiedMessageId}
                             formatTime={formatTime}
+                            aiAvatarAlt={aiAvatarAlt}
+                            userAvatarAlt={userAvatarAlt}
+                            copyMessageTitle={copyMsgTitle}
                           />
                         );
                       })
                     )}
                     {loading && (
-                      <div className="assistant-message assistant-message--ai loading">
+                      <div
+                        className="assistant-message assistant-message--ai loading"
+                        aria-busy="true"
+                        aria-label={t('assistant.thinking', 'Profesorul Whiz se gândește…')}
+                      >
                         <div className="assistant-message-avatar">
                           <img 
                             src={professorWhizAvatar} 
-                            alt="Profesorul Whiz" 
+                            alt={aiAvatarAlt} 
                             className="assistant-message-avatar-img"
                             style={{ width: '100%', height: '100%', objectFit: 'cover' }}
                           />
@@ -1193,7 +1251,7 @@ const AssistantPopup = ({ onClose, initialMessage, initialMessageInNewChat = fal
                       <textarea
                         ref={textareaRef}
                         className="assistant-popup-input"
-                        placeholder="Scrie un mesaj..."
+                        placeholder={t('assistant.inputPlaceholder', 'Scrie un mesaj...')}
                         value={inputValue}
                         onChange={handleInput}
                         onKeyDown={handleKeyDown}
@@ -1204,7 +1262,8 @@ const AssistantPopup = ({ onClose, initialMessage, initialMessageInNewChat = fal
                         type="submit" 
                         className="assistant-popup-send-btn"
                         disabled={!inputValue.trim() || loading}
-                        title="Trimite"
+                        title={t('assistant.send', 'Trimite')}
+                        aria-label={t('assistant.send', 'Trimite')}
                       >
                         {loading ? (
                           <Loader2 size={18} className="spinning" />

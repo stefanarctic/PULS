@@ -1,4 +1,20 @@
 (() => {
+    function simT(path, ro) {
+        return typeof window.simLbl === "function" ? window.simLbl(path, ro) : ro;
+    }
+
+    function imageTypeLabel(di, m) {
+        if (!isFinite(di)) return simT("types.infinity", "la infinit (raze paralele)");
+        if (di > 0) {
+            return m < 0
+                ? simT("types.realInverted", "reală, răsturnată")
+                : simT("types.realUpright", "reală, dreaptă");
+        }
+        return m < 0
+            ? simT("types.virtualInverted", "virtuală, răsturnată")
+            : simT("types.virtualUpright", "virtuală, dreaptă");
+    }
+
     const canvas = document.getElementById('c');
     const stage = document.getElementById('stage');
     const ctx = canvas.getContext('2d');
@@ -27,6 +43,19 @@
     const layout = document.getElementById('layout');
     const collapseBtn = document.getElementById('collapseBtn');
     const peekBtn = document.getElementById('peekBtn');
+
+    function updateRaysToggle() {
+        toggleRaysBtn.textContent = showRays
+            ? simT("toggles.raysOn", "Raze: ON")
+            : simT("toggles.raysOff", "Raze: OFF");
+    }
+
+    function updateLabelsToggle() {
+        toggleLabelsBtn.textContent = showLabels
+            ? simT("toggles.labelsOn", "Etichete: ON")
+            : simT("toggles.labelsOff", "Etichete: OFF");
+    }
+
     function setCollapsed(collapsed) {
         layout.classList.toggle('is-collapsed', collapsed);
         
@@ -162,16 +191,7 @@
         const { di } = lensFormula(f, d0);
         const m = -di / d0;
         const hi = m * h0;
-
-        let type = "";
-        if (!isFinite(di)) {
-            type = "la infinit (raze paralele)";
-        } else if (di > 0) {
-            type = "reală, " + (m < 0 ? "răsturnată" : "dreaptă");
-        } else {
-            type = "virtuală, " + (m < 0 ? "răsturnată" : "dreaptă");
-        }
-
+        const type = imageTypeLabel(di, m);
         return { di, m, hi, type };
     }
 
@@ -272,7 +292,7 @@
         if (showLabels) {
             ctx.font = "12px ui-sans-serif, system-ui";
             ctx.fillStyle = "rgba(234,240,255,.85)";
-            ctx.fillText("Lentilă", O.x + 10, O.y - lensH / 2 + 18);
+            ctx.fillText(simT("canvas.lens", "Lentilă"), O.x + 10, O.y - lensH / 2 + 18);
 
             ctx.fillStyle = "rgba(62,233,138,.95)";
             ctx.fillText("F", F1.x - 6, F1.y - 10);
@@ -344,11 +364,14 @@
         const { di, m, hi, type } = compute();
         const imgX = di;
 
-        const obj = drawArrow(objX, h0, "rgba(255, 204, 102, .95)", "Obiect");
+        const labObj = simT("canvas.object", "Obiect");
+        const labImg = simT("canvas.image", "Imagine");
+
+        const obj = drawArrow(objX, h0, "rgba(255, 204, 102, .95)", labObj);
 
         if (isFinite(di)) {
             const imgColor = (di > 0) ? "rgba(62,233,138,.95)" : "rgba(122,167,255,.95)";
-            drawArrow(imgX, hi, imgColor, "Imagine");
+            drawArrow(imgX, hi, imgColor, labImg);
         }
 
         if (showRays) {
@@ -396,7 +419,11 @@
                 ctx.save();
                 ctx.fillStyle = "rgba(255, 204, 102, .85)";
                 ctx.font = "12px ui-sans-serif, system-ui";
-                ctx.fillText("Imagine la infinit: raze paralele după lentilă", O.x + 12, O.y + 18);
+                ctx.fillText(
+                    simT("canvas.imageAtInfinity", "Imagine la infinit: raze paralele după lentilă"),
+                    O.x + 12,
+                    O.y + 18
+                );
                 ctx.restore();
             }
         }
@@ -418,17 +445,35 @@
         }
         typeOut.textContent = type;
 
-        lensType.textContent = "Convergentă";
+        lensType.textContent = simT("lens.converging", "Convergentă");
 
         // Status
         if (Math.abs(d0 - f) < 0.6) {
-            setStatus("warn", "Ești foarte aproape de <b>d₀ = f</b> → imaginea fuge spre infinit. (Corect fizic 😄)");
+            setStatus(
+                "warn",
+                simT(
+                    "status.nearFocal",
+                    "Ești foarte aproape de <b>d₀ = f</b> → imaginea fuge spre infinit. (Corect fizic 😄)"
+                )
+            );
         } else if (isFinite(di) && di > 0) {
-            setStatus("good", "Imagine <b>reală</b> pe partea dreaptă a lentilei. O poți “prinde” pe un ecran.");
+            setStatus(
+                "good",
+                simT(
+                    "status.realRight",
+                    "Imagine <b>reală</b> pe partea dreaptă a lentilei. O poți “prinde” pe un ecran."
+                )
+            );
         } else if (isFinite(di) && di < 0) {
-            setStatus("warn", "Imagine <b>virtuală</b> (ca o lupă). Extensiile punctate arată unde “pare” că se formează.");
+            setStatus(
+                "warn",
+                simT(
+                    "status.virtualLoupe",
+                    "Imagine <b>virtuală</b> (ca o lupă). Extensiile punctate arată unde “pare” că se formează."
+                )
+            );
         } else {
-            setStatus("", "Trage obiectul sau schimbă slider-ele. 🧠");
+            setStatus("", simT("status.idle", "Trage obiectul sau schimbă slider-ele. 🧠"));
         }
     }
 
@@ -533,14 +578,14 @@
     // Buttons
     toggleRaysBtn.addEventListener('click', () => {
         showRays = !showRays;
-        toggleRaysBtn.textContent = `Raze: ${showRays ? "ON" : "OFF"}`;
+        updateRaysToggle();
         toggleRaysBtn.classList.toggle('primary', showRays);
         draw();
     });
 
     toggleLabelsBtn.addEventListener('click', () => {
         showLabels = !showLabels;
-        toggleLabelsBtn.textContent = `Etichete: ${showLabels ? "ON" : "OFF"}`;
+        updateLabelsToggle();
         toggleLabelsBtn.classList.toggle('primary', showLabels);
         draw();
     });
@@ -558,8 +603,8 @@
         showRays = true;
         showLabels = true;
 
-        toggleRaysBtn.textContent = "Raze: ON";
-        toggleLabelsBtn.textContent = "Etichete: ON";
+        updateRaysToggle();
+        updateLabelsToggle();
         toggleRaysBtn.classList.add('primary');
         toggleLabelsBtn.classList.add('primary');
 

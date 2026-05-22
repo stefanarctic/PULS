@@ -131,6 +131,20 @@ const stabilityEl = document.getElementById("stability");
 const meltdownExplainEl = document.getElementById("meltdownExplain");
 const resetBtn = document.getElementById("resetBtn");
 
+function simT(path, ro) {
+    return typeof window.simLbl === "function" ? window.simLbl(path, ro) : ro;
+}
+
+function simFmt(path, roTemplate, vars) {
+    let msg = simT(path, roTemplate);
+    if (vars) {
+        for (const [key, val] of Object.entries(vars)) {
+            msg = msg.split(key).join(String(val));
+        }
+    }
+    return msg;
+}
+
 /* STATE */
 let state = {
     temperature: 500,
@@ -209,12 +223,12 @@ function computePhysics() {
     const energy = reactions * MEV_PER_FUSION;
     const rate = fusionsPerSecond();
 
-    // stabilitate
-    let stability = "OK";
-    if (flux > 7 && temperature > 700) stability = "Instabil";
-    if (flux > 8.5 && temperature > 850) stability = "CRITIC";
+    /** @type {"ok"|"unstable"|"critical"} */
+    let stabilityKey = "ok";
+    if (flux > 7 && temperature > 700) stabilityKey = "unstable";
+    if (flux > 8.5 && temperature > 850) stabilityKey = "critical";
 
-    return { energy, rate, stability };
+    return { energy, rate, stabilityKey };
 }
 
 function drawAftermathBackground(cx, cy, d) {
@@ -534,19 +548,22 @@ function animate() {
     energyEl.textContent = physics.energy.toFixed(1) + " MeV";
     rateEl.textContent = physics.rate.toFixed(1) + " /s";
 
+    const roStab =
+        physics.stabilityKey === "ok"
+            ? "OK"
+            : physics.stabilityKey === "unstable"
+              ? "Instabil"
+              : "CRITIC";
+
     if (meltdown) {
-        stabilityEl.textContent = "\u2622 MELTDOWN";
+        stabilityEl.textContent = simT("status.meltdown", "\u2622 MELTDOWN");
         stabilityEl.style.color = "#f87171";
     } else if (flux > 7) {
-        stabilityEl.textContent = "\u26A0 INSTABIL";
+        stabilityEl.textContent = simT("status.warningUnstable", "\u26A0 INSTABIL");
         stabilityEl.style.color = "#fb923c";
     } else {
-        stabilityEl.textContent = physics.stability;
-        if (physics.stability === "OK") {
-            stabilityEl.style.color = "#22c55e";
-        } else {
-            stabilityEl.style.color = "#22c55e";
-        }
+        stabilityEl.textContent = simT(`stability.${physics.stabilityKey}`, roStab);
+        stabilityEl.style.color = "#22c55e";
     }
 
     draw();

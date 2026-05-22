@@ -12,19 +12,19 @@
 
   <header class="hero">
     <div class="badge">
-      <span class="dot"></span> LABORATOR NUCLEAR · INTERACTIV
+      <span class="dot"></span> <span data-i18n="hero.badge">LABORATOR NUCLEAR · INTERACTIV</span>
     </div>
     <h1>
-      Izotopii <span class="accent">Uraniului</span>
+      <span data-i18n="hero.titleBefore">Izotopii</span> <span class="accent" data-i18n="hero.titleAccent">Uraniului</span>
     </h1>
-    <p class="subtitle">
+    <p class="subtitle" data-i18n="hero.subtitle">
       Explorează nucleul, declanșează dezintegrări α, simulează fisiunea și rulează milioane de ani într-o secundă.
     </p>
     <nav class="nav-pills">
-      <a href="#info" class="pill">① Info rapid</a>
-      <a href="#simulator" class="pill">② Simulator nucleu</a>
-      <a href="#lab" class="pill">③ Fisiune &amp; Timp</a>
-      <a href="#teorie" class="pill">④ Teorie</a>
+      <a href="#info" class="pill" data-i18n="nav.info">① Info rapid</a>
+      <a href="#simulator" class="pill" data-i18n="nav.simulator">② Simulator nucleu</a>
+      <a href="#lab" class="pill" data-i18n="nav.lab">③ Fisiune &amp; Timp</a>
+      <a href="#teorie" class="pill" data-i18n="nav.theory">④ Teorie</a>
     </nav>
   </header>
 
@@ -32,8 +32,8 @@
   <section id="info" class="section">
     <div class="section-head">
       <span class="step">01</span>
-      <h2>Info rapid · cei 4 izotopi care contează</h2>
-      <p>92 protoni mereu. Ce-i diferențiază? <b>Numărul de neutroni.</b></p>
+      <h2 data-i18n="sections.info.title">Info rapid · cei 4 izotopi care contează</h2>
+      <p><span data-i18n="sections.info.lead1">92 protoni mereu. Ce-i diferențiază?</span> <b data-i18n="sections.info.leadBold">Numărul de neutroni.</b></p>
     </div>
 
     <div class="cards" id="isotopeCards">
@@ -45,8 +45,8 @@
   <section id="simulator" class="section">
     <div class="section-head">
       <span class="step">02</span>
-      <h2>Simulator de nucleu</h2>
-      <p>Schimbă izotopul, vezi raportul n/p, declanșează o dezintegrare α.</p>
+      <h2 data-i18n="sections.sim.title">Simulator de nucleu</h2>
+      <p data-i18n="sections.sim.lead">Schimbă izotopul, vezi raportul n/p, declanșează o dezintegrare α.</p>
     </div>
 
     <div class="simulator-grid">
@@ -55,15 +55,15 @@
         <div class="canvas-overlay">
           <div class="iso-tag" id="isoTag">U-235</div>
           <div class="legend">
-            <span><i class="proton"></i> proton</span>
-            <span><i class="neutron"></i> neutron</span>
+            <span><i class="proton"></i> <span data-i18n="legend.proton">proton</span></span>
+            <span><i class="neutron"></i> <span data-i18n="legend.neutron">neutron</span></span>
           </div>
         </div>
       </div>
 
       <div class="controls">
         <div class="control-block">
-          <label>Alege izotopul</label>
+          <label data-i18n="controls.chooseIsotope">Alege izotopul</label>
           <div class="iso-selector" id="isoSelector">
             <button data-iso="U-233">U-233</button>
             <button data-iso="U-234">U-234</button>
@@ -74,26 +74,26 @@
 
         <div class="stats">
           <div class="stat">
-            <span class="stat-label">Protoni (Z)</span>
+            <span class="stat-label" data-i18n="stats.protons">Protoni (Z)</span>
             <span class="stat-value" id="statP">92</span>
           </div>
           <div class="stat">
-            <span class="stat-label">Neutroni (N)</span>
+            <span class="stat-label" data-i18n="stats.neutrons">Neutroni (N)</span>
             <span class="stat-value" id="statN">143</span>
           </div>
           <div class="stat">
-            <span class="stat-label">Masa (A)</span>
+            <span class="stat-label" data-i18n="stats.mass">Masa (A)</span>
             <span class="stat-value" id="statA">235</span>
           </div>
           <div class="stat">
-            <span class="stat-label">Raport N/Z</span>
+            <span class="stat-label" data-i18n="stats.ratio">Raport N/Z</span>
             <span class="stat-value" id="statRatio">1.554</span>
           </div>
         </div>
 
         <div class="stability">
           <div class="stability-head">
-            <span>Stabilitate</span>
+            <span data-i18n="stability.label">Stabilitate</span>
             <span id="stabilityText">Moderată</span>
           </div>
           <div class="stability-bar">
@@ -103,11 +103,11 @@
         </div>
 
         <div class="actions">
-          <button class="btn btn-primary" id="btnDecay">
+          <button class="btn btn-primary" id="btnDecay" data-i18n="buttons.decay">
             ☢️ Dezintegrare α
           </button>
-          <button class="btn btn-ghost" id="btnReset">
-            ↺ Reset
+          <button class="btn btn-ghost" id="btnReset" data-i18n="buttons.reset">
+            ↺ Resetare
           </button>
         </div>
 
@@ -126,8 +126,8 @@
   <section id="lab" class="section">
     <div class="section-head">
       <span class="step">03</span>
-      <h2>Modulul WOW · Fisiune &amp; Timp</h2>
-      <p>Aici se sparge lumea. Lovește U-235 cu un neutron, sau rulează miliarde de ani.</p>
+      <h2 data-i18n="sections.lab.title">Modulul WOW · Fisiune &amp; Timp</h2>
+      <p data-i18n="sections.lab.lead">Aici se sparge lumea. Lovește U-235 cu un neutron, sau rulează miliarde de ani.</p>
     </div>
 
     <div class="lab-grid">
@@ -135,8 +135,8 @@
       <!-- FISIUNE -->
       <div class="lab-card">
         <div class="lab-head">
-          <h3>💥 Fisiune nucleară (U-235)</h3>
-          <p>Un neutron lent lovește nucleul → fragmente + 2-3 neutroni + energie.</p>
+          <h3 data-i18n="fission.cardTitle">💥 Fisiune nucleară (U-235)</h3>
+          <p data-i18n="fission.cardLead">Un neutron lent lovește nucleul → fragmente + 2-3 neutroni + energie.</p>
         </div>
 
         <div class="canvas-wrap small">
@@ -166,17 +166,17 @@
           <div class="formula big">
             E = Δm · c²
           </div>
-          <small>Diferența de masă se transformă în energie. ~200 MeV per fisiune.</small>
+          <small data-i18n="fission.massEnergyHint">Diferența de masă se transformă în energie. ~200 MeV per fisiune.</small>
         </div>
 
-        <button class="btn btn-danger" id="btnFission">⚡ Simulează fisiune</button>
+        <button class="btn btn-danger" id="btnFission" data-i18n="buttons.simulateFission">⚡ Simulează fisiune</button>
       </div>
 
       <!-- COMPARAȚIE -->
       <div class="lab-card">
         <div class="lab-head">
-          <h3>⚖️ U-235 vs U-238</h3>
-          <p>De ce unul e combustibil, celălalt nu?</p>
+          <h3 data-i18n="compare.cardTitle">⚖️ U-235 vs U-238</h3>
+          <p data-i18n="compare.cardLead">De ce unul e combustibil, celălalt nu?</p>
         </div>
 
         <table class="compare">
@@ -184,11 +184,11 @@
             <tr><th></th><th class="col-235">U-235</th><th class="col-238">U-238</th></tr>
           </thead>
           <tbody>
-            <tr><td>Abundență naturală</td><td>0.72%</td><td>99.27%</td></tr>
-            <tr><td>Fisionabil cu n lent</td><td class="yes">DA</td><td class="no">NU</td></tr>
-            <tr><td>Timp de înjumătățire</td><td>704 mil. ani</td><td>4.47 mld. ani</td></tr>
-            <tr><td>Utilizare</td><td>Reactor / armă</td><td>Combustibil fertil</td></tr>
-            <tr><td>Tip dezintegrare</td><td>α</td><td>α</td></tr>
+            <tr><td data-i18n="compare.rowAbundance">Abundență naturală</td><td>0.72%</td><td>99.27%</td></tr>
+            <tr><td data-i18n="compare.rowFissile">Fisionabil cu n lent</td><td class="yes" data-i18n="compare.yes">DA</td><td class="no" data-i18n="compare.no">NU</td></tr>
+            <tr><td data-i18n="compare.rowHalfLife">Timp de înjumătățire</td><td data-i18n="compare.hl235">704 mil. ani</td><td data-i18n="compare.hl238">4.47 mld. ani</td></tr>
+            <tr><td data-i18n="compare.rowUse">Utilizare</td><td data-i18n="compare.use235">Reactor / armă</td><td data-i18n="compare.use238">Combustibil fertil</td></tr>
+            <tr><td data-i18n="compare.rowDecay">Tip dezintegrare</td><td>α</td><td>α</td></tr>
           </tbody>
         </table>
       </div>
@@ -196,22 +196,22 @@
       <!-- TIMP -->
       <div class="lab-card wide">
         <div class="lab-head">
-          <h3>⏳ Mașina timpului · dezintegrare radioactivă</h3>
-          <p>1000 de atomi. Apasă play și vezi cum scad în timp. Curba este exponențială: N(t) = N₀ · (½)<sup>t/T½</sup></p>
+          <h3 data-i18n="timeMachine.title">⏳ Mașina timpului · dezintegrare radioactivă</h3>
+          <p data-i18n="timeMachine.lead">1000 de atomi. Apasă Pornește și vezi cum scad în timp. Scăderea e exponențială: N(t) = N₀ · (½)^(t/T½).</p>
         </div>
 
         <div class="time-grid">
           <div class="atoms-wrap">
             <canvas id="atomsCanvas" width="500" height="260"></canvas>
             <div class="atoms-overlay">
-              <div><span class="atoms-label">Atomi rămași</span><span class="atoms-value" id="atomsLeft">1000</span></div>
-              <div><span class="atoms-label">Timp scurs</span><span class="atoms-value" id="timeElapsed">0 ani</span></div>
+              <div><span class="atoms-label" data-i18n="time.leftLabel">Atomi rămași</span><span class="atoms-value" id="atomsLeft">1000</span></div>
+              <div><span class="atoms-label" data-i18n="time.elapsedLabel">Timp scurs</span><span class="atoms-value" id="timeElapsed">0 ani</span></div>
             </div>
           </div>
 
           <div class="time-controls">
             <div class="control-block">
-              <label>Izotop</label>
+              <label data-i18n="controls.isotope">Izotop</label>
               <div class="iso-selector compact" id="timeIsoSelector">
                 <button data-iso="U-233">U-233</button>
                 <button data-iso="U-234">U-234</button>
@@ -221,20 +221,20 @@
             </div>
 
             <div class="control-block">
-              <label>Viteză de simulare: <span id="speedVal">1×</span></label>
+              <label><span data-i18n="controls.simSpeed">Viteză de simulare:</span> <span id="speedVal">1×</span></label>
               <input type="range" id="speedSlider" min="1" max="7" value="4" />
               <div class="speed-labels">
-                <span>mii ani</span><span>miliarde ani</span>
+                <span data-i18n="controls.speedMin">mii ani</span><span data-i18n="controls.speedMax">miliarde ani</span>
               </div>
             </div>
 
             <div class="time-actions">
-              <button class="btn btn-primary" id="btnPlay">▶ Play</button>
-              <button class="btn btn-ghost" id="btnTimeReset">↺ Reset</button>
+              <button class="btn btn-primary" id="btnPlay" data-i18n="buttons.start">▶ Pornește</button>
+              <button class="btn btn-ghost" id="btnTimeReset" data-i18n="buttons.reset">↺ Resetare</button>
             </div>
 
             <div class="half-life-info">
-              <span>T½ actual:</span>
+              <span data-i18n="time.currentHalfLife">T½ actual:</span>
               <b id="timeHalfLife">703.8 mil. ani</b>
             </div>
           </div>
@@ -247,26 +247,27 @@
   <section id="teorie" class="section theory-embed">
     <div class="section-head">
       <span class="step">04</span>
-      <h2>Teorie · formule utile</h2>
-      <p>Reper rapid pentru nucleu, α și modulul de timp; detalii și tab-ul Formule pe site.</p>
+      <h2 data-i18n="theory.sectionTitle">Teorie · formule utile</h2>
+      <p data-i18n="theory.sectionLead">Reper rapid pentru nucleu, α și modulul de timp; detalii și tab-ul Formule pe site.</p>
     </div>
-    <ul class="theory-list">
-      <li>
+    <ul class="theory-list" id="theoryList">
+      <li id="theoryLi1">
         <strong>Notație:</strong> <span class="theory-mono">A = Z + N</span> — pentru uraniu, Z = 92.
       </li>
-      <li>
+      <li id="theoryLi2">
         <strong>Dezintegrare α:</strong> nucleul pierde un <span class="theory-mono">⁴₂He</span>; fiul are Z − 2, A − 4.
       </li>
-      <li>
+      <li id="theoryLi3">
         <strong>Radioactivitate:</strong> <span class="theory-mono">N(t) = N₀·e<sup>−λt</sup></span>,
         <span class="theory-mono">λ = ln(2)/T<sub>½</sub></span> (aceeași structură ca în harta „toți izotopii”).
       </li>
     </ul>
     <p class="theory-more">
-      <a href="/resurse/fizica-nucleara">Resurse PULS — fizică nucleară (lecții și formule)</a>
+      <a href="/resurse/fizica-nucleara" data-i18n="theory.linkText">Resurse PULS — fizică nucleară (lecții și formule)</a>
     </p>
   </section>
 
-  <script src="script.js"></script>
+  <script src="../simulator-i18n-runtime.js"></script>
+  <script src="izotopi-uraniu-boot.js"></script>
 </body>
 </html>

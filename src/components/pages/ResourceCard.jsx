@@ -1,6 +1,6 @@
 import { BookOpen, Sigma } from "lucide-react";
 import React from "react";
-import { Link } from "react-router-dom";
+import { LocalizedLink as Link, useI18n } from "../../i18n/LanguageContext";
 // import "./ResourceCard.scss";
 
 const ResourceCard = ({
@@ -12,6 +12,8 @@ const ResourceCard = ({
   experimentPath,
   formulaCategory,
 }) => {
+  const { t } = useI18n();
+
   return (
     <div
       className="resource-card group"
@@ -45,7 +47,7 @@ const ResourceCard = ({
             className="resource-card__button"
           >
             <BookOpen className="resource-card__button-icon" />
-            <span>Experimente</span>
+            <span>{t('resourcesSection.card.experiments', 'Experimente')}</span>
           </Link>
           {formulaCategory && (
             <Link
@@ -53,7 +55,7 @@ const ResourceCard = ({
               className="resource-card__button"
             >
               <Sigma className="resource-card__button-icon" />
-              <span>Formule</span>
+              <span>{t('resourcesSection.card.formulas', 'Formule')}</span>
             </Link>
           )}
         </div>

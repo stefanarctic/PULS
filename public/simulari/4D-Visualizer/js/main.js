@@ -3,6 +3,10 @@
  * Handles UI interactions and initializes the 4D visualizer
  */
 
+function simT(path, ro) {
+    return typeof window.simLbl === 'function' ? window.simLbl(path, ro) : ro;
+}
+
 class App4D {
     constructor() {
         this.visualizer = null;
@@ -28,7 +32,12 @@ class App4D {
             console.log('4D Visualizer initialized successfully');
         } catch (error) {
             console.error('Failed to initialize 4D Visualizer:', error);
-            this.showError('Failed to initialize 4D Visualizer. Please refresh the page.');
+            this.showError(
+                simT(
+                    'errors.initFailed',
+                    'Nu s-a putut inițializa vizualizatorul 4D. Reîncărcați pagina.'
+                )
+            );
         }
     }
 
@@ -184,8 +193,9 @@ class App4D {
         if (autoRotateBtn) {
             autoRotateBtn.addEventListener('click', () => {
                 this.visualizer.toggleAutoRotation();
-                autoRotateBtn.textContent = this.visualizer.animation.autoRotate ? 
-                    'Stop Auto Rotation' : 'Toggle Auto Rotation';
+                autoRotateBtn.textContent = this.visualizer.animation.autoRotate
+                    ? simT('buttons.autoRotateStop', 'Oprește rotirea automată')
+                    : simT('buttons.autoRotateStart', 'Pornește rotirea automată');
             });
         }
         
@@ -327,13 +337,9 @@ class App4D {
     }
 }
 
-// Initialize the application
-let app4D;
-
-// Start the application when the page loads
-window.addEventListener('load', () => {
-    app4D = new App4D();
-});
+// Initialize when this script runs (may load dynamically after load/DOMContentLoaded)
+let app4D = new App4D();
+window.app4D = app4D;
 
 // Handle window resize
 window.addEventListener('resize', () => {

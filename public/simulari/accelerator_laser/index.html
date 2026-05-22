@@ -10,47 +10,35 @@
 </head>
 <body>
 
-<canvas id="simCanvas"></canvas>
+<canvas id="simCanvas" data-i18n-aria="aria.canvas" aria-label="Simulare accelerare wakefield cu laser"></canvas>
 
 <div class="controls">
-  <label>Intensitatea Laserului</label>
+  <label><span data-i18n="labels.intensity">Intensitatea Laserului</span></label>
   <input type="range" id="intensity" min="1" max="100" value="30">
 
-  <label>Densitatea Plasmei</label>
+  <label><span data-i18n="labels.density">Densitatea Plasmei</span></label>
   <input type="range" id="density" min="1" max="100" value="50">
 </div>
 
 <div id="infoCard" class="hidden">
-  <h3>⚡ Ce vezi</h3>
-  <p>
+  <h3 id="infoWhatsTitle">⚡ Ce vezi</h3>
+  <p id="infoWhatsBody">
     Laserul creează o <strong>undă de plasmă</strong> (wakefield).<br>
     Electronul este prins în această undă și accelerat.
   </p>
   <div class="formula" id="formula-wave"></div>
 
-  <h3>🧪 De ce contează</h3>
-  <p>
+  <h3 id="infoWhyTitle">🧪 De ce contează</h3>
+  <p id="infoWhyBody">
     Această tehnică poate accelera particule pe distanțe de <strong>mii de ori mai mici</strong>
     decât acceleratoarele clasice, principiul din spatele <strong>ELI-NP</strong>.
   </p>
   <div class="formula" id="formula-gamma"></div>
 </div>
 
-<button id="toggleInfo" title="Ce se întâmplă?">📘</button>
+<button id="toggleInfo" type="button" title="Ce se întâmplă?">📘</button>
 
-<script src="script.js"></script>
-<script>
-  // KaTeX e `defer`, deci e sigur disponibil după DOMContentLoaded
-  document.addEventListener("DOMContentLoaded", () => {
-    katex.render("y(x,t) = A\\sin(kx - \\omega t)", document.getElementById("formula-wave"), {
-      throwOnError: false,
-      displayMode: false
-    });
-    katex.render("\\gamma = \\dfrac{1}{\\sqrt{1 - v^2/c^2}}", document.getElementById("formula-gamma"), {
-      throwOnError: false,
-      displayMode: true
-    });
-  });
-</script>
+<script src="/simulari/simulator-i18n-runtime.js"></script>
+<script src="/simulari/accelerator_laser/accelerator-laser-boot.js"></script>
 </body>
 </html>

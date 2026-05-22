@@ -1,4 +1,9 @@
 
+function simUi(path, fb) {
+    const o = window.__SIMULATOR_UI_I18N__;
+    return path.split(".").reduce((c, k) => (c != null ? c[k] : undefined), o) ?? fb;
+}
+
 let isPaused = false;
 let isStopped = true;
 let amplitude = 0.3;
@@ -28,7 +33,7 @@ const pendulumChart = new Chart(ctx, {
     data: {
         labels: Array.from({ length: 50 }, (_, i) => i),
         datasets: [{
-            label: 'Deplasare (m)',
+            label: simUi('chart.displacement', 'Deplasare (m)'),
             data: [], 
             borderColor: 'blue',
             borderWidth: 2,
@@ -141,7 +146,7 @@ function startOscillation() {
     document.getElementById("measured-velocity").textContent = "0";
     document.getElementById("measured-acceleration").textContent = "0";
     document.getElementById("measured-kineticenergy").textContent = "0";
-    document.getElementById("pauseResumeBtn").textContent = "Pauză";
+    document.getElementById("pauseResumeBtn").textContent = simUi('buttons.pause', 'Pauză');
 }
 
 function togglePauseResume() {
@@ -150,10 +155,10 @@ function togglePauseResume() {
         speed = parseFloat(document.getElementById("speed").value);
         clearInterval(pendulumInterval); 
         pendulumInterval = setInterval(updatePendulum, 100 / speed);
-        button.textContent = "Pauză";
+        button.textContent = simUi('buttons.pause', 'Pauză');
     } else {
         clearInterval(pendulumInterval);
-        button.textContent = "Rezumă";
+        button.textContent = simUi('buttons.resume', 'Rezumă');
     }
     isPaused = !isPaused;
 }
@@ -175,7 +180,7 @@ function stopOscillation() {
     document.getElementById("measured-acceleration").textContent = "0";
     document.getElementById("measured-kineticenergy").textContent = "0";
     document.getElementById("string").style.transform = `rotate(0deg)`;
-    document.getElementById("pauseResumeBtn").textContent = "Pauză";
+    document.getElementById("pauseResumeBtn").textContent = simUi('buttons.pause', 'Pauză');
 }
 // document.getElementById("amplitude").addEventListener("input", function () {
 //     this.value = 10;
@@ -302,13 +307,16 @@ window.addEventListener("resize", function () {
     updateSidebarTogglePosition();
     updateUniformTogglePosition();
 });
-document.addEventListener("DOMContentLoaded", function () {
+
+function initOscAmortLayoutUi() {
     const lengthSlider = document.getElementById("lengthSlider");
     const lengthValue = document.getElementById("lengthValue");
     const measuredLength = document.getElementById("measured-length");
     const betaSlider = document.getElementById("beta");
     const betavalue = document.getElementById("beta-value");
     const measuredbeta = document.getElementById("measured-beta");
+    const stringEl = document.getElementById("string");
+    const ballEl = document.getElementById("ball");
  
     if (!lengthSlider || !lengthValue || !measuredLength) {
         console.error("Unul dintre elemente lipsește!");
@@ -325,16 +333,23 @@ document.addEventListener("DOMContentLoaded", function () {
         let newLength = parseFloat(lengthSlider.value) / 100 || 1.5;
         lengthValue.textContent = newLength.toFixed(2) + "m";
         measuredLength.textContent = newLength.toFixed(2) + "m";
-        string.style.height = `${newLength * 100}px`;
-
-        ball.style.top = `${newLength * 100}px`;
+        if (stringEl && ballEl) {
+            stringEl.style.height = `${newLength * 100}px`;
+            ballEl.style.top = `${newLength * 100}px`;
+        }
     }
 
     lengthSlider.addEventListener("input", updatePendulumLength);
     applyResponsivePanelState(true);
     updateSidebarTogglePosition();
     updateUniformTogglePosition();
-});
+}
+
+if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", initOscAmortLayoutUi);
+} else {
+    initOscAmortLayoutUi();
+}
 window.onload = function() {
     let initialBeta = parseFloat(document.getElementById("beta").value) * 0.01;
     document.getElementById("beta-value").textContent = initialBeta.toFixed(2) + " s^-1";

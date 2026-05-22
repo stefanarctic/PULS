@@ -10,6 +10,9 @@
   const ctx = canvas.getContext('2d');
   const tooltipEl = document.getElementById('tooltip');
 
+  const simT = (path, ro) =>
+    typeof window.simLbl === 'function' ? window.simLbl(path, ro) : ro;
+
   /* ---------- STATE ---------- */
   const state = {
     flowH2: 60,
@@ -456,14 +459,18 @@
     ctx.fillStyle = '#8a2a54';
     ctx.font = 'bold 13px sans-serif';
     ctx.textAlign = 'center';
-    ctx.fillText('ANOD (−)', anode.x + anode.w / 2, anode.y + anode.h + 22);
+    ctx.fillText(simT('canvas.anode', 'ANOD (−)'), anode.x + anode.w / 2, anode.y + anode.h + 22);
 
     ctx.fillStyle = '#1c5a8a';
-    ctx.fillText('CATOD (+)', cathode.x + cathode.w / 2, cathode.y + cathode.h + 22);
+    ctx.fillText(
+      simT('canvas.cathode', 'CATOD (+)'),
+      cathode.x + cathode.w / 2,
+      cathode.y + cathode.h + 22
+    );
 
     ctx.fillStyle = '#5a6bb0';
     ctx.font = '11px sans-serif';
-    ctx.fillText('PEM', membrane.x + membrane.w / 2, membrane.y - 8);
+    ctx.fillText(simT('canvas.pem', 'PEM'), membrane.x + membrane.w / 2, membrane.y - 8);
 
     ctx.restore();
   }
@@ -745,11 +752,18 @@
 
     // pulsing alpha
     const pulse = 0.55 + 0.25 * Math.sin(state.time * 2.4);
+    const label = simT('canvas.reactionOff', 'Reacție oprită');
 
     ctx.save();
 
+    ctx.font = '600 13px -apple-system, "Segoe UI", sans-serif';
+    ctx.textAlign = 'center';
+    ctx.textBaseline = 'middle';
+    const tw = ctx.measureText(label).width;
+    const badgeW = Math.max(170, tw + 52);
+    const badgeH = 34;
+
     // soft badge background
-    const badgeW = 170, badgeH = 34;
     ctx.fillStyle = `rgba(255, 255, 255, ${0.82 * pulse})`;
     ctx.strokeStyle = `rgba(192, 57, 43, ${0.55 * pulse})`;
     ctx.lineWidth = 1.5;
@@ -765,10 +779,7 @@
 
     // text
     ctx.fillStyle = `rgba(120, 30, 30, ${pulse})`;
-    ctx.font = '600 13px -apple-system, "Segoe UI", sans-serif';
-    ctx.textAlign = 'center';
-    ctx.textBaseline = 'middle';
-    ctx.fillText('Reacție oprită', cx + 8, cy);
+    ctx.fillText(label, cx, cy);
 
     ctx.restore();
   }
@@ -815,8 +826,20 @@
     drawTube(TUBES.o2In, null);
 
     // Tanks
-    drawTank(LAYOUT.h2Tank, '#ff6b9d', '#ffd6e3', 'H₂ Tank', state.flowH2 / 100);
-    drawTank(LAYOUT.o2Tank, '#31b6ff', '#cfeeff', 'O₂ Tank', state.flowO2 / 100);
+    drawTank(
+      LAYOUT.h2Tank,
+      '#ff6b9d',
+      '#ffd6e3',
+      simT('canvas.h2Tank', 'H₂ Tank'),
+      state.flowH2 / 100
+    );
+    drawTank(
+      LAYOUT.o2Tank,
+      '#31b6ff',
+      '#cfeeff',
+      simT('canvas.o2Tank', 'O₂ Tank'),
+      state.flowO2 / 100
+    );
 
     // Cell
     drawFuelCell();
@@ -850,48 +873,67 @@
   }
 
   /* ---------- HOVER / TOOLTIPS ---------- */
+  function inRect(x, y, r) {
+    return x >= r.x && x <= r.x + r.w && y >= r.y && y <= r.y + r.h;
+  }
+
   const REGIONS = [
     {
       id: 'anode',
-      title: 'Anod (−)',
-      desc: 'Aici H₂ se descompune în <b>protoni</b> (H⁺) + <b>electroni</b> (e⁻).',
+      title: simT('regions.anode.title', 'Anod (−)'),
+      desc: simT(
+        'regions.anode.desc',
+        'Aici H₂ se descompune în <b>protoni</b> (H⁺) + <b>electroni</b> (e⁻).'
+      ),
       hit: (x, y) => inRect(x, y, LAYOUT.anode),
     },
     {
       id: 'membrane',
-      title: 'Membrană PEM',
-      desc: 'Lasă să treacă doar <b>protonii</b>. Blochează electronii → aceștia sunt forțați pe fir.',
+      title: simT('regions.membrane.title', 'Membrană PEM'),
+      desc: simT(
+        'regions.membrane.desc',
+        'Lasă să treacă doar <b>protonii</b>. Blochează electronii → aceștia sunt forțați pe fir.'
+      ),
       hit: (x, y) => inRect(x, y, LAYOUT.membrane),
     },
     {
       id: 'cathode',
-      title: 'Catod (+)',
-      desc: 'Protoni + electroni + O₂ → <b>H₂O</b>. Apa iese din celulă.',
+      title: simT('regions.cathode.title', 'Catod (+)'),
+      desc: simT(
+        'regions.cathode.desc',
+        'Protoni + electroni + O₂ → <b>H₂O</b>. Apa iese din celulă.'
+      ),
       hit: (x, y) => inRect(x, y, LAYOUT.cathode),
     },
     {
       id: 'bulb',
-      title: 'Consumator (bec)',
-      desc: 'Electronii trec prin el și îl aprind. Luminozitatea = <b>putere</b>.',
-      hit: (x, y) => Math.hypot(x - LAYOUT.bulb.x, y - LAYOUT.bulb.y) <= LAYOUT.bulb.r + 6,
+      title: simT('regions.bulb.title', 'Consumator (bec)'),
+      desc: simT(
+        'regions.bulb.desc',
+        'Electronii trec prin el și îl aprind. Luminozitatea = <b>putere</b>.'
+      ),
+      hit: (x, y) =>
+        Math.hypot(x - LAYOUT.bulb.x, y - LAYOUT.bulb.y) <= LAYOUT.bulb.r + 6,
     },
     {
       id: 'h2tank',
-      title: 'Rezervor H₂',
-      desc: 'Sursă de hidrogen. Crește debitul pentru mai multe molecule.',
+      title: simT('regions.h2tank.title', 'Rezervor H₂'),
+      desc: simT(
+        'regions.h2tank.desc',
+        'Sursă de hidrogen. Crește debitul pentru mai multe molecule.'
+      ),
       hit: (x, y) => inRect(x, y, LAYOUT.h2Tank),
     },
     {
       id: 'o2tank',
-      title: 'Rezervor O₂',
-      desc: 'Sursă de oxigen. Fără O₂, reacția se oprește.',
+      title: simT('regions.o2tank.title', 'Rezervor O₂'),
+      desc: simT(
+        'regions.o2tank.desc',
+        'Sursă de oxigen. Fără O₂, reacția se oprește.'
+      ),
       hit: (x, y) => inRect(x, y, LAYOUT.o2Tank),
     },
   ];
-
-  function inRect(x, y, r) {
-    return x >= r.x && x <= r.x + r.w && y >= r.y && y <= r.y + r.h;
-  }
 
   let hoverRegion = null;
 
@@ -1002,16 +1044,25 @@
 
     const hint = document.getElementById('hintMsg');
     if (state.flowH2 === 0 || state.flowO2 === 0) {
-      hint.textContent = '⚠ Fără reactanți → curent = 0.';
+      hint.textContent = simT('hints.noReactants', '⚠ Fără reactanți → curent = 0.');
       hint.style.color = '#c0392b';
     } else if (state.efficiency < 60) {
-      hint.textContent = 'Dezechilibru H₂ / O₂ → eficiență scăzută.';
+      hint.textContent = simT(
+        'hints.imbalance',
+        'Dezechilibru H₂ / O₂ → eficiență scăzută.'
+      );
       hint.style.color = '#c07200';
     } else if (state.power > 0.5) {
-      hint.textContent = '⚡ Celula produce energie. Becul strălucește!';
+      hint.textContent = simT(
+        'hints.producing',
+        '⚡ Celula produce energie. Becul strălucește!'
+      );
       hint.style.color = '#2a7a4a';
     } else {
-      hint.textContent = 'Crește debitele pentru mai multă putere.';
+      hint.textContent = simT(
+        'hints.default',
+        'Crește debitele pentru mai multă putere.'
+      );
       hint.style.color = '#6b7a99';
     }
   }

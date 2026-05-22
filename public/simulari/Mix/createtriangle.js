@@ -19,13 +19,13 @@ const createTriangle = () => {
         point2Index < 0 || point2Index >= createdPoints.length ||
         point3Index < 0 || point3Index >= createdPoints.length
     ) {
-        addLog("Indexurile punctelor introduse nu sunt valide.");
+        addLog(window.gsT("logs.triangleIndexesInvalid", "Indexurile punctelor introduse nu sunt valide."));
         return;
     }
 
     // Verificăm să nu fie puncte duplicate
     if (point1Index === point2Index || point1Index === point3Index || point2Index === point3Index) {
-        addLog("Punctele trebuie să fie diferite!");
+        addLog(window.gsT("logs.pointsMustBeDistinct", "Punctele trebuie să fie diferite!"));
         return;
     }
 
@@ -59,7 +59,13 @@ const createTriangle = () => {
         .attr("stroke", triangleColor)
         .attr("stroke-width", 2);
 
-    addLog(`Triunghi format între punctele ${point1.name}, ${point2.name}, și ${point3.name}.`);
+    addLog(
+        window.gsFmt(
+            "logs.triangleDone",
+            "Triunghi format între punctele {NA}, {NB}, și {NC}.",
+            { "{NA}": point1.name, "{NB}": point2.name, "{NC}": point3.name }
+        )
+    );
     hideDialog();
 };
 

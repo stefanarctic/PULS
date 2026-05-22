@@ -22,6 +22,7 @@ import {
   resumeAudioIfNeeded,
   updateAmbientLevel,
 } from "./experience.js";
+import { simT } from "./i18n.js";
 
 const canvas = document.getElementById("canvas");
 const ctx = canvas.getContext("2d");
@@ -178,10 +179,21 @@ function drawAbsoluteZeroCinematic(ctx2, cw, ch, temp) {
   ctx2.fillStyle = `rgba(220, 240, 255, ${0.88 * k})`;
   ctx2.font = "600 13px system-ui, sans-serif";
   ctx2.textAlign = "center";
-  ctx2.fillText("Absolute zero cannot be reached", cw / 2, ch - 26);
+  ctx2.fillText(
+    simT("absoluteZero.line1", "Absolute zero cannot be reached"),
+    cw / 2,
+    ch - 26
+  );
   ctx2.font = "500 10px system-ui, sans-serif";
   ctx2.fillStyle = `rgba(170, 200, 235, ${0.72 * k})`;
-  ctx2.fillText("Al treilea principiu — 0 K este o limită, nu o destinație", cw / 2, ch - 10);
+  ctx2.fillText(
+    simT(
+      "absoluteZero.line2",
+      "Al treilea principiu — 0 K este o limită, nu o destinație"
+    ),
+    cw / 2,
+    ch - 10
+  );
   ctx2.textAlign = "left";
 }
 
@@ -249,12 +261,23 @@ function drawHistogramChart() {
 
   chartCtx.fillStyle = "rgba(180, 200, 220, 0.92)";
   chartCtx.font = "600 11px system-ui, sans-serif";
-  chartCtx.fillText("Simulare vs. teorie (Maxwell 2D)", padL, 16);
+  chartCtx.fillText(simT("chartHud.title", "Simulare vs. teorie (Maxwell 2D)"), padL, 16);
 
   chartCtx.fillStyle = "rgba(130, 150, 175, 0.85)";
   chartCtx.font = "10px system-ui, sans-serif";
-  const stats = `medie ${meanSpeed.toFixed(2)} · max ${maxSpeed.toFixed(2)} · axă 0→${vmax.toFixed(2)} · σ=${sigma.toFixed(2)}`;
-  chartCtx.fillText(stats, padL, 30);
+  const statsTpl = simT(
+    "chartHud.stats",
+    "medie {mean} · max {max} · axă 0→{vmax} · σ={sigma}"
+  );
+  chartCtx.fillText(
+    statsTpl
+      .replace("{mean}", meanSpeed.toFixed(2))
+      .replace("{max}", maxSpeed.toFixed(2))
+      .replace("{vmax}", vmax.toFixed(2))
+      .replace("{sigma}", sigma.toFixed(2)),
+    padL,
+    30
+  );
 
   const n = bins.length;
   const gap = 1;
@@ -315,8 +338,8 @@ function drawHistogramChart() {
 
   chartCtx.font = "9px system-ui, sans-serif";
   chartCtx.fillStyle = "rgba(200, 210, 225, 0.88)";
-  const legSim = "■ simulare";
-  const legTh = "── teorie Rayleigh (2D)";
+  const legSim = simT("chartHud.legendSim", "■ simulare");
+  const legTh = simT("chartHud.legendTheory", "── teorie Rayleigh (2D)");
   chartCtx.fillStyle = "rgba(90, 170, 235, 0.95)";
   chartCtx.fillText(legSim, padL, h - 8);
   const simW = chartCtx.measureText(legSim).width;
@@ -457,13 +480,13 @@ function animate() {
 
   if (prevSimState !== null) {
     if (state === "solid" && prevSimState !== "solid") {
-      showToast("Solid achieved", "\u2705");
+      showToast(simT("toasts.solidAchieved", "Solid achieved"), "\u2705");
     }
     if (ratio > 1.36 && prevRatioForReward < 1.2) {
-      showToast("High pressure reached", "\uD83D\uDE80");
+      showToast(simT("toasts.highPressure", "High pressure reached"), "\uD83D\uDE80");
     }
     if (temperature < 38 && prevTempForReward >= 45) {
-      showToast("Near absolute zero", "\u2744\uFE0F");
+      showToast(simT("toasts.nearAbsoluteZero", "Near absolute zero"), "\u2744\uFE0F");
     }
   }
   prevSimState = state;
@@ -483,6 +506,27 @@ function syncPanelAria() {
   const rightOpen = !shell?.classList.contains("shell--right-collapsed");
   toggleLeft?.setAttribute("aria-expanded", String(leftOpen));
   toggleRight?.setAttribute("aria-expanded", String(rightOpen));
+}
+
+function syncI18nChrome() {
+  toggleLeft?.setAttribute(
+    "title",
+    simT("toggle.left", "Ascunde / arată explicațiile")
+  );
+  toggleRight?.setAttribute(
+    "title",
+    simT("toggle.right", "Ascunde / arată graficul și sliderele")
+  );
+  const drawerLeft = document.getElementById("drawer-left");
+  const drawerRight = document.getElementById("drawer-right");
+  drawerLeft?.setAttribute(
+    "aria-label",
+    simT("aria.drawerExplain", "Explicații")
+  );
+  drawerRight?.setAttribute(
+    "aria-label",
+    simT("aria.drawerChart", "Grafic și controale")
+  );
 }
 
 function syncLayoutAfterDrawerChange() {
@@ -546,6 +590,7 @@ function setupPanelToggles() {
     /* ignore */
   }
   syncPanelAria();
+  syncI18nChrome();
 }
 
 window.addEventListener("resize", onResize);
@@ -563,18 +608,20 @@ setupPanelToggles();
 document.getElementById("btn-exp-start")?.addEventListener("click", () => {
   initAmbientAudio();
   resumeAudioIfNeeded();
-  startExperiment();
+  const def = startExperiment();
   expStartTemp = temperature;
   expStartVol = volumeFrac;
   expHasBeenGas = stateGuessGas();
-  const def = getCurrentExperimentDef();
-  showToast(`Start: ${def.title}`, "\uD83E\uDDEA");
+  showToast(
+    simT("toasts.startExperiment", "Start: {title}").replace("{title}", def.title),
+    "\uD83E\uDDEA"
+  );
 });
 
 document.getElementById("btn-exp-next")?.addEventListener("click", () => {
   advanceExperimentPreview();
   syncExperimentPanel();
-  showToast("Următorul experiment — citește ținta", "\u2935\uFE0F");
+  showToast(simT("toasts.nextExperiment", "Următorul experiment — citește ținta"), "\u2935\uFE0F");
 });
 
 document.getElementById("btn-capture")?.addEventListener("click", () => {

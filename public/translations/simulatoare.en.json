@@ -1,0 +1,4804 @@
+{
+  "meta": {
+    "locale": "en",
+    "sourceLocale": "ro",
+    "version": 1,
+    "notes": "English UI for simulator iframes (?lang=en): Pendule, Unde, Mecanică, etc."
+  },
+  "simulators": {
+    "pendul-simplu": {
+      "page": {
+        "eyebrow": "Simple harmonic oscillation | Interactive simulation"
+      },
+      "documentTitle": "Harmonic pendulum",
+      "htmlLang": "en",
+      "labels": {
+        "pageTitle": "Harmonic pendulum",
+        "amplitude": "Amplitude:",
+        "speed": "Playback speed:",
+        "stringLength": "String length:",
+        "unitsHeading": "Units of measurement:",
+        "formulasHeading": "Formulas:",
+        "measureLength": "L (length):",
+        "measureAmplitude": "A (amplitude):",
+        "measureTime": "t (time):",
+        "measureDisplacement": "x (displacement):",
+        "measureSpeedSetting": "v (playback):",
+        "measureAngle": "φ₀ (angle):",
+        "measureAngularFreq": "ω (angular frequency):",
+        "measureVelocity": "v (oscillation speed):",
+        "measureAcceleration": "a (acceleration):",
+        "measureKinetic": "K (kinetic energy):",
+        "unitLength": "L (length) — m (metre)",
+        "unitAmplitude": "A (amplitude) — m (metre)",
+        "unitTime": "t (time) — s (second)",
+        "unitDisplacement": "x (displacement) — m (metre)",
+        "unitPlayback": "v (playback) — × (playback multiplier)",
+        "unitAngle": "φ₀ (angle) — ° (degrees)",
+        "unitOmega": "ω (angular frequency) — rad/s",
+        "unitVelocity": "v (oscillation speed) — m/s",
+        "unitAccel": "a (acceleration) — m/s²",
+        "unitEnergy": "K (kinetic energy) — J (joule)"
+      },
+      "buttons": {
+        "start": "Start",
+        "pause": "Pause",
+        "resume": "Resume",
+        "stop": "Stop",
+        "measure": "Measure",
+        "themeDark": "🌙 Switch theme",
+        "themeLight": "☀️ Switch theme"
+      },
+      "chart": {
+        "displacement": "Displacement (m)",
+        "velocity": "Velocity (m/s)",
+        "acceleration": "Acceleration (m/s²)"
+      }
+    },
+    "pendul-amortizat": {
+      "page": {
+        "eyebrow": "Damped oscillator | Interactive simulation"
+      },
+      "documentTitle": "Damped harmonic oscillator",
+      "htmlLang": "en",
+      "labels": {
+        "pageTitle": "Harmonic oscillator",
+        "subtitle": "Damped oscillation",
+        "betaLabel": "β:",
+        "speed": "Playback speed:",
+        "stringLength": "String length:",
+        "measureLength": "L (length):",
+        "measureBeta": "β (damping coefficient):",
+        "measureAmplitude": "A (amplitude):",
+        "measureTime": "t (time):",
+        "measureDisplacement": "x (displacement):",
+        "measureSpeedSetting": "v (playback):",
+        "measureAngle": "φ₀ (angle):",
+        "measureAngularFreq": "ω (angular frequency):",
+        "unitsHeading": "Units of measurement:",
+        "unitLength": "L (length) — m (metre)",
+        "unitBeta": "β (damping coefficient) — s⁻¹",
+        "unitAmplitude": "A (amplitude) — m (metre)",
+        "unitTime": "t (time) — s (second)",
+        "unitDisplacement": "x (displacement) — m (metre)",
+        "unitPlayback": "v (playback) — × (playback multiplier)",
+        "unitAngle": "φ₀ (angle) — ° (degrees)",
+        "unitOmega": "ω (angular frequency) — rad/s",
+        "formulasHeading": "Formulas:"
+      },
+      "buttons": {
+        "start": "Start",
+        "pause": "Pause",
+        "resume": "Resume",
+        "stop": "Stop",
+        "measure": "Measure",
+        "themeDark": "🌙 Switch theme",
+        "themeLight": "☀️ Switch theme"
+      },
+      "chart": {
+        "displacement": "Displacement (m)"
+      }
+    },
+    "pendul-neliniar": {
+      "page": {
+        "eyebrow": "Nonlinear pendulum | Interactive simulation"
+      },
+      "documentTitle": "Nonlinear oscillator",
+      "htmlLang": "en",
+      "labels": {
+        "pageTitle": "Nonlinear oscillator",
+        "amplitude": "Amplitude:",
+        "speed": "Playback speed:",
+        "stringLength": "String length:",
+        "measureLength": "L (length):",
+        "measureAngle": "θ (angle):",
+        "measureTime": "t (time):",
+        "measureAngularVelocity": "ω (angular velocity):",
+        "measureVelocity": "v (linear speed):",
+        "measureAcceleration": "a (acceleration):",
+        "measureKinetic": "K (kinetic energy):",
+        "measurePotential": "U (potential energy):",
+        "measureMechanical": "E (mechanical energy):",
+        "measurePeriod": "T (period):",
+        "unitsHeading": "Units of measurement:",
+        "unitLength": "L (length) — m (metre)",
+        "unitAngle": "θ (angle) — ° (degrees)",
+        "unitTime": "t (time) — s (second)",
+        "unitOmega": "ω (angular velocity) — rad/s",
+        "unitVelocity": "v (linear speed) — m/s",
+        "unitAccel": "a (acceleration) — m/s²",
+        "unitKinetic": "K (kinetic energy) — J (joule)",
+        "unitPotential": "U (potential energy) — J (joule)",
+        "unitMechanical": "E (mechanical energy) — J (joule)",
+        "unitPeriod": "T (period) — s (second)",
+        "formulasHeading": "Nonlinear pendulum formulas:",
+        "eqMotionHeading": "Equation of motion:",
+        "omegaHeading": "Angular velocity:",
+        "linearVelocityHeading": "Linear speed:",
+        "kineticHeading": "Kinetic energy:",
+        "potentialHeading": "Potential energy:",
+        "mechanicalHeading": "Mechanical energy:"
+      },
+      "buttons": {
+        "start": "Start",
+        "pause": "Pause",
+        "resume": "Resume",
+        "stop": "Stop",
+        "measure": "Measure",
+        "themeDark": "🌙 Switch theme",
+        "themeLight": "☀️ Switch theme"
+      },
+      "chart": {
+        "angleRad": "Angle θ (rad)",
+        "angularVelocity": "Angular velocity ωθ (rad/s)",
+        "mechanicalEnergy": "Mechanical energy Em (J)"
+      }
+    },
+    "grafice-functii": {
+      "page": {
+        "eyebrow": "Graphs | Interactive simulation"
+      },
+      "documentTitle": "Function graphs",
+      "htmlLang": "en"
+    },
+    "grafice-simple": {
+      "page": {
+        "eyebrow": "Graphs | Interactive simulation"
+      },
+      "documentTitle": "Basic graphs",
+      "htmlLang": "en",
+      "labels": {
+        "createPointHeading": "Create a point",
+        "letter": "Letter:",
+        "harmonicsSection": "Harmonic functions:",
+        "eqXPrefix": "x =",
+        "eqSinMiddle": "* sin(",
+        "timesT": "*",
+        "closeParenShort": ")",
+        "eqYPrefix": "y = A * sin(",
+        "timesT2": "*",
+        "plusPhi": "+ ",
+        "colourPoint": "Colour:",
+        "createPointBtn": "Create point",
+        "createLineHeading": "Create a line",
+        "pointA": "Point A:",
+        "pointB": "Point B:",
+        "lineColour": "Line colour:",
+        "createLineBtn": "Create line",
+        "createTriangleHeading": "Create a triangle",
+        "pointC": "Point C:",
+        "triangleColour": "Triangle colour:",
+        "createTriangleBtn": "Create triangle",
+        "deleteHeading": "Delete a point or a line",
+        "pointIndexLabel": "Point index:",
+        "deletePointBtn": "Delete point",
+        "linePointAIndex": "Point A index:",
+        "linePointBIndex": "Point B index:",
+        "deleteLineBtn": "Delete line"
+      },
+      "placeholders": {
+        "letterHint": "",
+        "amplitudeHint": "A",
+        "omega1Hint": "ω1",
+        "omega2Hint": "ω2",
+        "timeHint": "t",
+        "phiHint": "φ0",
+        "indexPointA": "Point A index",
+        "indexPointB": "Point B index",
+        "indexPointC": "Point C index",
+        "indexPointPlain": "Point index",
+        "indexPointAPlain": "Point A index",
+        "indexPointBPlain": "Point B index"
+      },
+      "aria": {
+        "logArea": "Activity log",
+        "openTools": "Open drawing tools (+)",
+        "openDeleteTools": "Open delete tools (–)",
+        "closePopup": "Close"
+      },
+      "logs": {
+        "logNotFoundErr": "The element with id “log” was not found!",
+        "enterValidNumbers": "Enter valid numbers in all fields!",
+        "enteredData": "Entered values: A = {AMP} m, ω₁ = {W1} rad/s, ω₂ = {W2} rad/s, t = {T} s, t₂ = {T2} s, φ₀ = {PHI}°, colour = {CLR}",
+        "pointCreatedOk": "Point created.",
+        "indicesNotNumeric": "The indices entered are not valid numbers.",
+        "sameIndices": "The two indices are the same!",
+        "indicesOutOfRange": "Indices out of range! A: {IA}, B: {IB}",
+        "pointsMissing": "Points not found — check createdPoints.",
+        "lineCreatedBetween": "Line created between {NA} and {NB}.",
+        "pointRemoved": "Point “{NM}” deleted.",
+        "lineRemoved": "Line between {NA} and {NB} deleted.",
+        "invalidPointIndex": "Invalid index. Please try again.",
+        "invalidLineIndices": "Invalid indices. Please try again.",
+        "triangleIndexesInvalid": "The point indices entered are not valid.",
+        "pointsMustBeDistinct": "The three vertices must be different!",
+        "triangleDone": "Triangle through {NA}, {NB}, and {NC}.",
+        "introCaseTitle": "In this demo we show:",
+        "introEqx": "x = A*sin(ω₁·t), with A = 10 m, ω₁ = 3",
+        "introEqy": "y = A*sin(ω₂·t + π/2), with A = 10 m, ω₂ = 6",
+        "introExample": "For A take t = 3, B t = 6, C t = 9, D t = 12, O t = 0"
+      }
+    },
+    "grafice-pendule": {
+      "page": {
+        "eyebrow": "Pendulum graphs | Interactive simulation"
+      },
+      "documentTitle": "Harmonic graphs — pendulum simulator",
+      "htmlLang": "en",
+      "labels": {
+        "popupTitle": "Generate the pendulum graph",
+        "timeInterval": "Time interval:",
+        "equationHeading": "Function:",
+        "amplitudeLabel": "A = ",
+        "eqSinOpen": "x = A * sin(",
+        "eqOmegaStar": "* ",
+        "eqTPlus": "t + ",
+        "eqClose": ")",
+        "color": "Colour:"
+      },
+      "buttons": {
+        "generateGraph": "Generate graph"
+      },
+      "alerts": {
+        "valueAboveMax": "The value {value} is greater than the maximum ({max})",
+        "valueBelowMin": "The value {value} is less than the minimum ({min})",
+        "intervalStartAfterEnd": "The value {start} is greater than {end}",
+        "phaseTooLarge": "φ₀ cannot be greater than 90°",
+        "phaseNegative": "φ₀ cannot be negative",
+        "fillAllFields": "Please fill in all fields"
+      }
+    },
+    "pendule-multiple": {
+      "page": {
+        "eyebrow": "Multiple double pendulums | Interactive simulation"
+      },
+      "documentTitle": "Multiple double pendulums — chaos + trails",
+      "htmlLang": "en",
+      "labels": {
+        "pageTitle": "Double pendulums (multiple)",
+        "count": "Number of pendulums (N)",
+        "theta1": "Initial angle θ₁ (°)",
+        "theta2": "Initial angle θ₂ (°)",
+        "spread": "Perturbation (°)",
+        "L1": "Length L₁ (m)",
+        "L2": "Length L₂ (m)",
+        "m1": "Mass m₁ (kg)",
+        "m2": "Mass m₂ (kg)",
+        "g": "Gravity g (m/s²)",
+        "damp": "Damping (1/s)",
+        "dt": "Step dt (s)",
+        "trail": "Trail length",
+        "trailAlpha": "Trail opacity"
+      },
+      "buttons": {
+        "start": "Start",
+        "pause": "Pause",
+        "reset": "Reset"
+      },
+      "options": {
+        "heading": "Options",
+        "rods": "Rods / strings",
+        "bobs": "Bobs",
+        "trace": "Trails",
+        "showAll": "Show all pendulums"
+      },
+      "info": {
+        "controls": "Controls",
+        "information": "Information",
+        "whatYouSee": "What you're seeing",
+        "fact1": "Every pendulum starts almost the same, but with a small perturbation.",
+        "fact2": "After a short time the trajectories diverge completely — deterministic chaos.",
+        "fact3": "Trails follow bob 2 (the end of the double pendulum), so they look wild.",
+        "modelShort": "Model (brief)",
+        "coordsLabel": "Coordinates:",
+        "integrateLabel": "Numerical integration (RK4):",
+        "dtCaption": "dt = time step (s)",
+        "live": "Live",
+        "simulatedTime": "Simulated time",
+        "statusLabel": "Status",
+        "fpsApprox": "FPS (approx.)",
+        "tip": "Tip: try N=16, perturbation=0.2°, dt=0.01 and let it run ~10 s."
+      },
+      "aria": {
+        "controlsPanel": "Controls panel",
+        "infoPanel": "Information panel"
+      },
+      "hud": {
+        "running": "RUNNING",
+        "paused": "PAUSED"
+      },
+      "status": {
+        "prefix": "State:",
+        "stopped": "Simulation stopped",
+        "running": "Simulation running",
+        "reset": "Simulation reset"
+      }
+    },
+    "fuel-cell": {
+      "page": {
+        "eyebrow": "PEM fuel cell | Interactive simulation"
+      },
+      "documentTitle": "PEM fuel cell simulator",
+      "htmlLang": "en",
+      "labels": {
+        "titleFuel": "Fuel cell",
+        "titleSimulator": "Simulator",
+        "tagline": "Feed in hydrogen + oxygen → current and water out",
+        "controls": "Controls",
+        "flowH2": "Hydrogen flow",
+        "flowO2": "Oxygen flow",
+        "temperature": "Temperature",
+        "bulbResistance": "Bulb resistance",
+        "current": "Current",
+        "voltage": "Voltage",
+        "power": "Power",
+        "efficiency": "Efficiency"
+      },
+      "legend": {
+        "electrons": "Electrons",
+        "protons": "Protons (H⁺)",
+        "h2": "H₂",
+        "o2": "O₂",
+        "h2o": "H₂O"
+      },
+      "info": {
+        "howItWorks": "How it works",
+        "tryHeading": "Try this:",
+        "formulaLine": "2H₂ + O₂ → 2H₂O + energy"
+      },
+      "steps": {
+        "step1Title": "Anode (left)",
+        "step1Body": "H₂ splits into protons and electrons.",
+        "step2Title": "Electrons",
+        "step2Body": "Travel through the wire → light the bulb ⚡",
+        "step3Title": "Membrane (PEM)",
+        "step3Body": "Only protons pass through to the right.",
+        "step4Title": "Cathode (right)",
+        "step4Body": "Protons + electrons + O₂ → water 💧"
+      },
+      "tips": {
+        "tip1": "Set H₂ = 0 → bulb goes out",
+        "tip2": "Imbalance → lower efficiency",
+        "tip3": "Lower resistance → higher current",
+        "tip4": "Hover over anode / membrane / cathode"
+      },
+      "hints": {
+        "default": "Increase the flow rates for more power.",
+        "noReactants": "⚠ No reactants → current = 0.",
+        "imbalance": "H₂ / O₂ imbalance → low efficiency.",
+        "producing": "⚡ The cell is producing energy. The bulb glows!"
+      },
+      "canvas": {
+        "h2Tank": "H₂ tank",
+        "o2Tank": "O₂ tank",
+        "anode": "ANODE (−)",
+        "cathode": "CATHODE (+)",
+        "pem": "PEM",
+        "reactionOff": "Reaction off"
+      },
+      "regions": {
+        "anode": {
+          "title": "Anode (−)",
+          "desc": "Here H₂ splits into <b>protons</b> (H⁺) and <b>electrons</b> (e⁻)."
+        },
+        "membrane": {
+          "title": "PEM membrane",
+          "desc": "Only <b>protons</b> pass through. Electrons are blocked → forced along the wire."
+        },
+        "cathode": {
+          "title": "Cathode (+)",
+          "desc": "Protons + electrons + O₂ → <b>H₂O</b>. Water leaves the cell."
+        },
+        "bulb": {
+          "title": "Load (bulb)",
+          "desc": "Electrons pass through and heat the filament. Brightness ≈ <b>power</b>."
+        },
+        "h2tank": {
+          "title": "H₂ reservoir",
+          "desc": "Hydrogen source. Higher flow → more molecules."
+        },
+        "o2tank": {
+          "title": "O₂ reservoir",
+          "desc": "Oxygen source. Without O₂ the reaction stops."
+        }
+      }
+    },
+    "supraconductivitate": {
+      "page": {
+        "eyebrow": "Superconductivity & Meissner effect | Interactive simulation"
+      },
+      "documentTitle": "Superconductivity & Meissner effect — simulator",
+      "htmlLang": "en",
+      "labels": {
+        "pageTitle": "Superconductivity",
+        "tagline": "Magnetic levitation · Meissner effect · condition T < Tc",
+        "controls": "Controls",
+        "temperature": "Temperature",
+        "field": "Field",
+        "targetDistance": "Target distance",
+        "material": "Material",
+        "quantumLocking": "Quantum locking",
+        "dragHint": "Canvas: drag the magnet.",
+        "eduMode": "Educational mode",
+        "btnApply": "Reset / apply distance",
+        "condLabelSuper": "Superconductor · Meissner",
+        "gameoverTitle": "Normal state",
+        "gameoverSub": "T > Tc — superconductivity is gone. The magnet falls.",
+        "gameoverReset": "Reset simulation",
+        "footerModel": "Model: if T < Tc, the effective magnetic force ~ k·B²/h² (simplified Meissner repulsion); otherwise only −mg. Near Tc the model adds instability and thermal noise.",
+        "chartTitle": "T vs. state",
+        "materialsTitle": "Materials",
+        "matYbcoBlurb": "HTS ceramic; LN₂ in this idealised model.",
+        "matHgBlurb": "First superconductor; liquid He.",
+        "materialOptYbco": "YBCO — Tc ≈ 92 K",
+        "materialOptHg": "Mercury — Tc ≈ 4.2 K",
+        "materialOptNb": "Niobium — Tc ≈ 9.2 K"
+      },
+      "hints": {
+        "temp": "Low T ⇒ colder look; near Tc it gets unstable.",
+        "field": "High B ⇒ denser lines, force ~ B².",
+        "dist": "Weak spring toward this height (T < Tc)."
+      },
+      "badge": {
+        "super": "Superconductor · Meissner",
+        "normal": "Normal material"
+      },
+      "hud": {
+        "statusFallen": "State: normal (conductor)",
+        "statusSuperNarrow": "Superconductor · Meissner",
+        "statusSuperWide": "State: superconductor · Meissner active",
+        "aboveNarrow": "Above Tc — falls",
+        "aboveWide": "State: above Tc — falls",
+        "dragNarrow": "Dragging…",
+        "dragWide": "Active drag",
+        "hNarrow": "h≈{h} → target {v}",
+        "hWide": "h ≈ {h} px · slider target = {v} px",
+        "chartCurrentT": "Current T"
+      },
+      "edu": {
+        "stage": "Canvas: drag the magnet. Below Tc Meissner repulsion pushes back; above Tc the field penetrates and the magnet falls. Animated lines = magnetic flux.",
+        "temp": "T: farther below Tc the scene looks colder (glow, vapour); near Tc you get a warmer look and instability.",
+        "field": "B: more, brighter field lines with the slider; the magnet reacts more to sudden changes.",
+        "dist": "Distance: a weak spring pulls toward the slider value — height comes from mg vs kB²/h², not teleporting.",
+        "material": "Each material has a different Tc — compare how easy it is to stay superconducting at the same T.",
+        "lock": "Quantum locking: the target (pin) follows the cursor smoothly; on release the magnet stays pinned — simplified flux pinning.",
+        "chart": "Live chart: green = T below Tc (superconducting); red = above Tc. Dot = your temperature.",
+        "compare": "YBCO has a high Tc (~92 K); mercury, the first known superconductor, has a very low Tc (~4 K) — it needs liquid helium."
+      },
+      "aria": {
+        "simCanvas": "Levitation simulation — drag the magnet",
+        "chart": "Temperature chart"
+      }
+    },
+    "criogenie": {
+      "page": {
+        "eyebrow": "Cryogenics & states of matter | Interactive simulation"
+      },
+      "documentTitle": "Cryogenics simulator — pV = nRT",
+      "htmlLang": "en",
+      "labels": {
+        "ahaTitle": "“Aha” moment",
+        "insightDefault": "Move temperature or volume — see how pressure and state connect.",
+        "ideaTitle": "Core idea",
+        "ideaBody": "Watch how “molecules” move when you change temperature and volume. Simple model: kinetic energy grows with T — hotter particles move faster (colour shifts warmer).",
+        "pvTitle": "pV = nRT",
+        "pvBody": "With the same number of particles, if you shrink volume or raise temperature, effective pressure rises. Watch the pressure readout below.",
+        "statesTitle": "States & material",
+        "statesBody": "Gas — chaos, no order. Liquid — clumps but still flows. Solid — an ordered lattice with tiny vibrations. Each material has different thresholds (e.g. helium barely “freezes” at these temperatures).",
+        "liveTitle": "Live",
+        "statePrefix": "State:",
+        "challengesTitle": "Challenges",
+        "pageTitle": "Cryogenics simulator",
+        "tagline": "Temperature, volume, pressure — states of matter",
+        "chartDistTitle": "Speed distribution",
+        "chartDistCaption": "Bars = simulation; orange curve = theoretical Rayleigh (2D) distribution, same kind as the speed modulus from Maxwell–Boltzmann for an ideal gas in the plane.",
+        "chartAxis": "relative speed →",
+        "controls": "Controls",
+        "material": "Material",
+        "materialWater": "Water",
+        "materialHelium": "Helium",
+        "materialIron": "Iron",
+        "materialNitrogen": "Nitrogen",
+        "tempSlider": "Temperature:",
+        "volumeSlider": "Box volume:",
+        "experimentTitle": "Experiment mode",
+        "expStart": "Start experiment",
+        "expNext": "Another experiment",
+        "expCapture": "📷 Capture experiment",
+        "zeroWarning": "⚠️ Absolute zero cannot be reached",
+        "captureFooter": "Simulated on puls-fizica.ro",
+        "imageSaved": "Image saved"
+      },
+      "pressure": {
+        "prefix": "Pressure:",
+        "low": "Low",
+        "medium": "Medium",
+        "high": "High"
+      },
+      "hints": {
+        "gas": "Particles move chaotically, no bonds — gas-like behaviour.",
+        "liquid": "Mild attraction: they clump but still flow.",
+        "solid": "Ordered lattice: nearly fixed positions, small vibrations."
+      },
+      "stateLabel": {
+        "gas": "🔥 Gas (chaotic)",
+        "liquid": "💧 Liquid (fluid)",
+        "solid": "❄️ Solid (crystalline)"
+      },
+      "insight": {
+        "tempUp": "Higher T → faster speeds (warmer colours) → at the same volume, pressure tends to rise (pV = nRT).",
+        "tempDown": "Lower T → less agitation → pressure drops if volume stays the same; you can reach liquid/solid.",
+        "volDown": "Smaller volume → particles closer → more collisions → pressure rises (at similar T).",
+        "volUp": "Larger volume → more free space → fewer collisions → pressure tends to drop.",
+        "material": "Material: {name}. Freezing ~{Tf} K, boiling ~{Tb} K — at the same T you may be in a different state than before.",
+        "pressureHigh": "High pressure now: many particles in a small volume or high T — watch the chaotic motion.",
+        "pressureLow": "Low pressure: large volume or low T — particles have more room."
+      },
+      "challenge": {
+        "freezeDone": "✓ Solid state reached.",
+        "freezeTodo": "Lower T until solid for the chosen material.",
+        "pressureDone": "✓ High pressure without raising T.",
+        "pressureTodo": "Shrink volume without raising temperature (challenge)."
+      },
+      "experiments": {
+        "highPressureNoTemp": {
+          "title": "High pressure, no hotter T",
+          "desc": "Reach Pressure: High without increasing temperature from the Start moment.",
+          "winMsg": "Experiment complete: high pressure at controlled T!"
+        },
+        "liquidNoVolumeUp": {
+          "title": "Liquid without a bigger box",
+          "desc": "With Water: start hot (gas), lower T toward liquid. Do not increase the Volume slider after Start.",
+          "winMsg": "Experiment complete: liquid without enlarging the box!"
+        },
+        "cryoZone": {
+          "title": "Cryogenic zone",
+          "desc": "Bring temperature below 80 K and watch things slow down.",
+          "winMsg": "Experiment complete: ultra-cold zone!"
+        },
+        "solidState": {
+          "title": "Solid state",
+          "desc": "Reach solid for the chosen material (lower T or pick a material with a suitable freezing point).",
+          "winMsg": "Experiment complete: solid reached!"
+        }
+      },
+      "toasts": {
+        "startExperiment": "Start: {title}",
+        "nextExperiment": "Next experiment — read the goal",
+        "solidAchieved": "Solid achieved",
+        "highPressure": "High pressure reached",
+        "nearAbsoluteZero": "Near absolute zero"
+      },
+      "chartHud": {
+        "title": "Simulation vs. theory (Maxwell 2D)",
+        "stats": "mean {mean} · max {max} · axis 0→{vmax} · σ={sigma}",
+        "legendSim": "■ simulation",
+        "legendTheory": "── Rayleigh theory (2D)"
+      },
+      "absoluteZero": {
+        "line1": "Absolute zero cannot be reached",
+        "line2": "The third law — 0 K is a limit, not a destination"
+      },
+      "aria": {
+        "drawerExplain": "Explanations",
+        "drawerChart": "Chart and controls"
+      },
+      "toggle": {
+        "left": "Hide / show explanations",
+        "right": "Hide / show chart and sliders"
+      }
+    },
+    "circuite-electricitate": {
+      "page": {
+        "eyebrow": "Electric circuits | Interactive simulation"
+      },
+      "documentTitle": "Circuit Simulator — Ohm + Kirchhoff",
+      "htmlLang": "en",
+      "labels": {
+        "pageTitle": "Circuit Simulator",
+        "tagline": "Ohm · Kirchhoff · Live solver",
+        "tools": "Tools",
+        "components": "Components",
+        "measurements": "Measurements",
+        "toolPrefix": "Tool:",
+        "selection": "Selection",
+        "selected": "Selected",
+        "value": "Value",
+        "liveResults": "Live results",
+        "branches": "Branches",
+        "explanations": "Explanations",
+        "challenges": "Challenges"
+      },
+      "tools": {
+        "select": "Select",
+        "node": "Node",
+        "wire": "Wire",
+        "resistor": "Resistor",
+        "rheostat": "Rheostat",
+        "source": "Source",
+        "ammeter": "Ammeter",
+        "voltmeter": "Voltmeter"
+      },
+      "actions": {
+        "solve": "Solve",
+        "demo": "Demo",
+        "clear": "Clear",
+        "fit": "Fit",
+        "delete": "Delete",
+        "deleteTitle": "Delete selection"
+      },
+      "modes": {
+        "schematic": "Schematic",
+        "electron": "Electron flow",
+        "heat": "Heat map"
+      },
+      "metrics": {
+        "totalCurrent": "⚡ Total current",
+        "sourceVoltage": "🔋 Source voltage",
+        "power": "🔥 Power",
+        "equivR": "Ω R equiv."
+      },
+      "empty": {
+        "branches": "Press Solve to see branch currents.",
+        "edu": "Press Solve for step-by-step (Kirchhoff & Ohm)."
+      },
+      "hints": {
+        "canvas": "<b>Click on the canvas</b> to place nodes (Node tool). For components: click two nodes. In <span class=\"mono\">Select</span> you can drag nodes. The voltmeter is a probe (not in the circuit).",
+        "pickSecond": "Selected N{n}, pick the second node…"
+      },
+      "props": {
+        "voltageLabel": "Voltage Vs (V)",
+        "sourceHelp": "Source: first node = +, second = −.",
+        "resistanceLabel": "Resistance R (Ω)",
+        "rheostatHelp": "Rheostat: value is Rmax.",
+        "resistorHelp": "Fixed resistor."
+      },
+      "selection": {
+        "elem": "{name} E{id} (N{a} ↔ N{b})",
+        "voltmeter": "Voltmeter P{id} (N{a} ↔ N{b})"
+      },
+      "status": {
+        "ready": "Ready. Start with Node + GND + Wire/Resistors.",
+        "cleared": "Cleared. Add nodes + GND + components.",
+        "demoLoaded": "Demo loaded. Press Solve.",
+        "solveError": "Solve error (see console).",
+        "deleted": "Deleted.",
+        "valueChanged": "Value updated. Press Solve.",
+        "wireConnected": "Wire between N{a} and N{b}.",
+        "ammeterConnected": "Ammeter between N{a} and N{b}.",
+        "resistorConnected": "Resistor between N{a} and N{b} (select it to set value).",
+        "rheostatConnected": "Rheostat between N{a} and N{b}.",
+        "sourceConnected": "9 V source (+ at N{a}, − at N{b}).",
+        "voltmeterConnected": "Voltmeter between N{a} and N{b}.",
+        "nodeAdded": "Node N{n} added.",
+        "nodeOnWire": "Node N{n} created on wire.",
+        "clickNodeForGnd": "Click a node to set it as GND.",
+        "gndSet": "GND set on N{n}.",
+        "clickNodeOrWire": "Click a node (or a wire to create a node).",
+        "noGnd": "No GND. Set a node as ground (GND).",
+        "nothingToSolve": "Nothing to solve.",
+        "singular": "Cannot solve: singular circuit.",
+        "solvedShort": "Solved. Warning: very large currents (possible short).",
+        "solvedOk": "Solved. Kirchhoff + Ohm applied.",
+        "challengeDone": "Challenge {n} ✓ completed!",
+        "challengePending": "Challenge {n}: not yet. Press Solve and check again."
+      },
+      "tips": {
+        "toolSelect": {
+          "title": "Select",
+          "desc": "Select / drag nodes. Click an element to edit."
+        },
+        "toolNode": {
+          "title": "Node",
+          "desc": "Junction point. Click on the canvas to add one."
+        },
+        "toolGnd": {
+          "title": "Ground (GND)",
+          "desc": "Reference node. Without GND there is no absolute potential."
+        },
+        "toolWire": {
+          "title": "Wire",
+          "desc": "Ideal wire (R ≈ 0). Click two nodes to connect."
+        },
+        "toolR": {
+          "title": "Resistor",
+          "desc": "Resistive passive element. Dissipates energy as heat."
+        },
+        "toolRh": {
+          "title": "Rheostat",
+          "desc": "Variable resistance for current control."
+        },
+        "toolBat": {
+          "title": "Source",
+          "desc": "Ideal voltage source. First node = +, second = −."
+        },
+        "toolA": {
+          "title": "Ammeter",
+          "desc": "Measures current. Connect in series (R ≈ 0)."
+        },
+        "toolV": {
+          "title": "Voltmeter",
+          "desc": "Measures potential difference. Probe (not in circuit)."
+        },
+        "actionSolve": {
+          "title": "Solve",
+          "desc": "Solve the circuit (Kirchhoff + Ohm). A GND node is required."
+        },
+        "actionDemo": {
+          "title": "Demo",
+          "desc": "Load a demo circuit."
+        },
+        "actionClear": {
+          "title": "Clear",
+          "desc": "Delete everything."
+        },
+        "actionFit": {
+          "title": "Fit",
+          "desc": "Re-center the circuit in the canvas."
+        },
+        "modeSchematic": {
+          "title": "Schematic mode",
+          "desc": "Classic schematic view with standard symbols."
+        },
+        "modeElectron": {
+          "title": "Electron flow mode",
+          "desc": "Visualize particles flowing through wires."
+        },
+        "modeHeat": {
+          "title": "Heat map mode",
+          "desc": "Color wires by dissipated power."
+        },
+        "metricI": {
+          "title": "Total current",
+          "desc": "Total current drawn from the source."
+        },
+        "metricV": {
+          "title": "Source voltage",
+          "desc": "Electromotive force of the main source."
+        },
+        "metricP": {
+          "title": "Power",
+          "desc": "Total power dissipated in the circuit."
+        },
+        "metricR": {
+          "title": "Equivalent R",
+          "desc": "Equivalent resistance seen by the source."
+        }
+      },
+      "edu": {
+        "noSourceTitle": "Missing source",
+        "noSourceText": "No voltage source. Add one to get current.",
+        "ohmGlobalTitle": "Ohm's law — whole circuit",
+        "ohmGlobalText": "Total current through source:",
+        "powerTitle": "Dissipated power",
+        "powerText": "Total power delivered by the source:",
+        "kclTitle": "Kirchhoff KCL at node N{n}",
+        "kclText": "Sum of currents entering a node is zero:",
+        "kvlTitle": "Kirchhoff KVL — voltage sum",
+        "kvlText": "On any closed loop, the sum of potential differences is zero:",
+        "kvlForm": "Σ V_loop = 0",
+        "onResistorTitle": "On resistor R{id}",
+        "onRheostatTitle": "On rheostat R{id}",
+        "onResistorText": "With R = {r} Ω and I = {i} A:"
+      },
+      "challenges": {
+        "c1": {
+          "title": "Build a circuit with R_eq = 100 Ω (±5%)"
+        },
+        "c2": {
+          "title": "Make total current = 0.10 A (±5%)"
+        },
+        "c3": {
+          "title": "Connect 2 resistors in parallel"
+        },
+        "verify": "Verify"
+      },
+      "aria": {
+        "openMenu": "Open menu",
+        "simModes": "Simulation mode"
+      }
+    },
+    "kirchhoff": {
+      "page": {
+        "eyebrow": "Electric circuits | Kirchhoff interactive"
+      }
+    },
+    "curent-alternativ": {
+      "page": {
+        "eyebrow": "Alternating current | Interactive simulation"
+      },
+      "documentTitle": "Alternating current (AC)",
+      "htmlLang": "en",
+      "labels": {
+        "pageTitle": "Alternating current",
+        "subtitle": "AC / DC simulator — voltage, current, phase, phasor",
+        "panelFormulas": "Formulas & measurements",
+        "siUnitsTitle": "SI units",
+        "siU": "U — V (volt)",
+        "siI": "I — A (ampere)",
+        "siF": "f — Hz (hertz)",
+        "siPhi": "φ — rad (radian)",
+        "formulasMeasuresTitle": "Formulas & measurements",
+        "energySection": "Energy",
+        "phaseSection": "Phase",
+        "controlPanel": "Control",
+        "paramsSection": "Parameters",
+        "ampU": "U(t) amplitude",
+        "ampI": "I(t) amplitude",
+        "frequency": "Frequency",
+        "speed": "Animation speed",
+        "phase": "Phase",
+        "mode": "Mode",
+        "measurementsSection": "Measurements",
+        "miniGraphTitle": "Small graph",
+        "legendU": "U(t)",
+        "legendI": "I(t)",
+        "legendP": "P(t)"
+      },
+      "units": {
+        "radPerS": "rad/s"
+      },
+      "formula": {
+        "active": "(active)",
+        "apparent": "(apparent)",
+        "reactive": "(reactive)"
+      },
+      "analysis": {
+        "ideal": "✔ Nearly ideal (resistive) circuit",
+        "reactive": "⚠ Circuit has a reactive component",
+        "negativePower": "❌ Negative power (energy returned)"
+      },
+      "phaseText": {
+        "currentLags": "Current lags voltage",
+        "currentLeads": "Current leads voltage",
+        "inPhase": "In phase"
+      },
+      "energy": {
+        "line": "E ≈ {e} J"
+      },
+      "measurements": {
+        "impedance": "Z = {z} Ω"
+      },
+      "aria": {
+        "panelFormulas": "Formulas and measurements panel",
+        "panelControl": "Control panel"
+      }
+    },
+    "refractie-atmosferica": {
+      "page": {
+        "eyebrow": "Atmospheric refraction | Interactive simulation"
+      },
+      "documentTitle": "Desert mirage — atmospheric refraction",
+      "htmlLang": "en",
+      "labels": {
+        "pageTitle": "Desert mirage",
+        "controlPanel": "Controls",
+        "dist": "Distance to oasis (m)",
+        "eyeH": "Eye height (m)",
+        "palmH": "Palm tree height (m)",
+        "grad": "Thermal gradient strength",
+        "layerH": "Warm air layer thickness (m)",
+        "shimmer": "\"Shimmer\" (hot-air distortion)",
+        "rays": "Number of rays",
+        "spread": "Ray spread (°)",
+        "steps": "Quality (steps per ray)",
+        "speed": "Animation speed",
+        "options": "Options",
+        "formulasTitle": "Formulas & explanations"
+      },
+      "buttons": {
+        "pause": "Pause",
+        "start": "Start",
+        "reset": "Reset"
+      },
+      "toggles": {
+        "showRays": "Show rays",
+        "showField": "Show warm layer",
+        "showGhost": "Show \"water patch\" (mirage)"
+      },
+      "headings": {
+        "whatHappens": "What's happening",
+        "model2d": "Simplified 2D model",
+        "live": "Live"
+      },
+      "facts": {
+        "fact1": "Very hot air near the ground has lower density → a slightly lower refractive index.",
+        "fact2": "If n increases with height, rays bend: they can dip and then \"lift\" again (turn back).",
+        "fact3": "Result: a \"pseudo-reflection\" like a water patch (inferior mirage)."
+      },
+      "formula": {
+        "stratified": {
+          "title": "Stratified index:",
+          "note": "k depends on the thermal gradient."
+        },
+        "invariant": {
+          "title": "Invariant (stratified medium):",
+          "note": "θ = angle from the horizontal."
+        },
+        "turn": {
+          "title": "Turning point:",
+          "code": "when sin(θ) → 0",
+          "note": "the ray becomes almost horizontal and reverses its vertical direction."
+        }
+      },
+      "live": {
+        "time": "Time",
+        "state": "State",
+        "fps": "FPS",
+        "running": "RUNNING",
+        "paused": "PAUSED",
+        "secondsSuffix": " s",
+        "fpsDash": "—"
+      },
+      "status": {
+        "prefix": "Status:",
+        "started": "Started",
+        "runningDetail": "Running.",
+        "pausedDetail": "Paused."
+      },
+      "tips": {
+        "tipGrad": "Tip: gradient 0.7–0.9 + layer 1–2 m + shimmer 0.3 → strong \"water\" effect on the ground."
+      },
+      "canvas": {
+        "observer": "Observer",
+        "hudLine": "Inferior mirage: n(y) increases with height → curved rays → apparent \"water\""
+      },
+      "aria": {
+        "panelControl": "Control panel",
+        "panelFormulas": "Formulas panel"
+      }
+    },
+    "legi_Kepler": {
+      "page": {
+        "eyebrow": "Kepler's laws | Interactive simulation"
+      },
+      "documentTitle": "Kepler Lab — three laws (simulator)",
+      "htmlLang": "en",
+      "leftHdr": {
+        "title": "Kepler's laws",
+        "subtitle": "3 laws • orbit • areas • period"
+      },
+      "units": {
+        "heading": "Units (simple & tidy)",
+        "i1": "a — AU (astronomical units)",
+        "i2": "T — years",
+        "i3": "M — solar masses",
+        "i4": "e — eccentricity \\(0 \\ldots 0{,}9\\)",
+        "i5": "μ = \\(4\\pi^2 M\\) (in AU³/yr²)",
+        "i6": "Δt — time interval (days)",
+        "i7": "Area — swept area (AU²)",
+        "i8": "Period — orbital period (years)",
+        "i9": "Eccentricity — orbital eccentricity",
+        "i10": "Central mass — central mass (solar masses)",
+        "i11": "Speed — orbital speed (AU/yr)",
+        "i12": "Acceleration — orbital acceleration (AU/yr²)",
+        "i13": "Force — gravitational force (N)",
+        "i14": "Energy — orbital energy (J)",
+        "standardNote": "So for \\(M=1\\) and \\(a=1\\), you get \\(T \\approx 1\\) year (standard)."
+      },
+      "keyFormulas": {
+        "heading": "Key formulas",
+        "law1": "Law I: elliptic orbit, Sun at one focus",
+        "law2": "Law II: equal areas in equal times",
+        "law2hint": "For a fixed \\(\\Delta t\\), swept area should stay nearly constant.",
+        "law3": "Law III: \\(T^2 \\propto a^3\\)",
+        "law3hint1": "More precisely: \\(T = 2\\pi \\sqrt{\\dfrac{a^3}{\\mu}}\\), with \\(\\mu=4\\pi^2 M\\).",
+        "law3hint2": "So: \\(\\dfrac{T^2}{a^3} \\approx \\dfrac{1}{M}\\) (in our units)."
+      },
+      "observeVis": {
+        "heading": "What to watch",
+        "v1": "small \\(e\\) → almost circular orbit",
+        "v2": "large \\(e\\) → planet “guns it” at perihelion",
+        "v3": "area for the same \\(\\Delta t\\) stays similar"
+      },
+      "stage": {
+        "title": "Kepler's laws — Simulator",
+        "tLaw1": "Law I",
+        "tLaw2": "Law II",
+        "tLaw3": "Law III",
+        "tFoci": "Foci",
+        "tTrail": "Trail",
+        "hint": "Drag a and e, then press Area to see \"equal areas\" in action."
+      },
+      "readout": {
+        "kRatio": "T²/a³:",
+        "kArea": "Area(Δt):"
+      },
+      "rightHdr": {
+        "title": "Controls",
+        "subtitle": "parameters • time • measurements"
+      },
+      "controls": {
+        "simSpeed": "Simulation speed:",
+        "semimajor": "a (semi-major axis) [AU]:",
+        "ecc": "e (eccentricity):",
+        "mass": "M (central mass) [M☉]:",
+        "massHint": "Affects Law III (\\(\\frac{T^2}{a^3} \\approx \\frac{1}{M}\\)).",
+        "dtArea": "Δt for areas (Law II) [days]:"
+      },
+      "buttons": {
+        "start": "Start",
+        "pause": "Pause",
+        "reset": "Reset",
+        "areaSample": "Area"
+      },
+      "law2Log": {
+        "title": "Law II — recent areas",
+        "note": "Values should be close if Δt is constant."
+      },
+      "law3plot": {
+        "title": "Law III — plot (\\(a^3\\), \\(T^2\\))",
+        "addPoint": "+ Add point",
+        "clear": "Clear plot",
+        "note": "If M is fixed, points lie on a line."
+      },
+      "status": {
+        "prefix": "Status:",
+        "running": "Running",
+        "paused": "Paused"
+      },
+      "readouts": {
+        "approx": "≈",
+        "emDash": "—",
+        "au": "AU",
+        "years": "yr",
+        "auSquared": "AU²"
+      },
+      "canvas": {
+        "law1On": "Law I: ellipse, Sun at a focus",
+        "orbitVisual": "Orbit (visual)",
+        "sunFocus": "Sun (focus)",
+        "f2Label": "F2",
+        "law2Area": "Law II: area(Δt={days}d) ~ constant",
+        "law3Title": "Law III",
+        "bottomNote": "Tip: increase e to see higher speed at periapsis (Law II becomes obvious).",
+        "plotX": "x = a³",
+        "plotY": "y = T²"
+      },
+      "aria": {
+        "panelTheory": "Theory panel (Kepler's laws)",
+        "panelControl": "Simulation control panel"
+      }
+    },
+    "atom_hidrogen": {
+      "page": {
+        "eyebrow": "Hydrogen spectrum | Interactive simulation"
+      },
+      "documentTitle": "Hydrogen — spectrum & models (Bohr / de Broglie / Schrödinger)",
+      "htmlLang": "en",
+      "leftHdr": {
+        "title": "Theory & units",
+        "subtitle": "Hydrogen • Spectroscopy • Quantum models"
+      },
+      "units": {
+        "heading": "Units",
+        "i1": "λ (wavelength) — nm",
+        "i2": "f (frequency) — Hz",
+        "i3": "E (photon energy) — eV / J",
+        "i4": "n (level) — natural number",
+        "i5": "R (Rydberg) — m⁻¹",
+        "i6": "h (Planck constant) — J·s",
+        "i7": "c (speed of light) — m/s",
+        "i8": "eV (electron-volt) — eV",
+        "i9": "J (joule) — J",
+        "i10": "m (metre) — m",
+        "i11": "s (second) — s",
+        "i12": "Hz (hertz) — Hz",
+        "i13": "nm (nanometre) — nm",
+        "i14": "m⁻¹ (reciprocal metre) — m⁻¹",
+        "i15": "J·s (joule-second) — J·s"
+      },
+      "keyFormulas": {
+        "heading": "Key formulas",
+        "f1": "Bohr:  \\(E_n = -\\dfrac{13.6}{n^2}\\) eV",
+        "f2": "\\(\\Delta E = E_{n_f}-E_{n_i}\\),  \\(E_\\gamma = |\\Delta E|\\)",
+        "f3": "\\(\\lambda = \\dfrac{hc}{E_\\gamma}\\)",
+        "f4": "\\(E_\\gamma = hf\\)",
+        "f5": "\\(f = \\dfrac{c}{\\lambda}\\)",
+        "f6": "Rydberg:  \\(\\dfrac{1}{\\lambda} = R\\left(\\dfrac{1}{n_f^2}-\\dfrac{1}{n_i^2}\\right)\\)",
+        "f7": "\\(R = 1.0973731568508 \\times 10^7 m^{-1}\\)",
+        "f8": "de Broglie:  \\(\\lambda_{dB}=\\dfrac{h}{p}\\),  \\(2\\pi r = n\\lambda_{dB}\\)",
+        "f9": "\\(p = mv\\)",
+        "f10": "Schrödinger:  \\(|\\psi|^2 \\Rightarrow\\) probability density",
+        "f11": "\\(E = \\dfrac{h^2}{8m}\\nabla^2\\psi + V\\psi\\)",
+        "f12": "\\(V = -\\dfrac{e^2}{4\\pi\\epsilon_0 r}\\)"
+      },
+      "spectrumLegend": {
+        "heading": "Spectrum legend",
+        "emit": "Emission (bright lines)",
+        "abs": "Absorption (dark lines)",
+        "note": "* For visuals we use the main series (Balmer visible, Lyman UV, Paschen IR)."
+      },
+      "stage": {
+        "title": "Hydrogen — Spectrum & models",
+        "hintDefault": "Click “Excite” to see transitions & spectral lines"
+      },
+      "tabs": {
+        "bohr": "Bohr",
+        "debroglie": "de Broglie",
+        "schrodinger": "Schrödinger",
+        "spectrometer": "Spectrometer"
+      },
+      "readouts": {
+        "model": "Model:",
+        "series": "Series:",
+        "transition": "Transition:",
+        "lambda": "λ:",
+        "energy": "E:"
+      },
+      "rightHdr": {
+        "title": "Controls",
+        "subtitle": "Simulation • Parameters • Spectrum"
+      },
+      "controls": {
+        "speed": "Speed:",
+        "ni": "Initial level (nᵢ):",
+        "nf": "Final level (nᶠ):",
+        "nfNote": "* For emission, nᶠ must be less than nᵢ.",
+        "regime": "Mode:",
+        "lightBeam": "Light beam:",
+        "monoLambda": "λ (monochromatic):",
+        "spectralSeries": "Spectral series:",
+        "instrument": "Instrument:"
+      },
+      "modes": {
+        "emission": "Emission",
+        "absorption": "Absorption",
+        "white": "White",
+        "mono": "Monochromatic"
+      },
+      "seriesOpt": {
+        "balmer": "Balmer (visible, nᶠ=2)",
+        "lyman": "Lyman (UV, nᶠ=1)",
+        "paschen": "Paschen (IR, nᶠ=3)"
+      },
+      "instrumentOpt": {
+        "grating": "Diffraction grating",
+        "prism": "Prism"
+      },
+      "buttons": {
+        "start": "Start",
+        "pause": "Pause",
+        "stop": "Stop",
+        "excite": "⚡ Excite"
+      },
+      "notesCard": {
+        "title": "Notes",
+        "l1": "In Bohr you see orbits + jumps.",
+        "l2": "In de Broglie you see the “wrapped” wave.",
+        "l3": "In Schrödinger you see the probability cloud.",
+        "l4": "In Spectrometer you see lines on the spectrum."
+      },
+      "spectrumCard": {
+        "title": "Spectrum (screen)",
+        "caption": "* Colour band = continuum; lines = H transitions."
+      },
+      "hints": {
+        "bohr": "Bohr: orbits + energy transitions (click ⚡ Excite)",
+        "debroglie": "de Broglie: standing wave on the orbit (n = number of “loops”)",
+        "schrodinger": "Schrödinger: probability cloud (1s/2s/2p visual)",
+        "spectrometer": "Spectrometer: beam + cell + prism/grating + screen"
+      },
+      "modelName": {
+        "bohr": "Bohr",
+        "debroglie": "de Broglie",
+        "schrodinger": "Schrödinger",
+        "spectrometer": "Spectrometer"
+      },
+      "seriesName": {
+        "lyman": "Lyman",
+        "balmer": "Balmer",
+        "paschen": "Paschen"
+      },
+      "status": {
+        "prefix": "Status:",
+        "ready": "Idle",
+        "running": "Running",
+        "paused": "Paused",
+        "event": "Event"
+      },
+      "readoutsFmt": {
+        "dash": "—"
+      },
+      "spectrumPlot": {
+        "nm380": "380nm",
+        "nm760": "760nm"
+      },
+      "canvas": {
+        "bohrTitle": "Bohr: quantized orbits + transitions (ΔE → photon)",
+        "bohrEmit": "Emission: electron drops and emits a photon",
+        "bohrAbsorb": "Absorption: electron moves up if it receives a photon",
+        "bohrSeriesHint": "Use “Spectral series” to fix nᶠ (Lyman/Balmer/Paschen).",
+        "debroglieTitle": "de Broglie: standing wave on orbit (2πr = nλ)",
+        "debroglieWaves": "Quantum number n = {n} → {n} wavelengths fit around the orbit.",
+        "debroglieStable": "If it doesn’t fit, the state isn’t stable (destructive interference).",
+        "debroglieStationary": "n = {n} (standing wave)",
+        "schroTitle": "Schrödinger: probability cloud |ψ|² (2D visual)",
+        "schroOrbital2d": "Orbital: {o} (2D view).",
+        "schroProb": "It doesn’t “orbit” like a planet — position is probabilistic.",
+        "schroOrbitalLbl": "Orbital: {o}",
+        "specTitle": "Spectrometer: beam → H cell → prism/grating → screen (spectrum)",
+        "specSource": "Source",
+        "specSlit": "Slit",
+        "specCell": "H cell",
+        "specPrism": "Prism",
+        "specGrating": "Grating",
+        "specScreen": "Screen",
+        "specInstrPrism": "Instrument: Prism",
+        "specInstrGrating": "Instrument: Diffraction grating",
+        "specBeamWhite": "Beam: White (continuum)",
+        "specBeamMono": "Beam: Monochromatic ({nm} nm)",
+        "specRegEmission": "Mode: Emission (bright lines)",
+        "specRegAbsorption": "Mode: Absorption (dark lines)"
+      },
+      "aria": {
+        "panelTheory": "Theory panel (units & formulas)",
+        "panelControl": "Simulation control panel"
+      }
+    },
+    "oscillatii-ox": {
+      "page": {
+        "eyebrow": "Simple harmonic motion | Interactive simulation"
+      },
+      "documentTitle": "Hooke's law simulator — OX (horizontal spring)",
+      "htmlLang": "en",
+      "units": {
+        "heading": "Units of measurement:",
+        "u1": "x (displacement) — m (metre)",
+        "u2": "v (velocity) — m/s (metres per second)",
+        "u3": "m (mass) — kg (kilogram)",
+        "u4": "k (spring constant) — N/m (newton per metre)",
+        "u5": "F (elastic force) — N (newton)",
+        "u6": "E_c (kinetic energy) — J (joule)",
+        "u7": "E_p (potential energy) — J (joule)",
+        "u8": "E_t (total energy) — J (joule)"
+      },
+      "formulas": {
+        "heading": "Formulas:",
+        "f1": "\\[F = -k \\cdot x\\] (Hooke's law)",
+        "f2": "\\[E_p = \\frac{1}{2} \\cdot k \\cdot x^2\\] (elastic potential energy)",
+        "f3": "\\[E_c = \\frac{1}{2} \\cdot m \\cdot v^2\\] (kinetic energy)",
+        "f4": "\\[E_t = E_c + E_p\\] (conservation of mechanical energy)",
+        "f5": "\\[T = 2\\pi\\sqrt{\\frac{m}{k}}\\] (oscillation period)"
+      },
+      "labels": {
+        "pageTitle": "Harmonic oscillator on OX",
+        "mass": "Mass (m):",
+        "springK": "Spring constant (k):",
+        "friction": "Friction coefficient (b):",
+        "frictionZero": "Set friction to 0"
+      },
+      "buttons": {
+        "start": "Start",
+        "pause": "Pause",
+        "resume": "Resume",
+        "stop": "Stop",
+        "measure": "Measure",
+        "themeDark": "☀️ Switch theme",
+        "themeLight": "🌙 Switch theme"
+      },
+      "measure": {
+        "mass": "m (mass):",
+        "amplitude": "A (amplitude):",
+        "time": "t (time):",
+        "x": "x (displacement):",
+        "v": "v (speed):",
+        "k": "k (spring constant):",
+        "force": "F (force):",
+        "ec": "E_c (kinetic energy):",
+        "ep": "E_p (potential energy):",
+        "et": "E_t (total energy):"
+      },
+      "chart": {
+        "displacement": "Displacement (m)",
+        "velocity": "Velocity (m/s)",
+        "timeAxis": "Time (s)"
+      },
+      "unitsFmt": {
+        "kg": " kg",
+        "nPerM": " N/m",
+        "kgCompact": "kg",
+        "mCompact": "m",
+        "sCompact": "s",
+        "msCompact": "m/s",
+        "nCompact": "N",
+        "jCompact": "J",
+        "m": " m",
+        "s": " s",
+        "ms": " m/s",
+        "n": " N",
+        "j": " J"
+      },
+      "aria": {
+        "toggleLeft": "Show or hide left panel",
+        "toggleRight": "Show or hide right panel"
+      },
+      "misc": {
+        "dash": "—"
+      }
+    },
+    "oscillatii-oy": {
+      "page": {
+        "eyebrow": "Damped harmonic motion | Interactive simulation"
+      },
+      "documentTitle": "Hooke's law simulator — OY (vertical spring)",
+      "htmlLang": "en",
+      "units": {
+        "heading": "Units of measurement:",
+        "u1": "L (length) — m (metre)",
+        "u2": "A (amplitude) — m (metre)",
+        "u3": "t (time) — s (second)",
+        "u4": "y (displacement) — m (metre)",
+        "u5": "v (velocity) — m/s (metres per second)",
+        "u6": "k (spring constant) — N/m",
+        "u7": "F (force) — N (newton)",
+        "u8": "E_p (elastic potential energy) — J (joule)",
+        "u9": "E_k (kinetic energy) — J (joule)",
+        "u10": "E (total energy) — J (joule)"
+      },
+      "formulas": {
+        "heading": "Formulas:",
+        "f1": "\\[F = k \\cdot y\\]",
+        "f2": "\\[y = \\frac{F}{k}\\]",
+        "f3": "\\[E_p = \\frac{k \\cdot y^2}{2}\\]",
+        "f4": "\\[E_c = \\frac{m \\cdot v^2}{2}\\]",
+        "f5": "\\[E_t = E_c + E_p\\]",
+        "f6": "\\[y(t) = A \\cdot e^{-bt} \\cdot \\sin(\\omega t)\\]"
+      },
+      "labels": {
+        "pageTitle": "Harmonic oscillator on OY",
+        "amplitude": "Amplitude (A):",
+        "speedScale": "Speed scale (v):",
+        "mass": "Mass (m):",
+        "springK": "Spring constant (k):",
+        "friction": "Friction coefficient (b):",
+        "frictionZero": "Set friction to 0"
+      },
+      "buttons": {
+        "start": "Start",
+        "pause": "Pause",
+        "resume": "Resume",
+        "stop": "Stop",
+        "measure": "Measure",
+        "themeDark": "☀️ Switch theme",
+        "themeLight": "🌙 Switch theme"
+      },
+      "measure": {
+        "mass": "m (mass):",
+        "amplitude": "A (amplitude):",
+        "time": "t (time):",
+        "y": "y (displacement):",
+        "v": "v (speed):",
+        "ec": "E_k (kinetic energy):",
+        "ep": "E_p (potential energy):",
+        "et": "E (total energy):"
+      },
+      "chart": {
+        "displacement": "Displacement y (m)",
+        "velocity": "Velocity (m/s)",
+        "timeAxis": "Time (s)"
+      },
+      "unitsFmt": {
+        "kg": " kg",
+        "nPerM": " N/m",
+        "m": " m",
+        "s": " s",
+        "ms": " m/s",
+        "j": " J",
+        "times": "×"
+      },
+      "aria": {
+        "toggleLeft": "Show or hide left panel",
+        "toggleRight": "Show or hide right panel"
+      },
+      "misc": {
+        "dash": "—"
+      }
+    },
+    "energie-circuite": {
+      "page": {
+        "eyebrow": "Electrical circuits | Interactive simulation"
+      },
+      "documentTitle": "Energy in circuits — power flow",
+      "htmlLang": "en",
+      "labels": {
+        "pageTitle": "Energy in circuits",
+        "controlPanel": "Controls",
+        "voltage": "Voltage U (V)",
+        "resistance": "Resistance R (Ω)",
+        "pmax": "Rated power Pmax (W)",
+        "switchLabel": "Switch",
+        "liveStats": "Live values",
+        "formulasPanel": "Formulas & info",
+        "formulasUnits": "Formulas + units",
+        "quickFacts": "Quick facts",
+        "resetEnergy": "Reset energy",
+        "resetAll": "Repair / Reset"
+      },
+      "stats": {
+        "currentI": "Current I",
+        "powerP": "Power P",
+        "energyE": "Energy E",
+        "timeOn": "Time on",
+        "heatModel": "\"Heat\" (model)"
+      },
+      "formula": {
+        "currentTitle": "Current:",
+        "currentNote": "units: A (ampere)",
+        "powerTitle": "Power:",
+        "powerNote": "units: W (watt)",
+        "energyTitle": "Energy dissipated:",
+        "energyNote": "units: J (joule)"
+      },
+      "facts": {
+        "f1": "Energy is not \"used up\" in the wires — it is delivered to the resistor and becomes heat.",
+        "f2": "A resistor has a rated power Pmax. If P > Pmax long enough → overheating → failure.",
+        "f3": "If you double U (R fixed), power rises about 4×: P = U²/R."
+      },
+      "status": {
+        "prefix": "Status:",
+        "ready": "Ready.",
+        "circuitOn": "Circuit ON.",
+        "circuitOff": "Circuit OFF.",
+        "burnOut": "Resistor burned (open circuit). Press \"Repair / Reset\".",
+        "overload": "Overload! P>Pmax — {t}s until burnout",
+        "repaired": "Repaired. You can switch on again.",
+        "cantStart": "Cannot switch on: resistor burned. Press \"Repair / Reset\"."
+      },
+      "switchState": {
+        "on": "ON",
+        "off": "OFF"
+      },
+      "canvas": {
+        "batteryU": "U = {u} V",
+        "resistorR": "R = {r} Ω",
+        "resistorPmax": "Pmax = {pmax} W",
+        "resistorFailed": "FAILED (OPEN)",
+        "switchBlocked": "switch: BLOCKED (fault)",
+        "switchOnLbl": "switch: ON",
+        "switchOffLbl": "switch: OFF",
+        "hudTransport": "Energy (model) moves along wires and dissipates in the resistor.",
+        "hudI": "I = U/R = {v} A",
+        "hudP": "P = U·I = {p} W   (Pmax = {pmax} W)",
+        "hudE": "E = ∫P dt = {e} J",
+        "hudOverload": "Overload: P > Pmax → resistor may burn.",
+        "hudFailed": "Fault: resistor burned → open circuit → I = 0."
+      },
+      "aria": {
+        "panelControl": "Control panel",
+        "panelFormulas": "Formulas panel",
+        "circuitCanvas": "Circuit animation"
+      }
+    },
+    "unde-apa": {
+      "page": {
+        "eyebrow": "Water waves | Interactive simulation"
+      },
+      "documentTitle": "Water wave simulator",
+      "htmlLang": "en",
+      "labels": {
+        "pageTitle": "Wave simulator",
+        "menuTitle": "Menu",
+        "flowSpeed": "Flow speed:",
+        "dropSize": "Drop size:",
+        "secondFaucet": "Second faucet:",
+        "dropColor": "Drop colour:",
+        "waveColor": "Wave colour:",
+        "dropsCount": "Drops:",
+        "chartHeading": "Graph: time → amplitude",
+        "chartOy": "OY: amplitude (wave count)",
+        "chartOx": "OX: time",
+        "measurementsHeading": "Measurements:",
+        "physicsFrequency": "Frequency:",
+        "physicsWaveSpeed": "Wave speed:",
+        "physicsWavelength": "Wavelength:",
+        "physicsHz": "Hz",
+        "physicsPxPerS": "px/s",
+        "physicsPx": "px"
+      },
+      "buttons": {
+        "start": "Start",
+        "stop": "Stop"
+      },
+      "chart": {
+        "pointA": "Point A",
+        "pointB": "Point B",
+        "pointC": "Point C"
+      },
+      "formulas": {
+        "block": "\\[ \\text{Wave frequency} \\] \\[ f = \\frac{1}{T} \\] \\[ \\text{Wavelength} \\] \\[ \\lambda = v \\cdot T = \\frac{v}{f} \\] \\[ \\text{Number of waves in time } t \\] \\[ N = \\frac{t}{T} \\]"
+      }
+    },
+    "figuri-lissajous": {
+      "page": {
+        "eyebrow": "Lissajous figures | Interactive simulation"
+      },
+      "documentTitle": "Lissajous figures",
+      "htmlLang": "en",
+      "labels": {
+        "popupTitle": "Create a Lissajous figure",
+        "harmonicFunctions": "Harmonic functions:",
+        "color": "Colour:",
+        "timeDeltaHint": "t1 − t2 + ",
+        "originLabel": "O(0, 0)",
+        "showPopupAria": "Open create figure dialog",
+        "closePopupAria": "Close dialog",
+        "logAria": "Simulation log"
+      },
+      "buttons": {
+        "createFigure": "Create figure"
+      },
+      "logs": {
+        "noFigureYet": "No Lissajous figure added yet.",
+        "invalidFields": "Enter valid values in all fields.",
+        "figureAdded": "Lissajous figure added successfully.",
+        "dataEntered": "Input: A = {A} m, ω1 = {w1} rad/s, ω2 = {w2} rad/s, t ∈ [{t1}, {t2}] s, φ0 = {phi}°, colour = {color}"
+      }
+    },
+    "seism": {
+      "page": {
+        "eyebrow": "Earthquake (P & S waves) | Interactive simulation"
+      },
+      "documentTitle": "Earthquake simulator",
+      "htmlLang": "en",
+      "labels": {
+        "pageTitle": "Earthquake simulator",
+        "calcHeading": "Arrival-time calculator",
+        "vpLabel": "Vp (km/s) — [5, 10] km/s:",
+        "vsLabel": "Vs (km/s) — [2, 5] km/s:",
+        "distLabel": "Distance (km) — d < 10 km:",
+        "time1": "Time 1:",
+        "time2": "Time 2:",
+        "deltaT": "Δt:",
+        "unitsHeading": "Units",
+        "formulasHeading": "Formulas",
+        "obsHeading": "Notes",
+        "calcButton": "Calculate",
+        "secondsSuffix": "s",
+        "uDist": "d — distance from the reference point to the epicentre — km",
+        "uVp": "Vp — primary (P) wave speed — km/s",
+        "uVs": "Vs — secondary (S) wave speed — km/s",
+        "uT1": "Time 1 — time for the P wave to reach the reference point — s",
+        "uT2": "Time 2 — time for the S wave to reach the reference point — s",
+        "uDt": "Δt — time difference between the two waves — s",
+        "uOmega": "ω — angular frequency — rad/s",
+        "uK": "k — wavenumber — rad/m",
+        "uLambda": "λ — wavelength — m",
+        "uPeriod": "T — period — s",
+        "uNu": "ν — frequency — Hz",
+        "uVphase": "v — phase speed — m/s",
+        "oVpGtVs": "vp > vs",
+        "oPWaves": "P — primary waves, longitudinal, yellow in the simulation",
+        "oSWaves": "S — secondary waves, transverse, blue in the simulation",
+        "oPDamage": "P waves: roughly 10–20% of earthquake damage at the surface; fast but carry less destructive energy.",
+        "oSDamage": "S waves: roughly 80–90% of destruction; transverse shaking is far more hazardous for structures."
+      },
+      "scene": {
+        "epicenter": "Epicentre",
+        "hypocenter": "Hypocentre",
+        "referencePoint": "Reference point"
+      },
+      "alerts": {
+        "fillAllFields": "Please fill in all fields.",
+        "vpGreaterThanVs": "P-wave speed (Vp) must be greater than S-wave speed (Vs).",
+        "vpRange": "Vp must be between 5 and 10 km/s.",
+        "vsRange": "Vs must be between 2 and 5 km/s.",
+        "distMax": "Distance must be less than 10 km for this diagram."
+      },
+      "buttons": {
+        "themeDark": "🌙 Switch theme",
+        "themeLight": "☀️ Switch theme"
+      }
+    },
+    "coliziuni-inelastice": {
+      "page": {
+        "eyebrow": "Inelastic collisions | Interactive simulation"
+      },
+      "documentTitle": "Inelastic collisions",
+      "htmlLang": "en",
+      "labels": {
+        "pageHeading": "Inelastic collision",
+        "unitsHeading": "Units of measurement",
+        "unitSpeedPx": "Speed: px/frame",
+        "unitMassKg": "Mass: kg",
+        "unitImpulse": "Momentum: kg·px/frame",
+        "unitEnergyJ": "Energy: J",
+        "unitForceN": "Force: N",
+        "formulasHeading": "Formulas used",
+        "formulaImpulse": "Momentum: p = m · v",
+        "formulaKe": "Kinetic energy: E = 0.5 · m · v²",
+        "formulaForce": "Force: F = m · a",
+        "sidebarTitle": "Menu",
+        "ball1Speed": "Ball 1 speed:",
+        "ball2Speed": "Ball 2 speed:",
+        "ball1Mass": "Ball 1 mass:",
+        "ball2Mass": "Ball 2 mass:",
+        "ballSize": "Ball size:",
+        "simSpeed": "Simulation speed:",
+        "suffixMs": " m/s",
+        "suffixPx": " px",
+        "suffixTimes": " ×",
+        "massKgSuffix": " kg",
+        "ball1Color": "Ball 1 colour:",
+        "ball2Color": "Ball 2 colour:",
+        "sidebarButtonsTitle": "Controls",
+        "chartTitle": "Momentum & energy chart",
+        "suffixPxFrame": " px/frame",
+        "suffixKgMps": " kg·m/s",
+        "suffixN": " N"
+      },
+      "buttons": {
+        "start": "Start",
+        "stop": "Stop",
+        "pauseResume": "Pause / Resume",
+        "measureShow": "Show measurements",
+        "measureHide": "Hide measurements",
+        "pause": "Pause",
+        "resume": "Resume"
+      },
+      "chart": {
+        "impulseB1": "Momentum ball 1 (kg·px/frame)",
+        "impulseB2": "Momentum ball 2 (kg·px/frame)",
+        "impulseTotal": "Total momentum (kg·px/frame)",
+        "energyTotal": "Total energy (J)"
+      },
+      "measurements": {
+        "title": "Measurements:",
+        "ball": "Ball {{n}}:",
+        "velocity": "Speed: {{v}} m/s",
+        "impulse": "Momentum: {{p}} kg·m/s",
+        "kinetic": "Kinetic energy: {{e}} J",
+        "force": "Force: {{f}} N",
+        "totalTitle": "Total:",
+        "totalImpulse": "Total momentum: {{p}} kg·m/s",
+        "totalEnergy": "Total energy: {{e}} J",
+        "totalForce": "Total force: {{f}} N",
+        "paused": "Simulation paused.",
+        "resumed": "Simulation resumed."
+      }
+    },
+    "plan-inclinat": {
+      "page": {
+        "eyebrow": "Inclined plane | Interactive simulation"
+      },
+      "documentTitle": "Inclined plane",
+      "htmlLang": "en",
+      "labels": {
+        "brandTitle": "Inclined plane",
+        "brandSubtitlePart1": "Static vs kinetic • force vectors • formulas & results • large scene. Positive direction: ",
+        "brandSubtitleBold": "downhill along the plane",
+        "brandSubtitlePart2": ".",
+        "formulasHeading": "Formulas",
+        "resultsHeading": "Results",
+        "controlsHeading": "Controls",
+        "sceneHeading": "Scene",
+        "hintLabel": "Hint:",
+        "hintCritical": " critical angle (starts sliding) when tanθ = μs.",
+        "formulaStatic": "Static",
+        "formulaKinetic": "Kinetic",
+        "mass": "Mass",
+        "angle": "Angle",
+        "muStatic": "Static friction",
+        "muKinetic": "Kinetic friction",
+        "gravity": "Gravity",
+        "zoom": "Zoom",
+        "unitKg": "(kg)",
+        "unitDeg": "(°)",
+        "unitDash": "(—)",
+        "unitG": "(m/s²)",
+        "unitZoom": "(×)",
+        "tipIncreaseTheta": "Tip: increase θ until Gt exceeds μs·N.",
+        "stateBadgePrefix": "State:",
+        "legendTitle": "Forces",
+        "legendG": "Weight",
+        "legendGn": "Normal component of weight",
+        "legendGt": "Tangential component of weight",
+        "legendN": "Normal reaction",
+        "legendFf": "Friction force",
+        "legendFr": "Net force",
+        "ariaLeftPanel": "Formulas & results panel",
+        "ariaRightPanel": "Controls panel",
+        "vectorsTitle": "Vectors",
+        "labelsTitle": "Labels",
+        "gridTitle": "Grid",
+        "fullscreenTitle": "Fullscreen",
+        "statusReady": "READY",
+        "statusRunning": "RUNNING",
+        "statusHold": "HOLD (static)"
+      },
+      "physics": {
+        "modeStatic": "STATIC — not sliding",
+        "modeKinetic": "KINETIC — sliding"
+      },
+      "buttons": {
+        "run": "▶ Run",
+        "pause": "⏸ Pause",
+        "reset": "⟲ Reset"
+      }
+    },
+    "proiectile": {
+      "page": {
+        "eyebrow": "Projectile motion | Interactive simulation"
+      },
+      "documentTitle": "Projectile motion (BAC)",
+      "htmlLang": "en",
+      "labels": {
+        "title": "Projectile motion",
+        "subtitle": "BAC simulator",
+        "resultsHeading": "Results",
+        "controlsHeading": "Controls",
+        "modeNoAir": "No air (BAC)",
+        "modeAir": "With air (numeric)",
+        "cardKeyResults": "Key results",
+        "cardLive": "Live",
+        "kvTflight": "T (time of flight)",
+        "kvR": "R (range)",
+        "kvHmax": "Hmax",
+        "kvTup": "t↑ (to apex)",
+        "kvVimp": "impact speed",
+        "kvYmaxLive": "ymax (live)",
+        "kvTLive": "t",
+        "kvX": "x",
+        "kvY": "y",
+        "kvV": "v",
+        "detailsSummary": "BAC formulas (no air)",
+        "detailsNote": "In With air mode we use numerical integration.",
+        "hintZoom": "Zoom: wheel • Pan: Space + drag • Drag green handle for h₀ when paused",
+        "bacTypeTitle": "Ideal vs real (BAC)",
+        "bacTypeBody": "Compare no air (ideal) vs with air (real). Range drops and the trajectory changes.",
+        "unitsTitle": "Units",
+        "unitsBody": "metres (m), seconds (s), m/s. Axes are in metres; ground is y = 0.",
+        "canvasAria": "Projectile simulation",
+        "cardModes": "Modes & display",
+        "chkAir": "Air resistance",
+        "chkTrace": "Trail",
+        "chkVectors": "Vectors",
+        "chkGrid": "Grid",
+        "cardParams": "Parameters (BAC)",
+        "lblV0": "v₀ (m/s)",
+        "lblAlpha": "α (°)",
+        "lblH0": "h₀ (m)",
+        "lblG": "g (m/s²)",
+        "cardRun": "Playback",
+        "lblSpeed": "Playback speed (×)",
+        "lblTrace": "Trail quality",
+        "lblK": "k (air)",
+        "modelAir": "Model: a = −k·|v|·v + gravity",
+        "ariaLeftPanel": "Results & formulas panel",
+        "ariaRightPanel": "Controls panel",
+        "axisX": "x (m)",
+        "axisY": "y (m)"
+      },
+      "buttons": {
+        "reset": "Reset",
+        "fullscreen": "Full screen",
+        "exitFullscreen": "Exit full",
+        "start": "Start",
+        "pause": "Pause",
+        "step": "Step",
+        "clearTrail": "Clear trail"
+      },
+      "hud": {
+        "ready": "Ready. Press Start.",
+        "landed": "Landed. Reset or Start to replay.",
+        "running": "Simulation running…",
+        "pausedHud": "Paused.",
+        "fullscreenBlocked": "Fullscreen blocked by the browser (try again)."
+      },
+      "status": {
+        "running": "running",
+        "landed": "landed",
+        "stop": "stop"
+      }
+    },
+    "reflexie-refractie": {
+      "page": {
+        "eyebrow": "Reflection & refraction | Interactive simulation"
+      },
+      "documentTitle": "Reflection and refraction simulator",
+      "htmlLang": "en",
+      "header": {
+        "title": "🔬 Reflection and refraction simulator",
+        "subtitle": "Explore how light behaves at the boundary between two media"
+      },
+      "controls": {
+        "heading": "⚙️ Controls"
+      },
+      "incident": {
+        "heading": "Incident ray",
+        "label": "Angle of incidence (θ₁)"
+      },
+      "medium1": {
+        "heading": "Medium 1 (upper)",
+        "nLabel": "Refractive index (n₁)"
+      },
+      "medium2": {
+        "heading": "Medium 2 (lower)",
+        "nLabel": "Refractive index (n₂)"
+      },
+      "medium": {
+        "air": "Air (n=1.00)",
+        "water": "Water (n=1.33)",
+        "glass": "Glass (n=1.52)",
+        "diamond": "Diamond (n=2.42)",
+        "custom": "Custom"
+      },
+      "display": {
+        "heading": "Display",
+        "showNormal": "Show normal",
+        "showAngles": "Show angles",
+        "showIntensity": "Show intensity"
+      },
+      "color": {
+        "heading": "Light colour",
+        "pickLabel": "Choose colour",
+        "wavelengthLabel": "Approximate wavelength: "
+      },
+      "buttons": {
+        "reset": "🔄 Reset"
+      },
+      "results": {
+        "thetaReflection": "θ reflection:",
+        "thetaRefraction": "θ refraction:",
+        "thetaCritical": "θ critical:",
+        "tirBadge": "⚡ Total internal reflection",
+        "refrNa": "N/A (TIR)",
+        "na": "N/A"
+      },
+      "theory": {
+        "heading": "📐 Formulas & theory"
+      },
+      "lawReflection": {
+        "title": "Law of reflection",
+        "explain": "The angle of reflection equals the angle of incidence."
+      },
+      "lawSnell": {
+        "title": "Snell’s law (refraction)",
+        "explain": "Relates the angles and refractive indices in the two media."
+      },
+      "critical": {
+        "title": "Critical angle",
+        "explain": "Minimum angle for total internal reflection (when n₁ > n₂)."
+      },
+      "units": {
+        "heading": "📏 Units",
+        "angle": "Angle: degrees (°) or radians (rad)",
+        "index": "Refractive index: dimensionless",
+        "wavelength": "Wavelength: nanometres (nm)",
+        "speedLight": "Speed of light: m/s",
+        "kms": " km/s",
+        "ms": " m/s"
+      },
+      "velocity": {
+        "heading": "🚀 Speed of light",
+        "vacuumIntro": "In vacuum:",
+        "mediumIntro": "In a medium:",
+        "v1Prefix": "v₁ = ",
+        "v2Prefix": "v₂ = "
+      },
+      "facts": {
+        "heading": "💡 Did you know…?",
+        "rainbow": {
+          "title": "Rainbows",
+          "body": "Rainbows form from refraction and reflection of sunlight in atmospheric water droplets. Each colour has a slightly different refractive index, which produces spectral separation."
+        },
+        "diamond": {
+          "title": "Diamond sparkle",
+          "body": "Diamond has one of the highest refractive indices (n = 2.42), giving frequent total internal reflection and its characteristic brilliance."
+        },
+        "fiber": {
+          "title": "Optical fibre",
+          "body": "Optical fibres use total internal reflection to guide light over long distances with little loss. Modern internet relies heavily on this technology."
+        },
+        "pool": {
+          "title": "Pools look shallower",
+          "body": "When you look into water, objects appear closer to the surface than they really are, due to refraction as light passes from water to air."
+        },
+        "mirage": {
+          "title": "Mirages",
+          "body": "Desert mirages come from refraction in air layers at different temperatures. Hot air near the ground has a lower refractive index."
+        },
+        "glasses": {
+          "title": "Spectacle lenses",
+          "body": "Glasses correct vision using refraction: converging lenses (for hyperopia) and diverging lenses (for myopia) steer light to focus correctly on the retina."
+        }
+      },
+      "carousel": {
+        "prevAria": "Previous fact",
+        "nextAria": "Next fact"
+      },
+      "technical": {
+        "heading": "🔬 Technical details"
+      },
+      "tech": {
+        "indexTitle": "What is refractive index?",
+        "indexBody": "Refractive index (n) is the ratio of the speed of light in vacuum to the speed in a given medium. The larger n, the slower light travels in that medium.",
+        "tirTitle": "Total internal reflection",
+        "tirBody": "When light goes from a denser medium (larger n) to a less dense one and the incidence angle exceeds the critical angle, all light is reflected back into the first medium.",
+        "dispersionTitle": "Dispersion of light",
+        "dispersionBody": "Refractive index varies slightly with wavelength. Blue light (smaller λ) refracts more than red (larger λ). This is called dispersion.",
+        "appsTitle": "Applications",
+        "apps": {
+          "fiber": "Optical fibres for telecommunications",
+          "endoscope": "Medical endoscopes",
+          "prism": "Prisms and spectrometry",
+          "lenses": "Lenses and optical systems",
+          "sensors": "Sensors and detectors"
+        }
+      },
+      "footer": {
+        "line1": "Educational optics simulator | Reflection & refraction",
+        "line2": "Based on Snell’s laws and geometrical optics"
+      },
+      "canvas": {
+        "ariaLabel": "Reflection and refraction view",
+        "medium1Prefix": "Medium 1",
+        "medium2Prefix": "Medium 2",
+        "interface": "Interface",
+        "normal": "Normal",
+        "rayIncident": "Incident ray",
+        "rayReflected": "Reflected ray",
+        "rayRefracted": "Refracted ray"
+      }
+    },
+    "reactor-fuziune-dt": {
+      "page": {
+        "eyebrow": "Nuclear physics | Fusion reactor (educational model)"
+      },
+      "documentTitle": "Fusion reactor simulator — D–T (educational)",
+      "htmlLang": "en",
+      "labels": {
+        "title": "Fusion reactor simulator — D–T",
+        "subtitle": "Control parameters, cumulative energy (~17.6 MeV per fusion), and stability (educational model — not reactor engineering).",
+        "hintTemp": "Higher temperature → particles move faster.",
+        "hintFlux": "Higher flux increases the likelihood of fusion near the core (~17.6 MeV per event).",
+        "hintEnergy": "Displayed energy = number of reactions × 17.6 MeV (educational D–T model).",
+        "meltdownHeading": "Meltdown — what happened?",
+        "meltdownBody": "Tritium is a radioactive isotope of hydrogen. Under extreme conditions, reactions can spiral out of control and the released energy becomes unstable. In the scenario above, the reactor enters meltdown: loss of control, a violent surge of energy, then dispersal of an educational radioactive “cloud” visualisation.",
+        "temperature": "Temperature (K)",
+        "pressure": "Pressure",
+        "neutronFlux": "Neutron flux",
+        "resetBtn": "Reset reactor",
+        "chartTitle": "Energy over time (MeV)",
+        "cardEnergy": "Energy",
+        "cardRate": "Fusions per second",
+        "cardStability": "Stability"
+      },
+      "stability": {
+        "ok": "OK",
+        "unstable": "UNSTABLE",
+        "critical": "CRITICAL"
+      },
+      "status": {
+        "meltdown": "\u2622 MELTDOWN",
+        "warningUnstable": "\u26A0 UNSTABLE"
+      },
+      "aria": {
+        "educationalHints": "Educational hints",
+        "energyChart": "Energy over time chart"
+      }
+    },
+    "prisma": {
+      "page": {
+        "eyebrow": "Prism dispersion | Interactive simulation"
+      },
+      "documentTitle": "Prism with dispersion",
+      "htmlLang": "en",
+      "main": {
+        "title": "Dispersion of light through a prism"
+      },
+      "sidebar": {
+        "panelHeading": "Time calculator",
+        "incidentIntro": "Angle of incidence of white light:",
+        "angleLabel": "Adjust the angle:",
+        "angleSliderTitle": "Adjust the angle of incidence"
+      },
+      "buttons": {
+        "dispersionOn": "Enable dispersion",
+        "dispersionOff": "Disable dispersion"
+      },
+      "toggleSidebar": {
+        "aria": "Open or close the theory panel"
+      },
+      "canvas": {
+        "aria": "Prism and dispersion simulation"
+      },
+      "theory": {
+        "snellTitle": "Snell's law:",
+        "snellLegend": "Here \\(n_1\\) and \\(n_2\\) are the refractive indices of the media (e.g. air and glass).",
+        "snellAngles": "Here \\(i\\) is the angle of incidence and \\(r\\) the angle of refraction.",
+        "cauchyTitle": "Refractive index vs wavelength (Cauchy):",
+        "redShift": "Red light (large λ) is deviated less.",
+        "violetShift": "Violet light (small λ) is deviated more.",
+        "dispersionWhy": "Dispersion is why we see rainbows: each colour refracts differently.",
+        "prismSeparates": "A prism splits white light because each colour travels at a different speed in the material.",
+        "newton": "Isaac Newton was the first to show that white light is made of many colours.",
+        "glassIndices": "In glass, the index for red is ≈ 1.514 and for violet ≈ 1.532 — a small difference, but enough for dispersion."
+      }
+    },
+    "motoare-termice": {
+      "page": {
+        "eyebrow": "Heat engines | Interactive simulation"
+      },
+      "documentTitle": "Otto / Diesel / Carnot heat-engine simulator",
+      "htmlLang": "en",
+      "header": {
+        "title": "Otto / Diesel / Carnot heat-engine simulator",
+        "tagline": "p-V + T-s live • work • efficiency • IMEP • comparisons"
+      },
+      "status": {
+        "ready": "ready",
+        "mode": {
+          "otto": "Otto",
+          "diesel": "Diesel",
+          "carnot": "Carnot",
+          "compare": "Compare"
+        }
+      },
+      "panel": {
+        "settings": "Settings"
+      },
+      "cycle": {
+        "otto": "Otto",
+        "diesel": "Diesel",
+        "carnot": "Carnot",
+        "compare": "Compare"
+      },
+      "compare": {
+        "heading": "Comparison",
+        "line1": "By default you compare 2 cycles. You can pick any pair.",
+        "line2": "Check “show the third” to display all three.",
+        "cycleA": "Cycle A",
+        "cycleB": "Cycle B",
+        "showThird": "Show the third (all 3)",
+        "pick": "Choose what to compare"
+      },
+      "initial": {
+        "heading": "Initial conditions (state 1)"
+      },
+      "params": {
+        "heading": "Engine / gas parameters",
+        "compressionRatio": "Compression ratio r = V₁/V₂",
+        "nMoles": "n (mol) — amount of gas"
+      },
+      "heat": {
+        "heading": "Combustion (fuel)",
+        "noteOtto": "Otto: heat addition at constant volume → you control T₃.",
+        "noteDiesel": "Diesel: heat addition at constant pressure → you control cutoff ρ = V₃/V₂.",
+        "cutoff": "Cutoff ρ = V₃/V₂"
+      },
+      "carnot": {
+        "heading": "Carnot (thermal reservoirs)",
+        "note": "Carnot has 2 isotherms (Tₕ and T𝒸) + 2 adiabats. Ideal efficiency: η = 1 − T𝒸/Tₕ.",
+        "alpha": "Isothermal ratio α = V₂/V₁"
+      },
+      "visual": {
+        "heading": "Display",
+        "resolution": "Path resolution",
+        "showStates": "Show state points",
+        "animation": "Animation"
+      },
+      "buttons": {
+        "recalc": "Recalculate",
+        "reset": "Reset"
+      },
+      "charts": {
+        "title": "Diagrams",
+        "tsLabel": "T-s (relative)",
+        "axisV": "V",
+        "axisP": "p",
+        "axisS": "s",
+        "axisT": "T"
+      },
+      "hud": {
+        "currentState": "Current state",
+        "segment": "segment"
+      },
+      "results": {
+        "title": "Results",
+        "eta": "Efficiency η",
+        "wnet": "Net work Wₙₑₜ (J)",
+        "wnetHint": "p–V loop area",
+        "qin": "Heat in Qᵢₙ (J)",
+        "qinHint": "ideal model (perfect gas)",
+        "imep": "IMEP (bar)",
+        "imepHint": "Wₙₑₜ / (V₁−V₂)"
+      },
+      "table": {
+        "state": "State",
+        "sRel": "s (rel.)",
+        "footnote": "Model: ideal cycles. “s (rel.)” is relative to state 1 (not absolute)."
+      },
+      "footer": {
+        "tips": "Tips: Otto → higher r ⇒ higher η. Diesel → higher ρ can raise W but lowers η. Carnot: η depends only on Tₕ and T𝒸."
+      },
+      "cycles": {
+        "otto": "Otto",
+        "diesel": "Diesel",
+        "carnot": "Carnot"
+      },
+      "hints": {
+        "etaOtto": "ideal Otto ≈ 1 − 1/r^(γ−1)",
+        "etaDiesel": "ideal Diesel depends on r and cutoff ρ",
+        "etaCarnot": "ideal Carnot: η = 1 − T𝒸/Tₕ"
+      },
+      "errors": {
+        "gamma": "invalid γ",
+        "r": "r too small",
+        "carnotTemps": "Set Tₕ > T𝒸"
+      }
+    },
+    "lanturi-elastice": {
+      "page": {
+        "eyebrow": "Elastic chains | Interactive simulation"
+      },
+      "documentTitle": "Chain / rope simulator",
+      "htmlLang": "en",
+      "labels": {
+        "title": "Chain / rope",
+        "subtitle": "Static catenary → dynamics (PBD + Verlet)",
+        "controlsHeading": "Controls",
+        "segments": "Segments",
+        "totalLength": "Total length",
+        "gravity": "Gravity",
+        "damping": "Damping",
+        "constraintIters": "Constraint iterations",
+        "dt": "Time step (Δt)",
+        "chkTension": "Colour by tension",
+        "chkNodes": "Show nodes",
+        "chkPinLeft": "Pin left end",
+        "chkPinRight": "Pin right end (before release)",
+        "hintMouse": "Mouse: drag nodes (in dynamic mode).",
+        "hintStatic": "Static settle: re-forms the catenary.",
+        "hintRelease": "Release end: frees the right end.",
+        "chartsHeading": "Oscillation plots",
+        "chartClear": "Clear plots",
+        "chartEnable": "Enable plots",
+        "badgePrefix": "MODE: ",
+        "waitData": "Waiting for data…",
+        "chartYTitle": "Vertical oscillation (position Y)",
+        "chartXTitle": "Horizontal oscillation (position X)",
+        "canvasAria": "Elastic chain simulation",
+        "yes": "Yes",
+        "no": "No",
+        "suffixM": " m",
+        "suffixS": " s",
+        "suffixMs2": " m/s²",
+        "suffixSUnit": " s"
+      },
+      "stats": {
+        "line1": "Nodes: <b>{nodes}</b> | Segments: <b>{segments}</b> | Segment length: <b>{segLen}</b> m",
+        "line2": "Pinned left: <b>{pinL}</b> | Pinned right: <b>{pinR}</b> | Dragging: <b>{drag}</b>"
+      },
+      "buttons": {
+        "reset": "Reset",
+        "staticSettle": "Static settle",
+        "releaseEnd": "Release end",
+        "pause": "Pause",
+        "resume": "Resume"
+      },
+      "modes": {
+        "static": "STATIC",
+        "dynamic": "DYNAMIC"
+      }
+    },
+    "frecare-aer": {
+      "page": {
+        "eyebrow": "Air resistance | Interactive simulation"
+      },
+      "documentTitle": "Air resistance simulator",
+      "htmlLang": "en",
+      "labels": {
+        "pageTitle": "Air resistance simulator",
+        "pageSubtitle": "See how drag changes falling motion.",
+        "object1": "Object 1",
+        "object2": "Object 2",
+        "environment": "Environment",
+        "airDensity": "Air density",
+        "vacuum": "Vacuum (no air)",
+        "fallHeight": "Drop height",
+        "tipsHeading": "Suggested experiment",
+        "nextExperiment": "Next experiment →",
+        "liveData": "Live data",
+        "graphTitle": "Speed — time graph",
+        "suffixKgM3": " kg/m³",
+        "dataTime": "Time",
+        "dataPosition": "Position",
+        "dataVelocity": "Speed",
+        "dataAccel": "Acceleration",
+        "dataFg": "F gravity",
+        "dataFd": "F drag",
+        "dataVt": "Terminal speed",
+        "propMass": "Mass",
+        "propCd": "Cd",
+        "propArea": "Area",
+        "propVtShort": "Vt",
+        "vtVacuumInf": "∞ (vacuum)",
+        "objFallback1": "Object 1",
+        "objFallback2": "Object 2"
+      },
+      "buttons": {
+        "startUpper": "START",
+        "stopUpper": "STOP",
+        "reset": "RESET"
+      },
+      "canvas": {
+        "vacuum": "VACUUM",
+        "ground": "GROUND",
+        "startLine": "START",
+        "legendFg": "Gravity",
+        "legendFd": "Drag (air friction)",
+        "graphVelocityAxis": "Speed (m/s)",
+        "graphTimeSuffix": "s",
+        "vtPrefix": "Vt "
+      },
+      "results": {
+        "tie": "Both reached the ground together! Δt = {{dt}}s",
+        "first": "{{name}} reached first! Δt = <span class=\"delta-time\">{{dt}}s</span>"
+      },
+      "objects": {
+        "feather": {
+          "name": "Feather"
+        },
+        "paper_flat": {
+          "name": "Paper sheet (flat)"
+        },
+        "paper_crumpled": {
+          "name": "Paper sheet (crumpled)"
+        },
+        "coin": {
+          "name": "Coin"
+        },
+        "tennis": {
+          "name": "Tennis ball"
+        },
+        "basketball": {
+          "name": "Basketball"
+        },
+        "steel_ball": {
+          "name": "Small steel ball"
+        },
+        "hammer": {
+          "name": "Hammer"
+        },
+        "brick": {
+          "name": "Brick"
+        },
+        "bowling": {
+          "name": "Bowling ball"
+        }
+      },
+      "tips": [
+        {
+          "text": "Feather vs hammer — In air the feather drifts slowly because drag is huge. In vacuum (slider at 0) both fall IDENTICALLY — as on the Apollo 15 Moon demo."
+        },
+        {
+          "text": "Flat vs crumpled paper — Same mass, different shape! The flat sheet has much larger area, so air slows it enormously. Crumpled falls almost like a ball."
+        },
+        {
+          "text": "Tennis vs bowling ball — Similar spheres but very different mass. The bowling ball hits the ground much sooner in air, though in vacuum they would fall together."
+        },
+        {
+          "text": "Coin vs feather — Dramatic in air! The coin slices through with tiny area while the feather is braked heavily. Compare terminal speeds!"
+        },
+        {
+          "text": "Basketball vs steel ball — The basketball is heavier but its huge area yields a surprisingly low terminal speed. The steel ball falls much faster."
+        },
+        {
+          "text": "Brick vs feather — Extreme contrast! The brick is barely affected by air (~48 m/s terminal speed) while the feather floats near ~3 m/s."
+        }
+      ]
+    },
+    "tunelare-cuantica": {
+      "page": {
+        "eyebrow": "Quantum Tunnelling | Interactive simulation"
+      },
+      "documentTitle": "Quantum tunnelling",
+      "htmlLang": "en",
+      "header": {
+        "title": "Quantum tunnelling",
+        "tagline": "The electron is not a classical particle — it is a probability wave.",
+        "theoryEyebrow": "Theory in brief"
+      },
+      "theoryLeft": {
+        "title": "Probability wave, not a trajectory",
+        "p1a": "In quantum mechanics, the electron is not a ball with well-defined position and speed before measurement. It is described by a ",
+        "p1strong": "wave function",
+        "p1b": "\\(\\psi(x,t)\\), a complex quantity that evolves according to the Schrödinger equation.",
+        "p2a": "Born’s rule: the probability of finding the particle between \\(a\\) and \\(b\\) is \\(P(a \\le x \\le b) = \\int_a^b |\\psi(x,t)|^2 \\, dx\\). ",
+        "p2strong": "The probability density",
+        "p2b": " is \\(\\rho(x,t) = |\\psi|^2\\). In the simulation, the violet “mist” shows \\(|\\psi|^2\\) (discretely normalised on the grid).",
+        "p3a": "A ",
+        "p3strong": "Gaussian wave packet",
+        "p3b": " localises \\(\\psi\\) in space and propagates as a group; the width \\(\\Delta x\\) and momentum \\(\\Delta p\\) obey (in order of magnitude) \\(\\Delta x\\,\\Delta p \\gtrsim \\hbar/2\\).",
+        "p4a": "The red zone: a ",
+        "p4pot": "potential barrier",
+        "p4b": "\\(V(x)\\). The ",
+        "p4e": "Energy",
+        "p4c": " slider sets the energy associated with the packet in the demo scale; ",
+        "p4barrier": "Barrier",
+        "p4d": " controls the height \\(V\\). The ratio \\(E/V\\) decides whether tunnelling or “going over” dominates."
+      },
+      "theoryRight": {
+        "title": "Tunnelling, reflection and transmission",
+        "p1strongA": "Classically",
+        "p1a": ", if \\(E \\lt V\\), a particle with energy \\(E\\) would not pass over the barrier. ",
+        "p1strongB": "Quantum-mechanically",
+        "p1b": ", in the region \\(V(x) > E\\) the solution has an ",
+        "p1strongC": "evanescent",
+        "p1c": " part \\(\\propto e^{-\\kappa x}\\) with",
+        "p2a": "Thus the wave ",
+        "p2strong": "penetrates",
+        "p2b": " the barrier and, after width \\(a\\), can emerge beyond it with transmission probability \\(T\\) (tunnelling). For \\(E > V\\) inside the barrier, the wave is oscillatory (\\(\\sim e^{\\pm i k' x}\\)); at interfaces there is ",
+        "p2strong2": "reflection",
+        "p2c": " and partial transmission.",
+        "p3a": "For a ",
+        "p3strong": "rectangular barrier",
+        "p3b": " of height \\(V_0\\) and width \\(a\\), with \\(E \\lt V_0\\), transmission decreases roughly exponentially with \\(\\kappa a\\): \\(T \\sim e^{-2\\kappa a}\\) (order of magnitude; prefactors depend on details). In the simulation, \\(R\\) and \\(T\\) are simplified analytical models.",
+        "caption": "for \\(E \\gt V_0\\) (rectangular barrier).",
+        "note": "The visualisation is educational; exact coefficients follow from matching \\(\\psi\\) and \\(\\mathrm{d}\\psi/\\mathrm{d}x\\) at the barrier edges."
+      },
+      "mathAria": {
+        "schrodinger": "One-dimensional Schrödinger equation",
+        "normalize": "Normalisation",
+        "decay": "Decay constant",
+        "conservation": "Probability conservation",
+        "rectangular": "Rectangular barrier with E greater than V₀"
+      },
+      "labels": {
+        "legendIncident": "incident",
+        "legendReflected": "reflected",
+        "legendTransmitted": "transmitted",
+        "legendProb": "|ψ|² (normalised)",
+        "energy": "Energy:",
+        "barrier": "Barrier:",
+        "canvasAria": "Probability wave simulation"
+      },
+      "modes": {
+        "below": "The electron tunnels through the barrier: the wave enters the classically forbidden region and a reduced amplitude appears beyond it.",
+        "above": "The electron passes classically over the barrier (energy above the potential); reflection and transmission oscillate with barrier width.",
+        "equal": "At the limit E = V, between tunnelling and propagation over the barrier, the coefficients depend sensitively on geometry."
+      },
+      "canvas": {
+        "norm": "Σ|ψ|² = {v} (normalised on grid)"
+      }
+    },
+    "dubla-fanta": {
+      "page": {
+        "eyebrow": "Double-slit experiment | Interactive simulation"
+      },
+      "documentTitle": "Double slit — quantum simulator",
+      "htmlLang": "en",
+      "header": {
+        "h1": "⚛️ Double slit (quantum)"
+      },
+      "labels": {
+        "lambda": "Wavelength (λ)",
+        "distance": "Slit separation (d)",
+        "screenDist": "Screen distance (D)",
+        "detector": "Detector",
+        "canvasAria": "Double-slit quantum simulation"
+      },
+      "buttons": {
+        "reset": "Reset"
+      },
+      "info": {
+        "h2": "What’s going on here?",
+        "intro": "This simulator shows the double-slit experiment in the quantum regime. Particles (electrons or photons) do not have an exact position; they are described by a wavefunction that gives the probability of detection.",
+        "waveHeading": "The wavefunction",
+        "waveP": "The wave is not “matter”, but information about where the particle might appear. Brighter regions mean higher probability.",
+        "interferenceHeading": "Interference",
+        "interferenceP": "When the wave passes through two slits it interferes with itself. That produces high- and low-probability fringes.",
+        "detectorHeading": "Role of the detector",
+        "detectorP": "When the detector is on, we learn which slit was used. That destroys interference and the pattern becomes classical: two simple bands.",
+        "colorsHeading": "What the colours mean",
+        "colorsP": "The heat map shows probability (ψ²): red = high probability, blue = low.",
+        "whyHeading": "Why it matters",
+        "whyP": "This phenomenon is central to quantum physics and underpins electrons in atoms, chemical bonding, and much of modern technology.",
+        "tryHeading": "Try this",
+        "try1": "Turn the detector off → see interference",
+        "try2": "Turn the detector on → fringes disappear",
+        "try3": "Increase λ → fringes get wider",
+        "try4": "Increase slit separation → fringes move closer together"
+      }
+    },
+    "apa-grea": {
+      "page": {
+        "eyebrow": "Heavy water (D₂O vs H₂O) | Interactive simulation"
+      },
+      "documentTitle": "Heavy water — D₂O vs H₂O",
+      "htmlLang": "en",
+      "hook": {
+        "a": "What happens if you drink heavy water?",
+        "b": "Can water shut down a nuclear reactor?",
+        "tease": "H₂O and D₂O share the same chemical skeleton, but different nuclear masses: deuterium (²H) is almost twice as heavy as protium (¹H). That is why differences show up in biology (isotope exchange), in reactors (neutron capture) and in spectra (vibration frequencies). Pick a mode below."
+      },
+      "nav": {
+        "ariaLabel": "Modes"
+      },
+      "tabs": {
+        "body": {
+          "title": "Body",
+          "sub": "D₂O fraction, modelled effects"
+        },
+        "reactor": {
+          "title": "Reactor",
+          "sub": "fast neutrons, moderation"
+        },
+        "physics": {
+          "title": "Physics",
+          "sub": "structure, spectra, phases"
+        }
+      },
+      "bonus": {
+        "ariaLabel": "Romania — historical context",
+        "p1": "Dorel Mihai Constantinescu (b. 1947, Râmnicu Vâlcea) is the Romanian physicist associated with the period when Romania developed its own heavy-water facilities. In the 1970s, at the G plant in Râmnicu Vâlcea, he led the computing laboratory that modelled isotope separation processes and helped obtain the first quantities of D₂O in experimental flow. He also worked on design linked to the complex at Drobeta-Turnu Severin, an important node in the national heavy-water chain.",
+        "p2": "In 1976 he was recognised as inventor for a deuterium separation plant using isotope exchange; in 1977 he received a PhD in physics, and in 1981 the Romanian Academy awarded him the Dragomir Hurmuzescu prize. He published on the history of technology in Râmnicu Vâlcea, documenting the experience of a generation of specialists in the nuclear field."
+      },
+      "body": {
+        "panelTitle": "D₂O fraction in the liquid",
+        "desc1": "In organisms, water acts as a solvent and as a hydrogen source in enzymatic reactions. D₂O has properties similar to H₂O, but O–D bonds are “heavier” than O–H: some reaction rates drop (kinetic isotope effect), and very high D₂O fractions cause serious physiological effects. In natural water, deuterium is present at about 140 ppm (roughly 0.014% of hydrogen atoms, i.e. about one D per ~7000 H).",
+        "desc2": "The slider sets a fictitious molar fraction of D₂O in a model liquid; the cell grid is for visual intuition only, not a diagnosis.",
+        "pctSuffix": "% D₂O",
+        "sliderLabel": "D₂O fraction",
+        "disclaimer1": "Natural deuterium reference: ~140 ppm (~0.014%).",
+        "disclaimer2": "Educational demo. Do not drink heavy water.",
+        "story": {
+          "vlow": "Very low value, close to the natural deuterium background in water (~140 ppm). In the model, the visual effect is essentially zero.",
+          "low": "Low fraction: almost all molecules are still H₂O; in reality, organisms tolerate trace D₂O without obvious effects.",
+          "mid": "Moderate fraction: in the model, the D₂O share increases; in animal experiments, moderate D₂O fractions affect rates of some hydrogen-dependent reactions.",
+          "high": "High fraction: real toxicity rises with dose; in humans, large body fractions of D₂O are dangerous",
+          "vhigh": "Very high fraction: an extreme scenario for on-screen demonstration only.",
+          "max": "100%: the maximum in the model. In reality, massive D₂O exposure is not something to test — it is harmful."
+        }
+      },
+      "badges": {
+        "ok": "OK",
+        "warn": "Caution",
+        "bad": "High",
+        "dead": "Critical"
+      },
+      "reactor": {
+        "panelTitle": "Moderator around the fuel",
+        "desc1": "Fission releases very energetic (“fast”) neutrons. To use them efficiently in fuel rods, they must be slowed to thermal energies — called moderation. Molecules around the fuel (heavy or light water) collide with neutrons and reduce their energy.",
+        "columnLabel": "Moderator",
+        "chainWord": "Chain",
+        "switchPrefix": "Moderator:",
+        "captureLabel": "Neutron capture in moderator",
+        "fact1": "CANDU reactors (e.g. Cernavodă): D₂O moderator, often natural uranium fuel.",
+        "fact2": "With H₂O, capture on hydrogen is higher; many designs use enriched fuel instead.",
+        "hintD2o": "D₂O: small capture cross section on deuterium; neutrons lose energy via elastic collisions and remain available for fission in the fuel (simplified model).",
+        "hintH2o": "H₂O: hydrogen absorbs thermal neutrons in the moderator; fewer neutrons reach the fuel — many light-water reactors use enriched uranium.",
+        "meterLow": "low (model)",
+        "meterHigh": "high (model)",
+        "chainOn": "active",
+        "chainOff": "dying down",
+        "fuelBar": "Fuel · fission",
+        "fateD2o": "<strong>D₂O</strong> moderator: small neutron losses in the water; in CANDU design, the chain can be sustained with natural uranium (~0.7% ²³⁵U).",
+        "fateH2o": "<strong>H₂O</strong> moderator: larger losses on hydrogen; in this model the chain thins — in practice this is compensated with enriched fuel or other measures."
+      },
+      "physics": {
+        "panelTitle": "H₂O and D₂O: same geometry, different mass",
+        "intro": "The water molecule has an H–O–H angle of about 104.5°. Replacing ¹H with ²H increases molecular mass by over 10%, while geometry stays similar. Infrared and Raman spectra show lower vibration frequencies for D₂O; as a liquid, D₂O is denser and boils slightly above 100 °C at standard atmospheric pressure.",
+        "structureHead": "Structure",
+        "statMolMass": "Molecular mass",
+        "statMolarMass": "Molar mass",
+        "statDensity": "Liquid density",
+        "freezeH": "Freezing",
+        "freezeP": "H₂O ~0 °C · D₂O ~3.8 °C at 1 atm (indicative).",
+        "abundH": "Abundance",
+        "abundP": "Natural deuterium: ~140 ppm (~0.014%) of hydrogen; ordinary water contains only traces of D₂O.",
+        "radioH": "Radioactivity",
+        "radioP": "Ordinary D₂O is not radioactive; tritium (³H) is a different isotope, present only in traces.",
+        "oscHead": "Oscillations (schematic)",
+        "boilH2oLabel": "H₂O boiling",
+        "boilD2oLabel": "D₂O boiling",
+        "boilNote": "1 atm",
+        "thermoTitle": "Boiling point",
+        "thermoP": "At standard pressure, D₂O boils near ~101.4 °C — slightly above H₂O — because of bonding and higher mass (hydrogen-bond picture).",
+        "massSectionHead": "Frequency and reduced mass",
+        "massExpP": "For a simple harmonic oscillator, a mode frequency depends on reduced mass μ: f ∝ 1 / √μ. In D₂O, μ is larger than in H₂O for similar motions, so characteristic frequencies are lower. The slider tweaks a simplified μ ratio between D₂O and H₂O.",
+        "massSliderLabel": "μ(D₂O) / μ(H₂O)",
+        "freqRatioLead": "f(D₂O) / f(H₂O) ≈ ",
+        "densityTitle": "Density (liquid, indicative)",
+        "densityP": "At the same temperature, one litre of D₂O weighs ~11% more than one litre of H₂O — relevant to isotope separation and industry.",
+        "quizTitle": "Questions",
+        "quizQ1": "1. At 1 atm, which boils at the higher temperature?",
+        "quizQ2": "2. In CANDU design with natural uranium, the typical moderator is:",
+        "quiz1ok": "At atmospheric pressure, D₂O boils near ~101.4 °C, slightly above H₂O (100 °C), because of bonding and mass.",
+        "quiz1bad": "D₂O has a higher boiling point than H₂O at the same pressure.",
+        "quiz2ok": "Natural-uranium CANDU reactors use a D₂O moderator to limit neutron losses.",
+        "quiz2bad": "Hydrogen capture in H₂O is high; classic CANDU does not use light-water moderator with natural uranium."
+      }
+    },
+    "michaelson-morley": {
+      "page": {
+        "eyebrow": "Michelson–Morley experiment | Interactive simulation"
+      },
+      "documentTitle": "Michelson–Morley experiment — full simulation",
+      "htmlLang": "en",
+      "header": {
+        "title": "Full simulation of the Michelson–Morley experiment",
+        "desc": "Explore the interferometer, rotation, fringes and the (hypothetical) ether effect. Adjust every physical parameter to see how the interference pattern changes."
+      },
+      "labels": {
+        "L": "Arm length L (m)",
+        "v": "Earth speed v (km/s)",
+        "lambda": "Wavelength λ (nm)",
+        "speed": "Rotation speed (×)",
+        "density": "Fringe density (px per period)",
+        "opacity": "Fringe opacity",
+        "relativistic": "Relativistic prediction",
+        "noEther": "no ether (ΔN = 0 on rotation)",
+        "noise": "Fringe noise"
+      },
+      "buttons": {
+        "pause": "⏸ Pause",
+        "play": "▶️ Run",
+        "reset": "🔄 Reset",
+        "random": "🌈 Random λ",
+        "rot90": "↻ Rotate 90°",
+        "save": "💾 Save"
+      },
+      "readouts": {
+        "angle": "Rotation angle:",
+        "dphi": "Δφ (radians):",
+        "shift": "Fringe shift:"
+      },
+      "theory": {
+        "title": "Theory and calculations — Michelson–Morley",
+        "p1": "The interferometer compares travel times along two perpendicular arms. In the classical ether picture, the time difference between arms after a 90° rotation is about Δt ≈ 2 L v² / c³, and the maximum fringe shift on rotation is ΔN ≈ 2 L v² / (λ c²). The phase is Δφ = 2π ΔN.",
+        "params": "Parameters",
+        "dt": "Δt (max.)",
+        "dN": "ΔN (max.)",
+        "dPhi": "Δφ (max.)",
+        "fringesUnit": "fringes",
+        "note": "Historically the result was null (no fringe shift was seen), which helped lead to special relativity."
+      }
+    },
+    "fisiune-nucleara": {
+      "page": {
+        "eyebrow": "Nuclear chain fission (U-235) | Interactive simulation"
+      },
+      "documentTitle": "Nuclear fission simulator",
+      "htmlLang": "en",
+      "hero": {
+        "eyebrow": "Nuclear physics",
+        "title": "Fission simulator",
+        "subtitle": "Watch how a single neutron starts a chain reaction in uranium-235."
+      },
+      "actions": {
+        "title": "Actions",
+        "inject": "Inject neutron",
+        "scram": "SCRAM"
+      },
+      "stats": {
+        "title": "Statistics",
+        "fissions": "Fissions",
+        "neutrons": "Active neutrons",
+        "energy": "Energy",
+        "temperature": "Temperature"
+      },
+      "k": {
+        "factor": "k factor",
+        "infoAria": "About the k factor",
+        "legendSub": "Subcritical",
+        "legendCrit": "Critical",
+        "legendSuper": "Supercritical"
+      },
+      "kTooltip": {
+        "title": "Multiplication factor k",
+        "num": "neutrons in next generation",
+        "den": "neutrons in current generation",
+        "li1": "k < 1 — the reaction dies out",
+        "li2": "k ≈ 1 — steady operation (reactor)",
+        "li3": "k > 1 — exponential growth"
+      },
+      "kStatus": {
+        "wait": "Waiting for the reaction…",
+        "sub": "Subcritical — reaction dying out",
+        "crit": "Critical — stable chain reaction",
+        "super": "Supercritical — exponential growth"
+      },
+      "stage": {
+        "title": "Visual reactor",
+        "pauseAria": "Pause",
+        "resetAria": "Restart"
+      },
+      "buttons": {
+        "pause": "Pause",
+        "resume": "Resume",
+        "reset": "Restart"
+      },
+      "presets": {
+        "label": "Presets",
+        "ariaLabel": "Preset modes",
+        "stable": "Stable",
+        "near": "Near-critical",
+        "super": "Supercritical",
+        "bomb": "Bomb mode"
+      },
+      "info": {
+        "openAria": "About this simulator",
+        "title": "How it works",
+        "closeAria": "Close",
+        "p1": "A slow neutron hits a U-235 nucleus, forming unstable U-236. The nucleus splits into smaller fragments and releases 2–3 new neutrons, plus about 200 MeV of energy.",
+        "p2": "If fuel density exceeds critical mass, the reaction becomes self-sustaining and the k factor rises above 1.",
+        "tip": "Click anywhere on the reactor to launch a neutron."
+      },
+      "legend": {
+        "u235": "U-235",
+        "fragments": "Fragments",
+        "neutron": "Neutron"
+      },
+      "params": {
+        "title": "Parameters",
+        "density": "Fuel density",
+        "speed": "Neutron speed",
+        "probability": "Capture probability",
+        "rods": "Control rods",
+        "moderator": "Moderator on",
+        "delayed": "Delayed neutrons",
+        "heatmap": "Density heat map"
+      }
+    },
+    "polarizare-circulara": {
+      "page": {
+        "eyebrow": "Polarization | Interactive simulation",
+        "documentTitle": "Circular polarization simulator",
+        "htmlLang": "en"
+      },
+      "header": {
+        "title": "Circular polarization",
+        "subtitle": "Electromagnetic wave simulator"
+      },
+      "nav": {
+        "simulator": "Simulator",
+        "theory": "Theory",
+        "advanced": "Advanced"
+      },
+      "controls": {
+        "waveParamsTitle": "Wave parameters",
+        "reset": "Reset",
+        "polTypeTitle": "Polarization type",
+        "wavePropsTitle": "Wave properties",
+        "displayTitle": "Display options",
+        "playbackTitle": "Playback"
+      },
+      "pol": {
+        "right": "Right-hand circular",
+        "left": "Left-hand circular",
+        "linear": "Linear",
+        "elliptical": "Elliptical"
+      },
+      "sliders": {
+        "frequency": {
+          "label": "Frequency (f)",
+          "min": "1 × 10¹⁴",
+          "max": "10 × 10¹⁴"
+        },
+        "amplitude": {
+          "label": "Amplitude (E₀)",
+          "min": "0.1 V/m",
+          "max": "2.0 V/m"
+        },
+        "wavelength": {
+          "label": "Wavelength (λ)",
+          "min": "380 nm (Violet)",
+          "max": "780 nm (Red)"
+        },
+        "phaseDiff": {
+          "label": "Phase difference (δ)",
+          "min": "0°",
+          "max": "360°"
+        },
+        "speed": {
+          "label": "Animation speed",
+          "min": "0.1×",
+          "max": "3.0×"
+        }
+      },
+      "checkboxes": {
+        "ex": "Eₓ component",
+        "ey": "Eᵧ component",
+        "resultant": "Resultant vector",
+        "trail": "Polarization trail",
+        "grid": "Grid"
+      },
+      "view": {
+        "v3d": "3D",
+        "xy": "XY plane",
+        "xz": "XZ plane",
+        "yz": "YZ plane"
+      },
+      "vizInfo": {
+        "currentTime": "Current time",
+        "waveVector": "Wave vector",
+        "angularFreq": "Angular frequency",
+        "visibleColor": "Visible colour"
+      },
+      "simulatorTab": {
+        "calculations": "Calculations",
+        "fieldComponents": "Electric field components",
+        "exLabel": "Eₓ(z,t) =",
+        "eyLabel": "Eᵧ(z,t) =",
+        "currentValue": "Current value:",
+        "derivedTitle": "Derived quantities",
+        "qk": "Wave number (k)",
+        "qomega": "Angular frequency (ω)",
+        "qperiod": "Period (T)",
+        "qvelocity": "Phase velocity (v)",
+        "qintensity": "Intensity (I)",
+        "qphoton": "Photon energy (E)",
+        "polStateTitle": "Polarization state",
+        "jonesLabel": "Jones vector:",
+        "stokesLabel": "Stokes parameters:"
+      },
+      "theoryTab": {
+        "panelTitle": "Theory and concepts",
+        "whatIsTitle": "What is circular polarization?",
+        "whatIsP": "Circular polarization is a state in which the electric field vector of an electromagnetic wave rotates in a circle as the wave propagates. The tip of the electric field traces a helix in space.",
+        "typesTitle": "Types of polarization",
+        "rcpTitle": "Right-hand circular (RCP)",
+        "rcpP": "The electric field rotates clockwise when viewed facing the propagation direction. Phase difference δ = +90° (π/2).",
+        "lcpTitle": "Left-hand circular (LCP)",
+        "lcpP": "The electric field rotates counter-clockwise when viewed facing the propagation direction. Phase difference δ = −90° (−π/2).",
+        "linTitle": "Linear polarization",
+        "linP": "The electric field oscillates in a single plane. Phase difference δ = 0° or 180°.",
+        "ellTitle": "Elliptical polarization",
+        "ellP": "The general case where the electric field traces an ellipse. It occurs when the components have different amplitudes or a phase difference other than 90°.",
+        "mathTitle": "Mathematical description",
+        "mathIntro": "For a wave propagating along z:",
+        "mathWhere": "Where:",
+        "mathLi1": "E₀ₓ, E₀ᵧ — amplitude components",
+        "mathLi2": "k = 2π/λ — wave number",
+        "mathLi3": "ω = 2πf — angular frequency",
+        "mathLi4": "δ — phase difference",
+        "constantsTitle": "Physical constants",
+        "constC": "Speed of light (c)",
+        "constH": "Planck constant (h)",
+        "constEps": "Vacuum permittivity (ε₀)",
+        "constMu": "Vacuum permeability (μ₀)"
+      },
+      "advancedTab": {
+        "panelTitle": "Advanced topics",
+        "jonesCalcTitle": "Jones calculus",
+        "jonesCalcP": "Jones calculus is a mathematical formalism for polarized light using complex 2×1 Jones vectors and complex 2×2 Jones matrices.",
+        "jonesCommon": "Common Jones vectors:",
+        "jonesH": "Linear (H):",
+        "jonesV": "Linear (V):",
+        "jonesRCP": "Right-hand circular:",
+        "jonesLCP": "Left-hand circular:",
+        "stokesTitle": "Stokes parameters",
+        "stokesP": "Stokes parameters give a complete description of polarization, including partially polarized light.",
+        "poincareTitle": "Poincaré sphere",
+        "poincareP": "The Poincaré sphere is a graphical representation of all possible polarization states. Points on the sphere represent fully polarized light:",
+        "poincareLi1": "North pole: right-hand circular",
+        "poincareLi2": "South pole: left-hand circular",
+        "poincareLi3": "Equator: linear polarizations",
+        "poincareLi4": "Other points: elliptical polarizations",
+        "appsTitle": "Applications",
+        "appSpecH": "🔬 Spectroscopy",
+        "appSpecP": "Circular dichroism for chiral molecules",
+        "appComH": "📡 Communications",
+        "appComP": "Satellite communications often use circular polarization",
+        "app3dH": "🎬 3D cinema",
+        "app3dP": "RealD 3D uses circular polarization for stereoscopic projection",
+        "appRadH": "📻 Radio astronomy",
+        "appRadP": "Detecting polarized emission from celestial sources",
+        "appQH": "🔒 Quantum cryptography",
+        "appQP": "Polarization states encode quantum information",
+        "appNatH": "🦋 Nature",
+        "appNatP": "Some animals can detect circularly polarized light",
+        "opticsTitle": "Optical elements",
+        "qwTitle": "Quarter-wave plate (λ/4)",
+        "qwP": "Converts linear to circular polarization and vice versa. Introduces a 90° phase shift between orthogonal components.",
+        "hwTitle": "Half-wave plate (λ/2)",
+        "hwP": "Rotates the plane of linear polarization. Converts RCP to LCP and vice versa.",
+        "polTitle": "Polarizer",
+        "polP": "Transmits only one linear polarization component, blocking the orthogonal component."
+      },
+      "footer": {
+        "line": "Circular polarization simulator"
+      },
+      "canvas": {
+        "axisZ": "z (propagation)",
+        "view3d": "3D view — drag to rotate, scroll to zoom",
+        "viewXy": "XY plane (polarization)",
+        "viewXz": "XZ plane (Ex propagation)",
+        "viewYz": "YZ plane (Ey propagation)"
+      },
+      "aria": {
+        "mainCanvas": "Electromagnetic wave visualization"
+      },
+      "equations": {
+        "s0": "S₀ = |Eₓ|² + |Eᵧ|² (total intensity)",
+        "s1": "S₁ = |Eₓ|² − |Eᵧ|² (linear H–V)",
+        "s2": "S₂ = 2Re(EₓEᵧ*) (linear ±45°)",
+        "s3": "S₃ = 2Im(EₓEᵧ*) (circular)"
+      }
+    },
+    "Vizualizator-4d": {
+      "page": {
+        "eyebrow": "4D geometry | Interactive simulation",
+        "documentTitle": "4D visualizer",
+        "htmlLang": "en"
+      },
+      "labels": {
+        "controlsTitle": "4D visualizer controls",
+        "model4d": "4D model:",
+        "rotX": "Rotate around X:",
+        "rotY": "Rotate around Y:",
+        "rotZ": "Rotate around Z:",
+        "rotW": "Rotate around W:",
+        "projectionType": "Projection type:",
+        "animSpeed": "Animation speed:"
+      },
+      "projection": {
+        "perspective": "Perspective",
+        "orthographic": "Orthographic",
+        "stereographic": "Stereographic"
+      },
+      "buttons": {
+        "autoRotateStart": "Start auto rotation",
+        "autoRotateStop": "Stop auto rotation",
+        "resetView": "Reset view"
+      },
+      "info": {
+        "title": "About the 4D visualizer",
+        "p1": "The 4D visualizer projects 4D objects into 3D space using mathematical transforms. The W axis is the fourth dimension.",
+        "p2": "Use the sliders to rotate the 4D object around different axes. X, Y, and Z behave like ordinary 3D rotations; W is rotation in the fourth dimension.",
+        "controlsStrong": "Controls:"
+      },
+      "loading": "Loading 4D visualizer…",
+      "errors": {
+        "initFailed": "Failed to initialize the 4D visualizer. Please refresh the page."
+      },
+      "aria": {
+        "toggleSidebar": "Show or hide controls"
+      },
+      "models": {
+        "tesseract": "Tesseract (4D cube)",
+        "hypersphere": "4D hypersphere",
+        "3-sphere": "3-sphere (glome)",
+        "calabi-yau": "Calabi–Yau manifold",
+        "hopf-fibration": "Hopf fibration",
+        "clifford-torus": "Clifford torus",
+        "hyperplane": "4D hyperplane",
+        "klein-bottle": "Klein bottle",
+        "pentachoron": "Pentachoron",
+        "16-cell": "16-cell (hexadecachoron)",
+        "24-cell": "24-cell (icositetrachoron)",
+        "24-cell-dual": "24-cell dual (F₄ lattice)",
+        "120-cell": "120-cell (hyperdodecahedron)",
+        "600-cell": "600-cell (hexacosichoron)",
+        "buckyball4d": "4D buckyball (C₆₀)",
+        "hypertorus": "Hypertorus (4D torus)",
+        "duoprism": "Duoprism",
+        "polychoron-prism": "4D prism (polychoron prism)",
+        "polychoron-antiprism": "4D antiprism (polychoron antiprism)",
+        "e4-hyperdiamond": "E₄ hyperdiamond lattice",
+        "f4-root-polytope": "F₄ root polytope (Lie group F₄)",
+        "e8-lattice": "E₈ lattice"
+      }
+    },
+    "lentila-subtire": {
+      "page": {
+        "eyebrow": "Thin lens | Interactive simulation",
+        "documentTitle": "Thin lens — rays and image",
+        "htmlLang": "en"
+      },
+      "labels": {
+        "pageTitle": "Optics simulator — thin lens (rays + image)",
+        "pageSubtitle": "Drag the object on the canvas or use the controls. The image (real/virtual) updates automatically.",
+        "pillDrag": "drag & drop",
+        "focal": "Focal length f (cm)",
+        "lensKind": "Lens type",
+        "doLabel": "Object distance d₀ (cm)",
+        "hoLabel": "Object height h₀ (cm)",
+        "zoom": "Zoom (px/cm)",
+        "results": "Results",
+        "diKey": "Image distance dᵢ",
+        "mKey": "Magnification m = −dᵢ/d₀",
+        "hiKey": "Image height hᵢ",
+        "typeKey": "Image type",
+        "formulaTitle": "Formulas (thin lens)",
+        "unitsTitle": "Units",
+        "signTitle": "Sign conventions"
+      },
+      "units": {
+        "u1": "f, d₀, dᵢ → centimetres (cm)",
+        "u2": "h₀, hᵢ → centimetres (cm)",
+        "u3": "m → dimensionless"
+      },
+      "signs": {
+        "s1": "d₀ > 0 → real object",
+        "s2": "dᵢ > 0 → real image",
+        "s3": "dᵢ < 0 → virtual image",
+        "s4": "m < 0 → inverted image"
+      },
+      "toggles": {
+        "raysOn": "Rays: ON",
+        "raysOff": "Rays: OFF",
+        "labelsOn": "Labels: ON",
+        "labelsOff": "Labels: OFF",
+        "reset": "Reset"
+      },
+      "hints": {
+        "h1": "🖱️ Drag the object arrow",
+        "h2": "✋ Drag empty canvas to pan — mobile or desktop",
+        "h3": "📌 Lens on the vertical centre axis"
+      },
+      "peekBtn": "☰ Controls",
+      "lens": {
+        "converging": "Converging",
+        "diverging": "Diverging"
+      },
+      "canvas": {
+        "lens": "Lens",
+        "object": "Object",
+        "image": "Image",
+        "imageAtInfinity": "Image at infinity: parallel rays after the lens"
+      },
+      "types": {
+        "infinity": "at infinity (parallel rays)",
+        "realInverted": "real, inverted",
+        "realUpright": "real, upright",
+        "virtualInverted": "virtual, inverted",
+        "virtualUpright": "virtual, upright"
+      },
+      "status": {
+        "nearFocal": "You are very close to <b>d₀ = f</b> → the image recedes toward infinity. (Physically correct 😄)",
+        "realRight": "A <b>real</b> image forms on the right of the lens. You can project it onto a screen.",
+        "virtualLoupe": "A <b>virtual</b> image (like a magnifier). Dashed extensions show where it appears to form.",
+        "idle": "Drag the object or adjust the sliders. 🧠"
+      },
+      "aria": {
+        "collapsePanel": "Collapse panel",
+        "showPanel": "Show panel",
+        "canvas": "Thin lens simulation canvas"
+      }
+    },
+    "laser-interactie": {
+      "page": {
+        "eyebrow": "Lasers | Interactive simulation"
+      },
+      "documentTitle": "Laser vs matter",
+      "htmlLang": "en",
+      "header": {
+        "titleBefore": "Laser",
+        "titleAfter": "Matter",
+        "badge": "Physics simulator"
+      },
+      "aria": {
+        "panelLeft": "Control panel (left)",
+        "panelRight": "Data panel (right)",
+        "canvas": "Laser — matter interaction view"
+      },
+      "sections": {
+        "interactionMode": "Interaction mode",
+        "laserParams": "Laser parameters",
+        "material": "Material",
+        "liveStats": "Live stats",
+        "energy": "Relative energy",
+        "eventLog": "Event log"
+      },
+      "sliders": {
+        "freq": "Frequency (ν)",
+        "intensity": "Intensity (I)",
+        "duration": "Pulse duration (τ)"
+      },
+      "energyHint": "hν vs φ",
+      "buttons": {
+        "fire": "Fire laser",
+        "reset": "↺ Reset"
+      },
+      "modes": {
+        "hConstant": "h = 6.626×10⁻³⁴ J·s",
+        "photo": {
+          "name": "Photoelectric effect",
+          "sub": "photon → free electron",
+          "title": "⚡ Photoelectric effect",
+          "formula": "Ec = hν − φ",
+          "desc": "A photon with energy <em>hν</em> releases an electron only if <em>hν > φ</em>. Excess energy becomes kinetic energy."
+        },
+        "heat": {
+          "name": "Heating",
+          "sub": "vibrations → heat",
+          "title": "🔥 Heating (absorption)",
+          "formula": "ΔE = n·hν → ΔT",
+          "desc": "Photons transfer energy to the crystal lattice. Electrons vibrate more strongly → temperature rises."
+        },
+        "ionize": {
+          "name": "Ionization",
+          "sub": "electron fully removed",
+          "title": "💜 Ionization by laser",
+          "formula": "hν ≫ φ → e⁻ + ion⁺",
+          "desc": "At high intensity, electrons are stripped from atoms, forming a plasma."
+        }
+      },
+      "watermark": {
+        "photo": "PHOTOELECTRIC EFFECT",
+        "heat": "HEATING",
+        "ionize": "IONIZATION"
+      },
+      "materials": {
+        "sodium": {
+          "line": "Na (sodium)",
+          "phi": "φ = 2.3 eV"
+        },
+        "copper": {
+          "line": "Cu (copper)",
+          "phi": "φ = 4.7 eV"
+        },
+        "gold": {
+          "line": "Au (gold)",
+          "phi": "φ = 5.1 eV"
+        },
+        "silicon": {
+          "line": "Si (silicon)",
+          "phi": "φ = 4.0 eV"
+        }
+      },
+      "stats": {
+        "photonE": "Photon energy",
+        "workFn": "Work function",
+        "ekinMax": "Max electron Eₖ",
+        "emitted": "e⁻ emitted",
+        "temperature": "Temperature",
+        "blockedE": "0 eV (blocked)",
+        "vibrations": "— (vibrations)",
+        "plasma": "≫ 0 eV (plasma)",
+        "dash": "—"
+      },
+      "log": {
+        "init1": "Simulator initialised.",
+        "init2": "Choose a mode and fire the laser.",
+        "photoAbove": "hν={Ep}eV > φ={Ph}eV → Ec={Ek}eV",
+        "photoBelow": "hν={Ep}eV < φ={Ph}eV — no electrons emitted",
+        "heatDelta": "ΔT = +{dT} K → T = {T} K",
+        "ionBurst": "Ionization: electron fully ejected + ion⁺ formed",
+        "reset": "Simulator reset."
+      }
+    },
+    "eli-np-laser": {
+      "page": {
+        "eyebrow": "ELI-NP | Interactive simulation"
+      },
+      "documentTitle": "Photon Sniper – laser–target interaction",
+      "htmlLang": "en",
+      "header": {
+        "logoSub": "Extreme Light Infrastructure · Nuclear physics",
+        "titleMain": "Photon Sniper",
+        "titleSub": "– Laser–target interaction"
+      },
+      "sections": {
+        "laserParams": "Laser parameters",
+        "eliMode": "⚡ ELI mode",
+        "physicalData": "Physical data"
+      },
+      "labels": {
+        "power": "Power",
+        "focus": "Focusing (spot diameter)",
+        "dist": "Target distance",
+        "material": "Target material",
+        "pulseDuration": "Pulse duration",
+        "repRate": "Repetition rate",
+        "eliToggle": "Ultrashort pulses (fs)"
+      },
+      "hints": {
+        "pw": "1 PW = 10¹⁵ W",
+        "focus": "Smaller = more concentrated",
+        "dist": "Affects beam divergence",
+        "fs": "1 fs = 10⁻¹⁵ s"
+      },
+      "buttons": {
+        "fire": "🔴 FIRE LASER",
+        "firing": "⚡ LASER ACTIVE...",
+        "reset": "↺ Reset"
+      },
+      "readouts": {
+        "intensity": "Intensity",
+        "spotTemp": "Spot temperature",
+        "ionization": "Ionisation degree",
+        "radPressure": "Radiation pressure",
+        "peakEli": "Peak intensity (ELI)",
+        "targetState": "Target state"
+      },
+      "regime": {
+        "barTitle": "Physical regime",
+        "thermal": "Thermal",
+        "ablation": "Ablation",
+        "plasma": "Plasma",
+        "relativistic": "Relativistic"
+      },
+      "materials": {
+        "metal": "Metal (gold)",
+        "plastic": "Plastic (CH₂)",
+        "plasma": "Pre-ionised plasma",
+        "shortMetal": "Au (metal)",
+        "shortPlastic": "CH₂ (plastic)",
+        "shortPlasma": "Plasma",
+        "targetFallback": "Target"
+      },
+      "canvas": {
+        "beam": "BEAM",
+        "eliNpPw": "ELI-NP · 10 PW",
+        "lens": "LENS",
+        "dist": "d = {d} m",
+        "spotEff": "Spot ⌀: {d} µm (eff.)"
+      },
+      "phase": {
+        "beamEnRoute": "Beam en route",
+        "heating": "Heating",
+        "ablation": "Ablation",
+        "plasma": "Ionisation / plasma",
+        "boom": "FULL PLASMA 💥",
+        "done": "Finished",
+        "idle": "Intact / idle"
+      },
+      "info": {
+        "thermal": "<strong>Thermal regime:</strong> The beam heats the surface. Temperature rises, with little ablation.",
+        "ablation": "<strong>Laser ablation:</strong> Material vaporises and is ejected. A crater forms. Radiation pressure becomes significant.",
+        "plasma": "<strong>Ionisation / plasma:</strong> Electrons are stripped from atoms. Hot plasma forms. The electric field exceeds the atomic field.",
+        "relativistic": "<strong>Relativistic regime:</strong> Electrons reach relativistic speeds. Nuclear physics and particle generation—this is the ELI-NP regime!",
+        "eliSuffix": "<strong style=\"color:#ffd700\">ELI mode on:</strong> femtosecond pulses → extreme peak power in ultrashort time."
+      },
+      "overlay": {
+        "fullPlasma": "💥 FULL PLASMA!\nTarget 100% ionised"
+      },
+      "footer": {
+        "line": "ELI-NP Măgurele · Educational simulation · High-power laser physics"
+      },
+      "aria": {
+        "canvas": "Photon Sniper laser–target simulation canvas"
+      }
+    },
+    "accelerator-laser": {
+      "page": {
+        "eyebrow": "Lasers | Wakefield accelerator (educational)"
+      },
+      "documentTitle": "Laser wakefield acceleration (LWFA)",
+      "htmlLang": "en",
+      "labels": {
+        "intensity": "Laser intensity",
+        "density": "Plasma density"
+      },
+      "info": {
+        "whatsTitle": "⚡ What you see",
+        "whatsBody": "The laser creates a <strong>plasma wake</strong> (wakefield).<br>The electron is trapped in this wave and accelerated.",
+        "whyTitle": "🧪 Why it matters",
+        "whyBody": "This technique can accelerate particles over distances <strong>thousands of times smaller</strong> than classical accelerators—the principle behind <strong>ELI-NP</strong>."
+      },
+      "toggle": {
+        "title": "What is happening?"
+      },
+      "hud": {
+        "velocityLine": "v: {vx}  c={c}"
+      },
+      "aria": {
+        "canvas": "Laser wakefield acceleration (LWFA) simulation canvas"
+      }
+    },
+    "laser": {
+      "page": {
+        "eyebrow": "Lasers | Interactive optics lab"
+      },
+      "documentTitle": "Laser lab — beam, optics and detectors",
+      "htmlLang": "en",
+      "sections": {
+        "device": "Laser device",
+        "lasers": "Lasers",
+        "optics": "Optics",
+        "scene": "Scene"
+      },
+      "labels": {
+        "angle": "Angle",
+        "power": "Power",
+        "activeLaser": "Active laser",
+        "laserType": "Laser type",
+        "color": "Colour",
+        "element": "Element"
+      },
+      "buttons": {
+        "addLaser": "Add laser",
+        "resetLaser": "Reset laser",
+        "addToScene": "Add to scene",
+        "deleteSelected": "Delete selected"
+      },
+      "hint": {
+        "drag": "Drag elements with the mouse to move them."
+      },
+      "aria": {
+        "closePanel": "Close control panel",
+        "openPanel": "Open control panel",
+        "canvas": "Laser optics simulation canvas"
+      },
+      "laserSelect": {
+        "line": "Laser {n} — {type} / {color}",
+        "burnedSuffix": " (BURNED)"
+      },
+      "device": {
+        "burnedLabel": "BURNED"
+      },
+      "laserTypes": {
+        "diode": {
+          "label": "Diode",
+          "note": "baseline"
+        },
+        "hene": {
+          "label": "He-Ne",
+          "note": "stable"
+        },
+        "argon": {
+          "label": "Argon",
+          "note": "stronger"
+        },
+        "fiber": {
+          "label": "Fibre",
+          "note": "efficient"
+        },
+        "yag": {
+          "label": "Nd:YAG",
+          "note": "industrial"
+        },
+        "ruby": {
+          "label": "Ruby",
+          "note": "premium"
+        }
+      },
+      "laserColors": {
+        "red": {
+          "label": "Red"
+        },
+        "green": {
+          "label": "Green"
+        },
+        "blue": {
+          "label": "Blue"
+        },
+        "violet": {
+          "label": "Violet"
+        },
+        "yellow": {
+          "label": "Yellow"
+        }
+      },
+      "tools": {
+        "mirror_flat": "Plane mirror",
+        "mirror_concave": "Concave mirror",
+        "mirror_convex": "Convex mirror",
+        "prism": "Prism",
+        "lens_converging": "Converging lens",
+        "lens_diverging": "Diverging lens",
+        "beamsplitter": "Beam splitter",
+        "detector": "Optical detector",
+        "balloon_black": "Black balloon",
+        "balloon_red": "Red balloon",
+        "balloon_blue": "Blue balloon",
+        "balloon_green": "Green balloon",
+        "balloon_yellow": "Yellow balloon",
+        "balloon_white": "White balloon",
+        "firework": "Firework",
+        "protractor": "Protractor"
+      },
+      "detector": {
+        "intensityLine": "Intensity: {v}{interfer}",
+        "powerLine": "Power: {v} mW",
+        "lambdaLine": "λ: 632 nm",
+        "interferenceConstructive": " (constructive)",
+        "interferenceDestructive": " (destructive)",
+        "interferenceMixed": " (interference)"
+      },
+      "protractor": {
+        "hint": "0° on the line — rotate and read on the arc"
+      },
+      "details": {
+        "active": "Active: {id}{burned}",
+        "burnedTag": " (BURNED)",
+        "position": "Position: x={x}, y={y}",
+        "angle": "Angle: {deg}°",
+        "typeLine": "Type: {label} ×{mult}",
+        "colorLine": "Colour: {label} ({wl}) ×{mult}",
+        "basePower": "Base power: {v}",
+        "effPower": "Effective power: {v}",
+        "temp": "Temperature: {v}°C",
+        "noteLine": "Note: {note}{ruby}",
+        "rubyExtra": " — strongest in the list",
+        "opticsCount": "Optics: {n} elements",
+        "selectedHeader": "Selected: {type}",
+        "selectedPos": "  position x={x} y={y}",
+        "selectedAngle": "  angle={deg}°",
+        "fireworkExploded": "  fuse=exploded",
+        "fireworkLit": "  fuse=lit",
+        "fireworkCold": "  fuse=cold",
+        "noneSelected": "Selected: (no optic)",
+        "laserListPrefix": "Laser list: ",
+        "laserListItem": "L{n}:{type}/{color} {deg}°{burned}",
+        "burnedShort": " ARS"
+      }
+    },
+    "constelatii": {
+      "page": {
+        "eyebrow": "Astronomy | Interactive sky"
+      },
+      "documentTitle": "Constellations in the sky",
+      "htmlLang": "en",
+      "labels": {
+        "kickerLearn": "Learn",
+        "kickerZodiac": "Real-sky zodiac",
+        "findOnSky": "In the sky:"
+      },
+      "compass": {
+        "title": "The needle points toward Polaris (the north celestial pole). Dubhe–Merak in the Big Dipper → Polaris → north."
+      },
+      "aria": {
+        "canvas": "Interactive sky: constellations, zodiac patterns, and Venus"
+      },
+      "zodiacHook": "Newspaper horoscopes use the “tropical” zodiac. Here you see astronomers’ constellations in the real sky—same sky, different story.",
+      "venus": {
+        "kicker": "Evening / Morning Star",
+        "title": "Venus · the bright “star”",
+        "myth": "It isn’t a star. It’s the planet Venus.",
+        "find": "It is the brightest “star” in our sky after the Sun and Moon: look west after sunset or east before sunrise. Thick sulfuric-acid clouds make it shine white; near the horizon it looks more yellow-orange. Its place along the zodiac changes month to month—it’s a planet, not a fixed point like the stars."
+      },
+      "constellations": {
+        "uma": {
+          "title": "Big Dipper · Ursa Major",
+          "myth": "In Greek myth the nymph Callisto was turned into a bear; Zeus placed her in the sky for protection. Nearby is her son Arcas— the Little Dipper. Both “circle forever”, as a reminder of love and punishment.",
+          "find": "Look for a large dipper pattern. On the short side of the “bowl”, Merak and Dubhe point north: the golden line on the dome runs Merak → Dubhe → Polaris—the same path you extend about five times to reach the North Star and true north."
+        },
+        "umi": {
+          "title": "Little Dipper · Ursa Minor",
+          "myth": "The Little Dipper shares the same tale: Arcas, Callisto’s son, placed in the sky to stay close to his mother. Together the two dippers are the “bears” guarding the north celestial pole.",
+          "find": "It looks like a smaller dipper around the North Star. Usually you find it after the Big Dipper, following the Dubhe–Merak line toward Polaris; the other stars chain from the handle that ends at Polaris."
+        },
+        "polaris": {
+          "title": "Polaris · North Star",
+          "myth": "Polaris has guided navigators for millennia: it seems fixed while the rest of the sky wheels around it. In Romanian folklore it was often called the “tailed star”—like a stake pinned high in the sky.",
+          "find": "It marks the end of the Little Dipper’s handle, very near the north celestial pole: the whole sky seems to rotate around it. It isn’t the brightest star, but you can find it easily starting from the Big Dipper."
+        }
+      },
+      "zodiac": {
+        "aries": {
+          "title": "Aries · The Ram",
+          "myth": "The golden ram of the Phrixus and Helle tale, later sacrificed; Zeus set it in the sky as a memorial of courage (and of a trick with golden fleece).",
+          "find": "Along the ecliptic east of the Pisces–Aries “saddle”; Hamal shines with an orange tint."
+        },
+        "taurus": {
+          "title": "Taurus · The Bull",
+          "myth": "Zeus became a bull to carry off Europa; in another tale the bull is the quarry of Heracles. Aldebaran glimmers like the beast’s ruddy eye.",
+          "find": "In summer and autumn, watch Venus near the same arc as Aldebaran and the Hyades. Elnath marks bright horns toward Gemini."
+        },
+        "gemini": {
+          "title": "Gemini · The Twins",
+          "myth": "Castor and Pollux, Leda’s sons: one mortal, one immortal, sharing one name in the sky—twins who stay inseparable even as stars.",
+          "find": "Two bright stars close together—Castor and Pollux—unmissable on the spring sky."
+        },
+        "cancer": {
+          "title": "Cancer · The Crab",
+          "myth": "The crab bit Heracles’ foot during his fight with the Hydra—a small pinch, punished with a place in the sky.",
+          "find": "A faint pattern between Gemini and Leo; the Beehive cluster (Praesepe) lies near the donkey stars."
+        },
+        "leo": {
+          "title": "Leo · The Lion",
+          "myth": "Heracles’ first labour, the Nemean lion; in the sky Regulus is the beast’s heart; the slain monster becomes the sickle asterism.",
+          "find": "Regulus sits on the ecliptic; Leo’s “sickle” curls up the lion’s head, then the line drops toward Denebola."
+        },
+        "virgo": {
+          "title": "Virgo · The Maiden",
+          "myth": "Demeter / Astraea, the last immortal to leave Earth—or the maiden with the ear of grain; Spica is the shining wheat.",
+          "find": "Spica is one of the brightest in the figure; it rises in the southeast on spring evenings after Aries sets."
+        },
+        "libra": {
+          "title": "Libra · The Scales",
+          "myth": "The Scorpion’s claws made into scales; goddess Themis and cosmic justice—Libra is the only zodiac sign that is an object, not a creature.",
+          "find": "Two bright stars, relics of the Scorpion’s old claws; between Virgo and Antares."
+        },
+        "scorpius": {
+          "title": "Scorpius · The Scorpion",
+          "myth": "Boastful Orion, stung by a scorpion sent by Artemis; in the sky hunter and beast are kept forever apart.",
+          "find": "Antares, the red “heart”, is a fixed summer landmark; the tail bent south draws a J."
+        },
+        "sagittarius": {
+          "title": "Sagittarius · The Archer",
+          "myth": "The centaur Chiron, gentle teacher, wounded by a poisoned arrow; in the sky he holds his bow toward the Scorpion’s heart.",
+          "find": "The “Teapot” asterism is easy on the summer Milky Way."
+        },
+        "capricornus": {
+          "title": "Capricornus · The Sea-Goat",
+          "myth": "Pan’s goat-fish, who jumped into the Nile with a fish tail to flee Typhon—half goat, half fish.",
+          "find": "South on the ecliptic after Sagittarius; Deneb Algedi’s triangle climbs in late autumn."
+        },
+        "aquarius": {
+          "title": "Aquarius · The Water-Bearer",
+          "myth": "Ganymede, cup-bearer of the gods; Aquarius pours water from a celestial jar; the constellation marks blessed rain.",
+          "find": "Sadalmelik and Sadalsuud on the celestial equator; rises autumn through winter near Pisces."
+        },
+        "pisces": {
+          "title": "Pisces · The Fish",
+          "myth": "Aphrodite and Eros tied with cord to escape Typhon; the two braided fish became a symbol of rising from the waters.",
+          "find": "A pale chain on the ecliptic west of Andromeda’s W; Alresha gleams toward the Pisces–Andromeda knot."
+        }
+      }
+    },
+    "miscare-planete": {
+      "documentTitle": "Simulation: Solar system (planet motion)",
+      "htmlLang": "en",
+      "hud": {
+        "title": "☉ Solar System",
+        "subtitle": "Click a planet → info in the panel. You can move the view freely with the mouse."
+      },
+      "buttons": {
+        "panel": "☰ Panel",
+        "pause": "⏸ Pause",
+        "play": "▶ Play",
+        "reset": "↺ Reset"
+      },
+      "aria": {
+        "closePanel": "Close panel"
+      },
+      "panel": {
+        "title": "Panel",
+        "controlsTitle": "Controls",
+        "speed": "Speed",
+        "orbits": "Orbits",
+        "follow": "Follow",
+        "mouseHint": "Mouse: drag = rotate, wheel = zoom, right-drag = pan",
+        "formulasTitle": "Formulas & units",
+        "selectedTitle": "Selected",
+        "selectedNote": "Note: after you select a planet, you can follow it from the dropdown."
+      },
+      "formulas": {
+        "gravLaw": "Law of gravitation:",
+        "accel": "Acceleration:",
+        "orbVel": "Orbital speed (approx. circular):",
+        "unitsTitle": "Units:",
+        "gConstant": "G = 6.67430×10⁻¹¹ N·m²/kg²",
+        "forceN": "Force: N (kg·m/s²)",
+        "rva": "r: m, v: m/s, a: m/s²"
+      },
+      "hint": {
+        "text": "Click a planet 👇"
+      },
+      "follow": {
+        "none": "None",
+        "sun": "Sun"
+      },
+      "selected": {
+        "dash": "—",
+        "tagHint": "Click a planet…",
+        "promptAny": "Click a planet or the Sun…",
+        "tagSun": "Selected body: Sun",
+        "tagPlanet": "Selected planet: {name}"
+      },
+      "sun": {
+        "name": "Sun",
+        "fact1": "~99.86% of the Solar System’s mass.",
+        "fact2": "It supplies energy through fusion (H → He).",
+        "fact3": "Its gravity shapes every orbit."
+      },
+      "planets": {
+        "mercury": {
+          "name": "Mercury",
+          "fact0": "~88 days per orbit.",
+          "fact1": "Extremely thin atmosphere.",
+          "fact2": "Extreme surface temperatures."
+        },
+        "venus": {
+          "name": "Venus",
+          "fact0": "Retrograde rotation.",
+          "fact1": "Strong greenhouse effect.",
+          "fact2": "High surface pressure."
+        },
+        "earth": {
+          "name": "Earth",
+          "fact0": "Water covers ~71% of the surface.",
+          "fact1": "The Moon stabilizes the spin axis.",
+          "fact2": "The only known life."
+        },
+        "mars": {
+          "name": "Mars",
+          "fact0": "Olympus Mons.",
+          "fact1": "Phobos & Deimos.",
+          "fact2": "A prime target for exploration."
+        },
+        "jupiter": {
+          "name": "Jupiter",
+          "fact0": "Largest planet.",
+          "fact1": "The Great Red Spot.",
+          "fact2": "Dozens of moons."
+        },
+        "saturn": {
+          "name": "Saturn",
+          "fact0": "Spectacular rings.",
+          "fact1": "Less dense than water.",
+          "fact2": "Titan: a dense atmosphere."
+        },
+        "uranus": {
+          "name": "Uranus",
+          "fact0": "A strongly tilted (“sideways”) axis.",
+          "fact1": "An ice giant.",
+          "fact2": "Faint rings."
+        },
+        "neptune": {
+          "name": "Neptune",
+          "fact0": "Very fast winds.",
+          "fact1": "An ice giant.",
+          "fact2": "Triton in retrograde orbit."
+        },
+        "pluto": {
+          "name": "Pluto",
+          "fact0": "A dwarf planet.",
+          "fact1": "Inclined, eccentric orbit.",
+          "fact2": "A system with Charon."
+        }
+      }
+    },
+    "spectru-electromagnetic": {
+      "documentTitle": "Electromagnetic spectrum",
+      "htmlLang": "en",
+      "header": {
+        "title": "Electromagnetic spectrum",
+        "subtitle": "Interactive simulation — from radio waves to gamma rays"
+      },
+      "bar": {
+        "radio": "RADIO",
+        "microwave": "MICROWAVE",
+        "infrared": "INFRARED",
+        "visible": "VISIBLE",
+        "uv": "UV",
+        "xray": "X-RAYS",
+        "gamma": "GAMMA"
+      },
+      "panels": {
+        "regionInfo": "● Region information",
+        "waveViz": "● Wave visualization",
+        "appsTitle": "Applications",
+        "laserSim": "● Laser simulator",
+        "selectHint": "Select a band in the spectrum for details."
+      },
+      "laser": {
+        "wavelength": "Wavelength",
+        "intensity": "Intensity",
+        "divergence": "Beam divergence",
+        "dangerLevel": "Hazard level",
+        "lambdaEq": "λ = {wl} nm",
+        "bandBlueViolet": "BLUE–VIOLET",
+        "bandBlue": "BLUE",
+        "bandGreen": "GREEN",
+        "bandYellowOrange": "YELLOW–ORANGE",
+        "bandRed": "RED"
+      },
+      "dangerMessages": {
+        "class1": "CLASS 1 — Harmless",
+        "class3r": "CLASS 3R — Avoid direct viewing",
+        "class3b": "CLASS 3B — Hazardous to the eye",
+        "class4": "⚠ CLASS 4 — EXTREME HAZARD"
+      },
+      "regions": {
+        "radio": {
+          "name": "RADIO WAVES",
+          "range": "λ > 1 mm · f < 300 GHz",
+          "desc": "Radio waves have the longest wavelengths in the electromagnetic spectrum. They travel at the speed of light and can cross thousands of kilometres, reflecting from Earth's ionosphere.",
+          "props": [
+            {
+              "l": "Wavelength",
+              "v": "1 mm – 100 km"
+            },
+            {
+              "l": "Frequency",
+              "v": "3 Hz – 300 GHz"
+            },
+            {
+              "l": "Photon energy",
+              "v": "1 feV – 1 μeV"
+            },
+            {
+              "l": "Penetration",
+              "v": "Very high"
+            }
+          ],
+          "apps": [
+            "AM/FM broadcasting",
+            "Satellite communications",
+            "Weather radar",
+            "Wi-Fi & Bluetooth",
+            "Radio astrophysics"
+          ]
+        },
+        "microwave": {
+          "name": "MICROWAVES",
+          "range": "λ = 1 mm – 1 m · f = 300 MHz – 300 GHz",
+          "desc": "Microwaves are used in microwave ovens through resonance of water molecules. They underpin 5G technology and are used to study the cosmos via the cosmic microwave background (CMB).",
+          "props": [
+            {
+              "l": "Wavelength",
+              "v": "1 mm – 1 m"
+            },
+            {
+              "l": "Frequency",
+              "v": "300 MHz – 300 GHz"
+            },
+            {
+              "l": "Photon energy",
+              "v": "1 μeV – 1 meV"
+            },
+            {
+              "l": "Penetration",
+              "v": "Moderate"
+            }
+          ],
+          "apps": [
+            "Microwave ovens",
+            "5G/6G networks",
+            "Aviation radar",
+            "Cosmic microwave background (CMB)",
+            "Military communications"
+          ]
+        },
+        "ir": {
+          "name": "INFRARED",
+          "range": "λ = 700 nm – 1 mm · f = 300 GHz – 430 THz",
+          "desc": "Infrared radiation is perceived as heat by the human body. Any object above 0 K emits IR. Thermal cameras can resolve temperature differences down to about 0.01 °C.",
+          "props": [
+            {
+              "l": "Wavelength",
+              "v": "700 nm – 1 mm"
+            },
+            {
+              "l": "Frequency",
+              "v": "300 GHz – 430 THz"
+            },
+            {
+              "l": "Photon energy",
+              "v": "1 meV – 1.7 eV"
+            },
+            {
+              "l": "Type",
+              "v": "Thermal radiation"
+            }
+          ],
+          "apps": [
+            "Thermal cameras",
+            "IR remote controls",
+            "Infrared astronomy (JWST)",
+            "Motion sensors",
+            "Fibre-optic lasers"
+          ]
+        },
+        "visible": {
+          "name": "VISIBLE LIGHT",
+          "range": "λ = 380 – 700 nm · f = 430 – 790 THz",
+          "desc": "Visible light is the only part of the electromagnetic spectrum the human eye can detect. Rainbow colours correspond to different frequencies of visible light. Visible lasers are widely used in medicine and industry.",
+          "props": [
+            {
+              "l": "Wavelength",
+              "v": "380 – 700 nm"
+            },
+            {
+              "l": "Frequency",
+              "v": "430 – 790 THz"
+            },
+            {
+              "l": "Photon energy",
+              "v": "1.7 – 3.3 eV"
+            },
+            {
+              "l": "Speed in vacuum",
+              "v": "299 792 km/s"
+            }
+          ],
+          "apps": [
+            "Lasers (surgery, industry)",
+            "Photography & displays",
+            "Optical fibre",
+            "Photosynthesis",
+            "Optical spectroscopy"
+          ]
+        },
+        "uv": {
+          "name": "ULTRAVIOLET",
+          "range": "λ = 10 – 380 nm · f = 790 THz – 30 PHz",
+          "desc": "UV radiation is produced by the Sun and UV lamps. Invisible to the eye, UV-A tans skin, UV-B produces vitamin D but also sunburn, while UV-C (mostly blocked by ozone) is lethal to microbes.",
+          "props": [
+            {
+              "l": "Wavelength",
+              "v": "10 – 380 nm"
+            },
+            {
+              "l": "Frequency",
+              "v": "790 THz – 30 PHz"
+            },
+            {
+              "l": "Photon energy",
+              "v": "3.3 – 124 eV"
+            },
+            {
+              "l": "Biological risk",
+              "v": "Mutagenic"
+            }
+          ],
+          "apps": [
+            "UV-C sterilisation",
+            "Counterfeit banknote detection",
+            "Ultraviolet astronomy (Hubble)",
+            "Psoriasis treatment",
+            "Sunlamps"
+          ]
+        },
+        "xray": {
+          "name": "X-RAYS",
+          "range": "λ = 0.01 – 10 nm · f = 30 PHz – 30 EHz",
+          "desc": "X-rays penetrate soft tissue but are blocked by bone and metal, which makes them indispensable in medicine. Discovered by Wilhelm Röntgen in 1895, they revolutionised diagnosis. At high energies they are used in crystallography and astronomy.",
+          "props": [
+            {
+              "l": "Wavelength",
+              "v": "0.01 – 10 nm"
+            },
+            {
+              "l": "Frequency",
+              "v": "30 PHz – 30 EHz"
+            },
+            {
+              "l": "Photon energy",
+              "v": "0.1 – 100 keV"
+            },
+            {
+              "l": "Penetration",
+              "v": "Very high"
+            }
+          ],
+          "apps": [
+            "Medical radiography",
+            "CT scanner",
+            "Airport security",
+            "X-ray crystallography",
+            "X-ray telescopes (Chandra)"
+          ]
+        },
+        "gamma": {
+          "name": "GAMMA RAYS",
+          "range": "λ < 0.01 nm · f > 30 EHz",
+          "desc": "Gamma rays are the most energetic radiation in the Universe, produced in nuclear explosions, radioactive decay, and neutron-star collisions (kilonovae). They penetrate almost anything and are lethal in high doses, yet are essential in cancer radiotherapy.",
+          "props": [
+            {
+              "l": "Wavelength",
+              "v": "< 0.01 nm"
+            },
+            {
+              "l": "Frequency",
+              "v": "> 30 EHz"
+            },
+            {
+              "l": "Photon energy",
+              "v": "> 100 keV"
+            },
+            {
+              "l": "Risk",
+              "v": "EXTREME"
+            }
+          ],
+          "apps": [
+            "Radiotherapy (cancer)",
+            "PET scan",
+            "Food sterilisation",
+            "Nuclear-material detection",
+            "Gamma Knife (neurosurgery)"
+          ]
+        }
+      }
+    },
+    "termodinamica": {
+      "documentTitle": "Ideal gas simulator — one vessel",
+      "htmlLang": "en",
+      "h1": "Ideal gas simulator — one vessel",
+      "side": {
+        "left": "Left",
+        "right": "Right"
+      },
+      "sliders": {
+        "temperature": "Temperature (K):",
+        "numMolecules": "Number of molecules:",
+        "molarMass": "Molar mass (g/mol):",
+        "molarMassGlobal": "Global molar mass (g/mol):"
+      },
+      "buttons": {
+        "openValve": "Open valve",
+        "closeValve": "Close valve",
+        "restart": "Restart"
+      },
+      "table": {
+        "parameter": "Parameter",
+        "left": "Left",
+        "right": "Right",
+        "rowNumMolecules": "Molecule count",
+        "rowMeanTemp": "Mean temperature (K)",
+        "rowMolarMass": "Molar mass (g/mol)",
+        "rowPressure": "Pressure (simulated)"
+      }
+    },
+    "instalatie-schimb-izotopic": {
+      "documentTitle": "Heavy-water simulator | GS process",
+      "htmlLang": "en",
+      "header": {
+        "title": "🧪 SIMULATOR FOR HEAVY-WATER PRODUCTION",
+        "subtitle": "Girdler–Sulfide process (H₂O – H₂S) • Isotopic exchange by stage",
+        "panelToggle": "Parameters",
+        "panelToggleAria": "Open control panel"
+      },
+      "overlay": {
+        "title": "Primary enrichment: up to 30% D₂O across three stages",
+        "p1": "Start from 140 ppm (deuterium in natural water).",
+        "p2": "Stage 1 brings the mixture to 5%; Stage 2 then unlocks (up to 20%), then Stage 3 — a hypothetical “floodgate break” — up to 30%.",
+        "start": "START PROCESS"
+      },
+      "etaje": {
+        "1": {
+          "name": "Stage 1",
+          "target": "Target: 5% D₂O"
+        },
+        "2": {
+          "name": "Stage 2",
+          "target": "Target: 20% D₂O"
+        },
+        "3": {
+          "name": "Stage 3",
+          "target": "Target: 30% · “Floodgate break”",
+          "hypothesis": "Hypothetical scenario (unbuilt plan): extra liquid circulation between columns.",
+          "rupereLead": "Floodgate break (concept):",
+          "rupereRest": " in an isotopic-separation cascade, past a concentration threshold the design optimum changes (different flow ratio, different number of equivalent stages). This is an imaginary exercise: two extra liquid bypasses between columns so you can see how behaviour “breaks away” from the classic stages — not a 1:1 match to any real plant floor."
+        }
+      },
+      "flows": {
+        "liquid": "↓ LIQUID",
+        "gas": "↑ GAS",
+        "down": "↓",
+        "up": "↑"
+      },
+      "columns": {
+        "coldLegacy": "COLD COLUMN ({temp}°C)",
+        "hotLegacy": "HOT COLUMN ({temp}°C)",
+        "coldShort": "COLD ({temp}°C)",
+        "hotShort": "HOT ({temp}°C)",
+        "concLegacy": "D₂O concentration: {pct}%",
+        "concShort": "D₂O: {pct}%"
+      },
+      "pipes": {
+        "top": "Cold ↓ Hot",
+        "bottom": "Hot ↑ Cold"
+      },
+      "aria": {
+        "etaj1": "Stage 1",
+        "etaj2Locked": "Stage 2 locked",
+        "etaj3Locked": "Stage 3 locked"
+      },
+      "locks": {
+        "blocked": "Locked",
+        "afterEtaj1": "Complete stage 1 first",
+        "afterEtaj2": "Complete stage 2 first"
+      },
+      "concentrationBarTitle": "Overall progress toward 30%",
+      "success": {
+        "title": "Congratulations! You completed all three stages.",
+        "body": "You reached the 30% D₂O target in the hypothetical “floodgate break” stage.",
+        "restart": "Restart",
+        "nextSim": "Continue to fractional D₂O distillation",
+        "summaryP1": "You raised the concentration from 140 ppm to <strong>30% D₂O</strong>, moving through the isotopic-exchange stages in turn.",
+        "summaryP2": "<strong>Stage 1:</strong> up to 5% with the cold column at {cold}°C, the hot column at {hot}°C, and L/G {lg}.",
+        "summaryP3": "<strong>Stage 2:</strong> same operating parameters, up to 20%.",
+        "summaryP4": "<strong>Stage 3:</strong> the hypothetical “floodgate break” scenario up to 30% — with extra liquid bypasses only as a design idea, not as a documented real installation here."
+      },
+      "panel": {
+        "closeAria": "Close control panel",
+        "concentration": "Concentration",
+        "ppmD2o": "ppm D₂O",
+        "purity": "Purity",
+        "d2oH2o": "D₂O / H₂O",
+        "currentStage": "Current stage (active)",
+        "hintInitial": "Select an unlocked stage on the left. Stage 1 goes up to 5%; then Stage 2 unlocks (up to 20%), then Stage 3 (hypothesis, up to 30%).",
+        "waiting": "Idle",
+        "simSpeed": "Simulator speed:",
+        "sectionParams": "Isotopic-exchange parameters (stages 1–3)",
+        "coldTemp": "Cold column temperature:",
+        "hotTemp": "Hot column temperature:",
+        "lgRatio": "L/G ratio (liquid/gas):",
+        "noteStrong": "Note:",
+        "noteText": "Vacuum distillation is not part of this exercise — that is a separate process step. All three stages here use the same H₂O–H₂S model; Stage 3 only adds the hypothetical visual with extra liquid ties."
+      },
+      "stage": {
+        "active": "Stage {n} (active)"
+      },
+      "hints": {
+        "etaj1": "Target: 5% D₂O. Set L/G between 0.48–0.52 (ideal 0.50), cold column ~35°C and hot ~130°C. At 5%, Stage 2 unlocks and you switch to it automatically.",
+        "etaj2": "Target: 20% D₂O. Same parameters as stage 1. At 20%, Stage 3 unlocks and you switch automatically (“floodgate break” scenario).",
+        "etaj2b": "Target: 20% D₂O. You reached 20% — Stage 3 (hypothesis) is active. Continue toward 30%.",
+        "etaj3": "Target: 30% D₂O — “floodgate break”. Hypothetical stage: visually there are also liquid ties between columns (unbuilt plan). Parameters stay the same as stages 1–2."
+      },
+      "process": {
+        "stageUnlocked": "Stage unlocked",
+        "crystallization": "Crystallisation — inefficient process",
+        "goodZone": "Good operating zone",
+        "acceptable": "Acceptable",
+        "nearTarget": "Near stage target",
+        "active": "Isotopic exchange active",
+        "tuneLg": "Adjust L/G and temperatures"
+      },
+      "graph": {
+        "rLg": "r = L/G",
+        "efficiency": "efficiency"
+      }
+    },
+    "izotopi-uraniu": {
+      "page": {
+        "eyebrow": "Nuclear physics | Uranium isotopes"
+      },
+      "documentTitle": "Nuclear lab · Uranium isotopes",
+      "htmlLang": "en",
+      "hero": {
+        "badge": "NUCLEAR LAB · INTERACTIVE",
+        "titleBefore": "The isotopes of",
+        "titleAccent": "Uranium",
+        "subtitle": "Explore the nucleus, trigger α decays, simulate fission, and fast‑forward billions of years in one second."
+      },
+      "nav": {
+        "info": "① Quick facts",
+        "simulator": "② Nucleus simulator",
+        "lab": "③ Fission & time",
+        "theory": "④ Theory"
+      },
+      "sections": {
+        "info": {
+          "title": "Quick facts · the four isotopes that matter",
+          "lead1": "Always 92 protons. What differs?",
+          "leadBold": "The number of neutrons."
+        },
+        "sim": {
+          "title": "Nucleus simulator",
+          "lead": "Switch isotope, inspect the N/Z ratio, trigger an α decay."
+        },
+        "lab": {
+          "title": "WOW module · Fission & time",
+          "lead": "Things break apart here. Hit U‑235 with a neutron, or run billions of years in the sim."
+        }
+      },
+      "legend": {
+        "proton": "proton",
+        "neutron": "neutron"
+      },
+      "controls": {
+        "chooseIsotope": "Choose isotope",
+        "isotope": "Isotope",
+        "simSpeed": "Simulation speed:",
+        "speedMin": "thousand yr",
+        "speedMax": "billion yr"
+      },
+      "stats": {
+        "protons": "Protons (Z)",
+        "neutrons": "Neutrons (N)",
+        "mass": "Mass (A)",
+        "ratio": "N/Z ratio"
+      },
+      "stability": {
+        "label": "Stability"
+      },
+      "buttons": {
+        "decay": "☢️ α decay",
+        "reset": "↺ Reset",
+        "simulateFission": "⚡ Simulate fission",
+        "start": "▶ Start",
+        "pause": "❚❚ Pause",
+        "decayDone": "✓ Decay complete"
+      },
+      "fission": {
+        "cardTitle": "💥 Nuclear fission (U‑235)",
+        "cardLead": "A slow neutron hits the nucleus → fragments + 2–3 neutrons + energy.",
+        "massEnergyHint": "The mass difference becomes energy. ~200 MeV per fission."
+      },
+      "compare": {
+        "cardTitle": "⚖️ U‑235 vs U‑238",
+        "cardLead": "Why is one fuel and the other not?",
+        "rowAbundance": "Natural abundance",
+        "rowFissile": "Fissile with thermal n",
+        "rowHalfLife": "Half-life",
+        "rowUse": "Typical use",
+        "rowDecay": "Decay mode",
+        "yes": "YES",
+        "no": "NO",
+        "hl235": "704 m.y.",
+        "hl238": "4.47 b.y.",
+        "use235": "Reactor / weapons",
+        "use238": "Fertile fuel"
+      },
+      "timeMachine": {
+        "title": "⏳ Time machine · radioactive decay",
+        "lead": "1000 atoms. Press Start and watch them vanish over time. Exponential decay: N(t) = N₀·(½)^(t/T½)."
+      },
+      "time": {
+        "leftLabel": "Atoms remaining",
+        "elapsedLabel": "Elapsed time",
+        "currentHalfLife": "Current T½:",
+        "tHalfApprox": "T½ ≈ "
+      },
+      "theory": {
+        "sectionTitle": "Theory · useful formulas",
+        "sectionLead": "Quick reference for the nucleus, α decay and the time module; details and the Formulas tab on the site.",
+        "linkText": "PULS resources — nuclear physics (lessons & formulas)",
+        "linkHref": "/resources/nuclear-physics",
+        "li1Html": "<strong>Notation:</strong> <span class=\"theory-mono\">A = Z + N</span> — for uranium, Z = 92.",
+        "li2Html": "<strong>α decay:</strong> the nucleus emits <span class=\"theory-mono\">⁴₂He</span>; the daughter has Z − 2, A − 4.",
+        "li3Html": "<strong>Radioactivity:</strong> <span class=\"theory-mono\">N(t) = N₀·e<sup>−λt</sup></span>, <span class=\"theory-mono\">λ = ln(2)/T<sub>½</sub></span> (same structure as the “all isotopes” chart)."
+      },
+      "cards": {
+        "statHalfLife": "T½",
+        "statDecay": "Decay",
+        "statMass": "Mass A",
+        "statUses": "Use"
+      },
+      "canvas": {
+        "alphaLabel": "α (He‑4)",
+        "fissionEnergy": "+200 MeV"
+      },
+      "timeFormat": {
+        "years": "yr",
+        "kyr": "k yr",
+        "Myr": "m.y.",
+        "Gyr": "b.y.",
+        "perSecSuffix": "/s"
+      },
+      "decay": {
+        "defaultNoteHtml": "In α decay: <span class=\"nuclide\"><span class=\"nums\"><sup>A</sup><sub>Z</sub></span>X</span> → <span class=\"nuclide\"><span class=\"nums\"><sup>A−4</sup><sub>Z−2</sub></span>Y</span> + <span class=\"nuclide\"><span class=\"nums\"><sup>4</sup><sub>2</sub></span>He</span>. Example: <span class=\"nuclide\"><span class=\"nums\"><sup>235</sup><sub>92</sub></span>U</span> → <span class=\"nuclide\"><span class=\"nums\"><sup>231</sup><sub>90</sub></span>Th</span> + α.",
+        "resultLead": "✓ Formed <b>{{name}}</b>:",
+        "conservation": "Conservation: A ({{pa}} = {{da}} + 4) ✓ · Z (92 = {{dz}} + 2) ✓"
+      },
+      "isotopes": {
+        "U-233": {
+          "halfLifeText": "159,200 yr",
+          "stabilityText": "Low",
+          "tag": "artificial · fissile",
+          "desc": "Produced from thorium‑232. Fissile like U‑235; studied for generation‑IV concepts.",
+          "uses": "Reactor (Th)"
+        },
+        "U-234": {
+          "halfLifeText": "245,500 yr",
+          "stabilityText": "Low",
+          "tag": "natural · trace",
+          "desc": "Appears from U‑238 decay (≈0.0055% of natural uranium). Minor industrial role.",
+          "uses": "natural trace"
+        },
+        "U-235": {
+          "halfLifeText": "703.8 m.y.",
+          "stabilityText": "Moderate",
+          "tag": "natural · FISSILE",
+          "desc": "The only naturally occurring isotope fissile with thermal neutrons. ~0.72% of natural U. Reactor and weapons fuel.",
+          "uses": "Reactor / weapons"
+        },
+        "U-238": {
+          "halfLifeText": "4.47 b.y.",
+          "stabilityText": "High",
+          "tag": "natural · fertile",
+          "desc": ">99% of natural uranium. Not fissile with thermal neutrons, but can capture a neutron and breed Pu‑239 (fissile).",
+          "uses": "Fertile fuel"
+        }
+      },
+      "daughters": {
+        "U-233": {
+          "name": "Thorium‑229",
+          "halfLifeText": "7,340 yr",
+          "stabilityText": "Low"
+        },
+        "U-234": {
+          "name": "Thorium‑230",
+          "halfLifeText": "75,400 yr",
+          "stabilityText": "Low"
+        },
+        "U-235": {
+          "name": "Thorium‑231",
+          "halfLifeText": "25.52 h",
+          "stabilityText": "Very low"
+        },
+        "U-238": {
+          "name": "Thorium‑234",
+          "halfLifeText": "24.10 days",
+          "stabilityText": "Very low"
+        }
+      }
+    },
+    "toti-izotopii": {
+      "page": {
+        "eyebrow": "Nuclear physics | All uranium isotopes"
+      },
+      "documentTitle": "Nuclide map · Uranium (A = 217–242)",
+      "htmlLang": "en",
+      "hero": {
+        "badge": "NUCLEAR EXPLORER · Z = 92",
+        "titleBefore": "The complete map of",
+        "titleAccent": "uranium isotopes",
+        "subtitle": "26 isotopes, from microseconds to billions of years. Same nucleus, always 92 protons — only the neutrons change everything.",
+        "statIsotopes": "isotopes",
+        "statMass": "mass number",
+        "statRatio": "T½ max / min ratio"
+      },
+      "timeline": {
+        "step": "01 · history",
+        "h2": "From discovery to the nuclide map",
+        "y1789": {
+          "h": "Discovery",
+          "p": "Martin Heinrich Klaproth isolates uranium from pitchblende and names it after the planet Uranus."
+        },
+        "y1896": {
+          "h": "Radioactivity",
+          "p": "Henri Becquerel observes spontaneous radiation from uranium salts. A new science is born."
+        },
+        "y1913": {
+          "h": "The isotope concept",
+          "p": "Frederick Soddy shows that atoms of one element can have different masses. Uranium would have dozens."
+        },
+        "y1938": {
+          "h": "Fission of U-235",
+          "p": "Hahn & Strassmann split the nucleus. U-235 becomes the most important industrial isotope in history."
+        },
+        "today": {
+          "year": "today",
+          "h": "26 known isotopes",
+          "p": "From U-217 (26 ms) to U-242 (~17 min). Only three occur in nature: U-234, U-235, U-238."
+        }
+      },
+      "chart": {
+        "step": "02 · map",
+        "h2Before": "Nuclide chart",
+        "h2Accent": "· row Z = 92",
+        "lead": "Each cell is one isotope. Color = decay type. Brightness = relative stability. Click or navigate.",
+        "axisNeutrons": "neutrons →",
+        "legendNote": "color intensity = relative stability"
+      },
+      "explorer": {
+        "step": "03 · explorer",
+        "h2": "One isotope at a time",
+        "lead": "Move the slider or tap a cell above."
+      },
+      "card": {
+        "protons": "Protons",
+        "neutrons": "Neutrons",
+        "massA": "Mass (A)",
+        "nz": "N/Z ratio",
+        "halfLifeLabel": "Half-life",
+        "hlUnstable": "unstable",
+        "hlLongLived": "long-lived",
+        "decayMode": "Decay mode"
+      },
+      "matters": {
+        "title": "Why this isotope matters",
+        "origin": "Origin",
+        "abundance": "Abundance",
+        "fissile": "Fissile",
+        "uses": "Uses"
+      },
+      "decay": {
+        "step": "04 · time",
+        "h2": "The isotope through time",
+        "leadBefore": "Radioactive decay law:",
+        "leadAfter": "Same formula for every isotope — only λ changes.",
+        "statRemaining": "Remaining",
+        "statElapsed": "Elapsed time",
+        "statPeriods": "Half-lives",
+        "timeLabel": "Time",
+        "speedMax": "5 × T½",
+        "formulaSub": "λ = ln(2) / T½ · decay constant",
+        "forIsotope": "for",
+        "perSecond": "s⁻¹",
+        "timesHalf": "× T½",
+        "zeroElapsed": "0",
+        "axisHalf": "T½",
+        "chip": {
+          "alpha": "α · alpha",
+          "betaM": "β⁻",
+          "ce": "EC · electron capture",
+          "betaP": "β⁺"
+        }
+      },
+      "decayChip": {
+        "alpha": "α · alpha",
+        "betaM": "β⁻ · beta minus",
+        "ce": "EC · electron capture",
+        "betaP": "β⁺ · beta plus"
+      },
+      "extremes": {
+        "title": "Map extremes",
+        "longestLabel": "most long-lived",
+        "shortestLabel": "least stable"
+      },
+      "theory": {
+        "step": "05 · theory",
+        "h2": "Formulas tied to the map",
+        "lead": "The same Z = 92 for all isotopes; N and A differ. Stability and decay mode depend on distance from the “valley of stability”.",
+        "linkText": "PULS resources — nuclear physics",
+        "linkHref": "/resources/nuclear-physics",
+        "li1Html": "<strong>Mass number:</strong> <span class=\"theory-mono\">A = Z + N = 92 + N</span>.",
+        "li2Html": "<strong>Radioactive decay:</strong> <span class=\"theory-mono\">N(t) = N₀·e<sup>−λt</sup></span>, <span class=\"theory-mono\">λ = ln(2)/T<sub>½</sub></span> — used in the panel when you pick an isotope.",
+        "li3Html": "<strong>Natural isotopes:</strong> typical rock/ore is dominated by U-238 (~99.3%), U-235 (~0.72%), with U-234 as a trace in the U-238 chain."
+      },
+      "footer": {
+        "note": "Data are current estimates for experimentally known uranium isotopes (A = 217 → 242)."
+      },
+      "stab": {
+        "e0": "extremely unstable",
+        "e1": "very unstable",
+        "e2": "unstable",
+        "e3": "moderately stable",
+        "e4": "long-lived"
+      },
+      "tags": {
+        "natural": "natural",
+        "trace": "natural trace",
+        "artificial": "artificial",
+        "fissile": "FISSILE",
+        "fertile": "fertile"
+      },
+      "tooltip": {
+        "fissile": "Fissile",
+        "protonsZ": "Protons · Z",
+        "neutronsN": "Neutrons · N",
+        "massA": "Mass · A",
+        "halfLife": "T½",
+        "stability": "Stability",
+        "origin": "Origin",
+        "hint": "click to select"
+      },
+      "unit": {
+        "ns": "ns",
+        "us": "μs",
+        "ms": "ms",
+        "s": "s",
+        "min": "min",
+        "h": "h",
+        "days": "days",
+        "yr": "yr",
+        "kyr": "k yr",
+        "Myr": "m.y.",
+        "Gyr": "b.y."
+      },
+      "canvas": {
+        "axisY": "N(t) / N₀",
+        "axisX": "time (× T½)",
+        "atomsViz": "atoms remaining"
+      },
+      "isotopesByA": {
+        "217": {
+          "hlText": "26 ms",
+          "origin": "artificial",
+          "abund": "—",
+          "fissile": "no",
+          "uses": "research only",
+          "desc": "A very light uranium isotope made in accelerators. Gone in tens of milliseconds."
+        },
+        "218": {
+          "hlText": "0.51 ms",
+          "origin": "artificial",
+          "abund": "—",
+          "fissile": "no",
+          "uses": "research",
+          "desc": "Among the least stable isotopes: the atom lasts less than a millisecond."
+        },
+        "219": {
+          "hlText": "55 μs",
+          "origin": "artificial",
+          "abund": "—",
+          "fissile": "no",
+          "uses": "research",
+          "desc": "Sub‑millisecond lifetime. Studied for nuclear structure of the lightest U isotopes."
+        },
+        "220": {
+          "hlText": "~60 ns",
+          "origin": "artificial",
+          "abund": "—",
+          "fissile": "no",
+          "uses": "research",
+          "desc": "Estimated value. Essentially instantaneous — decay in tens of nanoseconds."
+        },
+        "221": {
+          "hlText": "0.66 μs",
+          "origin": "artificial",
+          "abund": "—",
+          "fissile": "no",
+          "uses": "research",
+          "desc": "Produced in heavy‑ion reactions. Lifetime on the scale of a laser flash."
+        },
+        "222": {
+          "hlText": "4.7 μs",
+          "origin": "artificial",
+          "abund": "—",
+          "fissile": "no",
+          "uses": "research",
+          "desc": "Estimated. Probes the fission barrier for very light U isotopes."
+        },
+        "223": {
+          "hlText": "21 μs",
+          "origin": "artificial",
+          "abund": "—",
+          "fissile": "no",
+          "uses": "research",
+          "desc": "Ultra‑short lifetime. Detected via α‑particle spectroscopy."
+        },
+        "224": {
+          "hlText": "0.94 ms",
+          "origin": "artificial",
+          "abund": "—",
+          "fissile": "no",
+          "uses": "research",
+          "desc": "Millisecond scale — among the first U isotopes with ms‑scale lifetimes."
+        },
+        "225": {
+          "hlText": "61 ms",
+          "origin": "artificial",
+          "abund": "—",
+          "fissile": "no",
+          "uses": "research",
+          "desc": "Under a tenth of a second. Used in short α‑decay chain studies."
+        },
+        "226": {
+          "hlText": "0.27 s",
+          "origin": "artificial",
+          "abund": "—",
+          "fissile": "no",
+          "uses": "research",
+          "desc": "Lasts a moment. Useful marker in decay‑chain experiments."
+        },
+        "227": {
+          "hlText": "1.1 min",
+          "origin": "artificial",
+          "abund": "—",
+          "fissile": "no",
+          "uses": "research",
+          "desc": "About a minute of existence. Produced in controlled nuclear reactions."
+        },
+        "228": {
+          "hlText": "9.1 min",
+          "origin": "artificial",
+          "abund": "—",
+          "fissile": "no",
+          "uses": "nuclear research",
+          "desc": "As A increases, lifetime tends to grow — tied to nuclear binding trends."
+        },
+        "229": {
+          "hlText": "58 min",
+          "origin": "artificial",
+          "abund": "—",
+          "fissile": "no",
+          "uses": "research",
+          "desc": "First U isotope decaying mainly by electron capture rather than α."
+        },
+        "230": {
+          "hlText": "20.2 days",
+          "origin": "artificial",
+          "abund": "—",
+          "fissile": "partial",
+          "uses": "medical research",
+          "desc": "Studied as a potential α‑therapy agent. Lives almost three weeks."
+        },
+        "231": {
+          "hlText": "4.2 days",
+          "origin": "artificial",
+          "abund": "—",
+          "fissile": "no",
+          "uses": "research",
+          "desc": "A few days’ lifetime. Intermediate in artificial decay chains."
+        },
+        "232": {
+          "hlText": "68.9 yr",
+          "origin": "artificial",
+          "abund": "—",
+          "fissile": "yes · fast neutrons",
+          "uses": "contaminant in U-233",
+          "desc": "Appears in the Th–U cycle. Problematic: strong γ rays via its progeny."
+        },
+        "233": {
+          "hlText": "159,200 yr",
+          "origin": "artificial",
+          "abund": "—",
+          "fissile": "YES · thermal neutrons",
+          "uses": "Th reactors",
+          "desc": "Fissile like U‑235. Breeds from Th‑232 via neutron capture — Generation‑IV interest."
+        },
+        "234": {
+          "hlText": "245,500 yr",
+          "origin": "natural · trace",
+          "abund": "0.0055 %",
+          "fissile": "no",
+          "uses": "geologic tracer",
+          "desc": "Natural daughter of U‑238 decay. Only ~55 ppm of natural uranium."
+        },
+        "235": {
+          "hlText": "703.8 m.y.",
+          "origin": "natural · primary",
+          "abund": "0.720 %",
+          "fissile": "YES · thermal neutrons",
+          "uses": "reactor · weapons",
+          "desc": "The only naturally occurring thermal‑neutron fissile isotope. Main reactor fuel."
+        },
+        "236": {
+          "hlText": "23.4 m.y.",
+          "origin": "natural · trace",
+          "abund": "< 10⁻¹⁰",
+          "fissile": "no",
+          "uses": "nuclear forensics",
+          "desc": "Neutron‑irradiation marker. In pristine samples → hint of nuclear processing."
+        },
+        "237": {
+          "hlText": "6.75 days",
+          "origin": "artificial",
+          "abund": "—",
+          "fissile": "no",
+          "uses": "Pu tracer",
+          "desc": "Reactor product. Used to trace plutonium production pathways. β⁻ to neptunium."
+        },
+        "238": {
+          "hlText": "4.47 b.y.",
+          "origin": "natural · primary",
+          "abund": "99.2742 %",
+          "fissile": "fertile · fast",
+          "uses": "fertile fuel · DU",
+          "desc": ">99% of Earth’s uranium. Not thermal‑fissile, but captures neutrons to breed fissile Pu‑239."
+        },
+        "239": {
+          "hlText": "23.5 min",
+          "origin": "artificial",
+          "abund": "—",
+          "fissile": "no",
+          "uses": "Pu‑239 precursor",
+          "desc": "Key link: U‑238 + n → U‑239 → Np‑239 → Pu‑239 — how plutonium is made."
+        },
+        "240": {
+          "hlText": "14.1 h",
+          "origin": "artificial",
+          "abund": "—",
+          "fissile": "no",
+          "uses": "research",
+          "desc": "From multiple neutron capture in reactors."
+        },
+        "241": {
+          "hlText": "~5 min",
+          "origin": "artificial",
+          "abund": "—",
+          "fissile": "no",
+          "uses": "research",
+          "desc": "Estimated. Very neutron‑rich, rarely produced."
+        },
+        "242": {
+          "hlText": "16.8 min",
+          "origin": "artificial",
+          "abund": "—",
+          "fissile": "no",
+          "uses": "research",
+          "desc": "Heaviest uranium isotope observed experimentally; beyond lies mostly theory."
+        }
+      }
+    },
+    "distilare-d2o-fractionata": {
+      "page": {
+        "eyebrow": "Fractional distillation Dâ‚‚O | Interactive simulation"
+      },
+      "documentTitle": "Fractional distillation D₂O | Final stage",
+      "htmlLang": "en",
+      "header": {
+        "title": "Fractional distillation H₂O – D₂O",
+        "tagline": "After isotopic exchange (~20% D₂O) — fine separation by boiling points · educational model",
+        "scienceBite": "Boiling point gap: ~1.4 °C between H₂O and D₂O — so separation is extremely slow and needs many theoretical stages.",
+        "panelToggle": "Parameters",
+        "panelToggleAria": "Open control panel"
+      },
+      "gsLock": {
+        "hook": "Rectification is locked",
+        "p1": "First finish the ",
+        "p1Strong": "Isotopic exchange plant (H₂S – H₂O)",
+        "p2": " simulation through the success screen (~30% D₂O). Only then can you continue with fractional distillation — in practice the GS stage brings concentration into the tens of percent; fine rectification pushes toward nuclear-grade purity.",
+        "link": "Open isotopic-exchange simulation"
+      },
+      "intro": {
+        "hook": "You brought heavy water to 20%… but the real fight has just begun.",
+        "p1": "H₂O boils at ~100 °C, D₂O at ~101.4 °C — a small gap, so you need ",
+        "s1": "many theoretical stages",
+        "sep1": ", ",
+        "s2": "high reflux",
+        "sep2": ", and a ",
+        "s3": "tall column",
+        "p2": ". One column: condenser on top, reboiler at the bottom; vapours ↑ (richer in H₂O), liquid ↓ (D₂O concentrates at the bottom)."
+      },
+      "introStart": "Start rectification",
+      "column": {
+        "condenser": "Condenser",
+        "vaporsUp": "↑ vapours",
+        "topProduct": "Overhead product",
+        "topProductHint": "light liquid (H₂O) — less D₂O than at the bottom",
+        "refluxCaption": "Reflux: condensed liquid returns to the column",
+        "refluxDrip": "Condensed liquid ↓ back into the column",
+        "bottomProduct": "Bottoms / heavy water",
+        "bottomTarget": "teaching target ~99.8%",
+        "reboiler": "Reboiler"
+      },
+      "flowLegend": {
+        "up": "↑ H₂O: fast, light, transparent",
+        "down": "↓ D₂O: slow, “heavy”, dense"
+      },
+      "aria": {
+        "simulationArea": "Column view",
+        "trays": "Theoretical stages",
+        "chart": "Purity chart"
+      },
+      "readouts": {
+        "tReboiler": "Reboiler T",
+        "tReboilerTip": "Too low: little vaporisation, the column “doesn’t work”. Too high: risk of losses / simplified teaching model.",
+        "stages": "Stages (theoretical)",
+        "stagesTip": "More equivalent stages = more vapour–liquid contacts. With few stages, separation is slow or weak.",
+        "refluxR": "Reflux R (L/D)",
+        "refluxTip": "R = L/D: how much liquid returns to the column vs product taken. In this teaching model R is fixed between 1 and 1.5.",
+        "alpha": "α relative (model)",
+        "alphaTip": "α close to 1 (e.g. 1.05–1.07) means very hard separation: each stage changes composition only a little, so you need many stages and reflux.",
+        "distTopSub": "(top — D₂O decreases, H₂O concentrates)"
+      },
+      "nuclear": {
+        "title": "Nuclear-grade purity reached",
+        "sub": "~99.8% D₂O in the reboiler (teaching target)"
+      },
+      "panel": {
+        "closeAria": "Close panel",
+        "controlHeading": "Process control",
+        "presetsAria": "Simulation presets",
+        "reboilerLabel": "Reboiler temperature:",
+        "stagesLabel": "Number of stages (theoretical):",
+        "refluxLabel": "Reflux rate R = L/D:",
+        "speedLabel": "Simulation speed:",
+        "chartHeading": "Bottom purity vs time",
+        "chartNote": "X axis: simulated time · Y axis: % D₂O in reboiler liquid. The last percent towards the target are the slowest (plateau) — “the last 5% are hell”.",
+        "resetChart": "Reset chart data",
+        "pause": "Pause",
+        "resume": "Resume",
+        "noteStrong": "Note:",
+        "noteOpen": "The model is ",
+        "noteEm": "schematic",
+        "noteRest": "— it shows the role of theoretical stages, reflux, and temperature in rectification with low relative volatility (α close to 1). It does not replace industrial design or real vacuum distillation.",
+        "noteExtra": "H₂O/D₂O separation is one of the hardest in chemical engineering: very similar properties, so high energy use and very tall equipment for nuclear purity.",
+        "alphaHint": "With α ≈ 1.066 (H₂O more volatile than D₂O): separation is difficult — you need many theoretical stages and high reflux to approach 99.8% D₂O at the reboiler."
+      },
+      "presets": {
+        "rapid": "Fast",
+        "rapidTitle": "Few theoretical stages, R = 1 (minimum in the teaching range): fast but weak separation",
+        "balanced": "Balanced",
+        "balancedTitle": "Balanced settings for demo",
+        "industrial": "Industrial",
+        "industrialTitle": "Many theoretical stages and R = 1.5 (maximum in the teaching range): path to high purity (slow)"
+      },
+      "labels": {
+        "reboilerTempTitle": "Below ~100 °C effective vaporisation drops; the reboiler should sit in the H₂O–D₂O window.",
+        "stagesTitle": "Each theoretical stage corresponds, in the model, to a distillation tray (vapour–liquid contact).",
+        "refluxTitle": "R between 1 and 1.5 (teaching parameters): higher values return more liquid to the column."
+      },
+      "process": {
+        "paused": "Paused — concentrations are frozen.",
+        "boilLow": "Temperature too low: no efficient vaporisation in the reboiler.",
+        "phase1": "H₂O evaporates preferentially — vapour richer in light water rises toward the condenser.",
+        "phase2": "Reflux improves separation: liquid returns and washes D₂O toward the column base.",
+        "phase3": "Near maximum purity → slow process (plateau). The last percent are the most expensive.",
+        "phase4": "Teaching target reached in the model — in practice the last ppm need more time and stages."
+      },
+      "tempWarning": "Little vaporisation at this temperature — raise the reboiler slightly.",
+      "chart": {
+        "targetLine": "Target {target}% D₂O",
+        "xAxis": "t (sim. h)",
+        "yAxis": "% D₂O (reboiler)"
+      },
+      "trayTitle": "Stage {n} → ~{pct}% D₂O (tray liquid, model)"
+    },
+    "legaturi-atomi": {
+      "page": {
+        "eyebrow": "Chemical bonding | Interactive simulation"
+      },
+      "documentTitle": "Atomic bonds simulator",
+      "htmlLang": "en",
+      "panel": {
+        "mainTitle": "Atomic bonds",
+        "mainIntro": "Move the atoms and watch how the electron distribution changes.",
+        "atomsHeading": "Atoms",
+        "energyHeading": "Energy",
+        "physicsHeading": "Physics control",
+        "viewHeading": "Visualization",
+        "stateHeading": "Simulation state",
+        "legendHeading": "Legend"
+      },
+      "controls": {
+        "atomA": "Atom A",
+        "atomB": "Atom B",
+        "addAtomLabel": "Add atom",
+        "electronicExcitation": "Electronic excitation",
+        "deltaOverride": "Manual override for ΔEN",
+        "deltaManual": "Manual ΔEN",
+        "motionSlow": "Motion speed"
+      },
+      "buttons": {
+        "addAtom": "Add atom",
+        "removeAtom": "Remove atom",
+        "resetPositions": "Reset positions"
+      },
+      "readouts": {
+        "totalAtoms": "Total atoms",
+        "selected": "Selected",
+        "bond": "Bond",
+        "distance": "Distance",
+        "deltaEN": "ΔEN",
+        "intensity": "Strength",
+        "charges": "Charges",
+        "suggestion": "Suggestion"
+      },
+      "range": {
+        "stable": "Stable",
+        "excited": "Excited",
+        "slow": "Slow",
+        "fast": "Fast"
+      },
+      "viewMode": {
+        "classic": "Classic",
+        "quantum": "Quantum",
+        "classicHelp": "Classic mode: electrons on orbits, visible charge transfer and orbital motion.",
+        "quantumHelp": "Quantum mode: probability cloud (noisy shader), pulse, bond formation and deformation on approach."
+      },
+      "bondTypes": {
+        "none": "No bond",
+        "covalent": "Covalent",
+        "polar_covalent": "Polar covalent",
+        "ionic": "Ionic",
+        "semiconductor": "Semiconductor-like",
+        "metallic": "Metallic"
+      },
+      "hints": {
+        "sceneDrag": "Click and drag an atom to move it in the plane.",
+        "pickPair": "Pick an interesting pair to unlock new chemistry scenarios.",
+        "addAtom": "Add another atom to explore bonding."
+      },
+      "legend": {
+        "dragNucleus": "Drag a nucleus to change the distance between atoms.",
+        "classicMode": "Classic mode shows simplified orbits and the bond.",
+        "quantumMode": "Quantum mode shows a probability cloud between atoms."
+      },
+      "aria": {
+        "toggleLeft": "Toggle control panel",
+        "toggleRight": "Toggle reference panel",
+        "viewModeGroup": "Visualization mode"
+      },
+      "ref": {
+        "mainTitle": "Formulas & units",
+        "bondClassificationTitle": "Bond classification",
+        "thBondType": "Bond type",
+        "coulombTitle": "Coulomb's law",
+        "coulombQ": "q = electric charge (C)",
+        "coulombR": "r = distance between charges (m)",
+        "bindingEnergyTitle": "Binding energy",
+        "bindingLine1": "E is expressed in eV or kJ/mol",
+        "bindingLine2": "1 eV = 1.602 × 10⁻¹⁹ J",
+        "bindingLine3": "1 eV per particle ≈ 96.49 kJ/mol",
+        "unitsTitle": "Units of measurement",
+        "thQuantity": "Quantity",
+        "thUnit": "Unit",
+        "unitDistance": "Distance",
+        "unitEN": "Electronegativity",
+        "unitENPaulingNote": "Pauling (dimensionless)",
+        "unitCharge": "Charge",
+        "unitEnergy": "Energy",
+        "unitRadius": "Atomic radius",
+        "unitForce": "Force",
+        "unitChargeValue": "e (elementary charge)",
+        "unitAngstromNote": "Å (ångström) = 10⁻¹⁰ m",
+        "unitElectronvoltNote": "eV (electron-volt)",
+        "unitPicometerNote": "pm (picometre) = 10⁻¹² m",
+        "unitNewtonNote": "N (newton)",
+        "paulingTitle": "Pauling scale (selection)",
+        "thElement": "Element",
+        "thType": "Type",
+        "octetTitle": "Octet rule",
+        "octetLine1": "Atoms tend to have 8 valence electrons (exception: H → 2e⁻).",
+        "octetLine2": "Chemical bonds form to approach this stable configuration.",
+        "pauling": {
+          "mostEN": "Most electronegative",
+          "nonmetal": "Nonmetal",
+          "halogen": "Halogen",
+          "nonmetalShort": "Nonmetal",
+          "nonmetal2": "Nonmetal",
+          "nonmetal3": "Nonmetal",
+          "semiconductor": "Semiconductor",
+          "transition": "Transition metal",
+          "alkalineEarth": "Alkaline earth",
+          "alkaliMetal": "Alkali metal",
+          "alkaliMetal2": "Alkali metal"
+        }
+      },
+      "elements": {
+        "H": { "name": "Hydrogen" },
+        "O": { "name": "Oxygen" },
+        "C": { "name": "Carbon" },
+        "N": { "name": "Nitrogen" },
+        "Cl": { "name": "Chlorine" },
+        "F": { "name": "Fluorine" },
+        "Na": { "name": "Sodium" },
+        "K": { "name": "Potassium" },
+        "Ca": { "name": "Calcium" },
+        "Fe": { "name": "Iron" },
+        "Cu": { "name": "Copper" },
+        "Si": { "name": "Silicon" },
+        "S": { "name": "Sulfur" },
+        "He": { "name": "Helium" }
+      },
+      "categories": {
+        "basic": "Nonmetals",
+        "halogens": "Halogens",
+        "alkali": "Alkali metals",
+        "alkaline_earth": "Alkaline earth metals",
+        "transition_metals": "Transition metals",
+        "special": "Special elements"
+      },
+      "comboSuggestions": {
+        "C_H": "This pair is the basis for CH₄ and simple organic molecules.",
+        "C_O": "Explore the basis for CO₂ and differences between multiple bonds.",
+        "H_Cl": "You can form HCl, a classic polar covalent example.",
+        "He_H": "Helium stays inert and is a good counter-example of non-reactivity.",
+        "K_F": "You can form KF, with polarity even more extreme than NaCl.",
+        "N_H": "This pair underlies NH₃, where nitrogen keeps a lone pair.",
+        "N_N": "Explore N₂ and the idea of a triple bond.",
+        "Na_Cl": "You can form NaCl and watch almost complete electron transfer.",
+        "O_H": "This pair underlies H₂O; add another H to build the water molecule.",
+        "Ca_Cl": "You can head toward CaCl₂; one more Cl atom is needed for the full formula.",
+        "Fe_Cu": "Compare two metals and the idea of an electron sea.",
+        "Si_Si": "Explore the start of a semiconductor network with Si.",
+        "_generic": "The {a} + {b} pair can be explored freely in this sandbox."
+      },
+      "descriptions": {
+        "diffuse": "Particles stay diffuse until the nuclei enter the overlap region.",
+        "nobleGas": "Noble gases stay nearly inert even when you bring atoms close.",
+        "semiconductor": "Orbitals align like in a network, while transfer stays energetically controlled.",
+        "metallic": "Electrons delocalise and flow through a shared electron-like cloud.",
+        "covalent": "A bonding electron oscillates between nuclei, and the cloud stays nearly symmetric.",
+        "polarCovalent": "The cloud polarises and electron density shifts toward the more electronegative atom.",
+        "ionic": "Bond formation pushes the electron toward the acceptor and clearly separates donor from acceptor."
+      },
+      "labels": {
+        "manualDeltaSuffix": "(manual)",
+        "noAtomSelected": "No atom",
+        "atomSelectOption": "Atom {i} — {type}"
+      },
+      "tooltip": {
+        "z": "Z",
+        "valence": "Valence",
+        "en": "EN",
+        "activeElectrons": "Active electrons"
+      },
+      "errors": {
+        "initFailed": "An error occurred during startup: {msg}"
+      }
+    },
+    "tabel-periodic": {
+      "page": {
+        "eyebrow": "Periodic table | Interactive simulation"
+      },
+      "documentTitle": "Interactive periodic table",
+      "htmlLang": "en"
+    }
+  }
+}

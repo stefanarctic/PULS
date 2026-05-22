@@ -46,6 +46,17 @@ const ui = {
   chartEnabled: document.getElementById("chartEnabled"),
 };
 
+function simT(path, fallback) {
+  if (typeof window.simLbl === "function") return window.simLbl(path, fallback);
+  return fallback;
+}
+
+function simFmt(path, fallback, vars) {
+  let s = simT(path, fallback);
+  if (!vars) return s;
+  return s.replace(/\{(\w+)\}/g, (_, k) => (vars[k] != null && vars[k] !== undefined ? String(vars[k]) : ""));
+}
+
 let W = 800, H = 600, DPR = 1;
 
 function resize() {
@@ -82,6 +93,13 @@ let segLen = 12;
 let mode = "STATIC"; // STATIC sau DYNAMIC
 let paused = false;
 
+function refreshModeBadge() {
+  const label = mode === "DYNAMIC"
+    ? simT("modes.dynamic", "DYNAMIC")
+    : simT("modes.static", "STATIC");
+  ui.badge.textContent = simT("labels.badgePrefix", "MOD: ") + label;
+}
+
 const mouse = { x:0, y:0, down:false, grabbed:-1 };
 
 // Date pentru grafice oscilație
@@ -99,15 +117,15 @@ function setUIValues(){
   ui.segCountVal.textContent = ui.segCount.value;
   // Convertim pixeli în metri
   const ropeLenMeters = (parseFloat(ui.ropeLen.value) * METERS_PER_PIXEL).toFixed(1);
-  ui.ropeLenVal.textContent = ropeLenMeters + " m";
-  
+  ui.ropeLenVal.textContent = ropeLenMeters + simT("labels.suffixM", " m");
+
   // Convertim gravitația: valoarea în px/s² -> m/s²
   const gravityMs2 = (parseFloat(ui.gravity.value) * METERS_PER_PIXEL).toFixed(1);
-  ui.gravityVal.textContent = gravityMs2 + " m/s²";
-  
+  ui.gravityVal.textContent = gravityMs2 + simT("labels.suffixMs2", " m/s²");
+
   ui.dampingVal.textContent = Number(ui.damping.value).toFixed(3);
   ui.itersVal.textContent = ui.iters.value;
-  ui.dtVal.textContent = Number(ui.dt.value).toFixed(3) + " s";
+  ui.dtVal.textContent = Number(ui.dt.value).toFixed(3) + simT("labels.suffixSUnit", " s");
 }
 
 function initRope() {
@@ -143,7 +161,7 @@ function initRope() {
   applyPins(true);
 
   mode = "STATIC";
-  ui.badge.textContent = "MOD: STATIC";
+  refreshModeBadge();
   
   // Resetează graficul
   oscillationData = [];
@@ -257,7 +275,7 @@ function staticSettle(steps=220){
     verletStep(dt);
     solveConstraints(Math.max(iters, 18));
   }
-  ui.badge.textContent = "MOD: STATIC";
+  refreshModeBadge();
 }
 
 // --- Randare ---
@@ -339,9 +357,27 @@ function draw(){
 
   // statistici
   const segLenMeters = (segLen * METERS_PER_PIXEL).toFixed(3);
+  const yn = (v) => (v ? simT("labels.yes", "Da") : simT("labels.no", "Nu"));
   ui.stats.innerHTML =
-    `Noduri: <b>${points.length}</b> | Segmente: <b>${points.length-1}</b> | Lungime segment: <b>${segLenMeters}</b> m<br>` +
-    `Fixat stânga: <b>${points[0].invMass===0 ? 'Da' : 'Nu'}</b> | Fixat dreapta: <b>${points[points.length-1].invMass===0 ? 'Da' : 'Nu'}</b> | Tragere: <b>${mouse.grabbed>=0 ? 'Da' : 'Nu'}</b>`;
+    simFmt(
+      "stats.line1",
+      "Noduri: <b>{nodes}</b> | Segmente: <b>{segments}</b> | Lungime segment: <b>{segLen}</b> m",
+      {
+        nodes: points.length,
+        segments: points.length - 1,
+        segLen: segLenMeters,
+      }
+    ) +
+    "<br>" +
+    simFmt(
+      "stats.line2",
+      "Fixat stânga: <b>{pinL}</b> | Fixat dreapta: <b>{pinR}</b> | Tragere: <b>{drag}</b>",
+      {
+        pinL: yn(points[0].invMass === 0),
+        pinR: yn(points[points.length - 1].invMass === 0),
+        drag: yn(mouse.grabbed >= 0),
+      }
+    );
   
   // Desenează graficele
   drawChartY();
@@ -395,9 +431,11 @@ function drawChartY() {
     chartCtxY.font = `${12 * DPR}px system-ui`;
     chartCtxY.textAlign = "center";
     chartCtxY.textBaseline = "middle";
-    chartCtxY.fillText("Așteaptă date...", 
-      (chartCanvasY.width || 400) / 2, 
-      (chartCanvasY.height || 250) / 2);
+    chartCtxY.fillText(
+      simT("labels.waitData", "A\u0219teapt\u0103 date..."),
+      (chartCanvasY.width || 400) / 2,
+      (chartCanvasY.height || 250) / 2
+    );
     return;
   }
   
@@ -442,7 +480,7 @@ function drawChartY() {
     const yVal = minY + (yRange * i / ySteps);
     const yPx = ch - padding - (graphH * i / ySteps);
     const yMeters = (yVal * METERS_PER_PIXEL).toFixed(2);
-    chartCtxY.fillText(yMeters + " m", padding - 6 * DPR, yPx);
+    chartCtxY.fillText(yMeters + simT("labels.suffixM", " m"), padding - 6 * DPR, yPx);
   }
   
   chartCtxY.textAlign = "center";
@@ -451,14 +489,14 @@ function drawChartY() {
   for (let i = 0; i <= xSteps; i++) {
     const tVal = minTime + (timeRange * i / xSteps);
     const xPx = padding + (graphW * i / xSteps);
-    chartCtxY.fillText(tVal.toFixed(1) + " s", xPx, ch - padding + 6 * DPR);
+    chartCtxY.fillText(tVal.toFixed(1) + simT("labels.suffixS", " s"), xPx, ch - padding + 6 * DPR);
   }
   
   chartCtxY.textAlign = "center";
   chartCtxY.textBaseline = "top";
   chartCtxY.font = `${12 * DPR}px system-ui`;
   chartCtxY.fillStyle = "rgba(251,238,193,0.9)";
-  chartCtxY.fillText("Oscilație Verticală (Poziție Y)", cw / 2, 8 * DPR);
+  chartCtxY.fillText(simT("labels.chartYTitle", "Oscila\u021bie Vertical\u0103 (Pozi\u021bie Y)"), cw / 2, 8 * DPR);
   
   chartCtxY.strokeStyle = "rgba(251,238,193,0.85)";
   chartCtxY.lineWidth = 2 * DPR;
@@ -505,9 +543,11 @@ function drawChartX() {
     chartCtxX.font = `${12 * DPR}px system-ui`;
     chartCtxX.textAlign = "center";
     chartCtxX.textBaseline = "middle";
-    chartCtxX.fillText("Așteaptă date...", 
-      (chartCanvasX.width || 400) / 2, 
-      (chartCanvasX.height || 250) / 2);
+    chartCtxX.fillText(
+      simT("labels.waitData", "A\u0219teapt\u0103 date..."),
+      (chartCanvasX.width || 400) / 2,
+      (chartCanvasX.height || 250) / 2
+    );
     return;
   }
   
@@ -552,7 +592,7 @@ function drawChartX() {
     const xVal = minX + (xRange * i / xSteps);
     const yPx = ch - padding - (graphH * i / xSteps);
     const xMeters = (xVal * METERS_PER_PIXEL).toFixed(2);
-    chartCtxX.fillText(xMeters + " m", padding - 6 * DPR, yPx);
+    chartCtxX.fillText(xMeters + simT("labels.suffixM", " m"), padding - 6 * DPR, yPx);
   }
   
   chartCtxX.textAlign = "center";
@@ -561,14 +601,14 @@ function drawChartX() {
   for (let i = 0; i <= timeSteps; i++) {
     const tVal = minTime + (timeRange * i / timeSteps);
     const xPx = padding + (graphW * i / timeSteps);
-    chartCtxX.fillText(tVal.toFixed(1) + " s", xPx, ch - padding + 6 * DPR);
+    chartCtxX.fillText(tVal.toFixed(1) + simT("labels.suffixS", " s"), xPx, ch - padding + 6 * DPR);
   }
   
   chartCtxX.textAlign = "center";
   chartCtxX.textBaseline = "top";
   chartCtxX.font = `${12 * DPR}px system-ui`;
   chartCtxX.fillStyle = "rgba(251,238,193,0.9)";
-  chartCtxX.fillText("Oscilație Orizontală (Poziție X)", cw / 2, 8 * DPR);
+  chartCtxX.fillText(simT("labels.chartXTitle", "Oscila\u021bie Orizontal\u0103 (Pozi\u021bie X)"), cw / 2, 8 * DPR);
   
   chartCtxX.strokeStyle = "rgba(251,238,193,0.85)";
   chartCtxX.lineWidth = 2 * DPR;
@@ -653,10 +693,6 @@ canvas.addEventListener("pointercancel", ()=>{
 });
 
 // --- Butoane / UI ---
-function updateBadge(){
-  ui.badge.textContent = `MOD: ${mode}`;
-}
-
 ui.btnReset.addEventListener("click", ()=>{
   initRope();
   staticSettle(220);
@@ -675,12 +711,12 @@ ui.btnRelease.addEventListener("click", ()=>{
   if (chartStartTime === null) {
     chartStartTime = performance.now() / 1000; // începe înregistrarea pentru grafic
   }
-  updateBadge();
+  refreshModeBadge();
 });
 
 ui.btnPause.addEventListener("click", ()=>{
   paused = !paused;
-  ui.btnPause.textContent = paused ? "Continuă" : "Pauză";
+  ui.btnPause.textContent = paused ? simT("buttons.resume", "Continu\u0103") : simT("buttons.pause", "Pauz\u0103");
 });
 
 ui.btnClearChart.addEventListener("click", ()=>{

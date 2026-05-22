@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback } from 'react';
+import React, { useState, useEffect, useCallback, useMemo } from 'react';
 import { Link, useNavigate, useParams } from 'react-router-dom';
 import { doc, getDoc } from 'firebase/firestore';
 import Layout from '../Layout';
@@ -24,6 +24,7 @@ import {
 } from '../../lib/assignmentProgress';
 import { AssignmentCheckIcon } from '../AssignmentCheckIcon';
 import HomeworkTextSubmitModal from '../HomeworkTextSubmitModal';
+import { useI18n } from '../../i18n/LanguageContext';
 import '../../scss/components/_teacher-dashboard.scss';
 
 function simulationRouteForSlug(slug) {
@@ -73,6 +74,22 @@ function scrollToSection(id, e) {
 const StudentClassPage = () => {
   const { classId } = useParams();
   const navigate = useNavigate();
+  const { t, localizedPath, lang } = useI18n();
+  const SC = 'classes.studentClass';
+  const AS = 'classes.assignmentStatus';
+
+  const assignmentStatusLabels = useMemo(
+    () => ({
+      done: t(`${AS}.done`, 'Tema făcută'),
+      overdue: t(`${AS}.overdue`, 'Tema nefăcută (termen depășit)'),
+      inProgress: t(`${AS}.inProgress`, 'În lucru'),
+      notStarted: t(`${AS}.notStarted`, 'De început'),
+    }),
+    [t, AS],
+  );
+
+  const localeTag = lang === 'en' ? 'en-GB' : 'ro-RO';
+
   const [user, setUser] = useState(null);
   const [authLoading, setAuthLoading] = useState(true);
   const [loading, setLoading] = useState(true);
@@ -123,7 +140,7 @@ const StudentClassPage = () => {
         const isInClass = Array.isArray(joined) && joined.includes(classId);
         if (!isInClass) {
           if (!cancelled) {
-            setError('Nu ești înscris la această clasă.');
+            setError(t(`${SC}.notEnrolled`, 'Nu ești înscris la această clasă.'));
             setClassData(null);
             setClassmates([]);
             setTeacherDisplayName(null);
@@ -139,7 +156,7 @@ const StudentClassPage = () => {
           setClassData(c);
           setAssignments(a);
           const sortedPeers = [...members].sort((x, y) =>
-            String(x.studentName || '').localeCompare(String(y.studentName || ''), 'ro', {
+            String(x.studentName || '').localeCompare(String(y.studentName || ''), lang === 'en' ? 'en' : 'ro', {
               sensitivity: 'base',
             }),
           );
@@ -159,7 +176,7 @@ const StudentClassPage = () => {
       } catch (e) {
         console.error(e);
         if (!cancelled) {
-          setError('Nu s-a putut încărca clasa.');
+          setError(t(`${SC}.loadFailed`, 'Nu s-a putut încărca clasa.'));
           setClassmates([]);
           setTeacherDisplayName(null);
         }
@@ -170,7 +187,7 @@ const StudentClassPage = () => {
     return () => {
       cancelled = true;
     };
-  }, [user, classId]);
+  }, [user, classId, t, SC, lang]);
 
   useEffect(() => {
     let cancelled = false;
@@ -256,16 +273,19 @@ const StudentClassPage = () => {
   const handleLeaveClass = async () => {
     if (!user?.uid || !classId) return;
     const ok = window.confirm(
-      'Sigur vrei să ieși din această clasă? Nu vei mai vedea temele aici; poți reintra mai târziu cu codul de la profesor.'
+      t(
+        `${SC}.confirmLeave`,
+        'Sigur vrei să ieși din această clasă? Nu vei mai vedea temele aici; poți reintra mai târziu cu codul de la profesor.'
+      )
     );
     if (!ok) return;
     setLeavingClass(true);
     try {
       await leaveStudentClass(user.uid, classId);
-      navigate('/clasa');
+      navigate(localizedPath('/clasa'));
     } catch (e) {
       console.error(e);
-      window.alert('Nu s-a putut ieși din clasă. Încearcă din nou.');
+      window.alert(t(`${SC}.leaveFailed`, 'Nu s-a putut ieși din clasă. Încearcă din nou.'));
     } finally {
       setLeavingClass(false);
     }
@@ -276,6 +296,7 @@ const StudentClassPage = () => {
       <Layout>
         <div className="teacher-dashboard-loading">
           <div className="spinner" />
+          <p>{t(`${SC}.loading`, 'Se încarcă...')}</p>
         </div>
       </Layout>
     );
@@ -285,8 +306,8 @@ const StudentClassPage = () => {
     return (
       <Layout>
         <div className="teacher-dashboard-inner teacher-dashboard-narrow">
-          <p>Autentifică-te pentru a vedea tema.</p>
-          <Link to="/profil">Profil</Link>
+          <p>{t(`${SC}.signInPrompt`, 'Autentifică-te pentru a vedea tema.')}</p>
+          <Link to={localizedPath('/profil')}>{t(`${SC}.profileLink`, 'Profil')}</Link>
         </div>
       </Layout>
     );
@@ -297,6 +318,7 @@ const StudentClassPage = () => {
       <Layout>
         <div className="teacher-dashboard-loading">
           <div className="spinner" />
+          <p>{t(`${SC}.loading`, 'Se încarcă...')}</p>
         </div>
       </Layout>
     );
@@ -306,8 +328,8 @@ const StudentClassPage = () => {
     return (
       <Layout>
         <div className="teacher-dashboard-error-screen">
-          <p>{error || 'Clasă indisponibilă.'}</p>
-          <Link to="/clasa">Înapoi la clasele mele</Link>
+          <p>{error || t(`${SC}.unavailable`, 'Clasă indisponibilă.')}</p>
+          <Link to={localizedPath('/clasa')}>{t(`${SC}.backList`, 'Înapoi la clasele mele')}</Link>
         </div>
       </Layout>
     );
@@ -322,9 +344,9 @@ const StudentClassPage = () => {
         <div className="student-classroom-shell">
           <header className="student-classroom-banner">
             <div className="student-classroom-banner-toolbar">
-              <Link to="/clasa" className="student-classroom-back">
+              <Link to={localizedPath('/clasa')} className="student-classroom-back">
                 <ArrowLeft size={18} aria-hidden />
-                Clasele mele
+                {t(`${SC}.backList`, 'Clasele mele')}
               </Link>
               <button
                 type="button"
@@ -333,17 +355,20 @@ const StudentClassPage = () => {
                 onClick={handleLeaveClass}
               >
                 <UserMinus size={18} aria-hidden />
-                {leavingClass ? 'Se iese…' : 'Părăsește clasa'}
+                {leavingClass ? t(`${SC}.leaving`, 'Se iese…') : t(`${SC}.leave`, 'Părăsește clasa')}
               </button>
             </div>
             <div className="student-classroom-banner-hero">
               <div className="student-classroom-banner-copy">
-                <p className="student-classroom-kicker">Clasa ta</p>
+                <p className="student-classroom-kicker">{t(`${SC}.kicker`, 'Clasa ta')}</p>
                 <h1 className="student-classroom-title">{classData.name}</h1>
                 {classData.description ? (
                   <p className="student-classroom-description">{classData.description}</p>
                 ) : null}
-                <div className="student-classroom-banner-chips" aria-label="Rezumat clasă">
+                <div
+                  className="student-classroom-banner-chips"
+                  aria-label={t(`${SC}.chipsSummary`, 'Rezumat clasă')}
+                >
                   <a
                     href="#student-classroom-work"
                     className="student-classroom-stat-chip"
@@ -355,7 +380,9 @@ const StudentClassPage = () => {
                     <span className="student-classroom-stat-chip-text">
                       <span className="student-classroom-stat-chip-value">{assignmentCount}</span>
                       <span className="student-classroom-stat-chip-label">
-                        {assignmentCount === 1 ? 'temă' : 'teme'}
+                        {assignmentCount === 1
+                          ? t(`${SC}.statHomeworkOne`, 'temă')
+                          : t(`${SC}.statHomeworkOther`, 'teme')}
                       </span>
                     </span>
                   </a>
@@ -370,7 +397,9 @@ const StudentClassPage = () => {
                     <span className="student-classroom-stat-chip-text">
                       <span className="student-classroom-stat-chip-value">{peerCount}</span>
                       <span className="student-classroom-stat-chip-label">
-                        {peerCount === 1 ? 'coleg' : 'colegi'}
+                        {peerCount === 1
+                          ? t(`${SC}.statPeerOne`, 'coleg')
+                          : t(`${SC}.statPeersOther`, 'colegi')}
                       </span>
                     </span>
                   </a>
@@ -380,7 +409,7 @@ const StudentClassPage = () => {
                         <GraduationCap size={17} strokeWidth={2} />
                       </span>
                       <span className="student-classroom-stat-chip-text student-classroom-stat-chip-text--stack">
-                        <span className="student-classroom-stat-chip-sublabel">Profesor</span>
+                        <span className="student-classroom-stat-chip-sublabel">{t(`${SC}.teacherLabel`, 'Profesor')}</span>
                         <span className="student-classroom-stat-chip-teacher-name" title={teacherDisplayName}>
                           {teacherDisplayName}
                         </span>
@@ -399,9 +428,9 @@ const StudentClassPage = () => {
                   <ClipboardList size={22} strokeWidth={1.75} />
                 </span>
                 <div>
-                  <h2 className="student-classroom-h2">Lucrări de curs</h2>
+                  <h2 className="student-classroom-h2">{t(`${SC}.sectionWork`, 'Lucrări de curs')}</h2>
                   <p className="student-classroom-section-sub">
-                    Temele publicate de profesor apar aici, cu termene și status.
+                    {t(`${SC}.sectionWorkSub`, 'Temele publicate de profesor apar aici, cu termene și status.')}
                   </p>
                 </div>
               </div>
@@ -409,9 +438,9 @@ const StudentClassPage = () => {
               {assignments.length === 0 ? (
                 <div className="student-classroom-empty-work">
                   <ClipboardList size={40} strokeWidth={1.1} aria-hidden />
-                  <p className="student-classroom-empty-title">Nicio temă încă</p>
+                  <p className="student-classroom-empty-title">{t(`${SC}.noHomeworkTitle`, 'Nicio temă încă')}</p>
                   <p className="student-classroom-empty-desc">
-                    Când profesorul publică o lucrare, o vei vedea în această listă.
+                    {t(`${SC}.noHomeworkDesc`, 'Când profesorul publică o lucrare, o vei vedea în această listă.')}
                   </p>
                 </div>
               ) : (
@@ -423,6 +452,7 @@ const StudentClassPage = () => {
                   dueDate: as.dueDate,
                   submission: sub,
                   itemCount,
+                  labels: assignmentStatusLabels,
                 });
                 return (
                   <article
@@ -437,9 +467,9 @@ const StudentClassPage = () => {
                             <span className="student-classroom-assignment-due">
                               <Calendar size={15} strokeWidth={2} aria-hidden />
                               <span>
-                                Termen:{' '}
+                                {t(`${SC}.dueLabel`, 'Termen:')}{' '}
                                 <time dateTime={as.dueDate.toDate().toISOString()}>
-                                  {as.dueDate.toDate().toLocaleString('ro-RO')}
+                                  {as.dueDate.toDate().toLocaleString(localeTag)}
                                 </time>
                               </span>
                             </span>
@@ -448,10 +478,13 @@ const StudentClassPage = () => {
                             <span
                               className={`student-classroom-assignment-score${dueSt.lateDone ? ' student-classroom-assignment-score--late' : ''}`}
                             >
-                              Notă: <strong>{sub.averageScore10}</strong>
+                              {t(`${SC}.gradeLabel`, 'Notă:')}{' '}
+                              <strong>{sub.averageScore10}</strong>
                               <span className="student-classroom-assignment-score-denom">/10</span>
                               {dueSt.lateDone ? (
-                                <span className="student-classroom-assignment-late-tag">După termen</span>
+                                <span className="student-classroom-assignment-late-tag">
+                                  {t(`${SC}.lateTag`, 'După termen')}
+                                </span>
                               ) : null}
                             </span>
                           ) : null}
@@ -466,7 +499,9 @@ const StudentClassPage = () => {
                       </div>
                     </header>
                     <div className="student-classroom-assignment-body">
-                      <p className="student-classroom-assignment-body-label">Activități de îndeplinit</p>
+                      <p className="student-classroom-assignment-body-label">
+                        {t(`${SC}.activitiesLabel`, 'Activități de îndeplinit')}
+                      </p>
                       <ol className="teacher-dashboard-assignment-items student-assignment-items student-classroom-assignment-tasks">
                       {(as.items || []).map((it, idx) => {
                         const itemState = sub?.items?.[String(idx)];
@@ -475,17 +510,17 @@ const StudentClassPage = () => {
                         const tierTitle =
                           it.type === 'simulation'
                             ? itemState?.done
-                              ? 'Vizitat'
-                              : 'Nevizitat'
+                              ? t(`${SC}.tierVisited`, 'Vizitat')
+                              : t(`${SC}.tierNotVisited`, 'Nevizitat')
                             : it.type === 'grila'
                               ? itemState?.done
                                 ? itemState.score10 >= 10
-                                  ? 'Corect'
-                                  : 'Greșit'
-                                : 'Nerezolvată'
+                                  ? t(`${SC}.tierCorrect`, 'Corect')
+                                  : t(`${SC}.tierWrong`, 'Greșit')
+                                : t(`${SC}.tierUnsolved`, 'Nerezolvată')
                               : itemState?.done && itemState.score10 != null
-                                ? `Notă ${itemState.score10}/10`
-                                : 'Neevaluată';
+                                ? t(`${SC}.tierGrade`, 'Notă {n}/10', { n: itemState.score10 })
+                                : t(`${SC}.tierUneval`, 'Neevaluată');
 
                         return (
                           <li key={idx} className="student-assignment-item-row student-classroom-task-row">
@@ -503,13 +538,18 @@ const StudentClassPage = () => {
                                   if (pidx == null) {
                                     return (
                                       <span className="teacher-dashboard-muted student-classroom-task-muted">
-                                        {legacyIndicesDone ? 'Problemă indisponibilă.' : 'Problemă (se încarcă…)'}
+                                        {legacyIndicesDone
+                                          ? t(`${SC}.problemUnavailable`, 'Problemă indisponibilă.')
+                                          : t(`${SC}.problemLoading`, 'Problemă (se încarcă…)')}
                                       </span>
                                     );
                                   }
                                   return (
-                                    <Link to={`/probleme/${pidx}?${hwQs}`} className="student-classroom-task-link">
-                                      <span>Deschide problema</span>
+                                    <Link
+                                      to={`${localizedPath(`/probleme/${pidx}`)}?${hwQs}`}
+                                      className="student-classroom-task-link"
+                                    >
+                                      <span>{t(`${SC}.openProblem`, 'Deschide problema')}</span>
                                       <ChevronRight size={18} strokeWidth={2} aria-hidden />
                                     </Link>
                                   );
@@ -523,24 +563,29 @@ const StudentClassPage = () => {
                                   if (gidx == null) {
                                     return (
                                       <span className="teacher-dashboard-muted student-classroom-task-muted">
-                                        {legacyIndicesDone ? 'Grilă indisponibilă.' : 'Grilă (se încarcă…)'}
+                                        {legacyIndicesDone
+                                          ? t(`${SC}.grilaUnavailable`, 'Grilă indisponibilă.')
+                                          : t(`${SC}.grilaLoading`, 'Grilă (se încarcă…)')}
                                       </span>
                                     );
                                   }
                                   return (
-                                    <Link to={`/probleme/grile/${gidx}?${hwQs}`} className="student-classroom-task-link">
-                                      <span>Deschide grila</span>
+                                    <Link
+                                      to={`${localizedPath(`/probleme/grile/${gidx}`)}?${hwQs}`}
+                                      className="student-classroom-task-link"
+                                    >
+                                      <span>{t(`${SC}.openGrila`, 'Deschide grila')}</span>
                                       <ChevronRight size={18} strokeWidth={2} aria-hidden />
                                     </Link>
                                   );
                                 })()}
                               {it.type === 'simulation' && (
                                 <Link
-                                  to={`${simulationRouteForSlug(it.slug)}?${hwQs}`}
+                                  to={`${localizedPath(simulationRouteForSlug(it.slug))}?${hwQs}`}
                                   className="student-classroom-task-link"
                                 >
                                   <span>
-                                    Simulare:{' '}
+                                    {t(`${SC}.simPrefix`, 'Simulare:')}{' '}
                                     {simulationsConfig.find((s) => s.slug === it.slug)?.title || it.slug}
                                   </span>
                                   <ChevronRight size={18} strokeWidth={2} aria-hidden />
@@ -563,7 +608,7 @@ const StudentClassPage = () => {
                                     }
                                   >
                                     <Sparkles size={17} strokeWidth={2} aria-hidden />
-                                    Evaluează tema
+                                    {t(`${SC}.evaluateHomework`, 'Evaluează tema')}
                                   </button>
                                 </div>
                               )}
@@ -583,17 +628,17 @@ const StudentClassPage = () => {
             <aside
               className="student-classroom-aside"
               id="student-classroom-people"
-              aria-label="Oameni din clasă"
+              aria-label={t(`${SC}.peopleAside`, 'Oameni din clasă')}
             >
               <div className="student-classroom-people-card">
                 <div className="student-classroom-people-head">
                   <Users size={22} strokeWidth={1.75} aria-hidden />
-                  <h2 className="student-classroom-people-h2">Oameni</h2>
+                  <h2 className="student-classroom-people-h2">{t(`${SC}.peopleHeading`, 'Oameni')}</h2>
                 </div>
 
                 {classData.teacherId ? (
                   <div className="student-classroom-people-block">
-                    <p className="student-classroom-people-label">Profesor</p>
+                    <p className="student-classroom-people-label">{t(`${SC}.teacherLabel`, 'Profesor')}</p>
                     <div className="student-classroom-peer-row student-classroom-peer-row--teacher">
                       <div
                         className={`student-classroom-avatar ${avatarHueClass(classData.teacherId)} student-classroom-avatar--lg`}
@@ -603,7 +648,7 @@ const StudentClassPage = () => {
                       </div>
                       <div className="student-classroom-peer-info">
                         <span className="student-classroom-peer-name">
-                          {teacherDisplayName || 'Profesor'}
+                          {teacherDisplayName || t(`${SC}.teacherFallback`, 'Profesor')}
                         </span>
                       </div>
                     </div>
@@ -612,12 +657,14 @@ const StudentClassPage = () => {
 
                 <div className="student-classroom-people-block">
                   <p className="student-classroom-people-label">
-                    Colegi ({peerCount})
+                    {t(`${SC}.peersHeading`, 'Colegi ({count})', { count: peerCount })}
                   </p>
                   {peerCount === 0 ? (
                     <p className="student-classroom-peers-empty">
-                      Nu sunt încă elevi afișați aici. Dacă tocmai te-ai înscris, reîncarcă pagina în câteva
-                      momente.
+                      {t(
+                        `${SC}.peersEmpty`,
+                        'Nu sunt încă elevi afișați aici. Dacă tocmai te-ai înscris, reîncarcă pagina în câteva momente.'
+                      )}
                     </p>
                   ) : (
                     <ul className="student-classroom-peers">
@@ -637,7 +684,7 @@ const StudentClassPage = () => {
                             <div className="student-classroom-peer-info">
                               <span className="student-classroom-peer-name">{m.studentName}</span>
                               {isSelf ? (
-                                <span className="student-classroom-you-badge">Tu</span>
+                                <span className="student-classroom-you-badge">{t(`${SC}.youBadge`, 'Tu')}</span>
                               ) : null}
                             </div>
                           </li>

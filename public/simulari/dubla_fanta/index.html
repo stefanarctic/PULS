@@ -3,6 +3,7 @@
 
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Dubla Fantă - Simulator Cuantic</title>
     <link rel="stylesheet" href="style.css">
 </head>
@@ -11,82 +12,83 @@
 
     <div class="container">
 
-        <h1>⚛️ Dubla Fantă (Quantum)</h1>
+        <h1 data-i18n="header.h1">⚛️ Dubla Fantă (Quantum)</h1>
 
         <div class="controls">
             <label>
-                Lungime de undă (λ)
+                <span data-i18n="labels.lambda">Lungime de undă (λ)</span>
                 <input type="range" id="lambda" min="1" max="50" value="20">
             </label>
 
             <label>
-                Distanță fante (d)
+                <span data-i18n="labels.distance">Distanță fante (d)</span>
                 <input type="range" id="distance" min="10" max="200" value="80">
             </label>
 
             <label>
-                Distanță ecran (D)
+                <span data-i18n="labels.screenDist">Distanță ecran (D)</span>
                 <input type="range" id="screenDist" min="50" max="300" value="150">
             </label>
             <label>
-                Detector
+                <span data-i18n="labels.detector">Detector</span>
                 <input type="checkbox" id="detector">
             </label>
-            <button id="reset">Reset</button>
+            <button id="reset" type="button" data-i18n="buttons.reset">Reset</button>
         </div>
 
-        <canvas id="canvas"></canvas>
+        <canvas id="canvas" data-i18n-aria="labels.canvasAria" aria-label="Simulare dublă fantă"></canvas>
         <div class="info-panel">
 
-            <h2>Ce se întâmplă aici?</h2>
-            <p>
+            <h2 data-i18n="info.h2">Ce se întâmplă aici?</h2>
+            <p data-i18n="info.intro">
                 Acest simulator arată experimentul dublei fante în regim cuantic.
                 Particulele (electroni sau fotoni) nu au o poziție exactă, ci sunt descrise
                 de o funcție de undă care indică probabilitatea de apariție.
             </p>
 
-            <h3>Funcția de undă</h3>
-            <p>
+            <h3 data-i18n="info.waveHeading">Funcția de undă</h3>
+            <p data-i18n="info.waveP">
                 Unda nu reprezintă materia, ci informația despre unde poate apărea particula.
                 Zonele mai intense indică probabilitate mai mare.
             </p>
 
-            <h3>Interferența</h3>
-            <p>
+            <h3 data-i18n="info.interferenceHeading">Interferența</h3>
+            <p data-i18n="info.interferenceP">
                 Când unda trece prin două fante, ea interferează cu ea însăși.
                 Acest lucru creează benzi de probabilitate ridicată și scăzută.
             </p>
 
-            <h3>Rolul detectorului</h3>
-            <p>
+            <h3 data-i18n="info.detectorHeading">Rolul detectorului</h3>
+            <p data-i18n="info.detectorP">
                 Când activăm detectorul, aflăm prin ce fantă trece particula.
                 Acest lucru distruge interferența și rezultatul devine clasic:
                 două benzi simple.
             </p>
 
-            <h3>Ce reprezintă culorile</h3>
-            <p>
+            <h3 data-i18n="info.colorsHeading">Ce reprezintă culorile</h3>
+            <p data-i18n="info.colorsP">
                 Heatmap-ul arată probabilitatea (ψ²):
                 roșu = probabilitate mare,
                 albastru = probabilitate mică.
             </p>
 
-            <h3>De ce este important?</h3>
-            <p>
+            <h3 data-i18n="info.whyHeading">De ce este important?</h3>
+            <p data-i18n="info.whyP">
                 Acest fenomen stă la baza fizicii cuantice și explică:
                 electronii din atomi, legăturile chimice și tehnologia modernă.
             </p>
-            <h3>Experimentează</h3>
+            <h3 data-i18n="info.tryHeading">Experimentează</h3>
             <ul>
-                Dezactivează detectorul → vezi interferența
-                Activează detectorul → dispar benzile</li>
-                Mărește λ → benzile devin mai largi</li>
-                Mărește distanța dintre fante → benzile se apropie</li>
+                <li data-i18n="info.try1">Dezactivează detectorul → vezi interferența</li>
+                <li data-i18n="info.try2">Activează detectorul → dispar benzile</li>
+                <li data-i18n="info.try3">Mărește λ → benzile devin mai largi</li>
+                <li data-i18n="info.try4">Mărește distanța dintre fante → benzile se apropie</li>
             </ul>
         </div>
     </div>
 
-    <script src="script.js"></script>
+    <script src="/simulari/simulator-i18n-runtime.js"></script>
+    <script src="dubla-fanta-boot.js"></script>
 </body>
 
 </html>

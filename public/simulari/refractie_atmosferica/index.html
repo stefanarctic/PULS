@@ -9,33 +9,33 @@
 <body>
   <header class="topbar">
     <div class="brand">
-      <h1>Miraj în deșert</h1>
+      <h1 data-i18n="labels.pageTitle">Miraj în deșert</h1>
     </div>
   </header>
 
   <main class="layout" id="rafLayout">
-    <button type="button" id="toggleRafLeft" class="raf-toggle raf-toggle-left" aria-controls="leftPanel" aria-expanded="true" aria-label="Panou control">☰</button>
+    <button type="button" id="toggleRafLeft" class="raf-toggle raf-toggle-left" aria-controls="leftPanel" aria-expanded="true" data-i18n-aria="aria.panelControl">☰</button>
 
     <!-- PANOU STÂNGA -->
     <aside id="leftPanel" class="panel left">
       <div class="panelHeader">
-        <h2>Control</h2>
+        <h2 data-i18n="labels.controlPanel">Control</h2>
       </div>
 
       <div class="row">
-        <label for="dist">Distanță până la oază (m)</label>
+        <label for="dist" data-i18n="labels.dist">Distanță până la oază (m)</label>
         <input id="dist" type="range" min="40" max="220" step="1" value="140" />
         <span id="distVal" class="val">140</span>
       </div>
 
       <div class="row">
-        <label for="eyeH">Înălțimea ochilor (m)</label>
+        <label for="eyeH" data-i18n="labels.eyeH">Înălțimea ochilor (m)</label>
         <input id="eyeH" type="range" min="0.6" max="3.0" step="0.01" value="1.60" />
         <span id="eyeHVal" class="val">1.60</span>
       </div>
 
       <div class="row">
-        <label for="palmH">Înălțime palmieri (m)</label>
+        <label for="palmH" data-i18n="labels.palmH">Înălțime palmieri (m)</label>
         <input id="palmH" type="range" min="3" max="18" step="0.1" value="10" />
         <span id="palmHVal" class="val">10.0</span>
       </div>
@@ -43,19 +43,19 @@
       <div class="divider"></div>
 
       <div class="row">
-        <label for="grad">Intensitate gradient termic</label>
+        <label for="grad" data-i18n="labels.grad">Intensitate gradient termic</label>
         <input id="grad" type="range" min="0" max="1" step="0.01" value="0.62" />
         <span id="gradVal" class="val">0.62</span>
       </div>
 
       <div class="row">
-        <label for="layerH">Grosimea stratului cald (m)</label>
+        <label for="layerH" data-i18n="labels.layerH">Grosimea stratului cald (m)</label>
         <input id="layerH" type="range" min="0.4" max="6" step="0.01" value="2.0" />
         <span id="layerHVal" class="val">2.00</span>
       </div>
 
       <div class="row">
-        <label for="shimmer">„Tremur” (distorsiune aer cald)</label>
+        <label for="shimmer" data-i18n="labels.shimmer">„Tremur” (distorsiune aer cald)</label>
         <input id="shimmer" type="range" min="0" max="1" step="0.01" value="0.35" />
         <span id="shimmerVal" class="val">0.35</span>
       </div>
@@ -63,40 +63,40 @@
       <div class="divider"></div>
 
       <div class="row">
-        <label for="rays">Număr de raze</label>
+        <label for="rays" data-i18n="labels.rays">Număr de raze</label>
         <input id="rays" type="range" min="8" max="80" step="1" value="28" />
         <span id="raysVal" class="val">28</span>
       </div>
 
       <div class="row">
-        <label for="spread">Deschidere raze (°)</label>
+        <label for="spread" data-i18n="labels.spread">Deschidere raze (°)</label>
         <input id="spread" type="range" min="2" max="26" step="0.1" value="10" />
         <span id="spreadVal" class="val">10.0</span>
       </div>
 
       <div class="row">
-        <label for="steps">Calitate (pași pe rază)</label>
+        <label for="steps" data-i18n="labels.steps">Calitate (pași pe rază)</label>
         <input id="steps" type="range" min="200" max="1600" step="20" value="800" />
         <span id="stepsVal" class="val">800</span>
       </div>
 
       <div class="row">
-        <label for="speed">Viteză animație</label>
+        <label for="speed" data-i18n="labels.speed">Viteză animație</label>
         <input id="speed" type="range" min="0" max="2" step="0.01" value="1.0" />
         <span id="speedVal" class="val">1.00</span>
       </div>
 
       <div class="btnRow">
-        <button id="toggleAnim" class="btn">Pauză</button>
-        <button id="reset" class="btn ghost">Reset</button>
+        <button id="toggleAnim" class="btn" data-i18n="buttons.pause">Pauză</button>
+        <button id="reset" class="btn ghost" data-i18n="buttons.reset">Reset</button>
       </div>
 
       <div class="row">
-        <label>Opțiuni</label>
+        <label data-i18n="labels.options">Opțiuni</label>
         <div class="toggles">
-          <label class="chk"><input id="showRays" type="checkbox" checked> Afișează razele</label>
-          <label class="chk"><input id="showField" type="checkbox" checked> Afișează stratul cald</label>
-          <label class="chk"><input id="showGhost" type="checkbox" checked> Afișează „pata de apă” (miraj)</label>
+          <label class="chk"><input id="showRays" type="checkbox" checked> <span data-i18n="toggles.showRays">Afișează razele</span></label>
+          <label class="chk"><input id="showField" type="checkbox" checked> <span data-i18n="toggles.showField">Afișează stratul cald</span></label>
+          <label class="chk"><input id="showGhost" type="checkbox" checked> <span data-i18n="toggles.showGhost">Afișează „pata de apă” (miraj)</span></label>
         </div>
         <span class="val"></span>
       </div>
@@ -112,55 +112,56 @@
     <!-- PANOU DREAPTA -->
     <aside id="rightPanel" class="panel right">
       <div class="panelHeader">
-        <h2>Formule & explicații</h2>
+        <h2 data-i18n="labels.formulasTitle">Formule & explicații</h2>
       </div>
 
-      <h3>Ce se întâmplă</h3>
+      <h3 data-i18n="headings.whatHappens">Ce se întâmplă</h3>
       <ul class="facts">
-        <li>Aerul foarte cald lângă sol are <b>densitate mai mică</b> → indice de refracție puțin mai mic.</li>
-        <li>Dacă <b>n crește cu înălțimea</b>, razele se curbează: pot coborî și apoi se „ridică” (întoarcere).</li>
-        <li>Rezultatul: apare o „pseudoreflexie” ca o <b>pată de apă</b> (miraj inferior).</li>
+        <li data-i18n="facts.fact1">Aerul foarte cald lângă sol are <b>densitate mai mică</b> → indice de refracție puțin mai mic.</li>
+        <li data-i18n="facts.fact2">Dacă <b>n crește cu înălțimea</b>, razele se curbează: pot coborî și apoi se „ridică” (întoarcere).</li>
+        <li data-i18n="facts.fact3">Rezultatul: apare o „pseudoreflexie” ca o <b>pată de apă</b> (miraj inferior).</li>
       </ul>
 
       <div class="divider"></div>
 
-      <h3>Model 2D simplificat</h3>
+      <h3 data-i18n="headings.model2d">Model 2D simplificat</h3>
       <div class="formula">
         <div class="f">
-          <span>Indice stratificat:</span>
+          <span data-i18n="formula.stratified.title">Indice stratificat:</span>
           <code>n(y) = 1 + k · f(y)</code>
-          <small>k depinde de „gradient termic”.</small>
+          <small data-i18n="formula.stratified.note">k depinde de „gradient termic”.</small>
         </div>
         <div class="f">
-          <span>Invarianță (mediu stratificat):</span>
+          <span data-i18n="formula.invariant.title">Invarianță (mediu stratificat):</span>
           <code>n(y) · cos(θ) = C</code>
-          <small>θ = unghi față de orizontală.</small>
+          <small data-i18n="formula.invariant.note">θ = unghi față de orizontală.</small>
         </div>
         <div class="f">
-          <span>Punct de întoarcere:</span>
-          <code>când sin(θ) → 0</code>
-          <small>raza devine aproape orizontală și își schimbă sensul pe verticală.</small>
+          <span data-i18n="formula.turn.title">Punct de întoarcere:</span>
+          <code data-i18n="formula.turn.code">când sin(θ) → 0</code>
+          <small data-i18n="formula.turn.note">raza devine aproape orizontală și își schimbă sensul pe verticală.</small>
         </div>
       </div>
 
       <div class="divider"></div>
 
-      <h3>Live</h3>
+      <h3 data-i18n="headings.live">Live</h3>
       <div class="stats">
-        <div class="stat"><span>Timp</span><b id="timeVal">0.00 s</b></div>
-        <div class="stat"><span>Stare</span><b id="statusVal">RULEAZĂ</b></div>
-        <div class="stat"><span>FPS</span><b id="fpsVal">—</b></div>
+        <div class="stat"><span data-i18n="live.time">Timp</span><b id="timeVal">0.00 s</b></div>
+        <div class="stat"><span data-i18n="live.state">Stare</span><b id="statusVal">RULEAZĂ</b></div>
+        <div class="stat"><span data-i18n="live.fps">FPS</span><b id="fpsVal">—</b></div>
       </div>
 
       <div id="statusBox" class="status ok">Stare: Oprit</div>
-      <p class="note">
+      <p class="note" data-i18n="tips.tipGrad">
         Tip: gradient 0.7–0.9 + strat 1–2m + tremur 0.3 → efect „apă” pe sol.
       </p>
     </aside>
 
-    <button type="button" id="toggleRafRight" class="raf-toggle raf-toggle-right" aria-controls="rightPanel" aria-expanded="true" aria-label="Panou formule">☰</button>
+    <button type="button" id="toggleRafRight" class="raf-toggle raf-toggle-right" aria-controls="rightPanel" aria-expanded="true" data-i18n-aria="aria.panelFormulas">☰</button>
   </main>
 
-  <script src="script.js"></script>
+  <script src="../simulator-i18n-runtime.js"></script>
+  <script src="refractie-atmosferica-boot.js"></script>
 </body>
 </html>

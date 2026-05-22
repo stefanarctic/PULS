@@ -1,3 +1,18 @@
+const simT = (path, ro) =>
+  typeof window.simLbl === 'function' ? window.simLbl(path, ro) : ro;
+
+function dash() {
+  return simT('misc.dash', '-');
+}
+
+function fmtWithUnit(value, fixed, unitKey, roFallback) {
+  return value.toFixed(fixed) + simT(unitKey, roFallback);
+}
+
+function speedScaleLabel(n) {
+  return String(n) + simT('unitsFmt.times', 'x');
+}
+
 // DOM elements
 const themeSwitcher = document.getElementById('themeSwitcher');
 const body = document.body;
@@ -57,11 +72,11 @@ themeSwitcher.addEventListener('click', () => {
     if (isDark) {
         body.classList.remove('light-theme');
         body.classList.add('dark-theme');
-        themeSwitcher.innerHTML = '☀️ Schimbă tema';
+        themeSwitcher.innerHTML = simT('buttons.themeDark', '☀️ Schimbă tema');
     } else {
         body.classList.remove('dark-theme');
         body.classList.add('light-theme');
-        themeSwitcher.innerHTML = '🌙 Schimbă tema';
+        themeSwitcher.innerHTML = simT('buttons.themeLight', '🌙 Schimbă tema');
     }
     createChart(); // Recreate chart with new theme colors
 });
@@ -75,7 +90,7 @@ function createChart() {
             labels: [],
             datasets: [
                 {
-                    label: 'Deplasare (m)',
+                    label: simT('chart.displacement', 'Deplasare (m)'),
                     data: [],
                     borderColor: 'rgb(111, 53, 247)',
                     backgroundColor: 'rgba(76, 175, 80, 0.1)',
@@ -83,7 +98,7 @@ function createChart() {
                     borderWidth: 3
                 },
                 {
-                    label: 'Viteză (m/s)',
+                    label: simT('chart.velocity', 'Viteză (m/s)'),
                     data: [],
                     borderColor: 'rgb(241, 145, 66)',
                     backgroundColor: 'rgba(255, 87, 34, 0.1)',
@@ -124,7 +139,7 @@ function createChart() {
                     },
                     title: {
                         display: true,
-                        text: 'Timp (s)',
+                        text: simT('chart.timeAxis', 'Timp (s)'),
                         color: '#222',
                         font: {
                             size: 14,
@@ -227,7 +242,7 @@ const kValue = document.getElementById('kValue');
 
 kSlider.addEventListener('input', () => {
     const k = parseFloat(kSlider.value);
-    kValue.textContent = k.toFixed(1) + 'N/m';
+    kValue.textContent = fmtWithUnit(k, 1, 'unitsFmt.nPerM', ' N/m');
     // The effect of k is already handled in the animate function
 });
 
@@ -362,17 +377,17 @@ function animate(timestamp) {
     const Et = Ec + Ep;
     
     drawSpring(x, mass);
-    
+
     // Update measurements
-    document.getElementById('masaDisplay').textContent = mass.toFixed(1) + 'kg';
-    document.getElementById('amplitudineDisplay').textContent = (amplitudine / 100).toFixed(2) + 'm';
-    document.getElementById('timpDisplay').textContent = timeElapsed.toFixed(2) + 's';
-    document.getElementById('deplasareDisplay').textContent = (x / 100).toFixed(2) + 'm';
-    document.getElementById('vitezaDisplay').textContent = velocity.toFixed(2) + 'm/s';
-    document.getElementById('ecDisplay').textContent = Ec.toFixed(2) + 'J';
-    document.getElementById('epDisplay').textContent = Ep.toFixed(2) + 'J';
-    document.getElementById('etDisplay').textContent = Et.toFixed(2) + 'J';
-    
+    document.getElementById('masaDisplay').textContent = fmtWithUnit(mass, 1, 'unitsFmt.kg', ' kg');
+    document.getElementById('amplitudineDisplay').textContent = fmtWithUnit(amplitudine / 100, 2, 'unitsFmt.m', ' m');
+    document.getElementById('timpDisplay').textContent = fmtWithUnit(timeElapsed, 2, 'unitsFmt.s', ' s');
+    document.getElementById('deplasareDisplay').textContent = fmtWithUnit(x / 100, 2, 'unitsFmt.m', ' m');
+    document.getElementById('vitezaDisplay').textContent = fmtWithUnit(velocity, 2, 'unitsFmt.ms', ' m/s');
+    document.getElementById('ecDisplay').textContent = fmtWithUnit(Ec, 2, 'unitsFmt.j', ' J');
+    document.getElementById('epDisplay').textContent = fmtWithUnit(Ep, 2, 'unitsFmt.j', ' J');
+    document.getElementById('etDisplay').textContent = fmtWithUnit(Et, 2, 'unitsFmt.j', ' J');
+
     // Chart update every frame for smoother velocity tracking
     chart.data.labels.push(timeElapsed.toFixed(2));
     chart.data.datasets[0].data.push((x / 100).toFixed(2));
@@ -408,14 +423,11 @@ function startSim() {
 }
 
 function resetMeasurements() {
-    document.getElementById('masaDisplay').textContent = '-';
-    document.getElementById('amplitudineDisplay').textContent = '-';
-    document.getElementById('timpDisplay').textContent = '-';
-    document.getElementById('deplasareDisplay').textContent = '-';
-    document.getElementById('vitezaDisplay').textContent = '-';
-    document.getElementById('ecDisplay').textContent = '-';
-    document.getElementById('epDisplay').textContent = '-';
-    document.getElementById('etDisplay').textContent = '-';
+    const d = dash();
+    ['masaDisplay', 'amplitudineDisplay', 'timpDisplay', 'deplasareDisplay', 'vitezaDisplay', 'ecDisplay', 'epDisplay', 'etDisplay'].forEach((id) => {
+        const el = document.getElementById(id);
+        if (el) el.textContent = d;
+    });
     isMeasuring = false;
 }
 
@@ -423,11 +435,11 @@ function togglePauseResume() {
     if (!running) return;
     paused = !paused;
     if (paused) {
-        pauseResumeBtn.textContent = 'Reia';
+        pauseResumeBtn.textContent = simT('buttons.resume', 'Reia');
         pauseResumeBtn.classList.add('paused');
         if (animationFrame) cancelAnimationFrame(animationFrame);
     } else {
-        pauseResumeBtn.textContent = 'Pauză';
+        pauseResumeBtn.textContent = simT('buttons.pause', 'Pauză');
         pauseResumeBtn.classList.remove('paused');
         lastTimestamp = 0; // Reset timestamp when resuming
         animationFrame = requestAnimationFrame(animate);
@@ -442,7 +454,7 @@ function stopSim() {
     lastTimestamp = 0; // Reset timestamp
     x = 0;
     v = 0;
-    pauseResumeBtn.textContent = 'Pauză';
+    pauseResumeBtn.textContent = simT('buttons.pause', 'Pauză');
     pauseResumeBtn.classList.remove('paused');
     if (animationFrame) cancelAnimationFrame(animationFrame);
     const mass = parseFloat(masaSlider.value);
@@ -460,38 +472,39 @@ function stopSim() {
 function masoara() {
     if (!running) return; // Only measure if simulation is running
     isMeasuring = true;
-    
+    const g = 9.81;
+
     const mass = parseFloat(masaSlider.value);
     const velocity = Math.abs(v / 100);
     const height = Math.abs(x / 100);
     const Ec = 0.5 * mass * velocity * velocity;
     const Ep = mass * g * height;
     const Et = Ec + Ep;
-    
-    document.getElementById('masaDisplay').textContent = mass.toFixed(1) + 'kg';
-    document.getElementById('amplitudineDisplay').textContent = (amplitudine / 100).toFixed(2) + 'm';
-    document.getElementById('timpDisplay').textContent = timeElapsed.toFixed(2) + 's';
-    document.getElementById('deplasareDisplay').textContent = (x / 100).toFixed(2) + 'm';
-    document.getElementById('vitezaDisplay').textContent = velocity.toFixed(2) + 'm/s';
-    document.getElementById('ecDisplay').textContent = Ec.toFixed(2) + 'J';
-    document.getElementById('epDisplay').textContent = Ep.toFixed(2) + 'J';
-    document.getElementById('etDisplay').textContent = Et.toFixed(2) + 'J';
+
+    document.getElementById('masaDisplay').textContent = fmtWithUnit(mass, 1, 'unitsFmt.kg', ' kg');
+    document.getElementById('amplitudineDisplay').textContent = fmtWithUnit(amplitudine / 100, 2, 'unitsFmt.m', ' m');
+    document.getElementById('timpDisplay').textContent = fmtWithUnit(timeElapsed, 2, 'unitsFmt.s', ' s');
+    document.getElementById('deplasareDisplay').textContent = fmtWithUnit(x / 100, 2, 'unitsFmt.m', ' m');
+    document.getElementById('vitezaDisplay').textContent = fmtWithUnit(velocity, 2, 'unitsFmt.ms', ' m/s');
+    document.getElementById('ecDisplay').textContent = fmtWithUnit(Ec, 2, 'unitsFmt.j', ' J');
+    document.getElementById('epDisplay').textContent = fmtWithUnit(Ep, 2, 'unitsFmt.j', ' J');
+    document.getElementById('etDisplay').textContent = fmtWithUnit(Et, 2, 'unitsFmt.j', ' J');
 }
 
 // Event listeners
 amplitudineSlider.addEventListener('input', () => {
     amplitudine = parseInt(amplitudineSlider.value, 10);
-    amplitudineValue.textContent = (amplitudine / 100).toFixed(2) + 'm';
+    amplitudineValue.textContent = fmtWithUnit(amplitudine / 100, 2, 'unitsFmt.m', ' m');
 });
 
 vitezaSlider.addEventListener('input', () => {
     viteza = parseInt(vitezaSlider.value, 10);
-    vitezaValue.textContent = viteza + 'x';
+    vitezaValue.textContent = speedScaleLabel(viteza);
 });
 
 masaSlider.addEventListener('input', () => {
     masa = parseFloat(masaSlider.value);
-    masaValue.textContent = masa.toFixed(1) + 'kg';
+    masaValue.textContent = fmtWithUnit(masa, 1, 'unitsFmt.kg', ' kg');
     if (!running) {
         drawSpring(x, masa);
     }
@@ -502,15 +515,30 @@ pauseResumeBtn.addEventListener('click', togglePauseResume);
 stopBtn.addEventListener('click', stopSim);
 masoaraBtn.addEventListener('click', masoara);
 
-// Initial setup
-initializeSidebarToggles();
-applyInitialSidebarState();
-updateSidebarButtons();
-createChart();
-const initialMass = parseFloat(masaSlider.value);
-amplitudineValue.textContent = (amplitudine / 100).toFixed(2) + 'm';
-vitezaValue.textContent = viteza + 'x';
-masaValue.textContent = initialMass.toFixed(1) + 'kg';
-frecareValue.textContent = frecareSlider.value;
-drawSpring(0, initialMass); 
+function runInit() {
+    initializeSidebarToggles();
+    applyInitialSidebarState();
+    updateSidebarButtons();
+    createChart();
+    const initialMass = parseFloat(masaSlider.value);
+    amplitudineValue.textContent = fmtWithUnit(amplitudine / 100, 2, 'unitsFmt.m', ' m');
+    vitezaValue.textContent = speedScaleLabel(viteza);
+    masaValue.textContent = fmtWithUnit(initialMass, 1, 'unitsFmt.kg', ' kg');
+    frecareValue.textContent = frecareSlider.value;
+    const k0 = parseFloat(kSlider.value);
+    kValue.textContent = fmtWithUnit(k0, 1, 'unitsFmt.nPerM', ' N/m');
+    drawSpring(0, initialMass);
 
+    if (window.MathJax?.typesetPromise) {
+        const leftEl = document.getElementById('sidebar-left');
+        const rightEl = document.getElementById('sidebar-right');
+        const mjTargets = [leftEl, rightEl].filter(Boolean);
+        if (mjTargets.length) window.MathJax.typesetPromise(mjTargets).catch(() => {});
+    }
+}
+
+if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', runInit);
+} else {
+    runInit();
+}

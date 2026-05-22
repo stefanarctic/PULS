@@ -10,6 +10,10 @@ const svg = document.querySelector("svg");
 const zoomInButton = document.getElementById("zoom-in");
 const zoomOutButton = document.getElementById("zoom-out");
 
+if (!svg) {
+  /* grafice.html minimal — fără zoom UI */
+} else {
+
 // Funcție pentru aplicarea transformării (zoom + translație)
 function applyTransform() {
   svg.style.transform = `translate(${currentX}px, ${currentY}px) scale(${currentScale})`;
@@ -46,8 +50,8 @@ svg.addEventListener("wheel", function (event) {
 }, { passive: false });
 
 // Evenimente pentru butoane
-zoomInButton.addEventListener("click", zoomIn);
-zoomOutButton.addEventListener("click", zoomOut);
+if (zoomInButton) zoomInButton.addEventListener("click", zoomIn);
+if (zoomOutButton) zoomOutButton.addEventListener("click", zoomOut);
 
 // Funcție pentru translație (dragging)
 let isDragging = false;
@@ -91,3 +95,4 @@ svg.addEventListener("mouseleave", function () {
 document.addEventListener("scroll", function (event) {
   event.preventDefault();
 }, { passive: false });
+} // end if (svg)

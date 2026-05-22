@@ -13,8 +13,8 @@ const Home = () => {
                             PULS - Platforma educațională pentru studiul conceptelor de Pendul, Unde, Lissajous și Seism prin probleme și simulări interactive.
                         </p>
                         <div className="buttons">
-                            <button className="filled">Exploreaza problemele</button>
-                            <button>Incearca simularile</button>
+                            <button className="filled">Explorează problemele</button>
+                            <button>Încearcă simulările</button>
                         </div>
                     </div>
                     <div className="hero-slideshow-wrapper">

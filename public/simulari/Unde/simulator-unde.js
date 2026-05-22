@@ -1,16 +1,44 @@
-// Asigură-te că ai un canvas <canvas id="amplitudeChart" height="300"></canvas> în HTML
+// Canvas: <canvas id="amplitudeChart" …></canvas>
 
-document.addEventListener("DOMContentLoaded", function () {
+function simWaveLbl(path, fb) {
+    const o = window.__SIMULATOR_UI_I18N__;
+    return path.split(".").reduce((c, k) => (c != null ? c[k] : undefined), o) ?? fb;
+}
+
+function updatePhysicsInfo() {
+    const freq = 1000 / dropSpeed;
+    const waveSpeed = 100;
+    const wavelength = waveSpeed / freq;
+
+    const display = document.getElementById("physicsDisplay");
+    if (!display) return;
+
+    const L = window.__SIMULATOR_UI_I18N__?.labels;
+    if (L) {
+        display.innerHTML = `
+            <li>${L.physicsFrequency} ${freq.toFixed(2)} ${L.physicsHz}</li>
+            <li>${L.physicsWaveSpeed} ${waveSpeed} ${L.physicsPxPerS}</li>
+            <li>${L.physicsWavelength} ${wavelength.toFixed(2)} ${L.physicsPx}</li>
+        `;
+    } else {
+        display.innerHTML = `
+            <li>Frecvență: ${freq.toFixed(2)} Hz</li>
+            <li>Viteză undă: ${waveSpeed} px/s</li>
+            <li>Lungime de undă: ${wavelength.toFixed(2)} px</li>
+        `;
+    }
+}
+
+function initWaveSimulatorSidebar() {
     const sidebar = document.getElementById("sidebar");
-    const unitformBar = document.getElementById("unitformbar");
     const toggleSidebar = document.getElementById("toggleSidebar");
-    const toggleUnitformBar = document.getElementById("toggleUnitformbar");
-
-    toggleSidebar.addEventListener("click", function () {
-        sidebar.classList.toggle("visible");
-    });
+    if (toggleSidebar && sidebar) {
+        toggleSidebar.addEventListener("click", function () {
+            sidebar.classList.toggle("visible");
+        });
+    }
     updatePhysicsInfo();
-});
+}
 
 let isRunning = false;
 const speedSlider = document.getElementById("speedSlider");
@@ -32,10 +60,10 @@ const measurePoints = [
     { id: "C", x: 250, y: 350, color: "blue", amplitudes: [] },
 ];
 
-
 let dropCount = 0;
 const colorPicker = document.getElementById("colorPicker");
 const colorPick = document.getElementById("colorPick");
+
 function createDrop(x = 200, y = 350) {
     const drop = document.createElement("div");
     drop.className = "drop";
@@ -56,7 +84,7 @@ let ripples = [];
 
 function createRipple(x, y, fromSecond = false) {
     const time = Date.now();
-    ripples.push({ x, y, time }); // păstrăm valul
+    ripples.push({ x, y, time });
 
     for (let i = 0; i < 3; i++) {
         const ripple = document.createElement("div");
@@ -72,22 +100,6 @@ function createRipple(x, y, fromSecond = false) {
         ripple.addEventListener("animationend", () => {
             ripple.remove();
         });
-    }
-}
-
-
-function updatePhysicsInfo() {
-    const freq = 1000 / dropSpeed;
-    const waveSpeed = 100;
-    const wavelength = waveSpeed / freq;
-
-    const display = document.getElementById("physicsDisplay");
-    if (display) {
-        display.innerHTML = `
-            <li>Frecvență: ${freq.toFixed(2)} Hz</li>
-            <li>Viteză undă: ${waveSpeed} px/s</li>
-            <li>Lungime de undă: ${wavelength.toFixed(2)} px</li>
-        `;
     }
 }
 
@@ -131,7 +143,7 @@ secondToggle.addEventListener("change", () => {
     }
 });
 
-const formulas = `
+const FORMULAS_RO = `
 \\[
 \\text{Frecventa undei}
 \\]
@@ -153,10 +165,17 @@ f = \\frac{1}{T}
 N = \\frac{t}{T}
 \\]
 `;
-document.getElementById("formulas").innerHTML = formulas;
-if (window.MathJax) MathJax.typeset();
 
-//puncte grafic
+function applyWaveFormulas() {
+    const el = document.getElementById("formulas");
+    if (!el) return;
+    const tex = window.__SIMULATOR_UI_I18N__?.formulas?.block;
+    el.innerHTML = tex || FORMULAS_RO;
+    if (window.MathJax?.typeset) MathJax.typeset();
+}
+
+applyWaveFormulas();
+
 function createMeasurementPoints() {
     measurePoints.forEach(p => {
         const el = document.createElement("div");
@@ -170,15 +189,13 @@ function createMeasurementPoints() {
         el.style.height = "8px";
         el.style.borderRadius = "50%";
         el.style.zIndex = 10;
-        el.style.display = "none"; // inițial ascuns
+        el.style.display = "none";
         water.appendChild(el);
     });
 }
 
 createMeasurementPoints();
 
-
-// === CHART.JS GRAFIC AMPLITUDINE ===
 const ctxAmplitude = document.getElementById("amplitudeChart").getContext("2d");
 
 const amplitudeChart = new Chart(ctxAmplitude, {
@@ -187,7 +204,7 @@ const amplitudeChart = new Chart(ctxAmplitude, {
         labels: Array.from({ length: 30 }, (_, i) => i),
         datasets: [
             {
-                label: 'Punct A',
+                label: simWaveLbl("chart.pointA", "Punct A"),
                 data: new Array(30).fill(0),
                 borderColor: 'red',
                 borderWidth: 2,
@@ -195,7 +212,7 @@ const amplitudeChart = new Chart(ctxAmplitude, {
                 tension: 0.4,
             },
             {
-                label: 'Punct B',
+                label: simWaveLbl("chart.pointB", "Punct B"),
                 data: new Array(30).fill(0),
                 borderColor: 'green',
                 borderWidth: 2,
@@ -203,7 +220,7 @@ const amplitudeChart = new Chart(ctxAmplitude, {
                 tension: 0.4,
             },
             {
-                label: 'Punct C',
+                label: simWaveLbl("chart.pointC", "Punct C"),
                 data: new Array(30).fill(0),
                 borderColor: 'blue',
                 borderWidth: 2,
@@ -237,32 +254,40 @@ const amplitudeChart = new Chart(ctxAmplitude, {
     }
 });
 
+function applyWaveChartLabels() {
+    const bag = window.__SIMULATOR_UI_I18N__?.chart;
+    if (!bag) return;
+    amplitudeChart.data.datasets[0].label = bag.pointA || amplitudeChart.data.datasets[0].label;
+    amplitudeChart.data.datasets[1].label = bag.pointB || amplitudeChart.data.datasets[1].label;
+    amplitudeChart.data.datasets[2].label = bag.pointC || amplitudeChart.data.datasets[2].label;
+    amplitudeChart.update();
+}
+
+applyWaveChartLabels();
+
 let graphInterval;
+
 function startGraph() {
     if (!graphInterval) {
         graphInterval = setInterval(() => {
             const now = Date.now();
-            const waveSpeed = 100; // px/s
-            const decay = 0.9; // amplitudine scade cu distanța
-
+            const waveSpeed = 100;
             measurePoints.forEach((point, index) => {
                 let amplitude = 0;
 
                 ripples.forEach(ripple => {
-                    const dt = (now - ripple.time) / 1000; // în secunde
+                    const dt = (now - ripple.time) / 1000;
                     const waveRadius = dt * waveSpeed;
                     const dx = point.x - ripple.x;
                     const dy = point.y - ripple.y;
                     const dist = Math.sqrt(dx * dx + dy * dy);
 
-                    // dacă unda a ajuns în zona punctului, calculezi amplitudinea
                     const diff = Math.abs(dist - waveRadius);
-                    if (diff < 10) { // toleranță (10px) - unda e "pe acolo"
-                        amplitude += (1 / (1 + dist)) * 50; // scade cu distanța
+                    if (diff < 10) {
+                        amplitude += (1 / (1 + dist)) * 50;
                     }
                 });
 
-                // actualizezi bufferul pentru grafic
                 const data = amplitudeChart.data.datasets[index].data;
                 data.push(amplitude);
                 if (data.length > 30) data.shift();
@@ -273,8 +298,6 @@ function startGraph() {
     }
 }
 
-
-
 function stopGraph() {
     clearInterval(graphInterval);
     graphInterval = null;
@@ -282,14 +305,15 @@ function stopGraph() {
 
 button.addEventListener("click", () => {
     isRunning = !isRunning;
-    button.textContent = isRunning ? "Stop" : "Start";
+    button.textContent = isRunning
+        ? simWaveLbl("buttons.stop", "Stop")
+        : simWaveLbl("buttons.start", "Start");
 
     document.querySelectorAll(".measure-point").forEach(el => {
         el.style.display = isRunning ? "block" : "none";
     });
 
     if (isRunning) {
-        // start drops
         interval = setInterval(() => createDrop(200, 350), dropSpeed);
         if (secondToggle.checked) {
             secondInterval = setInterval(() => createDrop(130, 350), dropSpeed);
@@ -301,3 +325,9 @@ button.addEventListener("click", () => {
         stopGraph();
     }
 });
+
+if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", initWaveSimulatorSidebar);
+} else {
+    initWaveSimulatorSidebar();
+}

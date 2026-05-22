@@ -1,71 +1,72 @@
 import React from "react";
 import { PieChart, Pie, Cell, Tooltip, Legend, ResponsiveContainer, BarChart, Bar, XAxis, YAxis, CartesianGrid } from "recharts";
+import { useI18n } from "../i18n/LanguageContext";
+
+const SP = "statisticsPanel";
 
 const COLORS = ["#0088FE", "#00C49F", "#FFBB28", "#FF8042", "#A28CFE", "#FF6699"];
 
 function getPieData(data) {
   if (!data || data.length === 0) return [];
   if (data.length === 1) {
-    // Forțează un pie complet cu o singură felie
     return [{ ...data[0], value: 1 }];
   }
   return data;
 }
 
 const Statistics = ({ statistics = {} }) => {
+  const { t } = useI18n();
   const dificultateData = statistics.dificultate ? Object.entries(statistics.dificultate).map(([name, value]) => ({ name, value })) : [];
   const categorieData = statistics.categorie ? Object.entries(statistics.categorie).map(([name, value]) => ({ name, value })) : [];
-  
+
   const solvedProblems = statistics.solvedProblems || 0;
   const totalScore = statistics.totalScore || 0;
   const maxPossibleScore = statistics.maxPossibleScore || 0;
   const averageScore = maxPossibleScore > 0 ? Math.round((totalScore / maxPossibleScore) * 100) : 0;
-  
+
   return (
     <div className="statistics">
-      <h3>Statistici generale</h3>
-      
-      {/* Statistici pentru probleme rezolvate */}
+      <h3>{t(`${SP}.title`, 'Statistici generale')}</h3>
+
       <div style={{ marginBottom: '2rem' }}>
-        <h4>Probleme rezolvate</h4>
+        <h4>{t(`${SP}.solvedHeading`, 'Probleme rezolvate')}</h4>
         <div className="stat-summary-grid">
           <div className="stat-value-card">
             <div className="stat-value-number">
               {solvedProblems}
             </div>
             <div className="stat-value-label">
-              Probleme rezolvate
+              {t(`${SP}.labelSolvedCount`, 'Probleme rezolvate')}
             </div>
           </div>
-          
+
           <div className="stat-value-card">
             <div className="stat-value-number">
               {totalScore}/{maxPossibleScore}
             </div>
             <div className="stat-value-label">
-              Scor total
+              {t(`${SP}.labelTotalScore`, 'Scor total')}
             </div>
           </div>
-          
+
           <div className="stat-value-card">
             <div className="stat-value-number">
               {averageScore}%
             </div>
             <div className="stat-value-label">
-              Scor mediu
+              {t(`${SP}.labelAverageScore`, 'Scor mediu')}
             </div>
           </div>
         </div>
       </div>
 
-      {/* Statistici pentru probleme adăugate */}
       <div style={{ marginBottom: '2rem' }}>
-        <h4>Probleme adăugate</h4>
+        <h4>{t(`${SP}.addedHeading`, 'Probleme adăugate')}</h4>
         <div style={{display: 'flex', gap: 32, flexWrap: 'wrap'}}>
           <div style={{flex: 1, minWidth: 250}}>
-            <h5>Pe dificultate</h5>
+            <h5>{t(`${SP}.byDifficulty`, 'Pe dificultate')}</h5>
             {dificultateData.length === 0 ? (
-              <div>Nu există statistici pe dificultate.</div>
+              <div>{t(`${SP}.noDifficultyStats`, 'Nu există statistici pe dificultate.')}</div>
             ) : (
               <div style={{ width: "100%", height: 280 }}>
                 <ResponsiveContainer>
@@ -92,9 +93,9 @@ const Statistics = ({ statistics = {} }) => {
             )}
           </div>
           <div style={{flex: 1, minWidth: 250}}>
-            <h5>Pe categorie</h5>
+            <h5>{t(`${SP}.byCategory`, 'Pe categorie')}</h5>
             {categorieData.length === 0 ? (
-              <div>Nu există statistici pe categorie.</div>
+              <div>{t(`${SP}.noCategoryStats`, 'Nu există statistici pe categorie.')}</div>
             ) : (
               <div style={{ width: "100%", height: 280 }}>
                 <ResponsiveContainer>
@@ -123,23 +124,22 @@ const Statistics = ({ statistics = {} }) => {
         </div>
       </div>
 
-      {/* Mesaj când nu există statistici */}
       {solvedProblems === 0 && dificultateData.length === 0 && categorieData.length === 0 && (
-        <div style={{ 
-          textAlign: 'center', 
-          padding: '2rem', 
+        <div style={{
+          textAlign: 'center',
+          padding: '2rem',
           color: '#6c757d',
           background: '#f8f9fa',
           borderRadius: '0.5rem',
           border: '1px solid #e9ecef'
         }}>
           <div style={{ fontSize: '3rem', marginBottom: '1rem' }}>📊</div>
-          <p>Nu există încă statistici disponibile.</p>
-          <p>Începe să rezolvi probleme și să adaugi probleme noi pentru a vedea statisticile tale!</p>
+          <p>{t(`${SP}.emptyStateLine1`, 'Nu există încă statistici disponibile.')}</p>
+          <p>{t(`${SP}.emptyStateLine2`, 'Începe să rezolvi probleme și să adaugi probleme noi pentru a vedea statisticile tale!')}</p>
         </div>
       )}
     </div>
   );
 };
 
-export default Statistics; 
+export default Statistics;

@@ -153,6 +153,6 @@ gridGroup.append("circle")
 gridGroup.append("text")
   .attr("x", 10) // Plasat ușor în dreapta punctului
   .attr("y", -10) // Plasat ușor deasupra punctului
-  .text("O(0, 0)")
+  .text(typeof window.simLbl === "function" ? window.simLbl("labels.originLabel", "O(0, 0)") : "O(0, 0)")
   .style("font-size", "12px")
   .style("fill", "black");

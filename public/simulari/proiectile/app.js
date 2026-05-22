@@ -1,7 +1,12 @@
 // app.js — panouri fixe + toggle ☰ + proiectil BAC + fullscreen
 (() => {
     const $ = (id) => document.getElementById(id);
-  
+
+    function simT(path, fallback) {
+      if (typeof window.simLbl === "function") return window.simLbl(path, fallback);
+      return fallback;
+    }
+
     const leftPanel = $("leftPanel");
     const rightPanel = $("rightPanel");
     const toggleProjLeft = $("toggleProjLeft");
@@ -275,8 +280,8 @@
   
       ctx.fillStyle = "rgba(15,23,42,0.75)";
       ctx.font = "12px ui-sans-serif, system-ui";
-      ctx.fillText("x (m)", right - 50, o.y - 10);
-      ctx.fillText("y (m)", o.x + 10, 18);
+      ctx.fillText(simT("labels.axisX", "x (m)"), right - 50, o.y - 10);
+      ctx.fillText(simT("labels.axisY", "y (m)"), o.x + 10, 18);
   
       ctx.restore();
     }
@@ -419,7 +424,7 @@
   
       updateUI();
       draw();
-      hudText.textContent = "Pregătit. Apasă Start.";
+      hudText.textContent = simT("hud.ready", "Preg\u0103tit. Apas\u0103 Start.");
     }
   
     function integrate(dt) {
@@ -447,7 +452,10 @@
         S.landed = true;
         S.running = false;
         S.vImpact = hypot(S.vx, S.vy);
-        hudText.textContent = "A aterizat. Reset sau Start (repornește).";
+        hudText.textContent = simT(
+          "hud.landed",
+          "A aterizat. Reset sau Start (reporne\u0219te)."
+        );
       }
     }
   
@@ -498,7 +506,7 @@
         outHmax.textContent = `${fmt(b.Hmax, 2)} m`;
         outTup.textContent = `${fmt(b.Tup, 2)} s`;
         outVimp.textContent = `${fmt(b.Vimp, 2)} m/s`;
-        modePill.textContent = "Fără aer (BAC)";
+        modePill.textContent = simT("labels.modeNoAir", "F\u0103r\u0103 aer (BAC)");
         modePill.style.borderColor = "rgba(22,163,74,.35)";
       } else {
         outT.textContent = S.landed ? `${fmt(S.t, 2)} s` : "—";
@@ -506,7 +514,7 @@
         outHmax.textContent = `${fmt(S.ymax, 2)} m`;
         outTup.textContent = "—";
         outVimp.textContent = S.landed ? `${fmt(S.vImpact, 2)} m/s` : `${fmt(hypot(S.vx, S.vy), 2)} m/s`;
-        modePill.textContent = "Cu aer (numeric)";
+        modePill.textContent = simT("labels.modeAir", "Cu aer (numeric)");
         modePill.style.borderColor = "rgba(239,68,68,.30)";
       }
   
@@ -517,7 +525,9 @@
       outy.textContent = `${fmt(S.y, 2)} m`;
       outv.textContent = `${fmt(hypot(S.vx, S.vy), 2)} m/s`;
   
-      statusPill.textContent = S.running ? "rulează" : (S.landed ? "aterizat" : "stop");
+      statusPill.textContent = S.running
+        ? simT("status.running", "ruleaz\u0103")
+        : (S.landed ? simT("status.landed", "aterizat") : simT("status.stop", "stop"));
     }
   
     function updateUI() {
@@ -531,8 +541,10 @@
         resetSim(true);
       }
       S.running = on;
-      btnPlay.textContent = on ? "Pauză" : "Start";
-      hudText.textContent = on ? "Simulare în curs…" : "Pauză.";
+      btnPlay.textContent = on ? simT("buttons.pause", "Pauz\u0103") : simT("buttons.start", "Start");
+      hudText.textContent = on
+        ? simT("hud.running", "Simulare \u00een curs\u2026")
+        : simT("hud.pausedHud", "Pauz\u0103.");
       updateUI();
     }
   
@@ -543,12 +555,17 @@
         if (!isFullscreen()) await stage.requestFullscreen();
         else await document.exitFullscreen();
       } catch {
-        hudText.textContent = "Full screen blocat de browser (încearcă din nou).";
+        hudText.textContent = simT(
+          "hud.fullscreenBlocked",
+          "Full screen blocat de browser (\u00eencearc\u0103 din nou)."
+        );
       }
     }
     btnFull.addEventListener("click", toggleFullscreen);
     document.addEventListener("fullscreenchange", () => {
-      btnFull.textContent = isFullscreen() ? "Exit full" : "Full screen";
+      btnFull.textContent = isFullscreen()
+        ? simT("buttons.exitFullscreen", "Exit full")
+        : simT("buttons.fullscreen", "Full screen");
       setTimeout(() => resize(), 50);
     });
   

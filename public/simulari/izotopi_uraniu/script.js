@@ -50,6 +50,31 @@ const ISOTOPES = {
   },
 };
 
+const DECAY_DAUGHTERS = {
+  'U-233': { symbol: 'Th', name: 'Toriu-229', Z: 90, N: 139, A: 229, halfLifeText: '7 340 ani', stability: 35, stabilityText: 'Redusă', nextDecay: 'α' },
+  'U-234': { symbol: 'Th', name: 'Toriu-230', Z: 90, N: 140, A: 230, halfLifeText: '75 400 ani', stability: 40, stabilityText: 'Redusă', nextDecay: 'α' },
+  'U-235': { symbol: 'Th', name: 'Toriu-231', Z: 90, N: 141, A: 231, halfLifeText: '25,52 ore', stability: 15, stabilityText: 'Foarte redusă', nextDecay: 'β⁻' },
+  'U-238': { symbol: 'Th', name: 'Toriu-234', Z: 90, N: 144, A: 234, halfLifeText: '24,10 zile', stability: 10, stabilityText: 'Foarte redusă', nextDecay: 'β⁻' },
+};
+
+const LANG_EN = new URLSearchParams(window.location.search).get('lang') === 'en';
+
+function lbl(path, fallback) {
+  return typeof window.simLbl === 'function' ? window.simLbl(path, fallback) : fallback;
+}
+
+function isoDisplay(key) {
+  const base = ISOTOPES[key];
+  const ov = window.__SIMULATOR_UI_I18N__?.isotopes?.[key];
+  return ov ? { ...base, ...ov } : base;
+}
+
+function daughterMerged(key) {
+  const base = DECAY_DAUGHTERS[key];
+  const ov = window.__SIMULATOR_UI_I18N__?.daughters?.[key];
+  return base && ov ? { ...base, ...ov } : base;
+}
+
 const GOLDEN = Math.PI * (3 - Math.sqrt(5));
 
 // ---------- UTILS ----------
@@ -69,10 +94,10 @@ function lerp(a, b, t) { return a + (b - a) * t; }
 function clamp(v, a, b) { return Math.max(a, Math.min(b, v)); }
 
 function formatYears(years) {
-  if (years < 1e3) return `${years.toFixed(0)} ani`;
-  if (years < 1e6) return `${(years / 1e3).toFixed(1)} mii ani`;
-  if (years < 1e9) return `${(years / 1e6).toFixed(1)} mil. ani`;
-  return `${(years / 1e9).toFixed(2)} mld. ani`;
+  if (years < 1e3) return `${years.toFixed(0)} ${lbl('timeFormat.years', 'ani')}`;
+  if (years < 1e6) return `${(years / 1e3).toFixed(1)} ${lbl('timeFormat.kyr', 'mii ani')}`;
+  if (years < 1e9) return `${(years / 1e6).toFixed(1)} ${lbl('timeFormat.Myr', 'mil. ani')}`;
+  return `${(years / 1e9).toFixed(2)} ${lbl('timeFormat.Gyr', 'mld. ani')}`;
 }
 
 // =========================================================
@@ -82,7 +107,7 @@ function renderCards() {
   const container = document.getElementById('isotopeCards');
   const order = ['U-233', 'U-234', 'U-235', 'U-238'];
   container.innerHTML = order.map(key => {
-    const iso = ISOTOPES[key];
+    const iso = isoDisplay(key);
     return `
       <article class="iso-card" style="--iso-color: ${iso.color};">
         <div class="iso-card-head">
@@ -91,10 +116,10 @@ function renderCards() {
         </div>
         <span class="iso-card-tag">${iso.tag}</span>
         <div class="iso-stats">
-          <div><span>T½</span><span>${iso.halfLifeText}</span></div>
-          <div><span>Dezintegrare</span><span>α</span></div>
-          <div><span>Masa A</span><span>${iso.A}</span></div>
-          <div><span>Utilizare</span><span>${iso.uses}</span></div>
+          <div><span>${lbl('cards.statHalfLife', 'T½')}</span><span>${iso.halfLifeText}</span></div>
+          <div><span>${lbl('cards.statDecay', 'Dezintegrare')}</span><span>α</span></div>
+          <div><span>${lbl('cards.statMass', 'Masa A')}</span><span>${iso.A}</span></div>
+          <div><span>${lbl('cards.statUses', 'Utilizare')}</span><span>${iso.uses}</span></div>
         </div>
         <p>${iso.desc}</p>
       </article>
@@ -123,6 +148,7 @@ class NucleusSim {
 
     this.buildNucleus();
     this.loop();
+    this.alphaLabel = lbl('canvas.alphaLabel', 'α (He-4)');
   }
 
   buildNucleus() {
@@ -222,11 +248,7 @@ class NucleusSim {
     setTimeout(() => {
       this.alphaParticle = null;
       this.decaying = false;
-      const iso = ISOTOPES[this.currentIso];
-      // visually, show a daughter nucleus (Thorium = Z-2, N-2)
-      const daughterZ = iso.Z - 2;
-      const daughterA = iso.A - 4;
-      ui.showDaughter(daughterZ, daughterA, iso.A);
+      ui.showDaughter(this.currentIso);
     }, 1800);
   }
 
@@ -319,7 +341,7 @@ class NucleusSim {
       ctx.fillStyle = 'rgba(255, 207, 74, 0.9)';
       ctx.font = 'bold 14px JetBrains Mono, monospace';
       ctx.textAlign = 'center';
-      ctx.fillText('α (He-4)', 0, -30);
+      ctx.fillText(this.alphaLabel, 0, -30);
 
       ctx.restore();
     }
@@ -376,6 +398,8 @@ class FissionSim {
     this.releasedN = [];
     this.flash = 0;
     this.shake = 0;
+
+    this.energyFlashLabel = lbl('canvas.fissionEnergy', '+200 MeV');
 
     this.loop();
   }
@@ -517,7 +541,7 @@ class FissionSim {
       ctx.fillStyle = `rgba(255, 207, 74, ${this.flash})`;
       ctx.font = `bold ${24 + this.flash * 20}px Inter, sans-serif`;
       ctx.textAlign = 'center';
-      ctx.fillText('+200 MeV', 0, -80);
+      ctx.fillText(this.energyFlashLabel, 0, -80);
       ctx.restore();
     }
 
@@ -744,21 +768,57 @@ const ui = {
   nucleus: null,
   fission: null,
   timeSim: null,
+  hasDecayed: false,
 
-  showDaughter(z, a, parentA) {
+  showDaughter(parentKey) {
+    const daughter = daughterMerged(parentKey);
+    if (!daughter) return;
+    const parentA = ISOTOPES[parentKey].A;
+
+    document.getElementById('statP').textContent = daughter.Z;
+    document.getElementById('statN').textContent = daughter.N;
+    document.getElementById('statA').textContent = daughter.A;
+    document.getElementById('statRatio').textContent = (daughter.N / daughter.Z).toFixed(3);
+    document.getElementById('isoTag').textContent = `${daughter.symbol}-${daughter.A}`;
+    document.getElementById('stabilityText').textContent = daughter.stabilityText;
+    document.getElementById('stabilityFill').style.width = daughter.stability + '%';
+    document.getElementById('halfLifeText').textContent =
+      lbl('time.tHalfApprox', 'T½ ≈ ') + daughter.halfLifeText;
+
+    document.querySelectorAll('.stat-value').forEach(el => {
+      el.classList.remove('stat-flash');
+      void el.offsetWidth;
+      el.classList.add('stat-flash');
+    });
+
+    document.querySelectorAll('#isoSelector button').forEach(b => b.classList.remove('active'));
+
     const note = document.getElementById('decayNote');
-    const symbol = z === 90 ? 'Th' : 'X';
-    const name = z === 90 ? 'Thoriu' : 'element Z=' + z;
-    note.innerHTML = `
-      ✓ <b>${name}</b> format:
+    const lead = lbl('decay.resultLead', '✓ S-a obținut <b>{{name}}</b>:').replace(/\{\{name\}\}/g, daughter.name);
+    const conserv = lbl('decay.conservation', 'Conservare: A ({{pa}} = {{da}} + 4) ✓ · Z (92 = {{dz}} + 2) ✓')
+      .replace(/\{\{pa\}\}/g, String(parentA))
+      .replace(/\{\{da\}\}/g, String(daughter.A))
+      .replace(/\{\{dz\}\}/g, String(daughter.Z));
+    note.innerHTML = `${lead}
       <span class="nuclide"><span class="nums"><sup>${parentA}</sup><sub>92</sub></span>U</span> →
-      <span class="nuclide"><span class="nums"><sup>${a}</sup><sub>${z}</sub></span>${symbol}</span> +
-      <span class="nuclide"><span class="nums"><sup>4</sup><sub>2</sub></span>He</span>.
-      Conservare: A (${parentA}=${a}+4) ✓ · Z (92=${z}+2) ✓
-    `;
-    setTimeout(() => {
-      note.innerHTML = defaultDecayNote;
-    }, 5000);
+      <span class="nuclide"><span class="nums"><sup>${daughter.A}</sup><sub>${daughter.Z}</sub></span>${daughter.symbol}</span> +
+      <span class="nuclide"><span class="nums"><sup>4</sup><sub>2</sub></span>He</span> (α).
+      ${conserv}`;
+
+    const btn = document.getElementById('btnDecay');
+    btn.textContent = lbl('buttons.decayDone', '✓ Dezintegrare completă');
+    btn.disabled = true;
+    btn.classList.add('btn-done');
+    this.hasDecayed = true;
+  },
+
+  resetDecayState() {
+    const btn = document.getElementById('btnDecay');
+    btn.textContent = lbl('buttons.decay', '☢️ Dezintegrare α');
+    btn.disabled = false;
+    btn.classList.remove('btn-done');
+    document.getElementById('decayNote').innerHTML = getDefaultDecayNoteHtml();
+    this.hasDecayed = false;
   },
 };
 
@@ -768,8 +828,12 @@ const defaultDecayNote = `La dezintegrarea α: <span class="nuclide"><span class
 Ex: <span class="nuclide"><span class="nums"><sup>235</sup><sub>92</sub></span>U</span> →
 <span class="nuclide"><span class="nums"><sup>231</sup><sub>90</sub></span>Th</span> + α.`;
 
+function getDefaultDecayNoteHtml() {
+  return lbl('decay.defaultNoteHtml', defaultDecayNote);
+}
+
 function updateStats(iso) {
-  const d = ISOTOPES[iso];
+  const d = isoDisplay(iso);
   document.getElementById('statP').textContent = d.Z;
   document.getElementById('statN').textContent = d.N;
   document.getElementById('statA').textContent = d.A;
@@ -777,11 +841,11 @@ function updateStats(iso) {
   document.getElementById('isoTag').textContent = iso;
   document.getElementById('stabilityText').textContent = d.stabilityText;
   document.getElementById('stabilityFill').style.width = d.stability + '%';
-  document.getElementById('halfLifeText').textContent = `T½ ≈ ${d.halfLifeText}`;
+  document.getElementById('halfLifeText').textContent = lbl('time.tHalfApprox', 'T½ ≈ ') + d.halfLifeText;
 }
 
 function updateTimeHalfLife() {
-  const d = ISOTOPES[ui.timeSim.iso];
+  const d = isoDisplay(ui.timeSim.iso);
   document.getElementById('timeHalfLife').textContent = d.halfLifeText;
 }
 
@@ -796,10 +860,23 @@ function setupIsoSelector(selectorId, onPick) {
   });
 }
 
-// =========================================================
-// BOOT
-// =========================================================
-window.addEventListener('DOMContentLoaded', () => {
+function applyTheoryI18n() {
+  if (!LANG_EN) return;
+  const b = window.__SIMULATOR_UI_I18N__?.theory;
+  if (!b) return;
+  const li1 = document.getElementById('theoryLi1');
+  const li2 = document.getElementById('theoryLi2');
+  const li3 = document.getElementById('theoryLi3');
+  if (b.li1Html && li1) li1.innerHTML = b.li1Html;
+  if (b.li2Html && li2) li2.innerHTML = b.li2Html;
+  if (b.li3Html && li3) li3.innerHTML = b.li3Html;
+}
+
+function runUraniumSim() {
+  applyTheoryI18n();
+  const decayEl = document.getElementById('decayNote');
+  if (decayEl) decayEl.innerHTML = getDefaultDecayNoteHtml();
+
   renderCards();
 
   ui.nucleus = new NucleusSim(document.getElementById('nucleusCanvas'));
@@ -811,21 +888,28 @@ window.addEventListener('DOMContentLoaded', () => {
   setupIsoSelector('isoSelector', (iso) => {
     ui.nucleus.setIsotope(iso);
     updateStats(iso);
+    ui.resetDecayState();
   });
 
   setupIsoSelector('timeIsoSelector', (iso) => {
     ui.timeSim.setIso(iso);
     ui.timeSim.reset();
-    document.getElementById('btnPlay').textContent = '▶ Play';
+    document.getElementById('btnPlay').textContent = lbl('buttons.start', '▶ Pornește');
     updateTimeHalfLife();
   });
 
   document.getElementById('btnDecay').addEventListener('click', () => {
+    if (ui.hasDecayed) return;
     ui.nucleus.triggerDecay();
   });
   document.getElementById('btnReset').addEventListener('click', () => {
     ui.nucleus.reset();
     updateStats(ui.nucleus.currentIso);
+    ui.resetDecayState();
+    const isoSelector = document.getElementById('isoSelector');
+    isoSelector.querySelectorAll('button').forEach(b => b.classList.remove('active'));
+    const activeBtn = isoSelector.querySelector(`button[data-iso="${ui.nucleus.currentIso}"]`);
+    if (activeBtn) activeBtn.classList.add('active');
   });
 
   document.getElementById('btnFission').addEventListener('click', () => {
@@ -836,25 +920,25 @@ window.addEventListener('DOMContentLoaded', () => {
   playBtn.addEventListener('click', () => {
     if (ui.timeSim.playing) {
       ui.timeSim.pause();
-      playBtn.textContent = '▶ Play';
+      playBtn.textContent = lbl('buttons.start', '▶ Pornește');
     } else {
       ui.timeSim.play();
-      playBtn.textContent = '❚❚ Pauză';
+      playBtn.textContent = lbl('buttons.pause', '❚❚ Pauză');
     }
   });
 
   document.getElementById('btnTimeReset').addEventListener('click', () => {
     ui.timeSim.reset();
-    playBtn.textContent = '▶ Play';
+    playBtn.textContent = lbl('buttons.start', '▶ Pornește');
   });
 
   const speedSlider = document.getElementById('speedSlider');
   const speedVal = document.getElementById('speedVal');
   const updateSpeed = () => {
-    const v = parseInt(speedSlider.value);
+    const v = parseInt(speedSlider.value, 10);
     ui.timeSim.setSpeed(v);
     const yps = Math.pow(10, 2 + v);
-    speedVal.textContent = formatYears(yps) + '/sec';
+    speedVal.textContent = formatYears(yps) + lbl('timeFormat.perSecSuffix', '/sec');
   };
   speedSlider.addEventListener('input', updateSpeed);
   updateSpeed();
@@ -898,4 +982,10 @@ window.addEventListener('DOMContentLoaded', () => {
       ui.timeSim.buildAtoms();
     }, 200);
   });
-});
+}
+
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', runUraniumSim);
+} else {
+  runUraniumSim();
+}

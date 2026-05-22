@@ -15,7 +15,9 @@
     "upload-cleaned": "node upload-cleaned-problems.js",
     "remove-duplicates": "node remove-duplicate-problems.js",
     "upload-grile": "node upload-grile.js",
-    "screenshot-simulations": "node scripts/screenshot-simulations.js"
+    "screenshot-simulations": "node scripts/screenshot-simulations.js",
+    "screenshot-simulations-en": "node scripts/screenshot-simulations-en.js",
+    "repair-traduceri-en": "node scripts/repair-traduceri-en-normalize.mjs"
   },
   "dependencies": {
     "@mistralai/mistralai": "^1.11.0",
@@ -51,6 +53,7 @@
     "eslint-plugin-react-hooks": "^5.0.0",
     "eslint-plugin-react-refresh": "^0.4.18",
     "globals": "^15.14.0",
+    "google-translate-api-x": "^10.7.2",
     "puppeteer": "^24.36.1",
     "sass-embedded": "^1.85.0",
     "vite": "^6.1.0"

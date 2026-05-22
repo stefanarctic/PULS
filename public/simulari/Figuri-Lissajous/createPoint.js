@@ -12,8 +12,17 @@ const timeInput = document.getElementById('timeInput');
 const time2Input = document.getElementById('time2Input');
 const colorInput = document.getElementById('colorInput');
 const createLineButton = document.getElementById('create-line-btn');
-const pointAInput = document.getElementById('pointAInput');
-const pointBInput = document.getElementById('pointBInput');
+
+function simT(path, fallback) {
+  if (typeof window.simLbl === "function") return window.simLbl(path, fallback);
+  return fallback;
+}
+
+function simFmt(path, fallback, vars) {
+  let s = simT(path, fallback);
+  if (!vars) return s;
+  return s.replace(/\{(\w+)\}/g, (_, k) => (vars[k] != null && vars[k] !== undefined ? String(vars[k]) : ""));
+}
 
 const openDialog = () => {
     isDialogOpen = true;
@@ -81,11 +90,23 @@ const createPoint = () => {
         isNaN(amplitudine) ||
         isNaN(unghiulinitial)
     ) {
-        addLog("Introdu valori valide în toate câmpurile!");
+        addLog(simT("logs.invalidFields", "Introdu valori valide \u00een toate c\u00e2mpurile!"));
         return;
     }
 
-    addLog(`Date introduse: A = ${amplitudine} m, 𝛚1 = ${omega1} rad/s, 𝛚2 = ${omega2} rad/s, t ∈ [${time}, ${time2}] s, φ0 = ${unghiulinitial}°, culoare = ${color}`);
+    const dataFallback =
+      "Date introduse: A = {A} m, \u03c91 = {w1} rad/s, \u03c92 = {w2} rad/s, t \u2208 [{t1}, {t2}] s, \u03c60 = {phi}\u00b0, culoare = {color}";
+    addLog(
+      simFmt("logs.dataEntered", dataFallback, {
+        A: amplitudine,
+        w1: omega1,
+        w2: omega2,
+        t1: time,
+        t2: time2,
+        phi: unghiulinitial,
+        color,
+      })
+    );
 
     const step = 0.01;
     const w1 = omega1;
@@ -106,7 +127,7 @@ const createPoint = () => {
         createdPoints.push({ x, y });
     }
 
-    addLog("Figura Lissajous a fost adăugată cu succes!");
+    addLog(simT("logs.figureAdded", "Figura Lissajous a fost ad\u0103ugat\u0103 cu succes!"));
     hideDialog();
 };
 
@@ -115,4 +136,6 @@ const createPoint = () => {
 showPopupButton.onclick = openDialog;
 closePopupButton.onclick = hideDialog;
 createPointButton.onclick = createPoint;
-createLineButton.onclick = createLine;
+if (createLineButton && typeof createLine === "function") {
+  createLineButton.onclick = createLine;
+}

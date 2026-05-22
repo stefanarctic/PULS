@@ -1,3 +1,14 @@
+const simT = (path, ro) =>
+  typeof window.simLbl === 'function' ? window.simLbl(path, ro) : ro;
+
+function dash() {
+  return simT('misc.dash', '-');
+}
+
+function fmtWithUnit(value, fixed, unitKey, roFallback) {
+  return value.toFixed(fixed) + simT(unitKey, roFallback);
+}
+
 // DOM elements
 const themeSwitcher = document.getElementById('themeSwitcher');
 const body = document.body;
@@ -62,11 +73,11 @@ themeSwitcher.addEventListener('click', () => {
     if (isDark) {
         body.classList.remove('light-theme');
         body.classList.add('dark-theme');
-        themeSwitcher.innerHTML = '☀️ Schimbă tema';
+        themeSwitcher.innerHTML = simT('buttons.themeDark', '☀️ Schimbă tema');
     } else {
         body.classList.remove('dark-theme');
         body.classList.add('light-theme');
-        themeSwitcher.innerHTML = '🌙 Schimbă tema';
+        themeSwitcher.innerHTML = simT('buttons.themeLight', '🌙 Schimbă tema');
     }
     createChart(); // Recreate chart with new theme colors
 });
@@ -83,9 +94,9 @@ function createChart() {
         type: 'line',
         data: {
             labels: [],
-            datasets: [
+                datasets: [
                 {
-                    label: 'Deplasare (m)',
+                    label: simT('chart.displacement', 'Deplasare (m)'),
                     data: [],
                     borderColor: 'rgb(111, 53, 247)',
                     backgroundColor: 'rgba(76, 175, 80, 0.1)',
@@ -93,7 +104,7 @@ function createChart() {
                     borderWidth: 3
                 },
                 {
-                    label: 'Viteză (m/s)',
+                    label: simT('chart.velocity', 'Viteză (m/s)'),
                     data: [],
                     borderColor: 'rgb(241, 145, 66)',
                     backgroundColor: 'rgba(255, 87, 34, 0.1)',
@@ -134,7 +145,7 @@ function createChart() {
                     },
                     title: {
                         display: true,
-                        text: 'Timp (s)',
+                        text: simT('chart.timeAxis', 'Timp (s)'),
                         color: '#222',
                         font: {
                             size: 14,
@@ -294,7 +305,7 @@ function initializeEventListeners() {
         masaSlider.addEventListener('input', () => {
             try {
                 masa = parseFloat(masaSlider.value);
-                masaValue.textContent = masa.toFixed(1) + ' kg';
+                masaValue.textContent = fmtWithUnit(masa, 1, 'unitsFmt.kg', ' kg');
                 console.log('Mass changed:', masa);
                 if (!running) {
                     drawSpring(x * getVisualConfig().scale, masa);
@@ -328,7 +339,7 @@ function initializeEventListeners() {
         kSlider.addEventListener('input', () => {
             try {
                 const k = parseFloat(kSlider.value);
-                kValue.textContent = k.toFixed(1) + 'N/m';
+                kValue.textContent = fmtWithUnit(k, 1, 'unitsFmt.nPerM', ' N/m');
                 console.log('Spring constant changed:', k);
             } catch (error) {
                 console.error('Error updating spring constant:', error);
@@ -441,16 +452,16 @@ function updateMeasurements(x, vx) {
     const Em = Ec + Ep;
     
     const measurements = {
-        'masaDisplay': masa.toFixed(1) + ' kg',
-        'amplitudineDisplay': Math.abs(x).toFixed(2) + ' m',
-        'timpDisplay': timeElapsed.toFixed(2) + ' s',
-        'deplasareDisplay': x.toFixed(2) + ' m',
-        'vitezaDisplay': v.toFixed(2) + ' m/s',
-        'kDisplay': k.toFixed(1) + ' N/m',
-        'fortaDisplay': Fx.toFixed(2) + ' N',
-        'ecDisplay': Ec.toFixed(2) + ' J',
-        'epDisplay': Ep.toFixed(2) + ' J',
-        'etDisplay': Em.toFixed(2) + ' J'
+        'masaDisplay': fmtWithUnit(masa, 1, 'unitsFmt.kg', ' kg'),
+        'amplitudineDisplay': fmtWithUnit(Math.abs(x), 2, 'unitsFmt.m', ' m'),
+        'timpDisplay': fmtWithUnit(timeElapsed, 2, 'unitsFmt.s', ' s'),
+        'deplasareDisplay': fmtWithUnit(x, 2, 'unitsFmt.m', ' m'),
+        'vitezaDisplay': fmtWithUnit(v, 2, 'unitsFmt.ms', ' m/s'),
+        'kDisplay': fmtWithUnit(k, 1, 'unitsFmt.nPerM', ' N/m'),
+        'fortaDisplay': fmtWithUnit(Fx, 2, 'unitsFmt.n', ' N'),
+        'ecDisplay': fmtWithUnit(Ec, 2, 'unitsFmt.j', ' J'),
+        'epDisplay': fmtWithUnit(Ep, 2, 'unitsFmt.j', ' J'),
+        'etDisplay': fmtWithUnit(Em, 2, 'unitsFmt.j', ' J')
     };
     
     for (const [id, value] of Object.entries(measurements)) {
@@ -460,17 +471,18 @@ function updateMeasurements(x, vx) {
 }
 
 function resetMeasurements() {
+    const d = dash();
     const elements = {
-        'masaDisplay': '-',
-        'amplitudineDisplay': '-',
-        'timpDisplay': '-',
-        'deplasareDisplay': '-',
-        'vitezaDisplay': '-',
-        'kDisplay': '-',
-        'fortaDisplay': '-',
-        'ecDisplay': '-',
-        'epDisplay': '-',
-        'etDisplay': '-'
+        'masaDisplay': d,
+        'amplitudineDisplay': d,
+        'timpDisplay': d,
+        'deplasareDisplay': d,
+        'vitezaDisplay': d,
+        'kDisplay': d,
+        'fortaDisplay': d,
+        'ecDisplay': d,
+        'epDisplay': d,
+        'etDisplay': d
     };
     for (const [id, defaultValue] of Object.entries(elements)) {
         const element = document.getElementById(id);
@@ -517,13 +529,13 @@ function togglePauseResume() {
     
     paused = !paused;
     if (paused) {
-        pauseResumeBtn.textContent = 'Reia';
+        pauseResumeBtn.textContent = simT('buttons.resume', 'Reia');
         pauseResumeBtn.classList.add('paused');
         if (animationFrame) {
             cancelAnimationFrame(animationFrame);
         }
     } else {
-        pauseResumeBtn.textContent = 'Pauză';
+        pauseResumeBtn.textContent = simT('buttons.pause', 'Pauză');
         pauseResumeBtn.classList.remove('paused');
         lastTimestamp = 0;
         animationFrame = requestAnimationFrame(animate);
@@ -547,7 +559,7 @@ function stopSim() {
     startBtn.disabled = false;
     pauseResumeBtn.disabled = true;
     stopBtn.disabled = true;
-    pauseResumeBtn.textContent = 'Pauză';
+    pauseResumeBtn.textContent = simT('buttons.pause', 'Pauză');
     pauseResumeBtn.classList.remove('paused');
     
     // Reset measurements
@@ -577,41 +589,56 @@ function masoara() {
     const Ep = mass * 9.81 * height;
     const Et = Ec + Ep;
     
-    document.getElementById('masaDisplay').textContent = mass.toFixed(1) + 'kg';
-    document.getElementById('amplitudineDisplay').textContent = Math.abs(x).toFixed(2) + 'm';
-    document.getElementById('timpDisplay').textContent = timeElapsed.toFixed(2) + 's';
-    document.getElementById('deplasareDisplay').textContent = x.toFixed(2) + 'm';
-    document.getElementById('vitezaDisplay').textContent = velocity.toFixed(2) + 'm/s';
-    document.getElementById('ecDisplay').textContent = Ec.toFixed(2) + 'J';
-    document.getElementById('epDisplay').textContent = Ep.toFixed(2) + 'J';
-    document.getElementById('etDisplay').textContent = Et.toFixed(2) + 'J';
+    document.getElementById('masaDisplay').textContent = fmtWithUnit(mass, 1, 'unitsFmt.kg', ' kg');
+    document.getElementById('amplitudineDisplay').textContent = fmtWithUnit(Math.abs(x), 2, 'unitsFmt.m', ' m');
+    document.getElementById('timpDisplay').textContent = fmtWithUnit(timeElapsed, 2, 'unitsFmt.s', ' s');
+    document.getElementById('deplasareDisplay').textContent = fmtWithUnit(x, 2, 'unitsFmt.m', ' m');
+    document.getElementById('vitezaDisplay').textContent = fmtWithUnit(velocity, 2, 'unitsFmt.ms', ' m/s');
+    document.getElementById('ecDisplay').textContent = fmtWithUnit(Ec, 2, 'unitsFmt.j', ' J');
+    document.getElementById('epDisplay').textContent = fmtWithUnit(Ep, 2, 'unitsFmt.j', ' J');
+    document.getElementById('etDisplay').textContent = fmtWithUnit(Et, 2, 'unitsFmt.j', ' J');
 }
 
 // Initial setup
-document.addEventListener('DOMContentLoaded', () => {
-    console.log('DOM Content Loaded - Starting initialization...');
-    
+function runInit() {
+    console.log('Starting initialization...');
+
     if (!verifyElements()) {
         console.error('Some required elements are missing!');
         return;
     }
-    
+
     console.log('All elements found, initializing...');
     initializeEventListeners();
     initializeSidebarToggles();
     applyInitialSidebarState();
     updateSidebarButtons();
     createChart();
-    
+
     // Set initial values
     const initialMass = parseFloat(masaSlider.value);
-    masaValue.textContent = initialMass.toFixed(1) + 'kg';
+    masaValue.textContent = fmtWithUnit(initialMass, 1, 'unitsFmt.kg', ' kg');
+    const initialK = parseFloat(kSlider.value);
+    kValue.textContent = fmtWithUnit(initialK, 1, 'unitsFmt.nPerM', ' N/m');
     frecareValue.textContent = frecareSlider ? frecareSlider.value : '0.00';
-    
+
     // Initial draw
     console.log('Performing initial draw...');
     drawSpring(0, initialMass);
-    
+
+    if (window.MathJax?.typesetPromise) {
+        const leftEl = document.getElementById('sidebar-left');
+        const rightEl = document.getElementById('sidebar-right');
+        const mjTargets = [leftEl, rightEl].filter(Boolean);
+        if (mjTargets.length) window.MathJax.typesetPromise(mjTargets).catch(() => {});
+    }
+
     console.log('Initialization complete!');
-}); 
+}
+
+if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', runInit);
+} else {
+    runInit();
+}
 

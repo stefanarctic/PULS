@@ -113,6 +113,40 @@ const ISOTOPES = [
     desc: 'Cel mai greu izotop de uraniu observat experimental. Dincolo de el: teritoriu teoretic.' },
 ];
 
+const LANG_EN = new URLSearchParams(window.location.search).get('lang') === 'en';
+
+function lbl(path, fallback) {
+  return typeof window.simLbl === 'function' ? window.simLbl(path, fallback) : fallback;
+}
+
+/** Merge EN strings from catalog for display; keep raw `iso` from ISOTOPES for RO-based logic. */
+function displayIso(iso) {
+  const en = window.__SIMULATOR_UI_I18N__?.isotopesByA?.[String(iso.A)];
+  if (!en) return iso;
+  return {
+    ...iso,
+    hlText: en.hlText ?? iso.hlText,
+    origin: en.origin ?? iso.origin,
+    abund: en.abund ?? iso.abund,
+    fissile: en.fissile ?? iso.fissile,
+    uses: en.uses ?? iso.uses,
+    desc: en.desc ?? iso.desc,
+  };
+}
+
+function stabWordFromScore(stab) {
+  if (stab < 0.15) return lbl('stab.e0', 'extrem instabil');
+  if (stab < 0.35) return lbl('stab.e1', 'foarte instabil');
+  if (stab < 0.55) return lbl('stab.e2', 'instabil');
+  if (stab < 0.75) return lbl('stab.e3', 'relativ stabil');
+  return lbl('stab.e4', 'longeviv');
+}
+
+/** Canvas / decay UI strings (read after i18n boot). */
+function canvasLbl(key, ro) {
+  return lbl(`canvas.${key}`, ro);
+}
+
 // ---------- UTILS ----------
 const $ = id => document.getElementById(id);
 
@@ -126,10 +160,10 @@ function decayColor(decay) {
 }
 
 function decayLabel(decay) {
-  if (decay === 'α') return 'α · alfa';
-  if (decay === 'β⁻') return 'β⁻ · beta minus';
-  if (decay === 'CE') return 'CE · captură electronică';
-  if (decay === 'β⁺') return 'β⁺ · beta plus';
+  if (decay === 'α') return lbl('decayChip.alpha', 'α · alfa');
+  if (decay === 'β⁻') return lbl('decayChip.betaM', 'β⁻ · beta minus');
+  if (decay === 'CE') return lbl('decayChip.ce', 'CE · captură electronică');
+  if (decay === 'β⁺') return lbl('decayChip.betaP', 'β⁺ · beta plus');
   return decay;
 }
 
@@ -149,17 +183,17 @@ function stability01(halfLifeSec) {
 }
 
 function formatHalfLifeShort(sec) {
-  if (sec < 1e-6) return (sec * 1e9).toFixed(0) + ' ns';
-  if (sec < 1e-3) return (sec * 1e6).toFixed(1) + ' μs';
-  if (sec < 1)    return (sec * 1e3).toFixed(1) + ' ms';
-  if (sec < 60)   return sec.toFixed(2) + ' s';
-  if (sec < 3600) return (sec / 60).toFixed(1) + ' min';
-  if (sec < 86400)return (sec / 3600).toFixed(1) + ' h';
-  if (sec < Y)    return (sec / 86400).toFixed(1) + ' zile';
-  if (sec < Y * 1e3) return (sec / Y).toFixed(1) + ' ani';
-  if (sec < Y * 1e6) return (sec / (Y * 1e3)).toFixed(1) + ' mii ani';
-  if (sec < Y * 1e9) return (sec / (Y * 1e6)).toFixed(1) + ' mil. ani';
-  return (sec / (Y * 1e9)).toFixed(2) + ' mld. ani';
+  if (sec < 1e-6) return (sec * 1e9).toFixed(0) + ' ' + lbl('unit.ns', 'ns');
+  if (sec < 1e-3) return (sec * 1e6).toFixed(1) + ' ' + lbl('unit.us', 'μs');
+  if (sec < 1) return (sec * 1e3).toFixed(1) + ' ' + lbl('unit.ms', 'ms');
+  if (sec < 60) return sec.toFixed(2) + ' ' + lbl('unit.s', 's');
+  if (sec < 3600) return (sec / 60).toFixed(1) + ' ' + lbl('unit.min', 'min');
+  if (sec < 86400) return (sec / 3600).toFixed(1) + ' ' + lbl('unit.h', 'h');
+  if (sec < Y) return (sec / 86400).toFixed(1) + ' ' + lbl('unit.days', 'zile');
+  if (sec < Y * 1e3) return (sec / Y).toFixed(1) + ' ' + lbl('unit.yr', 'ani');
+  if (sec < Y * 1e6) return (sec / (Y * 1e3)).toFixed(1) + ' ' + lbl('unit.kyr', 'mii ani');
+  if (sec < Y * 1e9) return (sec / (Y * 1e6)).toFixed(1) + ' ' + lbl('unit.Myr', 'mil. ani');
+  return (sec / (Y * 1e9)).toFixed(2) + ' ' + lbl('unit.Gyr', 'mld. ani');
 }
 
 function formatTimeByHL(tInSecondsOfHL) {
@@ -200,6 +234,30 @@ const state = {
 
 function isoByA(A) { return ISOTOPES.find(i => i.A === A); }
 
+const shortestIso = ISOTOPES.reduce((x, y) => (x.halfLife < y.halfLife ? x : y));
+const longestIso = ISOTOPES.reduce((x, y) => (x.halfLife > y.halfLife ? x : y));
+
+function applyTheoryI18n() {
+  if (!LANG_EN) return;
+  const b = window.__SIMULATOR_UI_I18N__?.theory;
+  if (!b) return;
+  const li1 = document.getElementById('theoryLi1');
+  const li2 = document.getElementById('theoryLi2');
+  const li3 = document.getElementById('theoryLi3');
+  if (b.li1Html && li1) li1.innerHTML = b.li1Html;
+  if (b.li2Html && li2) li2.innerHTML = b.li2Html;
+  if (b.li3Html && li3) li3.innerHTML = b.li3Html;
+}
+
+function refreshExtremeButtons() {
+  const ds = displayIso(shortestIso);
+  const dl = displayIso(longestIso);
+  const sEl = $('shortestVal');
+  const lEl = $('longestVal');
+  if (sEl) sEl.textContent = `U-${shortestIso.A} · ${ds.hlText}`;
+  if (lEl) lEl.textContent = `U-${longestIso.A} · ${dl.hlText}`;
+}
+
 // ==========================================
 // NUCLIDE CHART
 // ==========================================
@@ -235,32 +293,33 @@ function hexToRgba(hex, alpha) {
 }
 
 function showTooltip(e, iso) {
+  const d = displayIso(iso);
   const color = decayColor(iso.decay);
   const stab = stability01(iso.halfLife);
-  let stabWord;
-  if (stab < 0.15) stabWord = 'extrem instabil';
-  else if (stab < 0.35) stabWord = 'foarte instabil';
-  else if (stab < 0.55) stabWord = 'instabil';
-  else if (stab < 0.75) stabWord = 'relativ stabil';
-  else stabWord = 'longeviv';
+  const stabWord = stabWordFromScore(stab);
 
   tooltip.style.setProperty('--tt-color', color);
   tooltip.style.setProperty('--tt-color-soft', hexToRgba(color, 0.12));
+
+  const fissileRow =
+    iso.fissile && iso.fissile !== 'nu'
+      ? `<div class="tt-row"><span class="tt-k">${lbl('tooltip.fissile', 'Fisil')}</span><span class="tt-v tt-v-accent">${d.fissile}</span></div>`
+      : '';
 
   tooltip.innerHTML = `
     <div class="tt-head">
       <span class="tt-title">U-${iso.A}</span>
       <span class="tt-decay-chip">${iso.decay}</span>
     </div>
-    <div class="tt-row"><span class="tt-k">Protoni · Z</span><span class="tt-v">92</span></div>
-    <div class="tt-row"><span class="tt-k">Neutroni · N</span><span class="tt-v">${iso.A - 92}</span></div>
-    <div class="tt-row"><span class="tt-k">Masa · A</span><span class="tt-v">${iso.A}</span></div>
-    <div class="tt-row"><span class="tt-k">T½</span><span class="tt-v tt-v-accent">${iso.hlText}</span></div>
-    <div class="tt-row"><span class="tt-k">Stabilitate</span><span class="tt-v">${stabWord}</span></div>
-    <div class="tt-row"><span class="tt-k">Origine</span><span class="tt-v">${iso.origin}</span></div>
-    ${iso.fissile && iso.fissile !== 'nu' ? `<div class="tt-row"><span class="tt-k">Fisil</span><span class="tt-v tt-v-accent">${iso.fissile}</span></div>` : ''}
-    <div class="tt-footer">${iso.desc}</div>
-    <div class="tt-hint">click pentru selecție</div>
+    <div class="tt-row"><span class="tt-k">${lbl('tooltip.protonsZ', 'Protoni · Z')}</span><span class="tt-v">92</span></div>
+    <div class="tt-row"><span class="tt-k">${lbl('tooltip.neutronsN', 'Neutroni · N')}</span><span class="tt-v">${iso.A - 92}</span></div>
+    <div class="tt-row"><span class="tt-k">${lbl('tooltip.massA', 'Masă · A')}</span><span class="tt-v">${iso.A}</span></div>
+    <div class="tt-row"><span class="tt-k">${lbl('tooltip.halfLife', 'T½')}</span><span class="tt-v tt-v-accent">${d.hlText}</span></div>
+    <div class="tt-row"><span class="tt-k">${lbl('tooltip.stability', 'Stabilitate')}</span><span class="tt-v">${stabWord}</span></div>
+    <div class="tt-row"><span class="tt-k">${lbl('tooltip.origin', 'Origine')}</span><span class="tt-v">${d.origin}</span></div>
+    ${fissileRow}
+    <div class="tt-footer">${d.desc}</div>
+    <div class="tt-hint">${lbl('tooltip.hint', 'click pentru selecție')}</div>
   `;
   tooltip.classList.add('visible');
   positionTooltip(e.currentTarget);
@@ -336,6 +395,7 @@ isoSlider.addEventListener('input', () => {
 // ==========================================
 function updateBigCard() {
   const iso = isoByA(state.currentA);
+  const d = displayIso(iso);
   const color = decayColor(iso.decay);
   const N = iso.A - 92;
   const stab = stability01(iso.halfLife);
@@ -349,29 +409,23 @@ function updateBigCard() {
   $('cellA').textContent = iso.A;
   $('cellNZ').textContent = (N / 92).toFixed(3);
 
-  // tags
+  // tags (logic on raw Romanian fields)
   const tags = [];
-  if (iso.origin.startsWith('natural · primar')) tags.push({ cls: 'natural', text: 'natural' });
-  else if (iso.origin.startsWith('natural · urmă')) tags.push({ cls: 'trace', text: 'urmă naturală' });
-  else tags.push({ cls: 'artificial', text: 'artificial' });
+  if (iso.origin.startsWith('natural · primar')) tags.push({ cls: 'natural', text: lbl('tags.natural', 'natural') });
+  else if (iso.origin.startsWith('natural · urmă')) tags.push({ cls: 'trace', text: lbl('tags.trace', 'urmă naturală') });
+  else tags.push({ cls: 'artificial', text: lbl('tags.artificial', 'artificial') });
 
-  if (iso.fissile.startsWith('DA')) tags.push({ cls: 'fissile', text: 'FISIL' });
-  else if (iso.fissile.startsWith('fertil')) tags.push({ cls: 'fissile', text: 'fertil' });
+  if (iso.fissile.startsWith('DA')) tags.push({ cls: 'fissile', text: lbl('tags.fissile', 'FISIL') });
+  else if (iso.fissile.startsWith('fertil')) tags.push({ cls: 'fissile', text: lbl('tags.fertile', 'fertil') });
 
   $('isoTags').innerHTML = tags.map(t => `<span class="iso-tag ${t.cls}">${t.text}</span>`).join('');
 
   // half-life block
-  $('hlText').textContent = iso.hlText;
+  $('hlText').textContent = d.hlText;
   $('hlText').style.color = color;
   $('stabFill').style.width = (stab * 100).toFixed(1) + '%';
 
-  let stabWord;
-  if (stab < 0.15) stabWord = 'extrem de instabil';
-  else if (stab < 0.35) stabWord = 'foarte instabil';
-  else if (stab < 0.55) stabWord = 'instabil';
-  else if (stab < 0.75) stabWord = 'relativ stabil';
-  else stabWord = 'longeviv';
-  $('stabText').textContent = stabWord;
+  $('stabText').textContent = stabWordFromScore(stab);
 
   // decay chip
   const chip = $('decayChip');
@@ -383,20 +437,20 @@ function updateBigCard() {
     <span class="nums"><sup>${iso.daughterA}</sup><sub>${iso.daughterZ}</sub></span>${iso.daughterSym}
   `;
 
-  // MATTERS CARD
+  // MATTERS CARD (display merged EN when available)
   const oSym = origSym(iso.origin);
-  $('mOrigin').textContent = iso.origin;
+  $('mOrigin').textContent = d.origin;
   $('mOrigin').className = 'mrow-v ' + (oSym.cls === 'natural' ? 'yes' : (oSym.cls === 'artificial' ? 'maybe' : ''));
-  $('mAbund').textContent = iso.abund;
+  $('mAbund').textContent = d.abund;
 
   const fEl = $('mFissile');
-  fEl.textContent = iso.fissile;
+  fEl.textContent = d.fissile;
   if (iso.fissile.startsWith('DA')) fEl.className = 'mrow-v yes';
   else if (iso.fissile.startsWith('da') || iso.fissile.startsWith('fertil') || iso.fissile.startsWith('parțial')) fEl.className = 'mrow-v maybe';
   else fEl.className = 'mrow-v no';
 
-  $('mUses').textContent = iso.uses;
-  $('mDesc').textContent = iso.desc;
+  $('mUses').textContent = d.uses;
+  $('mDesc').textContent = d.desc;
 
   // formula current
   $('fIso').textContent = `U-${iso.A}`;
@@ -473,7 +527,7 @@ function drawDecayCurve() {
     dCtx.fillStyle = 'rgba(130, 150, 190, 0.55)';
     dCtx.textAlign = 'center';
     dCtx.textBaseline = 'top';
-    dCtx.fillText(v === 0 ? '0' : `${v}T½`, x, padT + plotH + 8);
+    dCtx.fillText(v === 0 ? '0' : `${v}${lbl('decay.axisHalf', 'T½')}`, x, padT + plotH + 8);
   });
 
   // Axis lines
@@ -490,9 +544,9 @@ function drawDecayCurve() {
   dCtx.font = '10px "JetBrains Mono", monospace';
   dCtx.textAlign = 'left';
   dCtx.textBaseline = 'top';
-  dCtx.fillText('N(t) / N₀', padL - 50, padT - 18);
+  dCtx.fillText(canvasLbl('axisY', 'N(t) / N₀'), padL - 50, padT - 18);
   dCtx.textAlign = 'right';
-  dCtx.fillText('timp (× T½)', w - padR, padT + plotH + 26);
+  dCtx.fillText(canvasLbl('axisX', 'timp (× T½)'), w - padR, padT + plotH + 26);
 
   // === DECAY CURVE ===
   const pointsMax = 200;
@@ -584,7 +638,7 @@ function drawAtoms(w, h, frac, color) {
   dCtx.font = '9px "JetBrains Mono", monospace';
   dCtx.textAlign = 'left';
   dCtx.textBaseline = 'top';
-  dCtx.fillText('atomi rămași', boxX + 10, boxY + 8);
+  dCtx.fillText(canvasLbl('atomsViz', 'atomi rămași'), boxX + 10, boxY + 8);
 
   // grid of dots 10x8 = 80 dots
   const cols = 10, rows = 6;
@@ -650,9 +704,9 @@ function updateDecayStats() {
   const ratio = state.timeRatio / 100; // 0..5
   const frac = Math.pow(0.5, ratio);
 
-  $('tRatioVal').textContent = ratio.toFixed(2) + ' × T½';
+  $('tRatioVal').textContent = ratio.toFixed(2) + ' ' + lbl('decay.timesHalf', '× T½');
   $('dRemaining').textContent = (frac * 100).toFixed(1) + ' %';
-  $('dElapsed').textContent = ratio === 0 ? '0' : formatElapsed(iso.halfLife, ratio);
+  $('dElapsed').textContent = ratio === 0 ? lbl('decay.zeroElapsed', '0') : formatElapsed(iso.halfLife, ratio);
   $('dPeriods').textContent = ratio.toFixed(2);
 }
 
@@ -668,17 +722,12 @@ function selectA(A) {
 // ==========================================
 // EXTREMES
 // ==========================================
-// determine truly shortest
-const shortest = ISOTOPES.reduce((a, b) => a.halfLife < b.halfLife ? a : b);
-const longest = ISOTOPES.reduce((a, b) => a.halfLife > b.halfLife ? a : b);
-$('shortestVal').textContent = `U-${shortest.A} · ${shortest.hlText}`;
-
 $('btnLongest').addEventListener('click', () => {
-  selectA(longest.A);
+  selectA(longestIso.A);
   flashCard();
 });
 $('btnShortest').addEventListener('click', () => {
-  selectA(shortest.A);
+  selectA(shortestIso.A);
   flashCard();
 });
 
@@ -703,7 +752,12 @@ document.head.appendChild(styleTag);
 // ==========================================
 // INIT
 // ==========================================
-buildChart();
-selectA(235);
+function runTotIsoSim() {
+  applyTheoryI18n();
+  refreshExtremeButtons();
+  buildChart();
+  selectA(235);
+  window.addEventListener('resize', () => drawDecayCurve());
+}
 
-window.addEventListener('resize', () => drawDecayCurve());
+runTotIsoSim();

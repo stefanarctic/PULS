@@ -8,45 +8,45 @@
     <title>Oscilator Neliniar</title>
 </head>
 <body>
-    <b class="titlemain">Oscilator Neliniar</b>
+    <b class="titlemain" data-i18n="labels.pageTitle">Oscilator Neliniar</b>
     <button id="toggleSidebar">></button>
    <div class="sidebar">
         <div class="slider-container">
             <div class="slider-label">
-                <span class="text1">Amplitudine:</span>
+                <span class="text1" data-i18n="labels.amplitude">Amplitudine:</span>
                 <span id="amplitude-value" class="text1">80° (cm)</span>
             </div>
             <input type="range" id="amplitude" min="10" max="80" value="80">
         </div>
         <div class="slider-container">
             <div class="slider-label">
-                <span class="text1">Viteză:</span>
+                <span class="text1" data-i18n="labels.speed">Viteză:</span>
                 <span id="speed-value" class="text1">2x</span>
             </div>
             <input type="range" id="speed" min="1" max="10" value="2">
         </div>
         <div class="slider-container">
             <div class="slider-label">
-                <span class="text1">Lungime fir:</span>
+                <span class="text1" data-i18n="labels.stringLength">Lungime fir:</span>
                 <span id="lengthValue" class="text1">450</span>
             </div>
             <input type="range" id="lengthSlider" min="200" max="600" value="450">
         </div>
-        <button onclick="startOscillation()" class="button1">Start</button>
-        <button id="pauseResumeBtn" onclick="togglePauseResume()" class="button1">Pauză</button>
-        <button onclick="stopOscillation()" class="button1">Stop</button>
-        <button onclick="toggleMeasuringTool()" class="button1">Măsoară</button>
-        <div class="measurement-values" id="measurement-values">
-            <p>L (lungimea): <span id="measured-length">-</span></p>
-            <p>θ (unghiul): <span id="measured-angle">-</span></p>
-            <p>t (timpul): <span id="measured-time">-</span></p>
-            <p>ω (viteza unghiulară): <span id="measured-angular-velocity">-</span></p>
-            <p>v (viteza liniară): <span id="measured-velocity">-</span></p>
-            <p>a (accelerația): <span id="measured-acceleration">-</span></p>
-            <p>Ec (energia cinetică): <span id="measured-kineticenergy">-</span></p>
-            <p>Ep (energia potențială): <span id="measured-potentialenergy">-</span></p>
-            <p>Em (energia mecanică): <span id="measured-mechanicalenergy">-</span></p>
-            <p>T (perioada): <span id="measured-period">-</span></p>
+        <button onclick="startOscillation()" class="button1" data-i18n="buttons.start">Start</button>
+        <button id="pauseResumeBtn" onclick="togglePauseResume()" class="button1" data-i18n="buttons.pause">Pauză</button>
+        <button onclick="stopOscillation()" class="button1" data-i18n="buttons.stop">Stop</button>
+        <button onclick="toggleMeasuringTool()" class="button1" data-i18n="buttons.measure">Măsoară</button>
+        <div class="measurement-values" id="measurement-values-sidebar">
+            <p><span data-i18n="labels.measureLength">L (lungimea):</span> <span id="measured-length">-</span></p>
+            <p><span data-i18n="labels.measureAngle">θ (unghiul):</span> <span id="measured-angle">-</span></p>
+            <p><span data-i18n="labels.measureTime">t (timpul):</span> <span id="measured-time">-</span></p>
+            <p><span data-i18n="labels.measureAngularVelocity">ω (viteza unghiulară):</span> <span id="measured-angular-velocity">-</span></p>
+            <p><span data-i18n="labels.measureVelocity">v (viteza liniară):</span> <span id="measured-velocity">-</span></p>
+            <p><span data-i18n="labels.measureAcceleration">a (accelerația):</span> <span id="measured-acceleration">-</span></p>
+            <p><span data-i18n="labels.measureKinetic">Ec (energia cinetică):</span> <span id="measured-kineticenergy">-</span></p>
+            <p><span data-i18n="labels.measurePotential">Ep (energia potențială):</span> <span id="measured-potentialenergy">-</span></p>
+            <p><span data-i18n="labels.measureMechanical">Em (energia mecanică):</span> <span id="measured-mechanicalenergy">-</span></p>
+            <p><span data-i18n="labels.measurePeriod">T (perioada):</span> <span id="measured-period">-</span></p>
             <div id="chart-container">
                 <canvas id="pendulumChart"></canvas>
             </div>
@@ -56,37 +56,37 @@
         <button id="toggleUniformbar"><</button>
         <div class="unitform-container">
     <div class="unitbar">
-        <span class="text1">Unități de măsură:</span>
-        <div class="measurement-values" id="measurement-values">
-            <p>L (lungimea) - m (metru)</p>
-            <p>θ (unghiul) - ° (grade)</p>
-            <p>t (timpul) - s (secunda)</p>
-            <p>ω (viteza unghiulară) - rad/s (radian pe secundă)</p>
-            <p>v (viteza liniară) - m/s (metru pe secundă)</p>
-            <p>a (accelerația) - m/s² (metru pe secundă la pătrat)</p>
-            <p>Ec (energia cinetică) - J (joule)</p>
-            <p>Ep (energia potențială) - J (joule)</p>
-            <p>Em (energia mecanică) - J (joule)</p>
-            <p>T (perioada) - s (secunda)</p>
+        <span class="text1" data-i18n="labels.unitsHeading">Unități de măsură:</span>
+        <div class="measurement-values" id="measurement-values-units">
+            <p data-i18n="labels.unitLength">L (lungimea) - m (metru)</p>
+            <p data-i18n="labels.unitAngle">θ (unghiul) - ° (grade)</p>
+            <p data-i18n="labels.unitTime">t (timpul) - s (secunda)</p>
+            <p data-i18n="labels.unitOmega">ω (viteza unghiulară) - rad/s (radian pe secundă)</p>
+            <p data-i18n="labels.unitVelocity">v (viteza liniară) - m/s (metru pe secundă)</p>
+            <p data-i18n="labels.unitAccel">a (accelerația) - m/s² (metru pe secundă la pătrat)</p>
+            <p data-i18n="labels.unitKinetic">Ec (energia cinetică) - J (joule)</p>
+            <p data-i18n="labels.unitPotential">Ep (energia potențială) - J (joule)</p>
+            <p data-i18n="labels.unitMechanical">Em (energia mecanică) - J (joule)</p>
+            <p data-i18n="labels.unitPeriod">T (perioada) - s (secunda)</p>
         </div>
     </div>
             <div class="formulabar">
-        <span class="text1">Formule pendul neliniar:</span>
-        <div class="measurement-values" id="measurement-values">
-            <p>Ecuația de mișcare:</p>
+        <span class="text1" data-i18n="labels.formulasHeading">Formule pendul neliniar:</span>
+        <div class="measurement-values" id="measurement-values-formulas">
+            <p data-i18n="labels.eqMotionHeading">Ecuația de mișcare:</p>
             <p>$$\frac{d^2\theta}{dt^2} + \frac{g}{l} \sin\theta = 0$$</p>
-            <p>Viteza unghiulară:</p>
+            <p data-i18n="labels.omegaHeading">Viteza unghiulară:</p>
             <p>$$\omega = \frac{d\theta}{dt}$$</p>
-            <p>Viteza liniară:</p>
+            <p data-i18n="labels.linearVelocityHeading">Viteza liniară:</p>
             <p>$$v = l \cdot \omega$$</p>
-            <p>Energia cinetică:</p>
+            <p data-i18n="labels.kineticHeading">Energia cinetică:</p>
             <p>$$E_c = \frac{1}{2} m v^2$$</p>
-            <p>Energia potențială:</p>
+            <p data-i18n="labels.potentialHeading">Energia potențială:</p>
             <p>$$E_p = m g l (1 - \cos\theta)$$</p>
-            <p>Energia mecanică:</p>
+            <p data-i18n="labels.mechanicalHeading">Energia mecanică:</p>
             <p>$$E_m = E_c + E_p$$</p>
         </div>
-        <button id="themeToggle" class="button2">🌙 Schimbă tema</button>
+        <button id="themeToggle" class="button2" data-i18n="buttons.themeDark">🌙 Schimbă tema</button>
         </div>
     </div>
   </div>
@@ -96,15 +96,14 @@
             <div class="ball" id="ball"></div>
         </div>
         </div>
-        <!-- <div id="shadow"></div> -->
     </div>
-    
-</body>
-<script src="reprezentari3d_main.js"></script>
-<script src="Tema.js"></script>
+
+<script src="/simulari/simulator-i18n-runtime.js"></script>
+<script src="pendul-neliniar-boot.js"></script>
 <script type="text/javascript" async 
   src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
 <script type="text/javascript" async 
   src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
 
+</body>
 </html>

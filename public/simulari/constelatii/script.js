@@ -1,5 +1,9 @@
 import * as THREE from "https://unpkg.com/three@0.170.0/build/three.module.js";
-import { ZODIAC_DEFINITIONS } from "./zodiac-data.js";
+import { ZODIAC_DEFINITIONS, ZODIAC_HOOK, stripZodiacHook } from "./zodiac-data.js";
+
+function simT(path, ro) {
+  return typeof window.simLbl === "function" ? window.simLbl(path, ro) : ro;
+}
 
 const canvas = document.querySelector("#c");
 const labelEl = document.querySelector("#sky-label");
@@ -506,6 +510,13 @@ const CONSTELLATIONS = {
   },
 };
 
+for (const id of ["uma", "umi", "polaris"]) {
+  const L = CONSTELLATIONS[id].learn;
+  L.title = simT("constellations." + id + ".title", L.title);
+  L.myth = simT("constellations." + id + ".myth", L.myth);
+  L.find = simT("constellations." + id + ".find", L.find);
+}
+
 const hitMeshes = [
   makePickSphere(umaCent, HIT_RADIUS, "uma"),
   makePickSphere(umiCent, HIT_RADIUS * 0.95, "umi"),
@@ -516,11 +527,16 @@ const hitMeshes = [
 for (const z of ZODIAC_DEFINITIONS) {
   const dirs = z.stars.map(([ra, dec]) => celestialDir(ra, dec));
   const cent = centroidNormalized(dirs);
+  const findBody = stripZodiacHook(z.find);
   CONSTELLATIONS[z.id] = {
     labelAnchor: scaleToRadius(cent, LINE_RADIUS),
     lines: makeLineSegments(dirs, z.segments, z.colorLine),
     nodes: makeConstellationNodes(dirs, z.colorNode, 1),
-    learn: { title: z.title, myth: z.myth, find: z.find },
+    learn: {
+      title: simT("zodiac." + z.id + ".title", z.title),
+      myth: simT("zodiac." + z.id + ".myth", z.myth),
+      find: simT("zodiac." + z.id + ".find", findBody) + " " + simT("zodiacHook", ZODIAC_HOOK),
+    },
     isZodiac: true,
   };
   hitMeshes.push(makePickSphere(cent, z.hitRadius ?? HIT_RADIUS * 0.82, z.id));
@@ -559,11 +575,13 @@ function setActive(id) {
   }
   activeId = id;
   if (id === "venus") {
-    learnKicker.textContent = "Luceafărul";
-    learnTitle.textContent = "Venus · Luceafărul";
-    learnMyth.textContent = "Nu e stea. E planeta Venus.";
-    learnFindText.textContent =
-      "E cea mai strălucitoare „stea” de pe bolta noastră după Soare și Lună: o vezi diseară spre vest sau în zori, lângă răsărit. Nori groși de acid sulfuric o fac alb-strălucitoare; de aceea pare gălbuie-portocalie jos spre orizont. Poziția pe zodii se schimbă din lună în lună — e planetă, nu punct fix ca stelele.";
+    learnKicker.textContent = simT("venus.kicker", "Luceafărul");
+    learnTitle.textContent = simT("venus.title", "Venus · Luceafărul");
+    learnMyth.textContent = simT("venus.myth", "Nu e stea. E planeta Venus.");
+    learnFindText.textContent = simT(
+      "venus.find",
+      "E cea mai strălucitoare „stea” de pe bolta noastră după Soare și Lună: o vezi diseară spre vest sau în zori, lângă răsărit. Nori groși de acid sulfuric o fac alb-strălucitoare; de aceea pare gălbuie-portocalie jos spre orizont. Poziția pe zodii se schimbă din lună în lună — e planetă, nu punct fix ca stelele."
+    );
     labelEl.hidden = false;
     return;
   }
@@ -571,8 +589,8 @@ function setActive(id) {
     const c = CONSTELLATIONS[id];
     const { title, myth, find } = c.learn;
     learnKicker.textContent = c.isZodiac
-      ? "Zodie pe cerul real"
-      : "Învață";
+      ? simT("labels.kickerZodiac", "Zodie pe cerul real")
+      : simT("labels.kickerLearn", "Învață");
     learnTitle.textContent = title;
     learnMyth.textContent = myth;
     learnFindText.textContent = find;
@@ -871,6 +889,12 @@ function onResize() {
 window.addEventListener("resize", onResize);
 
 const northCompassEl = document.querySelector("#north-compass");
+if (northCompassEl) {
+  northCompassEl.title = simT(
+    "compass.title",
+    "Acul indică Steaua polară (Polul Nord ceresc). Dubhe–Merak din Carul Mare → Polaris → nord."
+  );
+}
 const northNeedleEl = northCompassEl?.querySelector(".north-compass-needle");
 const _northPolarisDir = new THREE.Vector3();
 const _northPolarisProj = new THREE.Vector3();

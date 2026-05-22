@@ -143,14 +143,20 @@ function draw() {
   const tA = Math.sqrt(T);
 
   if (E < V) {
-    modeText.textContent =
-      "Electronul tunelază prin barieră, unda pătrunde în zona interzisă clasic și apare dincolo cu probabilitate redusă.";
+    modeText.textContent = window.simLbl(
+      "modes.below",
+      "Electronul tunelază prin barieră, unda pătrunde în zona interzisă clasic și apare dincolo cu probabilitate redusă."
+    );
   } else if (E > V) {
-    modeText.textContent =
-      "Electronul trece clasic peste barieră, are energie peste potențial; reflexia și transmisia oscilează cu lățimea barierei.";
+    modeText.textContent = window.simLbl(
+      "modes.above",
+      "Electronul trece clasic peste barieră, are energie peste potențial; reflexia și transmisia oscilează cu lățimea barierei."
+    );
   } else {
-    modeText.textContent =
-      "La limită E = V: între tunelare și propagare peste barieră, coeficienții depind fin de geometrie.";
+    modeText.textContent = window.simLbl(
+      "modes.equal",
+      "La limită E = V: între tunelare și propagare peste barieră, coeficienții depind fin de geometrie."
+    );
   }
 
   rtText.textContent = `R ≈ ${R.toFixed(3)}   ·   T ≈ ${T.toFixed(3)}   ·   R + T = ${sumRT.toFixed(3)}`;
@@ -318,11 +324,11 @@ function draw() {
   ctx.fillStyle = "rgba(148, 163, 184, 0.92)";
   ctx.font = `${fs}px Arial`;
   ctx.textAlign = "center";
-  ctx.fillText(
-    `Σ|ψ|² = ${sumPsiSq.toFixed(3)} (normalizare pe grilă)`,
-    canvas.width / 2,
-    canvas.height - Math.max(8, 10 * sy)
-  );
+  const normLabel = window.simLbl(
+    "canvas.norm",
+    "Σ|ψ|² = {v} (normalizare pe grilă)"
+  ).replace("{v}", sumPsiSq.toFixed(3));
+  ctx.fillText(normLabel, canvas.width / 2, canvas.height - Math.max(8, 10 * sy));
 
   t += 0.016;
   requestAnimationFrame(draw);

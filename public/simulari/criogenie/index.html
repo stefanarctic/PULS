@@ -32,15 +32,15 @@
       >
         <div class="drawer__scroll">
           <div class="info-card info-card--aha">
-            <h2 class="info-card__title">Moment „aha”</h2>
-            <p class="insight-dynamic" id="insight-dynamic">
+            <h2 class="info-card__title" data-i18n="labels.ahaTitle">Moment „aha”</h2>
+            <p class="insight-dynamic" id="insight-dynamic" data-i18n="labels.insightDefault">
               Mișcă temperatura sau volumul — aici apare legătura cu presiunea și starea.
             </p>
           </div>
 
           <div class="info-card">
-            <h2 class="info-card__title">Ideea de bază</h2>
-            <p class="info-card__text">
+            <h2 class="info-card__title" data-i18n="labels.ideaTitle">Ideea de bază</h2>
+            <p class="info-card__text" data-i18n="labels.ideaBody">
               Vezi cum se mișcă „moleculele” când schimbi temperatura și volumul.
               Model simplu: energia cinetică crește cu <strong>T</strong> — particulele
               mai calde sunt mai rapide (culoarea tinde spre roșu).
@@ -48,8 +48,8 @@
           </div>
 
           <div class="info-card">
-            <h2 class="info-card__title">pV = nRT</h2>
-            <p class="info-card__text">
+            <h2 class="info-card__title" data-i18n="labels.pvTitle">pV = nRT</h2>
+            <p class="info-card__text" data-i18n="labels.pvBody">
               La același număr de particule, dacă <strong>micșorezi volumul</strong> sau
               <strong>crești temperatura</strong>, presiunea efectivă crește. Urmărește
               indicația de presiune mai jos.
@@ -57,8 +57,8 @@
           </div>
 
           <div class="info-card">
-            <h2 class="info-card__title">Stări &amp; material</h2>
-            <p class="info-card__text">
+            <h2 class="info-card__title" data-i18n="labels.statesTitle">Stări &amp; material</h2>
+            <p class="info-card__text" data-i18n="labels.statesBody">
               <strong>Gaz</strong> — haos, fără ordine. <strong>Lichid</strong> — se
               aglomerează dar curg. <strong>Solid</strong> — rețea ordonată, vibrații mici.
               Fiecare material are praguri diferite (ex.: heliu aproape nu „îngheață” la
@@ -67,21 +67,22 @@
           </div>
 
           <div class="info-card info-card--live">
-            <h2 class="info-card__title">Live</h2>
+            <h2 class="info-card__title" data-i18n="labels.liveTitle">Live</h2>
             <p class="pressure-line" id="pressure-label">Pressure: Low</p>
             <p class="state-line">
-              Stare: <strong id="state-label">&#x1F4A7; Liquid (fluid)</strong>
+              <span data-i18n="labels.statePrefix">Stare:</span>
+              <strong id="state-label">&#x1F4A7; Liquid (fluid)</strong>
             </p>
             <p class="hint" id="state-hint">
               Atracție ușoară între vecini: se grupează dar încă curg.
             </p>
-            <p class="zero-warning" id="zero-warning" hidden>
-              &#x26A0;&#xFE0F; Absolute zero cannot be reached
+            <p class="zero-warning" id="zero-warning" hidden data-i18n="labels.zeroWarning">
+              &#x26A0;&#xFE0F; Zero absolut nu poate fi atins
             </p>
           </div>
 
           <div class="info-card">
-            <h2 class="info-card__title">Provocări</h2>
+            <h2 class="info-card__title" data-i18n="labels.challengesTitle">Provocări</h2>
             <p class="challenge-item" id="challenge-freeze-status">
               Coboară T până la solid pentru materialul ales.
             </p>
@@ -94,8 +95,10 @@
 
       <div class="main-fill">
         <header class="header">
-          <h1>Simulator criogenie</h1>
-          <p class="tagline">Temperatură, volum, presiune — stările materiei</p>
+          <h1 data-i18n="labels.pageTitle">Simulator criogenie</h1>
+          <p class="tagline" data-i18n="labels.tagline">
+            Temperatură, volum, presiune — stările materiei
+          </p>
         </header>
 
         <div class="stage" id="stage">
@@ -110,31 +113,32 @@
       >
         <div class="drawer__scroll">
           <div class="chart-panel">
-            <h2 class="chart-panel__title">Distribuția vitezelor</h2>
-            <p class="chart-panel__caption">
+            <h2 class="chart-panel__title" data-i18n="labels.chartDistTitle">Distribuția vitezelor</h2>
+            <p class="chart-panel__caption" data-i18n="labels.chartDistCaption">
               Barele = simulare; <strong>curba portocalie</strong> = distribuție teoretică Rayleigh (2D),
               același tip ca modulul vitezei din Maxwell–Boltzmann pentru gaz ideal în plan.
             </p>
             <div class="chart-wrap" id="chart-wrap">
               <canvas id="chart-canvas" width="280" height="220"></canvas>
             </div>
-            <p class="chart-axis-label">viteză relativă →</p>
+            <p class="chart-axis-label" data-i18n="labels.chartAxis">viteză relativă →</p>
           </div>
 
           <div class="controls controls--sidebar">
-            <h2 class="controls__heading">Controale</h2>
+            <h2 class="controls__heading" data-i18n="labels.controls">Controale</h2>
             <div class="control-row">
-              <label class="temp-label" for="material-select">Material</label>
+              <label class="temp-label" for="material-select" data-i18n="labels.material">Material</label>
               <select id="material-select" class="select-input">
-                <option value="water" selected>Apă</option>
-                <option value="helium">Heliu</option>
-                <option value="iron">Fier</option>
-                <option value="nitrogen">Azot</option>
+                <option value="water" selected data-i18n="labels.materialWater">Apă</option>
+                <option value="helium" data-i18n="labels.materialHelium">Heliu</option>
+                <option value="iron" data-i18n="labels.materialIron">Fier</option>
+                <option value="nitrogen" data-i18n="labels.materialNitrogen">Azot</option>
               </select>
             </div>
 
             <label class="temp-label" for="temp-slider">
-              Temperatură: <span id="temp-value">300</span> K
+              <span data-i18n="labels.tempSlider">Temperatură:</span>
+              <span id="temp-value">300</span> K
             </label>
             <div class="range-field">
               <input
@@ -148,7 +152,8 @@
             </div>
 
             <label class="temp-label" for="volume-slider">
-              Volum (cutie): <span id="volume-value">100%</span>
+              <span data-i18n="labels.volumeSlider">Volum (cutie):</span>
+              <span id="volume-value">100%</span>
             </label>
             <div class="range-field">
               <input
@@ -162,7 +167,7 @@
             </div>
 
             <div class="experiment-block">
-              <h3 class="experiment-block__title">Experiment mode</h3>
+              <h3 class="experiment-block__title" data-i18n="labels.experimentTitle">Experiment mode</h3>
               <p class="experiment-block__goal" id="experiment-title">
                 Presiune mare, fără T mai mare
               </p>
@@ -170,14 +175,14 @@
                 Obține Pressure: High fără să crești temperatura față de momentul Start.
               </p>
               <div class="experiment-block__actions">
-                <button type="button" class="btn btn--primary" id="btn-exp-start">
+                <button type="button" class="btn btn--primary" id="btn-exp-start" data-i18n="labels.expStart">
                   Start experiment
                 </button>
-                <button type="button" class="btn btn--ghost" id="btn-exp-next">
+                <button type="button" class="btn btn--ghost" id="btn-exp-next" data-i18n="labels.expNext">
                   Alt experiment
                 </button>
               </div>
-              <button type="button" class="btn btn--capture" id="btn-capture">
+              <button type="button" class="btn btn--capture" id="btn-capture" data-i18n="labels.expCapture">
                 &#x1F4F8; Capture experiment
               </button>
             </div>
@@ -202,6 +207,7 @@
 
     <div class="toast-root" id="toast-root" aria-live="polite"></div>
 
-    <script type="module" src="main.js"></script>
+    <script src="../simulator-i18n-runtime.js"></script>
+    <script src="criogenie-boot.js"></script>
   </body>
 </html>

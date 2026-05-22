@@ -34,6 +34,8 @@ import {
 } from 'lucide-react';
 import { copyToClipboard } from '../../lib/copyToClipboard';
 import { fetchSubmissionsMapForAssignment, studentAssignmentDueStatus } from '../../lib/assignmentProgress';
+import { translateClassOrAssignmentError } from '../../i18n/classErrors';
+import { useI18n } from '../../i18n/LanguageContext';
 import '../../scss/components/_teacher-dashboard.scss';
 
 const emptyItem = (type) => {
@@ -55,6 +57,23 @@ const TeacherClassPage = () => {
   const { classId } = useParams();
   const navigate = useNavigate();
   const dispatch = useDispatch();
+  const { t, localizedPath, lang } = useI18n();
+  const TCH = 'classes.teacherClass';
+  const AS = 'classes.assignmentStatus';
+  const TA = 'classes.teacherAssignment';
+
+  const assignmentStatusLabels = useMemo(
+    () => ({
+      done: t(`${AS}.done`, 'Tema făcută'),
+      overdue: t(`${AS}.overdue`, 'Tema nefăcută (termen depășit)'),
+      inProgress: t(`${AS}.inProgress`, 'În lucru'),
+      notStarted: t(`${AS}.notStarted`, 'De început'),
+    }),
+    [t, AS],
+  );
+
+  const localeTag = lang === 'en' ? 'en-GB' : 'ro-RO';
+
   const { isApprovedTeacher, loading: authLoading, user } = useTeacher();
   const problems = useSelector((s) => s.problems.value || []);
   const grile = useSelector((s) => s.grile.value || []);
@@ -121,7 +140,7 @@ const TeacherClassPage = () => {
         fetchJoinRequests(classId),
       ]);
       if (!c || c.teacherId !== user?.uid) {
-        setLoadError('Clasa nu există sau nu ai permisiune.');
+        setLoadError(t(`${TCH}.notFoundOrForbidden`, 'Clasa nu există sau nu ai permisiune.'));
         setClassData(null);
         return;
       }
@@ -133,11 +152,11 @@ const TeacherClassPage = () => {
       setJoinRequests(jr);
     } catch (e) {
       console.error(e);
-      setLoadError('Eroare la încărcare.');
+      setLoadError(t(`${TCH}.loadFailed`, 'Eroare la încărcare.'));
     } finally {
       setLoading(false);
     }
-  }, [classId, user?.uid]);
+  }, [classId, user?.uid, t, TCH]);
 
   useEffect(() => {
     if (!classId || !assignments.length) {
@@ -164,11 +183,11 @@ const TeacherClassPage = () => {
   useEffect(() => {
     if (authLoading) return;
     if (!isApprovedTeacher) {
-      navigate('/');
+      navigate(localizedPath('/'));
       return;
     }
     if (user?.uid) loadAll();
-  }, [authLoading, isApprovedTeacher, user?.uid, loadAll, navigate]);
+  }, [authLoading, isApprovedTeacher, user?.uid, loadAll, navigate, localizedPath]);
 
   useEffect(() => {
     if (grileStatus === 'idle') {
@@ -229,49 +248,45 @@ const TeacherClassPage = () => {
       await loadAll();
     } catch (err) {
       console.error(err);
-      alert('Nu s-a putut salva.');
+      alert(t(`${TCH}.saveMetaFailed`, 'Nu s-a putut salva.'));
     } finally {
       setSavingMeta(false);
     }
   };
 
   const handleRemoveMember = async (studentUid) => {
-    if (!window.confirm('Elimini acest elev din clasă?')) return;
+    if (!window.confirm(t(`${TCH}.confirmRemoveMember`, 'Elimini acest elev din clasă?'))) return;
     try {
       await removeMember(classId, studentUid);
       await loadAll();
     } catch (err) {
       console.error(err);
-      alert('Eroare.');
+      alert(t(`${TCH}.deleteAssignmentFailed`, 'Eroare.'));
     }
   };
 
   const handleDeleteAssignment = async (assignmentId) => {
-    if (!window.confirm('Ștergi această temă?')) return;
+    if (!window.confirm(t(`${TCH}.confirmDeleteAssignment`, 'Ștergi această temă?'))) return;
     try {
       await deleteAssignment(classId, assignmentId);
       await loadAll();
     } catch (err) {
       console.error(err);
-      alert('Eroare.');
+      alert(t(`${TCH}.deleteAssignmentFailed`, 'Eroare.'));
     }
   };
 
   const handleDeleteClass = async () => {
-    if (
-      !window.confirm(
-        'Ștergi definitiv această clasă? Toate temele și înscrierile vor fi eliminate. Acțiunea nu poate fi anulată.'
-      )
-    ) {
+    if (!window.confirm(t(`${TCH}.confirmDeleteClass`, 'Ștergi definitiv această clasă? Toate temele și înscrierile vor fi eliminate. Acțiunea nu poate fi anulată.'))) {
       return;
     }
     setDeleting(true);
     try {
       await deleteClassCascade(classId);
-      navigate('/profesor');
+      navigate(localizedPath('/profesor'));
     } catch (err) {
       console.error(err);
-      alert('Eroare la ștergerea clasei.');
+      alert(t(`${TCH}.deleteClassFailed`, 'Eroare la ștergerea clasei.'));
     } finally {
       setDeleting(false);
     }
@@ -283,18 +298,18 @@ const TeacherClassPage = () => {
       await loadAll();
     } catch (err) {
       console.error(err);
-      alert('Nu s-a putut aproba cererea.');
+      alert(t(`${TCH}.approveFailed`, 'Nu s-a putut aproba cererea.'));
     }
   };
 
   const handleRejectJoin = async (studentUid) => {
-    if (!window.confirm('Respingi această cerere de intrare?')) return;
+    if (!window.confirm(t(`${TCH}.confirmRejectRequest`, 'Respingi această cerere de intrare?'))) return;
     try {
       await rejectJoinRequest(classId, studentUid);
       await loadAll();
     } catch (err) {
       console.error(err);
-      alert('Nu s-a putut respinge cererea.');
+      alert(t(`${TCH}.rejectFailed`, 'Nu s-a putut respinge cererea.'));
     }
   };
 
@@ -303,7 +318,7 @@ const TeacherClassPage = () => {
       <Layout>
         <div className="teacher-dashboard-loading">
           <div className="spinner" />
-          <p>Se încarcă...</p>
+          <p>{t(`${TCH}.loading`, 'Se încarcă...')}</p>
         </div>
       </Layout>
     );
@@ -313,8 +328,8 @@ const TeacherClassPage = () => {
     return (
       <Layout>
         <div className="teacher-dashboard-error-screen">
-          <p>{loadError || 'Acces interzis.'}</p>
-          <Link to="/profesor">Înapoi la panou profesor</Link>
+          <p>{loadError || t(`${TCH}.accessDenied`, 'Acces interzis.')}</p>
+          <Link to={localizedPath('/profesor')}>{t(`${TCH}.backDashboard`, 'Înapoi la panou profesor')}</Link>
         </div>
       </Layout>
     );
@@ -324,15 +339,15 @@ const TeacherClassPage = () => {
     <Layout>
       <div className="teacher-dashboard">
         <div className="teacher-dashboard-inner">
-          <Link to="/profesor" className="teacher-dashboard-back">
+          <Link to={localizedPath('/profesor')} className="teacher-dashboard-back">
             <ArrowLeft size={18} />
-            Toate clasele
+            {t(`${TCH}.backAllClasses`, 'Toate clasele')}
           </Link>
 
           <header className="teacher-dashboard-header">
             <h1 className="teacher-dashboard-title">{classData.name}</h1>
             <div className="teacher-dashboard-code teacher-dashboard-code--with-copy">
-              <span className="teacher-dashboard-code-label">Cod intrare elevi (ID clasă):</span>
+              <span className="teacher-dashboard-code-label">{t(`${TCH}.entryCodeLabel`, 'Cod intrare elevi (ID clasă):')}</span>
               <span className="teacher-dashboard-code-value">
                 <code className="teacher-dashboard-code-id">{classId}</code>
                 <span className="teacher-dashboard-code-actions">
@@ -340,8 +355,8 @@ const TeacherClassPage = () => {
                     type="button"
                     className="teacher-dashboard-copy-btn"
                     onClick={handleCopyClassCode}
-                    aria-label="Copiază codul clasei în clipboard"
-                    title="Copiază codul clasei (ID pentru intrare)"
+                    aria-label={t(`${TCH}.copyCodeAria`, 'Copiază codul clasei în clipboard')}
+                    title={t(`${TCH}.copyCodeTitle`, 'Copiază codul clasei (ID pentru intrare)')}
                   >
                     <Copy size={18} strokeWidth={2} />
                   </button>
@@ -349,8 +364,8 @@ const TeacherClassPage = () => {
                     type="button"
                     className="teacher-dashboard-copy-btn"
                     onClick={handleShareInviteLink}
-                    aria-label="Copiază linkul de invitație în clasă"
-                    title="Link invitație (elevii trimit cerere)"
+                    aria-label={t(`${TCH}.copyInviteAria`, 'Copiază linkul de invitație în clasă')}
+                    title={t(`${TCH}.copyInviteTitle`, 'Link invitație (elevii trimit cerere)')}
                   >
                     <Share2 size={18} strokeWidth={2} />
                   </button>
@@ -358,8 +373,8 @@ const TeacherClassPage = () => {
                 {(codeCopied || linkCopied) && (
                   <span className="teacher-dashboard-code-copied">
                     {codeCopied
-                      ? 'Codul clasei a fost copiat în clipboard.'
-                      : 'Linkul de invitație a fost copiat în clipboard.'}
+                      ? t(`${TCH}.codeCopiedMsg`, 'Codul clasei a fost copiat în clipboard.')
+                      : t(`${TCH}.linkCopiedMsg`, 'Linkul de invitație a fost copiat în clipboard.')}
                   </span>
                 )}
               </span>
@@ -367,18 +382,18 @@ const TeacherClassPage = () => {
           </header>
 
           <section className="teacher-dashboard-card">
-            <h2>Detalii clasă</h2>
+            <h2>{t(`${TCH}.detailsHeading`, 'Detalii clasă')}</h2>
             <form onSubmit={saveMeta} className="teacher-dashboard-form">
               <label>
-                Nume
+                {t(`${TCH}.name`, 'Nume')}
                 <input value={editName} onChange={(e) => setEditName(e.target.value)} maxLength={120} />
               </label>
               <label>
-                Descriere
+                {t(`${TCH}.description`, 'Descriere')}
                 <textarea value={editDesc} onChange={(e) => setEditDesc(e.target.value)} rows={2} maxLength={500} />
               </label>
               <button type="submit" className="teacher-dashboard-btn primary" disabled={savingMeta}>
-                {savingMeta ? 'Salvează...' : 'Salvează detaliile'}
+                {savingMeta ? t(`${TCH}.save`, 'Salvează...') : t(`${TCH}.saveIdle`, 'Salvează detaliile')}
               </button>
             </form>
             <div className="teacher-dashboard-danger-zone">
@@ -388,17 +403,17 @@ const TeacherClassPage = () => {
                 onClick={handleDeleteClass}
                 disabled={deleting}
               >
-                {deleting ? 'Se șterge...' : 'Șterge clasă'}
+                {deleting ? t(`${TCH}.deletingClass`, 'Se șterge...') : t(`${TCH}.deleteClass`, 'Șterge clasă')}
               </button>
             </div>
           </section>
 
           <section className="teacher-dashboard-card">
             <h2>
-              <UserPlus size={22} /> Cereri de intrare ({joinRequests.length})
+              <UserPlus size={22} /> {t(`${TCH}.joinRequests`, 'Cereri de intrare ({count})', { count: joinRequests.length })}
             </h2>
             {joinRequests.length === 0 ? (
-              <p className="teacher-dashboard-muted">Nicio cerere în așteptare.</p>
+              <p className="teacher-dashboard-muted">{t(`${TCH}.noJoinRequests`, 'Nicio cerere în așteptare.')}</p>
             ) : (
               <ul className="teacher-dashboard-join-request-list">
                 {joinRequests.map((r) => {
@@ -407,9 +422,7 @@ const TeacherClassPage = () => {
                     : r.requestedAt?.seconds
                       ? new Date(r.requestedAt.seconds * 1000)
                       : null;
-                  const when = ts
-                    ? ts.toLocaleString('ro-RO', { dateStyle: 'short', timeStyle: 'short' })
-                    : '';
+                  const when = ts ? ts.toLocaleString(localeTag, { dateStyle: 'short', timeStyle: 'short' }) : '';
                   return (
                     <li key={r.studentUid} className="teacher-dashboard-join-request-row">
                       <div>
@@ -427,14 +440,14 @@ const TeacherClassPage = () => {
                           className="teacher-dashboard-btn primary small"
                           onClick={() => handleApproveJoin(r.studentUid)}
                         >
-                          Aprobă
+                          {t('adminDashboard.teacherRequests.approve', 'Aprobă')}
                         </button>
                         <button
                           type="button"
                           className="teacher-dashboard-btn danger small"
                           onClick={() => handleRejectJoin(r.studentUid)}
                         >
-                          Respinge
+                          {t('adminDashboard.teacherRequests.reject', 'Respinge')}
                         </button>
                       </div>
                     </li>
@@ -446,10 +459,10 @@ const TeacherClassPage = () => {
 
           <section className="teacher-dashboard-card">
             <h2>
-              <Users size={22} /> Elevi ({members.length})
+              <Users size={22} /> {t(`${TCH}.studentsHeading`, 'Elevi ({count})', { count: members.length })}
             </h2>
             {members.length === 0 ? (
-              <p className="teacher-dashboard-muted">Niciun elev încă. Distribuie codul sau linkul de mai sus.</p>
+              <p className="teacher-dashboard-muted">{t(`${TCH}.noStudents`, 'Niciun elev încă. Distribuie codul sau linkul de mai sus.')}</p>
             ) : (
               <ul className="teacher-dashboard-member-list">
                 {members.map((m) => (
@@ -459,7 +472,7 @@ const TeacherClassPage = () => {
                       type="button"
                       className="teacher-dashboard-icon-btn"
                       onClick={() => handleRemoveMember(m.id)}
-                      title="Elimină din clasă"
+                      title={t(`${TCH}.confirmRemoveMember`, 'Elimină din clasă')}
                     >
                       <Trash2 size={18} />
                     </button>
@@ -472,7 +485,7 @@ const TeacherClassPage = () => {
           <section className="teacher-dashboard-card">
             <div className="teacher-dashboard-row">
               <h2>
-                <ClipboardList size={22} /> Teme
+                <ClipboardList size={22} /> {t(`${TCH}.assignmentsHeading`, 'Teme')}
               </h2>
               <button
                 type="button"
@@ -481,7 +494,7 @@ const TeacherClassPage = () => {
                 disabled={!!assignmentDraft}
               >
                 <Plus size={18} />
-                Temă nouă
+                {t(`${TCH}.newAssignment`, 'Temă nouă')}
               </button>
             </div>
 
@@ -497,12 +510,14 @@ const TeacherClassPage = () => {
                   onSaved={loadAll}
                   assignmentSaving={assignmentSaving}
                   setAssignmentSaving={setAssignmentSaving}
+                  t={t}
+                  taPrefix={TA}
                 />
               </div>
             )}
 
             {assignments.length === 0 && !assignmentDraft ? (
-              <p className="teacher-dashboard-muted">Nicio temă încă.</p>
+              <p className="teacher-dashboard-muted">{t(`${TCH}.noAssignments`, 'Nicio temă încă.')}</p>
             ) : assignments.length > 0 ? (
               <ul className="teacher-dashboard-assignment-list">
                 {assignments.map((a) => {
@@ -515,8 +530,8 @@ const TeacherClassPage = () => {
                           <strong>{a.title}</strong>
                           {a.dueDate?.toDate && (
                             <span className="teacher-dashboard-muted">
-                              {' '}
-                              · Termen: {a.dueDate.toDate().toLocaleString('ro-RO')}
+                              {t(`${TCH}.duePrefix`, ' · Termen:')}{' '}
+                              {a.dueDate.toDate().toLocaleString(localeTag)}
                             </span>
                           )}
                         </div>
@@ -527,7 +542,7 @@ const TeacherClassPage = () => {
                             onClick={() => openEditAssignment(a)}
                             disabled={!!assignmentDraft}
                           >
-                            Editează
+                            {t(`${TCH}.edit`, 'Editează')}
                           </button>
                           <button
                             type="button"
@@ -535,13 +550,13 @@ const TeacherClassPage = () => {
                             onClick={() => handleDeleteAssignment(a.id)}
                             disabled={!!assignmentDraft}
                           >
-                            Șterge
+                            {t(`${TCH}.delete`, 'Șterge')}
                           </button>
                         </div>
                       </div>
                       {members.length > 0 && (
                         <div className="teacher-hw-progress">
-                          <p className="teacher-hw-progress-title">Progres elevi</p>
+                          <p className="teacher-hw-progress-title">{t(`${TCH}.studentProgressHeading`, 'Progres elevi')}</p>
                           <ul className="teacher-hw-progress-list">
                             {members.map((m) => {
                               const sub = subsMap[m.studentUid];
@@ -549,10 +564,11 @@ const TeacherClassPage = () => {
                                 dueDate: a.dueDate,
                                 submission: sub,
                                 itemCount,
+                                labels: assignmentStatusLabels,
                               });
                               const avg =
                                 sub?.allDone && sub.averageScore10 != null
-                                  ? `Medie: ${sub.averageScore10}/10`
+                                  ? t(`${TCH}.averageScore`, 'Medie: {n}/10', { n: sub.averageScore10 })
                                   : '';
                               return (
                                 <li key={m.id} className="teacher-hw-progress-item">
@@ -589,7 +605,10 @@ function AssignmentEditorPanel({
   onSaved,
   assignmentSaving,
   setAssignmentSaving,
+  t,
+  taPrefix,
 }) {
+  const TA = taPrefix;
   const [title, setTitle] = useState(draft.title);
   const [dueDate, setDueDate] = useState(draft.dueDate);
   const [items, setItems] = useState(draft.items || []);
@@ -630,18 +649,22 @@ function AssignmentEditorPanel({
     for (const it of items) {
       if (it.type === 'problem') {
         const pid = String(it.problemId || '').trim();
-        if (!pid) return 'Alege o problemă.';
+        if (!pid) return t(`${TA}.valPickProblem`, 'Alege o problemă.');
         const p = sortedProblems.find((x) => String(x.id) === pid);
-        if (!p || typeof p.index !== 'number') return 'Problemă invalidă (lipsește indexul în date).';
+        if (!p || typeof p.index !== 'number')
+          return t(`${TA}.valProblemIndex`, 'Problemă invalidă (lipsește indexul în date).');
       }
       if (it.type === 'grila') {
         const gid = String(it.grilaId || '').trim();
-        if (!gid) return 'Alege o grilă.';
+        if (!gid) return t(`${TA}.valPickGrila`, 'Alege o grilă.');
         const g = grile.find((x) => String(x.id) === gid);
-        if (!g || typeof g.index !== 'number') return 'Grilă invalidă (lipsește indexul în date).';
+        if (!g || typeof g.index !== 'number')
+          return t(`${TA}.valGrilaIndex`, 'Grilă invalidă (lipsește indexul în date).');
       }
-      if (it.type === 'simulation' && !String(it.slug || '').trim()) return 'Alege o simulare.';
-      if (it.type === 'text' && !String(it.body || '').trim()) return 'Textul nu poate fi gol.';
+      if (it.type === 'simulation' && !String(it.slug || '').trim())
+        return t(`${TA}.valSimulation`, 'Alege o simulare.');
+      if (it.type === 'text' && !String(it.body || '').trim())
+        return t(`${TA}.valText`, 'Textul nu poate fi gol.');
     }
     return '';
   };
@@ -653,7 +676,7 @@ function AssignmentEditorPanel({
       return;
     }
     if (!String(title).trim()) {
-      alert('Introdu titlul temei.');
+      alert(t(`${TA}.valTitle`, 'Introdu titlul temei.'));
       return;
     }
     const cleanItems = items.map((it) => {
@@ -688,7 +711,7 @@ function AssignmentEditorPanel({
       await onSaved();
     } catch (e) {
       console.error(e);
-      alert('Nu s-a putut salva tema.');
+      alert(t(`${TA}.saveFailed`, 'Nu s-a putut salva tema.'));
     } finally {
       setAssignmentSaving(false);
     }
@@ -697,43 +720,52 @@ function AssignmentEditorPanel({
   return (
     <div className="teacher-assignment-inline">
       <div className="teacher-assignment-inline-head">
-        <h3 className="teacher-assignment-inline-title">{draft.id ? 'Editează tema' : 'Temă nouă'}</h3>
-        <button type="button" className="teacher-assignment-inline-close" onClick={() => setDraft(null)} aria-label="Închide">
+        <h3 className="teacher-assignment-inline-title">
+          {draft.id ? t(`${TA}.editTitle`, 'Editează tema') : t(`${TA}.newTitle`, 'Temă nouă')}
+        </h3>
+        <button
+          type="button"
+          className="teacher-assignment-inline-close"
+          onClick={() => setDraft(null)}
+          aria-label={t(`${TA}.closeAria`, 'Închide')}
+        >
           <X size={20} />
         </button>
       </div>
 
       <div className="teacher-assignment-inline-grid">
         <label className="teacher-dashboard-block-label">
-          Titlu
+          {t(`${TA}.titleLabel`, 'Titlu')}
           <input value={title} onChange={(e) => setTitle(e.target.value)} maxLength={200} />
         </label>
         <label className="teacher-dashboard-block-label">
-          Termen limită (opțional)
+          {t(`${TA}.dueLabel`, 'Termen limită (opțional)')}
           <input type="datetime-local" value={dueDate} onChange={(e) => setDueDate(e.target.value)} />
         </label>
       </div>
 
       <div className="teacher-assignment-inline-section">
-        <span className="teacher-assignment-inline-label">Conținut temă</span>
+        <span className="teacher-assignment-inline-label">{t(`${TA}.contentLabel`, 'Conținut temă')}</span>
         <div className="teacher-dashboard-add-buttons teacher-assignment-add-row">
           <button type="button" className="teacher-dashboard-btn small" onClick={() => addItem('problem')}>
-            + Problemă
+            {t(`${TA}.addProblem`, '+ Problemă')}
           </button>
           <button type="button" className="teacher-dashboard-btn small" onClick={() => addItem('grila')}>
-            + Grilă
+            {t(`${TA}.addGrila`, '+ Grilă')}
           </button>
           <button type="button" className="teacher-dashboard-btn small" onClick={() => addItem('simulation')}>
-            + Simulare
+            {t(`${TA}.addSimulation`, '+ Simulare')}
           </button>
           <button type="button" className="teacher-dashboard-btn small" onClick={() => addItem('text')}>
-            + Text
+            {t(`${TA}.addText`, '+ Text')}
           </button>
         </div>
       </div>
 
       <div className="teacher-dashboard-items teacher-assignment-items-scroll">
-        {items.length === 0 && <p className="teacher-dashboard-muted">Adaugă blocuri cu butoanele de mai sus.</p>}
+        {items.length === 0 && (
+          <p className="teacher-dashboard-muted">{t(`${TA}.emptyBlocks`, 'Adaugă blocuri cu butoanele de mai sus.')}</p>
+        )}
         {items.map((it, index) => (
           <div key={`${index}-${it.type}`} className="teacher-dashboard-item-block">
             <div className="teacher-dashboard-item-block-head">
@@ -756,9 +788,9 @@ function AssignmentEditorPanel({
             </div>
             {it.type === 'problem' && (
               <label>
-                Problemă
+                {t(`${TA}.problem`, 'Problemă')}
                 <select value={it.problemId} onChange={(e) => patchItem(index, { problemId: e.target.value })}>
-                  <option value="">— alege —</option>
+                  <option value="">{t(`${TA}.choose`, '— alege —')}</option>
                   {sortedProblems.map((p) => (
                     <option key={p.id} value={p.id}>
                       {p.titlu?.slice(0, 80) || p.id}
@@ -769,9 +801,9 @@ function AssignmentEditorPanel({
             )}
             {it.type === 'grila' && (
               <label>
-                Grilă
+                {t(`${TA}.grila`, 'Grilă')}
                 <select value={it.grilaId} onChange={(e) => patchItem(index, { grilaId: e.target.value })}>
-                  <option value="">— alege —</option>
+                  <option value="">{t(`${TA}.choose`, '— alege —')}</option>
                   {grile.map((g) => (
                     <option key={g.id} value={g.id}>
                       {(g.intrebare || '').slice(0, 80) || g.id}
@@ -782,7 +814,7 @@ function AssignmentEditorPanel({
             )}
             {it.type === 'simulation' && (
               <label>
-                Simulare
+                {t(`${TA}.simulation`, 'Simulare')}
                 <select value={it.slug} onChange={(e) => patchItem(index, { slug: e.target.value })}>
                   {simulationsConfig.map((s) => (
                     <option key={s.slug} value={s.slug}>
@@ -794,7 +826,7 @@ function AssignmentEditorPanel({
             )}
             {it.type === 'text' && (
               <label>
-                Text
+                {t(`${TA}.text`, 'Text')}
                 <textarea value={it.body} onChange={(e) => patchItem(index, { body: e.target.value })} rows={4} />
               </label>
             )}
@@ -804,10 +836,10 @@ function AssignmentEditorPanel({
 
       <div className="teacher-assignment-inline-actions">
         <button type="button" className="teacher-dashboard-btn" onClick={() => setDraft(null)}>
-          Renunță
+          {t(`${TA}.discard`, 'Renunță')}
         </button>
         <button type="button" className="teacher-dashboard-btn primary" onClick={handleSave} disabled={assignmentSaving}>
-          {assignmentSaving ? 'Se salvează...' : 'Salvează tema'}
+          {assignmentSaving ? t(`${TA}.saving`, 'Se salvează...') : t(`${TA}.save`, 'Salvează tema')}
         </button>
       </div>
     </div>

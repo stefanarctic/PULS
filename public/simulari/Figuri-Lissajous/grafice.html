@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ro">
 
 <head>
   <meta charset="UTF-8" />
@@ -17,19 +17,17 @@
 <body>
 
   <div id="log-container">
-    <!-- Păstrăm doar acest textarea pentru log-uri -->
-    <textarea id="log" readonly></textarea>
+    <textarea id="log" readonly data-i18n-aria="labels.logAria" aria-label="Jurnal simulare"></textarea>
   </div>
-  <button class="show-popup-button" id="show-popup-button"><span>+</span></button>
+  <button type="button" class="show-popup-button" id="show-popup-button" data-i18n-aria="labels.showPopupAria" aria-label="Deschide dialog creare figură"><span>+</span></button>
   <div class="create-point">
     <div class="overlay" id="overlay"></div>
     <div class="create-point-popup" id="create-point-popup">
-      <!-- Am eliminat partea cu Litera -->
       <div class="popup-content">
-        <h1>Creeaza o figura Lissajous</h1>
+        <h1 data-i18n="labels.popupTitle">Creeaza o figura Lissajous</h1>
         <div class="data-input">
           <div class="section">
-            <label for="timeInput">Functii armonice:</label>
+            <label for="timeInput" data-i18n="labels.harmonicFunctions">Functii armonice:</label>
             <div class="time">
               <label for="amplitudineInput">x =
                 <input type="text" id="amplitudineInput" placeholder="A" />
@@ -48,8 +46,7 @@
               <label for="omega2Input">y = A * sin(
                 <input type="text" id="omega2Input" placeholder="𝛚2" />
                 <label> * </label>
-                <!-- Eliminăm input separat pentru timp aici -->
-                <span>t1-t2 + </span>
+                <span data-i18n="labels.timeDeltaHint">t1-t2 + </span>
                 <label for="unghiulinitialInput">
                   <input type="text" id="unghiulinitialInput" placeholder="φ0" />
                 </label>
@@ -57,27 +54,18 @@
               </label>
             </div>
 
-            <label for="colorInput">Culoare:</label>
+            <label for="colorInput" data-i18n="labels.color">Culoare:</label>
             <input type="color" id="colorInput" value="#ff0000" />
           </div>
         </div>
-        <button id="create-point-btn">Creeaza figura</button>
-        <button class="close-popup-btn" id="close-popup-btn">x</button>
+        <button id="create-point-btn" data-i18n="buttons.createFigure">Creeaza figura</button>
+        <button type="button" class="close-popup-btn" id="close-popup-btn" data-i18n-aria="labels.closePopupAria" aria-label="Închide">×</button>
       </div>
     </div>
   </div>
 
-  <!-- <div class="snowlfkaes" id="snowflakes"></div> -->
-
-  <script src="https://d3js.org/d3.v7.min.js"></script>
-  <script src="script.js"></script>
-  <script src="melodie.js"></script>
-  <script src="zoom.js"></script>
-  <script src="createPoint.js"></script>
-  <script src="math.js"></script>
-  <script src="logs.js"></script>
-  <!-- <script src="snowflakes.js"></script> -->
-  <script src="clock.js"></script>
+  <script src="/simulari/simulator-i18n-runtime.js"></script>
+  <script src="lissajous-boot.js"></script>
 </body>
 
 </html>

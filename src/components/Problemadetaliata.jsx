@@ -1,12 +1,11 @@
-import React, { useEffect, useState, useContext, useRef } from 'react';
+import React, { useEffect, useState, useRef, useMemo } from 'react';
 import { useNavigate } from 'react-router-dom';
 import '../scss/components/_problema-detaliata.scss';
-import { ArrowLeft, Bot, Calculator, BookOpen, Copy, Check, Star } from 'lucide-react';
+import { ArrowLeft, Bot, Calculator, BookOpen, Copy, Check, Star, ChevronLeft, ChevronRight } from 'lucide-react';
 import { Button } from './Buttondet';
 import { Card, CardContent, CardHeader, CardTitle } from './card';
 import { Badge } from './badge';
 import { Separator } from './separator';
-import MathJaxRender from './MathJaxRender';
 import ProblemSubmit from './ProblemSubmit';
 import { useDispatch, useSelector } from 'react-redux';
 import { deleteProblem, clearDeleteStatus, fetchProblems } from '../features/problems/problemsSlice';
@@ -15,10 +14,128 @@ import { onAuthStateChanged } from 'firebase/auth';
 import { doc, getDoc, setDoc } from 'firebase/firestore';
 import { useAssistant } from '../hooks/useAssistant';
 import useDarkMode from '../hooks/useDarkMode';
+import { useMathJaxTypesetRoot } from '../hooks/useMathJaxTypesetRoot';
 import { summarizeProblemImages } from '../lib/problemImageSummary';
+import { useI18n } from '../i18n/LanguageContext';
+import { normalizeString } from '../lib/normalizeString';
+import { convertDollarToInlineMathJax, prepareProblemHtmlMath } from '../lib/problemHtmlMath';
 
-export const ProblemaDetaliata = ({ problema, onBack, homeworkContext = null }) => {
+function formatProblemCategory(cat, t) {
+  if (!cat) return '';
+  const map = {
+    Toate: ['problemsPage.categories.all', 'Toate'],
+    Mecanică: ['problemsPage.categories.mechanics', 'Mecanică'],
+    Oscilații: ['problemsPage.categories.oscillations', 'Oscilații'],
+    Unde: ['problemsPage.categories.waves', 'Unde'],
+    unde: ['problemsPage.categories.waves', 'Unde'],
+    Lissajous: ['problemsPage.categories.lissajous', 'Lissajous'],
+    Seismologie: ['problemsPage.categories.seismology', 'Seismologie'],
+    Bac: ['problemsPage.categories.bac', 'Bac'],
+    pendule: ['problemsPage.categories.oscillations', 'Pendule'],
+    Pendule: ['problemsPage.categories.oscillations', 'Pendule'],
+    seisme: ['problemsPage.categories.seismology', 'Seisme'],
+    Seisme: ['problemsPage.categories.seismology', 'Seisme'],
+    difractie: ['problemDetailPage.categoryDiffraction', 'Difracția Luminii'],
+    Difractie: ['problemDetailPage.categoryDiffraction', 'Difracția Luminii'],
+  };
+  const entry = map[cat];
+  return entry ? t(entry[0], entry[1]) : cat;
+}
+
+function problemMathJaxFingerprint(p) {
+  if (!p) return '';
+  const sub = Array.isArray(p.subpuncte) ? p.subpuncte.map((s) => s.cerinta).join('\n') : '';
+  return [
+    p.id,
+    p.continut,
+    p.descriere,
+    p.titlu,
+    Array.isArray(p.formule) ? p.formule.join('\n') : '',
+    JSON.stringify(p.date || {}),
+    sub,
+  ].join('\u0000');
+}
+
+function escapeHtmlPlain(s) {
+  return String(s)
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;');
+}
+
+/** Enunț scurt / fără LaTeX: nu încadra în $...$ — MathJax ignoră spațiile în modul math. */
+function plainProseToSafeHtml(s) {
+  if (s == null || s === '') return '';
+  const prepared = prepareProblemHtmlMath(s);
+  if (!prepared) return '';
+  return String(prepared)
+    .split(/<br\s*\/?>/gi)
+    .map((chunk) => escapeHtmlPlain(chunk))
+    .join('<br/>');
+}
+
+function hasProblemLatexMarkers(s) {
+  return (
+    typeof s === 'string' &&
+    (s.includes('\\') || s.includes('$') || /[α-ωΑ-Ω°]/.test(s))
+  );
+}
+
+function isWhitespacePhrase(s) {
+  return typeof s === 'string' && /\s/.test(s);
+}
+
+function htmlForProblemDateKey(key) {
+  if (!hasProblemLatexMarkers(key) && isWhitespacePhrase(key)) {
+    return plainProseToSafeHtml(key);
+  }
+  let formattedKey = key;
+  if (!hasProblemLatexMarkers(key)) {
+    formattedKey = `$${key}$`;
+  } else if (!formattedKey.includes('$') && !formattedKey.startsWith('\\(')) {
+    formattedKey = `$${formattedKey}$`;
+  }
+  return convertDollarToInlineMathJax(formattedKey);
+}
+
+function htmlForProblemDateValue(value) {
+  const raw = String(value ?? '');
+  if (!hasProblemLatexMarkers(raw) && isWhitespacePhrase(raw)) {
+    return plainProseToSafeHtml(raw);
+  }
+  let formattedValue = raw;
+  if (!hasProblemLatexMarkers(raw) && !formattedValue.includes('$') && !formattedValue.startsWith('\\(')) {
+    formattedValue = `$${formattedValue}$`;
+  } else if (hasProblemLatexMarkers(raw) && !formattedValue.includes('$') && !formattedValue.startsWith('\\(')) {
+    formattedValue = `$${formattedValue}$`;
+  }
+  return convertDollarToInlineMathJax(formattedValue);
+}
+
+function formatDifficultyDisplay(raw, t) {
+  if (!raw) return '';
+  const n = normalizeString(raw);
+  if (n.includes('usor') || n.includes('usoare')) return t('problemsPage.difficulty.easy', raw);
+  if (n.includes('mediu') || n.includes('medii')) return t('problemsPage.difficulty.medium', raw);
+  if (n.includes('dificil') || n.includes('dificile') || n.includes('greu') || n.includes('grele')) {
+    return t('problemsPage.difficulty.hard', raw);
+  }
+  if (n.includes('concurs')) return t('problemsPage.difficulty.competition', raw);
+  return raw;
+}
+
+export const ProblemaDetaliata = ({
+  problema,
+  onBack,
+  homeworkContext = null,
+  translationLoading = false,
+  neighborPrevIndex = null,
+  neighborNextIndex = null,
+  homeworkQuery = '',
+}) => {
   const navigate = useNavigate();
+  const { localizedPath, t } = useI18n();
   const [copied, setCopied] = useState(false);
   const [isPreparingAi, setIsPreparingAi] = useState(false);
   const [isAdmin, setIsAdmin] = useState(false);
@@ -32,6 +149,9 @@ export const ProblemaDetaliata = ({ problema, onBack, homeworkContext = null }) 
   const starRef = useRef(null);
   const assistant = useAssistant();
   const { deleteStatus, deleteError } = useSelector(state => state.problems);
+
+  const mathJaxFingerprint = useMemo(() => problemMathJaxFingerprint(problema), [problema]);
+  const mathJaxRootRef = useMathJaxTypesetRoot(mathJaxFingerprint);
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, async (firebaseUser) => {
@@ -62,7 +182,7 @@ export const ProblemaDetaliata = ({ problema, onBack, homeworkContext = null }) 
   const handleEdit = () => {
     // Check if user is authenticated before navigating
     if (!auth.currentUser) {
-      alert('Trebuie să te conectezi pentru a edita probleme. Te rugăm să te autentifici mai întâi.');
+      alert(t('problemDetailPage.editLoginRequired', 'Trebuie să te conectezi pentru a edita probleme. Te rugăm să te autentifici mai întâi.'));
       return;
     }
 
@@ -71,18 +191,18 @@ export const ProblemaDetaliata = ({ problema, onBack, homeworkContext = null }) 
 
     if (!problemId) {
       console.error('Problem ID is missing:', problema);
-      alert('Eroare: Problema nu are un ID valid. Nu se poate edita.');
+      alert(t('problemDetailPage.editMissingId', 'Eroare: Problema nu are un ID valid. Nu se poate edita.'));
       return;
     }
 
     // Navigate to admin dashboard with editId parameter
-    navigate(`/admin?editId=${problemId}`);
+    navigate(`${localizedPath('/admin')}?editId=${problemId}`);
   };
 
   const handleDelete = () => {
     // Check if user is authenticated before showing confirmation
     if (!auth.currentUser) {
-      alert('Trebuie să te conectezi pentru a șterge probleme. Te rugăm să te autentifici mai întâi.');
+      alert(t('problemDetailPage.deleteLoginRequired', 'Trebuie să te conectezi pentru a șterge probleme. Te rugăm să te autentifici mai întâi.'));
       return;
     }
 
@@ -96,11 +216,17 @@ export const ProblemaDetaliata = ({ problema, onBack, homeworkContext = null }) 
 
     if (!problemId) {
       console.error('Problem ID is missing:', problema);
-      alert('Eroare: Problema nu are un ID valid. Nu se poate șterge.');
+      alert(t('problemDetailPage.deleteMissingId', 'Eroare: Problema nu are un ID valid. Nu se poate șterge.'));
       return;
     }
 
-    if (window.confirm(`Sigur vrei să ștergi problema "${problema.titlu}"?`)) {
+    if (
+      window.confirm(
+        t('problemDetailPage.deleteProblemConfirm', `Sigur vrei să ștergi problema "${problema.titlu}"?`, {
+          title: problema.titlu,
+        }),
+      )
+    ) {
       console.log('User confirmed deletion, dispatching deleteProblem with ID:', problemId, 'and index:', problema.index);
       // Pass both ID and index to help find the document
       dispatch(deleteProblem({ id: problemId, index: problema.index }));
@@ -117,41 +243,20 @@ export const ProblemaDetaliata = ({ problema, onBack, homeworkContext = null }) 
       dispatch(fetchProblems()).then(() => {
         console.log('Problems reloaded successfully');
         if (onBack) onBack();
-        else navigate('/probleme');
+        else navigate(localizedPath('/probleme'));
       });
     } else if (deleteStatus === 'failed') {
       // Show more user-friendly error message
       const errorMessage = deleteError || 'A apărut o eroare necunoscută';
       console.error('Delete failed with error:', errorMessage);
-      alert(`Eroare la ștergerea problemei:\n\n${errorMessage}\n\nTe rugăm să încerci din nou sau să contactezi administratorul.`);
+      alert(
+        t('problemDetailPage.deleteError', `Eroare la ștergerea problemei:\n\n${errorMessage}\n\nTe rugăm să încerci din nou sau să contactezi administratorul.`, {
+          message: errorMessage,
+        }),
+      );
       dispatch(clearDeleteStatus());
     }
-  }, [deleteStatus, deleteError, onBack, navigate, dispatch]);
-
-  const getDifficultyClass = (dificultate) => {
-    return `badge-difficulty ${dificultate || 'default'}`;
-  };
-
-  const getCategoryName = (categorie) => {
-    switch (categorie) {
-      case 'unde': return 'Unde';
-      case 'pendule': return 'Pendule';
-      case 'seisme': return 'Seisme';
-      case 'difractie': return 'Difracția Luminii';
-      default: return categorie;
-    }
-  };
-
-  const getDifficultyName = (dificultate) => {
-    switch (dificultate) {
-      case 'usoare': return 'Ușoare';
-      case 'medii': return 'Medii';
-      case 'grele': return 'Grele';
-      case 'dificile': return 'Dificile';
-      case 'concurs': return 'Concurs';
-      default: return dificultate;
-    }
-  };
+  }, [deleteStatus, deleteError, onBack, navigate, dispatch, localizedPath, t]);
 
   // Funcție pentru a extrage latexul dintr-un string cu delimitatori $...$
   function stripMathJaxDelimiters(str) {
@@ -166,19 +271,24 @@ export const ProblemaDetaliata = ({ problema, onBack, homeworkContext = null }) 
 
   // Funcție pentru generarea textului compact al problemei
   const generateProblemText = () => {
-    let text = `PROBLEMA #${problema.index}: ${problema.titlu}\n`;
-    text += `Categorie: ${getCategoryName(problema.categorie)}\n`;
-    text += `Dificultate: ${getDifficultyName(problema.dificultate)}\n`;
-    text += `Punctaj total: ${problema.punctajTotal} puncte\n\n`;
+    let text =
+      t(
+        'problemDetailPage.export.problemHeader',
+        `PROBLEMA #${problema.index}: ${problema.titlu}`,
+        { num: problema.index, title: problema.titlu },
+      ) + '\n';
+    text += `${t('problemDetailPage.export.category', 'Categorie:')} ${formatProblemCategory(problema.categorie, t)}\n`;
+    text += `${t('problemDetailPage.export.difficulty', 'Dificultate:')} ${formatDifficultyDisplay(problema.dificultate, t)}\n`;
+    text += `${t('problemDetailPage.export.totalScore', `Punctaj total: ${problema.punctajTotal} puncte`, { points: problema.punctajTotal })}\n\n`;
 
-    text += `DESCRIERE:\n${problema.descriere}\n\n`;
+    text += `${t('problemDetailPage.export.description', 'DESCRIERE:')}\n${problema.descriere}\n\n`;
 
     if (problema.continut) {
-      text += `CONTINUT:\n${stripMathJaxDelimiters(problema.continut)}\n\n`;
+      text += `${t('problemDetailPage.export.content', 'CONTINUT:')}\n${stripMathJaxDelimiters(problema.continut)}\n\n`;
     }
 
     if (problema.formule && problema.formule.length > 0) {
-      text += `FORMULE RELEVANTE:\n`;
+      text += `${t('problemDetailPage.export.formulas', 'FORMULE RELEVANTE:')}\n`;
       problema.formule.forEach((formula, index) => {
         text += `${index + 1}. ${stripMathJaxDelimiters(formula)}\n`;
       });
@@ -186,7 +296,7 @@ export const ProblemaDetaliata = ({ problema, onBack, homeworkContext = null }) 
     }
 
     if (problema.date && Object.keys(problema.date).length > 0) {
-      text += `DATE CUNOSCUTE:\n`;
+      text += `${t('problemDetailPage.export.knownData', 'DATE CUNOSCUTE:')}\n`;
       Object.entries(problema.date).forEach(([key, value]) => {
         text += `${stripMathJaxDelimiters(key.replace(/_/g, ' '))}: ${stripMathJaxDelimiters(String(value))}\n`;
       });
@@ -194,15 +304,30 @@ export const ProblemaDetaliata = ({ problema, onBack, homeworkContext = null }) 
     }
 
     if (problema.subpuncte && problema.subpuncte.length > 0) {
-      text += `CERINTE:\n`;
+      text += `${t('problemDetailPage.export.requirements', 'CERINTE:')}\n`;
       problema.subpuncte.forEach((subpunct, index) => {
-        text += `${String.fromCharCode(97 + index)}) ${stripMathJaxDelimiters(subpunct.cerinta)} (${subpunct.punctaj}p)\n`;
+        const letter = String.fromCharCode(97 + index);
+        text +=
+          t(
+            'problemDetailPage.export.requirementLine',
+            `${letter}) ${stripMathJaxDelimiters(subpunct.cerinta)} (${subpunct.punctaj}p)`,
+            {
+              letter,
+              text: stripMathJaxDelimiters(subpunct.cerinta),
+              points: subpunct.punctaj,
+            },
+          ) + '\n';
       });
       text += '\n';
 
-      text += `BAREM:\n`;
+      text += `${t('problemDetailPage.export.rubric', 'BAREM:')}\n`;
       problema.subpuncte.forEach((subpunct, index) => {
-        text += `${String.fromCharCode(97 + index)}) ${subpunct.punctaj} puncte\n`;
+        const letter = String.fromCharCode(97 + index);
+        text +=
+          t('problemDetailPage.export.rubricLine', `${letter}) ${subpunct.punctaj} puncte`, {
+            letter,
+            points: subpunct.punctaj,
+          }) + '\n';
       });
     }
 
@@ -240,19 +365,32 @@ export const ProblemaDetaliata = ({ problema, onBack, homeworkContext = null }) 
           problemText,
           problem: problema,
         });
-        const msg = imageSummary
-          ? `Rezolvă această problemă:\n\n${problemText}\n\nREZUMAT IMAGINI ATAȘATE ENUNȚULUI:\n${imageSummary}`
-          : `Rezolvă această problemă:\n\n${problemText}`;
+        const solvePrompt = t('problemDetailPage.export.solvePrompt', 'Rezolvă această problemă:\n\n');
+        const imageHdr = t(
+          'problemDetailPage.export.imageSummaryHeader',
+          '\n\nREZUMAT IMAGINI ATAȘATE ENUNȚULUI:\n',
+        );
+        const msg = imageSummary ? `${solvePrompt}${problemText}${imageHdr}${imageSummary}` : `${solvePrompt}${problemText}`;
         assistant.openWithMessage(msg);
       } catch (error) {
         console.error('Error opening Profesorul Whiz:', error);
-        alert('Eroare la deschiderea Profesorului Whiz. Te rugăm să încerci din nou.');
+        alert(
+          t(
+            "assistant.problemOpenError",
+            "Eroare la deschiderea Profesorului Whiz. Te rugăm să încerci din nou.",
+          ),
+        );
       } finally {
         setIsPreparingAi(false);
       }
     } else {
       console.warn('Profesorul Whiz not available. Make sure the AssistantAvatar component is mounted.');
-      alert('Profesorul Whiz nu este disponibil momentan. Te rugăm să reîmprospătezi pagina.');
+      alert(
+        t(
+          "assistant.problemUnavailable",
+          "Profesorul Whiz nu este disponibil momentan. Te rugăm să reîmprospătezi pagina.",
+        ),
+      );
     }
   };
 
@@ -263,29 +401,21 @@ export const ProblemaDetaliata = ({ problema, onBack, homeworkContext = null }) 
       onBack();
     } else {
       // Altfel navigăm la pagina de probleme
-      navigate('/probleme');
+      navigate(localizedPath('/probleme'));
     }
+  };
+
+  const navigateToProblemByIndex = (index) => {
+    if (index == null || !Number.isFinite(Number(index))) return;
+    const base = localizedPath(`/probleme/${index}`);
+    const target = homeworkQuery ? `${base}?${homeworkQuery}` : base;
+    navigate(target);
   };
 
   const getPrimaryColor = () =>
     getComputedStyle(document.documentElement)
       .getPropertyValue('--primary-color-current-mode')
       .trim();
-
-  // Adaugă funcția de conversie pentru delimitatori MathJax
-  function convertDollarToInlineMathJax(str) {
-    if (!str) return str;
-    // Înlocuiește TOATE aparițiile $...$ cu \( ... \) (regex global, non-greedy)
-    return str.replace(/\$(.+?)\$/g, (match) => match.replace(/\$(.+?)\$/g, (_, expr) => `\\(${expr}\\)`));
-  }
-
-  useEffect(() => {
-    if (typeof window?.MathJax !== "undefined") {
-      window.MathJax.typeset()
-    }
-
-    // console.log(getPrimaryColor());
-  });
 
   useEffect(() => {
     // starRef.current.color = 'green';
@@ -297,7 +427,7 @@ export const ProblemaDetaliata = ({ problema, onBack, homeworkContext = null }) 
   const toggleFavorite = async () => {
     if (!problemId) return;
     if (!auth.currentUser) {
-      alert('Autentifică-te pentru a salva probleme la favorite.');
+      alert(t('problemDetailPage.favoriteLogin', 'Autentifică-te pentru a salva probleme la favorite.'));
       return;
     }
     const previousFavorites = favorites;
@@ -321,31 +451,79 @@ export const ProblemaDetaliata = ({ problema, onBack, homeworkContext = null }) 
     } catch (error) {
       console.error('Favorite toggle failed:', error);
       setFavorites(previousFavorites);
-      alert('A apărut o problemă la actualizarea favoritei. Încearcă din nou.');
+      alert(t('problemDetailPage.favoriteUpdateError', 'A apărut o problemă la actualizarea favoritei. Încearcă din nou.'));
     } finally {
       setIsUpdatingFavorite(false);
     }
   };
+
+  const isBacProblem =
+    problema.categorie === 'Bac' ||
+    (problema.categorie && problema.categorie.toLowerCase().includes('bac'));
+  const backLabel = isBacProblem
+    ? t('problemDetailPage.backBac', 'Înapoi la probleme pentru bacalaureat')
+    : t('problemDetailPage.back', 'Înapoi la probleme');
 
 
   return (
     <div className="container">
       {/* Butonul de "Înapoi la probleme" a fost eliminat */}
       <div className="main">
-        <div className="problema-detaliata">
+        <div className="problema-detaliata tex2jax_process" ref={mathJaxRootRef}>
           <Card className="problema-detaliata-main-card mb-6">
+            {translationLoading && (
+              <div className="problema-translation-banner" role="status">
+                {t('problemDetailPage.translationInProgress', 'Se traduce problema în engleză…')}
+              </div>
+            )}
             <CardHeader>
               <div className="card-header-container">
                 <div className="card-header-content">
-                  <div className="back-button-container">
-                    <button
-                      onClick={goBackToProblems}
-                      className="back-button"
-                      title="Înapoi la probleme"
-                    >
-                      <ArrowLeft className="w-4 h-4" />
-                      <span>Înapoi la probleme</span>
-                    </button>
+                  <div className="problem-header-nav-row">
+                    <div className="problem-header-nav-left">
+                      <div className="back-button-container">
+                        <button
+                          type="button"
+                          onClick={goBackToProblems}
+                          className="back-button"
+                          title={backLabel}
+                        >
+                          <ArrowLeft className="w-4 h-4" />
+                          <span>{backLabel}</span>
+                        </button>
+                      </div>
+                    </div>
+                    <div className="problem-header-nav-center">
+                      {(neighborPrevIndex != null || neighborNextIndex != null) && (
+                        <div
+                          className="problem-neighbor-nav"
+                          role="navigation"
+                          aria-label={t('problemDetailPage.neighborNavAria', 'Problemă anterioară sau următoare')}
+                        >
+                          <button
+                            type="button"
+                            className="back-button problem-neighbor-btn"
+                            disabled={neighborPrevIndex == null}
+                            onClick={() => navigateToProblemByIndex(neighborPrevIndex)}
+                            title={t('problemDetailPage.prevProblem', 'Problema anterioară (index mai mic)')}
+                          >
+                            <ChevronLeft className="w-4 h-4" aria-hidden />
+                            <span>{t('problemDetailPage.prevProblemShort', 'Anterioară')}</span>
+                          </button>
+                          <button
+                            type="button"
+                            className="back-button problem-neighbor-btn"
+                            disabled={neighborNextIndex == null}
+                            onClick={() => navigateToProblemByIndex(neighborNextIndex)}
+                            title={t('problemDetailPage.nextProblem', 'Problema următoare (index mai mare)')}
+                          >
+                            <span>{t('problemDetailPage.nextProblemShort', 'Următoarea')}</span>
+                            <ChevronRight className="w-4 h-4" aria-hidden />
+                          </button>
+                        </div>
+                      )}
+                    </div>
+                    <div className="problem-header-nav-trailing" aria-hidden="true" />
                   </div>
                   <div className="card-title-row">
                     <CardTitle className="card-title">{problema.titlu}</CardTitle>
@@ -353,8 +531,16 @@ export const ProblemaDetaliata = ({ problema, onBack, homeworkContext = null }) 
                       <button
                         type="button"
                         className={`problema-favorite-btn${isFavorite ? ' is-active' : ''}`}
-                        title={isFavorite ? 'Elimină din favorite' : 'Adaugă la favorite'}
-                        aria-label={isFavorite ? 'Elimină din favorite' : 'Adaugă la favorite'}
+                        title={
+                          isFavorite
+                            ? t('problemDetailPage.favoriteRemove', 'Elimină din favorite')
+                            : t('problemDetailPage.favoriteAdd', 'Adaugă la favorite')
+                        }
+                        aria-label={
+                          isFavorite
+                            ? t('problemDetailPage.favoriteRemove', 'Elimină din favorite')
+                            : t('problemDetailPage.favoriteAdd', 'Adaugă la favorite')
+                        }
                         onClick={toggleFavorite}
                         disabled={isUpdatingFavorite}
                       >
@@ -364,14 +550,18 @@ export const ProblemaDetaliata = ({ problema, onBack, homeworkContext = null }) 
                   </div>
                   <p className="card-description">{problema.descriere}</p>
                   <div className="flex items-center space-x-4">
-                    <Badge className="category">{getCategoryName(problema.categorie)}</Badge>
-                    <span className="total-points">Total: {problema.punctajTotal} puncte</span>
+                    <Badge className="category">{formatProblemCategory(problema.categorie, t)}</Badge>
+                    <span className="total-points">
+                      {t('problemDetailPage.totalPointsBadge', `Total: ${problema.punctajTotal} puncte`, {
+                        points: problema.punctajTotal,
+                      })}
+                    </span>
                   </div>
                 </div>
                 <button
                   onClick={copyToClipboard}
                   className="copy-button"
-                  title="Copiază problema completă"
+                  title={t('problemDetailPage.copyFullProblemTitle', 'Copiază problema completă')}
                 >
                   {copied ? (
                     <Check className="w-5 h-5 text-green-600" />
@@ -389,7 +579,9 @@ export const ProblemaDetaliata = ({ problema, onBack, homeworkContext = null }) 
                     <img
                       key={index}
                       src={imagine}
-                      alt={`Ilustrație problemă ${index + 1}`}
+                      alt={t('problemDetailPage.illustrationAltIndexed', `Ilustrație problemă ${index + 1}`, {
+                        index: index + 1,
+                      })}
                       className={`problema-imagine ${problema.poze.length === 2 ? 'dual-image' : ''}`}
                     />
                   ))}
@@ -398,31 +590,31 @@ export const ProblemaDetaliata = ({ problema, onBack, homeworkContext = null }) 
               {/* Suport pentru imagine (format vechi - o singură imagine) */}
               {!problema.poze && problema.imagine && (
                 <div className="problema-imagine-container">
-                  <img src={problema.imagine} alt="Ilustrație problemă" className="problema-imagine" />
+                  <img src={problema.imagine} alt={t('problemDetailPage.illustrationAlt', 'Ilustrație problemă')} className="problema-imagine" />
                 </div>
               )}
               {/* Suport pentru imagine1 și imagine2 (format vechi - două imagini) */}
               {!problema.poze && problema.imagine1 && (
                 <div className="problema-imagine-container dual-images">
-                  <img src={problema.imagine1} alt="Ilustrație problemă" className="problema-imagine dual-image" />
+                  <img src={problema.imagine1} alt={t('problemDetailPage.illustrationAlt', 'Ilustrație problemă')} className="problema-imagine dual-image" />
                   {problema.imagine2 && (
-                    <img src={problema.imagine2} alt="Ilustrație problemă" className="problema-imagine dual-image" />
+                    <img src={problema.imagine2} alt={t('problemDetailPage.illustrationAlt', 'Ilustrație problemă')} className="problema-imagine dual-image" />
                   )}
                 </div>
               )}
               {/* ENUNT PROBLEMA CU MATHJAX */}
               <div className="text-gray-700 leading-relaxed mb-6" dangerouslySetInnerHTML={{ __html: convertDollarToInlineMathJax(problema.continut) }} />
-              <MathJaxRender />
 
               {problema.formule?.length > 0 && (
                 <div className="formule-section">
                   <h4 className="font-semibold text-blue-900 mb-3 flex items-center">
-                    <Calculator className="w-4 h-4 mr-2" /> Formule relevante:
+                    <Calculator className="w-4 h-4 mr-2" /> {t('problemDetailPage.formulasTitle', 'Formule relevante')}:
                   </h4>
                   <div className="space-y-2">
                     {problema.formule.map((formula, index) => {
                       // Curăță formula și asigură că este în format LaTeX valid
                       let cleanedFormula = formula.trim();
+                      cleanedFormula = prepareProblemHtmlMath(cleanedFormula);
 
                       // Elimină delimitatori LaTeX dacă există deja
                       cleanedFormula = cleanedFormula.replace(/^\$+|\$+$/g, '');
@@ -472,7 +664,6 @@ export const ProblemaDetaliata = ({ problema, onBack, homeworkContext = null }) 
                             // MathJax inline
                             dangerouslySetInnerHTML={{ __html: `\\(${cleanedFormula}\\)` }}
                           />
-                          <MathJaxRender />
                         </div>
                       );
                     })}
@@ -483,48 +674,21 @@ export const ProblemaDetaliata = ({ problema, onBack, homeworkContext = null }) 
               {problema.date && Object.keys(problema.date).length > 0 && (
                 <div className="date-section">
                   <h4 className="font-semibold text-gray-900 mb-3 flex items-center">
-                    <BookOpen className="w-4 h-4 mr-2" /> Date cunoscute:
+                    <BookOpen className="w-4 h-4 mr-2" /> {t('problemDetailPage.dataTitle', 'Date cunoscute')}:
                   </h4>
                   <div className="grid grid-cols-2 gap-3">
                     {Object.entries(problema.date).map(([key, value]) => {
-                      // Păstrează formatarea LaTeX exactă din enunț
-                      // Dacă cheia conține backslash sau caractere matematice speciale, păstrează-o ca LaTeX
-                      let formattedKey = key;
-                      const hasLatex = key.includes('\\') || key.includes('$') || /[α-ωΑ-Ω]/.test(key);
-
-                      if (!hasLatex) {
-                        // Pentru chei simple precum "m_1", păstrăm underscore-ul pentru LaTeX
-                        // Dacă cheia are format "m_1", o transformăm în "$m_1$"
-                        if (key.includes('_')) {
-                          formattedKey = `$${key}$`;
-                        } else {
-                          // Dacă nu are underscore, înlocuim cu spații doar dacă e necesar
-                          formattedKey = `$${key}$`;
-                        }
-                      } else if (!formattedKey.includes('$') && !formattedKey.startsWith('\\(')) {
-                        // Dacă are LaTeX dar nu are delimitatori, adaugă delimitatori
-                        formattedKey = `$${formattedKey}$`;
-                      }
-
-                      // Pentru valoare, păstrăm formatarea exactă
-                      let formattedValue = String(value);
-                      const valueHasLatex = formattedValue.includes('\\') || formattedValue.includes('$') || /[α-ωΑ-Ω°]/.test(formattedValue);
-
-                      if (!valueHasLatex && !formattedValue.includes('$') && !formattedValue.startsWith('\\(')) {
-                        formattedValue = `$${formattedValue}$`;
-                      } else if (valueHasLatex && !formattedValue.includes('$') && !formattedValue.startsWith('\\(')) {
-                        formattedValue = `$${formattedValue}$`;
-                      }
+                      const keyHtml = htmlForProblemDateKey(key);
+                      const valueHtml = htmlForProblemDateValue(value);
 
                       return (
                         <div key={key} className="flex justify-between items-center">
                           <span
                             className="text-gray-600"
                             dangerouslySetInnerHTML={{
-                              __html: `${convertDollarToInlineMathJax(formattedKey)}: <span class='font-medium'>${convertDollarToInlineMathJax(formattedValue)}</span>`
+                              __html: `${keyHtml}: <span class='font-medium'>${valueHtml}</span>`,
                             }}
                           />
-                          <MathJaxRender />
                         </div>
                       );
                     })}
@@ -536,7 +700,7 @@ export const ProblemaDetaliata = ({ problema, onBack, homeworkContext = null }) 
 
           <Card className="problema-detaliata-requirements-card">
             <CardHeader>
-              <CardTitle className="text-xl">Cerințe</CardTitle>
+              <CardTitle className="text-xl">{t('problemDetailPage.requirementsTitle', 'Cerințe')}</CardTitle>
             </CardHeader>
             <CardContent>
               {problema.subpuncte && problema.subpuncte.length > 0 && (
@@ -545,7 +709,6 @@ export const ProblemaDetaliata = ({ problema, onBack, homeworkContext = null }) 
                     <div key={subpunct.id} className="subpunct">
                       <span className="font-semibold text-blue-600">{String.fromCharCode(97 + index)}) </span>
                       <span className="text-gray-800" dangerouslySetInnerHTML={{ __html: convertDollarToInlineMathJax(subpunct.cerinta) }} />
-                      <MathJaxRender /> {/* Aici adaugă MathJaxRender */}
                     </div>
                   ))}
                 </div>
@@ -559,20 +722,24 @@ export const ProblemaDetaliata = ({ problema, onBack, homeworkContext = null }) 
         <div className="problema-sidebar sidebar">
           <Card className="problema-detaliata-scores-card mb-6 sticky top-4">
             <CardHeader>
-              <CardTitle className="text-lg">Punctaje</CardTitle>
+              <CardTitle className="text-lg">{t('problemDetailPage.scoresTitle', 'Punctaje')}</CardTitle>
             </CardHeader>
             <CardContent>
               {problema.subpuncte && problema.subpuncte.length > 0 && (
                 <div className="space-y-3">
                   {problema.subpuncte.map((subpunct, index) => (
                     <div key={subpunct.id} className="punctaj-item">
-                      <span>Punctul {String.fromCharCode(97 + index)})</span>
+                      <span>
+                        {t('problemDetailPage.scorePart', `Punctul ${String.fromCharCode(97 + index)})`, {
+                          letter: String.fromCharCode(97 + index),
+                        })}
+                      </span>
                       <Badge variant="secondary" className="bg-blue-100 text-blue-700">{subpunct.punctaj}p</Badge>
                     </div>
                   ))}
                   <Separator className="my-4" />
                   <div className="punctaj-item bg-blue-50">
-                    <span className="font-bold text-blue-900">Total</span>
+                    <span className="font-bold text-blue-900">{t('problemDetailPage.totalLabel', 'Total')}</span>
                     <Badge className="total-badge">{problema.punctajTotal}p</Badge>
                   </div>
                 </div>
@@ -582,15 +749,20 @@ export const ProblemaDetaliata = ({ problema, onBack, homeworkContext = null }) 
 
           <Card className="problema-detaliata-ai-card">
             <CardHeader>
-              <CardTitle className="text-lg">Ajutor AI</CardTitle>
+              <CardTitle className="text-lg">{t('problemDetailPage.aiHelpTitle', 'Ajutor AI')}</CardTitle>
             </CardHeader>
             <CardContent>
               <Button className="ai-button" onClick={navigateToAI} disabled={isPreparingAi}>
                 <Bot className="w-4 h-4 mr-2" />
-                {isPreparingAi ? 'Analizez imaginile...' : 'Inteligența Artificială'}
+                {isPreparingAi
+                  ? t('problemDetailPage.aiHelpButtonLoading', 'Analizez imaginile...')
+                  : t('problemDetailPage.aiHelpButton', 'Inteligența Artificială')}
               </Button>
               <p className="ai-description">
-                Obține ajutor personalizat pentru rezolvarea acestei probleme.
+                {t(
+                  'problemDetailPage.aiHelpDescription',
+                  'Obține ajutor personalizat pentru rezolvarea acestei probleme.',
+                )}
               </p>
             </CardContent>
           </Card>
@@ -605,28 +777,34 @@ export const ProblemaDetaliata = ({ problema, onBack, homeworkContext = null }) 
                   color: '#856404',
                   fontSize: '14px'
                 }}>
-                  ⚠️ Trebuie să te conectezi pentru a edita sau șterge probleme
+                  ⚠️ {t('problemDetailPage.adminLoginRequired', 'Trebuie să te conectezi pentru a edita sau șterge probleme')}
                 </div>
               ) : (
                 <>
                   <button
                     className="problem-card-edit-btn"
                     onClick={handleEdit}
-                    title="Editează problema"
+                    title={t('problemDetailPage.editProblem', 'Editează problema')}
                   >
-                    ✏️ Editează problema
+                    ✏️ {t('problemDetailPage.editProblem', 'Editează problema')}
                   </button>
                   <button
                     className="problem-card-delete-btn"
                     onClick={handleDelete}
                     disabled={deleteStatus === 'loading'}
-                    title={deleteStatus === 'loading' ? 'Se șterge...' : 'Șterge problema'}
+                    title={
+                      deleteStatus === 'loading'
+                        ? t('problemDetailPage.deleteInProgress', 'Se șterge...')
+                        : t('problemDetailPage.deleteProblem', 'Șterge problema')
+                    }
                     style={{
                       opacity: deleteStatus === 'loading' ? 0.6 : 1,
                       cursor: deleteStatus === 'loading' ? 'not-allowed' : 'pointer'
                     }}
                   >
-                    {deleteStatus === 'loading' ? '⏳ Se șterge...' : '🗑️ Șterge problema'}
+                    {deleteStatus === 'loading'
+                      ? `⏳ ${t('problemDetailPage.deleteInProgress', 'Se șterge...')}`
+                      : `🗑️ ${t('problemDetailPage.deleteProblem', 'Șterge problema')}`}
                   </button>
                 </>
               )}
@@ -637,7 +815,7 @@ export const ProblemaDetaliata = ({ problema, onBack, homeworkContext = null }) 
         {/* Mutat aici: Card Trimite o problemă */}
         <Card className="problema-detaliata-submit-card mt-6">
           <CardHeader>
-            <CardTitle className="text-lg">Trimite o problemă</CardTitle>
+            <CardTitle className="text-lg">{t('problemDetailPage.submitSolutionCardTitle', 'Trimite o problemă')}</CardTitle>
           </CardHeader>
           <CardContent>
             <ProblemSubmit

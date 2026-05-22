@@ -8,9 +8,9 @@
 </head>
 <body>
     <header>
-        <h1>🧪 SIMULATOR PENTRU FABRICAREA APEI GRELE</h1>
-        <p>Procesul Girdler-Sulfide (H₂O – H₂S) • Schimb izotopic pe etaje</p>
-        <button id="panelToggleBtn" class="panel-toggle-btn" type="button" aria-label="Deschide panoul de control">
+        <h1 data-i18n="header.title">🧪 SIMULATOR PENTRU FABRICAREA APEI GRELE</h1>
+        <p data-i18n="header.subtitle">Procesul Girdler-Sulfide (H₂O – H₂S) • Schimb izotopic pe etaje</p>
+        <button id="panelToggleBtn" class="panel-toggle-btn" type="button" data-i18n-aria="header.panelToggleAria" aria-label="Deschide panoul de control" data-i18n="header.panelToggle">
             Parametri
         </button>
     </header>
@@ -18,20 +18,19 @@
     <main>
         <section class="simulation-area">
             <div id="overlay" class="game-overlay">
-                <h2>Concentrare primară: până la 30% D₂O pe trei etaje</h2>
+                <h2 data-i18n="overlay.title">Concentrare primară: până la 30% D₂O pe trei etaje</h2>
                 <p>
-                    Începe de la 140 ppm (concentrație deuteriu în apa naturală).<br>
-                    <strong>Etajul 1</strong> duce amestecul la 5%; se deblochează <strong>etajul 2</strong> (până la 20%), apoi <strong>etajul 3</strong> — scenariu ipotetic „rupere de pântă” — până la 30%.
+                    <span data-i18n="overlay.p1">Începe de la 140 ppm (concentrație deuteriu în apa naturală).</span><br>
+                    <span data-i18n="overlay.p2">Etajul 1 duce amestecul la 5%; se deblochează etajul 2 (până la 20%), apoi etajul 3 — scenariu ipotetic „rupere de pântă” — până la 30%.</span>
                 </p>
-                <button id="startBtn" class="btn">ÎNCEPE PROCESUL</button>
+                <button id="startBtn" class="btn" data-i18n="overlay.start">ÎNCEPE PROCESUL</button>
             </div>
 
             <div class="etaje-row" id="etajeRow">
-                <!-- Etaj 1 — layout clasic: rece deasupra, cald dedesubt -->
-                <div class="etaj-unit etaj-unit--legacy etaj-active" data-etaj="1" tabindex="0" role="group" aria-label="Etaj 1">
+                <div class="etaj-unit etaj-unit--legacy etaj-active" data-etaj="1" tabindex="0" role="group" data-i18n-aria="aria.etaj1" aria-label="Etaj 1">
                     <div class="etaj-heading">
-                        <span class="etaj-name">Etaj 1</span>
-                        <span class="etaj-target">Țintă: 5% D₂O</span>
+                        <span class="etaj-name" data-i18n="etaje.1.name">Etaj 1</span>
+                        <span class="etaj-target" data-i18n="etaje.1.target">Țintă: 5% D₂O</span>
                     </div>
                     <div class="columns-container columns-container--legacy">
                         <div class="column cold-col" data-side="cold">
@@ -41,8 +40,8 @@
                             <div class="tray-stack" aria-hidden="true">
                                 <div class="tray"></div><div class="tray"></div><div class="tray"></div><div class="tray"></div><div class="tray"></div>
                             </div>
-                            <div class="flow-indicator flow-down">↓ LICHID</div>
-                            <div class="flow-indicator flow-up">↑ GAZ</div>
+                            <div class="flow-indicator flow-down" data-i18n="flows.liquid">↓ LICHID</div>
+                            <div class="flow-indicator flow-up" data-i18n="flows.gas">↑ GAZ</div>
                         </div>
                         <div class="column hot-col" data-side="hot">
                             <div class="column-label">COLOANĂ CALDĂ (130°C)</div>
@@ -51,24 +50,23 @@
                             <div class="tray-stack" aria-hidden="true">
                                 <div class="tray"></div><div class="tray"></div><div class="tray"></div><div class="tray"></div><div class="tray"></div>
                             </div>
-                            <div class="flow-indicator flow-down">↓ LICHID</div>
-                            <div class="flow-indicator flow-up">↑ GAZ</div>
+                            <div class="flow-indicator flow-down" data-i18n="flows.liquid">↓ LICHID</div>
+                            <div class="flow-indicator flow-up" data-i18n="flows.gas">↑ GAZ</div>
                         </div>
                         <div class="loop-pipes" aria-hidden="true">
-                            <div class="pipe pipe-top pipe-right"><span class="pipe-label">Rece ↓ Cald</span></div>
-                            <div class="pipe pipe-bottom pipe-left"><span class="pipe-label">Cald ↑ Rece</span></div>
+                            <div class="pipe pipe-top pipe-right"><span class="pipe-label" data-i18n="pipes.top">Rece ↓ Cald</span></div>
+                            <div class="pipe pipe-bottom pipe-left"><span class="pipe-label" data-i18n="pipes.bottom">Cald ↑ Rece</span></div>
                         </div>
                     </div>
                     <div class="etaj-lock-overlay hidden" aria-hidden="true">
-                        <span class="lock-icon" title="Blocat">🔒</span>
+                        <span class="lock-icon" data-lock-title="blocked" title="Blocat">🔒</span>
                     </div>
                 </div>
 
-                <!-- Etaj 2 -->
-                <div class="etaj-unit etaj-locked" data-etaj="2" tabindex="-1" role="group" aria-label="Etaj 2 blocat">
+                <div class="etaj-unit etaj-locked" data-etaj="2" tabindex="-1" role="group" data-i18n-aria="aria.etaj2Locked" aria-label="Etaj 2 blocat">
                     <div class="etaj-heading">
-                        <span class="etaj-name">Etaj 2</span>
-                        <span class="etaj-target">Țintă: 20% D₂O</span>
+                        <span class="etaj-name" data-i18n="etaje.2.name">Etaj 2</span>
+                        <span class="etaj-target" data-i18n="etaje.2.target">Țintă: 20% D₂O</span>
                     </div>
                     <div class="columns-container">
                         <div class="column cold-col" data-side="cold">
@@ -78,8 +76,8 @@
                             <div class="tray-stack" aria-hidden="true">
                                 <div class="tray"></div><div class="tray"></div><div class="tray"></div><div class="tray"></div><div class="tray"></div>
                             </div>
-                            <div class="flow-indicator flow-down">↓</div>
-                            <div class="flow-indicator flow-up">↑</div>
+                            <div class="flow-indicator flow-down" data-i18n="flows.down">↓</div>
+                            <div class="flow-indicator flow-up" data-i18n="flows.up">↑</div>
                         </div>
                         <div class="column hot-col" data-side="hot">
                             <div class="column-label">CALD (130°C)</div>
@@ -88,23 +86,21 @@
                             <div class="tray-stack" aria-hidden="true">
                                 <div class="tray"></div><div class="tray"></div><div class="tray"></div><div class="tray"></div><div class="tray"></div>
                             </div>
-                            <div class="flow-indicator flow-down">↓</div>
-                            <div class="flow-indicator flow-up">↑</div>
+                            <div class="flow-indicator flow-down" data-i18n="flows.down">↓</div>
+                            <div class="flow-indicator flow-up" data-i18n="flows.up">↑</div>
                         </div>
                     </div>
                     <div class="etaj-lock-overlay" aria-hidden="true">
-                        <span class="lock-icon" title="Completează etajul 1">🔒</span>
+                        <span class="lock-icon" data-lock-title="afterEtaj1" title="Completează etajul 1">🔒</span>
                     </div>
                 </div>
 
-
-                <!-- Etaj 3 (ipoteză) -->
-                <div class="etaj-unit etaj-locked etaj-hypothesis" data-etaj="3" tabindex="-1" role="group" aria-label="Etaj 3 blocat">
+                <div class="etaj-unit etaj-locked etaj-hypothesis" data-etaj="3" tabindex="-1" role="group" data-i18n-aria="aria.etaj3Locked" aria-label="Etaj 3 blocat">
                     <div class="etaj-heading">
-                        <span class="etaj-name">Etaj 3</span>
-                        <span class="etaj-target">Țintă: 30% · „Rupere de pântă”</span>
+                        <span class="etaj-name" data-i18n="etaje.3.name">Etaj 3</span>
+                        <span class="etaj-target" data-i18n="etaje.3.target">Țintă: 30% · „Rupere de pântă”</span>
                     </div>
-                    <p class="etaj-hypothesis-note">Scenariu ipotetic (plan nerealizat): circulație suplimentară de lichid între coloane.</p>
+                    <p class="etaj-hypothesis-note" data-i18n="etaje.3.hypothesis">Scenariu ipotetic (plan nerealizat): circulație suplimentară de lichid între coloane.</p>
                     <div class="columns-container columns-with-liquid">
                         <div class="column cold-col" data-side="cold">
                             <div class="column-label">RECE (35°C)</div>
@@ -113,8 +109,8 @@
                             <div class="tray-stack" aria-hidden="true">
                                 <div class="tray"></div><div class="tray"></div><div class="tray"></div><div class="tray"></div><div class="tray"></div>
                             </div>
-                            <div class="flow-indicator flow-down">↓</div>
-                            <div class="flow-indicator flow-up">↑</div>
+                            <div class="flow-indicator flow-down" data-i18n="flows.down">↓</div>
+                            <div class="flow-indicator flow-up" data-i18n="flows.up">↑</div>
                         </div>
                         <div class="column hot-col" data-side="hot">
                             <div class="column-label">CALD (130°C)</div>
@@ -123,33 +119,34 @@
                             <div class="tray-stack" aria-hidden="true">
                                 <div class="tray"></div><div class="tray"></div><div class="tray"></div><div class="tray"></div><div class="tray"></div>
                             </div>
-                            <div class="flow-indicator flow-down">↓</div>
-                            <div class="flow-indicator flow-up">↑</div>
+                            <div class="flow-indicator flow-down" data-i18n="flows.down">↓</div>
+                            <div class="flow-indicator flow-up" data-i18n="flows.up">↑</div>
                         </div>
                     </div>
                     <div class="rupere-teorie" id="rupereTeorie">
-                        <strong>Ruperea de pântă (concept):</strong> în cascada de separare izotopică, după un prag de concentrație
+                        <strong data-i18n="etaje.3.rupereLead">Ruperea de pântă (concept):</strong>
+                        <span data-i18n="etaje.3.rupereRest"> în cascada de separare izotopică, după un prag de concentrație
                         optimul de proiectare se schimbă (alt raport de fluxuri, alt număr de trepte echivalente). Aici e un exercițiu
                         imaginar: două ocoluri suplimentare pentru lichid între coloane, ca să vezi cum „se rupe” comportamentul
-                        față de etajele clasice — fără corespondență 1:1 cu o hală reală.
+                        față de etajele clasice — fără corespondență 1:1 cu o hală reală.</span>
                     </div>
                     <div class="etaj-lock-overlay" aria-hidden="true">
-                        <span class="lock-icon" title="Completează etajul 2">🔒</span>
+                        <span class="lock-icon" data-lock-title="afterEtaj2" title="Completează etajul 2">🔒</span>
                     </div>
                 </div>
             </div>
 
-            <div class="concentration-bar" title="Progres global spre 30%">
+            <div id="concentrationBar" class="concentration-bar" title="Progres global spre 30%">
                 <div id="concFill" class="concentration-fill" style="height: 0.05%;"></div>
             </div>
 
             <div id="successOverlay" class="game-overlay hidden">
-                <h2>Felicitări! Ai parcurs toate cele trei etaje.</h2>
-                <p>Ai atins ținta de 30% D₂O în scenariul cu „rupere de pântă” pe etajul ipotetic.</p>
+                <h2 data-i18n="success.title">Felicitări! Ai parcurs toate cele trei etaje.</h2>
+                <p data-i18n="success.body">Ai atins ținta de 30% D₂O în scenariul cu „rupere de pântă” pe etajul ipotetic.</p>
                 <div id="successSummary" class="success-summary"></div>
                 <div class="success-actions">
-                    <button id="restartBtn" class="btn" type="button">Repornește</button>
-                    <a class="btn secondary-btn" href="../distilare_d2o_fractionata/index.html">
+                    <button id="restartBtn" class="btn" type="button" data-i18n="success.restart">Repornește</button>
+                    <a class="btn secondary-btn" href="../distilare_d2o_fractionata/index.html" data-i18n="success.nextSim">
                         La distilarea D₂O fracționată
                     </a>
                 </div>
@@ -157,42 +154,42 @@
         </section>
 
         <aside id="controlsPanel" class="controls-panel">
-            <button id="panelCloseBtn" class="panel-close-btn" type="button" aria-label="Închide panoul de control">×</button>
+            <button id="panelCloseBtn" class="panel-close-btn" type="button" data-i18n-aria="panel.closeAria" aria-label="Închide panoul de control">×</button>
             <div class="stats-grid">
                 <div class="stat-card">
-                    <span class="stat-label">Concentrație</span>
+                    <span class="stat-label" data-i18n="panel.concentration">Concentrație</span>
                     <span id="ppmDisplay" class="stat-value">140</span>
-                    <span class="stat-label">PPM D₂O</span>
+                    <span class="stat-label" data-i18n="panel.ppmD2o">PPM D₂O</span>
                 </div>
                 <div class="stat-card">
-                    <span class="stat-label">Puritate</span>
+                    <span class="stat-label" data-i18n="panel.purity">Puritate</span>
                     <span id="percentDisplay" class="stat-value">0.0140%</span>
-                    <span class="stat-label">D₂O / H₂O</span>
+                    <span class="stat-label" data-i18n="panel.d2oH2o">D₂O / H₂O</span>
                 </div>
             </div>
 
             <div class="stage-box">
-                <span class="stat-label">Etaj curent (activ)</span>
+                <span class="stat-label" data-i18n="panel.currentStage">Etaj curent (activ)</span>
                 <span id="stageDisplay" class="stage-value">Etaj 1</span>
-                <p id="stageHint" class="stage-hint">
+                <p id="stageHint" class="stage-hint" data-i18n="panel.hintInitial">
                     Selectează un etaj deblocat din stânga. Etajul 1 urcă până la 5%; apoi se deblochează etajul 2 (până la 20%), apoi etajul 3 (ipoteză, până la 30%).
                 </p>
             </div>
 
-            <div id="processState" class="process-state process-idle">Așteptare</div>
+            <div id="processState" class="process-state process-idle" data-i18n="panel.waiting">Așteptare</div>
 
             <div class="control-group">
-                <label for="simSpeedSlider">Viteză simulator: <span id="simSpeedVal">1.0x</span></label>
+                <label for="simSpeedSlider"><span data-i18n="panel.simSpeed">Viteză simulator:</span> <span id="simSpeedVal">1.0x</span></label>
                 <div class="control-row">
                     <input type="range" id="simSpeedSlider" min="1" max="30" step="0.1" value="1.0">
                     <input type="number" id="simSpeedInput" min="1" max="30" step="0.1" value="1.0">
                 </div>
             </div>
 
-            <div class="section-title">Parametri schimb izotopic (etajele 1–3)</div>
+            <div class="section-title" data-i18n="panel.sectionParams">Parametri schimb izotopic (etajele 1–3)</div>
 
             <div class="control-group">
-                <label for="coldTempSlider">Temperatură coloană rece: <span id="coldTempVal">35°C</span></label>
+                <label for="coldTempSlider"><span data-i18n="panel.coldTemp">Temperatură coloană rece:</span> <span id="coldTempVal">35°C</span></label>
                 <div class="control-row">
                     <input type="range" id="coldTempSlider" min="20" max="50" value="35">
                     <input type="number" id="coldTempInput" min="20" max="50" step="1" value="35">
@@ -200,7 +197,7 @@
             </div>
 
             <div class="control-group">
-                <label for="hotTempSlider">Temperatură coloană caldă: <span id="hotTempVal">130°C</span></label>
+                <label for="hotTempSlider"><span data-i18n="panel.hotTemp">Temperatură coloană caldă:</span> <span id="hotTempVal">130°C</span></label>
                 <div class="control-row">
                     <input type="range" id="hotTempSlider" min="100" max="160" value="130">
                     <input type="number" id="hotTempInput" min="100" max="160" step="1" value="130">
@@ -208,7 +205,7 @@
             </div>
 
             <div class="control-group">
-                <label for="lgRatioSlider">Raport L/G (lichid/gaz): <span id="lgRatioVal">0.50</span></label>
+                <label for="lgRatioSlider"><span data-i18n="panel.lgRatio">Raport L/G (lichid/gaz):</span> <span id="lgRatioVal">0.50</span></label>
                 <div class="control-row">
                     <input type="range" id="lgRatioSlider" min="0.45" max="0.55" step="0.001" value="0.5">
                     <input type="number" id="lgRatioInput" min="0.45" max="0.55" step="0.001" value="0.500">
@@ -220,13 +217,15 @@
             </div>
 
             <div class="info-box info-box-note">
-                <strong>Notă:</strong> Simularea instalației de distilare sub vid nu fac parte din acest exercițiu, acolo e altă etapă tehnologică.
-                Aici toate cele trei etaje folosesc același model H₂O–H₂S; etajul 3 adaugă doar varianta vizuală ipotetică cu legături de lichid.
+                <strong data-i18n="panel.noteStrong">Notă:</strong>
+                <span data-i18n="panel.noteText"> Simularea instalației de distilare sub vid nu fac parte din acest exercițiu, acolo e altă etapă tehnologică.
+                Aici toate cele trei etaje folosesc același model H₂O–H₂S; etajul 3 adaugă doar varianta vizuală ipotetică cu legături de lichid.</span>
             </div>
         </aside>
     </main>
     <div id="panelBackdrop" class="panel-backdrop"></div>
 
-    <script src="script.js"></script>
+    <script src="/simulari/simulator-i18n-runtime.js"></script>
+    <script src="/simulari/instalatie_schimb_izotopic/instalatie-schimb-izotopic-boot.js"></script>
 </body>
 </html>

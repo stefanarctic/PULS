@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ro">
 
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Grafice armonice</title>
+  <title>Grafice Simple</title>
   <link rel="stylesheet" href="css/style.css">
   <link rel="stylesheet" href="css/logs.css">
   <link rel="stylesheet" href="css/zoom.css">
@@ -18,123 +18,106 @@
 
   <div id="log-container">
 
-    <!-- Păstrăm doar acest textarea pentru log-uri -->
-    <textarea id="log" readonly></textarea>
+    <textarea id="log" readonly data-i18n-aria="aria.logArea"></textarea>
   </div>
-  <button class="show-popup-button" id="show-popup-button"><span>+</span></button>
+  <button class="show-popup-button" id="show-popup-button" type="button" aria-label=""
+    data-i18n-aria="aria.openTools"><span>+</span></button>
   <div class="create-point">
     <div class="overlay" id="overlay"></div>
     <div class="create-point-popup" id="create-point-popup">
-      <!-- Litera punctului, Timpul, Culoarea -->
       <div class="popup-content">
-        <h1>Creeaza un punct</h1>
+        <h1 data-i18n="labels.createPointHeading">Creeaza un punct</h1>
         <div class="data-input">
           <div class="section">
-            <label for="letterInput">Litera:</label>
-            <input type="text" id="letterInput">
-            <label for="timeInput">Functii armonice:</label>
+            <label for="letterInput"><span data-i18n="labels.letter">Litera:</span></label>
+            <input type="text" id="letterInput" data-i18n-ph="placeholders.letterHint" placeholder="">
+            <label for="timeInput"><span data-i18n="labels.harmonicsSection">Functii armonice:</span></label>
             <div class="time">
-              <label for="amplitudineInput">x =
-                <input type="text" id="amplitudineInput" placeholder="A">
-                <label for="omega1Input">* sin(
-                  <input type="text" id="omega1Input" placeholder="𝛚1">
-                  <label for="timeInput">* </label>
-                  <input type="text" id="timeInput" placeholder="t">
-                  <label for="timeInput">)</label>
-                </label>
+              <label for="amplitudineInput">
+                <span data-i18n="labels.eqXPrefix">x =</span>
+                <input type="text" id="amplitudineInput" data-i18n-ph="placeholders.amplitudeHint" placeholder="A">
+                <span data-i18n="labels.eqSinMiddle"> * sin(</span>
+                <input type="text" id="omega1Input" data-i18n-ph="placeholders.omega1Hint" placeholder="𝛚1">
+                <span data-i18n="labels.timesT">*</span>
+                <input type="text" id="timeInput" data-i18n-ph="placeholders.timeHint" placeholder="t">
+                <span data-i18n="labels.closeParenShort">)</span>
               </label>
             </div>
             <div class="time2">
-              <label for="omega2Input">y = A * sin(
-                <input type="text" id="omega2Input" placeholder="𝛚2">
-                <label for="time2Input">* </label>
-                <input type="text" id="time2Input" placeholder="t">
-                <label for="time2Input">+
-                  <label for="unghiulinitial">
-                    <input type="text" id="unghiulinitialInput" placeholder="φ0">
-                  </label>
-                  )</label>
+              <label for="omega2Input">
+                <span data-i18n="labels.eqYPrefix">y = A * sin(</span>
+                <input type="text" id="omega2Input" data-i18n-ph="placeholders.omega2Hint" placeholder="𝛚2">
+                <span data-i18n="labels.timesT2">*</span>
+                <input type="text" id="time2Input" data-i18n-ph="placeholders.timeHint" placeholder="t">
+                <span data-i18n="labels.plusPhi">+ </span>
+                <input type="text" id="unghiulinitialInput" data-i18n-ph="placeholders.phiHint" placeholder="φ0">
+                <span data-i18n="labels.closeParenShort">)</span>
               </label>
             </div>
-            <label for="colorInput">Culoare:</label>
+            <label for="colorInput"><span data-i18n="labels.colourPoint">Culoare:</span></label>
             <input type="color" id="colorInput" value="#ff0000">
           </div>
         </div>
-        <button id="create-point-btn">Creeaza punct</button>
+        <button type="button" id="create-point-btn" data-i18n="labels.createPointBtn">Creeaza punct</button>
 
-        <h1>Creează o linie</h1>
+        <h1 data-i18n="labels.createLineHeading">Creează o linie</h1>
         <div class="data-input">
           <div class="section1">
-            <label for="pointAInput">Punct A:</label>
-            <input type="text" id="pointAInput" placeholder="Index punct A">
-            <label for="pointBInput">Punct B:</label>
-            <input type="text" id="pointBInput" placeholder="Index punct B">
-            <label for="lineColorInput">Culoare linie:</label>
+            <label for="pointAInput"><span data-i18n="labels.pointA">Punct A:</span></label>
+            <input type="text" id="pointAInput" data-i18n-ph="placeholders.indexPointA" placeholder="Index punct A">
+            <label for="pointBInput"><span data-i18n="labels.pointB">Punct B:</span></label>
+            <input type="text" id="pointBInput" data-i18n-ph="placeholders.indexPointB" placeholder="Index punct B">
+            <label for="lineColorInput"><span data-i18n="labels.lineColour">Culoare linie:</span></label>
             <input type="color" id="lineColorInput" value="#ff0000">
           </div>
         </div>
-        <button id="create-line-btn">Creează linie</button>
-        <h1>Creează un triunghi</h1>
+        <button type="button" id="create-line-btn" data-i18n="labels.createLineBtn">Creează linie</button>
+        <h1 data-i18n="labels.createTriangleHeading">Creează un triunghi</h1>
         <div class="data-input">
           <div class="section1">
-            <label for="point1Input">Punct A:</label>
-            <input type="text" id="point1Input" placeholder="Index punct A">
-            <label for="point2Input">Punct B:</label>
-            <input type="text" id="point2Input" placeholder="Index punct B">
-            <label for="point3Input">Punct C:</label>
-            <input type="text" id="point3Input" placeholder="Index punct C">
-            <label for="triangleColorInput">Culoare triunghi:</label>
+            <label for="point1Input"><span data-i18n="labels.pointA">Punct A:</span></label>
+            <input type="text" id="point1Input" data-i18n-ph="placeholders.indexPointA" placeholder="Index punct A">
+            <label for="point2Input"><span data-i18n="labels.pointB">Punct B:</span></label>
+            <input type="text" id="point2Input" data-i18n-ph="placeholders.indexPointB" placeholder="Index punct B">
+            <label for="point3Input"><span data-i18n="labels.pointC">Punct C:</span></label>
+            <input type="text" id="point3Input" data-i18n-ph="placeholders.indexPointC" placeholder="Index punct C">
+            <label for="triangleColorInput"><span data-i18n="labels.triangleColour">Culoare triunghi:</span></label>
             <input type="color" id="triangleColorInput" value="#00ff00">
           </div>
         </div>
-        <button id="create-triangle-btn">Creează triunghi</button>
-        <button class="close-popup-btn" id="close-popup-btn">x</button>
+        <button type="button" id="create-triangle-btn" data-i18n="labels.createTriangleBtn">Creează triunghi</button>
+        <button type="button" class="close-popup-btn" id="close-popup-btn"
+          data-i18n-aria="aria.closePopup" aria-label="Închide">x</button>
       </div>
     </div>
   </div>
-  </div>
-  <button class="delete-popup-button" id="open-delete-popup-btn"><span>-</span></button>
+  <button type="button" class="delete-popup-button" id="open-delete-popup-btn" data-i18n-aria="aria.openDeleteTools"
+    aria-label="Delete"><span>-</span></button>
   <div class="delete-point-line-popup" id="delete-point-line-popup">
     <div class="popup-content">
-      <h1>Șterge un punct sau o linie</h1>
+      <h1 data-i18n="labels.deleteHeading">Șterge un punct sau o linie</h1>
       <div class="data-input">
         <div class="section">
-          <label for="deletePointIndex">Index punct:</label>
-          <input type="number" id="deletePointIndex" placeholder="Index punct">
-          <button id="delete-point-btn-popup">Șterge punct</button>
+          <label for="deletePointIndex"><span data-i18n="labels.pointIndexLabel">Index punct:</span></label>
+          <input type="number" id="deletePointIndex" data-i18n-ph="placeholders.indexPointPlain" placeholder="Index punct">
+          <button type="button" id="delete-point-btn-popup" data-i18n="labels.deletePointBtn">Șterge punct</button>
         </div>
         <div class="section">
-          <label for="deleteLinePointA">Index punct A:</label>
-          <input type="number" id="deleteLinePointA" placeholder="Index punct A">
-          <label for="deleteLinePointB">Index punct B:</label>
-          <input type="number" id="deleteLinePointB" placeholder="Index punct B">
-          <button id="delete-line-btn-popup">Șterge linie</button>
+          <label for="deleteLinePointA"><span data-i18n="labels.linePointAIndex">Index punct A:</span></label>
+          <input type="number" id="deleteLinePointA" data-i18n-ph="placeholders.indexPointAPlain" placeholder="Index punct A">
+          <label for="deleteLinePointB"><span data-i18n="labels.linePointBIndex">Index punct B:</span></label>
+          <input type="number" id="deleteLinePointB" data-i18n-ph="placeholders.indexPointBPlain" placeholder="Index punct B">
+          <button type="button" id="delete-line-btn-popup" data-i18n="labels.deleteLineBtn">Șterge linie</button>
         </div>
       </div>
-      <button class="close-popup-btn" id="close-delete-popup-btn">x</button>
+      <button type="button" class="close-popup-btn" id="close-delete-popup-btn" data-i18n-aria="aria.closePopup"
+        aria-label="Închide">x</button>
     </div>
   </div>
 
-  </div>
-
-
-  <!-- <div class="snowflakes" id="snowflakes">
-      <div class="snowflake">❆</div>
-      <div class="snowflake">❆</div>
-      <div class="snowflake">❆</div>
-      <div class="snowflake">❆</div>
-      <div class="snowflake">❆</div>
-    </div> -->
-
-  <!-- <div class="snowlfkaes" id="snowflakes">
-
-  </div> -->
-
-  <!-- <div class="snowflakes">
-      <ul id="jsi-snows" class="g-snows">
-      
-      </ul>
-    </div> -->
+  <script src="../simulator-i18n-runtime.js"></script>
+  <script src="grafice-simple-l10n.js"></script>
+  <script src="grafice-simple-i18n.js"></script>
 
   <script src="https://d3js.org/d3.v7.min.js"></script>
   <script src="script.js"></script>

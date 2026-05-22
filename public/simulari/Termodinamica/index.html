@@ -59,20 +59,20 @@
 </head>
 <body>
 <div class="container">
-    <h1>Simulator Gaze Ideale - Un Vas</h1>
+    <h1 data-i18n="h1">Simulator Gaze Ideale - Un Vas</h1>
     <div class="flex">
         <div class="sliders">
-            <h3>Stânga</h3>
+            <h3 data-i18n="side.left">Stânga</h3>
             <div class="slider-group">
-                <label>Temperatură (K): <span id="temp1Value">300</span></label>
+                <label><span data-i18n="sliders.temperature">Temperatură (K):</span> <span id="temp1Value">300</span></label>
                 <input type="range" id="temp1" min="100" max="1000" step="1" value="300">
             </div>
             <div class="slider-group">
-                <label>Număr de molecule: <span id="numMolecules1Value">10</span></label>
+                <label><span data-i18n="sliders.numMolecules">Număr de molecule:</span> <span id="numMolecules1Value">10</span></label>
                 <input type="range" id="numMolecules1" min="1" max="100" step="1" value="10">
             </div>
             <div class="slider-group">
-                <label>Masă molară (g/mol): <span id="molarMass1Value">10</span></label>
+                <label><span data-i18n="sliders.molarMass">Masă molară (g/mol):</span> <span id="molarMass1Value">10</span></label>
                 <input type="range" id="molarMass1" min="2" max="40" step="1" value="10">
             </div>
         </div>
@@ -82,42 +82,61 @@
                 <div id="divider"></div>
             </div>
             <div class="controls">
-                <button id="toggleValveButton">Deschide Valvă</button>
-                <button id="restartButton">Restart</button>
+                <button type="button" id="toggleValveButton">Deschide Valvă</button>
+                <button type="button" id="restartButton" data-i18n="buttons.restart">Restart</button>
             </div>
             <div class="slider-group" style="margin-bottom: 10px;">
-                <label>Masă molară globală (g/mol): <span id="molarMassGlobalValue">10</span></label>
+                <label><span data-i18n="sliders.molarMassGlobal">Masă molară globală (g/mol):</span> <span id="molarMassGlobalValue">10</span></label>
                 <input type="range" id="molarMassGlobal" min="2" max="40" step="1" value="10">
             </div>
             <table>
                 <thead>
-                    <tr><th>Parametru</th><th>Stânga</th><th>Dreapta</th></tr>
+                    <tr>
+                        <th data-i18n="table.parameter">Parametru</th>
+                        <th data-i18n="table.left">Stânga</th>
+                        <th data-i18n="table.right">Dreapta</th>
+                    </tr>
                 </thead>
                 <tbody>
-                    <tr><td>Număr molecule</td><td id="tableNumLeft">10</td><td id="tableNumRight">10</td></tr>
-                    <tr><td>Temperatură medie (K)</td><td id="tableTempLeft">300</td><td id="tableTempRight">300</td></tr>
-                    <tr><td>Masă molară (g/mol)</td><td colspan="2" id="tableMasaGlobal">10</td></tr>
-                    <tr><td>Presiune (simulată)</td><td colspan="2" id="tablePresiune">0</td></tr>
+                    <tr>
+                        <td data-i18n="table.rowNumMolecules">Număr molecule</td>
+                        <td id="tableNumLeft">10</td>
+                        <td id="tableNumRight">10</td>
+                    </tr>
+                    <tr>
+                        <td data-i18n="table.rowMeanTemp">Temperatură medie (K)</td>
+                        <td id="tableTempLeft">300</td>
+                        <td id="tableTempRight">300</td>
+                    </tr>
+                    <tr>
+                        <td data-i18n="table.rowMolarMass">Masă molară (g/mol)</td>
+                        <td colspan="2" id="tableMasaGlobal">10</td>
+                    </tr>
+                    <tr>
+                        <td data-i18n="table.rowPressure">Presiune (simulată)</td>
+                        <td colspan="2" id="tablePresiune">0</td>
+                    </tr>
                 </tbody>
             </table>
         </div>
         <div class="sliders">
-            <h3>Dreapta</h3>
+            <h3 data-i18n="side.right">Dreapta</h3>
             <div class="slider-group">
-                <label>Temperatură (K): <span id="temp2Value">300</span></label>
+                <label><span data-i18n="sliders.temperature">Temperatură (K):</span> <span id="temp2Value">300</span></label>
                 <input type="range" id="temp2" min="100" max="1000" step="1" value="300">
             </div>
             <div class="slider-group">
-                <label>Număr de molecule: <span id="numMolecules2Value">10</span></label>
+                <label><span data-i18n="sliders.numMolecules">Număr de molecule:</span> <span id="numMolecules2Value">10</span></label>
                 <input type="range" id="numMolecules2" min="1" max="100" step="1" value="10">
             </div>
             <div class="slider-group">
-                <label>Masă molară (g/mol): <span id="molarMass2Value">10</span></label>
+                <label><span data-i18n="sliders.molarMass">Masă molară (g/mol):</span> <span id="molarMass2Value">10</span></label>
                 <input type="range" id="molarMass2" min="2" max="40" step="1" value="10">
             </div>
         </div>
     </div>
 </div>
-<script src="script.js"></script>
+<script src="/simulari/simulator-i18n-runtime.js"></script>
+<script src="/simulari/Termodinamica/termodinamica-boot.js"></script>
 </body>
-</html> 
+</html>

@@ -1,9 +1,14 @@
+// Fără `.page-section`: acolo e `height: 100vh` + `align-items: center`, care taie conținutul pe mobil.
 .resurse-page {
     // min-height: 100vh;
-    padding-top: 50px;
+    padding-top: clamp(4.75rem, 6vw + 3rem, 6rem);
     min-height: fit-content;
     display: flex;
     flex-direction: column;
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
+    overflow-x: hidden;
     background: var(--primary-background-current-mode);
     color: var(--primary-color-current-mode);
 
@@ -11,6 +16,7 @@
         flex-grow: 1;
         width: 100%;
         max-width: 1200px;
+        min-width: 0;
         margin: 0 auto;
         padding: 2rem 1rem;
         // background-color: red;
@@ -36,18 +42,31 @@
         }
 
         .resurse-description {
-            max-width: 700px;
+            max-width: min(700px, 100%);
+            width: 100%;
             margin: 0 auto 3rem auto;
+            padding-inline: 0.25rem;
+            box-sizing: border-box;
             text-align: center;
             color: var(--primary-color-current-mode);
             font-size: 1.125rem;
+
+            p {
+                margin: 0;
+                overflow-wrap: break-word;
+                word-wrap: break-word;
+                word-break: break-word;
+                hyphens: auto;
+            }
         }
 
         .tabs-list {
             display: flex;
-            justify-content: space-between;
-            align-items: center;
+            flex-wrap: wrap;
+            justify-content: center;
+            align-items: stretch;
             width: 100%;
+            min-width: 0;
             background: var(--secondary-background-current-mode);
             border-radius: 1.25rem;
             padding-top: 0px;
@@ -64,7 +83,9 @@
             display: inline-flex;
             align-items: center;
             justify-content: center;
-            white-space: nowrap;
+            white-space: normal;
+            text-align: center;
+            line-height: 1.35;
             border-radius: 0.75rem;
             padding: 0.5rem 2.5rem;
             font-size: 1.1rem;
@@ -91,6 +112,8 @@
             background: var(--primary-background-current-mode);
             border-radius: 1.25rem;
             padding: 2rem;
+            max-width: 100%;
+            box-sizing: border-box;
             box-shadow: 0 4px 24px 0 rgba(0, 0, 0, 0.10);
             margin-bottom: 2rem;
             border: 1px solid var(--border-color-current-mode, #35353f);
@@ -98,6 +121,13 @@
             .tabs-list {
                 flex-wrap: wrap;
                 justify-content: flex-start;
+                gap: 0.5rem;
+            }
+
+            .tabs-list .tabs-trigger {
+                flex: 1 1 auto;
+                min-width: 0;
+                max-width: 100%;
             }
 
             .resurse-section-title {
@@ -136,6 +166,10 @@
                 grid-template-columns: 1fr 1fr;
                 gap: 1.5rem;
                 align-items: stretch;
+
+                > * {
+                    min-width: 0;
+                }
             }
 
             .formula-card {
@@ -149,6 +183,8 @@
                 justify-content: center;
                 transition: box-shadow 0.2s;
                 box-shadow: 0 2px 8px 0 rgba(96, 165, 250, 0.08);
+                overflow-wrap: break-word;
+                word-wrap: break-word;
 
                 &:hover {
                     box-shadow: 0 4px 16px 0 rgba(96, 165, 250, 0.18);
@@ -175,6 +211,16 @@
                 cursor: pointer;
                 position: relative;
                 transition: box-shadow 0.2s, border-color 0.2s, transform 0.2s;
+
+                h3 {
+                    overflow-wrap: break-word;
+                    word-break: break-word;
+                }
+
+                p {
+                    overflow-wrap: break-word;
+                    word-break: break-word;
+                }
 
                 &:hover {
                     transform: translateY(-2px);
@@ -505,10 +551,10 @@
 /* TELEFOANE: max-width 768px */
 @media (max-width: 768px) {
     .resurse-page {
-        padding-top: 30px;
+        padding-top: clamp(4.25rem, 5vw + 3.25rem, 5.5rem);
 
         main {
-            padding: 1.5rem 1rem;
+            padding: 1.5rem 0.75rem;
 
             .resurse-title {
                 font-size: 1.75rem;
@@ -532,12 +578,12 @@
 
             .tabs-trigger {
                 font-size: 1rem;
-                padding: 0.5rem 1rem;
+                padding: 0.65rem 0.85rem;
                 width: 100%;
             }
 
             .rounded-container {
-                padding: 1.5rem;
+                padding: 1.25rem 1rem;
 
                 .resurse-section-title {
                     font-size: 1.5rem;

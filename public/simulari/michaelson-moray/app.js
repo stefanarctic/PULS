@@ -1,3 +1,7 @@
+function simLbl(path, fallback) {
+  return typeof window.simLbl === "function" ? window.simLbl(path, fallback) : fallback;
+}
+
 const c = 299792458;
 const fringes = document.getElementById("fringes");
 const ctx = fringes.getContext("2d");
@@ -145,7 +149,12 @@ function update(){
   requestAnimationFrame(update);
 }
 
-toggle.onclick=()=>{running=!running;toggle.textContent=running?"⏸ Pauză":"▶️ Rulează";};
+toggle.onclick = () => {
+  running = !running;
+  toggle.textContent = running
+    ? simLbl("buttons.pause", "⏸ Pauză")
+    : simLbl("buttons.play", "▶️ Rulează");
+};
 reset.onclick=()=>{theta=0;phaseData=[];};
 random.onclick=()=>{lambdaslider.value=Math.floor(400+Math.random()*300);};
 rot90.onclick=()=>{theta+=Math.PI/2;};

@@ -9,31 +9,31 @@
 <body>
     <header class="topbar">
         <div class="brand">
-            <h1>Curent alternativ</h1>
-            <p>Simulator AC / DC — tensiune, curent, fază, fazor</p>
+            <h1 data-i18n="labels.pageTitle">Curent alternativ</h1>
+            <p data-i18n="labels.subtitle">Simulator AC / DC — tensiune, curent, fază, fazor</p>
         </div>
     </header>
 
     <main class="layout" id="caLayout">
-        <button type="button" id="toggleCaLeft" class="ca-toggle ca-toggle-left" aria-controls="leftPanel" aria-expanded="true" aria-label="Panou formule și măsurători">☰</button>
+        <button type="button" id="toggleCaLeft" class="ca-toggle ca-toggle-left" aria-controls="leftPanel" aria-expanded="true" data-i18n-aria="aria.panelFormulas">☰</button>
 
         <!-- LEFT PANEL -->
         <aside id="leftPanel" class="panel left">
             <div class="panelHeader">
-                <h2>Formule &amp; măsurători</h2>
+                <h2 data-i18n="labels.panelFormulas">Formule &amp; măsurători</h2>
             </div>
             <div class="section">
-                <h3>Unități de măsură în S.I.</h3>
+                <h3 data-i18n="labels.siUnitsTitle">Unități de măsură în S.I.</h3>
                 <div class="box">
-                    <p>U — V (volt)</p>
-                    <p>I — A (amper)</p>
-                    <p>f — Hz (hertz)</p>
-                    <p>φ — rad (radian)</p>
+                    <p data-i18n="labels.siU">U — V (volt)</p>
+                    <p data-i18n="labels.siI">I — A (amper)</p>
+                    <p data-i18n="labels.siF">f — Hz (hertz)</p>
+                    <p data-i18n="labels.siPhi">φ — rad (radian)</p>
                 </div>
             </div>
 
             <div class="section">
-                <h3>Formule și măsurători</h3>
+                <h3 data-i18n="labels.formulasMeasuresTitle">Formule și măsurători</h3>
                 <div class="box">
                     <div id="formula"></div>
                     <div id="rms"></div>
@@ -43,11 +43,11 @@
             </div>
             <div id="analysis"></div>
             <div class="section">
-                <h3>Energie</h3>
+                <h3 data-i18n="labels.energySection">Energie</h3>
                 <div class="box" id="energy"></div>
             </div>
             <div class="section">
-                <h3>Fază</h3>
+                <h3 data-i18n="labels.phaseSection">Fază</h3>
                 <div class="box" id="phaseInfo"></div>
             </div>
         </aside>
@@ -61,38 +61,38 @@
         <!-- RIGHT PANEL -->
         <aside id="rightPanel" class="panel right">
             <div class="panelHeader">
-                <h2>Control</h2>
+                <h2 data-i18n="labels.controlPanel">Control</h2>
             </div>
 
             <div class="section">
-                <h3>Parametri</h3>
+                <h3 data-i18n="labels.paramsSection">Parametri</h3>
 
-                <label>Amplitudine U(t)
+                <label><span data-i18n="labels.ampU">Amplitudine U(t)</span>
                     <input type="range" id="ampU" min="10" max="200" value="100">
                     <span id="ampUVal"></span>
                 </label>
 
-                <label>Amplitudine I(t)
+                <label><span data-i18n="labels.ampI">Amplitudine I(t)</span>
                     <input type="range" id="ampI" min="10" max="200" value="100">
                     <span id="ampIVal"></span>
                 </label>
 
-                <label>Frecvență
+                <label><span data-i18n="labels.frequency">Frecvență</span>
                     <input type="range" id="freq" min="1" max="100" value="20">
                     <span id="freqVal"></span>
                 </label>
 
-                <label>Viteză
+                <label><span data-i18n="labels.speed">Viteză</span>
                     <input type="range" id="speed" min="1" max="100" value="50">
                     <span id="speedVal"></span>
                 </label>
 
-                <label>Fază
+                <label><span data-i18n="labels.phase">Fază</span>
                     <input type="range" id="phase" min="0" max="628" value="0">
                     <span id="phaseVal"></span>
                 </label>
 
-                <label>Mod
+                <label><span data-i18n="labels.mode">Mod</span>
                     <select id="mode">
                         <option value="ac">AC</option>
                         <option value="dc">DC</option>
@@ -101,7 +101,7 @@
             </div>
 
             <div class="section">
-                <h3>Măsurători</h3>
+                <h3 data-i18n="labels.measurementsSection">Măsurători</h3>
                 <div class="box">
                     <div id="instant"></div>
                     <div id="power"></div>
@@ -110,20 +110,21 @@
             </div>
 
             <div class="section">
-                <h3>Grafic mic</h3>
+                <h3 data-i18n="labels.miniGraphTitle">Grafic mic</h3>
                 <canvas id="miniGraph"></canvas>
                 <div class="legend">
-                    <span class="u">U(t)</span>
-                    <span class="i">I(t)</span>
-                    <span class="p">P(t)</span>
+                    <span class="u" data-i18n="labels.legendU">U(t)</span>
+                    <span class="i" data-i18n="labels.legendI">I(t)</span>
+                    <span class="p" data-i18n="labels.legendP">P(t)</span>
                 </div>
             </div>
             <canvas id="phasor"></canvas>
         </aside>
 
-        <button type="button" id="toggleCaRight" class="ca-toggle ca-toggle-right" aria-controls="rightPanel" aria-expanded="true" aria-label="Panou control">☰</button>
+        <button type="button" id="toggleCaRight" class="ca-toggle ca-toggle-right" aria-controls="rightPanel" aria-expanded="true" data-i18n-aria="aria.panelControl">☰</button>
     </main>
 
-    <script src="script.js"></script>
+    <script src="../simulator-i18n-runtime.js"></script>
+    <script src="curent-alternativ-boot.js"></script>
 </body>
 </html>

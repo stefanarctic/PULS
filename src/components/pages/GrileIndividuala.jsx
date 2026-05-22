@@ -11,15 +11,14 @@ import { auth } from '../../lib/firebase';
 import { onAuthStateChanged } from 'firebase/auth';
 import { Timestamp } from 'firebase/firestore';
 import { parseHomeworkParams, recordAssignmentItemProgress } from '../../lib/assignmentProgress';
-
-function convertDollarToInlineMathJax(str) {
-    if (!str) return str;
-    return str.replace(/\$(.+?)\$/g, (_, expr) => `\\(${expr}\\)`);
-}
+import { useI18n } from '../../i18n/LanguageContext';
+import { convertDollarToInlineMathJax } from '../../lib/problemHtmlMath';
+import { useGrilaEnglishTranslation } from '../../hooks/useGrilaEnglishTranslation';
 
 const GrileIndividuala = () => {
     const { id } = useParams();
     const navigate = useNavigate();
+    const { localizedPath, t, lang } = useI18n();
     const dispatch = useDispatch();
     const [searchParams] = useSearchParams();
     const homeworkContext = parseHomeworkParams(searchParams);
@@ -31,7 +30,10 @@ const GrileIndividuala = () => {
 
     const grilaIndex = parseInt(id, 10);
     const grila = grileData.find(g => g.index === grilaIndex);
-    const correctAnswer = grila ? (grila.raspunsCorect || 'a').toLowerCase() : '';
+    const { displayGrila, status: translationStatus } = useGrilaEnglishTranslation(grila, lang);
+    const grileView = displayGrila ?? grila;
+
+    const correctAnswer = grileView ? (grileView.raspunsCorect || 'a').toLowerCase() : '';
     const isCorrect = !!(hasChecked && selectedAnswer !== null && selectedAnswer === correctAnswer);
 
     useEffect(() => {
@@ -68,16 +70,22 @@ const GrileIndividuala = () => {
     }, [hasChecked, homeworkContext, firebaseUser?.uid, isCorrect]);
 
     useEffect(() => {
-        if (hasChecked && window.MathJax?.typesetPromise) {
-            window.MathJax.typesetPromise();
+        if (!hasChecked) return;
+        const mj = window.MathJax;
+        if (!mj?.typesetPromise) return;
+        const run = () => mj.typesetPromise().catch(() => {});
+        if (mj.startup?.promise) {
+            mj.startup.promise.then(run).catch(run);
+        } else {
+            run();
         }
     }, [hasChecked]);
 
     useEffect(() => {
         if ((status === 'succeeded' || status === 'failed') && !grila) {
-            navigate('/probleme/grile');
+            navigate(localizedPath('/probleme/grile'));
         }
-    }, [grila, status, navigate]);
+    }, [grila, status, navigate, localizedPath]);
 
     const handleCheck = () => {
         if (selectedAnswer === null) return;
@@ -85,7 +93,7 @@ const GrileIndividuala = () => {
     };
 
     const handleBack = () => {
-        navigate('/probleme/grile');
+        navigate(localizedPath('/probleme/grile'));
     };
 
     if (status === 'loading' || status === 'idle') {
@@ -96,7 +104,7 @@ const GrileIndividuala = () => {
                         <div className="main">
                             <div className="loading-spinner">
                                 <div className="spinner"></div>
-                                <h3>Se încarcă grila...</h3>
+                                <h3>{t('gridProblemsPage.detailLoadingTitle', 'Se încarcă grila...')}</h3>
                             </div>
                         </div>
                     </div>
@@ -109,18 +117,38 @@ const GrileIndividuala = () => {
         return null;
     }
 
-    const variante = grila.variante || {};
+    const grileDisplay = grileView;
+
+    const variante = grileDisplay.variante || {};
     const options = ['a', 'b', 'c', 'd'].filter(k => variante[k]);
 
-    const title = grila.intrebare?.substring(0, 60) || `Grilă #${grilaIndex}`;
-    const description = `Întrebare cu variante de răspuns: ${title}...`;
+    const translationLoading = lang === 'en' && translationStatus === 'loading';
+
+    const title = grileDisplay.intrebare?.substring(0, 60) || `Grilă #${grilaIndex}`;
+    const snippet = `${title}${title.length >= 60 ? '...' : ''}`;
+    const description = t(
+        'gridProblemsPage.detailMetaDescription',
+        `Întrebare cu variante de răspuns: ${snippet}`,
+        { snippet }
+    );
+    const keywords = grileDisplay.categorie
+        ? t(
+            'gridProblemsPage.detailKeywordsWithCategory',
+            `grilă fizică, ${grileDisplay.categorie}, întrebări fizică`,
+            { category: grileDisplay.categorie }
+        )
+        : t('gridProblemsPage.detailKeywords', 'grilă fizică, întrebări fizică');
 
     return (
         <Layout>
             <SEO
-                title={`Grilă #${grilaIndex} | Grile de Fizică - PULS`}
+                title={t(
+                    'gridProblemsPage.detailSeoTitle',
+                    `Grilă #${grilaIndex} | Grile de Fizică - PULS`,
+                    { num: grilaIndex }
+                )}
                 description={description}
-                keywords={`grilă fizică, ${grila.categorie || ''}, întrebări fizică`}
+                keywords={keywords}
                 image="/res/icons/New-logo.png"
             />
             <div className="grila-detalii-page">
@@ -128,27 +156,34 @@ const GrileIndividuala = () => {
                     <button
                         onClick={handleBack}
                         className="grila-back-button"
-                        title="Înapoi la grile"
+                        title={t('gridProblemsPage.detailBack', 'Înapoi la grile')}
                     >
                         <ArrowLeft size={18} />
-                        <span>Înapoi la grile</span>
+                        <span>{t('gridProblemsPage.detailBack', 'Înapoi la grile')}</span>
                     </button>
 
                     <div className="grila-detalii-card">
+                        {translationLoading && (
+                            <div className="grila-translation-banner" role="status">
+                                {t('gridProblemsPage.translationInProgress', 'Se traduce grila în engleză…')}
+                            </div>
+                        )}
                         <div className="grila-detalii-header">
-                            <span className="grila-detalii-id">Grilă #{grilaIndex}</span>
-                            {grila.categorie && (
-                                <span className="grila-detalii-categorie">{grila.categorie}</span>
+                            <span className="grila-detalii-id">
+                                {t('gridProblemsPage.detailQuizBadge', `Grilă #${grilaIndex}`, { num: grilaIndex })}
+                            </span>
+                            {grileDisplay.categorie && (
+                                <span className="grila-detalii-categorie">{grileDisplay.categorie}</span>
                             )}
                         </div>
 
                         <div
                             className="grila-intrebare"
                             dangerouslySetInnerHTML={{
-                                __html: convertDollarToInlineMathJax(grila.intrebare || '')
+                                __html: convertDollarToInlineMathJax(grileDisplay.intrebare || '')
                             }}
                         />
-                        <MathJaxRender />
+                        <MathJaxRender rerun={translationStatus} />
 
                         <div className="grila-variante">
                             {options.map((key) => {
@@ -193,7 +228,7 @@ const GrileIndividuala = () => {
                                 onClick={handleCheck}
                                 disabled={selectedAnswer === null}
                             >
-                                Verifică răspunsul
+                                {t('gridProblemsPage.detailVerify', 'Verifică răspunsul')}
                             </button>
                         )}
 
@@ -203,24 +238,30 @@ const GrileIndividuala = () => {
                                     {isCorrect ? (
                                         <>
                                             <Check size={24} />
-                                            <span>Răspuns corect!</span>
+                                            <span>{t('gridProblemsPage.detailCorrect', 'Răspuns corect!')}</span>
                                         </>
                                     ) : (
                                         <>
                                             <X size={24} />
-                                            <span>Răspuns greșit. Varianta corectă este {correctAnswer.toUpperCase()}.</span>
+                                            <span>
+                                                {t(
+                                                    'gridProblemsPage.detailWrong',
+                                                    `Răspuns greșit. Varianta corectă este ${correctAnswer.toUpperCase()}.`,
+                                                    { letter: correctAnswer.toUpperCase() }
+                                                )}
+                                            </span>
                                         </>
                                     )}
                                 </div>
-                                {grila.explicatie && (
+                                {grileDisplay.explicatie && (
                                     <div className="grila-explicatie">
-                                        <strong>Explicație:</strong>
+                                        <strong>{t('gridProblemsPage.detailExplanationLabel', 'Explicație:')}</strong>
                                         <div
                                             dangerouslySetInnerHTML={{
-                                                __html: convertDollarToInlineMathJax(grila.explicatie)
+                                                __html: convertDollarToInlineMathJax(grileDisplay.explicatie)
                                             }}
                                         />
-                                        <MathJaxRender />
+                                        <MathJaxRender rerun={translationStatus} />
                                     </div>
                                 )}
                             </div>

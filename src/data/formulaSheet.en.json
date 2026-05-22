@@ -1,0 +1,1996 @@
+{
+  "mecanica": [
+    {
+      "section": "1. Uniform rectilinear motion",
+      "formulas": [
+        {
+          "title": "Speed",
+          "formula": "\\( v = \\frac{d}{t} \\)",
+          "explanation": "In uniform rectilinear motion (URM), the body moves in a straight line with constant speed. The average speed is equal to the instantaneous speed and is calculated as the ratio of the distance traveled (d) to the time interval (t). SI unit of measurement: m/s. Example: a car that travels 120 km in 2 hours has a speed of v = 120/2 = 60 km/h."
+        }
+      ]
+    },
+    {
+      "section": "2. Uniformly varied rectilinear motion",
+      "formulas": [
+        {
+          "title": "Speed",
+          "formula": "\\( v = v_0 + a \\cdot t \\)",
+          "explanation": "The velocity at a given instant in MRUV depends on the initial velocity (v₀), constant acceleration (a) and time (t). If a > 0, the body accelerates; if a < 0, the body brakes. This equation follows from the definition of acceleration: a = Δv/Δt. Example: a body launched with v₀ = 5 m/s and a = 2 m/s² has after 3 s the speed v = 5 + 2·3 = 11 m/s."
+        },
+        {
+          "title": "Distance",
+          "formula": "\\( x = v_0 \\cdot t + \\frac{1}{2} a \\cdot t^2 \\)",
+          "explanation": "Space law in MRUV: position (or distance traveled) depends on initial velocity, time and acceleration. The term v₀·t corresponds to the uniform motion, and ½·a·t² is the acceleration contribution. The graph of x(t) is a parabola. In free fall (v₀ = 0, a = g): x = ½·g·t²."
+        },
+        {
+          "title": "Torricelli",
+          "formula": "\\( v^2 = v_0^2 + 2 \\cdot a \\cdot x \\)",
+          "explanation": "Torricelli's equation relates final velocity to initial velocity, acceleration, and distance traveled without explicitly depending on time. Useful when the time is unknown. It is obtained by eliminating t from the equations v = v₀ + at and x = v₀t + ½at². In free fall: v² = 2gh."
+        },
+        {
+          "title": "Acceleration",
+          "formula": "\\( a = \\frac{v - v_0}{t} \\)",
+          "explanation": "Average acceleration is the change in velocity per unit time. In MRUV, acceleration is constant. SI unit: m/s². Gravitational acceleration at the Earth's surface: g ≈ 9.8 m/s². Sign: a > 0 (acceleration), a < 0 (deceleration/braking)."
+        }
+      ]
+    },
+    {
+      "section": "3. Newton's laws",
+      "formulas": [
+        {
+          "title": "Law I",
+          "formula": "\\( \\Sigma F = 0 \\) — corp în repaus sau mișcare uniformă",
+          "explanation": "Law of Inertia: A body remains at rest or in uniform rectilinear motion as long as the resultant of the forces acting on it is zero. Inertia is the property of bodies to maintain their state of motion. Without external forces, a body does not change its velocity."
+        },
+        {
+          "title": "Law II",
+          "formula": "\\( F = m \\cdot a \\)",
+          "explanation": "The resultant force acting on a body is equal to the product of mass and acceleration. Mass (m) measures the body's inertia: the greater the mass, the less the acceleration for the same force. Units: F in N (newton), m in kg, a in m/s²."
+        },
+        {
+          "title": "The third law",
+          "formula": "\\( F_{12} = -F_{21} \\)",
+          "explanation": "Law of action and reaction: If body 1 acts on body 2 with force F₁₂, then body 2 acts on body 1 with force F₂₁ = −F₁₂. The forces have the same mode, the same direction, but opposite directions. It acts on different bodies."
+        },
+        {
+          "title": "The weight",
+          "formula": "\\( G = m \\cdot g \\) (g ≈ 9,8 m/s²)",
+          "explanation": "Gravity is the force with which the Earth attracts a body. g is the gravitational acceleration at the Earth's surface (varies slightly with latitude and altitude). Unit: N (newton). Example: a 10 kg body has a weight of G = 10·9.8 = 98 N."
+        },
+        {
+          "title": "Normal force",
+          "formula": "\\( N = m \\cdot g \\cdot \\cos\\theta \\)",
+          "explanation": "The normal force is the reaction of the supporting surface, perpendicular to the surface. On a plane inclined at angle θ, N = mg·cos θ. It balances the perpendicular component of weight. On the horizontal plane: N = mg."
+        },
+        {
+          "title": "Frictional force",
+          "formula": "\\( F_f = \\mu \\cdot N \\)",
+          "explanation": "The sliding friction force is proportional to the normal force. μ is the coefficient of friction (dimensionless, depends on the nature of the surfaces). Ff opposes the motion. In static friction: Ff ≤ μ·N (up to the maximum value that allows movement)."
+        },
+        {
+          "title": "Force on inclined plane",
+          "formula": "\\( F_{\\parallel} = m \\cdot g \\cdot \\sin\\theta \\)",
+          "explanation": "The component of weight parallel to the inclined plane that causes the body to slide. The larger the angle θ, the larger F∥. At θ = 90° (free fall): F∥ = mg. This force is responsible for the acceleration of the body on the plane."
+        }
+      ]
+    },
+    {
+      "section": "4. Mechanical work and energy",
+      "formulas": [
+        {
+          "title": "Mechanical work",
+          "formula": "\\( L = F \\cdot d \\cdot \\cos\\theta \\)",
+          "explanation": "Mechanical work is done by a force when its point of application moves. θ is the angle between the force and the direction of displacement. L = F·d when the force is parallel to the displacement. L > 0 (motive force), L < 0 (resistive force), L = 0 (perpendicular force). Unit: J (Jul)."
+        },
+        {
+          "title": "Kinetic energy",
+          "formula": "\\( E_c = \\frac{1}{2} m \\cdot v^2 \\)",
+          "explanation": "Kinetic energy is the energy due to motion. It depends on the mass and the square of the velocity. Unit: J. A body at rest has Ec = 0. When the velocity is doubled, the kinetic energy increases by a factor of 4. It is a positive scalar quantity."
+        },
+        {
+          "title": "Theorem of mechanical work",
+          "formula": "\\( L = \\Delta E_c = E_{c2} - E_{c1} \\)",
+          "explanation": "The mechanical work of the resultant forces is equal to the change in kinetic energy. If L > 0, the body accelerates; if L < 0, the body brakes. This theorem is a form of the kinetic energy theorem and applies to any mechanical situation."
+        },
+        {
+          "title": "Gravitational potential energy",
+          "formula": "\\( E_p = m \\cdot g \\cdot h \\)",
+          "explanation": "Gravitational potential energy depends on the height h above a reference level (usually the ground). Increases with h. When falling, Ep becomes Eq. The reference level is arbitrary; only ΔEp matters. Unit: J."
+        },
+        {
+          "title": "Conservation of mechanical energy",
+          "formula": "\\( E_c + E_p = const. \\)",
+          "explanation": "In the absence of non-conservative forces (friction, resistance), total mechanical energy (kinetic + potential) is conserved. Energy can go from Ec to Ep and vice versa, but the amount remains constant. Example: pendulum, free fall without friction."
+        },
+        {
+          "title": "The power",
+          "formula": "\\( P = \\frac{L}{t} = F \\cdot v \\)",
+          "explanation": "Power measures the speed with which mechanical work is done. P = L/t (work per unit time). The form P = F·v is useful when force and velocity are constant and parallel. Unit: W (watt) = J/s. 1 HP ≈ 735 W."
+        },
+        {
+          "title": "return",
+          "formula": "\\( \\eta = \\frac{L_u}{L_c} \\) (η ≤ 1)",
+          "explanation": "Yield is the ratio of useful work (Lu) to consumed work (Lc). η ≤ 1 always; the difference is lost through friction, heat, etc. η = 1 only in ideal, lossless systems. It is often expressed as a percentage: η = 80% means η = 0.8."
+        }
+      ]
+    },
+    {
+      "section": "5. Impulse and the amount of motion",
+      "formulas": [
+        {
+          "title": "The amount of movement",
+          "formula": "\\( p = m \\cdot v \\)",
+          "explanation": "The quantity of motion (mechanical impulse) is a vector having direction and sense of velocity. It measures \"inertia in motion\". Unit: kg·m/s. In collisions, p total is conserved. A truck has higher p than a car at the same speed due to mass."
+        },
+        {
+          "title": "Momentum–momentum theorem",
+          "formula": "\\( F \\cdot \\Delta t = \\Delta p \\)",
+          "explanation": "The impulse of the force (F·Δt) is equal to the change in momentum. For a constant force: F·Δt = m·Δv. In collisions, the forces are large and Δt small, so F can be very large. Explain why airbags increase Δt and decrease F."
+        },
+        {
+          "title": "Conservation of momentum",
+          "formula": "\\( m_1 v_1 + m_2 v_2 = m_1 v_1' + m_2 v_2' \\)",
+          "explanation": "In an isolated system (resultant of external forces = 0), the total momentum is conserved. In collisions, the sum m·v before is equal to the sum m·v after. v' are the velocities after the collision. The equation is vector; applies to each axis."
+        }
+      ]
+    },
+    {
+      "section": "6. Uniform Circular Motion (UCM)",
+      "formulas": [
+        {
+          "title": "Period",
+          "formula": "\\( T = \\frac{2\\pi}{\\omega} \\)",
+          "explanation": "The period is the time it takes the body to complete one complete rotation (2π radians). Unit: s (second). T = 1/f, where f is the frequency. Example: the minutes of the clock have T = 60 s, so ω = 2π/60 rad/s."
+        },
+        {
+          "title": "Frequency",
+          "formula": "\\( f = \\frac{1}{T} \\)",
+          "explanation": "Frequency is the number of complete revolutions per second. Unit: Hz (hertz) = s⁻¹. f = ω/(2π). Example: a disk making 33 rotations/minute has f = 33/60 ≈ 0.55 Hz."
+        },
+        {
+          "title": "Angular velocity",
+          "formula": "\\( \\omega = 2\\pi \\cdot f \\)",
+          "explanation": "Angular velocity measures the speed of rotation in radians per second. ω = 2π/T = 2πf. In MCU, ω is constant. Unit: rad/s. The connection with the period: the higher T is, the smaller ω is."
+        },
+        {
+          "title": "Linear speed",
+          "formula": "\\( v = \\omega \\cdot r = \\frac{2\\pi r}{T} \\)",
+          "explanation": "The linear (tangential) velocity is perpendicular to the radius. v = ω·r relates the angular velocity to the radius of the trajectory. Points farther from the center have larger v. v = 2πr/T = 2πrf. The direction changes continuously, but the module remains constant."
+        },
+        {
+          "title": "Centripetal acceleration",
+          "formula": "\\( a_c = \\frac{v^2}{r} = \\omega^2 \\cdot r \\)",
+          "explanation": "Centripetal acceleration is directed toward the center of the circle and only changes the direction of the velocity, not the magnitude. ac = v²/r = ω²r. In the MCU there is only centripetal acceleration, not tangential. Without the needle, the body would move in a straight line."
+        },
+        {
+          "title": "Centripetal force",
+          "formula": "\\( F_c = m \\cdot \\frac{v^2}{r} = m \\cdot \\omega^2 \\cdot r \\)",
+          "explanation": "Centripetal force is the resultant of the forces that keep the body on a circular path. Fc = m·ac. Examples: tension in the wire (tapered pendulum), friction (car turning), gravity (satellite in orbit). It is directed towards the center."
+        }
+      ]
+    },
+    {
+      "section": "7. Universal gravitation",
+      "formulas": [
+        {
+          "title": "Newton's law",
+          "formula": "\\( F = G \\cdot \\frac{m_1 \\cdot m_2}{r^2} \\) (G = 6,674×10⁻¹¹ N·m²/kg²)",
+          "explanation": "Two bodies attract with a force proportional to the product of the masses and inversely proportional to the square of the distance between the centers. G is the universal gravitational constant. The law applies to point or spherical bodies. It explains both the fall of bodies and the motion of the planets."
+        },
+        {
+          "title": "Gravitational acceleration",
+          "formula": "\\( g = \\frac{G \\cdot M}{R^2} \\)",
+          "explanation": "Gravitational acceleration at the surface of a celestial body of mass M and radius R. At Earth: g ≈ 9.8 m/s². Decreases with altitude. On the Moon, g is ~6 times smaller. Allows calculation of g on other planets knowing M and R."
+        },
+        {
+          "title": "Orbital velocity",
+          "formula": "\\( v = \\sqrt{\\frac{G \\cdot M}{r}} \\)",
+          "explanation": "The speed a satellite must have to orbit at a distance r from the center of the planet (mass M). It results from equating the gravitational force with the centripetal force. The higher the orbit, the smaller v is. For ISS: v ≈ 7.7 km/s."
+        },
+        {
+          "title": "Kepler's third law",
+          "formula": "\\( \\frac{T^2}{r^3} = const. \\)",
+          "explanation": "The square of the period of revolution is proportional to the cube of the semimajor axis of the orbit. Valid for all planets orbiting the same body (eg Sun). It allows the calculation of planetary distances or the mass of the Sun."
+        }
+      ]
+    },
+    {
+      "section": "8. Dynamics of rotation (rigid body)",
+      "formulas": [
+        {
+          "title": "Moment of force",
+          "formula": "\\( M = F \\cdot d \\)",
+          "explanation": "Moment of force (torque) measures the force's ability to produce rotation. d is the arm of the force (the distance from the axis of rotation to the line of action of the force). Unit: N·m. M = 0 when the force passes through the axis. M = F·d·sin θ in general."
+        },
+        {
+          "title": "Equilibrium condition (translation)",
+          "formula": "\\( \\Sigma F = 0 \\)",
+          "explanation": "For translational equilibrium, the resultant of the forces must be zero. The body does not translate. The first equilibrium condition for a rigid body."
+        },
+        {
+          "title": "Balance condition (rotation)",
+          "formula": "\\( \\Sigma M = 0 \\)",
+          "explanation": "For rotational balance, the sum of the moments of the forces about any axis must be zero. The body does not rotate. The second equilibrium condition. The two conditions must be met simultaneously for complete equilibrium."
+        },
+        {
+          "title": "The fundamental law of rotation",
+          "formula": "\\( M = I \\cdot \\alpha \\)",
+          "explanation": "The analog of F = ma for rotation: the resultant moment is equal to the product of the moment of inertia (I) and the angular acceleration (α). It depends on the shape of the body and the axis of rotation. Unit for I: kg·m²."
+        },
+        {
+          "title": "Kinetic moment",
+          "formula": "\\( L = I \\cdot \\omega \\)",
+          "explanation": "Kinetic momentum (momentum of momentum) is the momentum analog for rotation. L = I·ω. It is conserved in isolated systems (eg the skater who squeezes his arms spins faster). Unit: kg·m²/s."
+        },
+        {
+          "title": "Rotational kinetic energy",
+          "formula": "\\( E_{cr} = \\frac{1}{2} I \\cdot \\omega^2 \\)",
+          "explanation": "The kinetic energy of a rotating body. Analogous to Ec = ½mv² for translation. A body can have both translational and rotational kinetic energy (eg the spinning wheel)."
+        }
+      ]
+    },
+    {
+      "section": "9. Mechanical oscillations",
+      "formulas": [
+        {
+          "title": "Hooke's law",
+          "formula": "\\( F = -k \\cdot x \\)",
+          "explanation": "The elastic force is proportional to the strain x and directed towards the equilibrium position (minus sign). k is the elastic constant of the spring (N/m). The stiffer the spring, the higher k is. Strength is restorative."
+        },
+        {
+          "title": "Elastic potential energy",
+          "formula": "\\( E_p = \\frac{1}{2} k \\cdot x^2 \\)",
+          "explanation": "Energy stored in a compressed or stretched spring with strain x. It is maximum at amplitude (x = ±A), zero at equilibrium. It is converted to kinetic energy and vice versa during oscillation. Similar form to Ec = ½mv²."
+        },
+        {
+          "title": "Equation of motion",
+          "formula": "\\( x = A \\cdot \\cos(\\omega t + \\varphi) \\)",
+          "explanation": "The law of motion of the harmonic oscillator. A = amplitude, ω = pulsation, φ = initial phase. The body oscillates between -A and +A. The cosine describes the periodic motion. v = dx/dt = -Aω·sin(ωt + φ)."
+        },
+        {
+          "title": "The period of the elastic oscillator",
+          "formula": "\\( T = 2\\pi \\sqrt{\\frac{m}{k}} \\)",
+          "explanation": "The period of the oscillator (spring–mass) depends only on m and k, not on the amplitude (within the validity of Hooke's law). The bigger the mass or the smaller k, the bigger T is. ω = √(k/m)."
+        },
+        {
+          "title": "The period of the simple pendulum",
+          "formula": "\\( T = 2\\pi \\sqrt{\\frac{l}{g}} \\)",
+          "explanation": "The period of the gravitational pendulum depends on the length of the string (l) and g. It does not depend on the mass of the pendulum. Valid for small oscillations (θ < ~10°). The longer pendulum swings slower. Useful for measuring g."
+        },
+        {
+          "title": "Maximum speed",
+          "formula": "\\( v_{max} = A \\cdot \\omega \\)",
+          "explanation": "The maximum speed is reached when passing through the equilibrium position (x = 0), where all the energy is kinetic. vmax = Aω. It depends on the amplitude and pulsation. At the elastic oscillator: vmax = A√(k/m)."
+        }
+      ]
+    },
+    {
+      "section": "10. Air resistance (aerodynamic drag)",
+      "formulas": [
+        {
+          "title": "The force of love",
+          "formula": "\\( F_d = \\frac{1}{2}\\, C_d \\, \\rho \\, A \\, v^2 \\)",
+          "explanation": "Air resistance (drag) is proportional to the square of the velocity, the cross-sectional area (A), the fluid density (ρ) and the drag coefficient (C_d). C_d depends on body shape: ~0.47 for a sphere, ~1.0–1.3 for a flat surface. Formula valid in turbulent regime (Re > ~1000)."
+        },
+        {
+          "title": "Equation of falling motion with resistance",
+          "formula": "\\( m a = m g - \\frac{1}{2}\\, C_d \\, \\rho \\, A \\, v^2 \\)",
+          "explanation": "When falling through air, the body is subject to gravity (mg, down) and drag (up, opposite to motion). The acceleration decreases as the speed increases, until the drag balances the weight and a = 0."
+        },
+        {
+          "title": "Terminal velocity",
+          "formula": "\\( v_t = \\sqrt{\\frac{2 m g}{C_d \\, \\rho \\, A}} \\)",
+          "explanation": "Terminal velocity is the maximum velocity reached in the fall, when the drag force equals the weight (a = 0). It depends on mass, shape and area. Example: a skydiver achieves ~55 m/s with arms outstretched, ~90 m/s in aerodynamic position. A stretched sheet of paper has much lower v_t than the same crumpled sheet."
+        },
+        {
+          "title": "Velocity as a function of time (fall)",
+          "formula": "\\( v(t) = v_t \\tanh\\!\\left(\\frac{g\\,t}{v_t}\\right) \\)",
+          "explanation": "At small times, tanh ≈ gt/v_t, so v ≈ gt (free fall). At high times, tanh → 1, so v → v_t (terminal velocity). The transition is gradual; the body reaches ~99% of v_t after a time t ≈ 5 v_t/g."
+        },
+        {
+          "title": "Position over time (fall)",
+          "formula": "\\( y(t) = \\frac{v_t^2}{g} \\ln\\!\\left(\\cosh\\!\\left(\\frac{g\\,t}{v_t}\\right)\\right) \\)",
+          "explanation": "Distance traveled in resisted fall. At small times: y ≈ ½gt² (free fall). At large times: y ≈ v_t·t (uniform motion with terminal velocity). The graph of y(t) starts out parabolic and becomes linear."
+        },
+        {
+          "title": "Reynolds number",
+          "formula": "\\( \\text{Re} = \\frac{\\rho \\, v \\, L}{\\mu} \\)",
+          "explanation": "The Reynolds number (dimensionless) indicates the flow regime: Re < ~2000 → laminar (drag ∝ v), Re > ~4000 → turbulent (drag ∝ v²). ρ = fluid density, v = velocity, L = characteristic body length, μ = dynamic viscosity. In most practical cases (balls, parachutes, vehicles), Re is large and the v² formula is used."
+        }
+      ]
+    }
+  ],
+  "termodinamica": [
+    {
+      "section": "1. Basic thermal quantities",
+      "formulas": [
+        {
+          "title": "Temperature conversion",
+          "formula": "\\( T = t + 273 \\) (Kelvin ↔ Celsius)",
+          "explanation": "To convert from Celsius to Kelvin, add 273. Example: 25°C = 298 K. In physics we use Kelvin because 0 K = the lowest possible temperature."
+        },
+        {
+          "title": "Linear expansion",
+          "formula": "\\( l = l_0 \\cdot (1 + \\alpha \\cdot \\Delta t) \\)",
+          "explanation": "When a body heats up, they elongate. α says how much (he's in trouble). l₀ = initial length, Δt = how much it heated up. Example: railroad tracks widen in summer."
+        },
+        {
+          "title": "Volume expansion",
+          "formula": "\\( V = V_0 \\cdot (1 + \\gamma \\cdot \\Delta t) \\) (γ ≈ 3α)",
+          "explanation": "Same as linear dilation, but for volume. γ is approximately 3 times α. Liquids expand more than solids."
+        }
+      ]
+    },
+    {
+      "section": "1b. Periodic table — useful quantities",
+      "formulas": [
+        {
+          "title": "Atomic number",
+          "formula": "\\( Z = p \\)",
+          "explanation": "Z is the number of protons in the nucleus (and, in neutral atoms, the number of electrons). You can find it directly in the periodic table."
+        },
+        {
+          "title": "Mass number",
+          "formula": "\\( A = Z + N \\)",
+          "explanation": "A is the sum of protons (Z) and neutrons (N). In many problems, N lies with N = A − Z (using the given isotope)."
+        },
+        {
+          "title": "The number of neutrons",
+          "formula": "\\( N = A - Z \\)",
+          "explanation": "If you know the isotope (A) and the atomic number (Z), you quickly find the number of neutrons in the nucleus."
+        },
+        {
+          "title": "Moths from the table",
+          "formula": "\\( n = \\frac{m}{M} \\)",
+          "explanation": "The molar mass M is taken from the periodic table (g/mol). The formula is essential when you go from mass to moles (eg: gases, mixtures)."
+        },
+        {
+          "title": "Table of moths",
+          "formula": "\\( m = nM \\)",
+          "explanation": "Inverse of the formula above: if you know the moles, you get the mass of the substance."
+        },
+        {
+          "title": "The number of particles",
+          "formula": "\\( N = nN_A \\)",
+          "explanation": "Relate moles to number of particles (atoms/molecules). It appears often in ideal gas and atomic structure problems."
+        },
+        {
+          "title": "Avogadro's constant",
+          "formula": "\\( N_A \\approx 6{,}022\\times 10^{23}\\,\\text{mol}^{-1} \\)",
+          "explanation": "The number of particles in a mol. Use it to switch between microscopic and macroscopic scales."
+        },
+        {
+          "title": "Molar concentration",
+          "formula": "\\( c = \\frac{n}{V} \\)",
+          "explanation": "Concentration (mol/L or mol/m³) occurs when working with solutions or distributions of particles in a volume V."
+        }
+      ]
+    },
+    {
+      "section": "2. The ideal gas — The gas laws",
+      "formulas": [
+        {
+          "title": "The equation of state",
+          "formula": "\\( p \\cdot V = \\nu \\cdot R \\cdot T \\) (R = 8,314 J/mol·K)",
+          "explanation": "The master equation for an ideal gas. ν = number of moles. With it you calculate p, V or T when you know the others. R is a constant, you use it directly."
+        },
+        {
+          "title": "The general relationship for two states",
+          "formula": "\\( \\frac{p_1 V_1}{T_1} = \\frac{p_2 V_2}{T_2} \\)",
+          "explanation": "If you know p, V and T in one state, you can calculate any quantity in the other state. All temperatures in Kelvin!"
+        },
+        {
+          "title": "Isotherm (constant T): p and V",
+          "formula": "\\( p \\cdot V = const. \\) → \\( p_1 V_1 = p_2 V_2 \\)",
+          "explanation": "When the temperature remains constant: if you compress the gas (V decreases), the pressure increases. And vice versa. Example: syringe with closed cap."
+        },
+        {
+          "title": "Isobar (constant p): V and T",
+          "formula": "\\( \\frac{V}{T} = const. \\) → \\( \\frac{V_1}{T_1} = \\frac{V_2}{T_2} \\)",
+          "explanation": "When the pressure remains constant: the gas expands on heating. The warmer it is, the more space it takes up. T must be in Kelvin!"
+        },
+        {
+          "title": "Isochor (constant V): p and T",
+          "formula": "\\( \\frac{p}{T} = const. \\) → \\( \\frac{p_1}{T_1} = \\frac{p_2}{T_2} \\)",
+          "explanation": "When the volume remains constant: on heating, the pressure increases. Example: gas cylinder or car tire in the sun."
+        }
+      ]
+    },
+    {
+      "section": "3. Principle I of thermodynamics",
+      "formulas": [
+        {
+          "title": "The law of conservation of energy",
+          "formula": "\\( \\Delta U = Q + L \\)",
+          "explanation": "Internal energy changes when the gas receives or gives up heat (Q) and when it does or receives mechanical work (L). Q > 0 = receives heat, L > 0 = is compressed (receives work)."
+        },
+        {
+          "title": "Internal energy",
+          "formula": "\\( U = \\nu \\cdot C_v \\cdot T \\)",
+          "explanation": "The internal energy of the gas depends only on the temperature. Cv is a constant that depends on the type of gas (it is given in the problems)."
+        },
+        {
+          "title": "Variation of internal energy",
+          "formula": "\\( \\Delta U = \\nu \\cdot C_v \\cdot \\Delta T \\)",
+          "explanation": "How much has the internal energy changed? It only depends on how much the temperature has changed, not the distance traveled. Use in any process."
+        }
+      ]
+    },
+    {
+      "section": "4. Thermodynamic processes",
+      "formulas": [
+        {
+          "title": "Isochor — Mechanical work",
+          "formula": "\\( L = 0 \\)",
+          "explanation": "At constant volume the gas does no work (nothing moves). All the heat received causes the temperature to rise."
+        },
+        {
+          "title": "Isochor — Heat and energy",
+          "formula": "\\( \\Delta U = Q = \\nu \\cdot C_v \\cdot \\Delta T \\)",
+          "explanation": "In isochore, heat = change in internal energy (because L = 0). The more heat it receives, the more U increases."
+        },
+        {
+          "title": "Isobar — Mechanical work",
+          "formula": "\\( L = p \\cdot \\Delta V = \\nu \\cdot R \\cdot \\Delta T \\)",
+          "explanation": "At constant pressure, the gas can do work as it expands. Some of the heat becomes work, the rest increases the temperature."
+        },
+        {
+          "title": "Isobar — Heat",
+          "formula": "\\( Q = \\nu \\cdot C_p \\cdot \\Delta T \\)",
+          "explanation": "Heat at constant pressure. Cp is slightly greater than Cv (Cp = Cv + R). It is given in the tables."
+        },
+        {
+          "title": "Isothermal — Mechanical work",
+          "formula": "\\( L = \\nu \\cdot R \\cdot T \\cdot \\ln\\frac{V_2}{V_1} \\)",
+          "explanation": "The work when the gas expands or compresses at constant T. ln = natural logarithm. In compression (V₂ < V₁) the work is negative."
+        },
+        {
+          "title": "Isotherm — Energy and Heat",
+          "formula": "\\( \\Delta U = 0 \\) → \\( Q = L \\)",
+          "explanation": "At constant temperature the internal energy does not change. All the heat received is converted into work (or vice versa in compression)."
+        },
+        {
+          "title": "Adiabatic — Energy",
+          "formula": "\\( \\Delta U = -L \\)",
+          "explanation": "Adiabatic = no heat exchange with the outside. Anything done by gas comes from its internal energy. In adiabatic compression, the gas heats up!"
+        },
+        {
+          "title": "Adiabatic — p–V relation",
+          "formula": "\\( p \\cdot V^{\\gamma} = const. \\) (γ = Cp/Cv)",
+          "explanation": "In adiabatic, p and V are related by this formula. γ ≈ 1.4 for air. You use it when you know p and V in one state and want to find out in another."
+        }
+      ]
+    },
+    {
+      "section": "5. Principle II of thermodynamics",
+      "formulas": [
+        {
+          "title": "Heat engine efficiency",
+          "formula": "\\( \\eta = \\frac{L}{Q_1} = 1 - \\frac{Q_2}{Q_1} \\)",
+          "explanation": "Efficiency = how much of the heat received (Q₁) was transformed into useful work (L). Q₂ = heat lost. The yield is always below 1 (below 100%)."
+        },
+        {
+          "title": "Maximum yield (Carnot)",
+          "formula": "\\( \\eta = 1 - \\frac{T_2}{T_1} \\)",
+          "explanation": "The maximum possible efficiency between a hot (T₁) and a cold (T₂) source. No real engine can be more efficient. Temperatures in Kelvin!"
+        },
+        {
+          "title": "Entropy change",
+          "formula": "\\( \\Delta S = \\frac{Q}{T} \\)",
+          "explanation": "Entropy measures \"disorder\". When you get heat, entropy increases. T must be in Kelvin. It is used in Principle II."
+        }
+      ]
+    },
+    {
+      "section": "6. Heat and calorimetry",
+      "formulas": [
+        {
+          "title": "Heat in heating/cooling",
+          "formula": "\\( Q = m \\cdot c \\cdot \\Delta T \\)",
+          "explanation": "How much heat is needed to heat a mass m by ΔT degrees? c = specific heat (given: water has c ≈ 4200 J/(kg·K))."
+        },
+        {
+          "title": "Thermal balance",
+          "formula": "\\( Q_{cedat} = Q_{primit} \\)",
+          "explanation": "When you put a hot body in contact with a cold body, the heat given off by the hot body = the heat received by the cold body. Until equilibrium, when they have the same temperature."
+        },
+        {
+          "title": "Heat to change of state",
+          "formula": "\\( Q = m \\cdot L \\)",
+          "explanation": "When melting, vaporizing, etc. the temperature remains constant, but heat is needed. L = latent heat (of melting or vaporization), given in the tables."
+        }
+      ]
+    },
+    {
+      "section": "7. Heat transfer",
+      "formulas": [
+        {
+          "title": "Thermal conduction",
+          "formula": "\\( \\frac{Q}{t} = \\frac{\\lambda \\cdot A \\cdot \\Delta T}{d} \\)",
+          "explanation": "How much heat passes through the wall in one second? λ = conductivity of the material (metal conducts well, wood poorly), A = area, d = thickness."
+        },
+        {
+          "title": "Thermal radiation",
+          "formula": "\\( P = \\sigma \\cdot \\varepsilon \\cdot A \\cdot T^4 \\) (σ = 5,67×10⁻⁸ W/m²K⁴)",
+          "explanation": "The power radiated by a body (without contact). Warm bodies radiate heat. The warmer it is, the more it radiates (T to the power of 4)."
+        }
+      ]
+    },
+    {
+      "section": "8. Cryogenics (low temperatures)",
+      "formulas": [
+        {
+          "title": "Cryogenic definition (usual threshold)",
+          "formula": "\\( T_{cryo} \\lesssim 120\\,\\text{K} \\)",
+          "explanation": "In engineering practice, cryogenics covers very low temperatures (of the order of tens-hundreds of kelvins). In this area the thermal and transport properties change strongly."
+        },
+        {
+          "title": "Ideal gas equation (basic model)",
+          "formula": "\\( pV = nRT \\)",
+          "explanation": "For the same number of particles n, decreasing the temperature T tends to decrease the pressure p if the volume remains fixed. In the simulator you see directly the connection between T, V and effective pressure."
+        },
+        {
+          "title": "Average molecular kinetic energy",
+          "formula": "\\( \\langle E_k \\rangle = \\frac{3}{2}k_B T \\)",
+          "explanation": "Temperature directly controls the average energy of the particles. At lower T, the particles move more slowly, which favors condensation and local ordering."
+        },
+        {
+          "title": "Root Mean Square (RMS) Velocity",
+          "formula": "\\( v_{rms} = \\sqrt{\\frac{3k_B T}{m}} \\)",
+          "explanation": "It shows the dependence of the velocity on temperature and molecular mass m. In the cryogenic regime, decreasing T strongly reduces the RMS velocity."
+        },
+        {
+          "title": "Stationary thermal conduction (1D)",
+          "formula": "\\( \\dot{Q} = \\frac{kA\\Delta T}{L} \\)",
+          "explanation": "Heat flow through cryogenic walls/insulations depends on conductivity k, area A, thickness L and thermal gradient. The formula explains why good insulation is critical in cryogenic vessels."
+        },
+        {
+          "title": "Simple cooling model (Newton's law)",
+          "formula": "\\( T(t)=T_{amb} + (T_0-T_{amb})e^{-t/\\tau} \\)",
+          "explanation": "It describes the temperature relaxation towards the ambient with a time constant \\(\\tau\\). It is useful for quick estimates of cooling/heating time."
+        }
+      ]
+    }
+  ],
+  "seism": [
+    {
+      "section": "Seismology",
+      "formulas": [
+        {
+          "title": "P wave velocity",
+          "formula": "\\( v_P = \\sqrt{\\frac{K + \\frac{4}{3}G}{\\rho}} \\)",
+          "explanation": "The P wave (primary) is longitudinal; propagates through soil and fluids. It depends on the compressibility modulus K, the shear modulus G and the density ρ. Usually v_P > v_S."
+        },
+        {
+          "title": "The speed of the S wave",
+          "formula": "\\( v_S = \\sqrt{\\frac{G}{\\rho}} \\)",
+          "explanation": "The S (secondary) wave is transverse — the particles oscillate perpendicular to the direction of propagation. It does not cross the ideal fluid. v_S depends on honey stiffness (G) and density."
+        },
+        {
+          "title": "Richter magnitude (local)",
+          "formula": "\\( M_L = \\log_{10} A - \\log_{10} A_0 \\)",
+          "explanation": "Logarithmic scale based on the amplitude of the wave recorded at a seismograph, relative to a reference amplitude A₀ (depends on distance and instrument). It is no longer the only scale used in practice."
+        },
+        {
+          "title": "Moment magnitude (moment scale)",
+          "formula": "\\( M_w = \\frac{2}{3} \\log_{10} M_0 - 10.7 \\)",
+          "explanation": "Mw relates to the seismic moment M₀ (in N·m). It is more stable for large earthquakes than amplitude-only magnitudes."
+        },
+        {
+          "title": "The seismic moment",
+          "formula": "\\( M_0 = \\mu A D \\)",
+          "explanation": "μ is the stiffness of the medium on the failure surface A, D is the mean slip. M₀ measures “how much” energy has been released by moving over a surface."
+        },
+        {
+          "title": "Seismic energy (empirical formula)",
+          "formula": "\\( E = 10^{1.5M + 4.8} \\)",
+          "explanation": "Indicative relationship between magnitude and released energy (in J, in forms usually cited in the literature). It is approximate: the actual energy depends on the fracture geometry and the environment."
+        }
+      ]
+    }
+  ],
+  "unde": [
+    {
+      "section": "Where",
+      "formulas": [
+        {
+          "title": "The fundamental relationship",
+          "formula": "\\( v = \\lambda \\cdot f \\)",
+          "explanation": "The phase velocity is the product of the wavelength λ and the frequency f. It relates the spatial and temporal parameters of the wave."
+        },
+        {
+          "title": "String speed",
+          "formula": "\\( v = \\sqrt{\\frac{T}{\\mu}} \\)",
+          "explanation": "On an ideal string, v increases with tension T and decreases with linear mass μ (kg/m). Explain why the stretched or thinner string sounds sharper."
+        },
+        {
+          "title": "Progressive sine wave",
+          "formula": "\\( y(x,t) = A \\sin(kx - \\omega t + \\phi) \\)",
+          "explanation": "Displacement at position x and time t for a propagating wave. k is the wave number, ω the pulse; φ is the initial phase. The sign in the argument decides the meaning of the propagation."
+        },
+        {
+          "title": "Wave number",
+          "formula": "\\( k = \\frac{2\\pi}{\\lambda} \\)",
+          "explanation": "The relation between λ and k: 2π radians of spatial phase fit into a space of one wavelength."
+        },
+        {
+          "title": "Wave energy on string (model)",
+          "formula": "\\( E = \\frac{1}{2}\\mu A^2\\omega^2 \\)",
+          "explanation": "Total energy proportional to square of amplitude and pulsation in a simple model (wave on string). The more vigorous the oscillation, the greater the energy."
+        },
+        {
+          "title": "The intensity of the wave",
+          "formula": "\\( I = \\frac{P}{A} = \\frac{1}{2}\\rho v A^2\\omega^2 \\)",
+          "explanation": "Average power per unit area. The second form (wave in medium) relates I to density ρ, velocity v, wave amplitude, and ω. Intensity decreases away from the source (geometry + absorption)."
+        }
+      ]
+    }
+  ],
+  "prisma": [
+    {
+      "section": "Prism and dispersion",
+      "formulas": [
+        {
+          "title": "Snell's law",
+          "formula": "\\( n_1 \\sin(\\theta_1) = n_2 \\sin(\\theta_2) \\)",
+          "explanation": "When passing between media, the product n·sin θ remains constant on the interface (incidence). Angles are measured relative to the normal."
+        },
+        {
+          "title": "The angle of deviation in the prism",
+          "formula": "\\( \\delta = (\\theta_1 + \\theta_2') - A \\)",
+          "explanation": "δ is the angle by which the emerging beam is deviated from the incident one; A is the angle of the prism; θ₂′ is the angle of emergence on the second face."
+        },
+        {
+          "title": "Spectral refractive index",
+          "formula": "\\( n = n(\\lambda) \\)",
+          "explanation": "n depends on wavelength — the reason the prism breaks up white light (dispersion). Purple and red have different indices."
+        },
+        {
+          "title": "Cauchy's formula (dispersion)",
+          "formula": "\\( n(\\lambda) = A + \\frac{B}{\\lambda^2} + \\frac{C}{\\lambda^4} \\)",
+          "explanation": "Empirical model for n(λ) in visible; A, B, C match measurements. small λ (purple) → larger n, in general."
+        },
+        {
+          "title": "Minimum deviation",
+          "formula": "\\( \\delta_{min} = 2\\arcsin(n\\sin\\frac{A}{2}) - A \\)",
+          "explanation": "In the symmetrical configuration of the prism the minimum deviation occurs; useful relationship to experimentally determine n of the material."
+        },
+        {
+          "title": "Dispersing power (Abbe)",
+          "formula": "\\( P = \\frac{n_F - n_C}{n_D - 1} \\)",
+          "explanation": "Measure of how far the colors are separated (Fraunhofer lines F, D, C). Materials with high P disperse more strongly."
+        }
+      ]
+    }
+  ],
+  "pendule": [
+    {
+      "section": "Oscillations and pendulums",
+      "formulas": [
+        {
+          "title": "Law of Motion (Harmonic)",
+          "formula": "\\( y(t) = A \\sin(\\omega t + \\phi) \\)",
+          "explanation": "Periodic motion with amplitude A, pulsation ω and initial phase φ. Extreme values ​​±A."
+        },
+        {
+          "title": "Speed",
+          "formula": "\\( v(t) = \\omega A \\cos(\\omega t + \\phi) \\)",
+          "explanation": "Derivative of displacement; the speed is maximum when passing through equilibrium (sin=0, cos=±1)."
+        },
+        {
+          "title": "Acceleration",
+          "formula": "\\( a(t) = -\\omega^2 A \\sin(\\omega t + \\phi) \\)",
+          "explanation": "Acceleration is the opposite of displacement (restoration to the center) — the minus sign characterizes the harmonic oscillator."
+        },
+        {
+          "title": "The period of the gravitational pendulum",
+          "formula": "\\( T = 2\\pi \\sqrt{\\frac{l}{g}} \\)",
+          "explanation": "For small angles; depends on length l and g. Does not depend on mass (in the ideal model). The period increases by √l."
+        },
+        {
+          "title": "Damped pendulum equation",
+          "formula": "\\( m\\frac{d^2x}{dt^2} + b\\frac{dx}{dt} + kx = 0 \\)",
+          "explanation": "The term b dx/dt models the viscous friction; energy dissipates, amplitude decreases over time."
+        },
+        {
+          "title": "Damping coefficient",
+          "formula": "\\( \\gamma = \\frac{b}{2m} \\)",
+          "explanation": "Parameter that quantifies how quickly the system loses energy relative to its undamped self-oscillation."
+        },
+        {
+          "title": "Damped pulsation",
+          "formula": "\\( \\omega_d = \\sqrt{\\omega_0^2 - \\gamma^2} \\)",
+          "explanation": "If γ < ω₀, the system oscillates with frequency slightly less than ω₀. If γ ≥ ω₀, the motion becomes aperiodic (critical or overdamped)."
+        },
+        {
+          "title": "Logarithmic decrement",
+          "formula": "\\( \\delta = \\ln\\frac{A_n}{A_{n+1}} = \\gamma T_d \\)",
+          "explanation": "The consecutive ratio of the amplitudes on two oscillations; related to the energy loss per cycle. T_d is the amortized period."
+        },
+        {
+          "title": "Quality factor Q",
+          "formula": "\\( Q = \\frac{\\omega_0}{2\\gamma} = \\frac{\\pi}{\\delta} \\)",
+          "explanation": "High Q oscillator is hard to lose energy (narrow resonance in applications). Small Q → strong damping."
+        },
+        {
+          "title": "Non-linear pendulum (with correct model)",
+          "formula": "\\( \\frac{d^2\\phi}{dt^2} + \\frac{g}{l} \\sin\\phi = 0 \\)",
+          "explanation": "Exact form: restoring force ∝ sin φ, not φ. At large angles the period depends on the amplitude."
+        },
+        {
+          "title": "Period for big swings",
+          "formula": "\\( T = 4\\sqrt{\\frac{l}{g}}K(k) \\)",
+          "explanation": "K is the complete elliptic integral; depends on the amplitude. Generalize the small formula T = 2π√(l/g)."
+        }
+      ]
+    }
+  ],
+  "lissajous": [
+    {
+      "section": "Lissajous figures",
+      "formulas": [
+        {
+          "title": "x(t) component",
+          "formula": "\\( x(t) = A_1 \\sin(\\omega_1 t + \\phi_1) \\)",
+          "explanation": "Harmonic oscillation on the x-axis; amplitude A₁, frequency ω₁, phase φ₁."
+        },
+        {
+          "title": "y(t) component",
+          "formula": "\\( y(t) = A_2 \\sin(\\omega_2 t + \\phi_2) \\)",
+          "explanation": "Independent oscillation on the y-axis. The trajectory (x, y) is the Lissajous curve."
+        },
+        {
+          "title": "Frequency ratio",
+          "formula": "\\( r = \\frac{\\omega_1}{\\omega_2} = \\frac{f_1}{f_2} \\)",
+          "explanation": "If r is rational (eg 2/3), the figure is closed and periodic. Simple ratios give recognizable shapes."
+        },
+        {
+          "title": "Phase difference",
+          "formula": "\\( \\Delta\\phi = \\phi_1 - \\phi_2 \\)",
+          "explanation": "Controls the shape and orientation of the figure when the frequency ratio is fixed (eg 1:1 gives ellipses or straight lines when Δφ = 0 or π/2)."
+        },
+        {
+          "title": "Default relationship (r = 1)",
+          "formula": "\\( \\frac{x^2}{A_1^2} + \\frac{y^2}{A_2^2} - \\frac{2xy}{A_1A_2}\\cos(\\Delta\\phi) = \\sin^2(\\Delta\\phi) \\)",
+          "explanation": "Eliminating the time when ω₁ = ω₂, you get the peak traced conic; for different phases an ellipse generally appears."
+        },
+        {
+          "title": "Figure period",
+          "formula": "\\( T = \\frac{2\\pi}{\\gcd(\\omega_1, \\omega_2)} \\)",
+          "explanation": "The time after which the trajectory repeats exactly, when the pulsations are commensurable (interpretation with the smallest multiple of the periods)."
+        },
+        {
+          "title": "Energy (ideal 2D oscillator)",
+          "formula": "\\( E = \\frac{1}{2}m(A_1^2\\omega_1^2 + A_2^2\\omega_2^2) \\)",
+          "explanation": "The sum of the maximum kinetic energies in the two directions in a simple model with the same mass m (order of magnitude)."
+        },
+        {
+          "title": "Area (case r = 1)",
+          "formula": "\\( A = \\pi A_1A_2|\\sin(\\Delta\\phi)| \\)",
+          "explanation": "The area of ​​the Lissajous ellipse when the frequencies are equal; becomes zero when the phases are aligned (movement in a straight line)."
+        }
+      ]
+    }
+  ],
+  "electricitate": [
+    {
+      "section": "1. Electric current",
+      "formulas": [
+        {
+          "title": "Current intensity",
+          "formula": "\\( I = \\frac{Q}{t} \\) (Q = sarcina, t = timpul)",
+          "explanation": "How much electric charge passes through a conductor in one second. I = current in Amps (A), Q in Coulombs (C), t in seconds. Example: 100 W bulb at 220 V has I ≈ 0.45 A."
+        },
+        {
+          "title": "The charge of the electron",
+          "formula": "\\( e = 1{,}6 \\times 10^{-19} \\) C",
+          "explanation": "Elemental charge — the smallest free charge in nature. All charges are multiples of e. The electron has −e, the proton +e. You use it in electron number problems."
+        }
+      ]
+    },
+    {
+      "section": "2. Ohm's law",
+      "formulas": [
+        {
+          "title": "Ohm's law",
+          "formula": "\\( U = R \\cdot I \\)",
+          "explanation": "Voltage = resistance × current. Are you looking for U? Multiply R by I. Looking for I? Divide U by R. E is fundamental in any circuit."
+        },
+        {
+          "title": "Resistance of a conductor",
+          "formula": "\\( R = \\rho \\cdot \\frac{l}{A} \\)",
+          "explanation": "The resistance depends on the material (ρ = resistivity), length (l) and section (A). Longer wire = more resistance. Thicker wire = less resistance. ρ is given in the tables."
+        },
+        {
+          "title": "Resistance with temperature",
+          "formula": "\\( R = R_0 \\cdot (1 + \\alpha \\cdot \\Delta T) \\)",
+          "explanation": "In metals, resistance increases with heating. R₀ = resistance at reference temperature, α = temperature coefficient (given). On coal, resistance decreases!"
+        }
+      ]
+    },
+    {
+      "section": "3. Electric circuits — Resistors",
+      "formulas": [
+        {
+          "title": "Series — Equivalent resistance",
+          "formula": "\\( R_{ec} = R_1 + R_2 + R_3 + ... \\)",
+          "explanation": "Resistors in series add up. Total resistance is greater than any. The current is the same through everything."
+        },
+        {
+          "title": "Series — Current and Voltage",
+          "formula": "\\( I = I_1 = I_2 = I_3 \\) și \\( U = U_1 + U_2 + U_3 \\)",
+          "explanation": "In series, the current is the same everywhere. The source voltage is divided between the resistors: U = U₁ + U₂ + U₃."
+        },
+        {
+          "title": "Parallel — Equivalent resistance",
+          "formula": "\\( \\frac{1}{R_{ec}} = \\frac{1}{R_1} + \\frac{1}{R_2} + \\frac{1}{R_3} \\)",
+          "explanation": "In parallel, inverse of total resistance = sum of inverses. Total resistance is lower than any!"
+        },
+        {
+          "title": "Parallel — Current and voltage",
+          "formula": "\\( U = U_1 = U_2 = U_3 \\) și \\( I = I_1 + I_2 + I_3 \\)",
+          "explanation": "In parallel, the tension is the same in all. The total current is divided into branches: I = I₁ + I₂ + I₃."
+        }
+      ]
+    },
+    {
+      "section": "4. Energy and electrical power",
+      "formulas": [
+        {
+          "title": "Electric power",
+          "formula": "\\( P = U \\cdot I = R \\cdot I^2 = \\frac{U^2}{R} \\)",
+          "explanation": "Power consumed by a receiver. P = U·I is the general form. When you only know R and I, you use R·I². When you know U and R, you use U²/R. Unit: Watt (W)."
+        },
+        {
+          "title": "Electrical energy consumed",
+          "formula": "\\( W = P \\cdot t = U \\cdot I \\cdot t \\)",
+          "explanation": "Energy = power × time. How much does a light bulb use in 2 hours? W = P·t. Unit: Joule (J) or kWh (1 kWh = 3.6×10⁶ J)."
+        },
+        {
+          "title": "Joule effect (dissipated heat)",
+          "formula": "\\( Q = R \\cdot I^2 \\cdot t \\)",
+          "explanation": "The heat given off by a resistor (ex: heater, light bulb). The higher the current, the more it heats up. Same as W, but in the form of heat."
+        }
+      ]
+    },
+    {
+      "section": "5. The electrical source",
+      "formulas": [
+        {
+          "title": "Electromotive voltage",
+          "formula": "\\( \\varepsilon = U + u \\) (u = căderea internă)",
+          "explanation": "The source voltage (ε) is divided: one part on the circuit (U = terminal voltage), one part on the internal resistance (u)."
+        },
+        {
+          "title": "Internal voltage drop",
+          "formula": "\\( u = r \\cdot I \\)",
+          "explanation": "r = internal resistance of the source. When the current is high, u increases and U at the terminals decreases. The battery discharges when it supplies current."
+        },
+        {
+          "title": "Terminal voltage",
+          "formula": "\\( U = \\varepsilon - r \\cdot I \\)",
+          "explanation": "The actual voltage that the circuit receives. It is less than ε when it is current. At idle (I = 0): U = ε."
+        },
+        {
+          "title": "Short circuit current",
+          "formula": "\\( I_{sc} = \\frac{\\varepsilon}{r} \\)",
+          "explanation": "When the terminals are connected directly (without external resistance). Very high current! Dangerous — don't do this in practice."
+        },
+        {
+          "title": "Total and useful power",
+          "formula": "\\( P_{total} = \\varepsilon \\cdot I \\) și \\( P_{utila} = U \\cdot I \\)",
+          "explanation": "Total power = what the source gives. Useful power = what the circuit receives. The difference is lost in the internal resistance."
+        },
+        {
+          "title": "Source yield",
+          "formula": "\\( \\eta = \\frac{P_{utila}}{P_{total}} = \\frac{U}{\\varepsilon} \\)",
+          "explanation": "How much of the power of the source actually reaches the circuit. η = 1 (100%) when r = 0. In real batteries, η < 1."
+        }
+      ]
+    },
+    {
+      "section": "6. Kirchhoff's laws",
+      "formulas": [
+        {
+          "title": "Law I (knots)",
+          "formula": "\\( \\Sigma I_{intrat} = \\Sigma I_{iesit} \\)",
+          "explanation": "In a node, current in = current out. What goes in, comes out. No current is lost in the node."
+        },
+        {
+          "title": "Second Law (eyes)",
+          "formula": "\\( \\Sigma \\varepsilon = \\Sigma R \\cdot I \\)",
+          "explanation": "On a closed loop: sum of source voltages = sum of voltage drops across resistors. Pay attention to the signs (source and current)!"
+        }
+      ]
+    },
+    {
+      "section": "7. The capacitor",
+      "formulas": [
+        {
+          "title": "Electrical capacity",
+          "formula": "\\( C = \\frac{Q}{U} \\) (unitate: Farad, F)",
+          "explanation": "How much charge can the capacitor store at a given voltage. Big C = lots of charge. 1 F = 1 C/V."
+        },
+        {
+          "title": "Capacitance of the planar capacitor",
+          "formula": "\\( C = \\frac{\\varepsilon_0 \\cdot \\varepsilon_r \\cdot A}{d} \\)",
+          "explanation": "C depends on the area of ​​the reinforcements (A), the distance between them (d) and the dielectric (εr). Bigger plate, closer together = higher C."
+        },
+        {
+          "title": "Stored energy",
+          "formula": "\\( W = \\frac{1}{2} C \\cdot U^2 = \\frac{Q^2}{2C} \\)",
+          "explanation": "The energy in the charged capacitor. It is used for discharge (flash, defibrillator)."
+        },
+        {
+          "title": "Capacitors in series",
+          "formula": "\\( \\frac{1}{C_{ec}} = \\frac{1}{C_1} + \\frac{1}{C_2} \\)",
+          "explanation": "In series, the equivalent capacitance is less than either. As the inverse of resistors in parallel."
+        },
+        {
+          "title": "Capacitors in parallel",
+          "formula": "\\( C_{ec} = C_1 + C_2 \\)",
+          "explanation": "At the same time, capabilities are added. The total capacity increases."
+        }
+      ]
+    },
+    {
+      "section": "8. The electric field",
+      "formulas": [
+        {
+          "title": "Coulomb force",
+          "formula": "\\( F = k \\cdot \\frac{q_1 \\cdot q_2}{r^2} \\) (k = 9×10⁹ N·m²/C²)",
+          "explanation": "The force between two point charges. Charges of the same sign repel, opposite signs attract. r = distance between them."
+        },
+        {
+          "title": "The intensity of the electric field",
+          "formula": "\\( E = \\frac{F}{q} = k \\cdot \\frac{Q}{r^2} \\)",
+          "explanation": "The field created by a charge Q. E tells how much force there is per unit charge. Unit: N/C or V/m."
+        },
+        {
+          "title": "Uniform voltage and field",
+          "formula": "\\( U = E \\cdot d \\)",
+          "explanation": "In a uniform field (eg between two parallel plates), voltage = field × distance. d = distance between points."
+        },
+        {
+          "title": "Electric potential energy",
+          "formula": "\\( E_p = q \\cdot U \\)",
+          "explanation": "The energy of a charge q at the point where the voltage is U. When it moves, Ep is converted to kinetic energy or vice versa."
+        }
+      ]
+    },
+    {
+      "section": "9. Alternating current (AC)",
+      "formulas": [
+        {
+          "title": "The effective value of the voltage",
+          "formula": "\\( U_{ef} = \\frac{U_{max}}{\\sqrt{2}} \\)",
+          "explanation": "Effective voltage is the one that produces the same effect as direct current. At 220 V effective, U_max ≈ 311 V."
+        },
+        {
+          "title": "The effective value of the current",
+          "formula": "\\( I_{ef} = \\frac{I_{max}}{\\sqrt{2}} \\)",
+          "explanation": "As with voltage. In the socket we have 220 V effective, 50 Hz. Current and voltage vary sinusoidally."
+        },
+        {
+          "title": "Instantaneous voltage",
+          "formula": "\\( u(t) = U_{max}\\sin(\\omega t) \\)",
+          "explanation": "The typical model for a sinusoidal alternating voltage. U_max is the amplitude and ω = 2πf is the ripple."
+        },
+        {
+          "title": "Instantaneous current (phase shift)",
+          "formula": "\\( i(t) = I_{max}\\sin(\\omega t + \\varphi) \\)",
+          "explanation": "In coil/capacitor circuits, the current can be out of phase by φ with respect to the voltage (they are not in phase)."
+        },
+        {
+          "title": "The pulsation",
+          "formula": "\\( \\omega = 2\\pi f \\)",
+          "explanation": "Relates frequency (Hz) to pulsation (rad/s). In Romania, f = 50 Hz ⇒ ω ≈ 314 rad/s."
+        },
+        {
+          "title": "Alternating current power",
+          "formula": "\\( P = U_{ef} \\cdot I_{ef} \\cdot \\cos\\varphi \\)",
+          "explanation": "cos φ = power factor. In pure resistor, cos φ = 1. In motors, cos φ < 1 ​​(there is reactive power)."
+        },
+        {
+          "title": "Frequency in Romania",
+          "formula": "\\( f = 50 \\) Hz, \\( T = 0{,}02 \\) s",
+          "explanation": "The voltage in the socket oscillates with 50 Hz. Period T = 1/f = 0.02 s. Once every 0.02 s the cycle is repeated."
+        }
+      ]
+    },
+    {
+      "section": "10. Circuite RLC",
+      "formulas": [
+        {
+          "title": "Inductive reactance",
+          "formula": "\\( X_L = \\omega \\cdot L = 2\\pi f \\cdot L \\)",
+          "explanation": "The apparent resistance of the coil to alternating current. The higher the frequency, the higher the X_L. L = inductance (Henry)."
+        },
+        {
+          "title": "Capacitive reactance",
+          "formula": "\\( X_C = \\frac{1}{\\omega \\cdot C} \\)",
+          "explanation": "The apparent resistance of the capacitor to AC. The higher the frequency, the lower X_C. Opposite to the coil."
+        },
+        {
+          "title": "Impedance",
+          "formula": "\\( Z = \\sqrt{R^2 + (X_L - X_C)^2} \\)",
+          "explanation": "The total resistance of the RLC circuit. Combine R, X_L and X_C. When X_L = X_C, Z = R (resonance)."
+        },
+        {
+          "title": "Ohm's Law for AC",
+          "formula": "\\( I = \\frac{U}{Z} \\)",
+          "explanation": "Same as DC but with Z instead of R. I and U are effective values."
+        },
+        {
+          "title": "Resonance frequency",
+          "formula": "\\( f_0 = \\frac{1}{2\\pi \\sqrt{L \\cdot C}} \\)",
+          "explanation": "At this frequency, X_L = X_C and Z = R (minimum). The circuit resonates, the current is maximum."
+        }
+      ]
+    }
+  ],
+  "electromagnetism": [
+    {
+      "section": "Superconductivity and the Meissner effect",
+      "formulas": [
+        {
+          "title": "Superconducting phase condition",
+          "formula": "\\( T < T_c \\)",
+          "explanation": "Below the critical temperature \\(T_c\\), the material enters the superconducting state and the magnetic response changes radically."
+        },
+        {
+          "title": "Effective resistivity in the superconducting state",
+          "formula": "\\( \\rho \\approx 0 \\)",
+          "explanation": "In the ideal model, current can flow without significant Joule losses below \\(T_c\\)."
+        },
+        {
+          "title": "Educational model of magnetic levitation",
+          "formula": "\\( F_m \\propto \\dfrac{B^2}{h^2} \\)",
+          "explanation": "In the simulator, the repulsive force increases with \\(B^2\\) and decreases with the square of the distance from the superconducting surface."
+        },
+        {
+          "title": "Vertical balance",
+          "formula": "\\( F_m - mg = m a_y \\)",
+          "explanation": "Law of vertical dynamics: Quasi-static levitation occurs when \\(F_m\\) offsets weight \\(mg\\)."
+        },
+        {
+          "title": "London equation (compact form)",
+          "formula": "\\( \\nabla \\times \\vec{J}_s = -\\dfrac{n_s e^2}{m}\\vec{B} \\)",
+          "explanation": "Basic relationship for magnetic field shielding in superconductors; underlies the interpretation of the Meissner effect."
+        },
+        {
+          "title": "Penetration depth London",
+          "formula": "\\( \\lambda_L = \\sqrt{\\dfrac{m}{\\mu_0 n_s e^2}} \\)",
+          "explanation": "The magnetic field penetrates the surface of the superconductor only for a characteristic distance \\(\\lambda_L\\), then it is effectively shielded."
+        }
+      ]
+    },
+    {
+      "section": "Fuel cell (PEM)",
+      "formulas": [
+        {
+          "title": "Global reaction",
+          "formula": "\\( 2\\mathrm{H}_2 + \\mathrm{O}_2 \\rightarrow 2\\mathrm{H}_2\\mathrm{O} \\)",
+          "explanation": "Hydrogen and oxygen react; chemical energy is partially converted into electrical energy by separating charges at the electrodes."
+        },
+        {
+          "title": "Electric power",
+          "formula": "\\( P = U I \\)",
+          "explanation": "The power delivered to the external circuit is the product of the terminal voltage and the load current."
+        },
+        {
+          "title": "Ohm's Law (load)",
+          "formula": "\\( I = \\dfrac{U}{R} \\)",
+          "explanation": "For a bulb modeled as a resistor \\(R\\), the current increases when the voltage increases or the resistance decreases (within the limits imposed by the reactance supply)."
+        },
+        {
+          "title": "Indicative yield",
+          "formula": "\\( \\eta = \\dfrac{P_{\\text{out}}}{P_{\\text{in}}} \\)",
+          "explanation": "Ratio between the useful electrical power and the power associated with the available chemical flow; H₂/O₂ imbalance or temperature affects efficiency in the model."
+        }
+      ]
+    }
+  ],
+  "optica": [
+    {
+      "section": "1. Light reflection",
+      "formulas": [
+        {
+          "title": "The law of reflection",
+          "formula": "\\( i = r \\) (unghi de incidență = unghi de reflexie)",
+          "explanation": "The incident and reflected rays make the same angle with the surface normal. Simple: as it goes in, so it comes out. The mirror reflects symmetrically."
+        },
+        {
+          "title": "The plane mirror",
+          "formula": "\\( d_i = d_o \\)",
+          "explanation": "The image is at the same distance from the mirror as the object. If you stand 1 m from the mirror, your image is 1 m behind it. Virtual image, symmetrical."
+        }
+      ]
+    },
+    {
+      "section": "2. Refraction of light",
+      "formulas": [
+        {
+          "title": "The law of refraction",
+          "formula": "\\( n_1 \\cdot \\sin(i) = n_2 \\cdot \\sin(r) \\)",
+          "explanation": "When light passes from one medium to another (ex: air to water), the ray is refracted. n₁, n₂ = refractive indices. The larger n, the smaller the angle."
+        },
+        {
+          "title": "Refractive index",
+          "formula": "\\( n = \\frac{c}{v} \\) (c = 3×10⁸ m/s)",
+          "explanation": "n tells how many times slower light is in a medium than in a vacuum. Air: n ≈ 1. Water: n ≈ 1.33. Glass: n ≈ 1.5. The larger n, the slower the light."
+        },
+        {
+          "title": "Limit angle (total reflection)",
+          "formula": "\\( \\sin(i_{lim}) = \\frac{n_2}{n_1} \\) (când n₁ > n₂)",
+          "explanation": "When light comes from medium with higher n (ex: water) to one with lower n (air), there is an angle beyond which there is no more refraction, only reflection. Used for optical fibers."
+        }
+      ]
+    },
+    {
+      "section": "3. Spherical mirrors",
+      "formulas": [
+        {
+          "title": "The mirror equation",
+          "formula": "\\( \\frac{1}{f} = \\frac{1}{d_o} + \\frac{1}{d_i} \\)",
+          "explanation": "It relates focal length (f), object distance (d_o) and image distance (d_i). With the concave mirror you can get real or virtual images, depending on the position of the object."
+        },
+        {
+          "title": "Focal length",
+          "formula": "\\( f = \\frac{R}{2} \\) (R = raza de curbură)",
+          "explanation": "The focus is in the middle of the radius. Mirror with R = 20 cm has f = 10 cm. f > 0 = concave mirror, f < 0 = convex mirror."
+        },
+        {
+          "title": "Linear magnification",
+          "formula": "\\( m = -\\frac{d_i}{d_o} \\)",
+          "explanation": "How big is the image relative to the object. negative m = inverted image. m positive = right image. |m| > 1 = enlarged image."
+        },
+        {
+          "title": "Sign conventions (mirrors)",
+          "formula": "d_o > 0 obiect real; d_i > 0 imagine reală; d_i < 0 imagine virtuală; f > 0 concavă, f < 0 convexă",
+          "explanation": "d_o always positive (the object is real). d_i > 0 when the image is in front of the mirror (concave), d_i < 0 when it is behind (virtual). Convex has negative f."
+        }
+      ]
+    },
+    {
+      "section": "4. Thin lenses",
+      "formulas": [
+        {
+          "title": "Lens Equation (Gauss)",
+          "formula": "\\( \\frac{1}{f} = \\frac{1}{d_o} + \\frac{1}{d_i} \\)",
+          "explanation": "Same as mirrors, but the conventions are different. f > 0 = converging (convex) lens, f < 0 = diverging (concave)."
+        },
+        {
+          "title": "Vergence (optical power)",
+          "formula": "\\( D = \\frac{1}{f} \\) (dioptrii, δ)",
+          "explanation": "Lens power in diopters. 2 δ lens has f = 0.5 m = 50 cm. The higher the D, the stronger the lens."
+        },
+        {
+          "title": "Linear magnification",
+          "formula": "\\( m = \\frac{d_i}{d_o} \\)",
+          "explanation": "In lenses, m = d_i/d_o (no minus, unlike mirrors). m > 0 = upright image, m < 0 = inverted image."
+        },
+        {
+          "title": "Thin lens formula",
+          "formula": "\\( \\frac{1}{f} = (n-1) \\cdot \\left(\\frac{1}{R_1} - \\frac{1}{R_2}\\right) \\)",
+          "explanation": "The relationship between f, the index n of the glass and the radii of curvature R₁, R₂. Converging lens: R₁ and R₂ have matching signs."
+        },
+        {
+          "title": "Sign conventions (lenses)",
+          "formula": "f > 0 convergentă; f < 0 divergentă; d_i > 0 imagine reală; d_i < 0 imagine virtuală",
+          "explanation": "Real image = on the other side of the lens from the object (can be captured on the screen). Virtual image = same side, cannot be caught."
+        },
+        {
+          "title": "Contact lenses",
+          "formula": "\\( D_{ec} = D_1 + D_2 \\)",
+          "explanation": "Two lenses glued together have total vergence = sum of vergences. Two lenses of +2 δ and +3 δ give +5 δ."
+        }
+      ]
+    },
+    {
+      "section": "5. The human eye and visual defects",
+      "formulas": [
+        {
+          "title": "The normal eye",
+          "formula": "Vede clar între 10 cm (proxim) și infinit (remotum)",
+          "explanation": "The healthy eye can focus from 10 cm to infinity. Below 10 cm we can no longer see clearly."
+        },
+        {
+          "title": "Myopia",
+          "formula": "Corecție cu lentilă divergentă (f < 0)",
+          "explanation": "Myopia sees well near, but not far. The focus is too close. Glasses with concave (divergent) lenses move the image away."
+        },
+        {
+          "title": "longsightedness",
+          "formula": "Corecție cu lentilă convergentă (f > 0)",
+          "explanation": "Hypermetropia sees well far, but not near. Glasses with convex (convergent) lenses bring the image closer."
+        },
+        {
+          "title": "The power of correction",
+          "formula": "\\( D_{corectie} = \\frac{1}{d_{remotum}} \\) (în metri, cu semn)",
+          "explanation": "For myopia: D negative, d_remotum = maximum distance at which he sees clearly (in m). For hypermetropia: D positive."
+        }
+      ]
+    },
+    {
+      "section": "6. Optical instruments",
+      "formulas": [
+        {
+          "title": "Microscope magnification",
+          "formula": "\\( M = m_{ob} \\cdot m_{oc} \\)",
+          "explanation": "Total magnification = objective magnification × eyepiece magnification. The microscope has two lenses: the objective (closer to the object) and the eyepiece (closer to the eye)."
+        },
+        {
+          "title": "Magnifying glass",
+          "formula": "\\( M = \\frac{25 \\ \\text{cm}}{f} \\)",
+          "explanation": "25 cm = conventional clear vision distance. Magnifying glass with f = 5 cm magnifies 5 times. The smaller f is, the higher the magnification."
+        },
+        {
+          "title": "Scope/telescope magnification",
+          "formula": "\\( M = \\frac{f_{ob}}{f_{oc}} \\)",
+          "explanation": "Magnification = focal ratio. The objective has a large f (captures a lot of light), the eyepiece has a small f. Good telescope: large f_ob, small f_oc."
+        }
+      ]
+    },
+    {
+      "section": "7. Light dispersion",
+      "formulas": [
+        {
+          "title": "The visible spectrum",
+          "formula": "ROGVAIV (roșu, oranj, galben, verde, albastru, indigo, violet)",
+          "explanation": "White light (sun) contains all colors. The prism breaks them down: each color has a different n and refracts differently."
+        },
+        {
+          "title": "The index depends on λ",
+          "formula": "\\( n = n(\\lambda) \\)",
+          "explanation": "n is larger for violet (small λ) and smaller for red (large λ). Violet refracts more, red less. Hence the rainbow."
+        }
+      ]
+    },
+    {
+      "section": "8. Interference of light",
+      "formulas": [
+        {
+          "title": "Maxim (bright fringes)",
+          "formula": "\\( \\Delta = k \\cdot \\lambda \\) (k = 0, ±1, ±2, ...)",
+          "explanation": "When the path difference (Δ) is a multiple of λ, the waves strengthen = bright fringe. k = the order of the maximum."
+        },
+        {
+          "title": "Minimum (dark fringes)",
+          "formula": "\\( \\Delta = (2k+1) \\cdot \\frac{\\lambda}{2} \\)",
+          "explanation": "When Δ is an odd multiple of λ/2, the waves cancel = dark fringe."
+        },
+        {
+          "title": "Distance between fringes (Young)",
+          "formula": "\\( \\Delta y = \\frac{\\lambda \\cdot L}{d} \\)",
+          "explanation": "L = distance to screen, d = distance between the two slots. With larger λ or larger L, the fringes are further apart."
+        }
+      ]
+    },
+    {
+      "section": "9. Diffraction of light",
+      "formulas": [
+        {
+          "title": "Minimum at single slot",
+          "formula": "\\( a \\cdot \\sin(\\theta) = k \\cdot \\lambda \\)",
+          "explanation": "a = slot width. Light scatters when it passes through a narrow slit. First minima at k = ±1."
+        },
+        {
+          "title": "Diffraction grating — max",
+          "formula": "\\( d \\cdot \\sin(\\theta) = k \\cdot \\lambda \\) (d = pasul rețelei)",
+          "explanation": "The lattice has many parallel slits at distance d. The maxima are very sharp. Used in the spectroscope to separate colors."
+        }
+      ]
+    },
+    {
+      "section": "10. The photoelectric effect",
+      "formulas": [
+        {
+          "title": "Photon energy",
+          "formula": "\\( E = h \\cdot f = \\frac{h \\cdot c}{\\lambda} \\) (h = 6,626×10⁻³⁴ J·s)",
+          "explanation": "Light is made up of photons. Each photon has energy h·f. With higher frequency (lower λ), the photon is more energetic."
+        },
+        {
+          "title": "Einstein's equation",
+          "formula": "\\( E_k = h \\cdot f - L \\) (L = lucrul de extracție)",
+          "explanation": "The kinetic energy of the extracted electron = the energy of the photon minus the extraction work (minimum energy to remove the electron)."
+        },
+        {
+          "title": "Photoelectric threshold",
+          "formula": "\\( f_{min} = \\frac{L}{h} \\)",
+          "explanation": "The minimum frequency for which the photoelectric effect occurs. Below f_min, even if the light is strong, no electrons come out. It's a problem of energy, not intensity."
+        }
+      ]
+    },
+    {
+      "section": "11. Laser",
+      "formulas": [
+        {
+          "title": "The wave–frequency relationship",
+          "formula": "\\( c = \\lambda f \\)",
+          "explanation": "Relates wavelength and frequency. For light in a vacuum, c ≈ 3×10⁸ m/s. The laser is almost monochromatic (λ well defined)."
+        },
+        {
+          "title": "Photon energy",
+          "formula": "\\( E = hf = \\frac{hc}{\\lambda} \\)",
+          "explanation": "Photon energy increases as frequency increases (λ decreases). UV has more energetic photons than IR."
+        },
+        {
+          "title": "The momentum of the photon",
+          "formula": "\\( p = \\frac{h}{\\lambda} \\)",
+          "explanation": "Even light carries momentum; occurs in radiation pressure and laser optics (trapping) applications."
+        },
+        {
+          "title": "The intensity",
+          "formula": "\\( I = \\frac{P}{A} \\)",
+          "explanation": "The laser can focus the power on a small area, increasing the intensity (W/m²)."
+        },
+        {
+          "title": "The inverse square law",
+          "formula": "\\( I(r) = \\frac{P}{4\\pi r^2} \\)",
+          "explanation": "Valid for sources that radiate approximately spherically. For collimated (laser) beams the decrease with r can be much slower."
+        },
+        {
+          "title": "Divergence (approx. Gaussian)",
+          "formula": "\\( \\theta \\approx \\frac{\\lambda}{\\pi w_0} \\)",
+          "explanation": "Diffraction limit: the narrower the beam (low w₀), the greater the divergence."
+        },
+        {
+          "title": "Rayleigh distance",
+          "formula": "\\( z_R = \\frac{\\pi w_0^2}{\\lambda} \\)",
+          "explanation": "Up to zR the beam remains relatively collimated; after that it starts to widen visibly."
+        }
+      ]
+    },
+    {
+      "section": "12. The electromagnetic spectrum",
+      "formulas": [
+        {
+          "title": "The wave–frequency relationship",
+          "formula": "\\( c = \\lambda f \\)",
+          "explanation": "Same relationship for all electromagnetic waves (radio → gamma). It only changes f and λ."
+        },
+        {
+          "title": "Photon energy",
+          "formula": "\\( E = hf \\)",
+          "explanation": "X-ray and gamma photons have much higher energies than those in the visible."
+        },
+        {
+          "title": "The momentum of the photon",
+          "formula": "\\( p = \\frac{h}{\\lambda} \\)",
+          "explanation": "When λ decreases (f increases), the momentum of the photon increases."
+        },
+        {
+          "title": "Wien law",
+          "formula": "\\( \\lambda_{max}T = b \\)",
+          "explanation": "The maximum of the radiation spectrum of a body depends on the temperature. Higher T ⇒ lower λ_max (more “blue”)."
+        },
+        {
+          "title": "Stefan–Boltzmann",
+          "formula": "\\( P = \\sigma\\varepsilon AT^4 \\)",
+          "explanation": "The radiated power increases very quickly with temperature (T⁴). It explains why very hot bodies radiate intensely."
+        },
+        {
+          "title": "The inverse square law",
+          "formula": "\\( I(r) = \\frac{P}{4\\pi r^2} \\)",
+          "explanation": "The intensity decreases with the square of the distance for a point source (ex: ideal isotropic antenna)."
+        }
+      ]
+    }
+  ],
+  "lasere": [
+    {
+      "section": "1. Basic beam properties",
+      "formulas": [
+        {
+          "title": "The wave-frequency relationship",
+          "formula": "\\( c = \\lambda f \\)",
+          "explanation": "Relate wavelength and frequency for vacuum propagation. Dacă λ scade, frecvența crește, iar fotonii devin mai energetici."
+        },
+        {
+          "title": "Photon energy",
+          "formula": "\\( E = hf = \\dfrac{hc}{\\lambda} \\)",
+          "explanation": "A shorter wavelength laser carries more energetic photons. Formula este esențială când compari lasere IR, vizibile sau UV."
+        },
+        {
+          "title": "The momentum of the photon",
+          "formula": "\\( p = \\dfrac{h}{\\lambda} \\)",
+          "explanation": "Even though it has no rest mass, the photon carries momentum. This is where radiation pressure and momentum transfer effects into matter arise."
+        }
+      ]
+    },
+    {
+      "section": "2. Power, intensity and focus",
+      "formulas": [
+        {
+          "title": "Beam intensity",
+          "formula": "\\( I = \\dfrac{P}{A} \\)",
+          "explanation": "For the same total power, a smaller spot area means higher intensity. This is why focus is so important in experiments."
+        },
+        {
+          "title": "The area of ​​the circular spot",
+          "formula": "\\( A = \\pi w_0^2 \\)",
+          "explanation": "Approximation for the spot area around the characteristic radius w₀. Decreasing w₀ rapidly increases the intensity."
+        },
+        {
+          "title": "Gaussian divergence",
+          "formula": "\\( \\theta \\approx \\dfrac{\\lambda}{\\pi w_0} \\)",
+          "explanation": "Beams that are very tight in focus tend to open up more quickly after focusing. The relation expresses the limit imposed by diffraction."
+        },
+        {
+          "title": "Rayleigh distance",
+          "formula": "\\( z_R = \\dfrac{\\pi w_0^2}{\\lambda} \\)",
+          "explanation": "Over a distance of the order of zR, the beam remains relatively well collimated around the focus. Beyond this area, the diameter increases noticeably."
+        }
+      ]
+    },
+    {
+      "section": "3. Pulsuri ultra-scurte și regim ELI-NP",
+      "formulas": [
+        {
+          "title": "Peak pulse power",
+          "formula": "\\( P_{peak} \\approx \\dfrac{E_{pulse}}{\\tau} \\)",
+          "explanation": "If the same pulse energy is compressed into a very short time, the instantaneous power increases enormously. This is one of the key principles of ultrafast lasers."
+        },
+        {
+          "title": "Peak intensity",
+          "formula": "\\( I_{peak} \\approx \\dfrac{P_{peak}}{A} \\)",
+          "explanation": "Combines peak power with spot area. High intensities are those that can produce ablation, plasma or advanced ionization."
+        },
+        {
+          "title": "Radiation pressure",
+          "formula": "\\( p_{rad} \\approx \\dfrac{I}{c} \\) sau \\( \\dfrac{2I}{c} \\) la reflexie",
+          "explanation": "Light exerts pressure by momentum transfer. For a perfectly reflective surface, the effect is roughly double that of absorption."
+        },
+        {
+          "title": "Energy density",
+          "formula": "\\( u = \\dfrac{I}{c} \\)",
+          "explanation": "It shows how much electromagnetic energy there is per unit volume in a propagating beam. The relation helps to interpret the extreme regimes."
+        }
+      ]
+    },
+    {
+      "section": "4. Laser wakefield acceleration (LWFA)",
+      "formulas": [
+        {
+          "title": "Simplified model for the plasma wave",
+          "formula": "\\( y(x,t) = A\\sin(kx-\\omega t) \\)",
+          "explanation": "In the educational model, the laser pulse creates a plasma wave (wakefield). The amplitude A is related to the intensity, and the wave number k to the plasma density."
+        },
+        {
+          "title": "Spot focused intensity",
+          "formula": "\\( I = \\dfrac{P}{A_{spot}} \\)",
+          "explanation": "With the same P laser power, a smaller spot gives a higher intensity. In the simulator, increasing the intensity leads to stronger acceleration fields."
+        },
+        {
+          "title": "The Lorentz factor",
+          "formula": "\\( \\gamma = \\dfrac{1}{\\sqrt{1-v^2/c^2}} \\)",
+          "explanation": "It shows the entry into the relativistic regime: when the electron speed v approaches c, the value of γ increases rapidly and the energy of the particle increases significantly."
+        },
+        {
+          "title": "The relativistic energy of the electron",
+          "formula": "\\( E = \\gamma m_e c^2 \\)",
+          "explanation": "The formula directly relates the energy of the electron to the Lorentz factor. When the electron remains synchronized with the accelerating phase of the wakefield, E increases more efficiently."
+        }
+      ]
+    }
+  ],
+  "matematica": [
+    {
+      "section": "Functions and analysis",
+      "formulas": [
+        {
+          "title": "Linear function",
+          "formula": "\\( y = ax + b \\)",
+          "explanation": "Straight line with slope a and ordered at the origin b. Uniform growth model; a = Δy/Δx on any interval."
+        },
+        {
+          "title": "Quadratic function",
+          "formula": "\\( y = ax^2 + bx + c \\)",
+          "explanation": "Parable. His sign to tell whether the branches are up or down; peak at x = −b/(2a) (zero derivative)."
+        },
+        {
+          "title": "Derivative (definition)",
+          "formula": "\\( f'(x) = \\lim_{h \\to 0} \\frac{f(x+h) - f(x)}{h} \\)",
+          "explanation": "The slope of the tangent to the graph of f versus x—instantaneous rate of change. Fundamental to all derivation rules."
+        },
+        {
+          "title": "The derivative of the sine",
+          "formula": "\\( \\frac{d}{dx}\\sin(x) = \\cos(x) \\)",
+          "explanation": "Often used in oscillations and waves; the derivative of the cosine follows with changed sign."
+        },
+        {
+          "title": "Derivative of cosine",
+          "formula": "\\( \\frac{d}{dx}\\cos(x) = -\\sin(x) \\)",
+          "explanation": "Couple with the sine; the minus sign reflects the π/2 phase shift between sin and cos."
+        },
+        {
+          "title": "The derivative of the exponential",
+          "formula": "\\( \\frac{d}{dx}e^x = e^x \\)",
+          "explanation": "e^x is its own derivative — which is why it appears in exponential growth and differential equations."
+        },
+        {
+          "title": "The derivative of the natural logarithm",
+          "formula": "\\( \\frac{d}{dx}\\ln(x) = \\frac{1}{x} \\)",
+          "explanation": "Valid for x > 0. Bind relative increments: d(ln x) = dx/x."
+        }
+      ]
+    },
+    {
+      "section": "Relativity (space-time formalism)",
+      "formulas": [
+        {
+          "title": "Minkowski metric",
+          "formula": "\\( ds^2 = c^2 dt^2 - dx^2 - dy^2 - dz^2 \\)",
+          "explanation": "The invariant interval in special relativity (signature +−−−). The \"real\" distance between events in spacetime does not depend on the inertial observer."
+        }
+      ]
+    }
+  ],
+  "astronomie": [
+    {
+      "section": "Sky, stars and coordinates",
+      "formulas": [
+        {
+          "title": "Right ascension and declination (notation)",
+          "formula": "\\( \\alpha \\ \\text{(AR)}, \\quad \\delta \\ \\text{(Dec)} \\)",
+          "explanation": "Equatorial coordinates on the celestial sphere: α measured in hr/min/sec along the celestial equator, δ as angle to the equator (similar to latitude)."
+        },
+        {
+          "title": "Angular distance on the celestial sphere",
+          "formula": "\\( \\cos\\theta = \\sin\\delta_1\\sin\\delta_2 + \\cos\\delta_1\\cos\\delta_2\\cos(\\alpha_1-\\alpha_2) \\)",
+          "explanation": "The angle θ between two directions to the stars in coordinates (α₁,δ₁) and (α₂,δ₂). Used for vault separations and observation conditions."
+        },
+        {
+          "title": "Apparent magnitude (Pogson)",
+          "formula": "\\( m_1 - m_2 = -2{,}5\\,\\log_{10}\\!\\left(\\frac{F_1}{F_2}\\right) \\)",
+          "explanation": "Logarithmic scale: star with lower m appears brighter. Difference of 5 magnitudes ≈ factor 100 in flux."
+        },
+        {
+          "title": "Parallax distance (parsec)",
+          "formula": "\\( d\\,[\\mathrm{pc}] = \\dfrac{1}{p\\,[\\mathrm{arcsec}]} \\)",
+          "explanation": "The heliocentric parallax p (in seconds of arc) gives the distance in parsecs. The base is the radius of Earth's orbit (~1 AU)."
+        }
+      ]
+    },
+    {
+      "section": "Kepler's laws and gravity",
+      "formulas": [
+        {
+          "title": "Kepler's first law - the ellipse",
+          "formula": "\\( \\frac{x^2}{a^2} + \\frac{y^2}{b^2} = 1, \\quad b = a\\sqrt{1-e^2} \\)",
+          "explanation": "The orbit is an ellipse; The sun in a focus. a = semi-major axis, e = eccentricity, b = semi-minor axis."
+        },
+        {
+          "title": "Kepler's second law - areas",
+          "formula": "\\( \\frac{dA}{dt} = \\frac{L}{2m} = \\text{const.} \\)",
+          "explanation": "The vector ray sweeps equal areas in equal times—the planet moves faster at perihelion, slower at aphelion."
+        },
+        {
+          "title": "Kepler's third law",
+          "formula": "\\( T^2 = \\frac{4\\pi^2}{GM}\\, a^3 \\)",
+          "explanation": "The period T is related to the semimajor axis of a; for the same central body M, the ratio T²/a³ is the same for all satellites."
+        },
+        {
+          "title": "Average orbital velocity",
+          "formula": "\\( v = \\frac{2\\pi a}{T} \\)",
+          "explanation": "The average length of the orbit (≈ 2πa for nearly circular orbit) divided by the period."
+        },
+        {
+          "title": "Elliptical orbit energy",
+          "formula": "\\( E = -\\frac{GMm}{2a} \\)",
+          "explanation": "The total energy of the low-mass system m in bound orbit is negative and depends only on the semimajor axis, not the eccentricity."
+        },
+        {
+          "title": "Velocity at perihelion",
+          "formula": "\\( v_p = \\sqrt{\\frac{GM}{a}\\frac{1+e}{1-e}} \\)",
+          "explanation": "The maximum speed on the ellipse, at the minimum distance from the star (when the eccentricity e > 0)."
+        },
+        {
+          "title": "Aphelion speed",
+          "formula": "\\( v_a = \\sqrt{\\frac{GM}{a}\\frac{1-e}{1+e}} \\)",
+          "explanation": "The minimum speed on the ellipse, at the maximum distance from the star."
+        },
+        {
+          "title": "Universal gravity",
+          "formula": "\\( F_G = G \\frac{Mm}{r^2} \\)",
+          "explanation": "The force between two point masses or spheres (their center). Newton's law of attraction at a distance."
+        }
+      ]
+    },
+    {
+      "section": "The movement of the planets",
+      "formulas": [
+        {
+          "title": "Gravitational force (Newton)",
+          "formula": "\\( F_G = G \\frac{Mm}{r^2} \\)",
+          "explanation": "In the planetary motion simulator, each planet is pulled toward the star with this force; gives the required centripetal acceleration of the orbit."
+        },
+        {
+          "title": "Velocity in circular orbit",
+          "formula": "\\( v = \\sqrt{\\frac{GM}{r}} \\)",
+          "explanation": "Balance condition between gravity and circular motion: the larger r, the smaller v orbital."
+        },
+        {
+          "title": "Specific mechanical energy (elliptical orbit)",
+          "formula": "\\( \\varepsilon = -\\frac{GM}{2a} \\)",
+          "explanation": "Energy per unit mass for bound orbit; directly related to the semimajor axis of (same idea as total E, but per mass)."
+        },
+        {
+          "title": "Perihelion precession (general relativity, simplified idea)",
+          "formula": "\\( \\Delta \\varphi \\approx \\frac{6\\pi GM}{a c^2 (1-e^2)} \\)",
+          "explanation": "The angle by which the axis of the ellipse rotates per revolution in RG — very small for most planets, measurable for Mercury; depends on M, a, e."
+        }
+      ]
+    },
+    {
+      "section": "Michelson-Morley",
+      "formulas": [
+        {
+          "title": "Parallel arm time (approx., v ≪ c)",
+          "formula": "\\( t_{\\parallel} \\approx \\frac{2L}{c}\\left(1 + \\frac{v^2}{c^2}\\right) \\)",
+          "explanation": "In the model with aether and v small with respect to c, the round-trip time on the arm parallel to the \"aether wind\" contains a correction of order v²/c²."
+        },
+        {
+          "title": "Perpendicular arm time (approx.)",
+          "formula": "\\( t_{\\perp} \\approx \\frac{2L}{c}\\left(1 + \\frac{v^2}{2c^2}\\right) \\)",
+          "explanation": "On the perpendicular arm, the path in the ether system is slightly different, so the v²/c² order correction also differs from the parallel arm."
+        },
+        {
+          "title": "Expected time difference (ether model)",
+          "formula": "\\( \\Delta t \\approx \\frac{Lv^2}{c^3} \\)",
+          "explanation": "There would be phase shift in the interferometer if absolute ether existed; the experiment did not find the effect—supports the invariance of the speed of light."
+        }
+      ]
+    }
+  ],
+  "atomul": [
+    {
+      "section": "Hydrogen atom and quantum",
+      "formulas": [
+        {
+          "title": "Bohr level energy (hydrogen)",
+          "formula": "\\( E_n = - \\frac{13{,}6\\ \\text{eV}}{n^2} \\)",
+          "explanation": "Quantified levels for the electron in Bohr's model: n = 1 is the ground (–13.6 eV); n → ∞ corresponds to ionization (0 eV)."
+        },
+        {
+          "title": "Rydberg's formula",
+          "formula": "\\( \\frac{1}{\\lambda} = R_H \\left( \\frac{1}{n^2} - \\frac{1}{m^2} \\right) \\)",
+          "explanation": "Wavelengths of emission/absorption spectra at H: m to n level transitions (m > n in emission). R_H ≈ 1.097×10⁷ m⁻¹."
+        },
+        {
+          "title": "Photon – energy and frequency",
+          "formula": "\\( E = h\\nu = \\frac{hc}{\\lambda} \\)",
+          "explanation": "Light quantum: the energy related to the frequency of the electromagnetic wave; explain atomic spectra and the photoelectric effect."
+        },
+        {
+          "title": "De Broglie wavelength",
+          "formula": "\\( \\lambda = \\frac{h}{p} \\)",
+          "explanation": "Particles also have wave behavior; λ decreases as momentum p increases—used in electron diffraction."
+        },
+        {
+          "title": "The Heisenberg Uncertainty Principle",
+          "formula": "\\( \\Delta x \\, \\Delta p \\gtrsim \\frac{\\hbar}{2} \\)",
+          "explanation": "You cannot simultaneously know position and momentum with arbitrary precision; fundamental limit in quantum mechanics."
+        }
+      ]
+    },
+    {
+      "section": "Periodic table and amount of substance",
+      "formulas": [
+        {
+          "title": "Atomic number (Z) = number of protons",
+          "formula": "\\( Z = p \\)",
+          "explanation": "Z is the number of protons in the nucleus; in neutral atom coincides with the number of electrons. You read it directly from the periodic table."
+        },
+        {
+          "title": "Mass Number (A)",
+          "formula": "\\( A = Z + N \\)",
+          "explanation": "A sums up the protons and neutrons in the nucleus. The isotope is indicated by A along with the symbol of the element."
+        },
+        {
+          "title": "Number of neutrons (N)",
+          "formula": "\\( N = A - Z \\)",
+          "explanation": "With A and Z known, you quickly find out how many neutrons the nucleus has: N = A − Z."
+        },
+        {
+          "title": "The number of moles",
+          "formula": "\\( n = \\frac{m}{M} \\)",
+          "explanation": "The molar mass M (g/mol) is taken from the periodic table. The m/M ratio gives moles of substance — essential in gases and stoichiometry."
+        },
+        {
+          "title": "Mass of a substance (in moles)",
+          "formula": "\\( m = nM \\)",
+          "explanation": "Inverse of the previous formula: from the number of moles and the molar mass you get the mass in grams."
+        },
+        {
+          "title": "The number of particles",
+          "formula": "\\( N = nN_A \\)",
+          "explanation": "Relate moles to number of atoms or molecules: multiply by Avogadro's constant N_A."
+        },
+        {
+          "title": "Avogadro's constant",
+          "formula": "\\( N_A \\approx 6{,}022\\times 10^{23}\\,\\text{mol}^{-1} \\)",
+          "explanation": "The number of elementary entities (atoms, molecules...) in a mole; used when switching between the macroscopic and microscopic scale."
+        },
+        {
+          "title": "Molar concentration",
+          "formula": "\\( c = \\frac{n}{V} \\)",
+          "explanation": "Molar concentration (mol/L or mol/m³) relates the number of moles to the volume of the solution or mixture."
+        }
+      ]
+    }
+  ],
+  "fizicaCuantica": [
+    {
+      "section": "1. Double slit and interference",
+      "formulas": [
+        {
+          "title": "Road difference and maxima",
+          "formula": "\\( \\Delta L = d\\sin\\theta \\approx m\\lambda \\) — interferență constructivă (ordin \\(m\\))",
+          "explanation": "For two slits at distance d, the path difference to a point on the screen depends on the angle to the axis of symmetry. Intensity maxima occur when this difference is an integer multiple of the wavelength."
+        },
+        {
+          "title": "Spacing between fringes (Young, small angle)",
+          "formula": "\\( \\Delta y \\approx \\frac{\\lambda L}{d} \\)",
+          "explanation": "On a screen at distance L from the slits, the approximate distance between two maxima uses the small angle approximation for sin and tang."
+        },
+        {
+          "title": "Superposition of amplitudes",
+          "formula": "\\( \\psi = \\psi_1 + \\psi_2 \\)",
+          "explanation": "In the linear quantum description, the amplitude before measurement is the sum of the contributions associated with the two paths. The relative phase decides whether the waves are strengthening or weakening."
+        },
+        {
+          "title": "Born's rule (probability)",
+          "formula": "\\( P \\propto |\\psi|^2 \\)",
+          "explanation": "The probability of detecting the particle in an area is proportional to the square of the modulus of the wave function in that area."
+        }
+      ]
+    },
+    {
+      "section": "2. Tunneling through the barrier",
+      "formulas": [
+        {
+          "title": "1D stationary Schrödinger",
+          "formula": "\\( -\\dfrac{\\hbar^2}{2m} \\dfrac{d^2\\psi}{dx^2} + V(x)\\psi = E\\psi \\)",
+          "explanation": "The equation for states with energy E is well defined. In each region where the potential V is constant, the solution is a combination of real or complex exponentials, as the energy is greater or less than V."
+        },
+        {
+          "title": "Parameters k and κ (barrier, E below V₀)",
+          "formula": "\\( k = \\dfrac{\\sqrt{2mE}}{\\hbar}, \\quad \\kappa = \\dfrac{\\sqrt{2m(V_0-E)}}{\\hbar} \\)",
+          "explanation": "k describes the spatial oscillation in the classically allowed zone; κ measures how fast the wave modulus decreases inside the barrier (classical forbidden region)."
+        },
+        {
+          "title": "Transmission (typical behavior, thick barrier)",
+          "formula": "\\( T \\sim e^{-2\\kappa a} \\)",
+          "explanation": "For a barrier of width a, the tunneling probability decreases exponentially with the product κ·a. The factors above depend on the exact model of the barrier."
+        },
+        {
+          "title": "The energy-time uncertainty principle",
+          "formula": "\\( \\Delta E\\,\\Delta t \\gtrsim \\dfrac{\\hbar}{2} \\)",
+          "explanation": "Finite lifetime states (eg tunneling from a meta-stable level) have a width in energy related to the characteristic time of the process."
+        }
+      ]
+    },
+    {
+      "section": "3. Bonds between atoms and molecular orbitals",
+      "formulas": [
+        {
+          "title": "Combining atomic orbitals (bonding/antibonding MO)",
+          "formula": "\\( \\psi_{\\text{leg}} = c_1 \\psi_A + c_2 \\psi_B, \\quad \\psi_{\\text{anti}} = c_1 \\psi_A - c_2 \\psi_B \\)",
+          "explanation": "Two atomic wave functions (eg two 1s orbitals) can combine linearly to give one bonding (symmetric) and one antibonding (antisymmetric) molecular orbital."
+        },
+        {
+          "title": "Binding energy",
+          "formula": "\\( E_{\\text{leg}} = E_{\\text{atomi separați}} - E_{\\text{moleculă}} \\)",
+          "explanation": "Binding energy is the energy required to separate the atoms of a molecule to infinity (state of free atoms)."
+        },
+        {
+          "title": "Approximate bond strength (oscillator model)",
+          "formula": "\\( F \\approx -k (r - r_0) \\)",
+          "explanation": "Around the equilibrium distance r₀ between the nuclei, the bond potential can be approximated by a harmonic oscillator potential, with effective constant k."
+        },
+        {
+          "title": "Probability density in the link area",
+          "formula": "\\( \\rho(\\vec{r}) = |\\psi_{\\text{leg}}(\\vec{r})|^2 \\)",
+          "explanation": "The probability of finding the electrons in the region between the nuclei is given by the square of the modulus of the bond wave function; a higher density between nuclei corresponds to covalent bonding."
+        }
+      ]
+    }
+  ],
+  "fizicaNucleara": [
+    {
+      "section": "1. Composition D₂O/H₂O in mixture (Body model)",
+      "formulas": [
+        {
+          "title": "The mole fraction of D₂O",
+          "formula": "\\( x_{D_2O} = \\dfrac{n_{D_2O}}{n_{D_2O}+n_{H_2O}} \\)",
+          "explanation": "Expresses the molar weight of heavy water in the mixture. In the simulator, the slider displays this percentage as an educational model."
+        },
+        {
+          "title": "Percent D₂O",
+          "formula": "\\( x_{D_2O}(\\%) = 100\\,x_{D_2O} \\)",
+          "explanation": "Direct conversion of mole fraction to percent. The value is used in the simulator for the OK / Caution / High / Critical visual codes."
+        },
+        {
+          "title": "Indicative concentration",
+          "formula": "\\( c_{D_2O} = \\dfrac{n_{D_2O}}{V} \\)",
+          "explanation": "Useful relationship when you want to relate the amount of D₂O to the volume. No clinical calculation is done in the simulator, only a didactic representation of the composition."
+        }
+      ]
+    },
+    {
+      "section": "2. Physical properties H₂O vs D₂O",
+      "formulas": [
+        {
+          "title": "Boiling point difference",
+          "formula": "\\( \\Delta T_b = T_b(D_2O)-T_b(H_2O) \\)",
+          "explanation": "At 1 atm, the simulator highlights the indicative values ​​100.0°C (H₂O) and 101.4°C (D₂O), so ΔTb is positive."
+        },
+        {
+          "title": "Freezing point difference",
+          "formula": "\\( \\Delta T_f = T_f(D_2O)-T_f(H_2O) \\)",
+          "explanation": "In the indicative data from the simulator, D₂O freezes higher (~3.8°C) than H₂O (~0°C), so ΔTf > 0."
+        },
+        {
+          "title": "Density ratio",
+          "formula": "\\( \\dfrac{\\rho_{D_2O}}{\\rho_{H_2O}} \\approx 1{,}11 \\)",
+          "explanation": "The simulator uses guidance values ​​of ~1.00 g/cm³ for H₂O and ~1.11 g/cm³ for D₂O. It follows that the same volume of D₂O is heavier."
+        }
+      ]
+    },
+    {
+      "section": "3. Isotopes and Effects (Physics + Reactor)",
+      "formulas": [
+        {
+          "title": "The ratio of vibrational frequencies",
+          "formula": "\\( f \\propto \\dfrac{1}{\\sqrt{\\mu}},\\quad \\dfrac{f_{D_2O}}{f_{H_2O}}\\approx\\sqrt{\\dfrac{\\mu_{H_2O}}{\\mu_{D_2O}}} \\)",
+          "explanation": "When the reduced mass increases (from H₂O to D₂O), the characteristic frequency decreases. This exact trend is illustrated in the slider experiment in the simulator."
+        },
+        {
+          "title": "Natural abundance of deuterium",
+          "formula": "\\( x_D \\approx 0{,}015\\% \\approx 1,5\\times10^{-4} \\)",
+          "explanation": "In natural water, deuterium is a small fraction of the total hydrogen atoms. That is why ordinary water contains only traces of D₂O."
+        },
+        {
+          "title": "Simplified model of slowing down neutrons",
+          "formula": "\\( E_n \\approx E_0 e^{-\\xi n} \\)",
+          "explanation": "The Reactor part uses a conceptual scheme: more collisions => lower neutron energy. In the model, D₂O retains more available neutrons than H₂O."
+        }
+      ]
+    },
+    {
+      "section": "4. Isotope exchange facility (D₂O)",
+      "formulas": [
+        {
+          "title": "Separation factor",
+          "formula": "\\( \\alpha = \\dfrac{(x_D/(1-x_D))_{A}}{(x_D/(1-x_D))_{B}} \\)",
+          "explanation": "It measures the efficiency of isotopic separation between two phases (or two streams in equilibrium). In teaching simulators, increasing α accelerates deuterium enrichment."
+        },
+        {
+          "title": "Mass balance for deuterium",
+          "formula": "\\( F\\,x_F = P\\,x_P + W\\,x_W \\)",
+          "explanation": "Deuterium conservation in a separation unit: what enters with the feed (F) is found in product (P) and residue (W)."
+        },
+        {
+          "title": "Floor Enrichment (approx.)",
+          "formula": "\\( x_D^{(n)} \\approx x_D^{(0)}\\,\\alpha^n \\)",
+          "explanation": "Simplified model to illustrate the trend: more useful floors n and a better separation factor lead to higher D₂O concentrations."
+        },
+        {
+          "title": "Overall yield",
+          "formula": "\\( \\eta = \\dfrac{m_{D_2O,\\,produs}}{m_{D_2O,\\,alimentare}} \\times 100\\% \\)",
+          "explanation": "It shows how much of the deuterium actually ends up in the product stream. In practice it depends on reflux, losses and the efficiency of the contact stages."
+        }
+      ]
+    },
+    {
+      "section": "5. Nuclear fission (U-235) and chain reaction",
+      "formulas": [
+        {
+          "title": "Induced fission (symbolic form)",
+          "formula": "\\( {}^{235}_{92}\\mathrm{U} + {}^1_0\\mathrm{n} \\rightarrow {}^{A_1}_{Z_1}\\mathrm{X} + {}^{A_2}_{Z_2}\\mathrm{Y} + \\nu\\,{}^1_0\\mathrm{n} + \\gamma \\)",
+          "explanation": "The neutron is captured; the nucleus splits into two major fragments, emits ν neutrons and γ radiation. The concrete channels (masses, Z) vary; conserve mass number and charge."
+        },
+        {
+          "title": "Conservation of mass and load",
+          "formula": "\\( 235 + 1 = A_1 + A_2 + \\nu, \\qquad 92 = Z_1 + Z_2 \\)",
+          "explanation": "In the model with two major fragments and ν neutrons, the sum of the mass numbers and the sum of the atomic numbers remain those of the reactants."
+        },
+        {
+          "title": "Cumulative energy (didactic benchmark in the simulator)",
+          "formula": "\\( E_{\\mathrm{tot}} \\approx N\\,\\langle E\\rangle, \\quad \\langle E\\rangle \\approx 200\\ \\mathrm{MeV} \\)",
+          "explanation": "N is the number of fissions; the simulator uses ~200 MeV per event as the order of magnitude for the energy released (does not include reactor structure details)."
+        },
+        {
+          "title": "Mass and Q defect",
+          "formula": "\\( Q = \\bigl(m_{\\mathrm{U}} + m_n - m_{\\mathrm{frag1}} - m_{\\mathrm{frag2}} - \\nu m_n\\bigr)\\,c^2 \\)",
+          "explanation": "The energy released comes from the mass difference between the initial state and the products (including emitted neutrons), according to E = Δm·c²."
+        },
+        {
+          "title": "Multiplying factor (simplified idea)",
+          "formula": "\\( k = \\dfrac{N_{i+1}}{N_i} \\)",
+          "explanation": "Ratio of useful neutrons from the next generation to those from the current generation. In the simulator, k is estimated empirically from fission rates, not from detailed criticality calculations."
+        }
+      ]
+    },
+    {
+      "section": "6. Uranium isotopes — notation, decays, radioactivity",
+      "formulas": [
+        {
+          "title": "Mass number and neutrons",
+          "formula": "\\( {}^A_Z\\mathrm{X}, \\quad A = Z + N \\)",
+          "explanation": "A is the number of nucleons (protons + neutrons). For uranium, Z = 92; the isotope is identified by A (eg 235 for U-235)."
+        },
+        {
+          "title": "α decay",
+          "formula": "\\( {}^{A}_{Z}\\mathrm{X} \\rightarrow {}^{A-4}_{Z-2}\\mathrm{Y} + {}^{4}_{2}\\alpha \\quad (\\alpha = {}^{4}_{2}\\mathrm{He}) \\)",
+          "explanation": "The nucleus emits a cluster of two protons and two neutrons bound as helium-4; the son has Z 2 and A 4 less than the parent."
+        },
+        {
+          "title": "Decay constant",
+          "formula": "\\( \\lambda = \\dfrac{\\ln 2}{T_{1/2}} = \\dfrac{1}{\\tau \\ln 2} \\)",
+          "explanation": "T₁/₂ is the time half of the nuclei of a type survive; τ (mean life) is related to λ by τ = 1/λ."
+        },
+        {
+          "title": "Decay Law (Number of Nuclei Remaining)",
+          "formula": "\\( N(t) = N_0\\,e^{-\\lambda t} \\)",
+          "explanation": "The Poisson process at the individual nucleus level gives an exponential decay of the macroscopic population N(t); same shape for each isotope, with different λ."
+        },
+        {
+          "title": "Form with halves",
+          "formula": "\\( N(t) = N_0\\left(\\dfrac{1}{2}\\right)^{t/T_{1/2}} \\)",
+          "explanation": "Equivalent to exp(-λt); useful when counting how many T₁/₂ periods have passed (in \"time\" teaching simulations)."
+        }
+      ]
+    }
+  ],
+  "relativitate": [
+    {
+      "section": "Special relativity",
+      "formulas": [
+        {
+          "title": "Speed ​​of light (invariant in vacuum)",
+          "formula": "\\( c = 299\\,792\\,458 \\,\\text{m/s} \\)",
+          "explanation": "Exact value in SI from definition; all inertial observers measure the same c for light in a vacuum, regardless of the speed of the source."
+        },
+        {
+          "title": "Time dilation",
+          "formula": "\\( \\Delta t' = \\gamma \\Delta t, \\quad \\gamma = \\frac{1}{\\sqrt{1-v^2/c^2}} \\)",
+          "explanation": "The moving clock relative to the observer appears to run more slowly: the intervals Δt (at rest in the clock system) appear longer by a factor of γ in another system."
+        },
+        {
+          "title": "Length contraction",
+          "formula": "\\( L' = \\frac{L}{\\gamma} \\)",
+          "explanation": "The length measured in the direction of motion is shortened by 1/γ compared to the length at rest (small effect up to speeds comparable to c)."
+        },
+        {
+          "title": "Lorentz transformations (x, t)",
+          "formula": "\\( x' = \\gamma(x - vt), \\quad t' = \\gamma(t - vx/c^2) \\)",
+          "explanation": "It relates the space-time coordinates between two inertial references in relative motion with velocity v; replace Galilean transformations at high speeds."
+        },
+        {
+          "title": "The relativistic composition of velocities",
+          "formula": "\\( u' = \\frac{u - v}{1 - uv/c^2} \\)",
+          "explanation": "The addition of speeds is no longer linear; the result never exceeds c, even though u and v are close to c."
+        },
+        {
+          "title": "Total relativistic energy",
+          "formula": "\\( E = \\gamma mc^2 \\)",
+          "explanation": "The total energy of the particle with rest mass m including the kinetic energy; for small v we find approximately Ec ≈ ½mv² + mc²."
+        },
+        {
+          "title": "Resting energy",
+          "formula": "\\( E_0 = mc^2 \\)",
+          "explanation": "Energy equivalent to mass even at rest — the famous E = mc²: mass and energy are aspects of the same quantity."
+        },
+        {
+          "title": "Relativistic impulse",
+          "formula": "\\( p = \\gamma m v \\)",
+          "explanation": "The generalization p = mv: the γ factor ensures conservation of momentum and energy in collisions at any speed."
+        }
+      ]
+    }
+  ]
+}

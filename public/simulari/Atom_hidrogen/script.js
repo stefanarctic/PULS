@@ -43,6 +43,13 @@ const els = {
   notes: document.getElementById("notes"),
 };
 
+const simT = (path, ro) =>
+  typeof window.simLbl === "function" ? window.simLbl(path, ro) : ro;
+
+function setBadgeMsg(i18nKey, roFallback) {
+  els.statusBadge.textContent = `${simT("status.prefix", "Status:")} ${simT(i18nKey, roFallback)}`;
+}
+
 let view = "bohr"; // bohr | debroglie | schrodinger | spectrometer
 let running = false;
 let paused = false;
@@ -80,8 +87,11 @@ let themeAlt = false;
 // =====================
 function clamp(v, a, b){ return Math.max(a, Math.min(b, v)); }
 
-function setBadge(text){
-  els.statusBadge.textContent = text;
+function hintForView(v){
+  if (v === "bohr") return simT("hints.bohr", "Bohr: orbite + tranziții energetice (click pe ⚡ Excită)");
+  if (v === "debroglie") return simT("hints.debroglie", "de Broglie: undă staționară pe orbită (n = număr de „bucle”)");
+  if (v === "schrodinger") return simT("hints.schrodinger", "Schrödinger: nor de probabilitate (1s/2s/2p vizual)");
+  return simT("hints.spectrometer", "Spectrometru: fascicul + celulă + prismă/grilă + ecran");
 }
 
 function nmToRGB(nm){
@@ -137,10 +147,10 @@ function pickSeriesNf(series){
 }
 
 function describeSeries(series){
-  if (series === "lyman") return "Lyman";
-  if (series === "balmer") return "Balmer";
-  if (series === "paschen") return "Paschen";
-  return "Balmer";
+  if (series === "lyman") return simT("seriesName.lyman", "Lyman");
+  if (series === "balmer") return simT("seriesName.balmer", "Balmer");
+  if (series === "paschen") return simT("seriesName.paschen", "Paschen");
+  return simT("seriesName.balmer", "Balmer");
 }
 
 function setActive(btnOn, btnOff){
@@ -149,11 +159,13 @@ function setActive(btnOn, btnOff){
 }
 
 function fmtNm(x){
-  if (x == null) return "–";
+  const dash = simT("readoutsFmt.dash", "–");
+  if (x == null) return dash;
   return `${x.toFixed(1)} nm`;
 }
 function fmtEv(x){
-  if (x == null) return "–";
+  const dash = simT("readoutsFmt.dash", "–");
+  if (x == null) return dash;
   return `${x.toFixed(3)} eV`;
 }
 
@@ -167,9 +179,9 @@ function syncUI(){
   els.monoVal.textContent = `${els.monoLambda.value} nm`;
 
   els.modelName.textContent =
-    view === "bohr" ? "Bohr" :
-    view === "debroglie" ? "de Broglie" :
-    view === "schrodinger" ? "Schrödinger" : "Spectrometru";
+    view === "bohr" ? simT("modelName.bohr", "Bohr") :
+    view === "debroglie" ? simT("modelName.debroglie", "de Broglie") :
+    view === "schrodinger" ? simT("modelName.schrodinger", "Schrödinger") : simT("modelName.spectrometer", "Spectrometru");
 
   els.seriesName.textContent = describeSeries(els.series.value);
 
@@ -206,11 +218,7 @@ document.querySelectorAll(".tab").forEach(tab=>{
     photonPulse = 0;
     jumpPulse = 0;
 
-    els.hint.textContent =
-      view === "bohr" ? "Bohr: orbite + tranziții energetice (click pe ⚡ Excită)" :
-      view === "debroglie" ? "de Broglie: undă staționară pe orbită (n = număr de „bucle”)" :
-      view === "schrodinger" ? "Schrödinger: nor de probabilitate (1s/2s/2p vizual)" :
-      "Spectrometru: fascicul + celulă + prismă/grilă + ecran";
+    els.hint.textContent = hintForView(view);
   });
 });
 
@@ -277,13 +285,13 @@ els.beamMono.addEventListener("click", ()=>{
 els.startBtn.addEventListener("click", ()=>{
   running = true;
   paused = false;
-  setBadge("Status: Pornit");
+  setBadgeMsg("status.running", "Pornit");
 });
 
 els.pauseBtn.addEventListener("click", ()=>{
   if (!running) return;
   paused = !paused;
-  setBadge(paused ? "Status: abandonat" : "Status: Pornit");
+  setBadgeMsg(paused ? "status.paused" : "status.running", paused ? "Pauză" : "Pornit");
 });
 
 els.stopBtn.addEventListener("click", ()=>{
@@ -294,7 +302,7 @@ els.stopBtn.addEventListener("click", ()=>{
   jumpPulse = 0;
   photonPulse = 0;
   lastPhoton = null;
-  setBadge("Status: Gata");
+  setBadgeMsg("status.ready", "Gata");
 });
 
 els.exciteBtn.addEventListener("click", ()=>{
@@ -322,8 +330,11 @@ function doExcite(){
   // Also paint spectrum lines
   drawSpectrum();
 
-  setBadge("Status: Eveniment");
-  setTimeout(()=>{ if (running) setBadge("Status: Pornit"); else setBadge("Status: Gata"); }, 450);
+  setBadgeMsg("status.event", "Eveniment");
+  setTimeout(()=>{
+    if (running) setBadgeMsg("status.running", "Pornit");
+    else setBadgeMsg("status.ready", "Gata");
+  }, 450);
 }
 
 // =====================
@@ -443,8 +454,8 @@ function drawSpectrum(){
   // labels
   sctx.fillStyle = "rgba(0,0,0,.65)";
   sctx.font = "800 11px ui-sans-serif, system-ui";
-  sctx.fillText("380nm", x0, h-10);
-  sctx.fillText("760nm", x1-38, h-10);
+  sctx.fillText(simT("spectrumPlot.nm380", "380nm"), x0, h-10);
+  sctx.fillText(simT("spectrumPlot.nm760", "760nm"), x1-38, h-10);
 
   sctx.fillStyle = "rgba(0,0,0,.75)";
   sctx.fillText(describeSeries(series), 12, 14);
@@ -454,7 +465,7 @@ function drawSpectrum(){
 // View draws
 // =====================
 function drawBohr(w, h){
-  drawPanelTitle("Bohr: orbite cuantizate + tranziții (ΔE → foton)");
+  drawPanelTitle(simT("canvas.bohrTitle", "Bohr: orbite cuantizate + tranziții (ΔE → foton)"));
 
   const cx = w*0.52, cy = h*0.52;
 
@@ -527,13 +538,15 @@ function drawBohr(w, h){
 
   // small info box
   drawMiniBox(w, h, [
-    mode === "emission" ? "Emisie: electronul cade și emite foton" : "Absorbție: electronul urcă dacă primește foton",
-    "Folosește „Serie spectrală” ca să fixezi nᶠ (Lyman/Balmer/Paschen).",
+    mode === "emission"
+      ? simT("canvas.bohrEmit", "Emisie: electronul cade și emite foton")
+      : simT("canvas.bohrAbsorb", "Absorbție: electronul urcă dacă primește foton"),
+    simT("canvas.bohrSeriesHint", "Folosește „Serie spectrală” ca să fixezi nᶠ (Lyman/Balmer/Paschen)."),
   ]);
 }
 
 function drawDeBroglie(w,h){
-  drawPanelTitle("de Broglie: undă staționară pe orbită (2πr = nλ)");
+  drawPanelTitle(simT("canvas.debroglieTitle", "de Broglie: undă staționară pe orbită (2πr = nλ)"));
 
   const cx = w*0.5, cy = h*0.52;
 
@@ -588,17 +601,27 @@ function drawDeBroglie(w,h){
   const ey = cy + Math.sin(electronPhase)*r;
   drawGlowCircle(ex, ey, 7, "rgba(255,215,90,.95)");
 
+  const waveLine = simT(
+    "canvas.debroglieWaves",
+    "Număr cuantic n = {n} → „încap” {n} lungimi de undă de-a lungul orbitei."
+  ).replace(/\{n\}/g, String(n));
   drawMiniBox(w, h, [
-    `Număr cuantic n = ${n} → „încap” ${n} lungimi de undă de-a lungul orbitei.`,
-    "Dacă nu se potrivește, starea nu e stabilă (interferență destructivă).",
+    waveLine,
+    simT("canvas.debroglieStable", "Dacă nu se potrivește, starea nu e stabilă (interferență destructivă)."),
   ]);
 
   // label
-  drawTextGlow(`n = ${n} (unde staționare)`, w-18, 34, 13, "right");
+  drawTextGlow(
+    simT("canvas.debroglieStationary", "n = {n} (unde staționare)").replace(/\{n\}/g, String(n)),
+    w-18,
+    34,
+    13,
+    "right"
+  );
 }
 
 function drawSchrodinger(w,h){
-  drawPanelTitle("Schrödinger: nor de probabilitate |ψ|² (vizual 2D)");
+  drawPanelTitle(simT("canvas.schroTitle", "Schrödinger: nor de probabilitate |ψ|² (vizual 2D)"));
 
   const cx = w*0.52, cy = h*0.52;
 
@@ -667,15 +690,21 @@ function drawSchrodinger(w,h){
   ctx.restore();
 
   drawMiniBox(w,h,[
-    `Orbital: ${orbital} (vizualizare 2D).`,
-    "Aici nu „orbitează” ca o planetă – poziția e probabilistică.",
+    simT("canvas.schroOrbital2d", "Orbital: {o} (vizualizare 2D).").replace(/\{o\}/g, orbital),
+    simT("canvas.schroProb", "Aici nu „orbitează” ca o planetă – poziția e probabilistică."),
   ]);
 
-  drawTextGlow(`Orbital: ${orbital}`, w-18, 34, 13, "right");
+  drawTextGlow(
+    simT("canvas.schroOrbitalLbl", "Orbital: {o}").replace(/\{o\}/g, orbital),
+    w-18,
+    34,
+    13,
+    "right"
+  );
 }
 
 function drawSpectrometer(w,h){
-  drawPanelTitle("Spectrometru: fascicul → celulă H → prismă/grilă → ecran (spectru)");
+  drawPanelTitle(simT("canvas.specTitle", "Spectrometru: fascicul → celulă H → prismă/grilă → ecran (spectru)"));
 
   const leftX = 90;
   const midY = h*0.52;
@@ -687,7 +716,7 @@ function drawSpectrometer(w,h){
   ctx.strokeStyle = "rgba(255,255,255,.22)";
   ctx.strokeRect(leftX-40, midY-65, 90, 130);
   ctx.restore();
-  drawTextGlow("Sursă", leftX+5, midY-78, 12);
+  drawTextGlow(simT("canvas.specSource", "Sursă"), leftX+5, midY-78, 12);
 
   // slit
   const slitX = leftX + 120;
@@ -697,7 +726,7 @@ function drawSpectrometer(w,h){
   ctx.fillStyle = "rgba(255,255,255,.35)";
   ctx.fillRect(slitX+7, midY-30, 4, 60);
   ctx.restore();
-  drawTextGlow("Fantă", slitX+9, midY-78, 12, "center");
+  drawTextGlow(simT("canvas.specSlit", "Fantă"), slitX+9, midY-78, 12, "center");
 
   // cell with hydrogen
   const cellX = slitX + 120;
@@ -715,7 +744,7 @@ function drawSpectrometer(w,h){
     drawGlowCircle(ax, ay, 2.2, "rgba(255,90,90,.65)");
   }
   ctx.restore();
-  drawTextGlow("Celulă H", cellX+85, midY-95, 12, "center");
+  drawTextGlow(simT("canvas.specCell", "Celulă H"), cellX+85, midY-95, 12, "center");
 
   // disperser
   const dispX = cellX + 220;
@@ -733,7 +762,7 @@ function drawSpectrometer(w,h){
     ctx.closePath();
     ctx.fill(); ctx.stroke();
     ctx.restore();
-    drawTextGlow("Prismă", dispX+35, midY-86, 12, "center");
+    drawTextGlow(simT("canvas.specPrism", "Prismă"), dispX+35, midY-86, 12, "center");
   } else {
     ctx.save();
     ctx.fillStyle = "rgba(255,255,255,.06)";
@@ -751,7 +780,7 @@ function drawSpectrometer(w,h){
       ctx.stroke();
     }
     ctx.restore();
-    drawTextGlow("Grilă", dispX+12, midY-86, 12, "center");
+    drawTextGlow(simT("canvas.specGrating", "Grilă"), dispX+12, midY-86, 12, "center");
   }
 
   // screen
@@ -762,7 +791,7 @@ function drawSpectrometer(w,h){
   roundRect(ctx, scrX, midY-110, 160, 220, 18);
   ctx.fill(); ctx.stroke();
   ctx.restore();
-  drawTextGlow("Ecran", scrX+80, midY-126, 12, "center");
+  drawTextGlow(simT("canvas.specScreen", "Ecran"), scrX+80, midY-126, 12, "center");
 
   // draw rays
   const beamIsWhite = beam === "white";
@@ -828,11 +857,16 @@ function drawSpectrometer(w,h){
     }
   }
 
-  drawMiniBox(w,h,[
-    `Instrument: ${instrument === "prism" ? "Prismă" : "Grilă de difracție"}`,
-    `Fascicul: ${beamIsWhite ? "Alb (continuum)" : `Monocromatic (${monoNm} nm)`}`,
-    `Regim: ${mode === "emission" ? "Emisie (linii luminoase)" : "Absorbție (linii întunecate)"}`,
-  ]);
+  const instrLine = instrument === "prism"
+    ? simT("canvas.specInstrPrism", "Instrument: Prismă")
+    : simT("canvas.specInstrGrating", "Instrument: Grilă de difracție");
+  const beamLine = beamIsWhite
+    ? simT("canvas.specBeamWhite", "Fascicul: Alb (continuum)")
+    : simT("canvas.specBeamMono", "Fascicul: Monocromatic ({nm} nm)").replace(/\{nm\}/g, String(monoNm));
+  const regimeLine = mode === "emission"
+    ? simT("canvas.specRegEmission", "Regim: Emisie (linii luminoase)")
+    : simT("canvas.specRegAbsorption", "Regim: Absorbție (linii întunecate)");
+  drawMiniBox(w,h,[ instrLine, beamLine, regimeLine ]);
 }
 
 function dispersionAngle(nm, instrument){
@@ -1042,6 +1076,11 @@ window.addEventListener("resize", onAtomResize);
 // init
 // =====================
 function init(){
+  if (window.MathJax?.typesetPromise) {
+    const app = document.getElementById("atomApp");
+    if (app) window.MathJax.typesetPromise([app]).catch(() => {});
+  }
+
   // set default nf from series
   nf = pickSeriesNf(els.series.value);
   els.nf.value = nf;
@@ -1051,6 +1090,7 @@ function init(){
   ni = parseInt(els.ni.value, 10);
 
   syncUI();
+  els.hint.textContent = hintForView(view);
   drawSpectrum();
 
   // redraw spectrum when relevant controls change
@@ -1064,7 +1104,7 @@ function init(){
 
   // auto-run for vibe
   running = true;
-  setBadge("Status: Pornit");
+  setBadgeMsg("status.running", "Pornit");
 
   let last = performance.now();
   function loop(now){
