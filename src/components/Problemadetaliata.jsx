@@ -135,7 +135,7 @@ export const ProblemaDetaliata = ({
   homeworkQuery = '',
 }) => {
   const navigate = useNavigate();
-  const { localizedPath, t } = useI18n();
+  const { localizedPath, t, lang } = useI18n();
   const [copied, setCopied] = useState(false);
   const [isPreparingAi, setIsPreparingAi] = useState(false);
   const [isAdmin, setIsAdmin] = useState(false);
@@ -150,7 +150,10 @@ export const ProblemaDetaliata = ({
   const assistant = useAssistant();
   const { deleteStatus, deleteError } = useSelector(state => state.problems);
 
-  const mathJaxFingerprint = useMemo(() => problemMathJaxFingerprint(problema), [problema]);
+  const mathJaxFingerprint = useMemo(
+    () => `${lang}\u0000${translationLoading ? 'loading' : 'ready'}\u0000${problemMathJaxFingerprint(problema)}`,
+    [problema, lang, translationLoading],
+  );
   const mathJaxRootRef = useMathJaxTypesetRoot(mathJaxFingerprint);
 
   useEffect(() => {

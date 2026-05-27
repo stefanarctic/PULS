@@ -1,7 +1,29 @@
-import { useEffect, useRef } from "react";
+import { useLayoutEffect, useRef } from "react";
 
 /** Dependențe goale stabile: efect doar la montare (un singur typeset). */
 const MOUNT_ONLY_DEPS = [];
+
+/** Re-typeset după schimbări de conținut (traduceri, încărcare progresivă). */
+const WATCH_RETRY_DELAYS_MS = [0, 160, 480];
+
+/**
+ * @param {HTMLElement} element
+ * @returns {Promise<void>}
+ */
+function typesetMathJaxElement(element) {
+  const mj = window.MathJax;
+  if (!mj?.typesetPromise || !element?.isConnected) {
+    return Promise.resolve();
+  }
+  if (typeof mj.typesetClear === "function") {
+    mj.typesetClear([element]);
+  }
+  const run = () => mj.typesetPromise([element]).catch(() => {});
+  if (mj.startup?.promise) {
+    return mj.startup.promise.then(run).catch(run);
+  }
+  return run();
+}
 
 /**
  * Atașează un ref pe containerul cu formule MathJax și rulează o singură trecere
@@ -9,58 +31,56 @@ const MOUNT_ONLY_DEPS = [];
  * parcurg tot documentul.
  *
  * @param {unknown} [watch] — dacă e furnizat, se re-rulează typeset la fiecare schimbare
- *   (ex. `JSON.stringify(visibleFormulasCount)` pentru încărcare progresivă).
+ *   (ex. fingerprint problemă / traducere EN).
  */
 export function useMathJaxTypesetRoot(watch) {
   const ref = useRef(null);
 
   const deps = watch === undefined ? MOUNT_ONLY_DEPS : [watch];
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     const el = ref.current;
     if (!el) return;
     let cancelled = false;
-    let timeoutId;
+    /** @type {number[]} */
+    const timeoutIds = [];
 
-    const scheduleTypeset = () => {
+    const clearTimeouts = () => {
+      for (const id of timeoutIds) {
+        window.clearTimeout(id);
+      }
+      timeoutIds.length = 0;
+    };
+
+    const scheduleTypeset = (delayMs = 0) => {
       if (cancelled) return;
       const mj = window.MathJax;
       if (!mj?.typesetPromise) {
-        timeoutId = window.setTimeout(scheduleTypeset, 50);
+        const waitId = window.setTimeout(() => scheduleTypeset(delayMs), 50);
+        timeoutIds.push(waitId);
         return;
       }
-      requestAnimationFrame(() => {
+
+      const fire = () => {
         if (cancelled || !el.isConnected) return;
-        const run = () => mj.typesetPromise([el]).catch(() => {});
-        if (mj.startup?.promise) {
-          mj.startup.promise.then(run).catch(run);
-        } else {
-          run();
-        }
-      });
+        typesetMathJaxElement(el);
+      };
+
+      if (delayMs > 0) {
+        timeoutIds.push(window.setTimeout(fire, delayMs));
+      } else {
+        requestAnimationFrame(fire);
+      }
     };
 
-    scheduleTypeset();
-
-    let delayedId;
-    if (watch !== undefined) {
-      delayedId = window.setTimeout(() => {
-        if (cancelled || !el.isConnected) return;
-        const mj = window.MathJax;
-        if (!mj?.typesetPromise) return;
-        const run = () => mj.typesetPromise([el]).catch(() => {});
-        if (mj.startup?.promise) {
-          mj.startup.promise.then(run).catch(run);
-        } else {
-          run();
-        }
-      }, 160);
+    const delays = watch === undefined ? [0] : WATCH_RETRY_DELAYS_MS;
+    for (const delay of delays) {
+      scheduleTypeset(delay);
     }
 
     return () => {
       cancelled = true;
-      if (timeoutId) window.clearTimeout(timeoutId);
-      if (delayedId) window.clearTimeout(delayedId);
+      clearTimeouts();
     };
   }, deps);
 
