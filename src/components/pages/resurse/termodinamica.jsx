@@ -8,6 +8,7 @@ import { pickSimulationThumb } from "@/lib/simulationScreenshots";
 
 import termodinamicaImg from "/res/screenshots/Termodinamica_Screenshot.png";
 import motoareTermiceImg from "/res/screenshots/Motoare_Termice_Screenshot.png";
+import motoareArdereInternaImg from "/res/screenshots/Motoare_Ardere_Interna_Screenshot.png";
 import tabelPeriodicImg from "/res/screenshots/Tabel_periodic_Screenshot.png";
 import { tabelPeriodicFormulas } from "@/data/tabelPeriodicFormulas";
 
@@ -78,6 +79,28 @@ const TermodinamicaPage = () => {
     [t]
   );
 
+  const ardereInternaFormulas = useMemo(
+    () => [
+      {
+        formula: "\\( V = \\frac{\\pi}{4} d^2 s \\)",
+        title: t(`${TF}.combustion.displacement`, "Cilindreea unui cilindru"),
+      },
+      {
+        formula: "\\( p V^{\\gamma} = \\text{constant} \\)",
+        title: t(`${TF}.combustion.adiabatic`, "Compresie adiabatică (aproximare)"),
+      },
+      {
+        formula: "\\( \\eta = \\frac{L_{util}}{Q_{ardere}} \\)",
+        title: t(`${TF}.combustion.efficiency`, "Randamentul termic al motorului"),
+      },
+      {
+        formula: "\\( L = \\oint p \\, dV \\)",
+        title: t(`${TF}.combustion.cycleWork`, "Lucrul mecanic pe diagrama p-V"),
+      },
+    ],
+    [t]
+  );
+
   const tabelPeriodicFormulasMem = useMemo(
     () =>
       tabelPeriodicFormulas.map((item, index) => ({
@@ -91,6 +114,7 @@ const TermodinamicaPage = () => {
     const sections = [
       { key: "termodinamica", formulas: termodinamicaFormulas },
       { key: "motoare", formulas: motoareFormulas },
+      { key: "ardere_interna", formulas: ardereInternaFormulas },
       { key: "tabel_periodic", formulas: tabelPeriodicFormulasMem },
     ];
 
@@ -139,7 +163,7 @@ const TermodinamicaPage = () => {
         clearInterval(intervalId);
       }
     };
-  }, [termodinamicaFormulas, motoareFormulas, tabelPeriodicFormulasMem]);
+  }, [termodinamicaFormulas, motoareFormulas, ardereInternaFormulas, tabelPeriodicFormulasMem]);
 
   const viewSimulation = t("resourcesPage.lessonPages.common.viewSimulation", "Vezi simularea");
 
@@ -289,6 +313,63 @@ const TermodinamicaPage = () => {
                   </div>
                   <a
                     href={localizedPath("/simulare/motoare-termice")}
+                    rel="noopener noreferrer"
+                    style={{ textDecoration: "none" }}
+                  >
+                    <Button size="lg">{viewSimulation}</Button>
+                  </a>
+                </div>
+              </div>
+
+              <div className="rounded-container">
+                <h2 className="text-2xl font-bold mb-4">
+                  {t(`${T}.combustionEngines.title`, "Motoare cu ardere internă")}
+                </h2>
+                <p className="text-muted-foreground mb-6">
+                  {t(
+                    `${T}.combustionEngines.p1`,
+                    "Motoarele cu ardere internă transformă energia eliberată la arderea combustibilului în lucru mecanic prin mișcarea pistonului. Cele mai cunoscute sunt motoarele în patru timpi (benzină Otto și Diesel) și cele în doi timpi."
+                  )}
+                </p>
+                <p className="text-muted-foreground mb-6">
+                  {t(
+                    `${T}.combustionEngines.p2`,
+                    "Simulatorul animat îți arată cele patru faze — admisie, compresie, ardere/destindere și evacuare — pe un motor 4T, compară benzina, motorina și ciclul 2T, și leagă mișcarea pistonului de diagrama p-V: aria închisă de curbă este lucrul mecanic produs într-un ciclu complet."
+                  )}
+                </p>
+                <div className="image-slider h-64 md:h-80 relative flex items-center justify-center mb-8">
+                  <img
+                    src={pickSimulationThumb(motoareArdereInternaImg, "motoare-ardere-interna", lang)}
+                    alt={t(`${T}.combustionEngines.alt`, "Simulator motoare cu ardere internă")}
+                    className="w-full h-full object-contain mx-auto my-auto"
+                  />
+                </div>
+                <div className="mt-8 flex flex-col md:flex-row md:items-center justify-between gap-6">
+                  <div>
+                    <h3 className="text-xl font-semibold mb-4">
+                      {t(`${T}.combustionEngines.formulasHeading`, "Formule utile pentru motoare cu ardere internă:")}
+                    </h3>
+
+                    {ardereInternaFormulas
+                      .slice(0, visibleFormulasCount.ardere_interna || ardereInternaFormulas.length)
+                      .map((item, index) => (
+                        <div key={index}>
+                          <h4 className="text-lg font-semibold mb-2">
+                            {index + 1}. {item.title}:
+                          </h4>
+                          <div className="formula-resurse text-lg font-mono mb-3">{item.formula}</div>
+                        </div>
+                      ))}
+
+                    <p className="text-muted-foreground mt-4">
+                      {t(
+                        `${T}.combustionEngines.variablesNote`,
+                        "Unde: V este cilindreea unui cilindru, d alezajul (diametrul), s cursa pistonului, γ exponentul adiabatic (~1,4 pentru aer), η randamentul termic, L_{util} lucrul mecanic util pe ciclu, Q_{ardere} căldura eliberată la ardere, iar integrala \\(\\oint p\\,dV\\) reprezintă aria ciclului pe diagrama p-V."
+                      )}
+                    </p>
+                  </div>
+                  <a
+                    href={localizedPath("/simulare/motoare-ardere-interna")}
                     rel="noopener noreferrer"
                     style={{ textDecoration: "none" }}
                   >

@@ -27,6 +27,7 @@ const simulationPathMapEntries = [
   ["/simulare/circuite-electricitate", "/simulation/electricity-circuits"],
   ["/simulare/energie-circuite", "/simulation/circuit-energy"],
   ["/simulare/motoare-termice", "/simulation/heat-engines"],
+  ["/simulare/motoare-ardere-interna", "/simulation/internal-combustion-engines"],
   ["/simulare/pendule-multiple", "/simulation/multiple-pendulums"],
   ["/simulare/plan-inclinat", "/simulation/inclined-plane"],
   ["/simulare/proiectile", "/simulation/projectiles"],

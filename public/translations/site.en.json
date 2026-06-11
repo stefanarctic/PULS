@@ -1470,6 +1470,14 @@
           "variablesNote": "where: η is efficiency, L_{util} useful mechanical work per cycle, Q_H heat absorbed from the hot reservoir, Q_C heat rejected to the cold reservoir, T_H and T_C absolute temperatures of the hot and cold reservoirs; the contour integral \\(\\oint p\\,dV\\) is the p–V cycle area (net work per cycle).",
           "alt": "Heat engine simulation screenshot"
         },
+        "combustionEngines": {
+          "title": "Internal combustion engines",
+          "p1": "Internal combustion engines convert the energy released when fuel burns into mechanical work through piston motion. The best-known types are four-stroke engines (Otto petrol and Diesel) and two-stroke engines.",
+          "p2": "The animated simulator shows the four phases — intake, compression, power/expansion and exhaust — on a 4-stroke engine, compares petrol, diesel and 2-stroke cycles, and links piston motion to the p–V diagram: the enclosed area is the mechanical work produced in one complete cycle.",
+          "formulasHeading": "Useful formulas for internal combustion engines:",
+          "variablesNote": "where: V is the displacement volume of one cylinder, d the bore (diameter), s the piston stroke, γ the adiabatic exponent (~1.4 for air), η thermal efficiency, L_{util} useful work per cycle, Q_{combustion} heat released during combustion; the contour integral \\(\\oint p\\,dV\\) is the cycle area on the p–V diagram.",
+          "alt": "Internal combustion engine simulator screenshot"
+        },
         "periodicTable": {
           "title": "Periodic table (useful quantities for problems)",
           "p1": "The periodic table gives element symbols, atomic number Z and — especially — molar mass M for mole, particle and concentration calculations. These quantities appear often in gases, mixtures, calorimetry and the ideal gas law.",
@@ -1499,6 +1507,12 @@
             "carnotIdeal": "Ideal (Carnot) efficiency",
             "cycleWork": "Work in a thermodynamic cycle",
             "isobaricQ": "Heat exchanged in an isobaric process"
+          },
+          "combustion": {
+            "displacement": "Displacement volume of one cylinder",
+            "adiabatic": "Adiabatic compression (approximation)",
+            "efficiency": "Thermal efficiency of the engine",
+            "cycleWork": "Mechanical work on the p–V diagram"
           },
           "periodic": {
             "zProtons": "Atomic number Z equals number of protons",
@@ -2346,6 +2360,12 @@
       "title": "Heat Engines",
       "description": "Simulate Otto, Diesel, and Carnot cycles with p-V and T-S diagrams and follow efficiency in real time.",
       "caption": "Heat engines"
+    },
+    "motoare-ardere-interna": {
+      "title": "Internal Combustion Engines",
+      "description": "Animated Otto, Diesel and 2-stroke cycles: intake, compression, combustion, expansion and exhaust, with interactive p-V diagrams and technical specs.",
+      "caption": "Internal combustion engines",
+      "eyebrow": "Thermodynamics | Internal combustion"
     },
     "plan-inclinat": {
       "title": "Inclined Plane",
@@ -3682,6 +3702,7 @@
       "/simulare/circuite-electricitate": "/simulation/electricity-circuits",
       "/simulare/energie-circuite": "/simulation/circuit-energy",
       "/simulare/motoare-termice": "/simulation/heat-engines",
+      "/simulare/motoare-ardere-interna": "/simulation/internal-combustion-engines",
       "/simulare/pendule-multiple": "/simulation/multiple-pendulums",
       "/simulare/plan-inclinat": "/simulation/inclined-plane",
       "/simulare/proiectile": "/simulation/projectiles",

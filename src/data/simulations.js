@@ -15,6 +15,7 @@ import simulatorCiocnireImg from "/res/screenshots/Ciocnire_Screenshot.png";
 import circuiteElectricitateImg from "/res/screenshots/Circuite_Electricitate_Screenshot.png";
 import energieCircuiteImg from "/res/screenshots/Energie_Circuite_Screenshot.png";
 import motoareTermiceImg from "/res/screenshots/Motoare_Termice_Screenshot.png";
+import motoareArdereInternaImg from "/res/screenshots/Motoare_Ardere_Interna_Screenshot.png";
 import penduleMultipleImg from "/res/screenshots/Pendule_Multiple_Screenshot.png";
 import planInclinatImg from "/res/screenshots/Plan_Inclinat_Screenshot.png";
 import proiectileImg from "/res/screenshots/Proiectile_Screenshot.png";
@@ -253,6 +254,20 @@ export const simulationsConfig = [
     iframeSrc: "/simulari/motoare/index.html",
     maxHeight: '90vh',
     category: "Termodinamică"
+  },
+  {
+    id: 54,
+    slug: "motoare-ardere-interna",
+    route: "/simulare/motoare-ardere-interna",
+    title: "Motoare cu ardere internă",
+    description:
+      "Vizualizează animat ciclurile Otto, Diesel și 2T: admisie, compresie, ardere, destindere și evacuare, cu diagrame p-V interactive și specificații tehnice.",
+    image: motoareArdereInternaImg,
+    caption: "Motoare cu ardere internă",
+    iframeSrc: "https://simulator-motoare.vercel.app/",
+    maxHeight: "95vh",
+    category: "Termodinamică",
+    eyebrow: "Termodinamică | Ardere internă"
   },
   {
     id: 18,

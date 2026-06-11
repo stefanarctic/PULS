@@ -267,6 +267,8 @@ const phraseTranslations = {
     "Principiul al II-lea al termodinamicii": "Second law of thermodynamics",
     "Motoare termice": "Heat engines",
     "Motoare Termice": "Heat Engines",
+    "Motoare cu ardere internă": "Internal combustion engines",
+    "Motoare cu Ardere Internă": "Internal Combustion Engines",
     "Ciclul Carnot": "Carnot cycle",
     "Ciclul Otto": "Otto cycle",
     "Ciclul Diesel": "Diesel cycle",
