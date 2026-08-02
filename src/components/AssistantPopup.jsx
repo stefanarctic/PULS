@@ -1,4 +1,5 @@
 import React, { useState, useRef, useEffect, useMemo, useCallback } from "react";
+import { createPortal } from "react-dom";
 import ReactMarkdown from "react-markdown";
 import remarkMath from "remark-math";
 import rehypeMathjaxBrowser from "rehype-mathjax/browser";
@@ -299,7 +300,10 @@ const AssistantPopup = ({ onClose, initialMessage, initialMessageInNewChat = fal
   const [typing, setTyping] = useState(false);
   const [typingText, setTypingText] = useState("");
   const [sidebarOpen, setSidebarOpen] = useState(true);
-  const [isFullscreen, setIsFullscreen] = useState(false);
+  // Mobile/tablet: start already edge-to-edge (fullscreen class)
+  const [isFullscreen, setIsFullscreen] = useState(
+    () => typeof window !== "undefined" && window.innerWidth <= 1100
+  );
   const modalRef = useRef(null);
   const [copiedMessageId, setCopiedMessageId] = useState(null);
   const messagesEndRef = useRef(null);
@@ -364,11 +368,29 @@ const AssistantPopup = ({ onClose, initialMessage, initialMessageInNewChat = fal
       }
     }
 
-    // Pe mobil, închide sidebar-ul automat
+    // Pe mobil, închide sidebar-ul automat + forțează fullscreen
     if (window.innerWidth <= 1100) {
       setSidebarOpen(false);
+      setIsFullscreen(true);
     }
   }, [user?.uid, chatsLoading, chats, setCurrentChatId, initialMessage]);
+
+  // Portal pe body: position:fixed trebuie relativ la viewport, nu la .App
+  useEffect(() => {
+    const prevOverflow = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+    return () => {
+      document.body.style.overflow = prevOverflow;
+    };
+  }, []);
+
+  // Focus pe input la deschidere (nu pe butonul de chat-uri)
+  useEffect(() => {
+    const t = window.setTimeout(() => {
+      textareaRef.current?.focus({ preventScroll: true });
+    }, 50);
+    return () => window.clearTimeout(t);
+  }, []);
   
   // Professor Whiz avatar image based on dark mode
   const professorWhizAvatar = darkModeOn 
@@ -990,7 +1012,7 @@ const AssistantPopup = ({ onClose, initialMessage, initialMessageInNewChat = fal
   const copyMsgTitle = t('assistant.copyTooltip', 'Copiază mesajul');
   const brand = t('assistant.brandName', 'Profesorul Whiz');
 
-  return (
+  return createPortal(
     <div 
       className={`assistant-popup-overlay ${isFullscreen ? 'fullscreen' : ''}`} 
       onClick={(e) => {
@@ -1130,6 +1152,8 @@ const AssistantPopup = ({ onClose, initialMessage, initialMessageInNewChat = fal
             <button 
               type="button"
               className="assistant-popup-mobile-sidebar-toggle"
+              tabIndex={-1}
+              onMouseDown={(e) => e.preventDefault()}
               onClick={() => setSidebarOpen(!sidebarOpen)}
               title={t('assistant.mobileShowChats', 'Afișează chat-uri')}
             >
@@ -1298,7 +1322,8 @@ const AssistantPopup = ({ onClose, initialMessage, initialMessageInNewChat = fal
           </div>
         </div>
       </div>
-    </div>
+    </div>,
+    document.body
   );
 };
 
