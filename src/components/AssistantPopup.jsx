@@ -309,6 +309,8 @@ const AssistantPopup = ({ onClose, initialMessage, initialMessageInNewChat = fal
   const messagesEndRef = useRef(null);
   const hasScrolledOnOpenRef = useRef(false);
   const shouldAutoScrollRef = useRef(true); // false când user-ul face scroll manual în sus
+  const didInitOpenRef = useRef(false); // rulează logica de open o singură dată (nu la fiecare update chats)
+  const isSendingRef = useRef(false); // previne dublu-submit pe Enter (keydown + form submit)
   const darkModeOn = useDarkMode();
   const localeTag = lang === "en" ? "en-GB" : "ro-RO";
 
@@ -326,13 +328,18 @@ const AssistantPopup = ({ onClose, initialMessage, initialMessageInNewChat = fal
     user
   } = useChats();
 
-  // Verifică și setează chat-ul corect la deschiderea popup-ului
+  // Verifică și setează chat-ul corect la deschiderea popup-ului (o singură dată)
   useEffect(() => {
     // Așteaptă până când chats sunt încărcate și utilizatorul este logat
     if (!user?.uid || chatsLoading) return;
     
     // Nu aplică logica dacă există un initialMessage (se va gestiona în alt useEffect)
     if (initialMessage) return;
+
+    // Critic: fără asta, la fiecare mesaj (chats se actualizează) se re-rula logica
+    // și părea că Enter „începe un chat nou”
+    if (didInitOpenRef.current) return;
+    didInitOpenRef.current = true;
 
     const STORAGE_KEY = 'assistantPopupLastOpen';
     const TWO_HOURS_MS = 2 * 60 * 60 * 1000; // 2 ore în milisecunde
@@ -670,6 +677,7 @@ const AssistantPopup = ({ onClose, initialMessage, initialMessageInNewChat = fal
 
   const handleChatSelect = (chatId) => {
     setCurrentChatId(chatId);
+    setChatMode(true);
     setTyping(false);
     setTypingText("");
     setLoading(false);
@@ -680,12 +688,14 @@ const AssistantPopup = ({ onClose, initialMessage, initialMessageInNewChat = fal
       setSidebarOpen(false);
     }
     
-    // Scroll instant la ultimul mesaj când se selectează un chat (fără delay)
-    // Folosim requestAnimationFrame pentru a aștepta render-ul DOM
+    // Scroll + focus pe input după ce UI-ul chat-ului e montat
     requestAnimationFrame(() => {
-      if (chatRef.current) {
-        chatRef.current.scrollTop = chatRef.current.scrollHeight;
-      }
+      requestAnimationFrame(() => {
+        if (chatRef.current) {
+          chatRef.current.scrollTop = chatRef.current.scrollHeight;
+        }
+        textareaRef.current?.focus({ preventScroll: true });
+      });
     });
   };
 
@@ -734,7 +744,12 @@ const AssistantPopup = ({ onClose, initialMessage, initialMessageInNewChat = fal
     const text = prompt || inputValue.trim();
     if (!text) return;
 
+    // Evită dublu-submit: Enter pe textarea declanșează keydown + uneori și submit pe form
+    if (isSendingRef.current) return;
+    isSendingRef.current = true;
+
     if (!user?.uid) {
+      isSendingRef.current = false;
       alert(t('assistant.mustSignInToast', 'Trebuie să fii logat pentru a folosi Profesorul Whiz. Te rugăm să te conectezi.'));
       return;
     }
@@ -779,6 +794,7 @@ const AssistantPopup = ({ onClose, initialMessage, initialMessageInNewChat = fal
         console.log('✅ Chat created with ID:', activeChatId, 'and title:', newTitle);
       } catch (error) {
         console.error('Error creating chat:', error);
+        isSendingRef.current = false;
         alert(t('assistant.createChatError', 'Eroare la crearea chat-ului. Te rugăm să încerci din nou.'));
         return;
       }
@@ -796,10 +812,13 @@ const AssistantPopup = ({ onClose, initialMessage, initialMessageInNewChat = fal
     setInputValue("");
     setLoading(true);
     shouldAutoScrollRef.current = true; // Reia auto-scroll pentru noul răspuns (ca ChatGPT)
+    // Eliberează lock-ul după ce mesajul e înregistrat (nu bloca mesajele următoare)
+    isSendingRef.current = false;
     
     // Scroll smooth la finalul chat-ului după trimiterea mesajului
     setTimeout(() => {
       scrollToBottom();
+      textareaRef.current?.focus({ preventScroll: true });
     }, 100);
 
     try {
@@ -927,10 +946,11 @@ const AssistantPopup = ({ onClose, initialMessage, initialMessageInNewChat = fal
   }, []);
 
   const handleKeyDown = (e) => {
-    if (e.key === 'Enter' && !e.shiftKey) {
-      e.preventDefault();
-      handleSend(e);
-    }
+    // Enter = trimite; Shift+Enter = rând nou. Ignoră IME composing.
+    if (e.key !== 'Enter' || e.shiftKey || e.nativeEvent?.isComposing) return;
+    e.preventDefault();
+    e.stopPropagation();
+    handleSend();
   };
 
   // Scroll instant la ultimul mesaj când se deschide un chat nou
