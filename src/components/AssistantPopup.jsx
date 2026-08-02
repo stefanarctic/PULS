@@ -634,6 +634,13 @@ const AssistantPopup = ({ onClose, initialMessage, initialMessageInNewChat = fal
       if (window.innerWidth <= 1100) {
         setSidebarOpen(false);
       }
+
+      // Focus pe input (nu pe prompt-uri / butonul apăsat) după ce UI-ul de welcome se montează
+      requestAnimationFrame(() => {
+        requestAnimationFrame(() => {
+          textareaRef.current?.focus({ preventScroll: true });
+        });
+      });
     } catch (error) {
       console.error('Error creating new chat:', error);
     }
@@ -1014,6 +1021,17 @@ const AssistantPopup = ({ onClose, initialMessage, initialMessageInNewChat = fal
             </div>
           </div>
           <div className="assistant-popup-header-right">
+            {user?.uid && (
+              <button
+                type="button"
+                className="assistant-popup-icon-btn assistant-popup-mobile-new-chat-btn"
+                onClick={handleNewChat}
+                title={t('assistant.newChat', 'Chat nou')}
+                aria-label={t('assistant.newChat', 'Chat nou')}
+              >
+                <Plus size={18} />
+              </button>
+            )}
             <button 
               type="button"
               className="assistant-popup-icon-btn"
@@ -1155,6 +1173,7 @@ const AssistantPopup = ({ onClose, initialMessage, initialMessageInNewChat = fal
                         key={idx}
                         type="button"
                         className="assistant-popup-prompt-btn"
+                        onMouseDown={(e) => e.preventDefault()}
                         onClick={() => handlePromptClick(prompt)}
                       >
                         {prompt}

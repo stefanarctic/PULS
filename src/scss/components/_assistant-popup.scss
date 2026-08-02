@@ -20,6 +20,8 @@
     inset: 0 !important;
     width: 100% !important;
     height: 100% !important;
+    height: 100dvh !important;
+    max-height: 100dvh !important;
     background: var(--primary-background-current-mode);
     align-items: stretch !important;
     justify-content: stretch !important;
@@ -78,13 +80,17 @@
     &.fullscreen {
       width: 100% !important;
       height: 100% !important;
+      height: 100dvh !important;
       max-width: 100% !important;
       max-height: 100% !important;
+      max-height: 100dvh !important;
       min-width: 100% !important;
       min-height: 100% !important;
+      min-height: 100dvh !important;
       border-radius: 0 !important;
       margin: 0 !important;
       padding: 0 !important;
+      box-sizing: border-box;
     }
   }
 }
@@ -111,10 +117,15 @@
   flex-shrink: 0;
   z-index: 10;
   position: relative;
+  box-sizing: border-box;
 
   .assistant-popup-modal--wide.fullscreen & {
     z-index: 2010;
     position: relative;
+    // Keep header buttons inside the visible safe area (notch / status bar)
+    padding-top: max(0.75rem, env(safe-area-inset-top, 0px));
+    padding-left: max(1rem, env(safe-area-inset-left, 0px));
+    padding-right: max(1rem, env(safe-area-inset-right, 0px));
   }
 }
 
@@ -168,6 +179,15 @@
   &.assistant-popup-close-btn:hover {
     background: rgba(239, 68, 68, 0.1);
     color: #ef4444;
+  }
+}
+
+// Mobile-only new chat button in header (sidebar already has one on desktop)
+.assistant-popup-mobile-new-chat-btn {
+  display: none;
+
+  @media (max-width: 1100px) {
+    display: flex;
   }
 }
 
@@ -438,19 +458,16 @@
   position: relative;
   min-height: 0;
   -webkit-overflow-scrolling: touch;
+  box-sizing: border-box;
 
+  // Stay in normal flex flow on fullscreen so header + input remain on screen.
+  // (Previously position:fixed; inset:0 covered the viewport and clipped both.)
   &.fullscreen {
-    position: fixed !important;
-    inset: 0 !important;
-    width: 100% !important;
-    height: 100% !important;
-    z-index: 2001;
-    transition: left 0.3s ease, width 0.3s ease;
-
-    .assistant-popup-sidebar.open ~ & {
-      left: 280px !important;
-      width: calc(100vw - 280px) !important;
-    }
+    position: relative;
+    width: 100%;
+    height: auto;
+    min-height: 0;
+    z-index: auto;
   }
 }
 
@@ -501,6 +518,48 @@
   max-width: 700px;
   margin: 0 auto;
   width: 100%;
+  min-height: 0;
+}
+
+// Fullscreen: pin input to bottom of welcome screen + safe areas
+.assistant-popup-modal--wide.fullscreen {
+  .assistant-popup-welcome {
+    justify-content: flex-start;
+    max-width: 800px;
+    width: 100%;
+    height: 100%;
+    overflow-y: auto;
+
+    .assistant-popup-prompts {
+      width: 100%;
+      max-width: 700px;
+    }
+
+    .assistant-popup-form {
+      margin-top: auto;
+      width: 100%;
+      max-width: 700px;
+      padding-top: 1rem;
+      position: sticky;
+      bottom: 0;
+      background: var(--secondary-background-current-mode);
+      z-index: 2;
+    }
+  }
+
+  // Keep chat input above home indicator / browser chrome
+  .assistant-popup-form {
+    padding-bottom: max(0.5rem, env(safe-area-inset-bottom, 0px));
+    padding-left: max(0px, env(safe-area-inset-left, 0px));
+    padding-right: max(0px, env(safe-area-inset-right, 0px));
+    box-sizing: border-box;
+  }
+
+  .assistant-popup-sidebar {
+    top: 0;
+    padding-top: env(safe-area-inset-top, 0px);
+    box-sizing: border-box;
+  }
 }
 
 .assistant-popup-welcome-header {
@@ -564,12 +623,24 @@
   text-align: left;
   font-weight: 500;
 
-  &:hover {
-    background: var(--pill-hover-background-current-mode);
+  // Avoid sticky :hover / focus ring on touch after "Chat nou"
+  &:focus {
+    outline: none;
+  }
+
+  &:focus-visible {
     border-color: var(--accent-color-current-mode);
-    color: var(--accent-color-current-mode);
-    transform: translateY(-2px);
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 0 0 2px rgba(37, 99, 235, 0.25);
+  }
+
+  @media (hover: hover) {
+    &:hover {
+      background: var(--pill-hover-background-current-mode);
+      border-color: var(--accent-color-current-mode);
+      color: var(--accent-color-current-mode);
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    }
   }
 
   &.selected {
@@ -1056,10 +1127,13 @@
       &.fullscreen {
         width: 100% !important;
         height: 100% !important;
+        height: 100dvh !important;
         min-width: 100% !important;
         min-height: 100% !important;
+        min-height: 100dvh !important;
         max-width: 100% !important;
         max-height: 100% !important;
+        max-height: 100dvh !important;
       }
     }
   }
@@ -1117,8 +1191,10 @@
       &.fullscreen {
         width: 100% !important;
         height: 100% !important;
+        height: 100dvh !important;
         max-width: 100% !important;
         max-height: 100% !important;
+        max-height: 100dvh !important;
       }
     }
   }
