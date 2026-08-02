@@ -156,6 +156,9 @@
   .assistant-popup-modal--wide.fullscreen & {
     z-index: 2010;
     position: relative;
+  }
+
+  @media (max-width: 1100px) {
     // Keep header buttons inside the visible safe area (notch / status bar)
     padding-top: max(0.75rem, env(safe-area-inset-top, 0px));
     padding-left: max(1rem, env(safe-area-inset-left, 0px));
@@ -244,16 +247,10 @@
   flex-direction: column;
   transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   overflow: hidden;
+  flex-shrink: 0;
 
-  .assistant-popup-modal--wide.fullscreen & {
-    position: fixed;
-    left: 0;
-    top: 0;
-    bottom: 0;
-    height: 100%;
-    z-index: 2003;
-    box-shadow: 2px 0 12px rgba(0, 0, 0, 0.15);
-  }
+  // Desktop fullscreen: keep sidebar in normal flex flow (NOT position:fixed —
+  // fixed removes it from layout and stretches the chat area incorrectly).
 
   @media (max-width: 1100px) {
     position: absolute;
@@ -504,20 +501,19 @@
   }
 }
 
-// Ensure body + content fill remaining height so the input sits at the bottom
-.assistant-popup-overlay.fullscreen,
-.assistant-popup-overlay {
-  @media (max-width: 1100px) {
-    .assistant-popup-body {
-      flex: 1 1 auto;
-      min-height: 0;
-    }
-
+// Mobile: fill height so input sits at the bottom
+@media (max-width: 1100px) {
+  .assistant-popup-overlay {
+    .assistant-popup-body,
     .assistant-popup-main-content,
     .assistant-popup-content {
       flex: 1 1 auto;
       min-height: 0;
-      height: auto;
+    }
+
+    .assistant-popup-chat-window {
+      flex: 1 1 auto;
+      min-height: 0;
     }
 
     .assistant-popup-form {
@@ -527,22 +523,34 @@
   }
 }
 
+// Desktop fullscreen: classic chat layout (sidebar | messages + input)
 .assistant-popup-modal.fullscreen {
   .assistant-popup-body {
     flex: 1 1 auto;
     min-height: 0;
   }
 
-  .assistant-popup-main-content,
+  .assistant-popup-main-content {
+    flex: 1 1 auto;
+    min-height: 0;
+    width: auto; // don't force 100% over the sidebar
+  }
+
   .assistant-popup-content {
     flex: 1 1 auto;
     min-height: 0;
-    height: auto;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .assistant-popup-chat-window {
+    flex: 1 1 auto;
+    min-height: 0;
   }
 
   .assistant-popup-form {
-    margin-top: auto;
     flex-shrink: 0;
+    // no margin-top:auto on desktop chat — chat-window flex:1 handles it
   }
 }
 
@@ -596,7 +604,7 @@
   min-height: 0;
 }
 
-// Fullscreen: pin input to bottom of welcome screen + safe areas
+// Fullscreen welcome: pin input to bottom (desktop + mobile)
 .assistant-popup-modal--wide.fullscreen {
   .assistant-popup-welcome {
     justify-content: flex-start;
@@ -621,19 +629,21 @@
       z-index: 2;
     }
   }
+}
 
-  // Keep chat input above home indicator / browser chrome
-  .assistant-popup-form {
-    padding-bottom: max(0.5rem, env(safe-area-inset-bottom, 0px));
-    padding-left: max(0px, env(safe-area-inset-left, 0px));
-    padding-right: max(0px, env(safe-area-inset-right, 0px));
-    box-sizing: border-box;
-  }
+// Safe areas only matter on notched mobile
+@media (max-width: 1100px) {
+  .assistant-popup-modal--wide.fullscreen,
+  .assistant-popup-modal {
+    .assistant-popup-form {
+      padding-bottom: max(0.5rem, env(safe-area-inset-bottom, 0px));
+      box-sizing: border-box;
+    }
 
-  .assistant-popup-sidebar {
-    top: 0;
-    padding-top: env(safe-area-inset-top, 0px);
-    box-sizing: border-box;
+    .assistant-popup-sidebar {
+      padding-top: env(safe-area-inset-top, 0px);
+      box-sizing: border-box;
+    }
   }
 }
 
