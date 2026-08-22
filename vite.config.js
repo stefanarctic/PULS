@@ -94,43 +94,6 @@ export default defineConfig(({ mode }) => {
         '.ngrok-free.app',
         '.ngrok-free.dev',
       ],
-      proxy: {
-        '/api/webhook': {
-          target: 'https://automations.puls-fizica.ro',
-          changeOrigin: true,
-          secure: false,
-          timeout: 30000,
-          rewrite: (p) => {
-            const newPath = p.replace(/^\/api\/webhook/, '/webhook');
-            console.log('Rewriting path:', p, '→', newPath);
-            return newPath;
-          },
-          configure: (proxy) => {
-            proxy.on('error', (err, _req, res) => {
-              console.error('❌ Proxy error:', err.code, err.message);
-              if (res && !res.headersSent) {
-                res.writeHead(502, {
-                  'Content-Type': 'application/json',
-                });
-                res.end(
-                  JSON.stringify({
-                    error: 'Proxy connection error',
-                    message: err.message,
-                    code: err.code,
-                  }),
-                );
-              }
-            });
-            proxy.on('proxyReq', (proxyReq, req) => {
-              console.log('→ Proxy request:', req.method, req.url);
-              console.log('  → Target:', proxyReq.path);
-            });
-            proxy.on('proxyRes', (proxyRes, req) => {
-              console.log('← Proxy response:', proxyRes.statusCode, req.url);
-            });
-          },
-        },
-      },
     },
     resolve: {
       alias: {

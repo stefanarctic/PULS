@@ -20,6 +20,40 @@ const GREEK_WORD_TO_TEX = {
 };
 
 /**
+ * Modelele pun des virgulă între factori (\\frac{1}{2}, \\rho, C_d) în loc de înmulțire.
+ * Păstrăm \, (spațiu subțire), {,} (zecimală românească) și i,j lipite în indici.
+ * @param {string} tex
+ */
+function cleanMultiplicationCommasInTex(tex) {
+  if (typeof tex !== 'string' || !tex.includes(',')) return tex;
+  let s = tex;
+  s = s.replace(/(?<!\\),(\s+)(?=\\[a-zA-Z]+)/g, ' ');
+  if (/=|\\frac|\\cdot|\\times/.test(s)) {
+    s = s.replace(/(?<!\\),(\s+)(?=[A-Za-z{])/g, ' ');
+  }
+  return s;
+}
+
+/**
+ * Curăță virgulele-înmulțire din blocurile MathJax ale unui răspuns markdown.
+ * @param {string} text
+ */
+export function cleanSpuriousMathCommasInMarkdown(text) {
+  if (typeof text !== 'string' || !text.includes(',')) return text;
+  return text.replace(
+    /\$\$([\s\S]+?)\$\$|\$([^$\n]+)\$|\\\[([\s\S]+?)\\\]|\\\(([\s\S]+?)\\\)/g,
+    (full, displayDollar, inlineDollar, displayBrack, inlineParen) => {
+      const inner = displayDollar ?? inlineDollar ?? displayBrack ?? inlineParen;
+      const cleaned = cleanMultiplicationCommasInTex(inner);
+      if (displayDollar != null) return `$$${cleaned}$$`;
+      if (displayBrack != null) return `\\[${cleaned}\\]`;
+      if (inlineParen != null) return `\\(${cleaned}\\)`;
+      return `$${cleaned}$`;
+    },
+  );
+}
+
+/**
  * Repară fragmente „latex-ish” înainte de MathJax: litere grecești ca text, subscripte fără acolade, %.
  * @param {string} t
  * @returns {string}
@@ -30,6 +64,7 @@ function sanitizeLatexishFragment(t) {
   s = s.replace(/\u2212/g, '-'); // minus matematic
   s = s.replace(/\u00d7/g, '\\times'); // ×
   s = s.replace(/\u00b7/g, '\\cdot'); // punct central · (nu \cdot TeX)
+  s = cleanMultiplicationCommasInTex(s);
   // \mathrm{A/B^n} → \frac{\mathrm{A}}{\mathrm{B}^{n}} (altfel ^ în interior poate da Math input error)
   s = s.replace(
     /\\mathrm\{([^/}]+)\/([^}^]+)\^(\d+)\}/g,

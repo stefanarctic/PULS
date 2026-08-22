@@ -10,6 +10,7 @@ import { collection, query, where, getDocs, getDoc, updateDoc, doc } from 'fireb
 import { createTeacherInvite } from '../../lib/teacherInvite';
 import { db } from '../../lib/firebase';
 import { useI18n } from '../../i18n/LanguageContext';
+import { callGroqWithModelFallbacks, getGroqTextModels } from '../../lib/groqClient';
 import '../../scss/components/_admin-dashboard.scss';
 
 const SearchIcon = () => (
@@ -618,29 +619,34 @@ Răspunde în format JSON cu următoarea structură:
 
 Dacă nu găsești date sau formule, returnează obiecte goale. Răspunde DOAR cu JSON, fără text suplimentar.`;
 
-      const sessionId = `admin-analysis-${Date.now()}`;
-      console.log('[AI Analysis] Trimite request către API');
-      console.log('[AI Analysis] Session ID:', sessionId);
+      console.log('[AI Analysis] Trimite request către Groq');
       console.log('[AI Analysis] Prompt length:', prompt.length, 'caractere');
 
-      const response = await fetch("/api/webhook/chat", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ message: prompt, sessionId }),
+      const groqKey = import.meta.env.VITE_GROQ_API_KEY;
+      if (!groqKey || typeof groqKey !== 'string' || !groqKey.trim()) {
+        throw new Error(
+          t(`${AD}.ai.missingGroqKey`, 'VITE_GROQ_API_KEY lipsește din configurare.'),
+        );
+      }
+
+      const responseText = await callGroqWithModelFallbacks({
+        apiKey: groqKey.trim(),
+        models: getGroqTextModels(),
+        messages: [
+          {
+            role: 'system',
+            content:
+              'Răspunzi DOAR cu un obiect JSON valid, fără text înainte sau după, fără markdown.',
+          },
+          { role: 'user', content: prompt },
+        ],
+        jsonMode: true,
+        temperature: 0.2,
+        maxTokens: 2000,
       });
 
       const requestTime = Date.now() - startTime;
       console.log('[AI Analysis] Request completat în', requestTime, 'ms');
-      console.log('[AI Analysis] Response status:', response.status, response.statusText);
-
-      if (!response.ok) {
-        const errorText = await response.text();
-        console.error('[AI Analysis] Eroare HTTP:', response.status, response.statusText);
-        console.error('[AI Analysis] Response body:', errorText);
-        throw new Error(`Eroare ${response.status}: ${response.statusText}`);
-      }
-
-      const responseText = await response.text();
       console.log('[AI Analysis] Response primit, lungime:', responseText.length, 'caractere');
       console.log('[AI Analysis] Response raw (primele 500 caractere):', responseText.substring(0, 500));
       

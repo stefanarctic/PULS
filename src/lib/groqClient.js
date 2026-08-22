@@ -25,8 +25,18 @@ export const GROQ_TEXT_MODEL_FALLBACKS = [
 
 /** Modele care acceptă imagini în chat completions. */
 export const GROQ_VISION_MODEL_FALLBACKS = [
-    'meta-llama/llama-4-maverick-17b-128e-instruct',
     'meta-llama/llama-4-scout-17b-16e-instruct',
+    'meta-llama/llama-4-maverick-17b-128e-instruct',
+];
+
+/** Modelul principal al asistentului (același ca Puls-AI / n8n). */
+export const GROQ_ASSISTANT_MODEL = 'meta-llama/llama-4-scout-17b-16e-instruct';
+
+/** Chat asistent + rezolvare/analiză: Scout întâi, apoi vision/text ca rezervă. */
+export const GROQ_ASSISTANT_MODEL_FALLBACKS = [
+    GROQ_ASSISTANT_MODEL,
+    ...GROQ_VISION_MODEL_FALLBACKS.filter((model) => model !== GROQ_ASSISTANT_MODEL),
+    ...GROQ_TEXT_MODEL_FALLBACKS,
 ];
 
 /**
@@ -64,6 +74,32 @@ export function getGroqVisionModels() {
         import.meta.env.VITE_GROQ_VISION_MODELS,
         GROQ_VISION_MODEL_FALLBACKS,
     );
+}
+
+export function getGroqAssistantModels() {
+    const preferred = import.meta.env.VITE_GROQ_MODEL?.trim();
+    const chain = parseModelListFromEnv(
+        import.meta.env.VITE_GROQ_ASSISTANT_MODELS,
+        GROQ_ASSISTANT_MODEL_FALLBACKS,
+    );
+    if (!preferred) return chain;
+    return [preferred, ...chain.filter((model) => model !== preferred)];
+}
+
+/**
+ * @param {'ro'|'en'} [locale]
+ * @returns {string}
+ */
+export function getGroqApiKey(locale = 'ro') {
+    const key = import.meta.env.VITE_GROQ_API_KEY;
+    if (!key || typeof key !== 'string' || !key.trim()) {
+        throw new Error(
+            locale === 'en'
+                ? 'VITE_GROQ_API_KEY is missing from configuration.'
+                : 'VITE_GROQ_API_KEY lipsește din configurare.',
+        );
+    }
+    return key.trim();
 }
 
 /**
@@ -117,6 +153,8 @@ function shouldTryNextModel(status, data) {
  * @param {Array<{ role: string, content: string | unknown[] }>} params.messages
  * @param {boolean} [params.jsonMode]
  * @param {number} [params.temperature]
+ * @param {number} [params.maxTokens]
+ * @param {AbortSignal} [params.signal]
  * @returns {Promise<string>}
  */
 export async function callGroqWithModelFallbacks({
@@ -125,6 +163,8 @@ export async function callGroqWithModelFallbacks({
     messages,
     jsonMode = false,
     temperature = 0.3,
+    maxTokens,
+    signal,
 }) {
     const models = (Array.isArray(modelsInput) ? modelsInput : [modelsInput]).filter(Boolean);
     if (!models.length) {
@@ -137,6 +177,10 @@ export async function callGroqWithModelFallbacks({
         const model = models[i];
         const isLast = i === models.length - 1;
 
+        if (signal?.aborted) {
+            throw new DOMException('Aborted', 'AbortError');
+        }
+
         console.info(`[Groq] încerc modelul: ${model}`, {
             step: i + 1,
             totalModels: models.length,
@@ -148,16 +192,26 @@ export async function callGroqWithModelFallbacks({
             messages,
             temperature,
             ...(jsonMode ? { response_format: { type: 'json_object' } } : {}),
+            ...(typeof maxTokens === 'number' && maxTokens > 0 ? { max_tokens: maxTokens } : {}),
         };
 
-        const res = await fetch(GROQ_CHAT_COMPLETIONS, {
-            method: 'POST',
-            headers: {
-                Authorization: `Bearer ${apiKey.trim()}`,
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify(body),
-        });
+        let res;
+        try {
+            res = await fetch(GROQ_CHAT_COMPLETIONS, {
+                method: 'POST',
+                headers: {
+                    Authorization: `Bearer ${apiKey.trim()}`,
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(body),
+                signal,
+            });
+        } catch (err) {
+            if (err?.name === 'AbortError') throw err;
+            lastMessage = err?.message || 'Eroare de rețea către Groq.';
+            if (!isLast) continue;
+            throw err;
+        }
 
         const data = await res.json().catch(() => ({}));
 

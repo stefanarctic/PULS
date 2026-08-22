@@ -757,6 +757,14 @@ const AssistantPopup = ({ onClose, initialMessage, initialMessageInNewChat = fal
     // Verifică dacă mesajul este despre o problemă - dacă da, forțăm crearea unui chat nou
     const problemInfo = extractProblemInfo(text);
     const shouldForceNewChat = problemInfo !== null || sendOptions.forceNewChat === true;
+    const priorHistory = shouldForceNewChat
+      ? []
+      : (currentChat?.messages || [])
+          .filter((m) => m?.text && String(m.text).trim())
+          .map((m) => ({
+            role: m.role === "ai" || m.role === "assistant" ? "assistant" : "user",
+            text: String(m.text),
+          }));
     
     let activeChatId = currentChatId;
     
@@ -822,7 +830,10 @@ const AssistantPopup = ({ onClose, initialMessage, initialMessageInNewChat = fal
     }, 100);
 
     try {
-      const rawAiText = await fetchAssistantReply(text, activeChatId, { locale: lang });
+      const rawAiText = await fetchAssistantReply(text, activeChatId, {
+        locale: lang,
+        history: priorHistory,
+      });
       const aiText = await postProcessAiReply(rawAiText, lang);
       
       const aiMessage = { 
